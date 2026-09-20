@@ -49,9 +49,29 @@ function housePresentationPriority(difference: Difference): number {
   return 1_000 + withinCategory;
 }
 
+function travelPresentationPriority(difference: Difference): number {
+  const key = difference.termKey || "";
+  const withinCategory = Math.min(difference.priority, 199);
+  if (/^reise\.varighet\./u.test(key)) return 2_600 + withinCategory;
+  if (/^reise\.(?:overnatting|tjenestereise)$/u.test(key)) return 2_500 + withinCategory;
+  if (/^reise\.avbestilling\./u.test(key)) return 2_400 + withinCategory;
+  if (/^reise\.(?:medisinsk|hjemtransport|evakuering)/u.test(key)) return 2_300 + withinCategory;
+  if (/^reise\.bagasje\.(?:total|per_gjenstand|forsinket)/u.test(key)) return 2_200 + withinCategory;
+  if (/^reise\.reiseavbrudd/u.test(key)) return 2_100 + withinCategory;
+  if (/^reise\.forsinkelse\./u.test(key)) return 2_000 + withinCategory;
+  if (/^reise\.bagasje\.uhell/u.test(key)) return 1_900 + withinCategory;
+  if (/^reise\.leiebil\./u.test(key)) return 1_800 + withinCategory;
+  if (/^reise\.(?:ansvar|rettshjelp)\./u.test(key)) return 1_700 + withinCategory;
+  if (/^reise\.ulykke\./u.test(key)) return 1_600 + withinCategory;
+  if (/(?:^|\.)egenandel(?:_|\.|$)/u.test(key) || difference.kind === "deductible") return 1_500 + withinCategory;
+  if (/^reise\.tjeneste\./u.test(key)) return 900 + withinCategory;
+  return 1_000 + withinCategory;
+}
+
 function presentationPriority(difference: Difference): number {
   if (difference.insuranceKey === "innbo") return innboPresentationPriority(difference);
   if (difference.insuranceKey === "bolig") return housePresentationPriority(difference);
+  if (difference.insuranceKey === "reise") return travelPresentationPriority(difference);
   return difference.priority;
 }
 

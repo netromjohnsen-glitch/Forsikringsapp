@@ -1,0 +1,42 @@
+import type { CatalogSource } from "./product-catalog.ts";
+
+const source = (id: string, filename: string, documentName: string, termsNumber: string,
+  url: string, sha256: string, appliesTo: string[]): CatalogSource => ({
+  id, filename, documentName, termsNumber, productCode: termsNumber, version: termsNumber,
+  effectiveFrom: "", updatedAt: "Gjeldende kilde kontrollert 20.09.2026", appliesTo,
+  company: "Gjensidige", insuranceType: "Reise", url, sha256,
+});
+
+export const gjensidigeReiseSources: Record<string, CatalogSource> = {
+  gjensidigeReiseTerms: source("gjensidigeReiseTerms", "reise-alminnelige-vilkar.pdf",
+    "Reise – alminnelige vilkår", "Ikke oppgitt",
+    "https://www.gjensidige.no/files/privat/vilkar/reise/Reise-alminnelige-vilkar.pdf",
+    "dcf6dfd6c62112d634019ce0cd12793dc8009fba7fda527359da2a7828a37a82", ["Reise"]),
+  gjensidigeReisePlussTerms: source("gjensidigeReisePlussTerms", "reise-pluss-alminnelige-vilkar.pdf",
+    "Reise Pluss – alminnelige vilkår", "Ikke oppgitt",
+    "https://www.gjensidige.no/files/privat/vilkar/reise/Reise-Pluss-alminnelige-vilkar.pdf",
+    "97823ecfea0e62a98965bc51ebaac61ee05f3b42766333f959cf2c29ceacea04", ["Reise Pluss"]),
+  gjensidigeReiseIpid: source("gjensidigeReiseIpid", "reiseforsikring-ipid.pdf",
+    "Dokument med informasjon om forsikringsproduktet – Reiseforsikring", "EAP20",
+    "https://www.gjensidige.no/ipid/gfno/EAP20",
+    "4f61ae4add1baac5788289989179ade7320fd63ddaa18724ea9070dc9f18178a", ["Reise", "Reise Pluss"]),
+  gjensidigeReiseExtensionIpid: source("gjensidigeReiseExtensionIpid", "utvidelse-av-varighet-ipid.pdf",
+    "Dokument med informasjon om forsikringsproduktet – Utvidelse av årsreiseforsikring", "EAP23",
+    "https://www.gjensidige.no/ipid/gfno/EAP23",
+    "90ee33772fb2ab2e1723a7be5a99c222aeb52851d63f18fe7e93b3dda0173279", ["Varighetsutvidelse"]),
+  gjensidigeReiseProductPage: source("gjensidigeReiseProductPage", "produktside.html",
+    "Reiseforsikring – produktside", "Ikke oppgitt",
+    "https://www.gjensidige.no/forsikring/reiseforsikring",
+    "c270ef097d9c8c1fd02ca29fc04c057a6d482abc41e32ef3a60405500d97bcda", ["Produktoversikt", "SmartDelay+-status"]),
+  gjensidigeReiseDays: source("gjensidigeReiseDays", "reisedager.html",
+    "Reiseforsikring for lengre reiser", "Ikke oppgitt",
+    "https://www.gjensidige.no/forsikring/reiseforsikring/reisedager",
+    "cf8c3f94fa4828710b7fe584bcf19aba6b963c07449052193c03dcb9d47a5aa8", ["Varighetsutvidelse"]),
+  gjensidigeReiseAlarm: source("gjensidigeReiseAlarm", "alarmsentral.html",
+    "Vår døgnåpne alarmsentral", "Ikke oppgitt", "https://www.gjensidige.no/tjenester/alarmsentralen",
+    "783af556ab12b49afb3613aff49c7fb06f17d199971ffcfbfbc6b254cc71926f", ["Assistanse"]),
+  gjensidigeReiseDoctor: source("gjensidigeReiseDoctor", "online-lege.html",
+    "Videokonsultasjon med Online lege på reise", "Ikke oppgitt",
+    "https://www.gjensidige.no/tjenester/online-lege-pa-reise",
+    "9e092e683776c6582159a9f5a9a540536fa170d3a1af0646de2767399d77b9fd", ["Online lege"]),
+};
