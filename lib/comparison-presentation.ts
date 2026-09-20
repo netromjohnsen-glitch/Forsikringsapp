@@ -29,8 +29,30 @@ function innboPresentationPriority(difference: Difference): number {
   return 1_000 + withinCategory;
 }
 
+function housePresentationPriority(difference: Difference): number {
+  const key = difference.termKey || "";
+  const withinCategory = Math.min(difference.priority, 199);
+  if (/^hus\.(?:forsikringsform|forsikringssum)$/u.test(key)) return 2_500 + withinCategory;
+  if (/^hus\.plutselig\./u.test(key)) return 2_400 + withinCategory;
+  if (/^hus\.(?:vann|ror)\./u.test(key)) return 2_300 + withinCategory;
+  if (/^hus\.vatrom\./u.test(key)) return 2_250 + withinCategory;
+  if (/^hus\.takvegg\./u.test(key)) return 2_200 + withinCategory;
+  if (/^hus\.rate(?:_|\.)/u.test(key)) return 2_100 + withinCategory;
+  if (/^hus\.skadedyr\./u.test(key)) return 2_050 + withinCategory;
+  if (/^hus\.aldersfradrag\./u.test(key)) return 2_000 + withinCategory;
+  if (/^hus\.(?:naturskade|vaer)\./u.test(key)) return 1_900 + withinCategory;
+  if (/^hus\.(?:bygninger|andrebygninger|hage|teknisk)\./u.test(key)) return 1_800 + withinCategory;
+  if (/^hus\.(?:pabud|gjenoppforing|rydding)\./u.test(key)) return 1_700 + withinCategory;
+  if (/^hus\.utleie\./u.test(key)) return 1_600 + withinCategory;
+  if (/(?:^|\.)egenandel(?:\.|$)/u.test(key) || difference.kind === "deductible") return 1_500 + withinCategory;
+  if (/^hus\.(?:ansvar|rettshjelp|sikkerhet)\./u.test(key)) return 1_200 + withinCategory;
+  return 1_000 + withinCategory;
+}
+
 function presentationPriority(difference: Difference): number {
-  return difference.insuranceKey === "innbo" ? innboPresentationPriority(difference) : difference.priority;
+  if (difference.insuranceKey === "innbo") return innboPresentationPriority(difference);
+  if (difference.insuranceKey === "bolig") return housePresentationPriority(difference);
+  return difference.priority;
 }
 
 function commonCoverageTitle(age: TermGroup, distance: TermGroup, family: string): string | null {

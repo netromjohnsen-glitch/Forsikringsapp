@@ -151,6 +151,7 @@ export function normalizeManualAgreement(input: unknown) {
           name: item.label,
           value: (counts.get(item.key) ?? 0) > 1 ? `${item.source.termsNumber}: ${item.value}` : item.value,
           key: item.key,
+          structuredValue: item.structuredValue,
           deductibleClassification: item.deductibleClassification,
           source: item.source,
           sources: [

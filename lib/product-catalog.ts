@@ -17,6 +17,8 @@ import { gjensidigeInnboAddOns, gjensidigeInnboFacts, gjensidigeInnboProducts,
 import { storebrandInnboFacts, storebrandInnboProducts, storebrandInnboSources } from "./storebrand-innbo-catalog.ts";
 import { fremtindInnboFacts, fremtindInnboProducts, fremtindInnboSources } from "./fremtind-innbo-catalog.ts";
 import { frendeInnboAddOns, frendeInnboFacts, frendeInnboProducts, frendeInnboSources } from "./frende-innbo-catalog.ts";
+import { trygHusAddOns, trygHusFacts, trygHusProducts, trygHusSources } from "./tryg-hus-catalog.ts";
+import type { BuildingFactData } from "./building-facts.ts";
 
 export type CatalogSource = {
   id: string; filename: string; termsNumber: string; effectiveFrom: string;
@@ -24,11 +26,13 @@ export type CatalogSource = {
   productCode?: string; version?: string;
   distributionChannels?: string[];
   documentName?: string; insuranceType?: string; updatedAt?: string;
+  appliesTo?: string[];
 };
 export type CatalogFact = {
   key: string;
   label: string;
   value: string;
+  structuredValue?: BuildingFactData;
   replacesBase?: boolean;
   // standard: avtalen kan endre verdien; coverage: særskilt skadetype, men
   // forrang over avtalt generell egenandel er ikke dokumentert; override:
@@ -77,18 +81,18 @@ export const productCatalog: ProductCatalog = {
   products: [...trygProducts, ...ifProducts, ...gjensidigeProducts, ...storebrandProducts,
     ...sparebank1FremtindProducts, ...dnbFremtindProducts, ...eikaFremtindProducts, ...fremtindProducts, ...frendeProducts,
     ...trygInnboProducts, ...ifInnboProducts, ...gjensidigeInnboProducts, ...storebrandInnboProducts,
-    ...fremtindInnboProducts, ...frendeInnboProducts],
+    ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts],
   addOns: [...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
-    ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns],
+    ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns],
   sources: { ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,
-    ...fremtindInnboSources, ...frendeInnboSources },
+    ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources },
   facts: { ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
     ...sparebank1FremtindFacts, ...dnbFremtindFacts, ...eikaFremtindFacts, ...fremtindFacts, ...frendeFacts,
     ...trygInnboFacts, ...ifInnboFacts, ...gjensidigeInnboFacts, ...storebrandInnboFacts,
-    ...fremtindInnboFacts, ...frendeInnboFacts },
+    ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts },
 };
 
 export function productSuggestions(catalog: ProductCatalog, company: string, insuranceType: string): string[] {

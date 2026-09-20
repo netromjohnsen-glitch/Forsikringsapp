@@ -1,6 +1,7 @@
 import { hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "./insurance-normalization.ts";
 import type { MatchingPlan } from "./hybrid-matching.ts";
 import { materiallyEquivalentValues } from "./value-equivalence.ts";
+import type { BuildingFactData } from "./building-facts.ts";
 
 export type FactSource = {
   documentId: string;
@@ -19,6 +20,7 @@ export type InsuranceTerm = {
   value: string;
   key?: string;
   deductibleClassification?: "standard" | "coverage" | "override" | "reference";
+  structuredValue?: BuildingFactData;
   source?: FactSource;
   sources?: FactSource[];
   // Grunnverdier som er erstattet av dette effektive vilkåret, alltid på samme side.
