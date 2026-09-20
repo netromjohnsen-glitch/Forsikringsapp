@@ -1,4 +1,4 @@
-import { findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts, resolveProductComponentIds } from "./product-catalog.ts";
+import { findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
 import { summarizeManualAnnualPremium } from "./agreement-pricing.ts";
 
 export type ManualTermInput = { name: string; value: string };
@@ -157,15 +157,14 @@ export function normalizeManualAgreement(input: unknown) {
           sources: [
             { ...item.source, note: [
               ...(item.source.note ? [item.source.note] : []),
-              ...(item.replacesBase ? ["Effektiv verdi fra tillegg"] : []),
+              ...(item.replacesBase ? ["Effektiv verdi fra dokumentert utvidelse eller tillegg"] : []),
               ...(item.deductibleClassification ? [deductibleNotes[item.deductibleClassification]] : []),
             ].join(" · ") || undefined },
             ...(item.qualificationSource ? [{ ...item.qualificationSource, note: "Forbehold for standardegenandel" }] : []),
           ],
           overriddenBase: item.replacesBase
             ? (catalogFacts ?? []).filter((base) =>
-              base.key === item.key && base.source.documentId !== item.source.documentId &&
-              (catalogProduct ? resolveProductComponentIds(catalogProduct).includes(base.source.documentId) : false)
+              base.key === item.key && base !== item
             ).map((base) => ({ value: base.value, source: base.source }))
             : [],
         }))

@@ -8,4 +8,5 @@ export type BuildingFactData =
       annualPercent: number; maximumPercent: number; minimumCompensationPercent: number;
       yearBasis: "year" | "started_year"; exceptions: string[]; calculationBasis: string }
   | { kind: "age_threshold"; component: string; scope: string; olderThanYears: number;
-      deductionPercent: number; maximumCompensationNok: number };
+      deductionPercent?: number; fixedDeductionNok?: number; maximumCompensationNok?: number;
+      note?: string };
