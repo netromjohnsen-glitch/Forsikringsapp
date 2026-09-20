@@ -19,6 +19,7 @@ import { fremtindInnboFacts, fremtindInnboProducts, fremtindInnboSources } from 
 import { frendeInnboAddOns, frendeInnboFacts, frendeInnboProducts, frendeInnboSources } from "./frende-innbo-catalog.ts";
 import { trygHusAddOns, trygHusFacts, trygHusProducts, trygHusSources } from "./tryg-hus-catalog.ts";
 import { ifHusAddOns, ifHusFacts, ifHusProducts, ifHusSources } from "./if-hus-catalog.ts";
+import { storebrandHusAddOns, storebrandHusFacts, storebrandHusProducts, storebrandHusSources } from "./storebrand-hus-catalog.ts";
 import type { BuildingFactData } from "./building-facts.ts";
 
 export type CatalogSource = {
@@ -82,18 +83,18 @@ export const productCatalog: ProductCatalog = {
   products: [...trygProducts, ...ifProducts, ...gjensidigeProducts, ...storebrandProducts,
     ...sparebank1FremtindProducts, ...dnbFremtindProducts, ...eikaFremtindProducts, ...fremtindProducts, ...frendeProducts,
     ...trygInnboProducts, ...ifInnboProducts, ...gjensidigeInnboProducts, ...storebrandInnboProducts,
-    ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts, ...ifHusProducts],
+    ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts, ...ifHusProducts, ...storebrandHusProducts],
   addOns: [...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
-    ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns],
+    ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns],
   sources: { ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,
-    ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources, ...ifHusSources },
+    ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources, ...ifHusSources, ...storebrandHusSources },
   facts: { ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
     ...sparebank1FremtindFacts, ...dnbFremtindFacts, ...eikaFremtindFacts, ...fremtindFacts, ...frendeFacts,
     ...trygInnboFacts, ...ifInnboFacts, ...gjensidigeInnboFacts, ...storebrandInnboFacts,
-    ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts, ...ifHusFacts },
+    ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts, ...ifHusFacts, ...storebrandHusFacts },
 };
 
 export function productSuggestions(catalog: ProductCatalog, company: string, insuranceType: string): string[] {
