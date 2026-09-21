@@ -36,8 +36,8 @@ export const dnbFremtindProducts: CatalogProduct[] = [
 ];
 
 export const dnbFremtindAddOns: CatalogAddOn[] = [
-  { id: "dnb-leiebil", name: "Leiebil", componentId: "dnbOptionalCoverages", providerId: "dnb-fremtind", requiresLevel: ["dnb-bil-kasko", "dnb-bil-topp"] },
-  { id: "dnb-maskinskade", name: "Maskinskade", componentId: "dnbOptionalCoverages", providerId: "dnb-fremtind", requiresLevel: ["dnb-bil-kasko", "dnb-bil-topp"] },
+  { id: "dnb-leiebil", name: "Leiebil", componentId: "sp1Leiebil", providerId: "dnb-fremtind", requiresLevel: ["dnb-bil-kasko", "dnb-bil-topp"] },
+  { id: "dnb-maskinskade", name: "Maskinskade", componentId: "sp1Maskinskade", providerId: "dnb-fremtind", requiresLevel: ["dnb-bil-kasko", "dnb-bil-topp"] },
 ];
 
 export const dnbFremtindFacts = { dnbOptionalCoverages: [] };

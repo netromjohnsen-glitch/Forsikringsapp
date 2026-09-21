@@ -94,14 +94,8 @@ export function presentImportantDifferences(
   differences: Difference[],
   groups: InsuranceGroup[],
   matchingPlan: MatchingPlan | null,
-  firstCompany: string | null,
-  secondCompany: string | null,
 ): Difference[] {
   let result = [...differences];
-  const sameCompany = firstCompany && secondCompany &&
-    firstCompany.toLocaleLowerCase("nb-NO") === secondCompany.toLocaleLowerCase("nb-NO");
-  const firstLabel = sameCompany ? `Eksisterende ${firstCompany}` : firstCompany || "Eksisterende";
-  const secondLabel = sameCompany ? `Nytt tilbud ${secondCompany}` : secondCompany || "Nytt tilbud";
 
   for (const group of groups) {
     if (group.first.length !== 1 || group.second.length !== 1) continue;
@@ -121,7 +115,7 @@ export function presentImportantDifferences(
       const firstIndex = result.indexOf(included[0]);
       const grouped: Difference = {
         title,
-        text: `${firstLabel}: ${age.first} / ${distance.first} mot ${secondLabel}: ${age.second} / ${distance.second}.`,
+        text: `Eksisterende: ${age.first} / ${distance.first}. Nytt tilbud: ${age.second} / ${distance.second}.`,
         type: "tradeoff",
         kind: "term",
         insuranceKey: group.key,

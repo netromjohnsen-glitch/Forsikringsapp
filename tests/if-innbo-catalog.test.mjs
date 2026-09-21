@@ -88,6 +88,16 @@ test("Utvidet inkluderer uhell, tyveri ute, flytting, skadedyr, boligtilpasning 
   assert.match(fact(extended, "utleie.sikkerhetskrav").value, /minst 2 måneders leie/);
 });
 
+test("Utvidet strukturerer begrensningene for glass og sanitærporselen", () => {
+  const items = resolveCatalogFacts(product("If", "Utvidet"), []);
+  const limitation = fact(items, "glass.sanitaer.begrensning");
+  assert.match(limitation.value, /Riper.*utett innfatning.*næringsvirksomhet.*hobbyveksthus/s);
+  assert.equal(limitation.source.section, "4.8");
+  assert.equal(limitation.source.page, 8);
+  assert.ok(fact(resolveCatalogFacts(product("If", "Super"), []), "glass.sanitaer.begrensning"));
+  assert.equal(fact(resolveCatalogFacts(product("If", "Basis"), []), "glass.sanitaer.begrensning"), undefined);
+});
+
 test("Super forbedrer effektive verdier og bevarer grunnverdier med egne kilder", () => {
   const effective = resolveCatalogFacts(product("If", "Super"), []);
   assert.match(fact(effective, "innbo.opphold.grense").value, /uten sumbegrensning/);

@@ -80,7 +80,10 @@ function buildingFacts(extra: boolean): CatalogFact[] {
     ["plutselig.unntak", "Bygningsskade – slitasje og vedlikehold", "Slitasje, tæring, forbruk, alder, ødeleggelse av tingen selv og kosmetiske skader er unntatt. Naturulykke og skadetyper i 2.1–2.5 behandles uttømmende i sine respektive dekninger.", "2.6", 4],
     ["rate.dekning", "Råte og sopp – bygningsskade", "Sopp og råte er unntatt i ordinær bygningsdekning. Separat råte- og skadedyrdekning må være avtalt.", "2.3, 2.6", 4],
     ["skadedyr.bygningsskade", "Dyr – fysisk bygningsskade", extra ? "Plutselig og uforutsett skade fra dyr kan omfattes; kjæledyr, insekter, bakterier, sopp og råte er unntatt. Unntaket gjelder ikke bruddskade på glass. Bekjempelse følger ikke automatisk denne dekningen." : "Dyr, insekter, bakterier, sopp og råte er unntatt; unntaket gjelder ikke bruddskade på glass.", "2.6", 4],
-    ["vaer.dekning", "Vind, snøtyngde og ras fra tak", "Vind svakere enn storm, snøtyngde og ras fra tak behandles som ordinær bygningsskade med vilkårets unntak; ikke som lovbestemt naturskade.", "2.6", 5],
+    ["vaer.dekning", "Vind, snøtyngde og ras fra tak", "Vind svakere enn storm, snøtyngde og ras fra tak behandles som ordinær bygningsskade; ikke som lovbestemt naturskade.", "2.6", 4],
+    ["vaer.begrensning", "Vind, snø og ras – sentrale begrensninger", extra
+      ? "Kjæledyr, insekter, bakterier, sopp eller råte, slitasje og alder, kosmetiske skader, utett våtrom, selve håndverkerfeilen samt følgeskade etter eget/ufaglært arbeid eller oppdaget senere enn 10 år er unntatt."
+      : "Mangelfull fundamentering, setninger, jordtrykk, frost og tele, material-, konstruksjons- og monteringsfeil, slitasje og alder, dyr, insekter, bakterier, sopp eller råte og kosmetiske skader er unntatt.", "2.6", 4],
     ["hage.vaer", "Hageanlegg – værunntak", extra ? "Dyr, frost og andre klimatiske forhold er unntatt; flomlignende situasjon dekkes." : "Frost og klimatiske forhold er unntatt; flomlignende situasjon dekkes. Dyreskade følger generelt unntak i 2.6.", "2.6", 4],
     ["egenandel.generell", "Generell egenandel", "Egenandelen i forsikringsbeviset gjelder hvis vilkåret ikke angir en annen; per skadetilfelle med mindre annet fremgår.", "3.2", 5, "reference"],
     ["vann.egenandel", "Vann fra terreng/grunn – egenandel", "Minimum 8 000 kr", "2.3", 4, "override"],
@@ -137,7 +140,7 @@ export const trygHusFacts: Record<string, CatalogFact[]> = {
     ["sikkerhet.vann", "Sikkerhet – vann og frost", "Steng hovedstoppekran når bygget er ubebodd sammenhengende over én måned; tapp ned ved behov mot frost og hold bygget tilstrekkelig oppvarmet.", "1.2", 1],
     ["sikkerhet.sno", "Sikkerhet – snø", "Måk tak, balkong og terrasse for å unngå snøpress, snøras og snøsmelteskade.", "1.2", 1],
     ["sikkerhet.tyveri", "Sikkerhet – låsing", "Lås dører og lukk/steng vinduer når ingen er til stede; luftestilling er ikke forsvarlig sikring. Nøkler utilgjengelig for uvedkommende.", "1.2", 1],
-    ["sikkerhet.risiko", "Sikkerhet – ombygging, utleie og fraflytting", "Meld ombygging som endrer gjenoppføringskostnad. Utleie krever avtale med Tryg med angitte familieunntak. Skader som skyldes fraflytting erstattes ikke; brann og naturskade beholdes.", "2", 2],
+    ["sikkerhet.risiko", "Sikkerhet – ombygging, utleie og fraflytting", "Meld ombygging som endrer gjenoppføringskostnaden. Hel eller delvis utleie mot betaling krever avtale med Tryg, unntatt utleie til foreldre, søsken, barn eller barnebarn og deres ektefeller eller registrerte partnere. Ved fraflytting erstattes ikke skader som skyldes fraflyttingen; brann og naturskade er fortsatt dekket.", "2.1–2.2", 2],
   ]),
   trygHusRot: [
     ...facts("trygHusRotProduct", [["rate_skadedyr.avtale", "Råte/skadedyr – valgt dekning", "Forsikringsbeviset gjelder foran vilkårene og viser hvilke dekninger som er valgt. Råte- og skadedyrdekningen må derfor bekreftes i kundens avtale.", "Innledning, 2", 1]]),

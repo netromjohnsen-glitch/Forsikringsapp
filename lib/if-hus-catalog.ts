@@ -46,7 +46,8 @@ const basis = facts("ifHusTerms", [
   ["brann.dekning", "Brann", "Brann (løs ild), plutselig nedsoting og eksplosjon. Plutselige gnist- og sviskader omfattes inntil 10 000 kroner.", "4.1.1", 6],
   ["elektrisk.dekning", "Lyn og elektrisk fenomen", "Lynnedslag, kortslutning, lysbue, overslag, overspenning og brudd på bygningens elektriske kabler.", "4.1.2", 7],
   ["naturskade.dekning", "Naturskade", "Direkte skade ved skred, storm, flom, stormflo, flodbølge, meteorittnedslag, jordskjelv eller vulkanutbrudd i Norge etter naturskadeforsikringsloven.", "4.2", 7],
-  ["vaer.dekning", "Snø, is og svakere vind", "Ras på/fra tak, snø-/istyngde og snøpress er ordinær bygningsdekning med konstruksjons- og objektunntak. Vind svakere enn storm har særskilt egenandel og er ikke naturskade.", "4.3, 5.7.3", 7],
+  ["vaer.dekning", "Snø, is og svakere vind", "Ras på eller fra tak, snø- og istyngde og snøpress er ordinær bygningsdekning med konstruksjons- og objektunntak. Vind svakere enn storm har en separat dokumentert egenandelsregel.", "4.3", 7],
+  ["vaer.begrensning", "Snø og is – begrensninger", "Skade der råte, svak eller feil konstruksjon eller uriktig montasje medvirker er unntatt. Det samme gjelder skade som alene rammer antenner, skilt eller markiser; veksthus, plasthall, pergola eller paviljong; hageanlegg, beplantning, utvendig basseng eller fast trebrygge; og ikke-boligbygg med takkonstruksjon eldre enn 50 år. Dokumentert rydding for de to sistnevnte bygningskategoriene kan dekkes inntil 150 000 kr.", "4.3", 7],
   ["vann.utstromming", "Vann, gass og annen væske", "Lekkasje, oversvømmelse eller tilbakeslag fra bygningens rør og tilknyttet utstyr; også akvarium, vannseng og brannslukningsapparat.", "4.4", 8],
   ["ror.brudd", "Rørbrudd", "Brudd på bygningens rørledning og tilknyttede beholdere, tanker, pumper, drenskum og fyrkjele. Følgeskade og selve bruddet må vurderes etter sine respektive vilkår.", "4.4", 8],
   ["vann.terreng", "Vann fra terreng, grunn og overflate", "Plutselig inntrengning i slik mengde at synlig vann blir stående på gulvet. Vann i oppforet gulvkonstruksjon regnes ikke som synlig stående vann.", "4.4", 8],
@@ -127,6 +128,7 @@ const superFacts = [
 
 const liability = facts("ifHusLiability", [
   ["rettshjelp.dekning", "Rettshjelp - eiendomstvister", "Tvist som personlig eier av forsikret eiendom. Gjelder eiendomsforsikring i Norden hvis beviset ikke sier annet; nødvendige rimelige advokat-, retts-, sakkyndig- og vitneutgifter med dokumenterte unntak.", "1.2-1.5", 1],
+  ["rettshjelp.begrensning", "Rettshjelp – sentrale begrensninger", "Tvister om familie, arv, samboerforhold eller skifte, yrke eller erverv, annen fast eiendom, kjøretøy, båt eller luftfartøy er unntatt. Ved offentlig forvaltningsvedtak dekkes søksmål først når administrativ klagemulighet er fullt utnyttet; utgifter under forvaltningsbehandlingen er unntatt.", "1.5.3", 2],
   ["rettshjelp.grense", "Rettshjelp - forsikringssum", "100 000 kroner per tvist; samlet 250 000 kroner ved minst tre parter på samme side med i hovedsak samme faktiske og juridiske spørsmål.", "1.6", 2],
   ["rettshjelp.egenandel", "Rettshjelp - egenandel", "4 000 kroner + 20 % av overskytende; én egenandel per tvist.", "1.7", 2, "override"],
   ["ansvar.dekning", "Ansvar knyttet til Hus", "Rettslig erstatningsansvar i egenskap av personlig eier av forsikret eiendom, for person- og tingskade. Gjelder skade i Norden etter nordisk rett.", "2.2-2.4", 3],

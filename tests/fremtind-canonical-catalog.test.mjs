@@ -33,7 +33,7 @@ test("Topp bruker effektiv 3 år / 100 000 km og beholder Kasko-base på samme s
   assert.equal(agreement.insuranceData.distributionChannel, "DNB");
 });
 
-test("distribusjonskanal isolerer dokumenterte SpareBank 1-tillegg", () => {
+test("distribusjonskanal beholder stabile tilleggs-ID-er med felles aktive vilkår", () => {
   const top = level("Topp");
   assert.deepEqual(availableAddOns(top, new Date("2026-09-19"), "SpareBank 1").map((item) => item.id),
     ["fremtind-sb1-leiebil", "fremtind-sb1-maskinskade"]);
@@ -41,8 +41,9 @@ test("distribusjonskanal isolerer dokumenterte SpareBank 1-tillegg", () => {
     assert.deepEqual(availableAddOns(top, new Date("2026-09-19"), channel).map((item) => item.id),
       ["fremtind-leiebil", "fremtind-maskinskade"]);
     const selected = resolveCatalogFacts(top, ["fremtind-leiebil", "fremtind-maskinskade"], new Date("2026-09-19"), channel);
-    assert.equal(fact(selected, "leiebil.dager"), undefined);
-    assert.equal(fact(selected, "maskinskade.km"), undefined);
+    assert.match(fact(selected, "leiebil.dager").value, /45 dager/);
+    assert.match(fact(selected, "maskinskade.alder").value, /10 år/);
+    assert.match(fact(selected, "maskinskade.km").value, /200 000 km/);
   }
   const sb1 = normalizeManualAgreement(request("SpareBank 1", "Topp",
     ["fremtind-sb1-leiebil", "fremtind-sb1-maskinskade"]));
@@ -64,9 +65,9 @@ test("UI-formet Fremtind-request beholder kanal og tillegg gjennom presentasjone
   const groups = groupInsurances(left.insuranceData.insurances, right.insuranceData.insurances, null);
   const terms = groupTerms(groups[0], null);
   assert.match(fact(terms, "leiebil.dager").first, /45 dager/);
-  assert.equal(fact(terms, "leiebil.dager").second, null);
+  assert.equal(fact(terms, "leiebil.dager").first, fact(terms, "leiebil.dager").second);
   const raw = createDifferences(left, right, groups, null);
-  assert.ok(raw.some((item) => item.kind === "add_on" && item.title === "Leiebil"));
+  assert.equal(raw.some((item) => item.termKey === "leiebil.dager"), false);
   assert.doesNotThrow(() => presentImportantDifferences(raw, groups, null, "Fremtind", "Fremtind"));
 });
 

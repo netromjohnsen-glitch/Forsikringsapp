@@ -75,6 +75,10 @@ test("forsikringssum og base/effective følger dagens alminnelige dokumenter", (
     "500 000 kr for hver angitt kategori og per øvrig enkeltgjenstand eller samling");
   assert.equal(fact(standard, "tyveri.fellesbod.grense").value, "30 000 kr");
   assert.match(fact(plus, "tyveri.fellesbod.grense").value, /ubegrenset innbosum/);
+  assert.match(fact(plus, "tyveri.fellesbod.grense").value, /Ingen separat generell bodgrense/);
+  assert.equal(fact(plus, "tyveri.fellesbod.sykkelgrense").value, "30 000 kr per sykkel, elsykkel eller sykkeltilhenger.");
+  assert.match(fact(plus, "tyveri.fellesbod.sikkerhet").value, /Elektronisk.*smykker.*kunst/);
+  assert.equal(fact(standard, "tyveri.fellesbod.sykkelgrense"), undefined);
   const detail = manual("Gjensidige", "Innbo Pluss").insuranceData.insurances[0].importantTerms;
   assert.match(fact(detail, "innbo.forsikringssum").overriddenBase[0].value, /ikke oppgitt/);
   assert.equal(fact(detail, "innbo.forsikringssum").source.documentId, "gjInnboPlus");

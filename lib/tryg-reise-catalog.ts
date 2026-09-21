@@ -80,7 +80,8 @@ const extra = facts("trygReiseExtra", [
   ["reiseavbrudd", "Reiseavbrudd", "Kompensasjon for ubenyttede kalenderdager ved sykehusinnleggelse, dekket hjemtransport/evakuering eller tilsvarende hendelse hos eneste medreisende; ikke på hjemreisedagen eller tjenestereise.", "5.5", 7, undefined, true],
   ["forsinkelse.hotell_arrangement", "Tapt hotell og arrangement", "Ubenyttet hotellovernatting og forhåndsbetalt arrangement etter minst fem timers dekket forsinkelse; inntil én hotellovernatting.", "3.2", 3, undefined, true],
   ["forsinkelse.leiebilavtale", "Tapt leiebilavtale", "Kansellert forhåndsbetalt leiebilavtale for bil etter minst 1,5 times dekket forsinkelse; privatleie, andre kjøretøy og bil for andre er unntatt.", "3.2–3.3", 3, undefined, true],
-  ["bagasje.uhell", "Uhell på reisegods", "Plutselig og uforutsett fysisk skade med kjent ytre årsak og tidspunkt. Tingen må fremvises; mistet/gjenglemt ting og angitte objekt-/stedsunntak dekkes ikke.", "4.1", 4, undefined, true],
+  ["bagasje.uhell", "Uhell på reisegods", "Plutselig og uforutsett fysisk skade med kjent ytre årsak og tidspunkt. Tingen må fremvises; mistet/gjenglemt ting dekkes ikke.", "4.1", 4, undefined, true],
+  ["bagasje.uhell_begrensning", "Uhell på reisegods – sentrale begrensninger", "Sykkelskade i bosteds-, studie- eller arbeidskommune, kosmetisk skade på koffert, bag, ryggsekk, barnevogn, sykkel, kano eller kajakk, arbeidsgivers eller skolens eiendeler, leid løsøre og motoriserte kjøretøy eller små elektriske kjøretøy er unntatt.", "4.1", 4],
   ["leiebil.egenandel", "Egenandel leiebil", "Belastet egenandel ved skade eller tyveri av leiebil til eget bruk på feriereise med minst én overnatting og kontrakt med utleiefirma. Andre kjøretøy, bildeling, verkstedleie, flytting og varetransport er unntatt.", "7", 9, undefined, true],
 ]);
 

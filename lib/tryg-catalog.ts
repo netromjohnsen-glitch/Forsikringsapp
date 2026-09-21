@@ -73,7 +73,7 @@ export const trygFacts: Record<string, CatalogFact[]> = {
       ["haerverk.dekning", "Hærverk", "Skade på eget kjøretøy ved hærverk", "2.1", 1],
       ["feilfylling.dekning", "Feilfylling", "Skade på eget kjøretøy ved feilfylling av drivstoff", "2.1", 1],
       ["kasko.egenandel", "Kasko – egenandel", "Avtalt egenandel fremgår av forsikringsbeviset", "2.1", 1, "reference"],
-      ["kasko.ungforer", "Kasko – fører under 23 år", "Egenandel økes med 5 000 kr med angitte unntak, hvis ikke annet står i forsikringsbeviset", "2.1", 1],
+      ["kasko.ungforer", "Kasko – fører under 23 år", "Egenandelen økes med 5 000 kr hvis ikke annet står i forsikringsbeviset. Økningen gjelder ikke hovedeier, hovedeiers ektefelle eller samboer, eller fører som har øvelseskjørt 2 000 km med «Tryg vei til lappen».", "2.1", 1],
       ["kasko.unntak", "Kasko – unntak", "Maskinbrudd og frost er ikke dekket under kasko", "2.1", 1],
       ["kasko.dyr", "Påkjørsel av dyr", "Ingen bonustap ved dokumentert varsling til politi/viltnemnd; egenandel 2 000 kr", "2.1", 1],
       ["kasko.var", "Værskade – egenandel", "Egenandel bortfaller når bilen var parkert innendørs i garasje eller lignende", "2.1", 1],

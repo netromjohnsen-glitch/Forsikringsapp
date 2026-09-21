@@ -55,7 +55,7 @@ const facts = (id: string, rows: Row[]): CatalogFact[] => rows.map(
       effectiveFrom: sparebank1FremtindSources[id].effectiveFrom,
       company: "Fremtind", url: sparebank1FremtindSources[id].url,
       note: id === "sp1Leiebil" || id === "sp1Maskinskade"
-        ? "Dokumentert for SpareBank 1-distribusjonen; forsikringsbeviset avgjør valgte dekninger og avtalte egenandeler"
+        ? "Aktivt generisk Fremtind-tilleggsvilkår; distribusjonskanalen avgjør tilgjengelighet, og forsikringsbeviset avgjør valgt dekning og avtalte egenandeler"
         : "Kanonisk Fremtind-vilkår lenket identisk fra SpareBank 1 og DNB; forsikringsbeviset avgjør valgte dekninger og avtalte egenandeler" },
   }),
 );

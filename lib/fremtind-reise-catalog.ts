@@ -5,17 +5,20 @@ export { fremtindReiseSources } from "./fremtind-reise-sources.ts";
 type Row = [string, string, string, string, number, CatalogFact["deductibleClassification"]?, boolean?];
 function facts(sourceId: string, rows: Row[]): CatalogFact[] {
   const s = fremtindReiseSources[sourceId];
+  const historical = sourceId === "fremtindReiseTerms" || sourceId === "fremtindReiseIpid";
   return rows.map(([key, label, value, section, page, deductibleClassification, replacesBase]) => ({
     key: `reise.${key}`, label, value,
     ...(deductibleClassification ? { deductibleClassification } : {}),
     ...(replacesBase ? { replacesBase: true } : {}),
     source: { documentId: s.id, section, page, filename: s.filename, termsNumber: s.termsNumber,
       effectiveFrom: s.effectiveFrom, company: s.company, url: s.url, productCode: s.productCode,
-      version: s.version, note: "Fremtind er provider; Eika er distribusjonskanal. Forsikringsbevis og særvilkår går foran." },
+      version: s.version, note: historical
+        ? "Historisk Eika-produkt med Fremtind som provider; skal bare brukes når kundedokumentet identifiserer P10/P10P."
+        : "Aktivt Fremtind-produkt for SpareBank 1, DNB og Eika nytegning; forsikringsbevis og særvilkår går foran." },
   }));
 }
 
-const common = facts("fremtindReiseTerms", [
+const historicalCommon = facts("fremtindReiseTerms", [
   ["avtale.forbehold", "Forsikringsbevisets forrang", "Forsikringsbeviset og valgte særvilkår styrer Reise/Reise Pluss, person/familie, sikrede, reisedøgn, utvidelser, summer, egenandeler og reservasjoner.", "Forsikringsavtalen", 2],
   ["personer.omfang", "Enkeltperson eller familie", "Familie omfatter ektefelle/samboer, registrert partner, egne barn, særkullsbarn, fosterbarn og barn under vergeansvar til 21 år. Barnebarn og oldebarn omfattes på reise alene sammen med sikrede. Personene skal ha folkeregistrert bostedsadresse i Norden og nordiske trygderettigheter etter vilkåret.", "1 Hvem forsikringen gjelder for", 4],
   ["omrade.verden", "Geografisk område", "Ferie-, fritids- og tjenestereiser i hele verden som starter og slutter ved fast bosted. Ingen krav til overnatting. Ikke hjemme, fast arbeids-/undervisningssted eller barnehage; ansvar og rettshjelp gjelder bare utenfor Norden.", "1.3 Hvor forsikringen gjelder", 5],
@@ -45,12 +48,15 @@ const common = facts("fremtindReiseTerms", [
   ["rettshjelp.egenandel", "Rettshjelp – egenandel", "500 kr etter Eika-kanalvilkåret; forsikringsbeviset styrer.", "5.5", 17, "reference"],
   ["ulykke.dekning", "Helårs ulykkesforsikring", "Død, varig medisinsk invaliditet og behandlingsutgifter etter erstatningsmessig ulykkesskade. Gjelder hele døgnet også utenfor reise; forsikringsbeviset angir omfanget.", "8 Ulykke", 21],
   ["ulykke.behandling", "Ulykke – behandlingsutgifter", "Nødvendige behandlingsutgifter i inntil to år, begrenset til 5 % av invaliditetssummen. Egenandel 1 000 kr; tannskade for barn under 21 år 500 kr.", "8.5–8.7", 25],
+  ["medisinsk.egenandel", "Reisesyke og hjemtransport – egenandel", "0 kr.", "3.6", 13, "override"],
+  ["ulykke.behandling_egenandel", "Ulykke – behandlingsutgifter – egenandel", "1 000 kr.", "8.7", 25, "override"],
+  ["ulykke.tann_egenandel", "Ulykke – tannskade under 21 år – egenandel", "500 kr.", "8.7", 25, "override"],
   ["aktivitet.unntak", "Sport og aktiviteter", "Standard unntar blant annet profesjonell sport over 1 G, kamp-/luft-/motorsport, basehopp, dykking over 40 meter, fridykking over 10 meter og ekspedisjoner. Pluss åpner dokumenterte aktiviteter som fjellklatring, off-piste, kiting og downhill.", "3.4 / 8.4 / P15.16", 11],
   ["omrade.ud", "UD, krig og terror", "Reiser til område med offisielt reiseråd eller krigsrisiko er unntatt. Avbestilling før reisen og evakuering under reisen har egne utløsende vilkår.", "1.3 / 7 / evakuering", 5],
   ["sikkerhet.reisegods", "Sikkerhetsforskrifter", "Reisegods skal ha tilsyn eller være forsvarlig låst og sikret. Verdigjenstander, penger, elektronikk, mobil og skjøre ting skal ikke sendes som innsjekket bagasje; sykkel skal låses. Hendelser og utgifter må dokumenteres.", "2.7 / 9", 9],
 ]);
 
-const standard = facts("fremtindReiseTerms", [
+const historicalStandard = facts("fremtindReiseTerms", [
   ["bagasje.total", "Reisegods – samlet sum", "40 000 kr for enkeltperson og 120 000 kr for familie.", "Dekningsmatrise", 3],
   ["bagasje.per_gjenstand", "Enkeltgjenstand", "15 000 kr per annen enkeltgjenstand.", "Dekningsmatrise", 3],
   ["bagasje.pass_billetter", "Pass og reisedokumenter", "20 000 kr.", "Dekningsmatrise", 3],
@@ -64,7 +70,7 @@ const standard = facts("fremtindReiseTerms", [
   ["ulykke.dodsfall", "Ulykke – dødsfall", "Voksen 300 000 kr; barn i familie 50 000 kr. Aldersregler følger vilkåret.", "8.3 / dekningsmatrise", 21],
 ]);
 
-const plus = facts("fremtindReiseTerms", [
+const historicalPlus = facts("fremtindReiseTerms", [
   ["bagasje.total", "Reisegods – samlet sum", "Ingen generell samlet øvre sum; kategori- og enkeltgjenstandsgrenser gjelder.", "P15.4", 27, undefined, true],
   ["bagasje.per_gjenstand", "Enkeltgjenstand", "40 000 kr per annen enkeltgjenstand.", "P15.3", 27, undefined, true],
   ["bagasje.pass_billetter", "Pass og reisedokumenter", "Ingen generell øvre sum etter P15; dokumenterte nødvendige utgifter og vilkåret styrer.", "P15.5", 27, undefined, true],
@@ -83,20 +89,73 @@ const plus = facts("fremtindReiseTerms", [
   ["veterinar", "Veterinærutgifter", "Nødvendige dokumenterte veterinærutgifter ved akutt sykdom eller ulykke utenfor Norden, inntil 2 500 kr.", "P15.18", 28],
 ]);
 
-const services = facts("fremtindReiseTerms", [[
+const historicalServices = facts("fremtindReiseTerms", [[
   "tjeneste.alarm", "SOS International", "Døgnåpen alarmsentral for medisinsk assistanse, sykehusopphold, hjemtransport og tilkalling. Tjeneste, ikke forsikringssum.", "3.5 / kontaktinformasjon", 13,
 ]]);
 
+const activeTerms = facts("fremtindReiseUnifiedTerms", [
+  ["avtale.forbehold", "Forsikringsbevisets forrang", "Forsikringsbeviset angir hvem som er sikret, avtalt antall reisedøgn, summer, egenandeler og eventuelle særvilkår.", "1–3", 1],
+  ["personer.omfang", "Enkeltperson eller familie", "Forsikringstaker eller sikrede i forsikringsbeviset. Ved familiedekning omfattes ektefelle, samboer, egne barn, fosterbarn, barn under vergeansvar og barn i husstanden til fylte 21 år; barnebarn og oldebarn omfattes når de reiser alene med sikrede.", "1", 1],
+  ["omrade.verden", "Geografisk område", "Hele verden. Reisen starter og slutter ved fast bostedsadresse i Norden. Ansvar og rettshjelp gjelder bare på reiser utenfor Norden.", "2–3", 1],
+  ["varighet.utvidelse", "Avtalt reisevarighet", "Avtalt antall reisedøgn står i forsikringsbeviset. Andre varigheter enn standard er kundespesifikke avtalevalg, ikke automatisk canonical dekning.", "3", 1],
+  ["bagasje.dekning", "Reisegods", "Tyveri, ran, skadeverk, naturskade, brann, vann, trafikkuhell, båtuhell og tap eller skade på innsjekket bagasje etter vilkåret. Mistet, gjenglemt eller forlagt gods og ukjent skadeårsak er unntatt.", "7.1–7.2", 3],
+  ["bagasje.verdisaker", "Verdigjenstander", "Smykker, klokker, pelsverk, bunad, elektronikk, instrumenter, sportsutstyr, våpen, kjøreutstyr og sykkel omfattes samlet med inntil 40 000 kr per skadetilfelle etter vilkåret.", "7.1", 3],
+  ["bagasje.uhell", "Annen tilfeldig skade på reisegods", "Annen tilfeldig og plutselig fysisk skade enn hendelsene i hoveddekningen erstattes med inntil 2 500 kr samlet per skadetilfelle. Mobiltelefon, datamaskin, lese-/nettbrett, fjernstyrte biler, modellfly og droner er unntatt fra denne dekningen.", "7.3", 4],
+  ["bagasje.mobil", "Mobiltelefon", "Reparasjon av privat mobiltelefon ved fysisk skade på reise når årsaken er en kjent, tilfeldig og plutselig ytre hendelse. Skade i hjemmet, kosmetisk skade, fukt, innhold og arbeidsgivers telefon er unntatt.", "7.4", 4],
+  ["bagasje.mobil_egenandel", "Mobiltelefon – egenandel", "2 000 kr.", "7.5.6", 5, "override"],
+  ["bagasje.forsinket", "Forsinket bagasje", "Ved minst fire timers dokumentert forsinkelse på utreise dekkes nødvendige klær, toalettsaker og relevant leieutstyr med inntil 5 000 kr per person. Firetimerskravet gjelder ikke jobbreise; hjemreise er unntatt.", "8.1", 5],
+  ["forsinkelse.rute", "Forsinket reise", "Nødvendige merutgifter til overnatting og innhenting av påbegynt reise ved dokumentert vær, uforutsett trafikkforhold, teknisk feil eller trafikkuhell. Overnatting er begrenset til 6 000 kr per person; innhenting av reiseruten er ubegrenset etter vilkåret.", "8.2", 5],
+  ["forsinkelse.ankomst", "Forsinket ankomst", "Ved mer enn åtte timers dokumentert forsinkelse erstattes tapt ferie med 500 kr per påbegynt døgn, inntil 5 000 kr per person, og ubenyttede turisttjenester med inntil 5 000 kr per skadetilfelle.", "8.2", 6],
+  ["leiebil.egenandel", "Egenandel leid bil", "Egenandel etter leiekontrakt ved ytre skade på eller tyveri av kaskoforsikret personbil leid fra godkjent utleiefirma på ferie- eller tjenestereise. Helårsleie, leasing, bilpool, privatleie, flytting, erstatningsbil, feilfylling og andre kjøretøy er unntatt.", "9.1", 6],
+  ["medisinsk.behandling", "Akutt sykdom og personskade", "Nødvendige dokumenterte utgifter ved akutt uventet sykdom, akutt forverring av kronisk sykdom eller ulykkesskade på reisen. Fortløpende behandling for samme sykdom eller skade er begrenset til de første 30 døgn etter første legebesøk, med unntak når hjemtransport ikke er medisinsk forsvarlig.", "10.1 og 10.7.3", 6],
+  ["medisinsk.tann", "Tannbehandling", "Tannbehandling etter ulykkesskade inntil 5 000 kr per skadetilfelle; akutt tannsykdom eller tyggeskade inntil 1 000 kr.", "10.1", 7],
+  ["medisinsk.kjent", "Kjent sykdom", "Utgifter som følge av kjent sykdom før avreise, planlagt behandling eller påregnelige komplikasjoner omfattes ikke.", "10.1", 6],
+  ["medisinsk.graviditet", "Graviditet og fødsel", "Utgifter ved svangerskap fra og med uke 36 og frivillig abort omfattes ikke. Avbestilling dekker ikke svangerskap, frivillig abort eller fødsel fra og med uke 36.", "10.1 og 12.1", 6],
+  ["hjemtransport", "Hjemtransport", "Nødvendig og dokumentert hjemtransport ved akutt alvorlig sykdom, ulykkesskade, dødsfall i nærmeste familie, sikredes død eller alvorlig skade på bolig/forretning. Selskapet eller SOS International skal kontaktes og endringer av hjemreise skal forhåndsgodkjennes.", "10.3 og 10.7.1", 7],
+  ["sykeledsagelse", "Tilkalling", "Rimelige merutgifter til reise og losji for inntil to nærmeste pårørende ved akutt alvorlig uventet fysisk sykdom, eller to medreisende som blir igjen. Tilkalling skal avklares med selskapet eller SOS International på forhånd.", "10.1", 7],
+  ["reiseavbrudd", "Avbrutt reise og tapte feriedager", "Ubenyttede reisedager ved sykehusinnleggelse eller hjemtransport erstattes med inntil 2 000 kr per person per døgn, begrenset til reisekostnaden. Legebeordret sengeleie i minst tre dager erstattes med 750 kr per dag per person i inntil ti dager.", "10.4–10.5", 8],
+  ["reiseavbrudd.arrangement", "Ubenyttede billetter og arrangementer", "Forhåndsbetalte dagsutflukter og turisttjenester som ikke kan benyttes ved akutt sykdom eller ulykkesskade, erstattes med inntil 5 000 kr per skadetilfelle.", "10.6", 9],
+  ["ulykke.dekning", "Helårs ulykkesforsikring", "Død, varig medisinsk invaliditet og behandlingsutgifter etter erstatningsmessig ulykkesskade. Ulykkesforsikringen gjelder hele døgnet, også utenfor reise, og opphører ved fylte 75 år.", "3 og 11", 2],
+  ["ulykke.invaliditet", "Ulykke – medisinsk invaliditet", "Barn til 21 år: 700 000 kr; 21–70 år: 500 000 kr; 70–75 år: 100 000 kr ved 100 % varig medisinsk invaliditet.", "11.1", 9],
+  ["ulykke.dodsfall", "Ulykke – dødsfall", "Barn til 21 år: 150 000 kr; 21–70 år: 500 000 kr; 70–75 år: 100 000 kr.", "11.1", 9],
+  ["ulykke.behandling", "Ulykke – behandlingsutgifter", "Nødvendige behandlings- og reiseutgifter i Norden i inntil to år, begrenset til 5 % av forsikringssummen for medisinsk invaliditet.", "11.1–11.2", 9],
+  ["ulykke.behandling_egenandel", "Ulykke – behandlingsutgifter – egenandel", "Utgifter under 1 000 kr erstattes ikke.", "11.2", 10, "coverage"],
+  ["avbestilling.dekning", "Avbestilling", "Dokumenterte, ikke-refunderbare kostnader til reise, opphold og utflukter ved blant annet akutt alvorlig sykdom, ulykke eller dødsfall, alvorlig skade på bolig/forretning, nøkkelperson, rettsinnkalling eller kvalifisert reiseråd/evakuering 72 timer før avreise.", "12.1", 11],
+  ["avbestilling.dyrepensjonat", "Avbestilling – dyrepensjonat", "Omkostninger til dyrepensjonat for hund eller katt erstattes med inntil 2 500 kr.", "12.1", 11],
+  ["evakuering", "Evakuering", "Nødvendige dokumenterte merutgifter til reise og overnatting til nærmeste sikre sted ved myndighets- eller UD-anbefalt evakuering etter naturkatastrofe, krig, terror, opprør eller epidemi/pandemi. Tapt ferie er begrenset til 2 000 kr per person per døgn og 150 000 kr per forsikringsår.", "13.1", 12],
+  ["ansvar.dekning", "Privatansvar", "Rettslig erstatningsansvar som privatperson for person- eller tingskade på reise utenfor Norden; vilkårets unntak gjelder.", "Ansvar 2–3", 12],
+  ["ansvar.sum", "Privatansvar – sum", "Forsikringssummen fremgår av forsikringsbeviset.", "Ansvar 3.1", 13],
+  ["ansvar.egenandel", "Privatansvar – egenandel", "Fremgår av forsikringsbeviset eller vilkårene.", "Ansvar 5", 14, "reference"],
+  ["rettshjelp.dekning", "Rettshjelp", "Rimelige og nødvendige utgifter til advokat, rett, sakkyndige og vitner ved privat tvist som oppstår på reise utenfor Norden.", "Rettshjelp 1–4", 14],
+  ["rettshjelp.sum", "Rettshjelp – forsikringssum", "Inntil 100 000 kr per tvist; inntil 250 000 kr når tre eller flere parter står på sikredes side.", "Rettshjelp 5.1", 16],
+  ["rettshjelp.egenandel", "Rettshjelp – egenandel", "Avtalt egenandel fremgår av forsikringsbeviset, i tillegg til 20 % av utgifter til advokat og sakkyndig bistand.", "Rettshjelp 5.2", 16, "reference"],
+  ["aktivitet.unntak", "Sport og aktiviteter", "Blant annet ekstremsport, organisert luftsport, paraskiing, dykking dypere enn 40 meter, kamp-/selvforsvarssport, motorsport, ekspedisjoner og yrker med forhøyet ulykkesrisiko er unntatt etter vilkåret.", "10.1 og 11.1", 7],
+  ["omrade.ud", "UD, krig og terror", "Forsikringen gjelder ikke reiser til områder som Utenriksdepartementet fraråder. Avbestilling og evakuering har egne utløsende vilkår.", "2, 12 og 13", 1],
+  ["sikkerhet.reisegods", "Sikkerhetsforskrifter", "Reisegods skal holdes under tilsyn eller være forsvarlig låst og sikret. Verdigjenstander og elektronikk skal ikke sendes i innsjekket bagasje, og hendelser og utgifter må dokumenteres.", "7.6", 5],
+  ["tjeneste.alarm", "SOS International", "Døgnåpen alarmsentral for sykdom på reise, sykehusopphold, endret hjemreise og tilkalling. Tjeneste, ikke forsikringssum.", "10.7.1", 9],
+]);
+
+const activeIpid = facts("fremtindReiseUnifiedIpid", [[
+  "varighet.maks", "Maksimal standard reisevarighet", "70 dager per enkeltreise. Avtalt antall reisedøgn i forsikringsbeviset er autoritativt.", "Begrensninger / avtaleperiode", 2,
+]]);
+
 export const fremtindReiseFacts: Record<string, CatalogFact[]> = {
-  fremtindReiseCommon: common, fremtindReiseStandard: standard,
-  fremtindReisePlus: plus, fremtindReiseServices: services,
+  fremtindReiseActiveTerms: activeTerms,
+  fremtindReiseActiveIpid: activeIpid,
+  fremtindReiseHistoricalCommon: historicalCommon,
+  fremtindReiseHistoricalStandard: historicalStandard,
+  fremtindReiseHistoricalPlus: historicalPlus,
+  fremtindReiseHistoricalServices: historicalServices,
 };
 export const fremtindReiseProducts: CatalogProduct[] = [
   { company: "Fremtind", insuranceType: "Reise", name: "Reise", providerId: "fremtind",
-    productId: "fremtind-reise", version: "2026-09-20-canonical", sourceId: "fremtindReiseTerms",
-    componentIds: ["fremtindReiseCommon", "fremtindReiseStandard", "fremtindReiseServices"] },
-  { company: "Fremtind", insuranceType: "Reise", name: "Reise Pluss", providerId: "fremtind",
-    productId: "fremtind-reise-pluss", version: "2026-09-20-canonical", sourceId: "fremtindReiseTerms",
-    componentIds: ["fremtindReisePlus"], inheritsProductId: "fremtind-reise" },
+    productId: "fremtind-reise", version: "PRE-450.200-015", sourceId: "fremtindReiseUnifiedTerms",
+    componentIds: ["fremtindReiseActiveTerms", "fremtindReiseActiveIpid"] },
+  { company: "Fremtind", insuranceType: "Reise", name: "Eika Reise (P10 – historisk)", providerId: "fremtind-eika-legacy",
+    productId: "eika-reise-p10", version: "P10-P10P-2025-01-01", sourceId: "fremtindReiseTerms",
+    componentIds: ["fremtindReiseHistoricalCommon", "fremtindReiseHistoricalStandard", "fremtindReiseHistoricalServices"] },
+  { company: "Fremtind", insuranceType: "Reise", name: "Eika Reise Pluss (P10/P10P – historisk)", providerId: "fremtind-eika-legacy",
+    productId: "eika-reise-pluss-p10", version: "P10-P10P-2025-01-01", sourceId: "fremtindReiseIpid",
+    componentIds: ["fremtindReiseHistoricalPlus"], inheritsProductId: "eika-reise-p10" },
 ];
 export const fremtindReiseAddOns = [];

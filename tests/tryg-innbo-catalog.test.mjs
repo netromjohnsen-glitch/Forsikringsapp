@@ -86,6 +86,9 @@ test("tyveri, sykkel, uhell, skadedyr, ansvar og rettshjelp er strukturert med k
   assert.equal(fact(extra, "sykkel.tyveri.grense").value, "40 000 kr per gjenstand");
   assert.equal(fact(extra, "tyveri.fellesbod.grense").value, "350 000 kr");
   assert.ok(fact(extra, "uhell.dekning"));
+  assert.match(fact(extra, "uhell.begrensning").value,
+    /Ukjent skadeårsak.*kosmetiske.*garanti.*slitasje.*frost.*kjæledyr.*40 000.*konkurranse/s);
+  assert.equal(fact(extra, "uhell.begrensning").source.page, 4);
   assert.equal(fact(extra, "uhell.egenandel").value, "2 000 kr per skadetilfelle");
   assert.equal(fact(extra, "skadedyr.grense").value, "150 000 kr per skadetilfelle");
   assert.equal(fact(extra, "skadedyr.egenandel").deductibleClassification, "override");
@@ -125,6 +128,13 @@ test("sikkerhetsforskrifter beholdes som kildefakta uten å dominere hovedvisnin
   const top = result.shown.filter((entry) => entry.kind === "term")
     .sort((a, b) => b.priority - a.priority).slice(0, 6);
   assert.equal(top.some((entry) => entry.termKey?.startsWith("sikkerhet.")), false);
+});
+
+test("ensidig unntaksfaktum tolkes ikke som manglende dekning hos motparten", () => {
+  const result = compare(manual("Innbo Ekstra"), manual("Innbo"));
+  assert.ok(result.terms.some((entry) => entry.key === "uhell.begrensning"));
+  assert.equal(result.raw.some((entry) => entry.termKey === "uhell.begrensning"), false);
+  assert.equal(result.shown.some((entry) => entry.termKey === "uhell.begrensning"), false);
 });
 
 test("runtime-kjeden viser dokumenterte forbedringer fra Innbo til Innbo Ekstra", () => {

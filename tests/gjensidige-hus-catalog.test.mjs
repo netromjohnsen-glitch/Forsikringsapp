@@ -80,6 +80,13 @@ test("Hus har sentrale objekter, skader, ansvar, rettshjelp og tjenester", () =>
   assert.match(fact(items, "hus.rettshjelp.grense").value, /100 000.*250 000/);
   assert.match(fact(items, "hus.rettshjelp.egenandel").value, /4 000.*20 %.*Mekle.no/);
   assert.match(fact(items, "hus.service.helsehjelp").value, /videolege/);
+  const limitation = fact(items, "hus.plutselig.begrensning");
+  assert.match(limitation.value, /vedlikehold.*slitasje/s);
+  assert.equal(limitation.source.page, 3);
+  const otherLimitations = fact(items, "hus.plutselig.begrensning_ovrig");
+  assert.match(otherLimitations.value, /hard bruk.*fukt.*fundamentering.*konstruksjons.*montasje/s);
+  assert.equal(otherLimitations.source.page, 4);
+  assert.equal(fact(items, "hus.plutselig.dekning").source.page, 4);
 });
 
 test("Hus Pluss erstatter grunnverdier for tak, våtrom, håndverkerfeil og råte", () => {

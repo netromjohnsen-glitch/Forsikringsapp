@@ -127,10 +127,28 @@ test("Hus Ekstra dokumenterer forbedret tak-, våtroms- og håndverkerfeildeknin
 
 test("naturskade og ordinært vær er separate Hus-konsepter", () => {
   const items = resolveCatalogFacts(product("Hus Ekstra"), []);
+  const base = resolveCatalogFacts(product("Hus"), []);
   assert.match(fact(items, "hus.naturskade.dekning").value, /skred, storm, flom/);
   assert.match(fact(items, "hus.naturskade.dekning").value, /snøtyngde.*ikke naturskade/);
   assert.match(fact(items, "hus.vaer.dekning").value, /vind svakere enn storm, snøtyngde/iu);
+  assert.match(fact(base, "hus.vaer.begrensning").value, /fundamentering.*material.*dyr.*sopp/s);
+  assert.match(fact(items, "hus.vaer.begrensning").value, /kjæledyr.*håndverkerfeilen.*10 år/is);
+  assert.notEqual(fact(base, "hus.vaer.begrensning").value, fact(items, "hus.vaer.begrensning").value);
+  for (const terms of [base, items]) {
+    assert.equal(fact(terms, "hus.vaer.dekning").source.page, 4);
+    assert.equal(fact(terms, "hus.vaer.egenandel").source.page, 5);
+    assert.equal(fact(terms, "hus.vaer.egenandel").value, "Minimum 8 000 kr");
+  }
   assert.equal(fact(items, "hus.naturskade.egenandel").deductibleClassification, "override");
+});
+
+test("risikoendring konkretiserer utleie og fraflytting uten kundespesifikke valg", () => {
+  for (const name of ["Hus", "Hus Ekstra"]) {
+    const risk = fact(resolveCatalogFacts(product(name), []), "hus.sikkerhet.risiko");
+    assert.match(risk.value, /utleie.*foreldre.*søsken.*barn.*barnebarn.*fraflytting.*brann og naturskade/s);
+    assert.equal(risk.source.section, "2.1–2.2");
+    assert.equal(risk.source.page, 2);
+  }
 });
 
 test("aldersfradrag er strukturert separat fra egenandeler", () => {

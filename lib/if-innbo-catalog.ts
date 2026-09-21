@@ -83,7 +83,8 @@ export const ifInnboFacts: Record<string, CatalogFact[]> = {
   ifInnboUtvidet: facts([
     ["innbo.geografi", "Innbo – geografisk område", "Norden for ting midlertidig utenfor forsikringsstedet i inntil 2 år, ting for salg og nytt bosted; enkelte objekter bare på forsikringsstedet", "ifInnboUtvidet", "2", 4, true],
     ["innbo.lagring.annenbygning.grense", "Permanent lagring i annen bygning – grense", "40 000 kr totalt i Norden", "ifInnboUtvidet", "2", 4],
-    ["glass.sanitaer.dekning", "Glassruter og sanitærporselen", "Bruddskade med dokumenterte unntak", "ifInnboUtvidet", "4.8", 8],
+    ["glass.sanitaer.dekning", "Glassruter og sanitærporselen", "Bruddskade på glassruter og sanitærporselen", "ifInnboUtvidet", "4.8", 8],
+    ["glass.sanitaer.begrensning", "Glass og sanitærporselen – begrensninger", "Riper, rifter, skraper, hakk og avskalling er unntatt, det samme er utett innfatning for isolerglass, glass eller sanitærporselen knyttet til næringsvirksomhet og hobbyveksthus.", "ifInnboUtvidet", "4.8", 8],
     ["flytting.transport.grense", "Skade ved flytting", "Plutselig ytre skade ved transport samt inn- og utbæring til ny bolig eller fritidsbolig", "ifInnboUtvidet", "4.9", 8],
     ["uhell.dekning", "Uhell", "Annen fysisk skade ved plutselig ytre årsak; utenfor forsikringsstedet inntil 40 000 kr per skadetilfelle", "ifInnboUtvidet", "4.10", 9],
     ["uhell.geografi", "Uhell – geografisk område", "Norden", "ifInnboUtvidet", "2 og 4.10", 4],
@@ -121,4 +122,3 @@ export const ifInnboProducts: CatalogProduct[] = [
   { company: "If", insuranceType: "Innbo", name: "Utvidet", providerId: "if", productId: "if-innbo-utvidet", version: "IBO2-1", sourceId: "ifInnboTerms", inheritsProductId: "if-innbo-basis", componentIds: ["ifInnboUtvidet"] },
   { company: "If", insuranceType: "Innbo", name: "Super", providerId: "if", productId: "if-innbo-super", version: "IBO2-1", sourceId: "ifInnboTerms", inheritsProductId: "if-innbo-utvidet", componentIds: ["ifInnboSuper"] },
 ];
-

@@ -28,6 +28,8 @@ type DocumentResult = {
   insuranceData: InsuranceData;
 };
 
+const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise"];
+
 export default function Home() {
   const [existingFiles, setExistingFiles] = useState<File[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
@@ -125,25 +127,28 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-6xl">
-        <h1 className="text-4xl font-bold text-gray-900">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Rådgiververktøy</p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
           Forsikringsassistent
         </h1>
 
-        <p className="mt-3 text-lg text-gray-600">
-          Sammenlign forsikringstilbud raskere og enklere.
+        <p className="mt-3 text-lg text-slate-700">
+          Sammenlign eksisterende forsikringer med et nytt tilbud.
         </p>
+        <p className="mt-1 text-sm text-slate-600">Last opp forsikringsdokumenter eller registrer forsikringene manuelt.</p>
 
-        <div className="mt-10 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-xl font-semibold text-gray-900">Ny sammenligning</h2>
+        <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+          <h2 className="text-xl font-semibold text-slate-950">Ny sammenligning</h2>
           <p className="mt-2 text-gray-600">
-            Last opp PDF-er eller registrer forsikringsprodukter manuelt på hver side.
+            Legg inn dagens forsikringer til venstre og tilbudet du vil vurdere til høyre.
           </p>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <AgreementInput
-              title="1. Kundens eksisterende forsikring"
+              eyebrow="Eksisterende forsikringer"
+              title="Dagens avtale"
               side="existing"
               mode={existingMode}
               onModeChange={(mode) => changeMode("existing", mode)}
@@ -154,7 +159,8 @@ export default function Home() {
               onManualChange={(value) => changeManual("existing", value)}
             />
             <AgreementInput
-              title="2. Nytt tilbud"
+              eyebrow="Nytt tilbud"
+              title="Tilbudet som skal vurderes"
               side="offer"
               mode={offerMode}
               onModeChange={(mode) => changeMode("offer", mode)}
@@ -169,21 +175,23 @@ export default function Home() {
           <button
             onClick={analyzeDocuments}
             disabled={loading || !existingReady || !offerReady}
-            className="mt-6 rounded-xl bg-black px-6 py-3 font-medium text-white disabled:cursor-not-allowed disabled:opacity-40"
+            aria-describedby={!existingReady || !offerReady ? "comparison-requirements" : undefined}
+            className="mt-6 w-full rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white shadow-sm hover:bg-blue-800 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600 sm:w-auto"
           >
-            {loading ? "Analyserer..." : "Sammenlign forsikringene"}
+            {loading ? (existingMode === "pdf" || offerMode === "pdf" ? "Leser dokumenter og sammenligner …" : "Sammenligner forsikringene …") : "Sammenlign forsikringene"}
           </button>
           {(!existingReady || !offerReady) && (
-            <p className="mt-2 text-sm text-gray-500">Legg til PDF-er eller fyll ut selskap, forsikringstype og produkt på begge sider.</p>
+            <p id="comparison-requirements" className="mt-2 text-sm text-slate-600">Legg til minst én PDF, eller fyll ut selskap, forsikringstype og produkt, på begge sider.</p>
           )}
+          {loading && <p role="status" aria-live="polite" className="mt-3 text-sm text-blue-800">Dette kan ta litt tid når dokumenter skal leses.</p>}
 
           {error && (
-            <div className="mt-6 rounded-xl bg-red-50 p-4 text-red-700">{error}</div>
+            <div role="alert" className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-800">{error}</div>
           )}
         </div>
 
         {documents.length >= 2 && (
-          <Comparison first={documents[0]} second={documents[1]} matchingPlan={matchingPlan} />
+          <Comparison key={`${documents[0].filename}-${documents[1].filename}`} first={documents[0]} second={documents[1]} matchingPlan={matchingPlan} />
         )}
       </div>
     </main>
@@ -199,8 +207,9 @@ function manualReady(manual: ManualAgreementInput): boolean {
 }
 
 function AgreementInput({
-  title, side, mode, onModeChange, files, onAdd, onRemove, manual, onManualChange,
+  eyebrow, title, side, mode, onModeChange, files, onAdd, onRemove, manual, onManualChange,
 }: {
+  eyebrow: string;
   title: string;
   side: "existing" | "offer";
   mode: "pdf" | "manual";
@@ -212,18 +221,19 @@ function AgreementInput({
   onManualChange: Dispatch<SetStateAction<ManualAgreementInput>>;
 }) {
   return (
-    <section className="rounded-xl border border-gray-200 p-4">
-      <h3 className="font-semibold text-gray-900">{title}</h3>
-      <div className="mt-4 flex gap-2" role="group" aria-label={title}>
+    <section className={`rounded-2xl border p-4 sm:p-5 ${side === "existing" ? "border-slate-300 bg-slate-50/70" : "border-blue-200 bg-blue-50/40"}`}>
+      <p className={`text-xs font-bold uppercase tracking-[0.14em] ${side === "existing" ? "text-slate-600" : "text-blue-700"}`}>{eyebrow}</p>
+      <h3 className="mt-1 font-semibold text-slate-950">{title}</h3>
+      <div className="mt-4 grid grid-cols-2 rounded-xl bg-white p-1 shadow-sm ring-1 ring-slate-200" role="group" aria-label={`Registreringsmåte for ${eyebrow.toLowerCase()}`}>
         {(["pdf", "manual"] as const).map((option) => (
           <button
             key={option}
             type="button"
             aria-pressed={mode === option}
             onClick={() => onModeChange(option)}
-            className={`rounded-lg border px-3 py-2 text-sm font-medium ${mode === option ? "border-gray-900 bg-gray-900 text-white" : "border-gray-200 text-gray-700 hover:bg-gray-50"}`}
+            className={`rounded-lg px-3 py-2.5 text-sm font-medium ${mode === option ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-50"}`}
           >
-            {option === "pdf" ? "Last opp PDF" : "Registrer manuelt"}
+            {option === "pdf" ? "Last opp dokument" : "Registrer manuelt"}
           </button>
         ))}
       </div>
@@ -244,14 +254,15 @@ function PdfFiles({ files, onAdd, onRemove }: {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <div>
-      <p className="mt-3 text-sm text-gray-600">Én eller flere PDF-er som tilhører samme avtale.</p>
+      <h4 className="mt-5 text-sm font-semibold text-slate-900">Last opp forsikringsdokument</h4>
+      <p className="mt-1 text-sm text-slate-600">PDF med forsikringsbevis eller tilbud. Du kan legge til flere filer fra samme avtale.</p>
       <div
-        className="mt-3 rounded-xl border-2 border-dashed border-gray-300 text-center hover:bg-gray-50"
+        className="mt-3 rounded-xl border-2 border-dashed border-slate-300 bg-white text-center transition-colors hover:border-blue-400 hover:bg-blue-50/40"
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => { event.preventDefault(); onAdd(event.dataTransfer.files); }}
       >
-        <label className="block cursor-pointer p-6 text-sm font-medium text-gray-800">
-          Dra PDF-er hit eller klikk for å velge
+        <label className="block cursor-pointer p-6 text-sm font-semibold text-slate-800">
+          Dra PDF-er hit eller velg filer
           <input
             ref={inputRef}
             type="file"
@@ -271,8 +282,8 @@ function PdfFiles({ files, onAdd, onRemove }: {
           <ul className="mt-2 space-y-2">
             {files.map((file, index) => (
               <li key={`${file.name}-${index}`} className="flex items-center justify-between gap-3 rounded-lg bg-gray-100 px-3 py-2 text-sm">
-                <span className="min-w-0 truncate text-gray-800" title={file.name}>{file.name}</span>
-                <button type="button" onClick={() => onRemove(index)} className="shrink-0 font-medium text-gray-500 hover:text-black">Fjern</button>
+                <span className="min-w-0 truncate text-gray-800" title={file.name}>{file.name}<span className="ml-2 text-xs text-gray-500">{formatFileSize(file.size)}</span></span>
+                <button type="button" onClick={() => onRemove(index)} aria-label={`Fjern ${file.name}`} className="shrink-0 rounded-md px-2 py-1 font-medium text-gray-600 hover:bg-white hover:text-black">Fjern</button>
               </li>
             ))}
           </ul>
@@ -280,6 +291,11 @@ function PdfFiles({ files, onAdd, onRemove }: {
       )}
     </div>
   );
+}
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} kB`;
+  return `${(bytes / (1024 * 1024)).toLocaleString("nb-NO", { maximumFractionDigits: 1 })} MB`;
 }
 
 function ManualEditor({ side, value, onChange }: {
@@ -333,9 +349,14 @@ function ManualEditor({ side, value, onChange }: {
             onChange((currentAgreement) => ({
               ...currentAgreement,
               company,
-              products: currentAgreement.products.map((product) => ({
-                ...product, ...selectionPatch(product, company, product.type, product.productName),
-              })),
+              products: currentAgreement.products.map((product) => {
+                if (!company) {
+                  return { ...product, type: "", productName: "", catalogReference: null, addOnIds: [] };
+                }
+                const suggestions = productSuggestions(productCatalog, company, product.type);
+                const productName = product.productName || (suggestions.length === 1 ? suggestions[0] : "");
+                return { ...product, productName, ...selectionPatch(product, company, product.type, productName) };
+              }),
             }));
           }}
           placeholder="Velg eller skriv selskap"
@@ -355,14 +376,17 @@ function ManualEditor({ side, value, onChange }: {
         </select>
       </label>}
       <datalist id={`insurance-types-${side}`}>
-        {productCatalog.insuranceTypes.map((type) => (
+        {pilotInsuranceTypes.map((type) => (
           <option key={type} value={type} />
         ))}
       </datalist>
       {value.products.map((product, index) => (
         <div key={index} className="rounded-xl border border-gray-200 bg-gray-50 p-3">
           <div className="flex items-center justify-between gap-2">
-            <h4 className="text-sm font-semibold text-gray-900">Forsikring {index + 1}</h4>
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900">{product.type && product.productName ? `${product.type} · ${product.productName}` : `Forsikring ${index + 1}`}</h4>
+              <p className="mt-0.5 text-xs text-gray-500">{value.company || "Velg forsikringsselskap"}{product.annualPremium ? ` · ${product.annualPremium} per år` : " · pris er valgfri"}</p>
+            </div>
             {value.products.length > 1 && (
               <button type="button" onClick={() => onChange((currentAgreement) => ({
                 ...currentAgreement,
@@ -376,19 +400,24 @@ function ManualEditor({ side, value, onChange }: {
               <input
                 list={`insurance-types-${side}`}
                 value={product.type}
+                disabled={!value.company.trim()}
                 onChange={(event) => {
                   const type = event.target.value;
-                  changeProduct(index, { type, ...selectionPatch(product, value.company, type, product.productName) });
+                  const suggestions = productSuggestions(productCatalog, value.company, type);
+                  const productName = suggestions.length === 1 ? suggestions[0] : product.productName;
+                  changeProduct(index, { type, productName, ...selectionPatch(product, value.company, type, productName) });
                 }}
                 placeholder="Velg eller skriv type"
-                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
+                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
               />
+              {!value.company.trim() && <span className="mt-1 block text-xs font-normal text-gray-500">Velg selskap først.</span>}
             </label>
             <label className="text-sm font-medium text-gray-700">
               Produkt/variant
               <input
                 list={`products-${side}-${index}`}
                 value={product.productName}
+                disabled={!value.company.trim() || !product.type.trim()}
                 onChange={(event) => {
                   const name = event.target.value;
                   changeProduct(index, {
@@ -397,32 +426,39 @@ function ManualEditor({ side, value, onChange }: {
                   });
                 }}
                 placeholder="Velg eller skriv produkt"
-                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
+                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
               />
               <datalist id={`products-${side}-${index}`}>
                 {productSuggestions(productCatalog, value.company, product.type).map((name) => (
                   <option key={name} value={name} />
                 ))}
               </datalist>
+              {value.company.trim() && product.type.trim() && (
+                productSuggestions(productCatalog, value.company, product.type).length > 0
+                  ? <span className="mt-1 block text-xs font-normal text-blue-700">Velg blant tilgjengelige katalogprodukter, eller skriv et annet produkt.</span>
+                  : <span className="mt-1 block text-xs font-normal text-gray-500">Skriv produktnavnet fra avtalen.</span>
+              )}
             </label>
-            <label className="text-sm font-medium text-gray-700">
-              Egenandel <span className="font-normal text-gray-500">(valgfritt)</span>
-              <input
-                value={product.deductible}
-                onChange={(event) => changeProduct(index, { deductible: event.target.value })}
-                placeholder="F.eks. 4 000 kr"
-                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
-              />
-            </label>
-            <label className="text-sm font-medium text-gray-700">
-              Årspremie <span className="font-normal text-gray-500">(valgfritt)</span>
-              <input
-                value={product.annualPremium}
-                onChange={(event) => changeProduct(index, { annualPremium: event.target.value })}
-                placeholder="F.eks. 5 000 kr"
-                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
-              />
-            </label>
+            {product.productName.trim() && <>
+              <label className="text-sm font-medium text-gray-700">
+                Egenandel <span className="font-normal text-gray-500">(valgfritt)</span>
+                <input
+                  value={product.deductible}
+                  onChange={(event) => changeProduct(index, { deductible: event.target.value })}
+                  placeholder="F.eks. 4 000 kr"
+                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
+                />
+              </label>
+              <label className="text-sm font-medium text-gray-700">
+                Årspris <span className="font-normal text-gray-500">(valgfritt)</span>
+                <input
+                  value={product.annualPremium}
+                  onChange={(event) => changeProduct(index, { annualPremium: event.target.value })}
+                  placeholder="F.eks. 5 000 kr"
+                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
+                />
+              </label>
+            </>}
           </div>
           {product.catalogReference && (() => {
             const selected = findCatalogProduct(
@@ -465,7 +501,7 @@ function ManualEditor({ side, value, onChange }: {
       <button type="button" onClick={() => onChange((currentAgreement) => ({
         ...currentAgreement,
         products: [...currentAgreement.products, emptyManualProduct()],
-      }))} className="text-sm font-medium text-gray-700 underline hover:text-black">Legg til forsikring</button>
+      }))} className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50">+ Legg til forsikring</button>
       <p className="text-xs text-gray-500">Katalogprodukter henter dokumenterte vilkår automatisk. For andre produkter sammenlignes bare opplysninger som er tilgjengelige.</p>
     </div>
   );
@@ -483,26 +519,77 @@ function Comparison({
   const groups = groupInsurances(first.insuranceData.insurances, second.insuranceData.insurances, matchingPlan);
   const differences = presentImportantDifferences(
     createDifferences(first, second, groups, matchingPlan), groups, matchingPlan,
-    first.insuranceData.company, second.insuranceData.company,
   );
   const totalDifference = differences.find((difference) => difference.type === "price" && !difference.insuranceKey);
   const productPriceDifferences = differences.filter((difference) => difference.type === "price" && difference.insuranceKey);
   const highlightedDifferences = differences
     .filter((difference) => difference.insuranceKey && difference.type !== "price")
-    .sort((a, b) => b.priority - a.priority)
-    .slice(0, 6);
-  const groupsWithDifferences = groups.map((group) => ({
+    .sort((a, b) => b.priority - a.priority);
+  const typeOrder = ["Bil", "Hus", "Innbo", "Reise"];
+  const availableTypes = typeOrder.filter((type) => groups.some((group) => group.label === type));
+  const [selectedType, setSelectedType] = useState("overview");
+  const visibleGroups = selectedType === "overview"
+    ? groups
+    : groups.filter((group) => group.label === selectedType);
+  const visibleGroupsWithDifferences = visibleGroups.map((group) => ({
     group,
-    differences: highlightedDifferences.filter((difference) => difference.insuranceKey === group.key),
+    differences: highlightedDifferences.filter((difference) => difference.insuranceKey === group.key).slice(0, 3),
   })).filter(({ differences }) => differences.length > 0);
 
   return (
     <div className="mt-6 space-y-4">
+      <nav aria-label="Resultat per forsikringstype" className="rounded-2xl border border-gray-200 bg-white p-1 shadow-sm">
+        <div role="tablist" aria-label="Velg resultatvisning" className="flex gap-1 overflow-x-auto">
+          {["overview", ...availableTypes].map((tab) => {
+            const active = selectedType === tab;
+            return (
+              <button
+                key={tab}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setSelectedType(tab)}
+                className={`shrink-0 rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${active ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"}`}
+              >
+                {tab === "overview" ? "Oversikt" : tab}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
       <section className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
+        <h2 className="text-lg font-semibold text-gray-900">Viktigste forskjeller</h2>
+        {visibleGroupsWithDifferences.length > 0 ? (
+          <div className="mt-2 divide-y divide-gray-100">
+            {visibleGroupsWithDifferences.map(({ group, differences: groupDifferences }) => (
+              <div key={group.key} className="grid gap-1 py-3 sm:grid-cols-[8rem_minmax(0,1fr)] sm:gap-4">
+                <h3 className="text-sm font-semibold text-gray-900">{group.label}</h3>
+                <ul className="space-y-3 text-sm leading-5 text-gray-700">
+                  {groupDifferences.map((difference) => (
+                    <li key={difference.title} className="rounded-xl border border-slate-200 bg-slate-50/70 p-3">
+                      <p className="font-semibold text-gray-900">{difference.title}</p>
+                      <DifferenceValues text={difference.text} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-2 text-sm text-gray-600">
+            {visibleGroups.some((group) => [...group.first, ...group.second].some((insurance) =>
+              insurance.coverageSummary || insurance.deductible || insurance.importantTerms.length
+            )) ? "Ingen sikre forskjeller funnet i oppgitte dekninger og vilkår." : "Ingen deknings- eller vilkårsopplysninger er oppgitt for sammenligning."}
+          </p>
+        )}
+      </section>
+
+      {selectedType === "overview" && <section className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-lg font-semibold text-gray-900">Sammenligning</h2>
+          <h2 className="text-lg font-semibold text-gray-900">Prisoversikt</h2>
           {totalDifference && (
-            <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-800">
+            <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-800">
               {totalDifference.text}
             </span>
           )}
@@ -532,39 +619,12 @@ function Comparison({
             </ul>
           </div>
         )}
-      </section>
-
-      <section className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
-        <h2 className="text-lg font-semibold text-gray-900">Viktigste forskjeller</h2>
-        {groupsWithDifferences.length > 0 ? (
-          <div className="mt-2 divide-y divide-gray-100">
-            {groupsWithDifferences.map(({ group, differences: groupDifferences }) => (
-              <div key={group.key} className="grid gap-1 py-3 sm:grid-cols-[8rem_minmax(0,1fr)] sm:gap-4">
-                <h3 className="text-sm font-semibold text-gray-900">{group.label}</h3>
-                <ul className="space-y-2 text-sm leading-5 text-gray-700">
-                  {groupDifferences.map((difference) => (
-                    <li key={difference.title} className="grid gap-0.5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-3">
-                      <span className="font-medium text-gray-900">{difference.title}</span>
-                      <span>{difference.text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="mt-2 text-sm text-gray-600">
-            {groups.some((group) => [...group.first, ...group.second].some((insurance) =>
-              insurance.coverageSummary || insurance.deductible || insurance.importantTerms.length
-            )) ? "Ingen sikre forskjeller funnet i oppgitte dekninger og vilkår." : "Ingen deknings- eller vilkårsopplysninger er oppgitt for sammenligning."}
-          </p>
-        )}
-      </section>
+      </section>}
 
       <details className="group rounded-2xl border border-gray-200 bg-white shadow-sm">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4 text-sm font-semibold text-gray-900 marker:hidden sm:p-5 [&::-webkit-details-marker]:hidden">
-          <span className="group-open:hidden">Vis alle detaljer</span>
-          <span className="hidden group-open:inline">Skjul detaljer</span>
+          <span className="group-open:hidden">Vis detaljert sammenligning</span>
+          <span className="hidden group-open:inline">Skjul detaljert sammenligning</span>
           <span aria-hidden="true" className="text-lg leading-none text-gray-500 group-open:rotate-180">⌄</span>
         </summary>
         <div className="border-t border-gray-100 px-4 pb-5 sm:px-5">
@@ -592,7 +652,7 @@ function Comparison({
                   second={annualPremiumLabel(second.insuranceData)}
                   missingLabel="Pris ikke oppgitt"
                 />
-                {groups.map((group) => (
+                {visibleGroups.map((group) => (
                   <InsuranceRows key={group.key} group={group} matchingPlan={matchingPlan} />
                 ))}
               </tbody>
@@ -641,28 +701,68 @@ function ComparisonRow({
 
       <td className="border-b border-gray-100 p-3 text-gray-900">
         {first || firstMissingLabel || missingLabel}
-        {firstSources.map((source) => <p key={`${source.documentId}-${source.section}-${source.page}`} className="mt-1 text-xs text-gray-500">
-          {source.note ? `${source.note} · ` : ""}{source.company ? `${source.company} · ` : ""}{source.filename} · {source.termsNumber} · {source.effectiveFrom} · s. {source.page} · pkt. {source.section}
-          {source.url && <> · <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline">Kilde-PDF</a></>}
-        </p>)}
-        {firstBaseFacts.map((base) => <p key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} className="mt-1 text-xs text-gray-500">
-          Grunnverdi på eksisterende avtale: {base.value} · {base.source.company ? `${base.source.company} · ` : ""}{base.source.filename} · {base.source.termsNumber} · {base.source.effectiveFrom} · s. {base.source.page} · pkt. {base.source.section}
-          {base.source.url && <> · <a href={base.source.url} target="_blank" rel="noopener noreferrer" className="underline">Kilde-PDF</a></>}
-        </p>)}
+        {firstSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
+        {firstBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på eksisterende avtale: ${base.value}`} />)}
       </td>
 
       <td className="border-b border-gray-100 p-3 text-gray-900">
         {second || secondMissingLabel || missingLabel}
-        {secondSources.map((source) => <p key={`${source.documentId}-${source.section}-${source.page}`} className="mt-1 text-xs text-gray-500">
-          {source.note ? `${source.note} · ` : ""}{source.company ? `${source.company} · ` : ""}{source.filename} · {source.termsNumber} · {source.effectiveFrom} · s. {source.page} · pkt. {source.section}
-          {source.url && <> · <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline">Kilde-PDF</a></>}
-        </p>)}
-        {secondBaseFacts.map((base) => <p key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} className="mt-1 text-xs text-gray-500">
-          Grunnverdi på nytt tilbud: {base.value} · {base.source.company ? `${base.source.company} · ` : ""}{base.source.filename} · {base.source.termsNumber} · {base.source.effectiveFrom} · s. {base.source.page} · pkt. {base.source.section}
-          {base.source.url && <> · <a href={base.source.url} target="_blank" rel="noopener noreferrer" className="underline">Kilde-PDF</a></>}
-        </p>)}
+        {secondSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
+        {secondBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på nytt tilbud: ${base.value}`} />)}
       </td>
     </tr>
+  );
+}
+
+function DifferenceValues({ text }: { text: string }) {
+  const marker = /(?:^|\.\s+|\s+mot\s+)(Nytt tilbud(?:\s+[^:]+)?):\s*/u.exec(text);
+  if (!marker) {
+    const existing = /^Eksisterende(?:\s+[^:]+)?:\s*(.+?)\.\s+(Tilsvarende dekning er ikke funnet.+)$/u.exec(text);
+    if (!existing) return <p className="mt-2 text-sm text-slate-700">{text}</p>;
+    return (
+      <div className="mt-2 grid gap-2 sm:grid-cols-2 sm:gap-3">
+        <div className="rounded-lg border border-slate-200 bg-white p-2.5">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Eksisterende</p>
+          <p className="mt-1 whitespace-pre-wrap break-words text-slate-800">{existing[1]}</p>
+        </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-2.5">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Nytt tilbud</p>
+          <p className="mt-1 whitespace-pre-wrap break-words text-slate-800">{existing[2] || "Ikke dokumentert"}</p>
+        </div>
+      </div>
+    );
+  }
+
+  const leftRaw = text.slice(0, marker.index).replace(/^Eksisterende(?:\s+[^:]+)?:\s*/u, "").replace(/\.\s*$/u, "");
+  const right = text.slice(marker.index + marker[0].length);
+  const left = leftRaw || "Ikke dokumentert";
+
+  return (
+    <div className="mt-2 grid gap-2 sm:grid-cols-2 sm:gap-3">
+      <div className="rounded-lg border border-slate-200 bg-white p-2.5">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Eksisterende</p>
+        <p className="mt-1 whitespace-pre-wrap break-words text-slate-800">{left}</p>
+      </div>
+      <div className="rounded-lg border border-slate-200 bg-white p-2.5">
+        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Nytt tilbud</p>
+        <p className="mt-1 whitespace-pre-wrap break-words text-slate-800">{right}</p>
+      </div>
+    </div>
+  );
+}
+
+function SourceDetails({ source, baseLabel }: { source: FactSource; baseLabel?: string }) {
+  return (
+    <details className="mt-2 text-xs text-slate-600">
+      <summary className="w-fit cursor-pointer rounded font-medium text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-blue-900">Vis kilde</summary>
+      <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
+        {baseLabel && <p className="font-medium text-slate-700">{baseLabel}</p>}
+        {source.note && <p>{source.note}</p>}
+        <p>{[source.company, source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : null, source.effectiveFrom, `side ${source.page}`, `punkt ${source.section}`].filter(Boolean).join(" · ")}</p>
+        <p className="break-words text-slate-500">Dokument: {source.filename}</p>
+        {source.url && <a href={source.url} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-700 underline">Åpne originalkilde</a>}
+      </div>
+    </details>
   );
 }
 

@@ -94,7 +94,7 @@ export const ifFacts: Record<string, CatalogFact[]> = {
     ["leiebil.bilklasse", "Leiebil – bilstørrelse", "Tilsvarende størrelse, høyst 500 kr inkl. mva per dag", "4.10.3", 10],
     ["leiebil.kondemnasjon", "Leiebil – kondemnasjon", "Til 10 dager etter tilbud om erstatning", "4.10.5", 10],
     ["leiebil.vilkar", "Leiebil – utløser", "Dekket skade eller tyveri; ved motor-/girskade inntil 7 dager mens dekning vurderes", "4.10.1", 10],
-    ["leiebil.unntak", "Leiebil – unntak", "Ikke ved bare glasskade eller når leiebil dekkes etter lov/garanti, med angitt unntak", "4.10.2", 10],
+    ["leiebil.unntak", "Leiebil – unntak", "Ingen leiebil ved ren glasskade eller når leiebil dekkes etter lov eller mobilitetsgaranti. Likevel dekkes inntil 7 dager når forhandler eller verksted er ansvarlig etter lov/forskrift, skaden ellers ville vært dekningsmessig og overstiger aktuell egenandel.", "4.10.2", 10],
     ["leiebil.kontant", "Leiebil – kontantkompensasjon", "200 kr per dag når leiebil ikke benyttes; normalt høyst 15 dager", "4.10.4–4.10.5", 10],
   ]),
   ifMotorGir: facts("ifMotorGir", [

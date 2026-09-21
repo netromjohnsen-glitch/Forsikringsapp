@@ -59,16 +59,16 @@ test("DNB er egen distribusjon med samme dokumenterte hovednivåer og effektiv d
   assert.equal(fact(resolveCatalogFacts(dnb, []), "nyverdi.alder").source.company, "Fremtind");
 });
 
-test("DNB-tillegg er valgbare på Kasko og Topp uten lekkasje av SpareBank 1-detaljer", () => {
+test("DNB-tillegg bruker de aktive felles Fremtind-vilkårene på Kasko og Topp", () => {
   assert.deepEqual(availableAddOns(level(dnbCompany, "Ansvar")), []);
   assert.deepEqual(availableAddOns(level(dnbCompany, "Delkasko")), []);
   for (const name of ["Kasko", "Topp"]) {
     const product = level(dnbCompany, name);
     assert.deepEqual(availableAddOns(product).map((item) => item.id), ["dnb-leiebil", "dnb-maskinskade"]);
     const selected = resolveCatalogFacts(product, ["dnb-leiebil", "dnb-maskinskade"]);
-    assert.equal(fact(selected, "leiebil.dager"), undefined);
-    assert.equal(fact(selected, "maskinskade.alder"), undefined);
-    assert.equal(fact(selected, "maskinskade.km"), undefined);
+    assert.match(fact(selected, "leiebil.dager").value, /45 dager/);
+    assert.match(fact(selected, "maskinskade.alder").value, /10 år/);
+    assert.match(fact(selected, "maskinskade.km").value, /200 000 km/);
   }
 });
 
@@ -114,10 +114,9 @@ test("UI-runtime med tillegg beholder identisk hoveddekning og bare dokumenterte
     assert.equal(term.first, term.second, key);
     assert.equal(result.raw.some((item) => item.termKey === key), false, key);
   }
-  assert.ok(fact(result.terms, "leiebil.dager").first);
-  assert.equal(fact(result.terms, "leiebil.dager").second, null);
-  assert.ok(fact(result.terms, "maskinskade.km").first);
-  assert.equal(fact(result.terms, "maskinskade.km").second, null);
+  assert.equal(fact(result.terms, "leiebil.dager").first, fact(result.terms, "leiebil.dager").second);
+  assert.equal(fact(result.terms, "maskinskade.km").first, fact(result.terms, "maskinskade.km").second);
+  assert.equal(result.raw.some((item) => ["leiebil.dager", "maskinskade.km"].includes(item.termKey)), false);
   assert.ok(result.raw.every((item) => !item.termKey || !["nyverdi.alder", "nyverdi.km", "parkering.dekning"].includes(item.termKey)));
 });
 
@@ -140,6 +139,7 @@ test("UI-formet DNB-request beholder distribusjonsidentitet og valgte tillegg", 
   assert.equal(agreement.insuranceData.company, dnbCompany);
   assert.equal(insurance.catalogReference.providerId, "dnb-fremtind");
   assert.deepEqual(insurance.addOnIds, ["dnb-leiebil", "dnb-maskinskade"]);
-  assert.deepEqual(insurance.addOns.map((item) => item.source.id), ["dnbOptionalCoverages", "dnbOptionalCoverages"]);
-  assert.equal(fact(insurance.importantTerms, "leiebil.dager"), undefined);
+  assert.deepEqual(insurance.addOns.map((item) => item.source.id), ["sp1Leiebil", "sp1Maskinskade"]);
+  assert.match(fact(insurance.importantTerms, "leiebil.dager").value, /45 dager/);
+  assert.match(fact(insurance.importantTerms, "maskinskade.km").value, /200 000 km/);
 });

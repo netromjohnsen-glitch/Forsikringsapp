@@ -44,6 +44,9 @@ test("Kasko og Bil Ekstra er identiske på begge sider selv når bare én side h
   assert.deepEqual(accessory.overriddenBase.map((base) => base.source.termsNumber), ["PAU25205"]);
   assert.ok(left.insuranceData.insurances[0].catalogFacts.some((fact) =>
     fact.key === "tilbehor.grense" && fact.source.termsNumber === "PAU25205"));
+  const youngDriver = left.insuranceData.insurances[0].importantTerms.find((term) => term.key === "kasko.ungforer");
+  assert.match(youngDriver.value, /5 000 kr.*hovedeier.*ektefelle.*samboer.*2 000 km.*Tryg vei til lappen/s);
+  assert.equal(youngDriver.source.page, 1);
   assert.equal(result.differences.some((difference) => difference.kind === "price"), false);
   assert.equal(result.differences.some((difference) => difference.title === "Bonus ved tilleggsskade"), false);
 });

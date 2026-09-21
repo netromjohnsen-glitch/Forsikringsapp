@@ -33,8 +33,8 @@ export const eikaFremtindProducts: CatalogProduct[] = [
 ];
 
 export const eikaFremtindAddOns: CatalogAddOn[] = [
-  { id: "eika-leiebil", name: "Leiebil", componentId: "eikaOptionalCoverages", providerId: "eika-fremtind", requiresLevel: ["eika-bil-kasko", "eika-bil-topp"] },
-  { id: "eika-maskinskade", name: "Maskinskade", componentId: "eikaOptionalCoverages", providerId: "eika-fremtind", requiresLevel: ["eika-bil-kasko", "eika-bil-topp"] },
+  { id: "eika-leiebil", name: "Leiebil", componentId: "sp1Leiebil", providerId: "eika-fremtind", requiresLevel: ["eika-bil-kasko", "eika-bil-topp"] },
+  { id: "eika-maskinskade", name: "Maskinskade", componentId: "sp1Maskinskade", providerId: "eika-fremtind", requiresLevel: ["eika-bil-kasko", "eika-bil-topp"] },
 ];
 
 export const eikaFremtindFacts = { eikaOptionalCoverages: [] };

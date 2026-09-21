@@ -104,6 +104,9 @@ test("forsinkelse, bagasje og reisegods har separate summer og kategorier", () =
 test("Ekstra skiller uhell, reiseavbrudd, hotell og leiebilytelser", () => {
   const extra = resolveCatalogFacts(product("Reise Ekstra"), []);
   assert.match(fact(extra, "reise.bagasje.uhell").value, /fremvises.*mistet\/gjenglemt/);
+  assert.match(fact(extra, "reise.bagasje.uhell_begrensning").value,
+    /Sykkelskade.*kosmetisk.*arbeidsgivers.*leid løsøre.*motoriserte.*elektriske/s);
+  assert.equal(fact(extra, "reise.bagasje.uhell_begrensning").source.page, 4);
   assert.match(fact(extra, "reise.bagasje.uhell_sum").value, /8 000/);
   assert.match(fact(extra, "reise.bagasje.uhell_egenandel").value, /1 500/);
   assert.match(fact(extra, "reise.reiseavbrudd.sum").value, /1 500.*per døgn/);

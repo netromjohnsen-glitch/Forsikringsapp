@@ -81,6 +81,14 @@ test("Basis strukturerer bygning, fullverdi/førsterisiko og sentrale skader", (
   }
 });
 
+test("Basis har konkrete værbegrensninger med korrekt kilde", () => {
+  const items = resolveCatalogFacts(product("Basis"), []);
+  const limitation = fact(items, "hus.vaer.begrensning");
+  assert.match(limitation.value, /råte.*svak eller feil konstruksjon.*antenner.*veksthus.*hageanlegg.*50 år/s);
+  assert.equal(limitation.source.section, "4.3");
+  assert.equal(limitation.source.page, 7);
+});
+
 test("Utvidet erstatter Basis for tak, våtrom, råte og skadedyr", () => {
   const items = resolveCatalogFacts(product("Utvidet"), []);
   assert.match(fact(items, "hus.takvegg.folgeskade").value, /eldre enn 50 år/);
@@ -151,6 +159,15 @@ test("ansvar og rettshjelp har dokumenterte summer, geografi og egenandeler", ()
   assert.match(fact(items, "hus.ansvar.egenandel").value, /4 000/);
   assert.match(fact(items, "hus.rettshjelp.grense").value, /100 000.*250 000/);
   assert.match(fact(items, "hus.rettshjelp.egenandel").value, /4 000.*20 %/);
+});
+
+test("rettshjelpens hovedbegrensninger har provenance på side 2", () => {
+  for (const name of ["Basis", "Utvidet", "Super"]) {
+    const limitation = fact(resolveCatalogFacts(product(name), []), "hus.rettshjelp.begrensning");
+    assert.match(limitation.value, /familie.*arv.*yrke.*annen fast eiendom.*kjøretøy.*forvaltningsvedtak/s);
+    assert.equal(limitation.source.section, "1.5.3");
+    assert.equal(limitation.source.page, 2);
+  }
 });
 
 test("ingen fremtidig kilde eller valgbart Hus-tillegg aktiveres", () => {

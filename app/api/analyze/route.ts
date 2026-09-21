@@ -245,7 +245,7 @@ export async function POST(request: Request) {
     }
     console.error("AI/PDF-FEIL:", error);
     return Response.json(
-      { error: error instanceof Error ? error.message : "Kunne ikke analysere PDF-filene." },
+      { error: "Vi klarte ikke å analysere dokumentet. Kontroller at PDF-en inneholder lesbar tekst og prøv igjen." },
       { status: 500 },
     );
   }

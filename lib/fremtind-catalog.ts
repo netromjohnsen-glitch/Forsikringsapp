@@ -17,8 +17,8 @@ export const fremtindProducts: CatalogProduct[] = [
 ];
 
 export const fremtindAddOns: CatalogAddOn[] = [
-  { id: "fremtind-leiebil", name: "Leiebil", componentId: "fremtindOptionalCoverages", providerId: "fremtind", requiresLevel: ["fremtind-bil-kasko", "fremtind-bil-topp"], excludeDistributionChannels: ["SpareBank 1"] },
-  { id: "fremtind-maskinskade", name: "Maskinskade", componentId: "fremtindOptionalCoverages", providerId: "fremtind", requiresLevel: ["fremtind-bil-kasko", "fremtind-bil-topp"], excludeDistributionChannels: ["SpareBank 1"] },
+  { id: "fremtind-leiebil", name: "Leiebil", componentId: "sp1Leiebil", providerId: "fremtind", requiresLevel: ["fremtind-bil-kasko", "fremtind-bil-topp"], excludeDistributionChannels: ["SpareBank 1"] },
+  { id: "fremtind-maskinskade", name: "Maskinskade", componentId: "sp1Maskinskade", providerId: "fremtind", requiresLevel: ["fremtind-bil-kasko", "fremtind-bil-topp"], excludeDistributionChannels: ["SpareBank 1"] },
   { id: "fremtind-sb1-leiebil", name: "Leiebil", componentId: "sp1Leiebil", providerId: "fremtind", requiresLevel: ["fremtind-bil-kasko", "fremtind-bil-topp"], distributionChannels: ["SpareBank 1"] },
   { id: "fremtind-sb1-maskinskade", name: "Maskinskade", componentId: "sp1Maskinskade", providerId: "fremtind", requiresLevel: ["fremtind-bil-kasko", "fremtind-bil-topp"], distributionChannels: ["SpareBank 1"] },
 ];

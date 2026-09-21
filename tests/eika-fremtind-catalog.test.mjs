@@ -95,16 +95,16 @@ test("Eika har samme hoveddekning som SpareBank 1 og DNB uten presentasjonsforsk
   }
 });
 
-test("Eika-tillegg kan velges uten at SpareBank 1s detaljvilkår lekker inn", () => {
+test("Eika-tillegg bruker de aktive felles Fremtind-vilkårene", () => {
   assert.deepEqual(availableAddOns(level(eikaCompany, "Ansvar")), []);
   assert.deepEqual(availableAddOns(level(eikaCompany, "Delkasko")), []);
   for (const name of ["Kasko", "Topp"]) {
     const product = level(eikaCompany, name);
     assert.deepEqual(availableAddOns(product).map((item) => item.id), ["eika-leiebil", "eika-maskinskade"]);
     const facts = resolveCatalogFacts(product, ["eika-leiebil", "eika-maskinskade"]);
-    assert.equal(fact(facts, "leiebil.dager"), undefined);
-    assert.equal(fact(facts, "maskinskade.alder"), undefined);
-    assert.equal(fact(facts, "maskinskade.km"), undefined);
+    assert.match(fact(facts, "leiebil.dager").value, /45 dager/);
+    assert.match(fact(facts, "maskinskade.alder").value, /10 år/);
+    assert.match(fact(facts, "maskinskade.km").value, /200 000 km/);
   }
   const result = compare(
     manual(sb1Company, "Toppkasko", ["sb1-leiebil", "sb1-maskinskade"]),
@@ -114,8 +114,9 @@ test("Eika-tillegg kan velges uten at SpareBank 1s detaljvilkår lekker inn", ()
     assert.equal(fact(result.terms, key).first, fact(result.terms, key).second);
     assert.equal(result.raw.some((item) => item.termKey === key), false);
   }
-  assert.ok(fact(result.terms, "leiebil.dager").first);
-  assert.equal(fact(result.terms, "leiebil.dager").second, null);
+  assert.equal(fact(result.terms, "leiebil.dager").first, fact(result.terms, "leiebil.dager").second);
+  assert.equal(fact(result.terms, "maskinskade.km").first, fact(result.terms, "maskinskade.km").second);
+  assert.equal(result.raw.some((item) => ["leiebil.dager", "maskinskade.km"].includes(item.termKey)), false);
 });
 
 test("Eika Topp sammenlignes kildeisolert mot Tryg", () => {

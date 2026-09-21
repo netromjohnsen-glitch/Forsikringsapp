@@ -138,7 +138,7 @@ test("Frende Ung og hendelsesspesifikke 2026-tiltak lekker ikke inn", () => {
 
 test("cross-company mot fem topprodukter gir forskjeller uten provenanslekkasje", () => {
   const left = manual("Frende", "Reiseforsikring");
-  for (const [company, name] of [["Tryg", "Reise Premium"], ["If", "Super"], ["Storebrand", "Super"], ["Gjensidige", "Reise Pluss"], ["Fremtind", "Reise Pluss"]]) {
+  for (const [company, name] of [["Tryg", "Reise Premium"], ["If", "Super"], ["Storebrand", "Super"], ["Gjensidige", "Reise Pluss"], ["Fremtind", "Reise"]]) {
     const right = manual(company, name);
     const groups = groupInsurances(left.insuranceData.insurances, right.insuranceData.insurances, null);
     const differences = createDifferences(left, right, groups, null);

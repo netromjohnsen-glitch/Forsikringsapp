@@ -93,6 +93,14 @@ test("Leiebil og Motor- og girskade er valgfri for Kasko/Super og kan velges sam
   assert.throws(() => resolveCatalogFacts(level("Kasko"), ["bil-ekstra"]));
 });
 
+test("Leiebil har konkrete kildebundne unntak og 7-dagersregelen", () => {
+  const terms = resolveCatalogFacts(level("Kasko"), ["if-leiebil"]);
+  const limitation = fact(terms, "leiebil.unntak");
+  assert.match(limitation.value, /ren glasskade.*lov eller mobilitetsgaranti.*7 dager.*forhandler eller verksted/s);
+  assert.equal(limitation.source.section, "4.10.2");
+  assert.equal(limitation.source.page, 10);
+});
+
 test("If Super erstatter egen Kasko-grunnverdi uten å overføre den til den andre siden", () => {
   const kasko = manual("If", "Kasko");
   const superAgreement = manual("If", "Super", ["if-leiebil", "if-motor-gir"]);

@@ -115,6 +115,10 @@ test("Innbo Pluss strukturerer uhell, flytting, skadedyr, ID-tyveri og boligtilp
   assert.match(fact(topp, "flytting.transport.grense").value, /Norden/);
   assert.match(fact(topp, "skadedyr.dekning").value, /veg(?:g)?edyr|veggedyr/iu);
   assert.match(fact(topp, "skadedyr.grense").value, /150 000 kr/);
+  assert.match(fact(topp, "skadedyr.insekter.begrensning").value, /Øvrige insekter.*før innflytting.*etter utflytting/s);
+  assert.equal(fact(topp, "skadedyr.insekter.begrensning").source.page, 4);
+  assert.match(fact(topp, "skadedyr.mus_rotter.begrensning").value, /garasje, utebod og låve/);
+  assert.equal(fact(topp, "skadedyr.mus_rotter.begrensning").source.page, 5);
   assert.equal(fact(topp, "idtyveri.grense").value, "1 000 000 kr");
   assert.match(fact(topp, "ulykke.boligtilpasning.grense").value, /300 000 kr/);
 });

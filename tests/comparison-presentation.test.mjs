@@ -26,7 +26,7 @@ test("Tryg mot If viser totalskadealder og kilometer som ett hovedpunkt med begg
   assert.ok(result.raw.some((difference) => difference.termKey === "nyverdi.km"));
   const summary = result.shown.filter((difference) => difference.title === "Totalskadegaranti");
   assert.equal(summary.length, 1);
-  assert.match(summary[0].text, /Tryg:.*3 år.*60 000 km mot If:.*3 år.*60 000 km/);
+  assert.match(summary[0].text, /^Eksisterende:.*3 år.*60 000 km\. Nytt tilbud:.*3 år.*60 000 km\.$/);
   assert.ok(!result.shown.some((difference) => difference.termKey === "nyverdi.alder" || difference.termKey === "nyverdi.km"));
 
   const details = groupTerms(result.groups[0], null);
@@ -103,7 +103,7 @@ test("samme regel grupperer Maskinskade alder og kilometer selv når bare kilome
   ], "Selskap B");
   const result = presented(first, second);
   const summary = result.shown.find((difference) => difference.title === "Maskinskade");
-  assert.match(summary?.text ?? "", /Selskap A: 10 år \/ 200 000 km mot Selskap B: 10 år \/ 150 000 km/);
+  assert.match(summary?.text ?? "", /^Eksisterende: 10 år \/ 200 000 km\. Nytt tilbud: 10 år \/ 150 000 km\.$/);
   assert.equal(result.shown.filter((difference) => difference.insuranceKey && difference.kind === "term").length, 1);
 });
 
