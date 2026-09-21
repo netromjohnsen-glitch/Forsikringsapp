@@ -13,9 +13,6 @@ import type { PresentedDifference } from "@/lib/comparison-presentation";
 import type { BaseFact, ComparedInsurance as Insurance, Difference, FactSource, InsuranceGroup } from "@/lib/comparison";
 
 type InsuranceData = {
-  customer: string | null;
-  customerType: string | null;
-  offerNumber: string | null;
   company: string | null;
   totalAnnualPremium: string | null;
   priceSummary?: ManualPremiumSummary;
@@ -25,7 +22,6 @@ type InsuranceData = {
 type DocumentResult = {
   source: "pdf" | "manual";
   filename: string;
-  text: string;
   insuranceData: InsuranceData;
 };
 
@@ -109,6 +105,7 @@ export default function Home() {
       const response = await fetch("/api/analyze", {
         method: "POST",
         body: formData,
+        cache: "no-store",
       });
 
       const data = await response.json();
@@ -257,6 +254,10 @@ function PdfFiles({ files, onAdd, onRemove }: {
     <div>
       <h4 className="mt-5 text-sm font-semibold text-slate-900">Last opp forsikringsdokument</h4>
       <p className="mt-1 text-sm text-slate-600">PDF med forsikringsbevis eller tilbud. Du kan legge til flere filer fra samme avtale.</p>
+      <p className="mt-2 rounded-lg bg-blue-50 px-3 py-2.5 text-xs leading-5 text-slate-700">
+        <span className="font-semibold text-slate-900">Pilot:</span> Dokumentene analyseres for å sammenligne forsikringene dine. PDF-en sendes til vår server for tekstuttrekk. Relevant, maskert tekst sendes til OpenAI; selve PDF-filen sendes ikke dit. Appen har ingen database som lagrer dokumentet eller resultatet. OpenAI kan beholde sikkerhetslogger etter API-avtalen. Ikke last opp mer informasjon enn nødvendig, og kontroller viktige opplysninger mot originaldokumentet.
+      </p>
+      <p className="mt-2 text-xs text-slate-500">Maks 5 PDF-er per side, 10 MiB per fil og 25 MiB samlet.</p>
       <div
         className="mt-3 rounded-xl border-2 border-dashed border-slate-300 bg-white text-center transition-colors hover:border-blue-400 hover:bg-blue-50/40"
         onDragOver={(event) => event.preventDefault()}
@@ -708,10 +709,6 @@ function Comparison({
                 </tbody>
               </table>
             </div>
-            <div className="mt-5 grid gap-3 lg:grid-cols-2">
-              <OriginalText document={first} />
-              <OriginalText document={second} />
-            </div>
           </div>
         </details>
       </div>
@@ -1046,25 +1043,5 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
         />
       ))}
     </>
-  );
-}
-
-function OriginalText({
-  document,
-}: {
-  document: DocumentResult;
-}) {
-  if (document.source === "manual") return null;
-  return (
-    <details className="rounded-xl bg-gray-50 p-4">
-      <summary className="cursor-pointer font-medium text-gray-700">
-        Vis originaltekst –{" "}
-        {document.insuranceData.company || document.filename}
-      </summary>
-
-      <pre className="mt-4 whitespace-pre-wrap text-sm text-gray-600">
-        {document.text}
-      </pre>
-    </details>
   );
 }
