@@ -87,11 +87,14 @@ test("Eika Topp gjenbruker hele hovedproduktet, med effective/base og Parkerings
   assert.match(fact(detailed, "nyverdi.km").overriddenBase[0].value, /15 000 km/);
 });
 
-test("Eika har samme hoveddekning som SpareBank 1 og DNB uten presentasjonsforskjeller", () => {
+test("Eika har samme hoveddekning som SpareBank 1 og DNB, men separat auditert øvelseskjøringsfordel", () => {
   for (const other of [manual(sb1Company, "Toppkasko"), manual(dnbCompany, "Topp")]) {
     const result = compare(manual(eikaCompany, "Topp"), other);
     assert.equal(result.raw.filter((item) => item.kind === "term").length, 0);
-    assert.equal(result.shown.length, 0);
+    assert.equal(result.shown.length, 1);
+    assert.equal(result.shown[0].conceptId, "bil.ovelseskjoring");
+    assert.equal(result.shown[0].presentationType, "conditional-benefit");
+    assert.match(result.shown[0].text, /^Eksisterende: Tilsvarende betinget fordel er ikke dokumentert etter kontroll/);
   }
 });
 
@@ -123,7 +126,8 @@ test("Eika Topp sammenlignes kildeisolert mot Tryg", () => {
   const result = compare(manual(eikaCompany, "Topp"), manual("Tryg", "Kasko", ["bil-ekstra"]));
   assert.match(fact(result.terms, "nyverdi.km").first, /100 000 km/);
   assert.match(fact(result.terms, "nyverdi.km").second, /60 000 km/);
-  assert.ok(result.shown.some((item) => item.title === "Totalskadegaranti"));
+  assert.ok(result.shown.some((item) => item.conceptId === "bil.totalskade" &&
+    item.items.some((detail) => detail.termKey === "nyverdi.km")));
 });
 
 test("UI-runtime beholder Eika-identitet, arv og begge valgte tillegg", () => {
@@ -148,5 +152,7 @@ test("UI-runtime beholder Eika-identitet, arv og begge valgte tillegg", () => {
   assert.match(fact(insurance.importantTerms, "nyverdi.alder").value, /3 år/);
   assert.ok(fact(insurance.importantTerms, "parkering.dekning"));
   const result = compare(eika, dnb);
-  assert.equal(result.shown.length, 0);
+  assert.equal(result.shown.length, 1);
+  assert.equal(result.shown[0].conceptId, "bil.ovelseskjoring");
+  assert.match(result.shown[0].text, /Nytt tilbud: Krav: 2 000 km/);
 });

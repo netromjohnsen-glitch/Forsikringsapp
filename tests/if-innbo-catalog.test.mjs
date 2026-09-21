@@ -63,7 +63,7 @@ test("forsikringssum og sentrale Basis-grenser følger vilkåret uten å anta ub
   const basis = resolveCatalogFacts(product("If", "Basis"), []);
   assert.match(fact(basis, "innbo.forsikringssum").value, /bare når dette er avtalt/);
   assert.equal(fact(basis, "innbo.forsikringssum").deductibleClassification, "reference");
-  assert.match(fact(basis, "innbo.verdigjenstander.grense").value, /500 000 kr/);
+  assert.match(fact(basis, "innbo.verdigjenstander.sammensatte_grenser").value, /500 000 kr/);
   assert.equal(fact(basis, "tyveri.fellesbod.grense").value, "100 000 kr per hendelse");
   assert.equal(fact(basis, "innbo.datalager.grense").value, "40 000 kr samlet");
   assert.equal(fact(basis, "ansvar.grense").value,

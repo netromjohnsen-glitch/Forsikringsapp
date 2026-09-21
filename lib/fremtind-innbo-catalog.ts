@@ -53,7 +53,7 @@ export const fremtindInnboFacts: Record<string, CatalogFact[]> = {
     ["innbo.lagring.tid", "Midlertidig oppbevaring – tidsgrense", "Inntil 3 år i Norden", "fremtindInnboStandard", "2.2", 1],
     ["innbo.lagring.grense", "Eksternt lager – grense", "100 000 kr", "fremtindInnboStandard", "3.1 og 4.6.3", 1],
     ["sykkel.tyveri.grense", "Sykkel og elsykkel – grense", "20 000 kr", "fremtindInnboStandard", "3.1", 1],
-    ["innbo.verdigjenstander.grense", "Smykker, gull og annet edelt metall – grense", "350 000 kr; høyere sum kan avtales og må fremgå av forsikringsbeviset", "fremtindInnboStandard", "3.1", 1],
+    ["innbo.verdigjenstander.smykker_edelmetall.grense", "Smykker, gull og annet edelt metall – grense", "350 000 kr; høyere sum kan avtales og må fremgå av forsikringsbeviset", "fremtindInnboStandard", "3.1", 1],
     ["innbo.kunst.grense", "Kunst – grense", "500 000 kr; høyere sum kan avtales og må fremgå av forsikringsbeviset", "fremtindInnboStandard", "3.1", 1],
     ["innbo.samling.grense", "Enkeltgjenstander og samlinger – grense", "350 000 kr; høyere sum kan avtales og må fremgå av forsikringsbeviset", "fremtindInnboStandard", "3.1", 1],
     ["innbo.penger.grense", "Penger og verdipapirer – grense", "15 000 kr", "fremtindInnboStandard", "3.1.1", 2],

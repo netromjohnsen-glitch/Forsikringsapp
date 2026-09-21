@@ -60,7 +60,7 @@ export const frendeInnboFacts: Record<string, CatalogFact[]> = {
     ["innbo.forsikrede", "Hvem som er forsikret", "Forsikringstaker, ektefelle eller registrert samboer, barn hjemme eller borte på grunn av utdanning/førstegangstjeneste uten adresseendring, og øvrige medlemmer av fast husstand; leietakere og bokollektiv er unntatt", "frendeInnboStandard", "1", 2],
     ["innbo.geografi", "Innbo – geografisk område", "Forsikringsstedet og midlertidig annet sted i Norden i inntil 12 måneder", "frendeInnboStandard", "2.1–2.2", 2],
     ["innbo.lagring.tid", "Midlertidig oppbevaring – tidsgrense", "Inntil 12 måneder på annet sted i Norden", "frendeInnboStandard", "2.2", 2],
-    ["innbo.verdigjenstander.grense", "Enkeltgjenstand – grense", "500 000 kr per enkeltgjenstand", "frendeInnboStandard", "3.1", 3],
+    ["innbo.verdigjenstander.enkeltgjenstand.grense", "Enkeltgjenstand – grense", "500 000 kr per enkeltgjenstand", "frendeInnboStandard", "3.1", 3],
     ["innbo.kunst.grense", "Kunst – grense", "500 000 kr samlet", "frendeInnboStandard", "3.1", 3],
     ["innbo.samling.grense", "Samlinger – grense", "500 000 kr samlet per samling", "frendeInnboStandard", "3.1", 3],
     ["innbo.hobbyveksthus.grense", "Hobbydrivhus – grense", "40 000 kr på forsikringsstedet", "frendeInnboStandard", "3.1", 3],

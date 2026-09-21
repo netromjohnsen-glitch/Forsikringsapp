@@ -126,7 +126,8 @@ test("DNB Topp kan sammenlignes kildeisolert mot Tryg", () => {
   assert.match(fact(result.terms, "nyverdi.km").second, /60 000 km/);
   assert.equal(fact(result.terms, "nyverdi.km").firstSources[0].company, "Fremtind");
   assert.equal(fact(result.terms, "nyverdi.km").secondSources[0].company, "Tryg");
-  assert.ok(result.shown.some((item) => item.title === "Totalskadegaranti"));
+  assert.ok(result.shown.some((item) => item.conceptId === "bil.totalskade" &&
+    item.items.some((detail) => detail.termKey === "nyverdi.km")));
 });
 
 test("UI-formet DNB-request beholder distribusjonsidentitet og valgte tillegg", () => {

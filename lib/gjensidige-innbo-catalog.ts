@@ -80,7 +80,7 @@ export const gjensidigeInnboFacts: Record<string, CatalogFact[]> = {
   ]),
   gjInnboPlus: facts([
     ["innbo.forsikringssum", "Samlet forsikringssum", "Ubegrenset for innbo og løsøre, med dokumenterte særgrenser", "gjInnboPlus", "Forsikringsoversikt", 1, true],
-    ["innbo.verdigjenstander.grense", "Verdigjenstander og enkeltgjenstander – særgrenser", "500 000 kr for hver angitt kategori og per øvrig enkeltgjenstand eller samling", "gjInnboPlus", "Forsikringsoversikt og Hva er forsikret", 1],
+    ["innbo.verdigjenstander.sammensatte_grenser", "Verdigjenstander og enkeltgjenstander – særgrenser", "500 000 kr for hver angitt kategori og per øvrig enkeltgjenstand eller samling", "gjInnboPlus", "Forsikringsoversikt og Hva er forsikret", 1],
     ["innbo.egenandel", "Generell egenandel", "3 000 kr", "gjInnboPlus", "Forsikringsoversikt", 1, true, "standard"],
     ["tyveri.fellesbod.grense", "Tyveri fra bod i felles kjeller eller loft – grense", "Ingen separat generell bodgrense; innbo omfattes innenfor ubegrenset innbosum, mens objekt- og kategorigrenser fortsatt gjelder", "gjInnboPlus", "Forsikringsbevis – Hvilke skader", 4, true],
     ["tyveri.fellesbod.sykkelgrense", "Fellesbod – sykkelgrense", "30 000 kr per sykkel, elsykkel eller sykkeltilhenger.", "gjInnboPlus", "Forsikringsoversikt / Hvilke skader", 1],

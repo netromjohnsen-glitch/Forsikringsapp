@@ -63,7 +63,7 @@ const superFacts=facts("storebrandReiseTerms",[
  ["bagasje.egenandel","Reisegods – egenandel","Ingen egenandel.","B.4.1",11,"override",true],
  ["bagasje.uhell","Uhell på reisegods","Plutselig og uforutsett fysisk skade med kjent ytre årsak/tidspunkt, inntil 5 000 kr per skadetilfelle. Mistet/bortkommet er ikke fysisk skade.","C.1.2 punkt 3",26,undefined,true],
  ["bagasje.uhell_sum","Uhell – sum","5 000 kr per skadetilfelle.","C.1.2",26],
- ["bagasje.uhell_egenandel","Uhell mobil/nettbrett – gjentatt skade","Fra andre skade innen to kalenderår: 2 000 kr egenandel.","C.1.2",26,"override"],
+ ["bagasje.mobil_egenandel.gjentatt","Uhell mobil/nettbrett – gjentatt skade","Fra andre skade innen to kalenderår: 2 000 kr egenandel.","C.1.2",26,"override"],
  ["reiseavbrudd","Reiseavbrudd","Inntil reisens dokumenterte pris.","B.5",14,undefined,true],
  ["avbestilling.sum","Avbestilling – sum","Ingen generell øvre sum; dokumenterte ikke-refunderbare kostnader og vilkåret styrer.","B.2.1",6,undefined,true],
  ["avbestilling.aktivitet","Forhåndsbetalt utflukt/arrangement","Inkludert når aktiviteten er del av reisen, innen avbestillingsrammen.","B.2.1",6,undefined,true],

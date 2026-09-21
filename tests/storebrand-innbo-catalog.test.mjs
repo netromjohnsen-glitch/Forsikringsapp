@@ -207,10 +207,10 @@ test("Bil og Innbo i samme Storebrand-avtale holder produkt, state og kilder ads
 
 test("Innbo-prioriteringen lar sentrale Super-forskjeller gå foran ansvar og rettshjelp", () => {
   const result = compare(manual("Gjensidige", "Innbo Pluss"), manual("Storebrand", "Super"));
-  const highlights = result.shown.filter((entry) => entry.insuranceKey === "innbo")
-    .sort((a, b) => b.priority - a.priority).slice(0, 6);
-  assert.ok(highlights.some((entry) => entry.termKey === "innbo.forsikringssum"));
-  assert.ok(highlights.some((entry) => entry.termKey?.startsWith("sykkel.")));
-  assert.ok(!highlights.some((entry) => entry.termKey?.startsWith("rettshjelp.")));
-  assert.ok(result.shown.some((entry) => entry.termKey === "rettshjelp.grense"));
+  const highlights = result.shown.filter((entry) => entry.insuranceKey === "innbo").slice(0, 5);
+  assert.ok(highlights.some((entry) => entry.conceptId === "innbo.forsikringssum"));
+  assert.ok(highlights.some((entry) => entry.conceptId === "innbo.sykkel-verdi"));
+  assert.ok(!highlights.some((entry) => entry.conceptId === "innbo.ansvar-rettshjelp"));
+  assert.ok(result.shown.some((entry) => entry.conceptId === "innbo.ansvar-rettshjelp" &&
+    entry.items.some((detail) => detail.termKey === "rettshjelp.grense")));
 });

@@ -47,7 +47,7 @@ test("forsikringsbevis personkrets og reiseomfang er bevart", () => {
 test("75 dager og kundespesifikk fortsettelsesforsikring er separate", () => {
   const items = facts();
   assert.match(fact(items, "reise.varighet.maks").value, /^75 dager/);
-  assert.match(fact(items, "reise.varighet.utvidelse").value, /før avreise.*én reise.*Norden, Europa eller hele verden.*ikke et eget hovedprodukt/i);
+  assert.match(fact(items, "reise.varighet.enkeltreise_utvidelse").value, /før avreise.*én reise.*Norden, Europa eller hele verden.*ikke et eget hovedprodukt/i);
 });
 
 test("risikoområder bevarer Svalbard-unntaket og 6000 meter", () => {

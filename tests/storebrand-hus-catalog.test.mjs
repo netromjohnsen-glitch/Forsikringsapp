@@ -98,7 +98,7 @@ test("kundens egenandel, særregler og aldersfradrag holdes separate", () => {
   const insurance = manual("Storebrand", "Super", [], "12000").insuranceData.insurances[0];
   assert.equal(insurance.deductible, "12000"); assert.equal(insurance.deductibleOrigin, "customer");
   assert.equal(fact(insurance.importantTerms, "hus.egenandel.generell").deductibleClassification, "reference");
-  assert.equal(fact(insurance.importantTerms, "hus.vann.egenandel").deductibleClassification, "override");
+  assert.equal(fact(insurance.importantTerms, "hus.vann.egenandel.alder_frost_vannforhold").deductibleClassification, "override");
   const age = fact(insurance.importantTerms, "hus.aldersfradrag.utvendige_ror").structuredValue;
   assert.deepEqual({ freeYears: age.freeYears, annualPercent: age.annualPercent, maximumPercent: age.maximumPercent }, { freeYears: 20, annualPercent: 5, maximumPercent: 80 });
 });
@@ -108,7 +108,7 @@ test("gjenoppføring, påbud, klimatiltak og boligtilpasning har dokumenterte gr
   assert.match(fact(items, "hus.gjenoppforing.hovedregel").value, /fem år/);
   assert.match(fact(items, "hus.gjenoppforing.markedsverdi").value, /1 000 000/);
   assert.match(fact(items, "hus.pabud.grense").value, /1 000 000/);
-  assert.match(fact(items, "hus.gjenoppforing.klima").value, /150 000.*75 %/);
+  assert.match(fact(items, "hus.gjenoppforing.klima_sikkerhet").value, /150 000.*75 %/);
   assert.match(fact(items, "hus.tilpasning.grense").value, /500 000.*50 %/);
 });
 
@@ -156,7 +156,8 @@ test("runtime-kjeden beholder produkt, tillegg, effective/base og provenance", (
   assert.equal(house.catalogReference.productId, "storebrand-hus-super"); assert.deepEqual(house.addOnIds, ["storebrand-hus-utleie"]);
   assert.equal(fact(result.terms, "hus.vatrom.folgeskade").secondSources[0].termsNumber, "HUS10 / 45511h");
   assert.ok(fact(result.terms, "hus.vatrom.folgeskade").secondBaseFacts.length > 0);
-  assert.ok(result.shown.some((d) => d.termKey === "hus.vatrom.folgeskade"));
+  assert.ok(result.shown.some((d) => d.conceptId === "hus.vatrom" &&
+    d.items.some((detail) => detail.termKey === "hus.vatrom.folgeskade")));
 });
 
 test("Bil, Innbo og Hus sameksisterer uten katalog- eller tilleggsmiks", () => {

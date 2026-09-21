@@ -106,8 +106,10 @@ export const sparebank1FremtindFacts: Record<string, CatalogFact[]> = {
     ["kasko.egenandel.dyr", "Kasko – reduksjon ved skade fra dyr", "Avtalt egenandel reduseres med inntil 2 000 kr", "3.1", 8, false, "override"],
   ]),
   sp1Toppkasko: facts("sp1Toppkasko", [
+    ["bilnokkel.dekning", "Bilnøkkel", "Ny nøkkel, programmering og omkoding når nøkkelen er mistet, stjålet eller skadet ved tilfeldig, plutselig ytre påvirkning", "1.1.1", 8],
     ["bilnokkel.grense", "Bilnøkkel – forsikringssum", "Inntil 15 000 kr", "1.1.1", 8],
     ["bilnokkel.egenandel", "Bilnøkkel – egenandel", "1 000 kr", "3.1", 9, false, "override"],
+    ["ladekabel.dekning", "Ladekabel", "Tyveri eller annen skade ved tilfeldig, plutselig ytre påvirkning på ladekabel til el- og hybridbil", "1.1.2", 9],
     ["ladekabel.grense", "Ladekabel – forsikringssum", "Inntil 10 000 kr for ny ladekabel til el- og hybridbil", "1.1.2", 9],
     ["ladekabel.egenandel", "Ladekabel – egenandel", "1 000 kr", "3.2", 9, false, "override"],
     ["interiorrens.grense", "Rens av interiør – forsikringssum", "Inntil 10 000 kr etter tilfeldig, plutselig søl", "1.1.3", 9],

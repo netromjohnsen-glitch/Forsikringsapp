@@ -34,7 +34,7 @@ test("forsikringsbevis personkrets geografi og 70 dager er bevart", () => {
 
 test("varighetsutvidelse er kundespesifikk og ikke produktnivå", () => {
   for (const name of ["Reise", "Reise Pluss"])
-    assert.match(fact(resolveCatalogFacts(product(name), []), "reise.varighet.utvidelse").value, /42 ekstra uker.*295.*før avreise.*ikke.*underveis/);
+    assert.match(fact(resolveCatalogFacts(product(name), []), "reise.varighet.enkeltreise_utvidelse").value, /42 ekstra uker.*295.*før avreise.*ikke.*underveis/);
 });
 
 test("Reise Pluss forbedrer reisegods gjennom effective base", () => {

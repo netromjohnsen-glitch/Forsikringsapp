@@ -60,7 +60,7 @@ const standard = facts("fremtindHusStandard", [
   ["gjenoppforing.markedsverdi", "Kjøp av annen bolig", "Ved totalskade kan annen bolig i Norge til samme formål kjøpes innen to år; oppussing/tilpasning inntil 1 000 000 kroner innen dokumenterte totalgrenser.", "5.2.2.4", 5],
   ["egenandel.generell", "Avtalt egenandel", "Egenandelen fremgår av forsikringsbeviset. Den kan ikke utledes som én generell katalogsum.", "6 Egenandel", 7, "reference"],
   ["sikkerhet.egenandelsreduksjon", "Egenandelsreduksjon ved sikring", "Inntil 6 000 kroner reduksjon ved angitte FG-godkjente el-kontroll-, alarm- og vannstopptiltak. Ingen egenandel ved dokumenterte overvannstiltak.", "6.1", 7],
-  ["vann.egenandel", "Gjentatte vannskader", "Avtalt egenandel økes med 20 000 kroner ved vannskader av samme årsak på samme bygning innen 24 måneder.", "6.4", 7, "override"],
+  ["vann.egenandel.gjentatt_vann", "Gjentatte vannskader", "Avtalt egenandel økes med 20 000 kroner ved vannskader av samme årsak på samme bygning innen 24 måneder.", "6.4", 7, "override"],
   ["hvitevarer.egenandel", "Integrerte hvitevarer – egenandel", "2 000 kroner.", "6.3", 7, "override"],
   ["naturskade.dekning", "Naturskade", "Naturskade etter naturskadeforsikringsloven og det innarbeidede naturskadevilkåret.", "4.5 / FFE-001.001-006", 4],
   ["naturskade.egenandel", "Naturskade – egenandel", "Lovbestemt egenandel; vilkåret oppgir 8 000 kroner.", "6.7", 7, "override"],

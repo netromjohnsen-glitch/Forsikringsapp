@@ -174,12 +174,12 @@ test("toppnivåer sammenligner dokumenterte uhell, flytting, skadedyr, ID og bol
 
 test("Innbo-prioriteringen beholdes generell for Fremtind", () => {
   const result = compare(manual("Gjensidige", "Innbo Pluss"), manual("Fremtind", "Innbo Pluss", "Eika"));
-  const highlights = result.shown.filter((entry) => entry.insuranceKey === "innbo")
-    .sort((a, b) => b.priority - a.priority).slice(0, 6);
-  assert.ok(highlights.some((entry) => entry.termKey === "innbo.forsikringssum"));
-  assert.ok(highlights.some((entry) => entry.termKey?.startsWith("sykkel.")));
-  assert.ok(!highlights.some((entry) => entry.termKey?.startsWith("rettshjelp.")));
-  assert.ok(result.shown.some((entry) => entry.termKey === "rettshjelp.grense"));
+  const highlights = result.shown.filter((entry) => entry.insuranceKey === "innbo").slice(0, 5);
+  assert.ok(highlights.some((entry) => entry.conceptId === "innbo.forsikringssum"));
+  assert.ok(highlights.some((entry) => entry.conceptId === "innbo.sykkel-verdi"));
+  assert.ok(!highlights.some((entry) => entry.conceptId === "innbo.ansvar-rettshjelp"));
+  assert.ok(result.shown.some((entry) => entry.conceptId === "innbo.ansvar-rettshjelp" &&
+    entry.items.some((detail) => detail.termKey === "rettshjelp.grense")));
 });
 
 test("UI-formet runtime beholder kanal, produkt, effective/base og presentasjon", () => {

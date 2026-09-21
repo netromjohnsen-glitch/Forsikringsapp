@@ -49,18 +49,20 @@ test("UI-formet If–Storebrand-request beholder alle tillegg til toppsekslisten
 
   const groups = groupInsurances(existing.insuranceData.insurances, offer.insuranceData.insurances, null);
   const differences = createDifferences(existing, offer, groups, null);
-  const topSix = presentImportantDifferences(
+  const topFive = presentImportantDifferences(
     differences, groups, null, "If", "Storebrand",
   ).filter((difference) => difference.insuranceKey && difference.type !== "price")
-    .sort((a, b) => b.priority - a.priority)
-    .slice(0, 6);
+    .slice(0, 5);
 
-  assert.deepEqual(topSix.map((difference) => difference.title), [
-    "Egenandel",
-    "Leiebil – normal reparasjonstid",
-    "Parkeringsskade – erstatningsgrense",
-    "Leiebil – kondemnasjon",
-    "Leiebil – kontantkompensasjon",
-    "Totalskadegaranti – unntak",
+  assert.deepEqual(topFive.map((difference) => difference.title), [
+    "Skade på egen bil",
+    "Maskinskade",
+    "Totalskade og nybil",
+    "Mobilitet",
+    "Øvelseskjøring og ung fører",
   ]);
+  assert.ok(topFive.find((difference) => difference.conceptId === "bil.mobilitet").items
+    .some((item) => item.termKey === "leiebil.dager"));
+  assert.equal(topFive.at(-1).presentationType, "conditional-benefit");
+  assert.match(topFive.at(-1).text, /Bruk Ifs app.*Skade under øvelseskjøring gir ikke bonustap/s);
 });

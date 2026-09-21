@@ -30,7 +30,7 @@ const common = facts("gjensidigeReiseTerms", [
   ["bagasje.dekning", "Reisegods", "Navngitte hendelser som tyveri, ran, skadeverk, brann, vann-/naturskade, trafikk-/båtuhell, transportørbekreftet skade/tap, personskadeuhell og skade fra dyr. Mistet, bortkommet, kosmetisk eller mekanisk skade er ikke generell uhellsdekning.", "Reisegods", 5],
   ["bagasje.per_gjenstand", "Enkeltgjenstand", "Annet reisegods enn særskilte kategorier er begrenset til 20 000 kr per gjenstand.", "Reisegods", 6],
   ["bagasje.sykkel", "Sykkel", "Inntil 40 000 kr for sykkel, elsykkel, elsparkesykkel og sykkeltilhenger på reise utenfor Norge.", "Reisegods", 1],
-  ["bagasje.sportsutstyr", "Leid sports- og fritidsutstyr", "Dokumentert krav fra utleier etter dekket tap eller skade, inntil 10 000 kr.", "Reisegods", 6],
+  ["bagasje.leid_sportsutstyr", "Leid sports- og fritidsutstyr", "Dokumentert krav fra utleier etter dekket tap eller skade, inntil 10 000 kr.", "Reisegods", 6],
   ["bagasje.mobil", "Mobiltelefon", "Knust eller sprukket skjerm/bakside og annen skade som skjer samtidig, samt tyveri, ran eller brann. Reparasjon/skjermbytte eller brukt, renset og reparert erstatningsenhet; mistet/bortkommet telefon og smartklokke/nettbrett/PC er unntatt.", "Mobiltelefon", 6],
   ["bagasje.mobil_egenandel", "Mobiltelefon – egenandel", "1 000 kr for begge produkter ved Gjensidiges samarbeidspartner; 3 000 kr ved annen reparatør/leverandør.", "Mobiltelefon / Erstatningsregler", 6, "override"],
   ["bagasje.forsinket", "Forsinket bagasje", "Dokumenterte nødvendige klær og utstyr når ekspedert bagasje er forsinket eller forbyttet på utreise; PIR/transportørbekreftelse og kvitteringer kreves. Ikke ved hjemkomst.", "Forsinkelser", 6],
@@ -78,7 +78,7 @@ const pluss = facts("gjensidigeReisePlussTerms", [
 ]);
 
 const duration = facts("gjensidigeReiseDays", [[
-  "varighet.utvidelse", "Utvidelse av reisedager", "Kundespesifikt tillegg for én sammenhengende reise: inntil 42 ekstra uker / 295 ekstra dager. Må kjøpes før avreise og kan ikke legges til underveis. Forsikringsbeviset angir avtalt periode.", "Hvor lenge kan jeg være bortreist", 1,
+  "varighet.enkeltreise_utvidelse", "Utvidelse av reisedager", "Kundespesifikt tillegg for én sammenhengende reise: inntil 42 ekstra uker / 295 ekstra dager. Må kjøpes før avreise og kan ikke legges til underveis. Forsikringsbeviset angir avtalt periode.", "Hvor lenge kan jeg være bortreist", 1,
 ]]);
 const services = [
   ...facts("gjensidigeReiseAlarm", [["tjeneste.alarm", "Gjensidige Travel Assistance", "Døgnåpen alarmsentral som gir personlig praktisk og medisinsk assistanse i utlandet; forhåndsgodkjenner blant annet hjemtransport og evakuering. Tjeneste, ikke forsikringssum.", "Alarmsentralen", 1]]),

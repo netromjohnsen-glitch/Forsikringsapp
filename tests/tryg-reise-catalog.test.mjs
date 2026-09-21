@@ -176,10 +176,12 @@ test("runtime, presentasjonsprioritet og Bil Innbo Hus Reise har ingen typelekka
   const right = manual("Reise Premium");
   const groups = groupInsurances(left.insuranceData.insurances, right.insuranceData.insurances, null);
   const shown = presentImportantDifferences(createDifferences(left, right, groups, null), groups, null, "Tryg", "Tryg");
-  assert.ok(shown.find((entry) => entry.termKey === "reise.varighet.maks").priority >
-    shown.find((entry) => entry.termKey === "reise.forsinkelse.leiebilavtale").priority);
-  assert.equal(shown.some((entry) => entry.termKey === "reise.tjeneste.lounge"), false,
+  assert.ok(shown.findIndex((entry) => entry.conceptId === "reise.rammer") <
+    shown.findIndex((entry) => entry.conceptId === "reise.forsinkelse"));
+  assert.equal(shown.slice(0, 5).some((entry) => entry.conceptId === "reise.tjenester"), false,
     "tjenestefordelen fortrenger ikke materielle forskjeller i hovedutvalget");
+  assert.equal(shown.some((entry) => entry.conceptId === "reise.tjenester"), false,
+    "En tjenestefamilie uten faktisk forskjell skal ikke vises");
 
   const all = normalizeManualAgreement({ company: "Tryg", totalAnnualPremium: "", products: [
     { type: "Bil", productName: "Kasko", annualPremium: "", deductible: "", coverageSummary: "", importantTerms: [], addOnIds: [] },

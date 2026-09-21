@@ -160,7 +160,10 @@ export function normalizeManualAgreement(input: unknown) {
               ...(item.replacesBase ? ["Effektiv verdi fra dokumentert utvidelse eller tillegg"] : []),
               ...(item.deductibleClassification ? [deductibleNotes[item.deductibleClassification]] : []),
             ].join(" · ") || undefined },
-            ...(item.qualificationSource ? [{ ...item.qualificationSource, note: "Forbehold for standardegenandel" }] : []),
+            ...(item.qualificationSource ? [{ ...item.qualificationSource, note:
+              item.deductibleClassification === "standard"
+                ? "Forbehold for standardegenandel"
+                : "Supplerende kilde for faktumets anvendelse" }] : []),
           ],
           overriddenBase: item.replacesBase
             ? (catalogFacts ?? []).filter((base) =>

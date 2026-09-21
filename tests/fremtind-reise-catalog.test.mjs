@@ -75,7 +75,7 @@ test("alle aktive fakta peker bare på aktivt hovedvilkår eller IPID", () => {
 test("aktiv standard er 70 dager og andre varigheter er bare kundespesifikke valg", () => {
   const items = resolveCatalogFacts(active(), []);
   assert.match(fact(items, "reise.varighet.maks").value, /^70 dager/);
-  assert.match(fact(items, "reise.varighet.utvidelse").value, /forsikringsbeviset.*kundespesifikke/i);
+  assert.match(fact(items, "reise.varighet.valg").value, /forsikringsbeviset.*kundespesifikke/i);
   const values = items.map((entry) => entry.value).join(" ");
   assert.doesNotMatch(values, /90|120|180/);
   assert.equal(fact(items, "reise.varighet.maks").source.documentId, "fremtindReiseUnifiedIpid");

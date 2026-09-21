@@ -123,7 +123,8 @@ test("SpareBank 1 Toppkasko med tillegg sammenlignes kildeisolert mot Tryg", () 
   assert.match(fact(result.terms, "leiebil.dager").second, /60 dager/);
   assert.deepEqual(fact(result.terms, "maskinskade.alder").firstSources.map((source) => source.company), ["Fremtind"]);
   assert.deepEqual(fact(result.terms, "maskinskade.alder").secondSources.map((source) => source.company), ["Tryg"]);
-  assert.ok(result.shown.some((item) => item.title === "Totalskadegaranti"));
+  assert.ok(result.shown.some((item) => item.conceptId === "bil.totalskade" &&
+    item.items.some((detail) => detail.termKey === "nyverdi.km")));
 });
 
 test("Brann mot Tryg beholdes som kildebasert uvisshet når åpen flamme bare er uttrykkelig på én side", () => {
@@ -203,7 +204,8 @@ test("UI-formet manuell request beholder begge SpareBank 1-tillegg gjennom prese
   const right = normalizeManualAgreement(JSON.parse(formData.get("offerManual")));
   assert.deepEqual(left.insuranceData.insurances[0].addOnIds, ["sb1-leiebil", "sb1-maskinskade"]);
   const result = compare(left, right);
-  assert.ok(result.shown.some((item) => item.termKey === "leiebil.dager"));
+  assert.ok(result.shown.some((item) => item.conceptId === "bil.mobilitet" &&
+    item.items.some((detail) => detail.termKey === "leiebil.dager")));
   assert.match(fact(result.terms, "maskinskade.alder").first, /10 år/);
   assert.equal(fact(result.terms, "maskinskade.alder").second, null);
   assert.equal(fact(result.terms, "leiebil.dager").firstSources[0].documentId, "sp1Leiebil");

@@ -122,7 +122,7 @@ test("Hus Ekstra dokumenterer forbedret tak-, våtroms- og håndverkerfeildeknin
   assert.match(fact(extra, "hus.takvegg.folgeskade").value, /over bakkeplan/);
   assert.match(fact(extra, "hus.takvegg.skadearsak").value, /Selve taket\/veggen.*unntatt/);
   assert.match(fact(extra, "hus.plutselig.dekning").value, /Følgeskade av håndverkerfeil/);
-  assert.ok(fact(extra, "hus.teknisk.isolerglass"));
+  assert.ok(fact(extra, "hus.glass.isolerglass_punktering"));
 });
 
 test("naturskade og ordinært vær er separate Hus-konsepter", () => {
@@ -161,8 +161,8 @@ test("aldersfradrag er strukturert separat fra egenandeler", () => {
     calculationBasis: "Hele reparasjonskostnaden; eldste skadde del; isolerglass bare ved punktering",
   });
   assert.equal(solar.deductibleClassification, undefined);
-  assert.equal(fact(items, "hus.vann.egenandel").structuredValue, undefined);
-  assert.equal(fact(items, "hus.vann.egenandel").deductibleClassification, "override");
+  assert.equal(fact(items, "hus.vann.egenandel.terreng_grunnvann").structuredValue, undefined);
+  assert.equal(fact(items, "hus.vann.egenandel.terreng_grunnvann").deductibleClassification, "override");
 });
 
 test("råte og skadedyr er valgbart, effektivt og beholder basefaktum", () => {
@@ -229,14 +229,13 @@ test("fremtidig ansvarsvilkår og NITO Hus kobles ikke automatisk", () => {
 
 test("Hus-prioritering løfter materielle dekninger foran sikkerhet og rettshjelp", () => {
   const result = compare(manual("Hus"), manual("Hus Ekstra", ["tryg-hus-rate-skadedyr", "tryg-hus-utleie"]));
-  const sorted = result.shown.filter((entry) => entry.kind === "term")
-    .sort((a, b) => b.priority - a.priority);
-  const index = (prefix) => sorted.findIndex((entry) => entry.termKey?.startsWith(prefix));
-  assert.ok(index("hus.plutselig.") >= 0);
-  assert.ok(index("hus.vatrom.") >= 0);
-  assert.ok(index("hus.rate.") >= 0);
-  assert.ok(index("hus.plutselig.") < index("hus.rate."));
-  assert.ok(index("hus.vatrom.") < index("hus.rate."));
+  const sorted = result.shown.filter((entry) => entry.kind === "term");
+  const index = (conceptId) => sorted.findIndex((entry) => entry.conceptId === conceptId);
+  assert.ok(index("hus.plutselig") >= 0);
+  assert.ok(index("hus.vatrom") >= 0);
+  assert.ok(index("hus.rate-skadedyr") >= 0);
+  assert.ok(index("hus.plutselig") < index("hus.rate-skadedyr"));
+  assert.ok(index("hus.vatrom") < index("hus.rate-skadedyr"));
   assert.ok(result.raw.some((entry) => entry.termKey?.startsWith("hus.rettshjelp.")) === false,
     "Identisk rettshjelp skal ikke konstrueres som forskjell");
   const synthetic = ["hus.forsikringsform", "hus.vatrom.folgeskade", "hus.rate.dekning",
@@ -244,13 +243,12 @@ test("Hus-prioritering løfter materielle dekninger foran sikkerhet og rettshjel
       title: termKey, text: termKey, type:"tradeoff", kind:"term", insuranceKey:"bolig",
       termKey, priority: 100,
     }));
-  const priorities = new Map(presentImportantDifferences(synthetic, [], null, "A", "B")
-    .map((entry) => [entry.termKey, entry.priority]));
-  assert.ok(priorities.get("hus.forsikringsform") > priorities.get("hus.vatrom.folgeskade"));
-  assert.ok(priorities.get("hus.vatrom.folgeskade") > priorities.get("hus.rate.dekning"));
-  assert.ok(priorities.get("hus.rate.dekning") > priorities.get("hus.utleie.mislighold"));
-  assert.ok(priorities.get("hus.utleie.mislighold") > priorities.get("hus.sikkerhet.vann"));
-  assert.equal(priorities.get("hus.sikkerhet.vann"), priorities.get("hus.rettshjelp.grense"));
+  const syntheticGroups = [{ key: "bolig", label: "Hus", first: [], second: [] }];
+  const presented = presentImportantDifferences(synthetic, syntheticGroups, null, "A", "B");
+  const ids = presented.map((entry) => entry.conceptId);
+  assert.ok(ids.indexOf("hus.gjenoppforing") < ids.indexOf("hus.vatrom"));
+  assert.ok(ids.indexOf("hus.vatrom") < ids.indexOf("hus.rate-skadedyr"));
+  assert.ok(ids.indexOf("hus.rate-skadedyr") < ids.indexOf("hus.utleie-bosted"));
 });
 
 test("runtime-kjeden viser Hus mot Hus Ekstra med effektive tillegg og kilder", () => {
@@ -273,7 +271,8 @@ test("runtime-kjeden viser Hus mot Hus Ekstra med effektive tillegg og kilder", 
   assert.equal(fact(result.terms, "hus.vatrom.folgeskade").secondSources[0].termsNumber, "PPK11502");
   assert.equal(fact(result.terms, "hus.rate.dekning").secondSources[0].termsNumber, "PPK40502");
   assert.ok(fact(result.terms, "hus.rate.dekning").secondBaseFacts.length > 0);
-  assert.ok(result.shown.some((entry) => entry.termKey === "hus.vatrom.folgeskade"));
+  assert.ok(result.shown.some((entry) => entry.conceptId === "hus.vatrom" &&
+    entry.items.some((detail) => detail.termKey === "hus.vatrom.folgeskade")));
 });
 
 test("én avtale kan inneholde Bil, Innbo og Hus med isolerte tillegg og kilder", () => {

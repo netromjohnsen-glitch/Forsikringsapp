@@ -117,8 +117,9 @@ test("Gjensidige mot Tryg bevarer sammenlignbare nøkkelverdier, kilder og dokum
   assert.equal(fact(terms, "nyverdi.alder").secondBaseFacts.length, 0);
   assert.ok(differences.some((d) => d.termKey === "nyverdi.alder"));
   const unknown = fact(terms, "rettshjelp.dekning");
-  assert.equal(unknown.first, null);
-  assert.equal(unknown.firstMissingLabel, "Ikke dokumentert / kan ikke avgjøres");
+  assert.equal(unknown.first, "Omfattet; detaljer i ikke vedlagt vilkår PGE91500");
+  assert.equal(unknown.firstSources[0].termsNumber, "PAU25003");
+  assert.equal(unknown.firstSources[0].section, "1.2");
 });
 
 test("Gjensidige mot If sammenligner nivåer, uten å oppfinne Ifs aldersgrense", () => {

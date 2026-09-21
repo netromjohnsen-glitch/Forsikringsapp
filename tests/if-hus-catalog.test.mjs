@@ -187,7 +187,8 @@ test("Tryg Hus og If Hus sammenlignes på felles nøkler uten kildelekkasje", ()
   assert.equal(fact(result.terms, "hus.naturskade.dekning").secondSources[0].company, "If");
   assert.equal(result.terms.some((entry) => entry.firstSources.some((source) => source.company === "If")), false);
   assert.equal(result.terms.some((entry) => entry.secondSources.some((source) => source.company === "Tryg")), false);
-  assert.ok(result.shown.some((entry) => entry.termKey === "hus.vatrom.folgeskade"));
+  assert.ok(result.shown.some((entry) => entry.conceptId === "hus.vatrom" &&
+    entry.items.some((detail) => detail.termKey === "hus.vatrom.folgeskade")));
 });
 
 test("høyere nivåer sammenligner effective/base uten å flytte base til motparten", () => {
@@ -217,10 +218,11 @@ test("runtime-kjeden beholder nivåarv, provenance og Hus-prioritering", () => {
   assert.equal(right.insuranceData.insurances[0].catalogReference.productId, "if-hus-super");
   assert.equal(fact(result.terms, "hus.vatrom.folgeskade").secondSources[0].termsNumber, "BGN1-0");
   assert.ok(fact(result.terms, "hus.vatrom.folgeskade").secondBaseFacts.length > 0);
-  const sorted = result.shown.filter((entry) => entry.kind === "term").sort((a, b) => b.priority - a.priority);
-  assert.ok(sorted.some((entry) => entry.termKey === "hus.vatrom.folgeskade"));
+  const sorted = result.shown.filter((entry) => entry.kind === "term");
+  assert.ok(sorted.some((entry) => entry.conceptId === "hus.vatrom" &&
+    entry.items.some((detail) => detail.termKey === "hus.vatrom.folgeskade")));
   assert.ok(fact(right.insuranceData.insurances[0].importantTerms, "hus.service.boligsjekk"));
-  assert.equal(sorted.some((entry) => entry.termKey === "hus.service.boligsjekk"), false,
+  assert.equal(sorted.slice(0, 5).some((entry) => entry.conceptId === "hus.tjenester"), false,
     "Tjenesten skal ikke fortrenge sentrale bygningsforskjeller i hovedvisningen");
 });
 

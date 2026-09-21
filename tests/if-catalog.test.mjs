@@ -142,8 +142,8 @@ test("Tryg mot If sammenligner dokumenterte effektive verdier og holder kildene 
   assert.equal(oneSided.first, null);
   assert.ok(oneSided.second);
   assert.equal(oneSided.firstMissingLabel, "Ikke dokumentert / kan ikke avgjøres");
-  assert.equal(terms.find((item) => item.key === "nyverdi.skadegrad").second, null);
-  assert.equal(terms.find((item) => item.key === "nyverdi.utloser").first, null);
+  assert.ok(terms.find((item) => item.key === "nyverdi.skadegrad")?.first);
+  assert.ok(terms.find((item) => item.key === "nyverdi.skadegrad")?.second);
   const maskin = terms.find((item) => item.key === "maskinskade.dekning");
   assert.equal(maskin.first, null);
   assert.equal(maskin.secondSources[0].company, "If");
@@ -155,7 +155,7 @@ test("Tryg mot If sammenligner dokumenterte effektive verdier og holder kildene 
   assert.equal(offer.insuranceData.insurances[0].deductible, null);
 });
 
-test("Ansvar og Rettshjelp følger bare dokumentert arv i Tryg Kasko mot If Super", async () => {
+test("Ansvar og Rettshjelp arves fra dokumentert Tryg Ansvar-komponent i Kasko", async () => {
   const existing = manual("Tryg", "Kasko", ["bil-ekstra", "maskinskade", "forer-passasjerulykke"]);
   const offer = manual("If", "Super", ["if-leiebil", "if-motor-gir"]);
   const parser = new PDFParse({ data: await readFile(path.resolve(sourcePath, "../../tryg/Bilforsikring-Kasko.pdf")) });
@@ -166,11 +166,11 @@ test("Ansvar og Rettshjelp følger bare dokumentert arv i Tryg Kasko mot If Supe
   const terms = groupTerms(groupInsurances(existing.insuranceData.insurances, offer.insuranceData.insurances, null)[0], null);
   for (const [key, section] of [["ansvar.dekning", "4.1"], ["rettshjelp.dekning", "12.1"]]) {
     const term = terms.find((item) => item.key === key);
-    assert.equal(term.first, null, key);
-    assert.equal(term.firstMissingLabel, "Ikke dokumentert / kan ikke avgjøres", key);
+    assert.ok(term.first, key);
+    assert.equal(term.firstSources[0].termsNumber, "PAU25003", key);
+    assert.equal(term.firstSources[0].section, key === "ansvar.dekning" ? "1.1" : "1.2", key);
     assert.equal(term.secondSources[0].termsNumber, "MOT2-2", key);
     assert.equal(term.secondSources[0].section, section, key);
-    assert.deepEqual(term.firstSources, [], key);
   }
   for (const [key, section] of [["haerverk.dekning", "4.4"], ["feilfylling.dekning", "4.11.2"]]) {
     const term = terms.find((item) => item.key === key);
@@ -182,7 +182,7 @@ test("Ansvar og Rettshjelp følger bare dokumentert arv i Tryg Kasko mot If Supe
   const differences = createDifferences(existing, offer,
     groupInsurances(existing.insuranceData.insurances, offer.insuranceData.insurances, null), null);
   for (const key of ["ansvar.dekning", "rettshjelp.dekning"]) {
-    assert.match(differences.find((item) => item.termKey === key)?.text ?? "", /ikke funnet i vilkårene/);
+    assert.doesNotMatch(differences.find((item) => item.termKey === key)?.text ?? "", /ikke funnet i vilkårene/);
   }
   assert.ok(!differences.some((item) =>
     ["haerverk.dekning", "feilfylling.dekning"].includes(item.termKey) && /ikke funnet/i.test(item.text)));
@@ -192,7 +192,7 @@ test("eksplisitt valgt Tryg Ansvar deler sammenligningsnøkler med If Ansvar ute
   const existing = manual("Tryg", "Ansvar");
   const offer = manual("If", "Ansvar");
   const original = existing.insuranceData.insurances[0].importantTerms.find((item) => item.name === "Rettshjelp");
-  assert.equal(original.key, "rettshjelp");
+  assert.equal(original.key, "rettshjelp.dekning");
   assert.equal(original.source.termsNumber, "PAU25003");
   const terms = groupTerms(groupInsurances(existing.insuranceData.insurances, offer.insuranceData.insurances, null)[0], null);
   for (const [key, trygSection, ifSection] of [

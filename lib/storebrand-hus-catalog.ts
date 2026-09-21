@@ -53,14 +53,14 @@ const standard = facts("storebrandHusTerms", [
   ["brukstap.dekning", "Ubeboelig bolig etter skade", "Dokumenterte nødvendige ekstra boutgifter opptil markedsleie; uten dokumentasjon 50 % av markedsleie i normal reparasjonstid.", "B.5.2", 17],
   ["leietap.skade", "Tapt leieinntekt etter bygningsskade", "Når utleie er avtalt og står i forsikringsbeviset: tapt leieinntekt fra skadedato til normal reparasjon, begrenset til tidligere leieinntekt. Skilles fra leietakers betalingsmislighold.", "B.5.2.1.1", 18],
   ["pabud.grense", "Offentlige påbud", "Merutgifter ved endrede tekniske krav til skadd del. Fredet/verneverdig bygning er begrenset til 1 000 000 kroner; arbeidet må fullføres innen fem år.", "B.6.4.9", 24],
-  ["gjenoppforing.klima", "Klima- og sikkerhetsoppgradering", "Inntil 150 000 kroner ved gjenoppføring av fullverdiforsikret bolig når reparasjonen overstiger 75 % av gjenoppføringsprisen, for tiltak utover lovkrav som reduserer utslipp/energi eller øker sikkerhet.", "B.5.4", 19],
+  ["gjenoppforing.klima_sikkerhet", "Klima- og sikkerhetsoppgradering", "Inntil 150 000 kroner ved gjenoppføring av fullverdiforsikret bolig når reparasjonen overstiger 75 % av gjenoppføringsprisen, for tiltak utover lovkrav som reduserer utslipp/energi eller øker sikkerhet.", "B.5.4", 19],
   ["gjenoppforing.hovedregel", "Gjenoppføring – hovedregel", "Samme eiendom (eller samme kommune ved myndighetskrav), samme formål og sikrede/nærstående som byggherre innen fem år gir full erstatning etter fullverdireglene.", "B.6.2", 20],
   ["gjenoppforing.annetsted", "Gjenoppføring annet sted/formål", "Ved annet sted i Norge, annet formål eller annen byggherre trekkes hele verdiøkningen; manglende gjenoppføring innen fem år begrenses til omsetningsverdi.", "B.6.3", 21],
   ["gjenoppforing.markedsverdi", "Kjøp av annen bolig", "Ved totalskade kan tilsvarende bolig i Norge kjøpes innen fem år; oppussing/tilpasning inntil 1 000 000 kroner må ferdigstilles innen to år. Samlet oppgjør har dokumenterte verdi- og gjenoppføringsgrenser.", "B.6.3.3", 21],
   ["naturskade.dekning", "Naturskade", "Direkte skade ved skred, storm, flom, stormflo, flodbølge, meteoritt, jordskjelv eller vulkanutbrudd i Norge etter naturskadeforsikringsloven.", "B.4.9", 12],
   ["egenandel.generell", "Avtalt egenandel", "Egenandelen i forsikringsbeviset gjelder med mindre vilkåret fastsetter annet.", "B.7", 29, "reference"],
   ["naturskade.egenandel", "Naturskadeegenandel", "Myndighetsfastsatt egenandel; HUS10 oppgir 8 000 kroner per 01.01.2025.", "B.7", 29, "override"],
-  ["vann.egenandel", "Vann/frost/alder – ekstra egenandel", "Avtalt egenandel økes med 8 000 kroner ved blant annet frost i innvendig rør, eldre rør, tak/våtrom over 30 år og eldre vanntilkoblet utstyr uten lekkasjestopper.", "B.7", 29, "override"],
+  ["vann.egenandel.alder_frost_vannforhold", "Vann/frost/alder – ekstra egenandel", "Avtalt egenandel økes med 8 000 kroner ved blant annet frost i innvendig rør, eldre rør, tak/våtrom over 30 år og eldre vanntilkoblet utstyr uten lekkasjestopper.", "B.7", 29, "override"],
   ["skadedyr.egenandel", "Bekjempelse – egenandel", "2 000 kroner ved bekjempelse av skadeinsekter og gnagere.", "B.7", 29, "override"],
   ["sikkerhet.egenandelsfritak", "Egenandelsfritak ved sikring", "Ingen egenandel ved dokumenterte FG-tiltak for brann, innbrudd, vann eller helhetlig vannstopp, og ved angitte overvannstiltak; heller ingen egenandel ved boligtilpasning.", "B.7", 30],
   ["byggunderoppforing", "Bygg under oppføring", "Nybygg/tilbygg/påbygg under oppføring inngår som risikosituasjon: materialer og eget verktøy, brakker 50 000 kroner, verktøy 100 000 kroner og grave-/sprengningsansvar 300 000 kroner ting/3 millioner person, med tyveri- og tetthetskrav.", "B.4.10", 14],
@@ -77,7 +77,7 @@ form.structuredValue = { kind: "insurance_form", forms: ["full_value", "first_lo
   authority: "policy" };
 standard.push(age("bereder_pumpe", "varmtvannsbereder, fyrkjele og pumper", 5, 5),
   age("oppvarming", "varme, kjøling, ventilasjon og strømproduksjon", 10, 10),
-  age("hvitevarer", "integrerte hvitevarer", 5, 10), age("utvendige_ror", "utvendige rør, tanker, kummer og bunnledninger", 20, 5),
+  age("integrerte_hvitevarer", "integrerte hvitevarer", 5, 10), age("utvendige_ror", "utvendige rør, tanker, kummer og bunnledninger", 20, 5),
   age("badeinnretning", "elektrisk tilknyttet badeinnretning", 2, 10));
 
 const superFacts = facts("storebrandHusTerms", [

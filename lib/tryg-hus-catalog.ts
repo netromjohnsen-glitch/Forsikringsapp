@@ -21,10 +21,10 @@ const ageRows: [string, string, number, number, number][] = [
   ["utvendige_ror", "Utvendige ledninger og bunnledninger av annet materiale enn plast", 20, 5, 80],
   ["tanker", "Tanker og kummer uansett materiale", 20, 5, 100],
   ["varmepumpe", "Varmepumper luft-luft/luft-vann", 5, 10, 100],
-  ["oppvarming", "Annen innretning for oppvarming eller kjøling", 10, 10, 100],
+  ["oppvarming_kjoling", "Annen innretning for oppvarming eller kjøling", 10, 10, 100],
   ["bereder_pumpe", "Varmtvannsbeholdere og vann/kloakkpumper", 5, 10, 100],
   ["elektronikk", "Elektriske/elektroniske enheter, maskiner og apparater, inklusive smarthusløsninger", 5, 10, 100],
-  ["hvitevarer", "Integrerte hvitevarer, kjøle- og fryserom", 5, 10, 80],
+  ["integrerte_hvitevarer", "Integrerte hvitevarer, kjøle- og fryserom", 5, 10, 80],
   ["badeinnretning", "Mindre badeinnretning som boblebad, badestamp o.l.", 5, 10, 80],
   ["solceller", "Solcelleanlegg", 20, 10, 80],
 ];
@@ -86,8 +86,8 @@ function buildingFacts(extra: boolean): CatalogFact[] {
       : "Mangelfull fundamentering, setninger, jordtrykk, frost og tele, material-, konstruksjons- og monteringsfeil, slitasje og alder, dyr, insekter, bakterier, sopp eller råte og kosmetiske skader er unntatt.", "2.6", 4],
     ["hage.vaer", "Hageanlegg – værunntak", extra ? "Dyr, frost og andre klimatiske forhold er unntatt; flomlignende situasjon dekkes." : "Frost og klimatiske forhold er unntatt; flomlignende situasjon dekkes. Dyreskade følger generelt unntak i 2.6.", "2.6", 4],
     ["egenandel.generell", "Generell egenandel", "Egenandelen i forsikringsbeviset gjelder hvis vilkåret ikke angir en annen; per skadetilfelle med mindre annet fremgår.", "3.2", 5, "reference"],
-    ["vann.egenandel", "Vann fra terreng/grunn – egenandel", "Minimum 8 000 kr", "2.3", 4, "override"],
-    ["vann.gjentakelse.egenandel", "Gjentatt vannskade – økt egenandel", extra ? "Økes med 20 000 kr ved tilsvarende skade siste 36 måneder fra terreng/grunn, flatt tak/balkong/terrasse eller innvendige rør." : "Økes med 20 000 kr ved tilsvarende skade siste 36 måneder fra terreng/grunn eller innvendige rør.", "2.3", extra ? 4 : 3, "override"],
+    ["vann.egenandel.terreng_grunnvann", "Vann fra terreng/grunn – egenandel", "Minimum 8 000 kr", "2.3", 4, "override"],
+    ["vann.egenandel.gjentatt_vann", "Gjentatt vannskade – økt egenandel", extra ? "Økes med 20 000 kr ved tilsvarende skade siste 36 måneder fra terreng/grunn, flatt tak/balkong/terrasse eller innvendige rør." : "Økes med 20 000 kr ved tilsvarende skade siste 36 måneder fra terreng/grunn eller innvendige rør.", "2.3", extra ? 4 : 3, "override"],
     ["vaer.egenandel", "Vind/snø/ras fra tak – egenandel", "Minimum 8 000 kr", "2.6", 5, "override"],
     ["ror.egenandel", "Rørbrudd – egenandel", extra ? "Én egenandel per bruddsted. Ingen egenandel ved førstegangs staking eller TV-undersøkelse." : "Én egenandel per bruddsted", "2.4", 4, "override"],
     ["vann.egenandel.fritak", "Vann – egenandelsfritak", "Ingen egenandel ved brudd på innvendig vannledning når automatisk vannstopp sikrer hele bygningens rørsystem og er i bruk. Også fritak ved overvannsskade med angitte tiltak for magasinering/forsinkelse av ekstremnedbør.", "2.3", 3, "override"],
@@ -101,7 +101,7 @@ function buildingFacts(extra: boolean): CatalogFact[] {
   items[0].structuredValue = { kind: "insurance_form", forms: extra ? ["full_value"] : ["full_value", "first_loss"],
     defaultForm: "full_value", authority: "catalog", index: "SSB prisindeks for nye eneboliger" };
   if (extra) items.push(...facts(id, [
-    ["teknisk.isolerglass", "Punktering av isolerglass", "Punktering er ikke unntatt som i Standard; egen aldersfradragsregel med 10 fradragsfrie år og deretter 10 % per år, maksimalt 100 %.", "2.6, 3.4", 7],
+    ["glass.isolerglass_punktering", "Punktering av isolerglass", "Punktering er ikke unntatt som i Standard; egen aldersfradragsregel med 10 fradragsfrie år og deretter 10 % per år, maksimalt 100 %.", "2.6, 3.4", 7],
     ["gjenoppforing.fullverdigaranti", "Fullverdigaranti ved totalskade", "Ingen fradrag for verdiøkning når fullverdiforsikret bygning eller bygningsdel erstattes med ny ved totalskade.", "3.3.1", 6],
     ["tilpasning.grense", "Tilpasning for rullestolbruker", "250 000 kr per forsikringstilfelle; ulykkesskade i forsikringstiden med minst 50 % varig medisinsk invaliditet, eller barn født med tilsvarende invaliditet. Påløpte utgifter innen 5 år; ingen egenandel.", "1.10, 3.11", 8],
   ]));
@@ -160,7 +160,7 @@ export const trygHusFacts: Record<string, CatalogFact[]> = {
       ["rate_skadedyr.prisstigning", "Råte/skadedyr – prisstigning", "Normal reparasjons-/gjenoppføringstid, maksimalt 24 måneder, etter SSBs byggekostnadsindeks.", "4.5", 3],
     ]).map((f) => ({ ...f, ...(["hus.rate.dekning", "hus.skadedyr.bygningsskade"].includes(f.key) ? { replacesBase: true } : {}) })),
     ...ageFacts("trygHusRot", [
-      ["hvitevarer", "Innbygde elektriske husholdningsmaskiner/-apparater", 5, 10, 80],
+      ["integrerte_hvitevarer", "Innbygde elektriske husholdningsmaskiner/-apparater", 5, 10, 80],
       ["varmepumpe", "Berg-/jordvarmepumpe, luft til væske/luft", 5, 10, 80],
       ["bereder_pumpe", "Varmtvannsbeholdere, vannpumper og lignende", 5, 10, 80],
       ["oppvarming", "Varmekabler og annen oppvarming/kjøling", 10, 10, 80],

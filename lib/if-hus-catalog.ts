@@ -51,7 +51,7 @@ const basis = facts("ifHusTerms", [
   ["vann.utstromming", "Vann, gass og annen væske", "Lekkasje, oversvømmelse eller tilbakeslag fra bygningens rør og tilknyttet utstyr; også akvarium, vannseng og brannslukningsapparat.", "4.4", 8],
   ["ror.brudd", "Rørbrudd", "Brudd på bygningens rørledning og tilknyttede beholdere, tanker, pumper, drenskum og fyrkjele. Følgeskade og selve bruddet må vurderes etter sine respektive vilkår.", "4.4", 8],
   ["vann.terreng", "Vann fra terreng, grunn og overflate", "Plutselig inntrengning i slik mengde at synlig vann blir stående på gulvet. Vann i oppforet gulvkonstruksjon regnes ikke som synlig stående vann.", "4.4", 8],
-  ["ror.frost", "Tining av utvendig rør", "Dokumenterte utgifter til tining eller tilrettelegging når utvendig vann-/avløpsledning er frosset: inntil 50 000 kroner inklusive relevante merutgifter og tap.", "4.4", 8],
+  ["ror.tining", "Tining av utvendig rør", "Dokumenterte utgifter til tining eller tilrettelegging når utvendig vann-/avløpsledning er frosset: inntil 50 000 kroner inklusive relevante merutgifter og tap.", "4.4", 8],
   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Ikke dokumentert som egen Basis-utvidelse. Vanninntrengning utenfra over terrengnivå omfattes på Utvidet/Super med vilkårets alders- og objektbegrensninger.", "4.4", 8],
   ["vatrom.folgeskade", "Utett våtrom - følgeskade", "Skade i tilstøtende eller underliggende rom som følge av utett våtrom er unntatt på Basis.", "4.4", 8],
   ["vatrom.selverommet", "Våtrom - selve rommet og feilen", "Skade i våtrom på gulv/vegg som skal tåle vann og oppforinger rundt sluk er unntatt på Basis. Feil uten skade er ikke dekket.", "4.4", 8],
@@ -87,7 +87,7 @@ basis.push(
   ageFact("bereder_pumpe", "varmtvannsbeholder/-bereder, fyrkjele og vann-/avløpspumpe", 5, 5, 80),
   ageFact("oppvarming", "elektrisk utstyr for oppvarming eller kjøling", 5, 10, 80),
   ageFact("ventilasjon_solceller", "varmekabler, balansert ventilasjon og utstyr for strømproduksjon", 10, 10, 80),
-  ageFact("hvitevarer", "integrerte hvitevarer og husholdningsapparater", 5, 10, 80),
+  ageFact("integrerte_hvitevarer", "integrerte hvitevarer og husholdningsapparater", 5, 10, 80),
   ageFact("utvendige_ror", "utvendige/bunnledninger, tanker og kummer av annet enn plast", 20, 5, 80),
   ageFact("badeinnretning", "utvendig/innvendig elektrisk tilkoblet badeinnretning", 2, 10, 80),
 );

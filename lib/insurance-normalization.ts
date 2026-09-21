@@ -35,8 +35,14 @@ const termAliases: Record<string, readonly string[]> = {
 // Samme ord kan bety noe annet i en annen forsikringstype.
 const contextualTermAliases: Record<string, Record<string, readonly string[]>> = {
   bil: {
-    veihjelp: ["veihjelp", "redning", "assistanse", "redning og assistanse"],
-    maskinskade: ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
+    "ansvar.dekning": ["ansvar", "ansvarsdekning"],
+    "glass.dekning": ["glass", "glasskade", "glasskader"],
+    "veihjelp.dekning": ["veihjelp", "redning", "assistanse", "redning og assistanse"],
+    "maskinskade.dekning": ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
+  },
+  reise: {
+    "reise.bagasje.dekning": ["reisegods", "bagasje", "bagasje og personlige eiendeler"],
+    "reise.bagasje.uhell": ["uhell", "uhellsskade", "uhellsskader", "skade ved uhell"],
   },
   båt: {
     berging: ["redning og berging", "berging og assistanse"],
@@ -109,6 +115,12 @@ export function normalizeTermName(value: string | null, context: TermContext = {
 // Original nøkkel, tekst og kilde beholdes på CatalogFact/ImportantTerm.
 const catalogTermKeyAliases: Record<string, string> = {
   rettshjelp: "rettshjelp.dekning",
+  "ansvar.annen.grense": "ansvar.ting.grense",
+  "kasko.ungforer": "kasko.egenandel.ung",
+  "nyverdi.utloser": "nyverdi.skadegrad",
+  "veihjelp.grense": "veihjelp.transport.grense",
+  "hus.vann.gjentakelse.egenandel": "hus.vann.egenandel.gjentatt_vann",
+  "hus.solceller.dekning": "hus.teknisk.solceller",
 };
 
 export function normalizeCatalogTermKey(key: string): string {

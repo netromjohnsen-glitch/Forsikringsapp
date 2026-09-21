@@ -29,7 +29,7 @@ test("Kasko og Bil Ekstra er identiske på begge sider selv når bare én side h
   const right = agreement(["bil-ekstra"], "", false);
   assert.equal(right.insuranceData.insurances[0].catalogReference.productId, "bil-kasko");
   const result = compare(left, right);
-  for (const key of ["kasko.dekning", "kasko.egenandel", "kasko.ungforer", "kasko.unntak",
+  for (const key of ["kasko.dekning", "kasko.egenandel", "kasko.egenandel.ung", "kasko.unntak",
     "kasko.dyr", "kasko.var", "bonus.kasko", "leiebil.dager"]) {
     const term = result.terms.find((entry) => entry.key === key);
     assert.ok(term?.first && term?.second, key);
@@ -44,7 +44,7 @@ test("Kasko og Bil Ekstra er identiske på begge sider selv når bare én side h
   assert.deepEqual(accessory.overriddenBase.map((base) => base.source.termsNumber), ["PAU25205"]);
   assert.ok(left.insuranceData.insurances[0].catalogFacts.some((fact) =>
     fact.key === "tilbehor.grense" && fact.source.termsNumber === "PAU25205"));
-  const youngDriver = left.insuranceData.insurances[0].importantTerms.find((term) => term.key === "kasko.ungforer");
+  const youngDriver = left.insuranceData.insurances[0].importantTerms.find((term) => term.key === "kasko.egenandel.ung");
   assert.match(youngDriver.value, /5 000 kr.*hovedeier.*ektefelle.*samboer.*2 000 km.*Tryg vei til lappen/s);
   assert.equal(youngDriver.source.page, 1);
   assert.equal(result.differences.some((difference) => difference.kind === "price"), false);

@@ -40,6 +40,22 @@ const facts = (rows: Row[]): CatalogFact[] => rows.map(([key,label,value,sourceI
     } };
 });
 
+const qualifiedFact = (row: Row, qualificationSourceId: string, qualificationSection: string,
+  qualificationPage: number): CatalogFact => {
+  const fact = facts([row])[0];
+  const metadata = trygInnboSources[qualificationSourceId];
+  return { ...fact, qualificationSource: {
+    documentId: qualificationSourceId,
+    section: qualificationSection,
+    page: qualificationPage,
+    filename: metadata.filename,
+    termsNumber: metadata.termsNumber,
+    effectiveFrom: metadata.effectiveFrom,
+    company: "Tryg",
+    url: metadata.url,
+  } };
+};
+
 export const trygInnboFacts: Record<string, CatalogFact[]> = {
   trygInnboShared: facts([
     ["innbo.geografi","Innbo – geografisk område","Forsikringsstedet; midlertidig borte i Norden. Ved flytting innen Norden gjelder gammel og ny bolig i inntil 1 år","trygInnboProduct","3",1],
@@ -93,7 +109,11 @@ export const trygInnboFacts: Record<string, CatalogFact[]> = {
     ["skadedyr.grense","Skadedyrbekjempelse – grense","150 000 kr per skadetilfelle","trygInnboExtra","2.6",5],
     ["skadedyr.egenandel","Skadedyrbekjempelse – egenandel","2 000 kr per skadetilfelle","trygInnboExtra","2.6",5,false,"override"],
     ["sikkerhet.transport","Sikkerhetsforskrift – transport","Gjenstander skal pakkes og sikres for normale og påregnelige transportpåkjenninger","trygInnboSafety","1.3",2],
-  ]),
+  ]).concat(qualifiedFact(
+    ["uhell.geografi", "Uhell – geografisk område", "Norden når tingen er midlertidig borte fra forsikringsstedet",
+      "trygInnboProduct", "3", 1],
+    "trygInnboIpid", "Hva dekker forsikringen? – Ekstra", 1,
+  )),
   trygInnboUtleie: facts([
     ["utleie.skadeverk.grense","Utleie – skadeverk utført av leietaker – grense","500 000 kr per skadetilfelle","trygInnboUtleie","2.1",1],
     ["utleie.tyveri.grense","Utleie – tyveri og underslag – grense","500 000 kr","trygInnboUtleie","2.2",1],

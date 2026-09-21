@@ -64,16 +64,16 @@ test("Tryg mot Gjensidige filtrerer Brann fra hovedvisningen og bevarer original
   assert.equal(fire.firstSources[0].company, "Tryg");
   assert.equal(fire.secondSources[0].company, "Gjensidige");
   assert.equal(result.raw.some((difference) => difference.termKey === "brann.dekning"), false);
-  const highlighted = result.shown.filter((difference) => difference.insuranceKey && difference.type !== "price")
-    .sort((a, b) => b.priority - a.priority).slice(0, 6);
-  assert.equal(highlighted.some((difference) => difference.termKey === "brann.dekning"), false);
-  assert.equal(highlighted[4].termKey, "tyveri.dekning");
-  assert.equal(highlighted[5].termKey, "glass.dekning");
+  const highlighted = result.shown.filter((difference) => difference.insuranceKey && difference.type !== "price");
+  assert.equal(highlighted.some((difference) => difference.items.some((item) => item.termKey === "brann.dekning")), false);
+  const totals = highlighted.find((difference) => difference.conceptId === "bil.totalskade");
+  assert.ok(totals.items.some((item) => item.termKey === "nyverdi.skadegrad"));
+  assert.ok(totals.items.some((item) => item.termKey === "nyverdi.unntak"));
 });
 
 test("eksisterende Tryg mot If beholder reelle forskjeller og ignorerer identisk Brann", () => {
   const result = compare(manual("Tryg", "Kasko", ["bil-ekstra"]), manual("If", "Super"));
   assert.equal(result.raw.some((difference) => difference.termKey === "brann.dekning"), false);
   assert.ok(result.raw.some((difference) => difference.termKey === "nyverdi.alder"));
-  assert.ok(result.shown.some((difference) => difference.title === "Totalskadegaranti"));
+  assert.ok(result.shown.some((difference) => difference.conceptId === "bil.totalskade"));
 });

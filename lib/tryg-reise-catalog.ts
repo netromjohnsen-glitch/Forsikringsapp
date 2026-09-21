@@ -23,7 +23,7 @@ const productFacts = facts("trygReiseProduct", [
   ["omrade.verden", "Geografisk område", "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.", "3 Hvor forsikringen gjelder", 1],
   ["omrade.ud", "UD-reiseadvarsel", "Forsikringen gjelder ikke for reise til område med gyldig offisiell UD-reiseadvarsel på reisetidspunktet; hele reisen er ugyldig selv om advarselen senere oppheves.", "3 Hvor forsikringen gjelder", 2],
   ["varighet.beregning", "Hvordan reisevarighet beregnes", "Fra avreise fra bostedsadressen i Norge til retur samme sted. For pendlere/studenter fra midlertidig bosted regnes retur dit eller fast bosted; sjøansatte starter ved avmønstring.", "4 Når forsikringen gjelder", 2],
-  ["varighet.utvidelse", "Automatisk forlengelse", "Når hjemreise er forhåndsbestilt innen perioden: to døgn ved vær, teknisk feil, nødlanding eller terrortrussel og 30 døgn ved dekket sykdom/ulykke.", "4 Når forsikringen gjelder", 2],
+  ["varighet.automatisk_forlengelse", "Automatisk forlengelse", "Når hjemreise er forhåndsbestilt innen perioden: to døgn ved vær, teknisk feil, nødlanding eller terrortrussel og 30 døgn ved dekket sykdom/ulykke.", "4 Når forsikringen gjelder", 2],
   ["tjeneste.alarm", "Tryg Alarm", "Døgnåpen assistansetjeneste for akutt sykdom eller ulykkesskade med medisinsk koordinering og internasjonalt behandlingsnettverk. Dette er en tjeneste, ikke en forsikringssum.", "7 Hjelp under reisen", 2],
 ]);
 
@@ -35,11 +35,11 @@ const base = facts("trygReiseBase", [
   ["forsinkelse.rute", "Forsinket avgang og fremmøte", "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.", "3.1", 2],
   ["bagasje.forsinket", "Forsinket bagasje", "Nødvendige klær, toalettsaker og leie av nødvendig utstyr når ekspedert bagasje ikke ankommer, er forbyttet i minst fire timer eller er utilgjengelig ved ufrivillig transitt med overnatting. Ikke ved ankomst til fast/midlertidig bosted.", "4.1–4.2", 3],
   ["bagasje.dekning", "Reisegods", "Personlige eiendeler med til eget bruk, samt ting lånt/leid og medbrakt som egne på hele reisen. Innsjekket bagasje, tyveri, ran, dyr, trafikkuhell, båtulykke, brann, vann, naturulykke og hærverk omfattes etter vilkåret.", "4–4.1", 3],
-  ["bagasje.sport", "Sportsutstyr", "Eget sportsutstyr regnes som reisegods. Uhell på sykkel i bosteds-/arbeids-/studiekommune, lagidrett, sykkelritt og flere risikosituasjoner er begrenset eller unntatt.", "4.1 og sikkerhetsforskrift 3.1", 3],
+  ["bagasje.sportsutstyr", "Sportsutstyr", "Eget sportsutstyr regnes som reisegods. Uhell på sykkel i bosteds-/arbeids-/studiekommune, lagidrett, sykkelritt og flere risikosituasjoner er begrenset eller unntatt.", "4.1 og sikkerhetsforskrift 3.1", 3],
   ["bagasje.uhell", "Uhell på reisegods", "Ikke omfattet på Reise.", "4.1 Uhellsdekning", 4],
   ["medisinsk.behandling", "Reisesyke – behandling", "Rimelige og nødvendige utgifter ved uventet akutt sykdom, ulykkesskade eller uventet akutt alvorlig forverring av kjent sykdom: lege, sykehus inntil 60 døgn, medisiner, hjelpemidler, foreskrevet fysikalsk behandling og transport.", "5.1–5.2", 5],
   ["medisinsk.tann", "Tannbehandling", "Tannskade og tannsykdom er unntatt under reisesyke. Tannbehandling kan følge separat valgt ulykkesdekning etter ulykkesvilkåret.", "5.6", 8],
-  ["medisinsk.ledsager", "Tilkalling og sykeledsagelse", "Med forhåndsgodkjenning dekkes rimelige og nødvendige utgifter for inntil to nærstående når medisinsk nødvendig.", "5.2", 6],
+  ["sykeledsagelse", "Tilkalling og sykeledsagelse", "Med forhåndsgodkjenning dekkes rimelige og nødvendige utgifter for inntil to nærstående når medisinsk nødvendig.", "5.2", 6],
   ["medisinsk.forlenget", "Utsatt hjemreise", "Nødvendige merutgifter til overnatting, måltider og transport til reiseruten kan dekkes når medisinske årsaker hindrer planlagt videre reise; forhåndsgodkjenning kreves.", "5.2", 6],
   ["medisinsk.kjent", "Kjent sykdom", "Dekker uventet akutt alvorlig forverring, men ikke planlagt behandling/kontroll på reisen eller sannsynlig komplikasjon/forverring etter objektiv medisinsk vurdering. Ved pågående/ventet behandling kreves legeerklæring før avreise.", "5.1, 5.6 og sikkerhetsforskrift 2", 5],
   ["medisinsk.graviditet", "Svangerskap og fødsel", "Svangerskap, frivillig abort og fødsel fra uke 37 regnes ikke som sykdom; sykdom/ulykke under svangerskap, abort eller fødsel kan likevel dekkes når øvrige kriterier er oppfylt.", "2.1 og 5.1", 1],
@@ -71,7 +71,7 @@ const baseSums = facts("trygReiseSums", [
   ["evakuering.sum", "Evakuering – sum", "Ingen øvre forsikringssum; nødvendige merutgifter styrer.", "Evakuering", 2],
   ["ansvar.sum", "Privatansvar – forsikringssum", "4 000 000 kr per skadetilfelle for alle sikrede samlet.", "Privatansvar", 2],
   ["rettshjelp.sum", "Rettshjelp – forsikringssum", "100 000 kr per tvist; PGE91500 utvider til 250 000 kr ved minst tre parter.", "Rettshjelp / PGE91500 punkt 6.1", 2],
-  ["bagasje.mobil_egenandel", "Mobiltelefon – gjentatt skade", "Fra andre tap/skade innen tre forsikringsår: egenandel 2 000 kr.", "Reisegods", 1, "override"],
+  ["bagasje.mobil_egenandel.gjentatt", "Mobiltelefon – gjentatt skade", "Fra andre tap/skade innen tre forsikringsår: egenandel 2 000 kr.", "Reisegods", 1, "override"],
 ]);
 
 const extra = facts("trygReiseExtra", [

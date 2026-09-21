@@ -77,6 +77,7 @@ export type Difference = {
   termKey?: string;
   kind: "price" | "deductible" | "add_on" | "term";
   priority: number;
+  relatedTermKeys?: string[];
 };
 
 const normalize = (value: string | null) => (value || "").trim().toLocaleLowerCase("nb-NO");
@@ -356,6 +357,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
           title: addOn.name,
           text: `${firstCompany} har tillegget ${addOn.name}; det er ikke valgt i ${secondCompany}.${addOnSummary(addOn, comparedKeys, secondDocumentedKeys)}`,
           type: "tradeoff", insuranceKey: group.key, kind: "add_on", priority: 90,
+          relatedTermKeys: addOn.importantTerms.flatMap((term) => term.key ? [term.key] : []),
           });
         }
       }
@@ -366,6 +368,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
           title: addOn.name,
           text: `${secondCompany} har tillegget ${addOn.name}; det er ikke valgt i ${firstCompany}.${addOnSummary(addOn, comparedKeys, firstDocumentedKeys)}`,
           type: "tradeoff", insuranceKey: group.key, kind: "add_on", priority: 90,
+          relatedTermKeys: addOn.importantTerms.flatMap((term) => term.key ? [term.key] : []),
           });
         }
       }

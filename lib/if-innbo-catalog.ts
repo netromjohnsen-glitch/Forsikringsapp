@@ -46,7 +46,7 @@ const facts = (rows: Row[]): CatalogFact[] => rows.map(([key, label, value, sour
 export const ifInnboFacts: Record<string, CatalogFact[]> = {
   ifInnboShared: facts([
     ["innbo.forsikringssum", "Samlet forsikringssum", "Forsikringssummen fremgår av forsikringsbeviset; ubegrenset forsikringssum gjelder bare når dette er avtalt", "ifInnboShared", "3.1, 3.4 og 5.1", 4, false, "reference"],
-    ["innbo.verdigjenstander.grense", "Verdigjenstander og enkeltgjenstander – særgrenser ved ubegrenset sum", "500 000 kr for hver angitt kategori og per enkeltgjenstand/samling; høyere sum kan avtales", "ifInnboShared", "3.4", 6],
+    ["innbo.verdigjenstander.sammensatte_grenser", "Verdigjenstander og enkeltgjenstander – særgrenser ved ubegrenset sum", "500 000 kr for hver angitt kategori og per enkeltgjenstand/samling; høyere sum kan avtales", "ifInnboShared", "3.4", 6],
     ["innbo.penger.grense", "Penger og verdipapirer – grense", "10 000 kr samlet", "ifInnboShared", "3.1", 4],
     ["innbo.yrkeslosore.grense", "Yrkesløsøre og varer – grense", "40 000 kr samlet", "ifInnboShared", "3.1", 4],
     ["innbo.datalager.grense", "Rekonstruksjon av datalagre mv. – grense", "40 000 kr samlet", "ifInnboShared", "3.2.5", 5],

@@ -90,6 +90,12 @@ test("tyveri, sykkel, uhell, skadedyr, ansvar og rettshjelp er strukturert med k
     /Ukjent skadeårsak.*kosmetiske.*garanti.*slitasje.*frost.*kjæledyr.*40 000.*konkurranse/s);
   assert.equal(fact(extra, "uhell.begrensning").source.page, 4);
   assert.equal(fact(extra, "uhell.egenandel").value, "2 000 kr per skadetilfelle");
+  assert.equal(fact(extra, "uhell.geografi").value,
+    "Norden når tingen er midlertidig borte fra forsikringsstedet");
+  assert.equal(fact(extra, "uhell.geografi").source.termsNumber, "PPK13300");
+  assert.equal(fact(extra, "uhell.geografi").source.section, "3");
+  assert.equal(fact(extra, "uhell.geografi").qualificationSource.filename, "IPID_Innbo.pdf");
+  assert.equal(fact(base, "uhell.geografi"), undefined);
   assert.equal(fact(extra, "skadedyr.grense").value, "150 000 kr per skadetilfelle");
   assert.equal(fact(extra, "skadedyr.egenandel").deductibleClassification, "override");
   assert.ok(fact(extra, "ansvar.dekning"));
@@ -157,7 +163,8 @@ test("runtime-kjeden viser dokumenterte forbedringer fra Innbo til Innbo Ekstra"
   assert.equal(fact(result.terms, "sykkel.tyveri.grense").second, "40 000 kr per gjenstand");
   assert.equal(fact(result.terms, "uhell.dekning").first, null);
   assert.ok(result.raw.some((entry) => entry.termKey === "uhell.dekning"));
-  assert.ok(result.shown.some((entry) => entry.termKey === "sykkel.tyveri.grense"));
+  assert.ok(result.shown.some((entry) => entry.conceptId === "innbo.sykkel-verdi" &&
+    entry.items.some((item) => item.termKey === "sykkel.tyveri.grense")));
 });
 
 test("én avtale kan inneholde Bil og Innbo uten katalog- eller kildemiks", () => {

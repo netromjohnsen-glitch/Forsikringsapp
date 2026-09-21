@@ -132,12 +132,12 @@ test("naturskade, boligtilpasning, gjenoppføring og påbud har dokumenterte gre
 test("egenandeler og Frendes egen aldersfradragstabell er klassifisert", () => {
   const items = resolveCatalogFacts(product("Standard"), []);
   assert.equal(fact(items, "hus.egenandel.generell").deductibleClassification, "reference");
-  assert.match(fact(items, "hus.vann.egenandel").value, /20 000.*24 måneder/);
+  assert.match(fact(items, "hus.egenandel.gjentatt_skade").value, /20 000.*24 måneder/);
   assert.match(fact(items, "hus.naturskade.egenandel").value, /8 000/);
   const pipe = fact(items, "hus.aldersfradrag.utvendige_ledninger_tanker").structuredValue;
   assert.deepEqual({ freeYears: pipe.freeYears, annualPercent: pipe.annualPercent, maximumPercent: pipe.maximumPercent },
     { freeYears: 20, annualPercent: 5, maximumPercent: 80 });
-  const glass = fact(resolveCatalogFacts(product("Utvidet"), []), "hus.glass.punktering").structuredValue;
+  const glass = fact(resolveCatalogFacts(product("Utvidet"), []), "hus.glass.isolerglass_punktering").structuredValue;
   assert.deepEqual({ freeYears: glass.freeYears, annualPercent: glass.annualPercent }, { freeYears: 10, annualPercent: 10 });
 });
 

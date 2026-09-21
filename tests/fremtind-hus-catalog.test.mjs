@@ -130,7 +130,7 @@ test("gjenoppføring, påbud og Topp-totalskade har dokumenterte grenser", () =>
 test("egenandeler og aldersfradrag er klassifisert separat", () => {
   const items = resolveCatalogFacts(product("Standard"), []);
   assert.equal(fact(items, "hus.egenandel.generell").deductibleClassification, "reference");
-  assert.match(fact(items, "hus.vann.egenandel").value, /20 000.*24 måneder/);
+  assert.match(fact(items, "hus.vann.egenandel.gjentatt_vann").value, /20 000.*24 måneder/);
   assert.match(fact(items, "hus.naturskade.egenandel").value, /8 000/);
   const solar = fact(items, "hus.aldersfradrag.solceller").structuredValue;
   assert.deepEqual({ freeYears: solar.freeYears, annualPercent: solar.annualPercent,

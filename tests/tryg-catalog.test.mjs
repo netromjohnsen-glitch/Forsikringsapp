@@ -5,7 +5,8 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { PDFParse } from "pdf-parse";
 import { getPath } from "pdf-parse/worker";
-import { availableAddOns, productCatalog, resolveCatalogFacts } from "../lib/product-catalog.ts";
+import { createDifferences, groupInsurances } from "../lib/comparison.ts";
+import { availableAddOns, productCatalog, resolveCatalogFacts, resolveProductComponentIds } from "../lib/product-catalog.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
 import { runHybridMatching } from "../lib/hybrid-matching.ts";
 
@@ -60,9 +61,9 @@ test("sentrale bilgrenser er strukturert etter kildedokumentene", () => {
   const ansvar = resolveCatalogFacts(level("Ansvar"), []);
   const delkasko = resolveCatalogFacts(level("Delkasko"), []);
   const kasko = resolveCatalogFacts(level("Kasko"), []);
-  assert.equal(item(ansvar, "ansvar.annen.grense").value, "Inntil 100 000 000 kr");
+  assert.equal(item(ansvar, "ansvar.ting.grense").value, "Inntil 100 000 000 kr");
   assert.equal(item(ansvar, "ansvar.dekning").source.section, "1.1");
-  assert.equal(item(ansvar, "rettshjelp").source.section, "1.2");
+  assert.equal(item(ansvar, "rettshjelp.dekning").source.section, "1.2");
   assert.equal(item(delkasko, "glass.egenandel.bytte").value, "3 000 kr");
   assert.equal(item(delkasko, "glass.egenandel.reparasjon").value, "0 kr");
   assert.equal(item(kasko, "nyverdi.km").value, "Høyst 15 000 km");
@@ -79,6 +80,31 @@ test("sentrale bilgrenser er strukturert etter kildedokumentene", () => {
   assert.equal(item(resolveCatalogFacts(level("Kasko"), ["maskinskade"]), "maskinskade.egenandel.200").value, "18 000 kr");
   assert.equal(item(resolveCatalogFacts(level("Kasko"), ["forer-passasjerulykke-ekstra"]), "ulykke.sykehus").value,
     "5 000 kr per skadetilfelle ved minst 48 timer sammenhengende innleggelse");
+});
+
+test("Delkasko og Kasko komponerer dokumentert Ansvar og Rettshjelp uten duplikater", () => {
+  assert.deepEqual(resolveProductComponentIds(level("Ansvar")), ["ansvar"]);
+  assert.deepEqual(resolveProductComponentIds(level("Delkasko")), ["ansvar", "delkasko"]);
+  assert.deepEqual(resolveProductComponentIds(level("Kasko")), ["ansvar", "kasko"]);
+  for (const name of ["Ansvar", "Delkasko", "Kasko"]) {
+    const effective = resolveCatalogFacts(level(name), []);
+    for (const key of ["ansvar.dekning", "ansvar.person.grense", "ansvar.ting.grense", "rettshjelp.dekning"]) {
+      const matching = effective.filter((entry) => entry.key === key);
+      assert.equal(matching.length, 1, `${name}:${key}`);
+      assert.equal(matching[0].source.termsNumber, "PAU25003", `${name}:${key}`);
+    }
+  }
+
+  const tryg = normalizeManualAgreement(manual("Kasko"));
+  const other = normalizeManualAgreement({ company: "If", totalAnnualPremium: "", products: [{
+    type: "Bil", productName: "Super", annualPremium: "", deductible: "", coverageSummary: "",
+    importantTerms: [], addOnIds: [],
+  }] });
+  const groups = groupInsurances(tryg.insuranceData.insurances, other.insuranceData.insurances, null);
+  const differences = createDifferences(tryg, other, groups, null);
+  assert.equal(differences.some((entry) =>
+    ["ansvar.dekning", "rettshjelp.dekning"].includes(entry.termKey) && /ikke funnet i vilkårene/i.test(entry.text)
+  ), false);
 });
 
 test("fremtidig leiebilvilkår tas ikke inn før gyldighetsdato", () => {

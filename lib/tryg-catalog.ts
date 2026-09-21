@@ -48,7 +48,7 @@ function partialCover(id: "delkasko" | "kasko"): CatalogFact[] {
     ["glass.egenandel.reparasjon", "Glass – egenandel ved reparasjon", "0 kr", s[2], 1, "coverage"],
     ["glass.unntak", "Glass – begrensning", "For slitt eller ripet til EU-godkjenning før skaden: ikke dekket", s[2], 1],
     ["veihjelp.dekning", "Veihjelp", "Hjemreise, berging og tauing ved skade, utelåsing, startproblem, uventet driftsstopp eller tomt for drivstoff/strøm", s[3], 1],
-    ["veihjelp.grense", "Veihjelp – erstatningsgrense", "50 % av kjøretøyets verdi på skadedagen", s[3], 2],
+    ["veihjelp.transport.grense", "Veihjelp – transportgrense", "50 % av kjøretøyets verdi på skadedagen", s[3], 2],
     ["veihjelp.egenandel", "Veihjelp – egenandel", "750 kr", s[3], 2, "coverage"],
     ["veihjelp.unntak", "Veihjelp – unntak", "Ikke assistanse uten veitilknytning eller utgift dekket av annen avtale/garanti/redningsabonnement", s[3], 2],
     ["reparasjon.kontant", "Kontanterstatning ved reparasjon", "Etter avtale 70 % av takst uten merverdiavgift; leiebil erstattes ikke", "3.2", k ? 3 : 2],
@@ -61,8 +61,8 @@ export const trygFacts: Record<string, CatalogFact[]> = {
   ansvar: facts("ansvar", [
     ["ansvar.dekning", "Ansvar", "Erstatningsansvar etter bilansvarsloven", "1.1", 1],
     ["ansvar.person.grense", "Ansvar – personskade", "Ubegrenset beløp", "1.1", 1],
-    ["ansvar.annen.grense", "Ansvar – annen skade", "Inntil 100 000 000 kr", "1.1", 1],
-    ["rettshjelp", "Rettshjelp", "Omfattet; detaljer i ikke vedlagt vilkår PGE91500", "1.2", 1],
+    ["ansvar.ting.grense", "Ansvar – tingskade", "Inntil 100 000 000 kr", "1.1", 1],
+    ["rettshjelp.dekning", "Rettshjelp", "Omfattet; detaljer i ikke vedlagt vilkår PGE91500", "1.2", 1],
     ["bonus.ansvar", "Bonus ved ansvarsskade", "Skade under ansvar fører til bonustap", "3", 1],
   ]),
   delkasko: partialCover("delkasko"),
@@ -73,7 +73,7 @@ export const trygFacts: Record<string, CatalogFact[]> = {
       ["haerverk.dekning", "Hærverk", "Skade på eget kjøretøy ved hærverk", "2.1", 1],
       ["feilfylling.dekning", "Feilfylling", "Skade på eget kjøretøy ved feilfylling av drivstoff", "2.1", 1],
       ["kasko.egenandel", "Kasko – egenandel", "Avtalt egenandel fremgår av forsikringsbeviset", "2.1", 1, "reference"],
-      ["kasko.ungforer", "Kasko – fører under 23 år", "Egenandelen økes med 5 000 kr hvis ikke annet står i forsikringsbeviset. Økningen gjelder ikke hovedeier, hovedeiers ektefelle eller samboer, eller fører som har øvelseskjørt 2 000 km med «Tryg vei til lappen».", "2.1", 1],
+      ["kasko.egenandel.ung", "Kasko – fører under 23 år", "Egenandelen økes med 5 000 kr hvis ikke annet står i forsikringsbeviset. Økningen gjelder ikke hovedeier, hovedeiers ektefelle eller samboer, eller fører som har øvelseskjørt 2 000 km med «Tryg vei til lappen».", "2.1", 1],
       ["kasko.unntak", "Kasko – unntak", "Maskinbrudd og frost er ikke dekket under kasko", "2.1", 1],
       ["kasko.dyr", "Påkjørsel av dyr", "Ingen bonustap ved dokumentert varsling til politi/viltnemnd; egenandel 2 000 kr", "2.1", 1],
       ["kasko.var", "Værskade – egenandel", "Egenandel bortfaller når bilen var parkert innendørs i garasje eller lignende", "2.1", 1],
@@ -98,8 +98,11 @@ export const trygFacts: Record<string, CatalogFact[]> = {
     ["leiebil.kostnader", "Leiebil – utgifter som ikke dekkes", "Blant annet bøter, skade/egenandel i leieforhold, drivstoff/lading, parkering, bompenger og drop-off-gebyr", "1 Leiebil", 1],
     ["bagasje.grense", "Bagasje ved tyveri", "Inntil 10 000 kr samlet og 5 000 kr per gjenstand; egenandel 1 000 kr", "1 Bagasje", 1],
     ["bagasje.unntak", "Bagasje – unntak", "Næringsutstyr, penger, verdipapirer og dyr erstattes ikke", "1 Bagasje", 1],
-    ["bilnokkel", "Bilnøkkel/fjernkontroll", "Inntil 20 000 kr per forsikringsår; egenandel 1 000 kr", "1 Bilnøkkel", 1],
-    ["ladekabel", "Ladekabel", "Brann, tyveri eller plutselig, uventet ytre påvirkning; egenandel 1 000 kr", "1 Ladekabel", 1],
+    ["bilnokkel.dekning", "Bilnøkkel/fjernkontroll", "Skade på eller tap av bilnøkkel og fjernkontroll til kupevarmer", "1 Bilnøkkel", 1],
+    ["bilnokkel.grense", "Bilnøkkel – forsikringssum", "Inntil 20 000 kr per forsikringsår", "1 Bilnøkkel", 1],
+    ["bilnokkel.egenandel", "Bilnøkkel – egenandel", "1 000 kr", "1 Bilnøkkel", 1, "coverage"],
+    ["ladekabel.dekning", "Ladekabel", "Brann, tyveri eller plutselig, uventet ytre påvirkning", "1 Ladekabel", 1],
+    ["ladekabel.egenandel", "Ladekabel – egenandel", "1 000 kr", "1 Ladekabel", 1, "coverage"],
     ["nyverdi.alder", "Totalskadegaranti – alder", "Innen 3 år etter registrering som fabrikkny på forsikringstaker", "1 Totalskadegaranti", 2],
     ["nyverdi.km", "Totalskadegaranti – kilometer", "Høyst 60 000 km", "1 Totalskadegaranti", 2],
     ["nyverdi.skadegrad", "Totalskadegaranti – skadegrad", "Forventet reparasjon over 80 % av nyanskaffelsesverdi", "1 Totalskadegaranti", 2],
@@ -119,8 +122,11 @@ export const trygFacts: Record<string, CatalogFact[]> = {
     ["leiebil.kostnader", "Leiebil – utgifter som ikke dekkes", "Blant annet bøter, skade/egenandel i leieforhold, drivstoff/lading, parkering, bompenger og drop-off-gebyr", "1 Leiebil", 1],
     ["bagasje.grense", "Bagasje ved tyveri", "Inntil 10 000 kr samlet og 5 000 kr per gjenstand; egenandel 1 000 kr", "1 Bagasje", 1],
     ["bagasje.unntak", "Bagasje – unntak", "Næringsutstyr, penger, verdipapirer og dyr erstattes ikke", "1 Bagasje", 1],
-    ["bilnokkel", "Bilnøkkel/fjernkontroll", "Inntil 20 000 kr per forsikringsår; egenandel 1 000 kr", "1 Bilnøkkel", 1],
-    ["ladekabel", "Ladekabel", "Brann, tyveri eller plutselig, uventet ytre påvirkning; egenandel 1 000 kr", "1 Ladekabel", 2],
+    ["bilnokkel.dekning", "Bilnøkkel/fjernkontroll", "Skade på eller tap av bilnøkkel og fjernkontroll til kupevarmer", "1 Bilnøkkel", 1],
+    ["bilnokkel.grense", "Bilnøkkel – forsikringssum", "Inntil 20 000 kr per forsikringsår", "1 Bilnøkkel", 1],
+    ["bilnokkel.egenandel", "Bilnøkkel – egenandel", "1 000 kr", "1 Bilnøkkel", 1, "coverage"],
+    ["ladekabel.dekning", "Ladekabel", "Brann, tyveri eller plutselig, uventet ytre påvirkning", "1 Ladekabel", 2],
+    ["ladekabel.egenandel", "Ladekabel – egenandel", "1 000 kr", "1 Ladekabel", 2, "coverage"],
     ["nyverdi.alder", "Totalskadegaranti – alder", "Innen 3 år etter registrering som fabrikkny på forsikringstaker", "1 Totalskadegaranti", 2],
     ["nyverdi.km", "Totalskadegaranti – kilometer", "Høyst 60 000 km", "1 Totalskadegaranti", 2],
     ["nyverdi.skadegrad", "Totalskadegaranti – skadegrad", "Forventet reparasjon over 80 % av nyanskaffelsesverdi", "1 Totalskadegaranti", 2],
@@ -167,12 +173,13 @@ export const trygFacts: Record<string, CatalogFact[]> = {
   ]),
 };
 
-// Hovednivåer er separate vilkårsdokumenter. Vi utleder ikke at kasko eller
-// delkasko automatisk inkluderer PAU25003; det må bekreftes i forsikringsbeviset.
+// Trygs offisielle IPID viser Ansvar med Rettshjelp og beskriver Kasko som
+// Delkasko pluss kaskodekning. Selve faktaene kommer fortsatt fra PAU25003,
+// mens hvert høyere nivå komponerer komponentene uten dupliserte faktarader.
 export const trygProducts: CatalogProduct[] = [
   { company: "Tryg", insuranceType: "Bil", name: "Ansvar", providerId: "tryg", productId: "bil-ansvar", version: "PAU25003", componentIds: ["ansvar"] },
-  { company: "Tryg", insuranceType: "Bil", name: "Delkasko", providerId: "tryg", productId: "bil-delkasko", version: "PAU25835", componentIds: ["delkasko"] },
-  { company: "Tryg", insuranceType: "Bil", name: "Kasko", providerId: "tryg", productId: "bil-kasko", version: "PAU25205", componentIds: ["kasko"] },
+  { company: "Tryg", insuranceType: "Bil", name: "Delkasko", providerId: "tryg", productId: "bil-delkasko", version: "PAU25835", componentIds: ["ansvar", "delkasko"] },
+  { company: "Tryg", insuranceType: "Bil", name: "Kasko", providerId: "tryg", productId: "bil-kasko", version: "PAU25205", componentIds: ["ansvar", "kasko"] },
 ];
 
 export const trygAddOns: CatalogAddOn[] = [

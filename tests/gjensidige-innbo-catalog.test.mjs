@@ -71,7 +71,7 @@ test("forsikringssum og base/effective følger dagens alminnelige dokumenter", (
   assert.match(fact(standard, "innbo.forsikringssum").value, /ikke oppgitt/);
   assert.equal(fact(standard, "innbo.forsikringssum").deductibleClassification, "reference");
   assert.match(fact(plus, "innbo.forsikringssum").value, /Ubegrenset/);
-  assert.equal(fact(plus, "innbo.verdigjenstander.grense").value,
+  assert.equal(fact(plus, "innbo.verdigjenstander.sammensatte_grenser").value,
     "500 000 kr for hver angitt kategori og per øvrig enkeltgjenstand eller samling");
   assert.equal(fact(standard, "tyveri.fellesbod.grense").value, "30 000 kr");
   assert.match(fact(plus, "tyveri.fellesbod.grense").value, /ubegrenset innbosum/);
@@ -156,7 +156,8 @@ test("Tryg Innbo Ekstra mot Gjensidige Pluss beholder reelle forskjeller", () =>
   assert.equal(fact(result.terms, "sykkel.tyveri.grense").first, "40 000 kr per gjenstand");
   assert.match(fact(result.terms, "sykkel.tyveri.grense").second, /30 000 kr/);
   assert.ok(fact(result.terms, "mobil.skjerm.dekning").second);
-  assert.ok(result.shown.some((entry) => entry.termKey === "innbo.forsikringssum"));
+  assert.ok(result.shown.some((entry) => entry.conceptId === "innbo.forsikringssum" &&
+    entry.items.some((detail) => detail.termKey === "innbo.forsikringssum")));
 });
 
 test("If Basis mot Gjensidige Innbo bruker samme ansvar- og rettshjelpsnøkler", () => {
@@ -209,18 +210,21 @@ test("Innbo-hovedvisningen prioriterer sentrale dekninger og utleie foran rettsh
   );
   const highlights = result.shown
     .filter((difference) => difference.insuranceKey === "innbo" && difference.type !== "price")
-    .sort((a, b) => b.priority - a.priority)
-    .slice(0, 6);
-  const keys = highlights.map((difference) => difference.termKey);
+    .slice(0, 5);
+  const concepts = highlights.map((difference) => difference.conceptId);
+  const keys = highlights.flatMap((difference) => difference.items.map((item) => item.termKey));
 
-  assert.equal(keys[0], "innbo.forsikringssum");
+  assert.equal(concepts[0], "innbo.forsikringssum");
   for (const key of ["uhell.dekning", "tyveri.utenforhjem.grense", "sykkel.tyveri.grense",
-    "tyveri.uteareal.grense", "utleie.egenandel"]) {
+    "tyveri.uteareal.grense"]) {
     assert.ok(keys.includes(key), `${key} mangler i hovedvisningen: ${keys.join(", ")}`);
   }
-  assert.ok(!keys.some((key) => key?.startsWith("rettshjelp.")));
-  assert.ok(result.shown.some((difference) => difference.termKey === "rettshjelp.grense"));
-  assert.ok(result.shown.some((difference) => difference.termKey === "rettshjelp.egenandel"));
+  assert.ok(result.raw.some((difference) => difference.termKey === "utleie.egenandel"),
+    "Utleiedetaljen skal fortsatt finnes i sammenligningsgrunnlaget");
+  assert.ok(!concepts.includes("innbo.ansvar-rettshjelp"));
+  const legal = result.shown.find((difference) => difference.conceptId === "innbo.ansvar-rettshjelp");
+  assert.ok(legal.items.some((item) => item.termKey === "rettshjelp.grense"));
+  assert.ok(legal.items.some((item) => item.termKey === "rettshjelp.egenandel"));
 });
 
 test("Bil og Innbo på begge sider har ingen provider-, tillegg- eller kildelekkasje", () => {

@@ -130,7 +130,8 @@ test("Storebrand Super mot Tryg Kasko med tillegg sammenligner dokumenterte gren
   assert.match(fact(terms, "maskinskade.alder").first, /12 år/);
   assert.match(fact(terms, "maskinskade.alder").second, /10 år/);
   assert.ok(raw.some((item) => item.termKey === "maskinskade.alder"));
-  assert.ok(shown.some((item) => item.title === "Motor/gir/kraftoverføring"));
+  assert.ok(shown.some((item) => item.conceptId === "bil.maskinskade" &&
+    item.items.some((detail) => detail.termKey === "maskinskade.alder")));
   assert.equal(raw.some((item) => item.termKey === "brann.dekning"), false);
   assert.ok(raw.some((item) => item.termKey === "leiebil.dager"));
   assert.match(fact(terms, "leiebil.vilkar.etter30").first, /30 dager/);
@@ -149,7 +150,8 @@ test("Storebrand Super mot If Super beholder 60 mot 90 dager og usikker If-alder
   assert.match(fact(terms, "leiebil.dager").second, /90 dager/);
   assert.equal(fact(terms, "leiebil.dager").firstSources[0].company, "Storebrand");
   assert.equal(fact(terms, "leiebil.dager").secondSources[0].company, "If");
-  assert.ok(shown.some((item) => item.termKey === "leiebil.dager"));
+  assert.ok(shown.some((item) => item.conceptId === "bil.mobilitet" &&
+    item.items.some((detail) => detail.termKey === "leiebil.dager")));
   assert.equal(fact(terms, "maskinskade.alder").second, null);
   assert.equal(fact(terms, "maskinskade.alder").secondMissingLabel, "Ikke dokumentert / kan ikke avgjøres");
   assert.ok(!raw.some((item) => item.termKey === "ulykke.dod"));
@@ -162,7 +164,8 @@ test("Storebrand Super mot Gjensidige Pluss beholder nyverdi- og dødsfallsforsk
   assert.match(fact(terms, "nyverdi.alder").second, /1 år/);
   assert.match(fact(terms, "nyverdi.km").first, /60 000 km/);
   assert.match(fact(terms, "nyverdi.km").second, /20 000 km/);
-  assert.ok(shown.some((item) => item.title === "Totalskadegaranti"));
+  assert.ok(shown.some((item) => item.conceptId === "bil.totalskade" &&
+    item.items.some((detail) => detail.termKey === "nyverdi.alder")));
   assert.match(fact(terms, "ulykke.dod").first, /2 år/);
   assert.match(fact(terms, "ulykke.dod").second, /1 år/);
   assert.ok(raw.some((item) => item.termKey === "ulykke.dod"));

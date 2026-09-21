@@ -71,7 +71,7 @@ test("forsikringssum representerer både ubegrenset og kundespesifikt valg uten 
   assert.equal(fact(standard, "innbo.forsikringssum").deductibleClassification, "reference");
   for (const [key, value] of [["innbo.penger.grense", "20 000 kr"],
     ["innbo.fritidsbat.grense", "40 000 kr"], ["innbo.kjoretoytilbehor.grense", "40 000 kr"],
-    ["innbo.verdigjenstander.grense", "500 000 kr"]]) assert.match(fact(standard, key).value, new RegExp(value));
+    ["innbo.verdigjenstander.enkeltgjenstand.grense", "500 000 kr"]]) assert.match(fact(standard, key).value, new RegExp(value));
 });
 
 test("husstand, geografi og midlertidig oppbevaring følger fullvilkåret", () => {
@@ -201,10 +201,10 @@ test("Frende Bil og Innbo i samme avtale holder produkter, tillegg og kilder ads
 test("Innbo-prioritering fremhever materielle grenser uten å skjule ansvar og rettshjelp", () => {
   const result = compare(manual("Gjensidige", "Innbo Pluss"),
     manual("Frende", "Standard", "Innbo", ["frende-innbo-uhell"]));
-  const top = result.shown.filter((entry) => entry.insuranceKey === "innbo")
-    .sort((a, b) => b.priority - a.priority).slice(0, 6);
-  assert.ok(top.some((entry) => entry.termKey === "innbo.forsikringssum"));
-  assert.ok(top.some((entry) => entry.termKey?.startsWith("uhell.")));
-  assert.ok(!top.some((entry) => entry.termKey?.startsWith("rettshjelp.")));
-  assert.ok(result.shown.some((entry) => entry.termKey === "rettshjelp.grense"));
+  const top = result.shown.filter((entry) => entry.insuranceKey === "innbo").slice(0, 5);
+  assert.ok(top.some((entry) => entry.conceptId === "innbo.forsikringssum"));
+  assert.ok(top.some((entry) => entry.conceptId === "innbo.uhell"));
+  assert.ok(!top.some((entry) => entry.conceptId === "innbo.ansvar-rettshjelp"));
+  assert.ok(result.shown.some((entry) => entry.conceptId === "innbo.ansvar-rettshjelp" &&
+    entry.items.some((detail) => detail.termKey === "rettshjelp.grense")));
 });

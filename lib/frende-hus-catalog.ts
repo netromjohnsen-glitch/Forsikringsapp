@@ -41,7 +41,7 @@ const standard = facts("frendeHusStandard", [
   ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr som er vanlig for bygningens formål er inkludert. Vilkåret navngir ikke ladeboks, ventilasjon eller integrerte hvitevarer særskilt.", "3.1", 2],
   ["andrebygninger.endring", "Tilbygg og verdiøkende endringer", "Tilbygg og andre verdiøkende endringer må meldes senest ved hovedforfall; ellers erstattes bare andelen som tilsvarer verdien før endringen.", "6.9 og 12", 7],
   ["ror.utvendig", "Utvendige ledninger", "Ledninger og utstyr koblet til bygningen for strøm, signaler, gass eller væske frem til offentlig tilknytning eller spredeledning. Brønn, borehull, drens-/infiltrasjons-/spredeledning og spredegrøft er unntatt, men drensledning har brann/naturskade.", "3.2 og 3.4", 2],
-  ["solceller.dekning", "Solcelleanlegg", "Solcelleanlegg koblet til bygningen for produksjon til privat forbruk.", "3.2", 2],
+  ["teknisk.solceller", "Solcelleanlegg", "Solcelleanlegg koblet til bygningen for produksjon til privat forbruk.", "3.2", 2],
   ["hage.objekter", "Hage og uteområde", "Hage inntil fem dekar rundt boligen; drivhus regnes ikke som hage.", "3.3", 2],
   ["hage.basseng", "Basseng, boblebad og badestamp", "Utvendig basseng, boblebad og badestamp med tilknyttede ledninger omfattes. Produkttekstens omtale som hageanlegg endrer ikke vilkårets egne objektgrenser.", "3.3", 2],
   ["hage.brygge", "Brygge og kai", "Fast trebrygge som tilhører boligen/hytta omfattes bare ved brann eller naturskade, inntil 100 000 kr inkludert riving/rydding. Stein-/betongkai, molo, flytebrygge og landgang er unntatt.", "3.3–3.4", 2],
@@ -75,7 +75,7 @@ const standard = facts("frendeHusStandard", [
   ["rydding.dekning", "Riving og rydding", "Riving, rydding og deponering av verdiløse rester etter dekningsmessig Standardskade.", "5.8 nr. 1", 5],
   ["egenandel.generell", "Avtalt egenandel", "Egenandelen står i forsikringsbeviset og kan ikke utledes som én generell katalogsum.", "6.14", 8, "reference"],
   ["glass.egenandel", "Glassrute – egenandel", "6 000 kr.", "6.14", 8, "override"],
-  ["vann.egenandel", "Gjentatt skade", "Egenandelen økes med 20 000 kr ved ny skade av samme type innen 24 måneder for vannskade av samme årsak, avløpstilbakeslag, mus/rotter eller rørbrudd.", "6.14", 9, "override"],
+  ["egenandel.gjentatt_skade", "Gjentatt skade", "Egenandelen økes med 20 000 kr ved ny skade av samme type innen 24 måneder for vannskade av samme årsak, avløpstilbakeslag, mus/rotter eller rørbrudd.", "6.14", 9, "override"],
   ["vannoverflate.egenandel", "Terrengvann og vind – egenandel", "8 000 kr ved vind svakere enn storm, overflatevann og vanninntrengning fra terreng/grunn, med mindre høyere avtalt egenandel står i forsikringsbeviset.", "6.14", 9, "override"],
   ["egenandel.fritak", "Egenandelsfritak", "Ingen egenandel ved aktiv varslet innbruddsalarm eller skade som bare rammer overspenningsvern/brann-/innbruddsalarm. Når aldersfradrag minst tilsvarer avtalt egenandel trekkes ikke egenandel.", "6.14", 9, "coverage"],
   ["ansvar.dekning", "Ansvar som eier", "Rettslig erstatningsansvar som eier av forsikret bygning for person- og tingskade; gjelder i Norden.", "2 og 7.1", 2],
@@ -100,9 +100,9 @@ const extended = facts("frendeHusExtended", [
   ["vatrom.folgeskade", "Utett våtrom – følgeskade", "Følgeskade på andre rom ved lekkasje fra utett våtrom.", "9.2", 13, undefined, true],
   ["vatrom.selverommet", "Våtrom – håndverkerfeil", "Følgeskade på våtrom etter material-, konstruksjons- eller montasjefeil utført av autorisert håndverker med ansvarsrett, når skaden skjer innen ti år. Når følgeskaden dekkes, dekkes også retting av selve håndverkerfeilen på våtrommet.", "9.2–9.3", 13, undefined, true],
   ["handverker.folgeskade", "Håndverker- og konstruksjonsfeil", "Følgeskade på bygningen ved material-/konstruksjonsfeil, uriktig montering eller utilstrekkelig/sviktende fundamentering utført av autorisert håndverker med ansvarsrett, innen ti år, samlet sum 10 000 000 kr. Selve feilen dekkes bare på våtrom; rettidig reklamasjon kreves.", "9.3 og 9.5", 13, undefined, true],
-  ["glass.punktering", "Punktering av isolerglass", "Punktering omfattes. Det trekkes 10 % per år etter 10 år.", "9.4", 13],
+  ["glass.isolerglass_punktering", "Punktering av isolerglass", "Punktering omfattes. Det trekkes 10 % per år etter 10 år.", "9.4", 13],
 ]);
-const glassAge = extended.find((entry) => entry.key === "hus.glass.punktering")!;
+const glassAge = extended.find((entry) => entry.key === "hus.glass.isolerglass_punktering")!;
 glassAge.structuredValue = { kind: "age_deduction", component: "isolerglass", scope: "building", freeYears: 10,
   annualPercent: 10, maximumPercent: 100, minimumCompensationPercent: 0, yearBasis: "year", exceptions: [],
   calculationBasis: "Erstatning for punktert isolerglass" };
