@@ -125,21 +125,24 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6 sm:py-12">
-      <div className="mx-auto max-w-6xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Rådgiververktøy</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-          Forsikringsassistent
-        </h1>
+    <main className="app-page min-h-screen">
+      <header className="brand-header">
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+          <p className="brand-eyebrow text-sm font-semibold uppercase tracking-[0.16em]">Rådgiververktøy</p>
+          <h1 className="brand-title mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+            Forsikringsassistent
+          </h1>
+          <p className="body-copy mt-3 text-lg">
+            Sammenlign eksisterende forsikringer med et nytt tilbud.
+          </p>
+          <p className="body-copy mt-1 text-sm">Last opp forsikringsdokumenter eller registrer forsikringene manuelt.</p>
+        </div>
+      </header>
 
-        <p className="mt-3 text-lg text-slate-700">
-          Sammenlign eksisterende forsikringer med et nytt tilbud.
-        </p>
-        <p className="mt-1 text-sm text-slate-600">Last opp forsikringsdokumenter eller registrer forsikringene manuelt.</p>
-
-        <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
-          <h2 className="text-xl font-semibold text-slate-950">Ny sammenligning</h2>
-          <p className="mt-2 text-gray-600">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+        <div className="surface-card rounded-2xl border p-5 sm:p-8">
+          <h2 className="section-title text-xl font-semibold">Ny sammenligning</h2>
+          <p className="body-copy mt-2">
             Legg inn dagens forsikringer til venstre og tilbudet du vil vurdere til høyre.
           </p>
 
@@ -174,17 +177,17 @@ export default function Home() {
             onClick={analyzeDocuments}
             disabled={loading || !existingReady || !offerReady}
             aria-describedby={!existingReady || !offerReady ? "comparison-requirements" : undefined}
-            className="mt-6 w-full rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white shadow-sm hover:bg-blue-800 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600 sm:w-auto"
+            className="primary-button mt-6 w-full rounded-xl px-6 py-3 font-semibold shadow-sm disabled:cursor-not-allowed sm:w-auto"
           >
             {loading ? (existingMode === "pdf" || offerMode === "pdf" ? "Leser dokumenter og sammenligner …" : "Sammenligner forsikringene …") : "Sammenlign forsikringene"}
           </button>
           {(!existingReady || !offerReady) && (
             <p id="comparison-requirements" className="mt-2 text-sm text-slate-600">Legg til minst én PDF, eller fyll ut selskap, forsikringstype og produkt, på begge sider.</p>
           )}
-          {loading && <p role="status" aria-live="polite" className="mt-3 text-sm text-blue-800">Dette kan ta litt tid når dokumenter skal leses.</p>}
+          {loading && <p role="status" aria-live="polite" className="status-text mt-3 text-sm">Dette kan ta litt tid når dokumenter skal leses.</p>}
 
           {error && (
-            <div role="alert" className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-800">{error}</div>
+            <div role="alert" className="error-panel mt-6 rounded-xl border p-4">{error}</div>
           )}
         </div>
 
@@ -219,17 +222,17 @@ function AgreementInput({
   onManualChange: Dispatch<SetStateAction<ManualAgreementInput>>;
 }) {
   return (
-    <section className={`rounded-2xl border p-4 sm:p-5 ${side === "existing" ? "border-slate-300 bg-slate-50/70" : "border-blue-200 bg-blue-50/40"}`}>
-      <p className={`text-xs font-bold uppercase tracking-[0.14em] ${side === "existing" ? "text-slate-600" : "text-blue-700"}`}>{eyebrow}</p>
-      <h3 className="mt-1 font-semibold text-slate-950">{title}</h3>
-      <div className="mt-4 grid grid-cols-2 rounded-xl bg-white p-1 shadow-sm ring-1 ring-slate-200" role="group" aria-label={`Registreringsmåte for ${eyebrow.toLowerCase()}`}>
+    <section className={`rounded-2xl border p-4 sm:p-5 ${side === "existing" ? "comparison-side-existing" : "comparison-side-offer"}`}>
+      <p className={`text-xs font-bold uppercase tracking-[0.14em] ${side === "existing" ? "existing-label" : "offer-label"}`}>{eyebrow}</p>
+      <h3 className="section-title mt-1 font-semibold">{title}</h3>
+      <div className="mode-switch mt-4 grid grid-cols-2 rounded-xl p-1 ring-1" role="group" aria-label={`Registreringsmåte for ${eyebrow.toLowerCase()}`}>
         {(["pdf", "manual"] as const).map((option) => (
           <button
             key={option}
             type="button"
             aria-pressed={mode === option}
             onClick={() => onModeChange(option)}
-            className={`rounded-lg px-3 py-2.5 text-sm font-medium ${mode === option ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-50"}`}
+            className={`rounded-lg px-3 py-2.5 text-sm font-medium ${mode === option ? "mode-button-active" : "mode-button"}`}
           >
             {option === "pdf" ? "Last opp dokument" : "Registrer manuelt"}
           </button>
@@ -254,12 +257,12 @@ function PdfFiles({ files, onAdd, onRemove }: {
     <div>
       <h4 className="mt-5 text-sm font-semibold text-slate-900">Last opp forsikringsdokument</h4>
       <p className="mt-1 text-sm text-slate-600">PDF med forsikringsbevis eller tilbud. Du kan legge til flere filer fra samme avtale.</p>
-      <p className="mt-2 rounded-lg bg-blue-50 px-3 py-2.5 text-xs leading-5 text-slate-700">
+      <p className="info-panel mt-2 rounded-lg px-3 py-2.5 text-xs leading-5">
         <span className="font-semibold text-slate-900">Pilot:</span> Dokumentene analyseres for å sammenligne forsikringene dine. PDF-en sendes til vår server for tekstuttrekk. Relevant, maskert tekst sendes til OpenAI; selve PDF-filen sendes ikke dit. Appen har ingen database som lagrer dokumentet eller resultatet. OpenAI kan beholde sikkerhetslogger etter API-avtalen. Ikke last opp mer informasjon enn nødvendig, og kontroller viktige opplysninger mot originaldokumentet.
       </p>
       <p className="mt-2 text-xs text-slate-500">Maks 5 PDF-er per side, 10 MiB per fil og 25 MiB samlet.</p>
       <div
-        className="mt-3 rounded-xl border-2 border-dashed border-slate-300 bg-white text-center transition-colors hover:border-blue-400 hover:bg-blue-50/40"
+        className="drop-zone mt-3 rounded-xl border-2 border-dashed text-center transition-colors"
         onDragOver={(event) => event.preventDefault()}
         onDrop={(event) => { event.preventDefault(); onAdd(event.dataTransfer.files); }}
       >
@@ -362,7 +365,7 @@ function ManualEditor({ side, value, onChange }: {
             }));
           }}
           placeholder="Velg eller skriv selskap"
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900"
+          className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
         />
       </label>
       <datalist id={`companies-${side}`}>
@@ -373,7 +376,7 @@ function ManualEditor({ side, value, onChange }: {
         <select value={value.distributionChannel ?? ""} onChange={(event) => onChange((current) => ({
           ...current, distributionChannel: event.target.value,
           products: current.products.map((product) => ({ ...product, addOnIds: [] })),
-        }))} className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900">
+        }))} className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none">
           <option value="">Ukjent</option><option>SpareBank 1</option><option>DNB</option><option>Eika</option>
         </select>
       </label>}
@@ -383,7 +386,7 @@ function ManualEditor({ side, value, onChange }: {
         ))}
       </datalist>
       {value.products.map((product, index) => (
-        <div key={index} className="rounded-xl border border-gray-200 bg-gray-50 p-3">
+        <div key={index} className="rounded-xl border border-slate-200 bg-white/70 p-3">
           <div className="flex items-center justify-between gap-2">
             <div>
               <h4 className="text-sm font-semibold text-gray-900">{product.type && product.productName ? `${product.type} · ${product.productName}` : `Forsikring ${index + 1}`}</h4>
@@ -410,7 +413,7 @@ function ManualEditor({ side, value, onChange }: {
                   changeProduct(index, { type, productName, ...selectionPatch(product, value.company, type, productName) });
                 }}
                 placeholder="Velg eller skriv type"
-                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
+                className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none disabled:cursor-not-allowed"
               />
               {!value.company.trim() && <span className="mt-1 block text-xs font-normal text-gray-500">Velg selskap først.</span>}
             </label>
@@ -428,7 +431,7 @@ function ManualEditor({ side, value, onChange }: {
                   });
                 }}
                 placeholder="Velg eller skriv produkt"
-                className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
+                className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none disabled:cursor-not-allowed"
               />
               <datalist id={`products-${side}-${index}`}>
                 {productSuggestions(productCatalog, value.company, product.type).map((name) => (
@@ -437,7 +440,7 @@ function ManualEditor({ side, value, onChange }: {
               </datalist>
               {value.company.trim() && product.type.trim() && (
                 productSuggestions(productCatalog, value.company, product.type).length > 0
-                  ? <span className="mt-1 block text-xs font-normal text-blue-700">Velg blant tilgjengelige katalogprodukter, eller skriv et annet produkt.</span>
+                  ? <span className="status-text mt-1 block text-xs font-normal">Velg blant tilgjengelige katalogprodukter, eller skriv et annet produkt.</span>
                   : <span className="mt-1 block text-xs font-normal text-gray-500">Skriv produktnavnet fra avtalen.</span>
               )}
               {product.productName.trim() && !product.catalogReference && (
@@ -453,7 +456,7 @@ function ManualEditor({ side, value, onChange }: {
                   value={product.deductible}
                   onChange={(event) => changeProduct(index, { deductible: event.target.value })}
                   placeholder="F.eks. 4 000 kr"
-                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
+                  className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
                 />
               </label>
               <label className="text-sm font-medium text-gray-700">
@@ -462,7 +465,7 @@ function ManualEditor({ side, value, onChange }: {
                   value={product.annualPremium}
                   onChange={(event) => changeProduct(index, { annualPremium: event.target.value })}
                   placeholder="F.eks. 5 000 kr"
-                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
+                  className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
                 />
               </label>
             </>}
@@ -508,7 +511,7 @@ function ManualEditor({ side, value, onChange }: {
       <button type="button" onClick={() => onChange((currentAgreement) => ({
         ...currentAgreement,
         products: [...currentAgreement.products, emptyManualProduct()],
-      }))} className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50">+ Legg til forsikring</button>
+      }))} className="secondary-button rounded-lg border px-3 py-2 text-sm font-semibold">+ Legg til forsikring</button>
       <p className="text-xs text-gray-500">Katalogprodukter henter dokumenterte vilkår automatisk. For andre produkter sammenlignes bare opplysninger som er tilgjengelige.</p>
     </div>
   );
@@ -561,10 +564,10 @@ function Comparison({
   }
 
   return (
-    <section className="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm" aria-labelledby="comparison-result-heading">
+    <section className="surface-card mt-10 overflow-hidden rounded-2xl border" aria-labelledby="comparison-result-heading">
       <div className="px-4 pt-5 sm:px-7 sm:pt-7">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">Resultat</p>
-        <h2 id="comparison-result-heading" className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">Sammenligning</h2>
+        <p className="brand-eyebrow text-xs font-semibold uppercase tracking-[0.14em]">Resultat</p>
+        <h2 id="comparison-result-heading" className="section-title mt-1 text-2xl font-semibold tracking-tight">Sammenligning</h2>
       </div>
 
       <nav aria-label="Resultat per forsikringstype" className="mt-5 border-b border-slate-200 px-2 sm:px-5">
@@ -583,7 +586,7 @@ function Comparison({
                 tabIndex={active ? 0 : -1}
                 onClick={() => setSelectedType(tab)}
                 onKeyDown={(event) => moveTabFocus(event, tab)}
-                className={`relative shrink-0 px-3 py-3 text-sm font-semibold transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:rounded-full ${active ? "text-slate-950 after:bg-blue-700" : "text-slate-500 after:bg-transparent hover:text-slate-900"}`}
+                className={`result-tab relative shrink-0 px-3 py-3 text-sm font-semibold transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:rounded-full ${active ? "result-tab-active" : "after:bg-transparent"}`}
               >
                 {tab === "overview" ? "Oversikt" : tab}
               </button>
@@ -605,12 +608,12 @@ function Comparison({
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Sammenligning</p>
                 <h3 id="overview-heading" className="mt-1 text-xl font-semibold text-slate-950">Avtalene side ved side</h3>
               </div>
-              {totalDifference && <p className="text-sm font-medium text-blue-800">{totalDifference.text}</p>}
+              {totalDifference && <p className="status-text text-sm font-medium">{totalDifference.text}</p>}
             </div>
             <div className="mt-5 grid gap-5 sm:grid-cols-2 sm:gap-0">
               {[first, second].map((document, index) => (
-                <div key={index} className={index === 0 ? "sm:pr-8" : "border-t border-slate-200 pt-5 sm:border-l sm:border-t-0 sm:pl-8 sm:pt-0"}>
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">{index === 0 ? "Eksisterende" : "Nytt tilbud"}</p>
+                <div key={index} className={`${index === 0 ? "overview-side-existing" : "overview-side-offer"} rounded-xl px-4 py-4 sm:px-5`}>
+                  <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${index === 0 ? "existing-label" : "offer-label"}`}>{index === 0 ? "Eksisterende" : "Nytt tilbud"}</p>
                   <p className="mt-1 text-lg font-semibold text-slate-950">{document.insuranceData.company || `Tilbud ${index + 1}`}</p>
                   <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">Total årspris</p>
                   <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-slate-950">
@@ -622,7 +625,7 @@ function Comparison({
             </div>
             {productPriceDifferences.length > 0 && (
               <details className="group mt-5 border-t border-slate-100 pt-4 text-sm">
-                <summary className="w-fit cursor-pointer list-none font-semibold text-blue-700 marker:hidden hover:text-blue-900 [&::-webkit-details-marker]:hidden">
+                <summary className="text-link w-fit cursor-pointer list-none font-semibold marker:hidden [&::-webkit-details-marker]:hidden">
                   <span className="group-open:hidden">Vis pris per forsikring</span>
                   <span className="hidden group-open:inline">Skjul pris per forsikring</span>
                 </summary>
@@ -673,7 +676,7 @@ function Comparison({
         </section>
 
         <details className="group mt-8 border-t border-slate-200 pt-1">
-          <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-4 text-sm font-semibold text-slate-900 marker:hidden [&::-webkit-details-marker]:hidden">
+          <summary className="text-link flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-4 text-sm font-semibold marker:hidden [&::-webkit-details-marker]:hidden">
             <span className="group-open:hidden">Vis detaljert sammenligning</span>
             <span className="hidden group-open:inline">Skjul detaljert sammenligning</span>
             <span aria-hidden="true" className="text-lg leading-none text-slate-400 group-open:rotate-180">⌄</span>
@@ -684,12 +687,12 @@ function Comparison({
                 <thead className="bg-white">
                   <tr>
                     <th className="sticky left-0 z-10 border-b border-gray-200 bg-white p-3 text-left text-gray-500">Dekning</th>
-                    <th className="border-b border-gray-200 bg-white p-3 text-left">
+                    <th className="overview-side-existing border-b border-gray-200 p-3 text-left">
                       <p className="text-xs font-normal text-gray-500">Eksisterende</p>
                       <p className="font-semibold text-gray-900">{first.insuranceData.company || "Tilbud 1"}</p>
                       <p className="mt-0.5 text-xs font-normal text-gray-500">{first.filename}</p>
                     </th>
-                    <th className="border-b border-gray-200 bg-white p-3 text-left">
+                    <th className="overview-side-offer border-b border-gray-200 p-3 text-left">
                       <p className="text-xs font-normal text-gray-500">Nytt tilbud</p>
                       <p className="font-semibold text-gray-900">{second.insuranceData.company || "Tilbud 2"}</p>
                       <p className="mt-0.5 text-xs font-normal text-gray-500">{second.filename}</p>
@@ -868,7 +871,7 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
             </div>
             <p className="mt-1 text-xs text-slate-500">{detailLabel}</p>
           </div>
-          <span className="shrink-0 pt-0.5 text-sm font-semibold text-blue-700">
+          <span className="text-link shrink-0 pt-0.5 text-sm font-semibold">
             <span className="group-open:hidden">Se detaljer</span>
             <span className="hidden group-open:inline">Skjul</span>
           </span>
@@ -906,7 +909,7 @@ function PresentationSources({ difference }: { difference: PresentedDifference }
   return (
     <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2 border-t border-slate-100 pt-4">
       {difference.presentationSource && (
-        <a href={difference.presentationSource.url} target="_blank" rel="noreferrer" className="text-xs font-semibold text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-blue-900">
+        <a href={difference.presentationSource.url} target="_blank" rel="noreferrer" className="text-link text-xs font-semibold underline underline-offset-2">
           {difference.presentationSource.label}
         </a>
       )}
@@ -916,7 +919,7 @@ function PresentationSources({ difference }: { difference: PresentedDifference }
           href={source.url}
           target="_blank"
           rel="noreferrer"
-          className="text-xs font-semibold text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-blue-900"
+          className="text-link text-xs font-semibold underline underline-offset-2"
           title={`Kontrollert ${source.checkedAt}`}
         >
           {source.label}
@@ -957,13 +960,13 @@ function ComparisonRow({
         {label}
       </td>
 
-      <td className="border-b border-gray-100 p-3 text-gray-900">
+      <td className="overview-side-existing border-b border-gray-100 p-3 text-gray-900">
         {first || firstMissingLabel || missingLabel}
         {firstSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
         {firstBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på eksisterende avtale: ${base.value}`} />)}
       </td>
 
-      <td className="border-b border-gray-100 p-3 text-gray-900">
+      <td className="overview-side-offer border-b border-gray-100 p-3 text-gray-900">
         {second || secondMissingLabel || missingLabel}
         {secondSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
         {secondBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på nytt tilbud: ${base.value}`} />)}
@@ -977,13 +980,13 @@ function DifferenceValues({ text, compact = false, pair }: { text: string; compa
   if (!values) return <p className={compact ? "line-clamp-2 text-base font-semibold leading-6 text-slate-900" : "mt-2 whitespace-pre-wrap text-sm leading-6 text-slate-700"}>{text}</p>;
 
   return (
-    <div className={compact ? "grid gap-3 sm:grid-cols-2 sm:gap-0" : "mt-2 grid gap-4 sm:grid-cols-2 sm:gap-0"}>
-      <div className={compact ? "sm:pr-6" : "sm:pr-5"}>
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Eksisterende</p>
+    <div className={compact ? "grid gap-2 sm:grid-cols-2" : "mt-2 grid gap-2 sm:grid-cols-2"}>
+      <div className={`difference-side-existing rounded-lg ${compact ? "px-4 py-3" : "px-4 py-4"}`}>
+        <p className="existing-label text-xs font-semibold uppercase tracking-wide">Eksisterende</p>
         <p className={`${compact ? "line-clamp-2 text-base font-semibold leading-6 text-slate-950" : "text-sm leading-6 text-slate-800"} mt-1 whitespace-pre-wrap break-words`}>{values.first}</p>
       </div>
-      <div className={compact ? "border-t border-slate-100 pt-3 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0" : "border-t border-slate-100 pt-4 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0"}>
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Nytt tilbud</p>
+      <div className={`difference-side-offer rounded-lg ${compact ? "px-4 py-3" : "px-4 py-4"}`}>
+        <p className="offer-label text-xs font-semibold uppercase tracking-wide">Nytt tilbud</p>
         <p className={`${compact ? "line-clamp-2 text-base font-semibold leading-6 text-slate-950" : "text-sm leading-6 text-slate-800"} mt-1 whitespace-pre-wrap break-words`}>{values.second}</p>
       </div>
     </div>
@@ -993,13 +996,13 @@ function DifferenceValues({ text, compact = false, pair }: { text: string; compa
 function SourceDetails({ source, baseLabel }: { source: FactSource; baseLabel?: string }) {
   return (
     <details className="mt-2 text-xs text-slate-600">
-      <summary className="w-fit cursor-pointer rounded font-medium text-blue-700 underline decoration-blue-300 underline-offset-2 hover:text-blue-900">Vis kilde</summary>
+      <summary className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2">Vis kilde</summary>
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
         {baseLabel && <p className="font-medium text-slate-700">{baseLabel}</p>}
         {source.note && <p>{source.note}</p>}
         <p>{[source.company, source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : null, source.effectiveFrom, `side ${source.page}`, `punkt ${source.section}`].filter(Boolean).join(" · ")}</p>
         <p className="break-words text-slate-500">Dokument: {source.filename}</p>
-        {source.url && <a href={source.url} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-700 underline">Åpne originalkilde</a>}
+        {source.url && <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">Åpne originalkilde</a>}
       </div>
     </details>
   );

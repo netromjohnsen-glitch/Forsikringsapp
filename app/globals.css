@@ -1,8 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-canvas: #f3f7fb;
+  --color-surface: #ffffff;
+  --color-surface-warm: #fffefa;
+  --color-surface-soft: #f7fafc;
+  --color-primary: #102a4c;
+  --color-primary-hover: #173b66;
+  --color-secondary: #2864b7;
+  --color-secondary-hover: #1e4f92;
+  --color-accent: #0b7773;
+  --color-accent-soft: #edf8f7;
+  --color-text: #14243a;
+  --color-text-muted: #52657c;
+  --color-border: #ccd9e6;
+  --color-border-strong: #b7c8d9;
+  --color-existing: #f4f7fa;
+  --color-existing-border: #c8d5e2;
+  --color-offer: #f1f8f8;
+  --color-offer-border: #b9dcd8;
+  --color-danger: #9f2f37;
+  --color-danger-soft: #fff4f4;
+  --color-danger-border: #efc4c7;
+  --background: var(--color-canvas);
+  --foreground: var(--color-text);
 }
 
 @theme inline {
@@ -18,6 +39,180 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+@layer components {
+  .app-page {
+    background: var(--color-canvas);
+    color: var(--color-text);
+  }
+
+  .brand-header {
+    border-bottom: 1px solid var(--color-border);
+    background:
+      radial-gradient(circle at 78% 20%, rgb(40 100 183 / 10%), transparent 32%),
+      linear-gradient(115deg, #f8fbfe 0%, #eef5fb 58%, #edf8f7 100%);
+  }
+
+  .brand-eyebrow {
+    color: var(--color-secondary);
+  }
+
+  .brand-title,
+  .section-title {
+    color: var(--color-primary);
+  }
+
+  .body-copy {
+    color: var(--color-text-muted);
+  }
+
+  .surface-card {
+    border-color: var(--color-border);
+    background: var(--color-surface);
+    box-shadow: 0 12px 32px rgb(16 42 76 / 6%);
+  }
+
+  .comparison-side-existing {
+    border-color: var(--color-existing-border);
+    background: var(--color-existing);
+  }
+
+  .comparison-side-offer {
+    border-color: var(--color-offer-border);
+    background: var(--color-offer);
+  }
+
+  .existing-label {
+    color: #50657b;
+  }
+
+  .offer-label {
+    color: var(--color-accent);
+  }
+
+  .mode-switch {
+    background: rgb(255 255 255 / 88%);
+    box-shadow: 0 1px 3px rgb(16 42 76 / 7%);
+    --tw-ring-color: var(--color-border);
+  }
+
+  .mode-button {
+    color: var(--color-text-muted);
+  }
+
+  .mode-button:hover {
+    background: var(--color-surface-soft);
+    color: var(--color-primary);
+  }
+
+  .mode-button-active {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .form-control {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .form-control:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgb(40 100 183 / 12%);
+  }
+
+  .form-control:disabled {
+    background: #edf2f7;
+    color: #718096;
+  }
+
+  .primary-button {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .primary-button:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+  }
+
+  .primary-button:disabled {
+    background: #c7d2dd;
+    color: #5e6f80;
+  }
+
+  .secondary-button {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .secondary-button:hover {
+    border-color: var(--color-secondary);
+    background: #f5f9fd;
+  }
+
+  .info-panel {
+    border: 1px solid #c7dce9;
+    background: linear-gradient(135deg, #eef6fb, var(--color-accent-soft));
+    color: #334d67;
+  }
+
+  .drop-zone {
+    border-color: var(--color-border-strong);
+    background: rgb(255 255 255 / 86%);
+    color: var(--color-primary);
+  }
+
+  .drop-zone:hover {
+    border-color: var(--color-secondary);
+    background: #f5f9fd;
+  }
+
+  .result-tab {
+    color: var(--color-text-muted);
+  }
+
+  .result-tab:hover {
+    color: var(--color-primary);
+  }
+
+  .result-tab-active {
+    color: var(--color-secondary);
+  }
+
+  .result-tab-active::after {
+    background: var(--color-secondary);
+  }
+
+  .overview-side-existing,
+  .difference-side-existing {
+    background: var(--color-existing);
+  }
+
+  .overview-side-offer,
+  .difference-side-offer {
+    background: var(--color-offer);
+  }
+
+  .text-link {
+    color: var(--color-secondary);
+    text-decoration-color: rgb(40 100 183 / 40%);
+  }
+
+  .text-link:hover {
+    color: var(--color-secondary-hover);
+  }
+
+  .status-text {
+    color: var(--color-secondary-hover);
+  }
+
+  .error-panel {
+    border-color: var(--color-danger-border);
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
+  }
+}
+
 button,
 summary,
 input,
@@ -27,5 +222,5 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-secondary);
 }

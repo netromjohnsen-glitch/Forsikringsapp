@@ -32,13 +32,14 @@ export default function PilotAccessPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6">
-      <section className="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Lukket pilot</p>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">Forsikringsassistent</h1>
-        <p className="mt-3 text-sm leading-6 text-slate-600">Skriv inn pilotkoden du har fått for å åpne verktøyet.</p>
+    <main className="app-page min-h-screen">
+      <header className="brand-header h-32 sm:h-40" aria-hidden="true" />
+      <section className="surface-card mx-auto -mt-12 w-[calc(100%_-_2rem)] max-w-md rounded-2xl border p-6 sm:-mt-16 sm:p-8">
+        <p className="brand-eyebrow text-sm font-semibold uppercase tracking-[0.16em]">Lukket pilot</p>
+        <h1 className="brand-title mt-2 text-2xl font-bold tracking-tight">Forsikringsassistent</h1>
+        <p className="body-copy mt-3 text-sm leading-6">Skriv inn pilotkoden du har fått for å åpne verktøyet.</p>
         <form className="mt-6" onSubmit={submit}>
-          <label htmlFor="pilot-code" className="text-sm font-semibold text-slate-900">Pilotkode</label>
+          <label htmlFor="pilot-code" className="section-title text-sm font-semibold">Pilotkode</label>
           <input
             id="pilot-code"
             type="password"
@@ -47,13 +48,13 @@ export default function PilotAccessPage() {
             onChange={(event) => setCode(event.target.value)}
             required
             maxLength={256}
-            className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-950 shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            className="form-control mt-2 w-full rounded-lg border px-3 py-2.5 shadow-sm outline-none"
           />
-          {error && <p role="alert" className="mt-3 text-sm text-red-700">{error}</p>}
+          {error && <p role="alert" className="error-panel mt-3 rounded-lg border px-3 py-2.5 text-sm">{error}</p>}
           <button
             type="submit"
             disabled={loading || !code}
-            className="mt-5 w-full rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+            className="primary-button mt-5 w-full rounded-lg px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed"
           >
             {loading ? "Kontrollerer …" : "Åpne piloten"}
           </button>
