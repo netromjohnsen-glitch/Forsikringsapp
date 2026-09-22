@@ -1,11 +1,19 @@
 // Aliasgrupper er hele betegnelser. Delord og likhetsgrad brukes ikke til matching.
 const insuranceAliases: Record<string, readonly string[]> = {
-  bil: ["bil", "personbil", "privatbil"],
+  bil: ["bil", "personbil", "privatbil", "motorvogn"],
   bolig: ["bolig", "hus", "hus bolig"],
   innbo: ["innbo"],
   reise: ["reise"],
   båt: ["båt", "småbåt"],
   mc: ["mc", "motorsykkel"],
+  bobil: ["bobil"],
+  campingvogn: ["campingvogn", "caravan"],
+  moped: ["moped"],
+  atv: ["atv"],
+  snøscooter: ["snøscooter", "snescooter"],
+  traktor: ["traktor"],
+  varebil: ["varebil"],
+  lastebil: ["lastebil"],
   hund: ["hund", "hunde"],
   katt: ["katt", "katte"],
   barn: ["barn", "barne"],
@@ -63,6 +71,11 @@ export type TermContext = {
   insuredValueConfirmed?: boolean;
 };
 
+export type InsuranceTypeContext = {
+  productName?: string | null;
+  coverageSummary?: string | null;
+};
+
 function normalizeWords(value: string | null): string {
   return (value || "")
     .normalize("NFKC")
@@ -90,12 +103,71 @@ const contextualTermLookups = new Map(
 );
 const insuredValueLookup = aliasLookup({ forsikringsverdi: ["forsikringssum", "forsikringsverdi"] });
 
-export function normalizeInsuranceType(value: string | null): string {
+const canonicalInsuranceTypeLabels: Record<string, string> = {
+  bil: "Bil",
+  bolig: "Hus",
+  innbo: "Innbo",
+  reise: "Reise",
+  båt: "Båt",
+  mc: "MC",
+  bobil: "Bobil",
+  campingvogn: "Campingvogn",
+  moped: "Moped",
+  atv: "ATV",
+  snøscooter: "Snøscooter",
+  traktor: "Traktor",
+  varebil: "Varebil",
+  lastebil: "Lastebil",
+  hund: "Hund",
+  katt: "Katt",
+  barn: "Barn",
+  ulykke: "Ulykke",
+  liv: "Liv",
+  fritidsbolig: "Fritidsbolig",
+};
+
+const nonPassengerVehicleAliases: Record<string, readonly string[]> = {
+  mc: insuranceAliases.mc,
+  bobil: insuranceAliases.bobil,
+  campingvogn: insuranceAliases.campingvogn,
+  moped: insuranceAliases.moped,
+  atv: insuranceAliases.atv,
+  snøscooter: insuranceAliases.snøscooter,
+  traktor: insuranceAliases.traktor,
+  varebil: insuranceAliases.varebil,
+  lastebil: insuranceAliases.lastebil,
+};
+
+function explicitVehicleType(context: InsuranceTypeContext): string | null {
+  const words = ` ${normalizeWords([context.productName, context.coverageSummary].filter(Boolean).join(" "))} `;
+  if (words === "  ") return null;
+  for (const [canonical, aliases] of Object.entries(nonPassengerVehicleAliases)) {
+    if (aliases.some((alias) => words.includes(` ${normalizeWords(alias)} `))) return canonical;
+  }
+  return null;
+}
+
+export function normalizeInsuranceType(value: string | null, context: InsuranceTypeContext = {}): string {
   let name = normalizeWords(value);
   // Bare et rent produktord fjernes. Andre ord i sammensatte produkter beholdes.
   name = name.replace(/^forsikring(?:en)? for /u, "");
   name = name.replace(/\s*forsikring(?:en|er|ene)?$/u, "").trim();
-  return insuranceLookup.get(name) || name;
+  const explicitMotorVehicle = explicitVehicleType({
+    productName: [name, context.productName].filter(Boolean).join(" "),
+    coverageSummary: context.coverageSummary,
+  });
+  if (explicitMotorVehicle && name.split(" ").includes("motorvogn")) return explicitMotorVehicle;
+  const canonical = insuranceLookup.get(name) || name;
+  // «Motorvogn» brukes om personbil i flere dokumenter, men et eksplisitt
+  // kjøretøy i produktnavn/sammendrag skal alltid beholde sin egen type.
+  return canonical === "bil" && name === "motorvogn"
+    ? explicitMotorVehicle || canonical
+    : canonical;
+}
+
+export function canonicalInsuranceTypeLabel(value: string | null, context: InsuranceTypeContext = {}): string {
+  const key = normalizeInsuranceType(value, context);
+  return canonicalInsuranceTypeLabels[key] || (value || "").trim();
 }
 
 export function normalizeTermName(value: string | null, context: TermContext = {}): string {

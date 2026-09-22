@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "../lib/insurance-normalization.ts";
+import { groupInsurances } from "../lib/comparison.ts";
+import { buildMatchingBatch } from "../lib/hybrid-matching.ts";
+import { canonicalInsuranceTypeLabel, hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "../lib/insurance-normalization.ts";
 
 test("katalogfelt matches bare med godkjente semantiske feltnøkler", () => {
   assert.equal(normalizeCatalogTermKey("rettshjelp"), "rettshjelp.dekning");
@@ -20,6 +22,52 @@ test("sikre produktvarianter får samme nøkkel", () => {
   ]) {
     assert.equal(normalizeInsuranceType(left), normalizeInsuranceType(right));
   }
+});
+
+test("personbilbetegnelser får samme eksplisitte type og presentasjonsnavn", () => {
+  for (const value of [
+    "Bil", "Bilforsikring", "Personbil", "Personbilforsikring", "Motorvogn", "Motorvognforsikring",
+  ]) {
+    assert.equal(normalizeInsuranceType(value), "bil", value);
+    assert.equal(canonicalInsuranceTypeLabel(value), "Bil", value);
+  }
+});
+
+test("Motorvognforsikring og Bilforsikring grupperes side om side uten semantisk matching", () => {
+  const policy = (type, productName = "Kasko") => ({
+    type, productName, annualPremium: null, deductible: null,
+    coverageSummary: "Dekning for personbil", importantTerms: [],
+  });
+  const existing = policy("Motorvognforsikring");
+  const offer = policy("Bilforsikring");
+  const groups = groupInsurances([existing], [offer], null);
+
+  assert.equal(groups.length, 1);
+  assert.equal(groups[0].key, "bil");
+  assert.equal(groups[0].label, "Bil");
+  assert.deepEqual(groups[0].first, [existing]);
+  assert.deepEqual(groups[0].second, [offer]);
+  assert.deepEqual(buildMatchingBatch([existing], [offer]).typeCandidates, []);
+});
+
+test("andre motorvognprodukter holdes eksplisitt adskilt fra personbil", () => {
+  for (const value of ["MC", "Motorsykkelforsikring", "Bobilforsikring", "Campingvognforsikring", "Mopedforsikring"]) {
+    assert.notEqual(normalizeInsuranceType(value), "bil", value);
+  }
+  assert.equal(normalizeInsuranceType("Motorvognforsikring", { productName: "MC Kasko" }), "mc");
+  assert.equal(normalizeInsuranceType("Motorvognforsikring", { productName: "Bobil Kasko" }), "bobil");
+  assert.equal(normalizeInsuranceType("Motorvognforsikring", { coverageSummary: "Forsikring for campingvogn" }), "campingvogn");
+  assert.equal(normalizeInsuranceType("Motorvogn MC-forsikring"), "mc");
+
+  const vehicle = {
+    type: "Motorvognforsikring", productName: "MC Kasko", annualPremium: null, deductible: null,
+    coverageSummary: null, importantTerms: [],
+  };
+  const car = { ...vehicle, type: "Bilforsikring", productName: "Kasko" };
+  const groups = groupInsurances([vehicle], [car], null);
+  assert.equal(groups.length, 2);
+  assert.deepEqual(new Set(groups.map((group) => group.key)), new Set(["mc", "bil"]));
+  assert.equal(buildMatchingBatch([vehicle], [car]).typeCandidates.length, 0);
 });
 
 test("sammensatte og ulike forsikringsobjekter holdes separate", () => {

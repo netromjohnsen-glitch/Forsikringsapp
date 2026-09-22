@@ -1,3 +1,5 @@
+import { canonicalInsuranceTypeLabel } from "./insurance-normalization.ts";
+
 export const EXTRACTION_TIMEOUT_MS = 90_000;
 
 export class AnalysisOutputError extends Error {}
@@ -54,6 +56,7 @@ VIKTIG:
 - Sett totalAnnualPremiumScope til entire_agreement bare når totalsummen uttrykkelig dekker alle forsikringer i dokumentene. Hvis et hoveddokument har en totalpris og et annet dokument beskriver en separat forsikring som ikke klart inngår i denne totalen, bruk partial_or_unclear og null som totalAnnualPremium.
 - Hvis det er usikkert om en premie allerede inngår i en annen totalsum, bruk partial_or_unclear og null. Behold likevel den enkelte forsikringens annualPremium.
 - Opprett én oppføring i insurances for hvert selvstendig forsikringsobjekt/hovedprodukt i dokumentet, uansett forsikringstype.
+- Bruk en presis, kanonisk typebetegnelse i type: Bil for personbil (også når dokumentet bruker Motorvogn), MC for motorsykkel, og Bobil, Campingvogn, Hus, Innbo, Reise eller Båt når dette er riktig. Ikke klassifiser MC, bobil, campingvogn eller andre kjøretøy som Bil.
 - For samme forsikringsobjekt: legg alle eksplisitt avtalte tilleggsdekninger i addOns-listen på hovedforsikringen. Listen kan inneholde 0, 1 eller flere tillegg. Ikke opprett konkurrerende hovedprodukter for disse.
 - Legg tilleggsvilkår i det aktuelle tilleggets importantTerms. Ikke kopier dem også til hovedforsikringens importantTerms; systemet samler dem etterpå.
 - Behold eventuelle egne premier og egenandeler for tillegg i tilleggets felt. Ikke summer dem med hovedforsikringens premie uten sikkert grunnlag.
@@ -86,7 +89,10 @@ export function buildExtractionRequest(input: string) {
               items: {
                 type: "object",
                 properties: {
-                  type: { type: "string" },
+                  type: {
+                    type: "string",
+                    description: "Kanonisk forsikringstype. Bruk Bil for personbil, aldri for MC, bobil eller campingvogn.",
+                  },
                   productName: { type: ["string", "null"] },
                   annualPremium: { type: ["string", "null"] },
                   deductible: { type: ["string", "null"] },
@@ -175,12 +181,15 @@ function insurance(value: unknown): ExtractedInsurance {
   const item = object(value, ["type", "productName", "annualPremium", "deductible", "coverageSummary", "importantTerms", "addOns"]);
   if (!Array.isArray(item.importantTerms) || item.importantTerms.length > 80 ||
       !Array.isArray(item.addOns) || item.addOns.length > 30) throw new AnalysisOutputError("For mange analysepunkter.");
+  const rawType = text(item.type, 120)!;
+  const productName = text(item.productName, 200, true);
+  const coverageSummary = text(item.coverageSummary, 6_000, true);
   return {
-    type: text(item.type, 120)!,
-    productName: text(item.productName, 200, true),
+    type: canonicalInsuranceTypeLabel(rawType, { productName, coverageSummary }),
+    productName,
     annualPremium: premium(item.annualPremium),
     deductible: text(item.deductible, 500, true),
-    coverageSummary: text(item.coverageSummary, 6_000, true),
+    coverageSummary,
     importantTerms: item.importantTerms.map(term),
     addOns: item.addOns.map(addOn),
   };

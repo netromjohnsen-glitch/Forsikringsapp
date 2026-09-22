@@ -57,7 +57,10 @@ const short = (value: string | null, max: number) => (value || "").trim().slice(
 function indexByType(insurances: readonly InsuranceForMatching[]) {
   const map = new Map<string, InsuranceForMatching[]>();
   for (const insurance of insurances) {
-    const key = normalizeInsuranceType(insurance.type);
+    const key = normalizeInsuranceType(insurance.type, {
+      productName: insurance.productName,
+      coverageSummary: insurance.coverageSummary,
+    });
     if (!key) continue;
     const existing = map.get(key) || [];
     existing.push(insurance);
@@ -75,7 +78,7 @@ function mayCompareTypes(leftKey: string, rightKey: string): boolean {
   if (leftKey === rightKey) return true;
   if (protectedCompound(leftKey) || protectedCompound(rightKey)) return false;
   if (isKnownInsuranceType(leftKey) && isKnownInsuranceType(rightKey)) return false;
-  const families = (key: string) => new Set(key.split(" ").map(normalizeInsuranceType).filter(isKnownInsuranceType));
+  const families = (key: string) => new Set(key.split(" ").map((part) => normalizeInsuranceType(part)).filter(isKnownInsuranceType));
   const leftFamilies = families(leftKey);
   const rightFamilies = families(rightKey);
   if (leftFamilies.size && rightFamilies.size && ![...leftFamilies].some((family) => rightFamilies.has(family))) return false;

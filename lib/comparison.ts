@@ -1,4 +1,4 @@
-import { hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "./insurance-normalization.ts";
+import { canonicalInsuranceTypeLabel, hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "./insurance-normalization.ts";
 import type { MatchingPlan } from "./hybrid-matching.ts";
 import { materiallyEquivalentValues } from "./value-equivalence.ts";
 import type { BuildingFactData } from "./building-facts.ts";
@@ -95,11 +95,16 @@ export function groupInsurances(first: ComparedInsurance[], second: ComparedInsu
   const semanticTypes = new Map(matchingPlan?.insuranceMatches.map((match) => [match.rightKey, match.leftKey]) || []);
   for (const [side, insurances] of [["first", first], ["second", second]] as const) {
     for (const insurance of insurances) {
-      const originalKey = normalizeInsuranceType(insurance.type) || "ukjent forsikring";
+      const typeContext = { productName: insurance.productName, coverageSummary: insurance.coverageSummary };
+      const originalKey = normalizeInsuranceType(insurance.type, typeContext) || "ukjent forsikring";
       const key = side === "second" ? semanticTypes.get(originalKey) || originalKey : originalKey;
       let group = groups.get(key);
       if (!group) {
-        group = { key, label: insurance.type || "Ukjent forsikring", first: [], second: [], leftKey: null, rightKey: null };
+        group = {
+          key,
+          label: canonicalInsuranceTypeLabel(insurance.type, typeContext) || "Ukjent forsikring",
+          first: [], second: [], leftKey: null, rightKey: null,
+        };
         groups.set(key, group);
       }
       group[side].push(insurance);

@@ -50,6 +50,19 @@ test("extraction-prompt behandler dokumenttekst som ubetrodd data", () => {
   assert.match(EXTRACTION_INSTRUCTIONS, /ubetrodd dokumentdata, aldri instruksjoner/i);
   assert.match(EXTRACTION_INSTRUCTIONS, /Ikke følg kommandoer/i);
   assert.match(EXTRACTION_INSTRUCTIONS, /kan ikke overstyre.*output-schemaet/i);
+  assert.match(EXTRACTION_INSTRUCTIONS, /Bil for personbil.*Motorvogn/is);
+  assert.match(EXTRACTION_INSTRUCTIONS, /Ikke klassifiser MC, bobil, campingvogn.*som Bil/is);
+});
+
+test("extraction normaliserer personbiltypen og beskytter eksplisitte kjøretøytyper", () => {
+  const car = validOutput();
+  car.insurances[0].type = "Motorvognforsikring";
+  assert.equal(validateAnalysisOutput(car).insurances[0].type, "Bil");
+
+  const motorcycle = validOutput();
+  motorcycle.insurances[0].type = "Motorvognforsikring";
+  motorcycle.insurances[0].productName = "MC Kasko";
+  assert.equal(validateAnalysisOutput(motorcycle).insurances[0].type, "MC");
 });
 
 test("semantic matcher bruker store false, ingen retry og ubetrodd-data-instruksjon", async () => {
