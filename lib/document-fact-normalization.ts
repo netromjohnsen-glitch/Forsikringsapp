@@ -95,8 +95,9 @@ function compoundDetails(
 ): DocumentFact[] {
   if (normalizeInsuranceType(insuranceType) !== "bil") return [];
   const result: DocumentFact[] = [];
+  const scopedValue = coverageLimitSection(term.value);
   const add = (key: string, name: string, pattern: RegExp) => {
-    const value = valueMatch(term.value, pattern);
+    const value = valueMatch(scopedValue, pattern);
     if (value) result.push(extractedTerm(key, name, value, term));
   };
 
@@ -149,6 +150,15 @@ function explicitCoverageStatuses(text: string, insuranceType: string): Document
 
 const nextBilFact = /\b(?:maskinskade|maskin og elektronikkdekning|motor og girskade|totalskadegaranti|nyverdierstatning|nybilgaranti|bilnøkkel|leiebil|parkeringsskade|punkteringsskade|veihjelp)\b/iu;
 
+// Object mileage is never a coverage limit. Stop at an explicit new field,
+// also when extraction flattens headings into a single sentence without punctuation.
+const vehicleFactBoundary = /\b(?:årlig\s+kjørelengde|kjørelengde|(?:avtalt\s+)?maksimal\s+kilometerstand|(?:faktisk|nåværende|avlest)\s+kilometerstand|kilometerstand|førstegangsregistrering)\b/iu;
+function coverageLimitSection(value: string): string {
+  const text = value.replace(/^\s*(?:totalskadegaranti|nyverdierstatning|nybilgaranti|maskinskade|maskin og elektronikkdekning|motor og girskade)\s*[:–-]?\s*/iu, "");
+  const boundaries = [text.search(vehicleFactBoundary), text.search(nextBilFact)].filter((index) => index >= 0);
+  return text.slice(0, boundaries.length ? Math.min(...boundaries) : undefined);
+}
+
 function boundedSection(text: string, label: RegExp): string | null {
   const labelMatch = label.exec(text);
   if (!labelMatch || labelMatch.index === undefined) return null;
@@ -157,6 +167,7 @@ function boundedSection(text: string, label: RegExp): string | null {
     remainder.search(/[;\n]/u),
     remainder.search(/\.(?:\s|$)/u),
     remainder.search(nextBilFact),
+    remainder.search(vehicleFactBoundary),
   ].filter((index) => index >= 0);
   return remainder.slice(0, boundaries.length ? Math.min(...boundaries) : undefined);
 }
@@ -275,5 +286,12 @@ export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentF
     }
     return [{ ...term, name: premiumLabels[term.key ?? ""] ?? term.name }];
   });
-  return uniqueDocumentFacts([...normalizedOriginals, ...derived, ...summaryFacts(insurance)]);
+  // Explicit structured fields take precedence over a secondary summary-derived
+  // limit. Conflicting explicit document values remain visible, never first-wins.
+  const explicitLimitKeys = new Set([...normalizedOriginals, ...derived].filter((term) =>
+    ["nyverdi.alder", "nyverdi.km", "maskinskade.alder", "maskinskade.km"].includes(term.key ?? "") &&
+    valueMatch(term.value, term.key?.endsWith(".km") ? kilometerLimit : yearLimit)
+  ).map((term) => term.key));
+  const supplemental = summaryFacts(insurance).filter((term) => !explicitLimitKeys.has(term.key));
+  return uniqueDocumentFacts([...normalizedOriginals, ...derived, ...supplemental]);
 }

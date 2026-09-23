@@ -16,16 +16,19 @@ export function vehiclePrices(insurance: ComparedInsurance) {
     const terms = insurance.importantTerms.filter((term) => term.coverageOrigin !== "catalog" &&
       (term.key || normalizeTermName(term.name, { insuranceType: insurance.type })) === field.key);
     const values = [...new Set(terms.map((term) => term.value.trim()).filter(Boolean))];
+    const amounts = values.map(annualAmount);
+    const uniqueAmounts = new Set(amounts);
     return { ...field, value: values.length ? values.join(" · ") : null,
-      amount: values.length === 1 ? annualAmount(values[0]) : null,
+      amount: amounts.length > 0 && !uniqueAmounts.has(null) && uniqueAmounts.size === 1 ? amounts[0] : null,
       sources: terms.flatMap((term) => term.sources ?? (term.source ? [term.source] : [])) };
   });
 }
 // Only a single explicit annual amount, never extract a number from a mixed range/monthly sentence.
 function annualAmount(value: string): number | null {
   const clean = value.trim().replace(/[\u00a0\u202f]/g, " ");
-  if (!/^(?:\d+|\d{1,3}(?:[ .]\d{3})+)(?:,\d{1,2})?\s*(?:kr|kroner)?(?:\s*(?:per år|\/\s*år|årlig))?$/iu.test(clean)) return null;
-  const number = Number(clean.replace(/\s*(?:kr|kroner)?(?:\s*(?:per år|\/\s*år|årlig))?$/iu, "").replace(/[ .]/g, "").replace(",", "."));
+  const match = /^(?:(kr|kroner)\s*)?((?:\d+|\d{1,3}(?:[ .]\d{3})+)(?:,\d{1,2})?)\s*(kr|kroner)?(?:\s*(?:per år|\/\s*år|årlig))?$/iu.exec(clean);
+  if (!match || (match[1] && match[3])) return null;
+  const number = Number(match[2].replace(/[ .]/g, "").replace(",", "."));
   const ore = Math.round(number * 100);
   return Number.isSafeInteger(ore) ? ore : null;
 }
