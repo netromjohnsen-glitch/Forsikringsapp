@@ -259,10 +259,11 @@ export function presentImportantDifferences(
   _matchingPlan: MatchingPlan | null,
 ): PresentedDifference[] {
   void _matchingPlan;
-  const filtered = differences.filter((difference) =>
-    difference.kind !== "term" || !difference.termKey || !provenanceOnlyKey.test(difference.termKey)
+  const prices = differences.filter((difference) => difference.kind === "price");
+  const filtered = differences.filter((difference) => difference.kind !== "price" && (
+    difference.kind !== "term" || !difference.termKey || !provenanceOnlyKey.test(difference.termKey))
   );
-  const result: PresentedDifference[] = filtered.filter((difference) => !difference.insuranceKey);
+  const result: PresentedDifference[] = [...prices, ...filtered.filter((difference) => !difference.insuranceKey)];
   for (const group of groups) {
     result.push(...groupDifferences(group, filtered.filter((difference) => difference.insuranceKey === group.key)));
   }

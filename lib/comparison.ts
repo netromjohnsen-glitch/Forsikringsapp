@@ -1,5 +1,7 @@
+import { vehiclePriceDifferences, isVehiclePriceKey, vehiclePrices } from "./vehicle-price-presentation.ts";
 import {
   canonicalInsuranceTypeLabel,
+  isMotorVehicleType,
   comparisonTermIdentities,
   hasComparableInsuredValue,
   isUndocumentedTermValue,
@@ -65,6 +67,7 @@ export type ComparedInsurance = {
   }[];
 };
 export type ComparedDocument = {
+  source?: "pdf" | "manual";
   insuranceData: {
     company: string | null;
     totalAnnualPremium: string | null;
@@ -470,7 +473,12 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
   const secondCompany = sameCompany ? `Nytt tilbud fra ${second.insuranceData.company}` : second.insuranceData.company || "Nytt tilbud";
   const firstTotal = parseNumber(first.insuranceData.totalAnnualPremium);
   const secondTotal = parseNumber(second.insuranceData.totalAnnualPremium);
-  if (firstTotal !== null && secondTotal !== null && firstTotal !== secondTotal) differences.push({
+  const hasVehicles = [...first.insuranceData.insurances, ...second.insuranceData.insurances].some((insurance) => isMotorVehicleType(insurance.type, insurance));
+  // Preserve the approved manual-input price rule only when both sides use that
+  // same explicit input contract and neither side supplies a competing TFA basis.
+  const sameManualPriceContract = first.source === "manual" && second.source === "manual" &&
+    ![...first.insuranceData.insurances, ...second.insuranceData.insurances].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value));
+  if ((!hasVehicles || sameManualPriceContract) && firstTotal !== null && secondTotal !== null && firstTotal !== secondTotal) differences.push({
     title: "Totalpris", text: `${firstTotal < secondTotal ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstTotal - secondTotal))} billigere per år.`,
     type: "price", kind: "price", priority: 0,
   });
@@ -487,7 +495,12 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
       continue;
     }
     if (group.first.length === 1 && group.second.length === 1) {
-      const firstPrice = parseNumber(group.first[0].annualPremium);
+      const vehicle = isMotorVehicleType(group.key);
+      if (vehicle) for (const price of vehiclePriceDifferences(group.first[0], group.second[0])) differences.push({
+        title: price.label, text: price.text, termKey: price.key,
+        type: "price", insuranceKey: group.key, kind: "price", priority: 0,
+      });
+      const firstPrice = vehicle && !sameManualPriceContract ? null : parseNumber(group.first[0].annualPremium);
       const secondPrice = parseNumber(group.second[0].annualPremium);
       if (firstPrice !== null && secondPrice !== null && firstPrice !== secondPrice) differences.push({
         title: "Pris", text: `${firstPrice < secondPrice ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstPrice - secondPrice))} billigere per år.`,
@@ -497,7 +510,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
     const terms = groupTerms(group, matchingPlan);
     const coverageDifferences = terms.filter(isCoverageStatusDifference);
     const comparableDifferences = terms
-      .filter((term) => !term.firstCoverage && !term.secondCoverage &&
+      .filter((term) => !(isMotorVehicleType(group.key) && isVehiclePriceKey(term.key)) && !term.firstCoverage && !term.secondCoverage &&
         term.first && term.second && term.firstValueCount === 1 && term.secondValueCount === 1 &&
         !materiallyEquivalentValues(term.first, term.second) &&
         (!isDeductibleKey(term.key) || directlyComparableSpecialDeductible(term)))

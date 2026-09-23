@@ -3,7 +3,10 @@
 import { useEffect, useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
 import { readAnalysisResponse, validateUploadSelection } from "@/lib/analysis-client";
 import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressState } from "@/lib/analysis-progress";
-import { canonicalInsuranceTypeLabel } from "@/lib/insurance-normalization";
+import { isMotorVehicleType } from "@/lib/insurance-normalization";
+import { VehiclePriceList } from "./components/vehicle-price";
+import { AnalysisProgress } from "./components/analysis-progress";
+import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis } from "@/lib/vehicle-price-presentation";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
 import { measureComparisonWork } from "@/lib/comparison-performance";
 import { annualPremiumLabel } from "@/lib/agreement-pricing";
@@ -209,7 +212,6 @@ export default function Home() {
           )}
           {loading && <button type="button" className="ml-3 underline" onClick={cancelAnalysis}>Avbryt analyse</button>}
           {progress.status !== "idle" && <AnalysisProgress state={progress} />}
-          {partial?.partialSuccess && <p role="alert" className="error-panel mt-4 rounded-xl border p-4">Sammenligningen kan være ufullstendig: {partial.failedDocuments} dokumenter kunne ikke analyseres. Resultatet bygger på {partial.successfulDocuments} behandlede dokumenter.</p>}
           {partial?.conservativeObjectSeparation && <p className="mt-3 text-sm">Dokumentene ble analysert i flere grupper. Objekter uten sikker felles identitet holdes adskilt; kontroller mulig overlapp før du bruker resultatet.</p>}
 
           {error && (
@@ -646,11 +648,12 @@ function Comparison({
                 <div key={index} className={`${index === 0 ? "overview-side-existing" : "overview-side-offer"} rounded-xl px-4 py-4 sm:px-5`}>
                   <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${index === 0 ? "existing-label" : "offer-label"}`}>{index === 0 ? "Eksisterende" : "Nytt tilbud"}</p>
                   <p className="mt-1 text-lg font-semibold text-slate-950">{document.insuranceData.company || `Tilbud ${index + 1}`}</p>
+                  {document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some((field) => field.value) ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
                   <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">Total årspris</p>
                   <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-slate-950">
                     {annualPremiumLabel(document.insuranceData)}
                     {document.insuranceData.totalAnnualPremium !== null && <span className="ml-1 text-sm font-normal text-slate-500">/ år</span>}
-                  </p>
+                  </p></>}
                 </div>
               ))}
             </div>
@@ -662,7 +665,7 @@ function Comparison({
                 </summary>
                 <ul className="mt-3 space-y-1.5 text-slate-700">
                   {productPriceDifferences.map((difference) => (
-                    <li key={difference.insuranceKey}><span className="font-medium text-slate-900">{groups.find((group) => group.key === difference.insuranceKey)?.label}:</span> {difference.text}</li>
+                    <li key={`${difference.insuranceKey}:${difference.title}`}><span className="font-medium text-slate-900">{groups.find((group) => group.key === difference.insuranceKey)?.label} · {difference.title}:</span> {difference.text}</li>
                   ))}
                 </ul>
               </details>
@@ -684,6 +687,12 @@ function Comparison({
               {selectedType === "overview" && " Velg en typefane for flere forskjeller."}
             </p>
           </div>
+          {visibleGroups.filter((group) => isMotorVehicleType(group.key) && [...group.first, ...group.second].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value))).map((group) => <section key={`prices:${group.key}`} className="mt-5 rounded-xl border border-slate-200 p-4" aria-label={`${group.label} – prisgrunnlag`}>
+            <h4 className="font-semibold text-slate-900">{group.label} – pris per år</h4>
+            <div className="mt-3 grid gap-5 sm:grid-cols-2">{[group.first, group.second].map((insurances, side) => <div key={side}><p className="text-sm font-semibold">{side === 0 ? "Eksisterende" : "Nytt tilbud"}</p>{insurances.map((insurance, index) => <div key={index}>{insurances.length > 1 && <p className="mt-3 text-sm">{insurance.productName || group.label} · objekt {index + 1}</p>}<VehiclePriceList insurance={insurance} /></div>)}</div>)}</div>
+            {group.first.length === 1 && group.second.length === 1 && differentVehiclePriceBasis(group.first[0], group.second[0]) && <p className="mt-3 text-sm text-slate-600">Kan ikke sammenlignes direkte – dokumentene oppgir ulikt eller uavklart prisgrunnlag.</p>}
+            {productPriceDifferences.filter((difference) => difference.insuranceKey === group.key).map((difference) => <p className="mt-2 text-sm text-slate-700" key={difference.title}><strong>{difference.title}:</strong> {difference.text}</p>)}
+          </section>)}
           {visibleGroupsWithDifferences.length > 0 ? (
             <div className="mt-6 space-y-8">
               {visibleGroupsWithDifferences.map(({ group, differences: groupDifferences }) => (
@@ -1064,10 +1073,14 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
         firstMissingLabel={group.first.length > 0 && group.first.every((insurance) => insurance.catalogReference) ? "Ingen tillegg valgt" : "Ikke dokumentert"}
         secondMissingLabel={group.second.length > 0 && group.second.every((insurance) => insurance.catalogReference) ? "Ingen tillegg valgt" : "Ikke dokumentert"}
       />
-      <ComparisonRow label="Årspremie" first={groupValue(group.first, "annualPremium")} second={groupValue(group.second, "annualPremium")} missingLabel="Pris ikke oppgitt" />
+      {isMotorVehicleType(group.key) && [...group.first, ...group.second].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value)) ? vehiclePriceFields.map((field) => {
+        const left = group.first.flatMap((insurance) => vehiclePrices(insurance)?.filter((price) => price.key === field.key) ?? []);
+        const right = group.second.flatMap((insurance) => vehiclePrices(insurance)?.filter((price) => price.key === field.key) ?? []);
+        return <ComparisonRow key={field.key} label={field.label} first={left.map((price) => price.value || "Ikke dokumentert").join(" · ") || null} second={right.map((price) => price.value || "Ikke dokumentert").join(" · ") || null} firstSources={left.flatMap((price) => price.sources)} secondSources={right.flatMap((price) => price.sources)} missingLabel="Ikke dokumentert" />;
+      }) : <ComparisonRow label="Årspremie" first={groupValue(group.first, "annualPremium")} second={groupValue(group.second, "annualPremium")} missingLabel="Pris ikke oppgitt" />}
       <ComparisonRow label="Egenandel" first={groupValue(group.first, "deductible")} second={groupValue(group.second, "deductible")} />
       <ComparisonRow label="Dekningssammendrag" first={groupValue(group.first, "coverageSummary")} second={groupValue(group.second, "coverageSummary")} />
-      {sortDetailedTerms(groupTerms(group, matchingPlan)).map((term) => (
+      {sortDetailedTerms(groupTerms(group, matchingPlan)).filter((term) => !(isMotorVehicleType(group.key) && isVehiclePriceKey(term.key))).map((term) => (
         <ComparisonRow
           key={term.key}
           label={term.label}
@@ -1085,17 +1098,4 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
       ))}
     </>
   );
-}
-
-function AnalysisProgress({ state }: { state: ProgressState }) {
-  const labels = { queued: "Venter", validating: "Valideres", extracting: "Leses", ready: "Lest – venter på analyse", analyzing: "Analyseres", completed: "Ferdig", failed: "Kunne ikke analyseres", identified: "Identifisert" };
-  const processed = state.documents.filter((d) => d.status === "completed" || d.status === "failed").length;
-  return <section className="mt-4 text-sm" aria-live="polite" aria-label="Analyseframdrift">
-    <p role="status">{state.status === "uploading" ? "Laster opp dokumenter …" : state.status === "partial" ? "Delvis fullført – se advarselen nedenfor." : state.status === "completed" ? "Sammenligningen er ferdig." : state.status === "failed" ? "Analysen kunne ikke fullføres." : `${processed} av ${state.documents.length} dokumenter behandlet`}</p>
-    <div className="mt-3 grid gap-4 sm:grid-cols-2">{(["existing", "offer"] as const).map((side) => <div key={side}>
-      <p className="font-semibold">{side === "existing" ? "Eksisterende" : "Nytt tilbud"}</p>
-      <ul>{state.documents.filter((d) => d.side === side).map((d) => <li key={d.documentIndex}>Dokument {d.documentIndex+1}: {d.error === "encrypted_pdf" ? "Passordbeskyttet" : labels[d.status]}</li>)}</ul>
-      <ul className="mt-2">{state.products.filter((p) => p.side === side).map((p) => <li key={`${p.batchIndex}:${p.productIndex}`}>{p.insuranceType === "unknown" ? "Ukjent forsikringstype" : canonicalInsuranceTypeLabel(p.insuranceType)}: {labels[p.status]}</li>)}</ul>
-    </div>)}</div>
-  </section>;
 }

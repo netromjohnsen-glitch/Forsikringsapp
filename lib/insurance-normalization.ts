@@ -213,6 +213,11 @@ export function normalizeInsuranceType(value: string | null, context: InsuranceT
     : canonical;
 }
 
+export function isMotorVehicleType(value: string | null, context: InsuranceTypeContext = {}): boolean {
+  const type = normalizeInsuranceType(value, context);
+  return type === "bil" || Object.hasOwn(nonPassengerVehicleAliases, type);
+}
+
 export function canonicalInsuranceTypeLabel(value: string | null, context: InsuranceTypeContext = {}): string {
   const key = normalizeInsuranceType(value, context);
   return canonicalInsuranceTypeLabels[key] || (value || "").trim();
@@ -428,6 +433,11 @@ export function normalizeTermName(value: string | null, context: TermContext = {
   }
   const relatedDetail = relatedCoverageDetailKey(name, context, type);
   if (relatedDetail) return relatedDetail;
+  // Share only the three price aliases across established motor vehicle types.
+  if (isMotorVehicleType(type)) {
+    const priceKey = contextualTermLookups.get("bil")?.get(name);
+    if (priceKey?.startsWith("premie.")) return priceKey;
+  }
   const contextual = contextualTermLookups.get(type)?.get(name);
   if (contextual) return contextual;
   if (type === "bil" && ["leiebil", "erstatningsbil"].includes(name)) return "leiebil.dekning";
