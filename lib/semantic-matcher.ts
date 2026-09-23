@@ -1,3 +1,4 @@
+import { ANALYSIS_MODEL, type AnalysisTelemetry } from "./analysis-telemetry.ts";
 import type OpenAI from "openai";
 import type { MatchingBatch } from "./hybrid-matching.ts";
 
@@ -14,9 +15,15 @@ Vurder vilkår bare innen termScopes sin forsikringskontekst. En venstreside kan
 Bruk nøyaktig oppgitte id-er og scopeId. Forsikringstypebeslutninger har scopeId "types" og høyst én rightId. Vilkår bruker scopeId fra termScopes.
 Confidence er 0 til 1. Gi en kort faglig begrunnelse. Utelat kandidater du ikke trenger å vurdere.`;
 
-export async function requestSemanticMatches(openai: OpenAI, batch: MatchingBatch): Promise<unknown> {
-  const response = await openai.responses.create({
-    model: "gpt-5.6-luna",
+export async function requestSemanticMatches(openai: OpenAI, batch: MatchingBatch, context: {
+  signal?: AbortSignal; telemetry?: AnalysisTelemetry;
+} = {}): Promise<unknown> {
+  context.signal?.throwIfAborted();
+  const start = performance.now();
+  let response;
+  try {
+  response = await openai.responses.create({
+    model: ANALYSIS_MODEL,
     store: false,
     instructions: SEMANTIC_INSTRUCTIONS,
     input: JSON.stringify(batch),
@@ -51,8 +58,14 @@ export async function requestSemanticMatches(openai: OpenAI, batch: MatchingBatc
         },
       },
     },
-  }, { timeout: SEMANTIC_TIMEOUT_MS, maxRetries: 0 });
-  if (response.status !== "completed" || !response.output_text) {
+  }, { timeout: SEMANTIC_TIMEOUT_MS, maxRetries: 0, ...(context.signal ? { signal: context.signal } : {}) });
+  } finally {
+    const duration = performance.now() - start;
+    context.telemetry?.record("semanticApi", duration);
+    context.telemetry?.usage("semantic", duration, response?.status === "completed", response);
+  }
+  context.signal?.throwIfAborted();
+  if (response.status !== "completed" || !response.output_text || response.output_text.length > 128_000) {
     throw new Error("Semantisk matching ble ikke fullført.");
   }
   return JSON.parse(response.output_text);

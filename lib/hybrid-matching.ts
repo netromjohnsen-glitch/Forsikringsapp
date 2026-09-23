@@ -171,6 +171,7 @@ export function buildMatchingBatch(left: readonly InsuranceForMatching[], right:
 function validDecision(value: unknown, batch: MatchingBatch): value is MatchDecision {
   if (!value || typeof value !== "object") return false;
   const item = value as Record<string, unknown>;
+  if (Object.keys(item).some((key) => !["kind", "scopeId", "leftId", "rightIds", "decision", "confidence", "reason"].includes(key))) return false;
   if (item.kind !== "insurance" && item.kind !== "term") return false;
   if (item.decision !== "match" && item.decision !== "no_match" && item.decision !== "uncertain") return false;
   if (typeof item.scopeId !== "string" || typeof item.leftId !== "string") return false;
@@ -204,7 +205,9 @@ export async function runHybridMatching(
 
   try {
     const response = await requestSemantic(batch);
-    if (!response || typeof response !== "object" || !Array.isArray((response as { decisions?: unknown }).decisions)) return emptyPlan();
+    if (!response || typeof response !== "object" ||
+      Object.keys(response).some((key) => key !== "decisions") ||
+      !Array.isArray((response as { decisions?: unknown }).decisions)) return emptyPlan();
     const decisions: unknown[] = (response as { decisions: unknown[] }).decisions;
     if (decisions.length > 120 || !decisions.every((item) => validDecision(item, batch))) return emptyPlan();
     const validated = decisions as MatchDecision[];

@@ -24,5 +24,8 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/api/analyze/:path*"],
+  // /api/analyze authenticates inside its route before reading any body.
+  // Excluding it avoids Next proxy cloning/buffering each sensitive upload
+  // (and the proxy's separate 10 MiB truncation limit).
+  matcher: ["/"],
 };

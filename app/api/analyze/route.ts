@@ -1,5 +1,3 @@
-import { getPath } from "pdf-parse/worker";
-import { PDFParse } from "pdf-parse";
 import OpenAI from "openai";
 import { runHybridMatching } from "@/lib/hybrid-matching";
 import { requestSemanticMatches } from "@/lib/semantic-matcher";
@@ -19,19 +17,23 @@ import { isSameOriginRequest, noStoreJson, safeErrorMetadata } from "@/lib/http-
 import {
   PdfSecurityError,
   type PreparedPdf,
-  pdfParserError,
   preparePdf,
   validateAggregatePdfBytes,
-  validateParsedPdf,
   validateParsedPdfSide,
   validatePdfFileList,
   validateRequestContentLength,
 } from "@/lib/pdf-upload-security";
 import { hasValidPilotSession, isPilotAccessConfigured } from "@/lib/pilot-access";
 
-PDFParse.setWorker(getPath());
+import { readPdf } from "@/lib/pdf-reader";
+import { createAnalysisTelemetry, type AnalysisTelemetry } from "@/lib/analysis-telemetry";
+import {
+  AnalysisControlError, analysisAdmission, requestLifecycle,
+  readBoundedFormData, analyzeAgreementSides,
+} from "@/lib/analysis-control";
 
 export const maxDuration = 240;
+export const runtime = "nodejs";
 
 let openaiClient: OpenAI | null = null;
 
@@ -50,64 +52,66 @@ function openai(): OpenAI {
     apiKey: process.env.OPENAI_API_KEY,
     timeout: EXTRACTION_TIMEOUT_MS,
     maxRetries: 0,
+    logLevel: "off", // SDK debug logging must never serialize customer requests.
   });
   return openaiClient;
 }
 
-async function extractInsuranceData(text: string) {
-  const response = await openai().responses.create(
-    buildExtractionRequest(text),
-    { timeout: EXTRACTION_TIMEOUT_MS, maxRetries: 0 },
-  );
-  const extracted = parseExtractionResponse(response);
+async function extractInsuranceData(text: string, signal: AbortSignal, telemetry: AnalysisTelemetry) {
+  signal.throwIfAborted();
+  const client = openai();
+  const started = performance.now();
+  let response;
+  try {
+    response = await telemetry.measure("aiExtraction", () => client.responses.create(
+      buildExtractionRequest(text),
+      { timeout: EXTRACTION_TIMEOUT_MS, maxRetries: 0, signal },
+    ));
+  } finally {
+    telemetry.usage("extraction", performance.now() - started, response?.status === "completed", response);
+  }
+  signal.throwIfAborted();
+  const extracted = telemetry.measureSync("structuredOutput", () => parseExtractionResponse(response));
   if (extracted.insurances.length === 0) {
     throw new PdfSecurityError(422, "no_insurance_data", "Fant ingen forsikringsopplysninger i PDF-en.");
   }
+  telemetry.products(extracted.insurances.length);
   return extracted;
 }
 
-async function readPdf(pdf: PreparedPdf): Promise<{ text: string; pages: number }> {
-  let parser: PDFParse | null = null;
-  let result;
-  try {
-    parser = new PDFParse({ data: Buffer.from(pdf.data) });
-    result = await parser.getText();
-  } catch (error) {
-    throw pdfParserError(error);
-  } finally {
-    if (parser) {
-      try { await parser.destroy(); } catch { /* Ingen dokumentdata eller rå parserfeil logges. */ }
-    }
-  }
-  validateParsedPdf(result.total, result.text);
-  return { text: result.text, pages: result.total };
-}
-
-async function parsePdfAgreement(files: readonly PreparedPdf[]) {
+async function parsePdfAgreement(files: readonly PreparedPdf[], signal: AbortSignal, telemetry: AnalysisTelemetry, offset: number) {
   const documentTexts: string[] = [];
   const pageCounts: number[] = [];
-  for (const file of files) {
-    const parsed = await readPdf(file);
+  for (const [index, file] of files.entries()) {
+    signal.throwIfAborted();
+    const bytes = file.data.byteLength;
+    const start = performance.now();
+    const parsed = await telemetry.measure("pdfWorker", () => readPdf(file, signal));
+    telemetry.record("pdfParsing", parsed.parseMs);
+    telemetry.record("textExtraction", parsed.textMs);
+    telemetry.document(offset + index, bytes, parsed.pages, parsed.text.length, performance.now() - start);
     documentTexts.push(parsed.text);
     pageCounts.push(parsed.pages);
+    // Check cumulative limits before spending resources on the next document.
+    validateParsedPdfSide(pageCounts, documentTexts);
   }
-  validateParsedPdfSide(pageCounts, documentTexts);
   return {
-    modelInput: buildUntrustedDocumentInput(documentTexts),
+    modelInput: telemetry.measureSync("inputPreparation", () => buildUntrustedDocumentInput(documentTexts)),
     filename: files.length === 1 ? "1 PDF-dokument" : `${files.length} PDF-dokumenter`,
   };
 }
 
-async function analyzeParsedAgreement(parsed: { modelInput: string; filename: string }) {
-  const extracted = await extractInsuranceData(parsed.modelInput);
-  const withDocumentAddOns = {
+async function analyzeParsedAgreement(parsed: { modelInput: string; filename: string }, signal: AbortSignal, telemetry: AnalysisTelemetry) {
+  const extracted = await extractInsuranceData(parsed.modelInput, signal, telemetry);
+  const withDocumentAddOns = telemetry.measureSync("normalization", () => ({
     ...extracted,
     insurances: extracted.insurances.map(includePdfAddOnTerms),
-  };
+  }));
   return {
     source: "pdf" as const,
     filename: parsed.filename,
-    insuranceData: finalizeAgreementPricing(enrichExtractedAgreementWithCatalog(withDocumentAddOns)),
+    insuranceData: finalizeAgreementPricing(telemetry.measureSync("catalogEnrichment", () =>
+      enrichExtractedAgreementWithCatalog(withDocumentAddOns, new Date(), telemetry.measureSync))),
   };
 }
 
@@ -123,6 +127,7 @@ async function pendingAgreement(
   formData: FormData,
   side: "existing" | "offer",
   rawFiles: readonly File[],
+  signal: AbortSignal,
 ): Promise<PendingAgreement> {
   const mode = formData.get(`${side}Mode`);
   if (mode === "manual") {
@@ -138,7 +143,7 @@ async function pendingAgreement(
   if (mode !== "pdf") throw new ManualAgreementError("Velg PDF eller manuell registrering på begge sider.");
   validatePdfFileList(rawFiles);
   const files: PreparedPdf[] = [];
-  for (const file of rawFiles) files.push(await preparePdf(file));
+  for (const file of rawFiles) { signal.throwIfAborted(); files.push(await preparePdf(file)); }
   return { mode, files };
 }
 
@@ -154,82 +159,104 @@ function responseHeaders(requestId: string): HeadersInit {
 
 export async function POST(request: Request) {
   const requestId = crypto.randomUUID();
+  const telemetry = createAnalysisTelemetry(requestId);
+  const lifecycle = requestLifecycle(request.signal);
+  let release: (() => void) | undefined;
+  let outcome = 500;
+  const respond = (body: unknown, status: number) => {
+    outcome = status;
+    return telemetry.measureSync("response", () => noStoreJson(body, status, {
+      ...responseHeaders(requestId), ...(status === 429 ? { "Retry-After": "5" } : {}),
+    }));
+  };
   try {
     if (!isPilotAccessConfigured()) {
-      return noStoreJson({ error: "Pilottilgang er ikke konfigurert." }, 503, responseHeaders(requestId));
+      return respond({ error: "Pilottilgang er ikke konfigurert." }, 503);
     }
     if (!hasValidPilotSession(request)) {
-      return noStoreJson({ error: "Gyldig pilottilgang kreves." }, 401, responseHeaders(requestId));
+      return respond({ error: "Gyldig pilottilgang kreves." }, 401);
     }
     if (!isSameOriginRequest(request)) {
-      return noStoreJson({ error: "Requesten ble avvist fordi origin ikke stemmer." }, 403, responseHeaders(requestId));
+      return respond({ error: "Requesten ble avvist fordi origin ikke stemmer." }, 403);
     }
-    validateRequestContentLength(request.headers.get("content-length"));
-    if (!request.headers.get("content-type")?.toLowerCase().startsWith("multipart/form-data")) {
-      throw new PdfSecurityError(415, "unsupported_request_type", "Opplastingen må bruke multipart/form-data.");
-    }
-
-    let formData: FormData;
-    try {
-      formData = await request.formData();
-    } catch {
-      throw new PdfSecurityError(422, "invalid_form_data", "Opplastingen kunne ikke leses.");
-    }
-
-    const existingRawFiles = uploadedFiles(formData, "existing");
-    const offerRawFiles = uploadedFiles(formData, "offer");
-    validateAggregatePdfBytes([existingRawFiles, offerRawFiles]);
-
-    const pending = [
-      await pendingAgreement(formData, "existing", existingRawFiles),
-      await pendingAgreement(formData, "offer", offerRawFiles),
-    ] as const;
+    release = analysisAdmission.acquire();
+    const pending = await telemetry.measure("uploadValidation", async () => {
+      validateRequestContentLength(request.headers.get("content-length"));
+      if (!request.headers.get("content-type")?.toLowerCase().startsWith("multipart/form-data")) {
+        throw new PdfSecurityError(415, "unsupported_request_type", "Opplastingen må bruke multipart/form-data.");
+      }
+      const formData = await readBoundedFormData(request, lifecycle.signal, telemetry.upload);
+      const allowed = new Set(["existingMode", "offerMode", "existingManual", "offerManual", "existingFiles", "offerFiles"]);
+      for (const [key, value] of formData.entries()) {
+        if (!allowed.has(key) || (key.endsWith("Files") && !(value instanceof File)) ||
+          (!key.endsWith("Files") && (typeof value !== "string" || formData.getAll(key).length !== 1))) {
+          throw new PdfSecurityError(422, "invalid_form_data", "Ugyldige opplastingsfelt.");
+        }
+      }
+      const existingRawFiles = uploadedFiles(formData, "existing");
+      const offerRawFiles = uploadedFiles(formData, "offer");
+      telemetry.uploadedDocuments(existingRawFiles.length + offerRawFiles.length);
+      validateAggregatePdfBytes([existingRawFiles, offerRawFiles]);
+      for (const side of ["existing", "offer"] as const) {
+        if (formData.get(`${side}Mode`) === "manual" && formData.getAll(`${side}Files`).length) {
+          throw new PdfSecurityError(422, "invalid_form_data", "PDF kan ikke sendes på en manuell side.");
+        }
+      }
+      return [
+        await pendingAgreement(formData, "existing", existingRawFiles, lifecycle.signal),
+        await pendingAgreement(formData, "offer", offerRawFiles, lifecycle.signal),
+      ] as const;
+    });
 
     // Alle PDF-er parses og valideres før første dokument sendes til OpenAI.
-    const parsedPdfAgreements = [];
+    const parsedPdfAgreements: (Awaited<ReturnType<typeof parsePdfAgreement>> | null)[] = [];
+    let documentOffset = 0;
     for (const agreement of pending) {
-      parsedPdfAgreements.push(agreement.mode === "pdf" ? await parsePdfAgreement(agreement.files) : null);
+      parsedPdfAgreements.push(agreement.mode === "pdf"
+        ? await parsePdfAgreement(agreement.files, lifecycle.signal, telemetry, documentOffset) : null);
+      if (agreement.mode === "pdf") documentOffset += agreement.files.length;
+      else telemetry.products(agreement.document.insuranceData.insurances.length);
     }
 
-    const documents = [];
-    for (let index = 0; index < pending.length; index++) {
-      const agreement = pending[index];
-      documents.push(agreement.mode === "manual"
-        ? agreement.document
-        : await analyzeParsedAgreement(parsedPdfAgreements[index]!));
-    }
+    const documents = await analyzeAgreementSides(pending.map((agreement, index) => async () =>
+      agreement.mode === "manual" ? agreement.document
+        : analyzeParsedAgreement(parsedPdfAgreements[index]!, lifecycle.signal, telemetry)),
+    lifecycle.controller);
 
-    const matchingPlan = await runHybridMatching(
+    const matchingPlan = await telemetry.measure("semanticMatching", () => runHybridMatching(
       documents[0].insuranceData.insurances,
       documents[1].insuranceData.insurances,
-      (batch) => requestSemanticMatches(openai(), batch),
-    );
+      (batch) => requestSemanticMatches(openai(), batch, { signal: lifecycle.signal, telemetry }),
+    ));
+    lifecycle.signal.throwIfAborted();
 
-    return noStoreJson({
+    return respond({
       documents: documents.map((document) => sanitizeAnalysisDocumentForClient(document as unknown as Record<string, unknown>)),
       matchingPlan,
-    }, 200, responseHeaders(requestId));
-  } catch (error) {
+    }, 200);
+  } catch (caught) {
+    const error = lifecycle.signal.aborted ? lifecycle.signal.reason : caught;
+    if (error instanceof AnalysisControlError) return respond({ error: error.message }, error.status);
     if (error instanceof ManualAgreementError) {
-      return noStoreJson({ error: error.message }, 400, responseHeaders(requestId));
+      return respond({ error: error.message }, 400);
     }
     if (error instanceof PdfSecurityError) {
-      return noStoreJson({ error: error.message }, error.status, responseHeaders(requestId));
+      return respond({ error: error.message }, error.status);
     }
     const status = externalStatus(error);
     if (status === 429) {
       console.error("ANALYSE_FEIL", safeErrorMetadata(requestId, "external_rate_limit", error));
-      return noStoreJson({ error: "Analysetjenesten har nådd en midlertidig kapasitetsgrense. Prøv igjen senere." }, 429, responseHeaders(requestId));
+      return respond({ error: "Analysetjenesten har nådd en midlertidig kapasitetsgrense. Prøv igjen senere." }, 429);
     }
     const category = error instanceof AnalysisOutputError ? "invalid_ai_output"
       : error instanceof AnalysisServiceError ? error.code
       : status !== null && status >= 500 ? "external_service_error"
       : "analysis_service_error";
     console.error("ANALYSE_FEIL", safeErrorMetadata(requestId, category, error));
-    return noStoreJson(
-      { error: "Analysetjenesten er midlertidig utilgjengelig. Prøv igjen senere." },
-      503,
-      responseHeaders(requestId),
-    );
+    return respond({ error: "Analysetjenesten er midlertidig utilgjengelig. Prøv igjen senere." }, 503);
+  } finally {
+    lifecycle.dispose();
+    release?.();
+    console.info("ANALYSIS_METRICS", JSON.stringify(telemetry.snapshot(outcome)));
   }
 }

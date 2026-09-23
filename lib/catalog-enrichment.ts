@@ -1,10 +1,11 @@
+import type { MeasureSync } from "./analysis-telemetry.ts";
 import type { ExtractedAgreement, ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
 import {
   normalizeCatalogTermKey,
   normalizeTermName,
   relatedCoveragesForInsuranceType,
 } from "./insurance-normalization.ts";
-import { canonicalCoverage } from "./coverage-status.ts";
+import { deriveCanonicalCoverages } from "./coverage-status.ts";
 import { normalizeDocumentFacts } from "./document-fact-normalization.ts";
 import {
   findCatalogProductBySelection,
@@ -62,16 +63,17 @@ function enrichInsurance(
   company: string | null,
   insurance: ExtractedInsurance,
   asOf: Date,
+  measure: MeasureSync,
 ): CatalogEnrichedInsurance {
   // undefined betyr et eldre internt kall uten feltet; null fra dagens schema
   // betyr uttrykkelig at produktnivået ikke kunne identifiseres sikkert.
   const productIdentity = insurance.canonicalProductName === undefined
     ? insurance.productName
     : insurance.canonicalProductName;
-  const product = company && productIdentity
+  const product = measure("catalogLookup", () => company && productIdentity
     ? findCatalogProductBySelection(company, insurance.type, productIdentity)
-    : null;
-  const documentTerms = normalizeDocumentFacts(insurance);
+    : null);
+  const documentTerms = measure("documentNormalization", () => normalizeDocumentFacts(insurance));
   const documentedTotals = [...new Set(documentTerms
     .filter((term) => term.key === "premie.total").map((term) => term.value))];
   // Bare en entydig, eksplisitt objekttotal kan erstatte det eldre premiefeltet.
@@ -97,10 +99,11 @@ function enrichInsurance(
   }
   const factKeys = new Set(effectiveFacts.map((fact) => normalizeCatalogTermKey(fact.key)));
   const coverageDefinitions = relatedCoveragesForInsuranceType(insurance.type);
-  const documentCoverageStatuses = new Map(coverageDefinitions.map((definition) => [
-    definition.parentKey,
-    canonicalCoverage({ ...insurance, importantTerms: documentTerms }, insurance.type, definition.parentKey),
-  ]));
+  // Resolve the document's coverage set once, rather than re-deriving the
+  // entire set once for every individual coverage definition.
+  const documentCoverageStatuses = new Map(deriveCanonicalCoverages(
+    { ...insurance, importantTerms: documentTerms }, insurance.type,
+  ).map((coverage) => [coverage.id, coverage]));
   const coverageForFact = (fact: CatalogFact) => {
     const key = normalizeCatalogTermKey(fact.key);
     return coverageDefinitions.find((definition) => definition.parentKey === key ||
@@ -168,10 +171,11 @@ function enrichInsurance(
 export function enrichExtractedAgreementWithCatalog(
   agreement: ExtractedAgreement,
   asOf = new Date(),
+  measure: MeasureSync = (_stage, work) => work(),
 ): CatalogEnrichedAgreement {
   return {
     ...agreement,
     insurances: agreement.insurances.map((insurance) =>
-      enrichInsurance(agreement.company, insurance, asOf)),
+      enrichInsurance(agreement.company, insurance, asOf, measure)),
   };
 }

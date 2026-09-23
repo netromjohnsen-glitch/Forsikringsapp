@@ -1,3 +1,4 @@
+import { ANALYSIS_MODEL } from "./analysis-telemetry.ts";
 import { canonicalInsuranceTypeLabel } from "./insurance-normalization.ts";
 
 export const EXTRACTION_TIMEOUT_MS = 90_000;
@@ -106,7 +107,7 @@ VIKTIG:
 
 export function buildExtractionRequest(input: string) {
   return {
-    model: "gpt-5.6-luna",
+    model: ANALYSIS_MODEL,
     store: false,
     instructions: EXTRACTION_INSTRUCTIONS,
     input,
@@ -273,7 +274,7 @@ export function validateAnalysisOutput(value: unknown): ExtractedAgreement {
 
 export function parseExtractionResponse(response: { status?: string | null; output_text?: string | null }): ExtractedAgreement {
   if (response.status !== undefined && response.status !== "completed") throw new AnalysisOutputError("Analysen ble ikke fullført.");
-  if (!response.output_text) throw new AnalysisOutputError("Analysen ga ikke strukturert output.");
+  if (!response.output_text || response.output_text.length > 4 * 1024 * 1024) throw new AnalysisOutputError("Analysen ga ikke strukturert output.");
   try {
     return validateAnalysisOutput(JSON.parse(response.output_text));
   } catch (error) {

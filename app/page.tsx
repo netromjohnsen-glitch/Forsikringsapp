@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
+import { useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
+import { measureComparisonWork } from "@/lib/comparison-performance";
 import { annualPremiumLabel } from "@/lib/agreement-pricing";
 import type { ManualPremiumSummary } from "@/lib/agreement-pricing";
 import { emptyManualAgreement, emptyManualProduct } from "@/lib/manual-agreement";
@@ -527,10 +528,15 @@ function Comparison({
   second: DocumentResult;
   matchingPlan: MatchingPlan | null;
 }) {
-  const groups = groupInsurances(first.insuranceData.insurances, second.insuranceData.insurances, matchingPlan);
-  const differences = presentImportantDifferences(
-    createDifferences(first, second, groups, matchingPlan), groups, matchingPlan,
-  );
+  const { groups, differences } = useMemo(() => {
+    const { groups, rawDifferences } = measureComparisonWork("comparison", () => {
+      const groups = groupInsurances(first.insuranceData.insurances, second.insuranceData.insurances, matchingPlan);
+      return { groups, rawDifferences: createDifferences(first, second, groups, matchingPlan) };
+    });
+    const differences = measureComparisonWork("presentation", () =>
+      presentImportantDifferences(rawDifferences, groups, matchingPlan));
+    return { groups, differences };
+  }, [first, second, matchingPlan]);
   const totalDifference = differences.find((difference) => difference.type === "price" && !difference.insuranceKey);
   const productPriceDifferences = differences.filter((difference) => difference.type === "price" && difference.insuranceKey);
   const highlightedDifferences = differences

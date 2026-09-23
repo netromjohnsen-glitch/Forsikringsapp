@@ -41,7 +41,8 @@ export function validatePdfFileList(files: readonly File[]): void {
     if (file.size > MAX_PDF_FILE_BYTES) {
       throw new PdfSecurityError(413, "file_too_large", "En PDF er for stor. Maks filstørrelse er 10 MiB.");
     }
-    if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+    if (!file.name.toLowerCase().endsWith(".pdf") ||
+      !["application/pdf", "application/octet-stream", ""].includes(file.type.toLowerCase())) {
       throw new PdfSecurityError(415, "unsupported_file_type", "Alle opplastede filer må være gyldige PDF-er.");
     }
   }
