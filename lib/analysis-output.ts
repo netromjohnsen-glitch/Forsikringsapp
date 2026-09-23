@@ -63,6 +63,10 @@ VIKTIG:
 - Hvis dokumentene ikke gir sikkert grunnlag for å knytte et tillegg til et bestemt forsikringsobjekt, behold opplysningene adskilt fremfor å gjette.
 - deductible skal inneholde egenandeler for den aktuelle forsikringen når de er oppgitt.
 - Legg relevante vilkår for hver forsikring i dens importantTerms, med korte og presise navn.
+- Legg eksplisitte valg og avslag som egne vilkår, for eksempel «Leiebil: valgt» eller «Leiebil: ikke valgt».
+- Del sammensatte grenser i egne importantTerms når dokumentet oppgir dem: alder og kilometer for maskinskade og totalskadegaranti, samt forsikringssum for bilnøkkel. Behold den konkrete dokumentverdien.
+- Legg førstegangsregistrering, årlig kjørelengde og kilometerstand i egne importantTerms når de er uttrykkelig oppgitt.
+- Når kundens forsikringsbevis og generelle produktvilkår oppgir ulike verdier for samme avtale, skal den konkrete verdien i forsikringsbeviset brukes.
 - Ikke konkluder med at en dekning mangler bare fordi et bestemt ord ikke brukes. Vurder formuleringen og betydningen.
 - Ikke presenter én forsikring som bedre enn en annen. Hent ut faktainformasjonen slik at systemet kan sammenligne dem.
 `;

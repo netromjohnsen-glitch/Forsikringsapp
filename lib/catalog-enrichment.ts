@@ -4,6 +4,8 @@ import {
   normalizeTermName,
   relatedCoveragesForInsuranceType,
 } from "./insurance-normalization.ts";
+import { canonicalCoverage } from "./coverage-status.ts";
+import { normalizeDocumentFacts } from "./document-fact-normalization.ts";
 import {
   findCatalogProductBySelection,
   resolveCatalogEvidence,
@@ -50,13 +52,6 @@ function catalogTerm(fact: CatalogFact, allFacts: readonly CatalogFact[]): Enric
   };
 }
 
-function documentTermKey(term: ExtractedTerm, insurance: ExtractedInsurance): string {
-  return normalizeCatalogTermKey(normalizeTermName(term.name, {
-    insuranceType: insurance.type,
-    termValue: term.value,
-  }));
-}
-
 const normalizeLabel = (value: string) => value.normalize("NFKC")
   .toLocaleLowerCase("nb-NO")
   .replace(/[^\p{L}\p{N}]+/gu, " ")
@@ -71,16 +66,15 @@ function enrichInsurance(
   const product = company && insurance.productName
     ? findCatalogProductBySelection(company, insurance.type, insurance.productName)
     : null;
-  const documentTerms: EnrichedTerm[] = insurance.importantTerms.map((term) => ({
-    ...term,
-    coverageOrigin: "document",
-  }));
+  const documentTerms = normalizeDocumentFacts(insurance);
   if (!product) return { ...insurance, importantTerms: documentTerms, catalogReference: null };
 
   const effectiveFacts = resolveCatalogFacts(product, [], asOf, null);
   const catalogFacts = resolveCatalogEvidence(product, [], asOf, null);
-  const documentedKeys = new Set(insurance.importantTerms.map((term) => documentTermKey(term, insurance)));
-  for (const term of insurance.importantTerms) {
+  const documentedKeys = new Set(documentTerms.map((term) => normalizeCatalogTermKey(
+    term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type, termValue: term.value }),
+  )));
+  for (const term of documentTerms) {
     const label = normalizeLabel(term.name);
     for (const fact of effectiveFacts) {
       if (normalizeLabel(fact.label) === label) documentedKeys.add(normalizeCatalogTermKey(fact.key));
@@ -91,15 +85,25 @@ function enrichInsurance(
   }
   const factKeys = new Set(effectiveFacts.map((fact) => normalizeCatalogTermKey(fact.key)));
   const coverageDefinitions = relatedCoveragesForInsuranceType(insurance.type);
+  const documentCoverageStatuses = new Map(coverageDefinitions.map((definition) => [
+    definition.parentKey,
+    canonicalCoverage({ ...insurance, importantTerms: documentTerms }, insurance.type, definition.parentKey),
+  ]));
   const coverageForFact = (fact: CatalogFact) => {
     const key = normalizeCatalogTermKey(fact.key);
     return coverageDefinitions.find((definition) => definition.parentKey === key ||
+      (definition.parentKey.endsWith(".dekning") &&
+        key.startsWith(definition.parentKey.slice(0, -"dekning".length))) ||
       definition.details.some((detail) => detail.key === key ||
         Boolean(detail.keyPrefix && key.startsWith(detail.keyPrefix))));
   };
   const supplementalTerms = effectiveFacts
     .filter((fact) => {
       const definition = coverageForFact(fact);
+      const documentCoverage = definition && documentCoverageStatuses.get(definition.parentKey);
+      // Et eksplisitt avslag eller en dokumentert konflikt skal ikke få
+      // katalogdetaljer presentert som kundens effektive vilkår.
+      if (documentCoverage?.evidence.length && documentCoverage.status !== "selected") return false;
       // Detaljer uten en tilhørende hoveddekning beskriver bare en mulig
       // variant. De berikes først når kundedokumentet faktisk omtaler den.
       return !definition || factKeys.has(definition.parentKey) ||

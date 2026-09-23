@@ -47,7 +47,35 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "glass.dekning": ["glass", "glasskade", "glasskader"],
     "veihjelp.dekning": ["veihjelp", "redning", "assistanse", "redning og assistanse"],
     "maskinskade.dekning": ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
+    "maskinskade.alder": [
+      "maskinskade alder", "maskinskade aldersgrense", "aldersgrense maskinskade",
+      "motor og girskade alder", "motor og girskade aldersgrense",
+    ],
+    "maskinskade.km": [
+      "maskinskade kilometer", "maskinskade kilometergrense", "kilometergrense maskinskade",
+      "motor og girskade kilometer", "motor og girskade kilometergrense",
+    ],
     "bilnokkel.dekning": ["bilnøkkel", "bilnøkkeldekning", "nøkkeldekning"],
+    "bilnokkel.grense": [
+      "bilnøkkel forsikringssum", "bilnøkkel beløpsgrense", "bilnøkkel erstatningsgrense",
+    ],
+    "bilnokkel.egenandel": ["bilnøkkel egenandel"],
+    "nyverdi.alder": [
+      "totalskadegaranti alder", "totalskadegaranti aldersgrense",
+      "nyverdierstatning alder", "nyverdierstatning aldersgrense",
+    ],
+    "nyverdi.km": [
+      "totalskadegaranti kilometer", "totalskadegaranti kilometergrense",
+      "nyverdierstatning kilometer", "nyverdierstatning kilometergrense",
+    ],
+    "kjoretoy.forstegangsregistrering": [
+      "første gang registrert", "førstegangsregistrert", "førstegangsregistrering",
+      "første registreringsdato",
+    ],
+    "kjoretoy.kjorelengde": ["kjørelengde", "årlig kjørelengde"],
+    "kjoretoy.kilometerstand": ["kilometerstand"],
+    "parkering.alder": ["parkeringsskade alder", "parkeringsskade aldersgrense"],
+    "parkering.grense": ["parkeringsskade forsikringssum", "parkeringsskade beløpsgrense"],
     "ladekabel.dekning": ["ladekabel", "ladekabeldekning"],
     "punktering.dekning": ["punktering", "punkteringsskade", "punkteringsdekning"],
   },
@@ -295,7 +323,14 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
     },
     { parentKey: "glass.dekning", label: "Glass", details: [] },
     { parentKey: "veihjelp.dekning", label: "Veihjelp", details: [] },
-    { parentKey: "bilnokkel.dekning", label: "Bilnøkkel", details: [] },
+    {
+      parentKey: "bilnokkel.dekning",
+      label: "Bilnøkkel",
+      details: [
+        { key: "bilnokkel.grense", summaryLabel: "forsikringssum" },
+        { key: "bilnokkel.egenandel", summaryLabel: "egenandel" },
+      ],
+    },
     { parentKey: "ladekabel.dekning", label: "Ladekabel", details: [] },
     { parentKey: "punktering.dekning", label: "Punkteringsskade", details: [] },
   ],
