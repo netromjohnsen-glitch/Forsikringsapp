@@ -190,12 +190,13 @@ export function groupAddOnNames(insurances: ComparedInsurance[], insuranceType: 
   const names = insurances.flatMap((insurance) => {
     const explicit = selectedAddOns(insurance, insuranceType);
     const keys = new Set(explicit.map((addon) => normalizeTermName(addon.name, { insuranceType })));
-    // Both metadata and an explicit effective document selection are required.
-    // Catalog availability and detail-only inference never select an add-on.
+    // Reuse the coverage engine's effective selection, including documented
+    // main values/details. Metadata establishes addon role; catalog alone
+    // cannot establish the customer's selection.
     const effective = deriveCanonicalCoverages(insurance, insuranceType).filter((coverage) =>
       !keys.has(coverage.id) && addonDefinitions.some((definition) => definition.parentKey === coverage.id) &&
       coverage.status === "selected" && coverage.evidence.some((evidence) =>
-        evidence.origin === "document" && evidence.kind === "explicit_status" && evidence.status === "selected"));
+        evidence.origin === "document" && evidence.status === "selected"));
     return [...explicit.map((addon) => addon.name), ...effective.map((coverage) => coverage.label)];
   });
   return [...new Set(names)].join(" · ") || null;

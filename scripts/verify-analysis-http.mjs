@@ -7,7 +7,11 @@ import { once } from "node:events";
 import { randomUUID } from "node:crypto";
 import { syntheticPdf } from "../tests/helpers/synthetic-pdf.mjs";
 
+import { pdfAddonSelection } from "../tests/helpers/pdf-addon-selection.mjs";
+import { groupAddOnNames } from "../lib/comparison.ts";
+
 const calls = [];
+let addonScenario = false;
 let peak = 0;
 let active = 0;
 let apiFailure = false;
@@ -24,7 +28,7 @@ const mock = createServer(async (request, response) => {
     response.end(JSON.stringify({ error: { message: "PRIVATE_STUB_ERROR", type: "rate_limit_error" } }));
     return;
   }
-  const content = input.text.format.name === "semantic_insurance_matches" ? { decisions: [] } : {
+  const content = input.text.format.name === "semantic_insurance_matches" ? { decisions: [] } : addonScenario ? pdfAddonSelection() : {
     company: "Syntetisk selskap", totalAnnualPremium: null, totalAnnualPremiumScope: "partial_or_unclear",
     insurances: ["Bil", "Hus", "Innbo", "Reise"].map((type) => ({
       type, productName: "Test", canonicalProductName: null, annualPremium: null, deductible: null,
@@ -151,7 +155,20 @@ try {
   assert.equal(success.semanticMatcher.deterministicMatches, 4);
   assert.equal(success.semanticMatcher.inputTokens, 0);
   assert.equal(success.semanticMatcher.outputTokens, 0);
+  addonScenario = true;
+  const addonResponse = await fetch(base + "/api/analyze", { method: "POST", headers, body: pdfForm() });
+  assert.equal(addonResponse.status, 200);
+  const addonResult = await addonResponse.json();
+  for (const document of addonResult.documents) {
+    const insurance = document.insuranceData.insurances[0];
+    assert.deepEqual(insurance.addOns, []);
+    assert.ok(insurance.catalogReference);
+    assert.equal(groupAddOnNames([insurance], "bil"), "Leiebil · Maskinskade");
+  }
+  assert.equal(calls.length, 6, "addon regression adds only the two expected extraction calls, no semantic call");
   console.log(JSON.stringify({ result: "PASS", checks: [
+    "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+
     "unauthorized", "manual/catalog", "synthetic PDF to mocked AI to response",
     "two-side concurrency", "N documents to M products", "capacity limit", "invalid PDF before AI",
     "strict form fields", "429/no retries/sibling abort", "admission released", "private logging", "semantic fallback telemetry/no unnecessary AI",
