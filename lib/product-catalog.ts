@@ -1,3 +1,4 @@
+import { vehicleObjectProducts, vehicleObjectFacts, vehicleObjectAddOns, vehicleObjectSources } from "./vehicle-object-catalog.ts";
 import { trygAddOns, trygFacts, trygProducts, trygSources } from "./tryg-catalog.ts";
 import { ifAddOns, ifFacts, ifProducts, ifSources } from "./if-catalog.ts";
 import { gjensidigeAddOns, gjensidigeFacts, gjensidigeProducts, gjensidigeSources } from "./gjensidige-catalog.ts";
@@ -89,22 +90,22 @@ export type ProductCatalog = {
 
 export const productCatalog: ProductCatalog = {
   companies: ["Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende"],
-  insuranceTypes: ["Bil", "Hus", "Innbo", "Reise", "Ulykke", "Båt", "MC", "Hund", "Katt", "Barn", "Liv"],
+  insuranceTypes: ["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Ulykke", "Båt", "MC", "Hund", "Katt", "Barn", "Liv"],
   products: [...trygProducts, ...ifProducts, ...gjensidigeProducts, ...storebrandProducts,
     ...sparebank1FremtindProducts, ...dnbFremtindProducts, ...eikaFremtindProducts, ...fremtindProducts, ...frendeProducts,
     ...trygInnboProducts, ...ifInnboProducts, ...gjensidigeInnboProducts, ...storebrandInnboProducts,
     ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts, ...ifHusProducts, ...storebrandHusProducts,
-    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts],
-  addOns: [...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
+    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts],
+  addOns: [...vehicleObjectAddOns, ...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
     ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns,
     ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns],
-  sources: { ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
+  sources: { ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,
     ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources, ...ifHusSources, ...storebrandHusSources,
     ...gjensidigeHusSources, ...fremtindHusSources, ...frendeHusSources, ...trygReiseSources, ...ifReiseSources, ...storebrandReiseSources, ...gjensidigeReiseSources, ...fremtindReiseSources, ...frendeReiseSources },
-  facts: { ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
+  facts: { ...vehicleObjectFacts, ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
     ...sparebank1FremtindFacts, ...dnbFremtindFacts, ...eikaFremtindFacts, ...fremtindFacts, ...frendeFacts,
     ...trygInnboFacts, ...ifInnboFacts, ...gjensidigeInnboFacts, ...storebrandInnboFacts,
     ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts, ...ifHusFacts, ...storebrandHusFacts,
@@ -121,6 +122,7 @@ const normalizeIdentity = (value: string) => value.normalize("NFKC")
 // fjerner ikke selskapsendelser generelt, fordi det kan gi usikre treff.
 const companyAliases: Readonly<Record<string, string>> = {
   "gjensidige forsikring asa": "gjensidige",
+  "eika": "eika fremtind",
 };
 
 function canonicalCompanyIdentity(value: string): string {

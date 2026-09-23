@@ -6,7 +6,7 @@ import {
   relatedCoveragesForInsuranceType,
 } from "./insurance-normalization.ts";
 import { deriveCanonicalCoverages } from "./coverage-status.ts";
-import { normalizeDocumentFacts } from "./document-fact-normalization.ts";
+import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import {
   findCatalogProductBySelection,
   availableAddOns,
@@ -66,6 +66,7 @@ function enrichInsurance(
   insurance: ExtractedInsurance,
   asOf: Date,
   measure: MeasureSync,
+  resolvedDocumentTerms?: DocumentFact[],
 ): CatalogEnrichedInsurance {
   // undefined betyr et eldre internt kall uten feltet; null fra dagens schema
   // betyr uttrykkelig at produktnivået ikke kunne identifiseres sikkert.
@@ -75,7 +76,7 @@ function enrichInsurance(
   const product = measure("catalogLookup", () => company && productIdentity
     ? findCatalogProductBySelection(company, insurance.type, productIdentity)
     : null);
-  const documentTerms = measure("documentNormalization", () => normalizeDocumentFacts(insurance));
+  const documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => normalizeDocumentFacts(insurance));
   const documentedTotals = [...new Set(documentTerms
     .filter((term) => term.key === "premie.total").map((term) => term.value))];
   // Bare en entydig, eksplisitt objekttotal kan erstatte det eldre premiefeltet.
@@ -194,4 +195,11 @@ export function enrichExtractedAgreementWithCatalog(
     insurances: agreement.insurances.map((insurance) =>
       enrichInsurance(agreement.company, insurance, asOf, measure)),
   };
+}
+
+// Consolidation has already normalized and resolved same-side document evidence.
+// Reuse the established catalog policy without re-deriving lower-priority facts
+// from a combined free-text summary or reclassifying catalog evidence as document.
+export function enrichConsolidatedInsurance(company: string | null, insurance: ExtractedInsurance, terms: DocumentFact[], asOf = new Date()): CatalogEnrichedInsurance {
+  return enrichInsurance(company, insurance, asOf, (_stage, work) => work(), terms);
 }

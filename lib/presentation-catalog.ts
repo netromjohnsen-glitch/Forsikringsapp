@@ -1,4 +1,5 @@
-export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise";
+import { vehicleObjectTypes, vehicleObjectCoverages } from "./vehicle-object-registry.ts";
+export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise" | "snøscooter" | "campingvogn" | "tilhenger";
 export type PresentationTier = "primary" | "secondary" | "detail";
 export type PresentationFactType =
   | "coverage"
@@ -95,6 +96,10 @@ const concept = (
 // Rekkefølgen er en eksplisitt, kuratert presentasjonsrekkefølge. Den er ikke
 // en produktpoengsum og sier ikke hvilket produkt som er best.
 export const presentationConcepts: readonly PresentationConcept[] = [
+  ...vehicleObjectTypes.flatMap(({ id }) => vehicleObjectCoverages(id).map((coverage) =>
+    concept(`${id}.${coverage.parentKey.split(".")[1]}`, id, coverage.label,
+      [new RegExp(`^${coverage.parentKey.slice(0, -"dekning".length).replaceAll(".", "\\.")}`, "u")],
+      "primary", ["economic-risk", "level-difference"]))),
   concept("bil.egen-bil", "bil", "Skade på egen bil", [
     /^(?:kasko|parkering|haerverk|feilfylling|reparasjon|tilbehor|bilnokkel|bagasje|leasing)\./u,
   ], "primary", ["economic-risk", "level-difference", "frequently-highlighted"]),

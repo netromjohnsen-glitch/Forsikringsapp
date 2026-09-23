@@ -1,3 +1,4 @@
+import { matchObjects, type ObjectIdentifier, type ObjectComparisonContext } from "./object-matching.ts";
 import { createSemanticAudit, type SemanticAudit, type SemanticAuditCollector } from "./semantic-audit.ts";
 import {
   hasComparableInsuredValue,
@@ -7,6 +8,8 @@ import {
 } from "./insurance-normalization.ts";
 
 export type InsuranceForMatching = {
+  objectIdentifiers?: ObjectIdentifier[];
+  canonicalProductName?: string | null;
   type: string;
   productName: string | null;
   coverageSummary: string | null;
@@ -23,6 +26,7 @@ type TypeCandidate = {
   right: { type: string; productName: string; coverageSummary: string };
 };
 type TermScope = {
+  objectScope?: string;
   id: string;
   leftTypeKey: string;
   rightTypeKey: string;
@@ -45,14 +49,15 @@ export type MatchDecision = {
 };
 export type MatchAssessment = MatchDecision & { accepted: boolean };
 export type MatchingPlan = {
+  objectAware?: boolean;
   insuranceMatches: { leftKey: string; rightKey: string; confidence: number; reason: string }[];
-  termMatches: { leftTypeKey: string; rightTypeKey: string; leftKey: string; rightKeys: string[]; confidence: number; reason: string }[];
+  termMatches: { objectScope?: string; leftTypeKey: string; rightTypeKey: string; leftKey: string; rightKeys: string[]; confidence: number; reason: string }[];
   assessments: MatchAssessment[];
 };
 
 export const MATCH_CONFIDENCE_THRESHOLD = 0.95;
 const MULTI_TERM_THRESHOLD = 0.97;
-const emptyPlan = (): MatchingPlan => ({ insuranceMatches: [], termMatches: [], assessments: [] });
+const emptyPlan = (objectAware = false): MatchingPlan => ({ ...(objectAware ? { objectAware } : {}), insuranceMatches: [], termMatches: [], assessments: [] });
 const short = (value: string | null, max: number) => (value || "").trim().slice(0, max);
 
 function indexByType(insurances: readonly InsuranceForMatching[]) {
@@ -102,7 +107,7 @@ function groupedTerms(insurances: InsuranceForMatching[], typeKey: string, insur
   return grouped;
 }
 
-function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching[], right: InsuranceForMatching[], counts: MatchingCounts, audit?: SemanticAuditCollector): TermScope | null {
+function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching[], right: InsuranceForMatching[], counts: MatchingCounts, audit?: SemanticAuditCollector, objectScope?: string): TermScope | null {
   // Flere objekter av samme type gir ikke nok kontekst for semantisk vilkårsmatching.
   if (left.length !== 1 || right.length !== 1) return null;
   const insuredValueConfirmed = hasComparableInsuredValue(
@@ -123,7 +128,7 @@ function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching
     [...rightTerms.values()].some((other) => compatibleTermIds(term.id, other.id)));
   const rightCandidates = [...rightTerms.values()].filter((term) =>
     leftCandidates.some((other) => compatibleTermIds(other.id, term.id)));
-  const scopeId = `terms:${leftKey}|${rightKey}`;
+  const scopeId = objectScope ? `terms:${objectScope}` : `terms:${leftKey}|${rightKey}`;
   for (const [terms, others, selected, type, items] of [
     [leftTerms, rightTerms, leftCandidates, leftKey, left],
     [rightTerms, leftTerms, rightCandidates, rightKey, right],
@@ -135,12 +140,13 @@ function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching
   counts.unresolvedCandidates += leftCandidates.length + rightCandidates.length;
   if (!leftCandidates.length || !rightCandidates.length) return null;
   return {
-    id: `terms:${leftKey}|${rightKey}`,
+    id: scopeId,
+    ...(objectScope ? { objectScope } : {}),
     leftTypeKey: leftKey,
     rightTypeKey: rightKey,
     insuranceType: left[0].type,
-    leftProductName: short(left[0].productName, 100),
-    rightProductName: short(right[0].productName, 100),
+    leftProductName: short(objectScope ? left[0].canonicalProductName ?? null : left[0].productName, 100),
+    rightProductName: short(objectScope ? right[0].canonicalProductName ?? null : right[0].productName, 100),
     leftTerms: leftCandidates.slice(0, 12),
     rightTerms: rightCandidates.slice(0, 12),
   };
@@ -159,13 +165,20 @@ function compatibleTermIds(left: string, right: string): boolean {
 }
 
 export function buildMatchingBatch(left: readonly InsuranceForMatching[], right: readonly InsuranceForMatching[],
-  counts: MatchingCounts = { deterministicMatches: 0, unresolvedCandidates: 0 }, audit?: SemanticAuditCollector): MatchingBatch {
+  counts: MatchingCounts = { deterministicMatches: 0, unresolvedCandidates: 0 }, audit?: SemanticAuditCollector, objectAware = false, objectContext: ObjectComparisonContext = {}): MatchingBatch {
   const leftTypes = indexByType(left);
   const rightTypes = indexByType(right);
   const typeCandidates: TypeCandidate[] = [];
   const termScopes: TermScope[] = [];
 
-  for (const [leftKey, leftItems] of leftTypes) {
+  if (objectAware) {
+    for (const match of matchObjects(left, right, undefined, objectContext)) {
+      if (match.status !== "matched") continue;
+      counts.deterministicMatches++;
+      const scope = termScope(match.insuranceType, match.insuranceType, [left[match.existing[0]]], [right[match.offer[0]]], counts, audit, match.scopeId);
+      if (scope) termScopes.push(scope);
+    }
+  } else for (const [leftKey, leftItems] of leftTypes) {
     const deterministicRight = rightTypes.get(leftKey);
     if (deterministicRight) {
       counts.deterministicMatches++;
@@ -236,16 +249,18 @@ export async function runHybridMatching(
   right: readonly InsuranceForMatching[],
   requestSemantic: (batch: MatchingBatch) => Promise<unknown>,
   recordMetrics?: (metrics: SemanticMatcherMetrics) => void,
+  objectAware = false,
+  objectContext: ObjectComparisonContext = {},
 ): Promise<MatchingPlan> {
   const started = performance.now();
   const metrics: SemanticMatcherMetrics = { invoked: false, deterministicMatches: 0,
     unresolvedCandidates: 0, semanticCandidatesSent: 0, semanticMatchesAccepted: 0, durationMs: 0 };
   const audit = createSemanticAudit();
-  const batch = buildMatchingBatch(left, right, metrics, audit);
+  const batch = buildMatchingBatch(left, right, metrics, audit, objectAware, objectContext);
   metrics.semanticCandidatesSent = batch.typeCandidates.length + batch.termScopes.reduce(
     (sum, scope) => sum + scope.leftTerms.length + scope.rightTerms.length, 0);
   const finish = () => recordMetrics?.({ ...metrics, audit: audit.snapshot(), durationMs: performance.now() - started });
-  if (!metrics.semanticCandidatesSent) { finish(); return emptyPlan(); }
+  if (!metrics.semanticCandidatesSent) { finish(); return emptyPlan(objectAware); }
 
   try {
     metrics.invoked = true;
@@ -253,9 +268,9 @@ export async function runHybridMatching(
     audit.outcome("INVALID_RESPONSE");
     if (!response || typeof response !== "object" ||
       Object.keys(response).some((key) => key !== "decisions") ||
-      !Array.isArray((response as { decisions?: unknown }).decisions)) return emptyPlan();
+      !Array.isArray((response as { decisions?: unknown }).decisions)) return emptyPlan(objectAware);
     const decisions: unknown[] = (response as { decisions: unknown[] }).decisions;
-    if (decisions.length > 120 || !decisions.every((item) => validDecision(item, batch))) return emptyPlan();
+    if (decisions.length > 120 || !decisions.every((item) => validDecision(item, batch))) return emptyPlan(objectAware);
     const validated = decisions as MatchDecision[];
     const usage = new Map<string, number>();
     for (const item of validated) {
@@ -289,6 +304,7 @@ export async function runHybridMatching(
       if (scope.leftTypeKey !== scope.rightTypeKey &&
           !insuranceMatches.some((match) => match.leftKey === scope.leftTypeKey && match.rightKey === scope.rightTypeKey)) return [];
       return [{
+        ...(scope.objectScope ? { objectScope: scope.objectScope } : {}),
         leftTypeKey: scope.leftTypeKey,
         rightTypeKey: scope.rightTypeKey,
         leftKey: item.leftId.slice(2),
@@ -300,7 +316,7 @@ export async function runHybridMatching(
     audit.outcome("RESPONSE_PROCESSED");
     for (const item of assessments) {
       const accepted = item.accepted && (item.kind === "insurance" || termMatches.some((match) =>
-        match.leftKey === item.leftId.slice(2) && item.scopeId === `terms:${match.leftTypeKey}|${match.rightTypeKey}`));
+        match.leftKey === item.leftId.slice(2) && item.scopeId === (match.objectScope ? `terms:${match.objectScope}` : `terms:${match.leftTypeKey}|${match.rightTypeKey}`)));
       const reason = accepted ? "SEMANTIC_ACCEPTED" : item.decision === "no_match" ? "MODEL_NO_MATCH"
         : item.decision === "uncertain" ? "MODEL_UNCERTAIN"
         : item.confidence < (item.rightIds.length > 1 ? MULTI_TERM_THRESHOLD : MATCH_CONFIDENCE_THRESHOLD) ? "LOW_CONFIDENCE"
@@ -310,10 +326,10 @@ export async function runHybridMatching(
       audit.decision(item.scopeId, [item.leftId, ...item.rightIds], item.decision === "match", accepted, reason);
     }
     metrics.semanticMatchesAccepted = insuranceMatches.length + termMatches.length;
-    return { insuranceMatches, termMatches, assessments };
+    return { ...(objectAware ? { objectAware } : {}), insuranceMatches, termMatches, assessments };
   } catch {
     audit.outcome("REQUEST_FAILED");
-    return emptyPlan();
+    return emptyPlan(objectAware);
   } finally {
     finish();
   }

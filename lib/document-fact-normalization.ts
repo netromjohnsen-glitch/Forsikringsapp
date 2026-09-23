@@ -1,3 +1,4 @@
+import { vehicleObjectType, vehicleObjectFactKeys } from "./vehicle-object-registry.ts";
 import type { ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
 import {
   normalizeCatalogTermKey,
@@ -41,6 +42,11 @@ function explicitKey(
   if (normalizeInsuranceType(insurance.type) === "bil") {
     const labelKey = normalizeTermName(term.name, { insuranceType: insurance.type });
     if (["kjoretoy.kilometerstand", "kjoretoy.avtalt_maks_kilometerstand", "kjoretoy.kjorelengde"].includes(labelKey)) return labelKey;
+  }
+  const objectType = vehicleObjectType(normalizeInsuranceType(insurance.type));
+  if (objectType && term.canonicalKey && !term.canonicalKey.startsWith("premie.") &&
+      !(term.canonicalKey.startsWith(`${objectType.prefix}.`) && vehicleObjectFactKeys.some((key) => key === term.canonicalKey))) {
+    return normalizeTermName(term.name, { insuranceType: insurance.type, relatedCoverageParentKeys });
   }
   if (term.canonicalKey) {
     // A generic repair key from extraction must not override an exact, scoped

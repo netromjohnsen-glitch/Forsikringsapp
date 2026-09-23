@@ -9,10 +9,14 @@ import { syntheticPdf } from "../tests/helpers/synthetic-pdf.mjs";
 
 import { pdfAddonSelection } from "../tests/helpers/pdf-addon-selection.mjs";
 import { readAnalysisResponse } from "../lib/analysis-client.ts";
-import { groupAddOnNames } from "../lib/comparison.ts";
+import { groupAddOnNames, groupInsurances } from "../lib/comparison.ts";
 
 const calls = [];
 let addonScenario = false;
+let vehicleObjectScenario = false;
+let portfolioScenario = false;
+let portfolioCalls = 0;
+let consolidationScenario = false;
 let peak = 0;
 let active = 0;
 let apiFailure = false;
@@ -30,13 +34,30 @@ const mock = createServer(async (request, response) => {
     return;
   }
   const content = input.text.format.name === "semantic_insurance_matches" ? { decisions: [] } : addonScenario ? pdfAddonSelection() : {
-    company: "Syntetisk selskap", totalAnnualPremium: null, totalAnnualPremiumScope: "partial_or_unclear",
-    insurances: ["Bil", "Hus", "Innbo", "Reise"].map((type) => ({
-      type, company: "Syntetisk selskap", documentIndices: Array.from({length: input.text.format.schema.properties.insurances.items.properties.documentIndices.maxItems}, (_,i)=>i+1), productName: "Test", canonicalProductName: null, annualPremium: null, deductible: null,
+    company: vehicleObjectScenario ? "If" : "Syntetisk selskap", totalAnnualPremium: null, totalAnnualPremiumScope: "partial_or_unclear",
+    insurances: (vehicleObjectScenario ? ["Bil", "Snøscooter", "Campingvogn", "Tilhenger"] : ["Bil", "Hus", "Innbo", "Reise"]).map((type) => ({
+      type, company: vehicleObjectScenario ? "If" : "Syntetisk selskap", documentIndices: Array.from({length: input.text.format.schema.properties.insurances.items.properties.documentIndices.maxItems}, (_,i)=>i+1), productName: vehicleObjectScenario ? "Kasko" : "Test", canonicalProductName: vehicleObjectScenario ? "Kasko" : null, annualPremium: null, deductible: null,
       coverageSummary: "PRIVATE_OUTPUT_SENTINEL",
       importantTerms: [], addOns: [],
     })),
   };
+  if (portfolioScenario && input.text.format.name !== "semantic_insurance_matches") {
+    const reverse = portfolioCalls++ % 2 === 1;
+    content.insurances = ["Bil", "Bil", "Bil", "Tilhenger", "Tilhenger", "Snøscooter", "Campingvogn"].map((type, i) => ({
+      ...content.insurances[0], type, company: reverse ? "Tryg" : "If", productName: "Kasko", canonicalProductName: "Kasko",
+      objectIdentifiers: [{ type: "registration", value: `ZZ90${100+i}`, documentIndices: [1] }],
+      importantTerms: [{ name: "Forsikringspris", value: `${1000+i} kr`, canonicalKey: "premie.ekskl_tfa", documentIndices: [1] }],
+    }));
+    if (consolidationScenario) {
+      content.insurances = content.insurances.flatMap((item, i) => [
+        { ...item, documentIndices: [1], documentRole: "individual_agreement", agreementPeriod: null },
+        ...(i === 0 || i === 2 || i === 3 ? [{ ...item, documentIndices: [2], documentRole: "individual_agreement", agreementPeriod: null,
+          objectIdentifiers: item.objectIdentifiers.map(id => ({ ...id, documentIndices: [2] })),
+          importantTerms: [{ name: "Egenandel", value: "6000 kr", canonicalKey: null, documentIndices: [2] }] }] : []),
+      ]);
+    }
+    if (reverse) content.insurances.reverse();
+  }
   response.writeHead(200, { "content-type": "application/json" });
   response.end(JSON.stringify({
     id: "resp_local", object: "response", status: "completed", model: input.model,
@@ -200,6 +221,49 @@ try {
   const partial=await readAnalysisResponse(partialResponse,e=>partialProgress.push(e));
   assert.equal(partial.analysis.partialSuccess,true);assert.equal(partial.analysis.failedDocuments,1);assert.equal(partial.analysis.successfulDocuments,5);
   assert.equal(partialProgress.at(-1).partialSuccess,true);
+  vehicleObjectScenario = true;
+  const vehicleProgress = [], beforeVehicle = calls.length;
+  const vehicleResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3)});
+  const vehicleResult = await readAnalysisResponse(vehicleResponse,e=>vehicleProgress.push(e));
+  assert.equal(vehicleResult.analysis.successfulDocuments,6);
+  assert.equal(calls.length-beforeVehicle,2,'new types introduce no extra AI calls');
+  for (const document of vehicleResult.documents) {
+    assert.deepEqual(document.insuranceData.insurances.map(p=>p.type),['Bil','Snøscooter','Campingvogn','Tilhenger']);
+    assert.ok(document.insuranceData.insurances.every(p=>p.catalogReference?.providerId==='if'));
+    assert.ok(document.insuranceData.insurances.every(p=>p.documentReferences.length===3));
+  }
+  assert.equal(groupInsurances(...vehicleResult.documents.map(d=>d.insuranceData.insurances),null).length,4);
+  for(const type of ['snøscooter','campingvogn','tilhenger'])assert.ok(vehicleProgress.some(e=>e.type==='product_status'&&e.insuranceType===type));
+  portfolioScenario = true;
+  const portfolioProgress = [];
+  const portfolioResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3)});
+  const portfolioResult = await readAnalysisResponse(portfolioResponse,e=>portfolioProgress.push(e));
+  const portfolioGroups = groupInsurances(...portfolioResult.documents.map(d=>d.insuranceData.insurances),portfolioResult.matchingPlan);
+  assert.equal(portfolioGroups.length,7);
+  assert.ok(portfolioGroups.every(g=>g.objectMatch.reason==='EXACT_OBJECT_ID' && g.first[0].objectIdentifiers[0].value===g.second[0].objectIdentifiers[0].value));
+  assert.ok(portfolioResult.documents.every(d=>d.insuranceData.insurances.every(p=>p.objectIdentifiers[0].sources[0].documentId.startsWith('pdf:'))));
+  assert.equal(portfolioCalls,2);
+  assert.doesNotMatch(JSON.stringify(portfolioProgress),/ZZ90[0-9]+/);
+  assert.doesNotMatch(logs,/ZZ90[0-9]+/);
+  consolidationScenario = true;
+  const consolidatedResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3)});
+  const consolidatedResult = await readAnalysisResponse(consolidatedResponse, e=>assert.doesNotMatch(JSON.stringify(e),/ZZ90[0-9]+/));
+  for (const document of consolidatedResult.documents) {
+    const objects = document.insuranceData.insurances;
+    assert.equal(objects.length,7);
+    assert.equal(objects.filter(p=>p.consolidation.status==='consolidated').length,3);
+    for (const object of objects.filter(p=>p.consolidation.status==='consolidated')) {
+      assert.equal(object.recordEvidence.length,2);
+      assert.equal(object.documentReferences.length,2);
+      assert.ok(object.importantTerms.some(t=>t.value==='6000 kr'));
+      assert.ok(object.importantTerms.some(t=>t.key==='premie.ekskl_tfa'));
+    }
+  }
+  assert.ok(groupInsurances(...consolidatedResult.documents.map(d=>d.insuranceData.insurances),consolidatedResult.matchingPlan).every(g=>g.objectMatch.reason==='EXACT_OBJECT_ID'));
+  assert.doesNotMatch(logs,/ZZ90[0-9]+/);
+  consolidationScenario = false;
+  portfolioScenario = false;
+  vehicleObjectScenario = false;
   await delay(100);
   const aborted = new AbortController();
   const abortResponse = await fetch(base+'/api/analyze',{method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(2),signal:aborted.signal});
@@ -220,6 +284,9 @@ try {
   for(const value of [code,secret,key,'PRIVATE_PDF_SENTINEL','PRIVATE_OUTPUT_SENTINEL','PRIVATE_FILENAME','INVALID_PHASE2'])assert.equal(logs.includes(value),false);
   console.log(JSON.stringify({ result: "PASS", checks: [
     "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+    "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+    "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+    "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
     "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
 
     "unauthorized", "manual/catalog", "synthetic PDF to mocked AI to response",

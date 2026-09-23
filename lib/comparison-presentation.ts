@@ -266,7 +266,10 @@ export function presentImportantDifferences(
   );
   const result: PresentedDifference[] = [...prices, ...filtered.filter((difference) => !difference.insuranceKey)];
   for (const group of groups) {
-    const families = groupDifferences(group, filtered.filter((difference) => difference.insuranceKey === group.key));
+    const scoped = filtered.filter(difference => difference.insuranceKey === group.key && difference.objectScope === group.scopeId);
+    result.push(...scoped.filter(difference => difference.kind === "object"));
+    const families = groupDifferences(group, scoped.filter(difference => difference.kind !== "object"));
+    families.forEach(family => { family.objectScope = group.scopeId; });
     const totalskade = families.find((family) => family.conceptId === "bil.totalskade");
     if (totalskade) {
       // Read effective canonical facts, including limits that are equal on both

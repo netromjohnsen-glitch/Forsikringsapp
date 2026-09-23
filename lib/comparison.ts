@@ -1,6 +1,8 @@
+import type { ConsolidatedDocumentObject } from "./insurance-object-consolidation.ts";
+import type { AgreementPeriod, ConsolidationInfo, DocumentRole } from "./object-consolidation.ts";
+import { matchObjects, objectDisplayLabel, objectWarning, type ObjectIdentifier, type ObjectMatch, type ObjectComparisonContext } from "./object-matching.ts";
 import { vehiclePriceDifferences, isVehiclePriceKey, vehiclePrices } from "./vehicle-price-presentation.ts";
 import {
-  canonicalInsuranceTypeLabel,
   isMotorVehicleType,
   comparisonTermIdentities,
   hasComparableInsuredValue,
@@ -20,6 +22,7 @@ import { materiallyEquivalentValues } from "./value-equivalence.ts";
 import type { BuildingFactData } from "./building-facts.ts";
 
 export type FactSource = {
+  documentRole?: DocumentRole;
   documentId: string;
   filename: string;
   termsNumber: string;
@@ -44,6 +47,11 @@ export type InsuranceTerm = {
   overriddenBase?: BaseFact[];
 };
 export type ComparedInsurance = {
+  recordEvidence?: ConsolidatedDocumentObject["recordEvidence"];
+  consolidation?: ConsolidationInfo;
+  agreementPeriod?: AgreementPeriod | null;
+  objectIdentifiers?: ObjectIdentifier[];
+  company?: string | null;
   type: string;
   productName: string | null;
   canonicalProductName?: string | null;
@@ -75,6 +83,11 @@ export type ComparedDocument = {
   };
 };
 export type InsuranceGroup = {
+  scopeId?: string;
+  objectMatch?: ObjectMatch;
+  objectLabel?: string;
+  objectContext?: ObjectComparisonContext;
+  allowUnscopedTerms?: boolean;
   key: string;
   label: string;
   first: ComparedInsurance[];
@@ -105,8 +118,9 @@ export type Difference = {
   text: string;
   type: "price" | "advantage" | "tradeoff";
   insuranceKey?: string;
+  objectScope?: string;
   termKey?: string;
-  kind: "price" | "deductible" | "add_on" | "term";
+  kind: "price" | "deductible" | "add_on" | "term" | "object";
   priority: number;
   relatedTermKeys?: string[];
   coverageStatusDifference?: boolean;
@@ -136,39 +150,26 @@ export function parseNumber(value: string | null) {
 }
 const formatPrice = (value: number) => `${new Intl.NumberFormat("nb-NO").format(value)} kr`;
 
-export function groupInsurances(first: ComparedInsurance[], second: ComparedInsurance[], matchingPlan: MatchingPlan | null): InsuranceGroup[] {
-  const groups = new Map<string, InsuranceGroup>();
-  const semanticTypes = new Map(matchingPlan?.insuranceMatches.map((match) => [match.rightKey, match.leftKey]) || []);
-  for (const [side, insurances] of [["first", first], ["second", second]] as const) {
-    for (const insurance of insurances) {
-      const typeContext = { productName: insurance.productName, coverageSummary: insurance.coverageSummary };
-      const originalKey = normalizeInsuranceType(insurance.type, typeContext) || "ukjent forsikring";
-      const key = side === "second" ? semanticTypes.get(originalKey) || originalKey : originalKey;
-      let group = groups.get(key);
-      if (!group) {
-        group = {
-          key,
-          label: canonicalInsuranceTypeLabel(insurance.type, typeContext) || "Ukjent forsikring",
-          first: [], second: [], leftKey: null, rightKey: null,
-        };
-        groups.set(key, group);
-      }
-      group[side].push(insurance);
-      if (side === "first") group.leftKey = originalKey;
-      else group.rightKey = originalKey;
-    }
-  }
-  return [...groups.values()];
+export function groupInsurances(first: ComparedInsurance[], second: ComparedInsurance[], _matchingPlan: MatchingPlan | null, context: ObjectComparisonContext = {}): InsuranceGroup[] {
+  return matchObjects(first, second, undefined, context).map(match => {
+    const left = match.existing.map(i => first[i]), right = match.offer.map(i => second[i]);
+    const object = left[0] ?? right[0];
+    return { key: match.insuranceType, label: match.label, scopeId: match.scopeId,
+      objectMatch: match, objectContext: context,
+      allowUnscopedTerms: [first, second].every(items => items.filter(item => normalizeInsuranceType(item.type, item) === match.insuranceType).length === 1),
+      objectLabel: match.status === "ambiguous" ? `${match.label} – uavklarte objekter` : objectDisplayLabel(object, match.label),
+      first: left, second: right, leftKey: left.length ? match.insuranceType : null, rightKey: right.length ? match.insuranceType : null };
+  });
 }
 
 export function groupValue(insurances: ComparedInsurance[], field: "productName" | "annualPremium" | "deductible" | "coverageSummary") {
   const values = insurances.map((insurance) => {
     const value = insurance[field]?.trim();
     if (field !== "annualPremium" || !value) return value;
-    if (insurance.importantTerms.some((term) => term.key === "premie.total" && term.value.trim() === value)) {
+    if ((!["campingvogn", "tilhenger", "snøscooter"].includes(normalizeInsuranceType(insurance.type)) || insurance.importantTerms.some((term) => term.key === "premie.tfa")) && insurance.importantTerms.some((term) => term.key === "premie.total" && term.value.trim() === value)) {
       return /trafikkforsikringsavgift/iu.test(value) ? value : `${value} inkl. trafikkforsikringsavgift`;
     }
-    if (insurance.importantTerms.some((term) => term.key === "premie.ekskl_tfa" && term.value.trim() === value)) {
+    if ((!["campingvogn", "tilhenger", "snøscooter"].includes(normalizeInsuranceType(insurance.type)) || insurance.importantTerms.some((term) => term.key === "premie.tfa")) && insurance.importantTerms.some((term) => term.key === "premie.ekskl_tfa" && term.value.trim() === value)) {
       return /trafikkforsikringsavgift/iu.test(value) ? value : `${value} ekskl. trafikkforsikringsavgift`;
     }
     return value;
@@ -270,12 +271,13 @@ function coveragePairs(group: InsuranceGroup): Map<string, CoveragePair> {
 }
 
 export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | null): TermGroup[] {
+  if (group.objectMatch?.status === "ambiguous") return [];
   const terms = new Map<string, CollectedTerm>();
   const canonicalCoverages = coveragePairs(group);
   const semanticTerms = new Map<string, string>();
   if (group.leftKey && group.rightKey) {
     for (const match of matchingPlan?.termMatches || []) {
-      if (match.leftTypeKey !== group.leftKey || match.rightTypeKey !== group.rightKey) continue;
+      if (match.leftTypeKey !== group.leftKey || match.rightTypeKey !== group.rightKey || (match.objectScope !== undefined && match.objectScope !== group.scopeId) || ((matchingPlan?.objectAware || group.allowUnscopedTerms === false) && match.objectScope !== group.scopeId)) continue;
       for (const rightKey of match.rightKeys) semanticTerms.set(rightKey, match.leftKey);
     }
   }
@@ -478,33 +480,43 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
   // same explicit input contract and neither side supplies a competing TFA basis.
   const sameManualPriceContract = first.source === "manual" && second.source === "manual" &&
     ![...first.insuranceData.insurances, ...second.insuranceData.insurances].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value));
-  if ((!hasVehicles || sameManualPriceContract) && firstTotal !== null && secondTotal !== null && firstTotal !== secondTotal) differences.push({
+  if (groups.every(group => !group.objectMatch || group.objectMatch.status === "matched") && (!hasVehicles || sameManualPriceContract) && firstTotal !== null && secondTotal !== null && firstTotal !== secondTotal) differences.push({
     title: "Totalpris", text: `${firstTotal < secondTotal ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstTotal - secondTotal))} billigere per år.`,
     type: "price", kind: "price", priority: 0,
   });
 
   for (const group of groups) {
+    if (group.objectMatch && group.objectMatch.status !== "matched") {
+      differences.push({ title: group.objectLabel || group.label, text: objectWarning(group.objectMatch, group.objectContext)!,
+        type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, kind: "object", priority: 1000 });
+      continue;
+    }
     if (!group.first.length || !group.second.length) {
       differences.push({
         title: group.label,
         text: group.first.length
           ? `Registrert i ${firstCompany}; tilsvarende forsikring er ikke dokumentert i ${secondCompany}.`
           : `Registrert i ${secondCompany}; tilsvarende forsikring er ikke dokumentert i ${firstCompany}.`,
-        type: "tradeoff", insuranceKey: group.key, kind: "term", priority: 70,
+        type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, kind: "term", priority: 70,
       });
       continue;
+    }
+    if ([...group.first, ...group.second].some(insurance => insurance.consolidation?.factConflicts?.length)) {
+      differences.push({ title: `Motstridende dokumentopplysninger – ${group.objectLabel || group.label}`,
+        text: "Dokumentene oppgir forskjellige verdier med samme eller uavklart prioritet. Verdiene og kildene er bevart i detaljvisningen; ingen vilkårlig verdi er valgt.",
+        type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, kind: "object", priority: 1000 });
     }
     if (group.first.length === 1 && group.second.length === 1) {
       const vehicle = isMotorVehicleType(group.key);
       if (vehicle) for (const price of vehiclePriceDifferences(group.first[0], group.second[0])) differences.push({
         title: price.label, text: price.text, termKey: price.key,
-        type: "price", insuranceKey: group.key, kind: "price", priority: 0,
+        type: "price", insuranceKey: group.key, objectScope: group.scopeId, kind: "price", priority: 0,
       });
       const firstPrice = vehicle && !sameManualPriceContract ? null : parseNumber(group.first[0].annualPremium);
       const secondPrice = parseNumber(group.second[0].annualPremium);
       if (firstPrice !== null && secondPrice !== null && firstPrice !== secondPrice) differences.push({
         title: "Pris", text: `${firstPrice < secondPrice ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstPrice - secondPrice))} billigere per år.`,
-        type: "price", insuranceKey: group.key, kind: "price", priority: 0,
+        type: "price", insuranceKey: group.key, objectScope: group.scopeId, kind: "price", priority: 0,
       });
     }
     const terms = groupTerms(group, matchingPlan);
@@ -522,7 +534,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
       (term.secondCoverage && term.secondCoverage.status !== "unknown")).map((term) => term.key));
     // Samme dokumenterte vilkår kan ha ulike nøkkelnavn etter semantisk matching.
     for (const match of matchingPlan?.termMatches ?? []) {
-      if (match.leftTypeKey !== group.leftKey || match.rightTypeKey !== group.rightKey) continue;
+      if (match.leftTypeKey !== group.leftKey || match.rightTypeKey !== group.rightKey || (match.objectScope !== undefined && match.objectScope !== group.scopeId) || ((matchingPlan?.objectAware || group.allowUnscopedTerms === false) && match.objectScope !== group.scopeId)) continue;
       for (const keys of [firstDocumentedKeys, secondDocumentedKeys]) {
         if (keys.has(match.leftKey)) match.rightKeys.forEach((key) => keys.add(key));
       }
@@ -544,7 +556,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
             "Særskilte egenandeler kan gjelde for enkelte skadetyper."
           : `${firstCompany}: ${firstDeductible}. ${secondCompany}: ${secondDeductible}. ` +
             "Egenandelenes grunnlag er ikke bekreftet som kundespesifikt; se detaljene.",
-        type: "advantage", insuranceKey: group.key, kind: "deductible", priority: customerSpecific ? 135 : 75,
+        type: "advantage", insuranceKey: group.key, objectScope: group.scopeId, kind: "deductible", priority: customerSpecific ? 135 : 75,
       });
     }
     const bothCatalog = group.first.length === 1 && group.second.length === 1 &&
@@ -560,7 +572,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
           differences.push({
           title: addOn.name,
           text: `${firstCompany} har tillegget ${addOn.name}; det er ikke valgt i ${secondCompany}.${addOnSummary(addOn, comparedKeys, secondDocumentedKeys)}`,
-          type: "tradeoff", insuranceKey: group.key, kind: "add_on", priority: 90,
+          type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, kind: "add_on", priority: 90,
           relatedTermKeys: addOn.importantTerms.flatMap((term) => term.key ? [term.key] : []),
           });
         }
@@ -571,7 +583,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
           differences.push({
           title: addOn.name,
           text: `${secondCompany} har tillegget ${addOn.name}; det er ikke valgt i ${firstCompany}.${addOnSummary(addOn, comparedKeys, firstDocumentedKeys)}`,
-          type: "tradeoff", insuranceKey: group.key, kind: "add_on", priority: 90,
+          type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, kind: "add_on", priority: 90,
           relatedTermKeys: addOn.importantTerms.flatMap((term) => term.key ? [term.key] : []),
           });
         }
@@ -581,14 +593,14 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
       title: term.label,
       text: `Eksisterende: ${coverageStatusLabel(term.firstCoverage!.status, term.firstCoverage!.summary)}. ` +
         `Nytt tilbud: ${coverageStatusLabel(term.secondCoverage!.status, term.secondCoverage!.summary)}.`,
-      type: "tradeoff", insuranceKey: group.key, termKey: term.key, kind: "term",
+      type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, termKey: term.key, kind: "term",
       priority: coverageDifferencePriority(term),
       coverageStatusDifference: true,
     });
     for (const term of comparableDifferences) differences.push({
       title: term.label,
       text: `Eksisterende: ${term.first}. Nytt tilbud: ${term.second}.`,
-      type: "tradeoff", insuranceKey: group.key, termKey: term.key, kind: "term", priority: comparablePriority(term),
+      type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, termKey: term.key, kind: "term", priority: comparablePriority(term),
     });
     // Fravær av tekst er ikke bevis for at en dekning mangler. Fremhev bare
     // dokumentert dekning som ikke finnes i motpartens valgte vilkår.
@@ -602,7 +614,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
       text: term.first
         ? `Eksisterende: ${term.first}. Tilsvarende dekning er ikke funnet i vilkårene for nytt tilbud.`
         : `Nytt tilbud: ${term.second}. Tilsvarende dekning er ikke funnet i vilkårene for eksisterende avtale.`,
-      type: "tradeoff", insuranceKey: group.key, termKey: term.key, kind: "term", priority: 80,
+      type: "tradeoff", insuranceKey: group.key, objectScope: group.scopeId, termKey: term.key, kind: "term", priority: 80,
     });
   }
   return differences;

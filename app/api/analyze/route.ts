@@ -186,6 +186,8 @@ async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => 
       documents[1].insuranceData.insurances,
       (batch) => requestSemanticMatches(openai(), batch, { signal: lifecycle.signal, telemetry }),
       telemetry.semanticMatcher,
+      true,
+      { failedExisting: pipeline.failures.filter(f => f.side === "existing").length, failedOffer: pipeline.failures.filter(f => f.side === "offer").length },
     ));
     lifecycle.signal.throwIfAborted();
 

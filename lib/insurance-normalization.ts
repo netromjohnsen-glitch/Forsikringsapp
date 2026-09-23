@@ -1,3 +1,4 @@
+import { vehicleObjectCoverages, vehicleObjectTypes } from "./vehicle-object-registry.ts";
 // Aliasgrupper er hele betegnelser. Delord og likhetsgrad brukes ikke til matching.
 const insuranceAliases: Record<string, readonly string[]> = {
   bil: ["bil", "personbil", "privatbil", "motorvogn"],
@@ -10,7 +11,8 @@ const insuranceAliases: Record<string, readonly string[]> = {
   campingvogn: ["campingvogn", "caravan"],
   moped: ["moped"],
   atv: ["atv"],
-  snøscooter: ["snøscooter", "snescooter"],
+  snøscooter: ["snøscooter", "snescooter", "snøskuter", "snoscooter", "beltemotorsykkel"],
+  tilhenger: ["tilhenger"],
   traktor: ["traktor"],
   varebil: ["varebil"],
   lastebil: ["lastebil"],
@@ -163,6 +165,7 @@ const canonicalInsuranceTypeLabels: Record<string, string> = {
   moped: "Moped",
   atv: "ATV",
   snøscooter: "Snøscooter",
+  tilhenger: "Tilhenger",
   traktor: "Traktor",
   varebil: "Varebil",
   lastebil: "Lastebil",
@@ -181,6 +184,7 @@ const nonPassengerVehicleAliases: Record<string, readonly string[]> = {
   moped: insuranceAliases.moped,
   atv: insuranceAliases.atv,
   snøscooter: insuranceAliases.snøscooter,
+  tilhenger: insuranceAliases.tilhenger,
   traktor: insuranceAliases.traktor,
   varebil: insuranceAliases.varebil,
   lastebil: insuranceAliases.lastebil,
@@ -246,6 +250,7 @@ export type RelatedCoverage = {
 // De brukes verken som fuzzy matching eller som bevis for dekning på tvers av
 // forsikringstyper. Nye familier kan legges til uten leverandørspesialtilfeller.
 const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
+  ...Object.fromEntries(vehicleObjectTypes.map(({ id }) => [id, vehicleObjectCoverages(id)])),
   bil: [
     {
       parentKey: "leiebil.dekning",
@@ -437,6 +442,9 @@ export function normalizeTermName(value: string | null, context: TermContext = {
   if (isMotorVehicleType(type)) {
     const priceKey = contextualTermLookups.get("bil")?.get(name);
     if (priceKey?.startsWith("premie.")) return priceKey;
+  }
+  for (const definition of vehicleObjectCoverages(type)) {
+    if (definition.aliases.some((alias) => normalizeWords(alias) === name)) return definition.parentKey;
   }
   const contextual = contextualTermLookups.get(type)?.get(name);
   if (contextual) return contextual;

@@ -1,5 +1,7 @@
 "use client";
+import { objectDisplayLabel, objectWarning, type ObjectComparisonContext } from "../lib/object-matching.ts";
 
+import { vehicleObjectTypes } from "../lib/vehicle-object-registry.ts";
 import { useEffect, useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
 import { readAnalysisResponse, validateUploadSelection } from "@/lib/analysis-client";
 import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressState } from "@/lib/analysis-progress";
@@ -33,7 +35,7 @@ type DocumentResult = {
   insuranceData: InsuranceData;
 };
 
-const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise"];
+const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", ...vehicleObjectTypes.map(({ label }) => label)];
 
 export default function Home() {
   const [existingFiles, setExistingFiles] = useState<File[]>([]);
@@ -47,7 +49,7 @@ export default function Home() {
   const [error, setError] = useState("");
   const [progress, setProgress] = useState<ProgressState>(emptyProgress);
   const loading = progress.status === "uploading" || progress.status === "analyzing";
-  const [partial, setPartial] = useState<{ failedDocuments: number; successfulDocuments: number; partialSuccess: boolean; conservativeObjectSeparation?: boolean } | null>(null);
+  const [partial, setPartial] = useState<{ failedDocuments: number; successfulDocuments: number; partialSuccess: boolean; failures?: { side: "existing" | "offer" }[]; conservativeObjectSeparation?: boolean } | null>(null);
   const generation = useRef(createAnalysisGeneration());
   const activeRequest = useRef<AbortController | null>(null);
   useEffect(() => () => { activeRequest.current?.abort(); }, []);
@@ -135,7 +137,7 @@ export default function Home() {
 
       const data = await readAnalysisResponse(response, (event) => {
         if (generation.current.current(requestGeneration)) setProgress((state) => applyProgress(state, event));
-      }) as { documents: DocumentResult[]; matchingPlan?: MatchingPlan; analysis?: { partialSuccess: boolean; failedDocuments: number; successfulDocuments: number; conservativeObjectSeparation?: boolean } };
+      }) as { documents: DocumentResult[]; matchingPlan?: MatchingPlan; analysis?: { partialSuccess: boolean; failedDocuments: number; successfulDocuments: number; failures?: { side: "existing" | "offer" }[]; conservativeObjectSeparation?: boolean } };
       if (!generation.current.current(requestGeneration)) return;
       setDocuments(data.documents);
       setMatchingPlan(data.matchingPlan || null);
@@ -220,7 +222,7 @@ export default function Home() {
         </div>
 
         {documents.length >= 2 && (
-          <Comparison key={`${documents[0].filename}-${documents[1].filename}`} first={documents[0]} second={documents[1]} matchingPlan={matchingPlan} />
+          <Comparison key={`${documents[0].filename}-${documents[1].filename}`} first={documents[0]} second={documents[1]} matchingPlan={matchingPlan} objectContext={{ failedExisting: partial?.failures?.filter(f => f.side === "existing").length, failedOffer: partial?.failures?.filter(f => f.side === "offer").length }} />
         )}
       </div>
     </main>
@@ -549,26 +551,28 @@ function Comparison({
   first,
   second,
   matchingPlan,
+  objectContext,
 }: {
   first: DocumentResult;
   second: DocumentResult;
   matchingPlan: MatchingPlan | null;
+  objectContext?: ObjectComparisonContext;
 }) {
   const { groups, differences } = useMemo(() => {
     const { groups, rawDifferences } = measureComparisonWork("comparison", () => {
-      const groups = groupInsurances(first.insuranceData.insurances, second.insuranceData.insurances, matchingPlan);
+      const groups = groupInsurances(first.insuranceData.insurances, second.insuranceData.insurances, matchingPlan, objectContext);
       return { groups, rawDifferences: createDifferences(first, second, groups, matchingPlan) };
     });
     const differences = measureComparisonWork("presentation", () =>
       presentImportantDifferences(rawDifferences, groups, matchingPlan));
     return { groups, differences };
-  }, [first, second, matchingPlan]);
+  }, [first, second, matchingPlan, objectContext]);
   const totalDifference = differences.find((difference) => difference.type === "price" && !difference.insuranceKey);
   const productPriceDifferences = differences.filter((difference) => difference.type === "price" && difference.insuranceKey);
   const highlightedDifferences = differences
     .filter((difference) => difference.insuranceKey && difference.type !== "price");
   const typeOrder = ["Bil", "Hus", "Innbo", "Reise"];
-  const availableTypes = typeOrder.filter((type) => groups.some((group) => group.label === type));
+  const availableTypes = [...new Set([...typeOrder.filter((type) => groups.some((group) => group.label === type)), ...groups.map((group) => group.label)])];
   const [selectedType, setSelectedType] = useState("overview");
   const visibleGroups = selectedType === "overview"
     ? groups
@@ -576,7 +580,7 @@ function Comparison({
   const previewLimit = selectedType === "overview" ? 3 : 5;
   const visibleGroupsWithDifferences = visibleGroups.map((group) => ({
     group,
-    differences: highlightedDifferences.filter((difference) => difference.insuranceKey === group.key).slice(0, previewLimit),
+    differences: highlightedDifferences.filter((difference) => difference.kind !== "object" && difference.insuranceKey === group.key && difference.objectScope === group.scopeId).slice(0, previewLimit),
   })).filter(({ differences }) => differences.length > 0);
   const tabs = ["overview", ...availableTypes];
 
@@ -665,7 +669,7 @@ function Comparison({
                 </summary>
                 <ul className="mt-3 space-y-1.5 text-slate-700">
                   {productPriceDifferences.map((difference) => (
-                    <li key={`${difference.insuranceKey}:${difference.title}`}><span className="font-medium text-slate-900">{groups.find((group) => group.key === difference.insuranceKey)?.label} · {difference.title}:</span> {difference.text}</li>
+                    <li key={`${difference.objectScope}:${difference.insuranceKey}:${difference.title}`}><span className="font-medium text-slate-900">{groups.find((group) => group.key === difference.insuranceKey && group.scopeId === difference.objectScope)?.objectLabel} · {difference.title}:</span> {difference.text}</li>
                   ))}
                 </ul>
               </details>
@@ -687,17 +691,22 @@ function Comparison({
               {selectedType === "overview" && " Velg en typefane for flere forskjeller."}
             </p>
           </div>
-          {visibleGroups.filter((group) => isMotorVehicleType(group.key) && [...group.first, ...group.second].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value))).map((group) => <section key={`prices:${group.key}`} className="mt-5 rounded-xl border border-slate-200 p-4" aria-label={`${group.label} – prisgrunnlag`}>
-            <h4 className="font-semibold text-slate-900">{group.label} – pris per år</h4>
+          {visibleGroups.map(group => highlightedDifferences.filter(difference => difference.kind === "object" && difference.objectScope === group.scopeId).map(difference =>
+            <section key={`warning:${group.scopeId}`} className="mt-4 border-y border-slate-200" aria-label={group.objectLabel || group.label}>
+              <ConceptFamilyCard difference={difference} />
+            </section>
+          ))}
+          {visibleGroups.filter((group) => group.objectMatch?.status !== "ambiguous" && isMotorVehicleType(group.key) && [...group.first, ...group.second].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value))).map((group) => <section key={`prices:${group.scopeId || group.key}`} className="mt-5 rounded-xl border border-slate-200 p-4" aria-label={`${group.label} – prisgrunnlag`}>
+            <h4 className="font-semibold text-slate-900">{group.objectLabel || group.label} – pris per år</h4>
             <div className="mt-3 grid gap-5 sm:grid-cols-2">{[group.first, group.second].map((insurances, side) => <div key={side}><p className="text-sm font-semibold">{side === 0 ? "Eksisterende" : "Nytt tilbud"}</p>{insurances.map((insurance, index) => <div key={index}>{insurances.length > 1 && <p className="mt-3 text-sm">{insurance.productName || group.label} · objekt {index + 1}</p>}<VehiclePriceList insurance={insurance} /></div>)}</div>)}</div>
             {group.first.length === 1 && group.second.length === 1 && differentVehiclePriceBasis(group.first[0], group.second[0]) && <p className="mt-3 text-sm text-slate-600">Kan ikke sammenlignes direkte – dokumentene oppgir ulikt eller uavklart prisgrunnlag.</p>}
-            {productPriceDifferences.filter((difference) => difference.insuranceKey === group.key).map((difference) => <p className="mt-2 text-sm text-slate-700" key={difference.title}><strong>{difference.title}:</strong> {difference.text}</p>)}
+            {productPriceDifferences.filter((difference) => difference.insuranceKey === group.key && difference.objectScope === group.scopeId).map((difference) => <p className="mt-2 text-sm text-slate-700" key={difference.title}><strong>{difference.title}:</strong> {difference.text}</p>)}
           </section>)}
           {visibleGroupsWithDifferences.length > 0 ? (
             <div className="mt-6 space-y-8">
               {visibleGroupsWithDifferences.map(({ group, differences: groupDifferences }) => (
-                <section key={group.key} aria-labelledby={`difference-group-${group.key}`}>
-                  <h4 id={`difference-group-${group.key}`} className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-500">{group.label}</h4>
+                <section key={group.scopeId || group.key} aria-labelledby={`difference-group-${group.scopeId || group.key}`}>
+                  <h4 id={`difference-group-${group.scopeId || group.key}`} className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-500">{group.objectLabel || group.label}</h4>
                   <div className="mt-2 divide-y divide-slate-200 border-y border-slate-200">
                     {groupDifferences.map((difference) => (
                       <ConceptFamilyCard key={difference.conceptId || difference.title} difference={difference} />
@@ -708,7 +717,7 @@ function Comparison({
             </div>
           ) : (
             <p className="mt-4 text-sm text-slate-600">
-              {visibleGroups.some((group) => [...group.first, ...group.second].some((insurance) =>
+              {visibleGroups.every(group => group.objectMatch && group.objectMatch.status !== "matched") ? "Åpne detaljvisningen for opplysninger om hvert objekt uten sikkert sammenligningspar." : visibleGroups.some((group) => [...group.first, ...group.second].some((insurance) =>
                 insurance.coverageSummary || insurance.deductible || insurance.importantTerms.length
               )) ? "Ingen sikre forskjeller funnet i oppgitte dekninger og vilkår." : "Ingen deknings- eller vilkårsopplysninger er oppgitt for sammenligning."}
             </p>
@@ -747,7 +756,7 @@ function Comparison({
                     missingLabel="Pris ikke oppgitt"
                   />
                   {visibleGroups.map((group) => (
-                    <InsuranceRows key={group.key} group={group} matchingPlan={matchingPlan} />
+                    <InsuranceRows key={group.scopeId || group.key} group={group} matchingPlan={matchingPlan} />
                   ))}
                 </tbody>
               </table>
@@ -890,6 +899,10 @@ function sentenceCase(value: string) {
 }
 
 function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) {
+  if (difference.kind === "object") return <div className="py-5 sm:px-1" role="note">
+    <h5 className="font-semibold text-slate-950">{difference.title}</h5>
+    <p className="mt-2 whitespace-pre-wrap text-sm text-slate-700">{difference.text}</p>
+  </div>;
   const items = difference.items || [difference];
   const orderedItems = orderedFamilyItems(difference.conceptId, items);
   const hero = collapsedHero(difference.conceptId, items);
@@ -1059,11 +1072,62 @@ function SourceDetails({ source, baseLabel }: { source: FactSource; baseLabel?: 
 }
 
 function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchingPlan: MatchingPlan | null }) {
+  if (group.objectMatch && group.objectMatch.status !== "matched") return <tr><td colSpan={3} className="border-y border-slate-200 p-4">
+    <h4 className="font-semibold">{group.objectLabel || group.label}</h4>
+    <p className="mt-2 text-sm">{objectWarning(group.objectMatch, group.objectContext)}</p>
+    {[group.first, group.second].map((items, side) => items.length > 0 && <div key={side} className="mt-4">
+      <p className="text-sm font-semibold">{side === 0 ? "Eksisterende" : "Nytt tilbud"} · objekter uten sammenligningspar</p>
+      {items.map((insurance, index) => <details key={index} className="mt-2 rounded border border-slate-200 p-3">
+        <summary>{objectDisplayLabel(insurance, `${group.label} · objekt ${index + 1}`)} · {insurance.productName || "Produkt ikke dokumentert"}</summary>
+        <p className="mt-2">{insurance.company || "Selskap ikke oppgitt"}</p>
+        <p>{catalogConnectionStatus([insurance])}</p>
+        <p>Årspremie: {insurance.annualPremium || "Pris ikke oppgitt"}</p>
+        <p>Egenandel: {insurance.deductible || "Ikke dokumentert"}</p>
+        <p>Tilleggsdekninger: {groupAddOnNames([insurance], group.key) || "Ikke dokumentert"}</p>
+        <p>{insurance.coverageSummary}</p>
+        {insurance.recordEvidence?.map((record, r) => <details key={`record:${r}`} className="mt-2 text-sm">
+          <summary className="cursor-pointer underline">Vis dokumentgrunnlag · {r + 1}</summary>
+          <p>{record.company} · {record.productName || "Produkt ikke dokumentert"}</p>
+          <p>Dokumentrolle: {record.documentRole === "individual_agreement" ? "Individuell avtale" : record.documentRole === "general_terms" ? "Generelle vilkår" : "Ikke dokumentert"}</p>
+          <p>Avtaleperiode: {record.agreementPeriod?.from || "Ikke dokumentert"} – {record.agreementPeriod?.to || "Ikke dokumentert"}</p>
+          <p>Årspremie: {record.annualPremium || "Ikke dokumentert"} · Egenandel: {record.deductible || "Ikke dokumentert"}</p>
+          {record.sources.map((source, i) => <SourceDetails key={i} source={source} />)}
+          {record.importantTerms.map((term, i) => <p key={i}>{term.name}: {term.value}</p>)}
+        </details>)}
+        {(insurance.objectIdentifiers ?? []).flatMap(id => id.sources ?? []).map((source, i) => <SourceDetails key={`id:${i}`} source={source} />)}
+        {insurance.importantTerms.map((term, i) => <div key={i} className="mt-2 text-sm"><strong>{term.name}:</strong> {term.value}
+          {[...(term.source ? [term.source] : []), ...(term.sources ?? [])].map((source, j) => <SourceDetails key={j} source={source} />)}
+          {term.overriddenBase?.map((base, j) => <SourceDetails key={`base:${j}`} source={base.source} baseLabel={`Grunnverdi på dette objektet: ${base.value}`} />)}
+        </div>)}
+      </details>)}
+    </div>)}
+  </td></tr>;
   return (
     <>
       <tr className="bg-slate-100">
-        <th colSpan={3} className="border-y border-slate-200 px-3 py-2.5 text-left text-xs font-semibold uppercase tracking-[0.1em] text-slate-700">{group.label}</th>
+        <th colSpan={3} className="border-y border-slate-200 px-3 py-2.5 text-left text-xs font-semibold uppercase tracking-[0.1em] text-slate-700">{group.objectLabel || group.label}</th>
       </tr>
+      {group.objectMatch?.status === "matched" && <tr><td colSpan={3} className="px-3 py-2 text-sm text-slate-600">
+        {group.objectMatch.reason === "EXACT_OBJECT_ID" ? "Eksakt objektmatch" : "Entydig typepar – objektidentitet er ikke dokumentert"}
+      </td></tr>}
+      {group.objectMatch?.reason === "EXACT_OBJECT_ID" && <ComparisonRow label="Objektidentitet"
+        first={group.first[0].objectIdentifiers?.map(id => id.value).join(" · ") || null}
+        second={group.second[0].objectIdentifiers?.map(id => id.value).join(" · ") || null}
+        firstSources={group.first[0].objectIdentifiers?.flatMap(id => id.sources ?? [])}
+        secondSources={group.second[0].objectIdentifiers?.flatMap(id => id.sources ?? [])} />}
+      {[...group.first, ...group.second].some(insurance => insurance.company) && <ComparisonRow label="Selskap" first={group.first[0]?.company ?? null} second={group.second[0]?.company ?? null} />}
+      {[...group.first, ...group.second].some(insurance => insurance.consolidation?.status === "consolidated") && <tr className="align-top border-b border-slate-200">
+        <th className="px-3 py-2 text-left text-sm font-medium">Dokumentgrunnlag</th>
+        {[group.first, group.second].map((items, side) => <td key={side} className="px-3 py-2">{items.map((insurance, index) => <div key={index}>{insurance.recordEvidence?.map((record, r) => <details key={`record:${r}`} className="mt-2 text-sm">
+          <summary className="cursor-pointer underline">Vis dokumentgrunnlag · {r + 1}</summary>
+          <p>{record.company} · {record.productName || "Produkt ikke dokumentert"}</p>
+          <p>Dokumentrolle: {record.documentRole === "individual_agreement" ? "Individuell avtale" : record.documentRole === "general_terms" ? "Generelle vilkår" : "Ikke dokumentert"}</p>
+          <p>Avtaleperiode: {record.agreementPeriod?.from || "Ikke dokumentert"} – {record.agreementPeriod?.to || "Ikke dokumentert"}</p>
+          <p>Årspremie: {record.annualPremium || "Ikke dokumentert"} · Egenandel: {record.deductible || "Ikke dokumentert"}</p>
+          {record.sources.map((source, i) => <SourceDetails key={i} source={source} />)}
+          {record.importantTerms.map((term, i) => <p key={i}>{term.name}: {term.value}</p>)}
+        </details>)}</div>)}</td>)}
+      </tr>}
       <ComparisonRow label="Produktnavn" first={groupValue(group.first, "productName")} second={groupValue(group.second, "productName")} />
       <ComparisonRow label="Katalogstatus" first={catalogConnectionStatus(group.first)} second={catalogConnectionStatus(group.second)} />
       <ComparisonRow
