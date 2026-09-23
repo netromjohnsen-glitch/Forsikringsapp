@@ -133,8 +133,10 @@ export function normalizeManualAgreement(input: unknown) {
         annualPremium: null,
         deductible: null,
         source: productCatalog.sources?.[addOn.componentId] ?? null,
+        coverageOrigin: "catalog" as const,
         importantTerms: (productCatalog.facts?.[addOn.componentId] ?? []).map((item) => ({
           name: item.label, value: item.value, key: item.key, source: item.source,
+          coverageOrigin: "catalog" as const,
           deductibleClassification: item.deductibleClassification,
         })),
       };
@@ -151,6 +153,7 @@ export function normalizeManualAgreement(input: unknown) {
           name: item.label,
           value: (counts.get(item.key) ?? 0) > 1 ? `${item.source.termsNumber}: ${item.value}` : item.value,
           key: item.key,
+          coverageOrigin: "catalog" as const,
           structuredValue: item.structuredValue,
           deductibleClassification: item.deductibleClassification,
           source: item.source,
@@ -173,6 +176,7 @@ export function normalizeManualAgreement(input: unknown) {
         }))
         : importantTerms,
       catalogReference,
+      catalogSelectionConfirmed: Boolean(catalogReference),
       catalogFacts,
       addOnIds: catalogReference ? selectedAddOnIds : [],
       addOns,

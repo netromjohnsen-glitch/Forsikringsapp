@@ -7,10 +7,11 @@ import type { ManualPremiumSummary } from "@/lib/agreement-pricing";
 import { emptyManualAgreement, emptyManualProduct } from "@/lib/manual-agreement";
 import type { ManualAgreementInput, ManualProductInput } from "@/lib/manual-agreement";
 import { availableAddOns, findCatalogProduct, findCatalogProductBySelection, productCatalog, productSuggestions } from "@/lib/product-catalog";
-import { createDifferences, groupInsurances, groupTerms, groupValue } from "@/lib/comparison";
+import { createDifferences, groupAddOnNames, groupInsurances, groupTerms, groupValue } from "@/lib/comparison";
 import { presentImportantDifferences, sortDetailedTerms } from "@/lib/comparison-presentation";
 import type { PresentedDifference } from "@/lib/comparison-presentation";
 import type { BaseFact, ComparedInsurance as Insurance, Difference, FactSource, InsuranceGroup } from "@/lib/comparison";
+import { coverageStatusLabel, type CanonicalCoverage } from "@/lib/coverage-status";
 
 type InsuranceData = {
   company: string | null;
@@ -940,6 +941,8 @@ function ComparisonRow({
   secondSources = [],
   firstBaseFacts = [],
   secondBaseFacts = [],
+  firstCoverage = null,
+  secondCoverage = null,
 }: {
   label: string;
   first: string | null;
@@ -951,8 +954,16 @@ function ComparisonRow({
   secondSources?: FactSource[];
   firstBaseFacts?: BaseFact[];
   secondBaseFacts?: BaseFact[];
+  firstCoverage?: CanonicalCoverage | null;
+  secondCoverage?: CanonicalCoverage | null;
 }) {
-  const different = Boolean(first && second && first.trim().toLocaleLowerCase("nb-NO") !== second.trim().toLocaleLowerCase("nb-NO"));
+  const firstDisplay = firstCoverage
+    ? coverageStatusLabel(firstCoverage.status, firstCoverage.summary)
+    : first || firstMissingLabel || missingLabel;
+  const secondDisplay = secondCoverage
+    ? coverageStatusLabel(secondCoverage.status, secondCoverage.summary)
+    : second || secondMissingLabel || missingLabel;
+  const different = firstDisplay.trim().toLocaleLowerCase("nb-NO") !== secondDisplay.trim().toLocaleLowerCase("nb-NO");
 
   return (
     <tr className={different ? "bg-amber-50/60" : ""}>
@@ -961,13 +972,13 @@ function ComparisonRow({
       </td>
 
       <td className="overview-side-existing border-b border-gray-100 p-3 text-gray-900">
-        {first || firstMissingLabel || missingLabel}
+        {firstDisplay}
         {firstSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
         {firstBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på eksisterende avtale: ${base.value}`} />)}
       </td>
 
       <td className="overview-side-offer border-b border-gray-100 p-3 text-gray-900">
-        {second || secondMissingLabel || missingLabel}
+        {secondDisplay}
         {secondSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
         {secondBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på nytt tilbud: ${base.value}`} />)}
       </td>
@@ -1023,8 +1034,8 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
       {showCatalogStatus && <ComparisonRow label="Katalogstatus" first={catalogStatus(group.first)} second={catalogStatus(group.second)} />}
       <ComparisonRow
         label="Tilleggsdekninger"
-        first={group.first.flatMap((insurance) => insurance.addOns?.map((addOn) => addOn.name) || []).join(" · ") || null}
-        second={group.second.flatMap((insurance) => insurance.addOns?.map((addOn) => addOn.name) || []).join(" · ") || null}
+        first={groupAddOnNames(group.first, group.key)}
+        second={groupAddOnNames(group.second, group.key)}
         firstMissingLabel={group.first.length > 0 && group.first.every((insurance) => insurance.catalogReference) ? "Ingen tillegg valgt" : "Ikke dokumentert"}
         secondMissingLabel={group.second.length > 0 && group.second.every((insurance) => insurance.catalogReference) ? "Ingen tillegg valgt" : "Ikke dokumentert"}
       />
@@ -1043,6 +1054,8 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
           secondSources={term.secondSources}
           firstBaseFacts={term.firstBaseFacts}
           secondBaseFacts={term.secondBaseFacts}
+          firstCoverage={term.firstCoverage}
+          secondCoverage={term.secondCoverage}
         />
       ))}
     </>

@@ -77,7 +77,7 @@ test("bare faktiske Maskinskade-forskjeller tas med i familien", () => {
     ["maskinskade.km", "Maskinskade – kilometer", "150 000 km"],
   ], "Selskap B"));
   const summary = family(result, "bil.maskinskade");
-  assert.deepEqual(keys(summary), ["maskinskade.km"]);
+  assert.deepEqual(keys(summary), ["maskinskade.dekning", "maskinskade.km"]);
   assert.match(summary.items[0].text, /200 000 km.*150 000 km/);
 });
 
@@ -89,7 +89,7 @@ test("alder og kilometer fra ulike dekninger havner i ulike familier", () => {
     ["maskinskade.alder", "Maskinskade – alder", "8 år"],
     ["nyverdi.km", "Totalskadegaranti – kilometer", "30 000 km"],
   ], "Selskap B"));
-  assert.deepEqual(keys(family(result, "bil.maskinskade")), ["maskinskade.alder"]);
+  assert.deepEqual(keys(family(result, "bil.maskinskade")), ["maskinskade.dekning", "maskinskade.alder"]);
   assert.deepEqual(keys(family(result, "bil.totalskade")), ["nyverdi.km"]);
 });
 

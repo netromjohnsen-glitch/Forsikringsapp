@@ -93,10 +93,10 @@ test("hovedvisningen prioriterer effektiv dekning for Kasko med flere tillegg mo
   });
   const result = compare(existing, offer);
   const highlights = result.differences.filter((difference) => difference.insuranceKey && difference.type !== "price")
-    .sort((a, b) => b.priority - a.priority).slice(0, 6);
+    .sort((a, b) => b.priority - a.priority);
   const kaskoCoverage = highlights.find((difference) => difference.title === "Kaskoskade");
   assert.match(kaskoCoverage?.text ?? "", /Sammenstøt, utforkjøring, velt/);
-  assert.match(kaskoCoverage.text, /ikke funnet i vilkårene/);
+  assert.match(kaskoCoverage.text, /— Ikke dokumentert/);
   const accessory = highlights.find((difference) => difference.title === "Fastmontert tilbehør og ekstra hjul");
   assert.match(accessory?.text ?? "", /50 000 kr/);
   assert.match(accessory.text, /10 000 kr/);

@@ -47,10 +47,20 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "glass.dekning": ["glass", "glasskade", "glasskader"],
     "veihjelp.dekning": ["veihjelp", "redning", "assistanse", "redning og assistanse"],
     "maskinskade.dekning": ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
+    "bilnokkel.dekning": ["bilnøkkel", "bilnøkkeldekning", "nøkkeldekning"],
+    "ladekabel.dekning": ["ladekabel", "ladekabeldekning"],
+    "punktering.dekning": ["punktering", "punkteringsskade", "punkteringsdekning"],
+  },
+  innbo: {
+    "uhell.dekning": ["uhell", "uhellsdekning", "uhellsskade", "uhellsskader"],
+    "tyveri.dekning": ["tyveri", "tyveridekning"],
+    "rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],
   },
   reise: {
     "reise.bagasje.dekning": ["reisegods", "bagasje", "bagasje og personlige eiendeler"],
     "reise.bagasje.uhell": ["uhell", "uhellsskade", "uhellsskader", "skade ved uhell"],
+    "reise.avbestilling.dekning": ["avbestilling", "avbestillingsdekning"],
+    "reise.rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],
   },
   båt: {
     berging: ["redning og berging", "berging og assistanse"],
@@ -69,6 +79,8 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
 export type TermContext = {
   insuranceType?: string | null;
   insuredValueConfirmed?: boolean;
+  relatedCoverageParentKeys?: readonly string[];
+  termValue?: string | null;
 };
 
 export type InsuranceTypeContext = {
@@ -170,6 +182,184 @@ export function canonicalInsuranceTypeLabel(value: string | null, context: Insur
   return canonicalInsuranceTypeLabels[key] || (value || "").trim();
 }
 
+export type RelatedCoverageDetail = {
+  key: string;
+  keyPrefix?: string;
+  summaryLabel: string;
+  aliases?: readonly string[];
+  contextualAliases?: readonly string[];
+  requiredValueAliases?: readonly string[];
+};
+
+export type RelatedCoverage = {
+  parentKey: string;
+  label: string;
+  aliases?: readonly string[];
+  details: readonly RelatedCoverageDetail[];
+};
+
+// Relasjonene beskriver bare eksplisitt godkjente hoveddekninger og detaljfelt.
+// De brukes verken som fuzzy matching eller som bevis for dekning på tvers av
+// forsikringstyper. Nye familier kan legges til uten leverandørspesialtilfeller.
+const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
+  bil: [
+    {
+      parentKey: "leiebil.dekning",
+      label: "Leiebil",
+      aliases: ["leiebil", "erstatningsbil"],
+      details: [
+        {
+          key: "leiebil.dager",
+          summaryLabel: "ved reparasjon",
+          aliases: ["leiebil ved reparasjon", "erstatningsbil ved reparasjon", "ved reparasjon"],
+          requiredValueAliases: ["leiebil", "erstatningsbil"],
+        },
+        {
+          key: "leiebil.kondemnasjon",
+          summaryLabel: "ved kondemnasjon eller tyveri",
+          aliases: [
+            "leiebil ved kondemnasjon",
+            "leiebil ved kondemnasjon eller tyveri",
+            "ved kondemnasjon",
+            "ved kondemnasjon eller tyveri",
+          ],
+          requiredValueAliases: ["leiebil", "erstatningsbil"],
+        },
+        {
+          key: "leiebil.tyveri",
+          summaryLabel: "ved tyveri",
+          aliases: ["leiebil ved tyveri", "ved tyveri"],
+          requiredValueAliases: ["leiebil", "erstatningsbil"],
+        },
+        {
+          key: "leiebil.teknisk",
+          summaryLabel: "ved tekniske problemer eller veihjelp",
+          aliases: ["leiebil ved tekniske problemer", "veihjelp i norden"],
+          requiredValueAliases: ["leiebil", "erstatningsbil"],
+        },
+        {
+          key: "leiebil.feriereise",
+          summaryLabel: "ved feriereise utenfor Norden",
+          aliases: ["leiebil ved feriereise", "feriereise utenfor norden"],
+          requiredValueAliases: ["leiebil", "erstatningsbil"],
+        },
+      ],
+    },
+    {
+      parentKey: "maskinskade.dekning",
+      label: "Maskinskade",
+      aliases: ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
+      details: [
+        {
+          key: "maskinskade.varighet",
+          summaryLabel: "varighet",
+          aliases: ["maskinskade varighet"],
+          contextualAliases: ["varighet"],
+        },
+        {
+          key: "maskinskade.komponenter",
+          summaryLabel: "omfattede deler",
+          aliases: ["maskinskade omfattede deler"],
+          contextualAliases: ["omfattede deler"],
+        },
+        {
+          key: "maskinskade.fossil",
+          summaryLabel: "deler for bensin- og dieselbil",
+        },
+        {
+          key: "maskinskade.el",
+          summaryLabel: "elbilkomponenter",
+          aliases: ["maskinskade elbilkomponenter"],
+          contextualAliases: ["elbilkomponenter"],
+        },
+        {
+          key: "maskinskade.drivverk",
+          summaryLabel: "gir og drivverk",
+        },
+        {
+          key: "maskinskade.alder",
+          summaryLabel: "aldersgrense",
+        },
+        {
+          key: "maskinskade.km",
+          summaryLabel: "kilometergrense",
+        },
+        {
+          key: "maskinskade.egenandel.kilometer",
+          keyPrefix: "maskinskade.egenandel.",
+          summaryLabel: "egenandel etter kilometerstand",
+          aliases: ["maskinskade egenandel etter kilometerstand"],
+          contextualAliases: ["egenandel etter kilometerstand"],
+        },
+      ],
+    },
+    { parentKey: "glass.dekning", label: "Glass", details: [] },
+    { parentKey: "veihjelp.dekning", label: "Veihjelp", details: [] },
+    { parentKey: "bilnokkel.dekning", label: "Bilnøkkel", details: [] },
+    { parentKey: "ladekabel.dekning", label: "Ladekabel", details: [] },
+    { parentKey: "punktering.dekning", label: "Punkteringsskade", details: [] },
+  ],
+  innbo: [
+    {
+      parentKey: "uhell.dekning",
+      label: "Uhell",
+      aliases: ["uhell", "uhellsdekning", "uhellsskade", "uhellsskader"],
+      details: [
+        { key: "uhell.grense", summaryLabel: "grense" },
+        { key: "uhell.geografi", summaryLabel: "geografi" },
+        { key: "uhell.egenandel", keyPrefix: "uhell.egenandel.", summaryLabel: "egenandel" },
+      ],
+    },
+    { parentKey: "tyveri.dekning", label: "Tyveri", details: [] },
+    { parentKey: "rettshjelp.dekning", label: "Rettshjelp", details: [] },
+  ],
+  reise: [
+    {
+      parentKey: "reise.bagasje.dekning",
+      label: "Reisegods",
+      details: [
+        { key: "reise.bagasje.sum", keyPrefix: "reise.bagasje.", summaryLabel: "reisegods" },
+      ],
+    },
+    { parentKey: "reise.avbestilling.dekning", label: "Avbestilling", details: [] },
+    { parentKey: "reise.rettshjelp.dekning", label: "Rettshjelp", details: [] },
+  ],
+};
+
+export function relatedCoveragesForInsuranceType(insuranceType: string | null): readonly RelatedCoverage[] {
+  return relatedCoverages[normalizeInsuranceType(insuranceType)] ?? [];
+}
+
+function hasWholeValueAlias(value: string | null | undefined, aliases: readonly string[]): boolean {
+  const words = ` ${normalizeWords(value || null)} `;
+  return aliases.some((alias) => words.includes(` ${normalizeWords(alias)} `));
+}
+
+function relatedCoverageDetailKey(name: string, context: TermContext, type: string): string | null {
+  for (const coverage of relatedCoverages[type] ?? []) {
+    for (const detail of coverage.details) {
+      const standalone = detail.aliases?.some((alias) => normalizeWords(alias) === name);
+      const contextual = detail.contextualAliases?.some((alias) => normalizeWords(alias) === name) &&
+        context.relatedCoverageParentKeys?.includes(coverage.parentKey);
+      if (!standalone && !contextual) continue;
+      if (detail.requiredValueAliases && !hasWholeValueAlias(context.termValue, detail.requiredValueAliases)) continue;
+      return detail.key;
+    }
+  }
+  return null;
+}
+
+export function isUndocumentedTermValue(value: string | null | undefined): boolean {
+  const normalized = normalizeWords(value || null);
+  return [
+    "ikke dokumentert",
+    "ikke dokumentert kan ikke avgjøres",
+    "kan ikke avgjøres",
+    "ikke oppgitt",
+    "ukjent",
+  ].includes(normalized);
+}
+
 export function normalizeTermName(value: string | null, context: TermContext = {}): string {
   const name = normalizeWords(value).replace(/\bpr\b/gu, "per");
   const type = normalizeInsuranceType(context.insuranceType || null);
@@ -177,8 +367,11 @@ export function normalizeTermName(value: string | null, context: TermContext = {
     const insuredValue = insuredValueLookup.get(name);
     if (insuredValue) return insuredValue;
   }
+  const relatedDetail = relatedCoverageDetailKey(name, context, type);
+  if (relatedDetail) return relatedDetail;
   const contextual = contextualTermLookups.get(type)?.get(name);
   if (contextual) return contextual;
+  if (type === "bil" && ["leiebil", "erstatningsbil"].includes(name)) return "leiebil.dekning";
   return termLookup.get(name) || name;
 }
 

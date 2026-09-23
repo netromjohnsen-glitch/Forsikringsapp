@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { groupInsurances } from "../lib/comparison.ts";
+import { groupInsurances, groupTerms } from "../lib/comparison.ts";
 import { buildMatchingBatch } from "../lib/hybrid-matching.ts";
 import { canonicalInsuranceTypeLabel, hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "../lib/insurance-normalization.ts";
 
@@ -48,6 +48,104 @@ test("Motorvognforsikring og Bilforsikring grupperes side om side uten semantisk
   assert.deepEqual(groups[0].first, [existing]);
   assert.deepEqual(groups[0].second, [offer]);
   assert.deepEqual(buildMatchingBatch([existing], [offer]).typeCandidates, []);
+});
+
+const comparedBilTerms = (firstTerms, secondTerms, matchingPlan = null) => {
+  const policy = (terms) => ({
+    type: "Bil", productName: "Kasko", annualPremium: null, deductible: null,
+    coverageSummary: null, importantTerms: terms,
+  });
+  const group = groupInsurances([policy(firstTerms)], [policy(secondTerms)], null)[0];
+  return groupTerms(group, matchingPlan);
+};
+
+test("Leiebil dokumenteres av eksplisitte underfelter uten at detaljene fjernes", () => {
+  const terms = comparedBilTerms(
+    [{ name: "Leiebil", value: "Inntil 45 dager" }],
+    [
+      { name: "Leiebil", value: "Ikke dokumentert" },
+      { name: "Ved reparasjon", value: "Leiebil av inntil samme størrelse som forsikret bil i inntil 60 dager" },
+      { name: "Ved kondemnasjon eller tyveri", value: "Leiebil dekkes i inntil 30 dager" },
+      { name: "Feriereise utenfor Norden", value: "Leiebil dekkes i inntil 15 dager" },
+    ],
+  );
+  const parent = terms.find((term) => term.key === "leiebil.dekning");
+  assert.equal(parent?.secondCoverage?.status, "selected");
+  assert.match(parent.secondCoverage.summary, /60 dager/);
+  assert.match(parent.secondCoverage.summary, /30 dager/);
+  assert.match(parent.secondCoverage.summary, /15 dager/);
+  assert.ok(terms.find((term) => term.key === "leiebil.dager")?.second);
+  assert.ok(terms.find((term) => term.key === "leiebil.kondemnasjon")?.second);
+  assert.ok(terms.find((term) => term.key === "leiebil.feriereise")?.second);
+});
+
+test("Maskinskade dokumenteres av varighet, komponenter og egenandelsdetaljer", () => {
+  const terms = comparedBilTerms(
+    [{ name: "Maskinskade", value: "Inkludert" }],
+    [
+      { name: "Maskinskade", value: "Ikke dokumentert / kan ikke avgjøres" },
+      { name: "Varighet", value: "10 år / 200 000 km" },
+      { name: "Omfattede deler", value: "Motor, gir og drivverk" },
+      { name: "Elbilkomponenter", value: "Høyvoltbatteri og fabrikkmontert lader" },
+      { name: "Egenandel etter kilometerstand", value: "10 000–20 000 kr" },
+    ],
+  );
+  const parent = terms.find((term) => term.key === "maskinskade.dekning");
+  assert.equal(parent?.secondCoverage?.status, "selected");
+  assert.match(parent.secondCoverage.summary, /10 år \/ 200 000 km/);
+  assert.match(parent.secondCoverage.summary, /Motor, gir og drivverk/);
+  assert.match(parent.secondCoverage.summary, /Høyvoltbatteri/);
+  assert.match(parent.secondCoverage.summary, /10 000–20 000 kr/);
+  for (const key of ["maskinskade.varighet", "maskinskade.komponenter", "maskinskade.el",
+    "maskinskade.egenandel.kilometer"]) {
+    assert.ok(terms.find((term) => term.key === key)?.second, key);
+  }
+});
+
+test("manglende hovedfelt forblir uavklart når ingen relaterte underfelter dokumenterer dekningen", () => {
+  const terms = comparedBilTerms(
+    [{ name: "Leiebil", value: "Inntil 45 dager" }],
+    [{ name: "Leiebil", value: "Ikke dokumentert" }],
+  );
+  const parent = terms.find((term) => term.key === "leiebil.dekning");
+  assert.equal(parent?.second, null);
+  assert.equal(parent?.secondCoverage?.status, "unknown");
+  assert.equal(parent?.secondMissingLabel, "Ikke dokumentert / kan ikke avgjøres");
+});
+
+test("generisk reparasjonstekst uten leiebilbevis kobles ikke til leiebildekningen", () => {
+  const terms = comparedBilTerms(
+    [{ name: "Leiebil", value: "Inntil 45 dager" }],
+    [
+      { name: "Leiebil", value: "Ikke dokumentert" },
+      { name: "Ved reparasjon", value: "Glass repareres uten egenandel" },
+    ],
+  );
+  const parent = terms.find((term) => term.key === "leiebil.dekning");
+  assert.equal(parent?.second, null);
+  assert.equal(parent?.secondCoverage?.status, "unknown");
+  assert.ok(terms.find((term) => term.key === "ved reparasjon")?.second);
+});
+
+test("semantisk hovedmatch kollapser ikke eksplisitte detaljrader", () => {
+  const matchingPlan = {
+    insuranceMatches: [], assessments: [],
+    termMatches: [{
+      leftTypeKey: "bil", rightTypeKey: "bil", leftKey: "maskinskade.dekning",
+      rightKeys: ["maskinskade.alder", "maskinskade.km"], confidence: 0.99, reason: "Samme dekningsfamilie",
+    }],
+  };
+  const terms = comparedBilTerms(
+    [{ name: "Maskinskade", value: "Inkludert" }],
+    [
+      { key: "maskinskade.alder", name: "Maskinskade – alder", value: "10 år" },
+      { key: "maskinskade.km", name: "Maskinskade – kilometer", value: "200 000 km" },
+    ],
+    matchingPlan,
+  );
+  assert.equal(terms.find((term) => term.key === "maskinskade.dekning")?.secondCoverage?.status, "selected");
+  assert.ok(terms.find((term) => term.key === "maskinskade.alder")?.second);
+  assert.ok(terms.find((term) => term.key === "maskinskade.km")?.second);
 });
 
 test("andre motorvognprodukter holdes eksplisitt adskilt fra personbil", () => {

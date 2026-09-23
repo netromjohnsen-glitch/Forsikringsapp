@@ -101,7 +101,9 @@ function selectFamilyItems(items: Difference[]): Difference[] {
   const ordered = [...items].sort((a, b) =>
     differenceDetailRank(a) - differenceDetailRank(b) || b.priority - a.priority
   );
-  return ordered.slice(0, 4);
+  const firstCoverageStatus = ordered.find((item) => item.coverageStatusDifference);
+  const remaining = ordered.filter((item) => !item.coverageStatusDifference);
+  return firstCoverageStatus ? [firstCoverageStatus, ...remaining].slice(0, 4) : remaining.slice(0, 4);
 }
 
 function shouldPresent(concept: PresentationConcept, items: Difference[]): boolean {

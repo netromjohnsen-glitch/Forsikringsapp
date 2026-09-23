@@ -1,4 +1,18 @@
-import { canonicalInsuranceTypeLabel, hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "./insurance-normalization.ts";
+import {
+  canonicalInsuranceTypeLabel,
+  hasComparableInsuredValue,
+  isUndocumentedTermValue,
+  normalizeCatalogTermKey,
+  normalizeInsuranceType,
+  normalizeTermName,
+  relatedCoveragesForInsuranceType,
+} from "./insurance-normalization.ts";
+import {
+  coverageStatusLabel,
+  deriveCanonicalCoverages,
+  type CanonicalCoverage,
+  type CoverageStatus,
+} from "./coverage-status.ts";
 import type { MatchingPlan } from "./hybrid-matching.ts";
 import { materiallyEquivalentValues } from "./value-equivalence.ts";
 import type { BuildingFactData } from "./building-facts.ts";
@@ -19,6 +33,7 @@ export type InsuranceTerm = {
   name: string;
   value: string;
   key?: string;
+  coverageOrigin?: "document" | "catalog";
   deductibleClassification?: "standard" | "coverage" | "override" | "reference";
   structuredValue?: BuildingFactData;
   source?: FactSource;
@@ -35,8 +50,17 @@ export type ComparedInsurance = {
   coverageSummary: string | null;
   importantTerms: InsuranceTerm[];
   catalogReference?: { providerId: string; productId: string; version: string | null } | null;
+  // Settes bare når brukeren eksplisitt har valgt et katalogprodukt.
+  // Katalogfakta uten denne bekreftelsen kan ikke bestemme kundens dekning.
+  catalogSelectionConfirmed?: boolean;
   addOnIds?: string[];
-  addOns?: { id?: string; name: string; importantTerms: InsuranceTerm[]; source?: { id: string } | null }[];
+  addOns?: {
+    id?: string;
+    name: string;
+    importantTerms: InsuranceTerm[];
+    source?: { id: string } | null;
+    coverageOrigin?: "document" | "catalog";
+  }[];
 };
 export type ComparedDocument = {
   insuranceData: {
@@ -68,6 +92,8 @@ export type TermGroup = {
   secondDeductibleClassifications: string[];
   firstMissingLabel: string;
   secondMissingLabel: string;
+  firstCoverage: CanonicalCoverage | null;
+  secondCoverage: CanonicalCoverage | null;
 };
 export type Difference = {
   title: string;
@@ -78,7 +104,22 @@ export type Difference = {
   kind: "price" | "deductible" | "add_on" | "term";
   priority: number;
   relatedTermKeys?: string[];
+  coverageStatusDifference?: boolean;
 };
+
+type CollectedTerm = {
+  label: string;
+  first: string[];
+  second: string[];
+  firstSources: FactSource[];
+  secondSources: FactSource[];
+  firstBaseFacts: BaseFact[];
+  secondBaseFacts: BaseFact[];
+  firstDeductibleClassifications: string[];
+  secondDeductibleClassifications: string[];
+};
+
+type CoveragePair = { first: CanonicalCoverage | null; second: CanonicalCoverage | null };
 
 const normalize = (value: string | null) => (value || "").trim().toLocaleLowerCase("nb-NO");
 export function parseNumber(value: string | null) {
@@ -120,6 +161,21 @@ export function groupValue(insurances: ComparedInsurance[], field: "productName"
   return [...new Set(values)].join(" · ") || null;
 }
 
+function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
+  const coverages = new Map(deriveCanonicalCoverages(insurance, insuranceType)
+    .map((coverage) => [coverage.id, coverage]));
+  return (insurance.addOns ?? []).filter((addOn) => {
+    const key = normalizeTermName(addOn.name, { insuranceType });
+    const coverage = coverages.get(key);
+    return !coverage || coverage.status === "selected";
+  });
+}
+
+export function groupAddOnNames(insurances: ComparedInsurance[], insuranceType: string): string | null {
+  const names = insurances.flatMap((insurance) => selectedAddOns(insurance, insuranceType).map((addOn) => addOn.name));
+  return [...new Set(names)].join(" · ") || null;
+}
+
 function knownAbsentAddOn(group: InsuranceGroup, presentSide: "first" | "second", source: FactSource): boolean {
   const present = group[presentSide];
   const missing = group[presentSide === "first" ? "second" : "first"];
@@ -130,12 +186,63 @@ function knownAbsentAddOn(group: InsuranceGroup, presentSide: "first" | "second"
     !missing[0].addOns?.some((addOn) => addOn.source?.id === source.documentId);
 }
 
+function mergeCanonicalCoverages(items: CanonicalCoverage[]): CanonicalCoverage {
+  if (items.length === 1) return items[0];
+  const withEvidence = items.filter((item) => item.evidence.length > 0);
+  const asserted = withEvidence.filter((item) => item.status !== "unknown");
+  const statuses = new Set(asserted.map((item) => item.status));
+  const status: CoverageStatus = statuses.size === 1 ? asserted[0].status : "unknown";
+  const unique = <T>(values: T[], key: (value: T) => string) =>
+    values.filter((value, index) => values.findIndex((candidate) => key(candidate) === key(value)) === index);
+  return {
+    id: items[0].id,
+    label: items[0].label,
+    status,
+    summary: status === "selected"
+      ? unique(withEvidence.flatMap((item) => item.summary ? [item.summary] : []), (value) => value).join(" · ") || null
+      : null,
+    details: unique(items.flatMap((item) => item.details), (detail) => `${detail.key}\u0000${detail.value}`),
+    sources: unique(items.flatMap((item) => item.sources), (source) =>
+      `${source.documentId}\u0000${source.section}\u0000${source.page}`),
+    evidence: items.flatMap((item) => item.evidence),
+    conflict: statuses.size > 1 || items.some((item) => item.conflict),
+  };
+}
+
+function coverageMap(insurances: ComparedInsurance[], insuranceType: string): Map<string, CanonicalCoverage> {
+  const grouped = new Map<string, CanonicalCoverage[]>();
+  for (const insurance of insurances) {
+    for (const coverage of deriveCanonicalCoverages(insurance, insuranceType)) {
+      const existing = grouped.get(coverage.id) ?? [];
+      existing.push(coverage);
+      grouped.set(coverage.id, existing);
+    }
+  }
+  return new Map([...grouped].map(([key, items]) => [key, mergeCanonicalCoverages(items)]));
+}
+
+function coveragePairs(group: InsuranceGroup): Map<string, CoveragePair> {
+  const first = coverageMap(group.first, group.key);
+  const second = coverageMap(group.second, group.key);
+  const pairs = new Map<string, CoveragePair>();
+  for (const key of new Set([...first.keys(), ...second.keys()])) {
+    let left = first.get(key) ?? null;
+    let right = second.get(key) ?? null;
+    if (!(left?.evidence.length || right?.evidence.length)) continue;
+    const unknown = (template: CanonicalCoverage): CanonicalCoverage => ({
+      id: template.id, label: template.label, status: "unknown", summary: null,
+      details: [], sources: [], evidence: [], conflict: false,
+    });
+    if (!left && right) left = unknown(right);
+    if (!right && left) right = unknown(left);
+    pairs.set(key, { first: left, second: right });
+  }
+  return pairs;
+}
+
 export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | null): TermGroup[] {
-  const terms = new Map<string, {
-    label: string; first: string[]; second: string[]; firstSources: FactSource[]; secondSources: FactSource[];
-    firstBaseFacts: BaseFact[]; secondBaseFacts: BaseFact[];
-    firstDeductibleClassifications: string[]; secondDeductibleClassifications: string[];
-  }>();
+  const terms = new Map<string, CollectedTerm>();
+  const canonicalCoverages = coveragePairs(group);
   const semanticTerms = new Map<string, string>();
   if (group.leftKey && group.rightKey) {
     for (const match of matchingPlan?.termMatches || []) {
@@ -151,13 +258,33 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
   );
   for (const side of ["first", "second"] as const) {
     for (const insurance of group[side]) {
+      const relatedCoverageParentKeys = (insurance.importantTerms || []).flatMap((term) => {
+        const key = term.key
+          ? normalizeCatalogTermKey(term.key)
+          : normalizeTermName(term.name, { insuranceType: group.key, insuredValueConfirmed });
+        return relatedCoveragesForInsuranceType(group.key).some((coverage) => coverage.parentKey === key)
+          ? [key] : [];
+      });
       for (const term of insurance.importantTerms || []) {
         const normalizedKey = term.key
           ? normalizeCatalogTermKey(term.key)
-          : normalizeTermName(term.name, { insuranceType: group.key, insuredValueConfirmed });
-        const key = side === "second" ? semanticTerms.get(normalizedKey) || normalizedKey : normalizedKey;
+          : normalizeTermName(term.name, {
+            insuranceType: group.key,
+            insuredValueConfirmed,
+            relatedCoverageParentKeys,
+            termValue: term.value,
+          });
+        const semanticKey = side === "second" ? semanticTerms.get(normalizedKey) : undefined;
+        const mapsDetailToParent = semanticKey && relatedCoveragesForInsuranceType(group.key).some((coverage) =>
+          coverage.parentKey === semanticKey && coverage.details.some((detail) =>
+            detail.key === normalizedKey || (detail.keyPrefix ? normalizedKey.startsWith(detail.keyPrefix) : false)
+          )
+        );
+        // Semantisk én-til-flere-matching kan dokumentere sammenheng, men skal
+        // ikke kollapse eksplisitte detaljfelt inn i hovedraden.
+        const key = semanticKey && !mapsDetailToParent ? semanticKey : normalizedKey;
         const value = term.value?.trim();
-        if (!key || !value) continue;
+        if (!key) continue;
         let entry = terms.get(key);
         if (!entry) {
           entry = {
@@ -167,6 +294,10 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
           };
           terms.set(key, entry);
         }
+        // En eksplisitt statusverdi er ikke dokumentasjon av selve dekningen.
+        // Behold raden, slik at manglende-statusen fortsatt vises når ingen
+        // godkjente detaljfelt kan dokumentere hoveddekningen.
+        if (!value || isUndocumentedTermValue(value)) continue;
         if (!entry[side].some((existing) => normalize(existing) === normalize(value))) entry[side].push(value);
         if (isDeductibleKey(key)) {
           const classes = entry[`${side}DeductibleClassifications`];
@@ -184,6 +315,25 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
             existing.source.section === base.source.section && existing.source.page === base.source.page
           )) entry[`${side}BaseFacts`].push(base);
         }
+      }
+    }
+  }
+  for (const [key, pair] of canonicalCoverages) {
+    let entry = terms.get(key);
+    if (!entry) {
+      entry = {
+        label: pair.first?.label || pair.second?.label || key,
+        first: [], second: [], firstSources: [], secondSources: [],
+        firstBaseFacts: [], secondBaseFacts: [],
+        firstDeductibleClassifications: [], secondDeductibleClassifications: [],
+      };
+      terms.set(key, entry);
+    }
+    for (const side of ["first", "second"] as const) {
+      for (const source of pair[side]?.sources ?? []) {
+        if (!entry[`${side}Sources`].some((existing) =>
+          existing.documentId === source.documentId && existing.section === source.section && existing.page === source.page
+        )) entry[`${side}Sources`].push(source);
       }
     }
   }
@@ -206,6 +356,8 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
       ? unknownWithoutAddOn : unknown,
     secondMissingLabel: entry.firstSources.some((source) => knownAbsentAddOn(group, "first", source))
       ? unknownWithoutAddOn : unknown,
+    firstCoverage: canonicalCoverages.get(key)?.first ?? null,
+    secondCoverage: canonicalCoverages.get(key)?.second ?? null,
   })).filter((term) => {
     if (!["egenandel", "kaskoegenandel"].includes(term.key)) return true;
     return (["first", "second"] as const).some((side) =>
@@ -257,6 +409,23 @@ function comparablePriority(term: TermGroup): number {
   // Like mål kan fortsatt ha ulike vilkår (for eksempel «før»/«høyst»).
   // De vises i detaljene, men får ikke samme plass som ulike tallgrenser.
   return (sharedUnits.length ? 90 : 101) + importance(term.key) / 10;
+}
+
+function isCoverageStatusDifference(term: TermGroup): boolean {
+  const first = term.firstCoverage;
+  const second = term.secondCoverage;
+  if (!first || !second) return false;
+  if (first.status !== second.status) return !(first.status === "unknown" && second.status === "unknown");
+  if (first.status !== "selected" || !first.summary || !second.summary) return false;
+  return !materiallyEquivalentValues(first.summary, second.summary);
+}
+
+function coverageDifferencePriority(term: TermGroup): number {
+  const first = term.firstCoverage!.status;
+  const second = term.secondCoverage!.status;
+  if (new Set([first, second]).has("unknown")) return 85;
+  if (first !== second) return 140;
+  return 125 + importance(term.key) / 10;
 }
 
 function addOnSummary(
@@ -313,14 +482,18 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
       });
     }
     const terms = groupTerms(group, matchingPlan);
+    const coverageDifferences = terms.filter(isCoverageStatusDifference);
     const comparableDifferences = terms
-      .filter((term) => term.first && term.second && term.firstValueCount === 1 && term.secondValueCount === 1 &&
+      .filter((term) => !term.firstCoverage && !term.secondCoverage &&
+        term.first && term.second && term.firstValueCount === 1 && term.secondValueCount === 1 &&
         !materiallyEquivalentValues(term.first, term.second) &&
         (!isDeductibleKey(term.key) || directlyComparableSpecialDeductible(term)))
       .sort((a, b) => importance(b.key) - importance(a.key));
-    const comparedKeys = new Set(comparableDifferences.map((term) => term.key));
-    const firstDocumentedKeys = new Set(terms.filter((term) => term.first).map((term) => term.key));
-    const secondDocumentedKeys = new Set(terms.filter((term) => term.second).map((term) => term.key));
+    const comparedKeys = new Set([...coverageDifferences, ...comparableDifferences].map((term) => term.key));
+    const firstDocumentedKeys = new Set(terms.filter((term) => term.first ||
+      (term.firstCoverage && term.firstCoverage.status !== "unknown")).map((term) => term.key));
+    const secondDocumentedKeys = new Set(terms.filter((term) => term.second ||
+      (term.secondCoverage && term.secondCoverage.status !== "unknown")).map((term) => term.key));
     // Samme dokumenterte vilkår kan ha ulike nøkkelnavn etter semantisk matching.
     for (const match of matchingPlan?.termMatches ?? []) {
       if (match.leftTypeKey !== group.leftKey || match.rightTypeKey !== group.rightKey) continue;
@@ -353,8 +526,8 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
       group.first[0].catalogReference.providerId === group.second[0].catalogReference.providerId;
     const summarizedSources = new Set<string>();
     if (bothCatalog) {
-      const leftAddOns = new Map((group.first[0].addOns || []).map((addOn) => [addOn.id, addOn]));
-      const rightAddOns = new Map((group.second[0].addOns || []).map((addOn) => [addOn.id, addOn]));
+      const leftAddOns = new Map(selectedAddOns(group.first[0], group.key).map((addOn) => [addOn.id, addOn]));
+      const rightAddOns = new Map(selectedAddOns(group.second[0], group.key).map((addOn) => [addOn.id, addOn]));
       for (const [id, addOn] of leftAddOns) {
         if (!rightAddOns.has(id)) {
           if (addOn.source?.id) summarizedSources.add(addOn.source.id);
@@ -378,6 +551,14 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
         }
       }
     }
+    for (const term of coverageDifferences) differences.push({
+      title: term.label,
+      text: `Eksisterende: ${coverageStatusLabel(term.firstCoverage!.status, term.firstCoverage!.summary)}. ` +
+        `Nytt tilbud: ${coverageStatusLabel(term.secondCoverage!.status, term.secondCoverage!.summary)}.`,
+      type: "tradeoff", insuranceKey: group.key, termKey: term.key, kind: "term",
+      priority: coverageDifferencePriority(term),
+      coverageStatusDifference: true,
+    });
     for (const term of comparableDifferences) differences.push({
       title: term.label,
       text: `Eksisterende: ${term.first}. Nytt tilbud: ${term.second}.`,
@@ -386,7 +567,8 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
     // Fravær av tekst er ikke bevis for at en dekning mangler. Fremhev bare
     // dokumentert dekning som ikke finnes i motpartens valgte vilkår.
     const oneSidedCoverage = terms.filter((term) =>
-      Boolean(term.first) !== Boolean(term.second) && /(?:^|\.)(?:dekning|omfang)$/.test(term.key) &&
+      !term.firstCoverage && !term.secondCoverage && Boolean(term.first) !== Boolean(term.second) &&
+      /(?:^|\.)(?:dekning|omfang)$/.test(term.key) &&
       ![...term.firstSources, ...term.secondSources].some((source) => summarizedSources.has(source.documentId))
     ).slice(0, 2);
     for (const term of oneSidedCoverage) differences.push({
