@@ -1,4 +1,4 @@
-export const MAX_PDF_FILES_PER_SIDE = 5;
+export const MAX_PDF_FILES_PER_SIDE = 10;
 export const MAX_PDF_FILE_BYTES = 10 * 1024 * 1024;
 export const MAX_PDF_REQUEST_BYTES = 25 * 1024 * 1024;
 export const MAX_PDF_PAGES_PER_FILE = 150;
@@ -35,7 +35,7 @@ export function validateRequestContentLength(value: string | null): void {
 export function validatePdfFileList(files: readonly File[]): void {
   if (files.length === 0) throw new PdfSecurityError(422, "missing_pdf", "Legg til minst én PDF på hver PDF-side.");
   if (files.length > MAX_PDF_FILES_PER_SIDE) {
-    throw new PdfSecurityError(413, "too_many_files", "Du kan laste opp maksimalt 5 PDF-er per side.");
+    throw new PdfSecurityError(413, "too_many_files", "Du kan laste opp maksimalt 10 PDF-er per side.");
   }
   for (const file of files) {
     if (file.size > MAX_PDF_FILE_BYTES) {

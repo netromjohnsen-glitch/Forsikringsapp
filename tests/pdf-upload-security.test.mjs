@@ -32,8 +32,8 @@ test("for stor fil og samlet request avvises med 413", () => {
     error instanceof PdfSecurityError && error.status === 413);
 });
 
-test("mer enn fem PDF-er per side avvises kontrollert", () => {
-  assert.throws(() => validatePdfFileList(Array.from({ length: 6 }, (_, index) => pdf(`${index}.pdf`))), (error) =>
+test("mer enn ti PDF-er per side avvises kontrollert", () => {
+  assert.throws(() => validatePdfFileList(Array.from({ length: 11 }, (_, index) => pdf(`${index}.pdf`))), (error) =>
     error instanceof PdfSecurityError && error.status === 413 && error.code === "too_many_files");
 });
 

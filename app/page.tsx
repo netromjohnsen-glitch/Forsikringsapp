@@ -1,6 +1,9 @@
 "use client";
 
-import { useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
+import { useEffect, useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
+import { readAnalysisResponse, validateUploadSelection } from "@/lib/analysis-client";
+import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressState } from "@/lib/analysis-progress";
+import { canonicalInsuranceTypeLabel } from "@/lib/insurance-normalization";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
 import { measureComparisonWork } from "@/lib/comparison-performance";
 import { annualPremiumLabel } from "@/lib/agreement-pricing";
@@ -39,7 +42,16 @@ export default function Home() {
   const [documents, setDocuments] = useState<DocumentResult[]>([]);
   const [matchingPlan, setMatchingPlan] = useState<MatchingPlan | null>(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState<ProgressState>(emptyProgress);
+  const loading = progress.status === "uploading" || progress.status === "analyzing";
+  const [partial, setPartial] = useState<{ failedDocuments: number; successfulDocuments: number; partialSuccess: boolean; conservativeObjectSeparation?: boolean } | null>(null);
+  const generation = useRef(createAnalysisGeneration());
+  const activeRequest = useRef<AbortController | null>(null);
+  useEffect(() => () => { activeRequest.current?.abort(); }, []);
+  function cancelAnalysis() {
+    generation.current.next(); activeRequest.current?.abort(); activeRequest.current = null;
+    setProgress(emptyProgress()); setPartial(null);
+  }
 
   function addFiles(side: "existing" | "offer", newFiles: FileList | null) {
     if (!newFiles) return;
@@ -48,19 +60,20 @@ export default function Home() {
       (file) => file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")
     );
 
+    const current = side === "existing" ? existingFiles : offerFiles;
+    const selected = [...current, ...pdfFiles.filter((file) => !current.some((saved) => saved.name === file.name && saved.size === file.size && saved.lastModified === file.lastModified))];
+    try { validateUploadSelection(side === "existing" ? selected : existingFiles, side === "offer" ? selected : offerFiles); }
+    catch (caught) { setError(caught instanceof Error ? caught.message : "Ugyldig opplasting."); return; }
+    cancelAnalysis();
     const update = side === "existing" ? setExistingFiles : setOfferFiles;
-    update((current) => [
-      ...current,
-      ...pdfFiles.filter((file) => !current.some((saved) =>
-        saved.name === file.name && saved.size === file.size && saved.lastModified === file.lastModified
-      )),
-    ]);
+    update(selected);
     setDocuments([]);
     setMatchingPlan(null);
     setError("");
   }
 
   function removeFile(side: "existing" | "offer", index: number) {
+    cancelAnalysis();
     const update = side === "existing" ? setExistingFiles : setOfferFiles;
     update((current) => current.filter((_, currentIndex) => currentIndex !== index));
     setDocuments([]);
@@ -68,6 +81,7 @@ export default function Home() {
   }
 
   function changeMode(side: "existing" | "offer", mode: "pdf" | "manual") {
+    cancelAnalysis();
     if (side === "existing") setExistingMode(mode);
     else setOfferMode(mode);
     setDocuments([]);
@@ -76,6 +90,7 @@ export default function Home() {
   }
 
   function changeManual(side: "existing" | "offer", value: SetStateAction<ManualAgreementInput>) {
+    cancelAnalysis();
     if (side === "existing") setExistingManual(value);
     else setOfferManual(value);
     setDocuments([]);
@@ -87,9 +102,12 @@ export default function Home() {
   const offerReady = offerMode === "pdf" ? offerFiles.length > 0 : manualReady(offerManual);
 
   async function analyzeDocuments() {
-    if (!existingReady || !offerReady) return;
-
-    setLoading(true);
+    if (!existingReady || !offerReady || activeRequest.current) return;
+    try { validateUploadSelection(existingMode === "pdf" ? existingFiles : [], offerMode === "pdf" ? offerFiles : []); }
+    catch (caught) { setError(caught instanceof Error ? caught.message : "Ugyldig opplasting."); return; }
+    const requestGeneration = generation.current.next();
+    const controller = new AbortController(); activeRequest.current = controller;
+    setProgress({ ...emptyProgress(), status: "uploading" }); setPartial(null);
     setDocuments([]);
     setMatchingPlan(null);
     setError("");
@@ -108,21 +126,24 @@ export default function Home() {
         method: "POST",
         body: formData,
         cache: "no-store",
+        headers: { Accept: "application/x-ndjson" },
+        signal: controller.signal,
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.error || "Noe gikk galt.");
-        return;
-      }
-
+      const data = await readAnalysisResponse(response, (event) => {
+        if (generation.current.current(requestGeneration)) setProgress((state) => applyProgress(state, event));
+      }) as { documents: DocumentResult[]; matchingPlan?: MatchingPlan; analysis?: { partialSuccess: boolean; failedDocuments: number; successfulDocuments: number; conservativeObjectSeparation?: boolean } };
+      if (!generation.current.current(requestGeneration)) return;
       setDocuments(data.documents);
       setMatchingPlan(data.matchingPlan || null);
-    } catch {
-      setError("Kunne ikke analysere dokumentene.");
+      setPartial(data.analysis ?? null);
+      setProgress((state) => ({ ...state, status: data.analysis?.partialSuccess ? "partial" : "completed" }));
+    } catch (caught) {
+      if (!generation.current.current(requestGeneration)) return;
+      setError(caught instanceof Error ? caught.message : "Kunne ikke analysere dokumentene.");
+      setProgress((state) => ({ ...state, status: "failed" }));
     } finally {
-      setLoading(false);
+      if (generation.current.current(requestGeneration)) activeRequest.current = null;
     }
   }
 
@@ -186,7 +207,10 @@ export default function Home() {
           {(!existingReady || !offerReady) && (
             <p id="comparison-requirements" className="mt-2 text-sm text-slate-600">Legg til minst én PDF, eller fyll ut selskap, forsikringstype og produkt, på begge sider.</p>
           )}
-          {loading && <p role="status" aria-live="polite" className="status-text mt-3 text-sm">Dette kan ta litt tid når dokumenter skal leses.</p>}
+          {loading && <button type="button" className="ml-3 underline" onClick={cancelAnalysis}>Avbryt analyse</button>}
+          {progress.status !== "idle" && <AnalysisProgress state={progress} />}
+          {partial?.partialSuccess && <p role="alert" className="error-panel mt-4 rounded-xl border p-4">Sammenligningen kan være ufullstendig: {partial.failedDocuments} dokumenter kunne ikke analyseres. Resultatet bygger på {partial.successfulDocuments} behandlede dokumenter.</p>}
+          {partial?.conservativeObjectSeparation && <p className="mt-3 text-sm">Dokumentene ble analysert i flere grupper. Objekter uten sikker felles identitet holdes adskilt; kontroller mulig overlapp før du bruker resultatet.</p>}
 
           {error && (
             <div role="alert" className="error-panel mt-6 rounded-xl border p-4">{error}</div>
@@ -262,7 +286,7 @@ function PdfFiles({ files, onAdd, onRemove }: {
       <p className="info-panel mt-2 rounded-lg px-3 py-2.5 text-xs leading-5">
         <span className="font-semibold text-slate-900">Pilot:</span> Dokumentene analyseres for å sammenligne forsikringene dine. PDF-en sendes til vår server for tekstuttrekk. Relevant, maskert tekst sendes til OpenAI; selve PDF-filen sendes ikke dit. Appen har ingen database som lagrer dokumentet eller resultatet. OpenAI kan beholde sikkerhetslogger etter API-avtalen. Ikke last opp mer informasjon enn nødvendig, og kontroller viktige opplysninger mot originaldokumentet.
       </p>
-      <p className="mt-2 text-xs text-slate-500">Maks 5 PDF-er per side, 10 MiB per fil og 25 MiB samlet.</p>
+      <p className="mt-2 text-xs text-slate-500">{files.length}/10 PDF-er. Maks 10 PDF-er per side, 10 MiB per fil og 25 MiB samlet.</p>
       <div
         className="drop-zone mt-3 rounded-xl border-2 border-dashed text-center transition-colors"
         onDragOver={(event) => event.preventDefault()}
@@ -1017,7 +1041,7 @@ function SourceDetails({ source, baseLabel }: { source: FactSource; baseLabel?: 
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
         {baseLabel && <p className="font-medium text-slate-700">{baseLabel}</p>}
         {source.note && <p>{source.note}</p>}
-        <p>{[source.company, source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : null, source.effectiveFrom, `side ${source.page}`, `punkt ${source.section}`].filter(Boolean).join(" · ")}</p>
+        <p>{[source.company, source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : null, source.effectiveFrom, source.page > 0 ? `side ${source.page}` : null, `punkt ${source.section}`].filter(Boolean).join(" · ")}</p>
         <p className="break-words text-slate-500">Dokument: {source.filename}</p>
         {source.url && <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">Åpne originalkilde</a>}
       </div>
@@ -1061,4 +1085,17 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
       ))}
     </>
   );
+}
+
+function AnalysisProgress({ state }: { state: ProgressState }) {
+  const labels = { queued: "Venter", validating: "Valideres", extracting: "Leses", ready: "Lest – venter på analyse", analyzing: "Analyseres", completed: "Ferdig", failed: "Kunne ikke analyseres", identified: "Identifisert" };
+  const processed = state.documents.filter((d) => d.status === "completed" || d.status === "failed").length;
+  return <section className="mt-4 text-sm" aria-live="polite" aria-label="Analyseframdrift">
+    <p role="status">{state.status === "uploading" ? "Laster opp dokumenter …" : state.status === "partial" ? "Delvis fullført – se advarselen nedenfor." : state.status === "completed" ? "Sammenligningen er ferdig." : state.status === "failed" ? "Analysen kunne ikke fullføres." : `${processed} av ${state.documents.length} dokumenter behandlet`}</p>
+    <div className="mt-3 grid gap-4 sm:grid-cols-2">{(["existing", "offer"] as const).map((side) => <div key={side}>
+      <p className="font-semibold">{side === "existing" ? "Eksisterende" : "Nytt tilbud"}</p>
+      <ul>{state.documents.filter((d) => d.side === side).map((d) => <li key={d.documentIndex}>Dokument {d.documentIndex+1}: {d.error === "encrypted_pdf" ? "Passordbeskyttet" : labels[d.status]}</li>)}</ul>
+      <ul className="mt-2">{state.products.filter((p) => p.side === side).map((p) => <li key={`${p.batchIndex}:${p.productIndex}`}>{p.insuranceType === "unknown" ? "Ukjent forsikringstype" : canonicalInsuranceTypeLabel(p.insuranceType)}: {labels[p.status]}</li>)}</ul>
+    </div>)}</div>
+  </section>;
 }

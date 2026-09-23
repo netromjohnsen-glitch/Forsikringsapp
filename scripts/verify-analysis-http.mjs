@@ -8,6 +8,7 @@ import { randomUUID } from "node:crypto";
 import { syntheticPdf } from "../tests/helpers/synthetic-pdf.mjs";
 
 import { pdfAddonSelection } from "../tests/helpers/pdf-addon-selection.mjs";
+import { readAnalysisResponse } from "../lib/analysis-client.ts";
 import { groupAddOnNames } from "../lib/comparison.ts";
 
 const calls = [];
@@ -31,7 +32,7 @@ const mock = createServer(async (request, response) => {
   const content = input.text.format.name === "semantic_insurance_matches" ? { decisions: [] } : addonScenario ? pdfAddonSelection() : {
     company: "Syntetisk selskap", totalAnnualPremium: null, totalAnnualPremiumScope: "partial_or_unclear",
     insurances: ["Bil", "Hus", "Innbo", "Reise"].map((type) => ({
-      type, productName: "Test", canonicalProductName: null, annualPremium: null, deductible: null,
+      type, company: "Syntetisk selskap", documentIndices: Array.from({length: input.text.format.schema.properties.insurances.items.properties.documentIndices.maxItems}, (_,i)=>i+1), productName: "Test", canonicalProductName: null, annualPremium: null, deductible: null,
       coverageSummary: "PRIVATE_OUTPUT_SENTINEL",
       importantTerms: [], addOns: [],
     })),
@@ -166,7 +167,59 @@ try {
     assert.equal(groupAddOnNames([insurance], "bil"), "Leiebil · Maskinskade");
   }
   assert.equal(calls.length, 6, "addon regression adds only the two expected extraction calls, no semantic call");
+  addonScenario = false;
+  const multiForm = (count, corruptIndex = -1) => {
+    const body = new FormData();
+    for (const side of ["existing", "offer"]) {
+      body.set(side + "Mode", "pdf");
+      for (let i=0; i<count; i++) body.append(side + "Files", new File([
+        side === "existing" && i === corruptIndex ? "%PDF-1.7\nINVALID_PHASE2" : syntheticPdf(1, `Synthetic PRIVATE_PDF_SENTINEL ${side} ${i}`)
+      ], `PRIVATE_FILENAME_${i}.pdf`, {type:"application/pdf"}));
+    }
+    return body;
+  };
+  const progress = [];
+  const beforeMulti = calls.length;
+  const streamed = await fetch(base + "/api/analyze", {method:"POST", headers:{...headers,accept:"application/x-ndjson"},body:multiForm(10)});
+  assert.match(streamed.headers.get("content-type"),/application\/x-ndjson/);
+  assert.match(streamed.headers.get("cache-control"),/no-store/);
+  const multi = await readAnalysisResponse(streamed, event=>progress.push(event));
+  assert.equal(multi.analysis.successfulDocuments,20);
+  assert.equal(multi.analysis.partialSuccess,false);
+  assert.equal(calls.length-beforeMulti,2,"20 small PDFs use two extraction calls, not twenty");
+  assert.equal(peak,2);
+  assert.equal(progress.filter(e=>e.type==='document_status'&&e.status==='completed').length,20);
+  assert.equal(progress.filter(e=>e.type==='product_status'&&e.status==='identified').length,8);
+  assert.ok(!JSON.stringify(progress).includes('PRIVATE'));
+  assert.equal(multi.documents[0].insuranceData.insurances[0].documentReferences.length,10);
+  const overLimitCalls=calls.length;
+  const tooMany=await fetch(base+'/api/analyze',{method:'POST',headers,body:multiForm(11)});
+  assert.equal(tooMany.status,413);assert.equal(calls.length,overLimitCalls);
+  const partialProgress=[];
+  const partialResponse=await fetch(base+'/api/analyze',{method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3,1)});
+  const partial=await readAnalysisResponse(partialResponse,e=>partialProgress.push(e));
+  assert.equal(partial.analysis.partialSuccess,true);assert.equal(partial.analysis.failedDocuments,1);assert.equal(partial.analysis.successfulDocuments,5);
+  assert.equal(partialProgress.at(-1).partialSuccess,true);
+  await delay(100);
+  const aborted = new AbortController();
+  const abortResponse = await fetch(base+'/api/analyze',{method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(2),signal:aborted.signal});
+  const abortReader = abortResponse.body.getReader();
+  await abortReader.read();
+  aborted.abort();
+  await abortReader.cancel().catch(()=>{});
+  let released=false;
+  for(let i=0;i<100;i++) {
+    await delay(50);
+    const retry=await fetch(base+'/api/analyze',{method:'POST',headers,body:manualForm()});
+    if(retry.status===200){released=true;break;}
+    assert.equal(retry.status,429);
+  }
+  assert.equal(released,true,'disconnect releases admission and aborts server work');
+  const multiMetrics=logs.split('\n').filter(line=>line.startsWith('ANALYSIS_METRICS ')).map(line=>JSON.parse(line.slice('ANALYSIS_METRICS '.length))).find(m=>m.successfulDocuments===20);
+  assert.equal(multiMetrics.batchCount,2);assert.equal(multiMetrics.maxConcurrentExtractions,2);assert.equal(multiMetrics.extractionCalls,2);
+  for(const value of [code,secret,key,'PRIVATE_PDF_SENTINEL','PRIVATE_OUTPUT_SENTINEL','PRIVATE_FILENAME','INVALID_PHASE2'])assert.equal(logs.includes(value),false);
   console.log(JSON.stringify({ result: "PASS", checks: [
+    "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
     "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
 
     "unauthorized", "manual/catalog", "synthetic PDF to mocked AI to response",

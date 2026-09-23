@@ -46,7 +46,7 @@ export function createDocumentRedactor(): Redactor {
   return {
     redact(text: string) {
       let result = text;
-      result = result.replace(/[\w.!#$%&'*+/=?^`{|}~-]+@[\w](?:[\w-]{0,61}[\w])?(?:\.[\w](?:[\w-]{0,61}[\w])?)+/giu,
+      result = result.replace(/(?<![\w.!#$%&'*+/=?^`{|}~-])[\w.!#$%&'*+/=?^`{|}~-]+@[\w](?:[\w-]{0,61}[\w])?(?:\.[\w](?:[\w-]{0,61}[\w])?)+/giu,
         (value) => placeholder("EMAIL", value));
       result = result.replace(/\+47(?:[ .-]?\d){8}\b/gu, (value) => placeholder("PHONE", value));
       result = result.replace(/\b(?:\d[ .-]?){10}\d\b/gu, (value) =>

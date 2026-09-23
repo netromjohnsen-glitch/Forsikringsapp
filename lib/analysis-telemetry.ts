@@ -1,3 +1,4 @@
+import type { ProgressEvent } from "./analysis-progress.ts";
 import { sanitizeSemanticAudit } from "./semantic-audit.ts";
 import type { SemanticMatcherMetrics } from "./hybrid-matching.ts";
 // Only fixed stage names and numeric measurements cross the logging boundary.
@@ -31,6 +32,9 @@ export function createAnalysisTelemetry(requestId: string, now = () => performan
   const calls: { kind: "extraction" | "semantic"; model: string; durationMs: number; success: boolean;
     usage: ReturnType<typeof numericUsage> }[] = [];
   let semanticMatcher: SemanticMatcherMetrics | undefined;
+  let transport: "json" | "ndjson" = "json";
+  let existingDocumentCount = 0, offerDocumentCount = 0, successfulDocuments = 0, failedDocuments = 0, identifiedProducts = 0, maxConcurrentExtractions = 0;
+  let batchStats: { documentsPerBatch: number; pagesPerBatch: number; estimatedInputSize: number }[] = [];
   let products = 0;
   let documentCount = 0;
   let uploadBytes = 0;
@@ -43,6 +47,17 @@ export function createAnalysisTelemetry(requestId: string, now = () => performan
   };
   return {
     measureSync,
+    transport(value: "json" | "ndjson") { transport = value === "ndjson" ? "ndjson" : "json"; },
+    extractionConcurrency(count: number) { maxConcurrentExtractions = Math.max(maxConcurrentExtractions, finite(count) ?? 0); },
+    batches(batches: readonly { documents: readonly unknown[]; pages: number; estimatedInputTokens: number }[]) {
+      batchStats = batches.map((batch) => ({ documentsPerBatch: batch.documents.length, pagesPerBatch: finite(batch.pages) ?? 0, estimatedInputSize: finite(batch.estimatedInputTokens) ?? 0 }));
+    },
+    progress(event: ProgressEvent) {
+      if (event.type === "analysis_started") { existingDocumentCount = finite(event.existingDocumentCount) ?? 0; offerDocumentCount = finite(event.offerDocumentCount) ?? 0; }
+      if (event.type === "document_status" && event.status === "completed") successfulDocuments++;
+      if (event.type === "document_status" && event.status === "failed") failedDocuments++;
+      if (event.type === "product_status" && event.status === "identified") identifiedProducts++;
+    },
     async measure<T>(stage: AnalysisStage, work: () => Promise<T>): Promise<T> {
       const start = now();
       try { return await work(); } finally { record(stage, now() - start); }
@@ -78,6 +93,13 @@ export function createAnalysisTelemetry(requestId: string, now = () => performan
           inputTokens: calls.find((call) => call.kind === "semantic")?.usage.inputTokens ?? (semanticMatcher.invoked ? null : 0),
           outputTokens: calls.find((call) => call.kind === "semantic")?.usage.outputTokens ?? (semanticMatcher.invoked ? null : 0),
         } } : {}),
+        existingDocumentCount, offerDocumentCount, successfulDocuments, failedDocuments, identifiedProducts,
+        partialSuccess: failedDocuments > 0 && successfulDocuments > 0 && status === 200,
+        progressTransport: transport, batchCount: batchStats.length, batches: batchStats.map((batch) => ({ ...batch })),
+        extractionCalls: calls.filter((call) => call.kind === "extraction").length, maxConcurrentExtractions,
+        totalPages: documents.reduce((n,d) => n+d.pages,0), totalBytes: uploadBytes,
+        tokenTotals: Object.fromEntries((["inputTokens", "outputTokens", "totalTokens", "cachedInputTokens"] as const).map((key) => [key,
+          calls.every((call) => call.usage[key] !== null) ? calls.reduce((n,call) => n+(call.usage[key] ?? 0),0) : null])),
         uploadBytes, documentCount, parsedDocumentCount: documents.length, products,
         documents: documents.map((item) => ({ ...item })),
         calls: calls.map((item) => ({ ...item, usage: { ...item.usage } })),

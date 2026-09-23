@@ -1,10 +1,10 @@
 import OpenAI from "openai";
 import { runHybridMatching } from "@/lib/hybrid-matching";
 import { requestSemanticMatches } from "@/lib/semantic-matcher";
-import { finalizeAgreementPricing } from "@/lib/agreement-pricing";
+import { analyzePdfBatches } from "@/lib/pdf-analysis-pipeline";
+import { mergeBatchResults } from "@/lib/analysis-merge";
+import { safeProgress, type ProgressEvent } from "@/lib/analysis-progress";
 import { ManualAgreementError, normalizeManualAgreement } from "@/lib/manual-agreement";
-import { includePdfAddOnTerms } from "@/lib/pdf-addons";
-import { enrichExtractedAgreementWithCatalog } from "@/lib/catalog-enrichment";
 import {
   AnalysisOutputError,
   EXTRACTION_TIMEOUT_MS,
@@ -12,24 +12,21 @@ import {
   parseExtractionResponse,
   sanitizeAnalysisDocumentForClient,
 } from "@/lib/analysis-output";
-import { buildUntrustedDocumentInput } from "@/lib/document-redaction";
 import { isSameOriginRequest, noStoreJson, safeErrorMetadata } from "@/lib/http-security";
 import {
   PdfSecurityError,
   type PreparedPdf,
   preparePdf,
   validateAggregatePdfBytes,
-  validateParsedPdfSide,
   validatePdfFileList,
   validateRequestContentLength,
 } from "@/lib/pdf-upload-security";
 import { hasValidPilotSession, isPilotAccessConfigured } from "@/lib/pilot-access";
 
-import { readPdf } from "@/lib/pdf-reader";
 import { createAnalysisTelemetry, type AnalysisTelemetry } from "@/lib/analysis-telemetry";
 import {
   AnalysisControlError, analysisAdmission, requestLifecycle,
-  readBoundedFormData, analyzeAgreementSides,
+  readBoundedFormData,
 } from "@/lib/analysis-control";
 
 export const maxDuration = 240;
@@ -57,14 +54,14 @@ function openai(): OpenAI {
   return openaiClient;
 }
 
-async function extractInsuranceData(text: string, signal: AbortSignal, telemetry: AnalysisTelemetry) {
+async function extractInsuranceData(text: string, signal: AbortSignal, telemetry: AnalysisTelemetry, documentCount: number) {
   signal.throwIfAborted();
   const client = openai();
   const started = performance.now();
   let response;
   try {
     response = await telemetry.measure("aiExtraction", () => client.responses.create(
-      buildExtractionRequest(text),
+      buildExtractionRequest(text, documentCount),
       { timeout: EXTRACTION_TIMEOUT_MS, maxRetries: 0, signal },
     ));
   } finally {
@@ -77,42 +74,6 @@ async function extractInsuranceData(text: string, signal: AbortSignal, telemetry
   }
   telemetry.products(extracted.insurances.length);
   return extracted;
-}
-
-async function parsePdfAgreement(files: readonly PreparedPdf[], signal: AbortSignal, telemetry: AnalysisTelemetry, offset: number) {
-  const documentTexts: string[] = [];
-  const pageCounts: number[] = [];
-  for (const [index, file] of files.entries()) {
-    signal.throwIfAborted();
-    const bytes = file.data.byteLength;
-    const start = performance.now();
-    const parsed = await telemetry.measure("pdfWorker", () => readPdf(file, signal));
-    telemetry.record("pdfParsing", parsed.parseMs);
-    telemetry.record("textExtraction", parsed.textMs);
-    telemetry.document(offset + index, bytes, parsed.pages, parsed.text.length, performance.now() - start);
-    documentTexts.push(parsed.text);
-    pageCounts.push(parsed.pages);
-    // Check cumulative limits before spending resources on the next document.
-    validateParsedPdfSide(pageCounts, documentTexts);
-  }
-  return {
-    modelInput: telemetry.measureSync("inputPreparation", () => buildUntrustedDocumentInput(documentTexts)),
-    filename: files.length === 1 ? "1 PDF-dokument" : `${files.length} PDF-dokumenter`,
-  };
-}
-
-async function analyzeParsedAgreement(parsed: { modelInput: string; filename: string }, signal: AbortSignal, telemetry: AnalysisTelemetry) {
-  const extracted = await extractInsuranceData(parsed.modelInput, signal, telemetry);
-  const withDocumentAddOns = telemetry.measureSync("normalization", () => ({
-    ...extracted,
-    insurances: extracted.insurances.map(includePdfAddOnTerms),
-  }));
-  return {
-    source: "pdf" as const,
-    filename: parsed.filename,
-    insuranceData: finalizeAgreementPricing(telemetry.measureSync("catalogEnrichment", () =>
-      enrichExtractedAgreementWithCatalog(withDocumentAddOns, new Date(), telemetry.measureSync))),
-  };
 }
 
 type PendingAgreement =
@@ -157,10 +118,11 @@ function responseHeaders(requestId: string): HeadersInit {
   return { "X-Request-Id": requestId };
 }
 
-export async function POST(request: Request) {
+async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => void = () => {}, clientSignal = request.signal) {
   const requestId = crypto.randomUUID();
   const telemetry = createAnalysisTelemetry(requestId);
-  const lifecycle = requestLifecycle(request.signal);
+  telemetry.transport(request.headers.get("accept") === "application/x-ndjson" ? "ndjson" : "json");
+  const lifecycle = requestLifecycle(clientSignal);
   let release: (() => void) | undefined;
   let outcome = 500;
   const respond = (body: unknown, status: number) => {
@@ -208,20 +170,16 @@ export async function POST(request: Request) {
       ] as const;
     });
 
-    // Alle PDF-er parses og valideres før første dokument sendes til OpenAI.
-    const parsedPdfAgreements: (Awaited<ReturnType<typeof parsePdfAgreement>> | null)[] = [];
-    let documentOffset = 0;
-    for (const agreement of pending) {
-      parsedPdfAgreements.push(agreement.mode === "pdf"
-        ? await parsePdfAgreement(agreement.files, lifecycle.signal, telemetry, documentOffset) : null);
-      if (agreement.mode === "pdf") documentOffset += agreement.files.length;
-      else telemetry.products(agreement.document.insuranceData.insurances.length);
-    }
-
-    const documents = await analyzeAgreementSides(pending.map((agreement, index) => async () =>
-      agreement.mode === "manual" ? agreement.document
-        : analyzeParsedAgreement(parsedPdfAgreements[index]!, lifecycle.signal, telemetry)),
-    lifecycle.controller);
+    const pipeline = await analyzePdfBatches({
+      sides: pending.flatMap((agreement, index) => agreement.mode === "pdf" ? [{ side: index === 0 ? "existing" as const : "offer" as const, files: agreement.files }] : []),
+      controller: lifecycle.controller, telemetry, emit,
+      extract: (batch) => extractInsuranceData(batch.input, lifecycle.signal, telemetry, batch.documents.length),
+    });
+    const documents = pending.map((agreement, index) => {
+      if (agreement.mode === "manual") { telemetry.products(agreement.document.insuranceData.insurances.length); return agreement.document; }
+      return mergeBatchResults(pipeline.results, index === 0 ? "existing" : "offer", pipeline.partialSuccess);
+    });
+    emit({ type: "comparison_started" });
 
     const matchingPlan = await telemetry.measure("semanticMatching", () => runHybridMatching(
       documents[0].insuranceData.insurances,
@@ -231,7 +189,10 @@ export async function POST(request: Request) {
     ));
     lifecycle.signal.throwIfAborted();
 
+    emit({ type: "analysis_completed", partialSuccess: pipeline.partialSuccess, successfulDocuments: pipeline.successfulDocuments, failedDocuments: pipeline.failures.length });
     return respond({
+      analysis: { partialSuccess: pipeline.partialSuccess, successfulDocuments: pipeline.successfulDocuments, failedDocuments: pipeline.failures.length, failures: pipeline.failures,
+        conservativeObjectSeparation: pipeline.results.filter((r) => r.batch.side === "existing").length > 1 || pipeline.results.filter((r) => r.batch.side === "offer").length > 1 },
       documents: documents.map((document) => sanitizeAnalysisDocumentForClient(document as unknown as Record<string, unknown>)),
       matchingPlan,
     }, 200);
@@ -260,4 +221,35 @@ export async function POST(request: Request) {
     release?.();
     console.info("ANALYSIS_METRICS", JSON.stringify(telemetry.snapshot(outcome)));
   }
+}
+
+// POST streaming keeps request-local state only. The result frame is the existing
+// authorized response; progress frames contain safe metadata only, never its data.
+export async function POST(request: Request) {
+  if (request.headers.get("accept") !== "application/x-ndjson" || !isPilotAccessConfigured() || !hasValidPilotSession(request) || !isSameOriginRequest(request)) return analyzeRequest(request);
+  const cancel = new AbortController();
+  const signal = AbortSignal.any([request.signal, cancel.signal]);
+  const encoder = new TextEncoder();
+  const body = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const send = (frame: unknown) => {
+        if (signal.aborted) return;
+        try { controller.enqueue(encoder.encode(JSON.stringify(frame) + "\n")); }
+        catch { cancel.abort(new AnalysisControlError(499, "client_aborted", "Analysen ble avbrutt.")); }
+      };
+      const heartbeat = setInterval(() => send({ type: "heartbeat" }), 10_000);
+      try {
+        const response = await analyzeRequest(request, (event) => send({ type: "progress", event: safeProgress(event) }), signal);
+        const data = await response.json();
+        send(response.ok ? { type: "result", data } : { type: "error", status: response.status, error: data.error });
+      } catch {
+        send({ type: "error", status: 503, error: "Analysen ble avbrutt. Start analysen på nytt." });
+      } finally {
+        clearInterval(heartbeat);
+        try { controller.close(); } catch { /* Reader already cancelled. */ }
+      }
+    },
+    cancel() { cancel.abort(new AnalysisControlError(499, "client_aborted", "Analysen ble avbrutt.")); },
+  });
+  return new Response(body, { headers: { "Content-Type": "application/x-ndjson; charset=utf-8", "Cache-Control": "private, no-store, max-age=0", "Pragma": "no-cache", "X-Accel-Buffering": "no" } });
 }

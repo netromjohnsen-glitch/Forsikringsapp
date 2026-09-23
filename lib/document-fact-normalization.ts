@@ -217,13 +217,15 @@ function summaryFacts(insurance: ExtractedInsurance): DocumentFact[] {
 }
 
 function uniqueDocumentFacts(terms: DocumentFact[]): DocumentFact[] {
-  const seen = new Set<string>();
-  return terms.filter((term) => {
+  const seen = new Map<string, DocumentFact>();
+  for (const term of terms) {
     const identity = `${term.key ?? normalizeWords(term.name)}\u0000${normalizeWords(term.value)}`;
-    if (seen.has(identity)) return false;
-    seen.add(identity);
-    return true;
-  });
+    const previous = seen.get(identity);
+    if (!previous) { seen.set(identity, term); continue; }
+    const sources = [...(previous.sources ?? (previous.source ? [previous.source] : [])), ...(term.sources ?? (term.source ? [term.source] : []))];
+    if (sources.length) previous.sources = sources.filter((source, index) => sources.findIndex((candidate) => candidate.documentId === source.documentId && candidate.page === source.page && candidate.section === source.section) === index);
+  }
+  return [...seen.values()];
 }
 
 // Normaliseringen bruker bare eksplisitte, forsikringstypeavgrensede aliaser og

@@ -30,6 +30,7 @@ export const canonicalDocumentFactKeys = [
 
 export type CanonicalDocumentFactKey = typeof canonicalDocumentFactKeys[number];
 export type ExtractedTerm = {
+  documentIndices?: number[];
   name: string;
   value: string;
   canonicalKey?: CanonicalDocumentFactKey | null;
@@ -41,6 +42,8 @@ export type ExtractedAddOn = {
   importantTerms: ExtractedTerm[];
 };
 export type ExtractedInsurance = {
+  documentIndices?: number[];
+  company?: string | null;
   type: string;
   productName: string | null;
   // Stabil katalogidentitet uten objekt-/kjøretøydetaljer. Feltet er valgfritt
@@ -110,8 +113,8 @@ VIKTIG:
 - Ikke presenter én forsikring som bedre enn en annen. Hent ut faktainformasjonen slik at systemet kan sammenligne dem.
 `;
 
-export function buildExtractionRequest(input: string) {
-  return {
+export function buildExtractionRequest(input: string, documentCount?: number) {
+  const request = {
     model: ANALYSIS_MODEL,
     store: false,
     instructions: EXTRACTION_INSTRUCTIONS,
@@ -195,6 +198,17 @@ export function buildExtractionRequest(input: string) {
       },
     },
   };
+  if (documentCount !== undefined) {
+    const product = request.text.format.schema.properties.insurances.items;
+    const indices = { type: "array", minItems: 1, maxItems: documentCount, items: { type: "integer", minimum: 1, maximum: documentCount } };
+    Object.assign(product.properties, { documentIndices: indices, company: { type: ["string", "null"] } });
+    product.required.push("documentIndices", "company");
+    for (const item of [product.properties.importantTerms.items, product.properties.addOns.items.properties.importantTerms.items]) {
+      Object.assign(item.properties, { documentIndices: indices }); item.required.push("documentIndices");
+    }
+    request.instructions += "\nFase 2: Input er én batch fra én sammenligningsside, ikke nødvendigvis hele avtalen. Oppgi company per forsikringsobjekt. documentIndices er de eksakte 1-baserte DOKUMENT-numrene i denne batchen som dokumenterer objektet eller vilkåret. Hvert importantTerm (også i addOns) må peke på sine faktiske kildedokumenter. Ikke knytt alle dokumenter til alle fakta. Hold ulike objekter adskilt. Bevis og individuelle avtaleopplysninger prioriteres foran generelle vilkår; ikke utled dokumentrolle fra filnavn. Totalen gjelder kun dokumentene i denne batchen.";
+  }
+  return request;
 }
 
 function object(value: unknown, allowed: readonly string[]): Record<string, unknown> {
@@ -216,14 +230,20 @@ function premium(value: unknown): string | null {
   return parsed;
 }
 
+function documentIndices(value: unknown): number[] {
+  if (!Array.isArray(value) || !value.length || value.length > 10 || value.some((v) => !Number.isInteger(v) || v < 1 || v > 10) || new Set(value).size !== value.length) throw new AnalysisOutputError("Ugyldig dokumentreferanse.");
+  return value as number[];
+}
+
 function term(value: unknown): ExtractedTerm {
-  const item = object(value, ["name", "value", "canonicalKey"]);
+  const item = object(value, ["name", "value", "canonicalKey", "documentIndices"]);
   const canonicalKey = item.canonicalKey;
   if (canonicalKey !== undefined && canonicalKey !== null &&
       !canonicalDocumentFactKeys.includes(canonicalKey as CanonicalDocumentFactKey)) {
     throw new AnalysisOutputError("Ugyldig canonical faktanøkkel.");
   }
   return {
+    ...(item.documentIndices !== undefined ? { documentIndices: documentIndices(item.documentIndices) } : {}),
     name: text(item.name, 200)!,
     value: text(item.value, 3_000)!,
     ...(canonicalKey !== undefined ? { canonicalKey: canonicalKey as CanonicalDocumentFactKey | null } : {}),
@@ -242,7 +262,7 @@ function addOn(value: unknown): ExtractedAddOn {
 }
 
 function insurance(value: unknown): ExtractedInsurance {
-  const item = object(value, ["type", "productName", "canonicalProductName", "annualPremium", "deductible", "coverageSummary", "importantTerms", "addOns"]);
+  const item = object(value, ["type", "productName", "canonicalProductName", "annualPremium", "deductible", "coverageSummary", "importantTerms", "addOns", "documentIndices", "company"]);
   if (!Array.isArray(item.importantTerms) || item.importantTerms.length > 80 ||
       !Array.isArray(item.addOns) || item.addOns.length > 30) throw new AnalysisOutputError("For mange analysepunkter.");
   const rawType = text(item.type, 120)!;
@@ -252,6 +272,8 @@ function insurance(value: unknown): ExtractedInsurance {
     : text(item.canonicalProductName, 200, true);
   const coverageSummary = text(item.coverageSummary, 6_000, true);
   return {
+    ...(item.documentIndices !== undefined ? { documentIndices: documentIndices(item.documentIndices) } : {}),
+    ...(item.company !== undefined ? { company: text(item.company, 150, true) } : {}),
     type: canonicalInsuranceTypeLabel(rawType, { productName, coverageSummary }),
     productName,
     ...(canonicalProductName !== undefined ? { canonicalProductName } : {}),
