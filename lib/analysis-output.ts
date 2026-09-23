@@ -14,6 +14,9 @@ export const canonicalDocumentFactKeys = [
   "maskinskade.varighet",
   "maskinskade.alder",
   "maskinskade.km",
+  "premie.total",
+  "premie.ekskl_tfa",
+  "premie.tfa",
   "nyverdi.grenser",
   "nyverdi.alder",
   "nyverdi.km",
@@ -76,6 +79,8 @@ VIKTIG:
 - "Veihjelp", "redning", "assistanse" og tilsvarende formuleringer skal tolkes ut fra innholdet.
 - Kombiner forsikringer fra alle dokumentene i denne avtalen. Samme forsikring omtalt flere ganger skal ikke telles flere ganger.
 - Hold ulike forsikringer og forsikringsobjekter adskilt, også når de har samme type.
+- For Bil: behold eksplisitt total årspremie inklusive trafikkforsikringsavgift i premie.total, premie eksklusive avgiften i premie.ekskl_tfa, og avgiften i premie.tfa som tre separate importantTerms med canonicalKey. annualPremium skal bruke den eksplisitte totalen inklusive avgiften når den finnes. Ikke summer eller gjett manglende beløp; ikke overfør avtaletotalen til ett kjøretøy i en avtale med flere objekter.
+- For totalskadegaranti/nyverdierstatning: hent både alder og kilometer fra det konkrete forsikringsbeviset, også for utvidelser på toppnivået. Bruk nyverdi.alder og nyverdi.km separat, eller nyverdi.grenser for en sammensatt grense. Ikke bruk maskinskadegrensen som totalskadegrense.
 - annualPremium gjelder bare den aktuelle forsikringen. Ikke legg annualPremium til en totalAnnualPremium som kan inkludere den allerede.
 - totalAnnualPremium skal bare være samlet årspremie for hele avtalen når dokumentene gir sikkert grunnlag for dette. Ikke beregn den ved å summere totalsummer og enkeltpremier.
 - Sett totalAnnualPremiumScope til entire_agreement bare når totalsummen uttrykkelig dekker alle forsikringer i dokumentene. Hvis et hoveddokument har en totalpris og et annet dokument beskriver en separat forsikring som ikke klart inngår i denne totalen, bruk partial_or_unclear og null som totalAnnualPremium.

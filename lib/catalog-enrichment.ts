@@ -72,6 +72,13 @@ function enrichInsurance(
     ? findCatalogProductBySelection(company, insurance.type, productIdentity)
     : null;
   const documentTerms = normalizeDocumentFacts(insurance);
+  const documentedTotals = [...new Set(documentTerms
+    .filter((term) => term.key === "premie.total").map((term) => term.value))];
+  // Bare en entydig, eksplisitt objekttotal kan erstatte det eldre premiefeltet.
+  insurance = {
+    ...insurance,
+    annualPremium: documentedTotals.length === 1 ? documentedTotals[0] : insurance.annualPremium,
+  };
   if (!product) return { ...insurance, importantTerms: documentTerms, catalogReference: null };
 
   const effectiveFacts = resolveCatalogFacts(product, [], asOf, null);

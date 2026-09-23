@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { buildExtractionRequest } from "../lib/analysis-output.ts";
+import { buildExtractionRequest, parseExtractionResponse } from "../lib/analysis-output.ts";
 import { enrichExtractedAgreementWithCatalog } from "../lib/catalog-enrichment.ts";
 import { presentImportantDifferences } from "../lib/comparison-presentation.ts";
-import { createDifferences, groupInsurances, groupTerms } from "../lib/comparison.ts";
+import { createDifferences, groupInsurances, groupTerms, groupValue, groupAddOnNames } from "../lib/comparison.ts";
 import { canonicalCoverage, coverageStatusLabel } from "../lib/coverage-status.ts";
 import { catalogConnectionStatus } from "../lib/product-catalog.ts";
 
@@ -289,4 +289,175 @@ test("modell-schema krever separat canonical produktidentitet", () => {
   assert.deepEqual(insuranceSchema.properties.canonicalProductName.type, ["string", "null"]);
   assert.ok(insuranceSchema.properties.importantTerms.items.required.includes("canonicalKey"));
   assert.ok(insuranceSchema.properties.importantTerms.items.properties.canonicalKey.enum.includes("nyverdi.grenser"));
+});
+
+test("Pluss totalskadegrense splittes også når uttrekket plasserer paret på aldersnøkkelen", () => {
+  const insurance = policy({ productName: "Pluss", importantTerms: [{
+    name: "Totalskadegaranti – alder", canonicalKey: "nyverdi.alder", value: "3 år / 60 000 km",
+  }] });
+  assert.deepEqual(values(insurance, "nyverdi.alder").map((term) => term.value), ["3 år"]);
+  assert.deepEqual(values(insurance, "nyverdi.km").map((term) => term.value), ["60 000 km"]);
+  assert.ok(insurance.catalogFacts.some((fact) => fact.key === "nyverdi.km" && /20 000/u.test(fact.value)));
+  assert.equal(values(insurance, "nyverdi.km")[0].coverageOrigin, "document");
+});
+
+test("sammensatt totalskadealias normaliseres uten fuzzy matching", () => {
+  for (const kilometer of ["60000", "60\u00a0000", "60\u202f000"]) {
+    const insurance = policy({ productName: "Pluss", importantTerms: [{
+      name: "Totalskadegaranti – alder og kilometer", value: `3 år / ${kilometer} km`,
+    }] });
+    assert.equal(value(insurance, "nyverdi.alder"), "3 år");
+    assert.equal(value(insurance, "nyverdi.km"), `${kilometer} km`);
+  }
+});
+
+test("generisk aldersgrense tolkes ikke som totalskadegaranti", () => {
+  const insurance = policy({ productName: "Pluss", importantTerms: [{ name: "Alder", value: "3 år / 60 000 km" }] });
+  assert.equal(values(insurance, "nyverdi.alder").some((term) => term.coverageOrigin === "document"), false);
+});
+
+test("varierende dokumentgrenser hardkodes ikke til pilotens 3 år og 60 000 km", () => {
+  const insurance = policy({ company: "Tryg", productName: "Kasko", importantTerms: [{
+    name: "Nyverdierstatning", canonicalKey: "nyverdi.km", value: "4 år / 80000 km",
+  }] });
+  assert.deepEqual(values(insurance, "nyverdi.km").map((term) => term.value), ["80000 km"]);
+  assert.equal(value(insurance, "nyverdi.alder"), "4 år");
+});
+
+function pricedPolicy(company, productName, excluding, tax, total) {
+  const terms = [
+    { name: "Premie etter rabatter uten trafikkforsikringsavgift", value: excluding },
+    { name: "Trafikkforsikringsavgift", value: tax },
+    ...(total ? [{ name: "Total premie inklusive trafikkforsikringsavgift", value: total }] : []),
+  ];
+  return enrichExtractedAgreementWithCatalog({
+    company, totalAnnualPremium: total, totalAnnualPremiumScope: "entire_agreement",
+    insurances: [{
+      type: "Bil", productName, annualPremium: excluding, deductible: null,
+      coverageSummary: null, importantTerms: terms, addOns: [],
+    }],
+  }, asOf);
+}
+
+for (const [product, excluding, tax, total] of [
+  ["Pluss", "9 518 kr", "3 270 kr", "12 788 kr"],
+  ["Kasko", "12 457 kr", "2 329 kr", "14 786 kr"],
+]) {
+  test(product + " beholder tre separate dokumenterte premiefakta og konsistent objekttotal", () => {
+    const data = pricedPolicy("Gjensidige", product, excluding, tax, total);
+    const insurance = data.insurances[0];
+    assert.equal(value(insurance, "premie.total"), total);
+    assert.equal(value(insurance, "premie.ekskl_tfa"), excluding);
+    assert.equal(value(insurance, "premie.tfa"), tax);
+    assert.equal(insurance.annualPremium, data.totalAnnualPremium);
+    assert.equal(groupValue([insurance], "annualPremium"), total + " inkl. trafikkforsikringsavgift");
+    const terms = compared(insurance, insurance).terms;
+    assert.equal(terms.find((term) => term.key === "premie.ekskl_tfa").first, excluding);
+    assert.equal(terms.find((term) => term.key === "premie.tfa").first, tax);
+  });
+}
+
+test("Tryg-premie bruker samme generelle TFA-normalisering", () => {
+  const insurance = pricedPolicy("Tryg", "Kasko", "8 000 kr", "2 000 kr", "10 000 kr").insurances[0];
+  assert.equal(insurance.catalogReference.providerId, "tryg");
+  assert.equal(groupValue([insurance], "annualPremium"), "10 000 kr inkl. trafikkforsikringsavgift");
+});
+
+test("manglende total beregnes ikke fra ekskl-premie og avgift", () => {
+  const insurance = pricedPolicy("Gjensidige", "Kasko", "8 000 kr", "2 000 kr", null).insurances[0];
+  assert.equal(value(insurance, "premie.total"), undefined);
+  assert.equal(groupValue([insurance], "annualPremium"), "8 000 kr ekskl. trafikkforsikringsavgift");
+});
+
+test("avtaletotal overføres ikke til hvert kjøretøy", () => {
+  const raw = pricedPolicy("Ukjent", "Ukjent", "8 000 kr", "2 000 kr", null);
+  raw.totalAnnualPremium = "99 000 kr";
+  assert.equal(enrichExtractedAgreementWithCatalog(raw, asOf).insurances[0].annualPremium, "8 000 kr");
+});
+
+test("valgte supplerende dekninger vises selv om addOns-listen mangler", () => {
+  const insurance = policy({ productName: "Pluss", coverageSummary: "Leiebil er valgt. Maskinskade er valgt." });
+  assert.equal(groupAddOnNames([insurance], "Bil"), "Leiebil · Maskinskade");
+});
+
+test("ikke valgt leiebil listes aldri som valgt tillegg", () => {
+  const insurance = policy({ productName: "Kasko", coverageSummary: "Leiebil er ikke valgt" });
+  assert.doesNotMatch(groupAddOnNames([insurance], "Bil") ?? "", /Leiebil/u);
+});
+
+test("standarddekninger og katalog alene skaper ikke dokumenterte tillegg", () => {
+  const insurance = policy({ productName: "Pluss", importantTerms: [
+    { name: "Ansvar", value: "Valgt" }, { name: "Glass", value: "Valgt" }, { name: "Brann", value: "Valgt" },
+  ] });
+  assert.equal(groupAddOnNames([insurance], "Bil"), null);
+});
+
+test("Tryg dokumentert Leiebil vises gjennom samme tilleggsoversikt", () => {
+  const insurance = policy({ company: "Tryg", productName: "Kasko", coverageSummary: "Leiebil er valgt" });
+  assert.equal(groupAddOnNames([insurance], "Bil"), "Leiebil");
+});
+
+test("bilnøkkel og førstegangsregistrering beholdes under korrekthetsoppryddingen", () => {
+  for (const [productName, year, amount] of [["Kasko", "2013", "7 500 kr"], ["Pluss", "2014", "15 000 kr"]]) {
+    const insurance = policy({ productName, coverageSummary: "Førstegangsregistrert: " + year,
+      importantTerms: [{ name: "Bilnøkkel", value: amount }] });
+    assert.equal(value(insurance, "bilnokkel.grense"), amount);
+    assert.equal(value(insurance, "kjoretoy.forstegangsregistrering"), year);
+  }
+});
+
+test("JSON-uttrekk med canonical premium keys går gjennom validering, enrichment og presentasjon", () => {
+  const raw = {
+    company: "Gjensidige", totalAnnualPremium: "12 788 kr", totalAnnualPremiumScope: "entire_agreement",
+    insurances: [{
+      type: "Motorvognforsikring", productName: "Pluss", canonicalProductName: "Pluss",
+      annualPremium: "9 518 kr", deductible: null, coverageSummary: null, addOns: [],
+      importantTerms: [
+        { name: "Total", canonicalKey: "premie.total", value: "12 788 kr" },
+        { name: "Premie", canonicalKey: "premie.ekskl_tfa", value: "9 518 kr" },
+        { name: "Avgift", canonicalKey: "premie.tfa", value: "3 270 kr" },
+        { name: "Nybil", canonicalKey: "nyverdi.alder", value: "3 år / 60000 km, det som inntreffer først" },
+      ],
+    }],
+  };
+  const data = enrichExtractedAgreementWithCatalog(parseExtractionResponse({
+    status: "completed", output_text: JSON.stringify(raw),
+  }), asOf);
+  const insurance = data.insurances[0];
+  assert.equal(insurance.type, "Bil");
+  assert.equal(groupValue([insurance], "annualPremium"), "12 788 kr inkl. trafikkforsikringsavgift");
+  assert.equal(value(insurance, "nyverdi.grenser"), "3 år / 60000 km, det som inntreffer først");
+  assert.equal(value(insurance, "nyverdi.alder"), "3 år");
+  assert.equal(value(insurance, "nyverdi.km"), "60000 km");
+  for (const key of ["premie.total", "premie.ekskl_tfa", "premie.tfa"]) {
+    assert.equal(values(insurance, key)[0].coverageOrigin, "document");
+  }
+});
+
+test("motstridende eksplisitte premietotaler velges ikke vilkårlig", () => {
+  const raw = agreement("Gjensidige", {
+    type: "Bil", productName: "Kasko", annualPremium: null, deductible: null,
+    coverageSummary: null, addOns: [], importantTerms: [
+      { name: "Total", canonicalKey: "premie.total", value: "10 000 kr" },
+      { name: "Total", canonicalKey: "premie.total", value: "12 000 kr" },
+    ],
+  });
+  const insurance = enrichExtractedAgreementWithCatalog(raw, asOf).insurances[0];
+  assert.equal(insurance.annualPremium, null);
+  assert.equal(values(insurance, "premie.total").length, 2);
+});
+
+test("tilleggsoversikten dupliserer ikke addOns og effektive statuser", () => {
+  const insurance = policy({ productName: "Pluss",
+    coverageSummary: "Leiebil er valgt. Maskinskade er valgt.", addOns: [leiebil(), maskinskade()],
+  });
+  assert.equal(groupAddOnNames([insurance], "Bil"), "Leiebil · Maskinskade");
+});
+
+test("separat totalskadealder beholder hele dokumentformuleringen uten konkurrerende kortverdi", () => {
+  const insurance = policy({ productName: "Pluss", importantTerms: [{
+    name: "Totalskadegaranti – alder", canonicalKey: "nyverdi.alder",
+    value: "Til første hovedforfall etter 3 år",
+  }] });
+  assert.deepEqual(values(insurance, "nyverdi.alder").map((term) => term.value), ["Til første hovedforfall etter 3 år"]);
 });

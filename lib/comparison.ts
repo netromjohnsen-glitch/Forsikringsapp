@@ -158,7 +158,17 @@ export function groupInsurances(first: ComparedInsurance[], second: ComparedInsu
 }
 
 export function groupValue(insurances: ComparedInsurance[], field: "productName" | "annualPremium" | "deductible" | "coverageSummary") {
-  const values = insurances.map((insurance) => insurance[field]?.trim()).filter((value): value is string => Boolean(value));
+  const values = insurances.map((insurance) => {
+    const value = insurance[field]?.trim();
+    if (field !== "annualPremium" || !value) return value;
+    if (insurance.importantTerms.some((term) => term.key === "premie.total" && term.value.trim() === value)) {
+      return /trafikkforsikringsavgift/iu.test(value) ? value : `${value} inkl. trafikkforsikringsavgift`;
+    }
+    if (insurance.importantTerms.some((term) => term.key === "premie.ekskl_tfa" && term.value.trim() === value)) {
+      return /trafikkforsikringsavgift/iu.test(value) ? value : `${value} ekskl. trafikkforsikringsavgift`;
+    }
+    return value;
+  }).filter((value): value is string => Boolean(value));
   return [...new Set(values)].join(" · ") || null;
 }
 
@@ -173,7 +183,18 @@ function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
 }
 
 export function groupAddOnNames(insurances: ComparedInsurance[], insuranceType: string): string | null {
-  const names = insurances.flatMap((insurance) => selectedAddOns(insurance, insuranceType).map((addOn) => addOn.name));
+  const supplemental = new Set(relatedCoveragesForInsuranceType(insuranceType)
+    .filter((definition) => definition.supplemental).map((definition) => definition.parentKey));
+  const names = insurances.flatMap((insurance) => {
+    const explicit = selectedAddOns(insurance, insuranceType).map((addOn) => addOn.name);
+    const explicitKeys = new Set(explicit.map((name) => normalizeTermName(name, { insuranceType })));
+    const documented = deriveCanonicalCoverages(insurance, insuranceType)
+      .filter((coverage) => supplemental.has(coverage.id) && !explicitKeys.has(coverage.id) &&
+        coverage.status === "selected" && coverage.evidence.some((evidence) =>
+          evidence.origin === "document" && evidence.status === "selected"))
+      .map((coverage) => coverage.label);
+    return [...explicit, ...documented];
+  });
   return [...new Set(names)].join(" · ") || null;
 }
 

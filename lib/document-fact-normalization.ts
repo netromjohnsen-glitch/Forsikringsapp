@@ -22,7 +22,7 @@ const normalizeWords = (value: string) => value.normalize("NFKC")
 
 const amount = /\b\d{1,3}(?:[ .]\d{3})+\s*(?:kr|kroner)\b/iu;
 const yearLimit = /\b\d{1,2}\s*år\b/iu;
-const kilometerLimit = /\b\d{1,3}(?:[ .]\d{3})+\s*(?:km|kilometer)\b/iu;
+const kilometerLimit = /\b(?:\d{1,3}(?:[ .\u00a0\u202f]\d{3})+|\d+)\s*(?:km|kilometer)\b/iu;
 const registrationYear = /\b(?:første gang registrert|førstegangsregistrert|førstegangsregistrering|første registreringsdato)\s*(?::|er)?\s*((?:19|20)\d{2})\b/iu;
 
 const totalskadeLabels = new Set([
@@ -98,7 +98,9 @@ function compoundDetails(
     add("nyverdi.alder", "Totalskadegaranti – alder", yearLimit);
     add("nyverdi.km", "Totalskadegaranti – kilometer", kilometerLimit);
   }
-  if (term.key === "nyverdi.grenser") {
+  if (term.key === "nyverdi.grenser" ||
+    (["nyverdi.alder", "nyverdi.km"].includes(term.key ?? "") &&
+      valueMatch(term.value, yearLimit) && valueMatch(term.value, kilometerLimit))) {
     add("nyverdi.alder", "Totalskadegaranti – alder", yearLimit);
     add("nyverdi.km", "Totalskadegaranti – kilometer", kilometerLimit);
   }
@@ -240,5 +242,19 @@ export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentF
     ...compoundDetails(term, insurance.type, relatedCoverageParentKeys),
     ...explicitCoverageStatuses(term.value, insurance.type),
   ]);
-  return uniqueDocumentFacts([...originals.map(({ term }) => term), ...derived, ...summaryFacts(insurance)]);
+  const premiumLabels: Record<string, string> = {
+    "premie.total": "Årspremie inkl. trafikkforsikringsavgift",
+    "premie.ekskl_tfa": "Premie ekskl. trafikkforsikringsavgift",
+    "premie.tfa": "Trafikkforsikringsavgift",
+  };
+  const normalizedOriginals = originals.flatMap(({ term }) => {
+    // En sammensatt grense feilplassert på alder/km må ikke bli stående som
+    // en konkurrerende effektiv verdi etter at den er splittet.
+    if (["nyverdi.alder", "nyverdi.km"].includes(term.key ?? "") &&
+      valueMatch(term.value, yearLimit) && valueMatch(term.value, kilometerLimit)) {
+      return [{ ...term, key: "nyverdi.grenser" }];
+    }
+    return [{ ...term, name: premiumLabels[term.key ?? ""] ?? term.name }];
+  });
+  return uniqueDocumentFacts([...normalizedOriginals, ...derived, ...summaryFacts(insurance)]);
 }

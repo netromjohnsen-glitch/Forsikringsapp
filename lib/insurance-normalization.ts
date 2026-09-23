@@ -43,6 +43,10 @@ const termAliases: Record<string, readonly string[]> = {
 // Samme ord kan bety noe annet i en annen forsikringstype.
 const contextualTermAliases: Record<string, Record<string, readonly string[]>> = {
   bil: {
+    "premie.total": ["total årspremie inkl trafikkforsikringsavgift", "total premie inklusive trafikkforsikringsavgift", "årspremie inkl trafikkforsikringsavgift"],
+    "premie.ekskl_tfa": ["premie etter rabatter uten trafikkforsikringsavgift", "premie ekskl trafikkforsikringsavgift", "årspremie ekskl trafikkforsikringsavgift", "premie eksklusive trafikkforsikringsavgift"],
+    "premie.tfa": ["trafikkforsikringsavgift", "tfa"],
+    "nyverdi.grenser": ["totalskadegaranti", "nyverdierstatning", "nybilgaranti", "totalskadegaranti alder og kilometer", "totalskadegaranti alder og kilometergrense"],
     "ansvar.dekning": ["ansvar", "ansvarsdekning"],
     "glass.dekning": ["glass", "glasskade", "glasskader"],
     "veihjelp.dekning": ["veihjelp", "redning", "assistanse", "redning og assistanse"],
@@ -221,6 +225,9 @@ export type RelatedCoverageDetail = {
 };
 
 export type RelatedCoverage = {
+  // Supplerende dekning i tilleggsoversikten; sier ikke at den er valgfri
+  // i alle produktnivåer. Kundens effektive dokumentstatus kreves separat.
+  supplemental?: boolean;
   parentKey: string;
   label: string;
   aliases?: readonly string[];
@@ -234,6 +241,7 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
   bil: [
     {
       parentKey: "leiebil.dekning",
+      supplemental: true,
       label: "Leiebil",
       aliases: ["leiebil", "erstatningsbil"],
       details: [
@@ -283,6 +291,7 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
     },
     {
       parentKey: "maskinskade.dekning",
+      supplemental: true,
       label: "Maskinskade",
       aliases: ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
       details: [
