@@ -1,3 +1,4 @@
+import type { SemanticMatcherMetrics } from "./hybrid-matching.ts";
 // Only fixed stage names and numeric measurements cross the logging boundary.
 export const ANALYSIS_MODEL = "gpt-5.6-luna";
 export type AnalysisStage = "uploadValidation" | "pdfWorker" | "pdfParsing" | "textExtraction" |
@@ -28,6 +29,7 @@ export function createAnalysisTelemetry(requestId: string, now = () => performan
   const documents: { index: number; bytes: number; pages: number; characters: number; durationMs: number }[] = [];
   const calls: { kind: "extraction" | "semantic"; model: string; durationMs: number; success: boolean;
     usage: ReturnType<typeof numericUsage> }[] = [];
+  let semanticMatcher: SemanticMatcherMetrics | undefined;
   let products = 0;
   let documentCount = 0;
   let uploadBytes = 0;
@@ -45,6 +47,17 @@ export function createAnalysisTelemetry(requestId: string, now = () => performan
       try { return await work(); } finally { record(stage, now() - start); }
     },
     record,
+    semanticMatcher(metrics: SemanticMatcherMetrics) {
+      // Explicit numeric allowlist; never spread caller/model data into logs.
+      semanticMatcher = {
+        invoked: metrics.invoked === true,
+        deterministicMatches: finite(metrics.deterministicMatches) ?? 0,
+        unresolvedCandidates: finite(metrics.unresolvedCandidates) ?? 0,
+        semanticCandidatesSent: finite(metrics.semanticCandidatesSent) ?? 0,
+        semanticMatchesAccepted: finite(metrics.semanticMatchesAccepted) ?? 0,
+        durationMs: finite(metrics.durationMs) ?? 0,
+      };
+    },
     document(index: number, bytes: number, pages: number, characters: number, durationMs: number) {
       documents.push({ index, bytes, pages, characters, durationMs });
     },
@@ -59,6 +72,10 @@ export function createAnalysisTelemetry(requestId: string, now = () => performan
         event: "analysis.metrics",
         requestId: /^[a-f0-9-]{36}$/iu.test(requestId) ? requestId : undefined,
         status, totalMs: Math.max(0, now() - start), timings: { ...timings },
+        ...(semanticMatcher ? { semanticMatcher: { ...semanticMatcher,
+          inputTokens: calls.find((call) => call.kind === "semantic")?.usage.inputTokens ?? (semanticMatcher.invoked ? null : 0),
+          outputTokens: calls.find((call) => call.kind === "semantic")?.usage.outputTokens ?? (semanticMatcher.invoked ? null : 0),
+        } } : {}),
         uploadBytes, documentCount, parsedDocumentCount: documents.length, products,
         documents: documents.map((item) => ({ ...item })),
         calls: calls.map((item) => ({ ...item, usage: { ...item.usage } })),

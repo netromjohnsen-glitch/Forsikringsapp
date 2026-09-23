@@ -227,6 +227,7 @@ export async function POST(request: Request) {
       documents[0].insuranceData.insurances,
       documents[1].insuranceData.insurances,
       (batch) => requestSemanticMatches(openai(), batch, { signal: lifecycle.signal, telemetry }),
+      telemetry.semanticMatcher,
     ));
     lifecycle.signal.throwIfAborted();
 

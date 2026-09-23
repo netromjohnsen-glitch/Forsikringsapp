@@ -49,6 +49,8 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "nyverdi.grenser": ["totalskadegaranti", "nyverdierstatning", "nybilgaranti", "totalskadegaranti alder og kilometer", "totalskadegaranti alder og kilometergrense"],
     "ansvar.dekning": ["ansvar", "ansvarsdekning"],
     "glass.dekning": ["glass", "glasskade", "glasskader"],
+    "rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],
+    "ulykke.dekning": ["ulykke", "ulykke fører og passasjerer", "fører og passasjerulykke", "trafikkulykke ulykkesdekning"],
     "veihjelp.dekning": ["veihjelp", "redning", "assistanse", "redning og assistanse"],
     "maskinskade.dekning": ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
     "maskinskade.alder": [
@@ -284,7 +286,7 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
         {
           key: "leiebil.feriereise",
           summaryLabel: "ved feriereise utenfor Norden",
-          aliases: ["leiebil ved feriereise", "feriereise utenfor norden"],
+          aliases: ["leiebil ved feriereise", "leiebil ved feriereise utenfor norden", "ved feriereise utenfor norden", "feriereise utenfor norden"],
           requiredValueAliases: ["leiebil", "erstatningsbil"],
         },
       ],
@@ -463,4 +465,20 @@ export function hasComparableInsuredValue(
       Boolean(normalizeWords(left.value)) && normalizeWords(left.value) === normalizeWords(right.value)
     )
   );
+}
+
+// One identity path for comparison and semantic fallback. Only explicit keys
+// and approved type/coverage-scoped aliases establish canonical identity.
+export function comparisonTermIdentities<T extends { name: string; value: string; key?: string }>(
+  terms: readonly T[], context: TermContext,
+): { term: T; key: string }[] {
+  const definitions = relatedCoveragesForInsuranceType(context.insuranceType ?? null);
+  const parents = terms.flatMap((term) => {
+    const key = term.key ? normalizeCatalogTermKey(term.key) : normalizeTermName(term.name, context);
+    return definitions.some((definition) => definition.parentKey === key) ? [key] : [];
+  });
+  return terms.map((term) => ({ term, key: term.key
+    ? normalizeCatalogTermKey(term.key)
+    : normalizeTermName(term.name, { ...context, relatedCoverageParentKeys: parents, termValue: term.value }),
+  }));
 }

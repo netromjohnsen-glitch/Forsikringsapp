@@ -1,8 +1,8 @@
 import {
   hasComparableInsuredValue,
+  comparisonTermIdentities,
   isKnownInsuranceType,
   normalizeInsuranceType,
-  normalizeTermName,
 } from "./insurance-normalization.ts";
 
 export type InsuranceForMatching = {
@@ -88,8 +88,7 @@ function mayCompareTypes(leftKey: string, rightKey: string): boolean {
 function groupedTerms(insurances: InsuranceForMatching[], typeKey: string, insuredValueConfirmed: boolean, prefix: "l" | "r") {
   const grouped = new Map<string, CandidateTerm>();
   for (const insurance of insurances) {
-    for (const term of insurance.importantTerms || []) {
-      const key = term.key || normalizeTermName(term.name, { insuranceType: typeKey, insuredValueConfirmed });
+    for (const { term, key } of comparisonTermIdentities(insurance.importantTerms || [], { insuranceType: typeKey, insuredValueConfirmed })) {
       if (!key || !term.value?.trim()) continue;
       const current = grouped.get(key);
       if (current) {
@@ -102,21 +101,29 @@ function groupedTerms(insurances: InsuranceForMatching[], typeKey: string, insur
   return grouped;
 }
 
-function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching[], right: InsuranceForMatching[]): TermScope | null {
+function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching[], right: InsuranceForMatching[], counts: MatchingCounts): TermScope | null {
   // Flere objekter av samme type gir ikke nok kontekst for semantisk vilkårsmatching.
   if (left.length !== 1 || right.length !== 1) return null;
   const insuredValueConfirmed = hasComparableInsuredValue(
     left[0].importantTerms || [], right[0].importantTerms || [], 1, 1,
   );
   const leftTerms = groupedTerms(left, leftKey, insuredValueConfirmed, "l");
-  const rightTerms = groupedTerms(right, leftKey, insuredValueConfirmed, "r");
+  const rightTerms = groupedTerms(right, rightKey, insuredValueConfirmed, "r");
   for (const key of leftTerms.keys()) {
     if (rightTerms.has(key)) {
+      counts.deterministicMatches++;
       leftTerms.delete(key);
       rightTerms.delete(key);
     }
   }
-  if (!leftTerms.size || !rightTerms.size) return null;
+  // Distinct canonical identities are known differences, not unresolved labels.
+  // Keep a candidate only if at least one compatible counterpart remains.
+  const leftCandidates = [...leftTerms.values()].filter((term) =>
+    [...rightTerms.values()].some((other) => compatibleTermIds(term.id, other.id)));
+  const rightCandidates = [...rightTerms.values()].filter((term) =>
+    leftCandidates.some((other) => compatibleTermIds(other.id, term.id)));
+  counts.unresolvedCandidates += leftCandidates.length + rightCandidates.length;
+  if (!leftCandidates.length || !rightCandidates.length) return null;
   return {
     id: `terms:${leftKey}|${rightKey}`,
     leftTypeKey: leftKey,
@@ -124,12 +131,25 @@ function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching
     insuranceType: left[0].type,
     leftProductName: short(left[0].productName, 100),
     rightProductName: short(right[0].productName, 100),
-    leftTerms: Array.from(leftTerms.values()).slice(0, 12),
-    rightTerms: Array.from(rightTerms.values()).slice(0, 12),
+    leftTerms: leftCandidates.slice(0, 12),
+    rightTerms: rightCandidates.slice(0, 12),
   };
 }
 
-export function buildMatchingBatch(left: readonly InsuranceForMatching[], right: readonly InsuranceForMatching[]): MatchingBatch {
+export type MatchingCounts = { deterministicMatches: number; unresolvedCandidates: number };
+export type SemanticMatcherMetrics = MatchingCounts & {
+  invoked: boolean; semanticCandidatesSent: number; semanticMatchesAccepted: number; durationMs: number;
+};
+
+function compatibleTermIds(left: string, right: string): boolean {
+  const leftKey = left.slice(2);
+  const rightKey = right.slice(2);
+  // Never let AI collapse different canonical fields, even within one coverage.
+  return !(leftKey.includes(".") && rightKey.includes(".")) || leftKey === rightKey;
+}
+
+export function buildMatchingBatch(left: readonly InsuranceForMatching[], right: readonly InsuranceForMatching[],
+  counts: MatchingCounts = { deterministicMatches: 0, unresolvedCandidates: 0 }): MatchingBatch {
   const leftTypes = indexByType(left);
   const rightTypes = indexByType(right);
   const typeCandidates: TypeCandidate[] = [];
@@ -138,19 +158,21 @@ export function buildMatchingBatch(left: readonly InsuranceForMatching[], right:
   for (const [leftKey, leftItems] of leftTypes) {
     const deterministicRight = rightTypes.get(leftKey);
     if (deterministicRight) {
-      const scope = termScope(leftKey, leftKey, leftItems, deterministicRight);
+      counts.deterministicMatches++;
+      const scope = termScope(leftKey, leftKey, leftItems, deterministicRight, counts);
       if (scope) termScopes.push(scope);
       continue;
     }
     for (const [rightKey, rightItems] of rightTypes) {
       if (leftTypes.has(rightKey) || !mayCompareTypes(leftKey, rightKey)) continue;
       if (leftItems.length !== 1 || rightItems.length !== 1) continue;
+      counts.unresolvedCandidates++;
       typeCandidates.push({
         leftId: `l:${leftKey}`, rightId: `r:${rightKey}`, leftKey, rightKey,
         left: { type: short(leftItems[0].type, 100), productName: short(leftItems[0].productName, 100), coverageSummary: short(leftItems[0].coverageSummary, 240) },
         right: { type: short(rightItems[0].type, 100), productName: short(rightItems[0].productName, 100), coverageSummary: short(rightItems[0].coverageSummary, 240) },
       });
-      const scope = termScope(leftKey, rightKey, leftItems, rightItems);
+      const scope = termScope(leftKey, rightKey, leftItems, rightItems, counts);
       if (scope) termScopes.push(scope);
       if (typeCandidates.length >= 12) break;
     }
@@ -187,7 +209,7 @@ function validDecision(value: unknown, batch: MatchingBatch): value is MatchDeci
   }
   const scope = batch.termScopes.find((entry) => entry.id === item.scopeId);
   return Boolean(scope && scope.leftTerms.some((term) => term.id === item.leftId) &&
-    rightIds.every((id) => scope.rightTerms.some((term) => term.id === id)));
+    rightIds.every((id) => scope.rightTerms.some((term) => term.id === id) && compatibleTermIds(item.leftId as string, id)));
 }
 
 function sharesCoverageRoot(left: string, rights: string[]): boolean {
@@ -199,11 +221,19 @@ export async function runHybridMatching(
   left: readonly InsuranceForMatching[],
   right: readonly InsuranceForMatching[],
   requestSemantic: (batch: MatchingBatch) => Promise<unknown>,
+  recordMetrics?: (metrics: SemanticMatcherMetrics) => void,
 ): Promise<MatchingPlan> {
-  const batch = buildMatchingBatch(left, right);
-  if (!batch.typeCandidates.length && !batch.termScopes.length) return emptyPlan();
+  const started = performance.now();
+  const metrics: SemanticMatcherMetrics = { invoked: false, deterministicMatches: 0,
+    unresolvedCandidates: 0, semanticCandidatesSent: 0, semanticMatchesAccepted: 0, durationMs: 0 };
+  const batch = buildMatchingBatch(left, right, metrics);
+  metrics.semanticCandidatesSent = batch.typeCandidates.length + batch.termScopes.reduce(
+    (sum, scope) => sum + scope.leftTerms.length + scope.rightTerms.length, 0);
+  const finish = () => recordMetrics?.({ ...metrics, durationMs: performance.now() - started });
+  if (!metrics.semanticCandidatesSent) { finish(); return emptyPlan(); }
 
   try {
+    metrics.invoked = true;
     const response = await requestSemantic(batch);
     if (!response || typeof response !== "object" ||
       Object.keys(response).some((key) => key !== "decisions") ||
@@ -251,8 +281,11 @@ export async function runHybridMatching(
         reason: item.reason,
       }];
     });
+    metrics.semanticMatchesAccepted = insuranceMatches.length + termMatches.length;
     return { insuranceMatches, termMatches, assessments };
   } catch {
     return emptyPlan();
+  } finally {
+    finish();
   }
 }

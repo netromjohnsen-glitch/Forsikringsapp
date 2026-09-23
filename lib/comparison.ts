@@ -1,8 +1,8 @@
 import {
   canonicalInsuranceTypeLabel,
+  comparisonTermIdentities,
   hasComparableInsuredValue,
   isUndocumentedTermValue,
-  normalizeCatalogTermKey,
   normalizeInsuranceType,
   normalizeTermName,
   relatedCoveragesForInsuranceType,
@@ -61,6 +61,7 @@ export type ComparedInsurance = {
     importantTerms: InsuranceTerm[];
     source?: { id: string } | null;
     coverageOrigin?: "document" | "catalog";
+    classification?: "standard" | "add_on";
   }[];
 };
 export type ComparedDocument = {
@@ -176,6 +177,7 @@ function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
   const coverages = new Map(deriveCanonicalCoverages(insurance, insuranceType)
     .map((coverage) => [coverage.id, coverage]));
   return (insurance.addOns ?? []).filter((addOn) => {
+    if (addOn.classification === "standard") return false;
     const key = normalizeTermName(addOn.name, { insuranceType });
     const coverage = coverages.get(key);
     return !coverage || coverage.status === "selected";
@@ -183,18 +185,10 @@ function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
 }
 
 export function groupAddOnNames(insurances: ComparedInsurance[], insuranceType: string): string | null {
-  const supplemental = new Set(relatedCoveragesForInsuranceType(insuranceType)
-    .filter((definition) => definition.supplemental).map((definition) => definition.parentKey));
-  const names = insurances.flatMap((insurance) => {
-    const explicit = selectedAddOns(insurance, insuranceType).map((addOn) => addOn.name);
-    const explicitKeys = new Set(explicit.map((name) => normalizeTermName(name, { insuranceType })));
-    const documented = deriveCanonicalCoverages(insurance, insuranceType)
-      .filter((coverage) => supplemental.has(coverage.id) && !explicitKeys.has(coverage.id) &&
-        coverage.status === "selected" && coverage.evidence.some((evidence) =>
-          evidence.origin === "document" && evidence.status === "selected"))
-      .map((coverage) => coverage.label);
-    return [...explicit, ...documented];
-  });
+  // Coverage status alone does not establish an optional product selection.
+  // Use explicit document addOns or selected canonical addOn components only.
+  const names = insurances.flatMap((insurance) =>
+    selectedAddOns(insurance, insuranceType).map((addOn) => addOn.name));
   return [...new Set(names)].join(" · ") || null;
 }
 
@@ -280,22 +274,9 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
   );
   for (const side of ["first", "second"] as const) {
     for (const insurance of group[side]) {
-      const relatedCoverageParentKeys = (insurance.importantTerms || []).flatMap((term) => {
-        const key = term.key
-          ? normalizeCatalogTermKey(term.key)
-          : normalizeTermName(term.name, { insuranceType: group.key, insuredValueConfirmed });
-        return relatedCoveragesForInsuranceType(group.key).some((coverage) => coverage.parentKey === key)
-          ? [key] : [];
-      });
-      for (const term of insurance.importantTerms || []) {
-        const normalizedKey = term.key
-          ? normalizeCatalogTermKey(term.key)
-          : normalizeTermName(term.name, {
-            insuranceType: group.key,
-            insuredValueConfirmed,
-            relatedCoverageParentKeys,
-            termValue: term.value,
-          });
+      for (const { term, key: normalizedKey } of comparisonTermIdentities(insurance.importantTerms || [], {
+        insuranceType: group.key, insuredValueConfirmed,
+      })) {
         const semanticKey = side === "second" ? semanticTerms.get(normalizedKey) : undefined;
         const mapsDetailToParent = semanticKey && relatedCoveragesForInsuranceType(group.key).some((coverage) =>
           coverage.parentKey === semanticKey && coverage.details.some((detail) =>

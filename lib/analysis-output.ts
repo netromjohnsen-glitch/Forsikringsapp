@@ -91,6 +91,7 @@ VIKTIG:
 - canonicalProductName er bare det eksplisitt dokumenterte hovedproduktet/dekningsnivået, for eksempel «Kasko» eller «Pluss», uten bilmodell, registreringsnummer eller annen objektinformasjon. Bruk null hvis nivået ikke kan identifiseres sikkert. Ikke gjett og ikke fuzzy-match.
 - Bruk en presis, kanonisk typebetegnelse i type: Bil for personbil (også når dokumentet bruker Motorvogn), MC for motorsykkel, og Bobil, Campingvogn, Hus, Innbo, Reise eller Båt når dette er riktig. Ikke klassifiser MC, bobil, campingvogn eller andre kjøretøy som Bil.
 - For samme forsikringsobjekt: legg alle eksplisitt avtalte tilleggsdekninger i addOns-listen på hovedforsikringen. Listen kan inneholde 0, 1 eller flere tillegg. Ikke opprett konkurrerende hovedprodukter for disse.
+- selected/valgt betyr at dekningen gjelder, ikke at den er et valgfritt tillegg. Standarddekninger som følger produktnivået skal stå i importantTerms, ikke i addOns. Bruk addOns bare når dokumentet identifiserer et faktisk tillegg; ikke utled dette fra valgstatus alene.
 - Legg tilleggsvilkår i det aktuelle tilleggets importantTerms. Ikke kopier dem også til hovedforsikringens importantTerms; systemet samler dem etterpå.
 - Behold eventuelle egne premier og egenandeler for tillegg i tilleggets felt. Ikke summer dem med hovedforsikringens premie uten sikkert grunnlag.
 - Hvis dokumentene ikke gir sikkert grunnlag for å knytte et tillegg til et bestemt forsikringsobjekt, behold opplysningene adskilt fremfor å gjette.

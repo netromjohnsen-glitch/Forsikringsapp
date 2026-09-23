@@ -36,7 +36,18 @@ function explicitKey(
   insurance: ExtractedInsurance,
   relatedCoverageParentKeys: readonly string[] = [],
 ): string {
-  if (term.canonicalKey) return normalizeCatalogTermKey(term.canonicalKey);
+  if (term.canonicalKey) {
+    // A generic repair key from extraction must not override an exact, scoped
+    // scenario label. No inference from day counts or free-form value text.
+    if (normalizeInsuranceType(insurance.type) === "bil" && term.canonicalKey === "leiebil.dager") {
+      const scenario = normalizeTermName(term.name, {
+        insuranceType: insurance.type, relatedCoverageParentKeys,
+        structuredCoverageContext: relatedCoverageParentKeys.includes("leiebil.dekning"), termValue: term.value,
+      });
+      if (["leiebil.kondemnasjon", "leiebil.teknisk", "leiebil.feriereise", "leiebil.tyveri"].includes(scenario)) return scenario;
+    }
+    return normalizeCatalogTermKey(term.canonicalKey);
+  }
   return normalizeCatalogTermKey(normalizeTermName(term.name, {
     insuranceType: insurance.type,
     relatedCoverageParentKeys,

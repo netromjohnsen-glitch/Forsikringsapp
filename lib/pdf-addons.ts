@@ -1,4 +1,4 @@
-export type PdfTerm = { name: string; value: string };
+export type PdfTerm = { name: string; value: string; canonicalKey?: string | null };
 export type PdfAddOn = {
   name: string;
   annualPremium: string | null;
@@ -16,7 +16,7 @@ export function includePdfAddOnTerms<T extends PdfInsuranceWithAddOns>(insurance
   const seen = new Set<string>();
   const importantTerms = [...insurance.importantTerms, ...(insurance.addOns ?? []).flatMap((addOn) => addOn.importantTerms)]
     .filter((term) => {
-      const key = `${term.name.trim().toLocaleLowerCase("nb-NO")}\u0000${term.value.trim().toLocaleLowerCase("nb-NO")}`;
+      const key = `${term.canonicalKey ?? ""}\u0000${term.name.trim().toLocaleLowerCase("nb-NO")}\u0000${term.value.trim().toLocaleLowerCase("nb-NO")}`;
       if (!term.name.trim() || !term.value.trim() || seen.has(key)) return false;
       seen.add(key);
       return true;

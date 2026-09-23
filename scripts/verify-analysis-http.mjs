@@ -143,10 +143,15 @@ try {
   assert.equal(success.products, 8);
   assert.equal(success.documentCount, 2);
   assert.equal(success.calls[0].usage.totalTokens, 168);
+  assert.equal(success.semanticMatcher.invoked, false);
+  assert.equal(success.semanticMatcher.semanticCandidatesSent, 0);
+  assert.equal(success.semanticMatcher.deterministicMatches, 4);
+  assert.equal(success.semanticMatcher.inputTokens, 0);
+  assert.equal(success.semanticMatcher.outputTokens, 0);
   console.log(JSON.stringify({ result: "PASS", checks: [
     "unauthorized", "manual/catalog", "synthetic PDF to mocked AI to response",
     "two-side concurrency", "N documents to M products", "capacity limit", "invalid PDF before AI",
-    "strict form fields", "429/no retries/sibling abort", "admission released", "private logging",
+    "strict form fields", "429/no retries/sibling abort", "admission released", "private logging", "semantic fallback telemetry/no unnecessary AI",
   ], syntheticMetrics: success }, null, 2));
 } finally {
   child.kill("SIGTERM");

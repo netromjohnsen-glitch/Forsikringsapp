@@ -375,9 +375,9 @@ test("avtaletotal overføres ikke til hvert kjøretøy", () => {
   assert.equal(enrichExtractedAgreementWithCatalog(raw, asOf).insurances[0].annualPremium, "8 000 kr");
 });
 
-test("valgte supplerende dekninger vises selv om addOns-listen mangler", () => {
+test("valgt dekningsstatus uten dokumentert add-on blir ikke automatisk et tillegg", () => {
   const insurance = policy({ productName: "Pluss", coverageSummary: "Leiebil er valgt. Maskinskade er valgt." });
-  assert.equal(groupAddOnNames([insurance], "Bil"), "Leiebil · Maskinskade");
+  assert.equal(groupAddOnNames([insurance], "Bil"), null);
 });
 
 test("ikke valgt leiebil listes aldri som valgt tillegg", () => {
@@ -392,8 +392,8 @@ test("standarddekninger og katalog alene skaper ikke dokumenterte tillegg", () =
   assert.equal(groupAddOnNames([insurance], "Bil"), null);
 });
 
-test("Tryg dokumentert Leiebil vises gjennom samme tilleggsoversikt", () => {
-  const insurance = policy({ company: "Tryg", productName: "Kasko", coverageSummary: "Leiebil er valgt" });
+test("Tryg dokumentert Leiebil-tillegg vises gjennom samme tilleggsoversikt", () => {
+  const insurance = policy({ company: "Tryg", productName: "Kasko", coverageSummary: "Leiebil er valgt", addOns: [leiebil()] });
   assert.equal(groupAddOnNames([insurance], "Bil"), "Leiebil");
 });
 

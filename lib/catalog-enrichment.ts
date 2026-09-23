@@ -9,6 +9,7 @@ import { deriveCanonicalCoverages } from "./coverage-status.ts";
 import { normalizeDocumentFacts } from "./document-fact-normalization.ts";
 import {
   findCatalogProductBySelection,
+  availableAddOns,
   resolveCatalogEvidence,
   resolveCatalogFacts,
   type CatalogFact,
@@ -26,6 +27,7 @@ type EnrichedTerm = ExtractedTerm & {
 
 export type CatalogEnrichedInsurance = Omit<ExtractedInsurance, "importantTerms"> & {
   importantTerms: EnrichedTerm[];
+  addOns: (ExtractedInsurance["addOns"][number] & { classification?: "standard" | "add_on" })[];
   catalogReference?: { providerId: string; productId: string; version: string | null } | null;
   catalogSelectionConfirmed?: boolean;
   catalogFacts?: CatalogFact[] | null;
@@ -164,6 +166,20 @@ function enrichInsurance(
     // dekninger uten dokumentevidens er filtrert bort over.
     catalogSelectionConfirmed: true,
     catalogFacts,
+    // Model addOns are evidence of coverage, not sufficient proof of product
+    // role. Preserve every term, but separate documented base from additions.
+    addOns: insurance.addOns.map((addOn) => {
+      const key = normalizeTermName(addOn.name, { insuranceType: insurance.type });
+      const definition = coverageDefinitions.find((entry) => entry.parentKey === key);
+      const knownAddOn = availableAddOns(product, asOf, null).some((entry) =>
+        normalizeTermName(entry.name, { insuranceType: insurance.type }) === key);
+      const baseKeys = definition?.details.map((detail) => detail.key) ?? [];
+      // Ulykkens scope is explicit; no free-text prefix/substring matching.
+      if (key === "ulykke.dekning") baseKeys.push("ulykke.invaliditet", "ulykke.dod", "ulykke.omfang");
+      const standard = !definition?.supplemental && !knownAddOn &&
+        effectiveFacts.some((fact) => normalizeCatalogTermKey(fact.key) === key || baseKeys.includes(fact.key));
+      return { ...addOn, classification: standard ? "standard" as const : "add_on" as const };
+    }),
     addOnIds: [],
   };
 }
