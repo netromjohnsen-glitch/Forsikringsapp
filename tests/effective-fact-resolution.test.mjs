@@ -375,9 +375,9 @@ test("avtaletotal overføres ikke til hvert kjøretøy", () => {
   assert.equal(enrichExtractedAgreementWithCatalog(raw, asOf).insurances[0].annualPremium, "8 000 kr");
 });
 
-test("valgt dekningsstatus uten dokumentert add-on blir ikke automatisk et tillegg", () => {
+test("document selected status and canonical addon metadata restore addon overview", () => {
   const insurance = policy({ productName: "Pluss", coverageSummary: "Leiebil er valgt. Maskinskade er valgt." });
-  assert.equal(groupAddOnNames([insurance], "Bil"), null);
+  assert.equal(groupAddOnNames([insurance], "Bil"), "Leiebil · Maskinskade");
 });
 
 test("ikke valgt leiebil listes aldri som valgt tillegg", () => {

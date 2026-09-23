@@ -36,6 +36,12 @@ function explicitKey(
   insurance: ExtractedInsurance,
   relatedCoverageParentKeys: readonly string[] = [],
 ): string {
+  // A precise approved vehicle-field label is stronger than a contradictory
+  // extraction key. Never infer field identity from a number or the unit km.
+  if (normalizeInsuranceType(insurance.type) === "bil") {
+    const labelKey = normalizeTermName(term.name, { insuranceType: insurance.type });
+    if (["kjoretoy.kilometerstand", "kjoretoy.avtalt_maks_kilometerstand", "kjoretoy.kjorelengde"].includes(labelKey)) return labelKey;
+  }
   if (term.canonicalKey) {
     // A generic repair key from extraction must not override an exact, scoped
     // scenario label. No inference from day counts or free-form value text.

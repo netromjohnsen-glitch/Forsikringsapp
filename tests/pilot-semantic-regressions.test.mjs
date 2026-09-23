@@ -171,10 +171,10 @@ test('rental labels never depend on the particular day limits', () => {
   assert.match(summary, /ved tekniske problemer i Norden: Leiebil i inntil 10 dager/);
   assert.match(summary, /ved feriereise utenfor Norden: Leiebil i inntil 7 dager/);
 });
-test('selected coverage without explicit addon evidence does not imply addon product role', () => {
+test('document selected status and canonical addon metadata restore addon overview', () => {
   const insurance = pilotPolicy('Pluss', { addOns: [] });
   assert.equal(canonicalCoverage(insurance, 'Bil', 'leiebil.dekning').status, 'selected');
-  assert.equal(groupAddOnNames([insurance], 'Bil'), null);
+  assert.equal(groupAddOnNames([insurance], 'Bil'), 'Leiebil · Maskinskade');
 });
 test('failed semantic fallback records invocation without inventing accepted matches or tokens', async () => {
   const telemetry = createAnalysisTelemetry(crypto.randomUUID());

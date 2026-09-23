@@ -1,3 +1,4 @@
+import { sanitizeSemanticAudit } from "./semantic-audit.ts";
 import type { SemanticMatcherMetrics } from "./hybrid-matching.ts";
 // Only fixed stage names and numeric measurements cross the logging boundary.
 export const ANALYSIS_MODEL = "gpt-5.6-luna";
@@ -50,6 +51,7 @@ export function createAnalysisTelemetry(requestId: string, now = () => performan
     semanticMatcher(metrics: SemanticMatcherMetrics) {
       // Explicit numeric allowlist; never spread caller/model data into logs.
       semanticMatcher = {
+        ...(metrics.audit ? { audit: sanitizeSemanticAudit(metrics.audit) } : {}),
         invoked: metrics.invoked === true,
         deterministicMatches: finite(metrics.deterministicMatches) ?? 0,
         unresolvedCandidates: finite(metrics.unresolvedCandidates) ?? 0,

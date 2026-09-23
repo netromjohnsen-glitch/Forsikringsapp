@@ -79,7 +79,8 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
       "første registreringsdato",
     ],
     "kjoretoy.kjorelengde": ["kjørelengde", "årlig kjørelengde"],
-    "kjoretoy.kilometerstand": ["kilometerstand"],
+    "kjoretoy.kilometerstand": ["kilometerstand", "faktisk kilometerstand", "nåværende kilometerstand", "kilometerstand ved dokumentdato", "avlest kilometerstand"],
+    "kjoretoy.avtalt_maks_kilometerstand": ["avtalt maksimal kilometerstand", "avtalt maksimal kilometerstand i forsikringsperioden", "maksimal kilometerstand i forsikringsperioden"],
     "parkering.alder": ["parkeringsskade alder", "parkeringsskade aldersgrense"],
     "parkering.grense": ["parkeringsskade forsikringssum", "parkeringsskade beløpsgrense"],
     "ladekabel.dekning": ["ladekabel", "ladekabeldekning"],
@@ -481,4 +482,14 @@ export function comparisonTermIdentities<T extends { name: string; value: string
     ? normalizeCatalogTermKey(term.key)
     : normalizeTermName(term.name, { ...context, relatedCoverageParentKeys: parents, termValue: term.value }),
   }));
+}
+
+// Code-defined identities only. Used to whitelist audit output, never labels.
+export function canonicalTermIdsForType(type: string): string[] {
+  return [...new Set([
+    ...Object.keys(termAliases), ...Object.keys(contextualTermAliases[type] ?? {}),
+    "forsikringsverdi",
+    ...relatedCoveragesForInsuranceType(type).flatMap((coverage) =>
+      [coverage.parentKey, ...coverage.details.map((detail) => detail.key)]),
+  ])];
 }

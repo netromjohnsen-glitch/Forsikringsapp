@@ -143,6 +143,9 @@ try {
   assert.equal(success.products, 8);
   assert.equal(success.documentCount, 2);
   assert.equal(success.calls[0].usage.totalTokens, 168);
+  assert.ok(Array.isArray(success.semanticMatcher.audit.candidates));
+  assert.ok(Array.isArray(success.semanticMatcher.audit.decisions));
+  assert.equal(success.semanticMatcher.audit.omitted, 0);
   assert.equal(success.semanticMatcher.invoked, false);
   assert.equal(success.semanticMatcher.semanticCandidatesSent, 0);
   assert.equal(success.semanticMatcher.deterministicMatches, 4);

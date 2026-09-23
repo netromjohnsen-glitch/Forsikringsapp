@@ -23,6 +23,9 @@ export const canonicalDocumentFactKeys = [
   "nyverdi.km",
   "bilnokkel.grense",
   "kjoretoy.forstegangsregistrering",
+  "kjoretoy.kilometerstand",
+  "kjoretoy.kjorelengde",
+  "kjoretoy.avtalt_maks_kilometerstand",
 ] as const;
 
 export type CanonicalDocumentFactKey = typeof canonicalDocumentFactKeys[number];
@@ -101,6 +104,7 @@ VIKTIG:
 - Legg eksplisitte valg og avslag som egne vilkår, for eksempel «Leiebil: valgt» eller «Leiebil: ikke valgt».
 - Del sammensatte grenser i egne importantTerms når dokumentet oppgir dem: alder og kilometer for maskinskade og totalskadegaranti, samt forsikringssum for bilnøkkel. Behold den konkrete dokumentverdien.
 - Legg førstegangsregistrering, årlig kjørelengde og kilometerstand i egne importantTerms når de er uttrykkelig oppgitt.
+- For Bil: faktisk avlest kilometerstand hører til kjoretoy.kilometerstand; årlig kjørelengde til kjoretoy.kjorelengde; avtalt maksimal kilometerstand i forsikringsperioden til kjoretoy.avtalt_maks_kilometerstand. Disse er aldri nyverdi.km (totalskadegrense) eller maskinskade.km. Hold alle feltene adskilt selv om de bruker samme enhet; ikke kopier kilometerstand til dekningsgrenser.
 - Når kundens forsikringsbevis og generelle produktvilkår oppgir ulike verdier for samme avtale, skal den konkrete verdien i forsikringsbeviset brukes.
 - Ikke konkluder med at en dekning mangler bare fordi et bestemt ord ikke brukes. Vurder formuleringen og betydningen.
 - Ikke presenter én forsikring som bedre enn en annen. Hent ut faktainformasjonen slik at systemet kan sammenligne dem.

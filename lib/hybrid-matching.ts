@@ -1,3 +1,4 @@
+import { createSemanticAudit, type SemanticAudit, type SemanticAuditCollector } from "./semantic-audit.ts";
 import {
   hasComparableInsuredValue,
   comparisonTermIdentities,
@@ -101,7 +102,7 @@ function groupedTerms(insurances: InsuranceForMatching[], typeKey: string, insur
   return grouped;
 }
 
-function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching[], right: InsuranceForMatching[], counts: MatchingCounts): TermScope | null {
+function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching[], right: InsuranceForMatching[], counts: MatchingCounts, audit?: SemanticAuditCollector): TermScope | null {
   // Flere objekter av samme type gir ikke nok kontekst for semantisk vilkårsmatching.
   if (left.length !== 1 || right.length !== 1) return null;
   const insuredValueConfirmed = hasComparableInsuredValue(
@@ -122,6 +123,15 @@ function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching
     [...rightTerms.values()].some((other) => compatibleTermIds(term.id, other.id)));
   const rightCandidates = [...rightTerms.values()].filter((term) =>
     leftCandidates.some((other) => compatibleTermIds(other.id, term.id)));
+  const scopeId = `terms:${leftKey}|${rightKey}`;
+  for (const [terms, others, selected, type, items] of [
+    [leftTerms, rightTerms, leftCandidates, leftKey, left],
+    [rightTerms, leftTerms, rightCandidates, rightKey, right],
+  ] as const) {
+    for (const [key, term] of terms) audit?.add(scopeId, term.id, type, key,
+      items.some((item) => item.importantTerms.some((entry) => entry.key === key)),
+      selected.includes(term) ? "CANDIDATE_LIMIT" : others.size ? "DIFFERENT_CANONICAL_SCOPE" : "NO_COUNTERPART");
+  }
   counts.unresolvedCandidates += leftCandidates.length + rightCandidates.length;
   if (!leftCandidates.length || !rightCandidates.length) return null;
   return {
@@ -138,7 +148,7 @@ function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching
 
 export type MatchingCounts = { deterministicMatches: number; unresolvedCandidates: number };
 export type SemanticMatcherMetrics = MatchingCounts & {
-  invoked: boolean; semanticCandidatesSent: number; semanticMatchesAccepted: number; durationMs: number;
+  invoked: boolean; semanticCandidatesSent: number; semanticMatchesAccepted: number; durationMs: number; audit?: SemanticAudit;
 };
 
 function compatibleTermIds(left: string, right: string): boolean {
@@ -149,7 +159,7 @@ function compatibleTermIds(left: string, right: string): boolean {
 }
 
 export function buildMatchingBatch(left: readonly InsuranceForMatching[], right: readonly InsuranceForMatching[],
-  counts: MatchingCounts = { deterministicMatches: 0, unresolvedCandidates: 0 }): MatchingBatch {
+  counts: MatchingCounts = { deterministicMatches: 0, unresolvedCandidates: 0 }, audit?: SemanticAuditCollector): MatchingBatch {
   const leftTypes = indexByType(left);
   const rightTypes = indexByType(right);
   const typeCandidates: TypeCandidate[] = [];
@@ -159,7 +169,7 @@ export function buildMatchingBatch(left: readonly InsuranceForMatching[], right:
     const deterministicRight = rightTypes.get(leftKey);
     if (deterministicRight) {
       counts.deterministicMatches++;
-      const scope = termScope(leftKey, leftKey, leftItems, deterministicRight, counts);
+      const scope = termScope(leftKey, leftKey, leftItems, deterministicRight, counts, audit);
       if (scope) termScopes.push(scope);
       continue;
     }
@@ -167,12 +177,14 @@ export function buildMatchingBatch(left: readonly InsuranceForMatching[], right:
       if (leftTypes.has(rightKey) || !mayCompareTypes(leftKey, rightKey)) continue;
       if (leftItems.length !== 1 || rightItems.length !== 1) continue;
       counts.unresolvedCandidates++;
+      audit?.add("types", `l:${leftKey}`, leftKey, "", false, "CANDIDATE_LIMIT", "insurance");
+      audit?.add("types", `r:${rightKey}`, rightKey, "", false, "CANDIDATE_LIMIT", "insurance");
       typeCandidates.push({
         leftId: `l:${leftKey}`, rightId: `r:${rightKey}`, leftKey, rightKey,
         left: { type: short(leftItems[0].type, 100), productName: short(leftItems[0].productName, 100), coverageSummary: short(leftItems[0].coverageSummary, 240) },
         right: { type: short(rightItems[0].type, 100), productName: short(rightItems[0].productName, 100), coverageSummary: short(rightItems[0].coverageSummary, 240) },
       });
-      const scope = termScope(leftKey, rightKey, leftItems, rightItems, counts);
+      const scope = termScope(leftKey, rightKey, leftItems, rightItems, counts, audit);
       if (scope) termScopes.push(scope);
       if (typeCandidates.length >= 12) break;
     }
@@ -187,6 +199,8 @@ export function buildMatchingBatch(left: readonly InsuranceForMatching[], right:
     boundedScopes.push(bounded);
     remainingTerms -= bounded.leftTerms.length + bounded.rightTerms.length;
   }
+  for (const pair of typeCandidates) { audit?.sent("types", pair.leftId); audit?.sent("types", pair.rightId); }
+  for (const scope of boundedScopes) for (const term of [...scope.leftTerms, ...scope.rightTerms]) audit?.sent(scope.id, term.id);
   return { typeCandidates, termScopes: boundedScopes };
 }
 
@@ -226,15 +240,17 @@ export async function runHybridMatching(
   const started = performance.now();
   const metrics: SemanticMatcherMetrics = { invoked: false, deterministicMatches: 0,
     unresolvedCandidates: 0, semanticCandidatesSent: 0, semanticMatchesAccepted: 0, durationMs: 0 };
-  const batch = buildMatchingBatch(left, right, metrics);
+  const audit = createSemanticAudit();
+  const batch = buildMatchingBatch(left, right, metrics, audit);
   metrics.semanticCandidatesSent = batch.typeCandidates.length + batch.termScopes.reduce(
     (sum, scope) => sum + scope.leftTerms.length + scope.rightTerms.length, 0);
-  const finish = () => recordMetrics?.({ ...metrics, durationMs: performance.now() - started });
+  const finish = () => recordMetrics?.({ ...metrics, audit: audit.snapshot(), durationMs: performance.now() - started });
   if (!metrics.semanticCandidatesSent) { finish(); return emptyPlan(); }
 
   try {
     metrics.invoked = true;
     const response = await requestSemantic(batch);
+    audit.outcome("INVALID_RESPONSE");
     if (!response || typeof response !== "object" ||
       Object.keys(response).some((key) => key !== "decisions") ||
       !Array.isArray((response as { decisions?: unknown }).decisions)) return emptyPlan();
@@ -281,9 +297,22 @@ export async function runHybridMatching(
         reason: item.reason,
       }];
     });
+    audit.outcome("RESPONSE_PROCESSED");
+    for (const item of assessments) {
+      const accepted = item.accepted && (item.kind === "insurance" || termMatches.some((match) =>
+        match.leftKey === item.leftId.slice(2) && item.scopeId === `terms:${match.leftTypeKey}|${match.rightTypeKey}`));
+      const reason = accepted ? "SEMANTIC_ACCEPTED" : item.decision === "no_match" ? "MODEL_NO_MATCH"
+        : item.decision === "uncertain" ? "MODEL_UNCERTAIN"
+        : item.confidence < (item.rightIds.length > 1 ? MULTI_TERM_THRESHOLD : MATCH_CONFIDENCE_THRESHOLD) ? "LOW_CONFIDENCE"
+        : item.accepted ? "TYPE_MATCH_REQUIRED"
+        : usage.get(`${item.kind}:${item.scopeId}:${item.leftId}`) !== 1 || item.rightIds.some((id) => usage.get(`${item.kind}:${item.scopeId}:${id}`) !== 1) ? "PARTICIPANT_CONFLICT"
+        : item.rightIds.length > 1 ? "COVERAGE_ROOT_MISMATCH" : "SEMANTIC_REJECTED";
+      audit.decision(item.scopeId, [item.leftId, ...item.rightIds], item.decision === "match", accepted, reason);
+    }
     metrics.semanticMatchesAccepted = insuranceMatches.length + termMatches.length;
     return { insuranceMatches, termMatches, assessments };
   } catch {
+    audit.outcome("REQUEST_FAILED");
     return emptyPlan();
   } finally {
     finish();
