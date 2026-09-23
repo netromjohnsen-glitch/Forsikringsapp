@@ -108,6 +108,7 @@ export type TermContext = {
   insuranceType?: string | null;
   insuredValueConfirmed?: boolean;
   relatedCoverageParentKeys?: readonly string[];
+  structuredCoverageContext?: boolean;
   termValue?: string | null;
 };
 
@@ -244,12 +245,15 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
         },
         {
           key: "leiebil.kondemnasjon",
-          summaryLabel: "ved kondemnasjon eller tyveri",
+          summaryLabel: "ved totalskade eller tyveri",
           aliases: [
             "leiebil ved kondemnasjon",
             "leiebil ved kondemnasjon eller tyveri",
+            "leiebil ved totalskade eller tyveri",
             "ved kondemnasjon",
             "ved kondemnasjon eller tyveri",
+            "ved totalskade eller tyveri",
+            "totalskade eller tyveri",
           ],
           requiredValueAliases: ["leiebil", "erstatningsbil"],
         },
@@ -261,8 +265,12 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
         },
         {
           key: "leiebil.teknisk",
-          summaryLabel: "ved tekniske problemer eller veihjelp",
-          aliases: ["leiebil ved tekniske problemer", "veihjelp i norden"],
+          summaryLabel: "ved tekniske problemer i Norden",
+          aliases: [
+            "leiebil ved tekniske problemer", "leiebil ved tekniske problemer i norden",
+            "ved tekniske problemer", "ved tekniske problemer i norden",
+            "tekniske problemer i norden", "veihjelp i norden",
+          ],
           requiredValueAliases: ["leiebil", "erstatningsbil"],
         },
         {
@@ -282,7 +290,7 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
           key: "maskinskade.varighet",
           summaryLabel: "varighet",
           aliases: ["maskinskade varighet"],
-          contextualAliases: ["varighet"],
+          contextualAliases: ["varighet", "varighet og kilometergrense", "alder og kilometergrense"],
         },
         {
           key: "maskinskade.komponenter",
@@ -374,10 +382,14 @@ function relatedCoverageDetailKey(name: string, context: TermContext, type: stri
   for (const coverage of relatedCoverages[type] ?? []) {
     for (const detail of coverage.details) {
       const standalone = detail.aliases?.some((alias) => normalizeWords(alias) === name);
-      const contextual = detail.contextualAliases?.some((alias) => normalizeWords(alias) === name) &&
-        context.relatedCoverageParentKeys?.includes(coverage.parentKey);
+      const parentConfirmed = context.relatedCoverageParentKeys?.includes(coverage.parentKey) === true;
+      const contextual = detail.contextualAliases?.some((alias) => normalizeWords(alias) === name) && parentConfirmed;
       if (!standalone && !contextual) continue;
-      if (detail.requiredValueAliases && !hasWholeValueAlias(context.termValue, detail.requiredValueAliases)) continue;
+      // En eksplisitt tilleggs-/dekningskontekst er sterkere enn ordlyden i
+      // selve verdien. Uten slik kontekst kreves fortsatt et helt, godkjent
+      // leiebil-/erstatningsbilord for å unngå kryssdekning.
+      if (detail.requiredValueAliases && !context.structuredCoverageContext &&
+          !hasWholeValueAlias(context.termValue, detail.requiredValueAliases)) continue;
       return detail.key;
     }
   }

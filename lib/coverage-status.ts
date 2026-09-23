@@ -59,6 +59,10 @@ export type CoverageDetail = {
   sources: CoverageSource[];
 };
 
+type CoverageDetailCandidate = CoverageDetail & {
+  evidence: CoverageEvidence;
+};
+
 export type CanonicalCoverage = {
   id: string;
   label: string;
@@ -185,18 +189,46 @@ function isPureStatusValue(value: string): boolean {
     /^(?:.+\s+)?(?:er\s+)?(?:valgt|inkludert|omfattet|dekket)$/u.test(normalized);
 }
 
-function resolveCoverage(definition: RelatedCoverage, evidence: CoverageEvidence[], details: CoverageDetail[]): CanonicalCoverage {
+function effectiveCoverageDetails(details: CoverageDetailCandidate[]): CoverageDetail[] {
+  const byKey = new Map<string, CoverageDetailCandidate[]>();
+  for (const detail of details) {
+    const candidates = byKey.get(detail.key) ?? [];
+    candidates.push(detail);
+    byKey.set(detail.key, candidates);
+  }
+  return [...byKey.values()].flatMap((candidates) => {
+    // Precedence avgjøres én gang per canonical detaljnøkkel. Evidens fra
+    // lavere prioritet beholdes i coverage.evidence, men blir ikke en effektiv
+    // kundeverdi eller del av sammendraget.
+    const highestPriority = Math.max(...candidates.map((candidate) => candidate.evidence.priority));
+    return candidates
+      .filter((candidate) => candidate.evidence.priority === highestPriority &&
+        candidate.evidence.status === "selected")
+      .filter((candidate, index, selected) => selected.findIndex((item) =>
+        item.key === candidate.key && normalizeWords(item.value) === normalizeWords(candidate.value)
+      ) === index)
+      .map((candidate) => ({
+        key: candidate.key,
+        label: candidate.label,
+        value: candidate.value,
+        sources: candidate.sources,
+      }));
+  });
+}
+
+function resolveCoverage(
+  definition: RelatedCoverage,
+  evidence: CoverageEvidence[],
+  detailCandidates: CoverageDetailCandidate[],
+): CanonicalCoverage {
   const assertions = evidence.filter((item) => item.status !== "unknown");
   const highestPriority = assertions.length ? Math.max(...assertions.map((item) => item.priority)) : 0;
   const strongest = assertions.filter((item) => item.priority === highestPriority);
   const statuses = new Set(strongest.map((item) => item.status));
   const conflict = statuses.size > 1;
   const status: CoverageStatus = !strongest.length || conflict ? "unknown" : strongest[0].status;
-  const selectedDetails = details.filter((detail) =>
-    evidence.some((item) => item.kind === "detail" && item.status === "selected" &&
-      item.label === detail.label && item.value === detail.value)
-  );
-  const summaryParts = selectedDetails.slice(0, 4).map((detail) => {
+  const details = effectiveCoverageDetails(detailCandidates);
+  const summaryParts = details.slice(0, 4).map((detail) => {
     const relation = relationDetail(definition, detail.key);
     return `${relation?.summaryLabel || detail.label}: ${detail.value}`;
   });
@@ -205,7 +237,10 @@ function resolveCoverage(definition: RelatedCoverage, evidence: CoverageEvidence
   const summary = status === "selected" ? summaryParts.join("; ") || directSummary || null : null;
   const supporting = conflict ? strongest : [
     ...strongest,
-    ...(status === "selected" ? evidence.filter((item) => item.kind === "detail" && item.status === "selected") : []),
+    ...(status === "selected" ? details.flatMap((detail) =>
+      detailCandidates.filter((candidate) => candidate.key === detail.key &&
+        normalizeWords(candidate.value) === normalizeWords(detail.value)).map((candidate) => candidate.evidence)
+    ) : []),
   ];
   return {
     id: definition.parentKey,
@@ -224,14 +259,14 @@ export function deriveCanonicalCoverages(insurance: CoverageInsurance, insurance
   const definitions = inferredDefinitions(relatedCoveragesForInsuranceType(insuranceType), terms);
   return definitions.map((definition) => {
     const evidence: CoverageEvidence[] = [];
-    const details: CoverageDetail[] = [];
+    const details: CoverageDetailCandidate[] = [];
     for (const { term, key } of terms) {
       if (key === definition.parentKey) evidence.push(mainEvidence(term, insurance));
       const relation = relationDetail(definition, key);
       if (!relation) continue;
       const item = detailEvidence(term, insurance);
       evidence.push(item);
-      details.push({ key, label: term.name, value: term.value, sources: item.sources });
+      details.push({ key, label: term.name, value: term.value, sources: item.sources, evidence: item });
     }
     for (const addOn of insurance.addOns ?? []) {
       if (definitionForAddOn(addOn.name, insuranceType, definitions)?.parentKey !== definition.parentKey) continue;

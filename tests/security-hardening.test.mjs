@@ -28,10 +28,11 @@ const validOutput = () => ({
   insurances: [{
     type: "Bil",
     productName: "Kasko",
+    canonicalProductName: "Kasko",
     annualPremium: "12 500 kr",
     deductible: "6 000 kr",
     coverageSummary: "Kasko med maskinskade",
-    importantTerms: [{ name: "Maskinskade", value: "Til 10 år og 200 000 km" }],
+    importantTerms: [{ name: "Maskinskade", value: "Til 10 år og 200 000 km", canonicalKey: "maskinskade.dekning" }],
     addOns: [],
   }],
 });

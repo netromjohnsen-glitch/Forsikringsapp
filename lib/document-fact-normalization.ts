@@ -31,9 +31,16 @@ const totalskadeLabels = new Set([
   "nybilgaranti",
 ]);
 
-function explicitKey(term: ExtractedTerm, insurance: ExtractedInsurance): string {
+function explicitKey(
+  term: ExtractedTerm,
+  insurance: ExtractedInsurance,
+  relatedCoverageParentKeys: readonly string[] = [],
+): string {
+  if (term.canonicalKey) return normalizeCatalogTermKey(term.canonicalKey);
   return normalizeCatalogTermKey(normalizeTermName(term.name, {
     insuranceType: insurance.type,
+    relatedCoverageParentKeys,
+    structuredCoverageContext: relatedCoverageParentKeys.length > 0,
     termValue: term.value,
   }));
 }
@@ -58,7 +65,17 @@ function valueMatch(value: string, pattern: RegExp): string | null {
   return value.match(pattern)?.[0]?.trim() ?? null;
 }
 
-function compoundDetails(term: DocumentFact, insuranceType: string): DocumentFact[] {
+const maskinskadeCompoundLabels = new Set([
+  "varighet",
+  "varighet og kilometergrense",
+  "alder og kilometergrense",
+]);
+
+function compoundDetails(
+  term: DocumentFact,
+  insuranceType: string,
+  relatedCoverageParentKeys: readonly string[] = [],
+): DocumentFact[] {
   if (normalizeInsuranceType(insuranceType) !== "bil") return [];
   const result: DocumentFact[] = [];
   const add = (key: string, name: string, pattern: RegExp) => {
@@ -66,7 +83,11 @@ function compoundDetails(term: DocumentFact, insuranceType: string): DocumentFac
     if (value) result.push(extractedTerm(key, name, value, term));
   };
 
-  if (term.key === "maskinskade.dekning") {
+  const maskinskadeContext = term.key === "maskinskade.dekning" ||
+    term.key === "maskinskade.varighet" ||
+    (relatedCoverageParentKeys.includes("maskinskade.dekning") &&
+      maskinskadeCompoundLabels.has(normalizeWords(term.name)));
+  if (maskinskadeContext) {
     add("maskinskade.alder", "Maskinskade – alder", yearLimit);
     add("maskinskade.km", "Maskinskade – kilometer", kilometerLimit);
   }
@@ -74,6 +95,10 @@ function compoundDetails(term: DocumentFact, insuranceType: string): DocumentFac
     add("bilnokkel.grense", "Bilnøkkel – forsikringssum", amount);
   }
   if (totalskadeLabels.has(normalizeWords(term.name))) {
+    add("nyverdi.alder", "Totalskadegaranti – alder", yearLimit);
+    add("nyverdi.km", "Totalskadegaranti – kilometer", kilometerLimit);
+  }
+  if (term.key === "nyverdi.grenser") {
     add("nyverdi.alder", "Totalskadegaranti – alder", yearLimit);
     add("nyverdi.km", "Totalskadegaranti – kilometer", kilometerLimit);
   }
@@ -186,15 +211,34 @@ function uniqueDocumentFacts(terms: DocumentFact[]): DocumentFact[] {
 // mønstre. Den tolker sammensatte dokumentverdier til samme canonical feltnøkler
 // som katalogen, slik at kundedokumentet kan få deterministisk forrang.
 export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentFact[] {
+  const addOnContexts = new Map<string, Set<string>>();
+  for (const addOn of insurance.addOns ?? []) {
+    const parentKey = normalizeTermName(addOn.name, { insuranceType: insurance.type });
+    if (!relatedCoveragesForInsuranceType(insurance.type).some((coverage) => coverage.parentKey === parentKey)) continue;
+    for (const term of addOn.importantTerms) {
+      const identity = `${normalizeWords(term.name)}\u0000${normalizeWords(term.value)}`;
+      const contexts = addOnContexts.get(identity) ?? new Set<string>();
+      contexts.add(parentKey);
+      addOnContexts.set(identity, contexts);
+    }
+  }
   const originals = insurance.importantTerms.map((term) => {
-    const key = explicitKey(term, insurance);
+    const identity = `${normalizeWords(term.name)}\u0000${normalizeWords(term.value)}`;
+    const relatedCoverageParentKeys = [...(addOnContexts.get(identity) ?? [])];
+    const key = explicitKey(term, insurance, relatedCoverageParentKeys);
     // Bare eksplisitt kjente, strukturerte nøkler festes til råfeltet. Ukjente
     // etiketter må fortsatt kunne normaliseres med sammenligningskontekst.
-    return extractedTerm(key.includes(".") ? key : undefined, term.name, term.value, term as Partial<DocumentFact>);
+    const normalized = extractedTerm(
+      key.includes(".") ? key : undefined,
+      term.name,
+      term.value,
+      term as Partial<DocumentFact>,
+    );
+    return { term: normalized, relatedCoverageParentKeys };
   });
-  const derived = originals.flatMap((term) => [
-    ...compoundDetails(term, insurance.type),
+  const derived = originals.flatMap(({ term, relatedCoverageParentKeys }) => [
+    ...compoundDetails(term, insurance.type, relatedCoverageParentKeys),
     ...explicitCoverageStatuses(term.value, insurance.type),
   ]);
-  return uniqueDocumentFacts([...originals, ...derived, ...summaryFacts(insurance)]);
+  return uniqueDocumentFacts([...originals.map(({ term }) => term), ...derived, ...summaryFacts(insurance)]);
 }

@@ -63,8 +63,13 @@ function enrichInsurance(
   insurance: ExtractedInsurance,
   asOf: Date,
 ): CatalogEnrichedInsurance {
-  const product = company && insurance.productName
-    ? findCatalogProductBySelection(company, insurance.type, insurance.productName)
+  // undefined betyr et eldre internt kall uten feltet; null fra dagens schema
+  // betyr uttrykkelig at produktnivået ikke kunne identifiseres sikkert.
+  const productIdentity = insurance.canonicalProductName === undefined
+    ? insurance.productName
+    : insurance.canonicalProductName;
+  const product = company && productIdentity
+    ? findCatalogProductBySelection(company, insurance.type, productIdentity)
     : null;
   const documentTerms = normalizeDocumentFacts(insurance);
   if (!product) return { ...insurance, importantTerms: documentTerms, catalogReference: null };
@@ -114,9 +119,32 @@ function enrichInsurance(
     .filter((fact) => !documentedKeys.has(normalizeCatalogTermKey(fact.key)))
     .map((fact) => catalogTerm(fact, catalogFacts));
 
+  const effectiveTerms = [...documentTerms, ...supplementalTerms].filter((term, index, terms) => {
+    const key = normalizeCatalogTermKey(
+      term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type, termValue: term.value }),
+    );
+    if (term.coverageOrigin === "catalog" && terms.some((candidate) => {
+      const candidateKey = normalizeCatalogTermKey(candidate.key ?? normalizeTermName(candidate.name, {
+        insuranceType: insurance.type,
+        termValue: candidate.value,
+      }));
+      return candidate.coverageOrigin === "document" && candidateKey === key;
+    })) return false;
+    return terms.findIndex((candidate) => {
+      const candidateKey = normalizeCatalogTermKey(candidate.key ?? normalizeTermName(candidate.name, {
+        insuranceType: insurance.type,
+        termValue: candidate.value,
+      }));
+      return candidate.coverageOrigin === term.coverageOrigin && candidateKey === key &&
+        normalizeLabel(candidate.value) === normalizeLabel(term.value);
+    }) === index;
+  });
+
   return {
     ...insurance,
-    importantTerms: [...documentTerms, ...supplementalTerms],
+    // Dette er den eneste effektive faktalisten som comparison og coverage-
+    // sammendrag skal konsumere. catalogFacts under beholdes som evidens/audit.
+    importantTerms: effectiveTerms,
     catalogReference: {
       providerId: product.providerId,
       productId: product.productId,

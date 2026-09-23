@@ -44,6 +44,7 @@ export type InsuranceTerm = {
 export type ComparedInsurance = {
   type: string;
   productName: string | null;
+  canonicalProductName?: string | null;
   annualPremium: string | null;
   deductible: string | null;
   deductibleOrigin?: "customer" | "document" | "unknown";
