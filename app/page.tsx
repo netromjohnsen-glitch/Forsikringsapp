@@ -6,7 +6,7 @@ import { annualPremiumLabel } from "@/lib/agreement-pricing";
 import type { ManualPremiumSummary } from "@/lib/agreement-pricing";
 import { emptyManualAgreement, emptyManualProduct } from "@/lib/manual-agreement";
 import type { ManualAgreementInput, ManualProductInput } from "@/lib/manual-agreement";
-import { availableAddOns, findCatalogProduct, findCatalogProductBySelection, productCatalog, productSuggestions } from "@/lib/product-catalog";
+import { availableAddOns, catalogConnectionStatus, findCatalogProduct, findCatalogProductBySelection, productCatalog, productSuggestions } from "@/lib/product-catalog";
 import { createDifferences, groupAddOnNames, groupInsurances, groupTerms, groupValue } from "@/lib/comparison";
 import { presentImportantDifferences, sortDetailedTerms } from "@/lib/comparison-presentation";
 import type { PresentedDifference } from "@/lib/comparison-presentation";
@@ -1020,18 +1020,13 @@ function SourceDetails({ source, baseLabel }: { source: FactSource; baseLabel?: 
 }
 
 function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchingPlan: MatchingPlan | null }) {
-  const catalogStatus = (insurances: Insurance[]) => insurances.length > 0 &&
-    insurances.every((insurance) => insurance.catalogReference)
-    ? "Koblet til vilkårskatalogen"
-    : "Ikke koblet til vilkårskatalogen – sammenligningen bygger bare på registrerte opplysninger og kan være ufullstendig";
-  const showCatalogStatus = [...group.first, ...group.second].some((insurance) => !insurance.catalogReference);
   return (
     <>
       <tr className="bg-slate-100">
         <th colSpan={3} className="border-y border-slate-200 px-3 py-2.5 text-left text-xs font-semibold uppercase tracking-[0.1em] text-slate-700">{group.label}</th>
       </tr>
       <ComparisonRow label="Produktnavn" first={groupValue(group.first, "productName")} second={groupValue(group.second, "productName")} />
-      {showCatalogStatus && <ComparisonRow label="Katalogstatus" first={catalogStatus(group.first)} second={catalogStatus(group.second)} />}
+      <ComparisonRow label="Katalogstatus" first={catalogConnectionStatus(group.first)} second={catalogConnectionStatus(group.second)} />
       <ComparisonRow
         label="Tilleggsdekninger"
         first={groupAddOnNames(group.first, group.key)}

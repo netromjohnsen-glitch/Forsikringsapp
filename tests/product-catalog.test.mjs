@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { productSuggestions } from "../lib/product-catalog.ts";
+import { catalogProductMatchesSelection, productSuggestions } from "../lib/product-catalog.ts";
 
 test("produktvalg begrenses til valgt selskap og forsikringstype", () => {
   const catalog = {
@@ -16,4 +16,15 @@ test("produktvalg begrenses til valgt selskap og forsikringstype", () => {
   assert.deepEqual(productSuggestions(catalog, "selskap a", "bil"), ["Bil Pluss"]);
   assert.deepEqual(productSuggestions(catalog, "Selskap A", ""), []);
   assert.deepEqual(productSuggestions(catalog, "Ukjent", "Bil"), []);
+});
+
+test("produktmatching krever eksakt provider, canonical type og eksakt produkt", () => {
+  const product = {
+    company: "Selskap A", insuranceType: "Bil", name: "Kasko",
+    providerId: "a", productId: "1", version: null,
+  };
+  assert.equal(catalogProductMatchesSelection(product, "selskap a", "Bilforsikring", "KASKO"), true);
+  assert.equal(catalogProductMatchesSelection(product, "Selskap B", "Bil", "Kasko"), false);
+  assert.equal(catalogProductMatchesSelection(product, "Selskap A", "Innbo", "Kasko"), false);
+  assert.equal(catalogProductMatchesSelection(product, "Selskap A", "Bil", "Kasko Pluss"), false);
 });

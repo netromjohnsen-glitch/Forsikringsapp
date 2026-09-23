@@ -6,6 +6,7 @@ import { requestSemanticMatches } from "@/lib/semantic-matcher";
 import { finalizeAgreementPricing } from "@/lib/agreement-pricing";
 import { ManualAgreementError, normalizeManualAgreement } from "@/lib/manual-agreement";
 import { includePdfAddOnTerms } from "@/lib/pdf-addons";
+import { enrichExtractedAgreementWithCatalog } from "@/lib/catalog-enrichment";
 import {
   AnalysisOutputError,
   EXTRACTION_TIMEOUT_MS,
@@ -99,13 +100,14 @@ async function parsePdfAgreement(files: readonly PreparedPdf[]) {
 
 async function analyzeParsedAgreement(parsed: { modelInput: string; filename: string }) {
   const extracted = await extractInsuranceData(parsed.modelInput);
+  const withDocumentAddOns = {
+    ...extracted,
+    insurances: extracted.insurances.map(includePdfAddOnTerms),
+  };
   return {
     source: "pdf" as const,
     filename: parsed.filename,
-    insuranceData: finalizeAgreementPricing({
-      ...extracted,
-      insurances: extracted.insurances.map(includePdfAddOnTerms),
-    }),
+    insuranceData: finalizeAgreementPricing(enrichExtractedAgreementWithCatalog(withDocumentAddOns)),
   };
 }
 

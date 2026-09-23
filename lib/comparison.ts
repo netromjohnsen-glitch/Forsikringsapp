@@ -50,8 +50,8 @@ export type ComparedInsurance = {
   coverageSummary: string | null;
   importantTerms: InsuranceTerm[];
   catalogReference?: { providerId: string; productId: string; version: string | null } | null;
-  // Settes bare når brukeren eksplisitt har valgt et katalogprodukt.
-  // Katalogfakta uten denne bekreftelsen kan ikke bestemme kundens dekning.
+  // Settes bare når et eksakt katalogprodukt er eksplisitt valgt eller sikkert
+  // identifisert. Katalogfakta uten denne bekreftelsen kan ikke bestemme dekning.
   catalogSelectionConfirmed?: boolean;
   addOnIds?: string[];
   addOns?: {

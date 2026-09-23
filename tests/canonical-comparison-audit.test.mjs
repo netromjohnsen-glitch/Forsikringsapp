@@ -1,11 +1,10 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { groupInsurances, groupTerms } from "../lib/comparison.ts";
 import { sortDetailedTerms } from "../lib/comparison-presentation.ts";
 import { normalizeCatalogTermKey, normalizeTermName } from "../lib/insurance-normalization.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
-import { productCatalog, resolveCatalogFacts } from "../lib/product-catalog.ts";
+import { catalogConnectionStatus, productCatalog, resolveCatalogFacts } from "../lib/product-catalog.ts";
 
 const product = (company, type, name) => {
   const result = productCatalog.products.find((item) =>
@@ -127,7 +126,7 @@ test("Innbo bruker separate målepunkter for verdigjenstander", () => {
       .some((item) => keys(company, "Innbo", item.name).has("innbo.verdigjenstander.grense"))), false);
 });
 
-test("ukjent manuelt produkt beholder fakta uten fuzzy katalogkobling og UI viser status", async () => {
+test("ukjent manuelt produkt beholder fakta uten fuzzy katalogkobling og UI viser status", () => {
   const agreement = normalizeManualAgreement({ company: "DNB / Fremtind", totalAnnualPremium: "", products: [{
     type: "Reise", productName: "Reise", annualPremium: "", deductible: "", coverageSummary: "",
     importantTerms: [{ name: "Avbestilling", value: "Oppgitt manuelt" }],
@@ -135,9 +134,7 @@ test("ukjent manuelt produkt beholder fakta uten fuzzy katalogkobling og UI vise
   const insurance = agreement.insuranceData.insurances[0];
   assert.equal(insurance.catalogReference, null);
   assert.equal(insurance.importantTerms[0].value, "Oppgitt manuelt");
-  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
-  assert.match(page, /Produktet er ikke koblet til vilkårskatalogen/);
-  assert.match(page, /sammenligningen bygger bare på registrerte opplysninger/);
+  assert.match(catalogConnectionStatus([insurance]), /sammenligningen bygger bare på registrerte opplysninger/);
 });
 
 test("detaljfakta samles per familie med hoveddekning før støttefakta", () => {

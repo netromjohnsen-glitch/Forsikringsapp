@@ -30,6 +30,7 @@ import { gjensidigeReiseAddOns, gjensidigeReiseFacts, gjensidigeReiseProducts, g
 import { fremtindReiseAddOns, fremtindReiseFacts, fremtindReiseProducts, fremtindReiseSources } from "./fremtind-reise-catalog.ts";
 import { frendeReiseAddOns, frendeReiseFacts, frendeReiseProducts, frendeReiseSources } from "./frende-reise-catalog.ts";
 import type { BuildingFactData } from "./building-facts.ts";
+import { normalizeInsuranceType } from "./insurance-normalization.ts";
 
 export type CatalogSource = {
   id: string; filename: string; termsNumber: string; effectiveFrom: string;
@@ -110,13 +111,53 @@ export const productCatalog: ProductCatalog = {
     ...gjensidigeHusFacts, ...fremtindHusFacts, ...frendeHusFacts, ...trygReiseFacts, ...ifReiseFacts, ...storebrandReiseFacts, ...gjensidigeReiseFacts, ...fremtindReiseFacts, ...frendeReiseFacts },
 };
 
+const normalizeIdentity = (value: string) => value.normalize("NFKC")
+  .toLocaleLowerCase("nb-NO")
+  .replace(/[^\p{L}\p{N}]+/gu, " ")
+  .replace(/\s+/gu, " ")
+  .trim();
+
+// Juridiske navn kobles eksplisitt til katalogens presentasjonsnavn. Vi
+// fjerner ikke selskapsendelser generelt, fordi det kan gi usikre treff.
+const companyAliases: Readonly<Record<string, string>> = {
+  "gjensidige forsikring asa": "gjensidige",
+};
+
+function canonicalCompanyIdentity(value: string): string {
+  const normalized = normalizeIdentity(value);
+  return companyAliases[normalized] ?? normalized;
+}
+
+export function canonicalProviderId(company: string, catalog: ProductCatalog = productCatalog): string | null {
+  const companyIdentity = canonicalCompanyIdentity(company);
+  const providerIds = new Set(catalog.products
+    .filter((product) => canonicalCompanyIdentity(product.company) === companyIdentity)
+    .map((product) => product.providerId));
+  return providerIds.size === 1 ? [...providerIds][0] : null;
+}
+
+export function catalogProductMatchesSelection(
+  product: CatalogProduct,
+  company: string,
+  insuranceType: string,
+  name: string,
+): boolean {
+  const providerId = canonicalProviderId(company);
+  const providerMatches = providerId
+    ? product.providerId === providerId
+    : canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company);
+  return providerMatches &&
+    normalizeInsuranceType(product.insuranceType, { productName: product.name }) ===
+      normalizeInsuranceType(insuranceType, { productName: name }) &&
+    normalizeIdentity(product.name) === normalizeIdentity(name);
+}
+
 export function productSuggestions(catalog: ProductCatalog, company: string, insuranceType: string): string[] {
   if (!company.trim() || !insuranceType.trim()) return [];
   return catalog.products
-    .filter((product) =>
-      product.company.toLocaleLowerCase("nb-NO") === company.trim().toLocaleLowerCase("nb-NO") &&
-      product.insuranceType.toLocaleLowerCase("nb-NO") === insuranceType.trim().toLocaleLowerCase("nb-NO")
-    )
+    .filter((product) => canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company) &&
+      normalizeInsuranceType(product.insuranceType, { productName: product.name }) ===
+        normalizeInsuranceType(insuranceType))
     .map((product) => product.name);
 }
 
@@ -129,12 +170,32 @@ export function findCatalogProduct(providerId: string, productId: string, versio
 // Brukes også når klienten har mistet katalogreferansen etter feltendringer.
 // Ingen fuzzy matching: flere mulige versjoner gir ingen automatisk kobling.
 export function findCatalogProductBySelection(company: string, insuranceType: string, name: string) {
+  if (!company.trim() || !insuranceType.trim() || !name.trim()) return null;
   const selected = productCatalog.products.filter((product) =>
-    product.company.toLocaleLowerCase("nb-NO") === company.trim().toLocaleLowerCase("nb-NO") &&
-    product.insuranceType.toLocaleLowerCase("nb-NO") === insuranceType.trim().toLocaleLowerCase("nb-NO") &&
-    product.name.toLocaleLowerCase("nb-NO") === name.trim().toLocaleLowerCase("nb-NO")
-  );
+    catalogProductMatchesSelection(product, company, insuranceType, name));
   return selected.length === 1 ? selected[0] : null;
+}
+
+const disconnectedCatalogStatus =
+  "Ikke koblet til vilkårskatalogen – sammenligningen bygger bare på registrerte opplysninger og kan være ufullstendig";
+
+export function catalogConnectionStatus(insurances: readonly {
+  catalogReference?: { providerId: string; productId: string; version: string | null } | null;
+}[]): string {
+  if (insurances.length === 0) return disconnectedCatalogStatus;
+  const products = insurances.map((insurance) => insurance.catalogReference
+    ? findCatalogProduct(
+      insurance.catalogReference.providerId,
+      insurance.catalogReference.productId,
+      insurance.catalogReference.version,
+    )
+    : null);
+  if (products.some((product) => product === null)) return disconnectedCatalogStatus;
+  const labels = [...new Set(products.map((product) =>
+    `${product!.company} ${product!.insuranceType} ${product!.name}`))];
+  return labels.length === 1
+    ? `✓ Koblet til ${labels[0]}`
+    : "✓ Koblet til vilkårskatalogen";
 }
 
 export function availableAddOns(product: CatalogProduct, asOf = new Date(), distributionChannel: string | null = null): CatalogAddOn[] {

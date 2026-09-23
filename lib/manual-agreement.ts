@@ -1,4 +1,4 @@
-import { findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
+import { catalogProductMatchesSelection, findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
 import { summarizeManualAnnualPremium } from "./agreement-pricing.ts";
 
 export type ManualTermInput = { name: string; value: string };
@@ -96,12 +96,9 @@ export function normalizeManualAgreement(input: unknown) {
     const selectedByFields = findCatalogProductBySelection(
         company, type, field(product.productName, "produktnavn", 150),
     );
-    if (catalogProduct && (
-      catalogProduct.company.toLocaleLowerCase("nb-NO") !== company.toLocaleLowerCase("nb-NO") ||
-      catalogProduct.insuranceType.toLocaleLowerCase("nb-NO") !== type.toLocaleLowerCase("nb-NO") ||
-      catalogProduct.name.toLocaleLowerCase("nb-NO") !== field(product.productName, "produktnavn", 150).toLocaleLowerCase("nb-NO") ||
-      (selectedByFields && catalogProduct !== selectedByFields)
-    )) {
+    if (catalogProduct && (!catalogProductMatchesSelection(
+      catalogProduct, company, type, field(product.productName, "produktnavn", 150),
+    ) || (selectedByFields && catalogProduct !== selectedByFields))) {
       throw new ManualAgreementError("Valgt katalogprodukt stemmer ikke med selskap, type og produkt.");
     }
     catalogProduct ??= selectedByFields;
