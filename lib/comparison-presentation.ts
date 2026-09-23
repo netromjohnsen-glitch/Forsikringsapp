@@ -1,4 +1,5 @@
 import type { Difference, InsuranceGroup, TermGroup } from "./comparison.ts";
+import { groupTerms } from "./comparison.ts";
 import type { MatchingPlan } from "./hybrid-matching.ts";
 import {
   conditionalBenefitAudits, conditionalBenefits, conceptForFactKey, conceptsForInsurance, evidenceById,
@@ -17,6 +18,7 @@ export type PresentationSource = {
 };
 
 export type PresentedDifference = Difference & {
+  limitPair?: { first: string; second: string };
   conceptId?: string;
   presentationTier?: PresentationTier;
   presentationType?: PresentationFactType;
@@ -256,16 +258,33 @@ function groupDifferences(group: InsuranceGroup, differences: Difference[]): Pre
 export function presentImportantDifferences(
   differences: Difference[],
   groups: InsuranceGroup[],
-  _matchingPlan: MatchingPlan | null,
+  matchingPlan: MatchingPlan | null,
 ): PresentedDifference[] {
-  void _matchingPlan;
   const prices = differences.filter((difference) => difference.kind === "price");
   const filtered = differences.filter((difference) => difference.kind !== "price" && (
     difference.kind !== "term" || !difference.termKey || !provenanceOnlyKey.test(difference.termKey))
   );
   const result: PresentedDifference[] = [...prices, ...filtered.filter((difference) => !difference.insuranceKey)];
   for (const group of groups) {
-    result.push(...groupDifferences(group, filtered.filter((difference) => difference.insuranceKey === group.key)));
+    const families = groupDifferences(group, filtered.filter((difference) => difference.insuranceKey === group.key));
+    const totalskade = families.find((family) => family.conceptId === "bil.totalskade");
+    if (totalskade) {
+      // Read effective canonical facts, including limits that are equal on both
+      // sides and therefore absent from the list of differences. Preserve full
+      // wording and leave source/base facts in the existing detailed view.
+      const terms = groupTerms(group, matchingPlan);
+      const limits = ["nyverdi.alder", "nyverdi.km"].map((key) => terms.find((term) => term.key === key));
+      const value = (side: "first" | "second") => limits
+        .flatMap((term) => term?.[side] ? [term[side]!.replace(/\.\s*$/u, "")] : [])
+        .join(" / ");
+      const first = value("first");
+      const second = value("second");
+      if (first || second) totalskade.limitPair = {
+        first: first || "Ikke dokumentert / kan ikke avgjøres",
+        second: second || "Ikke dokumentert / kan ikke avgjøres",
+      };
+    }
+    result.push(...families);
   }
   return result;
 }

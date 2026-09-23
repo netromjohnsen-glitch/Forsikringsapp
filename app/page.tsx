@@ -917,7 +917,7 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
           </span>
         </div>
         <div className="mt-4 group-open:hidden">
-          <DifferenceValues text={hero.item.text} compact pair={hero.pair} />
+          <DifferenceValues text={hero.item.text} compact unclamped={Boolean(difference.limitPair)} pair={difference.limitPair ?? hero.pair} />
         </div>
       </summary>
       <div className="border-t border-slate-100 pb-6 pt-1 sm:px-1">
@@ -1025,7 +1025,7 @@ function ComparisonRow({
   );
 }
 
-function DifferenceValues({ text, compact = false, pair }: { text: string; compact?: boolean; pair?: DifferencePair }) {
+function DifferenceValues({ text, compact = false, unclamped = false, pair }: { text: string; compact?: boolean; unclamped?: boolean; pair?: DifferencePair }) {
   const values = pair || splitDifferenceValues(text);
   if (!values) return <p className={compact ? "line-clamp-2 text-base font-semibold leading-6 text-slate-900" : "mt-2 whitespace-pre-wrap text-sm leading-6 text-slate-700"}>{text}</p>;
 
@@ -1033,11 +1033,11 @@ function DifferenceValues({ text, compact = false, pair }: { text: string; compa
     <div className={compact ? "grid gap-2 sm:grid-cols-2" : "mt-2 grid gap-2 sm:grid-cols-2"}>
       <div className={`difference-side-existing rounded-lg ${compact ? "px-4 py-3" : "px-4 py-4"}`}>
         <p className="existing-label text-xs font-semibold uppercase tracking-wide">Eksisterende</p>
-        <p className={`${compact ? "line-clamp-2 text-base font-semibold leading-6 text-slate-950" : "text-sm leading-6 text-slate-800"} mt-1 whitespace-pre-wrap break-words`}>{values.first}</p>
+        <p className={`${compact ? `${unclamped ? "" : "line-clamp-2 "}text-base font-semibold leading-6 text-slate-950` : "text-sm leading-6 text-slate-800"} mt-1 whitespace-pre-wrap break-words`}>{values.first}</p>
       </div>
       <div className={`difference-side-offer rounded-lg ${compact ? "px-4 py-3" : "px-4 py-4"}`}>
         <p className="offer-label text-xs font-semibold uppercase tracking-wide">Nytt tilbud</p>
-        <p className={`${compact ? "line-clamp-2 text-base font-semibold leading-6 text-slate-950" : "text-sm leading-6 text-slate-800"} mt-1 whitespace-pre-wrap break-words`}>{values.second}</p>
+        <p className={`${compact ? `${unclamped ? "" : "line-clamp-2 "}text-base font-semibold leading-6 text-slate-950` : "text-sm leading-6 text-slate-800"} mt-1 whitespace-pre-wrap break-words`}>{values.second}</p>
       </div>
     </div>
   );
