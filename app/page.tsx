@@ -918,33 +918,38 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
   </div>;
   if (difference.details) {
     const model = difference.details;
-    const rows = model.compact.filter(row => !difference.limitPair || !["nyverdi.alder", "nyverdi.km"].includes(row.key));
-    const compactSide = (side: "first" | "second") => [
-      ...(difference.limitPair ? [difference.limitPair[side]] : []),
-      ...rows.map(row => `${row.label}: ${row[side]}`),
-    ].join("\n");
-    const compact = <div className="mt-4"><DifferenceValues text="" pair={{ first: compactSide("first"), second: compactSide("second") }} compact unclamped /></div>;
-    const heading = <h5 className="text-base font-semibold text-slate-950">{difference.title}</h5>;
-    return <div className="min-w-0 py-5 sm:px-1">
-      {model.hasAdditional ? <details className="group">
-        <summary className="cursor-pointer list-none marker:hidden [&::-webkit-details-marker]:hidden">
-          <div className="flex items-start justify-between gap-4">{heading}<span className="text-link shrink-0 text-sm font-semibold"><span className="group-open:hidden">Se detaljer</span><span className="hidden group-open:inline">Skjul</span></span></div>
-          {compact}
-        </summary>
-        <div className="mt-4 divide-y divide-slate-100 border-t border-slate-100">
-          {model.additional.map(row => <div key={row.key} className="py-4"><p className="text-sm font-semibold text-slate-800">{row.label}</p><DifferenceValues text="" pair={row} /></div>)}
-        </div>
-      </details> : <>{heading}{compact}</>}
-      {model.sources.length > 0 && <div className="mt-3 grid min-w-0 gap-3 sm:grid-cols-2">{(["first", "second"] as const).map(side => <div key={side} className="min-w-0 break-words">
-        {model.sources.some(item => item.side === side) && <p className="text-xs text-slate-500">{side === "first" ? "Kilder – eksisterende" : "Kilder – nytt tilbud"}</p>}
-        {model.sources.filter(item => item.side === side).map((item, index) => <div key={`${item.key}:${index}`} className="mt-3">
-          <p className="text-xs font-medium text-slate-700">{item.label}: {item.value}</p>
-          <SourceDetails source={item.source} baseLabel={`${item.label}: ${item.value}`} />
+    const pairKeys = ["nyverdi.alder", "nyverdi.km"];
+    const rows = model.compact.filter(row => !difference.limitPair || !pairKeys.includes(row.key));
+    // The composed age/km value has two fact identities, each with its own evidence.
+    const components = difference.limitPair ? model.compact.filter(row => pairKeys.includes(row.key)) : [];
+    const detailRows = [...components, ...model.additional];
+    const renderRow = (row: typeof model.compact[number]) => <div key={row.key} className="min-w-0 py-3">
+      <p className="text-sm font-semibold text-slate-800">{row.label}</p>
+      <div className="mt-2 grid min-w-0 gap-2 sm:grid-cols-2">
+        {(["first", "second"] as const).map(side => <div key={side} className={`${side === "first" ? "difference-side-existing" : "difference-side-offer"} min-w-0 rounded-lg px-4 py-3`}>
+          <p className={`${side === "first" ? "existing-label" : "offer-label"} text-xs font-semibold uppercase tracking-wide`}>{side === "first" ? "Eksisterende" : "Nytt tilbud"}</p>
+          <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-900">{row[side]}</p>
+          {row[`${side}Description`] && <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{row[`${side}Description`]}</p>}
+          {model.sources.filter(item => item.side === side && item.key === row.key.replace(/:status$/u, "")).map(item =>
+            <SourceDetails key={JSON.stringify([item.source.documentId, item.source.filename, item.source.page, item.source.section, item.source.documentRole])}
+              source={item.source} origin={item.origin} baseLabel={`${side === "first" ? "Eksisterende" : "Nytt tilbud"} – ${item.label}: ${item.value}`} />)}
         </div>)}
-      </div>)}</div>}
+      </div>
+    </div>;
+    return <div className="min-w-0 py-5 sm:px-1">
+      <h5 className="text-base font-semibold text-slate-950">{difference.title}</h5>
+      {difference.limitPair && <DifferenceValues text="" pair={difference.limitPair} compact unclamped />}
+      {rows.map(renderRow)}
+      {detailRows.length > 0 && <details className="group mt-2">
+        <summary aria-label={`Se detaljer: ${difference.title}`} className="text-link w-fit cursor-pointer rounded text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-4">
+          <span className="group-open:hidden">Se detaljer</span><span className="hidden group-open:inline">Skjul</span>
+        </summary>
+        <div className="mt-3 divide-y divide-slate-100 border-t border-slate-100">{detailRows.map(renderRow)}</div>
+      </details>}
       <PresentationSources difference={difference} />
     </div>;
   }
+
   const items = difference.items || [difference];
   if (items.length === 1) return <div className="min-w-0 py-5 sm:px-1">
     <h5 className="text-base font-semibold text-slate-950">{difference.title}</h5>
@@ -1104,10 +1109,10 @@ function DifferenceValues({ text, compact = false, unclamped = false, pair }: { 
   );
 }
 
-function SourceDetails({ source, baseLabel }: { source: FactSource; baseLabel?: string }) {
+function SourceDetails({ source, baseLabel, origin }: { source: FactSource; baseLabel?: string; origin?: "document" | "catalog" }) {
   return (
     <details className="mt-2 text-xs text-slate-600">
-      <summary aria-label={baseLabel ? `Vis kilde: ${baseLabel}` : undefined} className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2">Vis kilde</summary>
+      <summary aria-label={baseLabel ? `Vis kilde: ${baseLabel}` : undefined} className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-4">Vis kilde{origin && <span className="font-normal"> · {origin === "document" ? "kundedokument" : "offentlig vilkår"}</span>}</summary>
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
         {baseLabel && <p className="font-medium text-slate-700">{baseLabel}</p>}
         {source.note && <p>{source.note}</p>}

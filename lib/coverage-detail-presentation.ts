@@ -1,12 +1,13 @@
 import type { FactSource, TermGroup } from "./comparison.ts";
-import { coverageStatusLabel } from "./coverage-status.ts";
+import { coverageStatusLabel, type CanonicalCoverage } from "./coverage-status.ts";
 
-export type DetailRow = { key: string; label: string; first: string; second: string };
+export type DetailRow = { key: string; label: string; first: string; second: string;
+  firstDescription?: string; secondDescription?: string };
 export type CoverageDetailPresentation = {
   hasAdditional: boolean;
   compact: DetailRow[];
   additional: DetailRow[];
-  sources: { side: "first" | "second"; key: string; label: string; value: string; source: FactSource }[];
+  sources: { side: "first" | "second"; key: string; label: string; value: string; source: FactSource; origin?: "document" | "catalog" }[];
 };
 
 export function hasMeaningfulAdditionalDetails(model: Pick<CoverageDetailPresentation, "compact" | "additional">): boolean {
@@ -14,49 +15,84 @@ export function hasMeaningfulAdditionalDetails(model: Pick<CoverageDetailPresent
   return model.additional.some(row => !shown.has(row.key));
 }
 
-// Input is already resolved, ordered and scoped to one concept of one object
-// pair. No catalog lookup, textual inference or status resolution occurs here.
+const sourceIdentity = (source: FactSource) => JSON.stringify([source.documentId, source.filename, source.page, source.section, source.documentRole ?? null]);
+const plain = (value: string) => value.toLocaleLowerCase("nb-NO").replace(/\s+/gu, " ").trim();
+// Lossless display factoring, not extraction: remove a semicolon-separated
+// suffix ONLY if it consists entirely of literal existing detail labels/values.
+// Any unrepresented qualifier keeps the entire original text in the details.
+function description(coverage: CanonicalCoverage | null) {
+  if (coverage?.status !== "selected") return null;
+  const main = coverage.evidence.filter(item => item.kind === "main_value" && item.status === "selected");
+  const priority = Math.max(...main.map(item => item.priority));
+  const chosen = main.filter(item => item.priority === priority);
+  const text = [...new Set(chosen.map(item => item.value))].join(" · ");
+  if (!text) return null;
+  if (!coverage.details.length) return { text, compact: true, evidence: chosen };
+  const separator = text.indexOf(";");
+  if (separator >= 0) {
+    let rest = plain(text.slice(separator + 1));
+    const fragments = coverage.details.flatMap(detail => {
+      const label = detail.label.split(/\s+[–-]\s+/u).at(-1)!;
+      return [`${label} ${detail.value}`, `${label}: ${detail.value}`, detail.value].map(plain);
+    }).sort((a,b) => b.length - a.length);
+    for (const fragment of fragments) rest = rest.split(fragment).join("");
+    if (!rest.replace(/(?:\bog\b)|[\s;,.]/gu, "")) return { text: text.slice(0, separator).trim(), compact: true, evidence: chosen };
+  }
+  // A genuine main description without literal repetitions is already distinct
+  // from structured values; don't use the engine's synthesized detail summary.
+  const repeats = coverage.details.some(detail => plain(text).includes(plain(detail.value)));
+  return { text, compact: !repeats, evidence: chosen };
+}
+
+// Input is already resolved and scoped to one concept of one object pair.
+// Sources follow fact identity; no lookup, new facts or coverage decisions.
 export function coverageDetailPresentation(terms: TermGroup[]): CoverageDetailPresentation {
   const compact: DetailRow[] = [], additional: DetailRow[] = [];
   const sources: CoverageDetailPresentation["sources"] = [];
   const seen = new Set<string>();
+  const addSource = (entry: CoverageDetailPresentation["sources"][number]) => {
+    if (!sources.some(item => item.side === entry.side && item.key === entry.key && sourceIdentity(item.source) === sourceIdentity(entry.source))) sources.push(entry);
+  };
   for (const term of terms) {
     if (seen.has(term.key)) continue;
     seen.add(term.key);
+    const coverage = term.firstCoverage || term.secondCoverage;
+    const descriptions = { first: description(term.firstCoverage), second: description(term.secondCoverage) };
     for (const side of ["first", "second"] as const) {
-      const coverage = term[`${side}Coverage`];
-      // Coverage sources aggregate details too. Status provenance must instead
-      // follow its own effective evidence; detail rows retain their own sources.
-      const statusEvidence = coverage?.evidence.filter(item => item.status === coverage.status);
-      const factSources = coverage ? statusEvidence?.flatMap(item => item.sources) ?? [] : term[`${side}Sources`];
-      for (const source of factSources) {
-        if (!sources.some(item => item.side === side && item.key === term.key && JSON.stringify(item.source) === JSON.stringify(source))) sources.push({ side, key: term.key,
-          label: coverage?.label ?? term.label, value: coverage ? coverageStatusLabel(coverage.status) : term[side] || term[`${side}MissingLabel`], source });
+      const own = term[`${side}Coverage`];
+      if (own) {
+        const matching = own.evidence.filter(item => item.status === own.status && own.status !== "unknown");
+        const strongest = Math.max(...matching.map(item => item.priority ?? 0));
+        for (const evidence of matching.filter(item => (item.priority ?? 0) === strongest)) for (const source of evidence.sources) {
+          addSource({ side, key: term.key, label: own.label, value: coverageStatusLabel(own.status), source, origin: evidence.origin });
+        }
+        for (const evidence of descriptions[side]?.evidence ?? []) for (const source of evidence.sources) {
+          addSource({ side, key: descriptions[side]?.compact ? term.key : `${term.key}:description`, label: own.label,
+            value: descriptions[side]!.text, source, origin: evidence.origin });
+        }
+      } else if (term[side]) for (const source of term[`${side}Sources`]) {
+        const origin = term[`${side}SourceOrigins`]?.find(item => sourceIdentity(item.source) === sourceIdentity(source))?.origin;
+        addSource({ side, key: term.key, label: term.label, value: term[side]!, source, origin });
       }
     }
-    const coverage = term.firstCoverage || term.secondCoverage;
     if (coverage) {
       compact.push({ key: `${term.key}:status`, label: coverage.label,
         first: coverageStatusLabel(term.firstCoverage?.status ?? "unknown"),
-        second: coverageStatusLabel(term.secondCoverage?.status ?? "unknown") });
-      // summary is synthesized from details when they exist. Never render that
-      // second representation as another fact. A direct effective summary with
-      // no structured details remains intact, without parsing it into subfacts.
-      const direct = (side: "first" | "second") => {
-        const value = term[`${side}Coverage`];
-        return value?.status === "selected" && !value.details.length ? value.summary : null;
-      };
-      if (direct("first") || direct("second")) additional.push({ key: `${term.key}:description`, label: term.label,
-        first: direct("first") || term.firstMissingLabel, second: direct("second") || term.secondMissingLabel });
+        second: coverageStatusLabel(term.secondCoverage?.status ?? "unknown"),
+        firstDescription: descriptions.first?.compact ? descriptions.first.text : undefined,
+        secondDescription: descriptions.second?.compact ? descriptions.second.text : undefined });
+      if (descriptions.first?.compact === false || descriptions.second?.compact === false) additional.push({ key: `${term.key}:description`, label: coverage.label,
+        first: descriptions.first?.compact === false ? descriptions.first.text : term.firstMissingLabel,
+        second: descriptions.second?.compact === false ? descriptions.second.text : term.secondMissingLabel });
       continue;
     }
     if (!term.first && !term.second) continue;
     const row = { key: term.key, label: term.label, first: term.first || term.firstMissingLabel, second: term.second || term.secondMissingLabel };
-    // Canonical identities, not rendered text or length, determine compactness.
-    const isLimit = /(?:^|\.)(?:sum|grense|total|per_gjenstand|alder|km|dager|varighet)(?:\.|$)/u.test(term.key);
-    (isLimit ? compact : additional).push(row);
+    // Keep age/km as compact anchors. Monetary limits, durations, exclusions,
+    // counts and deductibles belong in the existing detail level.
+    const anchor = /\.(?:alder|km)$/u.test(term.key);
+    (anchor ? compact : additional).push(row);
   }
-  // A concept without a coverage status/limit still has a useful compact fact.
   if (!compact.length && additional.length) compact.push(additional.shift()!);
   return { compact, additional, sources, hasAdditional: hasMeaningfulAdditionalDetails({ compact, additional }) };
 }

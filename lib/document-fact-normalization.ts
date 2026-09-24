@@ -176,9 +176,20 @@ const nextBilFact = /\b(?:maskinskade|maskin og elektronikkdekning|motor og girs
 // Object mileage is never a coverage limit. Stop at an explicit new field,
 // also when extraction flattens headings into a single sentence without punctuation.
 const vehicleFactBoundary = /\b(?:årlig\s+kjørelengde|kjørelengde|(?:avtalt\s+)?maksimal\s+kilometerstand|(?:faktisk|nåværende|avlest)\s+kilometerstand|kilometerstand|førstegangsregistrering)\b/iu;
+function vehicleFactBoundaryIndex(text: string): number {
+  for (const match of text.matchAll(new RegExp(vehicleFactBoundary.source, "giu"))) {
+    // An age limit's starting point is not a new vehicle fact. Only these
+    // explicit grammatical anchors are exempt; registration fields still stop
+    // the coverage clause. Preserve offsets and the original document text.
+    if (match[0].toLocaleLowerCase("nb-NO") === "førstegangsregistrering" &&
+      /\b(?:fra|etter|siden)\s*$/iu.test(text.slice(0, match.index))) continue;
+    return match.index;
+  }
+  return -1;
+}
 function coverageLimitSection(value: string): string {
   const text = value.replace(/^\s*(?:totalskadegaranti|nyverdierstatning|nybilgaranti|maskinskade|maskin og elektronikkdekning|motor og girskade)\s*[:–-]?\s*/iu, "");
-  const boundaries = [text.search(vehicleFactBoundary), text.search(nextBilFact)].filter((index) => index >= 0);
+  const boundaries = [vehicleFactBoundaryIndex(text), text.search(nextBilFact)].filter((index) => index >= 0);
   return text.slice(0, boundaries.length ? Math.min(...boundaries) : undefined);
 }
 
@@ -190,7 +201,7 @@ function boundedSection(text: string, label: RegExp): string | null {
     remainder.search(/[;\n]/u),
     remainder.search(/\.(?:\s|$)/u),
     remainder.search(nextBilFact),
-    remainder.search(vehicleFactBoundary),
+    vehicleFactBoundaryIndex(remainder),
   ].filter((index) => index >= 0);
   return remainder.slice(0, boundaries.length ? Math.min(...boundaries) : undefined);
 }

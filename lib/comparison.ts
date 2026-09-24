@@ -104,6 +104,8 @@ export type TermGroup = {
   secondValueCount: number;
   firstSources: FactSource[];
   secondSources: FactSource[];
+  firstSourceOrigins?: { source: FactSource; origin: "document" | "catalog" }[];
+  secondSourceOrigins?: { source: FactSource; origin: "document" | "catalog" }[];
   firstBaseFacts: BaseFact[];
   secondBaseFacts: BaseFact[];
   firstDeductibleClassifications: string[];
@@ -132,6 +134,8 @@ type CollectedTerm = {
   second: string[];
   firstSources: FactSource[];
   secondSources: FactSource[];
+  firstSourceOrigins: { source: FactSource; origin: "document" | "catalog" }[];
+  secondSourceOrigins: { source: FactSource; origin: "document" | "catalog" }[];
   firstBaseFacts: BaseFact[];
   secondBaseFacts: BaseFact[];
   firstDeductibleClassifications: string[];
@@ -306,7 +310,7 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
         let entry = terms.get(key);
         if (!entry) {
           entry = {
-            label: term.name, first: [], second: [], firstSources: [], secondSources: [],
+            label: term.name, first: [], second: [], firstSources: [], secondSources: [], firstSourceOrigins: [], secondSourceOrigins: [],
             firstBaseFacts: [], secondBaseFacts: [],
             firstDeductibleClassifications: [], secondDeductibleClassifications: [],
           };
@@ -323,6 +327,7 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
           if (!classes.includes(classification)) classes.push(classification);
         }
         for (const source of term.sources ?? (term.source ? [term.source] : [])) {
+          entry[`${side}SourceOrigins`].push({ source, origin: term.coverageOrigin ?? "document" });
           if (!entry[`${side}Sources`].some((existing) =>
             existing.documentId === source.documentId && existing.section === source.section && existing.page === source.page
           )) entry[`${side}Sources`].push(source);
@@ -341,7 +346,7 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
     if (!entry) {
       entry = {
         label: pair.first?.label || pair.second?.label || key,
-        first: [], second: [], firstSources: [], secondSources: [],
+        first: [], second: [], firstSources: [], secondSources: [], firstSourceOrigins: [], secondSourceOrigins: [],
         firstBaseFacts: [], secondBaseFacts: [],
         firstDeductibleClassifications: [], secondDeductibleClassifications: [],
       };
@@ -366,6 +371,8 @@ export function groupTerms(group: InsuranceGroup, matchingPlan: MatchingPlan | n
     secondValueCount: entry.second.length,
     firstSources: entry.firstSources,
     secondSources: entry.secondSources,
+    firstSourceOrigins: entry.firstSourceOrigins,
+    secondSourceOrigins: entry.secondSourceOrigins,
     firstBaseFacts: entry.firstBaseFacts,
     secondBaseFacts: entry.secondBaseFacts,
     firstDeductibleClassifications: entry.firstDeductibleClassifications,

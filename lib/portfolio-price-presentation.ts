@@ -21,9 +21,15 @@ export function portfolioPrice(document: ComparedDocument, failedDocuments = 0) 
       // these types. No inferred zero or subtraction-derived prices.
       if (field.key === "premie.tfa" && ["tilhenger", "campingvogn", "snøscooter"].includes(normalizeInsuranceType(object.type)) && !price?.value) return;
       expected++;
-      const disputed = object.consolidation?.status === "unresolved" || object.consolidation?.factConflicts?.some(item => item.key === field.key);
+      const disputed = object.consolidation?.status === "unresolved" || object.consolidation?.factConflicts?.some(item => {
+        if (item.key !== field.key) return false;
+        const amounts = item.values.map(annualAmount);
+        // A consolidation conflict can be textual formatting only. Resolve
+        // that case using the same strict annual-amount policy as object prices.
+        return amounts.includes(null) || new Set(amounts).size !== 1;
+      });
       const values = object.importantTerms.filter(term => term.coverageOrigin !== "catalog" && term.key === field.key).map(term => annualAmount(term.value));
-      const multiple = new Set(values.filter(value => value !== null)).size > 1 || Boolean(price?.value?.includes(" · "));
+      const multiple = new Set(values.filter(value => value !== null)).size > 1;
       if (disputed || multiple) { conflict = true; return; }
       if (price?.amount !== null && price?.amount !== undefined) contributions.push({ objectIndex: index, amount: price.amount, sources: price.sources });
     });
