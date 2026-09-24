@@ -1,3 +1,5 @@
+import { createProductionTrace } from "@/lib/production-trace-server";
+import { createTraceTicket } from "@/lib/production-trace-ticket";
 import OpenAI from "openai";
 import { runHybridMatching } from "@/lib/hybrid-matching";
 import { requestSemanticMatches } from "@/lib/semantic-matcher";
@@ -121,6 +123,7 @@ function responseHeaders(requestId: string): HeadersInit {
 async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => void = () => {}, clientSignal = request.signal) {
   const requestId = crypto.randomUUID();
   const telemetry = createAnalysisTelemetry(requestId);
+  const trace = createProductionTrace(requestId);
   telemetry.transport(request.headers.get("accept") === "application/x-ndjson" ? "ndjson" : "json");
   const lifecycle = requestLifecycle(clientSignal);
   let release: (() => void) | undefined;
@@ -172,12 +175,12 @@ async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => 
 
     const pipeline = await analyzePdfBatches({
       sides: pending.flatMap((agreement, index) => agreement.mode === "pdf" ? [{ side: index === 0 ? "existing" as const : "offer" as const, files: agreement.files }] : []),
-      controller: lifecycle.controller, telemetry, emit,
+      controller: lifecycle.controller, telemetry, emit, trace,
       extract: (batch) => extractInsuranceData(batch.input, lifecycle.signal, telemetry, batch.documents.length),
     });
     const documents = pending.map((agreement, index) => {
       if (agreement.mode === "manual") { telemetry.products(agreement.document.insuranceData.insurances.length); return agreement.document; }
-      return mergeBatchResults(pipeline.results, index === 0 ? "existing" : "offer", pipeline.partialSuccess);
+      return mergeBatchResults(pipeline.results, index === 0 ? "existing" : "offer", pipeline.partialSuccess, trace);
     });
     emit({ type: "comparison_started" });
 
@@ -192,10 +195,16 @@ async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => 
     lifecycle.signal.throwIfAborted();
 
     emit({ type: "analysis_completed", partialSuccess: pipeline.partialSuccess, successfulDocuments: pipeline.successfulDocuments, failedDocuments: pipeline.failures.length });
+    const sanitizedDocuments = documents.map((document) => sanitizeAnalysisDocumentForClient(document as unknown as Record<string, unknown>));
+    const objectRefs = trace ? {
+      left: trace.final("existing", documents[0].insuranceData.insurances, (sanitizedDocuments[0].insuranceData as typeof documents[0]["insuranceData"]).insurances),
+      right: trace.final("offer", documents[1].insuranceData.insurances, (sanitizedDocuments[1].insuranceData as typeof documents[1]["insuranceData"]).insurances),
+    } : undefined;
+    const ticket = trace ? createTraceTicket(requestId) : null;
     return respond({
-      analysis: { partialSuccess: pipeline.partialSuccess, successfulDocuments: pipeline.successfulDocuments, failedDocuments: pipeline.failures.length, failures: pipeline.failures,
+      analysis: { ...(ticket && objectRefs ? { trace: { traceId: requestId, objectRefs, ticket } } : {}), partialSuccess: pipeline.partialSuccess, successfulDocuments: pipeline.successfulDocuments, failedDocuments: pipeline.failures.length, failures: pipeline.failures,
         conservativeObjectSeparation: pipeline.results.filter((r) => r.batch.side === "existing").length > 1 || pipeline.results.filter((r) => r.batch.side === "offer").length > 1 },
-      documents: documents.map((document) => sanitizeAnalysisDocumentForClient(document as unknown as Record<string, unknown>)),
+      documents: sanitizedDocuments,
       matchingPlan,
     }, 200);
   } catch (caught) {
@@ -219,6 +228,7 @@ async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => 
     console.error("ANALYSE_FEIL", safeErrorMetadata(requestId, category, error));
     return respond({ error: "Analysetjenesten er midlertidig utilgjengelig. Prøv igjen senere." }, 503);
   } finally {
+    trace?.flush();
     lifecycle.dispose();
     release?.();
     console.info("ANALYSIS_METRICS", JSON.stringify(telemetry.snapshot(outcome)));

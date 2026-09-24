@@ -1,14 +1,22 @@
 import type { ComparedDocument, FactSource, InsuranceGroup } from "./comparison.ts";
-import { annualAmount, vehiclePriceFields, vehiclePrices } from "./vehicle-price-presentation.ts";
+import { annualAmount, vehiclePriceFields, vehiclePrices, type VehiclePriceKey } from "./vehicle-price-presentation.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 
 export type PriceCompleteness = "complete" | "partial" | "unavailable" | "conflicting";
 export type PortfolioPrice = ReturnType<typeof portfolioPrice>;
+export type PortfolioPriceInput = {
+  key: VehiclePriceKey;
+  state: "present" | "missing" | "conflict" | "unparseable" | "not_required";
+  annualBasis: "canonical_annual" | "unresolved";
+  comparable: boolean;
+  reason: "OPTIONAL_TFA_NOT_REQUIRED" | "CONSOLIDATION_UNRESOLVED" | "CONSOLIDATION_FACT_CONFLICT" | "MULTIPLE_DOCUMENT_AMOUNTS" |
+    "CONTRIBUTION_ACCEPTED" | "PRICE_UNPARSEABLE" | "PRICE_MISSING" | "PRICE_TYPE_UNSUPPORTED";
+};
 export const formatPortfolioPrice = (ore: number) => `${new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 2 }).format(ore / 100)} kr`;
 
 // Consumes logical objects AFTER consolidation. Object identity and cross-side
 // matching belong exclusively to the existing object pipeline.
-export function portfolioPrice(document: ComparedDocument, failedDocuments = 0) {
+export function portfolioPrice(document: ComparedDocument, failedDocuments = 0, observer?: (objectIndex: number, input: PortfolioPriceInput) => void) {
   const objects = document.insuranceData.insurances;
   const prices = objects.map(vehiclePrices);
   const compatible = objects.length > 0 && prices.every(Boolean);
@@ -17,9 +25,18 @@ export function portfolioPrice(document: ComparedDocument, failedDocuments = 0) 
     let expected = 0, conflict = false;
     objects.forEach((object, index) => {
       const price = prices[index]?.find(item => item.key === field.key);
+      const observe = (state: PortfolioPriceInput["state"], reason: PortfolioPriceInput["reason"]) => {
+        if (!observer) return;
+        try {
+          observer(index, { key: field.key, state, annualBasis: price?.amount !== null && price?.amount !== undefined ? "canonical_annual" : "unresolved",
+            comparable: state === "present", reason });
+        } catch { /* Optional diagnostics cannot affect price resolution. */ }
+      };
       // Reuse object-price presentation's optional-TFA visibility policy for
       // these types. No inferred zero or subtraction-derived prices.
-      if (field.key === "premie.tfa" && ["tilhenger", "campingvogn", "snøscooter"].includes(normalizeInsuranceType(object.type)) && !price?.value) return;
+      if (field.key === "premie.tfa" && ["tilhenger", "campingvogn", "snøscooter"].includes(normalizeInsuranceType(object.type)) && !price?.value) {
+        observe("not_required", "OPTIONAL_TFA_NOT_REQUIRED"); return;
+      }
       expected++;
       const disputed = object.consolidation?.status === "unresolved" || object.consolidation?.factConflicts?.some(item => {
         if (item.key !== field.key) return false;
@@ -30,8 +47,15 @@ export function portfolioPrice(document: ComparedDocument, failedDocuments = 0) 
       });
       const values = object.importantTerms.filter(term => term.coverageOrigin !== "catalog" && term.key === field.key).map(term => annualAmount(term.value, field.key));
       const multiple = new Set(values.filter(value => value !== null)).size > 1;
-      if (disputed || multiple) { conflict = true; return; }
-      if (price?.amount !== null && price?.amount !== undefined) contributions.push({ objectIndex: index, amount: price.amount, sources: price.sources });
+      if (disputed || multiple) {
+        conflict = true;
+        observe("conflict", object.consolidation?.status === "unresolved" ? "CONSOLIDATION_UNRESOLVED" : disputed ? "CONSOLIDATION_FACT_CONFLICT" : "MULTIPLE_DOCUMENT_AMOUNTS");
+        return;
+      }
+      if (price?.amount !== null && price?.amount !== undefined) {
+        contributions.push({ objectIndex: index, amount: price.amount, sources: price.sources });
+        observe("present", "CONTRIBUTION_ACCEPTED");
+      } else observe(price?.value ? "unparseable" : "missing", !prices[index] ? "PRICE_TYPE_UNSUPPORTED" : price?.value ? "PRICE_UNPARSEABLE" : "PRICE_MISSING");
     });
     const sum = contributions.reduce((value, item) => value + item.amount, 0);
     if (!Number.isSafeInteger(sum)) conflict = true;

@@ -9,7 +9,11 @@ import { syntheticPdf } from "../tests/helpers/synthetic-pdf.mjs";
 
 import { pdfAddonSelection } from "../tests/helpers/pdf-addon-selection.mjs";
 import { readAnalysisResponse } from "../lib/analysis-client.ts";
-import { groupAddOnNames, groupInsurances } from "../lib/comparison.ts";
+import { createDifferences, groupAddOnNames, groupInsurances, groupTerms } from "../lib/comparison.ts";
+import { presentImportantDifferences } from "../lib/comparison-presentation.ts";
+import { portfolioPrice } from "../lib/portfolio-price-presentation.ts";
+import { vehiclePrices } from "../lib/vehicle-price-presentation.ts";
+import { clientTraceEvents, sanitizeTraceEvent } from "../lib/production-trace.ts";
 
 const calls = [];
 let addonScenario = false;
@@ -80,7 +84,7 @@ const key = randomUUID();
 const child = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", String(port)], {
   env: { ...process.env, PILOT_ACCESS_CODE: code, PILOT_SESSION_SECRET: secret,
     OPENAI_API_KEY: key, OPENAI_BASE_URL: `http://127.0.0.1:${mock.address().port}/v1`,
-    NEXT_TELEMETRY_DISABLED: "1", OPENAI_LOG: "debug" },
+    NEXT_TELEMETRY_DISABLED: "1", OPENAI_LOG: "debug", PILOT_TRACE_ENABLED: "true" },
   stdio: ["ignore", "pipe", "pipe"],
 });
 let logs = "";
@@ -140,6 +144,40 @@ try {
   assert.equal(calls.length, 2);
   assert.equal(peak, 2);
   assert.ok(calls.every((call) => call.store === false && call.model === "gpt-5.6-luna"));
+  const traceContext = result.analysis.trace;
+  assert.match(traceContext.traceId, /^[0-9a-f-]{36}$/u);
+  assert.equal(traceContext.objectRefs.left.length, 4);
+  assert.equal(traceContext.objectRefs.right.length, 4);
+  assert.equal(new Set([...traceContext.objectRefs.left, ...traceContext.objectRefs.right]).size, 8);
+  const traceGroups = groupInsurances(...result.documents.map(document => document.insuranceData.insurances), result.matchingPlan);
+  const traceDifferences = createDifferences(...result.documents, traceGroups, result.matchingPlan);
+  const tracePriceInputs = result.documents.map(() => []);
+  const tracePortfolio = result.documents.map((document, sideIndex) => portfolioPrice(document, 0,
+    (objectIndex, input) => tracePriceInputs[sideIndex].push({ objectIndex, input })));
+  const receiptEvents = clientTraceEvents({
+    documents: result.documents, groups: traceGroups, differences: traceDifferences,
+    presentedDifferences: presentImportantDifferences(traceDifferences, traceGroups, result.matchingPlan),
+    details: traceGroups.map(group => ({ group, terms: groupTerms(group, result.matchingPlan) })),
+    portfolioPrices: tracePortfolio, priceInputs: tracePriceInputs, context: traceContext,
+    priceBranches: result.documents.map((document, index) =>
+      tracePortfolio[index].compatible && (document.insuranceData.insurances.length > 1 || tracePortfolio[index].conflict || tracePortfolio[index].failedDocuments > 0)
+        ? "portfolio"
+        : document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some(field => field.value)
+          ? "vehicle" : "legacy"),
+  });
+  const receipt = { traceId: traceContext.traceId, ticket: traceContext.ticket, events: receiptEvents };
+  assert.ok(receiptEvents.length > 0 && receiptEvents.every(event => sanitizeTraceEvent(event)));
+  assert.doesNotMatch(JSON.stringify(receiptEvents), /PRIVATE|\.pdf|ZZ[0-9]+/u);
+  const postReceipt = body => fetch(base + "/api/analysis-trace", {
+    method: "POST", headers: { ...headers, "content-type": "application/json" }, body: JSON.stringify(body),
+  });
+  assert.equal((await postReceipt({ ...receipt, ticket: "PRIVATE_INVALID_TRACE_TICKET" })).status, 400);
+  assert.equal((await postReceipt({ ...receipt, events: [{ ...receiptEvents[0], value: "PRIVATE_TRACE_SENTINEL" }] })).status, 400);
+  const acceptedReceipt = await postReceipt(receipt);
+  assert.equal(acceptedReceipt.status, 200);
+  assert.match(acceptedReceipt.headers.get("cache-control"), /no-store/u);
+  assert.equal((await postReceipt(receipt)).status, 409, "signed trace receipt is accepted at most once");
+  assert.equal(calls.length, 2, "diagnostic receipt never invokes AI");
 
   const corrupt = pdfForm();
   corrupt.set("existingFiles", new File(["%PDF-1.7\nPRIVATE_INVALID"], "bad.pdf", { type: "application/pdf" }));
@@ -281,8 +319,26 @@ try {
   assert.equal(released,true,'disconnect releases admission and aborts server work');
   const multiMetrics=logs.split('\n').filter(line=>line.startsWith('ANALYSIS_METRICS ')).map(line=>JSON.parse(line.slice('ANALYSIS_METRICS '.length))).find(m=>m.successfulDocuments===20);
   assert.equal(multiMetrics.batchCount,2);assert.equal(multiMetrics.maxConcurrentExtractions,2);assert.equal(multiMetrics.extractionCalls,2);
+  const traceEvents = logs.split('\n').filter(line => line.startsWith('ANALYSIS_TRACE ')).map(line => JSON.parse(line.slice('ANALYSIS_TRACE '.length)));
+  const serverTrace = traceEvents.filter(event => event.traceId === traceContext.traceId && event.phase === 'server');
+  const clientTrace = traceEvents.filter(event => event.traceId === traceContext.traceId && event.phase === 'client');
+  assert.ok(serverTrace.some(event => event.stage === 'sanitizer'));
+  assert.equal(serverTrace.filter(event => event.stage === 'extraction').length, 8);
+  assert.equal(serverTrace.find(event => event.stage === 'complete').observerFailures, 0);
+  assert.equal(clientTrace.length, receiptEvents.length);
+  assert.ok(clientTrace.some(event => event.stage === 'comparison'));
+  for (const event of clientTrace.filter(event => event.objectRef)) assert.ok(serverTrace.some(server => server.objectRef === event.objectRef));
+  assert.ok(traceEvents.some(event => event.stage === 'consolidation' && event.accepted));
+  for (const { traceId, phase, sequence, ...event } of traceEvents) {
+    assert.match(traceId, /^[0-9a-f-]{36}$/u);
+    assert.ok(['server', 'client'].includes(phase));
+    assert.ok(Number.isInteger(sequence));
+    assert.ok(sanitizeTraceEvent(event));
+  }
+  for (const value of [traceContext.ticket, 'PRIVATE_TRACE_SENTINEL', 'PRIVATE_INVALID_TRACE_TICKET']) assert.equal(logs.includes(value), false);
   for(const value of [code,secret,key,'PRIVATE_PDF_SENTINEL','PRIVATE_OUTPUT_SENTINEL','PRIVATE_FILENAME','INVALID_PHASE2'])assert.equal(logs.includes(value),false);
   console.log(JSON.stringify({ result: "PASS", checks: [
+    "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
     "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
     "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
     "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",

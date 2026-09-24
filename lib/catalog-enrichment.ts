@@ -1,4 +1,5 @@
 import type { MeasureSync } from "./analysis-telemetry.ts";
+import type { TraceObjectObserver } from "./production-trace.ts";
 import type { ExtractedAgreement, ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
 import {
   normalizeCatalogTermKey,
@@ -68,6 +69,7 @@ function enrichInsurance(
   asOf: Date,
   measure: MeasureSync,
   resolvedDocumentTerms?: DocumentFact[],
+  trace?: TraceObjectObserver,
 ): CatalogEnrichedInsurance {
   // undefined betyr et eldre internt kall uten feltet; null fra dagens schema
   // betyr uttrykkelig at produktnivået ikke kunne identifiseres sikkert.
@@ -77,7 +79,12 @@ function enrichInsurance(
   const product = measure("catalogLookup", () => company && productIdentity
     ? findCatalogProductBySelection(company, insurance.type, productIdentity)
     : null);
-  let documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => normalizeDocumentFacts(insurance));
+  trace?.product(insurance, product);
+  let documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => {
+    const normalized = normalizeDocumentFacts(insurance);
+    trace?.normalization(insurance, normalized);
+    return normalized;
+  });
   const documentedTotals = [...new Set(documentTerms
     .filter((term) => term.key === "premie.total").map((term) => term.value))];
   // Bare en entydig, eksplisitt objekttotal kan erstatte det eldre premiefeltet.
@@ -85,7 +92,10 @@ function enrichInsurance(
     ...insurance,
     annualPremium: documentedTotals.length === 1 ? documentedTotals[0] : insurance.annualPremium,
   };
-  if (!product) return { ...insurance, importantTerms: documentTerms, catalogReference: null };
+  if (!product) {
+    trace?.catalog({ documentTerms, effectiveFacts: [], catalogFacts: [], supplementalTerms: [], effectiveTerms: documentTerms, blockedKeys: [], product: null });
+    return { ...insurance, importantTerms: documentTerms, catalogReference: null };
+  }
 
   const effectiveFacts = resolveCatalogFacts(product, [], asOf, null);
   const catalogFacts = resolveCatalogEvidence(product, [], asOf, null);
@@ -119,21 +129,35 @@ function enrichInsurance(
       definition.details.some((detail) => detail.key === key ||
         Boolean(detail.keyPrefix && key.startsWith(detail.keyPrefix))));
   };
+  const blockedKeys: string[] = [];
+  const traceDecisions: { key: string; decision: string }[] = [];
   const supplementalTerms = effectiveFacts
     .filter((fact) => {
       const definition = coverageForFact(fact);
       const documentCoverage = definition && documentCoverageStatuses.get(definition.parentKey);
       // Et eksplisitt avslag eller en dokumentert konflikt skal ikke få
       // katalogdetaljer presentert som kundens effektive vilkår.
-      if (documentCoverage?.status === "not_selected" || documentCoverage?.conflict) return false;
+      if (documentCoverage?.status === "not_selected" || documentCoverage?.conflict) {
+        if (trace) {
+          blockedKeys.push(normalizeCatalogTermKey(fact.key));
+          traceDecisions.push({ key: normalizeCatalogTermKey(fact.key), decision: documentCoverage.conflict ? "CATALOG_CONFLICT" : "CATALOG_BLOCKED_BY_STATUS" });
+        }
+        return false;
+      }
       // Detaljer uten en tilhørende hoveddekning beskriver bare en mulig
       // variant. De berikes først når kundedokumentet faktisk omtaler den.
-      return !definition || factKeys.has(definition.parentKey) ||
+      const included = !definition || factKeys.has(definition.parentKey) ||
         [...documentedKeys].some((key) => key === definition.parentKey ||
           definition.details.some((detail) => detail.key === key ||
             Boolean(detail.keyPrefix && key.startsWith(detail.keyPrefix))));
+      if (trace && !included) traceDecisions.push({ key: normalizeCatalogTermKey(fact.key), decision: "CATALOG_NOT_APPLIED_OTHER_RULE" });
+      return included;
     })
-    .filter((fact) => !documentedKeys.has(normalizeCatalogTermKey(fact.key)))
+    .filter((fact) => {
+      const included = !documentedKeys.has(normalizeCatalogTermKey(fact.key));
+      if (trace) traceDecisions.push({ key: normalizeCatalogTermKey(fact.key), decision: included ? "CATALOG_APPLIED" : "DOCUMENT_PRESENT_SKIP_CATALOG" });
+      return included;
+    })
     .map((fact) => catalogTerm(fact, catalogFacts));
 
   const effectiveTerms = [...documentTerms.filter(term => !isUndocumentedTermValue(term.value) ||
@@ -157,6 +181,7 @@ function enrichInsurance(
         normalizeLabel(candidate.value) === normalizeLabel(term.value);
     }) === index;
   });
+  trace?.catalog({ documentTerms, effectiveFacts, catalogFacts, supplementalTerms, effectiveTerms, blockedKeys, product, decisions: traceDecisions });
 
   return {
     ...insurance,
@@ -194,17 +219,18 @@ export function enrichExtractedAgreementWithCatalog(
   agreement: ExtractedAgreement,
   asOf = new Date(),
   measure: MeasureSync = (_stage, work) => work(),
+  trace?: TraceObjectObserver,
 ): CatalogEnrichedAgreement {
   return {
     ...agreement,
     insurances: agreement.insurances.map((insurance) =>
-      enrichInsurance(agreement.company, insurance, asOf, measure)),
+      enrichInsurance(agreement.company, insurance, asOf, measure, undefined, trace)),
   };
 }
 
 // Consolidation has already normalized and resolved same-side document evidence.
 // Reuse the established catalog policy without re-deriving lower-priority facts
 // from a combined free-text summary or reclassifying catalog evidence as document.
-export function enrichConsolidatedInsurance(company: string | null, insurance: ExtractedInsurance, terms: DocumentFact[], asOf = new Date()): CatalogEnrichedInsurance {
-  return enrichInsurance(company, insurance, asOf, (_stage, work) => work(), terms);
+export function enrichConsolidatedInsurance(company: string | null, insurance: ExtractedInsurance, terms: DocumentFact[], asOf = new Date(), trace?: TraceObjectObserver): CatalogEnrichedInsurance {
+  return enrichInsurance(company, insurance, asOf, (_stage, work) => work(), terms, trace);
 }

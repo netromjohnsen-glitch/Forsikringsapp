@@ -1,3 +1,4 @@
+import type { ProductionTrace } from "./production-trace-server.ts";
 import { readPdf, type ParsedPdf } from "./pdf-reader.ts";
 import { PdfSecurityError, validateParsedPdfSide, type PreparedPdf } from "./pdf-upload-security.ts";
 import { AnalysisControlError } from "./analysis-control.ts";
@@ -13,6 +14,7 @@ export async function analyzePdfBatches(options: {
   controller: AbortController; telemetry: AnalysisTelemetry;
   emit: (event: ProgressEvent) => void;
   extract: (batch: ExtractionBatch) => Promise<ExtractedAgreement>;
+  trace?: ProductionTrace;
   parse?: (pdf: PreparedPdf, signal: AbortSignal) => Promise<ParsedPdf>;
 }) {
   const { sides, controller, telemetry } = options;
@@ -21,7 +23,8 @@ export async function analyzePdfBatches(options: {
   emit({ type: "analysis_started", existingDocumentCount: sides.find((s) => s.side === "existing")?.files.length ?? 0, offerDocumentCount: sides.find((s) => s.side === "offer")?.files.length ?? 0 });
   const failures: DocumentFailure[] = [];
   const texts: TextDocument[] = [];
-  const fail = (side: AnalysisSide, documentIndex: number, code: FailureCode) => {
+  const fail = (side: AnalysisSide, documentIndex: number, code: FailureCode, parseFailure = true) => {
+    if (parseFailure) options.trace?.document(side, documentIndex, false);
     failures.push({ side, documentIndex, code }); emit({ type: "document_status", side, documentIndex, status: "failed", error: code });
   };
   let globalIndex = 0, totalPages = 0;
@@ -43,6 +46,7 @@ export async function analyzePdfBatches(options: {
         sidePages.push(parsed.pages); sideTexts.push(parsed.text);
         validateParsedPdfSide(sidePages, sideTexts);
         texts.push({ side, documentIndex, text: parsed.text, pages: parsed.pages });
+        options.trace?.document(side, documentIndex, true);
         emit({ type: "document_status", side, documentIndex, status: "ready" });
       } catch (error) {
         signal.throwIfAborted();
@@ -57,6 +61,7 @@ export async function analyzePdfBatches(options: {
   // No AI until all security/resource checks have passed. No document crosses batches.
   const batches = telemetry.measureSync("inputPreparation", () => planExtractionBatches(texts));
   telemetry.batches(batches);
+  if (options.trace) for (const batch of batches) options.trace.batch(batch);
   let products = 0;
   const results = await runBatchPool(batches, controller, async (batch): Promise<BatchResult | null> => {
     for (const doc of batch.documents) emit({ type: "document_status", side: doc.side, documentIndex: doc.documentIndex, status: "analyzing" });
@@ -66,7 +71,8 @@ export async function analyzePdfBatches(options: {
       signal.throwIfAborted();
       products += extracted.insurances.length;
       if (products > MAX_JOB_PRODUCTS) throw new PdfSecurityError(413, "too_many_products", "For mange produkter i én sammenligning.");
-      const agreement = enrichBatch(extracted, batch, telemetry);
+      const agreement = enrichBatch(extracted, batch, telemetry, options.trace);
+      options.trace?.assignment(batch, extracted.insurances);
       for (const [productIndex, product] of agreement.insurances.entries()) {
         const identity = { side: batch.side, batchIndex: batch.batchIndex, productIndex, insuranceType: normalizeInsuranceType(product.type) };
         emit({ type: "product_status", ...identity, status: "identified" });
@@ -80,7 +86,8 @@ export async function analyzePdfBatches(options: {
       const status = error && typeof error === "object" && "status" in error ? error.status : undefined;
       const code = error && typeof error === "object" && "code" in error ? error.code : undefined;
       if (status === 429 || status === 401 || status === 403 || status === 413 || status === 415 || code === "missing_openai_key") throw error;
-      for (const doc of batch.documents) fail(doc.side, doc.documentIndex, "extraction_failed");
+      options.trace?.extractionFailed(batch);
+      for (const doc of batch.documents) fail(doc.side, doc.documentIndex, "extraction_failed", false);
       return null;
     }
   }, telemetry.extractionConcurrency);

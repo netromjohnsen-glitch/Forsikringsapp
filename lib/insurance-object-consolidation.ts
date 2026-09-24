@@ -6,6 +6,7 @@ import { normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName, rel
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import type { ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
 import type { FactSource } from "./comparison.ts";
+import type { TraceObjectObserver } from "./production-trace.ts";
 
 export type DocumentTerm = ExtractedTerm & { key?: string; coverageOrigin?: "document" | "catalog"; sources?: FactSource[]; source?: FactSource };
 export type DocumentObjectRecord = Omit<ExtractedInsurance, "importantTerms"> & {
@@ -18,6 +19,10 @@ export type DocumentObjectRecord = Omit<ExtractedInsurance, "importantTerms"> & 
 export type ConsolidatedDocumentObject = DocumentObjectRecord & {
   consolidation: ConsolidationInfo;
   recordEvidence: { productName: string | null; company: string | null; documentRole: DocumentRole; agreementPeriod: AgreementPeriod | null; annualPremium: string | null; deductible: string | null; sources: FactSource[]; importantTerms: DocumentTerm[] }[];
+};
+export type ConsolidationTraceHooks = {
+  forRecord(record: object): TraceObjectObserver | undefined;
+  consolidated(input: readonly object[], output: object, status: "standalone" | "consolidated" | "unresolved", issues: readonly string[]): void;
 };
 type Candidate = { fact: DocumentFact; role: DocumentRole };
 const textIdentity = (value: string) => value.trim().replace(/\s+/gu, " ").toLocaleLowerCase("nb-NO");
@@ -51,12 +56,17 @@ export function insuranceConsolidationIssues(records: readonly DocumentObjectRec
 function preferred<T extends { role: DocumentRole }>(items: T[]): T[] {
   return items.some(item => item.role === "individual_agreement") ? items.filter(item => item.role !== "general_terms") : items;
 }
-function resolveFacts(records: readonly DocumentObjectRecord[]) {
+function resolveFacts(records: readonly DocumentObjectRecord[], hooks?: ConsolidationTraceHooks) {
   const type = records[0].type;
-  const candidates: Candidate[] = records.flatMap(record => normalizeDocumentFacts({
-    ...record,
-    importantTerms: record.importantTerms.filter(term => term.coverageOrigin !== "catalog"),
-  }).map(fact => ({ fact: { ...fact, sources: uniqueSources(sourcesOf(fact).length ? sourcesOf(fact) : record.documentSources) }, role: record.documentRole ?? "unknown" })));
+  const candidates: Candidate[] = records.flatMap(record => {
+    const input = {
+      ...record,
+      importantTerms: record.importantTerms.filter(term => term.coverageOrigin !== "catalog"),
+    };
+    const normalized = normalizeDocumentFacts(input);
+    hooks?.forRecord(record)?.normalization(input, normalized);
+    return normalized.map(fact => ({ fact: { ...fact, sources: uniqueSources(sourcesOf(fact).length ? sourcesOf(fact) : record.documentSources) }, role: record.documentRole ?? "unknown" }));
+  });
   const definitions = relatedCoveragesForInsuranceType(type);
   const byKey = new Map<string, Candidate[]>();
   for (const candidate of candidates) {
@@ -94,10 +104,10 @@ function scalar(records: readonly DocumentObjectRecord[], field: "annualPremium"
   const values = unique(preferred(candidates), item => textIdentity(item.value)).map(item => item.value);
   return { value: values.length ? values.join(" · ") : null, conflict: values.length > 1 ? { key: field, values } : null };
 }
-function mergeRecords(records: readonly DocumentObjectRecord[]): ConsolidatedDocumentObject {
+function mergeRecords(records: readonly DocumentObjectRecord[], hooks?: ConsolidationTraceHooks): ConsolidatedDocumentObject {
   records = [...records].sort((a,b) => JSON.stringify([a.documentReferences, a.productName, a.importantTerms]).localeCompare(JSON.stringify([b.documentReferences, b.productName, b.importantTerms]), "en"));
   const first = records[0];
-  const resolved = resolveFacts(records);
+  const resolved = resolveFacts(records, hooks);
   const premium = scalar(records, "annualPremium"), deductible = scalar(records, "deductible");
   const conflicts = [...resolved.conflicts, ...[premium.conflict, deductible.conflict].filter((conflict): conflict is NonNullable<typeof conflict> => conflict !== null)];
   const canonicalNames = unique(records.flatMap(record => record.canonicalProductName ? [record.canonicalProductName] : []), textIdentity);
@@ -147,17 +157,26 @@ function mergeRecords(records: readonly DocumentObjectRecord[]): ConsolidatedDoc
 }
 
 // Returned indices refer only to same-side input records. They are not identity.
-export function consolidateInsuranceRecords(records: readonly DocumentObjectRecord[], strategies: IdentifierStrategies = defaultIdentifierStrategies) {
+export function consolidateInsuranceRecords(records: readonly DocumentObjectRecord[], strategies: IdentifierStrategies = defaultIdentifierStrategies, hooks?: ConsolidationTraceHooks) {
   const sides = new Set(records.flatMap(record => record.documentReferences.map(reference => reference.side)));
   if (sides.size > 1) throw new Error("Object consolidation requires records from one side only.");
   const groups = consolidationGroups(records, insuranceConsolidationIssues, strategies);
   const output = groups.flatMap<{ record: ConsolidatedDocumentObject; indices: number[] }>(group => {
-    if (group.status === "consolidated") return [{ record: mergeRecords(group.indices.map(index => records[index])), indices: group.indices }];
-    return group.indices.map(index => ({ record: {
-      ...records[index],
-      consolidation: { status: group.status, recordCount: 1, issues: group.issues },
-      recordEvidence: [{ productName: records[index].productName, company: records[index].company, documentRole: records[index].documentRole ?? "unknown", agreementPeriod: records[index].agreementPeriod ?? null, annualPremium: records[index].annualPremium, deductible: records[index].deductible, sources: records[index].documentSources, importantTerms: records[index].importantTerms }],
-    } satisfies ConsolidatedDocumentObject, indices: [index] }));
+    if (group.status === "consolidated") {
+      const input = group.indices.map(index => records[index]);
+      const record = mergeRecords(input, hooks);
+      hooks?.consolidated(input, record, group.status, group.issues);
+      return [{ record, indices: group.indices }];
+    }
+    return group.indices.map(index => {
+      const record = {
+        ...records[index],
+        consolidation: { status: group.status, recordCount: 1, issues: group.issues },
+        recordEvidence: [{ productName: records[index].productName, company: records[index].company, documentRole: records[index].documentRole ?? "unknown", agreementPeriod: records[index].agreementPeriod ?? null, annualPremium: records[index].annualPremium, deductible: records[index].deductible, sources: records[index].documentSources, importantTerms: records[index].importantTerms }],
+      } satisfies ConsolidatedDocumentObject;
+      hooks?.consolidated([records[index]], record, group.status, group.issues);
+      return { record, indices: [index] };
+    });
   });
   if (!groups.some(group => group.status === "consolidated")) return output;
   return output.sort((a,b) => {

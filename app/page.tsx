@@ -8,7 +8,7 @@ import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressSt
 import { isMotorVehicleType } from "@/lib/insurance-normalization";
 import { VehiclePriceList } from "./components/vehicle-price";
 import { PortfolioPriceList } from "./components/portfolio-price";
-import { portfolioPrice, portfolioPriceDifference } from "@/lib/portfolio-price-presentation";
+import { portfolioPrice, portfolioPriceDifference, type PortfolioPriceInput } from "@/lib/portfolio-price-presentation";
 import { providerDisplayName, agreementProviderDisplayName } from "@/lib/provider-presentation";
 import { AnalysisProgress } from "./components/analysis-progress";
 import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";
@@ -22,8 +22,9 @@ import { availableAddOns, catalogConnectionStatus, findCatalogProduct, findCatal
 import { createDifferences, groupAddOnNames, groupInsurances, groupTerms, groupValue } from "@/lib/comparison";
 import { presentImportantDifferences, sortDetailedTerms } from "@/lib/comparison-presentation";
 import type { PresentedDifference } from "@/lib/comparison-presentation";
-import type { BaseFact, ComparedInsurance as Insurance, Difference, FactSource, InsuranceGroup } from "@/lib/comparison";
+import type { BaseFact, ComparedInsurance as Insurance, Difference, FactSource, InsuranceGroup, TermGroup } from "@/lib/comparison";
 import { coverageStatusLabel, type CanonicalCoverage } from "@/lib/coverage-status";
+import { clientTraceEvents, type ClientTraceContext } from "@/lib/production-trace";
 
 type InsuranceData = {
   company: string | null;
@@ -52,12 +53,14 @@ export default function Home() {
   const [error, setError] = useState("");
   const [progress, setProgress] = useState<ProgressState>(emptyProgress);
   const loading = progress.status === "uploading" || progress.status === "analyzing";
-  const [partial, setPartial] = useState<{ failedDocuments: number; successfulDocuments: number; partialSuccess: boolean; failures?: { side: "existing" | "offer" }[]; conservativeObjectSeparation?: boolean } | null>(null);
+  const [partial, setPartial] = useState<{ failedDocuments: number; successfulDocuments: number; partialSuccess: boolean; failures?: { side: "existing" | "offer" }[]; conservativeObjectSeparation?: boolean; trace?: ClientTraceContext; traceGeneration?: number; traceSignal?: AbortSignal } | null>(null);
   const generation = useRef(createAnalysisGeneration());
   const activeRequest = useRef<AbortController | null>(null);
-  useEffect(() => () => { activeRequest.current?.abort(); }, []);
+  const traceRequest = useRef<AbortController | null>(null);
+  useEffect(() => () => { activeRequest.current?.abort(); traceRequest.current?.abort(); }, []);
   function cancelAnalysis() {
     generation.current.next(); activeRequest.current?.abort(); activeRequest.current = null;
+    traceRequest.current?.abort(); traceRequest.current = null;
     setProgress(emptyProgress()); setPartial(null);
   }
 
@@ -114,6 +117,7 @@ export default function Home() {
     try { validateUploadSelection(existingMode === "pdf" ? existingFiles : [], offerMode === "pdf" ? offerFiles : []); }
     catch (caught) { setError(caught instanceof Error ? caught.message : "Ugyldig opplasting."); return; }
     const requestGeneration = generation.current.next();
+    traceRequest.current?.abort(); traceRequest.current = null;
     const controller = new AbortController(); activeRequest.current = controller;
     setProgress({ ...emptyProgress(), status: "uploading" }); setPartial(null);
     setDocuments([]);
@@ -140,11 +144,12 @@ export default function Home() {
 
       const data = await readAnalysisResponse(response, (event) => {
         if (generation.current.current(requestGeneration)) setProgress((state) => applyProgress(state, event));
-      }) as { documents: DocumentResult[]; matchingPlan?: MatchingPlan; analysis?: { partialSuccess: boolean; failedDocuments: number; successfulDocuments: number; failures?: { side: "existing" | "offer" }[]; conservativeObjectSeparation?: boolean } };
+      }) as { documents: DocumentResult[]; matchingPlan?: MatchingPlan; analysis?: { partialSuccess: boolean; failedDocuments: number; successfulDocuments: number; failures?: { side: "existing" | "offer" }[]; conservativeObjectSeparation?: boolean; trace?: ClientTraceContext } };
       if (!generation.current.current(requestGeneration)) return;
       setDocuments(data.documents);
       setMatchingPlan(data.matchingPlan || null);
-      setPartial(data.analysis ?? null);
+      traceRequest.current = data.analysis?.trace ? controller : null;
+      setPartial(data.analysis ? { ...data.analysis, traceGeneration: requestGeneration, traceSignal: controller.signal } : null);
       setProgress((state) => ({ ...state, status: data.analysis?.partialSuccess ? "partial" : "completed" }));
     } catch (caught) {
       if (!generation.current.current(requestGeneration)) return;
@@ -225,7 +230,7 @@ export default function Home() {
         </div>
 
         {documents.length >= 2 && (
-          <Comparison key={`${documents[0].filename}-${documents[1].filename}`} first={documents[0]} second={documents[1]} matchingPlan={matchingPlan} objectContext={{ failedExisting: partial?.failures?.filter(f => f.side === "existing").length, failedOffer: partial?.failures?.filter(f => f.side === "offer").length }} />
+          <Comparison key={`${documents[0].filename}-${documents[1].filename}`} first={documents[0]} second={documents[1]} matchingPlan={matchingPlan} objectContext={{ failedExisting: partial?.failures?.filter(f => f.side === "existing").length, failedOffer: partial?.failures?.filter(f => f.side === "offer").length }} traceContext={partial?.trace} traceGeneration={partial?.traceGeneration} isTraceCurrent={(candidate) => generation.current.current(candidate)} traceSignal={partial?.traceSignal} />
         )}
       </div>
     </main>
@@ -555,22 +560,70 @@ function Comparison({
   second,
   matchingPlan,
   objectContext,
+  traceContext,
+  traceGeneration,
+  isTraceCurrent,
+  traceSignal,
 }: {
   first: DocumentResult;
   second: DocumentResult;
   matchingPlan: MatchingPlan | null;
   objectContext?: ObjectComparisonContext;
+  traceContext?: ClientTraceContext;
+  traceGeneration?: number;
+  isTraceCurrent?: (candidate: number) => boolean;
+  traceSignal?: AbortSignal;
 }) {
-  const { groups, differences } = useMemo(() => {
+  const { groups, differences, rawDifferences } = useMemo(() => {
     const { groups, rawDifferences } = measureComparisonWork("comparison", () => {
       const groups = groupInsurances(first.insuranceData.insurances, second.insuranceData.insurances, matchingPlan, objectContext);
       return { groups, rawDifferences: createDifferences(first, second, groups, matchingPlan) };
     });
     const differences = measureComparisonWork("presentation", () =>
       presentImportantDifferences(rawDifferences, groups, matchingPlan));
-    return { groups, differences };
+    return { groups, differences, rawDifferences };
   }, [first, second, matchingPlan, objectContext]);
-  const portfolioPrices = useMemo(() => [portfolioPrice(first, objectContext?.failedExisting), portfolioPrice(second, objectContext?.failedOffer)], [first, second, objectContext]);
+  const { portfolioPrices, priceInputs } = useMemo(() => {
+    const priceInputs: { objectIndex: number; input: PortfolioPriceInput }[][] = [[], []];
+    const portfolioPrices = [first, second].map((document, side) => portfolioPrice(document,
+      side === 0 ? objectContext?.failedExisting : objectContext?.failedOffer,
+      traceContext ? (objectIndex, input) => { priceInputs[side].push({ objectIndex, input }); } : undefined));
+    return { portfolioPrices, priceInputs };
+  }, [first, second, objectContext, traceContext]);
+  const priceBranches = useMemo(() => [first, second].map((document, index) =>
+    portfolioPrices[index].compatible && (document.insuranceData.insurances.length > 1 || portfolioPrices[index].conflict || portfolioPrices[index].failedDocuments > 0)
+      ? "portfolio" as const
+      : document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some((field) => field.value)
+        ? "vehicle" as const : "legacy" as const), [first, second, portfolioPrices]);
+  const [selectedType, setSelectedType] = useState("overview");
+  const visibleGroups = useMemo(() => selectedType === "overview" ? groups : groups.filter((group) => group.label === selectedType), [groups, selectedType]);
+  const detailRows = useMemo(() => visibleGroups.map(group => ({
+    group,
+    terms: group.objectMatch && group.objectMatch.status !== "matched" ? [] :
+      sortDetailedTerms(groupTerms(group, matchingPlan)).filter((term) => !(isMotorVehicleType(group.key) && isVehiclePriceKey(term.key))),
+  })), [visibleGroups, matchingPlan]);
+  const tracedResponse = useRef<string | null>(null);
+  useEffect(() => {
+    if (!traceContext || traceGeneration === undefined || !isTraceCurrent?.(traceGeneration) || traceSignal?.aborted || tracedResponse.current === traceContext.traceId) return;
+    tracedResponse.current = traceContext.traceId;
+    try {
+      // Project only structural diagnostics from the actual rendered pipeline. No raw result is sent.
+      const events = clientTraceEvents({ documents: [first, second], groups, differences: rawDifferences, presentedDifferences: differences, details: detailRows, portfolioPrices, priceInputs, priceBranches, context: traceContext });
+      if (!events.length || !isTraceCurrent(traceGeneration) || traceSignal?.aborted) return;
+      const controller = new AbortController();
+      const abort = () => controller.abort();
+      traceSignal?.addEventListener("abort", abort, { once: true });
+      const timeout = setTimeout(abort, 5_000);
+      void fetch("/api/analysis-trace", {
+        method: "POST", cache: "no-store", credentials: "same-origin", signal: controller.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ traceId: traceContext.traceId, ticket: traceContext.ticket, events }),
+      }).catch(() => undefined).finally(() => {
+        clearTimeout(timeout);
+        traceSignal?.removeEventListener("abort", abort);
+      });
+    } catch { /* Diagnostics must never change or block the result view. */ }
+  }, [first, second, groups, rawDifferences, differences, detailRows, portfolioPrices, priceInputs, priceBranches, traceContext, traceGeneration, isTraceCurrent, traceSignal]);
   const safeObjectSet = groups.length > 0 && groups.every(group => group.objectMatch?.status === "matched") && !objectContext?.failedExisting && !objectContext?.failedOffer;
   const totalDifference = portfolioPrices.every(price => price.compatible)
     ? portfolioPriceDifference(portfolioPrices[0], portfolioPrices[1], groups)
@@ -580,10 +633,6 @@ function Comparison({
     .filter((difference) => difference.insuranceKey && difference.type !== "price");
   const typeOrder = ["Bil", "Hus", "Innbo", "Reise"];
   const availableTypes = [...new Set([...typeOrder.filter((type) => groups.some((group) => group.label === type)), ...groups.map((group) => group.label)])];
-  const [selectedType, setSelectedType] = useState("overview");
-  const visibleGroups = selectedType === "overview"
-    ? groups
-    : groups.filter((group) => group.label === selectedType);
   const previewLimit = selectedType === "overview" ? 3 : 5;
   const visibleGroupsWithDifferences = visibleGroups.map((group) => ({
     group,
@@ -659,7 +708,7 @@ function Comparison({
                 <div key={index} className={`${index === 0 ? "overview-side-existing" : "overview-side-offer"} rounded-xl px-4 py-4 sm:px-5`}>
                   <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${index === 0 ? "existing-label" : "offer-label"}`}>{index === 0 ? "Eksisterende" : "Nytt tilbud"}</p>
                   <p className="mt-1 text-lg font-semibold text-slate-950">{agreementProviderDisplayName(document.insuranceData) || `Tilbud ${index + 1}`}</p>
-                  {portfolioPrices[index].compatible && (document.insuranceData.insurances.length > 1 || portfolioPrices[index].conflict || portfolioPrices[index].failedDocuments > 0) ? <PortfolioPriceList price={portfolioPrices[index]} /> : document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some((field) => field.value) ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
+                  {priceBranches[index] === "portfolio" ? <PortfolioPriceList price={portfolioPrices[index]} /> : priceBranches[index] === "vehicle" ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
                   <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">Total årspris</p>
                   <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-slate-950">
                     {annualPremiumLabel(document.insuranceData)}
@@ -771,7 +820,7 @@ function Comparison({
                     missingLabel="Pris ikke oppgitt"
                   />
                   {visibleGroups.map((group) => (
-                    <InsuranceRows key={group.scopeId || group.key} group={group} matchingPlan={matchingPlan} />
+                    <InsuranceRows key={group.scopeId || group.key} group={group} terms={detailRows.find(entry => entry.group === group)!.terms} />
                   ))}
                 </tbody>
               </table>
@@ -1137,7 +1186,7 @@ function SourceDetails({ source, baseLabel, origin }: { source: FactSource; base
   );
 }
 
-function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchingPlan: MatchingPlan | null }) {
+function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGroup[] }) {
   if (group.objectMatch && group.objectMatch.status !== "matched") return <tr><td colSpan={3} className="border-y border-slate-200 p-4">
     <h4 className="font-semibold">{group.objectLabel || group.label}</h4>
     <p className="mt-2 text-sm">{objectWarning(group.objectMatch, group.objectContext)}</p>
@@ -1210,7 +1259,7 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
       }) : <ComparisonRow label="Årspremie" first={groupValue(group.first, "annualPremium")} second={groupValue(group.second, "annualPremium")} missingLabel="Pris ikke oppgitt" />}
       <ComparisonRow label="Egenandel" first={groupValue(group.first, "deductible")} second={groupValue(group.second, "deductible")} />
       <ComparisonRow label="Dekningssammendrag" first={groupValue(group.first, "coverageSummary")} second={groupValue(group.second, "coverageSummary")} />
-      {sortDetailedTerms(groupTerms(group, matchingPlan)).filter((term) => !(isMotorVehicleType(group.key) && isVehiclePriceKey(term.key))).map((term) => (
+      {terms.map((term) => (
         <ComparisonRow
           key={term.key}
           label={term.label}

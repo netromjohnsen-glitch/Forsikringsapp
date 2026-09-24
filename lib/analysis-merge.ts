@@ -1,3 +1,4 @@
+import type { ProductionTrace } from "./production-trace-server.ts";
 import type { DocumentRole } from "./object-consolidation.ts";
 import { consolidateInsuranceRecords, type DocumentObjectRecord } from "./insurance-object-consolidation.ts";
 import { enrichConsolidatedInsurance } from "./catalog-enrichment.ts";
@@ -11,7 +12,7 @@ import type { AnalysisTelemetry } from "./analysis-telemetry.ts";
 import { PdfSecurityError } from "./pdf-upload-security.ts";
 import type { AnalysisSide } from "./analysis-progress.ts";
 
-export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatch, telemetry: AnalysisTelemetry) {
+export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatch, telemetry: AnalysisTelemetry, trace?: ProductionTrace) {
   const sourceIds = (indices?: number[]) => {
     // Legacy one-document results are unambiguous. Multi-document results fail closed on missing attribution.
     const actual = indices ?? (batch.documents.length === 1 ? [1] : []);
@@ -45,25 +46,37 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
       }
       const withTerms = includePdfAddOnTerms(attached);
       const company = product.company === undefined ? agreement.company : product.company;
-      documentRecords.push({ ...withTerms, company, analysisObjectId: `${batch.side}:${batch.batchIndex}:${productIndex}`,
-        documentReferences: sourceIds(product.documentIndices).map(doc => ({ side: doc.side, documentIndex: doc.documentIndex })), documentSources: productSources });
-      const enriched = telemetry.measureSync("catalogEnrichment", () => enrichExtractedAgreementWithCatalog({ ...agreement, company, insurances: [withTerms] }, new Date(), telemetry.measureSync)).insurances[0];
-      return { ...enriched, company, analysisObjectId: `${batch.side}:${batch.batchIndex}:${productIndex}`,
+      const observer = trace?.extracted(product, batch, sourceIds(product.documentIndices).map(doc => doc.documentIndex), company);
+      const documentRecord = { ...withTerms, company, analysisObjectId: `${batch.side}:${batch.batchIndex}:${productIndex}`,
+        documentReferences: sourceIds(product.documentIndices).map(doc => ({ side: doc.side, documentIndex: doc.documentIndex })), documentSources: productSources };
+      documentRecords.push(documentRecord);
+      trace?.bind(product, documentRecord);
+      const enriched = telemetry.measureSync("catalogEnrichment", () => enrichExtractedAgreementWithCatalog({ ...agreement, company, insurances: [withTerms] }, new Date(), telemetry.measureSync, observer)).insurances[0];
+      const result = { ...enriched, company, analysisObjectId: `${batch.side}:${batch.batchIndex}:${productIndex}`,
         documentReferences: sourceIds(product.documentIndices).map((doc) => ({ side: doc.side, documentIndex: doc.documentIndex })),
         importantTerms: enriched.importantTerms.map((term) => term.coverageOrigin === "document" && !term.sources?.length && !term.source ? { ...term, sources: productSources } : term) };
+      trace?.bind(product, result);
+      observer?.effective("effective", result);
+      return result;
     }),
   };
 }
 export type BatchResult = { batch: ExtractionBatch; agreement: ReturnType<typeof enrichBatch> };
-export function mergeBatchResults(results: readonly BatchResult[], side: AnalysisSide, partial: boolean) {
+export function mergeBatchResults(results: readonly BatchResult[], side: AnalysisSide, partial: boolean, trace?: ProductionTrace) {
   const ordered = results.filter((r) => r.batch.side === side).sort((a,b) => a.batch.batchIndex-b.batch.batchIndex);
   const original = ordered.flatMap((r) => r.agreement.insurances);
   if (original.length > MAX_JOB_PRODUCTS) throw new PdfSecurityError(413, "too_many_products", "For mange produkter i én sammenligning.");
   const records = ordered.flatMap(result => result.agreement.documentRecords);
-  const insurances = consolidateInsuranceRecords(records).map(({ record, indices }) => {
-    if (record.consolidation.status !== "consolidated") return { ...original[indices[0]], consolidation: record.consolidation, recordEvidence: record.recordEvidence };
-    const enriched = enrichConsolidatedInsurance(record.company, record, record.importantTerms as DocumentFact[]);
-    return { ...record, ...enriched };
+  const insurances = consolidateInsuranceRecords(records, undefined, trace?.hooks).map(({ record, indices }) => {
+    if (record.consolidation.status !== "consolidated") {
+      const result = { ...original[indices[0]], consolidation: record.consolidation, recordEvidence: record.recordEvidence };
+      trace?.bind(record, result);
+      return result;
+    }
+    const enriched = enrichConsolidatedInsurance(record.company, record, record.importantTerms as DocumentFact[], new Date(), trace?.observer(record));
+    const result = { ...record, ...enriched };
+    trace?.bind(record, result);
+    return result;
   });
   const companies = new Set(insurances.map((p) => p.company));
   const single = ordered.length === 1 && !partial;
