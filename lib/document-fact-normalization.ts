@@ -49,8 +49,11 @@ function explicitKey(
     if (["kjoretoy.kilometerstand", "kjoretoy.avtalt_maks_kilometerstand", "kjoretoy.kjorelengde"].includes(labelKey)) return labelKey;
     if (["veihjelp.egenandel", "bilnokkel.egenandel", "bilnokkel.grense", "bilnokkel.antall_skader"].includes(labelKey)) return labelKey;
     const product = normalizeWords(insurance.canonicalProductName ?? insurance.productName ?? "");
-    if (product && [...totalskadeLabels].some(label => normalizeWords(term.name) === `${label} ${product}`)) {
-      return "nyverdi.grenser";
+    if (product) for (const label of totalskadeLabels) {
+      const name = normalizeWords(term.name), prefix = `${label} ${product}`;
+      if (name === prefix) return "nyverdi.grenser";
+      if ([`${prefix} alder`, `${prefix} aldersgrense`].includes(name)) return "nyverdi.alder";
+      if ([`${prefix} kilometer`, `${prefix} kilometergrense`].includes(name)) return "nyverdi.km";
     }
   }
   const objectType = vehicleObjectType(normalizeInsuranceType(insurance.type));
@@ -135,15 +138,10 @@ function compoundDetails(
     if (deductible) result.push(extractedTerm("bilnokkel.egenandel", "Bilnøkkel – egenandel", deductible.trim(), term));
     if (count) result.push(extractedTerm("bilnokkel.antall_skader", "Bilnøkkel – skadetilfeller", count, term));
   }
-  if (totalskadeLabels.has(normalizeWords(term.name))) {
-    add("nyverdi.alder", "Totalskadegaranti – alder", yearLimit);
-    add("nyverdi.km", "Totalskadegaranti – kilometer", kilometerLimit);
-  }
-  if (term.key === "nyverdi.grenser" ||
+  if (totalskadeLabels.has(normalizeWords(term.name)) || term.key === "nyverdi.grenser" ||
     (["nyverdi.alder", "nyverdi.km"].includes(term.key ?? "") &&
       valueMatch(term.value, yearLimit) && valueMatch(term.value, kilometerLimit))) {
-    add("nyverdi.alder", "Totalskadegaranti – alder", yearLimit);
-    add("nyverdi.km", "Totalskadegaranti – kilometer", kilometerLimit);
+    result.push(...uniqueTotalskadeLimits(scopedValue, term));
   }
   return result;
 }
@@ -217,7 +215,62 @@ function boundedLimitPair(
   return age && kilometer ? { age, kilometer } : null;
 }
 
-function structuredBilSummaryFacts(summary: string): DocumentFact[] {
+function uniqueTotalskadeLimits(section: string, original?: Partial<DocumentFact>): DocumentFact[] {
+  // An explicit denial with the vehicle's current age/distance is not a limit.
+  if (/\b(?:gjelder|dekkes|omfattes)\s+ikke\b/iu.test(section)) return [];
+  return ([
+    ["nyverdi.alder", "Totalskadegaranti – alder", yearLimit],
+    ["nyverdi.km", "Totalskadegaranti – kilometer", kilometerLimit],
+  ] as const).flatMap(([key, name, pattern]) => {
+    const values = [...new Set([...section.matchAll(new RegExp(pattern.source, "giu"))]
+      .filter(match => key !== "nyverdi.km" || !/^\s*(?:(?:per|pr\.?)\s+(?:forsikrings)?år\b|årlig\b|\/\s*år\b)/iu
+        .test(section.slice(match.index + match[0].length)))
+      .map(match => match[0].trim()))];
+    // Never choose the first of several possible limits in a compound clause.
+    return values.length === 1 ? [extractedTerm(key, name, values[0], original)] : [];
+  });
+}
+
+// Recover only explicit totalskade sections, including extraction that flattened
+// a heading and its detail lines into summary/term text. Unknown headings end the
+// context; a product qualifier must exactly match this document's product.
+function totalskadeTextFacts(text: string, insurance: ExtractedInsurance, original?: Partial<DocumentFact>): DocumentFact[] {
+  const result: DocumentFact[] = [];
+  const product = insurance.canonicalProductName === undefined ? insurance.productName : insurance.canonicalProductName;
+  const escapedProduct = product?.trim().replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+  const qualifier = escapedProduct ? new RegExp(`^${escapedProduct}(?=\\s|[:–-]|$)\\s*[:–-]?\\s*`, "iu") : null;
+  const productIntroduction = escapedProduct ? new RegExp(`^${escapedProduct}\\s+(?:inkluderer|omfatter|har)\\s+`, "iu") : null;
+  const opening = /^(?:totalskadegaranti|nyverdierstatning|nybilgaranti)\b\s*[:–-]?\s*/iu;
+  const bodyStart = /^(?:\d|gjelder\b|inntil\b|opptil\b|til\b|maks(?:imalt)?\b|aldersgrense\b|alder\b|kilometergrense\b|kilometer\b)/iu;
+  const continuation = /^(?:(?:aldersgrense|alder|kilometergrense|kilometer)\s*[:–-]\s*)?(?:og\s+)?(?:(?:inntil|opptil|maks(?:imalt)?\.?)\s+)?\d/iu;
+  let section: string | null = null;
+  const flush = () => {
+    if (section !== null) result.push(...uniqueTotalskadeLimits(section, original));
+    section = null;
+  };
+  for (const raw of text.split(/[;\n]|(?<!\bpr)\.(?=\s|$)/iu)) {
+    let clause = raw.trim().replace(/^(?:dekninger|vilkår|viktige vilkår)\s*:\s*/iu, "");
+    if (productIntroduction) clause = clause.replace(productIntroduction, "");
+    if (!clause) continue;
+    const heading = opening.exec(clause);
+    let body = clause;
+    if (heading) {
+      flush();
+      body = clause.slice(heading[0].length);
+      if (qualifier?.test(body)) body = body.replace(qualifier, "");
+      if (body && !bodyStart.test(body)) continue;
+      section = "";
+    } else if (section === null) continue;
+    else if (!continuation.test(body)) { flush(); continue; }
+    const bounded = coverageLimitSection(body);
+    section += ` ${bounded}`;
+    if (bounded !== body) flush();
+  }
+  flush();
+  return result;
+}
+
+function structuredBilSummaryFacts(summary: string, insurance: ExtractedInsurance): DocumentFact[] {
   const result: DocumentFact[] = [];
   const maskinskade = boundedLimitPair(
     summary,
@@ -227,14 +280,7 @@ function structuredBilSummaryFacts(summary: string): DocumentFact[] {
     result.push(extractedTerm("maskinskade.alder", "Maskinskade – alder", maskinskade.age));
     result.push(extractedTerm("maskinskade.km", "Maskinskade – kilometer", maskinskade.kilometer));
   }
-  const totalskade = boundedLimitPair(
-    summary,
-    /\b(?:totalskadegaranti|nyverdierstatning|nybilgaranti)\b/iu,
-  );
-  if (totalskade) {
-    result.push(extractedTerm("nyverdi.alder", "Totalskadegaranti – alder", totalskade.age));
-    result.push(extractedTerm("nyverdi.km", "Totalskadegaranti – kilometer", totalskade.kilometer));
-  }
+  result.push(...totalskadeTextFacts(summary, insurance));
   const bilnokkelSection = boundedSection(summary, /\bbilnøkkel\b/iu);
   if (bilnokkelSection) {
     result.push(...compoundDetails(extractedTerm("bilnokkel.dekning", "Bilnøkkel", bilnokkelSection), "Bil"));
@@ -247,7 +293,7 @@ function summaryFacts(insurance: ExtractedInsurance): DocumentFact[] {
   if (!summary) return [];
   const result = explicitCoverageStatuses(summary, insurance.type);
   if (normalizeInsuranceType(insurance.type) === "bil") {
-    result.push(...structuredBilSummaryFacts(summary));
+    result.push(...structuredBilSummaryFacts(summary, insurance));
     const registration = summary.match(registrationYear)?.[1];
     if (registration) {
       result.push(extractedTerm(
@@ -303,6 +349,9 @@ export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentF
   });
   const derived = originals.flatMap(({ term, relatedCoverageParentKeys }) => [
     ...compoundDetails(term, insurance.type, relatedCoverageParentKeys),
+    ...(normalizeInsuranceType(insurance.type) === "bil" && !term.key &&
+      ![...totalskadeLabels].some(label => normalizeWords(term.name).startsWith(label))
+      ? totalskadeTextFacts(term.value, insurance, term) : []),
     ...explicitCoverageStatuses(term.value, insurance.type),
   ]);
   const premiumLabels: Record<string, string> = {
