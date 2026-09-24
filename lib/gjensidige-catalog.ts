@@ -6,7 +6,7 @@ import type { CatalogAddOn, CatalogFact, CatalogProduct, CatalogSource } from ".
 const root = "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/";
 const source = (id: string, filename: string, sha256: string): CatalogSource => ({
   id, company: "Gjensidige", filename, termsNumber: "Ikke oppgitt", effectiveFrom: "",
-  url: root + filename, sha256,
+  url: root + filename, sha256, sourceType: "full_terms",
 });
 export const gjensidigeSources: Record<string, CatalogSource> = {
   gjAnsvar: source("gjAnsvar", "bil-ansvar-alminnelige-vilkar.pdf", "bbfd85aaeb572102fb295f99d83d12963d7584266bc027e4ed01eda89211f2b2"),

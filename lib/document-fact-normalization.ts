@@ -37,28 +37,38 @@ function explicitKey(
   insurance: ExtractedInsurance,
   relatedCoverageParentKeys: readonly string[] = [],
 ): string {
+  // Internal document facts have already converted canonicalKey into key.
+  // Preserve that identity on repeated normalization (e.g. consolidation).
+  // Raw extraction cannot supply key/coverageOrigin through its schema.
+  const prior = term as Partial<DocumentFact>;
+  const canonicalKey = term.canonicalKey || (prior.coverageOrigin === "document" ? prior.key : undefined);
   // A precise approved vehicle-field label is stronger than a contradictory
   // extraction key. Never infer field identity from a number or the unit km.
   if (normalizeInsuranceType(insurance.type) === "bil") {
     const labelKey = normalizeTermName(term.name, { insuranceType: insurance.type });
     if (["kjoretoy.kilometerstand", "kjoretoy.avtalt_maks_kilometerstand", "kjoretoy.kjorelengde"].includes(labelKey)) return labelKey;
+    if (["veihjelp.egenandel", "bilnokkel.egenandel", "bilnokkel.grense", "bilnokkel.antall_skader"].includes(labelKey)) return labelKey;
+    const product = normalizeWords(insurance.canonicalProductName ?? insurance.productName ?? "");
+    if (product && [...totalskadeLabels].some(label => normalizeWords(term.name) === `${label} ${product}`)) {
+      return "nyverdi.grenser";
+    }
   }
   const objectType = vehicleObjectType(normalizeInsuranceType(insurance.type));
-  if (objectType && term.canonicalKey && !term.canonicalKey.startsWith("premie.") &&
-      !(term.canonicalKey.startsWith(`${objectType.prefix}.`) && vehicleObjectFactKeys.some((key) => key === term.canonicalKey))) {
+  if (objectType && canonicalKey && !canonicalKey.startsWith("premie.") &&
+      !(canonicalKey.startsWith(`${objectType.prefix}.`) && vehicleObjectFactKeys.some((key) => key === canonicalKey))) {
     return normalizeTermName(term.name, { insuranceType: insurance.type, relatedCoverageParentKeys });
   }
-  if (term.canonicalKey) {
+  if (canonicalKey) {
     // A generic repair key from extraction must not override an exact, scoped
     // scenario label. No inference from day counts or free-form value text.
-    if (normalizeInsuranceType(insurance.type) === "bil" && term.canonicalKey === "leiebil.dager") {
+    if (normalizeInsuranceType(insurance.type) === "bil" && canonicalKey === "leiebil.dager") {
       const scenario = normalizeTermName(term.name, {
         insuranceType: insurance.type, relatedCoverageParentKeys,
         structuredCoverageContext: relatedCoverageParentKeys.includes("leiebil.dekning"), termValue: term.value,
       });
       if (["leiebil.kondemnasjon", "leiebil.teknisk", "leiebil.feriereise", "leiebil.tyveri"].includes(scenario)) return scenario;
     }
-    return normalizeCatalogTermKey(term.canonicalKey);
+    return normalizeCatalogTermKey(canonicalKey);
   }
   return normalizeCatalogTermKey(normalizeTermName(term.name, {
     insuranceType: insurance.type,
@@ -116,7 +126,14 @@ function compoundDetails(
     add("maskinskade.km", "Maskinskade – kilometer", kilometerLimit);
   }
   if (term.key === "bilnokkel.dekning") {
-    add("bilnokkel.grense", "Bilnøkkel – forsikringssum", amount);
+    const sum = /(?:forsikringssum|erstatningsgrense|inntil|opptil)\s*[:=]?\s*((?:\d{1,3}(?:[ .]\d{3})+|\d+)\s*(?:kr|kroner)?)/iu.exec(scopedValue)?.[1];
+    const deductible = /egenandel\s*(?:er|på|:)\s*((?:\d{1,3}(?:[ .]\d{3})+|\d+)\s*(?:kr|kroner)?)/iu.exec(scopedValue)?.[1] ??
+      /egenandel\s+((?:\d{1,3}(?:[ .]\d{3})+|\d+)\s*(?:kr|kroner)?)/iu.exec(scopedValue)?.[1];
+    const count = /(?:maks(?:imalt)?\.?\s+)?(?:ett|én|en|\d+)\s+skadetilfell(?:e|er)(?:\s+(?:pr\.?|per)\s+forsikringsår)?/iu.exec(scopedValue)?.[0];
+    if (sum) result.push(extractedTerm("bilnokkel.grense", "Bilnøkkel – forsikringssum", sum.trim(), term));
+    else if (!/egenandel/iu.test(scopedValue)) add("bilnokkel.grense", "Bilnøkkel – forsikringssum", amount);
+    if (deductible) result.push(extractedTerm("bilnokkel.egenandel", "Bilnøkkel – egenandel", deductible.trim(), term));
+    if (count) result.push(extractedTerm("bilnokkel.antall_skader", "Bilnøkkel – skadetilfeller", count, term));
   }
   if (totalskadeLabels.has(normalizeWords(term.name))) {
     add("nyverdi.alder", "Totalskadegaranti – alder", yearLimit);
@@ -208,9 +225,8 @@ function structuredBilSummaryFacts(summary: string): DocumentFact[] {
     result.push(extractedTerm("nyverdi.km", "Totalskadegaranti – kilometer", totalskade.kilometer));
   }
   const bilnokkelSection = boundedSection(summary, /\bbilnøkkel\b/iu);
-  const bilnokkel = bilnokkelSection?.match(amount)?.[0];
-  if (bilnokkel) {
-    result.push(extractedTerm("bilnokkel.grense", "Bilnøkkel – forsikringssum", bilnokkel));
+  if (bilnokkelSection) {
+    result.push(...compoundDetails(extractedTerm("bilnokkel.dekning", "Bilnøkkel", bilnokkelSection), "Bil"));
   }
   return result;
 }

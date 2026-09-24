@@ -4,6 +4,7 @@ import {
   normalizeCatalogTermKey,
   normalizeTermName,
   relatedCoveragesForInsuranceType,
+  isUndocumentedTermValue,
 } from "./insurance-normalization.ts";
 import { deriveCanonicalCoverages } from "./coverage-status.ts";
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
@@ -88,10 +89,11 @@ function enrichInsurance(
 
   const effectiveFacts = resolveCatalogFacts(product, [], asOf, null);
   const catalogFacts = resolveCatalogEvidence(product, [], asOf, null);
-  const documentedKeys = new Set(documentTerms.map((term) => normalizeCatalogTermKey(
+  const documentedKeys = new Set(documentTerms.filter(term => !isUndocumentedTermValue(term.value)).map((term) => normalizeCatalogTermKey(
     term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type, termValue: term.value }),
   )));
   for (const term of documentTerms) {
+    if (isUndocumentedTermValue(term.value)) continue;
     const label = normalizeLabel(term.name);
     for (const fact of effectiveFacts) {
       if (normalizeLabel(fact.label) === label) documentedKeys.add(normalizeCatalogTermKey(fact.key));
@@ -121,7 +123,7 @@ function enrichInsurance(
       const documentCoverage = definition && documentCoverageStatuses.get(definition.parentKey);
       // Et eksplisitt avslag eller en dokumentert konflikt skal ikke få
       // katalogdetaljer presentert som kundens effektive vilkår.
-      if (documentCoverage?.evidence.length && documentCoverage.status !== "selected") return false;
+      if (documentCoverage?.status === "not_selected" || documentCoverage?.conflict) return false;
       // Detaljer uten en tilhørende hoveddekning beskriver bare en mulig
       // variant. De berikes først når kundedokumentet faktisk omtaler den.
       return !definition || factKeys.has(definition.parentKey) ||
@@ -132,7 +134,8 @@ function enrichInsurance(
     .filter((fact) => !documentedKeys.has(normalizeCatalogTermKey(fact.key)))
     .map((fact) => catalogTerm(fact, catalogFacts));
 
-  const effectiveTerms = [...documentTerms, ...supplementalTerms].filter((term, index, terms) => {
+  const effectiveTerms = [...documentTerms.filter(term => !isUndocumentedTermValue(term.value) ||
+    !supplementalTerms.some(fact => fact.key === term.key)), ...supplementalTerms].filter((term, index, terms) => {
     const key = normalizeCatalogTermKey(
       term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type, termValue: term.value }),
     );

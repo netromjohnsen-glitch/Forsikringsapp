@@ -921,7 +921,7 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
     const rows = model.compact.filter(row => !difference.limitPair || !["nyverdi.alder", "nyverdi.km"].includes(row.key));
     const compactSide = (side: "first" | "second") => [
       ...(difference.limitPair ? [difference.limitPair[side]] : []),
-      ...rows.map(row => row.key.endsWith(":status") ? row[side] : `${row.label}: ${row[side]}`),
+      ...rows.map(row => `${row.label}: ${row[side]}`),
     ].join("\n");
     const compact = <div className="mt-4"><DifferenceValues text="" pair={{ first: compactSide("first"), second: compactSide("second") }} compact unclamped /></div>;
     const heading = <h5 className="text-base font-semibold text-slate-950">{difference.title}</h5>;
@@ -937,7 +937,10 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
       </details> : <>{heading}{compact}</>}
       {model.sources.length > 0 && <div className="mt-3 grid min-w-0 gap-3 sm:grid-cols-2">{(["first", "second"] as const).map(side => <div key={side} className="min-w-0 break-words">
         {model.sources.some(item => item.side === side) && <p className="text-xs text-slate-500">{side === "first" ? "Kilder – eksisterende" : "Kilder – nytt tilbud"}</p>}
-        {model.sources.filter(item => item.side === side).map((item, index) => <SourceDetails key={index} source={item.source} />)}
+        {model.sources.filter(item => item.side === side).map((item, index) => <div key={`${item.key}:${index}`} className="mt-3">
+          <p className="text-xs font-medium text-slate-700">{item.label}: {item.value}</p>
+          <SourceDetails source={item.source} baseLabel={`${item.label}: ${item.value}`} />
+        </div>)}
       </div>)}</div>}
       <PresentationSources difference={difference} />
     </div>;
@@ -1104,7 +1107,7 @@ function DifferenceValues({ text, compact = false, unclamped = false, pair }: { 
 function SourceDetails({ source, baseLabel }: { source: FactSource; baseLabel?: string }) {
   return (
     <details className="mt-2 text-xs text-slate-600">
-      <summary className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2">Vis kilde</summary>
+      <summary aria-label={baseLabel ? `Vis kilde: ${baseLabel}` : undefined} className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2">Vis kilde</summary>
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
         {baseLabel && <p className="font-medium text-slate-700">{baseLabel}</p>}
         {source.note && <p>{source.note}</p>}

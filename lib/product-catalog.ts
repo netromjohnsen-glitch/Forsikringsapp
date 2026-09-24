@@ -32,6 +32,7 @@ import { fremtindReiseAddOns, fremtindReiseFacts, fremtindReiseProducts, fremtin
 import { frendeReiseAddOns, frendeReiseFacts, frendeReiseProducts, frendeReiseSources } from "./frende-reise-catalog.ts";
 import type { BuildingFactData } from "./building-facts.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
+import { resolveCatalogSources } from "./catalog-source-resolution.ts";
 
 export type CatalogSource = {
   id: string; filename: string; termsNumber: string; effectiveFrom: string;
@@ -40,6 +41,12 @@ export type CatalogSource = {
   distributionChannels?: string[];
   documentName?: string; insuranceType?: string; updatedAt?: string;
   appliesTo?: string[];
+  // Unlike legacy appliesTo (display names), these are canonical product IDs.
+  productIds?: string[];
+  sourceType?: "full_terms" | "ipid" | "product_page";
+  validTo?: string;
+  providerId?: string;
+  productVersion?: string;
 };
 export type CatalogFact = {
   key: string;
@@ -278,5 +285,5 @@ export function resolveCatalogFacts(product: CatalogProduct, addOnIds: string[],
       addOnKeys.add(entry.key);
     }
   }
-  return [...result.values()].flat();
+  return resolveCatalogSources([...result.values()].flat(), productCatalog.sources ?? {}, product, asOf).facts;
 }

@@ -6,7 +6,7 @@ export type CoverageDetailPresentation = {
   hasAdditional: boolean;
   compact: DetailRow[];
   additional: DetailRow[];
-  sources: { side: "first" | "second"; source: FactSource }[];
+  sources: { side: "first" | "second"; key: string; label: string; value: string; source: FactSource }[];
 };
 
 export function hasMeaningfulAdditionalDetails(model: Pick<CoverageDetailPresentation, "compact" | "additional">): boolean {
@@ -24,13 +24,19 @@ export function coverageDetailPresentation(terms: TermGroup[]): CoverageDetailPr
     if (seen.has(term.key)) continue;
     seen.add(term.key);
     for (const side of ["first", "second"] as const) {
-      for (const source of term[`${side}Sources`]) {
-        if (!sources.some(item => item.side === side && JSON.stringify(item.source) === JSON.stringify(source))) sources.push({ side, source });
+      const coverage = term[`${side}Coverage`];
+      // Coverage sources aggregate details too. Status provenance must instead
+      // follow its own effective evidence; detail rows retain their own sources.
+      const statusEvidence = coverage?.evidence.filter(item => item.status === coverage.status);
+      const factSources = coverage ? statusEvidence?.flatMap(item => item.sources) ?? [] : term[`${side}Sources`];
+      for (const source of factSources) {
+        if (!sources.some(item => item.side === side && item.key === term.key && JSON.stringify(item.source) === JSON.stringify(source))) sources.push({ side, key: term.key,
+          label: coverage?.label ?? term.label, value: coverage ? coverageStatusLabel(coverage.status) : term[side] || term[`${side}MissingLabel`], source });
       }
     }
     const coverage = term.firstCoverage || term.secondCoverage;
     if (coverage) {
-      compact.push({ key: `${term.key}:status`, label: term.label,
+      compact.push({ key: `${term.key}:status`, label: coverage.label,
         first: coverageStatusLabel(term.firstCoverage?.status ?? "unknown"),
         second: coverageStatusLabel(term.secondCoverage?.status ?? "unknown") });
       // summary is synthesized from details when they exist. Never render that

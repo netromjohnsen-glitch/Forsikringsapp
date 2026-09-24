@@ -54,6 +54,7 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],
     "ulykke.dekning": ["ulykke", "ulykke fører og passasjerer", "fører og passasjerulykke", "trafikkulykke ulykkesdekning"],
     "veihjelp.dekning": ["veihjelp", "redning", "assistanse", "redning og assistanse"],
+    "veihjelp.egenandel": ["veihjelp egenandel", "egenandel veihjelp", "egenandel ved veihjelp", "redning egenandel"],
     "maskinskade.dekning": ["maskinskade", "maskin og elektronikkdekning", "maskin og elektronikk dekning"],
     "maskinskade.alder": [
       "maskinskade alder", "maskinskade aldersgrense", "aldersgrense maskinskade",
@@ -68,6 +69,7 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
       "bilnøkkel forsikringssum", "bilnøkkel beløpsgrense", "bilnøkkel erstatningsgrense",
     ],
     "bilnokkel.egenandel": ["bilnøkkel egenandel"],
+    "bilnokkel.antall_skader": ["bilnøkkel antall skader", "bilnøkkel skadetilfeller"],
     "nyverdi.alder": [
       "totalskadegaranti alder", "totalskadegaranti aldersgrense",
       "nyverdierstatning alder", "nyverdierstatning aldersgrense",
@@ -352,13 +354,16 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
       ],
     },
     { parentKey: "glass.dekning", label: "Glass", details: [] },
-    { parentKey: "veihjelp.dekning", label: "Veihjelp", details: [] },
+    { parentKey: "veihjelp.dekning", label: "Veihjelp", details: [
+      { key: "veihjelp.egenandel", summaryLabel: "egenandel" },
+    ] },
     {
       parentKey: "bilnokkel.dekning",
       label: "Bilnøkkel",
       details: [
         { key: "bilnokkel.grense", summaryLabel: "forsikringssum" },
         { key: "bilnokkel.egenandel", summaryLabel: "egenandel" },
+        { key: "bilnokkel.antall_skader", summaryLabel: "skadetilfeller" },
       ],
     },
     { parentKey: "ladekabel.dekning", label: "Ladekabel", details: [] },
