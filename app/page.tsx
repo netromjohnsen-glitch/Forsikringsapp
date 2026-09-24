@@ -9,8 +9,9 @@ import { isMotorVehicleType } from "@/lib/insurance-normalization";
 import { VehiclePriceList } from "./components/vehicle-price";
 import { PortfolioPriceList } from "./components/portfolio-price";
 import { portfolioPrice, portfolioPriceDifference } from "@/lib/portfolio-price-presentation";
+import { providerDisplayName, agreementProviderDisplayName } from "@/lib/provider-presentation";
 import { AnalysisProgress } from "./components/analysis-progress";
-import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis } from "@/lib/vehicle-price-presentation";
+import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
 import { measureComparisonWork } from "@/lib/comparison-performance";
 import { annualPremiumLabel } from "@/lib/agreement-pricing";
@@ -657,8 +658,8 @@ function Comparison({
               {[first, second].map((document, index) => (
                 <div key={index} className={`${index === 0 ? "overview-side-existing" : "overview-side-offer"} rounded-xl px-4 py-4 sm:px-5`}>
                   <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${index === 0 ? "existing-label" : "offer-label"}`}>{index === 0 ? "Eksisterende" : "Nytt tilbud"}</p>
-                  <p className="mt-1 text-lg font-semibold text-slate-950">{document.insuranceData.company || `Tilbud ${index + 1}`}</p>
-                  {portfolioPrices[index].compatible && portfolioPrices[index].components.some(field => field.priced > 0 || field.completeness === "conflicting") && (document.insuranceData.insurances.length > 1 || portfolioPrices[index].conflict || portfolioPrices[index].failedDocuments > 0) ? <PortfolioPriceList price={portfolioPrices[index]} /> : document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some((field) => field.value) ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
+                  <p className="mt-1 text-lg font-semibold text-slate-950">{agreementProviderDisplayName(document.insuranceData) || `Tilbud ${index + 1}`}</p>
+                  {portfolioPrices[index].compatible && (document.insuranceData.insurances.length > 1 || portfolioPrices[index].conflict || portfolioPrices[index].failedDocuments > 0) ? <PortfolioPriceList price={portfolioPrices[index]} /> : document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some((field) => field.value) ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
                   <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">Total årspris</p>
                   <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-slate-950">
                     {annualPremiumLabel(document.insuranceData)}
@@ -667,19 +668,20 @@ function Comparison({
                 </div>
               ))}
             </div>
-            {(productPriceDifferences.length > 0 || portfolioPrices.some(price => price.compatible && price.objectCount > 1)) && (
+            {(productPriceDifferences.length > 0 || groups.some(group => [...group.first, ...group.second].some(insurance => vehiclePrices(insurance)?.some(field => field.value)))) && (
               <details className="group mt-5 border-t border-slate-100 pt-4 text-sm">
                 <summary className="text-link w-fit cursor-pointer list-none font-semibold marker:hidden [&::-webkit-details-marker]:hidden">
                   <span className="group-open:hidden">Vis pris per forsikring</span>
                   <span className="hidden group-open:inline">Skjul pris per forsikring</span>
                 </summary>
                 <ul className="mt-3 space-y-1.5 text-slate-700">
-                  {portfolioPrices.some(price => price.compatible && price.objectCount > 1) && groups.map(group => <li key={group.scopeId} className="py-3">
+                  {groups.some(group => [...group.first, ...group.second].some(insurance => vehiclePrices(insurance)?.some(field => field.value))) && groups.filter(group => [...group.first, ...group.second].some(insurance => vehiclePrices(insurance)?.some(field => field.value))).map(group => <li key={group.scopeId} className="py-3">
                     <p className="font-semibold">{group.objectLabel || group.label} – pris per år</p>
                     <div className="grid min-w-0 gap-4 sm:grid-cols-2">{(["first", "second"] as const).map(side => <div key={side} className="min-w-0">
                       <p>{side === "first" ? "Eksisterende" : "Nytt tilbud"}</p>
                       {group[side].map((insurance, index) => <VehiclePriceList key={index} insurance={insurance} />)}
                     </div>)}</div>
+                    {group.first.length === 1 && group.second.length === 1 && differentVehiclePriceBasis(group.first[0], group.second[0]) && <p className="mt-3 text-sm text-slate-600">Kan ikke sammenlignes direkte – dokumentene oppgir ulikt eller uavklart prisgrunnlag.</p>}
                   </li>)}
                   {productPriceDifferences.map((difference) => (
                     <li key={`${difference.objectScope}:${difference.insuranceKey}:${difference.title}`}><span className="font-medium text-slate-900">{groups.find((group) => group.key === difference.insuranceKey && group.scopeId === difference.objectScope)?.objectLabel} · {difference.title}:</span> {difference.text}</li>
@@ -709,7 +711,7 @@ function Comparison({
               <ConceptFamilyCard difference={difference} />
             </section>
           ))}
-          {visibleGroups.filter((group) => group.objectMatch?.status !== "ambiguous" && isMotorVehicleType(group.key) && [...group.first, ...group.second].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value))).map((group) => <section key={`prices:${group.scopeId || group.key}`} className="mt-5 rounded-xl border border-slate-200 p-4" aria-label={`${group.label} – prisgrunnlag`}>
+          {visibleGroups.filter((group) => group.objectMatch?.status === "matched" && group.first.length === 1 && group.second.length === 1 && vehiclePriceDifferences(group.first[0], group.second[0]).length > 0).map((group) => <section key={`prices:${group.scopeId || group.key}`} className="mt-5 rounded-xl border border-slate-200 p-4" aria-label={`${group.label} – prisgrunnlag`}>
             <h4 className="font-semibold text-slate-900">{group.objectLabel || group.label} – pris per år</h4>
             <div className="mt-3 grid gap-5 sm:grid-cols-2">{[group.first, group.second].map((insurances, side) => <div key={side}><p className="text-sm font-semibold">{side === 0 ? "Eksisterende" : "Nytt tilbud"}</p>{insurances.map((insurance, index) => <div key={index}>{insurances.length > 1 && <p className="mt-3 text-sm">{insurance.productName || group.label} · objekt {index + 1}</p>}<VehiclePriceList insurance={insurance} /></div>)}</div>)}</div>
             {group.first.length === 1 && group.second.length === 1 && differentVehiclePriceBasis(group.first[0], group.second[0]) && <p className="mt-3 text-sm text-slate-600">Kan ikke sammenlignes direkte – dokumentene oppgir ulikt eller uavklart prisgrunnlag.</p>}
@@ -751,12 +753,12 @@ function Comparison({
                     <th className="sticky left-0 z-10 border-b border-gray-200 bg-white p-3 text-left text-gray-500">Dekning</th>
                     <th className="overview-side-existing border-b border-gray-200 p-3 text-left">
                       <p className="text-xs font-normal text-gray-500">Eksisterende</p>
-                      <p className="font-semibold text-gray-900">{first.insuranceData.company || "Tilbud 1"}</p>
+                      <p className="font-semibold text-gray-900">{agreementProviderDisplayName(first.insuranceData) || "Tilbud 1"}</p>
                       <p className="mt-0.5 text-xs font-normal text-gray-500">{first.filename}</p>
                     </th>
                     <th className="overview-side-offer border-b border-gray-200 p-3 text-left">
                       <p className="text-xs font-normal text-gray-500">Nytt tilbud</p>
-                      <p className="font-semibold text-gray-900">{second.insuranceData.company || "Tilbud 2"}</p>
+                      <p className="font-semibold text-gray-900">{agreementProviderDisplayName(second.insuranceData) || "Tilbud 2"}</p>
                       <p className="mt-0.5 text-xs font-normal text-gray-500">{second.filename}</p>
                     </th>
                   </tr>
@@ -1046,6 +1048,8 @@ function ComparisonRow({
   secondSources = [],
   firstBaseFacts = [],
   secondBaseFacts = [],
+  firstSourceOrigins = [],
+  secondSourceOrigins = [],
   firstCoverage = null,
   secondCoverage = null,
 }: {
@@ -1057,11 +1061,20 @@ function ComparisonRow({
   secondMissingLabel?: string;
   firstSources?: FactSource[];
   secondSources?: FactSource[];
+  firstSourceOrigins?: { source: FactSource; origin: "document" | "catalog" }[];
+  secondSourceOrigins?: { source: FactSource; origin: "document" | "catalog" }[];
   firstBaseFacts?: BaseFact[];
   secondBaseFacts?: BaseFact[];
   firstCoverage?: CanonicalCoverage | null;
   secondCoverage?: CanonicalCoverage | null;
 }) {
+  const sourceOrigin = (source: FactSource, origins: typeof firstSourceOrigins, coverage: CanonicalCoverage | null) => {
+    const identity = (item: FactSource) => JSON.stringify([item.documentId, item.filename, item.page, item.section, item.documentRole]);
+    const matches = [...origins, ...(coverage?.evidence.flatMap(item => item.sources.map(source => ({ source, origin: item.origin }))) ?? [])]
+      .filter(item => identity(item.source) === identity(source));
+    const unique = [...new Set(matches.map(item => item.origin))];
+    return unique.length === 1 ? unique[0] : undefined;
+  };
   const firstDisplay = firstCoverage
     ? coverageStatusLabel(firstCoverage.status, firstCoverage.summary)
     : first || firstMissingLabel || missingLabel;
@@ -1078,13 +1091,13 @@ function ComparisonRow({
 
       <td className="overview-side-existing border-b border-gray-100 p-3 text-gray-900">
         {firstDisplay}
-        {firstSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
+        {firstSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} origin={sourceOrigin(source, firstSourceOrigins, firstCoverage)} />)}
         {firstBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på eksisterende avtale: ${base.value}`} />)}
       </td>
 
       <td className="overview-side-offer border-b border-gray-100 p-3 text-gray-900">
         {secondDisplay}
-        {secondSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} />)}
+        {secondSources.map((source) => <SourceDetails key={`${source.documentId}-${source.section}-${source.page}`} source={source} origin={sourceOrigin(source, secondSourceOrigins, secondCoverage)} />)}
         {secondBaseFacts.map((base) => <SourceDetails key={`${base.source.documentId}-${base.source.section}-${base.source.page}`} source={base.source} baseLabel={`Grunnverdi på nytt tilbud: ${base.value}`} />)}
       </td>
     </tr>
@@ -1132,7 +1145,7 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
       <p className="text-sm font-semibold">{side === 0 ? "Eksisterende" : "Nytt tilbud"} · objekter uten sammenligningspar</p>
       {items.map((insurance, index) => <details key={index} className="mt-2 rounded border border-slate-200 p-3">
         <summary>{objectDisplayLabel(insurance, `${group.label} · objekt ${index + 1}`)} · {insurance.productName || "Produkt ikke dokumentert"}</summary>
-        <p className="mt-2">{insurance.company || "Selskap ikke oppgitt"}</p>
+        <p className="mt-2">{providerDisplayName(insurance.company, insurance.catalogReference) || "Selskap ikke oppgitt"}</p>
         <p>{catalogConnectionStatus([insurance])}</p>
         <p>Årspremie: {insurance.annualPremium || "Pris ikke oppgitt"}</p>
         <p>Egenandel: {insurance.deductible || "Ikke dokumentert"}</p>
@@ -1168,7 +1181,7 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
         second={group.second[0].objectIdentifiers?.map(id => id.value).join(" · ") || null}
         firstSources={group.first[0].objectIdentifiers?.flatMap(id => id.sources ?? [])}
         secondSources={group.second[0].objectIdentifiers?.flatMap(id => id.sources ?? [])} />}
-      {[...group.first, ...group.second].some(insurance => insurance.company) && <ComparisonRow label="Selskap" first={group.first[0]?.company ?? null} second={group.second[0]?.company ?? null} />}
+      {[...group.first, ...group.second].some(insurance => insurance.company) && <ComparisonRow label="Selskap" first={providerDisplayName(group.first[0]?.company, group.first[0]?.catalogReference)} second={providerDisplayName(group.second[0]?.company, group.second[0]?.catalogReference)} />}
       {[...group.first, ...group.second].some(insurance => insurance.consolidation?.status === "consolidated") && <tr className="align-top border-b border-slate-200">
         <th className="px-3 py-2 text-left text-sm font-medium">Dokumentgrunnlag</th>
         {[group.first, group.second].map((items, side) => <td key={side} className="px-3 py-2">{items.map((insurance, index) => <div key={index}>{insurance.recordEvidence?.map((record, r) => <details key={`record:${r}`} className="mt-2 text-sm">
@@ -1207,6 +1220,8 @@ function InsuranceRows({ group, matchingPlan }: { group: InsuranceGroup; matchin
           secondMissingLabel={term.secondMissingLabel}
           firstSources={term.firstSources}
           secondSources={term.secondSources}
+          firstSourceOrigins={term.firstSourceOrigins}
+          secondSourceOrigins={term.secondSourceOrigins}
           firstBaseFacts={term.firstBaseFacts}
           secondBaseFacts={term.secondBaseFacts}
           firstCoverage={term.firstCoverage}

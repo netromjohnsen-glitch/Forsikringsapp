@@ -23,12 +23,12 @@ export function portfolioPrice(document: ComparedDocument, failedDocuments = 0) 
       expected++;
       const disputed = object.consolidation?.status === "unresolved" || object.consolidation?.factConflicts?.some(item => {
         if (item.key !== field.key) return false;
-        const amounts = item.values.map(annualAmount);
+        const amounts = item.values.map(value => annualAmount(value, field.key));
         // A consolidation conflict can be textual formatting only. Resolve
         // that case using the same strict annual-amount policy as object prices.
         return amounts.includes(null) || new Set(amounts).size !== 1;
       });
-      const values = object.importantTerms.filter(term => term.coverageOrigin !== "catalog" && term.key === field.key).map(term => annualAmount(term.value));
+      const values = object.importantTerms.filter(term => term.coverageOrigin !== "catalog" && term.key === field.key).map(term => annualAmount(term.value, field.key));
       const multiple = new Set(values.filter(value => value !== null)).size > 1;
       if (disputed || multiple) { conflict = true; return; }
       if (price?.amount !== null && price?.amount !== undefined) contributions.push({ objectIndex: index, amount: price.amount, sources: price.sources });

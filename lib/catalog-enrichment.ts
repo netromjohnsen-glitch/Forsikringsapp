@@ -77,7 +77,7 @@ function enrichInsurance(
   const product = measure("catalogLookup", () => company && productIdentity
     ? findCatalogProductBySelection(company, insurance.type, productIdentity)
     : null);
-  const documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => normalizeDocumentFacts(insurance));
+  let documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => normalizeDocumentFacts(insurance));
   const documentedTotals = [...new Set(documentTerms
     .filter((term) => term.key === "premie.total").map((term) => term.value))];
   // Bare en entydig, eksplisitt objekttotal kan erstatte det eldre premiefeltet.
@@ -89,16 +89,18 @@ function enrichInsurance(
 
   const effectiveFacts = resolveCatalogFacts(product, [], asOf, null);
   const catalogFacts = resolveCatalogEvidence(product, [], asOf, null);
+  // An exact, unambiguous label from this identified product can establish a
+  // fact identity. Previously it only suppressed the catalog fact, leaving
+  // the document value stranded on a separate display-name row.
+  documentTerms = documentTerms.map(term => {
+    if (term.key) return term;
+    const keys = new Set(effectiveFacts.filter(fact => normalizeLabel(fact.label) === normalizeLabel(term.name))
+      .map(fact => normalizeCatalogTermKey(fact.key)));
+    return keys.size === 1 ? { ...term, key: [...keys][0] } : term;
+  });
   const documentedKeys = new Set(documentTerms.filter(term => !isUndocumentedTermValue(term.value)).map((term) => normalizeCatalogTermKey(
     term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type, termValue: term.value }),
   )));
-  for (const term of documentTerms) {
-    if (isUndocumentedTermValue(term.value)) continue;
-    const label = normalizeLabel(term.name);
-    for (const fact of effectiveFacts) {
-      if (normalizeLabel(fact.label) === label) documentedKeys.add(normalizeCatalogTermKey(fact.key));
-    }
-  }
   for (const addOn of insurance.addOns) {
     documentedKeys.add(normalizeTermName(addOn.name, { insuranceType: insurance.type }));
   }

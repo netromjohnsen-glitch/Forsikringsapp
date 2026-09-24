@@ -220,6 +220,9 @@ function groupDifferences(group: InsuranceGroup, differences: Difference[]): Pre
         benefit.insuranceType === group.key && benefit.conceptId === conceptId && secondProviders.has(benefit.providerId)
       );
       if (!firstBenefits.length && !secondBenefits.length) continue;
+      // Identical catalog benefit identities are not an agreement difference.
+      if (firstBenefits.length === secondBenefits.length &&
+        firstBenefits.every(benefit => secondBenefits.some(other => other.id === benefit.id))) continue;
       const firstText = firstBenefits.length ? benefitText(firstBenefits) : missingBenefitText(firstProviders, conceptId);
       const secondText = secondBenefits.length ? benefitText(secondBenefits) : missingBenefitText(secondProviders, conceptId);
       const item: Difference = {

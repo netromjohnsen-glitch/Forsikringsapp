@@ -16,7 +16,7 @@ export function vehiclePrices(insurance: ComparedInsurance) {
     const terms = insurance.importantTerms.filter((term) => term.coverageOrigin !== "catalog" &&
       (term.key || normalizeTermName(term.name, { insuranceType: insurance.type })) === field.key);
     const values = [...new Set(terms.map((term) => term.value.trim()).filter(Boolean))];
-    const amounts = values.map(annualAmount);
+    const amounts = values.map(value => annualAmount(value, field.key));
     const uniqueAmounts = new Set(amounts);
     return { ...field, value: values.length ? values.join(" · ") : null,
       amount: amounts.length > 0 && !uniqueAmounts.has(null) && uniqueAmounts.size === 1 ? amounts[0] : null,
@@ -24,10 +24,25 @@ export function vehiclePrices(insurance: ComparedInsurance) {
   });
 }
 // Only a single explicit annual amount, never extract a number from a mixed range/monthly sentence.
-export function annualAmount(value: string): number | null {
+export function annualAmount(value: string, key?: VehiclePriceKey): number | null {
   const clean = value.trim().replace(/[\u00a0\u202f]/g, " ");
-  const match = /^(?:(kr|kroner)\s*)?((?:\d+|\d{1,3}(?:[ .]\d{3})+)(?:,\d{1,2})?)\s*(kr|kroner)?(?:\s*(?:per år|\/\s*år|årlig))?$/iu.exec(clean);
+  const match = /^(?:(kroner|kr)\s*)?((?:\d{1,3}(?:[ .]\d{3})+|\d+)(?:,\d{1,2})?)\s*(kroner|kr)?(.*)$/iu.exec(clean);
   if (!match || (match[1] && match[3])) return null;
+  let suffix = match[4].trim();
+  // A canonical annual price key supplies the price basis. Only these exact
+  // qualifiers may decorate it; never strip arbitrary prose or extra numbers.
+  const qualifiers = new Set<string>();
+  while (suffix) {
+    const qualifier = /^(per år|\/\s*år|årlig|etter rabatter|(?:inklusive|inkludert|inkl\.) trafikkforsikringsavgift|(?:eksklusive|ekskludert|ekskl\.|uten) trafikkforsikringsavgift)(?=$|[\s,])/iu.exec(suffix);
+    if (!qualifier) return null;
+    const text = qualifier[1].toLocaleLowerCase("nb-NO");
+    const kind = /^(?:per år|\/|årlig)/u.test(text) ? "annual" : text === "etter rabatter" ? "discount" : /^(?:inkl)/u.test(text) ? "inclusive" : "exclusive";
+    if (qualifiers.has(kind) || (!key && kind !== "annual") ||
+      (kind === "inclusive" && key !== "premie.total") ||
+      (kind === "exclusive" && key !== "premie.ekskl_tfa")) return null;
+    qualifiers.add(kind);
+    suffix = suffix.slice(qualifier[0].length).replace(/^,?\s*/u, "");
+  }
   const number = Number(match[2].replace(/[ .]/g, "").replace(",", "."));
   const ore = Math.round(number * 100);
   return Number.isSafeInteger(ore) ? ore : null;
