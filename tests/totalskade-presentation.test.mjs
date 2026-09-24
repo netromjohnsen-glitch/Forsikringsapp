@@ -84,7 +84,7 @@ import {createRequire} from 'node:module';
 import {pathToFileURL} from 'node:url';
 const source=fs.readFileSync('app/page.tsx','utf8');
 const ast=ts.createSourceFile('page.tsx',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
-const names=new Set(['heroFactOrder','differenceIdentity','orderedFamilyItems','splitDifferenceValues','compactPair','collapsedHero','humanDetailLabel','sentenceCase','ConceptFamilyCard','PresentationTypeLabel','PresentationSources','DifferenceValues']);
+const names=new Set(['heroFactOrder','differenceIdentity','orderedFamilyItems','splitDifferenceValues','compactPair','collapsedHero','humanDetailLabel','sentenceCase','ConceptFamilyCard','SourceDetails','PresentationTypeLabel','PresentationSources','DifferenceValues']);
 const declarations=ast.statements.filter(node=>names.has(node.name?.text)||node.declarationList?.declarations.some(d=>names.has(d.name.text))).map(node=>node.getText(ast)).join('\n');
 const require=createRequire(import.meta.url);
 let js=ts.transpileModule(declarations+'\nexport {ConceptFamilyCard};',{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext}}).outputText;

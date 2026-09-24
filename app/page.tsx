@@ -7,6 +7,8 @@ import { readAnalysisResponse, validateUploadSelection } from "@/lib/analysis-cl
 import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressState } from "@/lib/analysis-progress";
 import { isMotorVehicleType } from "@/lib/insurance-normalization";
 import { VehiclePriceList } from "./components/vehicle-price";
+import { PortfolioPriceList } from "./components/portfolio-price";
+import { portfolioPrice, portfolioPriceDifference } from "@/lib/portfolio-price-presentation";
 import { AnalysisProgress } from "./components/analysis-progress";
 import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis } from "@/lib/vehicle-price-presentation";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
@@ -567,7 +569,11 @@ function Comparison({
       presentImportantDifferences(rawDifferences, groups, matchingPlan));
     return { groups, differences };
   }, [first, second, matchingPlan, objectContext]);
-  const totalDifference = differences.find((difference) => difference.type === "price" && !difference.insuranceKey);
+  const portfolioPrices = useMemo(() => [portfolioPrice(first, objectContext?.failedExisting), portfolioPrice(second, objectContext?.failedOffer)], [first, second, objectContext]);
+  const safeObjectSet = groups.length > 0 && groups.every(group => group.objectMatch?.status === "matched") && !objectContext?.failedExisting && !objectContext?.failedOffer;
+  const totalDifference = portfolioPrices.every(price => price.compatible)
+    ? portfolioPriceDifference(portfolioPrices[0], portfolioPrices[1], groups)
+    : safeObjectSet ? differences.find((difference) => difference.type === "price" && !difference.insuranceKey)?.text : null;
   const productPriceDifferences = differences.filter((difference) => difference.type === "price" && difference.insuranceKey);
   const highlightedDifferences = differences
     .filter((difference) => difference.insuranceKey && difference.type !== "price");
@@ -645,14 +651,14 @@ function Comparison({
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Sammenligning</p>
                 <h3 id="overview-heading" className="mt-1 text-xl font-semibold text-slate-950">Avtalene side ved side</h3>
               </div>
-              {totalDifference && <p className="status-text text-sm font-medium">{totalDifference.text}</p>}
+              {totalDifference && <p className="status-text text-sm font-medium">{totalDifference}</p>}
             </div>
             <div className="mt-5 grid gap-5 sm:grid-cols-2 sm:gap-0">
               {[first, second].map((document, index) => (
                 <div key={index} className={`${index === 0 ? "overview-side-existing" : "overview-side-offer"} rounded-xl px-4 py-4 sm:px-5`}>
                   <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${index === 0 ? "existing-label" : "offer-label"}`}>{index === 0 ? "Eksisterende" : "Nytt tilbud"}</p>
                   <p className="mt-1 text-lg font-semibold text-slate-950">{document.insuranceData.company || `Tilbud ${index + 1}`}</p>
-                  {document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some((field) => field.value) ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
+                  {portfolioPrices[index].compatible && portfolioPrices[index].components.some(field => field.priced > 0 || field.completeness === "conflicting") && (document.insuranceData.insurances.length > 1 || portfolioPrices[index].conflict || portfolioPrices[index].failedDocuments > 0) ? <PortfolioPriceList price={portfolioPrices[index]} /> : document.insuranceData.insurances.length === 1 && vehiclePrices(document.insuranceData.insurances[0])?.some((field) => field.value) ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
                   <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">Total årspris</p>
                   <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-slate-950">
                     {annualPremiumLabel(document.insuranceData)}
@@ -661,13 +667,20 @@ function Comparison({
                 </div>
               ))}
             </div>
-            {productPriceDifferences.length > 0 && (
+            {(productPriceDifferences.length > 0 || portfolioPrices.some(price => price.compatible && price.objectCount > 1)) && (
               <details className="group mt-5 border-t border-slate-100 pt-4 text-sm">
                 <summary className="text-link w-fit cursor-pointer list-none font-semibold marker:hidden [&::-webkit-details-marker]:hidden">
                   <span className="group-open:hidden">Vis pris per forsikring</span>
                   <span className="hidden group-open:inline">Skjul pris per forsikring</span>
                 </summary>
                 <ul className="mt-3 space-y-1.5 text-slate-700">
+                  {portfolioPrices.some(price => price.compatible && price.objectCount > 1) && groups.map(group => <li key={group.scopeId} className="py-3">
+                    <p className="font-semibold">{group.objectLabel || group.label} – pris per år</p>
+                    <div className="grid min-w-0 gap-4 sm:grid-cols-2">{(["first", "second"] as const).map(side => <div key={side} className="min-w-0">
+                      <p>{side === "first" ? "Eksisterende" : "Nytt tilbud"}</p>
+                      {group[side].map((insurance, index) => <VehiclePriceList key={index} insurance={insurance} />)}
+                    </div>)}</div>
+                  </li>)}
                   {productPriceDifferences.map((difference) => (
                     <li key={`${difference.objectScope}:${difference.insuranceKey}:${difference.title}`}><span className="font-medium text-slate-900">{groups.find((group) => group.key === difference.insuranceKey && group.scopeId === difference.objectScope)?.objectLabel} · {difference.title}:</span> {difference.text}</li>
                   ))}
@@ -903,7 +916,39 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
     <h5 className="font-semibold text-slate-950">{difference.title}</h5>
     <p className="mt-2 whitespace-pre-wrap text-sm text-slate-700">{difference.text}</p>
   </div>;
+  if (difference.details) {
+    const model = difference.details;
+    const rows = model.compact.filter(row => !difference.limitPair || !["nyverdi.alder", "nyverdi.km"].includes(row.key));
+    const compactSide = (side: "first" | "second") => [
+      ...(difference.limitPair ? [difference.limitPair[side]] : []),
+      ...rows.map(row => row.key.endsWith(":status") ? row[side] : `${row.label}: ${row[side]}`),
+    ].join("\n");
+    const compact = <div className="mt-4"><DifferenceValues text="" pair={{ first: compactSide("first"), second: compactSide("second") }} compact unclamped /></div>;
+    const heading = <h5 className="text-base font-semibold text-slate-950">{difference.title}</h5>;
+    return <div className="min-w-0 py-5 sm:px-1">
+      {model.hasAdditional ? <details className="group">
+        <summary className="cursor-pointer list-none marker:hidden [&::-webkit-details-marker]:hidden">
+          <div className="flex items-start justify-between gap-4">{heading}<span className="text-link shrink-0 text-sm font-semibold"><span className="group-open:hidden">Se detaljer</span><span className="hidden group-open:inline">Skjul</span></span></div>
+          {compact}
+        </summary>
+        <div className="mt-4 divide-y divide-slate-100 border-t border-slate-100">
+          {model.additional.map(row => <div key={row.key} className="py-4"><p className="text-sm font-semibold text-slate-800">{row.label}</p><DifferenceValues text="" pair={row} /></div>)}
+        </div>
+      </details> : <>{heading}{compact}</>}
+      {model.sources.length > 0 && <div className="mt-3 grid min-w-0 gap-3 sm:grid-cols-2">{(["first", "second"] as const).map(side => <div key={side} className="min-w-0 break-words">
+        {model.sources.some(item => item.side === side) && <p className="text-xs text-slate-500">{side === "first" ? "Kilder – eksisterende" : "Kilder – nytt tilbud"}</p>}
+        {model.sources.filter(item => item.side === side).map((item, index) => <SourceDetails key={index} source={item.source} />)}
+      </div>)}</div>}
+      <PresentationSources difference={difference} />
+    </div>;
+  }
   const items = difference.items || [difference];
+  if (items.length === 1) return <div className="min-w-0 py-5 sm:px-1">
+    <h5 className="text-base font-semibold text-slate-950">{difference.title}</h5>
+    <PresentationTypeLabel type={difference.presentationType} />
+    <DifferenceValues text={items[0].text} pair={difference.limitPair} />
+    <PresentationSources difference={difference} />
+  </div>;
   const orderedItems = orderedFamilyItems(difference.conceptId, items);
   const hero = collapsedHero(difference.conceptId, items);
   const itemLabels = [...new Set(orderedItems

@@ -24,7 +24,7 @@ export function vehiclePrices(insurance: ComparedInsurance) {
   });
 }
 // Only a single explicit annual amount, never extract a number from a mixed range/monthly sentence.
-function annualAmount(value: string): number | null {
+export function annualAmount(value: string): number | null {
   const clean = value.trim().replace(/[\u00a0\u202f]/g, " ");
   const match = /^(?:(kr|kroner)\s*)?((?:\d+|\d{1,3}(?:[ .]\d{3})+)(?:,\d{1,2})?)\s*(kr|kroner)?(?:\s*(?:per år|\/\s*år|årlig))?$/iu.exec(clean);
   if (!match || (match[1] && match[3])) return null;

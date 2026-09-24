@@ -1,5 +1,6 @@
 import type { Difference, InsuranceGroup, TermGroup } from "./comparison.ts";
 import { groupTerms } from "./comparison.ts";
+import { coverageDetailPresentation, type CoverageDetailPresentation } from "./coverage-detail-presentation.ts";
 import type { MatchingPlan } from "./hybrid-matching.ts";
 import {
   conditionalBenefitAudits, conditionalBenefits, conceptForFactKey, conceptsForInsurance, evidenceById,
@@ -18,6 +19,7 @@ export type PresentationSource = {
 };
 
 export type PresentedDifference = Difference & {
+  details?: CoverageDetailPresentation;
   limitPair?: { first: string; second: string };
   conceptId?: string;
   presentationTier?: PresentationTier;
@@ -270,6 +272,13 @@ export function presentImportantDifferences(
     result.push(...scoped.filter(difference => difference.kind === "object"));
     const families = groupDifferences(group, scoped.filter(difference => difference.kind !== "object"));
     families.forEach(family => { family.objectScope = group.scopeId; });
+    const effectiveTerms = sortDetailedTerms(groupTerms(group, matchingPlan));
+    for (const family of families) {
+      if (family.presentationType === "service" || family.presentationType === "conditional-benefit") continue;
+      const terms = effectiveTerms.filter(term => !provenanceOnlyKey.test(term.key) &&
+        conceptForFactKey(group.key, term.key)?.id === family.conceptId);
+      if (terms.length) family.details = coverageDetailPresentation(terms);
+    }
     const totalskade = families.find((family) => family.conceptId === "bil.totalskade");
     if (totalskade) {
       // Read effective canonical facts, including limits that are equal on both
