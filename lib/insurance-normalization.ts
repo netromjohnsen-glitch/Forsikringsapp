@@ -85,9 +85,14 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "kjoretoy.kjorelengde": ["kjørelengde", "årlig kjørelengde"],
     "kjoretoy.kilometerstand": ["kilometerstand", "faktisk kilometerstand", "nåværende kilometerstand", "kilometerstand ved dokumentdato", "avlest kilometerstand"],
     "kjoretoy.avtalt_maks_kilometerstand": ["avtalt maksimal kilometerstand", "avtalt maksimal kilometerstand i forsikringsperioden", "maksimal kilometerstand i forsikringsperioden"],
+    "parkering.dekning": ["parkeringsskade", "parkeringsdekning"],
     "parkering.alder": ["parkeringsskade alder", "parkeringsskade aldersgrense"],
     "parkering.grense": ["parkeringsskade forsikringssum", "parkeringsskade beløpsgrense"],
     "ladekabel.dekning": ["ladekabel", "ladekabeldekning"],
+    "leasing.startleie": [
+      "leasing startleie", "leasing resterende startleie", "resterende startleie",
+      "startleiedekning", "startleie",
+    ],
     "punktering.dekning": ["punktering", "punkteringsskade", "punkteringsdekning"],
   },
   innbo: {
@@ -423,6 +428,20 @@ function relatedCoverageDetailKey(name: string, context: TermContext, type: stri
   return null;
 }
 
+function maskinskadeDeductibleBandKey(value: string | null, context: TermContext, type: string): string | null {
+  if (type !== "bil" || !value) return null;
+  const text = value.normalize("NFKC").toLocaleLowerCase("nb-NO");
+  const scoped = /\b(?:maskinskade|maskin\s+og\s+elektronikk(?:dekning)?|motor\s+og\s+girskade)\b/u.test(text) ||
+    context.relatedCoverageParentKeys?.includes("maskinskade.dekning") === true;
+  if (!scoped || !/\begenandel\b/u.test(text)) return null;
+  const range = /(\d[\d .\u00a0\u202f]*)\s*(?:[–—-]|til)\s*(\d[\d .\u00a0\u202f]*)\s*(?:km|kilometer)\b/u.exec(text);
+  if (!range) return null;
+  const digits = (part: string) => part.replace(/\D/gu, "");
+  const lower = digits(range[1]), upper = digits(range[2]);
+  if (!lower || !upper || Number(lower) > Number(upper)) return null;
+  return `maskinskade.egenandel.${lower}-${upper}`;
+}
+
 export function isUndocumentedTermValue(value: string | null | undefined): boolean {
   const normalized = normalizeWords(value || null);
   return [
@@ -435,8 +454,10 @@ export function isUndocumentedTermValue(value: string | null | undefined): boole
 }
 
 export function normalizeTermName(value: string | null, context: TermContext = {}): string {
-  const name = normalizeWords(value).replace(/\bpr\b/gu, "per");
   const type = normalizeInsuranceType(context.insuranceType || null);
+  const deductibleBand = maskinskadeDeductibleBandKey(value, context, type);
+  if (deductibleBand) return deductibleBand;
+  const name = normalizeWords(value).replace(/\bpr\b/gu, "per");
   if (type && context.insuredValueConfirmed) {
     const insuredValue = insuredValueLookup.get(name);
     if (insuredValue) return insuredValue;

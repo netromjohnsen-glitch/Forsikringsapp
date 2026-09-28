@@ -42,10 +42,15 @@ function explicitKey(
   // Raw extraction cannot supply key/coverageOrigin through its schema.
   const prior = term as Partial<DocumentFact>;
   const canonicalKey = term.canonicalKey || (prior.coverageOrigin === "document" ? prior.key : undefined);
+  const labelKey = normalizeTermName(term.name, {
+    insuranceType: insurance.type,
+    relatedCoverageParentKeys,
+    structuredCoverageContext: relatedCoverageParentKeys.length > 0,
+    termValue: term.value,
+  });
   // A precise approved vehicle-field label is stronger than a contradictory
   // extraction key. Never infer field identity from a number or the unit km.
   if (normalizeInsuranceType(insurance.type) === "bil") {
-    const labelKey = normalizeTermName(term.name, { insuranceType: insurance.type });
     if (["kjoretoy.kilometerstand", "kjoretoy.avtalt_maks_kilometerstand", "kjoretoy.kjorelengde"].includes(labelKey)) return labelKey;
     if (["veihjelp.egenandel", "bilnokkel.egenandel", "bilnokkel.grense", "bilnokkel.antall_skader"].includes(labelKey)) return labelKey;
     const product = normalizeWords(insurance.canonicalProductName ?? insurance.productName ?? "");
@@ -55,6 +60,16 @@ function explicitKey(
       if ([`${prefix} alder`, `${prefix} aldersgrense`].includes(name)) return "nyverdi.alder";
       if ([`${prefix} kilometer`, `${prefix} kilometergrense`].includes(name)) return "nyverdi.km";
     }
+  }
+  if (canonicalKey && labelKey.includes(".")) {
+    const normalizedCanonical = normalizeCatalogTermKey(canonicalKey);
+    const [labelFamily] = labelKey.split(".");
+    const [canonicalFamily] = normalizedCanonical.split(".");
+    const labelIsFamilyHeading = labelKey.endsWith(".dekning") || labelKey.endsWith(".grenser");
+    // Exact, approved type-scoped labels beat a contradictory extraction key.
+    // A family heading does not erase a more specific key in the same family.
+    if (labelKey !== normalizedCanonical &&
+        (labelFamily !== canonicalFamily || !labelIsFamilyHeading)) return labelKey;
   }
   const objectType = vehicleObjectType(normalizeInsuranceType(insurance.type));
   if (objectType && canonicalKey && !canonicalKey.startsWith("premie.") &&
@@ -119,14 +134,21 @@ function compoundDetails(
     const value = valueMatch(scopedValue, pattern);
     if (value) result.push(extractedTerm(key, name, value, term));
   };
+  const addUnique = (key: string, name: string, pattern: RegExp, value = scopedValue) => {
+    const values = [...new Set([...value.matchAll(new RegExp(pattern.source, "giu"))]
+      .map(match => match[0].trim()))];
+    if (values.length === 1) result.push(extractedTerm(key, name, values[0], term));
+  };
 
   const maskinskadeContext = term.key === "maskinskade.dekning" ||
     term.key === "maskinskade.varighet" ||
     (relatedCoverageParentKeys.includes("maskinskade.dekning") &&
       maskinskadeCompoundLabels.has(normalizeWords(term.name)));
   if (maskinskadeContext) {
-    add("maskinskade.alder", "Maskinskade – alder", yearLimit);
-    add("maskinskade.km", "Maskinskade – kilometer", kilometerLimit);
+    const deductibleBoundary = scopedValue.search(/\begenandel\b/iu);
+    const coverageValue = deductibleBoundary >= 0 ? scopedValue.slice(0, deductibleBoundary) : scopedValue;
+    addUnique("maskinskade.alder", "Maskinskade – alder", yearLimit, coverageValue);
+    addUnique("maskinskade.km", "Maskinskade – kilometer", kilometerLimit, coverageValue);
   }
   if (term.key === "bilnokkel.dekning") {
     const sum = /(?:forsikringssum|erstatningsgrense|inntil|opptil)\s*[:=]?\s*((?:\d{1,3}(?:[ .]\d{3})+|\d+)\s*(?:kr|kroner)?)/iu.exec(scopedValue)?.[1];
@@ -210,8 +232,10 @@ function boundedLimitPair(
 ): { age: string; kilometer: string } | null {
   const section = boundedSection(text, label);
   if (section === null) return null;
-  const age = valueMatch(section, yearLimit);
-  const kilometer = valueMatch(section, kilometerLimit);
+  const deductibleBoundary = section.search(/\begenandel\b/iu);
+  const coverageSection = deductibleBoundary >= 0 ? section.slice(0, deductibleBoundary) : section;
+  const age = valueMatch(coverageSection, yearLimit);
+  const kilometer = valueMatch(coverageSection, kilometerLimit);
   return age && kilometer ? { age, kilometer } : null;
 }
 

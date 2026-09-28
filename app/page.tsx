@@ -974,8 +974,8 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
     // The composed age/km value has two fact identities, each with its own evidence.
     const components = difference.limitPair ? model.compact.filter(row => pairKeys.includes(row.key)) : [];
     const detailRows = [...components, ...model.additional];
-    const renderRow = (row: typeof model.compact[number]) => <div key={row.key} className="min-w-0 py-3">
-      <p className="text-sm font-semibold text-slate-800">{row.label}</p>
+    const renderRow = (row: typeof model.compact[number], nested = false) => <div key={row.key} className="min-w-0 py-3">
+      <p className={`text-sm text-slate-800 ${nested ? "font-medium" : "font-semibold"}`}>{row.label}</p>
       <div className="mt-2 grid min-w-0 gap-2 sm:grid-cols-2">
         {(["first", "second"] as const).map(side => <div key={side} className={`${side === "first" ? "difference-side-existing" : "difference-side-offer"} min-w-0 rounded-lg px-4 py-3`}>
           <p className={`${side === "first" ? "existing-label" : "offer-label"} text-xs font-semibold uppercase tracking-wide`}>{side === "first" ? "Eksisterende" : "Nytt tilbud"}</p>
@@ -990,12 +990,12 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
     return <div className="min-w-0 py-5 sm:px-1">
       <h5 className="text-base font-semibold text-slate-950">{difference.title}</h5>
       {difference.limitPair && <DifferenceValues text="" pair={difference.limitPair} compact unclamped />}
-      {rows.map(renderRow)}
+      {rows.map(row => renderRow(row))}
       {detailRows.length > 0 && <details className="group mt-2">
         <summary aria-label={`Se detaljer: ${difference.title}`} className="text-link w-fit cursor-pointer rounded text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-4">
           <span className="group-open:hidden">Se detaljer</span><span className="hidden group-open:inline">Skjul</span>
         </summary>
-        <div className="mt-3 divide-y divide-slate-100 border-t border-slate-100">{detailRows.map(renderRow)}</div>
+        <div className="expanded-detail-area mt-3 divide-y divide-slate-100">{detailRows.map(row => renderRow(row, true))}</div>
       </details>}
       <PresentationSources difference={difference} />
     </div>;
@@ -1037,11 +1037,11 @@ function ConceptFamilyCard({ difference }: { difference: PresentedDifference }) 
           <DifferenceValues text={hero.item.text} compact unclamped={Boolean(difference.limitPair)} pair={difference.limitPair ?? hero.pair} />
         </div>
       </summary>
-      <div className="border-t border-slate-100 pb-6 pt-1 sm:px-1">
+      <div className="expanded-detail-area pb-6 pt-1">
         <div className="divide-y divide-slate-100">
           {items.map((item, index) => (
             <div key={`${item.termKey || item.title}-${index}`} className="py-4">
-              <p className="text-sm font-semibold text-slate-800">{item.title}</p>
+              <p className="text-sm font-medium text-slate-800">{item.title}</p>
               <DifferenceValues text={item.text} />
             </div>
           ))}
