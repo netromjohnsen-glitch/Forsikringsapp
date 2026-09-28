@@ -10,6 +10,7 @@ export type ProgressEvent =
   | { type: "document_status"; side: AnalysisSide; documentIndex: number; status: DocumentStatus; error?: FailureCode }
   | { type: "batch_analyzing"; side: AnalysisSide; batchIndex: number; documentCount: number }
   | { type: "product_status"; side: AnalysisSide; batchIndex: number; productIndex: number; insuranceType: string; status: ProductStatus }
+  | { type: "products_resolved"; side: AnalysisSide; insuranceTypes: string[] }
   | { type: "comparison_started" }
   | { type: "analysis_completed"; partialSuccess: boolean; successfulDocuments: number; failedDocuments: number };
 const integer = (v: unknown, max: number) => Number.isInteger(v) && (v as number) >= 0 && (v as number) <= max;
@@ -21,6 +22,9 @@ export function safeProgress(value: unknown): ProgressEvent {
   if (v.type === "comparison_started") return { type: v.type };
   if (v.type === "analysis_completed" && typeof v.partialSuccess === "boolean" && integer(v.successfulDocuments, 20) && integer(v.failedDocuments, 20)) return { type: v.type, partialSuccess: v.partialSuccess, successfulDocuments: v.successfulDocuments as number, failedDocuments: v.failedDocuments as number };
   if (v.side !== "existing" && v.side !== "offer") throw new Error("Invalid progress side");
+  if (v.type === "products_resolved" && Array.isArray(v.insuranceTypes) && v.insuranceTypes.length <= 120) return {
+    type: v.type, side: v.side, insuranceTypes: v.insuranceTypes.map(type => typeof type === "string" && isKnownInsuranceType(type) ? type : "unknown"),
+  };
   if (v.type === "document_status" && integer(v.documentIndex, 9) && typeof v.status === "string" && ["queued", "validating", "extracting", "ready", "analyzing", "completed", "failed"].includes(v.status as string)) {
     return { type: v.type, side: v.side, documentIndex: v.documentIndex as number, status: v.status as DocumentStatus,
       ...(failureCodes.includes(v.error as FailureCode) ? { error: v.error as FailureCode } : {}) };
@@ -39,6 +43,11 @@ export function applyProgress(state: ProgressState, input: ProgressEvent): Progr
   if (["completed", "partial", "failed"].includes(state.status)) return state;
   if (event.type === "analysis_started") return { status: "analyzing", products: [], documents: (["existing", "offer"] as const).flatMap((side) =>
     Array.from({ length: side === "existing" ? event.existingDocumentCount : event.offerDocumentCount }, (_, documentIndex) => ({ type: "document_status" as const, side, documentIndex, status: "queued" as const }))) };
+  if (event.type === "products_resolved") return { ...state, products: [
+    ...state.products.filter(p => p.side !== event.side),
+    ...event.insuranceTypes.map((insuranceType, productIndex) => ({ type: "product_status" as const, side: event.side,
+      batchIndex: 0, productIndex, insuranceType, status: "completed" as const })),
+  ] };
   if (event.type === "document_status") {
     const previous = state.documents.find((d) => d.side === event.side && d.documentIndex === event.documentIndex);
     if (!previous || ["completed", "failed"].includes(previous.status) || (event.status !== "failed" && documentOrder.indexOf(event.status) !== documentOrder.indexOf(previous.status) + 1)) return state;

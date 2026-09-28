@@ -11,6 +11,7 @@ import { finalizeAgreementPricing } from "./agreement-pricing.ts";
 import type { AnalysisTelemetry } from "./analysis-telemetry.ts";
 import { PdfSecurityError } from "./pdf-upload-security.ts";
 import type { AnalysisSide } from "./analysis-progress.ts";
+import { attachSupportingTerms, isCustomerObject, supportingEvidence } from "./supporting-terms.ts";
 
 export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatch, telemetry: AnalysisTelemetry, trace?: ProductionTrace) {
   const sourceIds = (indices?: number[]) => {
@@ -35,7 +36,7 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
   return {
     ...agreement,
     documentRecords,
-    insurances: agreement.insurances.map((product, productIndex) => {
+    insurances: agreement.insurances.flatMap((product, productIndex) => {
       const productSources = sources(product.documentIndices).map(source => ({ ...source, documentRole: product.documentRole ?? "unknown" }));
       const attached = { ...product, objectIdentifiers: product.objectIdentifiers?.map(id => ({ ...id, sources: sources(id.documentIndices) })), importantTerms: product.importantTerms.map(term => attach(term, product.documentRole)), addOns: product.addOns.map((addon) => ({ ...addon, importantTerms: addon.importantTerms.map(term => attach(term, product.documentRole)) })) };
       const all = [...attached.importantTerms, ...attached.addOns.flatMap((addon) => addon.importantTerms)];
@@ -51,13 +52,16 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
         documentReferences: sourceIds(product.documentIndices).map(doc => ({ side: doc.side, documentIndex: doc.documentIndex })), documentSources: productSources };
       documentRecords.push(documentRecord);
       trace?.bind(product, documentRecord);
+      // General terms are retained as evidence, never promoted to an insured
+      // customer object, enriched as one, or published in product progress.
+      if (!isCustomerObject(documentRecord)) return [];
       const enriched = telemetry.measureSync("catalogEnrichment", () => enrichExtractedAgreementWithCatalog({ ...agreement, company, insurances: [withTerms] }, new Date(), telemetry.measureSync, observer)).insurances[0];
       const result = { ...enriched, company, analysisObjectId: `${batch.side}:${batch.batchIndex}:${productIndex}`,
         documentReferences: sourceIds(product.documentIndices).map((doc) => ({ side: doc.side, documentIndex: doc.documentIndex })),
         importantTerms: enriched.importantTerms.map((term) => term.coverageOrigin === "document" && !term.sources?.length && !term.source ? { ...term, sources: productSources } : term) };
       trace?.bind(product, result);
       observer?.effective("effective", result);
-      return result;
+      return [result];
     }),
   };
 }
@@ -66,15 +70,19 @@ export function mergeBatchResults(results: readonly BatchResult[], side: Analysi
   const ordered = results.filter((r) => r.batch.side === side).sort((a,b) => a.batch.batchIndex-b.batch.batchIndex);
   const original = ordered.flatMap((r) => r.agreement.insurances);
   if (original.length > MAX_JOB_PRODUCTS) throw new PdfSecurityError(413, "too_many_products", "For mange produkter i én sammenligning.");
-  const records = ordered.flatMap(result => result.agreement.documentRecords);
+  const allRecords = ordered.flatMap(result => result.agreement.documentRecords);
+  const records = allRecords.filter(isCustomerObject);
+  const supportingRecords = allRecords.filter(record => !isCustomerObject(record));
+  const byId = new Map(original.map(record => [record.analysisObjectId, record]));
   const insurances = consolidateInsuranceRecords(records, undefined, trace?.hooks).map(({ record, indices }) => {
     if (record.consolidation.status !== "consolidated") {
-      const result = { ...original[indices[0]], consolidation: record.consolidation, recordEvidence: record.recordEvidence };
+      const result = attachSupportingTerms({ ...byId.get(records[indices[0]].analysisObjectId)!, documentSources: record.documentSources,
+        consolidation: record.consolidation, recordEvidence: record.recordEvidence }, supportingRecords);
       trace?.bind(record, result);
       return result;
     }
     const enriched = enrichConsolidatedInsurance(record.company, record, record.importantTerms as DocumentFact[], new Date(), trace?.observer(record));
-    const result = { ...record, ...enriched };
+    const result = attachSupportingTerms({ ...record, ...enriched }, supportingRecords);
     trace?.bind(record, result);
     return result;
   });
@@ -84,8 +92,11 @@ export function mergeBatchResults(results: readonly BatchResult[], side: Analysi
   // Agreement totals are still never summed across documents or batches.
   return { source: "pdf" as const, filename: `${ordered.reduce((n,r) => n+r.batch.documents.length,0)} PDF-dokumenter`, insuranceData: finalizeAgreementPricing({
     company: companies.size === 1 ? [...companies][0] : null,
-    totalAnnualPremium: single ? ordered[0].agreement.totalAnnualPremium : null,
+    totalAnnualPremium: single && insurances.length ? ordered[0].agreement.totalAnnualPremium : null,
     totalAnnualPremiumScope: single ? ordered[0].agreement.totalAnnualPremiumScope : "partial_or_unclear" as const,
     insurances,
+    // Retain even unbound/different-version terms. They are evidence, not
+    // portfolio members, and never cross to the opposite comparison side.
+    supportingEvidence: supportingRecords.map(supportingEvidence),
   }) };
 }

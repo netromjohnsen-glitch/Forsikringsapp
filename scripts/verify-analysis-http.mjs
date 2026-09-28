@@ -14,6 +14,8 @@ import { presentImportantDifferences } from "../lib/comparison-presentation.ts";
 import { portfolioPrice } from "../lib/portfolio-price-presentation.ts";
 import { vehiclePrices } from "../lib/vehicle-price-presentation.ts";
 import { clientTraceEvents, sanitizeTraceEvent } from "../lib/production-trace.ts";
+import { portfolioDocuments } from "../tests/helpers/supporting-terms.mjs";
+import { applyProgress, emptyProgress } from "../lib/analysis-progress.ts";
 
 const calls = [];
 let addonScenario = false;
@@ -23,6 +25,8 @@ let portfolioCalls = 0;
 let consolidationScenario = false;
 let priceScenario = false;
 let priceScenarioCalls = 0;
+let supportingScenario = false;
+let supportingCalls = 0;
 let peak = 0;
 let active = 0;
 let apiFailure = false;
@@ -76,6 +80,14 @@ const mock = createServer(async (request, response) => {
       })),
     }));
     if (reverse) content.insurances.reverse();
+  }
+  if (supportingScenario && input.text.format.name !== "semantic_insurance_matches") {
+    const side = supportingCalls++ % 2 ? "offer" : "existing";
+    content.insurances = portfolioDocuments(side).flatMap((records, index) => records.map(record => ({ ...record,
+      documentIndices: [index + 1],
+      objectIdentifiers: record.objectIdentifiers.map(id => ({ ...id, documentIndices: [index + 1] })),
+      importantTerms: record.importantTerms.map(term => ({ ...term, documentIndices: [index + 1] })),
+    })));
   }
   response.writeHead(200, { "content-type": "application/json" });
   response.end(JSON.stringify({
@@ -337,6 +349,32 @@ try {
   }
   assert.doesNotMatch(logs, /ZZ8200[12]/u);
   priceScenario = false;
+  supportingScenario = true;
+  let supportingProgress = emptyProgress();
+  const callsBeforeSupporting = calls.length;
+  const supportingResponse = await fetch(base + '/api/analyze', { method: 'POST', headers: { ...headers, accept: 'application/x-ndjson' }, body: multiForm(2) });
+  const supportingResult = await readAnalysisResponse(supportingResponse, event => { supportingProgress = applyProgress(supportingProgress, event); });
+  assert.equal(supportingResponse.status, 200);
+  assert.equal(supportingResult.analysis.successfulDocuments, 4);
+  assert.equal(supportingProgress.products.length, 4);
+  assert.equal(supportingProgress.documents.filter(d => d.status === 'completed').length, 4);
+  assert.equal(calls.length - callsBeforeSupporting, 2, 'supporting terms add no AI calls');
+  for (const document of supportingResult.documents) {
+    assert.equal(document.insuranceData.insurances.length, 2);
+    assert.equal(document.insuranceData.supportingEvidence.length, 2);
+    assert.ok(portfolioPrice(document).components.every(c => c.completeness === 'complete' && c.expected === 2));
+    for (const object of document.insuranceData.insurances) {
+      assert.ok(object.recordEvidence.some(e => e.documentRole === 'general_terms'));
+      assert.equal(object.importantTerms.find(t => t.key === 'nyverdi.km').value, object.canonicalProductName === 'Kasko' ? '15 000 km' : '60 000 km');
+      assert.equal(object.consolidation.factConflicts?.length ?? 0, 0);
+    }
+  }
+  const supportingGroups = groupInsurances(...supportingResult.documents.map(d => d.insuranceData.insurances), supportingResult.matchingPlan);
+  assert.equal(supportingGroups.length, 2);
+  assert.ok(supportingGroups.every(g => g.objectMatch.reason === 'EXACT_OBJECT_ID'));
+  assert.ok(!createDifferences(...supportingResult.documents, supportingGroups, supportingResult.matchingPlan).some(d => d.kind === 'object'));
+  assert.doesNotMatch(logs, /ZZ1000[12]|Syntetisk produktbegrensning/u);
+  supportingScenario = false;
   await delay(100);
   const aborted = new AbortController();
   const abortResponse = await fetch(base+'/api/analyze',{method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(2),signal:aborted.signal});
@@ -378,6 +416,7 @@ try {
     "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
     "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
     "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+    "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
     "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
     "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
 

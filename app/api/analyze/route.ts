@@ -5,6 +5,7 @@ import { runHybridMatching } from "@/lib/hybrid-matching";
 import { requestSemanticMatches } from "@/lib/semantic-matcher";
 import { analyzePdfBatches } from "@/lib/pdf-analysis-pipeline";
 import { mergeBatchResults } from "@/lib/analysis-merge";
+import { normalizeInsuranceType } from "@/lib/insurance-normalization";
 import { safeProgress, type ProgressEvent } from "@/lib/analysis-progress";
 import { ManualAgreementError, normalizeManualAgreement } from "@/lib/manual-agreement";
 import {
@@ -182,6 +183,8 @@ async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => 
       if (agreement.mode === "manual") { telemetry.products(agreement.document.insuranceData.insurances.length); return agreement.document; }
       return mergeBatchResults(pipeline.results, index === 0 ? "existing" : "offer", pipeline.partialSuccess, trace);
     });
+    for (const [index, document] of documents.entries()) emit({ type: "products_resolved", side: index === 0 ? "existing" : "offer",
+      insuranceTypes: document.insuranceData.insurances.map(insurance => normalizeInsuranceType(insurance.type)) });
     emit({ type: "comparison_started" });
 
     const matchingPlan = await telemetry.measure("semanticMatching", () => runHybridMatching(

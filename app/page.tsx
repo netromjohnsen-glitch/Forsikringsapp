@@ -1174,7 +1174,7 @@ function DifferenceValues({ text, compact = false, unclamped = false, pair }: { 
 function SourceDetails({ source, baseLabel, origin }: { source: FactSource; baseLabel?: string; origin?: "document" | "catalog" }) {
   return (
     <details className="mt-2 text-xs text-slate-600">
-      <summary aria-label={baseLabel ? `Vis kilde: ${baseLabel}` : undefined} className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-4">Vis kilde{origin && <span className="font-normal"> · {origin === "document" ? "kundedokument" : "offentlig vilkår"}</span>}</summary>
+      <summary aria-label={baseLabel ? `Vis kilde: ${baseLabel}` : undefined} className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-4">Vis kilde{(origin || source.documentRole === "general_terms") && <span className="font-normal"> · {source.documentRole === "general_terms" ? "produktvilkår" : origin === "document" ? "kundedokument" : "offentlig vilkår"}</span>}</summary>
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
         {baseLabel && <p className="font-medium text-slate-700">{baseLabel}</p>}
         {source.note && <p>{source.note}</p>}
@@ -1231,7 +1231,7 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
         firstSources={group.first[0].objectIdentifiers?.flatMap(id => id.sources ?? [])}
         secondSources={group.second[0].objectIdentifiers?.flatMap(id => id.sources ?? [])} />}
       {[...group.first, ...group.second].some(insurance => insurance.company) && <ComparisonRow label="Selskap" first={providerDisplayName(group.first[0]?.company, group.first[0]?.catalogReference)} second={providerDisplayName(group.second[0]?.company, group.second[0]?.catalogReference)} />}
-      {[...group.first, ...group.second].some(insurance => insurance.consolidation?.status === "consolidated") && <tr className="align-top border-b border-slate-200">
+      {[...group.first, ...group.second].some(insurance => insurance.consolidation?.status === "consolidated" || insurance.recordEvidence?.some(record => record.documentRole === "general_terms")) && <tr className="align-top border-b border-slate-200">
         <th className="px-3 py-2 text-left text-sm font-medium">Dokumentgrunnlag</th>
         {[group.first, group.second].map((items, side) => <td key={side} className="px-3 py-2">{items.map((insurance, index) => <div key={index}>{insurance.recordEvidence?.map((record, r) => <details key={`record:${r}`} className="mt-2 text-sm">
           <summary className="cursor-pointer underline">Vis dokumentgrunnlag · {r + 1}</summary>
