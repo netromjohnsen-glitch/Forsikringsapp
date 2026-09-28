@@ -3,6 +3,9 @@ import type { ObjectIdentifier } from "./object-matching.ts";
 import { vehicleObjectFactKeys } from "./vehicle-object-registry.ts";
 import { ANALYSIS_MODEL } from "./analysis-telemetry.ts";
 import { canonicalInsuranceTypeLabel } from "./insurance-normalization.ts";
+import type { AgreementScopeId } from "./agreement-scope.ts";
+import { isRegisteredAgreementScope } from "./agreement-scope.ts";
+import { agreementScopeAllowed, productCatalog, type ProductCatalog } from "./product-catalog.ts";
 
 export const EXTRACTION_TIMEOUT_MS = 90_000;
 
@@ -46,6 +49,7 @@ export type ExtractedAddOn = {
   importantTerms: ExtractedTerm[];
 };
 export type ExtractedInsurance = {
+  agreementScope?: AgreementScopeId | null;
   agreementPeriod?: AgreementPeriod | null;
   documentRole?: DocumentRole;
   objectIdentifiers?: ObjectIdentifier[];
@@ -128,11 +132,12 @@ VIKTIG:
 - Ikke presenter én forsikring som bedre enn en annen. Hent ut faktainformasjonen slik at systemet kan sammenligne dem.
 `;
 
-export function buildExtractionRequest(input: string, documentCount?: number) {
+export function buildExtractionRequest(input: string, documentCount?: number, catalog: ProductCatalog = productCatalog) {
+  const scopes = (catalog.agreementScopes ?? []).filter(scope => isRegisteredAgreementScope(scope.id, [scope]));
   const request = {
     model: ANALYSIS_MODEL,
     store: false,
-    instructions: EXTRACTION_INSTRUCTIONS,
+    instructions: EXTRACTION_INSTRUCTIONS + (scopes.length ? "\n- agreementScope er bare en eksakt katalogavtale-ID når dokumentet uttrykkelig angir avtalen. ordinary krever eksplisitt ordinær privatavtale. Bruk null ved ukjent scope; aldri medlemsnummer, polisenummer, personopplysninger eller gjetting." : ""),
     input,
     text: {
       format: {
@@ -224,6 +229,16 @@ export function buildExtractionRequest(input: string, documentCount?: number) {
       },
     },
   };
+  // No change to today's extraction contract until catalog scopes are added.
+  // Future scope extraction is a closed catalog enum, never customer free text.
+  if (scopes.length) {
+    const product = request.text.format.schema.properties.insurances.items;
+    Object.assign(product.properties, { agreementScope: {
+      type: ["string", "null"], enum: [null, "ordinary", ...new Set(scopes.map(scope => scope.id))],
+      description: "Eksakt avtalescope, bare når uttrykkelig dokumentert. Registrerte scopes: " + scopes.map(scope => `${scope.providerId}: ${scope.id} (${scope.name})`).join("; "),
+    } });
+    product.required.push("agreementScope");
+  }
   if (documentCount !== undefined) {
     const product = request.text.format.schema.properties.insurances.items;
     const indices = { type: "array", minItems: 1, maxItems: documentCount, items: { type: "integer", minimum: 1, maximum: documentCount } };
@@ -309,8 +324,12 @@ function agreementPeriod(value: unknown): AgreementPeriod | null {
   return from || to ? { from, to } : null;
 }
 
-function insurance(value: unknown): ExtractedInsurance {
-  const item = object(value, ["documentRole", "agreementPeriod", "objectIdentifiers", "type", "productName", "canonicalProductName", "annualPremium", "deductible", "coverageSummary", "importantTerms", "addOns", "documentIndices", "company"]);
+function insurance(value: unknown, company: string | null, catalog: ProductCatalog): ExtractedInsurance {
+  const item = object(value, ["agreementScope", "documentRole", "agreementPeriod", "objectIdentifiers", "type", "productName", "canonicalProductName", "annualPremium", "deductible", "coverageSummary", "importantTerms", "addOns", "documentIndices", "company"]);
+  const providerName = item.company === undefined ? company : text(item.company, 150, true);
+  if (item.agreementScope != null && !agreementScopeAllowed(providerName, item.agreementScope, catalog)) {
+    throw new AnalysisOutputError("Ugyldig avtalescope.");
+  }
   if (!Array.isArray(item.importantTerms) || item.importantTerms.length > 80 ||
       !Array.isArray(item.addOns) || item.addOns.length > 30) throw new AnalysisOutputError("For mange analysepunkter.");
   if (item.documentRole !== undefined && !["individual_agreement", "general_terms", "unknown"].includes(String(item.documentRole))) throw new AnalysisOutputError("Ugyldig dokumentrolle.");
@@ -321,6 +340,7 @@ function insurance(value: unknown): ExtractedInsurance {
     : text(item.canonicalProductName, 200, true);
   const coverageSummary = text(item.coverageSummary, 6_000, true);
   return {
+    ...(item.agreementScope !== undefined ? { agreementScope: item.agreementScope as AgreementScopeId | null } : {}),
     ...(item.documentIndices !== undefined ? { documentIndices: documentIndices(item.documentIndices) } : {}),
     ...(item.company !== undefined ? { company: text(item.company, 150, true) } : {}),
     ...(item.documentRole !== undefined ? { documentRole: item.documentRole as DocumentRole } : {}),
@@ -337,17 +357,18 @@ function insurance(value: unknown): ExtractedInsurance {
   };
 }
 
-export function validateAnalysisOutput(value: unknown): ExtractedAgreement {
+export function validateAnalysisOutput(value: unknown, catalog: ProductCatalog = productCatalog): ExtractedAgreement {
   const item = object(value, ["company", "totalAnnualPremium", "totalAnnualPremiumScope", "insurances"]);
   if (!Array.isArray(item.insurances) || item.insurances.length > 30) throw new AnalysisOutputError("For mange forsikringer i analysen.");
   if (item.totalAnnualPremiumScope !== "entire_agreement" && item.totalAnnualPremiumScope !== "partial_or_unclear") {
     throw new AnalysisOutputError("Ugyldig premiescope.");
   }
+  const company = text(item.company, 150, true);
   return {
-    company: text(item.company, 150, true),
+    company,
     totalAnnualPremium: premium(item.totalAnnualPremium),
     totalAnnualPremiumScope: item.totalAnnualPremiumScope,
-    insurances: item.insurances.map(insurance),
+    insurances: item.insurances.map(value => insurance(value, company, catalog)),
   };
 }
 

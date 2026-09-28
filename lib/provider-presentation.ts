@@ -1,4 +1,4 @@
-import { canonicalProviderId, productCatalog, type ProductCatalog } from "./product-catalog.ts";
+import { canonicalProviderId, findCatalogProduct, productCatalog, type ProductCatalog } from "./product-catalog.ts";
 import type { ComparedDocument, ComparedInsurance } from "./comparison.ts";
 
 // Display only: keep raw/legal names on the document and its source records.
@@ -8,9 +8,16 @@ export function providerDisplayName(raw: string | null | undefined, reference?: 
   const providerId = reference?.providerId ?? (raw ? canonicalProviderId(raw, catalog) : null);
   if (!providerId) return raw || null;
   const products = catalog.products.filter(product => product.providerId === providerId &&
-    (!reference || (product.productId === reference.productId && product.version === reference.version)));
+    (!reference || product === findCatalogProduct(reference.providerId, reference.productId, reference.version, reference, catalog)));
   const names = [...new Set(products.map(product => product.company))];
   return names.length === 1 ? names[0] : raw || null;
+}
+
+export function agreementScopeDisplayName(insurance: Pick<ComparedInsurance, "agreementScope" | "catalogReference" | "company">, catalog: ProductCatalog = productCatalog): string | null {
+  const scope = insurance.agreementScope ?? insurance.catalogReference?.agreementScope;
+  if (!scope || scope === "ordinary") return null;
+  const providerId = insurance.catalogReference?.providerId ?? (insurance.company ? canonicalProviderId(insurance.company, catalog) : null);
+  return catalog.agreementScopes?.find(definition => definition.id === scope && definition.providerId === providerId)?.name ?? null;
 }
 
 export function agreementProviderDisplayName(data: ComparedDocument["insuranceData"]): string | null {

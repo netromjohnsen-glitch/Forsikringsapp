@@ -15,6 +15,10 @@ import {
   resolveCatalogEvidence,
   resolveCatalogFacts,
   type CatalogFact,
+  type CatalogProductReference,
+  type ProductCatalog,
+  productCatalog,
+  catalogReferenceForProduct,
 } from "./product-catalog.ts";
 
 type EnrichedTerm = ExtractedTerm & {
@@ -30,7 +34,7 @@ type EnrichedTerm = ExtractedTerm & {
 export type CatalogEnrichedInsurance = Omit<ExtractedInsurance, "importantTerms"> & {
   importantTerms: EnrichedTerm[];
   addOns: (ExtractedInsurance["addOns"][number] & { classification?: "standard" | "add_on" })[];
-  catalogReference?: { providerId: string; productId: string; version: string | null } | null;
+  catalogReference?: CatalogProductReference | null;
   catalogSelectionConfirmed?: boolean;
   catalogFacts?: CatalogFact[] | null;
   addOnIds?: string[];
@@ -70,6 +74,7 @@ function enrichInsurance(
   measure: MeasureSync,
   resolvedDocumentTerms?: DocumentFact[],
   trace?: TraceObjectObserver,
+  catalog: ProductCatalog = productCatalog,
 ): CatalogEnrichedInsurance {
   // undefined betyr et eldre internt kall uten feltet; null fra dagens schema
   // betyr uttrykkelig at produktnivået ikke kunne identifiseres sikkert.
@@ -77,7 +82,7 @@ function enrichInsurance(
     ? insurance.productName
     : insurance.canonicalProductName;
   const product = measure("catalogLookup", () => company && productIdentity
-    ? findCatalogProductBySelection(company, insurance.type, productIdentity)
+    ? findCatalogProductBySelection(company, insurance.type, productIdentity, insurance.agreementScope, catalog)
     : null);
   trace?.product(insurance, product);
   let documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => {
@@ -97,8 +102,8 @@ function enrichInsurance(
     return { ...insurance, importantTerms: documentTerms, catalogReference: null };
   }
 
-  const effectiveFacts = resolveCatalogFacts(product, [], asOf, null);
-  const catalogFacts = resolveCatalogEvidence(product, [], asOf, null);
+  const effectiveFacts = resolveCatalogFacts(product, [], asOf, null, catalog);
+  const catalogFacts = resolveCatalogEvidence(product, [], asOf, null, catalog);
   // An exact, unambiguous label from this identified product can establish a
   // fact identity. Previously it only suppressed the catalog fact, leaving
   // the document value stranded on a separate display-name row.
@@ -188,11 +193,7 @@ function enrichInsurance(
     // Dette er den eneste effektive faktalisten som comparison og coverage-
     // sammendrag skal konsumere. catalogFacts under beholdes som evidens/audit.
     importantTerms: effectiveTerms,
-    catalogReference: {
-      providerId: product.providerId,
-      productId: product.productId,
-      version: product.version,
-    },
+    catalogReference: catalogReferenceForProduct(product),
     // Eksakt produktnivå bekrefter produktets ubetingede base. Valgfrie
     // dekninger uten dokumentevidens er filtrert bort over.
     catalogSelectionConfirmed: true,
@@ -202,7 +203,7 @@ function enrichInsurance(
     addOns: insurance.addOns.map((addOn) => {
       const key = normalizeTermName(addOn.name, { insuranceType: insurance.type });
       const definition = coverageDefinitions.find((entry) => entry.parentKey === key);
-      const knownAddOn = availableAddOns(product, asOf, null).some((entry) =>
+      const knownAddOn = availableAddOns(product, asOf, null, catalog).some((entry) =>
         normalizeTermName(entry.name, { insuranceType: insurance.type }) === key);
       const baseKeys = definition?.details.map((detail) => detail.key) ?? [];
       // Ulykkens scope is explicit; no free-text prefix/substring matching.
@@ -220,11 +221,12 @@ export function enrichExtractedAgreementWithCatalog(
   asOf = new Date(),
   measure: MeasureSync = (_stage, work) => work(),
   trace?: TraceObjectObserver,
+  catalog: ProductCatalog = productCatalog,
 ): CatalogEnrichedAgreement {
   return {
     ...agreement,
     insurances: agreement.insurances.map((insurance) =>
-      enrichInsurance(agreement.company, insurance, asOf, measure, undefined, trace)),
+      enrichInsurance(insurance.company === undefined ? agreement.company : insurance.company, insurance, asOf, measure, undefined, trace, catalog)),
   };
 }
 

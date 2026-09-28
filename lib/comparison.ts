@@ -20,8 +20,11 @@ import {
 import type { MatchingPlan } from "./hybrid-matching.ts";
 import { materiallyEquivalentValues } from "./value-equivalence.ts";
 import type { BuildingFactData } from "./building-facts.ts";
+import type { CatalogProductReference } from "./product-catalog.ts";
+import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
 
 export type FactSource = {
+  agreementScope?: AgreementScopeId;
   documentRole?: DocumentRole;
   documentId: string;
   filename: string;
@@ -47,6 +50,7 @@ export type InsuranceTerm = {
   overriddenBase?: BaseFact[];
 };
 export type ComparedInsurance = {
+  agreementScope?: AgreementScopeId | null;
   recordEvidence?: ConsolidatedDocumentObject["recordEvidence"];
   consolidation?: ConsolidationInfo;
   agreementPeriod?: AgreementPeriod | null;
@@ -60,7 +64,7 @@ export type ComparedInsurance = {
   deductibleOrigin?: "customer" | "document" | "unknown";
   coverageSummary: string | null;
   importantTerms: InsuranceTerm[];
-  catalogReference?: { providerId: string; productId: string; version: string | null } | null;
+  catalogReference?: CatalogProductReference | null;
   // Settes bare når et eksakt katalogprodukt er eksplisitt valgt eller sikkert
   // identifisert. Katalogfakta uten denne bekreftelsen kan ikke bestemme dekning.
   catalogSelectionConfirmed?: boolean;
@@ -215,7 +219,8 @@ function knownAbsentAddOn(group: InsuranceGroup, presentSide: "first" | "second"
   const missing = group[presentSide === "first" ? "second" : "first"];
   if (present.length !== 1 || missing.length !== 1 ||
       !present[0].catalogReference || !missing[0].catalogReference ||
-      present[0].catalogReference.providerId !== missing[0].catalogReference.providerId) return false;
+      present[0].catalogReference.providerId !== missing[0].catalogReference.providerId ||
+      catalogAgreementScope(present[0].catalogReference) !== catalogAgreementScope(missing[0].catalogReference)) return false;
   return Boolean(present[0].addOns?.some((addOn) => addOn.source?.id === source.documentId)) &&
     !missing[0].addOns?.some((addOn) => addOn.source?.id === source.documentId);
 }
@@ -568,7 +573,8 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
     }
     const bothCatalog = group.first.length === 1 && group.second.length === 1 &&
       group.first[0].catalogReference && group.second[0].catalogReference &&
-      group.first[0].catalogReference.providerId === group.second[0].catalogReference.providerId;
+      group.first[0].catalogReference.providerId === group.second[0].catalogReference.providerId &&
+      catalogAgreementScope(group.first[0].catalogReference) === catalogAgreementScope(group.second[0].catalogReference);
     const summarizedSources = new Set<string>();
     if (bothCatalog) {
       const leftAddOns = new Map(selectedAddOns(group.first[0], group.key).map((addOn) => [addOn.id, addOn]));

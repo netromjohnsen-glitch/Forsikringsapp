@@ -1,9 +1,11 @@
-import { catalogProductMatchesSelection, findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
+import { agreementScopeAllowed, catalogReferenceForProduct, type CatalogProductReference, type ProductCatalog, catalogProductMatchesSelection, findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
+import type { AgreementScopeId } from "./agreement-scope.ts";
 import { summarizeManualAnnualPremium } from "./agreement-pricing.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 
 export type ManualTermInput = { name: string; value: string };
 export type ManualProductInput = {
+  agreementScope?: AgreementScopeId | null;
   type: string;
   productName: string;
   annualPremium: string;
@@ -13,7 +15,7 @@ export type ManualProductInput = {
   annualMileage?: string;
   customProduct?: boolean;
   // Kan fylles med en stabil ID og vilkårsversjon når en produktkatalog kobles til.
-  catalogReference?: { providerId: string; productId: string; version: string | null } | null;
+  catalogReference?: CatalogProductReference | null;
   addOnIds?: string[];
 };
 export type ManualAgreementInput = {
@@ -80,7 +82,7 @@ function manualAnnualMileage(value: unknown, type: string, productIndex: number)
   };
 }
 
-export function normalizeManualAgreement(input: unknown) {
+export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog = productCatalog) {
   const agreement = object(input);
   const company = field(agreement.company, "selskap", 150);
   const distributionChannel = optional(agreement.distributionChannel, "distribusjonskanal", 100);
@@ -91,6 +93,10 @@ export function normalizeManualAgreement(input: unknown) {
 
   const insurances = agreement.products.map((rawProduct, productIndex) => {
     const product = object(rawProduct);
+    if (product.agreementScope != null && !agreementScopeAllowed(company, product.agreementScope, catalog)) {
+      throw new ManualAgreementError("Ugyldig avtalescope.");
+    }
+    const agreementScope = product.agreementScope as AgreementScopeId | null | undefined;
     const type = field(product.type, `forsikringstype ${productIndex + 1}`, 120);
     if (!type) throw new ManualAgreementError(`Oppgi forsikringstype for produkt ${productIndex + 1}.`);
     if (!Array.isArray(product.importantTerms) || product.importantTerms.length > 60) {
@@ -111,19 +117,34 @@ export function normalizeManualAgreement(input: unknown) {
     let effectiveFacts = null;
     let selectedAddOnIds: string[] = [];
     let catalogProduct = null;
-    if (rawReference !== undefined && rawReference !== null) {
+    if (product.customProduct !== true && rawReference !== undefined && rawReference !== null) {
       const reference = object(rawReference);
+      if (reference.insuranceType !== undefined && normalizeInsuranceType(field(reference.insuranceType, "katalogtype", 120)) !== normalizeInsuranceType(type)) {
+        throw new ManualAgreementError("Katalogreferansen har feil forsikringstype.");
+      }
+      if (reference.agreementScope != null && (!agreementScopeAllowed(company, reference.agreementScope, catalog) ||
+          (agreementScope != null && agreementScope !== reference.agreementScope))) {
+        throw new ManualAgreementError("Katalogreferansen har feil avtalescope.");
+      }
       catalogProduct = findCatalogProduct(
         field(reference.providerId, "katalogleverandør", 100),
         field(reference.productId, "katalogprodukt", 100),
         optional(reference.version, "vilkårsversjon", 100),
+        { insuranceType: type, agreementScope: agreementScope ?? reference.agreementScope as AgreementScopeId | null | undefined }, catalog,
       );
+      const referencedProducts = catalog.products.filter(candidate => candidate.providerId === reference.providerId &&
+        candidate.productId === reference.productId && candidate.version === (reference.version ?? null));
+      if (referencedProducts.length && referencedProducts.every(candidate => normalizeInsuranceType(candidate.insuranceType) !== normalizeInsuranceType(type))) {
+        throw new ManualAgreementError("Valgt katalogprodukt stemmer ikke med selskap, type og produkt.");
+      }
     }
     const selectedByFields = product.customProduct === true ? null : findCatalogProductBySelection(
       company, type, field(product.productName, "produktnavn", 150),
+      agreementScope, catalog,
     );
     if (catalogProduct && (!catalogProductMatchesSelection(
       catalogProduct, company, type, field(product.productName, "produktnavn", 150),
+      agreementScope ?? catalogProduct.agreementScope, catalog,
     ) || (selectedByFields && catalogProduct !== selectedByFields))) {
       throw new ManualAgreementError("Valgt katalogprodukt stemmer ikke med selskap, type og produkt.");
     }
@@ -136,28 +157,29 @@ export function normalizeManualAgreement(input: unknown) {
       }
       selectedAddOnIds = rawAddOnIds as string[];
       try {
-        effectiveFacts = resolveCatalogFacts(catalogProduct, selectedAddOnIds, new Date(), distributionChannel);
-        catalogFacts = resolveCatalogEvidence(catalogProduct, selectedAddOnIds, new Date(), distributionChannel);
+        effectiveFacts = resolveCatalogFacts(catalogProduct, selectedAddOnIds, new Date(), distributionChannel, catalog);
+        catalogFacts = resolveCatalogEvidence(catalogProduct, selectedAddOnIds, new Date(), distributionChannel, catalog);
       } catch {
         throw new ManualAgreementError("Ugyldig eller ikke gyldig tilleggsdekning.");
       }
-      catalogReference = { providerId: catalogProduct.providerId, productId: catalogProduct.productId, version: catalogProduct.version };
+      catalogReference = catalogReferenceForProduct(catalogProduct);
     } else if (Array.isArray(product.addOnIds) && product.addOnIds.length > 0) {
       throw new ManualAgreementError("Tillegg krever et sikkert katalogprodukt.");
     }
     const counts = new Map<string, number>();
     for (const item of effectiveFacts ?? []) counts.set(item.key, (counts.get(item.key) ?? 0) + 1);
     const addOns = selectedAddOnIds.map((id) => {
-      const addOn = productCatalog.addOns?.find((entry) => entry.id === id);
+      const addOn = catalog.addOns?.find((entry) => entry.id === id && entry.providerId === catalogProduct!.providerId &&
+        (entry.agreementScope ?? "ordinary") === (catalogProduct!.agreementScope ?? "ordinary"));
       if (!addOn) throw new ManualAgreementError("Ukjent tilleggsdekning.");
       return {
         id,
         name: addOn.name,
         annualPremium: null,
         deductible: null,
-        source: productCatalog.sources?.[addOn.componentId] ?? null,
+        source: catalog.sources?.[addOn.componentId] ?? null,
         coverageOrigin: "catalog" as const,
-        importantTerms: (productCatalog.facts?.[addOn.componentId] ?? []).map((item) => ({
+        importantTerms: (catalogFacts ?? []).filter(item => (catalog.facts?.[addOn.componentId] ?? []).includes(item)).map((item) => ({
           name: item.label, value: item.value, key: item.key, source: item.source,
           coverageOrigin: "catalog" as const,
           deductibleClassification: item.deductibleClassification,
@@ -192,6 +214,7 @@ export function normalizeManualAgreement(input: unknown) {
         }))
       : importantTerms;
     return {
+      ...(agreementScope !== undefined ? { agreementScope } : catalogProduct?.agreementScope ? { agreementScope: catalogProduct.agreementScope } : {}),
       type,
       productName: optional(product.productName, "produktnavn", 150),
       annualPremium: optional(product.annualPremium, "årspremie", 100),

@@ -1,4 +1,5 @@
 import { vehicleObjectTypes, vehicleObjectCoverages } from "./vehicle-object-registry.ts";
+import type { AgreementScopeId } from "./agreement-scope.ts";
 export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise" | "snøscooter" | "campingvogn" | "tilhenger";
 export type PresentationTier = "primary" | "secondary" | "detail";
 export type PresentationFactType =
@@ -27,6 +28,7 @@ export type PresentationConcept = {
 };
 
 export type PresentationEvidence = {
+  agreementScope?: AgreementScopeId;
   id: string;
   providerId: string;
   distributionChannel?: string;
@@ -55,6 +57,7 @@ export type ConditionalBenefitFact = {
 };
 
 export type ConditionalBenefit = {
+  agreementScope?: AgreementScopeId;
   id: string;
   providerId: string;
   providerName: string;
@@ -69,6 +72,7 @@ export type ConditionalBenefit = {
 };
 
 export type ConditionalBenefitAudit = {
+  agreementScope?: AgreementScopeId;
   providerId: string;
   providerName: string;
   distributionChannel: string;

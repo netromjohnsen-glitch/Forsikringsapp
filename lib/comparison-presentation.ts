@@ -1,4 +1,5 @@
 import type { Difference, InsuranceGroup, TermGroup } from "./comparison.ts";
+import { catalogAgreementScope } from "./agreement-scope.ts";
 import { groupTerms } from "./comparison.ts";
 import { coverageDetailPresentation, type CoverageDetailPresentation } from "./coverage-detail-presentation.ts";
 import type { MatchingPlan } from "./hybrid-matching.ts";
@@ -119,7 +120,7 @@ function shouldPresent(concept: PresentationConcept, items: Difference[]): boole
 
 function providerIds(insurances: InsuranceGroup["first"]): Set<string> {
   return new Set(insurances.flatMap((insurance) =>
-    insurance.catalogReference?.providerId ? [insurance.catalogReference.providerId] : []
+    insurance.catalogReference?.providerId ? [JSON.stringify([insurance.catalogReference.providerId, catalogAgreementScope(insurance.catalogReference)])] : []
   ));
 }
 
@@ -133,7 +134,7 @@ function benefitText(benefits: readonly ConditionalBenefit[]): string {
 function missingBenefitText(providers: Set<string>, conceptId: string): string {
   if (!providers.size) return "Betinget fordel kan ikke avgjøres uten katalogkobling.";
   const audits = [...providers].map((providerId) => conditionalBenefitAudits.find((audit) =>
-    audit.providerId === providerId && audit.conceptId === conceptId
+    JSON.stringify([audit.providerId, catalogAgreementScope(audit)]) === providerId && audit.conceptId === conceptId
   ));
   return audits.every((audit) => audit?.status === "not-documented")
     ? "Tilsvarende betinget fordel er ikke dokumentert etter kontroll av aktive offisielle kilder."
@@ -143,7 +144,7 @@ function missingBenefitText(providers: Set<string>, conceptId: string): string {
 function benefitSources(benefits: readonly ConditionalBenefit[], side: PresentationSource["side"]): PresentationSource[] {
   return benefits.flatMap((benefit) => {
     const evidence = evidenceById(benefit.evidenceId);
-    if (!evidence) return [];
+    if (!evidence || catalogAgreementScope(evidence) !== catalogAgreementScope(benefit)) return [];
     return [
       { label: `Vis hovedkilde for ${benefit.distributionChannel}`, url: evidence.url },
       ...(evidence.supportingSources ?? []),
@@ -214,10 +215,10 @@ function groupDifferences(group: InsuranceGroup, differences: Difference[]): Pre
     ).map((benefit) => benefit.conceptId))];
     for (const conceptId of conceptIds) {
       const firstBenefits = conditionalBenefits.filter((benefit) =>
-        benefit.insuranceType === group.key && benefit.conceptId === conceptId && firstProviders.has(benefit.providerId)
+        benefit.insuranceType === group.key && benefit.conceptId === conceptId && firstProviders.has(JSON.stringify([benefit.providerId, catalogAgreementScope(benefit)]))
       );
       const secondBenefits = conditionalBenefits.filter((benefit) =>
-        benefit.insuranceType === group.key && benefit.conceptId === conceptId && secondProviders.has(benefit.providerId)
+        benefit.insuranceType === group.key && benefit.conceptId === conceptId && secondProviders.has(JSON.stringify([benefit.providerId, catalogAgreementScope(benefit)]))
       );
       if (!firstBenefits.length && !secondBenefits.length) continue;
       // Identical catalog benefit identities are not an agreement difference.

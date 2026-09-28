@@ -1,5 +1,16 @@
 import type { CatalogFact, CatalogProduct, CatalogSource } from "./product-catalog.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
+import { catalogAgreementScope } from "./agreement-scope.ts";
+
+export function catalogFactScopeApplies(fact: CatalogFact, sources: Readonly<Record<string, CatalogSource>>, product: CatalogProduct): boolean {
+  const expected = catalogAgreementScope(product);
+  // This boundary also applies to legacy sources, before their authority and
+  // date policy. Undeclared sources are ordinary, never universally applicable.
+  const applies = (reference: CatalogFact["source"]) =>
+    catalogAgreementScope(sources[reference.documentId] ?? reference) === expected &&
+    (reference.agreementScope === undefined || reference.agreementScope === expected);
+  return applies(fact.source) && (!fact.qualificationSource || applies(fact.qualificationSource));
+}
 
 export type CatalogSourceDecision = {
   key: string;
@@ -24,6 +35,7 @@ export function resolveCatalogSources(
     const evidence = [...entries].sort((a, b) =>
       JSON.stringify([a.source.documentId, a.value, a.source]).localeCompare(JSON.stringify([b.source.documentId, b.value, b.source])));
     const applicable = evidence.filter(fact => {
+      if (!catalogFactScopeApplies(fact, sources, product)) return false;
       const source = sources[fact.source.documentId];
       if (!source?.sourceType) return true;
       return (!source.providerId || source.providerId === product.providerId) &&

@@ -1,7 +1,8 @@
 import { consolidationGroups, type AgreementPeriod, type ConsolidationInfo, type ConsolidationIssue, type DocumentRole } from "./object-consolidation.ts";
 import { objectIdentity } from "./object-matching.ts";
 import { defaultIdentifierStrategies, type IdentifierStrategies } from "./object-identity-strategies.ts";
-import { canonicalProviderId, findCatalogProductBySelection } from "./product-catalog.ts";
+import { canonicalProviderId, findCatalogProductBySelection, catalogProductIdentity, resolvedAgreementScope } from "./product-catalog.ts";
+import type { AgreementScopeId } from "./agreement-scope.ts";
 import { normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName, relatedCoveragesForInsuranceType } from "./insurance-normalization.ts";
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import type { ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
@@ -18,7 +19,7 @@ export type DocumentObjectRecord = Omit<ExtractedInsurance, "importantTerms"> & 
 };
 export type ConsolidatedDocumentObject = DocumentObjectRecord & {
   consolidation: ConsolidationInfo;
-  recordEvidence: { productName: string | null; company: string | null; documentRole: DocumentRole; agreementPeriod: AgreementPeriod | null; annualPremium: string | null; deductible: string | null; sources: FactSource[]; importantTerms: DocumentTerm[] }[];
+  recordEvidence: { agreementScope?: AgreementScopeId | null; productName: string | null; company: string | null; documentRole: DocumentRole; agreementPeriod: AgreementPeriod | null; annualPremium: string | null; deductible: string | null; sources: FactSource[]; importantTerms: DocumentTerm[] }[];
 };
 export type ConsolidationTraceHooks = {
   forRecord(record: object): TraceObjectObserver | undefined;
@@ -38,14 +39,16 @@ function providerIdentity(record: DocumentObjectRecord): string | null {
 function productIdentity(record: DocumentObjectRecord, company: string | null): string | null {
   const name = record.canonicalProductName === undefined ? record.productName : record.canonicalProductName;
   if (!name) return null;
-  const product = company && findCatalogProductBySelection(company, record.type, name);
-  return product ? `${product.providerId}:${product.productId}:${product.version ?? ""}` : textIdentity(name);
+  const product = company && findCatalogProductBySelection(company, record.type, name, record.agreementScope);
+  return product ? catalogProductIdentity(product) : textIdentity(name);
 }
 export function insuranceConsolidationIssues(records: readonly DocumentObjectRecord[]): ConsolidationIssue[] {
   const issues: ConsolidationIssue[] = [];
   const providers = new Set(records.map(providerIdentity).filter(Boolean));
   if (providers.size > 1) issues.push("provider_conflict");
   const company = records.find(record => record.company)?.company ?? null;
+  const scopes = records.map(record => resolvedAgreementScope(record.company ?? company, record.type, record.agreementScope));
+  if (scopes.includes(null) || new Set(scopes).size > 1) issues.push("product_conflict");
   if (new Set(records.map(record => productIdentity(record, company)).filter(Boolean)).size > 1) issues.push("product_conflict");
   if (["from", "to"].some(key => new Set(records.map(record => record.agreementPeriod?.[key as keyof AgreementPeriod]).filter(Boolean)).size > 1)) issues.push("temporal_conflict");
   return issues;
@@ -136,6 +139,7 @@ function mergeRecords(records: readonly DocumentObjectRecord[], hooks?: Consolid
   const to = records.find(record => record.agreementPeriod?.to)?.agreementPeriod?.to ?? null;
   return {
     ...first,
+    ...(records.some(record => record.agreementScope != null) ? { agreementScope: records.find(record => record.agreementScope != null)!.agreementScope } : {}),
     type: normalizeInsuranceType(first.type, first),
     productName: displayNames.length === 1 ? displayNames[0] : canonicalNames[0] ?? (displayNames.join(" · ") || null),
     canonicalProductName: canonicalNames[0] ?? first.canonicalProductName,
@@ -152,7 +156,7 @@ function mergeRecords(records: readonly DocumentObjectRecord[], hooks?: Consolid
     importantTerms: resolved.terms,
     addOns: [...addOns.values()].sort((a,b) => a.name.localeCompare(b.name, "en")),
     consolidation: { status: "consolidated", recordCount: records.length, issues: [], factConflicts: conflicts },
-    recordEvidence: records.map(record => ({ productName: record.productName, company: record.company, documentRole: record.documentRole ?? "unknown", agreementPeriod: record.agreementPeriod ?? null, annualPremium: record.annualPremium, deductible: record.deductible, sources: record.documentSources, importantTerms: record.importantTerms })),
+    recordEvidence: records.map(record => ({ ...(record.agreementScope !== undefined ? { agreementScope: record.agreementScope } : {}), productName: record.productName, company: record.company, documentRole: record.documentRole ?? "unknown", agreementPeriod: record.agreementPeriod ?? null, annualPremium: record.annualPremium, deductible: record.deductible, sources: record.documentSources, importantTerms: record.importantTerms })),
   };
 }
 
@@ -172,7 +176,7 @@ export function consolidateInsuranceRecords(records: readonly DocumentObjectReco
       const record = {
         ...records[index],
         consolidation: { status: group.status, recordCount: 1, issues: group.issues },
-        recordEvidence: [{ productName: records[index].productName, company: records[index].company, documentRole: records[index].documentRole ?? "unknown", agreementPeriod: records[index].agreementPeriod ?? null, annualPremium: records[index].annualPremium, deductible: records[index].deductible, sources: records[index].documentSources, importantTerms: records[index].importantTerms }],
+        recordEvidence: [{ ...(records[index].agreementScope !== undefined ? { agreementScope: records[index].agreementScope } : {}), productName: records[index].productName, company: records[index].company, documentRole: records[index].documentRole ?? "unknown", agreementPeriod: records[index].agreementPeriod ?? null, annualPremium: records[index].annualPremium, deductible: records[index].deductible, sources: records[index].documentSources, importantTerms: records[index].importantTerms }],
       } satisfies ConsolidatedDocumentObject;
       hooks?.consolidated([records[index]], record, group.status, group.issues);
       return { record, indices: [index] };

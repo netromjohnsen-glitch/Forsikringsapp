@@ -9,7 +9,7 @@ import { isMotorVehicleType, normalizeInsuranceType } from "@/lib/insurance-norm
 import { VehiclePriceList } from "./components/vehicle-price";
 import { PortfolioPriceList } from "./components/portfolio-price";
 import { portfolioPrice, portfolioPriceDifference, type PortfolioPriceInput } from "@/lib/portfolio-price-presentation";
-import { providerDisplayName, agreementProviderDisplayName } from "@/lib/provider-presentation";
+import { providerDisplayName, agreementProviderDisplayName, agreementScopeDisplayName } from "@/lib/provider-presentation";
 import { AnalysisProgress } from "./components/analysis-progress";
 import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
@@ -18,13 +18,14 @@ import { annualPremiumLabel } from "@/lib/agreement-pricing";
 import type { ManualPremiumSummary } from "@/lib/agreement-pricing";
 import { emptyManualAgreement, emptyManualProduct } from "@/lib/manual-agreement";
 import type { ManualAgreementInput, ManualProductInput } from "@/lib/manual-agreement";
-import { availableAddOns, catalogConnectionStatus, findCatalogProduct, productCatalog } from "@/lib/product-catalog";
+import { availableAddOns, catalogAgreementScopeOptions, catalogConnectionStatus, findCatalogProduct, productCatalog } from "@/lib/product-catalog";
 import {
   applyManualProductSelection,
   CUSTOM_PRODUCT_SELECTION,
   manualProductOptions,
   manualProductSelection,
   transitionManualProductScope,
+  changeManualAgreementScope,
 } from "@/lib/manual-product-selection";
 import { createDifferences, groupAddOnNames, groupInsurances, groupTerms, groupValue } from "@/lib/comparison";
 import { presentImportantDifferences, sortDetailedTerms } from "@/lib/comparison-presentation";
@@ -386,9 +387,9 @@ function ManualEditor({ side, value, onChange }: {
               company,
               products: currentAgreement.products.map((product) => {
                 if (!company) {
-                  return { ...product, type: "", productName: "", annualMileage: "", customProduct: false, catalogReference: null, addOnIds: [] };
+                  return { ...product, agreementScope: null, type: "", productName: "", annualMileage: "", customProduct: false, catalogReference: null, addOnIds: [] };
                 }
-                return transitionManualProductScope(product, company, product.type);
+                return transitionManualProductScope({ ...product, agreementScope: null }, company, product.type);
               }),
             }));
           }}
@@ -449,7 +450,20 @@ function ManualEditor({ side, value, onChange }: {
               {!value.company.trim() && <span className="mt-1 block text-xs font-normal text-gray-500">Velg selskap først.</span>}
             </label>
             {(() => {
-              const options = manualProductOptions(value.company, product.type);
+              const scopes = catalogAgreementScopeOptions(productCatalog, value.company, product.type);
+              if (!scopes.some(scope => scope.id !== "ordinary")) return null;
+              return <label className="text-sm font-medium text-gray-700">
+                Avtale / medlemsavtale
+                <select value={product.agreementScope ?? ""} onChange={event => changeProduct(index,
+                  changeManualAgreementScope(product, value.company, product.type, event.target.value || null),
+                )} className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none">
+                  <option value="">Ukjent / ikke oppgitt</option>
+                  {scopes.map(scope => <option key={scope.id} value={scope.id}>{scope.name}</option>)}
+                </select>
+              </label>;
+            })()}
+            {(() => {
+              const options = manualProductOptions(value.company, product.type, productCatalog, product.agreementScope);
               const selection = manualProductSelection(product, value.company, product.type);
               const custom = selection === CUSTOM_PRODUCT_SELECTION;
               const selectId = `${side}-product-${index}`;
@@ -542,6 +556,7 @@ function ManualEditor({ side, value, onChange }: {
               product.catalogReference.providerId,
               product.catalogReference.productId,
               product.catalogReference.version,
+              { insuranceType: product.type, agreementScope: product.agreementScope ?? product.catalogReference.agreementScope },
             );
             if (!selected) return null;
             return (
@@ -1224,6 +1239,7 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
       {items.map((insurance, index) => <details key={index} className="mt-2 rounded border border-slate-200 p-3">
         <summary>{objectDisplayLabel(insurance, `${group.label} · objekt ${index + 1}`)} · {insurance.productName || "Produkt ikke dokumentert"}</summary>
         <p className="mt-2">{providerDisplayName(insurance.company, insurance.catalogReference) || "Selskap ikke oppgitt"}</p>
+        {agreementScopeDisplayName(insurance) && <p className="mt-1">Avtale: {agreementScopeDisplayName(insurance)}</p>}
         <p>{catalogConnectionStatus([insurance])}</p>
         <p>Årspremie: {insurance.annualPremium || "Pris ikke oppgitt"}</p>
         <p>Egenandel: {insurance.deductible || "Ikke dokumentert"}</p>
@@ -1260,6 +1276,7 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
         firstSources={group.first[0].objectIdentifiers?.flatMap(id => id.sources ?? [])}
         secondSources={group.second[0].objectIdentifiers?.flatMap(id => id.sources ?? [])} />}
       {[...group.first, ...group.second].some(insurance => insurance.company) && <ComparisonRow label="Selskap" first={providerDisplayName(group.first[0]?.company, group.first[0]?.catalogReference)} second={providerDisplayName(group.second[0]?.company, group.second[0]?.catalogReference)} />}
+      {[...group.first, ...group.second].some(insurance => agreementScopeDisplayName(insurance)) && <ComparisonRow label="Avtale / medlemsavtale" first={group.first[0] ? agreementScopeDisplayName(group.first[0]) : null} second={group.second[0] ? agreementScopeDisplayName(group.second[0]) : null} />}
       {[...group.first, ...group.second].some(insurance => insurance.consolidation?.status === "consolidated" || insurance.recordEvidence?.some(record => record.documentRole === "general_terms")) && <tr className="align-top border-b border-slate-200">
         <th className="px-3 py-2 text-left text-sm font-medium">Dokumentgrunnlag</th>
         {[group.first, group.second].map((items, side) => <td key={side} className="px-3 py-2">{items.map((insurance, index) => <div key={index}>{insurance.recordEvidence?.map((record, r) => <details key={`record:${r}`} className="mt-2 text-sm">

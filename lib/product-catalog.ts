@@ -33,8 +33,11 @@ import { frendeReiseAddOns, frendeReiseFacts, frendeReiseProducts, frendeReiseSo
 import type { BuildingFactData } from "./building-facts.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { resolveCatalogSources } from "./catalog-source-resolution.ts";
+import { catalogFactScopeApplies } from "./catalog-source-resolution.ts";
+import { catalogAgreementScope, isRegisteredAgreementScope, productsInAgreementScope, type AgreementScopeId, type AgreementScopeDefinition } from "./agreement-scope.ts";
 
 export type CatalogSource = {
+  agreementScope?: AgreementScopeId;
   id: string; filename: string; termsNumber: string; effectiveFrom: string;
   company?: string; url?: string; sha256?: string;
   productCode?: string; version?: string;
@@ -59,9 +62,10 @@ export type CatalogFact = {
   // uttrykkelig forrang; reference: beløpet står i forsikringsbeviset.
   deductibleClassification?: "standard" | "coverage" | "override" | "reference";
   qualificationSource?: CatalogFact["source"];
-  source: { documentId: string; section: string; page: number; filename: string; termsNumber: string; effectiveFrom: string; company?: string; url?: string; note?: string; productCode?: string; version?: string };
+  source: { documentId: string; section: string; page: number; filename: string; termsNumber: string; effectiveFrom: string; company?: string; url?: string; note?: string; productCode?: string; version?: string; agreementScope?: AgreementScopeId };
 };
 export type CatalogProduct = {
+  agreementScope?: AgreementScopeId;
   company: string;
   insuranceType: string;
   name: string;
@@ -73,6 +77,7 @@ export type CatalogProduct = {
   inheritsProductId?: string;
 };
 export type CatalogAddOn = {
+  agreementScope?: AgreementScopeId;
   id: string;
   name: string;
   componentId: string;
@@ -87,6 +92,7 @@ export type CatalogAddOn = {
 };
 
 export type ProductCatalog = {
+  agreementScopes?: AgreementScopeDefinition[];
   companies: string[];
   insuranceTypes: string[];
   products: CatalogProduct[];
@@ -145,24 +151,50 @@ export function canonicalProviderId(company: string, catalog: ProductCatalog = p
   return providerIds.size === 1 ? [...providerIds][0] : null;
 }
 
+export function agreementScopeAllowed(company: string | null, scope: unknown, catalog: ProductCatalog = productCatalog): scope is AgreementScopeId {
+  if (scope === "ordinary") return true;
+  if (!company) return false;
+  return catalog.products.some(product => canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company) &&
+    isRegisteredAgreementScope(scope, catalog.agreementScopes, product.providerId));
+}
+
+export function catalogAgreementScopeOptions(catalog: ProductCatalog, company: string, insuranceType: string): { id: AgreementScopeId; name: string }[] {
+  const products = catalog.products.filter(product => canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company) &&
+    normalizeInsuranceType(product.insuranceType) === normalizeInsuranceType(insuranceType));
+  return [...new Set(products.map(catalogAgreementScope))].flatMap(id => {
+    if (id === "ordinary") return [{ id, name: "Ordinær privatavtale" }];
+    const definition = catalog.agreementScopes?.find(scope => scope.id === id && products.some(product => product.providerId === scope.providerId && product.agreementScope === id));
+    return definition && isRegisteredAgreementScope(id, [definition]) ? [{ id, name: definition.name }] : [];
+  });
+}
+
+// For compatibility checks between document records (not catalog enrichment).
+// Uncatalogued legacy products retain their prior ordinary compatibility;
+// providers/types with several scopes require explicit document scope.
+export function resolvedAgreementScope(company: string | null, insuranceType: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog): AgreementScopeId | null {
+  if (agreementScope != null) return agreementScopeAllowed(company, agreementScope, catalog) ? agreementScope : null;
+  const scopes = company ? catalogAgreementScopeOptions(catalog, company, insuranceType) : [];
+  return scopes.length > 1 ? null : scopes[0]?.id ?? "ordinary";
+}
+
 export function catalogProductMatchesSelection(
   product: CatalogProduct,
   company: string,
   insuranceType: string,
   name: string,
+  agreementScope?: AgreementScopeId | null,
+  catalog: ProductCatalog = productCatalog,
 ): boolean {
-  const providerId = canonicalProviderId(company);
-  const providerMatches = providerId
-    ? product.providerId === providerId
-    : canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company);
-  return providerMatches &&
-    normalizeInsuranceType(product.insuranceType, { productName: product.name }) ===
-      normalizeInsuranceType(insuranceType, { productName: name }) &&
+  // This predicate also accepts standalone catalog records. Include the record
+  // without bypassing ambiguity checks against other registered scopes.
+  return catalogProductsForSelection({ ...catalog, products: [...catalog.products, product] }, company,
+    normalizeInsuranceType(insuranceType, { productName: name }), agreementScope)
+    .includes(product) &&
     normalizeIdentity(product.name) === normalizeIdentity(name);
 }
 
-export function productSuggestions(catalog: ProductCatalog, company: string, insuranceType: string): string[] {
-  return [...new Set(catalogProductsForSelection(catalog, company, insuranceType)
+export function productSuggestions(catalog: ProductCatalog, company: string, insuranceType: string, agreementScope?: AgreementScopeId | null): string[] {
+  return [...new Set(catalogProductsForSelection(catalog, company, insuranceType, agreementScope)
     .map((product) => product.name))];
 }
 
@@ -170,26 +202,48 @@ export function catalogProductsForSelection(
   catalog: ProductCatalog,
   company: string,
   insuranceType: string,
+  agreementScope?: AgreementScopeId | null,
 ): CatalogProduct[] {
   if (!company.trim() || !insuranceType.trim()) return [];
-  return catalog.products
+  const candidates = catalog.products
     .filter((product) => canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company) &&
       normalizeInsuranceType(product.insuranceType, { productName: product.name }) ===
         normalizeInsuranceType(insuranceType));
+  return productsInAgreementScope(candidates.filter(product =>
+    isRegisteredAgreementScope(catalogAgreementScope(product), catalog.agreementScopes, product.providerId)), agreementScope);
 }
 
-export function findCatalogProduct(providerId: string, productId: string, version: string | null) {
-  return productCatalog.products.find((product) =>
-    product.providerId === providerId && product.productId === productId && product.version === version
-  ) ?? null;
+export type CatalogProductReference = {
+  providerId: string; productId: string; version: string | null;
+  insuranceType?: string;
+  agreementScope?: AgreementScopeId | null;
+};
+export type CatalogLookupScope = Pick<CatalogProductReference, "insuranceType" | "agreementScope">;
+
+export function catalogProductIdentity(product: CatalogProduct): string {
+  return JSON.stringify([product.providerId, normalizeInsuranceType(product.insuranceType),
+    catalogAgreementScope(product), product.productId, product.version]);
+}
+
+export function catalogReferenceForProduct(product: CatalogProduct): CatalogProductReference {
+  return { providerId: product.providerId, productId: product.productId, version: product.version,
+    ...(product.agreementScope !== undefined ? { insuranceType: normalizeInsuranceType(product.insuranceType), agreementScope: product.agreementScope } : {}) };
+}
+
+export function findCatalogProduct(providerId: string, productId: string, version: string | null, scope: CatalogLookupScope = {}, catalog: ProductCatalog = productCatalog) {
+  const candidates = catalog.products.filter(product => product.providerId === providerId && product.productId === productId &&
+    product.version === version && (!scope.insuranceType || normalizeInsuranceType(product.insuranceType) === normalizeInsuranceType(scope.insuranceType)) &&
+    isRegisteredAgreementScope(catalogAgreementScope(product), catalog.agreementScopes, providerId));
+  const selected = productsInAgreementScope(candidates, scope.agreementScope);
+  return selected.length === 1 ? selected[0] : null;
 }
 
 // Brukes også når klienten har mistet katalogreferansen etter feltendringer.
 // Ingen fuzzy matching: flere mulige versjoner gir ingen automatisk kobling.
-export function findCatalogProductBySelection(company: string, insuranceType: string, name: string) {
+export function findCatalogProductBySelection(company: string, insuranceType: string, name: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog) {
   if (!company.trim() || !insuranceType.trim() || !name.trim()) return null;
-  const selected = productCatalog.products.filter((product) =>
-    catalogProductMatchesSelection(product, company, insuranceType, name));
+  const selected = catalogProductsForSelection(catalog, company, normalizeInsuranceType(insuranceType, { productName: name }), agreementScope)
+    .filter(product => normalizeIdentity(product.name) === normalizeIdentity(name));
   return selected.length === 1 ? selected[0] : null;
 }
 
@@ -197,7 +251,7 @@ const disconnectedCatalogStatus =
   "Ikke koblet til vilkårskatalogen – sammenligningen bygger bare på registrerte opplysninger og kan være ufullstendig";
 
 export function catalogConnectionStatus(insurances: readonly {
-  catalogReference?: { providerId: string; productId: string; version: string | null } | null;
+  catalogReference?: CatalogProductReference | null;
 }[]): string {
   if (insurances.length === 0) return disconnectedCatalogStatus;
   const products = insurances.map((insurance) => insurance.catalogReference
@@ -205,6 +259,7 @@ export function catalogConnectionStatus(insurances: readonly {
       insurance.catalogReference.providerId,
       insurance.catalogReference.productId,
       insurance.catalogReference.version,
+      insurance.catalogReference,
     )
     : null);
   if (products.some((product) => product === null)) return disconnectedCatalogStatus;
@@ -215,10 +270,13 @@ export function catalogConnectionStatus(insurances: readonly {
     : "✓ Koblet til vilkårskatalogen";
 }
 
-export function availableAddOns(product: CatalogProduct, asOf = new Date(), distributionChannel: string | null = null): CatalogAddOn[] {
-  return (productCatalog.addOns ?? []).filter((addOn) => {
-    const effective = productCatalog.sources?.[addOn.componentId]?.effectiveFrom;
+export function availableAddOns(product: CatalogProduct, asOf = new Date(), distributionChannel: string | null = null, catalog: ProductCatalog = productCatalog): CatalogAddOn[] {
+  return (catalog.addOns ?? []).filter((addOn) => {
+    const source = catalog.sources?.[addOn.componentId];
+    const effective = source?.effectiveFrom;
     return addOn.providerId === product.providerId &&
+      catalogAgreementScope(addOn) === catalogAgreementScope(product) &&
+      (!source || catalogAgreementScope(source) === catalogAgreementScope(product)) &&
       (!addOn.insuranceTypes || addOn.insuranceTypes.includes(product.insuranceType)) &&
       (!addOn.distributionChannels || Boolean(distributionChannel && addOn.distributionChannels.includes(distributionChannel))) &&
       (!addOn.excludeDistributionChannels || !distributionChannel || !addOn.excludeDistributionChannels.includes(distributionChannel)) &&
@@ -227,34 +285,37 @@ export function availableAddOns(product: CatalogProduct, asOf = new Date(), dist
   });
 }
 
-export function resolveProductComponentIds(product: CatalogProduct): string[] {
+export function resolveProductComponentIds(product: CatalogProduct, catalog: ProductCatalog = productCatalog): string[] {
   const visited = new Set<string>();
   const collect = (current: CatalogProduct): string[] => {
-    if (visited.has(current.productId)) throw new Error("Syklisk produktarv.");
-    visited.add(current.productId);
-    const parent = current.inheritsProductId
-      ? productCatalog.products.find((candidate) =>
+    const identity = catalogProductIdentity(current);
+    if (visited.has(identity)) throw new Error("Syklisk produktarv.");
+    visited.add(identity);
+    const parents = current.inheritsProductId
+      ? catalog.products.filter((candidate) =>
         candidate.productId === current.inheritsProductId &&
         candidate.providerId === current.providerId &&
-        candidate.insuranceType === current.insuranceType &&
+        normalizeInsuranceType(candidate.insuranceType) === normalizeInsuranceType(current.insuranceType) &&
+        catalogAgreementScope(candidate) === catalogAgreementScope(current) &&
         candidate.version === current.version)
-      : null;
+      : [];
+    const parent = parents.length === 1 ? parents[0] : null;
     if (current.inheritsProductId && !parent) throw new Error("Ukjent overordnet katalogprodukt.");
     return [...(parent ? collect(parent) : []), ...(current.componentIds ?? [])];
   };
   return collect(product);
 }
 
-function selectedComponents(product: CatalogProduct, addOnIds: string[], asOf: Date, distributionChannel: string | null): { base: string[]; additions: string[] } {
+function selectedComponents(product: CatalogProduct, addOnIds: string[], asOf: Date, distributionChannel: string | null, catalog: ProductCatalog): { base: string[]; additions: string[] } {
   const today = asOf.toISOString().slice(0, 10);
-  const base = resolveProductComponentIds(product);
+  const base = resolveProductComponentIds(product, catalog);
   if (base.some((id) => {
-    const effective = productCatalog.sources?.[id]?.effectiveFrom ?? "";
+    const effective = catalog.sources?.[id]?.effectiveFrom ?? "";
     return /^\d{4}-\d{2}(?:-\d{2})?$/u.test(effective) && effective > today;
   })) {
     throw new Error("Produktvilkåret er ennå ikke gyldig.");
   }
-  const addOns = availableAddOns(product, asOf, distributionChannel);
+  const addOns = availableAddOns(product, asOf, distributionChannel, catalog);
   const uniqueIds = [...new Set(addOnIds)];
   if (uniqueIds.length !== addOnIds.length || uniqueIds.some((id) => !addOns.some((addOn) => addOn.id === id))) {
     throw new Error("Ugyldig eller ikke gyldig tilleggsdekning.");
@@ -267,23 +328,26 @@ function selectedComponents(product: CatalogProduct, addOnIds: string[], asOf: D
   };
 }
 
-export function resolveCatalogEvidence(product: CatalogProduct, addOnIds: string[], asOf = new Date(), distributionChannel: string | null = null): CatalogFact[] {
-  const components = selectedComponents(product, addOnIds, asOf, distributionChannel);
-  return [...components.base, ...components.additions].flatMap((component) => productCatalog.facts?.[component] ?? []);
+export function resolveCatalogEvidence(product: CatalogProduct, addOnIds: string[], asOf = new Date(), distributionChannel: string | null = null, catalog: ProductCatalog = productCatalog): CatalogFact[] {
+  const components = selectedComponents(product, addOnIds, asOf, distributionChannel, catalog);
+  return [...components.base, ...components.additions].flatMap((component) => catalog.facts?.[component] ?? [])
+    .filter(fact => catalogFactScopeApplies(fact, catalog.sources ?? {}, product));
 }
 
-export function resolveCatalogFacts(product: CatalogProduct, addOnIds: string[], asOf = new Date(), distributionChannel: string | null = null): CatalogFact[] {
-  const components = selectedComponents(product, addOnIds, asOf, distributionChannel);
+export function resolveCatalogFacts(product: CatalogProduct, addOnIds: string[], asOf = new Date(), distributionChannel: string | null = null, catalog: ProductCatalog = productCatalog): CatalogFact[] {
+  const components = selectedComponents(product, addOnIds, asOf, distributionChannel, catalog);
   const result = new Map<string, CatalogFact[]>();
   for (const component of components.base) {
-    for (const entry of productCatalog.facts?.[component] ?? []) {
+    for (const entry of catalog.facts?.[component] ?? []) {
+      if (!catalogFactScopeApplies(entry, catalog.sources ?? {}, product)) continue;
       const previous = result.get(entry.key) ?? [];
       result.set(entry.key, entry.replacesBase ? [entry] : [...previous, entry]);
     }
   }
   const addOnKeys = new Set<string>();
   for (const component of components.additions) {
-    for (const entry of productCatalog.facts?.[component] ?? []) {
+    for (const entry of catalog.facts?.[component] ?? []) {
+      if (!catalogFactScopeApplies(entry, catalog.sources ?? {}, product)) continue;
       // Bare uttrykkelig dokumenterte utvidelser erstatter grunnverdien.
       // Flere tillegg med samme nøkkel beholdes begge: kildene gir ikke
       // grunnlag for å avgjøre hvilket tillegg som skal ha forrang.
@@ -293,5 +357,5 @@ export function resolveCatalogFacts(product: CatalogProduct, addOnIds: string[],
       addOnKeys.add(entry.key);
     }
   }
-  return resolveCatalogSources([...result.values()].flat(), productCatalog.sources ?? {}, product, asOf).facts;
+  return resolveCatalogSources([...result.values()].flat(), catalog.sources ?? {}, product, asOf).facts;
 }
