@@ -25,8 +25,22 @@ Agreement scope er en egen identitetsdimensjon. Fremtind MC bruker `ordinary-spa
 
 ## Presentasjon og kilder
 
-Resultatet bruker «Produkt A» og «Produkt B», kuraterte «Viktigste forskjeller», detaljert sammenligning og faktaspesifikke kildekontroller. Kilder merkes som offentlig vilkår, IPID/produktark eller produktside. Pris, TFA, objektidentitet, manglende objekt og kundestatusen «Valgt / Ikke valgt» vises ikke i produktmodus.
+Resultatet bruker «Produkt A» og «Produkt B» og én direkte synlig «Dekninger og vilkår»-visning. «Viktigste forskjeller» og den overordnede detaljporten finnes fortsatt i kundemodus, men ikke i produktmodus. Hovedseksjonene har native «Hopp til»-ankre, og faktaspesifikke kildekontroller følger innholdet. Kilder merkes som offentlig vilkår, IPID/produktark eller produktside. Pris, TFA, objektidentitet, manglende objekt og kundestatusen «Valgt / Ikke valgt» vises ikke i produktmodus.
 
 ## Sikkerhet og avgrensning
 
 Produktmodus krever ingen kundedata og lagrer ingen data. Den oppretter ingen API-rute, telemetry eller secrets og er fortsatt beskyttet av eksisterende pilotinnlogging på siden. V1 sammenligner to nåværende katalogprodukter om gangen og gir ingen rangering, anbefaling, pris, eksport eller delbar lenke.
+
+
+## Semantisk produktpresentasjon
+
+`lib/product-comparison-presentation.ts` lager et separat visningslag over det uendrede adapterresultatet. Det endrer verken canonical facts, produktmaterialisering, kundesammenligning eller kundens coverage-status.
+
+- `productParentEvidence` er eksplisitt kildebundet presentasjonsmetadata: canonical type, avtalescope, produktversjon, parent-key, child-keys, eksakt eksisterende parent-tekst og dokument-ID/dato/side/punkt. Evaluatoren bruker ingen selskapsnavn, ordsøk, fuzzy matching eller AI. Endret tekst/kildeversjon/scope, konkurrerende parents eller eksplisitt child-status stopper utfylling. Negative kontrolltester og en annen syntetisk provider med et annet child-konsept beviser dette.
+- En parent-relasjon supplerer bare en ukjent child i visningen. Den bruker parentens faktiske tekst, status og kilder og merkes «Dokumentert under …». Den kopierer aldri den andre produktkolonnens vilkår. Children ligger innrykket under parent, uten egne dupliserte hovedseksjoner.
+- Auditerte sidespesifikke detaljer grupperes per produkt med originalt label/verdi/kilde. En egenandelsmodell kan vise flere originale child-fakta per side. Beløp summeres ikke, prosentfradrag flattenes ikke, og nye ukjente keys forblir konservativt sammenlignbare med unknown.
+- Parent-relasjoner og detaljmetadata er eksplisitte; det finnes ingen universell «Kasko inkluderer alt»-regel. Ingen mapping ble lagt til bare på grunn av navnelikhet.
+- Familiespesifikk seksjonsrekkefølge er separat fra kundemodusens prioritet. Ufordelte facts beholdes under «Andre vilkår». Bare seksjoner med innhold gir navigasjonslenker. Stable anchors koder canonical section identity uten kollisjoner. `tabIndex=-1`, `aria-labelledby` og scroll-margin bevarer native ankerfokus.
+- Desktop viser sidekolonner og navigasjon som kan brytes over flere linjer; smal skjerm stabler kolonnene og lar kun chip-raden scrolle horisontalt. Ingen scrollspy, sticky-navigation, søk eller nye nettverkskall.
+
+Se [semantisk audit og validering](product-comparison-semantic-audit.md) for klassifisering av alle 34 asymmetriske If Super / Frende Utvidet-rader, kildeavgrensninger og kjente hull.

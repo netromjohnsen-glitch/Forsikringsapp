@@ -11,10 +11,13 @@ import {
   productComparisonOptions,
   productComparisonProviders,
   productComparisonScopes,
+  productCoverageStateLabel,
+  type ProductComparisonFact,
   type CatalogProductComparison,
-  type ProductComparisonRow,
   type ProductComparisonSource,
 } from "@/lib/catalog-product-comparison";
+
+import { productComparisonView, productRowPriority, type ProductDisplayRow, type ProductCoverageGroup } from "@/lib/product-comparison-presentation";
 
 type Selection = {
   company: string;
@@ -50,20 +53,21 @@ function ProductSource({ source, label }: { source: ProductComparisonSource; lab
   );
 }
 
-function ProductValue({ row, side, showSources = true }: { row: ProductComparisonRow; side: "first" | "second"; showSources?: boolean }) {
+function ProductValue({ row, side, showSources = true }: { row: ProductDisplayRow; side: "first" | "second"; showSources?: boolean }) {
   const value = row[side];
   return (
     <div className={side === "first" ? "difference-side-existing rounded-lg px-4 py-4" : "difference-side-offer rounded-lg px-4 py-4"}>
       <p className={side === "first" ? "existing-label text-xs font-semibold uppercase tracking-wide" : "offer-label text-xs font-semibold uppercase tracking-wide"}>
         {side === "first" ? "Produkt A" : "Produkt B"}
       </p>
+      {value.parentLabel && <p className="mt-2 text-xs font-medium text-slate-600">Dokumentert under {value.parentLabel}. Omfanget følger vilkåret nedenfor.</p>}
       <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{value.text}</p>
       {showSources && value.sources.map((source) => <ProductSource key={`${source.documentId}-${source.page}-${source.section}`} source={source} label={`${row.label} – ${side === "first" ? "Produkt A" : "Produkt B"}`} />)}
     </div>
   );
 }
 
-function DifferenceRow({ row, showLabel = true, showSources = true }: { row: ProductComparisonRow; showLabel?: boolean; showSources?: boolean }) {
+function DifferenceRow({ row, showLabel = true, showSources = true }: { row: ProductDisplayRow; showLabel?: boolean; showSources?: boolean }) {
   return (
     <div className="py-4">
       {showLabel && <p className="mb-2 text-sm font-medium text-slate-800">{row.label}</p>}
@@ -169,9 +173,58 @@ function ProductHeader({ label, product }: { label: string; product: CatalogProd
   );
 }
 
+function ProductEvidenceList({ facts, side, company, label, showUnknown = false }: {
+  facts: ProductComparisonFact[]; side: "first" | "second"; company: string; label: string; showUnknown?: boolean;
+}) {
+  if (!facts.length && !showUnknown) return null;
+  const sideLabel = side === "first" ? "Produkt A" : "Produkt B";
+  return <div className="min-w-0" aria-label={`${label} – ${sideLabel} – ${company}`}>
+    <p className="text-xs font-semibold text-slate-700">{sideLabel} · {company}</p>
+    {!facts.length && <p className="mt-2 text-sm text-slate-700">{productCoverageStateLabel("unknown")}</p>}
+    <div className="mt-2 space-y-4">{facts.map((fact, index) => <div key={`${fact.key}-${index}`}>
+      <p className="text-sm font-medium text-slate-800">{fact.label}</p>
+      {fact.state === "optional" && <p className="mt-1 text-xs text-slate-600">{productCoverageStateLabel(fact.state)}{fact.addOnNames.length > 0 ? ` (${fact.addOnNames.join(" / ")})` : ""}</p>}
+      <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{fact.value}</p>
+      {fact.sources.map((source) => <ProductSource key={`${source.documentId}-${source.page}-${source.section}`} source={source} label={`${fact.label} – ${sideLabel}`} />)}
+    </div>)}</div>
+  </div>;
+}
+
+function CoverageGroup({ group, result }: { group: ProductCoverageGroup; result: CatalogProductComparison }) {
+  const hasDetails = group.details.first.length > 0 || group.details.second.length > 0;
+  const parentBackedRows = group.rows.filter((row) => row.first.parentLabel || row.second.parentLabel);
+  const leadRows = group.rows.filter((row) => !parentBackedRows.includes(row) && productRowPriority(row.key) <= 2);
+  const detailRows = group.rows.filter((row) => !leadRows.includes(row) && !parentBackedRows.includes(row));
+  return <div className="py-5">
+    <h5 className="text-base font-semibold text-slate-900">{group.label}</h5>
+    <div className="divide-y divide-slate-100">{leadRows.map((row) => <DifferenceRow key={row.key} row={row} />)}</div>
+    {parentBackedRows.length > 0 && <div className="expanded-detail-area my-4">
+      <h6 className="text-sm font-semibold text-slate-800">Dekninger dokumentert i hovedvilkåret</h6>
+      {parentBackedRows.map((row) => <DifferenceRow key={row.key} row={row} />)}
+    </div>}
+    {group.models.map((model) => <div key={model.label} className="expanded-detail-area my-4">
+      <h6 className="mb-3 text-sm font-semibold text-slate-800">{model.label}</h6>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <ProductEvidenceList facts={model.first} side="first" company={result.first.product.company} label={model.label} showUnknown />
+        <ProductEvidenceList facts={model.second} side="second" company={result.second.product.company} label={model.label} showUnknown />
+      </div>
+    </div>)}
+    <div className="divide-y divide-slate-100">{detailRows.map((row) => <DifferenceRow key={row.key} row={row} />)}</div>
+    {hasDetails && <div className="expanded-detail-area mt-4">
+      <h6 className="mb-2 text-sm font-semibold text-slate-800">Produktspesifikke detaljer</h6>
+      <p className="mb-4 text-xs leading-5 text-slate-600">Detaljene har forskjellig omfang eller oppbygning og sammenlignes ikke én til én.</p>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="min-w-0"><ProductEvidenceList facts={group.details.first} side="first" company={result.first.product.company} label={group.label} /></div>
+        <div className="min-w-0"><ProductEvidenceList facts={group.details.second} side="second" company={result.second.product.company} label={group.label} /></div>
+      </div>
+    </div>}
+  </div>;
+}
+
 function ProductResult({ result }: { result: CatalogProductComparison }) {
+  const sections = productComparisonView(result);
   return (
-    <section className="surface-card mt-8 rounded-2xl border p-5 sm:p-8" aria-labelledby="product-comparison-result">
+    <section className="surface-card mt-8 min-w-0 rounded-2xl border p-5 sm:p-8" aria-labelledby="product-comparison-result">
       <p className="brand-eyebrow text-xs font-semibold uppercase tracking-[0.12em]">Produktsammenligning</p>
       <h2 id="product-comparison-result" className="section-title mt-1 text-2xl font-semibold">{result.insuranceType}</h2>
       <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
@@ -179,49 +232,24 @@ function ProductResult({ result }: { result: CatalogProductComparison }) {
         <span className="text-sm font-medium text-slate-500">mot</span>
         <ProductHeader label="Produkt B" product={result.second.product} />
       </div>
-
-      <div className="mt-8">
-        <h3 className="text-xl font-semibold tracking-tight text-slate-950">Viktigste forskjeller</h3>
-        {result.importantSections.length === 0 ? (
-          <p className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">Ingen dokumenterte produktforskjeller i kataloggrunnlaget.</p>
-        ) : (
-          <div className="mt-3 divide-y divide-slate-200">
-            {result.importantSections.map((section) => section.rows.length === 1 ? (
-              <div key={section.id} className="py-5">
-                <h4 className="text-base font-semibold text-slate-950">{section.label}</h4>
-                <DifferenceRow row={section.rows[0]} showLabel={false} />
-              </div>
-            ) : (
-              <details key={section.id} className="group">
-                <summary className="cursor-pointer list-none py-5 marker:hidden [&::-webkit-details-marker]:hidden">
-                  <div className="flex items-start justify-between gap-4">
-                    <h4 className="text-base font-semibold text-slate-950">{section.label}</h4>
-                    <span className="text-link shrink-0 text-sm font-semibold"><span className="group-open:hidden">Se detaljer</span><span className="hidden group-open:inline">Skjul</span></span>
-                  </div>
-                  <div className="mt-3 group-open:hidden">
-                    <DifferenceRow row={section.rows[0]} showLabel showSources={false} />
-                  </div>
-                </summary>
-                <div className="expanded-detail-area pb-5">
-                  <div className="divide-y divide-slate-100">{section.rows.map((row) => <DifferenceRow key={row.key} row={row} />)}</div>
-                </div>
-              </details>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <details className="mt-8 rounded-xl border border-slate-200 bg-white p-4">
-        <summary className="text-link cursor-pointer rounded font-semibold focus-visible:outline-2 focus-visible:outline-offset-4">Vis detaljert sammenligning</summary>
-        <div className="mt-5 space-y-7">
-          {result.sections.map((section) => (
-            <section key={section.id} aria-labelledby={`product-detail-${section.id.replace(/[^a-z0-9]+/giu, "-")}`}>
-              <h4 id={`product-detail-${section.id.replace(/[^a-z0-9]+/giu, "-")}`} className="font-semibold text-slate-950">{section.label}</h4>
-              <div className="mt-2 divide-y divide-slate-100">{section.rows.map((row) => <DifferenceRow key={row.key} row={row} />)}</div>
-            </section>
-          ))}
+      <nav aria-label="Hopp til dekning" className="mt-7 min-w-0">
+        <p className="mb-2 text-sm font-semibold text-slate-700">Hopp til</p>
+        <div className="flex max-w-full gap-2 overflow-x-auto py-2 sm:flex-wrap">
+          {sections.map((section) => <a key={section.id} href={`#${section.anchorId}`}
+            className="text-link inline-flex min-h-11 shrink-0 items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2">
+            {section.navLabel}
+          </a>)}
         </div>
-      </details>
+      </nav>
+      <h3 className="mt-8 text-xl font-semibold tracking-tight text-slate-950">Dekninger og vilkår</h3>
+      {result.differenceCount === 0 && <p className="mt-3 text-sm text-slate-600">Ingen dokumenterte produktforskjeller i kataloggrunnlaget.</p>}
+      <div className="mt-5 space-y-8">
+        {sections.map((section) => <section key={section.id} id={section.anchorId} tabIndex={-1}
+          aria-labelledby={`${section.anchorId}-heading`} className="scroll-mt-6 rounded focus-visible:outline-2 focus-visible:outline-offset-4">
+          <h4 id={`${section.anchorId}-heading`} className="border-b border-slate-300 pb-3 text-lg font-semibold text-slate-950">{section.label}</h4>
+          <div className="divide-y divide-slate-200">{section.groups.map((group) => <CoverageGroup key={group.id} group={group} result={result} />)}</div>
+        </section>)}
+      </div>
       <p className="mt-5 text-xs leading-5 text-slate-500">Sammenligningen bygger på offentlige produktvilkår og katalogdata. Pris og individuelle avtalevalg er ikke med.</p>
     </section>
   );
