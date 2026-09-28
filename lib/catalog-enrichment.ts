@@ -6,8 +6,10 @@ import {
   normalizeTermName,
   relatedCoveragesForInsuranceType,
   isUndocumentedTermValue,
+  normalizeInsuranceType,
 } from "./insurance-normalization.ts";
-import { deriveCanonicalCoverages } from "./coverage-status.ts";
+import { mcBobilTypes } from "./mc-bobil-registry.ts";
+import { coverageStatusFromText, deriveCanonicalCoverages } from "./coverage-status.ts";
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import {
   findCatalogProductBySelection,
@@ -15,6 +17,7 @@ import {
   resolveCatalogEvidence,
   resolveCatalogFacts,
   type CatalogFact,
+  type CatalogProduct,
   type CatalogProductReference,
   type ProductCatalog,
   productCatalog,
@@ -67,6 +70,74 @@ const normalizeLabel = (value: string) => value.normalize("NFKC")
   .replace(/\s+/gu, " ")
   .trim();
 
+function selectedMcBobilAddOns(
+  product: CatalogProduct,
+  insurance: ExtractedInsurance,
+  documentTerms: DocumentFact[],
+  asOf: Date,
+  catalog: ProductCatalog,
+): string[] {
+  if (!mcBobilTypes.some(type => type === normalizeInsuranceType(insurance.type))) return [];
+  const definitions = relatedCoveragesForInsuranceType(insurance.type);
+  const allowed = availableAddOns(product, asOf, null, catalog).map(addOn => {
+    const namedKey = normalizeTermName(addOn.name, { insuranceType: insurance.type });
+    const parents = definitions.filter(definition =>
+      (catalog.facts?.[addOn.componentId] ?? []).some(fact =>
+        normalizeCatalogTermKey(fact.key) === definition.parentKey)).map(definition => definition.parentKey);
+    return { addOn, namedKey, parents, specific: !parents.includes(namedKey) };
+  });
+  const isSpecificName = (name: string) => allowed.some(candidate => candidate.specific &&
+    normalizeLabel(candidate.addOn.name) === normalizeLabel(name));
+  const documentAddOns = insurance.addOns.filter(addOn => {
+    const evidence = addOn as typeof addOn & { id?: string; source?: unknown; coverageOrigin?: string };
+    return evidence.coverageOrigin === "document" || (!evidence.coverageOrigin && !evidence.id && !evidence.source);
+  });
+  // A named variant is evidence for that variant, not every alternative in
+  // its coverage family. Family-level rejection still blocks every variant.
+  const familyStatuses = new Map(deriveCanonicalCoverages({
+    importantTerms: documentTerms.filter(term => !isSpecificName(term.name)),
+    addOns: documentAddOns.filter(addOn => !isSpecificName(addOn.name)),
+  }, insurance.type).map(coverage => [coverage.id, coverage]));
+  const candidates = allowed.map(candidate => {
+    const { addOn, parents } = candidate;
+    const exactTerms = documentTerms.filter(term => normalizeLabel(term.name) === normalizeLabel(addOn.name));
+    const statuses = new Set(exactTerms.map(term => coverageStatusFromText(term.value))
+      .filter(status => status === "selected" || status === "not_selected"));
+    const namedSelection = statuses.has("selected") || documentAddOns.some(entry =>
+      normalizeLabel(entry.name) === normalizeLabel(addOn.name));
+    const blocked = statuses.has("not_selected") || parents.some(parent => {
+      const state = familyStatuses.get(parent);
+      return state?.status === "not_selected" || state?.conflict;
+    });
+    // A generic selected family can choose a sole component, or one explicitly
+    // named standard component among alternatives. It cannot choose a variant
+    // by array order or by words contained inside a longer product name.
+    const genericSelection = parents.some(parent => {
+      const state = familyStatuses.get(parent);
+      if (state?.status !== "selected" || state.conflict || !state.evidence.some(evidence =>
+        evidence.origin === "document" && evidence.status === "selected" &&
+        ["explicit_status", "add_on", "detail"].includes(evidence.kind))) return false;
+      const alternatives = allowed.filter(other => other.parents.includes(parent));
+      const standards = alternatives.filter(other => other.namedKey === parent);
+      return alternatives.length === 1 || (standards.length === 1 && standards[0].addOn.id === addOn.id);
+    });
+    return { ...candidate, conflict: statuses.size > 1, selected: !blocked && (namedSelection || genericSelection),
+      namedSpecificSelection: !blocked && candidate.specific && namedSelection };
+  });
+  return candidates.filter(candidate => {
+    if (!candidate.selected) return false;
+    const group = candidate.addOn.exclusiveGroup;
+    if (!group) return true;
+    if (candidates.some(other => other.addOn.exclusiveGroup === group && other.conflict)) return false;
+    const listed = candidates.filter(other => other.addOn.exclusiveGroup === group && documentAddOns.some(entry =>
+      normalizeLabel(entry.name) === normalizeLabel(other.addOn.name)));
+    if (listed.length > 1) return false;
+    const selected = candidates.filter(other => other.selected && other.addOn.exclusiveGroup === group);
+    const named = selected.filter(other => other.namedSpecificSelection);
+    return named.length ? named.length === 1 && named[0].addOn.id === candidate.addOn.id : selected.length === 1;
+  }).map(candidate => candidate.addOn.id);
+}
+
 function enrichInsurance(
   company: string | null,
   insurance: ExtractedInsurance,
@@ -102,8 +173,12 @@ function enrichInsurance(
     return { ...insurance, importantTerms: documentTerms, catalogReference: null };
   }
 
-  const effectiveFacts = resolveCatalogFacts(product, [], asOf, null, catalog);
-  const catalogFacts = resolveCatalogEvidence(product, [], asOf, null, catalog);
+  // MC/Bobil optional components remain separate from the base. Only an
+  // explicit document-backed coverage selection can activate an applicable
+  // component; catalog availability and document silence cannot select it.
+  const selectedAddOnIds = selectedMcBobilAddOns(product, insurance, documentTerms, asOf, catalog);
+  const effectiveFacts = resolveCatalogFacts(product, selectedAddOnIds, asOf, null, catalog);
+  const catalogFacts = resolveCatalogEvidence(product, selectedAddOnIds, asOf, null, catalog);
   // An exact, unambiguous label from this identified product can establish a
   // fact identity. Previously it only suppressed the catalog fact, leaving
   // the document value stranded on a separate display-name row.
@@ -212,7 +287,7 @@ function enrichInsurance(
         effectiveFacts.some((fact) => normalizeCatalogTermKey(fact.key) === key || baseKeys.includes(fact.key));
       return { ...addOn, classification: standard ? "standard" as const : "add_on" as const };
     }),
-    addOnIds: [],
+    addOnIds: selectedAddOnIds,
   };
 }
 

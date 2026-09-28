@@ -1,6 +1,7 @@
 import { vehicleObjectTypes, vehicleObjectCoverages } from "./vehicle-object-registry.ts";
+import { mcBobilCoverages, type McBobilType } from "./mc-bobil-registry.ts";
 import type { AgreementScopeId } from "./agreement-scope.ts";
-export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise" | "snøscooter" | "campingvogn" | "tilhenger";
+export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise" | "snøscooter" | "campingvogn" | "tilhenger" | McBobilType;
 export type PresentationTier = "primary" | "secondary" | "detail";
 export type PresentationFactType =
   | "coverage"
@@ -97,9 +98,57 @@ const concept = (
   id, insuranceType, label, group: label, factKeyPatterns, defaultTier, importanceReasons, factTypes,
 });
 
+// Curated groups refer to registered coverage identities, never provider names
+// or value text. Detailed facts and sources remain separate within each group.
+const mcBobilConcept = (
+  type: McBobilType, id: string, label: string, families: readonly string[],
+  tier: PresentationTier = "primary",
+): PresentationConcept => concept(`${type}.${id}`, type, label,
+  mcBobilCoverages(type).flatMap(coverage => {
+    const family = coverage.parentKey.replace(/\.dekning$/u, "");
+    return families.includes(family) ? [new RegExp(`^${family.replaceAll(".", "\\.")}\\.`, "u")] : [];
+  }), tier, ["economic-risk", "level-difference", "misunderstanding-risk"]);
+
+const mcBobilPresentationConcepts: readonly PresentationConcept[] = [
+  mcBobilConcept("mc", "egen-mc", "Skade på MC", ["kasko", "brann", "tyveri", "naturskade"]),
+  mcBobilConcept("mc", "maskinskade", "Maskinskade", ["maskinskade"]),
+  mcBobilConcept("mc", "totalskade", "Totalskade og nyverdi", ["nyverdi"]),
+  mcBobilConcept("mc", "mobilitet", "Veihjelp og leiekjøretøy", ["veihjelp", "leiebil", "mc.leiekjoretoy"]),
+  mcBobilConcept("mc", "kjoreutstyr", "Kjøreutstyr og hjelm", ["mc.kjoreutstyr", "mc.hjelm"]),
+  mcBobilConcept("mc", "fastmontert-utstyr", "Fastmontert utstyr", ["utstyr"]),
+  mcBobilConcept("mc", "bagasje", "Bagasje", ["mc.bagasje"], "secondary"),
+  mcBobilConcept("mc", "parkert", "Parkert MC", ["mc.parkert"], "secondary"),
+  mcBobilConcept("mc", "ulykke", "Fører- og passasjerulykke", ["ulykke"], "secondary"),
+  mcBobilConcept("mc", "glass-nokkel-feilfylling", "Glass, nøkkel og feilfylling", ["glass", "nokkel", "feilfylling"], "secondary"),
+  mcBobilConcept("mc", "ansvar-rettshjelp", "Ansvar og rettshjelp", ["ansvar", "rettshjelp"], "secondary"),
+  concept("mc.kjorelengde", "mc", "Årlig kjørelengde", [/^kjoretoy\.kjorelengde$/u], "secondary", ["customer-specific"]),
+  concept("mc.geografi", "mc", "Geografisk område", [/^avtale\.geografi$/u], "secondary", ["customer-specific", "misunderstanding-risk"]),
+  concept("mc.ovrig", "mc", "Andre MC-vilkår", [/.+/u], "detail", ["misunderstanding-risk"]),
+
+  mcBobilConcept("bobil", "egen-bobil", "Skade på bobil", ["kasko", "brann", "tyveri", "naturskade"]),
+  mcBobilConcept("bobil", "losore-utstyr-fortelt", "Løsøre, utstyr og fortelt", ["bobil.losore", "utstyr", "bobil.fortelt"]),
+  mcBobilConcept("bobil", "fukt-vann", "Fukt og vann", ["bobil.fukt", "bobil.vann"]),
+  mcBobilConcept("bobil", "totalskade", "Totalskade og nyverdi", ["nyverdi"]),
+  mcBobilConcept("bobil", "maskinskade", "Maskinskade", ["maskinskade"]),
+  mcBobilConcept("bobil", "mobilitet", "Veihjelp og leiebil", ["veihjelp", "leiebil"]),
+  // Cash compensation and reimbursement of actual expenses are distinct
+  // benefits, even when providers use similar marketing names.
+  mcBobilConcept("bobil", "ferieavbrudd", "Ferieavbrudd – dagskompensasjon", ["bobil.ferieavbrudd"]),
+  mcBobilConcept("bobil", "feriegaranti", "Feriegaranti – ekstrautgifter", ["bobil.feriegaranti"]),
+  mcBobilConcept("bobil", "skadedyr", "Skadedyr", ["bobil.skadedyr"], "secondary"),
+  mcBobilConcept("bobil", "parkering", "Parkeringsskade", ["parkering"], "secondary"),
+  mcBobilConcept("bobil", "utleie", "Privat utleie", ["bobil.utleie"], "secondary"),
+  mcBobilConcept("bobil", "ulykke", "Fører- og passasjerulykke", ["ulykke"], "secondary"),
+  mcBobilConcept("bobil", "glass-nokkel-feilfylling", "Glass, nøkkel og feilfylling", ["glass", "nokkel", "feilfylling"], "secondary"),
+  mcBobilConcept("bobil", "ansvar-rettshjelp", "Ansvar og rettshjelp", ["ansvar", "rettshjelp"], "secondary"),
+  concept("bobil.geografi", "bobil", "Geografisk område", [/^avtale\.geografi$/u], "secondary", ["customer-specific", "misunderstanding-risk"]),
+  concept("bobil.ovrig", "bobil", "Andre bobilvilkår", [/.+/u], "detail", ["misunderstanding-risk"]),
+];
+
 // Rekkefølgen er en eksplisitt, kuratert presentasjonsrekkefølge. Den er ikke
 // en produktpoengsum og sier ikke hvilket produkt som er best.
 export const presentationConcepts: readonly PresentationConcept[] = [
+  ...mcBobilPresentationConcepts,
   ...vehicleObjectTypes.flatMap(({ id }) => vehicleObjectCoverages(id).map((coverage) =>
     concept(`${id}.${coverage.parentKey.split(".")[1]}`, id, coverage.label,
       [new RegExp(`^${coverage.parentKey.slice(0, -"dekning".length).replaceAll(".", "\\.")}`, "u")],

@@ -102,8 +102,10 @@ test('versions stay distinct inside one scope; name lookup never picks an arbitr
   assert.equal(findCatalogProduct('tryg', p.productId, '2027', p, catalog).version, '2027');
 });
 test('all 121 existing products keep their exact lookup and component resolution', () => {
-  assert.equal(productCatalog.products.length, 121);
-  for (const p of productCatalog.products) {
+  // Preserve the original compatibility control while adding new typed catalogs.
+  const originalProducts = productCatalog.products.filter(p => !['MC', 'Bobil'].includes(p.insuranceType));
+  assert.equal(originalProducts.length, 121);
+  for (const p of originalProducts) {
     assert.equal(findCatalogProduct(p.providerId, p.productId, p.version), p);
     assert.equal(findCatalogProductBySelection(p.company, p.insuranceType, p.name), p);
     assert.equal(findCatalogProductBySelection(p.company, p.insuranceType, p.name, 'ordinary'), p);
@@ -228,8 +230,8 @@ test('manual annual mileage and multiple products remain separate within member 
   assert.equal(result.insuranceData.insurances.length, 2);
   assert.notEqual(...result.insuranceData.insurances.map(p => p.importantTerms.find(f => f.key === 'kjoretoy.kjorelengde').value));
 });
-test('extraction contract is unchanged while production catalog has no agreement definitions', () => {
-  const request = buildExtractionRequest('Synthetic');
+test('extraction contract is unchanged for a catalog without agreement definitions', () => {
+  const request = buildExtractionRequest('Synthetic', undefined, { ...productCatalog, agreementScopes: [] });
   assert.equal(request.instructions, EXTRACTION_INSTRUCTIONS);
   assert.equal(request.text.format.schema.properties.insurances.items.properties.agreementScope, undefined);
 });
@@ -341,7 +343,7 @@ test('scope is excluded from existing telemetry event vocabulary', () => {
   assert.equal(sanitizeTraceEvent({ stage: 'extraction', agreementScope: member }), null);
 });
 test('current UI remains free from empty agreement selectors, with native future selector semantics', () => {
-  for (const p of productCatalog.products) assert.ok(!catalogAgreementScopeOptions(productCatalog, p.company, p.insuranceType).some(s => s.id !== 'ordinary'));
+  for (const p of productCatalog.products.filter(p => !['MC', 'Bobil'].includes(p.insuranceType))) assert.ok(!catalogAgreementScopeOptions(productCatalog, p.company, p.insuranceType).some(s => s.id !== 'ordinary'));
   const page = readFileSync(new URL('../app/page.tsx', import.meta.url), 'utf8');
   assert.match(page, /if \(!scopes\.some\(scope => scope\.id !== "ordinary"\)\) return null/);
   assert.match(page, /Avtale \/ medlemsavtale\s*<select/);

@@ -1,4 +1,5 @@
 import { vehicleObjectCoverages, vehicleObjectTypes } from "./vehicle-object-registry.ts";
+import { mcBobilCoverages, mcBobilTypes, mcBobilVehicleAliases } from "./mc-bobil-registry.ts";
 // Aliasgrupper er hele betegnelser. Delord og likhetsgrad brukes ikke til matching.
 const insuranceAliases: Record<string, readonly string[]> = {
   bil: ["bil", "personbil", "privatbil", "motorvogn"],
@@ -258,6 +259,7 @@ export type RelatedCoverage = {
 // forsikringstyper. Nye familier kan legges til uten leverandørspesialtilfeller.
 const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
   ...Object.fromEntries(vehicleObjectTypes.map(({ id }) => [id, vehicleObjectCoverages(id)])),
+  ...Object.fromEntries(mcBobilTypes.map(type => [type, mcBobilCoverages(type)])),
   bil: [
     {
       parentKey: "leiebil.dekning",
@@ -429,7 +431,7 @@ function relatedCoverageDetailKey(name: string, context: TermContext, type: stri
 }
 
 function maskinskadeDeductibleBandKey(value: string | null, context: TermContext, type: string): string | null {
-  if (type !== "bil" || !value) return null;
+  if (!["bil", "mc", "bobil"].includes(type) || !value) return null;
   const text = value.normalize("NFKC").toLocaleLowerCase("nb-NO");
   const scoped = /\b(?:maskinskade|maskin\s+og\s+elektronikk(?:dekning)?|motor\s+og\s+girskade)\b/u.test(text) ||
     context.relatedCoverageParentKeys?.includes("maskinskade.dekning") === true;
@@ -464,6 +466,14 @@ export function normalizeTermName(value: string | null, context: TermContext = {
   }
   const relatedDetail = relatedCoverageDetailKey(name, context, type);
   if (relatedDetail) return relatedDetail;
+  if (mcBobilTypes.some(id => id === type)) {
+    for (const [key, aliases] of Object.entries(mcBobilVehicleAliases)) {
+      if ([key, ...aliases].some(alias => normalizeWords(alias) === name)) return key;
+    }
+    for (const coverage of mcBobilCoverages(type)) {
+      if ([coverage.parentKey, ...(coverage.aliases ?? [])].some(alias => normalizeWords(alias) === name)) return coverage.parentKey;
+    }
+  }
   // Share only the three price aliases across established motor vehicle types.
   if (isMotorVehicleType(type)) {
     const priceKey = contextualTermLookups.get("bil")?.get(name);

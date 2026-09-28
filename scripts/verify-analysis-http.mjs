@@ -15,6 +15,7 @@ import { portfolioPrice } from "../lib/portfolio-price-presentation.ts";
 import { vehiclePrices } from "../lib/vehicle-price-presentation.ts";
 import { clientTraceEvents, sanitizeTraceEvent } from "../lib/production-trace.ts";
 import { portfolioDocuments } from "../tests/helpers/supporting-terms.mjs";
+import { mcBobilRecord, mcBobilTerm } from "../tests/helpers/mc-bobil.mjs";
 import { applyProgress, emptyProgress } from "../lib/analysis-progress.ts";
 
 const calls = [];
@@ -28,6 +29,8 @@ let priceScenarioCalls = 0;
 let supportingScenario = false;
 let supportingCalls = 0;
 let supportingPriceMode = 'customer';
+let mcBobilScenario = false;
+let mcBobilCalls = 0;
 let peak = 0;
 let active = 0;
 let apiFailure = false;
@@ -95,6 +98,28 @@ const mock = createServer(async (request, response) => {
       objectIdentifiers: record.objectIdentifiers.map(id => ({ ...id, documentIndices: [index + 1] })),
       importantTerms: record.importantTerms.map(term => ({ ...term, documentIndices: [index + 1] })),
     })));
+  }
+  if (mcBobilScenario && input.text.format.name !== "semantic_insurance_matches") {
+    const reverse = mcBobilCalls++ % 2 === 1;
+    const records = ["MC", "MC", "Bobil", "Bobil"].map((type, index) => {
+      const record = mcBobilRecord(type, index + 1, {
+        company: reverse ? "Gjensidige" : "If",
+        productName: reverse && type === "Bobil" ? "Pluss" : "Kasko",
+        canonicalProductName: reverse && type === "Bobil" ? "Pluss" : "Kasko",
+      });
+      record.importantTerms.push(mcBobilTerm(
+        type === "MC" ? "MC kjøreutstyr forsikringssum" : "Fuktskade aldersgrense",
+        type === "MC" ? `${17000 + index * 1000} kr` : `${8 + index} år`,
+        type === "MC" ? "mc.kjoreutstyr.grense" : "bobil.fukt.alder",
+      ));
+      return record;
+    });
+    if (reverse) records.reverse();
+    content.company = reverse ? "Gjensidige" : "If";
+    content.insurances = records.map((record, index) => ({ ...record, documentIndices: [index + 1],
+      objectIdentifiers: record.objectIdentifiers.map(id => ({ ...id, documentIndices: [index + 1] })),
+      importantTerms: record.importantTerms.map(term => ({ ...term, documentIndices: [index + 1] })),
+    }));
   }
   response.writeHead(200, { "content-type": "application/json" });
   response.end(JSON.stringify({
@@ -336,6 +361,74 @@ try {
   consolidationScenario = false;
   portfolioScenario = false;
   vehicleObjectScenario = false;
+  mcBobilScenario = true;
+  const mcBobilProgress = [], callsBeforeMcBobil = calls.length, mcBobilStarted = performance.now();
+  const mcBobilResponse = await fetch(base + '/api/analyze', {
+    method: 'POST', headers: { ...headers, accept: 'application/x-ndjson' }, body: multiForm(4),
+  });
+  const mcBobilResult = await readAnalysisResponse(mcBobilResponse, event => mcBobilProgress.push(event));
+  const mcBobilDurationMs = Math.round(performance.now() - mcBobilStarted);
+  assert.equal(mcBobilResponse.status, 200);
+  assert.equal(mcBobilResult.analysis.successfulDocuments, 8);
+  assert.equal(mcBobilResult.analysis.failedDocuments, 0);
+  assert.equal(mcBobilCalls, 2);
+  assert.equal(calls.length - callsBeforeMcBobil, 2, 'MC/Bobil use only two local extraction calls; no semantic or other AI call');
+  for (const document of mcBobilResult.documents) {
+    const objects = document.insuranceData.insurances;
+    assert.equal(objects.length, 4);
+    assert.equal(objects.filter(object => object.type === 'MC').length, 2);
+    assert.equal(objects.filter(object => object.type === 'Bobil').length, 2);
+    for (const object of objects) {
+      const isMc = object.type === 'MC';
+      assert.ok(object.catalogReference);
+      assert.ok(['if', 'gjensidige'].includes(object.catalogReference.providerId));
+      assert.equal(object.catalogReference.agreementScope, 'ordinary');
+      assert.match(object.catalogReference.productId, isMc ? /-mc-kasko$/u : /-bobil-(?:kasko|pluss)$/u);
+      assert.ok(object.catalogFacts.length > 0);
+      assert.ok(object.catalogFacts.every(fact => !fact.key.startsWith(isMc ? 'bobil.' : 'mc.')));
+      assert.equal(object.documentReferences.length, 1);
+      const reference = object.documentReferences[0];
+      const documentId = `pdf:${reference.side}:${reference.documentIndex}`;
+      assert.ok(object.objectIdentifiers[0].sources.every(source => source.documentId === documentId));
+      const key = isMc ? 'mc.kjoreutstyr.grense' : 'bobil.fukt.alder';
+      const fact = object.importantTerms.find(term => term.key === key);
+      assert.ok(fact, 'type-specific customer fact survives extraction, catalog enrichment and sanitizer');
+      assert.equal(fact.coverageOrigin, 'document');
+      assert.ok(fact.sources.every(source => source.documentId === documentId));
+    }
+    const contributions = [];
+    const price = portfolioPrice(document, 0, (objectIndex, input) => contributions.push(input));
+    assert.equal(price.objectCount, 4);
+    assert.equal(price.compatible, true);
+    assert.deepEqual(price.components.map(component => [component.completeness, component.priced, component.amount]), [
+      ['complete', 4, 401000], ['complete', 4, 81000], ['complete', 4, 482000],
+    ]);
+    assert.ok(contributions.every(input => input.reason === 'CONTRIBUTION_ACCEPTED'));
+  }
+  const mcBobilGroups = groupInsurances(...mcBobilResult.documents.map(document => document.insuranceData.insurances), mcBobilResult.matchingPlan);
+  assert.equal(mcBobilGroups.length, 4);
+  assert.ok(mcBobilGroups.every(group => group.objectMatch.reason === 'EXACT_OBJECT_ID'));
+  for (const group of mcBobilGroups) {
+    assert.equal(group.first[0].objectIdentifiers[0].value, group.second[0].objectIdentifiers[0].value);
+    assert.notEqual(group.first[0].catalogReference.providerId, group.second[0].catalogReference.providerId);
+    const details = groupTerms(group, mcBobilResult.matchingPlan);
+    for (const key of ['premie.ekskl_tfa', 'premie.tfa', 'premie.total', group.key === 'mc' ? 'mc.kjoreutstyr.grense' : 'bobil.fukt.alder']) {
+      const row = details.find(term => term.key === key);
+      assert.ok(row?.first && row.second, 'each matched object retains side-by-side detail values');
+      assert.equal(row.first, row.second, 'reversed document order must not mix customer facts');
+      assert.ok(row.firstSources.length && row.secondSources.length);
+    }
+  }
+  const mcBobilDifferences = createDifferences(...mcBobilResult.documents, mcBobilGroups, mcBobilResult.matchingPlan);
+  assert.ok(!mcBobilDifferences.some(difference => difference.kind === 'object'));
+  const mcBobilPresentation = presentImportantDifferences(mcBobilDifferences, mcBobilGroups, mcBobilResult.matchingPlan);
+  for (const type of ['mc', 'bobil']) {
+    assert.ok(mcBobilPresentation.some(difference => difference.insuranceKey === type));
+    assert.ok(mcBobilProgress.some(event => event.type === 'product_status' && event.insuranceType === type));
+  }
+  assert.doesNotMatch(JSON.stringify(mcBobilProgress), /ZZ95[0-9]+/u);
+  assert.doesNotMatch(logs, /ZZ95[0-9]+/u);
+  mcBobilScenario = false;
   priceScenario = true;
   const callsBeforePrices = calls.length;
   const priceResponse = await fetch(base + '/api/analyze', { method: 'POST', headers: { ...headers, accept: 'application/x-ndjson' }, body: multiForm(2) });
@@ -463,6 +556,7 @@ try {
     "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
     "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
     "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+    "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
     "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
     "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
     "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
@@ -472,7 +566,7 @@ try {
     "unauthorized", "manual/catalog", "synthetic PDF to mocked AI to response",
     "two-side concurrency", "N documents to M products", "capacity limit", "invalid PDF before AI",
     "strict form fields", "429/no retries/sibling abort", "admission released", "private logging", "semantic fallback telemetry/no unnecessary AI",
-  ], syntheticMetrics: success }, null, 2));
+  ], syntheticMetrics: success, mcBobilSyntheticDurationMs: mcBobilDurationMs }, null, 2));
 } finally {
   child.kill("SIGTERM");
   await Promise.race([once(child, "exit"), delay(3000)]);

@@ -1,6 +1,7 @@
 import type { AgreementPeriod, DocumentRole } from "./object-consolidation.ts";
 import type { ObjectIdentifier } from "./object-matching.ts";
 import { vehicleObjectFactKeys } from "./vehicle-object-registry.ts";
+import { mcBobilFactKeys } from "./mc-bobil-registry.ts";
 import { ANALYSIS_MODEL } from "./analysis-telemetry.ts";
 import { canonicalInsuranceTypeLabel } from "./insurance-normalization.ts";
 import type { AgreementScopeId } from "./agreement-scope.ts";
@@ -12,6 +13,7 @@ export const EXTRACTION_TIMEOUT_MS = 90_000;
 export class AnalysisOutputError extends Error {}
 
 export const canonicalDocumentFactKeys = [
+  ...mcBobilFactKeys.filter(key => !["maskinskade.dekning", "maskinskade.varighet", "maskinskade.alder", "maskinskade.km", "leiebil.dekning", "leiebil.dager", "nyverdi.grenser", "nyverdi.alder", "nyverdi.km", "premie.total", "premie.ekskl_tfa", "premie.tfa", "kjoretoy.forstegangsregistrering", "kjoretoy.kilometerstand", "kjoretoy.kjorelengde", "kjoretoy.avtalt_maks_kilometerstand"].includes(key)),
   ...vehicleObjectFactKeys,
   "leiebil.dekning",
   "leiebil.dager",
@@ -113,7 +115,8 @@ VIKTIG:
 - Behold eksplisitt medlems-/avtalevariant i canonicalProductName når den avgrenser produktet. Generelle produktvilkår må ikke gjøres kanal-/avtalenøytrale ved å fjerne en dokumentert avtalevariant.
 - Bruk en presis, kanonisk typebetegnelse i type: Bil for personbil (også når dokumentet bruker Motorvogn), MC for motorsykkel, og Bobil, Campingvogn, Hus, Innbo, Reise eller Båt når dette er riktig. Ikke klassifiser MC, bobil, campingvogn eller andre kjøretøy som Bil.
 - Snøscooter, Campingvogn og Tilhenger er egne typer. Ikke slå dem sammen med Bil, MC, ATV, Bobil eller hverandre. Kasko alene fastslår ikke type. Behold hvert objekt separat, også ved samme selskap og produktnivå.
-- Bruk type-scopede canonicalKey for disse objektene (snoscooter.*, campingvogn.*, tilhenger.*). Ikke bruk personbilens maskinskade-/totalskadefelt for andre typer. Behold eksplisitt objektidentitet i productName eller egne importantTerms; ikke tolk kundenummer eller forsikringsnummer som registreringsnummer.
+- Bruk type-scopede canonicalKey for disse objektene (snoscooter.*, campingvogn.*, tilhenger.*). Ikke bruk personbilens maskinskade-/totalskadefelt for disse tre typene. Behold eksplisitt objektidentitet i productName eller egne importantTerms; ikke tolk kundenummer eller forsikringsnummer som registreringsnummer.
+- For MC/Bobil: bruk felles kjøretøynøkler bare for samme dokumenterte begrep. mc.* gjelder kun MC og bobil.* kun Bobil. Hold kjøreutstyr, bagasje, fastmontert utstyr, fukt, ferieytelser, egenandel og kundens kjørelengde adskilt. Maskinskade-/nyverdigrense skal aldri hentes fra faktisk kilometerstand, årlig kjørelengde, kjøpskrav eller egenandelstabell.
 - For nye kjøretøytyper: behold dokumentert forsikringspris, TFA og total i premie.ekskl_tfa, premie.tfa og premie.total. Ikke anta at Campingvogn/Tilhenger har TFA; ikke sett manglende TFA til 0.
 - For samme forsikringsobjekt: legg alle eksplisitt avtalte tilleggsdekninger i addOns-listen på hovedforsikringen. Listen kan inneholde 0, 1 eller flere tillegg. Ikke opprett konkurrerende hovedprodukter for disse.
 - selected/valgt betyr at dekningen gjelder, ikke at den er et valgfritt tillegg. Standarddekninger som følger produktnivået skal stå i importantTerms, ikke i addOns. Bruk addOns bare når dokumentet identifiserer et faktisk tillegg; ikke utled dette fra valgstatus alene.

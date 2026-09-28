@@ -47,7 +47,7 @@ type DocumentResult = {
   insuranceData: InsuranceData;
 };
 
-const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", ...vehicleObjectTypes.map(({ label }) => label)];
+const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", "MC", "Bobil", ...vehicleObjectTypes.map(({ label }) => label)];
 
 export default function Home() {
   const [existingFiles, setExistingFiles] = useState<File[]>([]);

@@ -3,6 +3,7 @@ import { catalogAgreementScope } from "./agreement-scope.ts";
 import { groupTerms } from "./comparison.ts";
 import { coverageDetailPresentation, type CoverageDetailPresentation } from "./coverage-detail-presentation.ts";
 import type { MatchingPlan } from "./hybrid-matching.ts";
+import { mcBobilTypes } from "./mc-bobil-registry.ts";
 import {
   conditionalBenefitAudits, conditionalBenefits, conceptForFactKey, conceptsForInsurance, evidenceById,
 } from "./presentation-catalog.ts";
@@ -34,7 +35,7 @@ const provenanceOnlyKey = /(?:^|\.)avtale\.(?:forbehold|ipid|generelle|generelle
 
 function conceptFamily(key: string): string {
   const parts = key.split(".");
-  if (["hus", "innbo", "reise"].includes(parts[0])) return parts.slice(0, 2).join(".");
+  if (["hus", "innbo", "reise", ...mcBobilTypes].includes(parts[0])) return parts.slice(0, 2).join(".");
   return parts[0];
 }
 

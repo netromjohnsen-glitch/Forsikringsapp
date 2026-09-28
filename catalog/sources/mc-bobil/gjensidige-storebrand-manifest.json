@@ -1,0 +1,3411 @@
+{
+  "retrievedAt": "2026-09-28",
+  "scope": "ordinary/private MC and Bobil",
+  "packages": [
+    {
+      "providerId": "gjensidige",
+      "insuranceType": "MC",
+      "status": "READY",
+      "productLevels": [
+        "Ansvar",
+        "Delkasko",
+        "Kasko"
+      ],
+      "agreementScope": "ordinary",
+      "versionStatus": "unknown",
+      "notes": "Three current alminnelige terms, MOT03 IPID and current product page; PDF creation timestamp is not effective date."
+    },
+    {
+      "providerId": "gjensidige",
+      "insuranceType": "Bobil",
+      "status": "READY",
+      "productLevels": [
+        "Ansvar",
+        "Delkasko",
+        "Kasko",
+        "Pluss"
+      ],
+      "agreementScope": "ordinary",
+      "versionStatus": "unknown",
+      "notes": "Four current alminnelige terms, MOT08 IPID and current page. IPID expanded-total-loss wording not corroborated by Pluss full terms: do not invent expanded age/km."
+    },
+    {
+      "providerId": "storebrand",
+      "insuranceType": "MC",
+      "status": "READY",
+      "productLevels": [
+        "Ansvar",
+        "Delkasko",
+        "Kasko"
+      ],
+      "agreementScope": "ordinary",
+      "versionStatus": "motor09 / 2025-04-01",
+      "notes": "Shared full motor09 plus MC-specific page. No MC Super. Generic baggage table versus MC-page exclusion is a scoped applicability conflict; do not assign generic baggage sum."
+    },
+    {
+      "providerId": "storebrand",
+      "insuranceType": "Bobil",
+      "status": "READY",
+      "productLevels": [
+        "Ansvar",
+        "Delkasko",
+        "Kasko",
+        "Super"
+      ],
+      "agreementScope": "ordinary",
+      "versionStatus": "motor09 / 2025-04-01",
+      "notes": "Bobil is explicitly within motor09 and current Bil product page. No separate IPID or Bobil landing page linked; full terms sufficient."
+    }
+  ],
+  "artifacts": [
+    {
+      "filename": "gjensidige-mc-produkt.html",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-mc-produkt.html",
+      "url": "https://www.gjensidige.no/forsikring/mc-forsikring",
+      "resolvedUrl": "https://www.gjensidige.no/forsikring/mc-forsikring",
+      "sha256": "5fe4383ed92a538c0aea792c549d361202249149e1e5ff4eadf80be06d5a05f3",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC"
+      ],
+      "documentType": "product_page",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-mc-produkt.html",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-mc-produkt.html:mc"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "mc.bagasje.begrensning",
+          "sourceId": "mc-bobil:gjensidige-mc-produkt.html:mc",
+          "page": 1,
+          "section": "Personlige ting"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "mc.bagasje.begrensning",
+          "sourceId": "mc-bobil:gjensidige-mc-produkt.html:mc",
+          "page": 1,
+          "section": "Personlige ting"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "kasko.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-produkt.html:mc",
+          "page": 1,
+          "section": "Egenandel"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "feilfylling.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-produkt.html:mc",
+          "page": 1,
+          "section": "Feilfylling av drivstoff"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-bobil-produkt.html",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-bobil-produkt.html",
+      "url": "https://www.gjensidige.no/forsikring/kjoretoy/bobilforsikring",
+      "resolvedUrl": "https://www.gjensidige.no/forsikring/kjoretoy/bobilforsikring",
+      "sha256": "fe5e9775c7fab9c8e05a3c7448b3f6b8106839964f169fa76bf910d21a60ed26",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "Bobil"
+      ],
+      "documentType": "product_page",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-bobil-produkt.html",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-bobil-produkt.html:bobil"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "kasko.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-produkt.html:bobil",
+          "page": 1,
+          "section": "Egenandel"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "feilfylling.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-produkt.html:bobil",
+          "page": 1,
+          "section": "Feilfylling av drivstoff"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "kasko.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-produkt.html:bobil",
+          "page": 1,
+          "section": "Egenandel"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "feilfylling.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-produkt.html:bobil",
+          "page": 1,
+          "section": "Feilfylling av drivstoff"
+        },
+        {
+          "componentId": "gjensidige-bobil-utleie",
+          "canonicalKey": "bobil.utleie.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-produkt.html:bobil",
+          "page": 1,
+          "section": "Utleie"
+        }
+      ]
+    },
+    {
+      "filename": "storebrand-mc-forsikring.html",
+      "localPath": "catalog/sources/vehicle-extensions/storebrand-mc-forsikring.html",
+      "url": "https://www.storebrand.no/privat/forsikring/mc-forsikring",
+      "resolvedUrl": "https://www.storebrand.no/privat/forsikring/mc-forsikring",
+      "sha256": "57eee721cf1591ca4728d32446d83df52872e84b21ae40fd9796fa3fddbd163d",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": true,
+      "providerId": "storebrand",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC"
+      ],
+      "documentType": "product_page",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:storebrand-mc-forsikring.html",
+      "sourceRecordIds": [
+        "mc-bobil:storebrand-mc-forsikring.html:mc"
+      ],
+      "catalogUsage": []
+    },
+    {
+      "filename": "storebrand-bil-bobil-produkt.html",
+      "localPath": "catalog/sources/mc-bobil/storebrand-bil-bobil-produkt.html",
+      "url": "https://www.storebrand.no/privat/forsikring/bilforsikring",
+      "resolvedUrl": "https://www.storebrand.no/privat/forsikring/bilforsikring",
+      "sha256": "3a1592196e9b7c6a3dad7df21c1745881661e8fe0cce0793ff455003fcde32c6",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "providerId": "storebrand",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "Bobil"
+      ],
+      "documentType": "product_page",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:storebrand-bil-bobil-produkt.html",
+      "sourceRecordIds": [
+        "mc-bobil:storebrand-bil-bobil-produkt.html:bobil"
+      ],
+      "catalogUsage": []
+    },
+    {
+      "filename": "gjensidige-mc-kasko-vilkar.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-mc-kasko-vilkar.pdf",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+      "resolvedUrl": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+      "sha256": "735f518bd45c6470965c1ea6be2f596b6504cee9a09c47718a629ed319db5e58",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 15,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC"
+      ],
+      "documentType": "terms",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 9,
+          "section": "Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "mc.bagasje.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "mc.bagasje.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "mc.leiekjoretoy.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "mc.leiekjoretoy.dager",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "mc.leiekjoretoy.begrensning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-mc-kasko",
+          "canonicalKey": "kasko.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvilke skader"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-mc-delkasko-vilkar.pdf",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+      "resolvedUrl": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+      "sha256": "45952992dfe399ab2739be019307a485044639516cc7a75dfbbdd030437495e7",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 15,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC"
+      ],
+      "documentType": "terms",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 9,
+          "section": "Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "mc.bagasje.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "mc.bagasje.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "mc.leiekjoretoy.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "mc.leiekjoretoy.dager",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-mc-delkasko",
+          "canonicalKey": "mc.leiekjoretoy.begrensning",
+          "sourceId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-mc-ansvar-vilkar.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-mc-ansvar-vilkar.pdf",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/mc-ansvar-alminnelige-vilkar.pdf",
+      "resolvedUrl": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/mc-ansvar-alminnelige-vilkar.pdf",
+      "sha256": "eb31b56bb352906888cace2eb516b4dc336da06f3d3f8414fe4f47b10f4301b1",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 14,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC"
+      ],
+      "documentType": "terms",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-mc-ansvar",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-mc-ansvar-vilkar.pdf:mc",
+          "page": 8,
+          "section": "Rettshjelp – egenandel"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-bobil-pluss-vilkar.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-bobil-pluss-vilkar.pdf",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Pluss-alminnelige-vilkar.pdf",
+      "resolvedUrl": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "64eff6544529afba60722892de07b2db9ee8c3d0b0123001cbb7dfedfcd7e7d7",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 15,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "Bobil"
+      ],
+      "documentType": "terms",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 9,
+          "section": "Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.losore.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.losore.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hva er forsikret – fortelt"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "kasko.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nyverdi.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nyverdi.alder",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nyverdi.km",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nyverdi.skadegrad",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nyverdi.oppgjor",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nyverdi.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "leiebil.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "leiebil.dager",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "leiebil.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "maskinskade.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – maskinskade"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "maskinskade.alder",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – maskinskade"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "maskinskade.km",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – maskinskade"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "maskinskade.komponenter",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – maskinskade"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "maskinskade.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – maskinskade"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "maskinskade.egenandel.kilometer",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Egenandel maskinskade"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.fukt.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – fukt og skadedyr"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.fukt.alder",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – fukt og skadedyr"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.fukt.kontroll",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – fukt og skadedyr"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.skadedyr.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – fukt og skadedyr"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.feriegaranti.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Feriegaranti"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.feriegaranti.dagsbelop",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Feriegaranti"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.feriegaranti.dager",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Feriegaranti"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "bobil.feriegaranti.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Feriegaranti"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nokkel.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Bilnøkkel"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nokkel.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Bilnøkkel"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nokkel.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader – bilnøkkel"
+        },
+        {
+          "componentId": "gjensidige-bobil-pluss",
+          "canonicalKey": "nokkel.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Bilnøkkel"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-bobil-kasko-vilkar.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-bobil-kasko-vilkar.pdf",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Kasko-alminnelige-vilkar.pdf",
+      "resolvedUrl": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Kasko-alminnelige-vilkar.pdf",
+      "sha256": "7971a0170cf272cacec8e9da23633fa630245631d04e99f455b174dd3a2fc734",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 15,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "Bobil"
+      ],
+      "documentType": "terms",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 9,
+          "section": "Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "bobil.losore.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "bobil.losore.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hva er forsikret – fortelt"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "kasko.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "nyverdi.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "nyverdi.alder",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "nyverdi.km",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "nyverdi.skadegrad",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "nyverdi.oppgjor",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "nyverdi.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 15,
+          "section": "Erstatningsregler – Totalskadegaranti i Kasko og Pluss"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "leiebil.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "leiebil.dager",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        },
+        {
+          "componentId": "gjensidige-bobil-kasko",
+          "canonicalKey": "leiebil.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "page": 4,
+          "section": "Veihjelp ved feriereiser utenfor Norden"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-bobil-delkasko-vilkar.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-bobil-delkasko-vilkar.pdf",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Delkasko-alminnelige-vilkar.pdf",
+      "resolvedUrl": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Delkasko-alminnelige-vilkar.pdf",
+      "sha256": "978ff27d1df6f978775356ec1a65c164a2d18d2912d1b13bb63b99a110e1f1fd",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 14,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "Bobil"
+      ],
+      "documentType": "terms",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 8,
+          "section": "Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvilke skader"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Glass"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Veihjelp"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "bobil.losore.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "bobil.losore.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Ekstrautstyr og løsøre"
+        },
+        {
+          "componentId": "gjensidige-bobil-delkasko",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:gjensidige-bobil-delkasko-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hva er forsikret – fortelt"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-bobil-ansvar-vilkar.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-bobil-ansvar-vilkar.pdf",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/bobil-ansvar-alminnelige-vilkar.pdf",
+      "resolvedUrl": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/bobil-ansvar-alminnelige-vilkar.pdf",
+      "sha256": "0b7e01951d751773f3d8afd1175ea2dcf137820a2d440d68f880370c2b369f03",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 14,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "Bobil"
+      ],
+      "documentType": "terms",
+      "documentNumber": null,
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 1,
+          "section": "Forsikringen dekker – ansvar, rettshjelp og ulykke"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 3,
+          "section": "Hvor gjelder forsikringen"
+        },
+        {
+          "componentId": "gjensidige-bobil-ansvar",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:gjensidige-bobil-ansvar-vilkar.pdf:bobil",
+          "page": 8,
+          "section": "Rettshjelp – egenandel"
+        }
+      ]
+    },
+    {
+      "filename": "gjensidige-mc-MOT03-ipid.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-mc-MOT03-ipid.pdf",
+      "url": "https://www.gjensidige.no/ipid/gfno/MOT03",
+      "resolvedUrl": "https://www.gjensidige.no/ipid/gfno/MOT03",
+      "sha256": "4c5fca45ee41621e890580e0f3dead02c8bd57440bdac3913912b95a6faafdad",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 2,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC"
+      ],
+      "documentType": "ipid",
+      "documentNumber": "MOT03",
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-mc-MOT03-ipid.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-mc-MOT03-ipid.pdf:mc"
+      ],
+      "catalogUsage": []
+    },
+    {
+      "filename": "gjensidige-bobil-MOT08-ipid.pdf",
+      "localPath": "catalog/sources/mc-bobil/gjensidige-bobil-MOT08-ipid.pdf",
+      "url": "https://www.gjensidige.no/ipid/gfno/MOT08",
+      "resolvedUrl": "https://www.gjensidige.no/ipid/gfno/MOT08",
+      "sha256": "ca50c2bcf74bed138add832ec6f1605f13e29d3416721dbe57f0696145e50cd6",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": false,
+      "pages": 2,
+      "providerId": "gjensidige",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "Bobil"
+      ],
+      "documentType": "ipid",
+      "documentNumber": "MOT08",
+      "version": null,
+      "validFrom": null,
+      "validity": "current_link_date_unknown",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:gjensidige-bobil-MOT08-ipid.pdf",
+      "sourceRecordIds": [
+        "mc-bobil:gjensidige-bobil-MOT08-ipid.pdf:bobil"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "gjensidige-bobil-fortelt",
+          "canonicalKey": "bobil.fortelt.dekning",
+          "sourceId": "mc-bobil:gjensidige-bobil-MOT08-ipid.pdf:bobil",
+          "page": 1,
+          "section": "Mulige utvidelser"
+        }
+      ]
+    },
+    {
+      "filename": "storebrand-vilkar-motorvognforsikring.pdf",
+      "localPath": "catalog/sources/vehicle-extensions/storebrand-vilkar-motorvognforsikring.pdf",
+      "url": "https://www.storebrand.no/privat/forsikring/mc-forsikring/_/attachment/inline/7b20f38c-208d-48ca-97f9-f82fab02216f:e9289744b0f0bb00c7304e715377b4be9a0e85d8/vilkar-motorvognforsikring.pdf",
+      "resolvedUrl": "https://www.storebrand.no/privat/forsikring/mc-forsikring/_/attachment/inline/7b20f38c-208d-48ca-97f9-f82fab02216f:e9289744b0f0bb00c7304e715377b4be9a0e85d8/vilkar-motorvognforsikring.pdf",
+      "sha256": "7673b8ee8fd5329d9e87c0a128a0a5cd4eeefb0721c8c5d8a1dedeb246c041fb",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": true,
+      "pages": 33,
+      "providerId": "storebrand",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC",
+        "Bobil"
+      ],
+      "documentType": "terms",
+      "documentNumber": "motor09",
+      "version": "motor09",
+      "validFrom": "2025-04-01",
+      "validity": "current_official_link",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:storebrand-motor09",
+      "sourceRecordIds": [
+        "mc-bobil:storebrand-motor09:mc",
+        "mc-bobil:storebrand-motor09:bobil"
+      ],
+      "catalogUsage": [
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-mc-ansvar",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.2.1 Brann"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 10,
+          "section": "6.2.1 Brann – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 10,
+          "section": "6.2.2 Tyveri"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 10,
+          "section": "6.2.2 Tyveri – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "glass.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "naturskade.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.5 Naturskade"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "naturskade.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.5 Naturskade – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "veihjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.3 Veihjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "mc.kjoreutstyr.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Sikkerhetsutstyr – MC"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "mc.kjoreutstyr.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Sikkerhetsutstyr – MC"
+        },
+        {
+          "componentId": "storebrand-mc-delkasko",
+          "canonicalKey": "mc.kjoreutstyr.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Sikkerhetsutstyr – MC"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 32,
+          "section": "13 Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 9,
+          "section": "6.2.1 Brann"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 10,
+          "section": "6.2.1 Brann – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 10,
+          "section": "6.2.2 Tyveri"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 10,
+          "section": "6.2.2 Tyveri – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "glass.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "naturskade.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.5 Naturskade"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "naturskade.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.5 Naturskade – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "veihjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.2.3 Veihjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "mc.kjoreutstyr.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Sikkerhetsutstyr – MC"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "mc.kjoreutstyr.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Sikkerhetsutstyr – MC"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "mc.kjoreutstyr.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 7,
+          "section": "5 Sikkerhetsutstyr – MC"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "kasko.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.3 Kasko"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "feilfylling.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 12,
+          "section": "6.3 Kasko"
+        },
+        {
+          "componentId": "storebrand-mc-kasko",
+          "canonicalKey": "kasko.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:mc",
+          "page": 13,
+          "section": "6.3 Kasko – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-ansvar",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.2.1 Brann"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.1 Brann – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.2 Tyveri"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.2 Tyveri – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "glass.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "naturskade.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.5 Naturskade"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "naturskade.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.5 Naturskade – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "veihjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.3 Veihjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "bobil.losore.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Bagasje i bobil/campingbil"
+        },
+        {
+          "componentId": "storebrand-bobil-delkasko",
+          "canonicalKey": "bobil.losore.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Bagasje i bobil/campingbil"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.2.1 Brann"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.1 Brann – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.2 Tyveri"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.2 Tyveri – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "glass.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "naturskade.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.5 Naturskade"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "naturskade.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.5 Naturskade – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "veihjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.3 Veihjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "bobil.losore.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Bagasje i bobil/campingbil"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "bobil.losore.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Bagasje i bobil/campingbil"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "kasko.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.3 Kasko"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "feilfylling.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.3 Kasko"
+        },
+        {
+          "componentId": "storebrand-bobil-kasko",
+          "canonicalKey": "kasko.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.3 Kasko – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "ansvar.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "ansvar.person.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "ansvar.ting.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.1 Ansvarsforsikring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "rettshjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "rettshjelp.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – forsikringssum og egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "rettshjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 32,
+          "section": "13 Rettshjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "ulykke.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "ulykke.dod",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "ulykke.invaliditet",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 5,
+          "section": "Sammendrag – fører- og passasjerulykke"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "avtale.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "rettshjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 6,
+          "section": "4 Hvor forsikringen gjelder"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "brann.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 9,
+          "section": "6.2.1 Brann"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "brann.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.1 Brann – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "tyveri.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.2 Tyveri"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "tyveri.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 10,
+          "section": "6.2.2 Tyveri – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "glass.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "glass.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "glass.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "glass.reparasjon.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.4 Glass – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "naturskade.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.5 Naturskade"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "naturskade.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.5 Naturskade – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "veihjelp.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "veihjelp.geografi",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 11,
+          "section": "6.2.3 Veihjelp"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "veihjelp.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.2.3 Veihjelp – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "utstyr.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "utstyr.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "utstyr.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Hva er forsikret"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.losore.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Bagasje i bobil/campingbil"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.losore.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 7,
+          "section": "5 Bagasje i bobil/campingbil"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "kasko.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.3 Kasko"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "feilfylling.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 12,
+          "section": "6.3 Kasko"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "kasko.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.3 Kasko – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nyverdi.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.4.1 Totalskadegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nyverdi.alder",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.4.1 Totalskadegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nyverdi.km",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.4.1 Totalskadegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nyverdi.skadegrad",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.4.1 Totalskadegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nyverdi.oppgjor",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.4.1 Totalskadegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nyverdi.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 13,
+          "section": "6.4.1 Totalskadegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "maskinskade.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 14,
+          "section": "6.4.3 Motor, gir og kraftoverføring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "maskinskade.alder",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 14,
+          "section": "6.4.3 Motor, gir og kraftoverføring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "maskinskade.km",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 14,
+          "section": "6.4.3 Motor, gir og kraftoverføring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "maskinskade.komponenter",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 14,
+          "section": "6.4.3 Motor, gir og kraftoverføring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "maskinskade.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 14,
+          "section": "6.4.3 Motor, gir og kraftoverføring"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "maskinskade.egenandel.kilometer",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 16,
+          "section": "6.4.3 Egenandel etter kilometerstand"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.fukt.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Fukt- og vannskader"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.fukt.alder",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Fukt- og vannskader"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.fukt.kontroll",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Fukt- og vannskader"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.fukt.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Fukt- og vannskader"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.vann.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Fukt- og vannskader"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.vann.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Fukt- og vannskader"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.fukt.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.vann.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.1 Egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.feriegaranti.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.2 Feriegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.feriegaranti.dagsbelop",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.2 Feriegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "bobil.feriegaranti.dager",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "6.4.8.2 Feriegaranti"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nokkel.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 16,
+          "section": "6.4.4 Nøkkel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nokkel.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 16,
+          "section": "6.4.4 Nøkkel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "nokkel.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 17,
+          "section": "6.4.4 Nøkkel – egenandel"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "parkering.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 17,
+          "section": "6.4.5 Parkeringsskade"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "parkering.grense",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 17,
+          "section": "6.4.5 Parkeringsskade"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "parkering.bonus",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 17,
+          "section": "6.4.5 Parkeringsskade"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "parkering.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 17,
+          "section": "6.4.5 Parkeringsskade"
+        },
+        {
+          "componentId": "storebrand-bobil-super",
+          "canonicalKey": "parkering.egenandel",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 17,
+          "section": "6.4.5 Parkeringsskade"
+        },
+        {
+          "componentId": "storebrand-bobil-leiebil",
+          "canonicalKey": "leiebil.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        },
+        {
+          "componentId": "storebrand-bobil-leiebil",
+          "canonicalKey": "leiebil.dager",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        },
+        {
+          "componentId": "storebrand-bobil-leiebil",
+          "canonicalKey": "leiebil.bilklasse",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        },
+        {
+          "componentId": "storebrand-bobil-leiebil",
+          "canonicalKey": "leiebil.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        },
+        {
+          "componentId": "storebrand-bobil-utvidet-leiebil",
+          "canonicalKey": "leiebil.dekning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        },
+        {
+          "componentId": "storebrand-bobil-utvidet-leiebil",
+          "canonicalKey": "leiebil.dager",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        },
+        {
+          "componentId": "storebrand-bobil-utvidet-leiebil",
+          "canonicalKey": "leiebil.bilklasse",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        },
+        {
+          "componentId": "storebrand-bobil-utvidet-leiebil",
+          "canonicalKey": "leiebil.begrensning",
+          "sourceId": "mc-bobil:storebrand-motor09:bobil",
+          "page": 18,
+          "section": "7 Leiebilkostnader; 7.1–7.2 på side 19"
+        }
+      ]
+    },
+    {
+      "filename": "vilkar-generelle.pdf",
+      "localPath": "catalog/sources/storebrand/vilkar-generelle.pdf",
+      "url": "https://www.storebrand.no/privat/forsikring/bilforsikring/_/attachment/inline/f8340c1a-d0b6-43c8-963c-eff345a03c22:b2b6be411de9b425d73fa91b7c7e42ade28fdee8/vilkar-generelle.pdf",
+      "resolvedUrl": "https://www.storebrand.no/privat/forsikring/bilforsikring/_/attachment/inline/f8340c1a-d0b6-43c8-963c-eff345a03c22:b2b6be411de9b425d73fa91b7c7e42ade28fdee8/vilkar-generelle.pdf",
+      "sha256": "4873064a8597953be3832870734c41c15e5abe0cc9cfd77c01979878990cd754",
+      "retrievedAt": "2026-09-28",
+      "reusedArtifact": true,
+      "pages": 11,
+      "providerId": "storebrand",
+      "agreementScope": "ordinary",
+      "insuranceTypes": [
+        "MC",
+        "Bobil"
+      ],
+      "documentType": "terms",
+      "documentNumber": "gener07",
+      "version": "gener07",
+      "validFrom": "2026-09-01",
+      "validity": "current_official_link",
+      "notes": "Official public original; retrieval date is not policy effective date.",
+      "id": "mc-bobil:storebrand-gener07",
+      "sourceRecordIds": [
+        "mc-bobil:storebrand-gener07:mc",
+        "mc-bobil:storebrand-gener07:bobil"
+      ],
+      "catalogUsage": []
+    }
+  ],
+  "authorityNotes": [
+    "Customer agreement/certificate controls selected cover and overrides catalog.",
+    "Gjensidige public alminnelige documents explicitly are generic comparison terms, not an individual customer agreement.",
+    "Policy version/date unknown remains null; technical PDF metadata is not effective date.",
+    "Type applicability precedes source authority; shared motorvogn document does not authorize cross-type transfer."
+  ],
+  "conflicts": [
+    {
+      "providerId": "gjensidige",
+      "insuranceType": "Bobil",
+      "fact": "nyverdi",
+      "decision": "Use Kasko/Pluss full terms 1 year / 20,000 km; do not generate an extra Pluss expansion from MOT08 wording.",
+      "evidence": "Kasko and Pluss p15 vs MOT08 p1; current product page agrees with full terms."
+    },
+    {
+      "providerId": "storebrand",
+      "insuranceType": "MC",
+      "fact": "mc.bagasje",
+      "decision": "Do not assign generic baggage amount until type applicability clarified.",
+      "evidence": "motor09 p1/p7 generic scope/table versus MC page explicit baggage/goods exclusion; expanded baggage clause p17 explicitly excludes MC."
+    },
+    {
+      "providerId": "storebrand",
+      "insuranceType": "Bobil",
+      "fact": "nyverdi (Kasko)",
+      "decision": "Do not assign Kasko 1 year / 15,000 km to Bobil from generic summary; exact registration applicability unresolved.",
+      "evidence": "motor09 summary p4/13 vs detailed §10.3 p24–25, which restricts new-vehicle settlement to person-/varebil."
+    }
+  ]
+}

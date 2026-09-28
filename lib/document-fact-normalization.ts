@@ -1,4 +1,6 @@
 import { vehicleObjectType, vehicleObjectFactKeys } from "./vehicle-object-registry.ts";
+import { mcBobilTypes, mcBobilKeyApplies, mcBobilCoverages } from "./mc-bobil-registry.ts";
+import { mcBobilCompoundFacts } from "./mc-bobil-document-facts.ts";
 import type { ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
 import {
   normalizeCatalogTermKey,
@@ -41,13 +43,29 @@ function explicitKey(
   // Preserve that identity on repeated normalization (e.g. consolidation).
   // Raw extraction cannot supply key/coverageOrigin through its schema.
   const prior = term as Partial<DocumentFact>;
-  const canonicalKey = term.canonicalKey || (prior.coverageOrigin === "document" ? prior.key : undefined);
+  const rawCanonicalKey = term.canonicalKey || (prior.coverageOrigin === "document" ? prior.key : undefined);
+  const type = normalizeInsuranceType(insurance.type);
+  // Newly registered type-specific keys are legal extraction enum members,
+  // but cannot establish a fact on another insurance type.
+  const canonicalKey = rawCanonicalKey && /^(mc|bobil)\./u.test(rawCanonicalKey) &&
+    !rawCanonicalKey.startsWith(`${type}.`) ? undefined : rawCanonicalKey;
   const labelKey = normalizeTermName(term.name, {
     insuranceType: insurance.type,
     relatedCoverageParentKeys,
     structuredCoverageContext: relatedCoverageParentKeys.length > 0,
     termValue: term.value,
   });
+  if (mcBobilTypes.some(id => id === type)) {
+    const labelApproved = mcBobilKeyApplies(type, labelKey);
+    const canonicalApproved = canonicalKey && mcBobilKeyApplies(type, canonicalKey);
+    const heading = mcBobilCoverages(type).find(c => c.parentKey === labelKey);
+    // A precise scoped label repairs a contradictory key, including two
+    // different children under bobil.*. A broad heading preserves an already
+    // established, applicable child identity on repeated normalization.
+    if (labelApproved && !(canonicalApproved && heading?.details.some(d => d.key === canonicalKey))) return labelKey;
+    if (canonicalApproved) return canonicalKey;
+    return labelKey;
+  }
   // A precise approved vehicle-field label is stronger than a contradictory
   // extraction key. Never infer field identity from a number or the unit km.
   if (normalizeInsuranceType(insurance.type) === "bil") {
@@ -373,6 +391,7 @@ export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentF
   });
   const derived = originals.flatMap(({ term, relatedCoverageParentKeys }) => [
     ...compoundDetails(term, insurance.type, relatedCoverageParentKeys),
+    ...mcBobilCompoundFacts(term, normalizeInsuranceType(insurance.type)),
     ...(normalizeInsuranceType(insurance.type) === "bil" && !term.key &&
       ![...totalskadeLabels].some(label => normalizeWords(term.name).startsWith(label))
       ? totalskadeTextFacts(term.value, insurance, term) : []),
@@ -384,10 +403,17 @@ export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentF
     "premie.tfa": "Trafikkforsikringsavgift",
   };
   const normalizedOriginals = originals.flatMap(({ term }) => {
+    if (["mc", "bobil"].includes(normalizeInsuranceType(insurance.type)) &&
+      ["maskinskade.alder", "maskinskade.km"].includes(term.key ?? "") &&
+      mcBobilCompoundFacts(term, normalizeInsuranceType(insurance.type)).length) {
+      return [{ ...term, key: "maskinskade.varighet" }];
+    }
     // En sammensatt grense feilplassert på alder/km må ikke bli stående som
     // en konkurrerende effektiv verdi etter at den er splittet.
     if (["nyverdi.alder", "nyverdi.km"].includes(term.key ?? "") &&
-      valueMatch(term.value, yearLimit) && valueMatch(term.value, kilometerLimit)) {
+      valueMatch(term.value, yearLimit) && valueMatch(term.value, kilometerLimit) &&
+      (!["mc", "bobil"].includes(normalizeInsuranceType(insurance.type)) ||
+        mcBobilCompoundFacts(term, normalizeInsuranceType(insurance.type)).length)) {
       return [{ ...term, key: "nyverdi.grenser" }];
     }
     return [{ ...term, name: premiumLabels[term.key ?? ""] ?? term.name }];
