@@ -531,7 +531,7 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
     const comparableDifferences = terms
       .filter((term) => !(isMotorVehicleType(group.key) && isVehiclePriceKey(term.key)) && !term.firstCoverage && !term.secondCoverage &&
         term.first && term.second && term.firstValueCount === 1 && term.secondValueCount === 1 &&
-        !materiallyEquivalentValues(term.first, term.second) &&
+        !materiallyEquivalentValues(term.first, term.second, term.key) &&
         (!isDeductibleKey(term.key) || directlyComparableSpecialDeductible(term)))
       .sort((a, b) => importance(b.key) - importance(a.key));
     const comparedKeys = new Set([...coverageDifferences, ...comparableDifferences].map((term) => term.key));

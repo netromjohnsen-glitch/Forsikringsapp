@@ -1,5 +1,6 @@
 import { catalogProductMatchesSelection, findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
 import { summarizeManualAnnualPremium } from "./agreement-pricing.ts";
+import { normalizeInsuranceType } from "./insurance-normalization.ts";
 
 export type ManualTermInput = { name: string; value: string };
 export type ManualProductInput = {
@@ -9,6 +10,8 @@ export type ManualProductInput = {
   deductible: string;
   coverageSummary: string;
   importantTerms: ManualTermInput[];
+  annualMileage?: string;
+  customProduct?: boolean;
   // Kan fylles med en stabil ID og vilkårsversjon når en produktkatalog kobles til.
   catalogReference?: { providerId: string; productId: string; version: string | null } | null;
   addOnIds?: string[];
@@ -23,7 +26,8 @@ export type ManualAgreementInput = {
 export function emptyManualProduct(): ManualProductInput {
   return {
     type: "", productName: "", annualPremium: "", deductible: "",
-    coverageSummary: "", importantTerms: [], catalogReference: null, addOnIds: [],
+    coverageSummary: "", importantTerms: [], annualMileage: "", customProduct: false,
+    catalogReference: null, addOnIds: [],
   };
 }
 
@@ -55,6 +59,27 @@ function optional(value: unknown, label: string, max = 1000): string | null {
   return field(value, label, max) || null;
 }
 
+function manualAnnualMileage(value: unknown, type: string, productIndex: number) {
+  if (value === undefined || value === null || value === "") return null;
+  if (normalizeInsuranceType(type) !== "bil") {
+    throw new ManualAgreementError("Årlig kjørelengde kan bare registreres for Bil.");
+  }
+  const raw = field(value, `årlig kjørelengde ${productIndex + 1}`, 30);
+  if (!/^(?:\d+|\d{1,3}(?:[ .\u00a0\u202f]\d{3})+)$/u.test(raw)) {
+    throw new ManualAgreementError("Ugyldig årlig kjørelengde. Oppgi et ikke-negativt heltall.");
+  }
+  const amount = Number(raw.replace(/[\s.\u00a0\u202f]/gu, ""));
+  if (!Number.isSafeInteger(amount) || amount < 0) {
+    throw new ManualAgreementError("Ugyldig årlig kjørelengde. Oppgi et ikke-negativt heltall.");
+  }
+  return {
+    name: "Årlig kjørelengde",
+    value: `${amount.toLocaleString("nb-NO")} km/år`,
+    key: "kjoretoy.kjorelengde",
+    coverageOrigin: "document" as const,
+  };
+}
+
 export function normalizeManualAgreement(input: unknown) {
   const agreement = object(input);
   const company = field(agreement.company, "selskap", 150);
@@ -78,6 +103,7 @@ export function normalizeManualAgreement(input: unknown) {
       if (Boolean(name) !== Boolean(value)) throw new ManualAgreementError(`Fyll ut både navn og verdi for vilkår på ${type}.`);
       return { name, value };
     }).filter((term) => term.name && term.value);
+    const annualMileage = manualAnnualMileage(product.annualMileage, type, productIndex);
 
     const rawReference = product.catalogReference;
     let catalogReference = null;
@@ -93,8 +119,8 @@ export function normalizeManualAgreement(input: unknown) {
         optional(reference.version, "vilkårsversjon", 100),
       );
     }
-    const selectedByFields = findCatalogProductBySelection(
-        company, type, field(product.productName, "produktnavn", 150),
+    const selectedByFields = product.customProduct === true ? null : findCatalogProductBySelection(
+      company, type, field(product.productName, "produktnavn", 150),
     );
     if (catalogProduct && (!catalogProductMatchesSelection(
       catalogProduct, company, type, field(product.productName, "produktnavn", 150),
@@ -138,15 +164,8 @@ export function normalizeManualAgreement(input: unknown) {
         })),
       };
     });
-    return {
-      type,
-      productName: optional(product.productName, "produktnavn", 150),
-      annualPremium: optional(product.annualPremium, "årspremie", 100),
-      deductible: optional(product.deductible, "egenandel", 300),
-      deductibleOrigin: "customer" as const,
-      coverageSummary: catalogFacts ? null : optional(product.coverageSummary, "dekningssammendrag", 2000),
-      importantTerms: effectiveFacts
-        ? effectiveFacts.map((item) => ({
+    const resolvedTerms = effectiveFacts
+      ? effectiveFacts.map((item) => ({
           name: item.label,
           value: (counts.get(item.key) ?? 0) > 1 ? `${item.source.termsNumber}: ${item.value}` : item.value,
           key: item.key,
@@ -171,7 +190,17 @@ export function normalizeManualAgreement(input: unknown) {
             ).map((base) => ({ value: base.value, source: base.source }))
             : [],
         }))
-        : importantTerms,
+      : importantTerms;
+    return {
+      type,
+      productName: optional(product.productName, "produktnavn", 150),
+      annualPremium: optional(product.annualPremium, "årspremie", 100),
+      deductible: optional(product.deductible, "egenandel", 300),
+      deductibleOrigin: "customer" as const,
+      coverageSummary: catalogFacts ? null : optional(product.coverageSummary, "dekningssammendrag", 2000),
+      importantTerms: annualMileage
+        ? [...resolvedTerms.filter((term) => !("key" in term) || term.key !== annualMileage.key), annualMileage]
+        : resolvedTerms,
       catalogReference,
       catalogSelectionConfirmed: Boolean(catalogReference),
       catalogFacts,

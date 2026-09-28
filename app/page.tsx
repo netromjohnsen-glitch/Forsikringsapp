@@ -5,7 +5,7 @@ import { vehicleObjectTypes } from "../lib/vehicle-object-registry.ts";
 import { useEffect, useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
 import { readAnalysisResponse, validateUploadSelection } from "@/lib/analysis-client";
 import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressState } from "@/lib/analysis-progress";
-import { isMotorVehicleType } from "@/lib/insurance-normalization";
+import { isMotorVehicleType, normalizeInsuranceType } from "@/lib/insurance-normalization";
 import { VehiclePriceList } from "./components/vehicle-price";
 import { PortfolioPriceList } from "./components/portfolio-price";
 import { portfolioPrice, portfolioPriceDifference, type PortfolioPriceInput } from "@/lib/portfolio-price-presentation";
@@ -18,7 +18,14 @@ import { annualPremiumLabel } from "@/lib/agreement-pricing";
 import type { ManualPremiumSummary } from "@/lib/agreement-pricing";
 import { emptyManualAgreement, emptyManualProduct } from "@/lib/manual-agreement";
 import type { ManualAgreementInput, ManualProductInput } from "@/lib/manual-agreement";
-import { availableAddOns, catalogConnectionStatus, findCatalogProduct, findCatalogProductBySelection, productCatalog, productSuggestions } from "@/lib/product-catalog";
+import { availableAddOns, catalogConnectionStatus, findCatalogProduct, productCatalog } from "@/lib/product-catalog";
+import {
+  applyManualProductSelection,
+  CUSTOM_PRODUCT_SELECTION,
+  manualProductOptions,
+  manualProductSelection,
+  transitionManualProductScope,
+} from "@/lib/manual-product-selection";
 import { createDifferences, groupAddOnNames, groupInsurances, groupTerms, groupValue } from "@/lib/comparison";
 import { presentImportantDifferences, sortDetailedTerms } from "@/lib/comparison-presentation";
 import type { PresentedDifference } from "@/lib/comparison-presentation";
@@ -365,21 +372,6 @@ function ManualEditor({ side, value, onChange }: {
       ),
     }));
   }
-  function selectionReference(company: string, type: string, name: string) {
-    const selected = findCatalogProductBySelection(company, type, name);
-    return selected
-      ? { providerId: selected.providerId, productId: selected.productId, version: selected.version }
-      : null;
-  }
-  function selectionPatch(product: ManualProductInput, company: string, type: string, name: string) {
-    const catalogReference = selectionReference(company, type, name);
-    const sameProduct = Boolean(catalogReference && product.catalogReference &&
-      catalogReference.providerId === product.catalogReference.providerId &&
-      catalogReference.productId === product.catalogReference.productId &&
-      catalogReference.version === product.catalogReference.version);
-    return { catalogReference, addOnIds: sameProduct ? product.addOnIds ?? [] : [] };
-  }
-
   return (
     <div className="mt-4 space-y-4">
       <label className="block text-sm font-medium text-gray-700">
@@ -394,11 +386,9 @@ function ManualEditor({ side, value, onChange }: {
               company,
               products: currentAgreement.products.map((product) => {
                 if (!company) {
-                  return { ...product, type: "", productName: "", catalogReference: null, addOnIds: [] };
+                  return { ...product, type: "", productName: "", annualMileage: "", customProduct: false, catalogReference: null, addOnIds: [] };
                 }
-                const suggestions = productSuggestions(productCatalog, company, product.type);
-                const productName = product.productName || (suggestions.length === 1 ? suggestions[0] : "");
-                return { ...product, productName, ...selectionPatch(product, company, product.type, productName) };
+                return transitionManualProductScope(product, company, product.type);
               }),
             }));
           }}
@@ -446,48 +436,87 @@ function ManualEditor({ side, value, onChange }: {
                 disabled={!value.company.trim()}
                 onChange={(event) => {
                   const type = event.target.value;
-                  const suggestions = productSuggestions(productCatalog, value.company, type);
-                  const productName = suggestions.length === 1 ? suggestions[0] : product.productName;
-                  changeProduct(index, { type, productName, ...selectionPatch(product, value.company, type, productName) });
+                  const transitioned = transitionManualProductScope(
+                    { ...product, type, annualMileage: normalizeInsuranceType(type) === "bil" ? product.annualMileage : "" },
+                    value.company,
+                    type,
+                  );
+                  changeProduct(index, transitioned);
                 }}
                 placeholder="Velg eller skriv type"
                 className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none disabled:cursor-not-allowed"
               />
               {!value.company.trim() && <span className="mt-1 block text-xs font-normal text-gray-500">Velg selskap først.</span>}
             </label>
-            <label className="text-sm font-medium text-gray-700">
-              Produkt/variant
-              <input
-                list={`products-${side}-${index}`}
-                value={product.productName}
-                disabled={!value.company.trim() || !product.type.trim()}
-                onChange={(event) => {
-                  const name = event.target.value;
-                  changeProduct(index, {
-                    productName: name,
-                    ...selectionPatch(product, value.company, product.type, name),
-                  });
-                }}
-                placeholder="Velg eller skriv produkt"
-                className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none disabled:cursor-not-allowed"
-              />
-              <datalist id={`products-${side}-${index}`}>
-                {productSuggestions(productCatalog, value.company, product.type).map((name) => (
-                  <option key={name} value={name} />
-                ))}
-              </datalist>
-              {value.company.trim() && product.type.trim() && (
-                productSuggestions(productCatalog, value.company, product.type).length > 0
-                  ? <span className="status-text mt-1 block text-xs font-normal">Velg blant tilgjengelige katalogprodukter, eller skriv et annet produkt.</span>
-                  : <span className="mt-1 block text-xs font-normal text-gray-500">Skriv produktnavnet fra avtalen.</span>
-              )}
-              {product.productName.trim() && !product.catalogReference && (
-                <span role="status" className="mt-2 block rounded-md border border-amber-200 bg-amber-50 px-2.5 py-2 text-xs font-normal leading-5 text-amber-900">
-                  Produktet er ikke koblet til vilkårskatalogen. Dekningssammenligningen kan derfor være ufullstendig.
-                </span>
-              )}
-            </label>
+            {(() => {
+              const options = manualProductOptions(value.company, product.type);
+              const selection = manualProductSelection(product, value.company, product.type);
+              const custom = selection === CUSTOM_PRODUCT_SELECTION;
+              const selectId = `${side}-product-${index}`;
+              const customId = `${side}-custom-product-${index}`;
+              return <div className="min-w-0 text-sm font-medium text-gray-700">
+                <label htmlFor={selectId}>Produkt/variant</label>
+                <select
+                  id={selectId}
+                  value={selection}
+                  disabled={!value.company.trim() || !product.type.trim()}
+                  onChange={(event) => changeProduct(
+                    index,
+                    applyManualProductSelection(product, value.company, product.type, event.target.value),
+                  )}
+                  className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none disabled:cursor-not-allowed"
+                >
+                  {(options.length > 0 || !value.company.trim() || !product.type.trim()) && <option value="">Velg produkt</option>}
+                  {options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                  <option value={CUSTOM_PRODUCT_SELECTION}>Annet / ikke på listen</option>
+                </select>
+                {custom && <label htmlFor={customId} className="mt-3 block">
+                  Produktnavn
+                  <input
+                    id={customId}
+                    value={product.productName}
+                    onChange={(event) => changeProduct(index, {
+                      productName: event.target.value,
+                      customProduct: true,
+                      catalogReference: null,
+                      addOnIds: [],
+                    })}
+                    placeholder="Skriv produktnavnet fra avtalen"
+                    className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
+                  />
+                </label>}
+                {value.company.trim() && product.type.trim() && (
+                  options.length > 0
+                    ? <span className="status-text mt-1 block text-xs font-normal">Velg blant tilgjengelige katalogprodukter. Bruk «Annet / ikke på listen» for andre produkter.</span>
+                    : <span className="mt-1 block text-xs font-normal text-gray-500">Ingen katalogprodukter er tilgjengelige. Skriv produktnavnet fra avtalen.</span>
+                )}
+                {product.productName.trim() && !product.catalogReference && (
+                  <span role="status" className="mt-2 block rounded-md border border-amber-200 bg-amber-50 px-2.5 py-2 text-xs font-normal leading-5 text-amber-900">
+                    Produktet er ikke koblet til vilkårskatalogen. Dekningssammenligningen kan derfor være ufullstendig.
+                  </span>
+                )}
+              </div>;
+            })()}
             {product.productName.trim() && <>
+              {normalizeInsuranceType(product.type) === "bil" && <label className="min-w-0 text-sm font-medium text-gray-700">
+                Årlig kjørelengde <span className="font-normal text-gray-500">(valgfritt)</span>
+                <span className="mt-1 flex min-w-0 items-center gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    inputMode="numeric"
+                    value={product.annualMileage ?? ""}
+                    onChange={(event) => {
+                      const annualMileage = event.target.value;
+                      if (annualMileage === "" || /^\d+$/u.test(annualMileage)) changeProduct(index, { annualMileage });
+                    }}
+                    placeholder="20 000"
+                    className="form-control min-w-0 flex-1 rounded-lg border px-3 py-2 outline-none"
+                  />
+                  <span className="shrink-0 text-sm font-normal text-gray-600">km/år</span>
+                </span>
+              </label>}
               <label className="text-sm font-medium text-gray-700">
                 Egenandel <span className="font-normal text-gray-500">(valgfritt)</span>
                 <input

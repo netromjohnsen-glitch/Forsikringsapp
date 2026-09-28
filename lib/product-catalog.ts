@@ -162,12 +162,20 @@ export function catalogProductMatchesSelection(
 }
 
 export function productSuggestions(catalog: ProductCatalog, company: string, insuranceType: string): string[] {
+  return [...new Set(catalogProductsForSelection(catalog, company, insuranceType)
+    .map((product) => product.name))];
+}
+
+export function catalogProductsForSelection(
+  catalog: ProductCatalog,
+  company: string,
+  insuranceType: string,
+): CatalogProduct[] {
   if (!company.trim() || !insuranceType.trim()) return [];
   return catalog.products
     .filter((product) => canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company) &&
       normalizeInsuranceType(product.insuranceType, { productName: product.name }) ===
-        normalizeInsuranceType(insuranceType))
-    .map((product) => product.name);
+        normalizeInsuranceType(insuranceType));
 }
 
 export function findCatalogProduct(providerId: string, productId: string, version: string | null) {
