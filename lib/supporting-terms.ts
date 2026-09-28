@@ -8,6 +8,7 @@ import { normalizeInsuranceType, normalizeTermName, relatedCoveragesForInsurance
 import { objectIdentity } from "./object-matching.ts";
 import { defaultIdentifierStrategies } from "./object-identity-strategies.ts";
 import { deriveCanonicalCoverages } from "./coverage-status.ts";
+import type { SupportingAttachmentObserver } from "./production-trace.ts";
 
 // Role is explicit extraction metadata for this record, not a filename/title
 // heuristic. Unknown records remain eligible, including unpriced/no-ID policies.
@@ -79,9 +80,20 @@ export function supportingEvidence(record: DocumentObjectRecord) {
 // Runs after customer-only consolidation and its established catalog policy.
 // Uploaded terms remain separate evidence; they cannot establish customer
 // choices, prices, object identity, or replace effective agreement facts.
-export function attachSupportingTerms<T extends Customer>(customer: T, records: readonly DocumentObjectRecord[], side?: "existing" | "offer"): T {
-  const applicable = records.filter(record => supportingTermsApply(customer, record, side)).map(supportingEvidence);
-  if (!applicable.length) return customer;
+export function attachSupportingTerms<T extends Customer>(customer: T, records: readonly DocumentObjectRecord[], side?: "existing" | "offer", observe?: SupportingAttachmentObserver): T {
+  const accepted = records.filter(record => supportingTermsApply(customer, record, side));
+  const applicable = accepted.map(supportingEvidence);
+  const blockedPrices = observe ? new Set<object>() : undefined;
+  const observed = (result: T): T => {
+    if (observe) for (const supporting of records) {
+      const index = accepted.indexOf(supporting), normalizedSupporting = applicable[index];
+      try { observe({ supporting, normalizedSupporting, customer, result, attached: index >= 0,
+        priceBlocked: Boolean(normalizedSupporting && blockedPrices?.has(normalizedSupporting)) }); }
+      catch { /* Optional diagnostics cannot affect supporting evidence or customer facts. */ }
+    }
+    return result;
+  };
+  if (!applicable.length) return observed(customer);
   const keyOf = (term: T["importantTerms"][number]) => term.key ?? normalizeTermName(term.name, { insuranceType: customer.type, termValue: term.value });
   const existing = new Set(customer.importantTerms.filter(t => !isUndocumentedTermValue(t.value)).map(keyOf));
   const coverages = new Map(deriveCanonicalCoverages(customer, customer.type).map(c => [c.id, c]));
@@ -90,7 +102,10 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
   for (const record of applicable) for (const term of record.importantTerms) {
     const key = keyOf(term);
     // Customer values/scalars are never imported from generic examples.
-    if (existing.has(key) || /^(?:premie|kjoretoy)\./u.test(key) || ["egenandel", "forsikringssum"].includes(key)) continue;
+    if (existing.has(key) || /^(?:premie|kjoretoy)\./u.test(key) || ["egenandel", "forsikringssum"].includes(key)) {
+      if (key === "premie.ekskl_tfa" || key === "premie.tfa" || key === "premie.total") blockedPrices?.add(record);
+      continue;
+    }
     const coverage = definitions.find(d => d.parentKey === key || d.details.some(detail => detail.key === key || Boolean(detail.keyPrefix && key.startsWith(detail.keyPrefix))) ||
       (d.parentKey.endsWith(".dekning") && key.startsWith(d.parentKey.slice(0, -"dekning".length))));
     // Only already established coverage can receive generic limits. A possible
@@ -111,7 +126,7 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
     annualPremium: record.annualPremium, deductible: record.deductible,
     sources: record.documentSources, importantTerms: record.importantTerms,
   })).sort((a,b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
-  return { ...customer, importantTerms: [...customer.importantTerms.filter(t =>
+  return observed({ ...customer, importantTerms: [...customer.importantTerms.filter(t =>
     !isUndocumentedTermValue(t.value) || !additions.some(a => keyOf(a) === keyOf(t))), ...additions],
-    recordEvidence: [...(customer.recordEvidence ?? []), ...evidence] };
+    recordEvidence: [...(customer.recordEvidence ?? []), ...evidence] });
 }

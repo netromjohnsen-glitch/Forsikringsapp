@@ -22,7 +22,12 @@ const types = ["bil", "hus", "bolig", "innbo", "reise", "snøscooter", "campingv
 // Metadata already imported by the application; no source reads or fact resolution.
 const providers = new Set(productCatalog.products.map(p => p.providerId));
 const products = new Set(productCatalog.products.map(p => p.productId));
-const stages = ["document", "extraction", "normalization", "repeated_normalization", "consolidation", "product", "catalog", "effective", "sanitizer", "coverage", "client_result", "price_input", "portfolio", "comparison", "presentation", "complete"];
+const stages = ["document", "extraction", "role_boundary", "supporting_attachment", "normalization", "repeated_normalization", "consolidation", "product", "catalog", "effective", "sanitizer", "coverage", "client_result", "price_input", "portfolio", "comparison", "presentation", "complete"];
+export const tracePriceKeys = ["premie.ekskl_tfa", "premie.tfa", "premie.total"] as const;
+export const traceRoleReasons = ["CUSTOMER_RECORD_RETAINED", "GENERAL_TERMS_RETAINED_AS_SUPPORT"] as const;
+export const traceSupportReasons = ["SUPPORT_SCOPE_NOT_APPLICABLE", "SUPPORT_ATTACHED_NO_PRICE", "CUSTOMER_PRICE_FROM_SUPPORT_BLOCKED"] as const;
+type PricePresence = { key: typeof tracePriceKeys[number]; present: boolean; documentedValuePresent: boolean };
+type TraceDocumentRole = "individual_agreement" | "general_terms" | "unknown";
 const origins = ["document", "catalog", "derived", "conflict", "unknown"];
 const reasons = ["UNOBSERVED", "KEY_SET_OBSERVED", "NO_EXPLICIT_RENAME_MAP", "EXACT_CATALOG_SELECTION", "NO_CATALOG_SELECTION", "STANDALONE", "CONSOLIDATED", "UNRESOLVED", "CONFLICT", "NO_EVIDENCE", "explicit_status", "main_value", "detail", "add_on", "catalog_definition", "ANNUAL_PARSED", "MISSING", "UNPARSEABLE_OR_CONFLICT", "PORTFOLIO_BRANCH", "VEHICLE_BRANCH", "LEGACY_BRANCH", "DOCUMENT_PRESENT_SKIP_CATALOG", "CATALOG_FILL_DOCUMENT_SILENT", "CATALOG_BLOCKED_BY_STATUS", "CATALOG_PRODUCT_MISMATCH", "CATALOG_CONFLICT", "CATALOG_NOT_AVAILABLE", "CATALOG_APPLIED", "CATALOG_NOT_APPLIED_OTHER_RULE", "CLIENT_RECEIPT_COMPLETE", "EXTRACTION_FAILED", "OPTIONAL_TFA_NOT_REQUIRED", "CONSOLIDATION_UNRESOLVED", "CONSOLIDATION_FACT_CONFLICT", "MULTIPLE_DOCUMENT_AMOUNTS", "CONTRIBUTION_ACCEPTED", "PRICE_UNPARSEABLE", "PRICE_MISSING", "PRICE_TYPE_UNSUPPORTED"];
 const decisions = reasons.filter(r => r.startsWith("CATALOG_") || r === "DOCUMENT_PRESENT_SKIP_CATALOG");
@@ -33,6 +38,10 @@ export type ClientTraceContext = { traceId: string; objectRefs: { left: string[]
 export type PriceBranch = "portfolio" | "vehicle" | "legacy";
 export type TraceEvent = {
   stage: string; side?: "left" | "right"; objectRef?: string; docRef?: string; batchRef?: string;
+  recordRef?: string; supportingRecordRef?: string; targetObjectRef?: string;
+  documentRole?: TraceDocumentRole; customerEligible?: boolean; destination?: "customer" | "supporting";
+  secureObjectIdentityPresent?: boolean; objectIdentityInvalid?: boolean; attached?: boolean;
+  pricePresence?: PricePresence[]; pricePresenceBefore?: PricePresence[]; pricePresenceAfter?: PricePresence[];
   objectRefs?: string[]; inputRefs?: string[]; documentRefs?: string[]; leftRefs?: string[]; rightRefs?: string[];
   keys?: string[]; beforeKeys?: string[]; addedKeys?: string[]; removedKeys?: string[]; conflictKeys?: string[]; coverageKeys?: string[];
   insuranceType?: string; insuranceTypes?: string[]; providerId?: string | null; productId?: string | null; beforeProductIds?: string[];
@@ -58,13 +67,20 @@ const shape = (fields: Record<string, (value: unknown) => boolean>) => (value: u
   return Object.keys(record).length === Object.keys(fields).length && Object.entries(fields).every(([k, check]) => check(record[k]));
 };
 const factShape = shape({ key, present: bool, origin: oneOf(origins) });
+const pricePresenceShape = (value: unknown) => Array.isArray(value) && value.length === tracePriceKeys.length && value.every((entry, index) =>
+  shape({ key: v => v === tracePriceKeys[index], present: bool, documentedValuePresent: bool })(entry) &&
+  (!entry.documentedValuePresent || entry.present));
 const validators: Record<keyof TraceEvent, (value: unknown) => boolean> = {
   stage: oneOf(stages), side: oneOf(["left", "right"]), objectRef: ref("object"), docRef: ref("doc"), batchRef: ref("batch"),
+  recordRef: ref("object"), supportingRecordRef: ref("object"), targetObjectRef: ref("object"),
+  documentRole: oneOf(["individual_agreement", "general_terms", "unknown"]), customerEligible: bool, destination: oneOf(["customer", "supporting"]),
+  secureObjectIdentityPresent: bool, objectIdentityInvalid: bool, attached: bool,
+  pricePresence: pricePresenceShape, pricePresenceBefore: pricePresenceShape, pricePresenceAfter: pricePresenceShape,
   objectRefs: list(ref("object")), inputRefs: list(ref("object")), documentRefs: list(ref("doc")), leftRefs: list(ref("object")), rightRefs: list(ref("object")),
   keys: list(key), beforeKeys: list(key), addedKeys: list(key), removedKeys: list(key), conflictKeys: list(key), coverageKeys: list(key),
   insuranceType: oneOf(types), insuranceTypes: list(oneOf(types)), providerId: v => v === null || typeof v === "string" && providers.has(v),
   productId: v => v === null || typeof v === "string" && products.has(v), beforeProductIds: list(v => typeof v === "string" && products.has(v)),
-  providerPresent: bool, productPresent: bool, identityPresent: bool, identityProvided: bool, identityInvalid: bool, productIdentityState: oneOf(["PRESENT", "EXPLICIT_UNKNOWN", "LEGACY_FALLBACK", "MISSING"]), applicabilityObserved: bool, applicable: bool, issues: list(oneOf(["identity_conflict", "provider_conflict", "product_conflict", "temporal_conflict"])), parsed: bool, extractedObjects: count, accepted: bool, reason: oneOf(reasons),
+  providerPresent: bool, productPresent: bool, identityPresent: bool, identityProvided: bool, identityInvalid: bool, productIdentityState: oneOf(["PRESENT", "EXPLICIT_UNKNOWN", "LEGACY_FALLBACK", "MISSING"]), applicabilityObserved: bool, applicable: bool, issues: list(oneOf(["identity_conflict", "provider_conflict", "product_conflict", "temporal_conflict"])), parsed: bool, extractedObjects: count, accepted: bool, reason: oneOf([...reasons, ...traceRoleReasons, ...traceSupportReasons]),
   facts: list(factShape), decisions: list(shape({ key, decision: oneOf(decisions) })),
   coverages: list(shape({ key, status: oneOf(["selected", "not_selected", "unknown"]), origin: oneOf(origins), reason: oneOf(reasons) })),
   prices: list(shape({ key: oneOf(["premie.ekskl_tfa", "premie.tfa", "premie.total"]), state: oneOf(["present", "missing", "conflict_or_unparseable", "conflict", "unparseable", "not_required"]), annualBasis: oneOf(["canonical_annual", "unresolved"]), comparable: bool, reason: oneOf(reasons) })),
@@ -78,8 +94,38 @@ const validators: Record<keyof TraceEvent, (value: unknown) => boolean> = {
 export function sanitizeTraceEvent(input: unknown): TraceEvent | null {
   const record = object(input);
   if (!validators.stage(record.stage) || Object.keys(record).some(k => !Object.hasOwn(validators, k) || !validators[k as keyof TraceEvent](record[k]))) return null;
+  // The two new boundary events must be complete and internally consistent;
+  // an omitted observation is never represented as a missing customer price.
+  if (record.stage === "role_boundary" &&
+      (!["side", "recordRef", "objectRef", "documentRole", "customerEligible", "destination", "reason", "pricePresence"].every(k => Object.hasOwn(record, k)) ||
+      record.recordRef !== record.objectRef || record.customerEligible !== (record.documentRole !== "general_terms") ||
+      record.destination !== (record.customerEligible ? "customer" : "supporting") ||
+      record.reason !== (record.customerEligible ? traceRoleReasons[0] : traceRoleReasons[1]))) return null;
+  if (record.stage === "supporting_attachment" &&
+      (!["side", "supportingRecordRef", "objectRef", "attached", "reason", "pricePresence", "pricePresenceBefore", "pricePresenceAfter"].every(k => Object.hasOwn(record, k)) ||
+      !oneOf(traceSupportReasons)(record.reason) ||
+      (record.attached ? record.targetObjectRef !== record.objectRef || record.reason === "SUPPORT_SCOPE_NOT_APPLICABLE"
+        : Object.hasOwn(record, "targetObjectRef") || record.reason !== "SUPPORT_SCOPE_NOT_APPLICABLE"))) return null;
   return JSON.parse(JSON.stringify(record)) as TraceEvent;
 }
+export function traceDocumentRole(record: object): TraceDocumentRole {
+  const role = object(record).documentRole;
+  return role === "individual_agreement" || role === "general_terms" ? role : "unknown";
+}
+// Inspect exact canonical identities only. No label inference, numeric parsing,
+// source reads, or new normalization; raw absence and undocumented values differ.
+export function tracePricePresence(input: unknown): PricePresence[] {
+  const terms = traceTerms(input);
+  return tracePriceKeys.map(key => {
+    const found = terms.filter(term => (term.key ?? term.canonicalKey) === key);
+    return { key, present: found.length > 0, documentedValuePresent: found.some(term =>
+      typeof term.value === "string" && Boolean(term.value.trim()) && !isUndocumentedTermValue(term.value)) };
+  });
+}
+export type SupportingAttachmentObserver = (input: {
+  supporting: object; normalizedSupporting?: object; customer: object; result: object;
+  attached: boolean; priceBlocked: boolean;
+}) => void;
 export function safeTraceType(record: object): string {
   const item = object(record);
   const type = normalizeInsuranceType(typeof item.type === "string" ? item.type : "");

@@ -4,7 +4,7 @@ import type { AnalysisSide } from "./analysis-progress.ts";
 import type { ExtractionBatch } from "./analysis-batching.ts";
 import type { ConsolidationTraceHooks } from "./insurance-object-consolidation.ts";
 import { isUndocumentedTermValue } from "./insurance-normalization.ts";
-import { sanitizeTraceEvent, traceProductIdentityState, safeTraceProduct, safeTraceType, traceCoverages, traceFacts, traceKeySet, traceKeys, traceTerms, type TraceEvent, type TraceObjectObserver } from "./production-trace.ts";
+import { sanitizeTraceEvent, traceDocumentRole, tracePricePresence, traceProductIdentityState, safeTraceProduct, safeTraceType, traceCoverages, traceFacts, traceKeySet, traceKeys, traceTerms, type SupportingAttachmentObserver, type TraceEvent, type TraceObjectObserver } from "./production-trace.ts";
 
 type Scope = { ref: string; side: "left" | "right"; documents: string[]; product: ReturnType<typeof safeTraceProduct>; normalizations: number; observer: TraceObjectObserver };
 const item = (value: object) => value as Record<string, unknown>;
@@ -43,6 +43,7 @@ export function createProductionTrace(traceId: string, enabled = process.env.PIL
       normalization(before, after) { guard(() => {
         const beforeKeys = traceKeySet(before), afterKeys = traceKeySet(after);
         emit({ ...base(), stage: scope.normalizations++ ? "repeated_normalization" : "normalization", beforeKeys, keys: afterKeys,
+          pricePresenceBefore: tracePricePresence(before), pricePresenceAfter: tracePricePresence(after),
           addedKeys: afterKeys.filter(k => !beforeKeys.includes(k)), removedKeys: beforeKeys.filter(k => !afterKeys.includes(k)), reason: "NO_EXPLICIT_RENAME_MAP" });
       }); },
       product(input, selected) { guard(() => {
@@ -78,6 +79,7 @@ export function createProductionTrace(traceId: string, enabled = process.env.PIL
       emit({ stage: "consolidation", side: scope.side, objectRef: scope.ref, inputRefs: previous.map(s => s.ref), documentRefs: scope.documents,
         accepted: status === "consolidated", issues: issues.filter(i => ["identity_conflict", "provider_conflict", "product_conflict", "temporal_conflict"].includes(i)), productIdentityState: traceProductIdentityState(output), applicabilityObserved: false, reason: status === "consolidated" ? "CONSOLIDATED" : status === "unresolved" ? "UNRESOLVED" : "STANDALONE",
         beforeProductIds: [...new Set(previous.flatMap(s => s.product.productId ? [s.product.productId] : []))], ...safeTraceProduct(item(output).catalogReference),
+        pricePresenceBefore: tracePricePresence(input.flatMap(traceTerms)), pricePresenceAfter: tracePricePresence(output),
         beforeKeys: traceKeySet(input.flatMap(traceTerms)), keys: traceKeySet(output), conflictKeys: (conflicts?.factConflicts ?? []).map(c => c.key).filter(k => traceKeys.includes(k as typeof traceKeys[number])) });
     }); },
   };
@@ -91,12 +93,31 @@ export function createProductionTrace(traceId: string, enabled = process.env.PIL
         const scope = makeScope(sideName(batch.side), refs); scopes.set(record, scope);
         const identity = objectIdentity(record as IdentifiedObject, defaultIdentifierStrategies);
         emit({ stage: "extraction", side: scope.side, objectRef: scope.ref, batchRef: batchRef(batch), documentRefs: refs,
+          recordRef: scope.ref, documentRole: traceDocumentRole(record), pricePresence: tracePricePresence(record),
+          secureObjectIdentityPresent: identity.keys.size > 0 && !identity.invalid, objectIdentityInvalid: identity.invalid,
+          ...safeTraceProduct(item(record).catalogReference),
           insuranceType: safeTraceType(record), keys: traceKeySet(record), coverageKeys: traceKeySet(record).filter(k => k.endsWith(".dekning")),
           providerPresent: Boolean(company), productPresent: Boolean(item(record).canonicalProductName || item(record).productName),
           productIdentityState: traceProductIdentityState(record), identityProvided: identity.provided, identityInvalid: identity.invalid, identityPresent: identity.keys.size > 0 && !identity.invalid });
       });
       return scopes.get(record)?.observer;
     },
+    roleBoundary(record: object, customerEligible: boolean) { guard(() => {
+      const scope = scopes.get(record);
+      if (!scope) throw new Error("Missing trace scope");
+      emit({ stage: "role_boundary", side: scope.side, objectRef: scope.ref, recordRef: scope.ref,
+        documentRole: traceDocumentRole(record), customerEligible, destination: customerEligible ? "customer" : "supporting",
+        reason: customerEligible ? "CUSTOMER_RECORD_RETAINED" : "GENERAL_TERMS_RETAINED_AS_SUPPORT", pricePresence: tracePricePresence(record) });
+    }); },
+    supportingAttachment(input: Parameters<SupportingAttachmentObserver>[0]) { guard(() => {
+      const supporting = scopes.get(input.supporting), customer = scopes.get(input.customer);
+      if (!supporting || !customer) throw new Error("Missing trace scope");
+      emit({ stage: "supporting_attachment", side: customer.side, supportingRecordRef: supporting.ref, objectRef: customer.ref,
+        ...(input.attached ? { targetObjectRef: customer.ref } : {}), attached: input.attached,
+        pricePresence: tracePricePresence(input.normalizedSupporting ?? input.supporting),
+        pricePresenceBefore: tracePricePresence(input.customer), pricePresenceAfter: tracePricePresence(input.result),
+        reason: !input.attached ? "SUPPORT_SCOPE_NOT_APPLICABLE" : input.priceBlocked ? "CUSTOMER_PRICE_FROM_SUPPORT_BLOCKED" : "SUPPORT_ATTACHED_NO_PRICE" });
+    }); },
     extractionFailed(batch: ExtractionBatch) { guard(() => emit({ stage: "extraction", side: sideName(batch.side), batchRef: batchRef(batch),
       documentRefs: batch.documents.map(d => docRef(d.side, d.documentIndex)), reason: "EXTRACTION_FAILED" })); },
     assignment(batch: ExtractionBatch, records: readonly object[]) { guard(() => {

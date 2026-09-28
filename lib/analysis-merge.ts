@@ -54,7 +54,11 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
       trace?.bind(product, documentRecord);
       // General terms are retained as evidence, never promoted to an insured
       // customer object, enriched as one, or published in product progress.
-      if (!isCustomerObject(documentRecord)) return [];
+      if (!isCustomerObject(documentRecord)) {
+        trace?.roleBoundary(documentRecord, false);
+        return [];
+      }
+      trace?.roleBoundary(documentRecord, true);
       const enriched = telemetry.measureSync("catalogEnrichment", () => enrichExtractedAgreementWithCatalog({ ...agreement, company, insurances: [withTerms] }, new Date(), telemetry.measureSync, observer)).insurances[0];
       const result = { ...enriched, company, analysisObjectId: `${batch.side}:${batch.batchIndex}:${productIndex}`,
         documentReferences: sourceIds(product.documentIndices).map((doc) => ({ side: doc.side, documentIndex: doc.documentIndex })),
@@ -76,13 +80,17 @@ export function mergeBatchResults(results: readonly BatchResult[], side: Analysi
   const byId = new Map(original.map(record => [record.analysisObjectId, record]));
   const insurances = consolidateInsuranceRecords(records, undefined, trace?.hooks).map(({ record, indices }) => {
     if (record.consolidation.status !== "consolidated") {
-      const result = attachSupportingTerms({ ...byId.get(records[indices[0]].analysisObjectId)!, documentSources: record.documentSources,
-        consolidation: record.consolidation, recordEvidence: record.recordEvidence }, supportingRecords);
+      const customer = { ...byId.get(records[indices[0]].analysisObjectId)!, documentSources: record.documentSources,
+        consolidation: record.consolidation, recordEvidence: record.recordEvidence };
+      trace?.bind(record, customer);
+      const result = attachSupportingTerms(customer, supportingRecords, undefined, trace?.supportingAttachment);
       trace?.bind(record, result);
       return result;
     }
     const enriched = enrichConsolidatedInsurance(record.company, record, record.importantTerms as DocumentFact[], new Date(), trace?.observer(record));
-    const result = attachSupportingTerms({ ...record, ...enriched }, supportingRecords);
+    const customer = { ...record, ...enriched };
+    trace?.bind(record, customer);
+    const result = attachSupportingTerms(customer, supportingRecords, undefined, trace?.supportingAttachment);
     trace?.bind(record, result);
     return result;
   });

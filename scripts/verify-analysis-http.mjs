@@ -27,6 +27,7 @@ let priceScenario = false;
 let priceScenarioCalls = 0;
 let supportingScenario = false;
 let supportingCalls = 0;
+let supportingPriceMode = 'customer';
 let peak = 0;
 let active = 0;
 let apiFailure = false;
@@ -83,7 +84,13 @@ const mock = createServer(async (request, response) => {
   }
   if (supportingScenario && input.text.format.name !== "semantic_insurance_matches") {
     const side = supportingCalls++ % 2 ? "offer" : "existing";
-    content.insurances = portfolioDocuments(side).flatMap((records, index) => records.map(record => ({ ...record,
+    const documents = portfolioDocuments(side);
+    if (side === 'existing' && supportingPriceMode !== 'customer') for (const [customer, supporting] of documents) {
+      const prices = customer.importantTerms.filter(t => t.canonicalKey?.startsWith('premie.'));
+      customer.importantTerms = customer.importantTerms.filter(t => !t.canonicalKey?.startsWith('premie.'));
+      if (supportingPriceMode === 'supporting') supporting.importantTerms.push(...prices);
+    }
+    content.insurances = documents.flatMap((records, index) => records.map(record => ({ ...record,
       documentIndices: [index + 1],
       objectIdentifiers: record.objectIdentifiers.map(id => ({ ...id, documentIndices: [index + 1] })),
       importantTerms: record.importantTerms.map(term => ({ ...term, documentIndices: [index + 1] })),
@@ -374,6 +381,26 @@ try {
   assert.ok(supportingGroups.every(g => g.objectMatch.reason === 'EXACT_OBJECT_ID'));
   assert.ok(!createDifferences(...supportingResult.documents, supportingGroups, supportingResult.matchingPlan).some(d => d.kind === 'object'));
   assert.doesNotMatch(logs, /ZZ1000[12]|Syntetisk produktbegrensning/u);
+  const priceTraceRuns = [{ mode: 'customer', result: supportingResult }];
+  for (const mode of ['supporting', 'absent']) {
+    supportingPriceMode = mode;
+    const before = calls.length;
+    const response = await fetch(base + '/api/analyze', { method: 'POST', headers: { ...headers, accept: 'application/x-ndjson' }, body: multiForm(2) });
+    const result = await readAnalysisResponse(response, () => {});
+    assert.equal(response.status, 200); assert.equal(calls.length - before, 2);
+    assert.equal(result.documents[0].insuranceData.insurances.length, 2);
+    assert.ok(result.documents[0].insuranceData.insurances.every(o => !o.importantTerms.some(t => t.key?.startsWith('premie.'))));
+    assert.ok(portfolioPrice(result.documents[1]).components.every(c => c.completeness === 'complete'));
+    priceTraceRuns.push({ mode, result });
+  }
+  for (const { result } of priceTraceRuns) {
+    const groups = groupInsurances(...result.documents.map(d => d.insuranceData.insurances), result.matchingPlan);
+    const events = clientTraceEvents({ documents: result.documents, groups,
+      differences: createDifferences(...result.documents, groups, result.matchingPlan),
+      portfolioPrices: result.documents.map(d => portfolioPrice(d)), context: result.analysis.trace, priceBranches: ['portfolio', 'portfolio'] });
+    const response = await postReceipt({ traceId: result.analysis.trace.traceId, ticket: result.analysis.trace.ticket, events });
+    assert.equal(response.status, 200);
+  }
   supportingScenario = false;
   await delay(100);
   const aborted = new AbortController();
@@ -402,6 +429,27 @@ try {
   assert.ok(clientTrace.some(event => event.stage === 'comparison'));
   for (const event of clientTrace.filter(event => event.objectRef)) assert.ok(serverTrace.some(server => server.objectRef === event.objectRef));
   assert.ok(traceEvents.some(event => event.stage === 'consolidation' && event.accepted));
+  for (const { mode, result } of priceTraceRuns) {
+    const events = traceEvents.filter(e => e.traceId === result.analysis.trace.traceId);
+    const extraction = events.filter(e => e.stage === 'extraction');
+    assert.equal(extraction.length, 8);
+    for (const event of extraction) {
+      const boundary = events.find(e => e.stage === 'role_boundary' && e.recordRef === event.recordRef);
+      assert.equal(boundary.objectRef, event.objectRef);
+      const expected = event.side === 'right' || mode === 'customer' ? boundary.customerEligible : mode === 'supporting' && !boundary.customerEligible;
+      assert.ok(event.pricePresence.every(p => p.present === expected && p.documentedValuePresent === expected));
+      assert.deepEqual(boundary.pricePresence, event.pricePresence);
+    }
+    assert.ok(events.some(e => e.phase === 'client' && e.reason === 'CLIENT_RECEIPT_COMPLETE'));
+    for (const event of events.filter(e => e.stage === 'supporting_attachment' && e.attached)) {
+      const blocked = mode === 'supporting' && event.side === 'left';
+      assert.equal(event.reason, blocked ? 'CUSTOMER_PRICE_FROM_SUPPORT_BLOCKED' : 'SUPPORT_ATTACHED_NO_PRICE');
+      assert.deepEqual(event.pricePresenceBefore, event.pricePresenceAfter);
+      assert.ok(result.analysis.trace.objectRefs[event.side].includes(event.targetObjectRef));
+    }
+    const complete = events.find(e => e.phase === 'server' && e.stage === 'complete');
+    assert.equal(complete.observerFailures, 0); assert.equal(complete.droppedEvents, 0);
+  }
   for (const { traceId, phase, sequence, ...event } of traceEvents) {
     assert.match(traceId, /^[0-9a-f-]{36}$/u);
     assert.ok(['server', 'client'].includes(phase));
@@ -417,6 +465,7 @@ try {
     "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
     "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
     "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+    "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
     "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
     "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
 
