@@ -11,6 +11,7 @@ import { PortfolioPriceList } from "./components/portfolio-price";
 import { portfolioPrice, portfolioPriceDifference, type PortfolioPriceInput } from "@/lib/portfolio-price-presentation";
 import { providerDisplayName, agreementProviderDisplayName, agreementScopeDisplayName } from "@/lib/provider-presentation";
 import { AnalysisProgress } from "./components/analysis-progress";
+import { ProductComparisonWorkspace } from "./components/product-comparison";
 import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
 import { measureComparisonWork } from "@/lib/comparison-performance";
@@ -50,6 +51,7 @@ type DocumentResult = {
 const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", "MC", "Bobil", ...vehicleObjectTypes.map(({ label }) => label)];
 
 export default function Home() {
+  const [comparisonMode, setComparisonMode] = useState<"agreements" | "products">("agreements");
   const [existingFiles, setExistingFiles] = useState<File[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [existingMode, setExistingMode] = useState<"pdf" | "manual">("pdf");
@@ -177,13 +179,43 @@ export default function Home() {
             Forsikringsassistent
           </h1>
           <p className="body-copy mt-3 text-lg">
-            Sammenlign eksisterende forsikringer med et nytt tilbud.
+            {comparisonMode === "agreements"
+              ? "Sammenlign eksisterende forsikringer med et nytt tilbud."
+              : "Sammenlign dekninger og vilkår mellom katalogførte produkter."}
           </p>
-          <p className="body-copy mt-1 text-sm">Last opp forsikringsdokumenter eller registrer forsikringene manuelt.</p>
+          <p className="body-copy mt-1 text-sm">{comparisonMode === "agreements"
+            ? "Last opp forsikringsdokumenter eller registrer forsikringene manuelt."
+            : "Ingen kundedokumenter, kundedata eller AI-analyse er nødvendig."}</p>
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+        <div className="mb-6">
+          <p className="mb-2 text-sm font-medium text-slate-700">Hva vil du sammenligne?</p>
+          <div className="mode-switch inline-flex rounded-xl p-1 ring-1" role="group" aria-label="Velg sammenligningsmodus">
+            <button
+              type="button"
+              aria-pressed={comparisonMode === "agreements"}
+              onClick={() => setComparisonMode("agreements")}
+              className={`mode-button rounded-lg px-4 py-2 text-sm font-semibold ${comparisonMode === "agreements" ? "mode-button-active" : ""}`}
+            >
+              Sammenlign avtaler
+            </button>
+            <button
+              type="button"
+              aria-pressed={comparisonMode === "products"}
+              onClick={() => { cancelAnalysis(); setComparisonMode("products"); }}
+              className={`mode-button rounded-lg px-4 py-2 text-sm font-semibold ${comparisonMode === "products" ? "mode-button-active" : ""}`}
+            >
+              Sammenlign produkter
+            </button>
+          </div>
+          <p className="body-copy mt-2 text-sm">{comparisonMode === "agreements"
+            ? "Sammenlign kundens forsikringer og tilbud."
+            : "Sammenlign produktdekninger direkte fra den kildebelagte katalogen."}</p>
+        </div>
+
+        {comparisonMode === "products" ? <ProductComparisonWorkspace /> : <>
         <div className="surface-card rounded-2xl border p-5 sm:p-8">
           <h2 className="section-title text-xl font-semibold">Ny sammenligning</h2>
           <p className="body-copy mt-2">
@@ -240,6 +272,7 @@ export default function Home() {
         {documents.length >= 2 && (
           <Comparison key={`${documents[0].filename}-${documents[1].filename}`} first={documents[0]} second={documents[1]} matchingPlan={matchingPlan} objectContext={{ failedExisting: partial?.failures?.filter(f => f.side === "existing").length, failedOffer: partial?.failures?.filter(f => f.side === "offer").length }} traceContext={partial?.trace} traceGeneration={partial?.traceGeneration} isTraceCurrent={(candidate) => generation.current.current(candidate)} traceSignal={partial?.traceSignal} />
         )}
+        </>}
       </div>
     </main>
   );
