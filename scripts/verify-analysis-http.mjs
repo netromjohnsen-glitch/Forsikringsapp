@@ -21,6 +21,8 @@ let vehicleObjectScenario = false;
 let portfolioScenario = false;
 let portfolioCalls = 0;
 let consolidationScenario = false;
+let priceScenario = false;
+let priceScenarioCalls = 0;
 let peak = 0;
 let active = 0;
 let apiFailure = false;
@@ -60,6 +62,19 @@ const mock = createServer(async (request, response) => {
           importantTerms: [{ name: "Egenandel", value: "6000 kr", canonicalKey: null, documentIndices: [2] }] }] : []),
       ]);
     }
+    if (reverse) content.insurances.reverse();
+  }
+  if (priceScenario && input.text.format.name !== "semantic_insurance_matches") {
+    const reverse = priceScenarioCalls++ % 2 === 1;
+    content.insurances = [[8641, 1359, 10321], [7263, 2047, 9527]].map((prices, index) => ({
+      ...content.insurances[0], type: "Bil", documentIndices: [index + 1], documentRole: "individual_agreement",
+      objectIdentifiers: [{ type: "registration", value: `ZZ8200${index + 1}`, documentIndices: [index + 1] }],
+      importantTerms: prices.map((amount, i) => ({
+        name: ["Forsikringspris", "Trafikkforsikringsavgift", "Totalpris"][i],
+        canonicalKey: ["premie.ekskl_tfa", "premie.tfa", "premie.total"][i],
+        value: `${amount} kr${reverse ? "" : "."}`, documentIndices: [index + 1],
+      })),
+    }));
     if (reverse) content.insurances.reverse();
   }
   response.writeHead(200, { "content-type": "application/json" });
@@ -302,6 +317,26 @@ try {
   consolidationScenario = false;
   portfolioScenario = false;
   vehicleObjectScenario = false;
+  priceScenario = true;
+  const callsBeforePrices = calls.length;
+  const priceResponse = await fetch(base + '/api/analyze', { method: 'POST', headers: { ...headers, accept: 'application/x-ndjson' }, body: multiForm(2) });
+  const priceResult = await readAnalysisResponse(priceResponse, e => assert.doesNotMatch(JSON.stringify(e), /ZZ8200[12]/u));
+  assert.equal(priceResponse.status, 200);
+  assert.equal(priceResult.analysis.successfulDocuments, 4);
+  assert.equal(priceResult.analysis.failedDocuments, 0);
+  assert.equal(priceScenarioCalls, 2);
+  assert.equal(calls.length - callsBeforePrices, 2, 'price comparison adds no semantic or other AI calls');
+  for (const document of priceResult.documents) {
+    const inputs = [];
+    const price = portfolioPrice(document, 0, (objectIndex, input) => inputs.push(input));
+    assert.equal(price.objectCount, 2);
+    assert.deepEqual(price.components.map(c => [c.completeness, c.priced, c.expected, c.amount]), [
+      ['complete', 2, 2, 1590400], ['complete', 2, 2, 340600], ['complete', 2, 2, 1984800],
+    ]);
+    assert.ok(inputs.every(p => p.reason === 'CONTRIBUTION_ACCEPTED' && p.comparable));
+  }
+  assert.doesNotMatch(logs, /ZZ8200[12]/u);
+  priceScenario = false;
   await delay(100);
   const aborted = new AbortController();
   const abortResponse = await fetch(base+'/api/analyze',{method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(2),signal:aborted.signal});
@@ -342,6 +377,7 @@ try {
     "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
     "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
     "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+    "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
     "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
     "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
 

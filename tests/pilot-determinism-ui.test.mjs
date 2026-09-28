@@ -55,6 +55,32 @@ test('multi-object unparseable prices show explicit portfolio missing states ins
   const html=render(pipeline(a),pipeline(a,'offer')).split('Vis pris per forsikring')[0];
   assert.ok(!html.includes('Total årspris'));assert.ok(html.includes('Ikke dokumentert'));assert.ok(html.includes('Forsikringspris'));
 });
+test('actual overview and object-price JSX agree for kr. versus kr after side swap',()=>{
+  const [a,b]=documents();
+  for(const object of a.insuranceData.insurances)for(const term of object.importantTerms)if(term.key?.startsWith('premie.')) {
+    const amount=object.objectIdentifiers[0].value==='ZZ10001'?[8641,1359,10321]:[7263,2047,9527];
+    term.value=`${amount[['premie.ekskl_tfa','premie.tfa','premie.total'].indexOf(term.key)]} kr.`;
+  }
+  for(const object of b.insuranceData.insurances)for(const term of object.importantTerms)if(term.key?.startsWith('premie.')) {
+    const amount=object.objectIdentifiers[0].value==='ZZ10001'?[8641,1359,10321]:[7263,2047,9527];
+    term.value=`${amount[['premie.ekskl_tfa','premie.tfa','premie.total'].indexOf(term.key)]} kr`;
+  }
+  for(const pair of [[a,b],[b,a]]) {
+    const html=render(...pair).replaceAll('\u00a0',' '), overview=html.split('Vis pris per forsikring')[0];
+    for(const value of ['15 904 kr','3 406 kr','19 848 kr'])assert.equal(overview.split(value).length-1,2,value);
+    assert.ok(!overview.includes('Ikke dokumentert'));assert.ok(!overview.includes('Total årspris'));
+    assert.ok(!html.includes('Kan ikke sammenlignes direkte'));
+    assert.ok(!important(html).includes('– prisgrunnlag'));
+    assert.ok(html.includes('10321 kr.'));
+  }
+});
+test('actual overview keeps a partial total labelled despite parseable kr. prices',()=>{
+  const [a,b]=documents();
+  for(const object of a.insuranceData.insurances)for(const term of object.importantTerms)if(term.key?.startsWith('premie.'))term.value='100 kr.';
+  a.insuranceData.insurances[1].importantTerms=a.insuranceData.insurances[1].importantTerms.filter(term=>term.key!=='premie.total');
+  const overview=render(a,b).split('Vis pris per forsikring')[0];
+  assert.ok(overview.includes('Delsum · 1 av 2 objekter priset'));
+});
 test('Detailed Comparison shows document and catalog provenance on their own facts',()=>{
   const a=car(),b=car();a.importantTerms.push(term('Kaskoskade','Egen dokumentert beskrivelse'));
   const html=render(pipeline([a]),pipeline([b],'offer'));

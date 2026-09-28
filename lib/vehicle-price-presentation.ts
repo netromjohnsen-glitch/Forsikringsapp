@@ -26,7 +26,9 @@ export function vehiclePrices(insurance: ComparedInsurance) {
 // Only a single explicit annual amount, never extract a number from a mixed range/monthly sentence.
 export function annualAmount(value: string, key?: VehiclePriceKey): number | null {
   const clean = value.trim().replace(/[\u00a0\u202f]/g, " ");
-  const match = /^(?:(kroner|kr)\s*)?((?:\d{1,3}(?:[ .]\d{3})+|\d+)(?:,\d{1,2})?)\s*(kroner|kr)?(.*)$/iu.exec(clean);
+  // The currency abbreviation may end in a period. Keep it in the currency
+  // token so it cannot be mistaken for an unsupported price-basis qualifier.
+  const match = /^(?:(kroner|kr)\s*)?((?:\d{1,3}(?:[ .]\d{3})+|\d+)(?:,\d{1,2})?)\s*(kroner|kr\.?)?(.*)$/iu.exec(clean);
   if (!match || (match[1] && match[3])) return null;
   let suffix = match[4].trim();
   // A canonical annual price key supplies the price basis. Only these exact
