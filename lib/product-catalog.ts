@@ -57,6 +57,9 @@ export type CatalogFact = {
   label: string;
   value: string;
   structuredValue?: BuildingFactData;
+  // Source-verified availability of this exact fact's subject. A subordinate
+  // exclusion (e.g. repair of a defect) must not negate a covered consequence.
+  coverageAvailability?: "included" | "unavailable";
   replacesBase?: boolean;
   // standard: avtalen kan endre verdien; coverage: særskilt skadetype, men
   // forrang over avtalt generell egenandel er ikke dokumentert; override:

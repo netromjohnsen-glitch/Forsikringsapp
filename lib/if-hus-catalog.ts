@@ -4,13 +4,15 @@ import { ifHusSources } from "./if-hus-sources.ts";
 export { ifHusSources } from "./if-hus-sources.ts";
 
 type Row = [key: string, label: string, value: string, section: string, page: number,
-  classification?: CatalogFact["deductibleClassification"], replacesBase?: boolean];
+  classification?: CatalogFact["deductibleClassification"], replacesBase?: boolean,
+  coverageAvailability?: CatalogFact["coverageAvailability"]];
 function facts(sourceId: string, rows: Row[]): CatalogFact[] {
   const source = ifHusSources[sourceId];
-  return rows.map(([key, label, value, section, page, deductibleClassification, replacesBase]) => ({
+  return rows.map(([key, label, value, section, page, deductibleClassification, replacesBase, coverageAvailability]) => ({
     key: `hus.${key}`, label, value,
     ...(deductibleClassification ? { deductibleClassification } : {}),
     ...(replacesBase ? { replacesBase: true } : {}),
+    ...(coverageAvailability ? { coverageAvailability } : {}),
     source: { documentId: source.id, filename: source.filename, termsNumber: source.termsNumber,
       effectiveFrom: source.effectiveFrom, company: source.company, url: source.url, section, page,
       version: source.version },
@@ -97,7 +99,7 @@ const productFacts = facts("ifHusProductPage", [
 ]);
 
 const extended = facts("ifHusTerms", [
-  ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Utvidet/Super dekker vann som trenger inn utenfra over terrengnivå. Selve utettheten er ikke dekket. Tak, takgjennomføring, balkong, terrasse og overgang eldre enn 50 år er unntatt.", "4.4", 8, undefined, true],
+  ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Utvidet/Super dekker vann som trenger inn utenfra over terrengnivå. Selve utettheten er ikke dekket. Tak, takgjennomføring, balkong, terrasse og overgang eldre enn 50 år er unntatt.", "4.4", 8, undefined, true, "included"],
   ["vatrom.folgeskade", "Utett våtrom - følgeskade", "Skade i tilstøtende og underliggende rom som følge av utett våtrom omfattes. Selve våtrommet og oppforing rundt sluk omfattes ikke av denne dekningen.", "4.4", 8, undefined, true],
   ["rate.dekning", "Råte og sopp - bygningsskade", "Ekte hussopp, andre treødeleggende sopper og råte som utvikler seg i forsikringstiden. Blåved, mugg, bakterier, kosmetiske forhold, utvendig treverk og ikke-boligbygg eldre enn 50 år er blant unntakene.", "4.11", 12, undefined, true],
   ["skadedyr.bygningsskade", "Skadedyr - fysisk bygningsskade", "Utvidet/Super dekker i tillegg fysisk bygningsskade fra skadedyr. Kosmetisk skade og isolasjon uten dokumentert svekket funksjon er unntatt; ikke-boligbygg er unntatt.", "4.10", 11, undefined, true],

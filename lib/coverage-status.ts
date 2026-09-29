@@ -6,6 +6,7 @@ import {
   type RelatedCoverage,
   type RelatedCoverageDetail,
 } from "./insurance-normalization.ts";
+import { isNonAssertingCoverageDetail } from "./coverage-fact-semantics.ts";
 
 export type CoverageStatus = "selected" | "not_selected" | "unknown";
 
@@ -44,7 +45,7 @@ export type CoverageInsurance = {
 
 export type CoverageEvidence = {
   status: CoverageStatus;
-  kind: "explicit_status" | "main_value" | "detail" | "add_on" | "catalog_definition";
+  kind: "explicit_status" | "main_value" | "detail" | "restriction" | "add_on" | "catalog_definition";
   origin: "document" | "catalog";
   priority: number;
   label: string;
@@ -161,14 +162,15 @@ function mainEvidence(term: CoverageTerm, insurance: CoverageInsurance): Coverag
   };
 }
 
-function detailEvidence(term: CoverageTerm, insurance: CoverageInsurance): CoverageEvidence {
+function detailEvidence(term: CoverageTerm, key: string, insurance: CoverageInsurance): CoverageEvidence {
   const origin = evidenceOrigin(term);
   const parsed = coverageStatusFromText(term.value);
   const catalogCanAssert = origin === "document" || insurance.catalogSelectionConfirmed === true;
-  const status = catalogCanAssert && parsed !== "unknown" && parsed !== "not_selected" ? "selected" : "unknown";
+  const restriction = isNonAssertingCoverageDetail(key);
+  const status = !restriction && catalogCanAssert && parsed !== "unknown" && parsed !== "not_selected" ? "selected" : "unknown";
   return {
     status,
-    kind: !catalogCanAssert ? "catalog_definition" : "detail",
+    kind: !catalogCanAssert ? "catalog_definition" : restriction ? "restriction" : "detail",
     origin,
     priority: !catalogCanAssert ? 0 : origin === "document" ? 250 : 180,
     label: term.name,
@@ -203,7 +205,8 @@ function effectiveCoverageDetails(details: CoverageDetailCandidate[]): CoverageD
     const highestPriority = Math.max(...candidates.map((candidate) => candidate.evidence.priority));
     return candidates
       .filter((candidate) => candidate.evidence.priority === highestPriority &&
-        candidate.evidence.status === "selected")
+        (candidate.evidence.status === "selected" ||
+          (candidate.evidence.kind === "restriction" && !isUndocumentedTermValue(candidate.value))))
       .filter((candidate, index, selected) => selected.findIndex((item) =>
         item.key === candidate.key && normalizeWords(item.value) === normalizeWords(candidate.value)
       ) === index)
@@ -237,10 +240,11 @@ function resolveCoverage(
   const summary = status === "selected" ? summaryParts.join("; ") || directSummary || null : null;
   const supporting = conflict ? strongest : [
     ...strongest,
-    ...(status === "selected" ? details.flatMap((detail) =>
+    ...details.flatMap((detail) =>
       detailCandidates.filter((candidate) => candidate.key === detail.key &&
-        normalizeWords(candidate.value) === normalizeWords(detail.value)).map((candidate) => candidate.evidence)
-    ) : []),
+        normalizeWords(candidate.value) === normalizeWords(detail.value) &&
+        (status === "selected" || candidate.evidence.kind === "restriction")).map((candidate) => candidate.evidence)
+    ),
   ];
   return {
     id: definition.parentKey,
@@ -264,7 +268,7 @@ export function deriveCanonicalCoverages(insurance: CoverageInsurance, insurance
       if (key === definition.parentKey) evidence.push(mainEvidence(term, insurance));
       const relation = relationDetail(definition, key);
       if (!relation) continue;
-      const item = detailEvidence(term, insurance);
+      const item = detailEvidence(term, key, insurance);
       evidence.push(item);
       details.push({ key, label: term.name, value: term.value, sources: item.sources, evidence: item });
     }

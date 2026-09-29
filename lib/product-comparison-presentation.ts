@@ -5,10 +5,12 @@ import type {
   CatalogProductComparison, ProductComparisonFact, ProductComparisonRow, ProductComparisonValue,
 } from "./catalog-product-comparison.ts";
 
-/** Presentation evidence, not new coverage data. A changed value, version or scope fails closed.
+/** Presentation evidence, not new coverage data. A changed identity, value or source fails closed.
  * The evaluator never searches prose for a keyword or branches on a provider name.
  */
 export type ProductParentEvidence = {
+  providerId: string;
+  productIds: readonly string[];
   insuranceType: string;
   agreementScope: string;
   productVersion: string;
@@ -19,6 +21,7 @@ export type ProductParentEvidence = {
 };
 
 export const productParentEvidence: readonly ProductParentEvidence[] = [{
+  providerId: "frende", productIds: ["frende-bil-kasko", "frende-bil-utvidet"],
   insuranceType: "bil", agreementScope: "ordinary", productVersion: "2026-01-01", parentKey: "kasko.dekning",
   childKeys: ["feilfylling.dekning", "haerverk.dekning"],
   value: "Plutselig og uforutsett skade etter sammenstøt, utforkjøring, velt, hærverk og feilfylling",
@@ -74,6 +77,8 @@ export type ProductDisplayRow = Omit<ProductComparisonRow, "first" | "second"> &
 };
 export type ProductCoverageGroup = {
   id: string; label: string; rows: ProductDisplayRow[];
+  showHeading?: boolean;
+  hiddenRowLabels?: string[];
   models: { label: string; first: ProductComparisonFact[]; second: ProductComparisonFact[] }[];
   details: { first: ProductComparisonFact[]; second: ProductComparisonFact[] };
 };
@@ -88,7 +93,9 @@ function parentValue(
   const materialized = result[side];
   const type = normalizeInsuranceType(materialized.product.insuranceType);
   for (const relation of relations) {
-    if (relation.insuranceType !== type || relation.productVersion !== materialized.product.version || relation.agreementScope !== catalogAgreementScope(materialized.product) || !relation.childKeys.includes(key)) continue;
+    if (relation.providerId !== materialized.product.providerId || !relation.productIds.includes(materialized.product.productId) ||
+      relation.insuranceType !== type || relation.productVersion !== materialized.product.version ||
+      relation.agreementScope !== catalogAgreementScope(materialized.product) || !relation.childKeys.includes(key)) continue;
     const parents = materialized.facts.filter((fact) => fact.key === relation.parentKey &&
       fact.value === relation.value && fact.state !== "unavailable" && fact.sources.some((source) =>
         source.documentId === relation.source.documentId && source.effectiveFrom === relation.source.effectiveFrom &&
@@ -118,6 +125,43 @@ const groupLabels: Record<string, string> = {
   leiebil: "Leiebil", veihjelp: "Veihjelp", glass: "Glass", ulykke: "Fører- og passasjerulykke",
   utstyr: "Utstyr og eiendeler", parkering: "Parkeringsskade", bilnokkel: "Bilnøkkel",
 };
+
+const agreementLabels: Readonly<Record<string, string>> = {
+  geografi: "Geografisk område", sesong: "Sesong / sesongvilkår",
+  egenandel: "Egenandel", forsikringssum: "Forsikringssum",
+};
+
+export function catalogDisplayLabel(fact: Pick<ProductComparisonFact, "key" | "label">): string {
+  const parts = fact.key.split(".");
+  return parts.length === 3 && parts[1] === "avtale"
+    ? agreementLabels[parts[2]] ?? fact.label : fact.label;
+}
+
+// Only complete, unqualified reference values are labelled individually agreed.
+// Amounts, defaults, exceptions, combined limits and conditional cover stay verbatim.
+const individualReferenceValues = new Set([
+  "Fremgår av forsikringsbeviset",
+  "Avtalt egenandel fremgår av forsikringsbeviset",
+  "Forsikringssummen fremgår av forsikringsbeviset",
+  "Forsikringssum står i forsikringsbeviset",
+  "Forsikringssum fremgår av forsikringsbeviset",
+  "Velges av forsikringstaker og står i forsikringsbeviset",
+]);
+
+export function catalogDisplayValue(fact: ProductComparisonFact): string {
+  const isIndividualValue = /(?:^|\.)(?:egenandel|forsikringssum|sum)$/u.test(fact.key);
+  return isIndividualValue && individualReferenceValues.has(fact.value)
+    ? `Individuelt avtalt. ${fact.value}` : fact.value;
+}
+
+function displayValue(value: ProductDisplayValue): ProductDisplayValue {
+  let text = value.text;
+  for (const fact of value.facts) {
+    const display = catalogDisplayValue(fact);
+    if (display !== fact.value) text = text.replace(fact.value, display);
+  }
+  return text === value.text ? value : { ...value, text };
+}
 
 function groupIdentity(type: string, row: ProductDisplayRow): string {
   if (type === "bil") {
@@ -150,8 +194,9 @@ export function productComparisonView(
   const sections = new Map<string, ProductDisplaySection>();
   for (const raw of result.sections.flatMap((section) => section.rows)) {
     const row: ProductDisplayRow = { ...raw,
-      first: raw.first.state === "unknown" ? parentValue(result, raw.key, "first", relations) ?? raw.first : raw.first,
-      second: raw.second.state === "unknown" ? parentValue(result, raw.key, "second", relations) ?? raw.second : raw.second,
+      label: catalogDisplayLabel(raw),
+      first: displayValue(raw.first.state === "unknown" ? parentValue(result, raw.key, "first", relations) ?? raw.first : raw.first),
+      second: displayValue(raw.second.state === "unknown" ? parentValue(result, raw.key, "second", relations) ?? raw.second : raw.second),
     };
     if (!row.first.facts.length && !row.second.facts.length) continue;
     const identity = sectionIdentity(type, row);
@@ -163,7 +208,7 @@ export function productComparisonView(
     const id = groupIdentity(type, row);
     let group = section.groups.find((candidate) => candidate.id === id);
     if (!group) {
-      group = { id, label: groupLabels[id] ?? row.label.split(" – ")[0], rows: [], models: [], details: { first: [], second: [] } };
+      group = { id, label: id.endsWith(".avtale") ? "Avtalevilkår" : groupLabels[id] ?? row.label.split(" – ")[0], rows: [], models: [], details: { first: [], second: [] } };
       section.groups.push(group);
     }
     if (type === "bil" && /^maskinskade\.(?:egenandel(?:\.|$)|fradrag$)/u.test(row.key)) {
@@ -179,7 +224,16 @@ export function productComparisonView(
   const order = productSectionOrder(type);
   const rank = (id: string) => order.indexOf(id) < 0 ? Number.MAX_SAFE_INTEGER : order.indexOf(id);
   for (const section of sections.values()) {
-    for (const group of section.groups) group.rows.sort((a, b) => productRowPriority(a.key) - productRowPriority(b.key) || a.key.localeCompare(b.key, "nb"));
+    for (const group of section.groups) {
+      group.rows.sort((a, b) => productRowPriority(a.key) - productRowPriority(b.key) || a.key.localeCompare(b.key, "nb"));
+      group.showHeading = group.label !== section.label;
+      // Suppress only a repetition immediately below its heading. A later row
+      // still needs its own label when other facts or models intervene.
+      const firstLead = group.rows.find((row) => !row.first.parentLabel && !row.second.parentLabel && productRowPriority(row.key) <= 2);
+      const firstVisible = firstLead ?? (!group.models.length && !group.rows.some((row) => row.first.parentLabel || row.second.parentLabel) ? group.rows[0] : undefined);
+      group.hiddenRowLabels = firstVisible && (firstVisible.label === group.label ||
+        (!group.showHeading && firstVisible.label === section.label)) ? [firstVisible.key] : [];
+    }
     section.groups.sort((a, b) => {
       // In the damage section, Kasko remains the parent before individual benefits.
       if (a.id === "kasko") return -1;

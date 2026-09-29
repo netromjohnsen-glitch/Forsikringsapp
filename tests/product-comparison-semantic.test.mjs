@@ -115,7 +115,7 @@ function synthetic() {
   const make=(key,value)=>({key,label:key,value,source});
   const products=[{company:'Tryg',providerId:'tryg',insuranceType:'Bil',name:'Alpha',productId:'alpha',version:'1',agreementScope:'ordinary',componentIds:['a']},{company:'If',providerId:'if',insuranceType:'Bil',name:'Beta',productId:'beta',version:'1',agreementScope:'ordinary',componentIds:['b']}];
   const catalog={companies:['Tryg','If'],insuranceTypes:['Bil'],products,addOns:[],sources:{'test-parent':{id:'test-parent',...source}},facts:{a:[make('kasko.dekning','Eksplisitt dokumentert syntetisk hendelse.')],b:[make('testchild.dekning','Syntetisk child')]}};
-  const relation={insuranceType:'bil',agreementScope:'ordinary',productVersion:'1',parentKey:'kasko.dekning',childKeys:['testchild.dekning'],value:'Eksplisitt dokumentert syntetisk hendelse.',source:{documentId:'test-parent',effectiveFrom:'2099-01-01',page:2,section:'2'}};
+  const relation={providerId:'tryg',productIds:['alpha'],insuranceType:'bil',agreementScope:'ordinary',productVersion:'1',parentKey:'kasko.dekning',childKeys:['testchild.dekning'],value:'Eksplisitt dokumentert syntetisk hendelse.',source:{documentId:'test-parent',effectiveFrom:'2099-01-01',page:2,section:'2'}};
   const result=compareCatalogProducts(products[0],products[1],catalog);
   return {result,relation};
 }
@@ -125,6 +125,9 @@ test('parent evaluator works for another provider and an unrelated synthetic chi
 });
 for(const [label,alter] of [
   ['no explicit relation',(r,rel)=>{rel.childKeys=[];}],
+  ['changed canonical provider',(r)=>{r.first.product.providerId='if';}],
+  ['changed canonical product',(r)=>{r.first.product.productId='another-product';}],
+  ['no approved products',(r,rel)=>{rel.productIds=[];}],
   ['parent prose without explicit evidence',(r)=>{r.first.facts[0].value='Generell Kasko';}],
   ['changed product version',(r)=>{r.first.product.version='2';}],
   ['changed agreement scope',(r)=>{r.first.product.agreementScope='member';}],
@@ -152,10 +155,30 @@ test('unaudited one-sided key remains unknown instead of being silently hidden',
   assert.equal(rows(productComparisonView(r)).find(r=>r.key==='new.limit').second.state,'unknown');
 });
 test('source registry is anchored to source evidence, not company-name matching',()=>{
-  assert.ok(productParentEvidence.every(r=>r.source.documentId&&r.source.effectiveFrom&&r.value&&r.productVersion));
+  assert.ok(productParentEvidence.every(r=>r.providerId&&r.productIds.length&&r.source.documentId&&r.source.effectiveFrom&&r.value&&r.productVersion));
   const source=fs.readFileSync(new URL('../lib/product-comparison-presentation.ts',import.meta.url),'utf8');
   assert.doesNotMatch(source,/\.company\s*===|\.providerId\s*===|\.includes\(["']feilfylling/u);
 });
+
+for(const frendeLevel of ['Kasko','Utvidet']) for(const [company,level] of [['If','Super'],['Tryg','Kasko']]) {
+  test(`explicit parent identity preserves ${company} ${level} / Frende ${frendeLevel} child evidence`,()=>{
+    const comparison=compareCatalogProducts(find('Bil',company,level),find('Bil','Frende',frendeLevel));
+    const display=rows(productComparisonView(comparison));
+    for(const key of ['feilfylling.dekning','haerverk.dekning']) {
+      const value=display.find(row=>row.key===key).second;
+      assert.equal(value.state,'included');
+      assert.equal(value.parentLabel,'Kaskoskade');
+      assert.equal(value.facts[0].key,'kasko.dekning');
+      assert.equal(value.sources[0].documentId,'frendeKasko');
+      assert.equal(value.sources[0].page,3);
+      assert.equal(value.sources[0].section,'6.1');
+    }
+    const swapped=rows(productComparisonView(compareCatalogProducts(comparison.second.product,comparison.first.product)));
+    for(const key of ['feilfylling.dekning','haerverk.dekning']) {
+      assert.deepEqual(swapped.find(row=>row.key===key).first,display.find(row=>row.key===key).second);
+    }
+  });
+}
 
 const scenarios=[['Bil','If','Super','Frende','Utvidet'],['Hus','Tryg','Hus Ekstra','If','Super'],['Innbo','Tryg','Innbo Ekstra','If','Super'],['Reise','Tryg','Reise Ekstra','If','Super'],['Snøscooter','Tryg','Kasko','If','Kasko'],['Campingvogn','Tryg','Campingvogn Ekstra','If','Super'],['Tilhenger','Tryg','Kasko','If','Kasko'],['MC','Tryg','MC Ekstra','If','Kasko'],['Bobil','Tryg','Bobil Ekstra','If','Super']];
 for(const [type,a,an,b,bn] of scenarios) test(`${type}: nonempty family-specific order, unique live anchors and full source retention`,()=>{

@@ -17,7 +17,7 @@ import {
   type ProductComparisonSource,
 } from "@/lib/catalog-product-comparison";
 
-import { productComparisonView, productRowPriority, type ProductDisplayRow, type ProductCoverageGroup } from "@/lib/product-comparison-presentation";
+import { productComparisonView, productRowPriority, catalogDisplayLabel, catalogDisplayValue, type ProductDisplayRow, type ProductCoverageGroup } from "@/lib/product-comparison-presentation";
 
 type Selection = {
   company: string;
@@ -182,9 +182,9 @@ function ProductEvidenceList({ facts, side, company, label, showUnknown = false 
     <p className="text-xs font-semibold text-slate-700">{sideLabel} · {company}</p>
     {!facts.length && <p className="mt-2 text-sm text-slate-700">{productCoverageStateLabel("unknown")}</p>}
     <div className="mt-2 space-y-4">{facts.map((fact, index) => <div key={`${fact.key}-${index}`}>
-      <p className="text-sm font-medium text-slate-800">{fact.label}</p>
+      <p className="text-sm font-medium text-slate-800">{catalogDisplayLabel(fact)}</p>
       {fact.state === "optional" && <p className="mt-1 text-xs text-slate-600">{productCoverageStateLabel(fact.state)}{fact.addOnNames.length > 0 ? ` (${fact.addOnNames.join(" / ")})` : ""}</p>}
-      <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{fact.value}</p>
+      <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{catalogDisplayValue(fact)}</p>
       {fact.sources.map((source) => <ProductSource key={`${source.documentId}-${source.page}-${source.section}`} source={source} label={`${fact.label} – ${sideLabel}`} />)}
     </div>)}</div>
   </div>;
@@ -196,8 +196,8 @@ function CoverageGroup({ group, result }: { group: ProductCoverageGroup; result:
   const leadRows = group.rows.filter((row) => !parentBackedRows.includes(row) && productRowPriority(row.key) <= 2);
   const detailRows = group.rows.filter((row) => !leadRows.includes(row) && !parentBackedRows.includes(row));
   return <div className="py-5">
-    <h5 className="text-base font-semibold text-slate-900">{group.label}</h5>
-    <div className="divide-y divide-slate-100">{leadRows.map((row) => <DifferenceRow key={row.key} row={row} />)}</div>
+    {group.showHeading !== false && <h5 className="text-base font-semibold text-slate-900">{group.label}</h5>}
+    <div className="divide-y divide-slate-100">{leadRows.map((row) => <DifferenceRow key={row.key} row={row} showLabel={!group.hiddenRowLabels?.includes(row.key)} />)}</div>
     {parentBackedRows.length > 0 && <div className="expanded-detail-area my-4">
       <h6 className="text-sm font-semibold text-slate-800">Dekninger dokumentert i hovedvilkåret</h6>
       {parentBackedRows.map((row) => <DifferenceRow key={row.key} row={row} />)}
@@ -209,7 +209,7 @@ function CoverageGroup({ group, result }: { group: ProductCoverageGroup; result:
         <ProductEvidenceList facts={model.second} side="second" company={result.second.product.company} label={model.label} showUnknown />
       </div>
     </div>)}
-    <div className="divide-y divide-slate-100">{detailRows.map((row) => <DifferenceRow key={row.key} row={row} />)}</div>
+    <div className="divide-y divide-slate-100">{detailRows.map((row) => <DifferenceRow key={row.key} row={row} showLabel={!group.hiddenRowLabels?.includes(row.key)} />)}</div>
     {hasDetails && <div className="expanded-detail-area mt-4">
       <h6 className="mb-2 text-sm font-semibold text-slate-800">Produktspesifikke detaljer</h6>
       <p className="mb-4 text-xs leading-5 text-slate-600">Detaljene har forskjellig omfang eller oppbygning og sammenlignes ikke én til én.</p>

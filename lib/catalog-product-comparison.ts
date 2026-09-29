@@ -1,5 +1,6 @@
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
 import { coverageStatusFromText } from "./coverage-status.ts";
+import { isNonAssertingCoverageDetail } from "./coverage-fact-semantics.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { conceptForFactKey, conceptsForInsurance } from "./presentation-catalog.ts";
 import {
@@ -26,6 +27,8 @@ export type ProductComparisonFact = {
   label: string;
   value: string;
   state: Exclude<ProductCoverageState, "unknown">;
+  // Presence in a base component does not make a condition/exclusion a cover.
+  role: "coverage" | "term";
   addOnNames: string[];
   sources: ProductComparisonSource[];
 };
@@ -98,6 +101,7 @@ function productFact(
   addOnNames: string[] = [],
 ): ProductComparisonFact {
   return { key: fact.key, label: fact.label, value: fact.value, state, addOnNames,
+    role: !isNonAssertingCoverageDetail(fact.key) && (fact.coverageAvailability || fact.key.endsWith(".dekning")) ? "coverage" : "term",
     sources: [sourceForFact(fact, catalog)] };
 }
 
@@ -192,7 +196,8 @@ export function materializeCatalogProduct(
   const baseIdentities = new Set(baseFacts.map(factIdentity));
   const facts: ProductComparisonFact[] = baseFacts.map((fact) => productFact(
     fact,
-    coverageStatusFromText(fact.value) === "not_selected" ? "unavailable" : "included",
+    fact.coverageAvailability ?? (isNonAssertingCoverageDetail(fact.key) ? "included" :
+      coverageStatusFromText(fact.value) === "not_selected" ? "unavailable" : "included"),
     catalog,
   ));
 
@@ -224,7 +229,13 @@ function valueForKey(facts: ProductComparisonFact[]): ProductComparisonValue {
   const addOns = [...new Set(selected.flatMap((fact) => fact.addOnNames))];
   const suffix = values.length ? ` – ${values.join(" · ")}` : "";
   const addOnSuffix = state === "optional" && addOns.length ? ` (${addOns.join(" / ")})` : "";
-  return { state, text: `${productCoverageStateLabel(state)}${addOnSuffix}${suffix}`,
+  // Conditions retain their original wording; they are not presented as an
+  // independent assertion that the subject coverage is included. Explicit negative
+  // and optional states retain their established presentation.
+  const isTerm = selected.every((fact) => fact.role === "term");
+  const text = isTerm && state === "included" ? values.join(" · ") :
+    `${productCoverageStateLabel(state)}${addOnSuffix}${suffix}`;
+  return { state, text,
     facts: selected, sources: uniqueSources(selected.flatMap((fact) => fact.sources)) };
 }
 

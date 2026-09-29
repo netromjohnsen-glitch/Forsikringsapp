@@ -60,7 +60,7 @@ for (const name of ["Ansvar", "Brann og tyveri", "Kasko"]) {
     row("avtale.sesong", "Sesongfordelt pris ved opphør; ikke jevn fordeling av årsprisen", 1, "5", "tryg-odpdf-dbf5be98.pdf"),
     ...(name !== "Ansvar" ? included(["brann", "tyveri"], 1, "Brann og tyveri") : []),
     ...(name === "Kasko" ? included(["kasko"], 1, "Kasko") : []),
-    row("redning.begrensning", "Utgifter til redning/veihjelp er unntatt", 1, "Begrensninger"),
+    ...(name === "Kasko" ? [row("redning.begrensning", "Utgifter til redning/veihjelp er unntatt", 1, "Begrensninger – Kasko")] : []),
   ], name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name === "Kasko" ? [] : ["kasko"]);
 }
 for (const type of ["campingvogn", "tilhenger"] as const) {
@@ -99,9 +99,15 @@ for (const type of ["campingvogn", "tilhenger"] as const) {
     product("tryg", "Tryg", type, name, file, rows, name === "Brann" ? ["tyveri", "kasko"] : name === "Brann og tyveri" ? ["kasko"] : []);
   }
 }
-for (const [name, family, file] of [["Førerulykke", "forerulykke", "tryg-odpdf-2001c3a6.pdf"], ["Fører- og passasjerulykke", "ulykke", "tryg-odpdf-56716918.pdf"]]) {
+for (const [name, family, file, scope] of [
+  ["Førerulykke", "forerulykke", "tryg-odpdf-2001c3a6.pdf", "Skade på fører; også passasjer dersom kjøretøyet er registrert for flere personer"],
+  ["Fører- og passasjerulykke", "ulykke", "tryg-odpdf-56716918.pdf", "Skade på fører og passasjer"],
+]) {
   const id = `tryg-snoscooter-${family}`;
-  vehicleObjectFacts[id] = facts("snoscooter", file, [...included([family], 1, "1"), row(`${family}.grense`, "Invaliditet og dødsfall etter avtalt forsikringssum i forsikringsbeviset", 1, "1")]);
+  vehicleObjectFacts[id] = facts("snoscooter", file, [
+    row(`${family}.dekning`, scope, 1, "1"),
+    row(`${family}.grense`, "Medisinsk invaliditet inntil 200 000 kr; dødsfall 100 000 kr", 2, "3.1 og 3.2"),
+  ]);
   vehicleObjectAddOns.push({ id, name, componentId: id, providerId: "tryg", insuranceTypes: ["Snøscooter"], requiresLevel: ["tryg-snoscooter-ansvar", "tryg-snoscooter-brann-og-tyveri", "tryg-snoscooter-kasko"], exclusiveGroup: "tryg-snoscooter-ulykke" });
   for (const productId of ["tryg-snoscooter-ansvar", "tryg-snoscooter-brann-og-tyveri", "tryg-snoscooter-kasko"]) vehicleObjectCoverageMatrix[productId][`snoscooter.${family}.dekning`] = "optional";
 }
