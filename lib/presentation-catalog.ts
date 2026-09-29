@@ -1,7 +1,8 @@
 import { vehicleObjectTypes, vehicleObjectCoverages } from "./vehicle-object-registry.ts";
 import { mcBobilCoverages, type McBobilType } from "./mc-bobil-registry.ts";
+import { boatPetCoverages, type BoatPetType } from "./boat-pet-registry.ts";
 import type { AgreementScopeId } from "./agreement-scope.ts";
-export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise" | "snøscooter" | "campingvogn" | "tilhenger" | McBobilType;
+export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise" | "snøscooter" | "campingvogn" | "tilhenger" | McBobilType | BoatPetType;
 export type PresentationTier = "primary" | "secondary" | "detail";
 export type PresentationFactType =
   | "coverage"
@@ -145,9 +146,46 @@ const mcBobilPresentationConcepts: readonly PresentationConcept[] = [
   concept("bobil.ovrig", "bobil", "Andre bobilvilkår", [/.+/u], "detail", ["misunderstanding-risk"]),
 ];
 
+const boatPetConcept = (
+  type: BoatPetType, id: string, label: string, families: readonly string[], tier: PresentationTier = "primary",
+): PresentationConcept => concept(`${type}.${id}`, type, label,
+  boatPetCoverages(type).flatMap((coverage) => {
+    const family = coverage.parentKey.replace(/\.dekning$/u, "");
+    return families.includes(family) ? [new RegExp(`^${family.replaceAll(".", "\\.")}\\.`, "u")] : [];
+  }), tier, ["economic-risk", "level-difference", "misunderstanding-risk"]);
+
+const boatPetPresentationConcepts: readonly PresentationConcept[] = [
+  boatPetConcept("båt", "kasko", "Skade på egen båt", ["bat.kasko"]),
+  boatPetConcept("båt", "totalskade", "Totalskade og ny båt", ["bat.totalskade"]),
+  boatPetConcept("båt", "maskinskade", "Motor- og maskinskade", ["bat.maskinskade"]),
+  boatPetConcept("båt", "redning", "Redning og berging", ["bat.redning"]),
+  boatPetConcept("båt", "ferieavbrudd", "Ferieavbrudd", ["bat.ferieavbrudd"]),
+  boatPetConcept("båt", "losore-utstyr", "Løsøre og utstyr", ["bat.losore", "bat.fastutstyr", "bat.opplagsutstyr"]),
+  boatPetConcept("båt", "rigg-jolle", "Seil, rigg og jolle", ["bat.rigg", "bat.jolle"]),
+  boatPetConcept("båt", "transport-opplag", "Transport og opplag", ["bat.transport", "bat.opplag"]),
+  boatPetConcept("båt", "ulykke", "Fører- og passasjerulykke", ["bat.ulykke"], "secondary"),
+  boatPetConcept("båt", "brann-tyveri", "Brann, tyveri og hærverk", ["bat.brann", "bat.tyveri", "bat.haerverk"], "secondary"),
+  boatPetConcept("båt", "ansvar-rettshjelp", "Ansvar og rettshjelp", ["bat.ansvar", "bat.rettshjelp"], "secondary"),
+  boatPetConcept("båt", "geografi", "Geografisk område", ["bat.geografi"], "secondary"),
+  concept("båt.ovrig", "båt", "Andre båtvilkår", [/.+/u], "detail", ["misunderstanding-risk"]),
+  ...(["hund", "katt"] as const).flatMap((type) => [
+    boatPetConcept(type, "veterinar", "Veterinærbehandling", ["dyr.veterinar"]),
+    boatPetConcept(type, "medisin-diagnostikk", "Medisin og diagnostikk", ["dyr.medisin", "dyr.diagnostikk"]),
+    boatPetConcept(type, "tann", "Tann", ["dyr.tannskade", "dyr.tannsykdom"]),
+    boatPetConcept(type, "rehabilitering", "Rehabilitering", ["dyr.rehabilitering"]),
+    boatPetConcept(type, "allergi-fodsel", "Allergi, sykdom og fødsel", ["dyr.allergi", "dyr.fodsel"], "secondary"),
+    boatPetConcept(type, "karenstid", "Karenstid", ["dyr.karenstid"], "secondary"),
+    boatPetConcept(type, "alder", "Aldersregler", ["dyr.inntaksalder", "dyr.veterinaralder"], "secondary"),
+    boatPetConcept(type, "liv", "Liv, død og tap", ["dyr.liv"], "secondary"),
+    ...(type === "hund" ? [boatPetConcept("hund", "bruksverdi", "Bruksverdi", ["hund.bruksverdi"], "secondary")] : []),
+    concept(`${type}.ovrig`, type, `Andre ${type === "hund" ? "hunde" : "katte"}vilkår`, [/.+/u], "detail", ["misunderstanding-risk"]),
+  ]),
+];
+
 // Rekkefølgen er en eksplisitt, kuratert presentasjonsrekkefølge. Den er ikke
 // en produktpoengsum og sier ikke hvilket produkt som er best.
 export const presentationConcepts: readonly PresentationConcept[] = [
+  ...boatPetPresentationConcepts,
   ...mcBobilPresentationConcepts,
   ...vehicleObjectTypes.flatMap(({ id }) => vehicleObjectCoverages(id).map((coverage) =>
     concept(`${id}.${coverage.parentKey.split(".")[1]}`, id, coverage.label,

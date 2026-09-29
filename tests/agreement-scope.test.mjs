@@ -103,7 +103,7 @@ test('versions stay distinct inside one scope; name lookup never picks an arbitr
 });
 test('all 121 existing products keep their exact lookup and component resolution', () => {
   // Preserve the original compatibility control while adding new typed catalogs.
-  const originalProducts = productCatalog.products.filter(p => !['MC', 'Bobil'].includes(p.insuranceType));
+  const originalProducts = productCatalog.products.filter(p => !['MC', 'Bobil', 'Båt', 'Hund', 'Katt'].includes(p.insuranceType));
   assert.equal(originalProducts.length, 121);
   for (const p of originalProducts) {
     assert.equal(findCatalogProduct(p.providerId, p.productId, p.version), p);

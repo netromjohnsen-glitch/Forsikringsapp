@@ -1,5 +1,6 @@
 import { vehicleObjectCoverages, vehicleObjectTypes } from "./vehicle-object-registry.ts";
 import { mcBobilCoverages, mcBobilTypes, mcBobilVehicleAliases } from "./mc-bobil-registry.ts";
+import { boatPetCoverages, boatPetTypes } from "./boat-pet-registry.ts";
 // Aliasgrupper er hele betegnelser. Delord og likhetsgrad brukes ikke til matching.
 const insuranceAliases: Record<string, readonly string[]> = {
   bil: ["bil", "personbil", "privatbil", "motorvogn"],
@@ -260,6 +261,7 @@ export type RelatedCoverage = {
 const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
   ...Object.fromEntries(vehicleObjectTypes.map(({ id }) => [id, vehicleObjectCoverages(id)])),
   ...Object.fromEntries(mcBobilTypes.map(type => [type, mcBobilCoverages(type)])),
+  ...Object.fromEntries(boatPetTypes.map(type => [type, boatPetCoverages(type)])),
   bil: [
     {
       parentKey: "leiebil.dekning",
@@ -472,6 +474,11 @@ export function normalizeTermName(value: string | null, context: TermContext = {
     }
     for (const coverage of mcBobilCoverages(type)) {
       if ([coverage.parentKey, ...(coverage.aliases ?? [])].some(alias => normalizeWords(alias) === name)) return coverage.parentKey;
+    }
+  }
+  if (boatPetTypes.some((id) => id === type)) {
+    for (const coverage of boatPetCoverages(type)) {
+      if ([coverage.parentKey, ...(coverage.aliases ?? [])].some((alias) => normalizeWords(alias) === name)) return coverage.parentKey;
     }
   }
   // Share only the three price aliases across established motor vehicle types.

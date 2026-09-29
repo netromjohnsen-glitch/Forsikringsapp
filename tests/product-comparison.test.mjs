@@ -19,10 +19,10 @@ const find = (type, company, name) => eligible.find((product) =>
   product.insuranceType === type && product.company === company && product.name === name);
 
 test("catalog eligibility is derived from the current source-backed catalog", () => {
-  assert.equal(productCatalog.products.length, 164);
-  assert.equal(eligible.length, 162);
+  assert.equal(productCatalog.products.length, 204);
+  assert.equal(eligible.length, 202);
   assert.deepEqual(productComparisonInsuranceTypes(), [
-    "Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "MC", "Bobil",
+    "Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Båt", "MC", "Bobil", "Hund", "Katt",
   ]);
   assert.equal(eligible.some(isHistoricalCatalogProduct), false);
   assert.equal(productCatalog.products.filter(isHistoricalCatalogProduct).length, 2);

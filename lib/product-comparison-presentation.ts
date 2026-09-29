@@ -39,6 +39,9 @@ const familyOrder: Record<string, readonly string[]> = {
   tilhenger: ["kasko", "utstyr", "redning", "brann", "tyveri", "naturskade", "rettshjelp"],
   mc: ["egen-mc", "maskinskade", "totalskade", "kjoreutstyr", "fastmontert-utstyr", "bagasje", "parkert", "mobilitet", "ulykke", "glass-nokkel-feilfylling", "brann-tyveri-natur", "ansvar-rettshjelp", "geografi", "ovrig"],
   bobil: ["egen-bobil", "fukt-vann", "ferieavbrudd", "feriegaranti", "maskinskade", "totalskade", "losore-utstyr-fortelt", "skadedyr", "parkering", "utleie", "mobilitet", "ulykke", "glass-nokkel-feilfylling", "brann-tyveri-natur", "ansvar-rettshjelp", "geografi", "ovrig"],
+  "båt": ["kasko", "totalskade", "maskinskade", "redning", "ferieavbrudd", "losore-utstyr", "rigg-jolle", "transport-opplag", "ulykke", "brann-tyveri", "ansvar-rettshjelp", "geografi", "ovrig"],
+  hund: ["veterinar", "medisin-diagnostikk", "tann", "rehabilitering", "allergi-fodsel", "karenstid", "alder", "liv", "bruksverdi", "ovrig"],
+  katt: ["veterinar", "medisin-diagnostikk", "tann", "rehabilitering", "allergi-fodsel", "karenstid", "alder", "liv", "ovrig"],
 };
 
 const shortLabels: Record<string, string> = {
@@ -171,7 +174,7 @@ function groupIdentity(type: string, row: ProductDisplayRow): string {
     if (/^(?:kasko|haerverk|feilfylling)\./u.test(row.key)) return "kasko";
   }
   const parts = row.key.split(".");
-  return ["hus", "innbo", "reise", "mc", "bobil", "snoscooter", "campingvogn", "tilhenger"].includes(parts[0])
+  return ["hus", "innbo", "reise", "mc", "bobil", "bat", "dyr", "hund", "snoscooter", "campingvogn", "tilhenger"].includes(parts[0])
     ? parts.slice(0, 2).join(".") : parts[0];
 }
 

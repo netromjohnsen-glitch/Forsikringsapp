@@ -104,7 +104,7 @@ test('every original fact value and source survives hierarchy, without catalog m
   for(const side of ['first','second']) for(const fact of result.sections.flatMap(s=>s.rows).flatMap(r=>r[side].facts)) {
     assert.ok(factsOn(view,side).some(f=>JSON.stringify(f)===JSON.stringify(fact)),fact.key);
   }
-  productComparisonView(result);assert.equal(JSON.stringify(result),before);assert.equal(productCatalog.products.length,164);
+  productComparisonView(result);assert.equal(JSON.stringify(result),before);assert.equal(productCatalog.products.length,204);
 });
 test('rendered unknown count is 10, not 34; actual missing evidence stays visible',()=>{
   assert.equal(unknowns(view),10);assert.equal(html.split('Ikke dokumentert i kataloggrunnlaget').length-1,10);

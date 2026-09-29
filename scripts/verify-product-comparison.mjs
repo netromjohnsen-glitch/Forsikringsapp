@@ -21,6 +21,9 @@ const scenarios = [
   ["Reise", "Tryg", "Reise Ekstra", "If", "Super"],
   ["MC", "Tryg", "MC Ekstra", "If", "Kasko"],
   ["Bobil", "Tryg", "Bobil Ekstra", "If", "Super"],
+  ["Båt", "Tryg", "Båt Ekstra", "If", "Super"],
+  ["Hund", "If", "Super", "Frende", "Veterinær"],
+  ["Katt", "Storebrand", "Veterinær og Dødsfall", "Fremtind", "Veterinær"],
 ];
 
 let networkRequests = 0;

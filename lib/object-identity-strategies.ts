@@ -22,6 +22,10 @@ export function normalizeObjectIdentifier(identifier: ObjectIdentifier): string 
 }
 export type IdentifierStrategies = Readonly<Record<string, Readonly<Record<string, (value: string) => string | null>>>>;
 const vehicleStrategies = Object.fromEntries(["registration", "vin", "serial"].map(type => [type, (value: string) => normalizeObjectIdentifier({ type, value })]));
+const serialOnlyStrategies = { serial: (value: string) => normalizeObjectIdentifier({ type: "serial", value }) };
 export const defaultIdentifierStrategies: IdentifierStrategies = Object.fromEntries(
-  ["bil", "mc", "bobil", "snøscooter", "campingvogn", "tilhenger"].map(type => [type, vehicleStrategies]),
+  [
+    ...["bil", "mc", "bobil", "snøscooter", "campingvogn", "tilhenger"].map(type => [type, vehicleStrategies]),
+    ["båt", serialOnlyStrategies],
+  ],
 );

@@ -9,6 +9,7 @@ import {
   normalizeInsuranceType,
 } from "./insurance-normalization.ts";
 import { mcBobilTypes } from "./mc-bobil-registry.ts";
+import { boatPetTypes } from "./boat-pet-registry.ts";
 import { coverageStatusFromText, deriveCanonicalCoverages } from "./coverage-status.ts";
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import {
@@ -70,14 +71,14 @@ const normalizeLabel = (value: string) => value.normalize("NFKC")
   .replace(/\s+/gu, " ")
   .trim();
 
-function selectedMcBobilAddOns(
+function selectedScopedAddOns(
   product: CatalogProduct,
   insurance: ExtractedInsurance,
   documentTerms: DocumentFact[],
   asOf: Date,
   catalog: ProductCatalog,
 ): string[] {
-  if (!mcBobilTypes.some(type => type === normalizeInsuranceType(insurance.type))) return [];
+  if (![...mcBobilTypes, ...boatPetTypes].some(type => type === normalizeInsuranceType(insurance.type))) return [];
   const definitions = relatedCoveragesForInsuranceType(insurance.type);
   const allowed = availableAddOns(product, asOf, null, catalog).map(addOn => {
     const namedKey = normalizeTermName(addOn.name, { insuranceType: insurance.type });
@@ -176,7 +177,7 @@ function enrichInsurance(
   // MC/Bobil optional components remain separate from the base. Only an
   // explicit document-backed coverage selection can activate an applicable
   // component; catalog availability and document silence cannot select it.
-  const selectedAddOnIds = selectedMcBobilAddOns(product, insurance, documentTerms, asOf, catalog);
+  const selectedAddOnIds = selectedScopedAddOns(product, insurance, documentTerms, asOf, catalog);
   const effectiveFacts = resolveCatalogFacts(product, selectedAddOnIds, asOf, null, catalog);
   const catalogFacts = resolveCatalogEvidence(product, selectedAddOnIds, asOf, null, catalog);
   // An exact, unambiguous label from this identified product can establish a

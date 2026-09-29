@@ -48,7 +48,7 @@ type DocumentResult = {
   insuranceData: InsuranceData;
 };
 
-const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", "MC", "Bobil", ...vehicleObjectTypes.map(({ label }) => label)];
+const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", "MC", "Bobil", "Båt", "Hund", "Katt", ...vehicleObjectTypes.map(({ label }) => label)];
 
 export default function Home() {
   const [comparisonMode, setComparisonMode] = useState<"agreements" | "products">("agreements");

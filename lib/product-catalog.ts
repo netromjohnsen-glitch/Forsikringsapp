@@ -1,5 +1,6 @@
 import { vehicleObjectProducts, vehicleObjectFacts, vehicleObjectAddOns, vehicleObjectSources } from "./vehicle-object-catalog.ts";
 import { mcBobilProducts, mcBobilFacts, mcBobilAddOns, mcBobilSources, mcBobilAgreementScopes } from "./mc-bobil-catalog.ts";
+import { boatPetProducts, boatPetFacts, boatPetAddOns, boatPetSources, boatPetAgreementScopes } from "./boat-pet-catalog.ts";
 import { trygAddOns, trygFacts, trygProducts, trygSources } from "./tryg-catalog.ts";
 import { ifAddOns, ifFacts, ifProducts, ifSources } from "./if-catalog.ts";
 import { gjensidigeAddOns, gjensidigeFacts, gjensidigeProducts, gjensidigeSources } from "./gjensidige-catalog.ts";
@@ -106,24 +107,24 @@ export type ProductCatalog = {
 };
 
 export const productCatalog: ProductCatalog = {
-  agreementScopes: mcBobilAgreementScopes,
+  agreementScopes: [...mcBobilAgreementScopes, ...boatPetAgreementScopes],
   companies: ["Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende"],
   insuranceTypes: ["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Ulykke", "Båt", "MC", "Bobil", "Hund", "Katt", "Barn", "Liv"],
   products: [...trygProducts, ...ifProducts, ...gjensidigeProducts, ...storebrandProducts,
     ...sparebank1FremtindProducts, ...dnbFremtindProducts, ...eikaFremtindProducts, ...fremtindProducts, ...frendeProducts,
     ...trygInnboProducts, ...ifInnboProducts, ...gjensidigeInnboProducts, ...storebrandInnboProducts,
     ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts, ...ifHusProducts, ...storebrandHusProducts,
-    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts, ...mcBobilProducts],
+    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts, ...mcBobilProducts, ...boatPetProducts],
   addOns: [...vehicleObjectAddOns, ...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
     ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns,
-    ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns, ...mcBobilAddOns],
-  sources: { ...mcBobilSources, ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
+    ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns, ...mcBobilAddOns, ...boatPetAddOns],
+  sources: { ...boatPetSources, ...mcBobilSources, ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,
     ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources, ...ifHusSources, ...storebrandHusSources,
     ...gjensidigeHusSources, ...fremtindHusSources, ...frendeHusSources, ...trygReiseSources, ...ifReiseSources, ...storebrandReiseSources, ...gjensidigeReiseSources, ...fremtindReiseSources, ...frendeReiseSources },
-  facts: { ...mcBobilFacts, ...vehicleObjectFacts, ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
+  facts: { ...boatPetFacts, ...mcBobilFacts, ...vehicleObjectFacts, ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
     ...sparebank1FremtindFacts, ...dnbFremtindFacts, ...eikaFremtindFacts, ...fremtindFacts, ...frendeFacts,
     ...trygInnboFacts, ...ifInnboFacts, ...gjensidigeInnboFacts, ...storebrandInnboFacts,
     ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts, ...ifHusFacts, ...storebrandHusFacts,

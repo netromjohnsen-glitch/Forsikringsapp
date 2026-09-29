@@ -1,0 +1,941 @@
+{
+  "manifestVersion": 1,
+  "retrievedAt": "2026-09-29",
+  "sourcePolicy": "Official public originals only. Product pages are discovery URLs when a stable direct artifact URL is not exposed. Retrieval date is not treated as document version.",
+  "sourcePackages": [
+    { "providerId": "tryg", "insuranceType": "båt", "agreementScope": "ordinary", "products": ["Ansvar", "Brann/Ansvar", "Brann/Tyveri/Ansvar", "Kasko/Ansvar", "Båt Ekstra"], "components": ["Maskinskade", "Fører- og passasjerulykke"], "version": "2024-07-01 / component-specific terms" },
+    { "providerId": "tryg", "insuranceType": "hund", "agreementScope": "ordinary", "products": ["Behandling"], "components": ["Ekstra", "Hund død"], "version": "2026-09-01 / component-specific terms" },
+    { "providerId": "tryg", "insuranceType": "katt", "agreementScope": "ordinary", "products": ["Behandling"], "components": ["Ekstra", "Rasekatt død"], "version": "2026-09-01 / component-specific terms" },
+    { "providerId": "if", "insuranceType": "båt", "agreementScope": "ordinary", "products": ["Delkasko", "Kasko", "Super"], "components": ["Motor- og girskade"], "version": "BÅT2-1 2023-02-01" },
+    { "providerId": "if", "insuranceType": "hund", "agreementScope": "ordinary", "products": ["Basis", "Standard", "Super"], "components": ["Liv"], "version": "2022-12-01" },
+    { "providerId": "if", "insuranceType": "katt", "agreementScope": "ordinary", "products": ["Basis", "Standard", "Super"], "components": ["Liv"], "version": "2022-12-01" },
+    { "providerId": "gjensidige", "insuranceType": "båt", "agreementScope": "ordinary", "products": ["Delkasko", "Kasko", "Pluss"], "components": [], "version": null },
+    { "providerId": "gjensidige", "insuranceType": "hund", "agreementScope": "ordinary", "products": ["Behandling"], "components": ["Liv", "Bruk"], "version": null },
+    { "providerId": "gjensidige", "insuranceType": "katt", "agreementScope": "ordinary", "products": ["Behandling"], "components": ["Liv"], "version": null },
+    { "providerId": "storebrand", "insuranceType": "båt", "agreementScope": "ordinary", "products": ["Delkasko", "Kasko", "Super"], "components": [], "version": "båt03 2024-09-01" },
+    { "providerId": "storebrand", "insuranceType": "hund", "agreementScope": "ordinary", "products": ["Veterinær", "Dødsfall", "Veterinær og Dødsfall"], "components": [], "version": "dyr04 2025-02-01" },
+    { "providerId": "storebrand", "insuranceType": "katt", "agreementScope": "ordinary", "products": ["Veterinær", "Dødsfall", "Veterinær og Dødsfall"], "components": [], "version": "dyr04 2025-02-01" },
+    { "providerId": "sparebank1-fremtind", "insuranceType": "båt", "agreementScope": "ordinary", "products": ["Delkasko", "Kasko", "Toppkasko"], "components": [], "version": "PMO-380.000-004 2024-06-10" },
+    { "providerId": "sparebank1-fremtind", "insuranceType": "hund", "agreementScope": "ordinary", "products": ["Veterinær"], "components": ["Topp veterinærutgifter", "Død, tap og tyveri", "Bruksverdi"], "version": "PBK-231.200/210/220 2025-08-07" },
+    { "providerId": "sparebank1-fremtind", "insuranceType": "katt", "agreementScope": "ordinary", "products": ["Veterinær"], "components": ["Død, tap og tyveri"], "version": "PBK-231.300/310 2025-08-07" },
+    { "providerId": "frende", "insuranceType": "båt", "agreementScope": "ordinary", "products": ["Brann og tyveri", "Kasko", "Utvidet"], "components": ["Maskinskade", "Fører- og passasjerulykke"], "version": "2026-01-01" },
+    { "providerId": "frende", "insuranceType": "hund", "agreementScope": "ordinary", "products": ["Veterinær"], "components": ["Medisin", "Tann", "Tap", "Bruksverdi"], "version": "2026-01-01" },
+    { "providerId": "frende", "insuranceType": "katt", "agreementScope": "ordinary", "products": ["Veterinær"], "components": ["Medisin", "Tap"], "version": "2026-01-01" }
+  ],
+  "documents": [
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-boat-ipid.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "3fd759fb747c5b79e7711666b2510984bcd77811301d509ea464095332941ab7",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-boat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-boat-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "1364fc8bde39923ea1e9f0f36a9d9abf5596721958114b93485b5c730d70669f",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-boat-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-cat-ipid.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "4bf3b204e1147dbc14e115ec6889b93dd5b1c5d0fbc6af73c60d36fa91329d78",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/katteforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-cat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-cat-life-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "9b9b295ff51687c8361c1e2fb8fc192fb26fbc0112d5e78b4e569b9d6c4c27ac",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/katteforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-cat-life-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-cat-vet-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "91385b8b466923a5ca1c37d8f53781c5af3f63e3f6e037afae367f4399b75286",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/katteforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-cat-vet-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-dog-ipid.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "298347eca48488c850e615789ccd5525f5dd8ba55a725e2214a0fdbb306f1785",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-dog-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-dog-life-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "8445f2c6faede5cfe1c6054e58cc880fc4cea1bbc31321ddc76fdbd035dcf43d",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-dog-life-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-dog-use-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "456a1c4f38b4c3934bf0b4c9ed1167e805d5238fb1960115d9cb1e2e65aafcc2",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-dog-use-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-dog-vet-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "5897fd60318410bdc5481e12d4cd6454e7fe4741682a13e5289991f211b7d9f7",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-dog-vet-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-sb1-boat-product.html",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "bc40ee8b4c106cbf8c1ee71598030718ea21c9b5a94c46851fd5b81b5aa8486a",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-sb1-boat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-sb1-cat-product.html",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "5b962b11a638938059382c92afd678406585edc9c97b74de7f659286441d217b",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/katteforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-sb1-cat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "sparebank1-fremtind",
+      "filename": "fremtind-sb1-dog-product.html",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "d1df53466581b99a17579ccb9b24dd92b22aa7c5ec905f8b827b21c4590548f4",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/fremtind-sb1-dog-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-boat-ipid.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "7a2abacd3fdc0df835835d53a7a9f189ec5088636f3c42a2de13d5c4613ee13d",
+      "url": "https://www.frende.no/forsikringer/batforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-boat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-boat-product.html",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "33e6f8065c8fad4e845be34b2c1432016276c62435841cffee926f9dd3945e21",
+      "url": "https://www.frende.no/forsikringer/batforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-boat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-boat-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "272b9c86efaf39c30930b284fdadc49019d4e2f98ca13c2de426d0ec2f4f66d0",
+      "url": "https://www.frende.no/forsikringer/batforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-boat-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-cat-ipid.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "360871086cafaf7676718821e624afda96dfca6fbac1757662e3b581a9699904",
+      "url": "https://www.frende.no/forsikringer/katteforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-cat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-cat-product.html",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "5734d5ff368dae3687e9addbbae17df72c73f922867ad5b8e9c39ead55778219",
+      "url": "https://www.frende.no/forsikringer/katteforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-cat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-cat-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "5c7791b59cf84da6ef475020f997bac1cc13a865777bdc791b2c3f7ba4b4fe6b",
+      "url": "https://www.frende.no/forsikringer/katteforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-cat-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-dog-ipid.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "4d86c2f09d6da801191ce9cfc0d5f92a7cff5924f2c8ae4d5e6568ba23d1751a",
+      "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-dog-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-dog-product.html",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "5bb32ecd3021d62d3f2eca13d30a2b89c3daccdfe136bc578cac3466db03521a",
+      "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-dog-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "frende",
+      "filename": "frende-dog-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "6d052e5092d9f92050dcf95a92fa6ce5deda18a5825cdd00ca1c8cd2658c9135",
+      "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/frende-dog-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-boat-delkasko-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "c957957adc960efefaf50717d1e85bd186297fad9e5cf21d014f08f330752233",
+      "url": "https://www.gjensidige.no/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-boat-delkasko-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-boat-ipid.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "c0e14e39f1c5dce3c6d238e8822eb14267e998ad0e762f08887d05bc3cb9c7a0",
+      "url": "https://www.gjensidige.no/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-boat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-boat-kasko-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "efff0f6c28d758d9e8d707ce698394d8173c5892541aaa0f26ff2a9f4a03742e",
+      "url": "https://www.gjensidige.no/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-boat-kasko-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-boat-plus-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "1f0a4130b2b6ce03404b71bf301f8efdb70c01005b3f96d017116018bf7eb6ae",
+      "url": "https://www.gjensidige.no/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-boat-plus-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-boat-product.html",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "b4f3e8ed47940f63368f6f084e3dd213569c11dfba016a0bf72eeb48b0cc2c77",
+      "url": "https://www.gjensidige.no/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-boat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-cat-ipid.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "314d266136da6b7b5aec994b70d45591e687bd5baac203fe0609437e7fdc4ee8",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-cat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-cat-life-use-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "47750999d5bdbe5fc9bf5a2ffe24def17dd1664a2b8f9886bc7868dbf8049f5e",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-cat-life-use-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-cat-product.html",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "f9bc6e31f84bfe1660b0014798ce144fa6fc5ee7f34ccbe14acf28feab883d4f",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-cat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-cat-treatment-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "6e16b50107c236ed60203df36371b3140b950eff03773e885b9f62ddb9069921",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-cat-treatment-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-dog-ipid.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "aa39107d5777e4f0a342918ef9e4ceba8828793665a3dc2eb41172107d1404ba",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-dog-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-dog-life-use-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-dog-product.html",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-dog-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "gjensidige",
+      "filename": "gjensidige-dog-treatment-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "if",
+      "filename": "if-boat-ipid.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "17dc38fceed95d293aeb6f978d52697405aeb1f29ac0e5cf3d817174f800ec0e",
+      "url": "https://www.if.no/privat/forsikring/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/if-boat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "if",
+      "filename": "if-boat-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "57e7aac8542dd10bfc92611f380b68754905b6808a66590307af86517c2072ae",
+      "url": "https://www.if.no/privat/forsikring/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/if-boat-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "if",
+      "filename": "if-cat-ipid.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "3704f9c1c2b00a97eadcf5afe8271aa5a7fc9dfdd0f85d8f5d78b2aebd5db978",
+      "url": "https://www.if.no/privat/forsikring/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/if-cat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "if",
+      "filename": "if-cat-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "bcd631394fbfe7d0a6f0de3d7e79dc82aee2f5d5bb16d4a0b7192e177716abe7",
+      "url": "https://www.if.no/privat/forsikring/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/if-cat-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "if",
+      "filename": "if-dog-ipid.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "d5fae0029c457c6a094f9a8aa820323e7c88b3b0340ae960bbbb5dc5eda2cf10",
+      "url": "https://www.if.no/privat/forsikring/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/if-dog-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "if",
+      "filename": "if-dog-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "d2372736a4d99d4c434ac87ea068c5051908742ae03e454220b6b1cc1d436c75",
+      "url": "https://www.if.no/privat/forsikring/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/if-dog-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "storebrand",
+      "filename": "storebrand-boat-ipid.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "7c1538f9ce6ee077a7f2e65cf6853dd4071bfb3f46bcc68b4eb372b67e89abc3",
+      "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/storebrand-boat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "storebrand",
+      "filename": "storebrand-boat-product.html",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "d4690f9a8159337ff9e36aa33eb5436426e4dc2afb54b2a865bfe2c9ab5eb655",
+      "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/storebrand-boat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "storebrand",
+      "filename": "storebrand-boat-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "e945049a6b9fba643d9804279690fc8e1dfbb1cd4a419a81503e58fd5b959baa",
+      "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/storebrand-boat-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "storebrand",
+      "filename": "storebrand-pet-ipid.pdf",
+      "insuranceTypes": [
+        "hund",
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "5253776bf7a895753eab0d07df50fb78c85c7925f80a7a29d54c883c8f0d4ce4",
+      "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/storebrand-pet-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "storebrand",
+      "filename": "storebrand-pet-product.html",
+      "insuranceTypes": [
+        "hund",
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "eed2f92e81d1ff4c2558dbbd957435cd17439dd8f143b2798306b40c1f1c73e8",
+      "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/storebrand-pet-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "storebrand",
+      "filename": "storebrand-pet-terms.pdf",
+      "insuranceTypes": [
+        "hund",
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591",
+      "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/storebrand-pet-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-accident-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "0d1cbbbdc41c4ee3a25a511eac8fdd194737bce2577c9a657256589ae221b95c",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-accident-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-extra-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "994998cf314d6062ee313941b804b382fd5e4818ab223601aed4ec2c7bb92b0a",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-extra-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-inboard-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "d79e9af50bf6ba36b8c0b9093fbca2bd7f43b55b86b3b42b0db45581f3122cd5",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-inboard-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-ipid.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "75d8af24d727a2994d3fc2ae566ad075f1cb7f7edad4993d78c3b59bc1700ff5",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-ipid.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-machinery-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "c4a722384e402e7581f9a2b718b0fbe90b622912261b41279e1904a9d960f50d",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-machinery-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-outboard-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "5719238dfb10450a9684c556910881bcf034351144d540b4be499d49be322307",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-outboard-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-product.html",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "4ebd31221f544465f9ca2c8b2f47a196c2e1d3dcd65e9fb8127cf565b3270054",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-row-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "12cefda6d49842ca3051802e1e46c2731a69c327d845ece54ce22846fc4ec2f1",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-row-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-boat-sail-terms.pdf",
+      "insuranceTypes": [
+        "båt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "a6215e0a9e002c8d95ae3040b621f4907f8f66784d78c0a318169beabac72377",
+      "url": "https://www.tryg.no/forsikringer/kjoretoy/batforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-boat-sail-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-cat-extra-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "f4267143ea6f0643341503cf60ce50ce7036cf83af21b3ec29f514d1a7738972",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-cat-extra-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-cat-life-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "8024b9853d3ff80259f939418f31f03e332d280bfca612d613390a7699e5eb3c",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-cat-life-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-cat-product.html",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "9657eba7c8f540a1e04ec9f0bb6324bb894f25b4bb741a758ced1a0549365059",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-cat-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-cat-treatment-terms.pdf",
+      "insuranceTypes": [
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "fa7297b2b37cab3f8e8d51151643bcd4293fc7fbb0a33f77de86108af16bf9dc",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-cat-treatment-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-dog-extra-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "10972b0580b3cc804419621d3c5193d9be3e8bc24e8bafb58519e6e0a203af2c",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-dog-extra-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-dog-life-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "5d5e22fa589538a2708b87616b339eec0c3f0a27c5b322fa48d1b4582e013fcc",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-dog-life-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-dog-product-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "a7936fd27cd305b1a6eeb8153d8289dffff5c075e0e50ffbd9590f8bb2d83318",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-dog-product-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-dog-product.html",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "product_page",
+      "sha256": "48230ffc39761f374c7daa9423b6243d85642cefb60b732e4cc8af637cb2a6c6",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-dog-product.html",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-dog-treatment-terms.pdf",
+      "insuranceTypes": [
+        "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "63af7ce2b7ce309879d3e97cdfca3014ba249f1dc7347eef44bd7c768fd162d3",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-dog-treatment-terms.pdf",
+      "publicOfficialArtifact": true
+    },
+    {
+      "providerId": "tryg",
+      "filename": "tryg-pet-ipid.pdf",
+      "insuranceTypes": [
+        "hund",
+        "katt"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "ipid",
+      "sha256": "41843abc16ad8ee39782e70f29d8cbb115463bcebe28882cca42078ce07fd824",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-pet-ipid.pdf",
+      "publicOfficialArtifact": true
+    }
+  ]
+}

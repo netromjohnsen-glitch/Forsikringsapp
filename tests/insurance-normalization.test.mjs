@@ -206,7 +206,7 @@ test("kontekstavhengige aliaser brukes ikke globalt eller på feil type", () => 
     ["Maskin- og elektronikkdekning", "Maskinskade", "bolig"],
     ["Veihjelp", "Redning og assistanse", "båt"],
     ["Redning og berging", "Berging og assistanse", "bil"],
-    ["Veterinærutgifter", "Veterinærdekning", "katt"],
+    ["Veterinærutgifter", "Veterinærdekning", "båt"],
   ]) {
     assert.notEqual(normalizeTermName(left), normalizeTermName(right));
     assert.notEqual(

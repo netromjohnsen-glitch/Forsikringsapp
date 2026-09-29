@@ -1,6 +1,7 @@
 import { vehicleObjectType, vehicleObjectFactKeys } from "./vehicle-object-registry.ts";
 import { mcBobilTypes, mcBobilKeyApplies, mcBobilCoverages } from "./mc-bobil-registry.ts";
 import { mcBobilCompoundFacts } from "./mc-bobil-document-facts.ts";
+import { boatPetTypes, boatPetKeyApplies, boatPetCoverages } from "./boat-pet-registry.ts";
 import type { ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
 import {
   normalizeCatalogTermKey,
@@ -63,6 +64,14 @@ function explicitKey(
     // different children under bobil.*. A broad heading preserves an already
     // established, applicable child identity on repeated normalization.
     if (labelApproved && !(canonicalApproved && heading?.details.some(d => d.key === canonicalKey))) return labelKey;
+    if (canonicalApproved) return canonicalKey;
+    return labelKey;
+  }
+  if (boatPetTypes.some((id) => id === type)) {
+    const labelApproved = boatPetKeyApplies(type, labelKey);
+    const canonicalApproved = canonicalKey && boatPetKeyApplies(type, canonicalKey);
+    const heading = boatPetCoverages(type).find((coverage) => coverage.parentKey === labelKey);
+    if (labelApproved && !(canonicalApproved && heading?.details.some((detail) => detail.key === canonicalKey))) return labelKey;
     if (canonicalApproved) return canonicalKey;
     return labelKey;
   }
