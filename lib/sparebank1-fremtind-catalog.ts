@@ -45,11 +45,13 @@ export const sparebank1FremtindSources: Record<string, CatalogSource> = {
 };
 
 type Row = [key: string, label: string, value: string, section: string, page: number,
-  replacesBase?: boolean, deductibleClassification?: CatalogFact["deductibleClassification"]];
+  replacesBase?: boolean, deductibleClassification?: CatalogFact["deductibleClassification"],
+  coverageAvailability?: CatalogFact["coverageAvailability"]];
 const facts = (id: string, rows: Row[]): CatalogFact[] => rows.map(
-  ([key, label, value, section, page, replacesBase, deductibleClassification]) => ({
+  ([key, label, value, section, page, replacesBase, deductibleClassification, coverageAvailability]) => ({
     key, label, value, ...(replacesBase ? { replacesBase } : {}),
     ...(deductibleClassification ? { deductibleClassification } : {}),
+    ...(coverageAvailability ? { coverageAvailability } : {}),
     source: { documentId: id, section, page, filename: sparebank1FremtindSources[id].filename,
       termsNumber: sparebank1FremtindSources[id].termsNumber,
       effectiveFrom: sparebank1FremtindSources[id].effectiveFrom,
@@ -72,7 +74,7 @@ export const sparebank1FremtindFacts: Record<string, CatalogFact[]> = {
     ["ansvar.ting.grense", "Ansvar – tingskade", "Inntil 100 000 000 kr per skadetilfelle", "2.1", 2],
   ]),
   sp1Ulykke: facts("sp1Ulykke", [
-    ["ulykke.omfang", "Fører/passasjer – ulykkessted", "Ulykkesskade på fører eller passasjer i, på eller utenfor kjøretøyet når skaden inntreffer", "1", 2],
+    ["ulykke.omfang", "Fører/passasjer – ulykkessted", "Ulykkesskade på fører eller passasjer i, på eller utenfor kjøretøyet når kjøretøyet er direkte årsak til skaden. Sykdom eller sykelig tilstand/disposisjon, besvimelse, forgiftning og inntak av sovemidler, smertestillende eller narkotiske midler er unntatt; unntakene for forgiftning og disse midlene gjelder ikke barn under 16 år", "1", 2, false, undefined, "included"],
     ["ulykke.invaliditet", "Fører/passasjer – medisinsk invaliditet", "Voksne: 200 000 kr ved 100 % livsvarig medisinsk invaliditet", "2, 5.2", 3],
     ["ulykke.invaliditet.barn", "Fører/passasjer – invaliditet barn", "Barn under 20 år: 1 000 000 kr ved 100 % livsvarig medisinsk invaliditet", "2", 3],
     ["ulykke.dod", "Fører/passasjer – dødsfall", "100 000 kr med ektefelle/samboer og/eller barn under 20 år; ellers 50 000 kr; dødsfall innen 1 år etter ulykken", "2, 5.1", 3],
@@ -80,27 +82,27 @@ export const sparebank1FremtindFacts: Record<string, CatalogFact[]> = {
   sp1Rettshjelp: facts("sp1Rettshjelp", [
     ["rettshjelp.dekning", "Rettshjelp", "Rimelige og nødvendige utgifter til juridisk bistand når eier eller rettmessig bruker/fører er part i tvist om forsikret kjøretøy", "1, 4.1–4.2", 4],
     ["geografi.rettshjelp", "Rettshjelp – geografisk område", "Norden", "2", 4],
-    ["rettshjelp.grense", "Rettshjelp – forsikringssum", "Inntil 100 000 kr per tvist; inntil 250 000 kr ved minst tre parter på samme side", "5.1", 5],
+    ["rettshjelp.grense", "Rettshjelp – forsikringssum", "Inntil sikredes økonomiske interesse, maksimalt 100 000 kr per tvist; kan utvides til 250 000 kr ved minst tre parter på sikredes side (ektefeller/samboere regnes som én part). Finansklagenemnda: inntil 15 000 kr; forliksråd/jordskifterett: inntil 25 000 kr. Sakkyndige som ikke er oppnevnt av retten: inntil 20 % av forsikringssummen; interessetaket kan fravikes for utgifter godkjent av selskapet på forhånd", "5.1; 4.1–4.2 side 4", 5],
     ["rettshjelp.egenandel", "Rettshjelp – egenandel", "Avtalt egenandel fremgår av forsikringsbeviset, i tillegg 20 % av utgifter til advokat og sakkyndig bistand", "5.2", 6, false, "reference"],
   ]),
   sp1Delkasko: facts("sp1Delkasko", [
     ["tilbehor.grense", "Fastmontert tilleggsutstyr – forsikringssum", "Inntil 50 000 kr, eller beløpet i forsikringsbeviset", "1.2", 4],
-    ["bagasje.grense", "Personlige eiendeler – forsikringssum", "Inntil 20 000 kr i bilen", "1.3", 4],
+    ["bagasje.grense", "Personlige eiendeler – forsikringssum", "Inntil 20 000 kr i bilen; penger, gavekort, verdipapirer, smykker og klokker er unntatt", "1.3", 4],
     ["brann.dekning", "Brann", "Brann, lynnedslag og eksplosjon", "2.1", 4],
-    ["tyveri.dekning", "Tyveri", "Tyveri, tyveriforsøk, angitt underslag ved prøvekjøring og hærverk", "2.2", 4],
-    ["glass.dekning", "Glass", "Reparasjon eller skifte av rute, glasstak og takluke ved bruddskade", "2.3", 4],
-    ["veihjelp.dekning", "Veihjelp", "Persontransport og transport/assistanse ved dekket skade eller upåregnelig driftsstans etter vilkårene", "2.4.1–2.4.2", 5],
+    ["tyveri.dekning", "Tyveri", "Tyveri, tyveriforsøk og hærverk; handlinger utført av sikredes husstand eller ansatt sjåfør er unntatt fra tyveribegrepet. Underslag ved prøvekjøring omfattes når bilen selges gjennom offentlig tilgjengelige annonsemedier. Når bilen ikke er kommet til rette etter 21 dager erstattes markedsverdien på skadedagen. Ved bare stjålet nøkkel dekkes ny nøkkel, programmering og omkoding når dette er hensiktsmessig som et skadeforebyggende tiltak", "2.2 side 4 og 3.4 side 6", 4],
+    ["glass.dekning", "Glass", "Reparasjon eller skifte av rute, glasstak og takluke ved bruddskade; solcellepanel er unntatt. Ved skifte erstattes inntil 50 % av bilens markedsverdi", "2.3 side 4 og 3.5 side 6", 4],
+    ["veihjelp.dekning", "Veihjelp", "Persontransport og transport/assistanse ved dekket skade eller upåregnelig driftsstans etter vilkårene. Nødvendige merutgifter til hjemreise med rimeligste kommunikasjonsmiddel til bosted når fører/passasjer rammes av ulykkestilfelle, plutselig sykdom eller død som hindrer fortsatt reise med bilen, når dekket skade eller upåregnelig driftsstopp gjør at bilen ikke kan settes i trafikksikker stand innen rimelig tid, eller når bilen er stjålet og ikke kommet til rette innen rimelig tid. Etter sikredes ønske erstattes videre reise til bestemmelsesstedet når dette er rimeligere enn hjemreise", "2.4.1–2.4.2", 5],
     ["veihjelp.feilfylling.grense", "Veihjelp – feilfylling", "Tømming og rens av drivstofftank inntil 10 000 kr", "2.4.2", 5],
     ["veihjelp.transport.grense", "Veihjelp – transportgrense", "Inntil 50 % av bilens markedsverdi", "2.4.2", 5],
     ["nyverdi.alder", "Totalskadegaranti – alder", "Innen 1 år etter registrering som fabrikkny", "3.2.1", 5],
     ["nyverdi.km", "Totalskadegaranti – kilometer", "Ikke kjørt over 15 000 km", "3.2.1", 5],
     ["nyverdi.skadegrad", "Totalskadegaranti – skadegrad", "Reparasjonskostnad over 80 % av bilens nyanskaffelsesverdi", "3.2.1", 5],
-    ["nyverdi.unntak", "Totalskadegaranti – unntak", "Ny bil etter hovedregelen gjelder ikke leaset bil; leasing har egen startleieregel", "3.2.1–3.2.2", 5],
-    ["reparasjon.garanti", "Reparasjonsgaranti", "8 år for privatbil inntil 3 500 kg ved reparasjon på Fremtinds avtaleverksted; ikke glass eller slitasjedeler", "3.3", 6],
+    ["nyverdi.unntak", "Totalskadegaranti – unntak", "Ny bil etter hovedregelen gjelder ikke leaset bil. Startleie erstattes forholdsmessig nedskrevet etter gjenstående leiemåneder ved dekningsmessig skade innen 1 år etter registrering som fabrikkny, ikke kjørt over 15 000 km og reparasjonskostnad over 80 % av nyanskaffelsesverdien på skadedagen (listepris uten rabatter eller spesialpris)", "3.2.2", 6],
+    ["reparasjon.garanti", "Reparasjonsgaranti", "8 år for privatbil inntil 3 500 kg ved reparasjon på Fremtinds avtaleverksted; glass og slitasjedeler er unntatt. Garantien gjelder utbedring av feil og mangler som følge av reparasjoner utført etter 01.01.2023, fra dagen bilen utleveres fra verkstedet. Leiebil ved garantireparasjon: inntil 600 kr per dag i inntil 45 dager; veihjelp etter gjeldende vilkår. Reklamasjon til både verkstedet og Fremtind snarest og senest innen to måneder etter at en mulig mangel er oppdaget", "3.3", 6],
     ["delkasko.egenandel", "Delkasko – avtalt egenandel", "Fremgår av forsikringsbeviset", "4", 7, false, "reference"],
   ]),
   sp1Kasko: facts("sp1Kasko", [
-    ["kasko.dekning", "Kaskoskade", "Sammenstøt, utforkjøring, velting, feilfylling eller annen tilfeldig, plutselig ytre påvirkning", "1.1", 8],
+    ["kasko.dekning", "Kaskoskade", "Sammenstøt, utforkjøring, velting, feilfylling eller annen tilfeldig, plutselig ytre påvirkning. Maskinskade og leiebil er separate valgfrie dekninger. Slitasje, gradvis utviklet skade, frost, skade ved ruspåvirket kjøring når sikrede visste eller burde vite om påvirkningen, ulovlig terrengkjøring, samt kjøring på avsperret område er unntatt; unntaket for avsperret område har særregel for autorisert trafikkskole og førerutviklingskurs forhåndsgodkjent av selskapet. Utleieskade er unntatt med mindre forsikringsbeviset uttrykkelig omfatter utleie; skade ved bruk som drosje, budbil eller annen næringsvirksomhet er unntatt", "1.1", 8],
     ["kasko.egenandel", "Kasko – avtalt egenandel", "Fremgår av forsikringsbeviset", "3.1", 8, false, "reference"],
     ["kasko.egenandel.ung", "Kasko – tillegg for uregistrert fører under 23 år", "Avtalt egenandel økes med 12 000 kr", "3.1", 8, false, "override"],
     ["kasko.egenandel.dyr", "Kasko – reduksjon ved skade fra dyr", "Avtalt egenandel reduseres med inntil 2 000 kr", "3.1", 8, false, "override"],
@@ -121,7 +123,7 @@ export const sparebank1FremtindFacts: Record<string, CatalogFact[]> = {
     ["nyverdi.alder", "Totalskadegaranti – alder", "Innen 3 år etter registrering som fabrikkny", "2.1", 9, true],
     ["nyverdi.km", "Totalskadegaranti – kilometer", "Ikke kjørt over 100 000 km", "2.1", 9, true],
     ["nyverdi.skadegrad", "Totalskadegaranti – skadegrad", "Reparasjonskostnad over 80 % av bilens nyanskaffelsesverdi", "2.1", 9, true],
-    ["nyverdi.unntak", "Totalskadegaranti – unntak", "Ny bil etter hovedregelen gjelder ikke leaset bil; leasing har egen startleieregel", "2.1", 9, true],
+    ["nyverdi.unntak", "Totalskadegaranti – unntak", "Ny bil etter hovedregelen gjelder ikke leaset bil. Startleie erstattes forholdsmessig nedskrevet etter gjenstående leiemåneder ved dekningsmessig skade innen 3 år etter registrering som fabrikkny, ikke kjørt over 100 000 km og reparasjonskostnad over 80 % av nyanskaffelsesverdien på skadedagen (listepris uten rabatter eller spesialpris)", "2.1", 9, true],
   ]),
   sp1Leiebil: facts("sp1Leiebil", [
     ["leiebil.dager", "Leiebil – normal reparasjonstid", "Inntil 45 dager ved normal reparasjonstid", "1.1", 1],
@@ -132,10 +134,10 @@ export const sparebank1FremtindFacts: Record<string, CatalogFact[]> = {
     ["leiebil.unntak", "Leiebil – begrensning", "Ikke drivstoff, bompenger, parkering eller leiebil ved bare glasskade", "1.1", 1],
   ]),
   sp1Maskinskade: facts("sp1Maskinskade", [
-    ["maskinskade.dekning", "Maskinskade – komponenter", "Tilfeldig og plutselig skade på oppregnet motor, gir, styring, kraftoverføring og styreenheter; egne komponenter for el- og hybridbil", "1.1", 1],
+    ["maskinskade.dekning", "Maskinskade – komponenter", "Tilfeldig og plutselig skade på følgende oppregnede komponenter: bensin/diesel – motorblokk og innvendige deler, topplokk, ventiler, kamaksel, turbo, wastegate/ladeluftkompressor, coil, innsug og eksosmanifold, innsprøytningssystem med pumper/dyser/sensorer, EGR-ventil/kjøler, vannpumpe, startmotor, dynamo, lambdasonde, NOX-sensor og AdBlue-dyse/styreenhet med tank. Gir/styring/kraftoverføring – innvendige bevegelige girkassedeler, dobbeltmasse svinghjul, hoved-/slavesylinder, fordelingsgirkasse/vinkeldrev, differensial, mellom-/drivaksel uten mansjetter, innvendig elektronisk girvelger, servopumpe og elektroniske styreenheter til fremdriftsmotor og girkasse. El-/hybridkomponenter følger den særskilte oppregningen", "1.1", 1],
     ["maskinskade.alder", "Maskinskade – alder", "Til første hovedforfall etter at bilen har blitt 10 år", "1.1", 1],
     ["maskinskade.km", "Maskinskade – kilometer", "Til 200 000 km; det som inntreffer først", "1.1", 1],
-    ["maskinskade.el", "Maskinskade – el-/hybridkomponenter", "Blant annet høyvoltbatteri, omformere, fabrikkmontert lader, el-motor, ladekontakt og oppregnede varme-/kjølekomponenter", "1.1", 1],
+    ["maskinskade.el", "Maskinskade – el-/hybridkomponenter", "Høyvoltsbatteri, spenningsomformer (DC/DC), strømveksler, fabrikkmontert batterilader, el-motor og dens girkasse, styreenhet for el-motor og høyvoltsbatteri, ladekontakten og dens stillmotor, samt PTC-varmer og AC/klimakompressor der den har kjøle- og/eller varmefunksjon mot høyvoltsbatteri", "1.1", 1],
     ["maskinskade.batteri.fradrag", "Høyvoltbatteri – aldersfradrag", "10 % ved 5 år, økende med 10 prosentpoeng per år til maksimalt 50 %", "2.1", 1],
     ["maskinskade.egenandel.0-99999", "Maskinskade – egenandel 0–99 999 km", "10 000 kr", "3", 2, false, "override"],
     ["maskinskade.egenandel.100000-149999", "Maskinskade – egenandel 100 000–149 999 km", "15 000 kr", "3", 2, false, "override"],
