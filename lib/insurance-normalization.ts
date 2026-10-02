@@ -98,6 +98,7 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "punktering.dekning": ["punktering", "punkteringsskade", "punkteringsdekning"],
   },
   innbo: {
+    "flytting.tyveri_skadeverk.grense": ["Tyveri og skadeverk under flytting – grense"],
     "uhell.dekning": ["uhell", "uhellsdekning", "uhellsskade", "uhellsskader"],
     "tyveri.dekning": ["tyveri", "tyveridekning"],
     "rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],

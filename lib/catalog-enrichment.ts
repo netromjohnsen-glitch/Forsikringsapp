@@ -74,6 +74,9 @@ const normalizeLabel = (value: string) => value.normalize("NFKC")
 // Older document facts can cover an unsplit condition. Preserve them without
 // guessing their amounts or filling more precise, potentially conflicting terms.
 const broadDocumentCatalogBlocks: Record<string, Record<string, readonly string[]>> = {
+  innbo: {
+    "flytting.transport.grense": ["flytting.tyveri_skadeverk.grense"],
+  },
   reise: {
     "reise.forsinkelse.rute": ["reise.forsinkelse.fremmote_sum", "reise.forsinkelse.avgang_sum"],
   },
