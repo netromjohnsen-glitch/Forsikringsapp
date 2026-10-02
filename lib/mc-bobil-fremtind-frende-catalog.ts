@@ -379,6 +379,13 @@ const fremtindMcMini = combine(fremtindBase("mc"),
   ]),
   rows(`${fm}-mini`, 6, "Minikasko 2.4", [["veihjelp.dekning", "Transport til nærmeste verksted og nødvendig persontransport ved dekket skade eller upåregnelig driftsstans; assistanse også hjemme"],
     ["veihjelp.begrensning", "Driftsstans i terreng dekkes ikke; transport begrenset til 50 % av markedsverdi, men grensen gjelder ikke ved erstatningsmessig skade"]]),
+  rows(`${fm}-mini`, 6, "Minikasko 3.3.1; Kasko 2 viser til Minikasko 3", [
+    ["nyverdi.dekning", "Nytt kjøretøy av tilsvarende modell, type og årsmodell med fabrikkmontert tilbehør ved dekningsmessig totalskade på motorsykkel eller moped"],
+    ["nyverdi.alder", "Skaden må inntreffe innen 3 måneder etter at kjøretøyet som fabrikkny var registrert på eier"],
+    ["nyverdi.km", "Kjøretøyet må ikke ha vært kjørt over 2 000 kilometer"],
+    ["nyverdi.skadegrad", "Reparasjonskostnadene må overstige 80 % av nyanskaffelsesverdien på skadedagen; takstgrunnlaget er listepris hos forhandler uten rabatter eller spesialpris"],
+    ["nyverdi.begrensning", "Kjøretøyet må tidligere ikke ha vært utsatt for skade som overstiger 10 % av nyanskaffelsesverdien, og må ha vært registrert som fabrikkny på eier"],
+  ]),
   rows(`${fm}-mini`, 7, "Minikasko 4.3", [["veihjelp.egenandel", "500 kr", "coverage"]]));
 const fremtindMcKasko = combine(fremtindMcMini,
   rows(`${fm}-kasko`, 8, "Kasko 1.1–1.2 og 3.1", [
