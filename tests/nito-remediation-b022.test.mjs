@@ -193,7 +193,10 @@ test('R-022-12: other add-ons retain independent selection and component facts w
     assert.doesNotThrow(() => resolveCatalogFacts(p, [a.id], date));
   }
   const frende = productCatalog.products.find(p => p.providerId === 'frende' && p.insuranceType === 'Hund');
-  assert.doesNotThrow(() => resolveCatalogFacts(frende, ['frende-hund-bruksverdi'], date));
-  // B-018 is deliberately not implemented in this batch.
-  assert.equal(productCatalog.addOns.find(a => a.id === 'frende-hund-tap').selectionEvidenceKeys, undefined);
+  // B-018 consumes the shared selection guard for inclusion in Tap;
+  // it must not introduce Gjensidige's Bruk→Liv purchase dependency.
+  assert.doesNotThrow(() => resolveCatalogFacts(frende, ['frende-hund-tap'], date));
+  const tap = productCatalog.addOns.find(a => a.id === 'frende-hund-tap');
+  assert.equal(tap.requiresAddOnIds, undefined);
+  assert.deepEqual(tap.selectionEvidenceKeys, ['dyr.liv.dekning']);
 });

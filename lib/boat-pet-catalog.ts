@@ -168,6 +168,14 @@ const gjensidigeBruk = (type: "hund" | "katt"): BoatPetAddOnDefinition => {
     selectionEvidenceKeys: [`${type}.bruksverdi.dekning`],
   };
 };
+
+const frendeDogUseRows: BoatPetRow[] = [
+  { ...row("hund.bruksverdi.dekning", "Betinget del av valgt Tap-dekning: helt tap av bruksegenskaper etter sykdom eller ulykke for ferdig trent hund som regelmessig brukes til et spesielt formål", "frende", "hund", 4, "7.1.3 Tap av brukshund"),
+    qualificationSource: { sourceId: sourceId("frende", "hund"), page: 4, section: "7.3 Særvilkår og 8.2 Veterinærattest" } },
+  row("hund.bruksverdi.grense", "50 % av forsikringssummen som står i forsikringsbeviset for Tap av hunden. Tidligere utbetaling for tap av bruksegenskaper trekkes fra senere dødsfallserstatning.", "frende", "hund", 4, "8.4 Forsikringssum"),
+  row("hund.bruksverdi.alder", "Hunden må være under 8 år; tap av bruksegenskaper erstattes ikke når hunden er åtte år eller eldre", "frende", "hund", 4, "7.3.1 Tap av brukshund"),
+  row("hund.bruksverdi.begrensning", "Ferdig trent og regelmessig brukt til et spesielt formål; helt tap etter sykdom eller ulykke må dokumenteres med veterinærattest (§§7.1.3 og 8.2). Tap av avlsegenskaper er unntatt. Særvilkår §7.3 for medfødte sykdommer, hofte-/albueleddsykdommer, OCD, patellaluksasjon og lang bløt gane: sammenhengende veterinærdekning fra før 4 måneder, eller ved HD/AA/AD tidligere avlest fri av NKK. Ved HD må foreldrene dokumenteres, være frirøntget og avlest av NKK.", "frende", "hund", 4, "7.1.3, 7.3 og 8.2"),
+];
 const fremtindDogEarlyLifeGroup = "berner sennenhund, grand danois, irsk ulvehund, leonberger, newfoundlandshund, pyrenéerhund, napolitansk mastiff og sanktbernhardshund";
 const fremtindDogLateLifeGroup = "bichon havanais, border terrier, cairn terrier, chihuahua, chinese crested, dvergschnauzer, finsk lapphund, finsk spets, foxterrier, islandsk fårehund, jack russel terrier, lhasa apso, toy-, dverg- og mellompuddel, kleiner og grosser münsterländer, norrbottenspets, norsk buhund, papillon, phalène, schnauzer, shih tzu, softcoated wheaten terrier, tibetansk spaniel, tibetansk terrier, västgötaspets, welsh springer spaniel, west highland white terrier, whippet";
 const petAddOns: BoatPetAddOnDefinition[] = [
@@ -189,9 +197,9 @@ const petAddOns: BoatPetAddOnDefinition[] = [
   ...(["hund", "katt"] as const).flatMap((type) => [
     petAddOn("frende", "Frende", type, `frende-${type}-medisin`, "Medisin", ["Veterinær"], [row("dyr.medisin.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Medisinutgifter")]),
     ...(type === "hund" ? [petAddOn("frende", "Frende", type, "frende-hund-tann", "Tann", ["Veterinær"], [row("dyr.tannsykdom.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Tannsykdommer"), row("dyr.tannsykdom.grense", "Inntil 20 000 kr per skadetilfelle og forsikringsår", "frende", type, 3, "Tannsykdommer")])] : []),
-    petAddOn("frende", "Frende", type, `frende-${type}-tap`, "Tap", ["Veterinær"], [row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Tap"), row("dyr.liv.forsvinning", "Inkludert i valgt Tap-dekning", "frende", type, 3, "Tap"), row("dyr.liv.opphor", "Første hovedforfall etter 10 år", "frende", type, 2, "Hvor og når")]),
+    { ...petAddOn("frende", "Frende", type, `frende-${type}-tap`, "Tap", ["Veterinær"], [row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Tap"), row("dyr.liv.forsvinning", "Inkludert i valgt Tap-dekning", "frende", type, 3, "Tap"), row("dyr.liv.opphor", "Første hovedforfall etter 10 år", "frende", type, 2, "Hvor og når"), ...(type === "hund" ? frendeDogUseRows : [])]),
+      ...(type === "hund" ? { selectionEvidenceKeys: ["dyr.liv.dekning"] } : {}) },
   ]),
-  petAddOn("frende", "Frende", "hund", "frende-hund-bruksverdi", "Bruksverdi", ["Veterinær"], [row("hund.bruksverdi.dekning", "Hundespesifikk del av valgt Tap-dekning", "frende", "hund", 4, "Tap av brukshund"), row("hund.bruksverdi.grense", "50 % av forsikringssummen for tap av hunden", "frende", "hund", 4, "Tap av brukshund")]),
 ];
 
 const built = buildBoatPetCatalog(boatPetSources, [...boatProducts, ...petProducts], [...boatAddOns, ...petAddOns]);

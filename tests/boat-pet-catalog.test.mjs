@@ -107,7 +107,9 @@ test("Hund-spesifikk bruksverdi lekker ikke til Katt", () => {
   // B-022 adds source-verified Katt Bruk; it must use its own species keys.
   assert.ok(addons("gjensidige", "Katt").some((addon) => addon.name === "Bruk"));
   assert.equal(productCatalog.facts["gjensidige-katt-bruk"].some(fact => fact.key.startsWith("hund.")), false);
-  assert.ok(addons("frende", "Hund").some((addon) => addon.name === "Bruksverdi"));
+  // B-018 includes conditional Bruksverdi in Tap, never as a separate purchase.
+  assert.equal(addons("frende", "Hund").some((addon) => addon.name === "Bruksverdi"), false);
+  assert.ok(productCatalog.facts["frende-hund-tap"].some(fact => fact.key === "hund.bruksverdi.dekning"));
   assert.equal(addons("frende", "Katt").some((addon) => addon.name === "Bruksverdi"), false);
   const catFacts = productCatalog.products.filter((product) => product.insuranceType === "Katt").flatMap(facts);
   assert.equal(catFacts.some((fact) => fact.key.startsWith("hund.")), false);
