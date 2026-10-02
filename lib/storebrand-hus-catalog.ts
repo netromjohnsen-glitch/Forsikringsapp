@@ -77,8 +77,17 @@ form.structuredValue = { kind: "insurance_form", forms: ["full_value", "first_lo
   authority: "policy" };
 standard.push(age("bereder_pumpe", "varmtvannsbereder, fyrkjele og pumper", 5, 5),
   age("oppvarming", "varme, kjøling, ventilasjon og strømproduksjon", 10, 10),
-  age("integrerte_hvitevarer", "integrerte hvitevarer", 5, 10), age("utvendige_ror", "utvendige rør, tanker, kummer og bunnledninger", 20, 5),
-  age("badeinnretning", "elektrisk tilknyttet badeinnretning", 2, 10));
+  age("integrerte_hvitevarer", "integrerte hvitevarer", 5, 10), age("utvendige_ror", "brudd på utvendige rør og ledninger av andre materialer enn plast, tanker, kummer og bunnledninger", 20, 5),
+  age("badeinnretning", "vannbasseng og badeinnretninger, samt elektrisk tilknyttet innvendig badeinnretning", 2, 10));
+for (const [key, qualification] of [
+  ["hus.aldersfradrag.utvendige_ror", "Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset."],
+  ["hus.aldersfradrag.badeinnretning", "Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget."],
+]) {
+  const item = standard.find((fact) => fact.key === key)!;
+  item.value += ` ${qualification}`;
+  item.source.section = "B.6.4.11";
+  if (item.structuredValue?.kind === "age_deduction") item.structuredValue.exceptions = [qualification];
+}
 
 const superFacts = facts("storebrandHusTerms", [
   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Følgeskade ved plutselig vanninntrengning over bakkenivå omfattes. Selve utettheten er unntatt; tak/takgjennomføring over 50 år er unntatt.", "C.1.1", 33, undefined, true],

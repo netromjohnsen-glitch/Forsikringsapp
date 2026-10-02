@@ -112,7 +112,7 @@ export const storebrandInnboFacts: Record<string, CatalogFact[]> = {
     ["sykkel.uhell.grense", "Sykkel og sportsutstyr under bruk – grense", "40 000 kr i Norden; elsparkesykkel og luftsportsutstyr er unntatt", "sbInnboSuper", "C.1.3", 19],
     ["sykkel.uhell.egenandel", "Sykkel og sportsutstyr under bruk – egenandel", "2 000 kr per skadet gjenstand, høyst avtalt egenandel", "sbInnboSuper", "C.1.3", 19, false, "override"],
     ["ulykke.boligtilpasning.grense", "Tilpasning av bolig etter ulykke – grense", "300 000 kr ved minst 50 % medisinsk invaliditet; utgiftene må påløpe innen 5 år", "sbInnboSuper", "C.1.4", 20],
-    ["flytting.transport.grense", "Skade ved privat flytting", "Avtalt forsikringssum, maksimalt 50 000 kr per gjenstand, ved plutselig ytre skade under transport eller bæring i Norge", "sbInnboSuper", "C.1.5", 20],
+    ["flytting.transport.grense", "Skade ved privat flytting", "Avtalt forsikringssum ved plutselig og uforutsett ytre skade under transport eller bæring ved flytting til ny bolig eller lagringsplass i Norge. Etter C.1.2 er skade utenfor boligen eller ved at ting mistes ned, faller ned eller velter begrenset til 100 000 kr per hendelse; dette gjelder også ved flytting.", "sbInnboSuper", "C.1.5 og C.1.2 (PDF side 18)", 20],
     ["skadedyr.dekning", "Bekjempelse av skadedyr", "Bekjempelse av gnagere og skadeinsekter i oppgitt fast bolig eller fritidsbolig i Norge, utført av Storebrands samarbeidspartner", "sbInnboSuper", "C.1.6", 20],
     ["skadedyr.grense", "Skadedyrbekjempelse – grense", "150 000 kr per skadetilfelle", "sbInnboSuper", "C.1.6", 20],
     ["skadedyr.egenandel", "Skadedyrbekjempelse – egenandel", "2 000 kr", "sbInnboSuper", "C.1.6", 21, false, "override"],

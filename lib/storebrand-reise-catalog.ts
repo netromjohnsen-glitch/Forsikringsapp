@@ -23,7 +23,9 @@ const common=facts("storebrandReiseTerms",[
  ["sikkerhet.reisegods","Sikkerhetsforskrifter","Tilsyn, forsvarlig oppbevaring, låsing, emballering og innsjekking; verdigjenstander skal ikke sendes i innsjekket bagasje. Brudd kan redusere erstatningen.","B.4",11],
  ["aktivitet.unntak","Sport og aktivitet","Ulykkesdelen har særskilte begrensninger for yrke med forhøyet risiko, motorsport, luftfart og andre dokumenterte risikoforhold. Ekspedisjon og søk/redning er ikke omfattet.","B.6.3",20],
  ["omrade.ud","UD, krig og terror","Reise til område med UD-advarsel er unntatt etter vilkåret. Avbestilling før avreise og evakuering under reisen behandles separat.","B.2 og B.7",6],
-]);
+]).concat(facts("storebrandReiseProductPage",[
+ ["overnatting","Krav om overnatting","Reiser med og uten overnatting er omfattet; også dagsturer.","FAQ: Når gjelder reiseforsikringen?",1],
+]));
 const standard=facts("storebrandReiseTerms",[
  ["varighet.maks","Maksimal standard reisevarighet","45 dager per reise; avtalt antall dager i forsikringsbeviset styrer.","A sammendrag",2],
  ["bagasje.dekning","Reisegods","Tyveri, ran, hærverk, brann, vann, naturskade, trafikkskade og transportørbekreftet tap/skade etter vilkåret.","B.4",10],

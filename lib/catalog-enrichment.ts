@@ -71,6 +71,14 @@ const normalizeLabel = (value: string) => value.normalize("NFKC")
   .replace(/\s+/gu, " ")
   .trim();
 
+// Older document facts can cover an unsplit condition. Preserve them without
+// guessing their amounts or filling more precise, potentially conflicting terms.
+const broadDocumentCatalogBlocks: Record<string, Record<string, readonly string[]>> = {
+  reise: {
+    "reise.forsinkelse.rute": ["reise.forsinkelse.fremmote_sum", "reise.forsinkelse.avgang_sum"],
+  },
+};
+
 function selectedScopedAddOns(
   product: CatalogProduct,
   insurance: ExtractedInsurance,
@@ -196,6 +204,11 @@ function enrichInsurance(
     documentedKeys.add(normalizeTermName(addOn.name, { insuranceType: insurance.type }));
   }
   const factKeys = new Set(effectiveFacts.map((fact) => normalizeCatalogTermKey(fact.key)));
+  const overlapRules = broadDocumentCatalogBlocks[normalizeInsuranceType(insurance.type)] ?? {};
+  const overlapBlockedKeys = new Set(documentTerms.flatMap(term =>
+    term.coverageOrigin === "document" && term.value.trim() && !isUndocumentedTermValue(term.value)
+      ? overlapRules[normalizeCatalogTermKey(term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type }))] ?? []
+      : []));
   const coverageDefinitions = relatedCoveragesForInsuranceType(insurance.type);
   // Resolve the document's coverage set once, rather than re-deriving the
   // entire set once for every individual coverage definition.
@@ -214,6 +227,13 @@ function enrichInsurance(
   const traceDecisions: { key: string; decision: string }[] = [];
   const supplementalTerms = effectiveFacts
     .filter((fact) => {
+      if (overlapBlockedKeys.has(normalizeCatalogTermKey(fact.key))) {
+        if (trace) {
+          blockedKeys.push(normalizeCatalogTermKey(fact.key));
+          traceDecisions.push({ key: normalizeCatalogTermKey(fact.key), decision: "CATALOG_NOT_APPLIED_OTHER_RULE" });
+        }
+        return false;
+      }
       const definition = coverageForFact(fact);
       const documentCoverage = definition && documentCoverageStatuses.get(definition.parentKey);
       // Et eksplisitt avslag eller en dokumentert konflikt skal ikke få

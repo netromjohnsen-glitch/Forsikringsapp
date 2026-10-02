@@ -116,7 +116,13 @@ test("sport UD og sikkerhetskrav kommer fra If og ikke Tryg", () => {
   const items = resolveCatalogFacts(product("Basis"), []);
   assert.match(fact(items, "reise.aktivitet.unntak").value, /dykking.*tandemhopp.*Ekspedisjoner/);
   assert.match(fact(items, "reise.omrade.ud").value, /72 timer/);
-  assert.match(fact(items, "reise.sikkerhet.reisegods").value, /tilsyn.*låst.*innsjekket/);
+  // ERA3-4 kapittel 3/4 gjelder Standard/Super; Basis har ikke disse dekningene.
+  assert.equal(fact(items, "reise.sikkerhet.reisegods"), undefined);
+  for (const level of ["Standard", "Super"]) {
+    const safety = fact(resolveCatalogFacts(product(level), []), "reise.sikkerhet.reisegods");
+    assert.match(safety.value, /tilsyn.*låst.*innsjekket/);
+    assert.equal(safety.source.company, "If");
+  }
   assert.equal(items.every((f) => f.source.company === "If"), true);
 });
 

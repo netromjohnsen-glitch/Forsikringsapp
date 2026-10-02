@@ -150,7 +150,7 @@ test("54 representative source-to-catalog checks preserve numeric and conditiona
     "storebrand:Hund": [["dyr.veterinar.egenandel.fast", /2 500 kr/u], ["dyr.liv.reduksjon.start", /8 år/u], ["hund.bruksverdi.grense", /50 %/u]],
     "storebrand:Katt": [["dyr.veterinaralder.opphor", /livet ut/u], ["dyr.liv.reduksjon.sats", /90 %.*75 %.*60 %/u], ["dyr.liv.opphor", /10 år/u]],
     "sparebank1-fremtind:Båt": [["bat.ferieavbrudd.dager", /15 dager/u], ["bat.ferieavbrudd.dagsbelop", /1 500 kr/u], ["bat.maskinskade.egenandel", /4 000 kr/u]],
-    "sparebank1-fremtind:Hund": [["dyr.veterinar.egenandel.periode", /135 dager/u], ["dyr.liv.reduksjon.start", /5 eller 7 år/u], ["hund.bruksverdi.alder", /8 år/u]],
+    "sparebank1-fremtind:Hund": [["dyr.veterinar.egenandel.periode", /135 dager/u], ["dyr.liv.reduksjon.start", /hovedforfall etter fylte 5 år.*7 år.*9 år/u], ["hund.bruksverdi.alder", /8 år/u]],
     "sparebank1-fremtind:Katt": [["dyr.diagnostikk.grense", /15 000 kr/u], ["dyr.liv.reduksjon.sats", /20 %/u], ["dyr.liv.opphor", /12 år/u]],
     "frende:Båt": [["bat.geografi.omrade", /200 nautiske mil/u], ["bat.losore.grense", /10 000 kr/u], ["bat.jolle.grense", /20 000 kr/u]],
     "frende:Hund": [["dyr.veterinar.egenandel.fast", /1 000 kr/u], ["dyr.veterinar.egenandel.prosent", /25 %/u], ["hund.bruksverdi.grense", /50 %/u]],

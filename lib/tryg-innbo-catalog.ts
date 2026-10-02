@@ -98,6 +98,7 @@ export const trygInnboFacts: Record<string, CatalogFact[]> = {
     ["innbo.tilleggsinnredning.grense","Egen tilleggsinnredning i leiet bolig – grense","500 000 kr","trygInnboExtra","1.2",2,true],
     ["tyveri.fellesbod.grense","Tyveri fra bod med adgang fra fellesareal – grense","350 000 kr","trygInnboExtra","2.4",4,true],
     ["tyveri.privatbod.grense","Tyveri fra privat bod utenfor forsikringsstedet – grense","60 000 kr","trygInnboExtra","2.4",4,true],
+    ["tyveri.fellesgarasje.grense","Tyveri fra felles bod eller garasje – grense","Stedets regler gjelder: 350 000 kr for bod med adgang fra fellesareal i rom som tilhører sikrede på forsikringsstedet; 60 000 kr for egen privat bod i bygning utenfor forsikringsstedet; 30 000 kr per skadetilfelle på andre steder som ikke er særskilt nevnt i §2.4","trygInnboExtra","2.4",4,true],
     ["tyveri.uteareal.grense","Tyveri på privat boligs uteareal – grense","40 000 kr","trygInnboExtra","2.4",4,true],
     ["tyveri.utenforhjem.grense","Tyveri utenfor hjemmet – grense","30 000 kr per skadetilfelle på andre dokumenterte steder","trygInnboExtra","2.4",4],
     ["flytting.transport.grense","Transportskade ved flytting – grense","30 000 kr per skadetilfelle ved transportbyrå, idrettslag, forening eller lignende","trygInnboExtra","2.4",4],

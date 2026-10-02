@@ -24,7 +24,7 @@ const common = facts("ifReiseTerms", [
   ["varighet.norge", "Reisevarighet i Norge", "Ubegrenset antall dager per reise i Norge.", "IPID – hvilken forsikring", 1],
   ["overnatting", "Reise med eller uten overnatting", "Forsikringen gjelder fra du forlater hjemmet; ordinær reise krever ikke overnatting, men enkelte Super-dekninger krever feriereise med minst én overnatting.", "1 Generelt", 3],
   ["tjenestereise", "Jobbreise", "Ordinært reiseomfang kan gjelde uten at reisen er ferie, men avbestilling, tapt ferie og enkelte Super-ytelser gjelder ikke jobbreiser.", "2–5", 5],
-  ["medisinsk.behandling", "Sykdom og ulykkesskade på reise", "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.", "5.1–5.2", 13],
+  ["medisinsk.behandling", "Sykdom og ulykkesskade på reise", "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.", "5.1–5.2", 13],
   ["medisinsk.tann", "Tannbehandling", "Nødvendig tannbehandling ved akutt tannsykdom eller ulykkesskade dekkes inntil 5 000 kr per skadetilfelle.", "5.2.1", 13],
   ["hjemtransport", "Hjemtransport", "Rimelige og nødvendige utgifter ved medisinsk nødvendig, forhåndsgodkjent hjemtransport; også ledsagelse og hjemtransport av kiste eller urne. Begravelse på stedet kan erstattes inntil 40 000 kr.", "5.2.2 og 5.4", 14],
   ["evakuering", "Evakuering", "Nødvendige merutgifter til reise og overnatting til nærmeste sikre destinasjon eller hjemsted i Norge etter ordre/råd fra myndigheter ved krig, terror, politisk uro eller naturkatastrofe; ingen generell øvre sum.", "6", 17],
@@ -39,7 +39,6 @@ const common = facts("ifReiseTerms", [
   ["medisinsk.kjent", "Kjent sykdom", "Forverring eller komplikasjon ved sykdom/lidelse kjent før avreise er ikke dekket som uventet akutt sykdom. For avbestilling er skjæringstidspunktet før reisen ble betalt. Ifs helsesjekk kan brukes som forhåndsvurdering.", "2.2.1 og 5.3", 6],
   ["aktivitet.unntak", "Sport og ekspedisjon", "Medisinske utgifter ved blant annet dykking, klatring, tandemhopp og frikjøring kan omfattes. Ekspedisjoner og turer med dårlig infrastruktur, lang avstand til sykehus eller vanskelig transport krever særskilt tilleggsforsikring.", "12", 23],
   ["omrade.ud", "UD, krig og terror", "Områder med offisielt UD-reiseråd er unntatt etter vilkårets tidsregler. Avbestilling krever at rådet fortsatt gjelder 72 timer før avreise; evakuering har egne hendelsesvilkår.", "2.2.7 og 6", 6],
-  ["sikkerhet.reisegods", "Sikkerhetsforskrifter", "Personlige eiendeler skal være under tilsyn, forsvarlig oppbevart, låst, emballert og korrekt innsjekket; verdigjenstander skal ikke ligge i innsjekket bagasje. Ved forsinkelse må tilstrekkelig tid beregnes.", "3.1.2 og 4.4", 8],
 ]);
 
 const services = facts("ifReiseHelp", [
@@ -57,6 +56,7 @@ const basis = facts("ifReiseTerms", [
 ]);
 
 const standard = facts("ifReiseTerms", [
+  ["sikkerhet.reisegods", "Sikkerhetsforskrifter", "Personlige eiendeler skal være under tilsyn, forsvarlig oppbevart, låst, emballert og korrekt innsjekket; verdigjenstander skal ikke ligge i innsjekket bagasje. Ved forsinkelse må tilstrekkelig tid beregnes.", "3.1.2 og 4.4", 8],
   ["avbestilling.dekning", "Avbestilling", "Ubegrenset forsikringssum for ikke-refunderbare reisekostnader ved dokumenterte årsaker som akutt sykdom, alvorlig ulykkesskade, dødsfall, boligskade, UD-råd og naturkatastrofe. Ingen egenandel; jobbreiser er unntatt.", "2", 5, undefined, true],
   ["forsinkelse.rute", "Forsinket avgang og fremmøte", "Nødvendige merutgifter til overnatting og innhenting av fastlagt reiserute. Alternativ transport ved forsinket offentlig transport er begrenset til 3 000 kr per person.", "3.1", 7, undefined, true],
   ["bagasje.forsinket", "Forsinket bagasje", "Nødvendige innkjøp på utreise: 5 000 kr per person og 25 000 kr per familie. Ufrivillig transitt med overnatting: 1 000/5 000 kr. PIR og originalkvitteringer kreves; hjemreise er unntatt.", "3.3", 9, undefined, true],

@@ -39,7 +39,6 @@ const standard = facts("gjensidigeHusStandard", [
   ["elektrisk.dekning", "Lyn og elektrisk fenomen", "Lynnedslag, kortslutning, lysbue, overslag og annet elektrisk fenomen etter vilkårets regler.", "Hus – Dekkes", 3],
   ["vann.utstromming", "Vann og annen væske", "Plutselig utstrømming fra rør, tilknyttet utstyr, akvarium eller slokkeanlegg.", "Hus – Dekkes", 3],
   ["ror.brudd", "Rørbrudd", "Brudd på bygningens og tilknyttede utvendige væskeledninger med tilhørende utstyr.", "Hus – Dekkes", 3],
-  ["ror.tining", "Tining og oppspyling av rør", "Tining av utvendig rør og oppspyling av tett rør omfattes etter vilkårets regler.", "Hus – Dekkes", 3],
   ["vann.terreng", "Vann fra terreng", "Vann fra terreng når det dannes vannspeil over laveste gulv.", "Hus – Dekkes", 3],
   ["vatrom.folgeskade", "Utett våtrom – følgeskade", "Vannskade på tilstøtende rom som følge av utett våtrom omfattes.", "Hus – Dekkes", 3],
   ["vatrom.selverommet", "Våtrom – selve rommet", "Skaden innenfor våtrommets bjelkelag er unntatt på Hus.", "Hus – Dekkes ikke", 3],
@@ -77,6 +76,7 @@ const standard = facts("gjensidigeHusStandard", [
 const form = standard.find((fact) => fact.key === "hus.forsikringsform")!;
 form.structuredValue = { kind: "insurance_form", forms: ["full_value", "first_loss"], defaultForm: "full_value", authority: "policy" };
 standard.push(
+  ...facts("gjensidigeHusProduct", [["ror.tining", "Tining av utvendige rør", "Hjelp til å tine utvendige rør.", "Brann-, vann- og naturskader", 1]]),
   age("utvendige_ledninger", "utvendige ledninger og tanker (ikke plast/glassfiber)", 20, 5),
   age("varmepumpe_luft_luft", "luft-til-luft-varmepumpe", 5, 10),
   age("oppvarming_vvs", "andre oppvarmings-, kjøle-, ventilasjons- og VVS-installasjoner", 7, 10, ["Tilhørende rør"]),

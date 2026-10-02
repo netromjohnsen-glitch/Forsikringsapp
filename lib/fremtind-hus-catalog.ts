@@ -31,7 +31,7 @@ const standard = facts("fremtindHusStandard", [
   ["bygninger.dekning", "Forsikrede bygninger", "Bygningen i forsikringsbeviset med fastmontert utstyr. Tilleggsbygg må avtales; bygg inntil 10 m² BTA har bare brann- og naturskadedekning uten særskilt avtale.", "3.1 Bygning", 2],
   ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr som er vanlig for bygningens formål, herunder bygningsrør, oppvarmingsutstyr og integrerte installasjoner.", "3.1 Bygning", 2],
   ["andrebygninger.endring", "Bygningsendringer", "Tilbygg og andre verdiøkende forandringer må meldes for å unngå underforsikring. Topp omfatter bygningsmessige forandringer i avtaleperioden frem til periodens utløp.", "3.1 / 5.2.2", 2],
-  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning av bygningen omfattes.", "3.1 Bygning", 2],
+  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning er unntatt på Standard.", "3.1 Bygning – Omfattes ikke", 3],
   ["ror.utvendig", "Utvendige rør og ledninger", "Utvendige rør og ledninger med tilknyttet utstyr frem til offentlig ledning eller brønn. Overvanns-/infiltrasjonsledning, spredegrøft, brønn og borehull er unntatt.", "3.2", 2],
   ["hage.objekter", "Hage og tomt", "Hageanlegg og tomt inntil fem mål rundt boligen.", "3.3", 2],
   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 200 000 kroner.", "3.3", 2],
@@ -72,6 +72,7 @@ const standard = facts("fremtindHusStandard", [
   ["rettshjelp.egenandel", "Rettshjelp – egenandel", "4 000 kroner pluss 20 % av overskytende utgifter.", "6.6 / FFE-003.001-003 punkt 5.2", 7, "override"],
 ]);
 const form = standard.find((fact) => fact.key === "hus.forsikringsform")!;
+standard.find((fact) => fact.key === "hus.bygninger.utsmykning")!.coverageAvailability = "unavailable";
 form.structuredValue = { kind: "insurance_form", forms: ["full_value", "first_loss"], defaultForm: "full_value", authority: "policy" };
 standard.push(
   age("utvendige_ledninger", "utvendige og bunnledninger, sjø-/jordvarmeledning", 20, 5),
@@ -87,6 +88,7 @@ standard.push(
 );
 
 const topp = facts("fremtindHusTopp", [
+  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning av bygningen omfattes.", "1.1 Bygning", 1, undefined, true],
   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 500 000 kroner.", "1.1", 1, undefined, true],
   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Følgeskade fra utett tak når taket er inntil 50 år, og vann over terreng som trenger inn gjennom utett bygning. Selve taket/veggen og feilen er unntatt.", "2.1", 1, undefined, true],
   ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "Bekjempelse etter påvist aktivitet på fullverdiforsikret bolig; Fremtind velger metode og skadedyrsfirma. Insekter er unntatt.", "2.2", 1, undefined, true],

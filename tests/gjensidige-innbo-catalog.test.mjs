@@ -76,7 +76,7 @@ test("forsikringssum og base/effective følger dagens alminnelige dokumenter", (
   assert.equal(fact(standard, "tyveri.fellesbod.grense").value, "30 000 kr");
   assert.match(fact(plus, "tyveri.fellesbod.grense").value, /ubegrenset innbosum/);
   assert.match(fact(plus, "tyveri.fellesbod.grense").value, /Ingen separat generell bodgrense/);
-  assert.equal(fact(plus, "tyveri.fellesbod.sykkelgrense").value, "30 000 kr per sykkel, elsykkel eller sykkeltilhenger.");
+  assert.match(fact(plus, "tyveri.fellesbod.sykkelgrense").value, /Ingen særskilt 30 000-kronersgrense.*i bod i bygning på forsikringsstedet.*utenfor bygning på forsikringsstedet eller bebodd bolig/u);
   assert.match(fact(plus, "tyveri.fellesbod.sikkerhet").value, /Elektronisk.*smykker.*kunst/);
   assert.equal(fact(standard, "tyveri.fellesbod.sykkelgrense"), undefined);
   const detail = manual("Gjensidige", "Innbo Pluss").insuranceData.insurances[0].importantTerms;
@@ -99,7 +99,7 @@ test("Innbo Pluss strukturerer uhell, sykkel, mobil, skadedyr, flytting og ID-ty
   const plus = resolveCatalogFacts(product("Gjensidige", "Innbo Pluss"), []);
   assert.match(fact(plus, "uhell.dekning").value, /30 000 kr i hele verden/);
   assert.equal(fact(plus, "sykkel.uhell.grense").value,
-    "30 000 kr i Norden; ritt, løp og konkurranse er unntatt");
+    "30 000 kr i hele verden utenfor boligen og privat uteareal; ritt, løp og konkurranse er unntatt");
   assert.match(fact(plus, "sykkel.veihjelp.dekning").value, /offentlig vei/);
   assert.equal(fact(plus, "sykkel.veihjelp.egenandel").value, "500 kr");
   assert.equal(fact(plus, "mobil.skjerm.egenandel").value,
@@ -121,7 +121,7 @@ test("utleie og høyere sykkelsum er valg, ikke ubetinget Pluss-dekning", () => 
     "Inntil 6 måneders husleie, én gang per leietaker");
   assert.equal(fact(withRental, "utleie.utkastelse.grense").value, "20 000 kr");
   assert.equal(fact(withRental, "utleie.egenandel").value,
-    "10 000 kr ved misligholdt husleie og skadeverk utført av leietaker");
+    "10 000 kr ved misligholdt husleie");
   const bicycle = resolveCatalogFacts(plus, ["gj-innbo-sykkel-hoyere-sum"]);
   assert.match(fact(bicycle, "sykkel.tyveri.grense").value, /må kontrolleres i forsikringsbeviset/);
 });

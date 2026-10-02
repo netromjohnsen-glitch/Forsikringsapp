@@ -61,6 +61,7 @@ const reise = facts("gjensidigeReiseTerms", [
 
 const pluss = facts("gjensidigeReisePlussTerms", [
   ["bagasje.total", "Reisegods – samlet sum", "Ingen generell samlet øvre sum; kategori- og gjenstandsgrenser gjelder.", "Forsikringsoversikt", 1, undefined, true],
+  ["bagasje.per_gjenstand", "Enkeltgjenstand", "Annet reisegods enn særskilte kategorier er begrenset til 40 000 kr per gjenstand.", "Reisegods", 6, undefined, true],
   ["bagasje.verdisaker", "Verdigjenstander samlet", "40 000 kr per sikret.", "Forsikringsoversikt", 1, undefined, true],
   ["bagasje.kontanter", "Kontanter og gavekort", "5 000 kr per sikret; familiebegrensning følger vilkåret.", "Forsikringsoversikt", 1, undefined, true],
   ["bagasje.egenandel", "Generell egenandel", "Ingen egenandel, bortsett fra mobiltelefon der 1 000/3 000 kr-regelen gjelder.", "Forsikringsoversikt", 1, "override", true],

@@ -115,7 +115,10 @@ test("Super strukturerer uhell, tyveri ute, flytting, skadedyr, ID-tyveri og bol
   const superFacts = resolveCatalogFacts(product("Storebrand", "Super"), []);
   assert.match(fact(superFacts, "uhell.dekning").value, /100 000 kr/);
   assert.match(fact(superFacts, "tyveri.utenforhjem.grense").value, /50 000 kr/);
-  assert.match(fact(superFacts, "flytting.transport.grense").value, /50 000 kr per gjenstand/);
+  const moving = fact(superFacts, "flytting.transport.grense").value;
+  assert.match(moving, /^Avtalt forsikringssum/);
+  assert.match(moving, /utenfor boligen eller.*mistes ned, faller ned eller velter.*100 000 kr per hendelse/);
+  assert.doesNotMatch(moving, /50 000 kr per gjenstand/);
   assert.equal(fact(superFacts, "skadedyr.grense").value, "150 000 kr per skadetilfelle");
   assert.match(fact(superFacts, "idtyveri.grense").value, /1 000 000 kr/);
   assert.match(fact(superFacts, "ulykke.boligtilpasning.grense").value, /300 000 kr/);

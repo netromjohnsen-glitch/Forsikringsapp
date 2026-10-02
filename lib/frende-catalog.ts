@@ -52,7 +52,7 @@ export const frendeFacts: Record<string, CatalogFact[]> = {
     ["brann.egenandel","Brann – standardegenandel","6 000 kr med mindre lavere egenandel står i forsikringsbeviset","11.11",9,false,"standard"],
     ["tyveri.egenandel","Tyveri – standardegenandel","6 000 kr med mindre lavere egenandel står i forsikringsbeviset","11.11",9,false,"standard"],
     ["bonus.kasko","Bonus ved kaskoskade","Skader med utbetaling kan redusere bonus etter bonusnivå og opptjeningsår","11.13",9],
-    ["bonus.parkert","Parkeringsskade – bonustap","Ingen bonustap når skadevolder er ukjent, bilen er under seks år og skaden meldes til politiet","11.13",10],
+    ["bonus.parkert","Parkeringsskade – bonustap","Ingen bonustap ved skade som et ukjent kjøretøy påfører kjøretøyet mens det står parkert, når skaden kan knyttes til en bestemt parkering i et avgrenset tidsrom","11.13",10],
   ]),
   frendeUtvidet: facts("frendeUtvidet", [
     ["nyverdi.alder","Totalskadegaranti – alder","Under 3 år","8.1",4,true],

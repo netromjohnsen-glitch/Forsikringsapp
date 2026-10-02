@@ -342,6 +342,8 @@ for (const type of ["mc", "bobil"] as const) {
     );
     if (type === "mc" && tier !== "ansvar") rows.push(
       ...at(`mc-bobil:gjensidige-mc-produkt.html:mc`, 1, "Personlige ting", [["mc.bagasje.begrensning", "Ting i låst oppbevaringsrom på motorsykkelen; skaden må være av en type valgt forsikring dekker"]]),
+    );
+    if (type === "mc" && tier === "kasko") rows.push(
       ...at(sourceId, 4, "Veihjelp ved feriereiser utenfor Norden", [["mc.leiekjoretoy.dekning", "Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden"], ["mc.leiekjoretoy.dager", "Inntil 15 dager"], ["mc.leiekjoretoy.begrensning", "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie"]]),
     );
     if (type === "bobil" && tier !== "ansvar") rows.push(...at(sourceId, 3, "Hva er forsikret – fortelt", [["utstyr.begrensning", "Fortelt omfattes ikke av fastmontert ekstrautstyr; krever egen utvidelse"]]));
@@ -358,6 +360,9 @@ for (const type of ["mc", "bobil"] as const) {
         ["nyverdi.begrensning", "Gjelder ikke bedriftseid eller leaset kjøretøy; heller ikke brann eller tyveri når eieren kjøpte kjøretøyet brukt"],
       ]),
       ...at(sourceId, 4, "Veihjelp ved feriereiser utenfor Norden", [["leiebil.dekning", "Tilsvarende leiebil for å fullføre planlagt ferie utenfor Norden"], ["leiebil.dager", "Inntil 15 dager"], ["leiebil.begrensning", "Bobilen kan ikke repareres innen 3 virkedager"]]),
+    );
+    if (type === "bobil" && tier === "kasko") rows.push(
+      ...at(sourceId, 3, "Hvilke skader – skadedyr", [["bobil.skadedyr.dekning", "Skader som skyldes gnagere, insekter og andre skadedyr"]]),
     );
     if (tier === "pluss") rows.push(
       ...at(sourceId, 3, "Hvilke skader – maskinskade", [
