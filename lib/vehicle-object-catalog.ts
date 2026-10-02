@@ -274,7 +274,11 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
       ...(name === "Kasko" ? included(["kasko"], snow ? 7 : 4, "Kaskoforsikring") : []),
       row("avtale.geografi", snow ? "Norden; lovpliktig ansvar gjelder også hele EØS" : "Europa, Tyrkia og Israel", 1, "2"),
       row("avtale.egenandel", "Avtalt egenandel fremgår av forsikringsbeviset eller vilkåret", 1, "4"),
-      ...(snow ? [row("avtale.sesong", "Sesongvariert pris ved opphør/lagring; kasko/minikasko omgjøres til lagring ved midlertidig avregistrering", 1, "5 og prisberegning")] : type !== "campingvogn" && name !== "Ansvar" ? included(["redning"], 2, "2.4") : []),
+      ...(snow ? [row("avtale.sesong", "Sesongvariert pris ved opphør/lagring; kasko/minikasko omgjøres til lagring ved midlertidig avregistrering", 1, "5 og prisberegning")] : type === "tilhenger" ? [
+        row("redning.dekning", "Nødvendig transport av tilhenger til nærmeste verksted etter erstatningsmessig skade og/eller driftsstans på normalt fremkommelig vei eller sted uten adkomstrestriksjoner", 2, "Minikasko 2.4"),
+        row("redning.begrensning", "Reparasjon på stedet skal velges når den er billigere enn redning; transport gjelder bare hendelser som forsikringen omfatter, ikke ordinær service eller vedlikehold", 2, "Minikasko 2.4"),
+        row("redning.egenandel", "500 kr", 4, "Minikasko 4.3"),
+      ] : []),
       ...(type === "campingvogn" ? [
         row("glass.dekning", "Bruddskade på vindusruter, inkludert takluke; erstatning gis bare når nye ruter innsettes eller skaden repareres", 2, "Minikasko 2.3"),
         row("glass.grense", "Reparasjon erstattes med inntil 600 kr; ved skifte av ruter erstattes inntil 50 % av campingvognens markedsverdi", 3, "Minikasko 3.5.1; reparasjon i 2.3 side 2 og 4.2 side 4"),
