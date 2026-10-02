@@ -115,7 +115,9 @@ test("aktive reisegods forsinkelse leiebil og sykdomsfakta følger nytt vilkår"
   assert.match(fact(items, "reise.bagasje.uhell").value, /2 500/);
   assert.match(fact(items, "reise.bagasje.mobil_egenandel").value, /2 000/);
   assert.match(fact(items, "reise.bagasje.forsinket").value, /fire timers.*5 000.*hjemreise/i);
-  assert.match(fact(items, "reise.forsinkelse.rute").value, /6 000.*ubegrenset/);
+  assert.doesNotMatch(fact(items, "reise.forsinkelse.rute").value, /6 000|ubegrenset|øvre sum/);
+  assert.match(fact(items, "reise.forsinkelse.fremmote_sum").value, /overnatting inntil 6 000.*innhenting av reiseruten uten øvre sum/);
+  assert.match(fact(items, "reise.forsinkelse.avgang_sum").value, /overnatting og innhenting av reiseruten samlet inntil 6 000.*innen 24 timer/);
   assert.match(fact(items, "reise.leiebil.egenandel").value, /kaskoforsikret.*bilpool.*unntatt/i);
   assert.match(fact(items, "reise.medisinsk.behandling").value, /30 døgn/);
   assert.match(fact(items, "reise.medisinsk.tann").value, /5 000.*1 000/);

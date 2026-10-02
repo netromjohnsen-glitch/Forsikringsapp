@@ -46,10 +46,6 @@ const termAliases: Record<string, readonly string[]> = {
 
 // Samme ord kan bety noe annet i en annen forsikringstype.
 const contextualTermAliases: Record<string, Record<string, readonly string[]>> = {
-  reise: {
-    "reise.forsinkelse.fremmote_sum": ["Forsinket fremmøte – sum"],
-    "reise.forsinkelse.avgang_sum": ["Forsinket avgang – sum"],
-  },
   bil: {
     "premie.total": ["total årspremie inkl trafikkforsikringsavgift", "total premie inklusive trafikkforsikringsavgift", "årspremie inkl trafikkforsikringsavgift"],
     "premie.ekskl_tfa": ["premie etter rabatter uten trafikkforsikringsavgift", "premie ekskl trafikkforsikringsavgift", "årspremie ekskl trafikkforsikringsavgift", "premie eksklusive trafikkforsikringsavgift"],
@@ -107,6 +103,8 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],
   },
   reise: {
+    "reise.forsinkelse.fremmote_sum": ["Forsinket fremmøte – sum"],
+    "reise.forsinkelse.avgang_sum": ["Forsinket avgang – sum"],
     "reise.bagasje.dekning": ["reisegods", "bagasje", "bagasje og personlige eiendeler"],
     "reise.bagasje.uhell": ["uhell", "uhellsskade", "uhellsskader", "skade ved uhell"],
     "reise.avbestilling.dekning": ["avbestilling", "avbestillingsdekning"],
