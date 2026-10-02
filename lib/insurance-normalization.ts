@@ -105,6 +105,7 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "punktering.dekning": ["punktering", "punkteringsskade", "punkteringsdekning"],
   },
   innbo: {
+    "innbo.vaer.dekning": ["Innbo – værdekning", "Vind, snø og takras – innbo"],
     "flytting.tyveri_skadeverk.grense": ["Tyveri og skadeverk under flytting – grense"],
     "uhell.dekning": ["uhell", "uhellsdekning", "uhellsskade", "uhellsskader"],
     "tyveri.dekning": ["tyveri", "tyveridekning"],
@@ -389,6 +390,8 @@ const relatedCoverages: Record<string, readonly RelatedCoverage[]> = {
     { parentKey: "punktering.dekning", label: "Punkteringsskade", details: [] },
   ],
   innbo: [
+    { parentKey: "innbo.vaer.dekning", label: "Vind, snø og takras – innbo",
+      aliases: ["Innbo – værdekning", "Vind, snø og takras – innbo"], details: [] },
     {
       parentKey: "uhell.dekning",
       label: "Uhell",
