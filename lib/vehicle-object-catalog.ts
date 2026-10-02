@@ -259,7 +259,17 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
   const file = snow ? "fremtind-Vilkar_Kasko_Snoscooter.pdf" : "fremtind-Vilkar_Kasko_Campingvogn_og_Tilhenger.pdf";
   for (const name of [...(snow ? ["Ansvar"] : []), ...(type !== "tilhenger" ? ["Minikasko"] : []), "Kasko"]) {
     product("eika-fremtind", "Eika / Fremtind", type, name, file, [
-      ...(snow ? included(["ansvar", "rettshjelp", "ulykke"], 1, "Ansvar", "fremtind-IPID_Snoscooter.pdf") : []),
+      ...(snow ? [
+        ...included(["ansvar", "ulykke"], 1, "Ansvar", "fremtind-IPID_Snoscooter.pdf"),
+        row("rettshjelp.dekning", "Rimelige og nødvendige rettshjelpsutgifter ved tvist som personlig eier eller rettmessig bruker/fører av forsikret snøscooter i Norden; omfatter også tidligere eier/rettighetshaver etter salg når forsikringen opphørte ved salget", 8, "Rettshjelp 1–4.1"),
+        row("rettshjelp.grense", "Inntil sikredes økonomiske interesse, maksimalt 100 000 kr per tvist; kan utvides til 250 000 kr ved minst tre parter på sikredes side (ektefeller/samboere regnes som én part). Finansklagenemnda: inntil 15 000 kr; forliksråd/jordskifterett: inntil 25 000 kr. Sakkyndige som ikke er oppnevnt av retten: inntil 20 % av forsikringssummen", 9, "Rettshjelp 4.2 og 5.1; sakkyndige i 4.1 side 8"),
+        row("rettshjelp.egenandel", "Egenandel fremgår av forsikringsbeviset; i tillegg 20 % av utgifter til advokat og sakkyndig bistand. Én egenandel per tvist selv om flere parter er på samme side", 10, "Rettshjelp 5.2"),
+        ...(name !== "Ansvar" ? [
+          row("utstyr.dekning", "Snøscooteren i seriemessig utførelse med ekstra dekk og felger tilsvarende seriemessig antall hjul; fastmontert tilleggsutstyr, brannslokningsapparat, førstehjelpsutstyr og kjøreutstyr for snøscooter omfattes", 4, "Minikasko 1.1–1.2"),
+          row("utstyr.grense", "Fastmontert tilleggsutstyr: inntil 10 000 kr; egen sum for kjøreutstyr er ikke oppgitt i vilkåret", 4, "Minikasko 1.2"),
+        ] : []),
+        ...(name === "Kasko" ? [row("kasko.egenandel", "Egenandel fremgår av forsikringsbeviset; økes med 12 000 kr når fører er under 23 år ved skaden og bruk av fører under 23 år ikke er opplyst", 7, "Kasko 3.1")] : []),
+      ] : []),
       ...(name !== "Ansvar" ? included(["brann", "tyveri"], snow ? 4 : 1, "Minikaskoforsikring") : []),
       ...(name === "Kasko" ? included(["kasko"], snow ? 7 : 4, "Kaskoforsikring") : []),
       row("avtale.geografi", snow ? "Norden; lovpliktig ansvar gjelder også hele EØS" : "Europa, Tyrkia og Israel", 1, "2"),
