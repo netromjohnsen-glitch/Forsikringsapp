@@ -3,5 +3,5 @@
 const nonAssertingSegments = new Set(["unntak", "begrensning", "begrensninger"]);
 
 export function isNonAssertingCoverageDetail(key: string): boolean {
-  return key.split(".").some((segment) => nonAssertingSegments.has(segment));
+  return key === "parkering.bonus" || key.split(".").some((segment) => nonAssertingSegments.has(segment));
 }

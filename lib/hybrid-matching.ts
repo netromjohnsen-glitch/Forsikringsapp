@@ -5,6 +5,7 @@ import {
   comparisonTermIdentities,
   isKnownInsuranceType,
   normalizeInsuranceType,
+  isAmbiguousBobilParkingBonusLabel,
 } from "./insurance-normalization.ts";
 
 export type InsuranceForMatching = {
@@ -125,9 +126,9 @@ function termScope(leftKey: string, rightKey: string, left: InsuranceForMatching
   // Distinct canonical identities are known differences, not unresolved labels.
   // Keep a candidate only if at least one compatible counterpart remains.
   const leftCandidates = [...leftTerms.values()].filter((term) =>
-    [...rightTerms.values()].some((other) => compatibleTermIds(term.id, other.id)));
+    [...rightTerms.values()].some((other) => compatibleTermIds(term.id, other.id, leftKey, rightKey)));
   const rightCandidates = [...rightTerms.values()].filter((term) =>
-    leftCandidates.some((other) => compatibleTermIds(other.id, term.id)));
+    leftCandidates.some((other) => compatibleTermIds(other.id, term.id, leftKey, rightKey)));
   const scopeId = objectScope ? `terms:${objectScope}` : `terms:${leftKey}|${rightKey}`;
   for (const [terms, others, selected, type, items] of [
     [leftTerms, rightTerms, leftCandidates, leftKey, left],
@@ -157,9 +158,11 @@ export type SemanticMatcherMetrics = MatchingCounts & {
   invoked: boolean; semanticCandidatesSent: number; semanticMatchesAccepted: number; durationMs: number; audit?: SemanticAudit;
 };
 
-function compatibleTermIds(left: string, right: string): boolean {
+function compatibleTermIds(left: string, right: string, leftType: string, rightType: string): boolean {
   const leftKey = left.slice(2);
   const rightKey = right.slice(2);
+  if (isAmbiguousBobilParkingBonusLabel(leftKey, leftType) ||
+      isAmbiguousBobilParkingBonusLabel(rightKey, rightType)) return false;
   // Never let AI collapse different canonical fields, even within one coverage.
   return !(leftKey.includes(".") && rightKey.includes(".")) || leftKey === rightKey;
 }
@@ -236,7 +239,8 @@ function validDecision(value: unknown, batch: MatchingBatch): value is MatchDeci
   }
   const scope = batch.termScopes.find((entry) => entry.id === item.scopeId);
   return Boolean(scope && scope.leftTerms.some((term) => term.id === item.leftId) &&
-    rightIds.every((id) => scope.rightTerms.some((term) => term.id === id) && compatibleTermIds(item.leftId as string, id)));
+    rightIds.every((id) => scope.rightTerms.some((term) => term.id === id) &&
+      compatibleTermIds(item.leftId as string, id, scope.leftTypeKey, scope.rightTypeKey)));
 }
 
 function sharesCoverageRoot(left: string, rights: string[]): boolean {

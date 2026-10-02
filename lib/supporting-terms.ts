@@ -4,7 +4,7 @@ import type { CatalogEnrichedInsurance } from "./catalog-enrichment.ts";
 import type { FactSource } from "./comparison.ts";
 import { normalizeDocumentFacts } from "./document-fact-normalization.ts";
 import { canonicalProviderId, findCatalogProductBySelection, catalogProductIdentity, resolvedAgreementScope, catalogProductsForSelection, productCatalog } from "./product-catalog.ts";
-import { normalizeInsuranceType, normalizeTermName, relatedCoveragesForInsuranceType, isUndocumentedTermValue } from "./insurance-normalization.ts";
+import { normalizeInsuranceType, normalizeTermName, relatedCoveragesForInsuranceType, isUndocumentedTermValue, isAmbiguousBobilParkingBonusLabel } from "./insurance-normalization.ts";
 import { objectIdentity } from "./object-matching.ts";
 import { defaultIdentifierStrategies } from "./object-identity-strategies.ts";
 import { deriveCanonicalCoverages } from "./coverage-status.ts";
@@ -106,6 +106,9 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
   const definitions = relatedCoveragesForInsuranceType(customer.type);
   const candidates = new Map<string, typeof applicable[number]["importantTerms"]>();
   for (const record of applicable) for (const term of record.importantTerms) {
+    // Keep unresolved Bobil collisions in recordEvidence, never as an
+    // effective bonus identity guessed from generic uploaded terms.
+    if (!term.key && isAmbiguousBobilParkingBonusLabel(term.name, customer.type)) continue;
     const key = keyOf(term);
     // Customer values/scalars are never imported from generic examples.
     if (existing.has(key) || /^(?:premie|kjoretoy)\./u.test(key) || ["egenandel", "forsikringssum"].includes(key)) {

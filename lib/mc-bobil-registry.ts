@@ -88,15 +88,22 @@ export const mcBobilVehicleAliases: Readonly<Record<string, readonly string[]>> 
   "avtale.geografi": ["geografisk område", "forsikringens geografiske område"],
 };
 
+// Standalone bonus consequences, not coverage parents or selection evidence.
+export const bobilBonusLabels = {
+  "bonus.delkasko": "Bonus – kildebundne fritak",
+  "bonus.parkert": "Bonus – parkert kjøretøy",
+} as const;
+
 export function mcBobilFactKeysForType(type: string): string[] {
   if (!mcBobilTypes.some(id => id === type)) return [];
   return [...mcBobilCoverages(type).flatMap(c => [c.parentKey, ...c.details.map(d => d.key)]),
-    ...Object.keys(mcBobilVehicleAliases), "premie.total", "premie.ekskl_tfa", "premie.tfa"];
+    ...Object.keys(mcBobilVehicleAliases), ...(type === "bobil" ? Object.keys(bobilBonusLabels) : []),
+    "premie.total", "premie.ekskl_tfa", "premie.tfa"];
 }
 type SharedFamily = "ansvar" | "rettshjelp" | "brann" | "naturskade" | "tyveri" | "kasko" | "glass" | "veihjelp" | "ulykke" | "utstyr" | "nokkel" | "feilfylling" | "maskinskade" | "nyverdi" | "leiebil" | "parkering";
 type ScopedFamily = `mc.${"kjoreutstyr" | "hjelm" | "bagasje" | "leiekjoretoy" | "parkert"}` | `bobil.${"losore" | "fortelt" | "fukt" | "vann" | "skadedyr" | "ferieavbrudd" | "feriegaranti" | "utleie"}`;
 type DetailSuffix = "dekning" | "person.grense" | "ting.grense" | "grense" | "egenandel" | "begrensning" | "alder" | "km" | "geografi" | "dager" | "omfang" | "reparasjon.egenandel" | "dod" | "invaliditet" | "varighet" | "komponenter" | "egenandel.kilometer" | "aldersfradrag" | "kilometerfradrag" | "kjopsalder" | "kjopskm" | "grenser" | "skadegrad" | "oppgjor" | "dagsgrense" | "bilklasse" | "dagsbelop" | "gjenstand" | "kontroll" | "bonus";
-export type McBobilFactKey = `${SharedFamily | ScopedFamily}.${DetailSuffix}` | `kjoretoy.${"kjorelengde" | "kilometerstand" | "avtalt_maks_kilometerstand" | "forstegangsregistrering"}` | "avtale.geografi" | `premie.${"total" | "ekskl_tfa" | "tfa"}`;
+export type McBobilFactKey = `${SharedFamily | ScopedFamily}.${DetailSuffix}` | `kjoretoy.${"kjorelengde" | "kilometerstand" | "avtalt_maks_kilometerstand" | "forstegangsregistrering"}` | "avtale.geografi" | `premie.${"total" | "ekskl_tfa" | "tfa"}` | keyof typeof bobilBonusLabels;
 // Compile-time union plus the exact runtime registry above; no arbitrary string
 // widens the extraction schema's CanonicalDocumentFactKey type.
 export const mcBobilFactKeys = [...new Set(mcBobilTypes.flatMap(mcBobilFactKeysForType))] as McBobilFactKey[];
@@ -106,6 +113,7 @@ export function mcBobilKeyApplies(type: string, key: string): boolean {
 }
 export function mcBobilFactLabel(type: string, key: string): string | null {
   if (key === "avtale.geografi") return "Geografisk område";
+  if (type === "bobil" && Object.hasOwn(bobilBonusLabels, key)) return bobilBonusLabels[key as keyof typeof bobilBonusLabels];
   const coverage = mcBobilCoverages(type).find(c => c.parentKey === key || c.details.some(d => d.key === key));
   if (!coverage) return null;
   const detail = coverage.details.find(d => d.key === key);

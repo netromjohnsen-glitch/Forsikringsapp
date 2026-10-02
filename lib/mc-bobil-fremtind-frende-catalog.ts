@@ -470,8 +470,13 @@ const frendeMcKasko = combine(frendeMcMini, rows(rm, 3, "6.1", [
   ["mc.bagasje.dekning", "Tyveri av løse ting og bagasje"], ["mc.bagasje.grense", "Inntil 10 000 kr"],
 ]), rows(rm, 4, "6.2", [["kasko.begrensning", "Maskinskade, slitasje, rust, frost, fukt og underslag omfattes ikke etter kaskodekningen"],
   ["kasko.egenandel", "Fremgår av forsikringsbeviset", "reference"]]));
-const frendeBobilBase = combine(frendeBase(rb), frendeAccident(rb));
-const frendeBobilMini = combine(frendeMini(rb), frendeAccident(rb), rows(rb, 2, "3.9–3.10", [
+const frendeBobilBonus = rows(rb, 10, "11.13", [["bonus.delkasko",
+  "Ved dekningsmessig skade gir tyveri, brann, glassruteskade og veihjelp ikke bonustap. Det samme gjelder valgt maskinskade, tapt/mistet/ødelagt nøkkel eller fjernkontroll og skadet/stjålet ladekabel som erstattes på Utvidet, påkjørsel av dyr omgående meldt til politi eller viltnemnda, og skade som direkte skyldes naturulykke etter naturskadeloven. Fritakene utvider ikke produktets dekninger. Parkeringsfritaket representeres separat."]]);
+const frendeBobilParkedBonus = rows(rb, 10, "11.13", [["bonus.parkert",
+  "Dekningsmessig skade som et ukjent kjøretøy påfører bobilen mens den står parkert, gir ikke bonustap når skaden kan knyttes til en bestemt parkering i et avgrenset tidsrom."]])
+  .map(row => ({ ...row, label: "Parkeringsskade – bonustap" }));
+const frendeBobilBase = combine(frendeBase(rb), frendeAccident(rb), frendeBobilBonus);
+const frendeBobilMini = combine(frendeMini(rb), frendeAccident(rb), frendeBobilBonus, rows(rb, 2, "3.9–3.10", [
   ["bobil.losore.dekning", "Løse ting og bagasje i bobilen"], ["bobil.losore.grense", "Inntil 20 000 kr, eller forsikringssummen i forsikringsbeviset"],
   ["bobil.fortelt.dekning", "Fortelt ved forsikring av bobil"],
 ]), rows(rb, 3, "4.1.3 og 5.1", [["bobil.losore.begrensning", "Tyveri fra bobil og tilkoblet fortelt av tre eller glassfiber omfattes med inntil 20 000 kr"],
@@ -484,7 +489,7 @@ const frendeBobilKasko = combine(frendeBobilMini, rows(rb, 3, "6.1", [
   ["nyverdi.km", "Kjørt under 15 000 km"], ["nyverdi.skadegrad", "Reparasjon koster mer enn 80 % av prisen for ny bil"],
   ["kasko.begrensning", "Maskinskade krever egen tilleggsdekning. Fukt- og råteskade på bobil krever Utvidet; campingvognens kaskoregel gjelder ikke bobil"],
   ["kasko.egenandel", "Fremgår av forsikringsbeviset", "reference"],
-]));
+]), frendeBobilParkedBonus);
 const frendeBobilExtended = combine(frendeBobilKasko, rows(rb, 4, "8.1–8.2", [
   ["nyverdi.alder", "Ikke eldre enn 3 år på skadedato"], ["nyverdi.km", "Kjørt under 60 000 km"],
   ["nyverdi.begrensning", "Utvidet nybilerstatning gjelder ikke leaset bobil eller bobil som ikke kommer til rette etter tyveri"],

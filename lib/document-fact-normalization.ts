@@ -5,6 +5,7 @@ import { boatPetTypes, boatPetKeyApplies, boatPetCoverages } from "./boat-pet-re
 import type { ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
 import {
   normalizeCatalogTermKey,
+  isAmbiguousBobilParkingBonusLabel,
   normalizeInsuranceType,
   normalizeTermName,
   relatedCoveragesForInsuranceType,
@@ -44,12 +45,17 @@ function explicitKey(
   // Preserve that identity on repeated normalization (e.g. consolidation).
   // Raw extraction cannot supply key/coverageOrigin through its schema.
   const prior = term as Partial<DocumentFact>;
-  const rawCanonicalKey = term.canonicalKey || (prior.coverageOrigin === "document" ? prior.key : undefined);
+  const rawKey = term.canonicalKey || (prior.coverageOrigin === "document" ? prior.key : undefined);
+  const rawCanonicalKey = typeof rawKey === "string" ? rawKey : undefined;
   const type = normalizeInsuranceType(insurance.type);
   // Newly registered type-specific keys are legal extraction enum members,
   // but cannot establish a fact on another insurance type.
-  const canonicalKey = rawCanonicalKey && /^(mc|bobil)\./u.test(rawCanonicalKey) &&
-    !rawCanonicalKey.startsWith(`${type}.`) ? undefined : rawCanonicalKey;
+  const canonicalKey = rawCanonicalKey && ((/^(mc|bobil)\./u.test(rawCanonicalKey) &&
+    !rawCanonicalKey.startsWith(`${type}.`)) ||
+    (["bonus.parkert", "bonus.delkasko"].includes(rawCanonicalKey) && !["bil", "bobil"].includes(type)))
+    ? undefined : rawCanonicalKey;
+  if (canonicalKey && ["bonus.parkert", "parkering.bonus"].includes(canonicalKey) &&
+    mcBobilKeyApplies(type, canonicalKey) && isAmbiguousBobilParkingBonusLabel(term.name, type)) return canonicalKey;
   const labelKey = normalizeTermName(term.name, {
     insuranceType: insurance.type,
     relatedCoverageParentKeys,
@@ -404,7 +410,12 @@ export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentF
     ...(normalizeInsuranceType(insurance.type) === "bil" && !term.key &&
       ![...totalskadeLabels].some(label => normalizeWords(term.name).startsWith(label))
       ? totalskadeTextFacts(term.value, insurance, term) : []),
-    ...explicitCoverageStatuses(term.value, insurance.type),
+    // A bonus clause may condition its consequence on a selected coverage.
+    // That qualifier is not an independent customer coverage selection.
+    ...(normalizeInsuranceType(insurance.type) === "bobil" &&
+      (["bonus.parkert", "bonus.delkasko", "parkering.bonus"].includes(term.key ?? "") ||
+        isAmbiguousBobilParkingBonusLabel(term.name, insurance.type))
+      ? [] : explicitCoverageStatuses(term.value, insurance.type)),
   ]);
   const premiumLabels: Record<string, string> = {
     "premie.total": "Årspremie inkl. trafikkforsikringsavgift",

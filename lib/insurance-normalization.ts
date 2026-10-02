@@ -1,5 +1,5 @@
 import { vehicleObjectCoverages, vehicleObjectTypes } from "./vehicle-object-registry.ts";
-import { mcBobilCoverages, mcBobilTypes, mcBobilVehicleAliases } from "./mc-bobil-registry.ts";
+import { bobilBonusLabels, mcBobilCoverages, mcBobilTypes, mcBobilVehicleAliases } from "./mc-bobil-registry.ts";
 import { boatPetCoverages, boatPetTypes } from "./boat-pet-registry.ts";
 // Aliasgrupper er hele betegnelser. Delord og likhetsgrad brukes ikke til matching.
 const insuranceAliases: Record<string, readonly string[]> = {
@@ -427,6 +427,11 @@ function hasWholeValueAlias(value: string | null | undefined, aliases: readonly 
   return aliases.some((alias) => words.includes(` ${normalizeWords(alias)} `));
 }
 
+export function isAmbiguousBobilParkingBonusLabel(value: string | null, insuranceType: string): boolean {
+  return normalizeInsuranceType(insuranceType) === "bobil" &&
+    ["parkeringsskade bonustap", "parkeringsdekning bonustap"].includes(normalizeWords(value));
+}
+
 function relatedCoverageDetailKey(name: string, context: TermContext, type: string): string | null {
   for (const coverage of relatedCoverages[type] ?? []) {
     for (const detail of coverage.details) {
@@ -475,6 +480,12 @@ export function normalizeTermName(value: string | null, context: TermContext = {
   const deductibleBand = maskinskadeDeductibleBandKey(value, context, type);
   if (deductibleBand) return deductibleBand;
   const name = normalizeWords(value).replace(/\bpr\b/gu, "per");
+  // This whole label names two distinct identities in active Bobil products.
+  // A validated explicit key or an exact effective-product row resolves it.
+  if (isAmbiguousBobilParkingBonusLabel(value, type)) return name;
+  if (type === "bobil") for (const [key, label] of Object.entries(bobilBonusLabels)) {
+    if ([key, label].some(alias => normalizeWords(alias) === name)) return key;
+  }
   if (type && context.insuredValueConfirmed) {
     const insuredValue = insuredValueLookup.get(name);
     if (insuredValue) return insuredValue;

@@ -270,8 +270,10 @@ function enrichInsurance(
       // variant. De berikes først når kundedokumentet faktisk omtaler den.
       const included = !definition || factKeys.has(definition.parentKey) ||
         [...documentedKeys].some((key) => key === definition.parentKey ||
-          definition.details.some((detail) => detail.key === key ||
-            Boolean(detail.keyPrefix && key.startsWith(detail.keyPrefix))));
+          (!(normalizeInsuranceType(insurance.type) === "bobil" &&
+            definition.parentKey === "parkering.dekning" && key === "parkering.bonus") &&
+            definition.details.some((detail) => detail.key === key ||
+              Boolean(detail.keyPrefix && key.startsWith(detail.keyPrefix)))));
       if (trace && !included) traceDecisions.push({ key: normalizeCatalogTermKey(fact.key), decision: "CATALOG_NOT_APPLIED_OTHER_RULE" });
       return included;
     })
