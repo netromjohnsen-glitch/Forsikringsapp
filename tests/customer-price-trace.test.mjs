@@ -154,7 +154,41 @@ test('price trace: a test-injected later loss is distinguishable from extraction
 
 for (const reverse of [false, true]) for (const split of [false, true]) test(`price trace: ON/OFF equality and exact refs, reverse=${reverse}, split=${split}`, async () => {
   const off = await run({ enabled: false, reverse, split }), on = await run({ reverse, split }); complete(on);
-  assert.deepEqual(on.snapshot, off.snapshot); assert.deepEqual(on.progress, off.progress); assert.equal(on.calls, off.calls);
+  assert.deepEqual(on.snapshot, off.snapshot); assert.equal(on.calls, off.calls);
+  // Parallel batches may complete in either order. Compare the entire event
+  // multiset (including duplicates), plus ordered document/batch sequences.
+  const eventBag = events => events.map(event => JSON.stringify(event)).sort();
+  assert.deepEqual(eventBag(on.progress), eventBag(off.progress));
+  const sequences = events => {
+    const groups = new Map();
+    for (const event of events) {
+      const key = event.type === 'document_status' ? `document:${event.side}:${event.documentIndex}` :
+        'batchIndex' in event ? `batch:${event.side}:${event.batchIndex}` : 'job';
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(event);
+    }
+    return Object.fromEntries([...groups].sort(([a], [b]) => a.localeCompare(b)));
+  };
+  assert.deepEqual(sequences(on.progress), sequences(off.progress));
+  for (const result of [off, on]) {
+    assert.equal(result.progress[0].type, 'analysis_started');
+    assert.equal(result.progress.filter(event => event.type === 'analysis_started').length, 1);
+    assert.equal(result.progress.filter(event => event.type === 'batch_analyzing').length, result.calls);
+    const groups = sequences(result.progress);
+    const documents = Object.entries(groups).filter(([key]) => key.startsWith('document:'));
+    assert.equal(documents.length, 4);
+    for (const [, events] of documents) assert.deepEqual(events.map(event => event.status),
+      ['validating', 'extracting', 'ready', 'analyzing', 'completed']);
+    for (const [key, events] of Object.entries(groups).filter(([key]) => key.startsWith('batch:'))) {
+      const indices = [...new Set(events.filter(event => event.type === 'product_status').map(event => event.productIndex))].sort((a, b) => a - b);
+      assert.ok(indices.length > 0, key);
+      assert.deepEqual(indices, Array.from({ length: indices.length }, (_, index) => index));
+      assert.deepEqual(events.map(event => event.type === 'batch_analyzing' ? 'start' : `${event.productIndex}:${event.status}`),
+        ['start', ...indices.flatMap(index => [`${index}:identified`, `${index}:completed`])], key);
+    }
+  }
+  const beforeExtraction = events => events.slice(0, events.findIndex(event => event.type === 'document_status' && event.status === 'analyzing'));
+  assert.deepEqual(beforeExtraction(on.progress), beforeExtraction(off.progress));
   assert.equal(off.lines.length, 0); assert.equal(on.calls, split ? 4 : 2);
   assert.equal(on.snapshot.groups.length, 2); assert.ok(on.snapshot.groups.every(g => g.objectMatch.reason === 'EXACT_OBJECT_ID'));
   assert.ok(on.snapshot.prices.every(p => p.components.every(c => c.completeness === 'complete')));

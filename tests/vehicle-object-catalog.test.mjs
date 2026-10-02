@@ -46,6 +46,27 @@ test('provider and product-level boundaries are exact',()=>{
  assert.equal(lookup('If','Snøscooter','Super'),null);assert.equal(lookup('Storebrand','Snøscooter','Super'),null);
  assert.equal(lookup('Frende','Campingvogn','Pluss'),null);
 });
+// Product pages require an exact, source-verified product/term binding.
+const approvedProductPages = [
+ {providerId:'if',company:'If',productIds:['if-campingvogn-super'],keys:['campingvogn.nyverdi.dekning','campingvogn.nyverdi.alder'],filename:'if-campingvognforsikring.html',url:'https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring',sha256:'aad3994299dd6f12a8603e98a17d9a4d7a528f1443bd47f9250aaf6cc8be8943'},
+ {providerId:'frende',company:'Frende',productIds:['frende-campingvogn-brann-og-tyveri','frende-campingvogn-kasko'],keys:['campingvogn.losore.grense'],filename:'frende-campingvognforsikring.html',url:'https://www.frende.no/forsikringer/campingvognforsikring/',sha256:'14db91b9abaed2a8ffc923f72522a62c3a9d127056193d84ef7c3cb29ec84fba'},
+ {providerId:'frende',company:'Frende',productIds:['frende-campingvogn-kasko'],keys:['campingvogn.naturskade.dekning'],filename:'frende-campingvognforsikring.html',url:'https://www.frende.no/forsikringer/campingvognforsikring/',sha256:'14db91b9abaed2a8ffc923f72522a62c3a9d127056193d84ef7c3cb29ec84fba'},
+];
+function assertApprovedProductPage(product,fact,doc){
+ const contract=approvedProductPages.find(c=>c.productIds.includes(product.productId)&&c.keys.includes(fact.key));
+ assert.ok(contract,`${product.productId}/${fact.key}: no approved product-page binding`);
+ assert.equal(product.providerId,contract.providerId);assert.equal(product.company,contract.company);
+ assert.equal(product.insuranceType,'Campingvogn');assert.equal(product.agreementScope??'ordinary','ordinary');
+ assert.equal(fact.source.documentId,`vehicle:${contract.filename}`);assert.equal(fact.source.filename,contract.filename);
+ assert.equal(fact.source.url,contract.url);assert.equal(fact.source.page,1);assert.ok(fact.source.section);
+ const registered=sources[fact.source.documentId];assert.ok(registered);
+ assert.equal(registered.company.toLowerCase(),contract.providerId);assert.equal(registered.url,contract.url);assert.equal(registered.sha256,contract.sha256);
+ assert.equal(fact.source.termsNumber,registered.termsNumber);assert.equal(fact.source.effectiveFrom,registered.effectiveFrom);
+ const original=doc??JSON.parse(fs.readFileSync('catalog/sources/vehicle-extensions/manifest.json','utf8')).documents.find(d=>d.filename===contract.filename);
+ assert.ok(original);assert.equal(original.documentType,'product_page');assert.equal(original.providerId,contract.providerId);
+ assert.equal(original.filename,contract.filename);assert.ok(original.urls.includes(contract.url));assert.equal(original.sha256,contract.sha256);
+ assert.equal(createHash('sha256').update(fs.readFileSync('catalog/sources/vehicle-extensions/'+contract.filename)).digest('hex'),contract.sha256);
+}
 test('full terms establish different camping limits without page overriding or duplicate facts',()=>{
  const tryg=get('Tryg','Campingvogn','Campingvogn Ekstra','campingvogn.losore.grense');assert.match(tryg.value,/50 000.*10 000.*15 000/);assert.equal(tryg.source.termsNumber,'PAU27016');
  assert.match(get('Tryg','Campingvogn','Campingvogn Ekstra','campingvogn.fukt.egenandel').value,/25 %.*8 000/);
@@ -59,7 +80,7 @@ test('full terms establish different camping limits without page overriding or d
  assert.equal(ifContents.source.documentId,'vehicle:if-SV707.pdf');
  assert.equal(ifContents.source.page,3);
  assert.equal(ifContents.source.section,'3.3.3');
- for(const p of products){const rows=resolveCatalogFacts(p,[]);assert.equal(new Set(rows.map(f=>f.key)).size,rows.length);assert.ok(rows.every(f=>f.source.filename.endsWith('.pdf')||(p.productId==='if-campingvogn-super'&&['campingvogn.nyverdi.dekning','campingvogn.nyverdi.alder'].includes(f.key)&&f.source.documentId==='vehicle:if-campingvognforsikring.html')));}
+ for(const p of products){const rows=resolveCatalogFacts(p,[]);assert.equal(new Set(rows.map(f=>f.key)).size,rows.length);for(const fact of rows)if(!fact.source.filename.endsWith('.pdf'))assertApprovedProductPage(p,fact);}
 });
 test('coverage matrix separates standard, optional and lower-level exclusions',()=>{
  assert.equal(matrix['tryg-snoscooter-kasko']['snoscooter.forerulykke.dekning'],'optional');
@@ -96,7 +117,7 @@ test('source manifest originals and every active fact have verifiable provenance
  const sv707=mcManifest.documents.find(d=>d.filename==='if-SV707.pdf');
  assert.ok(sv707);assert.equal(sv707.sha256,'a4e2c6ecafc88fafbb5a0e194a373c4e2953b920d2947582352bdf845a03154e');
  assert.equal(createHash('sha256').update(fs.readFileSync('catalog/sources/mc-bobil/if-SV707.pdf')).digest('hex'),sv707.sha256);
- for(const rows of Object.values(facts))for(const fact of rows){const doc=manifest.documents.find(d=>`vehicle:${d.filename}`===fact.source.documentId)??(fact.source.documentId==='vehicle:if-SV707.pdf'?sv707:undefined);assert.ok(doc);assert.notEqual(doc.validity,'future');if(doc.documentType==='product_page'){assert.equal(fact.source.documentId,'vehicle:if-campingvognforsikring.html');assert.equal(fact.source.page,1);}else assert.ok(fact.source.page<=(doc.pages??doc.pageCount));}
+ for(const [productId,rows] of Object.entries(facts))for(const fact of rows){const doc=manifest.documents.find(d=>`vehicle:${d.filename}`===fact.source.documentId)??(fact.source.documentId==='vehicle:if-SV707.pdf'?sv707:undefined);assert.ok(doc);assert.notEqual(doc.validity,'future');if(doc.documentType==='product_page'){const product=products.find(p=>p.productId===productId);assert.ok(product);assertApprovedProductPage(product,fact,doc);}else assert.ok(fact.source.page<=(doc.pages??doc.pageCount));}
  assert.ok(manifest.documents.some(d=>d.validity==='future'));
  const frende=manifest.documents.filter(d=>/frende-.*Insurance.pdf/.test(d.filename));assert.equal(new Set(frende.map(d=>d.sha256)).size,1);
 });

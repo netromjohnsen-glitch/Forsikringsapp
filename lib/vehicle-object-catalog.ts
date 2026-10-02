@@ -165,18 +165,33 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
   const file = `frende-${type === "snoscooter" ? "Snowmobile" : type === "campingvogn" ? "Caravan" : "Trailer"}Insurance.pdf`;
   for (const name of [...(type === "snoscooter" ? ["Ansvar"] : []), "Brann og tyveri", "Kasko"]) {
     product("frende", "Frende", type, name, file, [
-      ...included(["rettshjelp"], 11, "14 (privatkunder)"),
+      ...(type === "campingvogn" ? [
+        row("rettshjelp.dekning", "Rettshjelp i Norden for privatkunder som personlig eier, rettmessig bruker eller fører. Omfatter tvist etter salg og opphørt forsikring, og kjøp av nytt kjøretøy før ny forsikring når nåværende kjøretøy var forsikret i Frende. Samme tvist blir ikke flere ved flere spørsmål/søksmål. Voldgift og særdomstol omfattes når tvisten ellers kunne vært ført for alminnelige domstoler", 11, "14.1 (fortsatt side 12), jf. 2"),
+        row("rettshjelp.grense", "100 000 kr per tvist; 250 000 kr samlet ved minst tre parter på samme side, også på tvers av forsikringer/selskaper. Begrenset til den økonomiske interessen i saken. Uforsikrede parter bærer sin andel og holdes utenfor erstatningsberegningen", 12, "14.4 (fortsatt side 13)"),
+        row("rettshjelp.egenandel", "4 000 kr pluss 20 % av øvrige kostnader; én egenandel per tvist også ved flere parter på samme side", 13, "14.4"),
+        row("rettshjelp.begrensning", "Rimelige og nødvendige utgifter til egen advokat, registrert rettshjelper, retten, godkjent advokatmekler og sakkyndige; ved rettsbehandling også vitner og rettsgebyr til forliksrådet/tingretten. Ikke ankegebyr, idømte eller avtalte saksomkostninger. Tilkjente omkostninger trekkes fra, med unntak ved dokumentert betalingsudyktig motpart. Unntatt tvist mellom sameiere, yrke/virksomhet, familie/arv/skifte, namsmyndigheter, ubestridt inkasso, gjeldsforhandling/konkurs/akkord, straffesak, krenkelser/bøter/gebyrer, ulovlig handling, forvaltningsvedtak før fullt utnyttet klageadgang og søksmål, og advokat-/sakkyndigsalær. Ikke utgifter før tvist eller grunnlag som oppstod før forsikringen", 12, "14.2–14.3"),
+      ] : included(["rettshjelp"], 11, "14 (privatkunder)")),
       ...(type === "snoscooter" ? included(["ansvar"], 11, "13") : []),
-      ...(name !== "Ansvar" ? included(["brann", "tyveri"], 3, "4") : []),
-      ...(name === "Kasko" ? included(["kasko"], 3, "6.1") : []),
+      ...(name !== "Ansvar" ? type === "campingvogn" ? [
+        row("brann.dekning", "Skade etter brann eller lynnedslag", 3, "4.1.1"),
+        row("brann.begrensning", "Svimerker og skade på delen eller komponenten der brann eller kortslutning oppstod erstattes ikke; følgeskaden av brannen eller kortslutningen omfattes", 3, "4.2"),
+        row("tyveri.dekning", "Tyveri av campingvognen og skade ved tyveri eller forsøk på tyveri etter straffeloven §321", 3, "4.1.2"),
+        row("tyveri.begrensning", "Tyveri/underslag utført av husstandsmedlem eller ansatt omfattes ikke; heller ikke campingvogn som er lånt eller prøvd og ikke levert tilbake", 3, "4.2 a–b"),
+      ] : included(["brann", "tyveri"], 3, "4") : []),
+      ...(name === "Kasko" ? type === "campingvogn" ? [
+        row("kasko.dekning", "Plutselig og uforutsett skade etter sammenstøt, utforkjøring, velt og hærverk; feilfylling av drivstoff der dette er relevant for det forsikrede objektet", 3, "6.1.1"),
+        row("kasko.begrensning", "Motor, gir, drivverk og elektroniske styreenheter omfattes bare når årsaken er annen dekket skade. Unntatt frost, fukt, vann, råte, innvendige flekker, svimerker, søl, bruksslitasje, sprekker, gliper, utettheter/lekkasjer, rust/slitasje og underslag. Avvist fabrikant-/leverandør-/reparatøransvar kan omfattes med regress. Campingvognens særskilte fukt- og råteskadedekning i 6.1.2 holdes separat", 4, "6.2"),
+      ] : included(["kasko"], 3, "6.1") : []),
       row("avtale.geografi", "Europa unntatt Russland, Tyrkia og Belarus; rettshjelp i Norden", 2, "2"),
       ...(name !== "Ansvar" ? [row("utstyr.grense", "20 000 kr fastmontert ekstrautstyr", 2, "3.7")] : []),
       ...(type === "campingvogn" ? [
-        row("losore.grense", "20 000 kr eller avtalt sum", 2, "3.9"),
+        row("losore.dekning", "Tyveri av løse ting og bagasje fra campingvognen og tilkoblet fortelt av tre eller glassfiber, med inntil 20 000 kr", 3, "4.1.3"),
+        row("losore.grense", "20 000 kr samlet eller avtalt sum; 10 000 kr per enkeltgjenstand. Produktsiden tilbyr utvidelse med inntil 100 000 eller 200 000 kr; høyere sum krever kundens dokumenterte valg i forsikringsbeviset", 1, "Dekningsmatrise Forsikringssum løsøre; FAQ innbo/løsøre", "frende-campingvognforsikring.html"),
         row("fortelt.dekning", "Fortelt, samt platting og terrasse knyttet til campingvognen", 2, "3.10–11"),
         ...(name === "Kasko" ? [
           ...included(["fukt"], 3, "6.1.2"),
-          row("fukt.begrensning", "Godkjent fukttest må vise at skaden oppstod siste år; utbedring av lekkasjen og rørlekkasje er ikke omfattet", 3, "6.1.2"),
+          row("fukt.begrensning", "Godkjent fukttest må vise at skaden oppstod siste år; utbedring av lekkasjen og rørlekkasje er ikke omfattet. Årlig fukttest må være utført og godkjent av autorisert caravanforhandler. Ved anmerkninger eller påvist fukt må nødvendige tiltak gjennomføres for å hindre utvikling av fukt- og råteskade", 14, "18.1.11, jf. 6.1.2 side 3"),
+          row("naturskade.dekning", "Naturskade på campingvogn og spikertelt/fortelt omfattes når Kasko er valgt", 1, "FAQ: Er campingvogn og spikertelt/fortelt dekket mot naturskader?", "frende-campingvognforsikring.html"),
         ] : []),
       ] : []),
       ...(type === "tilhenger" ? [row("kasko.begrensning", "Løse ting og bagasje på tilhenger er ikke omfattet", 2, "3.9")] : []),
