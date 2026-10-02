@@ -28,8 +28,8 @@ function age(component: string, label: string, freeYears: number, annualPercent:
 const standard = facts("fremtindHusStandard", [
   ["avtale.forbehold", "Forsikringsbevisets forrang", "Forsikringsbeviset avgjør bygning, forsikringssted, Standard/Topp, fullverdi/førsterisiko, egenandel, tilleggsbygg, utleie, tillegg og sikkerhetsforskrifter.", "3 Hva forsikringen omfatter", 2],
   ["forsikringsform", "Forsikringsform", "Fullverdi dekker kostnaden ved tilsvarende eller vesentlig tilsvarende gjenoppføring etter oppgjørsreglene. Førsterisiko er begrenset til avtalt sum i forsikringsbeviset.", "5.2 Erstatningsregler for bygning", 5],
-  ["bygninger.dekning", "Forsikrede bygninger", "Bygningen i forsikringsbeviset med fastmontert utstyr. Tilleggsbygg må avtales; bygg inntil 10 m² BTA har bare brann- og naturskadedekning uten særskilt avtale.", "3.1 Bygning", 2],
-  ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr som er vanlig for bygningens formål, herunder bygningsrør, oppvarmingsutstyr og integrerte installasjoner.", "3.1 Bygning", 2],
+  ["bygninger.dekning", "Forsikrede bygninger", "Bygningen i forsikringsbeviset med fastmontert utstyr. Tilleggsbygg må avtales; bygg inntil 10 m² BTA har bare brann- og naturskadedekning uten særskilt avtale. Bygningsmaterialer og -komponenter midlertidig lagret i bygning/container i Norge omfattes når de skal brukes på forsikret bygning.", "3.1 Bygning", 3],
+  ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr som er vanlig for bygningens formål, herunder bygningsrør, oppvarmingsutstyr og integrerte installasjoner; bygningsmaterialer og -komponenter midlertidig lagret i bygning/container i Norge til bruk på forsikret bygning omfattes.", "3.1 Bygning", 3],
   ["andrebygninger.endring", "Bygningsendringer", "Tilbygg og andre verdiøkende forandringer må meldes for å unngå underforsikring. Topp omfatter bygningsmessige forandringer i avtaleperioden frem til periodens utløp.", "3.1 / 5.2.2", 2],
   ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning er unntatt på Standard.", "3.1 Bygning – Omfattes ikke", 3],
   ["ror.utvendig", "Utvendige rør og ledninger", "Utvendige rør og ledninger med tilknyttet utstyr frem til offentlig ledning eller brønn. Overvanns-/infiltrasjonsledning, spredegrøft, brønn og borehull er unntatt.", "3.2", 2],
@@ -37,7 +37,7 @@ const standard = facts("fremtindHusStandard", [
   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 200 000 kroner.", "3.3", 2],
   ["hage.brygge", "Brygge", "Fast tre- og flytebrygge med installasjoner inntil 100 000 kroner; andel i fellesbrygge er unntatt.", "3.3", 2],
   ["pabud.dekning", "Offentlige påbud", "Bygningsmessige merutgifter ved skadeutbedring som følger av lovlig offentlig påbud. For førsterisiko inntil 20 % av forsikringssummen; forebyggende og skadeuavhengige påbud er unntatt.", "3.4 / 5.5.1", 2],
-  ["rydding.dekning", "Riving og rydding", "Riving, rydding, bortkjøring og deponering etter dekningsmessig skade. For førsterisiko inntil 20 % av forsikringssummen.", "3.4", 2],
+  ["rydding.dekning", "Riving og rydding", "Nødvendige utgifter til riving, rydding, bortkjøring og deponering etter dekningsmessig skade. For førsterisiko inntil 20 % av forsikringssummen. Merutgifter ved prisstigning i normal gjenoppførings-/reparasjonstid beregnes fra skadedagen etter SSBs byggekostnadsindeks; flytting og lagring ved nødvendig flytting omfattes.", "3.4 side 3 / 5.5.3 side 7", 3],
   ["brukstap.dekning", "Ubeboelig bolig", "Tap ved at egen bolig ikke kan brukes i normal reparasjons-/gjenoppføringstid, beregnet etter markedsleie for umøblerte rom.", "3.4 / 5.5.2", 2],
   ["leietap.skade", "Tapt leieinntekt etter bygningsskade", "Tapt husleie etter dekningsmessig bygningsskade i normal reparasjonstid, beregnet etter leie for umøblerte rom; korttidsleie brukes ikke som beregningsgrunnlag.", "5.5.2", 6],
   ["brann.dekning", "Brann", "Brann, eksplosjon/sprengning og nedsoting. Svi- og gnistskader uten brann er unntatt.", "4.1 Brann", 3],
@@ -49,20 +49,20 @@ const standard = facts("fremtindHusStandard", [
   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Vann fra tak, takrenne, utvendig nedløp eller utett forbindelse til taksluk/innvendig nedløp er unntatt på Standard.", "4.2", 3],
   ["ror.brudd", "Rørbrudd", "Brudd på innvendige og utvendige rørledninger med angitt utstyr, herunder radiator, varmtvannsbeholder, tank og drenskum.", "4.3", 3],
   ["ror.tining", "Tining av utvendig rør", "Tining av utvendig vann- og avløpsledning inntil 50 000 kroner inklusive tilleggsutgifter og tap.", "4.3", 3],
-  ["plutselig.dekning", "Annen plutselig skade", "Andre tilfeldige og plutselige skader, med detaljerte unntak for blant annet feil, svak konstruksjon, frost, dyr, insekter, slitasje og kosmetikk.", "4.4", 4],
+  ["plutselig.dekning", "Annen plutselig skade", "Andre tilfeldige og plutselige skader; unntak og begrensninger i foregående skadepunkter gjelder også. Unntatt er sviktende fundamentering, setninger, jordtrykk, frost/tele, material-/konstruksjons-/montasjefeil, spenninger, egne mangler og mekanisk svikt også ved slitasje/alder; dyr/insekter/bakterier; vindskade på veksthus, hageanlegg, antenner, skilt og markiser; leieboers/husstandens skadeverk; hakk, svinn/sprekker, flekker, riper og avskalling; utett/punktert isolerglass. Hage/tomt ved klimatiske forhold, basseng/boblebad ved frost/snøtyngde, brygge/flytebrygge, takrenne/snøfanger ved snøtyngde/snøpress/ras og sjørørledning med bare svikt i bunnforankringen omfattes ikke av denne dekningen.", "4.4", 4],
   ["handverker.folgeskade", "Håndverker- og entreprenørfeil", "Material-, konstruksjons- og montasjefeil og deres følger er unntatt på Standard med mindre en annen dekningshendelse gjelder.", "4.4", 4],
   ["rate.dekning", "Sopp og råte", "Sopp, råte og bakterier er unntatt uten valgfri tilleggsforsikring.", "4.2 / 4.4", 3],
   ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "Ikke omfattet på Standard.", "4.4", 4],
   ["skadedyr.bygningsskade", "Bygningsskade fra dyr", "Skade fra dyr og insekter er unntatt på Standard.", "4.4", 4],
   ["glass.dekning", "Bygningsglass og sanitærporselen", "Bruddskade omfattes etter vilkårets plutselighetsregler; egenandel 2 000 kroner.", "4.4 / 6.2", 4, "override"],
-  ["gjenoppforing.hovedregel", "Gjenoppføring – hovedregel", "Samme eller vesentlig samme stand innen fem år. Fullverdi ved samme sted/formål gir ikke fradrag for verdiøkning; myndighetsnektelse tillater annet sted i samme kommune.", "5.2.1–5.2.2", 5],
-  ["gjenoppforing.annetsted", "Annet sted eller formål", "Ved annet sted/formål trekkes verdiøkning over 40 % av tidligere omsetningsverdi. Ingen gjenoppføring innen fem år begrenser oppgjøret til markedsverdifallet.", "5.2.2.1–5.2.2.3", 5],
-  ["gjenoppforing.markedsverdi", "Kjøp av annen bolig", "Ved totalskade kan annen bolig i Norge til samme formål kjøpes innen to år; oppussing/tilpasning inntil 1 000 000 kroner innen dokumenterte totalgrenser.", "5.2.2.4", 5],
-  ["egenandel.generell", "Avtalt egenandel", "Egenandelen fremgår av forsikringsbeviset. Den kan ikke utledes som én generell katalogsum.", "6 Egenandel", 7, "reference"],
+  ["gjenoppforing.hovedregel", "Gjenoppføring – hovedregel", "Samme eller vesentlig samme stand innen fem år, gjenoppført/reparert av eier, eiers ektefelle/samboer eller livsarving. Fullverdi ved samme sted/formål gir ikke fradrag for verdiøkning; myndighetsnektelse tillater annet sted i samme kommune.", "5.2.1–5.2.2.1", 5],
+  ["gjenoppforing.annetsted", "Annet sted eller formål", "Ved annet sted/formål og gjenoppføring av eier, ektefelle/samboer eller livsarving innen fem år trekkes verdiøkning over 40 % av tidligere omsetningsverdi. Ingen gjenoppføring/reparasjon innen fem år, eller gjenoppføring av andre, medfører fradrag for all verdiøkning og oppgjør maksimalt lik markedsverdifallet.", "5.2.2.1–5.2.2.3", 5],
+  ["gjenoppforing.markedsverdi", "Kjøp av annen bolig", "Ved totalskade kan annen bolig i Norge til samme formål kjøpes innen to år. Erstatning er det laveste av gjenoppføringspris eksklusiv MVA og omsetningsverdi før skade tillagt 40 %. Innenfor denne summen dekkes dokumentert oppussing/tilpasning inntil 1 000 000 kroner, utført innen to år etter overtakelse. Påbud og prisstigning dekkes ikke; husleietap opphører senest ved overtakelse av ny bolig.", "5.2.2.4", 5],
+  ["egenandel.generell", "Avtalt egenandel", "Egenandelen fremgår av forsikringsbeviset. SpareBank 1 og DNB oppgir valgområde fra 6 000 til 25 000 kroner; dette er mulige valg, ikke kundens faktiske egenandel. Den kan ikke utledes som én generell katalogsum.", "6 Egenandel; valgområde i kanaloversiktenes FAQ", 7, "reference"],
   ["sikkerhet.egenandelsreduksjon", "Egenandelsreduksjon ved sikring", "Inntil 6 000 kroner reduksjon ved angitte FG-godkjente el-kontroll-, alarm- og vannstopptiltak. Ingen egenandel ved dokumenterte overvannstiltak.", "6.1", 7],
   ["vann.egenandel.gjentatt_vann", "Gjentatte vannskader", "Avtalt egenandel økes med 20 000 kroner ved vannskader av samme årsak på samme bygning innen 24 måneder.", "6.4", 7, "override"],
   ["hvitevarer.egenandel", "Integrerte hvitevarer – egenandel", "2 000 kroner.", "6.3", 7, "override"],
-  ["naturskade.dekning", "Naturskade", "Naturskade etter naturskadeforsikringsloven og det innarbeidede naturskadevilkåret.", "4.5 / FFE-001.001-006", 4],
+  ["naturskade.dekning", "Naturskade", "Lovbestemt naturskade på brannforsikrede objekter i Norge, med tomt inntil fem dekar rundt bolig. Utvidelsen omfatter ferdig monterte og fastboltede antenner/markiser samt flytebrygge; fortøyning/moring og bare forskyvning av flytebrygge er unntatt. Naturulykke omfatter skred, storm, flom, stormflo, flodbølge, meteorittnedslag, jordskjelv og vulkanutbrudd; umiddelbar frost, tele, tørke, nedbør, snøtyngde og isgang er unntatt. Ved byggenekt på grunn av fare for ny naturskade erstattes tomtens omsetningsverdi før skade begrenset til fem dekar, og hus/forsikrede uthus som totalskadet; tilsvarende gjelder ved ustabil grunn etter naturulykke selv om huset ikke er skadet.", "4.5 side 4 / Naturskade FFE-001.001-006 punkt 1–3 side 12–13", 4],
   ["naturskade.egenandel", "Naturskade – egenandel", "Lovbestemt egenandel; vilkåret oppgir 8 000 kroner.", "6.7", 7, "override"],
   ["ansvar.dekning", "Ansvar som eier", "Rettslig erstatningsansvar for person-, ting- og følgetap som eier av forsikret eiendom.", "FFE-002.001-007", 8],
   ["ansvar.grense", "Ansvar – forsikringssum", "5 000 000 kroner per skadetilfelle ifølge den offentlige produktoversikten; forsikringsbeviset er autoritativt.", "FFE-002.001-007 / produktoversikt", 8, "reference"],
@@ -86,21 +86,28 @@ standard.push(
   age("solceller", "solcelleanlegg", 20, 5),
   age("smarthus", "smarthus og elektroniske installasjoner", 5, 10),
 );
+const exteriorPipes = standard.find((fact) => fact.key === "hus.aldersfradrag.utvendige_ledninger")!;
+exteriorPipes.value += " Utvendige ledninger og bunnledninger omfattes av disse tabellradene bare når materialet er annet enn plast; sjø-/jordvarmeledning følger egen rad med samme satser.";
+if (exteriorPipes.structuredValue?.kind === "age_deduction") exteriorPipes.structuredValue.exceptions = ["Plastrør er unntatt fra tabellradene for utvendige ledninger og bunnledninger"];
+standard.find((fact) => fact.key === "hus.egenandel.generell")!.qualificationSource = facts("fremtindHusSpareBank1Channel", [
+  ["egenandel.generell", "Offentlig valgområde", "Fra 6 000 til 25 000 kroner; ikke kundens valgte verdi", "FAQ – Egenandeler", 1],
+])[0].source;
+standard.find((fact) => fact.key === "hus.egenandel.generell")!.qualificationSource!.note += " Valgområdet bekreftes også i DNB-husforsikring.html, FAQ Egenandel, SHA-256 99e67d03814eaeb74b2c7cfa2d26d6099c36bf9bf841b080de8d0fdbae92976b, https://www.dnb.no/forsikring/husforsikring.";
 
 const topp = facts("fremtindHusTopp", [
   ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning av bygningen omfattes.", "1.1 Bygning", 1, undefined, true],
   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 500 000 kroner.", "1.1", 1, undefined, true],
   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Følgeskade fra utett tak når taket er inntil 50 år, og vann over terreng som trenger inn gjennom utett bygning. Selve taket/veggen og feilen er unntatt.", "2.1", 1, undefined, true],
-  ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "Bekjempelse etter påvist aktivitet på fullverdiforsikret bolig; Fremtind velger metode og skadedyrsfirma. Insekter er unntatt.", "2.2", 1, undefined, true],
-  ["skadedyr.bygningsskade", "Bygningsskade fra dyr", "Fysisk skade, svekket isolasjonsevne og lukt fra dyr på fullverdiforsikret bolig. Kjæledyr og insekter er unntatt.", "2.2", 1, undefined, true],
+  ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "Bekjempelse etter påvist aktivitet på fullverdiforsikret bolig; Fremtind velger metode og skadedyrsfirma. Aktivitet startet før avtalen, rent skjemmende skade og rengjøring/fjerning av rester og ekskrementer uten bygningsskade er unntatt; kjæledyr, insekter og bakterier er unntatt.", "2.2", 1, undefined, true],
+  ["skadedyr.bygningsskade", "Bygningsskade fra dyr", "Fysisk skade, svekket isolasjonsevne og lukt fra dyr på fullverdiforsikret bolig. Aktivitet startet før avtalen, rent skjemmende skade, isolasjonsskade uten påvist redusert isolasjonsevne og rengjøring/fjerning av rester og ekskrementer uten bygningsskade er unntatt; kjæledyr, insekter og bakterier er unntatt.", "2.2", 1, undefined, true],
   ["skadedyr.egenandel", "Skadedyrbekjempelse – egenandel", "2 000 kroner.", "4", 2, "override"],
-  ["vatrom.selverommet", "Våtrom – håndverkerfeil", "Skade på våtrom fra material-, konstruksjons- eller montasjefeil utført og dokumentert av godkjent/autorisert håndverker eller entreprenør, konstatert innen ti år. Selve feilen er unntatt.", "2.3", 1, undefined, true],
+  ["vatrom.selverommet", "Våtrom – håndverkerfeil", "Skade på våtrom fra material-, konstruksjons- eller montasjefeil utført og dokumentert av godkjent/autorisert håndverker eller entreprenør etter teknisk forskrift ved utførelsen, konstatert innen ti år. Dekkes utenfor reklamasjonstiden, eller innenfor når utførende håndverker er konkurs; rettidig reklamasjon kreves. Selve feilen, kjent feil før kjøp, sikredes eget arbeid, udokumentert/ikke forskriftsmessig arbeid, bakterier/heksesot og kosmetiske feil er unntatt.", "2.3", 1, undefined, true],
   ["handverker.folgeskade", "Andre håndverker- og entreprenørfeil", "Bygningsskade etter fundamenterings-, setnings-, material-, konstruksjons- eller montasjefeil utført av godkjent/autorisert håndverker/entreprenør, konstatert innen ti år. Reklamasjon kreves i tide; innen reklamasjonstiden dekkes når håndverker er konkurs. Selve feilen er unntatt.", "2.4", 2, undefined, true],
   ["gjenoppforing.totalskade", "Totalskadeterskel", "Skade over 75 % av gjenoppføringsprisen kan kreves oppgjort som totalskade når gjenverdiene rives og fjernes innen to år.", "3.1", 2],
 ]);
 
 const rot = facts("fremtindHusRot", [
-  ["rate.dekning", "Sopp og råte", "På fullverdiforsikret bolig: råte, ekte hussopp og andre sopper som ødelegger tre. Mugg, blåved, svertesopp, utvendig treverk og før-/etterperiodisk utvikling er unntatt.", "1.1", 1, undefined, true],
+  ["rate.dekning", "Sopp og råte", "På fullverdiforsikret bolig: råte, ekte hussopp og andre sopper som ødelegger tre. Blåved, svertesopp, mugg og jordslag, rent skjemmende skade, skade fra overkant av taksperre/overgurt, dører/vinduer/lekter og alt utvendig treverk, yttervegger i laftede tømmerbygninger og før-/etterperiodisk utvikling er unntatt. Tilkomstkostnader ved rivning av skadet konstruksjon som ikke er erstatningsmessig dekkes ikke selv om rivningen er nødvendig for å utbedre råteskaden.", "1.1", 1, undefined, true],
   ["skadedyr.bygningsskade", "Bygningsskade fra insekter", "Fysisk skade, svekket isolasjonsevne og lukt fra insekter på fullverdiforsikret bolig.", "1.2", 1, undefined, true],
   ["skadedyr.bekjempelse", "Bekjempelse av skadeinsekter", "Bekjempelse av insekter som gjør skade på bygningen; Fremtind velger metode og leverandør. Rent skjemmende insekter er unntatt.", "1.2", 1, undefined, true],
   ["rate.egenandel", "Råte – ekstra egenandel", "Avtalt egenandel økes med 15 000 kroner ved skade på etasjeskiller mot krypkjeller eller jordgulv.", "2", 1, "override"],
@@ -120,7 +127,7 @@ export const fremtindHusFacts: Record<string, CatalogFact[]> = {
   fremtindHusTopp: topp,
   fremtindHusRot: rot,
   fremtindHusRental: rental,
-  fremtindHusIpid: facts("fremtindHusIpid", [["avtale.ipid", "IPID – produktoversikt", "V.103 dokumenterer Standard, Topp og valgfrie tillegg; forsikringsbevis og fullvilkår avgjør.", "Produktoversikt", 1]]),
+  fremtindHusIpid: facts("fremtindHusIpid", [["avtale.ipid", "IPID – produktoversikt", "V.103 dokumenterer Standard, Topp og valgfrie tillegg for bygninger brukt som permanent bolig. Næringsvirksomhet og bygninger med tre eller flere eierseksjoner omfattes ikke; fraflyttet/ubebodd bygning dekkes bare for brann og naturskade. Forsikringsbevis og fullvilkår avgjør.", "Produktoversikt", 1]]),
 };
 
 const version = "PBK-200.100-015+PBK-200.200-010";
