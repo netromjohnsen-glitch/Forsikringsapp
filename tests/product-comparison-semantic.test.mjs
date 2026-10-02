@@ -31,9 +31,9 @@ const {ProductResult} = await import(`data:text/javascript;base64,${Buffer.from(
 const render = r => renderToStaticMarkup(React.createElement(ProductResult, {result:r}));
 const html = render(result);
 
-test('audit baseline has 65 rows and 34 asymmetric catalog facts', () => {
+test('audit baseline has 65 rows and 33 asymmetric catalog facts after documented Frende geography', () => {
   const raw=result.sections.flatMap(s=>s.rows); assert.equal(raw.length,65);
-  assert.equal(raw.filter(r=>r.first.state==='unknown'||r.second.state==='unknown').length,34);
+  assert.equal(raw.filter(r=>r.first.state==='unknown'||r.second.state==='unknown').length,33);
 });
 test('Kasko descriptions remain side by side, exactly as sourced', () => {
   const raw=result.sections.flatMap(s=>s.rows).find(r=>r.key==='kasko.dekning'); assert.deepEqual(row('kasko.dekning'),raw);
@@ -75,8 +75,13 @@ test('component lists stay provider specific without claiming identical componen
   assert.deepEqual(group('maskinskade').details.first.map(f=>f.key),['maskinskade.fossil','maskinskade.el','maskinskade.drivverk']);
   assert.equal(group('maskinskade').details.second.length,0);
 });
-for(const key of ['maskinskade.alder','parkering.dekning','parkering.grense','parkering.egenandel','bilnokkel.grense','glass.grense.bytte','rettshjelp.grense','geografi.rettshjelp','natur.dekning']) test(`${key} remains genuinely unknown on the undocumented side`,()=>{
-  assert.ok(row(key)); assert.ok([row(key).first.state,row(key).second.state].includes('unknown'));
+for(const key of ['maskinskade.alder','parkering.dekning','parkering.grense','parkering.egenandel','bilnokkel.grense','glass.grense.bytte','rettshjelp.grense','geografi.rettshjelp','natur.dekning']) test(key==='geografi.rettshjelp' ? `${key} retains documented Norden on the Frende side` : `${key} remains genuinely unknown on the undocumented side`,()=>{
+  assert.ok(row(key));
+  if(key==='geografi.rettshjelp'){
+    assert.equal(row(key).second.state,'included');assert.equal(row(key).second.text,'Norden');
+    assert.equal(row(key).second.sources[0].documentId,'frendeAnsvar');assert.equal(row(key).second.sources[0].page,2);assert.equal(row(key).second.sources[0].section,'2');
+    assert.equal(row(key).first.state,'included');
+  }else assert.ok([row(key).first.state,row(key).second.state].includes('unknown'));
 });
 test('veihjelp common coverage/deductible and source-specific transport conditions coexist',()=>{
   assert.equal(row('veihjelp.dekning').first.state,'included');assert.equal(row('veihjelp.egenandel').second.state,'included');
@@ -106,8 +111,8 @@ test('every original fact value and source survives hierarchy, without catalog m
   }
   productComparisonView(result);assert.equal(JSON.stringify(result),before);assert.equal(productCatalog.products.length,204);
 });
-test('rendered unknown count is 10, not 34; actual missing evidence stays visible',()=>{
-  assert.equal(unknowns(view),10);assert.equal(html.split('Ikke dokumentert i kataloggrunnlaget').length-1,10);
+test('rendered unknown count is 9; actual missing evidence stays visible',()=>{
+  assert.equal(unknowns(view),9);assert.equal(html.split('Ikke dokumentert i kataloggrunnlaget').length-1,9);
 });
 
 function synthetic() {
