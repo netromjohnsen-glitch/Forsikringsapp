@@ -3,6 +3,17 @@ import { vehicleObjectSources } from "./vehicle-object-sources.ts";
 import { vehicleObjectCoverages } from "./vehicle-object-registry.ts";
 export { vehicleObjectSources } from "./vehicle-object-sources.ts";
 
+// The already archived SV707 original also explicitly covers Campingvogn.
+// This binding is restricted to Super; the Bobil binding remains independent.
+vehicleObjectSources["vehicle:if-SV707.pdf"] = {
+  id: "vehicle:if-SV707.pdf", filename: "if-SV707.pdf", company: "If", providerId: "if",
+  insuranceType: "Campingvogn", agreementScope: "ordinary", productIds: ["if-campingvogn-super"],
+  sourceType: "full_terms", termsNumber: "SV707", effectiveFrom: "2022-06", version: "2022-06",
+  url: "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+  sha256: "a4e2c6ecafc88fafbb5a0e194a373c4e2953b920d2947582352bdf845a03154e",
+  documentName: "Særvilkår for Campingvogn og bobil",
+};
+
 type ObjectType = "snoscooter" | "campingvogn" | "tilhenger";
 type Row = [key: string, value: string, page: number, section: string, sourceFile?: string];
 const labels = { snoscooter: "Snøscooter", campingvogn: "Campingvogn", tilhenger: "Tilhenger" };
@@ -223,6 +234,18 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
       ...(type === "campingvogn" ? [
         ...included(["glass", "naturskade"], 5, "4.5–4.6"),
         row("glass.egenandel", "3 000 kr ved skifte; ingen egenandel ved reparasjon", 19, "8.5.4"),
+        ...(name === "Super" ? [
+          row("fukt.dekning", "Fukt/vannskader: lekkasje fra boenhetens røranlegg for ferskvann, avløp og varmesystem dekkes uten krav om fuktkontroll. Andre fuktskader krever godkjent og bestått fuktkontroll", 2, "3.3.1; andre fuktskader på side 3", "if-SV707.pdf"),
+          row("fukt.alder", "Campingvognen må være nyere enn 15 år fra produksjonsår", 2, "3.3.1", "if-SV707.pdf"),
+          row("fukt.begrensning", "Andre fuktskader dekkes i inntil 1 år etter godkjent og bestått kontroll hos autorisert caravanforhandler eller Viking kontroll; ny kontroll kreves for fortsatt dekning, som bortfaller når forsikringen opphører. Rapporten må vise alle måleresultater, skisse eller bilder av målepunkter og om kontrollen er godkjent. Frost og frost/snøtyngde som medvirkende skadeårsak er unntatt. Fabrikantens vedlikehold skal følges; frostvæske, avtapping og kontroll/etterfylling av væske ved vannbåren varme kreves", 3, "3.3.1", "if-SV707.pdf"),
+          row("ferie.dekning", "Ved erstatningsmessig skade etter påbegynt ferietur erstattes dokumenterte utgifter til alternativ overnatting eller leiebil; sikrede må selv skaffe alternativet", 3, "3.3.2", "if-SV707.pdf"),
+          row("ferie.grense", "Inntil 1 500 kr per dag i resterende planlagt ferie, inntil 15 dager; krav dokumenteres med faktura eller kvitteringer", 3, "3.3.2", "if-SV707.pdf"),
+          row("losore.grense", "Totalt 100 000 kr samlet for tilleggsutstyr og bagasje i campingvognen", 3, "3.3.3", "if-SV707.pdf"),
+          row("skadedyr.dekning", "Uforutsett skade forårsaket av insekter og gnagere på campingvognen", 3, "3.3.4", "if-SV707.pdf"),
+          row("skadedyr.begrensning", "Tilleggsutstyr og bagasje dekkes bare når det skades samtidig som campingvognen. Dører, vinduer og luker skal være lukket når campingvognen er lagret", 3, "3.3.4", "if-SV707.pdf"),
+          row("nyverdi.dekning", "Helt ny campingvogn ved totalskade når campingvognen er inntil tre år gammel", 1, "Dekningstabell – Ekstra erstatning ved store skader (Super)", "if-campingvognforsikring.html"),
+          row("nyverdi.alder", "Campingvognen er inntil tre år gammel", 1, "Dekningstabell – Ekstra erstatning ved store skader (Super)", "if-campingvognforsikring.html"),
+        ] : []),
       ] : []),
       ...(type === "tilhenger" ? [row("avtale.forsikringssum", "Gjenanskaffelsesverdi av angitt tilhenger med fastmontert utstyr", 1, "1", "if-Vilkaar-b7d19ed7.pdf")] : []),
     ], name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name === "Delkasko" ? ["kasko"] : []);

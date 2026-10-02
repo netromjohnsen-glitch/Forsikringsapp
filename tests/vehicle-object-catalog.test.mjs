@@ -54,8 +54,12 @@ test('full terms establish different camping limits without page overriding or d
  assert.match(get('Frende','Campingvogn','Kasko','campingvogn.fukt.begrensning').value,/siste år/);
  assert.match(get('Eika','Campingvogn','Kasko','campingvogn.losore.grense').value,/10 000.*per gjenstand/);
  assert.equal(get('Storebrand','Campingvogn','Super','campingvogn.losore.grense'),undefined,'conflicting 30k/100k is not guessed');
- assert.equal(get('If','Campingvogn','Super','campingvogn.losore.grense'),undefined,'marketing 100k does not replace incomplete full terms');
- for(const p of products){const rows=resolveCatalogFacts(p,[]);assert.equal(new Set(rows.map(f=>f.key)).size,rows.length);assert.ok(rows.every(f=>f.source.filename.endsWith('.pdf')));}
+ const ifContents=get('If','Campingvogn','Super','campingvogn.losore.grense');
+ assert.match(ifContents.value,/100 000.*samlet.*tilleggsutstyr og bagasje/);
+ assert.equal(ifContents.source.documentId,'vehicle:if-SV707.pdf');
+ assert.equal(ifContents.source.page,3);
+ assert.equal(ifContents.source.section,'3.3.3');
+ for(const p of products){const rows=resolveCatalogFacts(p,[]);assert.equal(new Set(rows.map(f=>f.key)).size,rows.length);assert.ok(rows.every(f=>f.source.filename.endsWith('.pdf')||(p.productId==='if-campingvogn-super'&&['campingvogn.nyverdi.dekning','campingvogn.nyverdi.alder'].includes(f.key)&&f.source.documentId==='vehicle:if-campingvognforsikring.html')));}
 });
 test('coverage matrix separates standard, optional and lower-level exclusions',()=>{
  assert.equal(matrix['tryg-snoscooter-kasko']['snoscooter.forerulykke.dekning'],'optional');
@@ -88,7 +92,11 @@ test('source manifest originals and every active fact have verifiable provenance
  const root='catalog/sources/vehicle-extensions/';const manifest=JSON.parse(fs.readFileSync(root+'manifest.json','utf8'));
  assert.equal(manifest.documents.length,69);
  for(const doc of manifest.documents){assert.equal(createHash('sha256').update(fs.readFileSync(root+doc.filename)).digest('hex'),doc.sha256);assert.match(doc.urls[0],/^https:\/\//);assert.ok(doc.version===null||typeof doc.version==='string');}
- for(const rows of Object.values(facts))for(const fact of rows){const doc=manifest.documents.find(d=>`vehicle:${d.filename}`===fact.source.documentId);assert.ok(doc);assert.notEqual(doc.validity,'future');assert.ok(fact.source.page<=doc.pages);}
+ const mcManifest=JSON.parse(fs.readFileSync('catalog/sources/mc-bobil/tryg-if-manifest.json','utf8'));
+ const sv707=mcManifest.documents.find(d=>d.filename==='if-SV707.pdf');
+ assert.ok(sv707);assert.equal(sv707.sha256,'a4e2c6ecafc88fafbb5a0e194a373c4e2953b920d2947582352bdf845a03154e');
+ assert.equal(createHash('sha256').update(fs.readFileSync('catalog/sources/mc-bobil/if-SV707.pdf')).digest('hex'),sv707.sha256);
+ for(const rows of Object.values(facts))for(const fact of rows){const doc=manifest.documents.find(d=>`vehicle:${d.filename}`===fact.source.documentId)??(fact.source.documentId==='vehicle:if-SV707.pdf'?sv707:undefined);assert.ok(doc);assert.notEqual(doc.validity,'future');if(doc.documentType==='product_page'){assert.equal(fact.source.documentId,'vehicle:if-campingvognforsikring.html');assert.equal(fact.source.page,1);}else assert.ok(fact.source.page<=(doc.pages??doc.pageCount));}
  assert.ok(manifest.documents.some(d=>d.validity==='future'));
  const frende=manifest.documents.filter(d=>/frende-.*Insurance.pdf/.test(d.filename));assert.equal(new Set(frende.map(d=>d.sha256)).size,1);
 });
