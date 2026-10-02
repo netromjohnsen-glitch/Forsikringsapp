@@ -1,0 +1,1151 @@
+{
+  "status": "PASS",
+  "batch": "B-014",
+  "source_verification": "Own Standard PDF3/6 and Plus PDF1/3/4/5/8/17/18 read. Private vehicle parts30k no fabricated premises restriction; Europa liability; world accident/vandalism outside home/private grounds vs Nordic theft; common storage no fabricated30k at covered premises (not unlimited anywhere);10k only rent default addon. Plus two corrected shared facts override with own Plus source. Other sums, races, rental optionality preserved.",
+  "source_hashes": {
+    "catalog/sources/gjensidige/innbo/Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf": "df7af2a169d293e22df138e6561c4c34da854d4923596a828e14bcea7f28cf20",
+    "catalog/sources/gjensidige/innbo/Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf": "4e10857cb9b7832b5661d48089a6024c3622a499d66156b6122f2010574787a1"
+  },
+  "changed_products": [
+    "gj-innbo",
+    "gj-innbo-pluss"
+  ],
+  "unchanged_products": 202,
+  "allowed_keys": [
+    "innbo.kjoretoytilbehor.grense",
+    "ansvar.geografi",
+    "sykkel.uhell.grense",
+    "sykkel.skadeverk.grense",
+    "tyveri.fellesbod.sykkelgrense",
+    "utleie.egenandel"
+  ],
+  "deltas": [
+    {
+      "product": "gj-innbo",
+      "view": "base",
+      "key": "ansvar.geografi",
+      "before": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Norden",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 8,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Europa",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 6,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo",
+      "view": "base",
+      "key": "innbo.kjoretoytilbehor.grense",
+      "before": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr på forsikringsstedet",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo",
+      "view": "product-comparison",
+      "key": "ansvar.geografi",
+      "before": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Norden",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboShared",
+            "section": "Fellesdekninger – Ansvar",
+            "page": 8,
+            "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Europa",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboShared",
+            "section": "Fellesdekninger – Ansvar",
+            "page": 6,
+            "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo",
+      "view": "product-comparison",
+      "key": "innbo.kjoretoytilbehor.grense",
+      "before": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr på forsikringsstedet",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboShared",
+            "section": "Forsikringsbevis – Hva er forsikret",
+            "page": 3,
+            "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboShared",
+            "section": "Forsikringsbevis – Hva er forsikret",
+            "page": 3,
+            "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "base",
+      "key": "ansvar.geografi",
+      "before": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Norden",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 8,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Europa",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 8,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "base",
+      "key": "innbo.kjoretoytilbehor.grense",
+      "before": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr på forsikringsstedet",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "base",
+      "key": "sykkel.skadeverk.grense",
+      "before": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i Norden",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal ved plutselig og uforutsett ytre hendelse; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "base",
+      "key": "sykkel.uhell.grense",
+      "before": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i Norden; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "base",
+      "key": "tyveri.fellesbod.sykkelgrense",
+      "before": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "30 000 kr per sykkel, elsykkel eller sykkeltilhenger.",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsoversikt / Hvilke skader",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "Ingen særskilt 30 000-kronersgrense for sykkel, elsykkel eller sykkeltilhenger i bod i bygning på forsikringsstedet. Oversiktens grense på 30 000 kr gjelder utenfor bygning på forsikringsstedet eller bebodd bolig, med stedavgrensningene i tyveriklausulen.",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsoversikt / Hvilke skader",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "product-comparison",
+      "key": "ansvar.geografi",
+      "before": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Norden",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboShared",
+            "section": "Fellesdekninger – Ansvar",
+            "page": 8,
+            "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Europa",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Fellesdekninger – Ansvar",
+            "page": 8,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "product-comparison",
+      "key": "innbo.kjoretoytilbehor.grense",
+      "before": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr på forsikringsstedet",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboShared",
+            "section": "Forsikringsbevis – Hva er forsikret",
+            "page": 3,
+            "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Forsikringsbevis – Hva er forsikret",
+            "page": 3,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "product-comparison",
+      "key": "sykkel.skadeverk.grense",
+      "before": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i Norden",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Uhell borte",
+            "page": 4,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal ved plutselig og uforutsett ytre hendelse; ritt, løp og konkurranse er unntatt",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Uhell borte",
+            "page": 4,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "product-comparison",
+      "key": "sykkel.uhell.grense",
+      "before": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i Norden; ritt, løp og konkurranse er unntatt",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Uhell borte",
+            "page": 4,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal; ritt, løp og konkurranse er unntatt",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Uhell borte",
+            "page": 4,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "product-comparison",
+      "key": "tyveri.fellesbod.sykkelgrense",
+      "before": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "30 000 kr per sykkel, elsykkel eller sykkeltilhenger.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Forsikringsoversikt / Hvilke skader",
+            "page": 1,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "Ingen særskilt 30 000-kronersgrense for sykkel, elsykkel eller sykkeltilhenger i bod i bygning på forsikringsstedet. Oversiktens grense på 30 000 kr gjelder utenfor bygning på forsikringsstedet eller bebodd bolig, med stedavgrensningene i tyveriklausulen.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboPlus",
+            "section": "Forsikringsoversikt / Hvilke skader",
+            "page": 1,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "product-comparison",
+      "key": "utleie.egenandel",
+      "before": {
+        "key": "utleie.egenandel",
+        "label": "Utleie – egenandel",
+        "value": "10 000 kr ved misligholdt husleie og skadeverk utført av leietaker",
+        "state": "optional",
+        "addOnNames": [
+          "Utleie"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboUtleie",
+            "section": "Forsikringsoversikt",
+            "page": 1,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      },
+      "after": {
+        "key": "utleie.egenandel",
+        "label": "Utleie – egenandel",
+        "value": "10 000 kr ved misligholdt husleie",
+        "state": "optional",
+        "addOnNames": [
+          "Utleie"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjInnboUtleie",
+            "section": "Forsikringsoversikt",
+            "page": 1,
+            "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "Ikke oppgitt",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "EAP02",
+            "version": "Ikke oppgitt"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-utleie",
+      "key": "ansvar.geografi",
+      "before": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Norden",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 8,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Europa",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 8,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-utleie",
+      "key": "innbo.kjoretoytilbehor.grense",
+      "before": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr på forsikringsstedet",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-utleie",
+      "key": "sykkel.skadeverk.grense",
+      "before": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i Norden",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal ved plutselig og uforutsett ytre hendelse; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-utleie",
+      "key": "sykkel.uhell.grense",
+      "before": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i Norden; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-utleie",
+      "key": "tyveri.fellesbod.sykkelgrense",
+      "before": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "30 000 kr per sykkel, elsykkel eller sykkeltilhenger.",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsoversikt / Hvilke skader",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "Ingen særskilt 30 000-kronersgrense for sykkel, elsykkel eller sykkeltilhenger i bod i bygning på forsikringsstedet. Oversiktens grense på 30 000 kr gjelder utenfor bygning på forsikringsstedet eller bebodd bolig, med stedavgrensningene i tyveriklausulen.",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsoversikt / Hvilke skader",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-utleie",
+      "key": "utleie.egenandel",
+      "before": {
+        "key": "utleie.egenandel",
+        "label": "Utleie – egenandel",
+        "value": "10 000 kr ved misligholdt husleie og skadeverk utført av leietaker",
+        "deductibleClassification": "override",
+        "source": {
+          "documentId": "gjInnboUtleie",
+          "section": "Forsikringsoversikt",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "utleie.egenandel",
+        "label": "Utleie – egenandel",
+        "value": "10 000 kr ved misligholdt husleie",
+        "deductibleClassification": "override",
+        "source": {
+          "documentId": "gjInnboUtleie",
+          "section": "Forsikringsoversikt",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-sykkel-hoyere-sum",
+      "key": "ansvar.geografi",
+      "before": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Norden",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 8,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "ansvar.geografi",
+        "label": "Privatansvar – geografisk område",
+        "value": "Europa",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Fellesdekninger – Ansvar",
+          "page": 8,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-sykkel-hoyere-sum",
+      "key": "innbo.kjoretoytilbehor.grense",
+      "before": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr på forsikringsstedet",
+        "source": {
+          "documentId": "gjInnboShared",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-alminnelige%20vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "innbo.kjoretoytilbehor.grense",
+        "label": "Deler og tilbehør til privat kjøretøy – grense",
+        "value": "30 000 kr",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsbevis – Hva er forsikret",
+          "page": 3,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-sykkel-hoyere-sum",
+      "key": "sykkel.skadeverk.grense",
+      "before": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i Norden",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "sykkel.skadeverk.grense",
+        "label": "Sykkel – skadeverksgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal ved plutselig og uforutsett ytre hendelse; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-sykkel-hoyere-sum",
+      "key": "sykkel.uhell.grense",
+      "before": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i Norden; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "sykkel.uhell.grense",
+        "label": "Sykkel og sportsutstyr – uhellsgrense",
+        "value": "30 000 kr i hele verden utenfor boligen og privat uteareal; ritt, løp og konkurranse er unntatt",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Uhell borte",
+          "page": 4,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    },
+    {
+      "product": "gj-innbo-pluss",
+      "view": "gj-innbo-sykkel-hoyere-sum",
+      "key": "tyveri.fellesbod.sykkelgrense",
+      "before": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "30 000 kr per sykkel, elsykkel eller sykkeltilhenger.",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsoversikt / Hvilke skader",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      },
+      "after": {
+        "key": "tyveri.fellesbod.sykkelgrense",
+        "label": "Fellesbod – sykkelgrense",
+        "value": "Ingen særskilt 30 000-kronersgrense for sykkel, elsykkel eller sykkeltilhenger i bod i bygning på forsikringsstedet. Oversiktens grense på 30 000 kr gjelder utenfor bygning på forsikringsstedet eller bebodd bolig, med stedavgrensningene i tyveriklausulen.",
+        "source": {
+          "documentId": "gjInnboPlus",
+          "section": "Forsikringsoversikt / Hvilke skader",
+          "page": 1,
+          "filename": "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "Ikke oppgitt",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "EAP02",
+          "version": "Ikke oppgitt"
+        }
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-1986",
+    "GAP-2030",
+    "GAP-2017",
+    "GAP-2070",
+    "GAP-2077",
+    "GAP-2078",
+    "GAP-2079",
+    "GAP-2080"
+  ],
+  "P1_resolved": 6,
+  "signatures": [
+    "07dbd5f80afdf0cd",
+    "084efe78ee699c73",
+    "1a60a06962435907",
+    "23495713f8dfa933",
+    "26c05b62a27b04aa",
+    "c74c647eb0c3573a"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {productCatalog,catalogProductIdentity} from '/Users/morten/Documents/forsikringsapp/lib/product-catalog.ts';
+import {compareCatalogProducts} from '/Users/morten/Documents/forsikringsapp/lib/catalog-product-comparison.ts';
+import {productComparisonView} from '/Users/morten/Documents/forsikringsapp/lib/product-comparison-presentation.ts';
+const out=[];const flat=x=>productComparisonView(x).flatMap(s=>s.groups.flatMap(g=>g.rows));
+for(const [left,right,keys] of [['tryg-campingvogn-kasko','if-campingvogn-kasko',['campingvogn.naturskade.dekning','campingvogn.naturskade.egenandel']],['tryg-tilhenger-kasko','if-tilhenger-kasko',['tilhenger.glass.dekning','tilhenger.glass.egenandel']]]){
+ const a=productCatalog.products.find(p=>p.productId===left),b=productCatalog.products.find(p=>p.productId===right);
+ out.push({left:catalogProductIdentity(a),right:catalogProductIdentity(b),forward:flat(compareCatalogProducts(a,b)).filter(r=>keys.includes(r.key)),reverse:flat(compareCatalogProducts(b,a)).filter(r=>keys.includes(r.key))});
+}
+fs.writeFileSync('/tmp/source-catalog-completeness-audit/runtime-tryg-extensions-probe.json',JSON.stringify(out,null,2));
+console.log(JSON.stringify(out.map(x=>({left:x.left,right:x.right,rows:x.forward})),null,2));

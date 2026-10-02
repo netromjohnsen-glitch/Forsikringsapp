@@ -1,0 +1,357 @@
+{
+  "source_first": true,
+  "reuses": "Existing source-first reviews.py and SF0033–0070; extends beyond previously partial inventory, no prior work discarded.",
+  "rules": [
+    {
+      "id": "IF-PET-001",
+      "scope": "all",
+      "subject": "Veterinær",
+      "dimension": "årsperiode",
+      "value": "Valgt sum per forsikringsår,egenandel per skade/sykdom.",
+      "location": "4 §5.1",
+      "prior_subject": "Veterinær"
+    },
+    {
+      "id": "IF-PET-002",
+      "scope": "all",
+      "subject": "Veterinær",
+      "dimension": "opphør",
+      "value": "Beholdes hele livet;sykdom måoppståetterkarenstid.",
+      "location": "4 §4",
+      "prior_subject": "Veterinær"
+    },
+    {
+      "id": "IF-PET-003",
+      "scope": "all",
+      "subject": "Tannulykke",
+      "dimension": "dekning",
+      "value": "Alle nivåer tannulykke/fraktur og rotspissabcess ved avskalling/fraktur.",
+      "location": "4 §5.1.2",
+      "prior_subject": "Tannulykke"
+    },
+    {
+      "id": "IF-PET-004",
+      "scope": "all",
+      "subject": "Medisin",
+      "dimension": "nivåomfang",
+      "value": "Basis hosveterinær;Standard/Superogsåseparatkjøpetterbehandling.",
+      "location": "4 §5.1.1",
+      "prior_subject": "Medisin"
+    },
+    {
+      "id": "IF-PET-005",
+      "scope": "upper",
+      "subject": "Tannsykdom",
+      "dimension": "grense/årsak",
+      "value": "Standard Hund15k/Katt5kihelelivet;karies/TR.Superårligveterinærsum,menKattTR5kårlig.",
+      "location": "4 §5.1.3",
+      "prior_subject": "Tannsykdom"
+    },
+    {
+      "id": "IF-PET-006",
+      "scope": "upper",
+      "subject": "Tannsykdom",
+      "dimension": "ungdyrvilkår",
+      "value": "Melketenner/cyster/emalje/bittfeil medisinsknødvendigvedkontinuerligtilsvarendedekningfør4mnd;Kattordlydforsikretfør4mnd.",
+      "location": "4 §5.1.3",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-007",
+      "scope": "all",
+      "subject": "Allergi",
+      "dimension": "nivåomfang",
+      "value": "Basisutredning,Standardbehandling15kilivet,Superårligveterinærsum.",
+      "location": "4–5 §5.1.4",
+      "prior_subject": "Allergibehandling"
+    },
+    {
+      "id": "IF-PET-008",
+      "scope": "super",
+      "subject": "Rehabilitering",
+      "dimension": "frist",
+      "value": "Veterinærrekvirert/utførtfysio/rehab/kiropraktikk innen1åretterskade,inntilveterinærsum.",
+      "location": "5 §5.1.5",
+      "prior_subject": "Rehabilitering"
+    },
+    {
+      "id": "IF-PET-009",
+      "scope": "all",
+      "subject": "Fødselshjelp",
+      "dimension": "varighet/antall",
+      "value": "Én gangperliv,minst1årtilsvarendedekning,ikketidligere2ellerflerekeisersnitt.",
+      "location": "5 §5.1.6",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-010",
+      "scope": "dog",
+      "subject": "Fødselshjelp",
+      "dimension": "raser/avl",
+      "value": "Bostonterrier/chihuahua/pomeranian/engelsk-franskbulldog måhadokumentertnaturligkullfør;NKKetiskavl.",
+      "location": "5 §5.1.6",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-011",
+      "scope": "all",
+      "subject": "Medfødt",
+      "dimension": "kvalifikasjon",
+      "value": "Dekningførs4mnd,utenkjent/symptomvedungdyrkontrollførlevering;helse-/funksjonsbetydning.",
+      "location": "5 §5.1.7",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-012",
+      "scope": "all",
+      "subject": "Avlivning",
+      "dimension": "aldersgrense",
+      "value": "Dyrevernmessiganbefaltveterinær tilogmedåret10år;veterinærbehandlingellershelelivet.",
+      "location": "5 §5.1.8",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-013",
+      "scope": "super",
+      "subject": "Rollover",
+      "dimension": "kvalifiserende vilkår",
+      "value": "10kforSKADEFRITTår;redusertvedsumreduksjon;maxdobbeltvalgtsum,bareSuper.",
+      "location": "5 §5.1.9",
+      "prior_subject": "Rollover"
+    },
+    {
+      "id": "IF-PET-014",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "valgfrihet",
+      "value": "Barevalgtlivibevis,ikkeautomatiskveterinærnivå.",
+      "location": "5 §5.2",
+      "prior_subject": "Liv"
+    },
+    {
+      "id": "IF-PET-015",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "sumtak/ID",
+      "value": "Valgtbeløpmenmaxnytilsvarenderase;hundIDhvis>15k/kattalltidID;bruksverdiutbetalingredusererhundliv;annenlivserstatningutelukkerdobbel.",
+      "location": "5 §5.2",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-016",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "aldersmodell",
+      "value": "Hundgruppe1fra6år20%forrigesumtilhovedforfall8;gruppe2fra8til10;gruppe3fra10til12.Kattfra10år20%forrigesumtil13.",
+      "location": "Hund6/Katt5 §5.2",
+      "prior_subject": "Liv"
+    },
+    {
+      "id": "IF-PET-017",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "raselister",
+      "value": "Hundgruppe1berner/granddanois/irskulvehund/leonberger/newfoundland/pyreneer/napolitansk/sanktbernard;gruppe3eksaktnavngittliste;øvrige/blandinggruppe2.",
+      "location": "Hund6 §5.2",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-018",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "dødsårsak",
+      "value": "Død/veterinæranbefaltavlivningavdekketulykke/sykdom;ikkeallårsaksdekning.",
+      "location": "Hund6/Katt5 §5.2.1",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-019",
+      "scope": "life",
+      "subject": "Kremering",
+      "dimension": "sum",
+      "value": "Felleskremering;separatvalgtmaks1500veddekningsmessigdød.",
+      "location": "Hund6/Katt5 §5.2.2",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-020",
+      "scope": "life",
+      "subject": "Forsvinning",
+      "dimension": "ID/tid",
+      "value": "ID-merketdyr,tyveri/borte,politiogIfmelding;ansessavnetetter6mnd.",
+      "location": "Hund6/Katt6 §5.2.3",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-021",
+      "scope": "doglife",
+      "subject": "Bruksverdi",
+      "dimension": "andel/alder/definisjon",
+      "value": "50%livssuménlivgang,tilogmedforsikringsåret7år;varigtapveterinærattest;trentjevnligpraktiskarbeid,ikkeavl/utstilling.",
+      "location": "3 §1.1;6 §5.2.4",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-022",
+      "scope": "all",
+      "subject": "Arvelig/navlebrokk",
+      "dimension": "unntak",
+      "value": "Veterinær/livikke arvelig/navlebrokk,unntaksunntakHD/AD/andreleddseparat.",
+      "location": "Hund7/Katt6 §6.1.1–2",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-023",
+      "scope": "all",
+      "subject": "HD/AD",
+      "dimension": "artsspesifiktunntak",
+      "value": "Hundkreverforsikretfør4mndOGbeggeforeldreNKKfri;Kattfør4mndELLERbeggeforeldrefrie.",
+      "location": "Hund7/Katt6 §6.1.3",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-024",
+      "scope": "all",
+      "subject": "Andre leddlidelser",
+      "dimension": "unntaksunntak",
+      "value": "OCD/patella/shortulna/CalvéLeggPerthes barevedsammenhengendeforsikretfør4mnd.",
+      "location": "Hund7/Katt6 §6.1.4",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-025",
+      "scope": "all",
+      "subject": "Import/sinnslidelse",
+      "dimension": "unntak",
+      "value": "Ikkeparasitt/smittevedimport/atferdslidelse/vanskjøtsel/ikkeveterinærråd.",
+      "location": "Hund7–8/Katt6–7 §6.1.5–7",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-026",
+      "scope": "all",
+      "subject": "Karenstid",
+      "dimension": "sykdom",
+      "value": "20dager,ingenveddirekteflytting/annenIfeier;nyperiodeforutvidelse.",
+      "location": "Hund8/Katt7 §6.2.1",
+      "prior_subject": "Karenstid"
+    },
+    {
+      "id": "IF-PET-027",
+      "scope": "all",
+      "subject": "Komplikasjoner",
+      "dimension": "unntaksunntak",
+      "value": "Komplikasjonudekketlidelseikkedekket;komplikasjonvaksine/kastrering/steriliseringspesifiktdekket.",
+      "location": "Hund8/Katt7 §6.2.2",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-028",
+      "scope": "all",
+      "subject": "Kastrering/kryptorkisme",
+      "dimension": "unntak",
+      "value": "Kastreringkunveddekketannenlidelse;ikkehundinnbiltsvangerskap,ikkekryptorkisme.",
+      "location": "Hund8/Katt7 §6.2.3–4",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-029",
+      "scope": "all",
+      "subject": "Behandling",
+      "dimension": "unntak",
+      "value": "Ikkealternativakupunktur/gull/homeopati;ikkeforebyggendevaksine/klipp/tannrens;ikkediettfôr/tilskudd/utstyrhjemme.",
+      "location": "Hund8/Katt7 §6.2.5–7",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-030",
+      "scope": "all",
+      "subject": "Transport/vakt",
+      "dimension": "vilkår",
+      "value": "Ikkereise-/transportutgifter;vakttilleggbarekanikkeventeordinæråpning.",
+      "location": "Hund8/Katt8 §6.2.8",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-031",
+      "scope": "dog",
+      "subject": "Raseunntak",
+      "dimension": "luftvei/øyelokk/hud",
+      "value": "LuftveiBoston/engelskfranskbulldog/griffon/mops/pekingeser/shihtzu;øyelokkbasset/blod/boxer/bullmastiff/bulldog/mops/granddanois/napolitansk/sharpei;hudbasset/blod/engelskbulldog/bullmastiff/napolitansk/sharpei;inklrasemiks.",
+      "location": "9 §6.3",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-032",
+      "scope": "cat",
+      "subject": "Raseunntak",
+      "dimension": "luftvei",
+      "value": "Exotic/Perserogblandinger:kirurgikorrigeringgane/svelg/luftveiunntatt.",
+      "location": "8 §6.3",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-033",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "symptomdato",
+      "value": "Forsikringssumvedførstesymptom/påvisningførst,ikkebarefakturadato.",
+      "location": "Hund10/Katt8 §7.2.1",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-034",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "egenandel/beløp",
+      "value": "Faktiskvalgtbeløp/egenandelbevis,ikkeénoppfunnetstandard.",
+      "location": "Hund10/Katt8 §7.2.2",
+      "prior_subject": "Veterinær"
+    },
+    {
+      "id": "IF-PET-035",
+      "scope": "all",
+      "subject": "Helse",
+      "dimension": "kontroll/vaksine",
+      "value": "Årligesjekk/vaksinasjonetterVeterinærkatalogen;raseriktigellersforholdsmessigavkorting.",
+      "location": "Hund11/Katt9 §7.4",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-036",
+      "scope": "out",
+      "subject": "Ungdyrprodukt",
+      "dimension": "utenforaktivenivåer",
+      "value": "Separatvalpe-/kattungeavtale30k/kull2k/skade,til12uker/overlevering,måkjøpesførfødsel;Kattmorfør6år. Ikkeaktivkatalogtillegg.",
+      "location": "Hund7/Katt6 §5.3",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-037",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "skademelding",
+      "value": "Skademelding,direkteoppgjør,obduksjonIfpålegg/adminbeholdeskildeutenrad.",
+      "location": "Hund9–11/Katt8–9 §7",
+      "prior_subject": "Administrasjon"
+    },
+    {
+      "id": "IF-PET-038",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "artsdekning",
+      "value": "VeterinærEuropa,livheleverden. Ikkeimportlivtilveterinær.",
+      "location": "3 §3",
+      "prior_subject": ""
+    },
+    {
+      "id": "IF-PET-039",
+      "scope": "all",
+      "subject": "IPID",
+      "dimension": "fødselsvilkårkonflikt",
+      "value": "Fullvilkårminst1år/ikketidligere2ellerflere;IPIDmerenn1år/ikkeflereenn2. Matematiskgrenseforskjell.",
+      "location": "IPID1",
+      "prior_subject": ""
+    }
+  ]
+}

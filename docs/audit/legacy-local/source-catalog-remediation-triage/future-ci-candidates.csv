@@ -1,0 +1,13 @@
+candidate_id,category,assertion,limitation,status
+CI-01,source hash + metadata,"Manifest/source binding and sha256, unknown versions explicit",Deterministic; cannot prove policy meaning alone,PROPOSED_NOT_IMPLEMENTED
+CI-02,scope identity,Provider/type/agreementScope/product/version and addon restrictions,"Use exact identities, not a single insurer group",PROPOSED_NOT_IMPLEMENTED
+CI-03,source-led facts,Reviewed semantic tuple with own-source oracle,Independent inventory must precede new catalog; copying implementation as expected is insufficient,PROPOSED_NOT_IMPLEMENTED
+CI-04,reverse claims,Changed material claims have their own exact source and applicability,No whole-document citation as substitute for exact clause,PROPOSED_NOT_IMPLEMENTED
+CI-05,negative controls,No wrong-tier optional or peer-type leakage,Unknown is not negative coverage,PROPOSED_NOT_IMPLEMENTED
+CI-06,effective precedence,Document X wins over catalog Y; selected/not_selected/unknown,Synthetic only; no customer artifacts,PROPOSED_NOT_IMPLEMENTED
+CI-07,loss through composition,Inherited still-applicable qualifiers survive addon resolves,Do not replace resolver globally to fix local data,PROPOSED_NOT_IMPLEMENTED
+CI-08,comparison UI,"Same product, side-swap, false unknown controls, sources/detail",No inference from long-form text,PROPOSED_NOT_IMPLEMENTED
+CI-09,boundary units,Exact under/through/first renewal/period and currency/unit,No regex number collapse,PROPOSED_NOT_IMPLEMENTED
+CI-10,temporal freeze,Explicit catalog as-of date and future effective source gates,No hidden date-dependent audit drift,PROPOSED_NOT_IMPLEMENTED
+CI-11,freshness changes,Official source hash/date diff triggers targeted re-audit,No new automatic crawling added now,PROPOSED_NOT_IMPLEMENTED
+CI-12,all-family bulk gate,Active products + optional scopes + historical exclusions,Counts alone never prove semantic completeness,PROPOSED_NOT_IMPLEMENTED

@@ -1,0 +1,1016 @@
+{
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "source": "catalog/sources/storebrand/innbo/Storebrand_Innbo_innbo09.pdf",
+  "pages_read": 30,
+  "rules": [
+    {
+      "inventory_id": "SB-IN-001",
+      "subject": "Avtale",
+      "dimension": "nivå/sum",
+      "value": "Kunden velger Standard/Super og samlet førsterisikosum i beviset; bevis går foran vilkår.",
+      "pages": [
+        1,
+        13
+      ],
+      "section": "Innledning/B.5",
+      "levels": "both",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "SB-IN-002",
+      "subject": "Sikrede",
+      "dimension": "husstand",
+      "value": "Forsikringstaker, ektefelle/samboer med samme folkeregistrerte adresse, hjemmeboende barn, borteboende studiebarn/verneplikt uten meldt adresseendring, barn med delt foreldreansvar; ikke leietaker/bokollektiv.",
+      "pages": [
+        4
+      ],
+      "section": "B.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-003",
+      "subject": "Andres ting",
+      "dimension": "sum/rolle",
+      "value": "100000 ved skriftlig overtatt forsikringsplikt eller risiko etter lov/avtale; ikke penger/verdipapirer eller lagring/oppbevaring.",
+      "pages": [
+        4
+      ],
+      "section": "B.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-004",
+      "subject": "Geografi",
+      "dimension": "midlertidig",
+      "value": "Forsikringssted og midlertidige ting i bygning i Norden med planlagt retur innen3år; studiebarn/verneplikt i Norden.",
+      "pages": [
+        4
+      ],
+      "section": "B.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-005",
+      "subject": "Basseng",
+      "dimension": "sum",
+      "value": "Frittstående basseng på stedet40000.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-006",
+      "subject": "Småbåt",
+      "dimension": "sum/omfang",
+      "value": "Inntil15fot/10HK, kano/kajakk/seilbrett/SUP på forsikringsstedet eller låst fast på tilknyttet land;Standard40000/Super60000.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-007",
+      "subject": "Yrkesutstyr",
+      "dimension": "sum/sted",
+      "value": "Varer/løse ting brukt i yrke på forsikringssted:Standard50000/Super200000.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-008",
+      "subject": "Penger",
+      "dimension": "sum",
+      "value": "Standard20000/Super30000; ikke hytte/fritidsbolig.",
+      "pages": [
+        5,
+        6
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-009",
+      "subject": "Tilhenger",
+      "dimension": "sum/sted",
+      "value": "Person-/varebiltilhenger på forsikringsstedet40000.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-010",
+      "subject": "Hobbyveksthus",
+      "dimension": "sum/årsaker",
+      "value": "Standard100000/Superforsikringssum; barebrann/natur/vann/tyveri.",
+      "pages": [
+        5,
+        6
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-011",
+      "subject": "Små bygg",
+      "dimension": "sum/areal",
+      "value": "Bygg inntil10m2 på stedet:Standard50000/Super200000.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-012",
+      "subject": "Kjøretøydeler",
+      "dimension": "sum",
+      "value": "Løse deler/tilbehør privat motorkjøretøy på stedet40000; ikke dekk/felger/campingvogndeler.",
+      "pages": [
+        5,
+        6
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-013",
+      "subject": "Småmaskiner",
+      "dimension": "grenser",
+      "value": "Gressklipper/rullestol/snøfreser m.m. inntil10km/t og750kg, avtalt sum; luftsportsutstyr/droner/modellfly omfattes som løsøre.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-014",
+      "subject": "Frysevarer",
+      "dimension": "omfang",
+      "value": "Utilsiktet temperaturøkning i fryser; også følgeskade fryser/kjøleskap ved dekket matskade.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-015",
+      "subject": "Glass/sanitær",
+      "dimension": "brudd",
+      "value": "Brudd sanitærporselen, fastplatetopp og bygningsglass i eid leilighet/leidbolig; ikke næring,utettisolerglass,dusjkabinett/glassvegg.",
+      "pages": [
+        5,
+        6
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-016",
+      "subject": "Små elektriske kjøretøy",
+      "dimension": "løsøre/ansvar",
+      "value": "B.3 definerer inntil25km/t,70kg,85cm/120cm; lovpålagt motoransvar omfattes ikke. B.4.5 sykkeltyveri har egne20km/t-el-sparkesykkelregler.",
+      "pages": [
+        5,
+        9
+      ],
+      "section": "B.3/B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-017",
+      "subject": "Generelle gjenstandsunntak",
+      "dimension": "omfang",
+      "value": "Ikke registreringspliktig motorvogn, campingvogn, dyr, digital valuta/kunst, arbeidsgivers eiendeler uten overført eierskap, ikke-deklarert import; vedlikehold og overflateriper unntatt.",
+      "pages": [
+        6
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-018",
+      "subject": "Brann",
+      "dimension": "omfang",
+      "value": "Brann/eksplosjon, slukkeutstrømming og plutselig nedsoting; ikke svi/gnist uten brann eller kjemisk heksesot.",
+      "pages": [
+        6
+      ],
+      "section": "B.4.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-019",
+      "subject": "Brann",
+      "dimension": "alarmegenandel",
+      "value": "Ingen egenandel ved aktiv brannalarm til FG-godkjent sentral.",
+      "pages": [
+        6
+      ],
+      "section": "B.4.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-020",
+      "subject": "Lyn/elektrisk",
+      "dimension": "omfang",
+      "value": "Lyn, kortslutning, lysbue, overslag og overspenning.",
+      "pages": [
+        7
+      ],
+      "section": "B.4.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-021",
+      "subject": "Natur",
+      "dimension": "omfang/unntak",
+      "value": "Lovfestet skred/storm/flom/stormflo/jordskjelv/flodbølger/meteoritt/vulkan; ikke bare antenne/markise/skilt eller forebygging uten direkte skade.",
+      "pages": [
+        7
+      ],
+      "section": "B.4.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-022",
+      "subject": "Natur",
+      "dimension": "egenandel",
+      "value": "8000 oppgitt per01.01.2024; tilenhvertid departementsbestemt. Ikke verifisert som dagens sats utenfor lokal kilde.",
+      "pages": [
+        7
+      ],
+      "section": "B.4.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-023",
+      "subject": "Vann",
+      "dimension": "omfang",
+      "value": "Rør/væske/gass/tilknyttetutstyr/akvarium; terrengvann krever plutselig vannspeil utover gulv, ikke bare oppforet gulv; ingen sopp/råte/mugg/bakterieskade.",
+      "pages": [
+        7,
+        8
+      ],
+      "section": "B.4.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-024",
+      "subject": "Vann",
+      "dimension": "tap/avgift",
+      "value": "Forhøyet vannavgift eller tap av vann/gass/annen væske ved lekkasje40000.",
+      "pages": [
+        8
+      ],
+      "section": "B.4.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-025",
+      "subject": "Vann",
+      "dimension": "egenandelfritak",
+      "value": "Ingen egenandel ved innvendig rørbrudd med heleboligvannstopp, aktiv FG-alarm, eller installerte overvannsforebyggende tiltak ved overvannsskade.",
+      "pages": [
+        8
+      ],
+      "section": "B.4.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-026",
+      "subject": "Tyveri",
+      "dimension": "hjem/innbrudd",
+      "value": "Innbo ved tyveri/skadeverk påstedet tilsum; bygningsskade ved innbrudd i leid/sameietbolig40000.",
+      "pages": [
+        8,
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-027",
+      "subject": "Fellesbod",
+      "dimension": "sum/verdiforskrift",
+      "value": "Privatbod ifellesrom:Standard100000/Superforsikringssum; dyrebare ting over20000 eller øvrige enkeltgjenstander/samlinger over50000 skal ikke lagres der.",
+      "pages": [
+        9,
+        10
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-028",
+      "subject": "Fellesskap",
+      "dimension": "skap",
+      "value": "Eget låst skap i fellesgarasje/fellesrom40000; ellers fellesromtyveri ikke med mindre låst bil/skap.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-029",
+      "subject": "Arbeidsplass",
+      "dimension": "tyveri",
+      "value": "Norge40000; ikke bygg-/anleggsplass.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-030",
+      "subject": "Uteareal",
+      "dimension": "tyveri",
+      "value": "Privatboligs egetuteareal Standard40000/Super100000; ikke fellesareal eller sykkel.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-031",
+      "subject": "Barnevogn",
+      "dimension": "tyveri",
+      "value": "Hele verden tilavtaltsum.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-032",
+      "subject": "Sykkel",
+      "dimension": "tyverigrense",
+      "value": "Norge låstsykkel inkl el/fastutstyr/sykkeltilhenger;Standard40000/Super50000 per sykkel; grensen gjelder ikke inne ifastbebodd beboelsesrom.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-033",
+      "subject": "Sykkel",
+      "dimension": "teknisk/lås",
+      "value": "Elsykkelmotorutkobling25km/t,elsparkesykkel20km/t;fastlåst/montert tilhenger;lettavtakbart utstyr må tasmed.",
+      "pages": [
+        9,
+        10
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-034",
+      "subject": "Ran/napping",
+      "dimension": "sum/geografi",
+      "value": "Ran/overfall tilsum;veskenapping40000;Norge.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-035",
+      "subject": "Tyveri",
+      "dimension": "person/unntak",
+      "value": "Ikke underslag/bedrageri,øvrighærverk,husstandsmedlem/gjest,leieboer/husstand/gjest eller person gitt adgang.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-036",
+      "subject": "Tyveri",
+      "dimension": "egenandel",
+      "value": "2000 pergjenstand opp til bevisets egenandel; registrertsykkel1000 vedbetaltgyldigregister;FGinnbruddsalarm0.",
+      "pages": [
+        10
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-037",
+      "subject": "Bygningsfølgeskade",
+      "dimension": "omfang",
+      "value": "Innbo skadet somdirektefølge av dekket bygningsskade; annenbygningforsikrer må bekrefte dekningen.",
+      "pages": [
+        10
+      ],
+      "section": "B.4.6",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-038",
+      "subject": "Psykolog",
+      "dimension": "timer/vilkår",
+      "value": "10timer etteralvorligbrann/ran/overfall/voldtekt vedhjem;avtalt psykolog/politianmeldt;reiserefusjon folketrygd,ikke utenlandsreise eller terapi etter12måneder.",
+      "pages": [
+        11
+      ],
+      "section": "B.4.7",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-039",
+      "subject": "Lagring",
+      "dimension": "varighet/årsaker",
+      "value": "Inntil3år;brann,vann,tyveri;vedbrann/vannmåbygningværedekket;verdifullegjenstander samlet100000.",
+      "pages": [
+        11
+      ],
+      "section": "B.4.8",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-040",
+      "subject": "Lagring",
+      "dimension": "unntak",
+      "value": "Ikke penger/verdipapirtyveri,fellesrom/byggeplass,tingmistet/tapt,båt/kjøretøy/campingvogn/tilhenger/deler/dekk.",
+      "pages": [
+        12
+      ],
+      "section": "B.4.8",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-041",
+      "subject": "Rydding",
+      "dimension": "sum/egetarbeid",
+      "value": "Ubegrenset dekket rydding/fjerning;egenførstehjelp/vask/rydding250pertime høystselskapetsnormalkost.",
+      "pages": [
+        12
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-042",
+      "subject": "Midlertidig bolig",
+      "dimension": "sum/vilkår",
+      "value": "Nødvendige merbokostnader ubegrenset i reparasjonsperioden; Standard hotell100000, Super ubegrenset. Dekket bygningsskade, forhåndsavtale utover en uke og fratrekk for husleietap/sparteutgifter.",
+      "pages": [
+        12
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-043",
+      "subject": "Fritidsboligerstatning",
+      "dimension": "sum/vilkår",
+      "value": "Innbohytte:tilsvarendeleieiNorge Standard40000/Super80000,måforhåndsavtales.",
+      "pages": [
+        12,
+        13
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-044",
+      "subject": "Prisstigning",
+      "dimension": "oppgjør",
+      "value": "Prisstigningsmerutgifter ubegrenset tilnormalreparasjons-/gjenkjøpstid/utbetaling;renterfratrekk.",
+      "pages": [
+        12,
+        13
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-045",
+      "subject": "Rekonstruksjon",
+      "dimension": "sum/omfang",
+      "value": "Manuskript/yrkestegning/arkiv/foto/video/data/programmer:Standard50000/Super100000;ikkereise/opphold.",
+      "pages": [
+        12,
+        13
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-046",
+      "subject": "Tilleggsinnredning",
+      "dimension": "sum/vilkår",
+      "value": "Leidbolig innredning betaltavsikrede100000 vedbygningstap ogopphørtleie/ikkeutbedretinnredning.",
+      "pages": [
+        12,
+        13
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-047",
+      "subject": "Flytteutgifter etter skade",
+      "dimension": "sum",
+      "value": "Nødvendig flytting/lagring etter skade ubegrenset.",
+      "pages": [
+        12
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-048",
+      "subject": "Trygghetsgaranti",
+      "dimension": "nyanskaffelser",
+      "value": "Nye ting ettersistefornyelse dekkes framtilnestefornyelse selvomsummenoverskrides.",
+      "pages": [
+        13
+      ],
+      "section": "B.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-049",
+      "subject": "Oppgjør",
+      "dimension": "valg/kontant",
+      "value": "Selskapetkanvelgereparasjon/tilsvarende/kontant;kontantbegrensettilselskapetskostnad;ikkeMVAarbeidvedselvreparasjon.",
+      "pages": [
+        13
+      ],
+      "section": "B.6.1",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-050",
+      "subject": "Aldersfradrag",
+      "dimension": "tabell",
+      "value": "Klær1år/10%,elektrisk5/10%,mobildata1/20%,sykkel3/10%,annet5/5%;maks80%. Kunetterfrieår,tilforskjellframotor/campvilkårseksempel.",
+      "pages": [
+        14
+      ],
+      "section": "B.6.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-051",
+      "subject": "Aldersfradrag",
+      "dimension": "verdi/brukt",
+      "value": "Liteverdiforringedegjenstander intetfradragvedminst75%avnyverdi;bruktkjøp/arv/gave bruktgjenanskaffelse;utingibruk/utdatert omsetningsverdi.",
+      "pages": [
+        14,
+        15
+      ],
+      "section": "B.6.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-052",
+      "subject": "Egenandel",
+      "dimension": "avtale",
+      "value": "Bevisetsavtalte egenandel hvisikke spesialsats;enperhendelse hvisikkeannet.",
+      "pages": [
+        15
+      ],
+      "section": "B.6.3",
+      "levels": "both",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "SB-IN-053",
+      "subject": "Utleie",
+      "dimension": "forhåndsavtale",
+      "value": "Utleiehel/delboligmåforhåndsavtales/bevisføres;familieopp tilto generasjoner unntatt definisjonen.",
+      "pages": [
+        16
+      ],
+      "section": "B.7.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-054",
+      "subject": "Fraflyttet",
+      "dimension": "reduksjon",
+      "value": "Hvisikke brukt som bolig:barebrann/natur;unntarhytte/fritidsbolig.",
+      "pages": [
+        16
+      ],
+      "section": "B.7.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-055",
+      "subject": "Ute Norden",
+      "dimension": "tyveri",
+      "value": "Super50000;ikkepenger/verdipapirerellersendt/ekspedertreisebagasje.",
+      "pages": [
+        17
+      ],
+      "section": "C.1.1",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-056",
+      "subject": "Uflaks",
+      "dimension": "årsak",
+      "value": "Annenfysiskskade plutseligtilfeldigytreårsak,kjenttidspunkt,gjenstandkanfremvises;B-unntakogkravgjelder.",
+      "pages": [
+        18
+      ],
+      "section": "C.1.2",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-057",
+      "subject": "Uflaks",
+      "dimension": "sum/nedfall",
+      "value": "Avtaltsumpåstedet;utenforbolig ELLERtingmistes/faller/velter100000perhendelse iNorden,ogsåflytting.",
+      "pages": [
+        18
+      ],
+      "section": "C.1.2",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-058",
+      "subject": "Uflaks",
+      "dimension": "unntak",
+      "value": "Ikkeutstyribruk(jfegenC1.3),dyr/skadedyr/fukt/slitasje,overflateskade,egensvakhet,utleie,luftsport/droneribruk,tap,yrkesutstyr,tingivann,båt/tilhenger/veksthus/dyr,integrertehvitevarer/platetopp.",
+      "pages": [
+        18
+      ],
+      "section": "C.1.2",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-059",
+      "subject": "Uflaks",
+      "dimension": "egenandel",
+      "value": "2000prting,1500fortingnyereenn2år,høyestbevisegenandel;mobil/sykkel/brillerbevisegenandel.",
+      "pages": [
+        19
+      ],
+      "section": "C.1.2",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-060",
+      "subject": "Sportsutstyr",
+      "dimension": "bruk",
+      "value": "Egensykkel/sportsutstyribruk40000;ikkelufsport/småelektriskekjøretøy;2000prgjenstandhøyestbevisegenandel.",
+      "pages": [
+        19
+      ],
+      "section": "C.1.3",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-061",
+      "subject": "Rullestol",
+      "dimension": "sum",
+      "value": "300000samletmedvilla;ikkefritidsbolig;ulykkeellerfødseliforsikringstid;minst50%medisinsk invaliditet.",
+      "pages": [
+        19,
+        20
+      ],
+      "section": "C.1.4",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-062",
+      "subject": "Rullestol",
+      "dimension": "frister",
+      "value": "Medfødt invaliditetfastslåsinnen2år;utgifterinnen5år;dekker dokumenterttilleggutoveroffentligstøtte.",
+      "pages": [
+        20
+      ],
+      "section": "C.1.4",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-063",
+      "subject": "Flytting",
+      "dimension": "omfang",
+      "value": "Plutseliguforutsettytrehendelse undertransport/bæringtilnybolig/lageriNorge;inngåravtaltsum.",
+      "pages": [
+        20
+      ],
+      "section": "C.1.5",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-064",
+      "subject": "Flytting",
+      "dimension": "unntak",
+      "value": "Ikke penger/papirer/kunst/antikviteter/smykker/sølv/gull/piano/flygel/tap;C1.2unntak gjelderogså,inkl100000nedfallsgrense.",
+      "pages": [
+        18,
+        20
+      ],
+      "section": "C.1.5",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-065",
+      "subject": "Skadedyr",
+      "dimension": "bekjempelse",
+      "value": "150000gnagere/veggedyr/kakerlakker/skjeggkreibolig/fritidsboligiNorge,aktivitetiforsikringstid;leverandørstyrt,forhåndskontakt;skjeggkre3befaringerførsteår.",
+      "pages": [
+        20
+      ],
+      "section": "C.1.6",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-066",
+      "subject": "Skadedyr",
+      "dimension": "unntak",
+      "value": "Ikkeandrebygg/fellesbod,etterlatenskaper,åpning/sikring,tingenskade,næringstypiskeangrep,førkjøp/etteropphør;utenbilvei ekstratransport betaleskunden.",
+      "pages": [
+        21
+      ],
+      "section": "C.1.6",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-067",
+      "subject": "Skadedyr",
+      "dimension": "egenandel",
+      "value": "2000.",
+      "pages": [
+        21
+      ],
+      "section": "C.1.6",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-068",
+      "subject": "ID-tyveri",
+      "dimension": "summer",
+      "value": "100000bistand/juridiskførstehjelp og1000000kreditortvist;ikkefritidsbolig;privatperson ogforhåndsgodkjenning.",
+      "pages": [
+        21,
+        22
+      ],
+      "section": "C.1.7",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-069",
+      "subject": "ID-tyveri",
+      "dimension": "avgrensning",
+      "value": "Ikke økonomisktap,yrke,nærfamiliehandling;tvistbarenoskrett/norskdomstol;egne/idømtekostnaderinkludertmenikkerettsgebyr;førstehjelpingenegenandel.",
+      "pages": [
+        22
+      ],
+      "section": "C.1.7",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-070",
+      "subject": "Ansvar",
+      "dimension": "sum/geografi",
+      "value": "5000000privatansvarNorden;ikkeinnbohytte/fritidsbolig;person/tingskadeogfølgetap.",
+      "pages": [
+        23
+      ],
+      "section": "D.1–3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-071",
+      "subject": "Droneansvar",
+      "dimension": "sum/virkeområde",
+      "value": "750000SDR Europa,åpenkategori/hobby/sport/rekreasjon utenoperatørtillatelse;saksomkostningitillegg.",
+      "pages": [
+        23,
+        24
+      ],
+      "section": "D.3.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-072",
+      "subject": "Droneansvar",
+      "dimension": "unntak",
+      "value": "Ikkeandreluftfartøy/passasjer/godstransport/familieting/yrkesskade/kontrakt/straff/bøter/ikkeplutseligforurensning.",
+      "pages": [
+        24
+      ],
+      "section": "D.3.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-073",
+      "subject": "Ansvar",
+      "dimension": "unntak",
+      "value": "Ikkeleie/lån/brukteoppbevarteting,nærfamilie,næring,eiendom,motor/båt/luft,hest,forsett,gradvisforurensning,smitte/sopp/asbest;småarbeidsmaskin10km750kgpåegenstedunntak.",
+      "pages": [
+        24,
+        25
+      ],
+      "section": "D.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-074",
+      "subject": "Ansvar",
+      "dimension": "egenandel",
+      "value": "4000.",
+      "pages": [
+        25
+      ],
+      "section": "D.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-075",
+      "subject": "Rettshjelp",
+      "dimension": "sum",
+      "value": "100000pertvist/økonomiskinteresse;flerparter3–10=250000,11–25=500000,26–49=750000,50+=1000000.",
+      "pages": [
+        26
+      ],
+      "section": "E",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-076",
+      "subject": "Rettshjelp",
+      "dimension": "rolle/geografi",
+      "value": "Privatperson/husstandNorden;ikkefritidsbolig;advokat/rett/sakkyndig/vitner;ingenjuridiskepersoner.",
+      "pages": [
+        26,
+        27
+      ],
+      "section": "E.1–3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-077",
+      "subject": "Rettshjelp",
+      "dimension": "boligskifte",
+      "value": "Tidligereeiervedsolgtforsikretbolig og kjøpnyførinnflytting/nåværendeforsikretiStorebrand;bygningframforinnbohvisbegge.",
+      "pages": [
+        27,
+        28
+      ],
+      "section": "E.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-078",
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Yrke/annenfastbolig/familie/arv/inkassoubestridt/motor/luft/båt(jf unntak)/straff/preeksisterendetvistgrunnlag/finansover1million/idømtekostnader/ankegebyr/voldgift.",
+      "pages": [
+        28,
+        29
+      ],
+      "section": "E.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-079",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4000+20%avresterende;enegenandelpertvistuansettparter.",
+      "pages": [
+        29
+      ],
+      "section": "E.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-IN-080",
+      "subject": "Yrkesskade",
+      "dimension": "omfang/egenandel",
+      "value": "Privatperson somarbeidsgiver lovpålagtyrkesskadeubegrenset;ingenegenandel;ikkehytteinnbo.",
+      "pages": [
+        30
+      ],
+      "section": "F",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-IN-081",
+      "subject": "Administrasjon",
+      "dimension": "generelle regler",
+      "value": "Meldeskade/politi,skjønn,oppgjørsprosedyre,regress/generellevilkår;ikkeenkeltstående sammenligningsfakta.",
+      "pages": [
+        1,
+        15,
+        16,
+        29,
+        30
+      ],
+      "section": "B.7/E.6",
+      "levels": "both",
+      "kind": "ADMINISTRATIVE"
+    }
+  ],
+  "notes": [
+    "Do not import different motor/camp age deduction example.",
+    "Innbo hytte clauses must be conditional; no new Hytte product assumed.",
+    "Local dated natural damage rate not independently updated."
+  ],
+  "visual_validation": {
+    "page12": "Standard hotel100000 / Super unlimited confirmed from table columns",
+    "page20": "No50000peritem move limit in C.1.5; C.1.2 referred conditions read too"
+  }
+}

@@ -1,0 +1,1106 @@
+==================================================
+130 – AUDIT COMPLETENESS VALIDATION
+==================================================
+
+Before trusting the result, prove that every active product was actually
+visited.
+
+Compare:
+
+runtime active catalog product identities
+
+against:
+
+product-ledger identities.
+
+Required:
+
+AUDITED_PRODUCTS
+=
+ACTIVE_PRODUCTS_IN_SCOPE
+
+Any missing product must be listed explicitly.
+
+Do not return READY if unexplained products were skipped.
+
+==================================================
+131 – ADD-ON COMPLETENESS VALIDATION
+==================================================
+
+Do the same for active add-ons/components.
+
+Every applicable active add-on must have a ledger entry.
+
+==================================================
+132 – SOURCE ARTIFACT COVERAGE
+==================================================
+
+Report:
+
+all source artifacts referenced by active catalog products
+artifacts actually inspected
+artifacts deduplicated by identical hash
+artifacts unreadable
+artifacts with ambiguous applicability.
+
+Every unexplained unreadable applicable artifact is REVIEW_REQUIRED.
+
+==================================================
+133 – SOURCE RECORD COVERAGE
+==================================================
+
+Verify every active runtime source record relevant to product facts was
+accounted for.
+
+Do not assume artifact count = source-record count.
+
+==================================================
+134 – PRODUCT WITHOUT SOURCE
+==================================================
+
+Any active/current product without sufficient source linkage must be
+reported.
+
+Classification:
+
+SOURCE_PACKAGE_GAP
+
+unless existing policy intentionally supports another evidence path.
+
+==================================================
+135 – ADD-ON WITHOUT SOURCE
+==================================================
+
+Same for add-ons.
+
+An optional component must not exist solely because another provider has a
+similar component.
+
+==================================================
+136 – SOURCE WITHOUT CATALOG REPRESENTATION
+==================================================
+
+Look for applicable source sections containing major advisor-relevant
+coverage concepts that have no catalog counterpart anywhere for that exact
+product.
+
+This is one of the central blindspot detectors.
+
+==================================================
+137 – CATALOG WITHOUT SOURCE
+==================================================
+
+Also reverse-check:
+
+catalog facts with no valid applicable source provenance.
+
+Classify:
+
+CATALOG_PROVENANCE_GAP
+
+or appropriate existing category.
+
+This is separate from completeness but important correctness evidence.
+
+==================================================
+138 – ORPHAN CANONICAL FACTS
+==================================================
+
+Identify new/current catalog facts whose canonical identity exists but is not
+used consistently across comparable products.
+
+Do not treat low usage itself as error.
+
+Review whether it reflects:
+
+provider-specific fact
+new semantic dimension
+mapping inconsistency.
+
+==================================================
+139 – SEMANTIC COUNTERPART DISCOVERY
+==================================================
+
+Within each insurance family, build a semantic concept index across all
+providers.
+
+Purpose:
+
+detect when:
+
+Provider A has structured concept X
+
+Provider B's source also describes concept X
+
+but Provider B catalog lacks mapping.
+
+This must use Provider B's own source as evidence.
+
+==================================================
+140 – COUNTERPART DOES NOT PROVE COVERAGE
+==================================================
+
+Never infer Provider B has coverage merely because Provider A has it.
+
+Cross-provider concept index is only a search aid.
+
+Exact Provider B source evidence is required.
+
+==================================================
+141 – SOURCE VOCABULARY VARIATION
+==================================================
+
+Account for provider terminology differences.
+
+Examples conceptually:
+
+Maskinskade
+Motor- og girskade
+
+Leiebil
+Mobilitet
+Feriegaranti
+
+Nyverdi
+Totalskadegaranti
+Ny bil/båt
+
+Semantic reasoning may identify candidate relation.
+
+Do not collapse meanings without source-level validation.
+
+==================================================
+142 – SYNONYM DISCOVERY
+==================================================
+
+The audit may propose semantic synonym/relationship candidates.
+
+Classify relationship:
+
+LIKELY_EQUIVALENT_CONCEPT
+SHARED_PARENT_DIFFERENT_CHILDREN
+OVERLAPPING_NOT_EQUIVALENT
+PROVIDER_SPECIFIC
+UNRELATED
+REVIEW_REQUIRED.
+
+No production mapping changes.
+
+==================================================
+143 – SAME LABEL DIFFERENT MEANING
+==================================================
+
+Also detect the opposite:
+
+same/similar visible term
+
+but materially different semantics.
+
+This is important for:
+
+insurance sum
+deductible
+totalskade
+maskinskade
+mobility
+water
+pet treatment.
+
+==================================================
+144 – SOURCE DETAIL DEPTH
+==================================================
+
+For each major concept record source detail dimensions.
+
+Example:
+
+Totalskade:
+status
+age
+km
+damage threshold
+replacement form
+limitations.
+
+This makes it possible to detect:
+
+"catalog has concept"
+
+but still misses important dimensions.
+
+==================================================
+145 – MAIN COVERAGE VS DETAIL
+==================================================
+
+Do not mark a product complete merely because parent status exists.
+
+Example:
+
+Maskinskade = included
+
+may still be TOO_COARSE if source clearly documents material:
+
+age
+km
+deductible
+
+that advisors need to compare.
+
+==================================================
+146 – DETAIL MATERIALITY
+==================================================
+
+However, do not require every exclusion subclause as structured child.
+
+Prioritize details that:
+
+- differ across products/providers
+- define when coverage ends
+- define how much is paid
+- define customer cost
+- materially narrow coverage
+- define major eligibility/applicability
+- explain important product-level distinction.
+
+==================================================
+147 – DIFFERENCE POTENTIAL
+==================================================
+
+As a secondary signal:
+
+if a source fact differs materially from at least one peer's documented
+value, it is strong evidence of advisor relevance.
+
+But peer difference is not required for relevance.
+
+==================================================
+148 – PEER SAME VALUE
+==================================================
+
+A fact may still be important even if all providers currently have same
+value.
+
+Do not omit solely because it does not differentiate today.
+
+==================================================
+149 – SOURCE-CONTAINED TABLES
+==================================================
+
+Inspect relevant source tables.
+
+Important facts may live in:
+
+coverage tables
+deductible tables
+age tables
+sum tables
+product matrices.
+
+Do not only parse prose paragraphs.
+
+==================================================
+150 – FOOTNOTES
+==================================================
+
+Inspect relevant footnotes tied to coverage tables.
+
+Footnotes can materially change:
+
+included
+optional
+limits
+age
+applicability.
+
+==================================================
+151 – HEADINGS / SECTION SCOPE
+==================================================
+
+Respect source section hierarchy.
+
+A value under one coverage must not be attached to another merely because
+text is nearby.
+
+==================================================
+152 – SHARED GENERAL TERMS
+==================================================
+
+If source package includes general terms shared across many products:
+
+separate:
+
+product-comparison relevant general insurance rule
+
+from:
+
+generic contractual boilerplate.
+
+Do not flood catalog with general terms.
+
+==================================================
+153 – PRODUCT-SPECIFIC TERMS WIN
+==================================================
+
+When general and product-specific terms interact:
+
+preserve actual applicability.
+
+Do not let generic rule overwrite explicit product-specific rule.
+
+==================================================
+154 – IPID DEPTH CONTROL
+==================================================
+
+Detect products whose catalog appears built mostly from IPID while a linked
+full-terms artifact contains substantially richer advisor-relevant detail.
+
+Flag:
+
+FULL_TERMS_UNDERUTILIZED
+
+when evidence supports it.
+
+This is an audit classification, not automatic error.
+
+==================================================
+155 – PRODUCT PAGE DEPTH CONTROL
+==================================================
+
+Similarly detect useful structured information on official product pages
+that is absent from catalog, provided:
+
+- page is applicable/current
+- fact is advisor-relevant
+- it does not conflict with governing terms.
+
+==================================================
+156 – FULL TERMS NOT AUTOMATICALLY SUPERIOR
+==================================================
+
+Do not blindly add every full-terms detail.
+
+The issue is underutilized MATERIAL comparison information.
+
+==================================================
+157 – INHERITED FACT COMPLETENESS
+==================================================
+
+For hierarchical products:
+
+audit both:
+
+own/delta facts
++
+inherited facts.
+
+A higher product may appear sparse in its own source section because it
+inherits lower product.
+
+Do not false-flag.
+
+==================================================
+158 – INHERITANCE SOURCE PROOF
+==================================================
+
+Inheritance must be supported by source/catalog architecture.
+
+Do not infer solely from:
+
+Basis
+Standard
+Super
+
+names.
+
+==================================================
+159 – ADD-ON DETAIL COMPLETENESS
+==================================================
+
+An add-on should be audited beyond:
+
+available/not available.
+
+Where source-backed and material, inspect:
+
+limits
+age
+km
+deductible
+duration
+applicability
+major exclusions.
+
+==================================================
+160 – CUSTOMER CHOICE MODEL COMPLETENESS
+==================================================
+
+Where products permit selectable:
+
+sum
+deductible
+duration
+coverage module
+
+catalog should represent the choice structure when advisor-relevant.
+
+Do not invent selected choice.
+
+==================================================
+161 – VALUE-EQUIVALENCE AUDIT
+==================================================
+
+Check whether existing value-equivalence logic could incorrectly hide a
+source/catalog difference.
+
+Examples:
+
+20 000 km/år
+vs
+20 000 km total
+
+50 000 kr/year
+vs
+50 000 kr/event.
+
+No code changes.
+
+==================================================
+162 – UNIT NORMALIZATION
+==================================================
+
+Check semantic units:
+
+kr
+%
+days
+years
+km
+km/year
+nautical miles
+G where applicable.
+
+Same numeric value with different unit/period is not equivalent.
+
+==================================================
+163 – BOOLEAN LOSSINESS
+==================================================
+
+Detect where rich source fact has been reduced to only:
+
+included = true
+
+and material comparison dimensions were lost.
+
+Classify TOO_COARSE where justified.
+
+==================================================
+164 – FREE-TEXT LOSSINESS
+==================================================
+
+Detect opposite problem:
+
+catalog has one giant free-text value containing multiple advisor-relevant
+dimensions that should perhaps be structured separately.
+
+Classify:
+
+CATALOG_FACT_TOO_COARSE
+
+or
+
+CANONICAL_STRUCTURE_INSUFFICIENT
+
+depending on existing model capability.
+
+==================================================
+165 – DUPLICATE SEMANTICS
+==================================================
+
+Check whether the same source concept is represented under multiple
+canonical keys, causing:
+
+duplicate rows
+conflicting values
+false differences.
+
+This is correctness, not completeness, but may be exposed by source audit.
+
+==================================================
+166 – CONFLICTING CATALOG FACTS
+==================================================
+
+If same exact product has conflicting catalog facts for same semantic
+dimension:
+
+flag HIGH/CRITICAL depending on impact.
+
+==================================================
+167 – SOURCE/CATALOG STATUS CONTRADICTION
+==================================================
+
+Examples:
+
+source says optional
+catalog says included
+
+source says excluded
+catalog says included
+
+source says included
+catalog says unavailable.
+
+These require high-priority manual review.
+
+==================================================
+168 – SOURCE/CATALOG NUMERIC CONTRADICTION
+==================================================
+
+If source and catalog contain materially different numeric values:
+
+flag.
+
+Before severity:
+
+verify version
+scope
+product
+applicability.
+
+==================================================
+169 – SOURCE/CATALOG TEXT CONTRADICTION
+==================================================
+
+Do not flag harmless paraphrase.
+
+Flag only semantic contradiction.
+
+==================================================
+170 – MULTIPLE SOURCES SAME FACT
+==================================================
+
+If multiple applicable sources support same fact:
+
+record all useful provenance where existing architecture supports it.
+
+Audit should not demand duplicate catalog facts.
+
+==================================================
+171 – MULTIPLE SOURCE VALUES
+==================================================
+
+If multiple applicable sources give different values:
+
+SOURCE_CONFLICT_REVIEW_REQUIRED.
+
+Do not silently pick.
+
+==================================================
+172 – SOURCE DATE CONFLICT
+==================================================
+
+Check whether older source artifact may be driving catalog while newer
+applicable source exists locally.
+
+Flag:
+
+STALE_SOURCE_CANDIDATE.
+
+Do not automatically replace.
+
+==================================================
+173 – SOURCE VERSION APPLICABILITY
+==================================================
+
+A newer document is not automatically applicable to historical product
+version.
+
+Review identity.
+
+==================================================
+174 – CURRENT PRODUCT FOCUS
+==================================================
+
+Prioritize products eligible in current product comparison and current
+customer enrichment.
+
+Historical products remain secondary.
+
+==================================================
+175 – ACTIVE PRODUCT DEFINITION
+==================================================
+
+Use actual repository/runtime eligibility logic.
+
+Do not create your own definition of active.
+
+==================================================
+176 – MANUAL PRODUCT FLOW
+==================================================
+
+Check whether manual product selector exposes products whose catalog depth is
+materially incomplete.
+
+This affects advisor pilot.
+
+==================================================
+177 – CUSTOMER ENRICHMENT FLOW
+==================================================
+
+For material gaps determine whether catalog enrichment could influence
+customer comparison.
+
+Remember:
+
+explicit customer document remains authoritative.
+
+==================================================
+178 – FALSE CUSTOMER CERTAINTY
+==================================================
+
+If missing catalog detail could cause product-level enrichment to imply more
+certainty than source supports:
+
+flag HIGH.
+
+==================================================
+179 – PRODUCT MODE UNKNOWN
+==================================================
+
+If catalog gap merely causes honest:
+
+Ikke dokumentert
+
+in product mode:
+
+still flag completeness gap when source has material fact.
+
+Honest unknown is better than false fact, but source utilization should be
+improved.
+
+==================================================
+180 – PRESENTATION PRIORITY
+==================================================
+
+For candidate new facts determine whether existing family presentation
+already has natural section.
+
+If not:
+
+PRESENTATION_EXTENSION_REQUIRED.
+
+No UI changes.
+
+==================================================
+181 – QUICK NAV IMPACT
+==================================================
+
+Do not create new section solely for every missing fact.
+
+Facts should fit semantic hierarchy where possible.
+
+==================================================
+182 – SOURCE VIEW
+==================================================
+
+Check whether source provenance for candidate gap is displayable through
+existing source mechanism.
+
+If not:
+
+flag source integration need.
+
+==================================================
+183 – LOCAL PATH SAFETY
+==================================================
+
+Audit outputs may contain local source artifact paths.
+
+Production catalog/UI must not.
+
+No production changes now.
+
+==================================================
+184 – FAMILY SEMANTIC COVERAGE REVIEW
+==================================================
+
+After product-level audit, review each family's combined source concept map.
+
+Ask:
+
+Are there major recurring concepts present across source corpus but absent
+from the canonical family model?
+
+This catches systemic omissions.
+
+==================================================
+185 – CROSS-FAMILY SHARED CONCEPTS
+==================================================
+
+Some concepts legitimately share generic semantics:
+
+liability
+legal expenses
+glass
+fire
+theft.
+
+Others need family-specific meaning.
+
+Do not generalize merely to reduce key count.
+
+==================================================
+186 – CROSS-FAMILY COLLISION
+==================================================
+
+Check whether same canonical key is reused across families despite materially
+different meaning.
+
+Flag if source semantics prove collision.
+
+==================================================
+187 – FAMILY-SPECIFIC ISOLATION
+==================================================
+
+Verify:
+
+Båt motor rules
+MC maskinskade
+Bobil fukt
+Hund bruksverdi
+Katt treatment
+Hus water
+
+remain correctly isolated where required.
+
+==================================================
+188 – SOURCE FACT PRIORITY
+==================================================
+
+For remediation planning classify source fact importance:
+
+CORE
+IMPORTANT_DETAIL
+SECONDARY_DETAIL
+ADMINISTRATIVE.
+
+Only CORE/IMPORTANT_DETAIL normally justify pre-pilot remediation.
+
+==================================================
+189 – PRE-PILOT MATERIAL GAP
+==================================================
+
+Mark:
+
+PREPILOT_FIX_RECOMMENDED = true
+
+when a HIGH/CRITICAL or important MEDIUM gap could materially affect advisor
+comparison.
+
+==================================================
+190 – DEFERABLE GAP
+==================================================
+
+Mark:
+
+DEFERABLE = true
+
+for low-value detail that can safely remain source-only during pilot.
+
+==================================================
+191 – NO PERFECT-COMPLETENESS REQUIREMENT
+==================================================
+
+Do not demand theoretical 100% representation of all terms.
+
+Acceptance target is:
+
+no known material advisor-relevant source-to-catalog gaps.
+
+==================================================
+192 – AUDIT BUDGET CONTROL
+==================================================
+
+This is a large audit.
+
+Optimize intelligently:
+
+- deduplicate identical source bytes
+- reuse family semantic maps
+- reuse source inventories across product levels
+- focus deep review on current products
+- avoid repeated parsing
+- avoid rendering every possible product pair.
+
+Do not reduce scope from all active products.
+
+==================================================
+193 – CHECKPOINTS
+==================================================
+
+Internally checkpoint progress after each family.
+
+Do not modify repo.
+
+If context/budget pressure occurs:
+
+preserve completed ledger/output in /tmp and continue systematically.
+
+==================================================
+194 – NO SILENT SKIP
+==================================================
+
+If a family/product cannot be audited:
+
+record it explicitly.
+
+No product disappears from denominator.
+
+==================================================
+195 – AUDIT FAILURE CONDITION
+==================================================
+
+If more than a trivial number of active products cannot be tied to readable
+applicable source artifacts:
+
+return:
+
+SOURCE_CATALOG_AUDIT_BLOCKED
+
+with exact scope.
+
+==================================================
+196 – ARCHITECTURE REVIEW CONDITION
+==================================================
+
+If audit discovers that material source semantics repeatedly cannot fit
+current canonical model:
+
+do not redesign.
+
+Return recommendation:
+
+ARCHITECTURE_REVIEW_REQUIRED
+
+with examples.
+
+==================================================
+197 – SOURCE RESEARCH CONDITION
+==================================================
+
+If material gaps cannot be resolved because local source package is
+insufficient:
+
+report exact:
+
+SOURCE_RESEARCH_REQUIRED
+
+items.
+
+No web browsing in this task.
+
+==================================================
+198 – POSITIVE CONTROL SUCCESS
+==================================================
+
+Positive controls are considered successful if methodology independently
+finds at least the real source/catalog asymmetries that applicable source
+evidence supports.
+
+It does NOT need to reproduce human suspicion if source proves suspicion
+unfounded.
+
+==================================================
+199 – POSITIVE CONTROL FAILURE
+==================================================
+
+If manual advisor observations strongly suggest missing depth but audit finds
+zero candidate gaps across Hund/Bobil/Båt/MC:
+
+perform methodological review.
+
+Possible reasons:
+
+- source inventory too shallow
+- only manifest-linked facts inspected
+- full terms not actually read
+- advisor relevance filter too strict
+- parent concept falsely treated as complete.
+
+Document conclusion.
+
+==================================================
+200 – RANDOM DEEP CHECK
+==================================================
+
+Select at least:
+
+2 products per family
+
+for deeper manual source→catalog review regardless of automated status.
+
+12 families → target at least 24 deep checks.
+
+Prefer:
+
+one richer/top product
+one ordinary/lower product
+
+where available.
+
+==================================================
+201 – HIGH-UNKNOWN DEEP CHECK
+==================================================
+
+Additionally deep-check products that generate unusually many unknowns.
+
+==================================================
+202 – LOW-FACT DEEP CHECK
+==================================================
+
+Deep-check products with unusually few catalog facts relative to source
+length/depth.
+
+==================================================
+203 – TOP PRODUCT DEEP CHECK
+==================================================
+
+Top/extended products often contain differentiating benefits.
+
+Ensure each family has at least one top-level product deep-reviewed where
+available.
+
+==================================================
+204 – LOWER PRODUCT CONTROL
+==================================================
+
+Also deep-review lower/basic product to prevent inheritance assumptions from
+masking missing facts.
+
+==================================================
+205 – PROVIDER COVERAGE
+==================================================
+
+Across deep checks ensure all major providers are represented multiple times.
+
+Do not deep-check only Tryg/Gjensidige.
+
+==================================================
+206 – AGREEMENT SCOPE COVERAGE
+==================================================
+
+Include non-ordinary scopes in deep review where they exist and are active.
+
+==================================================
+207 – MANUAL REVIEW RECORD
+==================================================
+
+For each deep check record:
+
+source artifacts read
+major source concepts
+catalog representation
+gaps
+non-gaps
+reviewer reasoning.
+
+==================================================
+208 – SOURCE FACT SAMPLING VALIDATION
+==================================================
+
+For each family manually verify at least:
+
+5 represented source facts
+5 candidate missing/too-coarse facts if available
+5 correctly excluded/non-comparison-relevant facts.
+
+If fewer candidates exist, report actual.
+
+==================================================
+209 – NUMERIC VALIDATION
+==================================================
+
+Manually verify representative numeric facts across every family.
+
+Especially:
+
+limits
+deductibles
+age
+km
+days.
+
+==================================================
+210 – STATUS VALIDATION
+==================================================
+
+Manually verify representative:
+
+included
+optional
+unavailable
+unknown/customer-specific
+
+status semantics.
+
+==================================================
+211 – PROVENANCE VALIDATION
+==================================================
+
+Manually verify representative candidate gaps against actual source artifact,
+not just intermediate audit extraction.
+
+==================================================
+212 – PRODUCT LEDGER COMPLETION
+==================================================
+
+At end:
+
+every active product must have:
+
+status
+source count
+fact counts
+gap counts
+review count.
+
+No null status.
+
+==================================================
+213 – ADDON LEDGER COMPLETION
+==================================================
+
+Same for add-ons.
+
+==================================================
+214 – GAP DEDUPLICATION VALIDATION
+==================================================
+
+Ensure one underlying source/catalog issue repeated across many comparisons
+is not counted as many root causes.
+
+==================================================
+215 – FAMILY ROOT CAUSE
+==================================================
+
+Identify systemic patterns such as:
+
+- provider catalog built only from IPID
+- full terms underused
+- product inheritance missing children
+- numeric dimensions omitted
+- one family missing canonical concept
+- one provider add-on not materialized.
+
+These are more valuable than individual rows.
+
+==================================================
+216 – GLOBAL ROOT CAUSE
+==================================================
+
+Look for root causes spanning families.
+
+Example:
+
+catalog builder only materializes parent status but drops child details.
+
+Do not claim global cause without evidence across

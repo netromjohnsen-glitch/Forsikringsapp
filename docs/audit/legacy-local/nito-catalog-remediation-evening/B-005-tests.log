@@ -1,0 +1,97 @@
+(node:67049) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (0.828375ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (8.295875ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (2.683875ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (1.776917ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (6.276417ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (0.913584ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.684708ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (1.749542ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.252583ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (0.988292ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.238ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (0.968667ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (1.286583ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (1.156542ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (0.956958ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (0.993167ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (0.906792ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (4.34125ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (0.974584ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (1.433459ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.017041ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (10.339542ms)
+✔ normalisering er forsikringstypeavgrenset (0.599792ms)
+(node:67050) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (1.829375ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (2.953125ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.208042ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.862209ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (12.950042ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (1.159208ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (20.335292ms)
+✔ B-002: explicit customer artwork information retains document authority (1.015959ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.350083ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.550625ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (24.341209ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (1.601333ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (9.275083ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.46125ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (2.5865ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (7.683167ms)
+(node:67051) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ offisielle Storebrand Innbo-kilder er lokale, uendrede og versjonerte (379.729958ms)
+✔ Storebrand tilbyr Standard og Super med dokumentert arv (2.219083ms)
+✔ forsikringssum er kundestyrt og Super beholder Standard som base (2.13ms)
+✔ Standard og Super har kildebaserte særgrenser (0.401833ms)
+✔ brann, elektrisk, vann og naturskade er separate sammenlignbare konsepter (0.184625ms)
+✔ midlertidig oppbevaring, krise og boligkostnader følger fullvilkåret (0.254916ms)
+✖ Super strukturerer uhell, tyveri ute, flytting, skadedyr, ID-tyveri og boligtilpasning (0.598333ms)
+✔ egenandeler skiller avtalt, myndighetsfastsatt og særskilt verdi (0.121834ms)
+✔ ansvar, rettshjelp og betinget privat yrkesskade bevarer omfanget (0.148958ms)
+✔ Tryg Innbo og Innbo Ekstra sammenlignes mot Storebrand Standard og Super (17.396208ms)
+✔ If Basis og Super sammenlignes mot Storebrand Standard og Super (9.423417ms)
+✔ Gjensidige Innbo og Pluss sammenlignes mot Storebrand Standard og Super (9.096666ms)
+✔ UI-formet runtime beholder Storebrand Super gjennom comparison og presentation (25.599125ms)
+✔ Bil og Innbo i samme Storebrand-avtale holder produkt, state og kilder adskilt (1.352125ms)
+✔ Innbo-prioriteringen lar sentrale Super-forskjeller gå foran ansvar og rettshjelp (4.182709ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 53
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1305.9135
+
+✖ failing tests:
+
+test at tests/storebrand-innbo-catalog.test.mjs:114:1
+✖ Super strukturerer uhell, tyveri ute, flytting, skadedyr, ID-tyveri og boligtilpasning (0.598333ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /50 000 kr per gjenstand/. Input:
+  
+  'Avtalt forsikringssum ved plutselig og uforutsett ytre skade under transport eller bæring ved flytting til ny bolig eller lagringsplass i Norge. Etter C.1.2 er skade utenfor boligen eller ved at ting mistes ned, faller ned eller velter begrenset til 100 000 kr per hendelse; dette gjelder også ved flytting.'
+  
+      at TestContext.<anonymous> (file:///Users/morten/Documents/forsikringsapp/tests/storebrand-innbo-catalog.test.mjs:118:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Avtalt forsikringssum ved plutselig og uforutsett ytre skade under transport eller bæring ved flytting til ny bolig eller lagringsplass i Norge. Etter C.1.2 er skade utenfor boligen eller ved at ting mistes ned, faller ned eller velter begrenset til 100 000 kr per hendelse; dette gjelder også ved flytting.',
+    expected: /50 000 kr per gjenstand/,
+    operator: 'match',
+    diff: 'simple'
+  }

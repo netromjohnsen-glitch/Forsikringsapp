@@ -1,0 +1,208 @@
+{
+  "status": "AUDIT_DATA_READY",
+  "head": "e8b7acb4dc9bed9cbcc1b80e691b78de39158c01",
+  "totalProducts": 164,
+  "eligibleProducts": 162,
+  "families": [
+    "Bil",
+    "Hus",
+    "Innbo",
+    "Reise",
+    "Snøscooter",
+    "Campingvogn",
+    "Tilhenger",
+    "MC",
+    "Bobil"
+  ],
+  "plans": 93,
+  "primary": 75,
+  "controls": 18,
+  "completed": 93,
+  "failed": 0,
+  "findings": 522,
+  "signatures": 156,
+  "unknowns": 1992,
+  "networkRequests": 0,
+  "positiveControls": [
+    {
+      "name": "Tryg Snøscooter Redning included-looking status og eksklusjonsordlyd",
+      "surfaced": true
+    },
+    {
+      "name": "Tryg Snøscooter valgfritt tillegg og Inkludert i produktnivået",
+      "surfaced": true
+    },
+    {
+      "name": "Tryg Snøscooter Førerulykke og Fører/passasjerulykke mulig overlapp",
+      "surfaced": true
+    },
+    {
+      "name": "Gjentatt Kasko → Kasko → Kasko-hierarki",
+      "surfaced": true
+    },
+    {
+      "name": "Interne avtaleetiketter",
+      "surfaced": true
+    },
+    {
+      "name": "Bil If/Frende parent/child og strukturell asymmetri",
+      "surfaced": true
+    },
+    {
+      "name": "Hus vann gjennom tak/yttervegg følgeskade og defektunntak",
+      "surfaced": true
+    }
+  ],
+  "uiCrossChecks": [
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__if__ordinary__if-bil-super__mot2-2__primary",
+      "family": "Bil",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "hus__tryg__ordinary__tryg-hus-ekstra__2026-01-01__vs__if__ordinary__if-hus-super__2023-09__primary",
+      "family": "Hus",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "innbo__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__vs__if__ordinary__if-innbo-super__ibo2-1__primary",
+      "family": "Innbo",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "reise__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__vs__if__ordinary__if-reise-super__2026-09-20-canonical__primary",
+      "family": "Reise",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "snøscooter__tryg__ordinary__tryg-snoscooter-kasko__null__vs__gjensidige__ordinary__gjensidige-snoscooter-kasko__null__primary",
+      "family": "Snøscooter",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "campingvogn__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__vs__gjensidige__ordinary__gjensidige-campingvogn-pluss__null__primary",
+      "family": "Campingvogn",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "tilhenger__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__vs__gjensidige__ordinary__gjensidige-tilhenger-kasko__null__primary",
+      "family": "Tilhenger",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "mc__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__vs__if__ordinary__if-mc-kasko__2024-03__primary",
+      "family": "MC",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "bobil__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__vs__if__ordinary__if-bobil-super__2022-06__primary",
+      "family": "Bobil",
+      "method": "REAL_REACT_COMPONENT_SSR",
+      "result": "MATCH"
+    },
+    {
+      "comparison_id": "mc__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__vs__fremtind__ordinary-sparebank1__fremtind-mc-kasko__null__primary",
+      "family": "MC",
+      "method": "REAL_REACT_COMPONENT_SSR_SCOPE_CONTROL",
+      "result": "MATCH"
+    }
+  ],
+  "determinism": [
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__if__ordinary__if-bil-super__mot2-2__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__gjensidige__ordinary__gj-bil-pluss__null__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__storebrand__ordinary__sb-bil-super__motor09__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__sparebank-1-fremtind__ordinary__sb1-bil-toppkasko__pmo-357-001-004__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__dnb-fremtind__ordinary__dnb-bil-topp__pmo-357-001-004__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__eika-fremtind__ordinary__eika-bil-topp__pmo-357-001-004__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__fremtind__ordinary__fremtind-bil-topp__pmo-357-001-004__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__frende__ordinary__frende-bil-utvidet__2026-01-01__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__if__ordinary__if-bil-super__mot2-2__vs__frende__ordinary__frende-bil-utvidet__2026-01-01__primary",
+      "identical": true
+    },
+    {
+      "comparison_id": "bil__gjensidige__ordinary__gj-bil-ansvar__null__vs__storebrand__ordinary__sb-bil-ansvar__motor09__primary",
+      "identical": true
+    }
+  ],
+  "sideSwap": [
+    {
+      "comparison_id": "bil__if__ordinary__if-bil-super__mot2-2__vs__tryg__ordinary__bil-kasko__pau25205__side-swap-control",
+      "forward_comparison_id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__if__ordinary__if-bil-super__mot2-2__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "hus__if__ordinary__if-hus-super__2023-09__vs__tryg__ordinary__tryg-hus-ekstra__2026-01-01__side-swap-control",
+      "forward_comparison_id": "hus__tryg__ordinary__tryg-hus-ekstra__2026-01-01__vs__if__ordinary__if-hus-super__2023-09__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "innbo__if__ordinary__if-innbo-super__ibo2-1__vs__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__side-swap-control",
+      "forward_comparison_id": "innbo__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__vs__if__ordinary__if-innbo-super__ibo2-1__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "reise__if__ordinary__if-reise-super__2026-09-20-canonical__vs__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__side-swap-control",
+      "forward_comparison_id": "reise__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__vs__if__ordinary__if-reise-super__2026-09-20-canonical__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "snøscooter__gjensidige__ordinary__gjensidige-snoscooter-kasko__null__vs__tryg__ordinary__tryg-snoscooter-kasko__null__side-swap-control",
+      "forward_comparison_id": "snøscooter__tryg__ordinary__tryg-snoscooter-kasko__null__vs__gjensidige__ordinary__gjensidige-snoscooter-kasko__null__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "campingvogn__gjensidige__ordinary__gjensidige-campingvogn-pluss__null__vs__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__side-swap-control",
+      "forward_comparison_id": "campingvogn__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__vs__gjensidige__ordinary__gjensidige-campingvogn-pluss__null__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "tilhenger__gjensidige__ordinary__gjensidige-tilhenger-kasko__null__vs__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__side-swap-control",
+      "forward_comparison_id": "tilhenger__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__vs__gjensidige__ordinary__gjensidige-tilhenger-kasko__null__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "mc__if__ordinary__if-mc-kasko__2024-03__vs__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__side-swap-control",
+      "forward_comparison_id": "mc__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__vs__if__ordinary__if-mc-kasko__2024-03__primary",
+      "normalized_semantics_identical": true
+    },
+    {
+      "comparison_id": "bobil__if__ordinary__if-bobil-super__2022-06__vs__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__side-swap-control",
+      "forward_comparison_id": "bobil__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__vs__if__ordinary__if-bobil-super__2022-06__primary",
+      "normalized_semantics_identical": true
+    }
+  ],
+  "durationMs": 1411.77
+}

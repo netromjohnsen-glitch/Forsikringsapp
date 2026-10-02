@@ -1,0 +1,1002 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "GJ-EX-001",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Produktnivå",
+      "dimension": "hierarki",
+      "value": "Snøscooteransvar/ulykke/rettshjelp;Delkaskobranntyveriutstyr/løsøre;Kaskoytreskade. CampingDelkaskobranntyveri/veihjelp,glassIPIDkonflikt;Kaskoglass/skadedyr/ytre;Plussfukt/ferie/høyere løsøre. TilhengerDelkaskobranntyveri/redning;Kaskoytre.",
+      "location": "1–3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-002",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ansvar",
+      "dimension": "sum/egenandel",
+      "value": "Personubegrenset,ting100mill,ordinæregenandel0.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-003",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "sum/egenandel",
+      "value": "Fører/passasjerdød100k/invaliditet200k,egenandel0.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-004",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "sum/geografi/egenandel",
+      "value": "100k,Norden,4k+20%,0Mekle.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-005",
+      "types": [
+        "snoscooter",
+        "tilhenger"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "EuropaunntattKosovo/Russland/Belarus;snøscooterrettshjelpNorden. Tilhengerrettshjelpbegrensningi template betyrikkeegenrettshjelpdekning.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-006",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Geografi",
+      "dimension": "mobil/fast",
+      "value": "MobilEuropa;faststedNorge/Sverige/Danmark/Finland. IPIDkortEuropamedunntattKosovo/Russland/Belarus.",
+      "location": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-007",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ung fører",
+      "dimension": "rabatt/egenandel",
+      "value": "Hvisrabattalleførereover23ogførermindre23:10kekstrakasko/10kvedkunansvar. Web30%rabattvedalleminst23.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-008",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Uten fører",
+      "dimension": "egenandel",
+      "value": "Trillerutenførerprivat5k,næring15k;ogsåvedingenannenegenandel.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-009",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Registrering",
+      "dimension": "opphør/lagring",
+      "value": "Kunregistrert;avregistrering/salg/vraking/tyveriavslutter;separateavregistrertforsikringmulig,ikkebeholddekningautomatisk.",
+      "location": "1;websommer",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-010",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Bane/utmark",
+      "dimension": "unntak",
+      "value": "Kjøringavsperretområde/bane/vei ogulovligutmarkikke;ikkeMCgodkjentkurscarveoututledet.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-011",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sikkerhet",
+      "dimension": "lås",
+      "value": "Låstkjøretøy/fortelt,tilhengerkoblingslås,nøklerseparat,ekstrahjulfast/innelåst;verdierikke synlig(nontilhenger).",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-012",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Brann/tyveri",
+      "dimension": "hendelser/egenandel",
+      "value": "Brann/lyn/eksplosjon,tyveriforsøk;snøscooter/camping6k;tilhenger4k.",
+      "location": "1;body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-013",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Løsøre",
+      "dimension": "sum/condition",
+      "value": "5ktinglåstoppbevaringsrom,skadetypevalgtdekning.",
+      "location": "webpersonligeting",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-014",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ekstrautstyr",
+      "dimension": "sum/valg",
+      "value": "10kfastmontert,økt sumkanavtalesIPID;hengerseparatutvidelseikkevalgtpublictemplate.",
+      "location": "1;IPID1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-015",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp/glass",
+      "dimension": "type applicability",
+      "value": "MOT05gjelderogsåATV,menveihjelp/glasskunATV. Snøscootertransporttil/fra reparasjonunntattselvdekketskade.",
+      "location": "IPID1;body",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-EX-016",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sesongpris",
+      "dimension": "andel",
+      "value": "Jan11,feb14,mar22,apr25,mai10,jun1,jul1,aug1,sep1,okt1,nov5,des8%;opphørsberegningikkejevn12del.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-017",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "kasko"
+      ],
+      "subject": "Kasko",
+      "dimension": "omfang/egenandel",
+      "value": "Plutseligytreskade;kollisjon/utforkjøring/velt/feilfyllingweb. Valg4–8k,fulltemplate8kikkestandarduniverselt.",
+      "location": "body;webFAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-018",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fysisk skade",
+      "dimension": "unntak",
+      "value": "Trim/tuning/softwareug odkjent,garanti/reklamasjon/verditap;Kaskogradvis/varmgang/rust/irr/tæring.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-019",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fastmontert ekstrautstyr",
+      "dimension": "sum",
+      "value": "Ubegrensetpåalle3nivåer;forteltinngårikke,måutvides.",
+      "location": "1,3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-020",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Løsøre",
+      "dimension": "sum/valg",
+      "value": "Delkasko/Kasko10k,Pluss50k;størrekundevalgvedkontakt;ogsåtingifortelt/tilbyggvedmedforsikringogdekkethendelse.",
+      "location": "webpersonligetingFAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-021",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fortelt/tilbygg",
+      "dimension": "kundevalg/sum",
+      "value": "Separattilvalgmedavtaltsum,publictemplate15kikkegenerellstandard;sammedekningshendelser,eksempelplatting/terrasse.",
+      "location": "1,3;webFAQ",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-022",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Tilbygg",
+      "dimension": "riving/rydding",
+      "value": "Inntil10%avtilbyggverdi,begrenset10%registrertforsikringssum.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-023",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Utleie",
+      "dimension": "valg",
+      "value": "Måavtalessærskilt,publicutleieikkevalgtikkeuniverseltnei;vedbet altutleieoppdateravtalen.",
+      "location": "FAQutleie",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-024",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Glass",
+      "dimension": "sum/egenandel",
+      "value": "Rute/takluke:reparasjon1000sum/0egenandel,skifte3kegenandel. Solcellepanelikkeglassmenkasko.",
+      "location": "1,3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-025",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko"
+      ],
+      "subject": "Glass",
+      "dimension": "source conflict",
+      "value": "IPIDnevnerDelkaskoglassmenownfull1/3barebrann/tyveri;nettsidensnivåmarkeringmåkontrolleres;ikketvingdekning.",
+      "location": "IPID1",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-EX-026",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Skadedyr",
+      "dimension": "omfang",
+      "value": "Gnagere/insekter/andreskadedyrinkludertogsåvinterlagring.",
+      "location": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-027",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Naturskade",
+      "dimension": "hendelser/egenandel",
+      "value": "Flom/storm/skredomfattetviautvidelseytreskade;flom20kegenandel;øvrigvalgtkasko6–12k,8ktemplate.",
+      "location": "1;webnaturskade",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-028",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko"
+      ],
+      "subject": "Naturskade",
+      "dimension": "unntak",
+      "value": "Flomogandrenaturskaderuttrykkeligunntatt.",
+      "location": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-029",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Kasko",
+      "dimension": "omfang/egenandel",
+      "value": "Plutseligytrepåvirkningogsåmedforsikretfortelt/tilbygg;egenandelkundens6–12kweb.",
+      "location": "3;FAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-030",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fysisk skade",
+      "dimension": "unntak",
+      "value": "Slitasje/gradvis,garanti,verditap;KaskoPlussujevnvei,ustabilgrunnsetning/frost/snøtyngde;Kaskoogsåfukt/varmgang/rust/irr/tæring.",
+      "location": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-031",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Fukt",
+      "dimension": "alder/condition",
+      "value": "Vegger/tak/gulv<=15årfraproduksjon;kontrollutenanmerkningavforhandler/campingverksted<1årførskadeoppdages;konstatertipoliseperioden.",
+      "location": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-032",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Feriegaranti",
+      "dimension": "sum/dager/condition",
+      "value": "Planlagtferieover6dkanikkegjennomføresfordek ketskade;dokumentertcampingleie/hotell1500dagmax14;ikkeutlån/utleie.",
+      "location": "3–4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-033",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Tegning",
+      "dimension": "alder",
+      "value": "Kankjøpesfremtilåretvognen14;separatfra15årfuktopphør.",
+      "location": "produktnivåPluss",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-034",
+      "types": [
+        "campingvogn"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Bruk",
+      "dimension": "mobil/fast",
+      "value": "Velgmobil/fast;fastvedflytting1–2gangeråret,omfangsammehendelsermengeografiforskjell;endringtilbyggmåmeldes.",
+      "location": "FAQfaststed",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-035",
+      "types": [
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ansvar",
+      "dimension": "trekkvogn",
+      "value": "Tredjepartskaderunderkjøringviabilansvar,egenhengercampingpoliseikkeansvar;IPIDcampingpåståransvar/ulykke/legalgeneriskmenfullkilderikke;konfliktikkeinheritedincluded.",
+      "location": "FAQansvar",
+      "source": "product"
+    },
+    {
+      "id": "GJ-EX-036",
+      "types": [
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp",
+      "dimension": "omfang/egenandel",
+      "value": "750;skade/tyveri/driftsstans,trekkfør er/passasjerulykkesykdomdød;tauingnærmesteverkstedinklutelåsing. Campingpåveiogkjørbarførskade;webhjemhjelpkonflikt.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-037",
+      "types": [
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp",
+      "dimension": "hjemtransport",
+      "value": "Vedavbruttpersonhendelse,funnetettertyveriellerikkereparerbar2virkedager;tilhengertransport førstetterreparert/funnet.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-038",
+      "types": [
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp",
+      "dimension": "begrensninger",
+      "value": "Maksobjektverdi,ikkevanligereiseutgifter/reparasjon/deler/gods;ikketrekkvognveihjelpiannetselskap;kanfører/passasjerkjørehjemikkehjemtransport.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-039",
+      "types": [
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Forsikret objekt",
+      "dimension": "sum/dekk",
+      "value": "Allehengertypermenikke campingviaweb;ettsettekstradekk/felger;markedsverdibegrensetkundesum,15ktemplateikkegenerelt.",
+      "location": "1,2;settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-040",
+      "types": [
+        "tilhenger"
+      ],
+      "tiers": [
+        "kasko"
+      ],
+      "subject": "Kasko",
+      "dimension": "omfang/egenandel",
+      "value": "Plutseligytrepåvirkning,hærverk/kollisjon/utforkjøring/velt;6koffentligtemplate,bevisbestemmer.",
+      "location": "1,2",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-041",
+      "types": [
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fysisk skade",
+      "dimension": "unntak",
+      "value": "Trim,gradvis/garanti/verditap;skadepåbatterialene;Kaskovarmgang/rustogbaneunntakmedNorgeførerkort/kurscarveout.",
+      "location": "2",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-042",
+      "types": [
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Utleie",
+      "dimension": "valg usikkert",
+      "value": "Publictemplateutleieikkevalgtmeningenfullutleieutvidelse,termsavailabilityogvalgkreverbevis.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-043",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Erstatning",
+      "dimension": "oppgjør",
+      "value": "Likeverdigdeler/markedsverdisammetypeårstand,forbedringsfradrag;kontant50%arbeid+mvaetterbetaling.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-044",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Utstyr",
+      "dimension": "aldersfradrag",
+      "value": "Ettermontertelektronikketter1år10%prpåbegyntårmax50.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-045",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Dyrpåkjørsel",
+      "dimension": "egenandel",
+      "value": "2kreduksjonkun<=3.5t;ingensikkervektantakelse.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-046",
+      "types": [
+        "snoscooter",
+        "tilhenger"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Totalskadegaranti",
+      "dimension": "ikke applicability",
+      "value": "Bil1yr20kifellesarketavgrensestilperson/varebil<=3.5t/bobil,ikke disseobjektene.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-047",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "hendelser",
+      "value": "Rettmessig fører/passasjer i/på/ved motorvogn når motorvogn/tilkobletutstyr direkte årsak; ytre hendelse, fall uten sykdom, kne/ankelvridning, navngitte brudd ved hopp.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-048",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "dødsfall vilkår",
+      "value": "Død innen1år; tidligere forskudd trekkes fra;50 000 kr dersom ingen barn/ektefelle/samboer eller forsørgede foreldre.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-049",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "invaliditet",
+      "value": "Proporsjonal medisinsk invaliditet, forfunksjon trekkes fra, ingen hvis død innen1år; senest3årsfastsettelse, samlet1million ved flere skadde motorvognpassasjerer.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-050",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "vesentlige unntak",
+      "value": "Sykdom/besvimelse/disposisjon, psykisk skade alene, navngitte muskeltilstander, tann tygging og tanninvaliditet; selvmord med snevert akutt sinnsforvirringsunntak.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-051",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "omfang",
+      "value": "Eier/bruker/fører i Norden; også etter salg og ved neste kjøp hvis tilsvarende objekt forsikret før kjøpet.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-052",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "kostnader",
+      "value": "Advokat/gebyr/vitner; ikke-rettsoppnevnt sakkyndig maks40% av sum/interesse; gruppesøksmål særgrenser20 000/500 000.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-053",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "mekling",
+      "value": "Mekle.no alternativ,0egenandel, ingen egenadvokatutgift, kan avslutte uten å miste videre rettshjelp.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-054",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "begrensninger",
+      "value": "Ikke ankegebyr/idømte kostnader/voldgift/før tvist; yrke, familie, straff, ikke forsikret kjøretøy, tidligere grunnlag ved nytegning unntatt; flytting unntak.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-055",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "flerpart/sum",
+      "value": "1–2parter100 000;3–10 250 000;11–25 500 000;26–49 750 000;50+1million; ikke over økonomisk interesse.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-056",
+      "types": [
+        "snoscooter"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4 000 kr pluss20% av dekkede utgifter; én per tvist. Mekle.no0 separat.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-057",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ettervern",
+      "dimension": "eierskifte",
+      "value": "14d etter eierskifte til ny eier tegner egen forsikring; automatisk opphør kjøretøy samordnes.",
+      "location": "general",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-058",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Generelle unntak",
+      "dimension": "krig",
+      "value": "Motorvogn unntatt UD-reiseadvarselsområde;6uker hvis allerede der når advarsel gis.",
+      "location": "general",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-059",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Generelle unntak",
+      "dimension": "terror/atom",
+      "value": "Terror selskapstak1milliard/48timershendelse og Nordenbegrensning med personskadeansvarunntak; atom/kjemisk unntak egne personskademekanismer.",
+      "location": "general",
+      "source": "full"
+    },
+    {
+      "id": "GJ-EX-060",
+      "types": [
+        "snoscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Administrasjon",
+      "dimension": "lov/frister/klage",
+      "value": "Avtalehierarki, årsfornyelse, melding, tvistprosedyre, personvern og klage er kildeinformasjon; ingen ordinære coveragefacts.",
+      "location": "general",
+      "source": "full"
+    }
+  ],
+  "page_reuse": "gjensidige-extension-page-reuse.json",
+  "scope_notes": "Exact type applicability; no ATV veilhelp/glass forsnøscooter, noBilnyverdifortrailer/snow. Publicexample choices not selection. IPIDcampingcopyerrors/conflicts retained."
+}

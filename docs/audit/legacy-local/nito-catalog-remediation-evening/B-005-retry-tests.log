@@ -1,0 +1,74 @@
+(node:67087) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (1.202625ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (8.514167ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (2.811042ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (2.020833ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (5.699958ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (0.94675ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.40025ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (1.735875ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.254333ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.152083ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.238542ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (0.936792ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (1.507917ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (0.99375ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (0.960166ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (0.96225ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (1.091167ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (3.461667ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (0.913167ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (2.21675ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.047042ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (10.131ms)
+✔ normalisering er forsikringstypeavgrenset (0.609041ms)
+(node:67088) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (1.434667ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (2.521542ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.447666ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.010458ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (12.563667ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (0.926458ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (18.390709ms)
+✔ B-002: explicit customer artwork information retains document authority (1.033208ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.212417ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.391709ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (23.474959ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (1.437917ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (9.661667ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.497917ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (2.503083ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (7.313709ms)
+(node:67089) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ offisielle Storebrand Innbo-kilder er lokale, uendrede og versjonerte (385.556125ms)
+✔ Storebrand tilbyr Standard og Super med dokumentert arv (2.239875ms)
+✔ forsikringssum er kundestyrt og Super beholder Standard som base (2.128417ms)
+✔ Standard og Super har kildebaserte særgrenser (0.388459ms)
+✔ brann, elektrisk, vann og naturskade er separate sammenlignbare konsepter (0.133584ms)
+✔ midlertidig oppbevaring, krise og boligkostnader følger fullvilkåret (0.225041ms)
+✔ Super strukturerer uhell, tyveri ute, flytting, skadedyr, ID-tyveri og boligtilpasning (0.192375ms)
+✔ egenandeler skiller avtalt, myndighetsfastsatt og særskilt verdi (0.078666ms)
+✔ ansvar, rettshjelp og betinget privat yrkesskade bevarer omfanget (0.127417ms)
+✔ Tryg Innbo og Innbo Ekstra sammenlignes mot Storebrand Standard og Super (16.747375ms)
+✔ If Basis og Super sammenlignes mot Storebrand Standard og Super (9.045125ms)
+✔ Gjensidige Innbo og Pluss sammenlignes mot Storebrand Standard og Super (8.779208ms)
+✔ UI-formet runtime beholder Storebrand Super gjennom comparison og presentation (23.739917ms)
+✔ Bil og Innbo i samme Storebrand-avtale holder produkt, state og kilder adskilt (1.315458ms)
+✔ Innbo-prioriteringen lar sentrale Super-forskjeller gå foran ansvar og rettshjelp (4.3195ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 54
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 953.790292

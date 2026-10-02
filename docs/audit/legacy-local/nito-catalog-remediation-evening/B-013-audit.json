@@ -1,0 +1,723 @@
+{
+  "status": "PASS",
+  "batch": "B-013",
+  "source_verification": "HUS10 PDF29 B.6.4.11 verified full table. Pipes material other than plastic; tanks/wells/bottom lines retained. Pool/outdoor bathing scope not restricted by indoor electric clause.20/5/80 and2/10/80 unchanged; qualifiers in label,value,structured exceptions. Own exact section repaired for only2 rows.",
+  "source_hashes": {
+    "catalog/sources/storebrand/hus/Vilkar-hus-og-hytte-HUS10.pdf": "d69c9ec3fc2edfd71c625dfcf9d19dc801dadfb3f627bc0105a78891a3eacd61"
+  },
+  "changed_products": [
+    "storebrand-hus-standard",
+    "storebrand-hus-super"
+  ],
+  "unchanged_products": 202,
+  "allowed_keys": [
+    "hus.aldersfradrag.utvendige_ror",
+    "hus.aldersfradrag.badeinnretning"
+  ],
+  "deltas": [
+    {
+      "product": "storebrand-hus-standard",
+      "view": "base",
+      "key": "hus.aldersfradrag.badeinnretning",
+      "before": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – elektrisk tilknyttet badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – vannbasseng og badeinnretninger, samt elektrisk tilknyttet innvendig badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    },
+    {
+      "product": "storebrand-hus-standard",
+      "view": "base",
+      "key": "hus.aldersfradrag.utvendige_ror",
+      "before": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – utvendige rør, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – brudd på utvendige rør og ledninger av andre materialer enn plast, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    },
+    {
+      "product": "storebrand-hus-standard",
+      "view": "product-comparison",
+      "key": "hus.aldersfradrag.badeinnretning",
+      "before": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – elektrisk tilknyttet badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.5",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      },
+      "after": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – vannbasseng og badeinnretninger, samt elektrisk tilknyttet innvendig badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.4.11",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      }
+    },
+    {
+      "product": "storebrand-hus-standard",
+      "view": "product-comparison",
+      "key": "hus.aldersfradrag.utvendige_ror",
+      "before": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – utvendige rør, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.5",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – brudd på utvendige rør og ledninger av andre materialer enn plast, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.4.11",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      }
+    },
+    {
+      "product": "storebrand-hus-standard",
+      "view": "storebrand-hus-utleie",
+      "key": "hus.aldersfradrag.badeinnretning",
+      "before": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – elektrisk tilknyttet badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – vannbasseng og badeinnretninger, samt elektrisk tilknyttet innvendig badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    },
+    {
+      "product": "storebrand-hus-standard",
+      "view": "storebrand-hus-utleie",
+      "key": "hus.aldersfradrag.utvendige_ror",
+      "before": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – utvendige rør, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – brudd på utvendige rør og ledninger av andre materialer enn plast, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    },
+    {
+      "product": "storebrand-hus-super",
+      "view": "base",
+      "key": "hus.aldersfradrag.badeinnretning",
+      "before": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – elektrisk tilknyttet badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – vannbasseng og badeinnretninger, samt elektrisk tilknyttet innvendig badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    },
+    {
+      "product": "storebrand-hus-super",
+      "view": "base",
+      "key": "hus.aldersfradrag.utvendige_ror",
+      "before": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – utvendige rør, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – brudd på utvendige rør og ledninger av andre materialer enn plast, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    },
+    {
+      "product": "storebrand-hus-super",
+      "view": "product-comparison",
+      "key": "hus.aldersfradrag.badeinnretning",
+      "before": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – elektrisk tilknyttet badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.5",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      },
+      "after": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – vannbasseng og badeinnretninger, samt elektrisk tilknyttet innvendig badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.4.11",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      }
+    },
+    {
+      "product": "storebrand-hus-super",
+      "view": "product-comparison",
+      "key": "hus.aldersfradrag.utvendige_ror",
+      "before": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – utvendige rør, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.5",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – brudd på utvendige rør og ledninger av andre materialer enn plast, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "storebrandHusTerms",
+            "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+            "termsNumber": "HUS10 / 45511h",
+            "effectiveFrom": "2025-08-15",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+            "section": "B.6.4.11",
+            "page": 29,
+            "version": "HUS10"
+          }
+        ]
+      }
+    },
+    {
+      "product": "storebrand-hus-super",
+      "view": "storebrand-hus-utleie",
+      "key": "hus.aldersfradrag.badeinnretning",
+      "before": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – elektrisk tilknyttet badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – vannbasseng og badeinnretninger, samt elektrisk tilknyttet innvendig badeinnretning",
+        "value": "2 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "badeinnretning",
+          "scope": "building",
+          "freeYears": 2,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder vannbasseng og annen badeinnretning som boblebad og badestamp, samt innvendig badeinnretning tilknyttet det elektriske anlegget."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    },
+    {
+      "product": "storebrand-hus-super",
+      "view": "storebrand-hus-utleie",
+      "key": "hus.aldersfradrag.utvendige_ror",
+      "before": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – utvendige rør, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.5",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – brudd på utvendige rør og ledninger av andre materialer enn plast, tanker, kummer og bunnledninger",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Fradraget gjelder alle kostnader knyttet til reparasjonen. Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset.",
+        "source": {
+          "documentId": "storebrandHusTerms",
+          "filename": "Vilkar-hus-og-hytte-HUS10.pdf",
+          "termsNumber": "HUS10 / 45511h",
+          "effectiveFrom": "2025-08-15",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/husforsikring/_/attachment/inline/bed0c667-5e49-4a74-a9fe-3fee13bb9393:4249e68c81c5f5b48d1fd01bb4aabb347f4d1976/vilkar-husforsikring.pdf",
+          "section": "B.6.4.11",
+          "page": 29,
+          "version": "HUS10"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ror",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "year",
+          "exceptions": [
+            "Gjelder brudd på utvendige rør og ledninger av andre materialer enn plast, tanker og kummer, samt bunnledninger i grunnen under huset."
+          ],
+          "calculationBasis": "Alle kostnader knyttet til reparasjonen"
+        }
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-0976",
+    "GAP-1022",
+    "GAP-5699",
+    "GAP-5700"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "063f2fff5bf4ea6e"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

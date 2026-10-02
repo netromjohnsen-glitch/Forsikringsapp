@@ -1,0 +1,876 @@
+{
+  "source_first": true,
+  "source_read_complete": true,
+  "rules": [
+    {
+      "id": "GJ-HU-001",
+      "scope": "all",
+      "subject": "Personkrets",
+      "dimension": "sikrede",
+      "value": "Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-002",
+      "scope": "all",
+      "subject": "Forsikrede ting",
+      "dimension": "bygning",
+      "value": "Bevisbygning med fastmontert utstyr; private solceller; frittstående bygg tilogmed10kvmBTA automatisk.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-003",
+      "scope": "all",
+      "subject": "Forsikrede ting",
+      "dimension": "utvendige rør",
+      "value": "Utvendige ledninger/utstyr fram til spredeledning eller offentligledning; brønn/borehull selv unntatt.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-004",
+      "scope": "all",
+      "subject": "Hage",
+      "dimension": "omfang",
+      "value": "Inntil5dekar inkludert utvendig badekilde/basseng.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-005",
+      "scope": "all",
+      "subject": "Brygge",
+      "dimension": "sum/årsaker",
+      "value": "Fast brygge tilhørende bygning100k kun brann/natur; ikke flytebrygge/landgang/molo også som fundament.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-006",
+      "scope": "all",
+      "subject": "Bygningsobjekter",
+      "dimension": "unntak",
+      "value": "Hobbyveksthus, tank/fyrkjelmineralolje, uregistrertsidebygg over10kvm er ikke dekket.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-007",
+      "scope": "all",
+      "subject": "Bygging",
+      "dimension": "gjenstander",
+      "value": "Oppføring/rehabilitering/tilbygg/påbygg: materialer,brakker,lagerskur,containere påforsikringssted.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-008",
+      "scope": "all",
+      "subject": "Bygging",
+      "dimension": "begrensninger",
+      "value": "Tyveri materialer ute ikke dekket; snø/vindunderstorm ikke ved uferdig utvendigarbeid; Plussutelukker da også utettbygning.",
+      "standard_pages": "4",
+      "pluss_pages": "4–5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-009",
+      "scope": "all",
+      "subject": "Brann",
+      "dimension": "hendelser",
+      "value": "Brann/lyn/eksplosjon/nedsoting/elektrisk; ikke svimerke/gnist utenbrann.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-010",
+      "scope": "all",
+      "subject": "Vann",
+      "dimension": "hendelser",
+      "value": "Rør/installasjon/akvarium; grunn/terrengvann mådanne vannspeil; åpning etter dekketbygning; utettvåtrom følgeskadepåtilstøtenderom.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-011",
+      "scope": "standard",
+      "subject": "Vann",
+      "dimension": "utett bygning/våtrom",
+      "value": "Ikke vann gjennom utettbygning, grunnfuktutenvannspeil, utettvåtrommet selv innenfor bjelkelag/stenderverk.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-012",
+      "scope": "pluss",
+      "subject": "Vann",
+      "dimension": "utett bygning",
+      "value": "Innvendig følgeskadevedutettbygning overbakkeplan; ikke feil/mangel/tak-veggselv; fullverdi kreves ogutett tak eldreenn50år unntatt.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-013",
+      "scope": "all",
+      "subject": "Tyveri",
+      "dimension": "bygning",
+      "value": "Tyveri og skade etter tyveri frabygning.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-014",
+      "scope": "rental",
+      "subject": "Utleie",
+      "dimension": "valg/hendelser",
+      "value": "Måståibevis:leietakersvilletskadeverk,6mndmislighold én gangperleietaker,20kutkastelse,husleietapgodkjentvarigoppholdsrom etterdekketskade.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-015",
+      "scope": "rental",
+      "subject": "Utleie",
+      "dimension": "egenandel",
+      "value": "10k både misligholdt husleie ogskadeverkavleietaker; ikke Innbo-regelen.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-016",
+      "scope": "rental",
+      "subject": "Utleie",
+      "dimension": "begrensninger",
+      "value": "Ikke rettmessig tilbakeholdtleie,merenn6mndvedhus+innbo,utgifterutovermislighold,vask/rydding/hardbruk.",
+      "standard_pages": "3–4",
+      "pluss_pages": "3–4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-017",
+      "scope": "rental",
+      "subject": "Utleie",
+      "dimension": "kontrakt/tid",
+      "value": "Skriftligleiekontrakt meddepositum/bankgaranti,tvangsgrunnlag;varselinnen14d,14dbetalingsfrist,begjæringinnen6uker.",
+      "standard_pages": "1,17",
+      "pluss_pages": "1,18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-018",
+      "scope": "all",
+      "subject": "Skadedyr",
+      "dimension": "skade og bekjempelse",
+      "value": "Levende mus/rotter/andreskadedyribygning;fysiskskade/svekketisolasjon/lukt avdyr.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-019",
+      "scope": "all",
+      "subject": "Skadedyr",
+      "dimension": "avgrensninger",
+      "value": "Ikke fredededyr/kjæledyr,forebygging,utrevetutenavtale,isolasjonutenpåvistsvekkelse eller rester/ekskrementerutenbygningsskade.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-020",
+      "scope": "standard",
+      "subject": "Råte/insekter",
+      "dimension": "baseunntak",
+      "value": "Standardunntar råte/soppoginsektbekjempelse/skade uten særskiltutvidelse.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-021",
+      "scope": "all",
+      "subject": "Naturskade",
+      "dimension": "hendelser",
+      "value": "Lovbestemtnatur8kegenandel; Standardtekst6årsaker,Plussuttrykkeligogsåflodbølge/meteoritt.",
+      "standard_pages": "1,4",
+      "pluss_pages": "1,4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-022",
+      "scope": "all",
+      "subject": "Annenplutseligskade",
+      "dimension": "omfang",
+      "value": "Andreplutseligeuforutsetteskaderdekket; ikke baredeopplistedeårsaker.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-023",
+      "scope": "all",
+      "subject": "Andreunntak",
+      "dimension": "årsaker",
+      "value": "Vedlikehold/slitasje,garantibetaler,fukt/sopp,bakterier,heksesot,kosmetikk/punktertglass,tele/setning/fundamentering,materialfeil/montasje inklfølgeskade unntatt medPlussuttrykkeligeutvidelser.",
+      "standard_pages": "3–4",
+      "pluss_pages": "3–4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-024",
+      "scope": "all",
+      "subject": "Hage/basseng/brygge",
+      "dimension": "vær/dyr",
+      "value": "Ikke dyr/insekt/frost/sjøgang/annetklima; flomlignendesituasjonlikeveldekket.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-025",
+      "scope": "all",
+      "subject": "Snø",
+      "dimension": "glasshagestue",
+      "value": "Snø/istyngde påhagestueogandreutestueravglassunntatt.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-026",
+      "scope": "all",
+      "subject": "Drensledning",
+      "dimension": "årsaker",
+      "value": "Barebrann/natur; andreårsakerunntatt.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-027",
+      "scope": "pluss",
+      "subject": "Håndverkerfeil våtrom",
+      "dimension": "utløser/tid",
+      "value": "Skadepåvåtrom etter material/konstruksjon/prosjektering/montasjefeil avfaglært/godkjent;oppståttforsikringstid ogkonstatertinnen10åretterarbeid.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-028",
+      "scope": "pluss",
+      "subject": "Håndverkerfeil våtrom",
+      "dimension": "begrensninger",
+      "value": "Ikke eget/ufaglærtarbeid,bakterier/heksesot,kosmetikk,betalingsdyktiggarantiansvarlig.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-029",
+      "scope": "pluss",
+      "subject": "Håndverkerfeil øvrig",
+      "dimension": "utløser/tid",
+      "value": "Følgeskaderpåbygning avfaglært/godkjent feil;oppståttitid ogkonstatertinnen10år.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-030",
+      "scope": "pluss",
+      "subject": "Håndverkerfeil øvrig",
+      "dimension": "begrensninger",
+      "value": "Ikke selvefeil,tilkomstutoverfølgeskadereparasjon,drensledning,eget/ufaglærtarbeid,søl/bakterier/heksesot,kosmetikk,betalingsdyktiggaranti.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-031",
+      "scope": "all",
+      "subject": "Rullestol",
+      "dimension": "sum/frister",
+      "value": "250k ombygging;10åretterulykke/10årettermedfødt rullestoltildeling senest20årfødsel;ikke dobbelthusinnbo eller medisinskkomplikasjon.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-032",
+      "scope": "all",
+      "subject": "Etter skade",
+      "dimension": "utoversum",
+      "value": "Riving/rydding/bortkjøring/deponering,prisstigning,øktvannavgift ogoffentligpåbudtillegg.",
+      "standard_pages": "5",
+      "pluss_pages": "6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-033",
+      "scope": "all",
+      "subject": "Brukstap",
+      "dimension": "egen bolig",
+      "value": "Markedsleie for egenbebodd bolig veddekketskade/redning/blokkertadkomst;10millionmaksavtaltsum fornaturskade/blokkertadkomst.",
+      "standard_pages": "5",
+      "pluss_pages": "6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-034",
+      "scope": "all",
+      "subject": "Offentlig påbud",
+      "dimension": "unntak",
+      "value": "Ingen omleggingutvendigevann-kloakk/renseanleggsomfølgeavlekkasje.",
+      "standard_pages": "5",
+      "pluss_pages": "6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-035",
+      "scope": "rot",
+      "subject": "Råte",
+      "dimension": "fullverdi/omfang",
+      "value": "Fullverdibygning:materialnedbrytningavråtesopp/treødeleggendeinsekter;Standardvalgfrittnåravtalt.",
+      "standard_pages": "6",
+      "pluss_pages": "6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-036",
+      "scope": "rot",
+      "subject": "Råte",
+      "dimension": "unntak",
+      "value": "Ikke skadeutviklingfør/etterdekning;utvendigtre/dører/vinduer/lekter/laft,blåved/svertesopp/mugg/kosmetikk,næring/landbruk,forebygging/vedlikehold.",
+      "standard_pages": "6",
+      "pluss_pages": "6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-037",
+      "scope": "rot",
+      "subject": "Insekter",
+      "dimension": "bekjempelse",
+      "value": "Stokkmaur/husbukk/borebille/kakerlakk/veggedyr/skjeggkre/andreskadeinsekter;metodebestemmesavselskap;ikkeaktivitetfør/etterelleroppryddingdøde/preparater.",
+      "standard_pages": "6",
+      "pluss_pages": "6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-038",
+      "scope": "rot",
+      "subject": "Råte/insekter",
+      "dimension": "egenandel",
+      "value": "Pluss6k skader,2k bekjempelse; produktside6kråte/2kskadeinsekter gir muliggrensekonfliktfysiskinsektskade.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-039",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "sum/sted",
+      "value": "EierforsikreteiendomiNorden5millperhendelse/serieskade4kegenandel.",
+      "standard_pages": "1,6–7",
+      "pluss_pages": "1,7–8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-040",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "tillegg",
+      "value": "Plutseligforurensning,landbruksomsetninghøyst100k,ulønnetarbeidshjelp. Byggeansvarinklgraving/sprengningog2åretteropphørforårsaketitiden.",
+      "standard_pages": "6",
+      "pluss_pages": "7",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-041",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "unntak",
+      "value": "Yrke/familie/lånte/leieting/kontrakt,gradvisforurensning/fukt,sopp/råte,styreverv,navngittekjøretøy ogdroneunntak.",
+      "standard_pages": "6",
+      "pluss_pages": "7",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-042",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "grunndimensjoner",
+      "value": "EierforsikreteiendomNorden100k;4k+20%;0Mekle;multipart250k/500k/750k/1m,økonomiskinteressetak.",
+      "standard_pages": "8–10",
+      "pluss_pages": "9–11",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-043",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "tvistgrener",
+      "value": "Ettersalg/førovertakelse/visse100klandbruk;husprioritetforaninnbo;gruppesøksmål20kavvist/500kfremmet,40%sakkyndig.",
+      "standard_pages": "8–10",
+      "pluss_pages": "9–11",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-044",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Familie/yrke/tidligeregrunnlag/unndragelsemv;Mekleegenadvokatikke,oppbruddbevarerrett. HTU15kpositivogHTUunntakmotstrid.",
+      "standard_pages": "8–10",
+      "pluss_pages": "9–11",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-045",
+      "scope": "all",
+      "subject": "Helsehjelp",
+      "dimension": "hvem/hvor",
+      "value": "Husstandsomdefinert,heleverden;ikkepåstandomsykehusutgift eller akutthjelp.",
+      "standard_pages": "11",
+      "pluss_pages": "12",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-046",
+      "scope": "all",
+      "subject": "Helsehjelp",
+      "dimension": "innhold",
+      "value": "Fri allmennlegevideo24/7,1psykologvideo/person/12mnd,1fysioterapeutvideo/person/12mnd,selvhjelp,utvalgtetjenesterabatt/digitalveiviser.",
+      "standard_pages": "11",
+      "pluss_pages": "12",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-047",
+      "scope": "all",
+      "subject": "Helsehjelp",
+      "dimension": "unntak",
+      "value": "Akutt/øyeblikkelighjelpogbehandlingsutgiftersykehus/klinikkikkeomfattet.",
+      "standard_pages": "11",
+      "pluss_pages": "12",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-048",
+      "scope": "all",
+      "subject": "Generelt",
+      "dimension": "materiell",
+      "value": "Forsikringsbevisførvilkår;14dagereierskifteettervern,krig/terror/ABCtypedifferensiert.",
+      "standard_pages": "12–13",
+      "pluss_pages": "13–14",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-049",
+      "scope": "all",
+      "subject": "Generelt",
+      "dimension": "administrasjon",
+      "value": "Fornyelse/klage/opplysningsplikt/skjønn/personvern holdesutenordinæresammenligningsfacts.",
+      "standard_pages": "12–15",
+      "pluss_pages": "13–16",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-050",
+      "scope": "all",
+      "subject": "Fullverdi",
+      "dimension": "vilkår",
+      "value": "Ingenverdiøkningsfradragvedsammeformål/stedinnen5år;annetted/formålfradragforheleverdiøkning.",
+      "standard_pages": "16",
+      "pluss_pages": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-051",
+      "scope": "all",
+      "subject": "Svanemerket",
+      "dimension": "sum/vilkår",
+      "value": "250kmerkostnadtotalskade nårGjensidigestårforgjenoppføringpåsammeplass/formål.",
+      "standard_pages": "16",
+      "pluss_pages": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-052",
+      "scope": "all",
+      "subject": "Totalskade",
+      "dimension": "terskel",
+      "value": "Størreenn75%avgjenoppføringskostnad girretttiltotalskadeoppgjør utenrestverdifradrag;resterrevet/fjernetinnen2år.",
+      "standard_pages": "16",
+      "pluss_pages": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-053",
+      "scope": "all",
+      "subject": "Førsterisiko",
+      "dimension": "oppgjør",
+      "value": "Avtaltsuminnen5år;verdiøkningover40%markedsverdifradrag;nyplass/formålallverdiøkning.",
+      "standard_pages": "16",
+      "pluss_pages": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-054",
+      "scope": "all",
+      "subject": "Manglende gjenoppføring",
+      "dimension": "oppgjør",
+      "value": "Etter5år lavesteavnormaltberegnetoppgjør/verdifall;byggsomskullerivesbarebrukbarematerialer.",
+      "standard_pages": "16–17",
+      "pluss_pages": "17–18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-055",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "arbeid/form",
+      "value": "Selskapvelgerreparasjon/gjenoppbygging/kontant/leverandør;75%arbeidsatsutenfaktura,300krøvrigtime,kontantkostnadstak.",
+      "standard_pages": "16",
+      "pluss_pages": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-056",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "hage/import",
+      "value": "Planterungvekst;importvareutennorskforhandlerkjøpesuminklfrakt/toll.",
+      "standard_pages": "16",
+      "pluss_pages": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-057",
+      "scope": "all",
+      "subject": "Fullverdi",
+      "dimension": "underforsikring",
+      "value": "Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "standard_pages": "2,17",
+      "pluss_pages": "2,18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-058",
+      "scope": "all",
+      "subject": "Brukstap",
+      "dimension": "varighet",
+      "value": "Normalbygginginklmyndighetsbehandling;ingenbygging3mnd;egenmarkedsleie/leidkontrakt,shortstaybareinngåttekontrakter;innspart/renteavkortes.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-059",
+      "scope": "all",
+      "subject": "Brukstap",
+      "dimension": "dokumentasjon",
+      "value": "Uten dokumenterteboutgifterannetsted begrensestil50%avgjeldendeleiepris.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-060",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "utvendigerør",
+      "value": "Ikkeplast/glassfiber5%perpåbegyntårfra20,max80,eldstedelbestemmer;elektriskutstyregentabell.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-061",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "luftluftvarmepumpe",
+      "value": "10%perpåbegyntårfra5,maks80.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-062",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "annenVVS",
+      "value": "Oppvarming/kjøling/ventilasjonVVS10%fra7,maks80;tilhørenderør0.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-063",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "hvitevarer",
+      "value": "Integrerte10%fra5,maks80;reparasjon0.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-064",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "varmekabler/bereder",
+      "value": "10%fra10,maks80;punktreparasjon0.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-065",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "badekilde",
+      "value": "Utvendigmedutstyr10%fra5,maks80.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-066",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "fritak/beregningsbasis",
+      "value": "Kundenfradragpåskadetobjekt+nødvendigarbeid;ingenfradragfullverditotalskade/brann/natur.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-067",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "fritak",
+      "value": "Vannstopphelerørsystem,elsjekksiste5årgodkjentkontrollør+attest,skadebarealarm/overspenningsvern:ingenegenandel.",
+      "standard_pages": "17",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-068",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "egenandel",
+      "value": "Reduksjoninntil8kvedbrann/tyverinåralarmvarslerogtilkobletstasjon;ikkegenereltfritakalleskader.",
+      "standard_pages": "17–18",
+      "pluss_pages": "18–19",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-069",
+      "scope": "all",
+      "subject": "Naturskade",
+      "dimension": "nytomt",
+      "value": "Nektetgjenoppføringetterfare,ellerustabiltomt,hus/uthussomtotalskadeogtomtmarkedsverdimaks5dekar;avtalt sikringalternativ.",
+      "standard_pages": "18",
+      "pluss_pages": "19",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-070",
+      "scope": "all",
+      "subject": "Offentlig påbud",
+      "dimension": "vilkår",
+      "value": "Nødvendigedekketbygningspåbud/undersøkelse/fundamentering;ikkenyttearealtap,tidligerehjemmel,antikvarisk/urasjonell/midlertidigellerplanlagtrehabilitering;arealforhold.",
+      "standard_pages": "18",
+      "pluss_pages": "19",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-071",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "standard/valg",
+      "value": "8kstandard;valg8k–20k; særansvar4k,natur8k,glass3k,rettshjelp4k+20%.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-072",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "frost/bygningsvern",
+      "value": "Låsing,nøkler,varme;ikke-fast-beboddover3døgnstoppkran+tømming;snø/isfjernes,slukvårhøst,synligfeilutbedres;godkjenthåndverker.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-073",
+      "scope": "all",
+      "subject": "Fraflyttet",
+      "dimension": "dekning",
+      "value": "Etter12mndubeboddkunbrann/naturmedmindreavtalt.",
+      "standard_pages": "2",
+      "pluss_pages": "2",
+      "source": "full"
+    },
+    {
+      "id": "GJ-HU-074",
+      "scope": "all",
+      "subject": "Bryggeutvidelse",
+      "dimension": "tilvalg",
+      "value": "IPIDtilbyrhøyerefastbryggesum;intetfastbeløpellerkundensvalgioriginalen.",
+      "standard_pages": "2",
+      "pluss_pages": "2",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-HU-075",
+      "scope": "standard",
+      "subject": "Råteutvidelse",
+      "dimension": "tilvalg",
+      "value": "IPID/produktsidetilbyrråte/skadeinsektsutvidelseforHusStandard;eksaktbevis avgjøromfang/egenandel.",
+      "standard_pages": "2",
+      "pluss_pages": "2",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-HU-076",
+      "scope": "all",
+      "subject": "Vann/rør",
+      "dimension": "tining",
+      "value": "Produktsidesierhjelptiltiningav utvendigerør;ingenegenbeløpsgrenseder.",
+      "standard_pages": "Brann-, vann- og naturskader",
+      "pluss_pages": "Brann-, vann- og naturskader",
+      "source": "product"
+    },
+    {
+      "id": "GJ-HU-077",
+      "scope": "all",
+      "subject": "Helsehjelp",
+      "dimension": "rabatt",
+      "value": "Produktside15%fysiskDrDropinogutvalgtetjenester;egenvalgtbehandlingerikkeforsikringsoppgjør.",
+      "standard_pages": "Helsehjelp24/7",
+      "pluss_pages": "Helsehjelp24/7",
+      "source": "product"
+    },
+    {
+      "id": "GJ-HU-078",
+      "scope": "all",
+      "subject": "Håndverker",
+      "dimension": "klageforutsetning",
+      "value": "Produktsideklagetilhåndverkerførstinnen5år;følgeskadehvisikkereparerer/konkursinnen10år.",
+      "standard_pages": "Skade på våtrom/Følgeskader håndverksfeil",
+      "pluss_pages": "Skade på våtrom/Følgeskader håndverksfeil",
+      "source": "product"
+    },
+    {
+      "id": "GJ-HU-079",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "tilvalgpakker",
+      "value": "Vann/brann160krmnd;vann/brann/innbrudd359krmnd,utstyrleies,ingenbinding;seegneoppsigelsesregler.",
+      "standard_pages": "Alarmtjenesten",
+      "pluss_pages": "Alarmtjenesten",
+      "source": "smartpage"
+    },
+    {
+      "id": "GJ-HU-080",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "installasjon",
+      "value": "Brann/vannselvgratisellers2050;innbruddinstallasjoninkludert;kostnadsfribytteavannetalarmogingenbetalinggamme loppsigelsestid.",
+      "standard_pages": "Kostnadsfri installasjon",
+      "pluss_pages": "Kostnadsfri installasjon",
+      "source": "smartpage"
+    },
+    {
+      "id": "GJ-HU-081",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "utrykning",
+      "value": "24/7stasjon,vektervedtilgjengelighet/adkomst;ikkegaranti ihel eNorgeellereksakttid;misbrukkanfaktureres.",
+      "standard_pages": "6",
+      "pluss_pages": "6",
+      "source": "smartterms"
+    },
+    {
+      "id": "GJ-HU-082",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "aktivering",
+      "value": "Alarmtjenestenstarterførstetterkontaktprosedyre,ikkealenefakturering;kundemåvedlikeholdekontakt/utstyr.",
+      "standard_pages": "7",
+      "pluss_pages": "7",
+      "source": "smartterms"
+    },
+    {
+      "id": "GJ-HU-083",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "ansvarsgrense",
+      "value": "Tjenestefeildirektetap maks100k,samsvarvilkår9;ingenhendelsesgaranti,indirekte/næring/nett-strømfeilunntatt.",
+      "standard_pages": "9",
+      "pluss_pages": "9",
+      "source": "smartterms"
+    },
+    {
+      "id": "GJ-HU-084",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "utstyr/sky",
+      "value": "Utstyrleidmåreturneres;bestilteekstrakamera12månedskyellersnyavtale;ringeklokkesomkjøpesegen.",
+      "standard_pages": "1.4,1.7,10",
+      "pluss_pages": "1.4,1.7,10",
+      "source": "smartterms"
+    },
+    {
+      "id": "GJ-HU-085",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "oppsigelse",
+      "value": "Ingenfristvedbortfaltbehov,1mndvedselskapsflytting;flyttingfraadresseavslutter,nyadressekreveravtaleogdekning.",
+      "standard_pages": "8,10",
+      "pluss_pages": "8,10",
+      "source": "smartterms"
+    },
+    {
+      "id": "GJ-HU-086",
+      "scope": "smart",
+      "subject": "Smart",
+      "dimension": "pakkeinnhold",
+      "value": "4røykvarsler,1vannsensor,1sentral;innbruddleggersirene/kamera/panel/2magnet;andreutstyrkanvelges,egnemedlemsfordelikkeordinary.",
+      "standard_pages": "Hva inneholder alarmtjenesten",
+      "pluss_pages": "Hva inneholder alarmtjenesten",
+      "source": "smartpage"
+    }
+  ],
+  "source_files": [
+    "Hus-Standard-alminnelige-vilkar.pdf",
+    "Hus-Pluss-alminnelige-vilkar.pdf",
+    "IPID-Husforsikring-EAP01.pdf",
+    "Husforsikring-produktside.html",
+    "Hus-Smart-produktside.html",
+    "Hus-Smart-alarmvilkar.html"
+  ],
+  "reuse": "gjensidige-hus-page-reuse.json; only exact normalized matches reused",
+  "notes": "No onlinefreshnessclaim; HTML repeated responsive copies read, menus/admin notcatalogdimensions; full package before catalog matching."
+}

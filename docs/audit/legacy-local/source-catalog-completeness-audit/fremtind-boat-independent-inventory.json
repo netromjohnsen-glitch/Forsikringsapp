@@ -1,0 +1,420 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FBT-01",
+      "subject": "Sikret",
+      "dimension": "persons",
+      "value": "Eier/rettmessigfører/panthaveravtalt;14dny-eier tilnyavtale.",
+      "location": "PMO380§1s1",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-02",
+      "subject": "Geografi",
+      "dimension": "scope",
+      "value": "Europa200nmfrafastland inklIsland/Svalbard/UK/Azorer/Madeira/Kanari;redningNorden.",
+      "location": "§2s1",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-03",
+      "subject": "Egenandel",
+      "dimension": "choice",
+      "value": "Bevisvalg;høyesteperhendelse;reduksjonførfratrekk.",
+      "location": "§4s1",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-04",
+      "subject": "Forsikrede ting",
+      "dimension": "limits",
+      "value": "Båt/motor/seil/brukstilbehørinnenbevis;fastutstyr20000ogløsøre50000i tillegg;ikkemobil/cash/papir/smykke/klokke.",
+      "location": "Mini§1.1s1",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-05",
+      "subject": "Vannscooterplattform",
+      "dimension": "scope",
+      "value": "Tilhørendeflytedokk30000kunvannscooter,ikkeautomatiskallbåt.",
+      "location": "Mini§1.1s1",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-06",
+      "subject": "Ansvar",
+      "dimension": "scope",
+      "value": "Eier/føreransvar;ikkeerverv.",
+      "location": "Mini§1.2s1/5.1s4",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-07",
+      "subject": "Ulykke",
+      "dimension": "scope",
+      "value": "Fører/passasjer,ikkeerverv.",
+      "location": "Mini§1.3s1–2",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-08",
+      "subject": "Brann",
+      "dimension": "trigger",
+      "value": "Brannlyn/eksplosjon.",
+      "location": "Mini§2.1s2",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-09",
+      "subject": "Natur",
+      "dimension": "trigger",
+      "value": "Skredstormflomstormflo/hagl.",
+      "location": "Mini§2.2s2",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-10",
+      "subject": "Tyveri",
+      "dimension": "trigger",
+      "value": "Tyveri/forsøk/hærverk.",
+      "location": "Mini§2.3s2",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-11",
+      "subject": "Transport",
+      "dimension": "trigger",
+      "value": "Nærmesteverkstedetterdekketskade;hjemtransportfunnetstjåletbåt.",
+      "location": "Mini§2.4s2",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-12",
+      "subject": "Redning",
+      "dimension": "trigger",
+      "value": "Sleptryggfortøyningdrift/plutseligskade,bergelønnlovverk,750egenandel;Norden.",
+      "location": "Mini§2.5–6s2/4.2s4",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-13",
+      "subject": "Vrak",
+      "dimension": "trigger",
+      "value": "Offentligpålagt/dekketskade.",
+      "location": "Mini§2.7s2",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-14",
+      "subject": "Forsikringssum",
+      "dimension": "customer",
+      "value": "Kundenfastsettermarkedsverdi,avtaltsumtak.",
+      "location": "Mini§3.1–2s2–3",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-15",
+      "subject": "Reparasjon",
+      "dimension": "settlement",
+      "value": "Selskapvalg,slitasjefradrag,ingenreparasjonsansvar,arbeid50%kontanteksMVA,ingenverditap/garanti/overtid/flyfrakt.",
+      "location": "Mini§3.3s3",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-16",
+      "subject": "Tyveri",
+      "dimension": "waiting",
+      "value": "21d førutbetaling,markedsverdiinntilbevis,tilbakekjøp21d.",
+      "location": "Mini§3.4s3",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-17",
+      "subject": "Løsøre",
+      "dimension": "depreciation",
+      "value": "Kjøpsbevis;fradragalder/slitasje/brukstid,ingenegen1/3-terskelher.",
+      "location": "Mini§3.5–6s3",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-18",
+      "subject": "Aldersfradrag",
+      "dimension": "table",
+      "value": "Kalesje2frieår10%;drev3år10%;rigg5år10%;undervannshus3år10%;påbegyntårmaks60%.",
+      "location": "Mini§3.7s4",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-19",
+      "subject": "Utleie",
+      "dimension": "condition",
+      "value": "Uavtaltutleieforholdsmessigreduksjon;Kaskoikkeutenbevis.",
+      "location": "Mini§3.10s4/Kasko§2.1s5",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-20",
+      "subject": "Gjenfinning",
+      "dimension": "deductible",
+      "value": "FGsøksystemtyveri4000reduksjon.",
+      "location": "Mini§4.1s4",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-21",
+      "subject": "Ansvar",
+      "dimension": "sum_ambiguity",
+      "value": "PDF skriver 3020000 millioner SDR/person og1510000million SDR/ting;ekstra millionord dimensjonaltfeil/uklart. Ikkeeksternlovtolkningnå.",
+      "location": "Mini§5.1s4",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-22",
+      "subject": "Ansvar",
+      "dimension": "exclusions",
+      "value": "Kontrakt/låntleid/oppreisning/familie/medeier/erverv/forsett/gradvisforurensning/transport/motorhastighetsregatta.",
+      "location": "Mini§5.1s4",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-23",
+      "subject": "Ansvar",
+      "dimension": "settlement",
+      "value": "Fysiskperson/ting ogderesøkonomisktap;førstkonstatertperioden;egneutredningskosti tillegg.",
+      "location": "Mini§5.2–4s5",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-24",
+      "subject": "Kasko løsøre/jolle",
+      "dimension": "limits",
+      "value": "Tilbehør/løsøre100000samlet;jolle≤12fot≤15HK50000.",
+      "location": "Kasko§1.1s5",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-25",
+      "subject": "Kasko",
+      "dimension": "trigger",
+      "value": "Kollisjon/kantring/synk/mastbom/opplagtransport/sjøsetting/forurensetdrivstoff/feilfylling/seilregatta.",
+      "location": "Kasko§2.1s5–6",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-26",
+      "subject": "Kasko",
+      "dimension": "exclusions",
+      "value": "Erverv/uavtaltutleie/motorhastighet/garanti/nedbørfrostis(menisberøringboblehavninkl)/varmgang;isolertmotorseilkunannen dekketskade.",
+      "location": "Kasko§2.1s5–6",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-27",
+      "subject": "Ferieavbrudd",
+      "dimension": "limits",
+      "value": "Planlagt>3d;dekketskade;1000/dag10dnormalrep;leiebåt/bil/losji,godkjentdokumentert.",
+      "location": "Kasko§2.2s6",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-28",
+      "subject": "Ung fører",
+      "dimension": "deductible",
+      "value": "Under23ogikkeforsikringstaker+6000.",
+      "location": "Kasko§4.1s6",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-29",
+      "subject": "Topp løsøre",
+      "dimension": "sum",
+      "value": "Ubegrensetpersonligeeiendeler,øvrigeunntakMini.",
+      "location": "Topp§1.1s6",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-30",
+      "subject": "Topp ferie",
+      "dimension": "limits",
+      "value": "1500/dag15dnormalrep;planlagt>3d,godkjentdokumentertleiebåt/bil/losji.",
+      "location": "Topp§2.1s6–7",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-31",
+      "subject": "Avbrutt båttur",
+      "dimension": "trigger",
+      "value": "Hjemreise/midlertidigoppholdvedpersonulykke/sykdom/død,dekketskade,elleruhellmedsjøudyktigbåt.",
+      "location": "Topp§2.2s7",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-32",
+      "subject": "Motor/seil",
+      "dimension": "coverage",
+      "value": "Seil/motor/maskindel≤10år;varmgangvedtettkjøling;tilfeldigplutseligbrudd;motor/gir/aksling/ECU/drivstoff;demonteringkostoveregenandel.",
+      "location": "Topp§2.3s7",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-33",
+      "subject": "Motor/seil",
+      "dimension": "exclusions",
+      "value": "Konstruksjon/råte/korrosjon/tæring/materialtretthet/nedbørfrostis;ikkemotorpåjolle.",
+      "location": "Topp§2.3s7",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-34",
+      "subject": "Opplagsutstyr",
+      "dimension": "coverage",
+      "value": "Stativ/presenning/krybbe.",
+      "location": "Topp§2.4s7",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-35",
+      "subject": "Motor/seil",
+      "dimension": "deductible_depreciation",
+      "value": "4000egenandel;seil/maskin1årfradragsfrittderetter10%perpåbegyntårmax60%;fradrag>4000ingenegenandel;bruktedelerbarearbeidsfradraginkMVA.",
+      "location": "Topp§3.1/4.1s7",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-36",
+      "subject": "Nyverdi",
+      "dimension": "threshold",
+      "value": "Ny båtog/ellermotor≤3åretterkjøptny;rep>60%nyverdi;båt/motoraldreseparate.",
+      "location": "Topp§3.2s7",
+      "scope": "top",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-37",
+      "subject": "Ulykke",
+      "dimension": "limits",
+      "value": "100000død/200000invaliditet/15000behandling;kroppsskade,båtdirekteårsak.",
+      "location": "PMO380481§1–3s8",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-38",
+      "subject": "Ulykke",
+      "dimension": "conditions",
+      "value": "Død1år,invaliditet1–3år,behandling2år/barnunder16 3år;1000egenandel;ikkespisingtann/briller/privateutenstøtte/redninghotell.",
+      "location": "PMO380481§5–6s8–9",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-39",
+      "subject": "Rettshjelp",
+      "dimension": "limits",
+      "value": "Norden100000interessetak/250000min3parter;15kFinKN25kforlik20%sakkyndig;bevisegenandel+20%.",
+      "location": "FFE003s9–12",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-40",
+      "subject": "Rettshjelp",
+      "dimension": "exclusions",
+      "value": "Tvistgrunnlagførsamt yrke/familie/straff/annetobjekt/salærtvistunntak;solgtbåttvistinkl.",
+      "location": "FFE003s9–12",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "FBT-41",
+      "subject": "Egenandel",
+      "dimension": "options",
+      "value": "Kasko/Topp4000/7000/10000;750redningfast.",
+      "location": "SB1Egenandeler",
+      "scope": "kasko",
+      "doc": "web"
+    },
+    {
+      "id": "FBT-42",
+      "subject": "Utleie",
+      "dimension": "channel",
+      "value": "2mnd/årutenekstrakost,menmeldselskapet;kanharmoneremedbevisendringikkefribetingelsesløs.",
+      "location": "SB1Leieut",
+      "scope": "all",
+      "doc": "web"
+    },
+    {
+      "id": "FBT-43",
+      "subject": "Registrering",
+      "dimension": "eligibility",
+      "value": "Verdiunder50000uregistrertmulig;merkreverSmåbåt/Securmark/NOR. Lik50000ikkeentydig.",
+      "location": "SB1Registrering",
+      "scope": "all",
+      "doc": "web"
+    },
+    {
+      "id": "FBT-44",
+      "subject": "Kanal",
+      "dimension": "conflicts",
+      "value": "FAQmotor knytter<10årtilbåt vsPDF≤10årmotor/seil;webbilligsteFAQimplisererjolle/ferieToppmensmatrix/fullKasko;IPIDTopp-listeutelaterubegrensetløsøreog100kplassertKasko.",
+      "location": "SB1FAQ/IPIDV103",
+      "scope": "all",
+      "doc": "web"
+    },
+    {
+      "id": "FBT-45",
+      "subject": "Sesong/rabatt",
+      "dimension": "customer",
+      "value": "Sesongprisbruksperiode;5%per4sikringstiltakmax20%;LOfavør1000reduksjon/ToppprisKaskoikkeordinary.",
+      "location": "SB1sesong/rabatt",
+      "scope": "all",
+      "doc": "web"
+    },
+    {
+      "id": "FBT-46",
+      "subject": "Administrativt",
+      "dimension": "limits",
+      "value": "Skadeplikt/skjønn/regress ogfullgeneral terms allerede lest;ikkemodellehveradministrativsetning.",
+      "location": "Fullpakken/General",
+      "scope": "all",
+      "doc": "terms"
+    }
+  ],
+  "review": "Full12p plusIPIDV1032p and complete materialSB1HTML. FFE003tokenidentical toalreadyreviewedBobil. SDRdimensiontypo retained unresolved."
+}

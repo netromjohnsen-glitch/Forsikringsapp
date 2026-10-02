@@ -1,0 +1,412 @@
+{
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "read_sources": {
+    "frende-dog-terms.pdf": 5,
+    "frende-cat-terms.pdf": 4,
+    "frende-dog-ipid.pdf": 2,
+    "frende-cat-ipid.pdf": 2,
+    "frende-dog-product.html": "full",
+    "frende-cat-product.html": "full"
+  },
+  "rules": [
+    {
+      "inventory_id": "FR-PE-001",
+      "subject": "Avtale",
+      "dimension": "valg/sum",
+      "value": "Bare bevisets dyr og valgte dekninger; veterinærsum kundespesifikk, IPIDvalg opptil50000/år.",
+      "pages": [
+        2
+      ],
+      "section": "3/4/IPID1",
+      "scope": "both",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "FR-PE-002",
+      "subject": "Geografi",
+      "dimension": "verden",
+      "value": "Hele verden, hendelseiforsikringstid.",
+      "pages": [
+        2
+      ],
+      "section": "2",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-003",
+      "subject": "Veterinær",
+      "dimension": "omfang",
+      "value": "Nødvendig sykdom/skadeundersøkelse/behandling,bruktemedisiner/materiellogklinikkopphold.",
+      "pages": [
+        2
+      ],
+      "section": "4.1",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-004",
+      "subject": "Allergi",
+      "dimension": "sum/vilkår",
+      "value": "Førstegangsdiagnostisering/behandlingatopi15000;ikkeørehudsymptomfør/20d,antistoffinnen3mndregnesførkjøp.",
+      "pages": [
+        2,
+        3
+      ],
+      "section": "4.1/4.2",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-005",
+      "subject": "Kastrering",
+      "dimension": "diagnoser",
+      "value": "Dekketvedfødselsskade/prolaps/diabetes/livmor/prostata/perineal/analadenom/testikkelbetennelse-torsjon/urethra/akromegali/reproduksjonskreft.",
+      "pages": [
+        2
+      ],
+      "section": "4.1",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-006",
+      "subject": "Avliving",
+      "dimension": "sum/vilkår",
+      "value": "2000avlivning/kremeringtil10årvederstattetulykke/sykdom.",
+      "pages": [
+        2
+      ],
+      "section": "4.1",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-007",
+      "subject": "Tannulykke",
+      "dimension": "omfang",
+      "value": "Basekun trekkingtennerknektvedulykke.",
+      "pages": [
+        2,
+        3
+      ],
+      "section": "4.2",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-008",
+      "subject": "Veterinær",
+      "dimension": "unntak",
+      "value": "Ikkeforebygging/rehab/reise/fôr/utlevertemedisiner/alternativ/adferd/komplikasjonikkedekkethendelse/etteropphør.",
+      "pages": [
+        2,
+        3
+      ],
+      "section": "4.2",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-009",
+      "subject": "Karenstid",
+      "dimension": "tid/økning",
+      "value": "Eksisterendesykdom/skadeogsykdom20dfraopprinneligforsikringunntatt;økningskarensbareøkningsdel.",
+      "pages": [
+        2,
+        3
+      ],
+      "section": "4.2",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-010",
+      "subject": "Medfødt",
+      "dimension": "ledd",
+      "value": "HDAD/OCD/patella/shortulna/Calve:forsikretfør4mndellerNKKfri;HDADdokumentertefrieforeldre.",
+      "pages": [
+        2
+      ],
+      "section": "4.1.2",
+      "scope": "dog",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-011",
+      "subject": "Korsbånd",
+      "dimension": "vilkår",
+      "value": "Før4mndellerkontinuerligminettårførskade.",
+      "pages": [
+        2
+      ],
+      "section": "4.1.3",
+      "scope": "dog",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-012",
+      "subject": "Keisersnitt",
+      "dimension": "antall/raser",
+      "value": "Ettilivet,ikkeEngelsk/FranskBulldog,BostonTerrier,Pomeranian,Chihuahua.",
+      "pages": [
+        2
+      ],
+      "section": "4.1.6",
+      "scope": "dog",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-013",
+      "subject": "Rasesykdom",
+      "dimension": "unntak",
+      "value": "Navngittehud/øyeraseunntakogbrachycephalluftveiikkeomfattet.",
+      "pages": [
+        3
+      ],
+      "section": "4.2.7–9",
+      "scope": "dog",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-014",
+      "subject": "Tannsykdom",
+      "dimension": "tillegg/sum",
+      "value": "Valgfritt20000perhendelse/år;tannkjøtt/melketann/medisinskfeilstilling,klinikkmedisininkl.",
+      "pages": [
+        3
+      ],
+      "section": "5.1",
+      "scope": "dental",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-015",
+      "subject": "Tannsykdom",
+      "dimension": "unntak/tid",
+      "value": "Ikkeforebygging/rehab/reise/fôr/utleverte,eksisterende/20d;behandlingutoverettåretteropphørunntatt(distinktfraordinærvet).",
+      "pages": [
+        3
+      ],
+      "section": "5.2",
+      "scope": "dental",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-016",
+      "subject": "Medisin",
+      "dimension": "tillegg/sum",
+      "value": "Valgfritt20000perhendelse/år,respetforomfattetlidelse;50%veterinærforeskrevetspecialfôr.",
+      "pages": [
+        3
+      ],
+      "section": "Hund6/Katt5",
+      "scope": "medicine",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-017",
+      "subject": "Forsikringssum",
+      "dimension": "samordning",
+      "value": "Veterinær+medisinsamlestilbevisetsumperhendelseogsammeskadetilfelleoverflereår;ikkeautomatiskårligresetforpågåendehendelse.",
+      "pages": [
+        3,
+        4
+      ],
+      "section": "Hund8.4/Katt7.4",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-018",
+      "subject": "Egenandel",
+      "dimension": "vet/tann/medisin",
+      "value": "25%skade,min1000,enperhendelse;ikke1000pluss25%.",
+      "pages": [
+        4,
+        5
+      ],
+      "section": "Hund8.6/Katt7.6",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-019",
+      "subject": "Tap",
+      "dimension": "hendelser",
+      "value": "Hunddød/avliving/stjålet/forsvunnet/bruksverdi;Kattdød/avliving/tyverivedinnbruddbygning. IPIDkattogsåforsvunnet,konflikt.",
+      "pages": [
+        3,
+        4
+      ],
+      "section": "Hund7/Katt6",
+      "scope": "loss",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "FR-PE-020",
+      "subject": "Tap",
+      "dimension": "unntak",
+      "value": "Eksisterende/20d,komplikasjonikkeomfattet;hundadferdsavlivingunntatt.",
+      "pages": [
+        3,
+        4
+      ],
+      "section": "Hund7.2/Katt6.2",
+      "scope": "loss",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-021",
+      "subject": "Tap",
+      "dimension": "opphør",
+      "value": "Førstehovedforfalletter10år,ikkeselve10årsdagen;HTMLåretetterkanværeupresist.",
+      "pages": [
+        2
+      ],
+      "section": "2",
+      "scope": "loss",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-022",
+      "subject": "Tap",
+      "dimension": "aldersfradrag",
+      "value": "20%forhverheleåreldreen7;ingenøvreprosentoppgitt.",
+      "pages": [
+        3,
+        5
+      ],
+      "section": "Hund8.5/Katt7.5",
+      "scope": "loss",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-023",
+      "subject": "Tap",
+      "dimension": "egenandel",
+      "value": "Ingenegenandel.",
+      "pages": [
+        4,
+        5
+      ],
+      "section": "Hund8.6/Katt7.6",
+      "scope": "loss",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-024",
+      "subject": "Tap",
+      "dimension": "oppgjør",
+      "value": "Tilsvarenderaseverditakbevis;trekkalleredeutbetaltbruksverdiHund;forsvunnetHund/stjåletKattførst3mndetterpolitimelding;returnertdyrtilbakebetaling.",
+      "pages": [
+        3,
+        4
+      ],
+      "section": "Hund8.4/Katt7.4",
+      "scope": "loss",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-025",
+      "subject": "Brukshund",
+      "dimension": "ytelse",
+      "value": "50%tapssumvedfullttaptrentregelmessigbruksfunksjon;under8år,ikkeavl;medfødt/HDADvilkårsomkilden.",
+      "pages": [
+        4
+      ],
+      "section": "7.3/8.4",
+      "scope": "dogloss",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-026",
+      "subject": "Sikkerhet",
+      "dimension": "plikter",
+      "value": "Straksveterinær/pleie/sikrettransport/ikkesolvarmbil;Hundvaksineårlighelsesjekk,Kattkattepest.",
+      "pages": [
+        4,
+        5
+      ],
+      "section": "Hund10/Katt9",
+      "scope": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "FR-PE-027",
+      "subject": "Tegning",
+      "dimension": "alder",
+      "value": "HTML5uker–6år,8årvedflytting;hundlovligrase,annenFrendeskadeforsikringkreves.",
+      "pages": [
+        0
+      ],
+      "section": "HTMLFAQ",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-028",
+      "subject": "IDmerking",
+      "dimension": "krav",
+      "value": "Kattalltid;Hundsumover15000.",
+      "pages": [
+        0
+      ],
+      "section": "HTMLFAQ",
+      "scope": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-029",
+      "subject": "Videovet",
+      "dimension": "tjeneste",
+      "value": "Videokonsultasjonutenegenandelvedsykdom/skadefraIPID;HTMLråd/behandling/henvisning.",
+      "pages": [
+        0
+      ],
+      "section": "HTML/IPID1",
+      "scope": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "FR-PE-030",
+      "subject": "Veterinær",
+      "dimension": "opphørsalder",
+      "value": "HundveterinærkanbeholdeshelelivetfraHTML,ikkeblandmedtap10år.",
+      "pages": [
+        0
+      ],
+      "section": "HTMLFAQ",
+      "scope": "dog",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-031",
+      "subject": "Ansvar",
+      "dimension": "ikkeomfattet",
+      "value": "Hundeforsikringikkeskadepåandresperson/ting;innbohenvisningikkeegenhundedekning.",
+      "pages": [
+        0
+      ],
+      "section": "HTMLFAQ",
+      "scope": "dog",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-PE-032",
+      "subject": "Administrasjon",
+      "dimension": "felles",
+      "value": "Melding1år/politi/obduksjon/dokumentasjongenereltikkeselvstendigecoveragefacts.",
+      "pages": [
+        3,
+        4,
+        5
+      ],
+      "section": "Oppgjør/frister",
+      "scope": "both",
+      "kind": "ADMINISTRATIVE"
+    }
+  ]
+}

@@ -1,0 +1,607 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "sources": [
+    "catalog/sources/gjensidige/bil-ansvar-alminnelige-vilkar.pdf",
+    "catalog/sources/gjensidige/Bil-Delkasko-alminnelige-vilkar.pdf",
+    "catalog/sources/gjensidige/Bil-Kasko-alminnelige-vilkar.pdf",
+    "catalog/sources/gjensidige/Bil-Pluss-alminnelige-vilkar.pdf",
+    "catalog/sources/gjensidige/Bilforsikring-Produktark-MOT01.pdf"
+  ],
+  "complete_contents_read": true,
+  "page_reuse": "gjensidige-bil-page-identity.json; whitespace-normalized exact text matches, not inferred similarity",
+  "rules": [
+    {
+      "id": "GJ-BIL-001",
+      "scope": "all",
+      "subject": "Grunndekninger",
+      "dimension": "status",
+      "value": "Ansvar, fører/passasjerulykke og rettshjelp inngår på alle fire nivåer.",
+      "location": "1/IPID1"
+    },
+    {
+      "id": "GJ-BIL-002",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "summer",
+      "value": "Personskade ubegrenset, tingskade 100 millioner kr; ingen ordinær egenandel.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-003",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "grunnsum",
+      "value": "100 000 kr per tvist, innen økonomisk interesse.",
+      "location": "1/9"
+    },
+    {
+      "id": "GJ-BIL-004",
+      "scope": "all",
+      "subject": "Ulykke",
+      "dimension": "grunnsummer",
+      "value": "100 000 kr død og 200 000 kr invaliditet; ingen egenandel.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-005",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "områder",
+      "value": "Europa unntatt Kosovo, Russland og Belarus; rettshjelp i Norden.",
+      "location": "3/IPID2"
+    },
+    {
+      "id": "GJ-BIL-006",
+      "scope": "all",
+      "subject": "Forsikret krets",
+      "dimension": "omfang",
+      "value": "Forsikringstaker og lovlig bruker; fysisk forsikring også registrert eier og andre med tinglyst eiendomsrett.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-007",
+      "scope": "all",
+      "subject": "Registrering",
+      "dimension": "opphør",
+      "value": "Gyldig mens registrert; automatisk opphør ved salg, vraking, tyveri, avregistrering og endret leasingtaker.",
+      "location": "1–2/11"
+    },
+    {
+      "id": "GJ-BIL-008",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "ung fører",
+      "value": "Hvis avtalt rabatt for alle førere over23 brytes: 15 000 kr ekstra kasko eller 15 000 ansvar; unntak for fullført Gjensidige øvelseskjøringsprogram.",
+      "location": "1–2"
+    },
+    {
+      "id": "GJ-BIL-009",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "triller uten fører",
+      "value": "Privat 5 000 kr, næring15 000, også når skaden ellers ikke utløser egenandel.",
+      "location": "1–2"
+    },
+    {
+      "id": "GJ-BIL-010",
+      "scope": "all",
+      "subject": "Bruk",
+      "dimension": "pliktig melding",
+      "value": "Privatbil til næringstransport og teknisk endring må meldes; ellers mulig avkortning/bortfall.",
+      "location": "2"
+    },
+    {
+      "id": "GJ-BIL-011",
+      "scope": "all",
+      "subject": "Årlig kjørelengde",
+      "dimension": "avkortning",
+      "value": "Feil stand/overskredet årlig kjørelengde gir prisforholdsmessig reduksjon; gjennomsnitt korrigeres fra forrige hovedforfall.",
+      "location": "2"
+    },
+    {
+      "id": "GJ-BIL-012",
+      "scope": "physical",
+      "subject": "Sikkerhet",
+      "dimension": "lås/utstyr",
+      "value": "Lukket/låst, nøkkel separat/utilgjengelig, ekstrahjul innelåst utenom fellesrom eller fastlåst, tyveriutsatte ting skjult innelåst; henger sikret mot påkobling.",
+      "location": "1–2"
+    },
+    {
+      "id": "GJ-BIL-013",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "dekk",
+      "value": "Lovlig mønster og dekk tilpasset forhold.",
+      "location": "1–2"
+    },
+    {
+      "id": "GJ-BIL-014",
+      "scope": "physical",
+      "subject": "Objekt",
+      "dimension": "ekstrahjul",
+      "value": "Ett sett ekstra dekk og felger følger kjøretøyet.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-015",
+      "scope": "physical",
+      "subject": "Objekt",
+      "dimension": "unntak",
+      "value": "Kontanter og verdipapirer ikke forsikret; ulovlig innførte varer/tjenester unntatt.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-016",
+      "scope": "physical",
+      "subject": "Brann",
+      "dimension": "hendelser",
+      "value": "Åpne flammer, lyn og eksplosjon.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-017",
+      "scope": "physical",
+      "subject": "Tyveri",
+      "dimension": "hendelser",
+      "value": "Tyveri og forsøk på tyveri.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-018",
+      "scope": "physical",
+      "subject": "Glass",
+      "dimension": "omfang",
+      "value": "Brudd på ruter og glasstak; solcellepanel ikke glass, eventuelt kasko.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-019",
+      "scope": "physical",
+      "subject": "Glass",
+      "dimension": "sum og egenandel",
+      "value": "Reparasjon sum1 000 kr / skifte ubegrenset; egenandel0/3 000 kr. Sum og egenandel må være ulike dimensjoner.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-020",
+      "scope": "physical",
+      "subject": "Brann/tyveri",
+      "dimension": "egenandel",
+      "value": "6 000 kr i offentlig standardeksempel; individuelt bevis går foran.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-021",
+      "scope": "physical",
+      "subject": "Utstyr",
+      "dimension": "sum",
+      "value": "Fastmontert ekstrautstyr Delkasko10 000; Kasko/Pluss50 000.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-022",
+      "scope": "physical",
+      "subject": "Løsøre",
+      "dimension": "sum",
+      "value": "Delkasko5 000; Kasko/Pluss10 000.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-023",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "egenandel",
+      "value": "750 kr.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-024",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "hendelser/transport",
+      "value": "Skade, tyveri, driftsstans, sykdom/ulykke/død; bil og henger til nærmeste verksted, også utelåsing.",
+      "location": "3–4"
+    },
+    {
+      "id": "GJ-BIL-025",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "hjemtransport/hotell",
+      "value": "Hjemtransport ved personhendelse eller bil stjålet/ikke reparert innen2virkedager; bil etter reparasjon/funn. Rimelig hotell alternativt og nødvendig lokaltransport.",
+      "location": "3–4"
+    },
+    {
+      "id": "GJ-BIL-026",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "unntak",
+      "value": "Ikke over bil/hengerverdi; ingen reparasjonsdeler, godsvideresending, ordinære reiseutgifter eller dyrere enn rimeligste transport. Ikke hjemtransport hvis noen kan kjøre.",
+      "location": "3–4"
+    },
+    {
+      "id": "GJ-BIL-027",
+      "scope": "physical",
+      "subject": "Fysisk skade",
+      "dimension": "begrensninger",
+      "value": "Ugodkjent trim/tuning/software, slitasje/gradvis skade, garanti/reklamasjon, banekjøring med føreropplæring/NAF-unntak og verdiforringelse etter reparasjon.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-028",
+      "scope": "lowerphysical",
+      "subject": "Fysisk skade",
+      "dimension": "batteri/unntak",
+      "value": "Delkasko/Kasko unntar batteriskade alene; Kasko også varmgang/korrosjon/rust/irr/tæring.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-029",
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "hendelser",
+      "value": "Plutselig ytre skade og feilfylling.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-030",
+      "scope": "kasko",
+      "subject": "Nøkkel",
+      "dimension": "hendelser/frekvens",
+      "value": "Tapt, stjålet eller skadet bilnøkkel, én skade per forsikringsår.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-031",
+      "scope": "kasko",
+      "subject": "Nøkkel",
+      "dimension": "sum/egenandel",
+      "value": "Kasko7 500/Pluss15 000 kr; egenandel1 500 kr.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-032",
+      "scope": "kasko",
+      "subject": "Ladekabel",
+      "dimension": "omfang/egenandel",
+      "value": "Hybrid/elbil tyveri eller ytre skade; egenandel2 000 kr.",
+      "location": "1/3"
+    },
+    {
+      "id": "GJ-BIL-033",
+      "scope": "kasko",
+      "subject": "Leiebil",
+      "dimension": "reparasjon",
+      "value": "Samme størrelse som forsikret bil, maks mellomklasse stasjonsvogn; Kasko30 dager, Pluss60 dager mens bilen er på verksted i normal reparasjonstid.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-034",
+      "scope": "kasko",
+      "subject": "Leiebil",
+      "dimension": "totalskade/tyveri",
+      "value": "Til oppgjør mottatt, maks30 dager, også oppgjør etter totalskadegaranti.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-035",
+      "scope": "kasko",
+      "subject": "Leiebil",
+      "dimension": "unntak",
+      "value": "Ingen betalt reparasjon eller valgt kontantoppgjør; mer enn2virkedager etter ferdig rep; bareglass/punktering; leverandørkrav og ikke drivstoff/bom/parkering.",
+      "location": "3–4"
+    },
+    {
+      "id": "GJ-BIL-036",
+      "scope": "kasko",
+      "subject": "Leiebil",
+      "dimension": "utlandet",
+      "value": "Feriereise utenfor Norden, ikke reparerbar innen3virkedager: lignende bil maks15d for å fullføre ferie.",
+      "location": "4"
+    },
+    {
+      "id": "GJ-BIL-037",
+      "scope": "kasko",
+      "subject": "Leiebil",
+      "dimension": "kontantalternativ",
+      "value": "Kontanterstatning i stedet kan avtales når leiebil er dekket under reparasjon; ingen fastsum.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-038",
+      "scope": "kasko",
+      "subject": "Reparasjonsgaranti",
+      "dimension": "åtteår",
+      "value": "Dekket skade reparert hos avtaleverksted: utbedring, veihjelp, leiebil/kontant etter vilkårene; rustgaranti minst8år med vedlikehold, også etter selskapsbytte.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-039",
+      "scope": "kasko",
+      "subject": "Totalskadegaranti",
+      "dimension": "alder/km",
+      "value": "Kasko og Pluss: inntil1år fra første registrering og inntil20 000 km i lokale offentlige fullvilkår.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-040",
+      "scope": "kasko",
+      "subject": "Totalskadegaranti",
+      "dimension": "utløsende/erstatning",
+      "value": "Tapt bil eller reparasjon over markedsverdi; tilsvarende ny bil eller selskapets nybilkostnad kontant. Person/varebil inntil3,5t og bobil.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-041",
+      "scope": "kasko",
+      "subject": "Totalskadegaranti",
+      "dimension": "unntak",
+      "value": "Bedriftseid/lease unntatt; brann/tyveri også unntatt hvis eieren kjøpte bilen brukt.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-042",
+      "scope": "physical",
+      "subject": "Oppgjør",
+      "dimension": "reparasjon/kontant",
+      "value": "Likeverdige deler, forbedringsfradrag; kontant arbeid50%, avgifter etter betalt; manglende deler gir kontantoppgjør.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-043",
+      "scope": "physical",
+      "subject": "Oppgjør",
+      "dimension": "tap",
+      "value": "Gjenanskaffelse samme stand/fabrikat/type/årgang; selskapet overtar rester.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-044",
+      "scope": "physical",
+      "subject": "Utstyr",
+      "dimension": "aldersfradrag",
+      "value": "Ettermontert elektronikk: etter første år10% per påbegynt år maks50%.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-045",
+      "scope": "physical",
+      "subject": "Egenandel",
+      "dimension": "dyr",
+      "value": "Avtalt egenandel reduseres2 000 kr ved påkjørsel dyr for kjøretøy til og med3,5t.",
+      "location": "16"
+    },
+    {
+      "id": "GJ-BIL-046",
+      "scope": "pluss",
+      "subject": "Maskinskade",
+      "dimension": "alder/km",
+      "value": "Inntil første hovedforfall etter12år eller200 000 km, første inntrufne grense.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-047",
+      "scope": "pluss",
+      "subject": "Maskinskade",
+      "dimension": "komponenter",
+      "value": "Plutselig/uforutsett skade på spesifiserte fremdrifts-/styrings-/kjølesystemer og tilhørende elektronikk; el/hybrid høyspentbatteri/varme-kjøling/lader og relevant AC.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-048",
+      "scope": "pluss",
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Clutch inklhydraulikk, oljeoverforbruk uten bruddskade, eksos unntatt manifold, katalysator/partikkelfilter; ikke gradvis skade/garanti.",
+      "location": "3"
+    },
+    {
+      "id": "GJ-BIL-049",
+      "scope": "pluss",
+      "subject": "Maskinskade",
+      "dimension": "vedlikehold",
+      "value": "Produsentforbedring/service og tidligere eieres service må dokumenteres; egne arbeider med kvitteringer; effekt må ikke endres.",
+      "location": "2"
+    },
+    {
+      "id": "GJ-BIL-050",
+      "scope": "pluss",
+      "subject": "Maskinskade",
+      "dimension": "egenandel",
+      "value": "0–119999km10 000;120000–159999km14 000;160000–200000km18 000.",
+      "location": "16"
+    },
+    {
+      "id": "GJ-BIL-051",
+      "scope": "pluss",
+      "subject": "Parkering",
+      "dimension": "uten bonustap",
+      "value": "Ytre skade av ukjent skadevolder,20 000 kr, samme egenandel som Pluss; til første hovedforfall etter10år.",
+      "location": "1"
+    },
+    {
+      "id": "GJ-BIL-052",
+      "scope": "pluss",
+      "subject": "Leiebil",
+      "dimension": "teknisk Norden",
+      "value": "Ikke kjørbar og ikke reparerbar på stedet: inntil15dager mellomklassestasjonsvogn; selskapet velger verksted/tid.",
+      "location": "4"
+    },
+    {
+      "id": "GJ-BIL-053",
+      "scope": "pluss",
+      "subject": "Startleie",
+      "dimension": "sum/vilkår",
+      "value": "150 000 kr maks, forholdsmessig etter gjenstående måneder ved dekket kondemnasjon eller tyveri uten gjenfunn.",
+      "location": "15"
+    },
+    {
+      "id": "GJ-BIL-054",
+      "scope": "optional",
+      "subject": "Punktering",
+      "dimension": "valgfri",
+      "value": "Valgfri på Kasko/Pluss;1 000 kr egenandel uten bonustap;2 500 kr per dekk.",
+      "location": "1/16/IPID1"
+    },
+    {
+      "id": "GJ-BIL-055",
+      "scope": "optional",
+      "subject": "Punktering",
+      "dimension": "kontroll",
+      "value": "Dekksjekk mindre enn1år hos godkjent verksted; egnet dekk min3mm sommer/4mmvinter; riktig sesong/kjøreforhold; reparasjon hvis forsvarlig.",
+      "location": "16"
+    },
+    {
+      "id": "GJ-BIL-056",
+      "scope": "optional",
+      "subject": "Punktering",
+      "dimension": "følgeskade",
+      "value": "Felg/understell håndteres ordinær kasko; barepunktering gir ikke leiebil.",
+      "location": "3–4"
+    },
+    {
+      "id": "GJ-BIL-057",
+      "scope": "optional",
+      "subject": "Økt utstyr/spesiallakk/funksjonsutstyr",
+      "dimension": "avtalemulighet",
+      "value": "IPID dokumenterer mulige utvidelser, men angir ikke sum eller presis nivåtilgjengelighet; aldri kundens valg.",
+      "location": "IPID1"
+    },
+    {
+      "id": "GJ-BIL-058",
+      "scope": "all",
+      "subject": "Ulykke",
+      "dimension": "hendelser",
+      "value": "Rettmessig fører/passasjer i/på/ved motorvogn når motorvogn/tilkobletutstyr direkte årsak; ytre hendelse, fall uten sykdom, kne/ankelvridning, navngitte brudd ved hopp.",
+      "location": "5"
+    },
+    {
+      "id": "GJ-BIL-059",
+      "scope": "all",
+      "subject": "Ulykke",
+      "dimension": "dødsfall vilkår",
+      "value": "Død innen1år; tidligere forskudd trekkes fra;50 000 kr dersom ingen barn/ektefelle/samboer eller forsørgede foreldre.",
+      "location": "6"
+    },
+    {
+      "id": "GJ-BIL-060",
+      "scope": "all",
+      "subject": "Ulykke",
+      "dimension": "invaliditet",
+      "value": "Proporsjonal medisinsk invaliditet, forfunksjon trekkes fra, ingen hvis død innen1år; senest3årsfastsettelse, samlet1million ved flere skadde motorvognpassasjerer.",
+      "location": "6"
+    },
+    {
+      "id": "GJ-BIL-061",
+      "scope": "all",
+      "subject": "Ulykke",
+      "dimension": "vesentlige unntak",
+      "value": "Sykdom/besvimelse/disposisjon, psykisk skade alene, navngitte muskeltilstander, tann tygging og tanninvaliditet; selvmord med snevert akutt sinnsforvirringsunntak.",
+      "location": "5"
+    },
+    {
+      "id": "GJ-BIL-062",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "omfang",
+      "value": "Eier/bruker/fører i Norden; også etter salg og ved neste kjøp hvis tilsvarende objekt forsikret før kjøpet.",
+      "location": "7"
+    },
+    {
+      "id": "GJ-BIL-063",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "kostnader",
+      "value": "Advokat/gebyr/vitner; ikke-rettsoppnevnt sakkyndig maks40% av sum/interesse; gruppesøksmål særgrenser20 000/500 000.",
+      "location": "7–8"
+    },
+    {
+      "id": "GJ-BIL-064",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "mekling",
+      "value": "Mekle.no alternativ,0egenandel, ingen egenadvokatutgift, kan avslutte uten å miste videre rettshjelp.",
+      "location": "7/9"
+    },
+    {
+      "id": "GJ-BIL-065",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "begrensninger",
+      "value": "Ikke ankegebyr/idømte kostnader/voldgift/før tvist; yrke, familie, straff, ikke forsikret kjøretøy, tidligere grunnlag ved nytegning unntatt; flytting unntak.",
+      "location": "7–8"
+    },
+    {
+      "id": "GJ-BIL-066",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "flerpart/sum",
+      "value": "1–2parter100 000;3–10 250 000;11–25 500 000;26–49 750 000;50+1million; ikke over økonomisk interesse.",
+      "location": "9"
+    },
+    {
+      "id": "GJ-BIL-067",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4 000 kr pluss20% av dekkede utgifter; én per tvist. Mekle.no0 separat.",
+      "location": "9"
+    },
+    {
+      "id": "GJ-BIL-068",
+      "scope": "all",
+      "subject": "Bonus",
+      "dimension": "opptjening/tap",
+      "value": "Tabell0–80%;75merenn3år faller til75førsteår;75første3år til70;70 til60;10–60 tap10;80historisk til70førsteår.",
+      "location": "10"
+    },
+    {
+      "id": "GJ-BIL-069",
+      "scope": "physical",
+      "subject": "Bonus",
+      "dimension": "skadefritak",
+      "value": "Brann/tyveri/glass/veihjelp,dyr,natur,ladekabel,nøkkel innen sum og maskinskade gir ikke bonustap; bare faktisk valgt relevant dekning.",
+      "location": "10"
+    },
+    {
+      "id": "GJ-BIL-070",
+      "scope": "all",
+      "subject": "Ettervern",
+      "dimension": "eierskifte",
+      "value": "14d etter eierskifte til ny eier tegner egen forsikring; automatisk opphør kjøretøy samordnes.",
+      "location": "11"
+    },
+    {
+      "id": "GJ-BIL-071",
+      "scope": "all",
+      "subject": "Generelle unntak",
+      "dimension": "krig",
+      "value": "Motorvogn unntatt UD-reiseadvarselsområde;6uker hvis allerede der når advarsel gis.",
+      "location": "11–12"
+    },
+    {
+      "id": "GJ-BIL-072",
+      "scope": "all",
+      "subject": "Generelle unntak",
+      "dimension": "terror/atom",
+      "value": "Terror selskapstak1milliard/48timershendelse og Nordenbegrensning med personskadeansvarunntak; atom/kjemisk unntak egne personskademekanismer.",
+      "location": "12"
+    },
+    {
+      "id": "GJ-BIL-073",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "lov/frister/klage",
+      "value": "Avtalehierarki, årsfornyelse, melding, tvistprosedyre, personvern og klage er kildeinformasjon; ingen ordinære coveragefacts.",
+      "location": "11–14"
+    }
+  ],
+  "scope_notes": [
+    "Location pages assume physical variants; Ansvar common accident/legal/bonus/general chapters are one page earlier.",
+    "Generic settlement chapter mentioning Kasko/Pluss is not inclusion on Ansvar/Delkasko.",
+    "Sample PDF label Forsikringsbevis does not imply private customer artifact: authoritative public downloaded templates.",
+    "IPID Pluss unlimited repair rental vs fullterms60days conflict; preserve both.",
+    "Actual customer values including historical newvalue/mileage remain outside this audit and retain precedence.",
+    "Optional equipment/IPID not enough for unconditional Ansvaravailability claim."
+  ]
+}

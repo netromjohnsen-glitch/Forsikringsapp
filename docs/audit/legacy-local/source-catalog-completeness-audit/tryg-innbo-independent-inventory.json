@@ -1,0 +1,442 @@
+{
+  "source_first": true,
+  "catalog_not_yet_inspected": true,
+  "rule_count": 48,
+  "rules": [
+    {
+      "id": "TIN-01",
+      "subject": "Personkrets",
+      "dimension": "household",
+      "value": "Taker og ektefelle/samboer samme folkeregisteradresse og husstand, ikke bokollektiv; tredjepartsting ved avtalt risiko, ikke ren oppbevaring.",
+      "doc": "Produktvilkar_PPK13300.pdf",
+      "location": "s1; PPK13301/2 §1.1",
+      "level": "both"
+    },
+    {
+      "id": "TIN-02",
+      "subject": "Geografi og flytting",
+      "dimension": "temporary_location",
+      "value": "Midlertidig borte i Norden; ny/gammel bolig ved flytting i inntil ett år; varig adresseendring må meldes.",
+      "doc": "Produktvilkar_PPK13300.pdf",
+      "location": "s1",
+      "level": "both"
+    },
+    {
+      "id": "TIN-03",
+      "subject": "Forsikringssum",
+      "dimension": "customer_choice",
+      "value": "Avtalt sum; nyanskaffelser over sum frem til hovedforfall, skal meldes; særgrenser gjelder før valgt sum.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s1–2 §1.1; Ekstra samme",
+      "level": "both"
+    },
+    {
+      "id": "TIN-04",
+      "subject": "Yrkesløsøre",
+      "dimension": "sum_location",
+      "value": "Egne varer/løsøre i arbeid i forsikret bygning 50 000 / Ekstra 100 000.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s1 §1.1; Ekstra s1",
+      "level": "both"
+    },
+    {
+      "id": "TIN-05",
+      "subject": "Datarekonstruksjon",
+      "dimension": "sum",
+      "value": "10 000 / Ekstra 50 000 for manuskripter/tegninger/data.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s1 §1.1; Ekstra s1",
+      "level": "both"
+    },
+    {
+      "id": "TIN-06",
+      "subject": "Utrunnet væske",
+      "dimension": "sum_trigger",
+      "value": "Vann/olje/gass etter plutselig utstrømning fra rør/tilkoblet utstyr 20 000 / Ekstra 40 000.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s1 §1.1; Ekstra s1",
+      "level": "both"
+    },
+    {
+      "id": "TIN-07",
+      "subject": "Små bygninger",
+      "dimension": "area_sum",
+      "value": "Drivhus/annen bygning under 10 m² 30 000.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s1 §1.1; Ekstra s1",
+      "level": "both"
+    },
+    {
+      "id": "TIN-08",
+      "subject": "Kjøretøyrelatert løsøre",
+      "dimension": "perils_limits",
+      "value": "Kun brann/tyveri på stedet: bildeler, båt inntil 15 fot/10 hk, kano/kajakk, tilhenger 20 000 hver / Ekstra 40 000; særskilt dekning av rullestol 15 km/t og hobbydrone. Ikke øvrig motorvogn, el-sparkesykkel eller campingvogn.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s1 §1.1; Ekstra s1",
+      "level": "both"
+    },
+    {
+      "id": "TIN-09",
+      "subject": "Kontanter/programvare",
+      "dimension": "additional_sum",
+      "value": "Kontanter/verdipapir 20 000; programvare 5 000; sum i tillegg til valgt forsikringssum.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s2 §1.2; Ekstra s2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-10",
+      "subject": "Merutgifter",
+      "dimension": "moving_storage",
+      "value": "Nødvendig riving/rydding/destruksjon samt flytting/lagring ved forhåndsgodkjenning, i tillegg til forsikringssum.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s2 §1.2; Ekstra s2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-11",
+      "subject": "Midlertidig bosted",
+      "dimension": "sum_duration_conditions",
+      "value": "120 000 / Ekstra normal reparasjonstid; etter én uke forhåndsgodkjenning; innsparing motregnes; ikke leie av arbeidssted.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s2 §1.2,s5–6 §3; Ekstra s2,6",
+      "level": "both"
+    },
+    {
+      "id": "TIN-12",
+      "subject": "Leietakers påkostning",
+      "dimension": "sum_trigger",
+      "value": "150 000 / Ekstra 500 000 når leieavtale opphører som følge av bygningsskade; borettslag ikke leie i denne sammenheng.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s2 §1.2; Ekstra s2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-13",
+      "subject": "Brann",
+      "dimension": "trigger_exclusion",
+      "value": "Løs ild; ikke svimerker/sot uten brann, glør/sparkskader alene.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s2 §2.1; Ekstra s2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-14",
+      "subject": "Alarm",
+      "dimension": "deductible_reduction",
+      "value": "Brann/tyverialarm til alarmsentral kan redusere egenandel inntil 4 000; vannalarm med stenging/backventil tilsvarende ved relevante skader.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s2–4 §§2.1–2.4; Ekstra tilsvarende",
+      "level": "both"
+    },
+    {
+      "id": "TIN-15",
+      "subject": "Lyn/elektrisk fenomen",
+      "dimension": "trigger_exclusion",
+      "value": "Direkte lyn/elektrisk fenomen, men ikke kortslutning fordi vann er tilført.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s2 §2.2; Ekstra s2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-16",
+      "subject": "Vann",
+      "dimension": "covered_triggers",
+      "value": "Plutselig rørutstrømning/slokkemiddel/akvarium/utvendig rør; terreng/grunn krever stående vann over laveste gulv.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s3 §2.3; Ekstra s3",
+      "level": "both"
+    },
+    {
+      "id": "TIN-17",
+      "subject": "Vann",
+      "dimension": "level_specific",
+      "value": "Innbo bare åpning etter annen erstatningsmessig skade; ikke annen nedbør/takrenne/nedløp/kondens/sopp/råte. Ekstra også overbakkelekkasje gjennom andre åpninger, fortsatt sopp/råte unntatt.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s3 §2.3; Ekstra s3",
+      "level": "both"
+    },
+    {
+      "id": "TIN-18",
+      "subject": "Vann fra terreng",
+      "dimension": "deductible",
+      "value": "Minimum 8 000.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s3 §2.3; Ekstra s3",
+      "level": "both"
+    },
+    {
+      "id": "TIN-19",
+      "subject": "Tyveri",
+      "dimension": "private_room_storage_limits",
+      "value": "Privat rom/bod med adgang fellesareal 50 000 / Ekstra 350 000; privat bod utenfor bosted 30 000 /60 000; fellesbod/fellesgarasje 15 000 i Innbo.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s3–4 §2.4; Ekstra s3–4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-20",
+      "subject": "Tyveri utenfor hjemmet",
+      "dimension": "sum_scope",
+      "value": "Egen hage/balkong/terrasse 20 000 /40 000; Ekstra øvrig ute 30 000 per tilfelle, kontanter kun veskenapping.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s3–4 §2.4; Ekstra s4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-21",
+      "subject": "Sykkeltyveri",
+      "dimension": "sum_per_item",
+      "value": "Sykkel/elsykkel/barnevogn/sykkeltilhenger utenfor stedet 20 000 /40 000 per gjenstand.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s3–4 §2.4; Ekstra s4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-22",
+      "subject": "Sykkel",
+      "dimension": "deductible_reduction",
+      "value": "FG-register aktivt betalt abonnement gir 2 000 redusert egenandel.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s4 §2.4; Ekstra s4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-23",
+      "subject": "Veskenapping",
+      "dimension": "sum",
+      "value": "15 000 i Innbo; Ekstra øvrigsted-ramme 30 000, kontanter bare ved veskenapping.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s3–4 §2.4; Ekstra s4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-24",
+      "subject": "Bygningsskade ved tyveri",
+      "dimension": "sum",
+      "value": "Leid/andelseid bolig 20 000 /40 000.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s4 §2.4; Ekstra s4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-25",
+      "subject": "Tyveri",
+      "dimension": "exclusions",
+      "value": "Ikke leietakers skadeverk i utleid rom eller cybertyveri/hacking; kosmetisk skade ikke dekket. Utleietillegg vurderes separat.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s4 §2.4; Ekstra s4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-26",
+      "subject": "Flytting",
+      "dimension": "theft_limit",
+      "value": "Privat flytting innen valgt sum; transportbedrift/idrettslag inntil 30 000 per tilfelle.",
+      "doc": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+      "location": "s3–4 §2.4",
+      "level": "extra"
+    },
+    {
+      "id": "TIN-27",
+      "subject": "Andre skader",
+      "dimension": "specified_perils",
+      "value": "Mat fryser etter plutselig strøm/kjølesvikt 15 000; hvitevarer plutselig/uventet; byggkollaps av snø/vind under storm; sot/eksplosjon/sprengning.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s4 §2.5",
+      "level": "base"
+    },
+    {
+      "id": "TIN-28",
+      "subject": "Andre skader",
+      "dimension": "exclusions",
+      "value": "Ikke ukjent årsak, kosmetikk, garanti, slitasje/korrosjon/alder, frost, insekter/mugg/råte eller kjæledyr; ikke drivhusglass alene/teltkollaps.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s4 §2.5; Ekstra s4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-29",
+      "subject": "Andre skader",
+      "dimension": "deductibles",
+      "value": "Vind/snø minimum 8 000; sprengning på stedet minimum 10 000 i Innbo.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s4 §2.5",
+      "level": "base"
+    },
+    {
+      "id": "TIN-30",
+      "subject": "Plutselig uforutsett skade",
+      "dimension": "conditions_exclusions",
+      "value": "Ikke at tingen bare er borte; sykkel over 40 000 og konkurranseskade unntatt; brann/elektrisk/vann/tyveri/natur reguleres uttømmende av egne punkter. Andre hovedunntak beholdes.",
+      "doc": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+      "location": "s4 §2.5",
+      "level": "extra"
+    },
+    {
+      "id": "TIN-31",
+      "subject": "Plutselig uforutsett skade",
+      "dimension": "deductible",
+      "value": "2 000; vind/snø minimum 8 000.",
+      "doc": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+      "location": "s4 §2.5",
+      "level": "extra"
+    },
+    {
+      "id": "TIN-32",
+      "subject": "Skadedyr",
+      "dimension": "sum_scope",
+      "value": "VIS bekjemper skadeinsekter/mus/rotter, ikke aktivitet før/etter periode; fast bolig Norge; samlet behandling+forhåndsgodkjent bosted 150 000 per tilfelle; egenandel 2 000.",
+      "doc": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+      "location": "s5 §2.6",
+      "level": "extra"
+    },
+    {
+      "id": "TIN-33",
+      "subject": "Glass/sanitær/integrerte hvitevarer",
+      "dimension": "scope_trigger",
+      "value": "Fastmontert i privat bebodd leid/andels-/selveierleilighet; plutselig brudd/lyn/elektrisk kortslutning; ikke kosmetikk.",
+      "doc": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+      "location": "s5 §2.7",
+      "level": "extra"
+    },
+    {
+      "id": "TIN-34",
+      "subject": "Oppgjør",
+      "dimension": "age_deduction",
+      "value": "Fradrag når verditap minst en tredjedel av reparasjon/gjenanskaffelse; ikke for småbygninger/drivhus.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s5 §3; Ekstra s6",
+      "level": "both"
+    },
+    {
+      "id": "TIN-35",
+      "subject": "Oppgjør",
+      "dimension": "market_value_cap",
+      "value": "Brukt/arvet/gave, antikvitet/kunst/samlinger, ikke i bruk, arving/bo: omsetningsverdibegrensning.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s5–6 §3; Ekstra s6",
+      "level": "both"
+    },
+    {
+      "id": "TIN-36",
+      "subject": "Oppgjør",
+      "dimension": "method_labor",
+      "value": "Tryg velger kontant/reparasjon/gjenanskaffelse, ombruk; eget arbeid 300/time, moms ved betalt/ikke fradragsført.",
+      "doc": "Innbo_og_losore_PPK13301.pdf",
+      "location": "s5–6 §3; Ekstra s6–7",
+      "level": "both"
+    },
+    {
+      "id": "TIN-37",
+      "subject": "Naturskade",
+      "dimension": "sum_deductible",
+      "value": "Lovregulert brannforsikret innbo Norge; naturulykker, ikke nedbør/frost/snøtyngde; 8 000 egenandel.",
+      "doc": "Naturskade_PGE90010.pdf",
+      "location": "s1–2 §§1–3",
+      "level": "both"
+    },
+    {
+      "id": "TIN-38",
+      "subject": "Privatansvar",
+      "dimension": "sum_deductible",
+      "value": "5 millioner per hendelse, 4 000 egenandel; privatperson Norden; også lovpålagt yrkesskadeansvar.",
+      "doc": "Privatansvar_PGE90020.pdf",
+      "location": "s1–2 §§1–3.3 (01.10.2026)",
+      "level": "both"
+    },
+    {
+      "id": "TIN-39",
+      "subject": "Privatansvar",
+      "dimension": "exclusions_exception",
+      "value": "Yrkesaktivitet/familie/motorkjøretøy/fast eiendom/eid eller lånt ting unntatt; leid bolig ved brann/eksplosjon/rørvann eller olje likevel omfattet.",
+      "doc": "Privatansvar_PGE90020.pdf",
+      "location": "s1–2 §3.2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-40",
+      "subject": "Rettshjelp",
+      "dimension": "sum_deductible",
+      "value": "100 000 per tvist, 250 000 ved minst tre sikrede, 20 000 Tryg-tvist, maks økonomisk interesse; 4 000+20%.",
+      "doc": "Rettshjelp_PGE91500.pdf",
+      "location": "s1–2 §§3–4",
+      "level": "both"
+    },
+    {
+      "id": "TIN-41",
+      "subject": "Rettshjelp",
+      "dimension": "type_scope",
+      "value": "Privatperson Norden; egne bolig/motor/båt/reise-regler går foran; ID-tyveritvist og visse boligkjøp/-salg; ikke nærings-/familie-/straffesaker.",
+      "doc": "Rettshjelp_PGE91500.pdf",
+      "location": "s3 §5.4, §§6",
+      "level": "both"
+    },
+    {
+      "id": "TIN-42",
+      "subject": "Sikkerhet",
+      "dimension": "material_obligations",
+      "value": "Smykker/optikk/elektronikk/kontanter ikke i fellesadkomstbod/synlig bil/innsjekket bagasje; låsing/tilsyn; vannstengning etter måned ubebodd; varme/snømåking; sykler låst.",
+      "doc": "Sikkerhetsforskrifter_PF133.pdf",
+      "location": "s1 §1.2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-43",
+      "subject": "Utleie/fraflytting",
+      "dimension": "risk_change",
+      "value": "Betalt utleie krever avtale (familieunntak); fraflytting begrenser til brann/natur for fraflyttingsrelatert skade.",
+      "doc": "Sikkerhetsforskrifter_PF133.pdf",
+      "location": "s2 §2",
+      "level": "both"
+    },
+    {
+      "id": "TIN-44",
+      "subject": "Utleietillegg",
+      "dimension": "vandalism_theft",
+      "value": "Valgfritt. Skadeverk 500 000/tilfelle; tyveri/underslag 500 000 fra leietaker/gjester; ikke bruksslitasje/vedlikehold.",
+      "doc": "Utleie_PPK13306.pdf",
+      "location": "s1 §§1–2.2",
+      "level": "addon"
+    },
+    {
+      "id": "TIN-45",
+      "subject": "Utleietillegg",
+      "dimension": "rent_loss",
+      "value": "Ubetalt husleie inntil 6 måneder, én gang per leietaker; egenandel 3 måneders husleie minst 10 000.",
+      "doc": "Utleie_PPK13306.pdf",
+      "location": "s1 §§2.3,2.5",
+      "level": "addon"
+    },
+    {
+      "id": "TIN-46",
+      "subject": "Utleietillegg",
+      "dimension": "eviction_deductible",
+      "value": "Nødvendig utkastelse ved avtaleslutt/brudd 20 000/tilfelle; øvrig egenandel 6 000/tilfelle.",
+      "doc": "Utleie_PPK13306.pdf",
+      "location": "s1 §§2.4–2.5",
+      "level": "addon"
+    },
+    {
+      "id": "TIN-47",
+      "subject": "Utleietillegg",
+      "dimension": "settlement",
+      "value": "Tryg velger oppgjør/ombruk; fradrag ved minst en tredjedels verditap; brukt/arv/gave markedsverdi; eget arbeid 300/time.",
+      "doc": "Utleie_PPK13306.pdf",
+      "location": "s2 §3",
+      "level": "addon"
+    },
+    {
+      "id": "TIN-48",
+      "subject": "IPID/fullvilkår",
+      "dimension": "conflict_candidate",
+      "value": "IPID 2022 nevner skade forårsaket av dyr og tapt husleie samlet, mens 2026 fullvilkår unntar kjæledyr og beskriver skadedyrbekjempelse; utleietillegg separat. Ikke inferer ubetinget dyreskade fra IPID.",
+      "doc": "IPID_Innbo.pdf",
+      "location": "s1",
+      "level": "both"
+    }
+  ],
+  "notes": [
+    "Alle 10 lokale originaler gjennomgått; PGE91000/PGE91500 gjenbruk fra tidligere kontroll. Privatansvar ikraft 01.10 etter frosset snapshot 29.09; tydelig datoforbehold."
+  ]
+}

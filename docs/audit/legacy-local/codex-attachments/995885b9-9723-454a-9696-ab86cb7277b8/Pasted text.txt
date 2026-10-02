@@ -1,0 +1,1171 @@
+==================================================
+55 – FIRST BATCH REQUIREMENTS
+==================================================
+
+For the recommended first implementation batch specify:
+
+batch ID
+wave
+root-cause IDs
+finding IDs/signatures
+affected products
+affected add-ons
+affected families
+exact remediation layer
+source evidence status
+implementation complexity
+regression risk
+expected P1 signatures resolved
+expected P1 occurrences resolved
+customer/PDF impact
+required tests
+required post-fix audit.
+
+Do NOT implement.
+
+==================================================
+56 – BATCH DEPENDENCIES
+==================================================
+
+For every remediation batch identify dependencies.
+
+Examples:
+
+SOURCE_RESEARCH_TASK_X
+must precede
+CATALOG_DATA_BATCH_Y.
+
+CANONICAL_MAPPING_BATCH_A
+must precede
+PRODUCT_DATA_BATCH_B.
+
+Do not schedule dependent batches in parallel.
+
+==================================================
+57 – INDEPENDENT BATCHES
+==================================================
+
+Identify batches that can safely be implemented independently.
+
+These may later be delegated to separate Codex/subagent tasks.
+
+==================================================
+58 – SUBAGENT READINESS
+==================================================
+
+For each implementation batch classify:
+
+SAFE_FOR_SUBAGENT
+MAIN_AGENT_REVIEW_REQUIRED
+NOT_SAFE_FOR_PARALLEL_EXECUTION.
+
+A batch is SAFE_FOR_SUBAGENT only when:
+
+- source evidence is settled
+- file ownership/scope is clear
+- no shared canonical architecture is changing
+- no competing batch modifies same semantic mechanism
+- regression requirements are explicit.
+
+==================================================
+59 – FUTURE PARALLELIZATION
+==================================================
+
+Do NOT spawn remediation subagents now.
+
+This triage should tell us which future batches could safely run in parallel.
+
+Main remediation coordinator should ultimately own:
+
+shared state
+canonical decisions
+deduplication
+final regression
+commit boundaries.
+
+==================================================
+60 – TEST REQUIREMENTS
+==================================================
+
+For each batch define required test types:
+
+CATALOG_UNIT
+SOURCE_PROVENANCE
+SAME_PRODUCT
+CROSS_PRODUCT
+SIDE_SWAP
+INHERITANCE
+ADDON
+SCOPE
+PRODUCT_COMPARISON
+PDF_CUSTOMER_REGRESSION
+UI_PRESENTATION
+TYPE_ISOLATION
+SPECIES_ISOLATION
+FULL_REGRESSION.
+
+Only select tests relevant to the batch.
+
+==================================================
+61 – REGRESSION PRINCIPLE
+==================================================
+
+Every material fix must prove both:
+
+A.
+the known error is corrected
+
+AND
+
+B.
+previously correct nearby behavior remains correct.
+
+==================================================
+62 – WRONG POSITIVE REGRESSION
+==================================================
+
+For unsupported/wrong positive coverage:
+
+test that the erroneous product no longer receives the fact
+
+AND
+
+correct products that legitimately receive it still do.
+
+==================================================
+63 – MISSING FACT REGRESSION
+==================================================
+
+For missing source-backed fact:
+
+test exact intended products gain it
+
+AND
+
+non-applicable products do not.
+
+==================================================
+64 – INHERITANCE REGRESSION
+==================================================
+
+For inheritance fixes test:
+
+base
+middle
+top
+
+where applicable.
+
+Verify both inheritance and overrides.
+
+==================================================
+65 – ADD-ON REGRESSION
+==================================================
+
+For add-on fixes verify:
+
+available
+not available
+selected
+not selected
+applicable product levels.
+
+Do not collapse availability into customer selection.
+
+==================================================
+66 – SCOPE REGRESSION
+==================================================
+
+For agreement-scope fixes verify:
+
+ordinary
+member
+partner
+
+as applicable.
+
+==================================================
+67 – SIDE-SWAP REGRESSION
+==================================================
+
+Comparison semantics should remain stable when Product A and Product B are
+swapped.
+
+Use where relevant.
+
+==================================================
+68 – SAME-PRODUCT REGRESSION
+==================================================
+
+Same product vs same product should not generate false semantic differences.
+
+Use where relevant.
+
+==================================================
+69 – FALSE UNKNOWN REGRESSION
+==================================================
+
+For each fixed VERIFIED_CATALOG_FALSE_UNKNOWN:
+
+verify the previously unknown row now communicates the correct source-backed
+meaning.
+
+Also verify peers are not falsely populated.
+
+==================================================
+70 – REISE OVERNATTING REGRESSION
+==================================================
+
+For Storebrand Standard vs Tryg Reise Ekstra/Premium:
+
+future regression must verify:
+
+- Storebrand day-trip semantics are represented correctly
+- overnight row no longer becomes false unknown
+- special overnight requirements for specific subcoverages remain separate
+- side swap preserves meaning
+- no UI inference from arbitrary free text is required.
+
+==================================================
+71 – TOO-COARSE REGRESSION
+==================================================
+
+For structured detail additions verify:
+
+parent coverage remains correct
+child dimensions are correct
+duplicate rows are not created
+units/periods remain distinct.
+
+==================================================
+72 – NUMERIC REGRESSION
+==================================================
+
+For corrected numeric values verify:
+
+value
+unit
+period
+subject
+product level
+source provenance.
+
+==================================================
+73 – SOURCE CONFLICT TESTING
+==================================================
+
+Do not create a regression asserting one side of an unresolved source
+conflict.
+
+Instead test conservative representation if applicable.
+
+==================================================
+74 – SOURCE RESEARCH OUTPUT
+==================================================
+
+Create:
+
+source-research-plan.csv
+
+with:
+
+research_task_id
+provider
+family
+scope
+products
+question
+current_sources
+missing_evidence
+raw_queue_ids
+priority
+blocks_batch_ids
+pilot_blocking
+recommended_source_type.
+
+==================================================
+75 – HUMAN REVIEW OUTPUT
+==================================================
+
+Create:
+
+human-review-queue.csv
+
+for items where insurance-domain judgment is needed.
+
+Columns:
+
+review_id
+finding/root-cause
+provider
+family
+product
+question
+source evidence
+catalog state
+why model cannot safely decide
+pilot impact.
+
+==================================================
+76 – CANONICAL REVIEW OUTPUT
+==================================================
+
+Create:
+
+canonical-review-queue.csv
+
+for genuine semantic modeling questions.
+
+Columns:
+
+review_id
+concept
+current keys
+problem
+affected products
+affected families
+candidate approach
+false-equivalence risk
+blocks_batches.
+
+==================================================
+77 – FINAL BATCH PLAN
+==================================================
+
+Create:
+
+remediation-plan.csv
+
+One row per FINAL remediation batch.
+
+Columns at minimum:
+
+batch_id
+wave
+title
+root_cause_ids
+finding_signature_count
+finding_occurrence_count
+P1_signature_count
+P1_occurrence_count
+P2_piggyback_count
+products_affected
+families_affected
+layer
+complexity
+risk
+source_readiness
+pilot_priority
+customer_mode_impact
+parallelization_status
+dependencies
+test_plan
+post_fix_audit
+recommended_model.
+
+==================================================
+78 – BATCH DETAIL FILE
+==================================================
+
+Create:
+
+remediation-batches.md
+
+For every batch include:
+
+PURPOSE
+EVIDENCE
+AFFECTED SCOPE
+ROOT CAUSE
+WHAT MUST CHANGE
+WHAT MUST NOT CHANGE
+SOURCE READINESS
+IMPLEMENTATION RISK
+TEST REQUIREMENTS
+POST-FIX AUDIT
+DEPENDENCIES
+EXPECTED LEVERAGE
+MODEL RECOMMENDATION.
+
+No implementation code.
+
+==================================================
+79 – WAVE PLAN
+==================================================
+
+Create:
+
+remediation-waves.md
+
+Show recommended execution order.
+
+For each wave:
+
+objective
+included batches
+P1 signatures addressed
+products affected
+dependencies
+expected risk
+whether batches can run in parallel
+gate before next wave.
+
+==================================================
+80 – P1 TRACEABILITY
+==================================================
+
+Create:
+
+p1-triage.csv
+
+Every one of the 1 589 P1 signatures must appear exactly once in the final
+triage disposition.
+
+Columns:
+
+signature_id
+representative_finding_id
+provider/family scope
+root_cause_id
+final_batch_id
+disposition
+pilot_priority
+source_status
+notes.
+
+No silent omissions.
+
+==================================================
+81 – OCCURRENCE TRACEABILITY
+==================================================
+
+Occurrence-level detail may remain in existing audit artifacts.
+
+Do not duplicate all 3 281 rows unnecessarily if signature mapping already
+resolves them.
+
+But verify every occurrence resolves through its signature/batch.
+
+==================================================
+82 – ROOT CAUSE TRACEABILITY
+==================================================
+
+Create:
+
+root-cause-triage.csv
+
+For all existing root-cause posts include:
+
+existing_root_cause_id
+final_root_cause_id
+status
+merge_target
+split_targets
+evidence_strength
+affected_signatures
+affected_products
+final_batch_ids.
+
+==================================================
+83 – DEDUPLICATION
+==================================================
+
+Explicitly determine whether:
+
+60 existing root-cause posts
+
+can be reduced to fewer final implementation root causes.
+
+Do not merge merely because symptoms look similar.
+
+==================================================
+84 – SOURCE RESEARCH DEDUPLICATION
+==================================================
+
+Likewise reduce:
+
+110 open raw source research entries
+
+to the smallest set of actual source-acquisition/review tasks.
+
+==================================================
+85 – P2 PIGGYBACK
+==================================================
+
+After P1 batches are stable:
+
+identify P2 findings that can be fixed in the SAME source-backed edit with
+negligible additional risk.
+
+Mark:
+
+P2_PIGGYBACK_SAFE.
+
+Do not enlarge batches substantially just to eliminate P2.
+
+==================================================
+86 – DEFERRED P2
+==================================================
+
+Other P2:
+
+DEFER_POST_PILOT
+or
+DEFER_UNTIL_RELEVANT
+
+with rationale.
+
+==================================================
+87 – NO P3 WORK
+==================================================
+
+P3 = 0.
+
+Do not invent polish work.
+
+==================================================
+88 – PRODUCT FAMILY BALANCE
+==================================================
+
+Ensure triage does not accidentally prioritize Bil only because it has the
+largest occurrence count.
+
+Materiality and root-cause leverage matter more.
+
+==================================================
+89 – HIGH P1 FAMILIES
+==================================================
+
+Pay particular attention to the high-volume families:
+
+Bil
+Båt
+Bobil
+Reise
+Innbo
+Hus
+
+but do not assume high count means highest severity.
+
+==================================================
+90 – BÅT
+==================================================
+
+Båt has:
+
+417 P1 occurrences across 20 products.
+
+Determine whether this is mainly:
+
+thin catalog data
+missing source package
+shared canonical issue
+or provider-specific gaps.
+
+Do not create one giant "fix boat" batch unless evidence supports it.
+
+==================================================
+91 – BIL
+==================================================
+
+Bil has:
+
+490 P1 occurrences across 35 products.
+
+Identify whether a small number of:
+
+numeric dimensions
+inheritance mechanisms
+add-ons
+source summarization patterns
+
+explain much of the volume.
+
+==================================================
+92 – REISE
+==================================================
+
+Reise has:
+
+334 P1 occurrences across 14 products.
+
+Prioritize semantic correctness around:
+
+duration
+overnight/day trip
+baggage
+delays
+medical
+cancellation
+rental deductible
+accident
+customer-selected extensions.
+
+==================================================
+93 – BOBIL
+==================================================
+
+Bobil has:
+
+360 P1 occurrences across 24 products.
+
+Separate:
+
+vehicle-derived rules
+bobil-specific rules
+moisture
+holiday interruption
+contents
+pests
+new value
+machine damage.
+
+==================================================
+94 – HUND / KATT
+==================================================
+
+Preserve species separation.
+
+Prioritize:
+
+veterinary sum semantics
+deductible
+medicine
+dental
+rehab
+diagnostics
+allergy
+life
+disappearance/theft
+loss of use
+age
+waiting period.
+
+Do not create shared Hund/Katt fix unless source semantics truly match.
+
+==================================================
+95 – HOUSE / CONTENTS
+==================================================
+
+Preserve distinctions such as:
+
+water damage
+wet room
+construction defect
+pests
+rot
+outbuilding
+rental
+full value / first-loss
+limits
+deductibles.
+
+==================================================
+96 – VEHICLE TYPES
+==================================================
+
+Do not let shared motor terms create false applicability across:
+
+Bil
+MC
+Bobil
+Snøscooter
+Campingvogn
+Tilhenger.
+
+==================================================
+97 – KNOWN CORRECT DATA
+==================================================
+
+Completed audit documented many positive controls.
+
+Every remediation batch must preserve known-correct nearby facts.
+
+Use positive controls in regression plans.
+
+==================================================
+98 – SOURCE PROVENANCE
+==================================================
+
+Every corrected/added material fact must retain or receive correct source
+provenance in future implementation.
+
+Triage should identify provenance source(s).
+
+==================================================
+99 – NO UNSOURCED "COMMON KNOWLEDGE"
+==================================================
+
+Future remediation may not fill gaps from insurance-domain intuition.
+
+Only applicable source evidence.
+
+==================================================
+100 – NO PEER COPYING
+==================================================
+
+Do not propose:
+
+"copy Storebrand's structure to Gjensidige"
+
+as factual remediation.
+
+Architecture pattern reuse is allowed.
+
+Facts require exact provider/product evidence.
+
+==================================================
+101 – SOURCE INSUFFICIENT
+==================================================
+
+If evidence is insufficient:
+
+do not design a factual correction.
+
+Route to:
+
+SOURCE_RESEARCH_FIRST.
+
+==================================================
+102 – SOURCE CONFLICT
+==================================================
+
+If evidence conflicts materially:
+
+do not select preferred value.
+
+Route to:
+
+SOURCE_RESEARCH_FIRST
+or
+HUMAN_DOMAIN_REVIEW.
+
+==================================================
+103 – OLD SOURCE
+==================================================
+
+If finding appears supported only by potentially historical/non-current
+source:
+
+route appropriately.
+
+Do not silently treat it as current.
+
+==================================================
+104 – CURRENT LOCAL CORPUS LIMITATION
+==================================================
+
+Remember:
+
+completed audit validates against frozen local source corpus.
+
+It does NOT prove those sources are the newest public versions.
+
+Triage should not claim otherwise.
+
+==================================================
+105 – SOURCE FRESHNESS SEPARATION
+==================================================
+
+Do not expand this task into a full source freshness audit.
+
+Only identify cases where freshness/version uncertainty blocks remediation.
+
+==================================================
+106 – IMPLEMENTATION MODEL RECOMMENDATION
+==================================================
+
+For every batch recommend one:
+
+GPT-6 SOL LIGHT
+GPT-6 SOL MEDIUM
+GPT-6 SOL HIGH
+GPT-6 SOL EXTRA HIGH
+GPT-6 ASTRA EXTRA HIGH.
+
+Use strongest model only when justified.
+
+If GPT-6.1 Sol becomes available later, recommendations can be translated
+then.
+
+==================================================
+107 – MODEL ECONOMY
+==================================================
+
+Prefer cheaper models for:
+
+mechanical source-backed catalog additions
+simple numeric corrections
+straightforward tests.
+
+Prefer Astra Extra High for:
+
+canonical architecture
+ambiguous semantic mapping
+high-blast-radius inheritance
+complex source conflicts.
+
+==================================================
+108 – HUMAN APPROVAL
+==================================================
+
+No remediation wave may be considered approved merely because triage
+recommends it.
+
+User/human review occurs after this task.
+
+==================================================
+109 – NO IMPLEMENTATION
+==================================================
+
+Again:
+
+DO NOT CHANGE ANY PROJECT FILE.
+
+This is planning only.
+
+==================================================
+110 – NO TEST WRITING
+==================================================
+
+Do not write tests yet.
+
+Specify tests.
+
+==================================================
+111 – NO COMMIT
+==================================================
+
+No commit.
+
+==================================================
+112 – NO PUSH
+==================================================
+
+No push.
+
+==================================================
+113 – NO DEPLOY
+==================================================
+
+No deploy.
+
+==================================================
+114 – NO SOURCE DOWNLOAD
+==================================================
+
+No new web/source download.
+
+==================================================
+115 – NO CUSTOMER DATA
+==================================================
+
+No customer documents.
+
+==================================================
+116 – NO PERSON INSURANCE
+==================================================
+
+Person insurance remains out of scope.
+
+==================================================
+117 – NO SECURITY REMEDIATION
+==================================================
+
+Do not work on:
+
+GDPR
+auth
+rate limiting
+security headers
+feedback
+Safari
+deployment hardening.
+
+Those remain separate pre-pilot streams.
+
+==================================================
+118 – TRIAGE OUTPUT DIRECTORY
+==================================================
+
+Create:
+
+/tmp/source-catalog-remediation-triage/
+
+All new files go there.
+
+Do not modify:
+
+/tmp/source-catalog-completeness-audit/
+
+except read access.
+
+==================================================
+119 – REQUIRED OUTPUTS
+==================================================
+
+Create at minimum:
+
+triage-summary.md
+triage.json
+remediation-plan.csv
+remediation-batches.md
+remediation-waves.md
+p1-triage.csv
+root-cause-triage.csv
+source-research-plan.csv
+human-review-queue.csv
+canonical-review-queue.csv
+p2-piggyback.csv
+quality-check.json.
+
+==================================================
+120 – TRIAGE.JSON
+==================================================
+
+Include at minimum:
+
+metadata
+audit_baseline
+input_counts
+p1_dispositions
+final_root_causes
+final_batches
+waves
+source_research_tasks
+human_review
+canonical_review
+p2_piggyback
+customer_mode_impact
+parallelization
+model_recommendations
+quality_checks
+repo_integrity
+recommendation
+next_step.
+
+==================================================
+121 – SUMMARY COUNTS
+==================================================
+
+Final summary must report:
+
+P1 signatures input
+P1 signatures FIX_BEFORE_NITO
+P1 signatures SOURCE_RESEARCH_FIRST
+P1 signatures CANONICAL_REVIEW_FIRST
+P1 signatures MAPPING_REVIEW_FIRST
+P1 signatures HUMAN_DOMAIN_REVIEW
+P1 signatures DEFER_SAFE
+P1 signatures duplicate/covered
+P1 signatures false positive after recheck.
+
+Totals must reconcile to:
+
+1 589.
+
+==================================================
+122 – FINAL BATCH COUNTS
+==================================================
+
+Report:
+
+existing proposed groups: 56
+final remediation batches
+final implementation root causes
+unique source research tasks
+human review items
+canonical review items.
+
+==================================================
+123 – LEVERAGE TABLE
+==================================================
+
+Create top remediation leverage table.
+
+Columns:
+
+Batch
+P1 signatures
+P1 occurrences
+Products
+Families
+Complexity
+Risk
+Source readiness
+Pilot priority.
+
+Do not rank insurance providers.
+
+This ranks our remediation work only.
+
+==================================================
+124 – PILOT-BLOCKING TABLE
+==================================================
+
+Create a separate table containing only:
+
+MUST_BEFORE_NITO
+
+batches/research/review tasks.
+
+==================================================
+125 – SAFE PARALLEL TABLE
+==================================================
+
+Create table of:
+
+SAFE_FOR_SUBAGENT
+
+batches.
+
+Include:
+
+files/scope likely affected
+dependencies
+shared-state conflicts.
+
+==================================================
+126 – SEQUENTIAL TABLE
+==================================================
+
+Create table of batches that MUST remain sequential due to:
+
+shared canonical mapping
+inheritance
+same catalog files
+cross-family behavior
+dependency.
+
+==================================================
+127 – FIRST WAVE GATE
+==================================================
+
+Define objective pass criteria after Wave 1.
+
+Example:
+
+all verified unsupported positive catalog claims resolved
+targeted regression PASS
+targeted source→catalog recheck PASS
+no new P0/P1 introduced in affected scope.
+
+Actual criteria should follow evidence.
+
+==================================================
+128 – EVERY WAVE GATE
+==================================================
+
+Every wave must have a gate before next wave.
+
+No:
+
+"implement everything, test at end."
+
+==================================================
+129 – TARGETED RE-AUDIT
+==================================================
+
+After each remediation wave recommend:
+
+targeted source→catalog re-audit
+
+for affected:
+
+providers
+families
+products
+canonical concepts.
+
+Do not rerun all 204 products after every wave.
+
+==================================================
+130 – FINAL FULL RE-AUDIT
+==================================================
+
+After all P1 remediation waves:
+
+run a full source→catalog regression/reconciliation.
+
+It may reuse existing source inventories and fingerprints.
+
+Goal:
+
+P0 = 0
+P1 = 0
+
+or explicitly justified unresolved source/human-review cases represented
+conservatively.
+
+==================================================
+131 – PRODUCT COMPARISON BULK AUDIT
+==================================================
+
+After catalog remediation:
+
+rerun bulk product-comparison audit.
+
+Verify:
+
+same product
+side swap
+cross-provider
+unknown semantics
+optional/included
+canonical grouping
+type isolation
+species isolation.
+
+==================================================
+132 – HUMAN SPOT CHECK
+==================================================
+
+After automated re-audit:
+
+perform human advisor spot checks.
+
+Include previously observed cases:
+
+Reise overnight/day trip
+Hund
+Bobil
+Båt
+MC
+
+plus random products.
+
+==================================================
+133 – PDF REGRESSION
+==================================================
+
+After catalog remediation:
+
+run synthetic PDF/customer-mode regression for batches classified:
+
+LIKELY_SHARED_WITH_CUSTOMER_MODE
+or
+PDF_EXTRACTION_IMPACT.
+
+No real customer data.
+
+==================================================
+134 – PDF UX IS SEPARATE
+==================================================
+
+Do not mix the future:
+
+pricing/risk assumption top section
+
+into catalog remediation unless semantic dependencies require it.
+
+That will be a later dedicated UX/extraction task.
+
+==================================================
+135 – PERSON INSURANCE LESSON
+==================================================
+
+Record as future architecture/process recommendation:
+
+New person-insurance families should be built SOURCE-FIRST:
+
+official

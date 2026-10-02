@@ -1,0 +1,357 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "SBT-01",
+      "subject": "Sikrede",
+      "dimension": "personkrets",
+      "value": "Norsk bosatt eier, rettmessige brukere og avtalt registrert rettighetshaver; ny eier inntil 14 dager til ny avtale.",
+      "location": "§1–3 fysisk s5",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-02",
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "Hele året NO/SE/DK/FI 12 nm, Kattegat/Skagerrak øst Lindesnes–Hirtshals, Østersjøen/Finskebukta/Bottenvika; 1.4–30.9 øvrige Europa 200 nm inkl angitte øyoverfarter. Rettshjelp Norden.",
+      "location": "§3 fysisk s5",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-03",
+      "subject": "Registrering",
+      "dimension": "vilkår",
+      "value": "Norsk registrering; motor fra 10 hk / seil fra 4,5 m Småbåt eller Securmark og merke. Web sier over 10 hk / lengre enn 4,5 m og bare Småbåt.",
+      "location": "§4 fysisk s5; web registrering",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-04",
+      "subject": "Forsikrede ting",
+      "dimension": "forsikringssum",
+      "value": "Båt/motor/seil, naturlig tilbehør og fast utstyr innen avtalt sum; sikkerhetsutstyr uten begrensning i tillegg.",
+      "location": "§4 fysisk s5–6",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-05",
+      "subject": "Bagasje",
+      "dimension": "sum",
+      "value": "Midlertidig ombord 50000 per skadetilfelle; Super 100000; hvert objekt 15000. Ikke smykker, klokker, kunst, penger, papirer eller forbruksvarer.",
+      "location": "§4/§5.1/§5.3.2/§6.10 fysisk s6–11",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-06",
+      "subject": "Egenandel",
+      "dimension": "mekanisme",
+      "value": "Høyeste egenandel per hendelse; fradrag før egenandel; utleie dobler egenandel unntatt ≤15 fot båt til utleid fritidshus.",
+      "location": "§4 fysisk s6",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-07",
+      "subject": "Brann",
+      "dimension": "utløser",
+      "value": "Brann, lyn og eksplosjon.",
+      "location": "§5.1 fysisk s7",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-08",
+      "subject": "Tyveri",
+      "dimension": "utløser",
+      "value": "Tyveri og forsøk; hærverk i forbindelse med tyveri/innbrudd, ikke all skadeverk generelt.",
+      "location": "§5.1 fysisk s7",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-09",
+      "subject": "Redning",
+      "dimension": "vilkår",
+      "value": "Ubegrenset rimelig slep til trygg havn etter uforutsett uhell som hindrer videre ferd; bergelønn.",
+      "location": "§5.1.3 fysisk s7–8",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-10",
+      "subject": "Transport",
+      "dimension": "vilkår",
+      "value": "Verksted/foreløpig reparasjon etter dekket skade. Hjemtransport båt etter reparasjon/funnet etter tyveri; personer hjem eller rimeligere opphold. Delkasko bare brann/tyveri.",
+      "location": "§5.1.3 fysisk s8",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-11",
+      "subject": "Kriseterapi",
+      "dimension": "grense og vilkår",
+      "value": "10 timer innen 12 måneder; alvorlig ulykke/brann/ran/overfall/voldtekt med båt, avtalt psykolog, reise etter norske satser, utenlandsbehandling norske priser og ikke utenlandsreise; anmeldelse der relevant.",
+      "location": "§5.1.3 fysisk s8",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-12",
+      "subject": "Egenandel",
+      "dimension": "faste satser",
+      "value": "Brann/tyveri 6000 med mindre annet avtalt; redning 750. Tyveri av boltlåst motor eller FG sporing/Securmarkmerket båt reduserer 4000.",
+      "location": "§5.1 egenandel fysisk s8",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-13",
+      "subject": "Kasko",
+      "dimension": "utløser",
+      "value": "Sammenstøt/kantring/synking/plutselig ytre påvirkning, riggbrudd/følger, båt og tilbehør under transport.",
+      "location": "§5.2 fysisk s9",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-14",
+      "subject": "Opplagsutstyr",
+      "dimension": "sum",
+      "value": "Tyveri/skade inntil 20000.",
+      "location": "§5.2 fysisk s9",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-15",
+      "subject": "Drivstoff",
+      "dimension": "avgrensning",
+      "value": "Plutselig tilførsel av forurenset drivstoff eller feilfylling dekkes; drivstoff som blir forurenset i egen tank dekkes ikke.",
+      "location": "§5.2/§6.22 fysisk s9/11",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-16",
+      "subject": "Kasko egenandel",
+      "dimension": "standard",
+      "value": "8000 med mindre beviset sier annet; også Super.",
+      "location": "§5.2–3 fysisk s9–10",
+      "scope": "kasko",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-17",
+      "subject": "Ferieavbrudd",
+      "dimension": "satser",
+      "value": "Super 15.4–15.9; brann/tyveri/kasko; 2 promille avtalt sum per dag, inntil 30 dager/60000; normal reparasjon/ventetid, totaltap 30 dager.",
+      "location": "§5.3.1 fysisk s9–10",
+      "scope": "super",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-18",
+      "subject": "Super bagasje",
+      "dimension": "sum",
+      "value": "100000 samlet; §6.10 begrenser per ting 15000.",
+      "location": "§5.3.2/§6.10 fysisk s10–11",
+      "scope": "super",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-19",
+      "subject": "Super reisekostnader",
+      "dimension": "utløser",
+      "value": "Rimeligst videre til reisemål eller hjem når uhell hindrer ferd eller person rammet av sykdom/ulykke/død. Hjem båt til fast havn.",
+      "location": "§5.3.3–4 fysisk s10",
+      "scope": "super",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-20",
+      "subject": "Jolle",
+      "dimension": "grense",
+      "value": "Jolle/gummibåt/livbåt inntil 4 meter med utenbordsmotor inntil 10 hk innen avtalt sum.",
+      "location": "§5.3.5 fysisk s10",
+      "scope": "super",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-21",
+      "subject": "Totalskade",
+      "dimension": "nytt objekt",
+      "value": "Inntil 3 år fra kjøp som ny båt og/eller motor; tapt eller reparasjon >80% importørlistepris tilsvarende ny; inntil forsikringssum.",
+      "location": "§5.3.6 fysisk s10",
+      "scope": "super",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-22",
+      "subject": "Totalskade",
+      "dimension": "brukt objekt",
+      "value": "Inntil 3 år fra kjøp; kjøpspris, begrenset til sum og markedsverdi ved kjøp; hvis pris lavere brukes markedsverdi. Kjøp/eierskap må dokumenteres.",
+      "location": "§5.3.6 fysisk s10",
+      "scope": "super",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-23",
+      "subject": "Unntak",
+      "dimension": "vær og gradvis",
+      "value": "Konstruksjon, materialtretthet, råte/korrosjon; nedbør/snøis/frost, også medvirkende. Isberøring i boblehavn og frost etter ytre landstrømfeil unntatt fra unntaket.",
+      "location": "§6 fysisk s11",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-24",
+      "subject": "Unntak",
+      "dimension": "isolert motor og seil",
+      "value": "Motor alene bare ved oppgitte brann/tyveri/kaskohendelser; seil alene ved vind ikke dekket. Ingen generell maskinbrudddekning dokumentert.",
+      "location": "§6.18–19 fysisk s11",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-25",
+      "subject": "Unntak",
+      "dimension": "bruksområde",
+      "value": "Motorhastighetsregatta, yrke/utleievirksomhet uten særavtale; erstatning under garanti/ansvarlig tredjepart unntatt, men fallback når krav ikke fører fram og ellers dekket skade.",
+      "location": "§6 fysisk s11",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-26",
+      "subject": "Sikkerhet",
+      "dimension": "plikt",
+      "value": "Sjødyktighet/vedlikehold/tilsyn; bunnventiler stengt nov–mars; låst utstyr, innelagring motor under 40 hk, brannslokker og lagring/transportforskrifter.",
+      "location": "§7 fysisk s12–13",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-27",
+      "subject": "Ung fører",
+      "dimension": "tilleggsegenandel",
+      "value": "10000 ekstra dersom rabatt for ingen fører under 24 år og skade med yngre fører.",
+      "location": "§7 fysisk s12",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-28",
+      "subject": "Reparasjon",
+      "dimension": "oppgjør",
+      "value": "Reparasjon og likeverdige deler/selskapets verksted; forbedringsfradrag; eget arbeid 50%, MVA etter dokumentasjon, ikke verdiforringelse.",
+      "location": "§8 fysisk s14–15",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-29",
+      "subject": "Aldersfradrag",
+      "dimension": "tabell",
+      "value": "Drev/undervannshus 3 frie år deretter 10% maks50; rigg 5/5%/60; kalesje 2/10%/80; PC/navigasjon 1/10%/80; annen elektronikk 1/10%/50. Demontering/montering holdes utenfor.",
+      "location": "§8.3 fysisk s15",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-30",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "3020000 SDR person og1510000 SDR ting; ikke NOK.",
+      "location": "§9.1 fysisk s16",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-31",
+      "subject": "Ansvar",
+      "dimension": "egenandel og unntak",
+      "value": "0 med mindre beviset sier annet; ikke forsett/familie/sameier/leide-lånte ting/transport/yrke/motorregatta/utvidet kontraktansvar.",
+      "location": "§9 fysisk s16–17",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-32",
+      "subject": "Vrak",
+      "dimension": "dekning",
+      "value": "Ubegrenset ved dekket skade; offentlig krav, fare, sjenanse/forsjemmelse etter vilkåret.",
+      "location": "§5.1/§9 fysisk s4/16",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-33",
+      "subject": "Rettshjelp",
+      "dimension": "sum egenandel",
+      "value": "100000 og økonomisk interesse; 3–10 parter250000,11–25 500000,26–49 750000,50+1000000. 4000+20%rest. Norden.",
+      "location": "§10 fysisk s17–19",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-34",
+      "subject": "Rettshjelp",
+      "dimension": "vilkår",
+      "value": "Eier/bruker/båtsalgstvister, også etter totaltap; ingen føravtaletvist, yrke/familie/straff, sameiere eller salær; kostnadsbegrensninger/forhåndsgodkjent sakkyndig.",
+      "location": "§10 fysisk s17–19",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-35",
+      "subject": "Ulykke",
+      "dimension": "summer",
+      "value": "100000 død,200000 voksen invaliditet,500000 barn under18; samlet1000000 per skadetilfelle. Ikke behandlingsutgifter.",
+      "location": "§11 fysisk s20–22",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-36",
+      "subject": "Ulykke",
+      "dimension": "vilkår",
+      "value": "Lovlig ombord ikke betalende/utleie; utenfor bare båt direkte årsak; død innen2år, invaliditet etter grad/forutgående funksjon; ingen sykdom/psykisk/forsett/arr<15%.",
+      "location": "§11 fysisk s20–22",
+      "scope": "all",
+      "doc": "terms"
+    },
+    {
+      "id": "SBT-37",
+      "subject": "Tilbud",
+      "dimension": "valg og fordeler",
+      "value": "Valgfri egenandel6000/8000/12000/16000; bevis styrer, spesialsatser. Kunde-/nettrabatt og båtvakt-tilbud er kjøpsforhold ikke nye ubetingede dekninger.",
+      "location": "HTML egenandeler/fordeler",
+      "scope": "all",
+      "doc": "web"
+    },
+    {
+      "id": "SBT-38",
+      "subject": "IPID",
+      "dimension": "oversikt",
+      "value": "Delkasko/Kasko/Super; bagasje under Kasko i kortliste men fullvilkår+web uttrykkelig Delkasko, ikke bevis for eksklusjon. IPID totalforsvinning krever registrering mens fullvilkår godtar kjøpekontrakt.",
+      "location": "IPID s1–2",
+      "scope": "all",
+      "doc": "ipid"
+    },
+    {
+      "id": "SBT-39",
+      "subject": "Generelt",
+      "dimension": "administrasjon",
+      "value": "Generelle Storebrandvilkår tidligere lest og gjenbrukt; varsling/skadeoppgjør/frister uten eget nytt sammenligningskonsept.",
+      "location": "Generelle vilkår 11 sider",
+      "scope": "all",
+      "doc": "terms"
+    }
+  ],
+  "review": "Alle22 fullvilkårsider båt03/1.9.2024, begge IPID-sider og hele produktsidens materialinnhold lest; general11 sider gjenbrukt. Inventaret ferdig før supplerende catalog-matching."
+}

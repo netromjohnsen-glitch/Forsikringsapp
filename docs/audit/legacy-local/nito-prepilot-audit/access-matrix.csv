@@ -1,0 +1,7 @@
+actor,can_access_app,can_upload,can_analyze,can_see_own_result,can_see_other_users_result,can_see_feedback,can_see_logs,can_deploy,can_read_secrets
+Unauthenticated internet user,NO (login page only),NO,NO,NO,NO,NO,NO,NO,NO
+Pilot advisor with shared code,YES,YES,YES,YES,NO persistent cross-user store found,NOT_APPLICABLE,NO,NO,NO
+Other pilot advisor,YES with same shared code,YES,YES,Own browser state; no server result store,No direct route; shared workstation/session risk,NOT_APPLICABLE,NO,NO,NO
+Developer/operator,UNKNOWN organizationally,UNKNOWN,UNKNOWN,No application database; logs may contain structural metadata,NOT_APPLICABLE,UNKNOWN,YES/UNKNOWN,YES/UNKNOWN,YES/UNKNOWN
+Railway platform/operator,Infrastructure-level UNKNOWN,Infrastructure-level UNKNOWN,Infrastructure-level UNKNOWN,Transient runtime access UNKNOWN,NOT_APPLICABLE,YES/UNKNOWN,YES,YES/UNKNOWN,YES/UNKNOWN
+OpenAI provider,NO app UI,NO,Receives server request only,Receives masked extracted text/candidates,NO browser/result store access,NO Railway logs,NO,NO,API processing credentials only

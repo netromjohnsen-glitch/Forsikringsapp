@@ -1,0 +1,1181 @@
+==================================================
+55 – ROOT CAUSE MUST NOT BE ASSUMED
+==================================================
+
+A missing visible comparison fact can originate from several layers:
+
+SOURCE
+→ source package incomplete
+
+EXTRACTION / SOURCE PARSING
+→ source contains fact but audit/parser misses it
+
+CATALOG
+→ source fact never entered
+
+CANONICAL MODEL
+→ no suitable semantic representation exists
+
+INHERITANCE
+→ fact exists but is not inherited to correct product
+
+ADD-ON
+→ fact belongs to optional component but is attached incorrectly
+
+APPLICABILITY
+→ fact is valid only for specific product/type/version
+
+PRESENTATION
+→ catalog contains fact but UI does not expose it.
+
+Trace enough evidence to distinguish these.
+
+==================================================
+56 – CATALOG FACT EXISTS BUT NOT DISPLAYED
+==================================================
+
+If source fact exists in catalog but product comparison does not render it:
+
+do NOT classify:
+
+SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG.
+
+Use:
+
+PRESENTATION_ONLY
+
+or appropriate structural classification.
+
+This distinction is important for later remediation.
+
+==================================================
+57 – SOURCE PACKAGE INCOMPLETE
+==================================================
+
+If existing local source package itself appears to lack a document required
+to determine an important product fact:
+
+classify:
+
+SOURCE_PACKAGE_GAP
+
+Do not perform web research during this audit.
+
+Record:
+
+provider
+family
+product
+suspected missing document/source type
+reason.
+
+==================================================
+58 – CONFLICTING SOURCES
+==================================================
+
+If applicable official local sources conflict:
+
+do not select the preferred value merely to increase completeness.
+
+Classify:
+
+SOURCE_CONFLICT_REVIEW_REQUIRED
+
+Preserve both source references.
+
+==================================================
+59 – SOURCE PRECEDENCE
+==================================================
+
+Respect existing source policy.
+
+Full terms may provide detail omitted from IPID.
+
+IPID/product sheet may define product-level availability.
+
+Product page may contain current consumer-facing detail.
+
+Do not assume one document type always overrides all others.
+
+Applicability/version matters.
+
+==================================================
+60 – SOURCE FACT STATUS
+==================================================
+
+For every candidate coverage concept distinguish:
+
+POSITIVE_COVERAGE_ASSERTION
+LIMITATION
+EXCLUSION
+OPTIONAL_AVAILABILITY
+CUSTOMER_SPECIFIC_REFERENCE
+DEFINITION
+ADMINISTRATIVE_RULE.
+
+Do not treat limitation/exclusion as proof of positive coverage.
+
+==================================================
+61 – NEGATIVE FACTS
+==================================================
+
+Important exclusions can be advisor-relevant.
+
+But they should usually be represented as:
+
+coverage limitation/detail
+
+not a standalone coverage unless existing canonical model intentionally does
+so.
+
+==================================================
+62 – OPTIONAL VS INCLUDED
+==================================================
+
+Audit all products for source statements such as:
+
+kan velges
+kan utvides
+tilleggsdekning
+mot tilleggspremie
+dersom avtalt
+hvis det fremgår av forsikringsbeviset.
+
+Determine whether catalog correctly represents:
+
+OPTIONAL
+CUSTOMER_SPECIFIC
+INCLUDED.
+
+Any mismatch is high priority.
+
+==================================================
+63 – CUSTOMER-SPECIFIC REFERENCES
+==================================================
+
+Statements such as:
+
+"avtalt sum fremgår av forsikringsbeviset"
+
+may still be useful catalog information.
+
+Possible correct representation:
+
+customer-selectable/customer-specific
+
+rather than missing fixed value.
+
+Do not invent selected value.
+
+==================================================
+64 – NUMERIC DIMENSIONS
+==================================================
+
+Audit especially source-backed:
+
+currency amounts
+percentages
+ages
+kilometers
+days
+hours
+years
+number of events
+geographical distances
+deductible intervals
+coverage periods.
+
+These are often highly advisor-relevant.
+
+==================================================
+65 – VALUE SEMANTICS
+==================================================
+
+The same number does not mean the same thing.
+
+Preserve:
+
+per event
+per insurance year
+per item
+per person
+per family
+per day
+total
+minimum
+maximum
+deductible
+insurance sum
+replacement threshold.
+
+==================================================
+66 – COMBINED LIMITS
+==================================================
+
+If source documents:
+
+50 000 per event AND 50 000 per year
+
+do not reduce to:
+
+50 000.
+
+==================================================
+67 – RANGE / OPTIONS
+==================================================
+
+If source gives:
+
+6 000–12 000 deductible
+
+or discrete selectable values:
+
+represent availability/options, not actual customer selection.
+
+==================================================
+68 – AGE
+==================================================
+
+Distinguish:
+
+new-entry age
+coverage age
+reduction age
+termination age
+vehicle age
+motor age
+building age.
+
+No generic semantic collapse.
+
+==================================================
+69 – TIME
+==================================================
+
+Distinguish:
+
+waiting period
+repair duration
+rental duration
+trip duration
+coverage duration
+notification deadline
+deductible period.
+
+Administrative deadlines are often not comparison-relevant.
+
+==================================================
+70 – GEOGRAPHY
+==================================================
+
+Audit geography carefully.
+
+Do not collapse:
+
+Norden
+Europa
+EØS
+worldwide
+specific territorial exclusions
+nautical distance limits.
+
+==================================================
+71 – DEDUCTIBLES
+==================================================
+
+Audit:
+
+fixed
+percentage
+fixed + percentage
+age/mileage graded
+customer-selectable
+special deductible
+zero deductible
+per-event rules.
+
+==================================================
+72 – TOTAL LOSS / NEW VALUE
+==================================================
+
+Where applicable inventory dimensions such as:
+
+coverage status
+replacement form
+age
+mileage
+ownership/new purchase requirement
+damage threshold
+theft waiting period
+leasing exclusion
+other major conditions.
+
+Do not force identical model across vehicle families.
+
+==================================================
+73 – MACHINE / ENGINE DAMAGE
+==================================================
+
+Where applicable inventory:
+
+status
+optional/included
+vehicle age
+engine age
+mileage
+covered components
+deductible
+deductible progression
+important exclusions
+applicability.
+
+==================================================
+74 – MOBILITY
+==================================================
+
+Audit concepts such as:
+
+rental car
+rental MC
+replacement vehicle
+hotel
+travel continuation
+interrupted holiday
+feriegaranti
+roadside assistance.
+
+Do not automatically merge them.
+
+Identify:
+
+shared parent concept
++
+distinct child mechanisms
+
+where appropriate.
+
+==================================================
+75 – PROPERTY WATER SEMANTICS
+==================================================
+
+For Hus and related products distinguish:
+
+water damage
+water ingress
+consequential damage
+defect itself
+wet-room damage
+leakage
+groundwater/flood
+moisture.
+
+Do not infer equivalence from shared word "water".
+
+==================================================
+76 – PET SUM SEMANTICS
+==================================================
+
+For Hund/Katt verify source→catalog representation of:
+
+annual veterinary sum
+per-event sum
+combined limits
+medicine sublimit
+dental sublimit
+life sum
+customer-selectable sum
+rollover.
+
+==================================================
+77 – PET DEDUCTIBLE
+==================================================
+
+Verify:
+
+fixed component
+percentage component
+deductible period
+selectable deductible
+
+independently.
+
+==================================================
+78 – PET AGE
+==================================================
+
+Verify:
+
+new enrollment
+veterinary duration
+life reduction start
+life termination
+breed-specific rules.
+
+==================================================
+79 – SOURCE-TO-CATALOG COVERAGE RATIO
+==================================================
+
+You may calculate descriptive counts such as:
+
+advisor-relevant source facts identified
+represented
+missing
+too coarse
+review required.
+
+BUT:
+
+do NOT create a simplistic quality score or ranking.
+
+Counts are diagnostic only.
+
+==================================================
+80 – PRODUCT COMPLETENESS STATUS
+==================================================
+
+For each exact product assign:
+
+NO_MATERIAL_GAP_FOUND
+MINOR_GAPS
+MATERIAL_GAPS
+REVIEW_REQUIRED
+SOURCE_INSUFFICIENT.
+
+Do not rank providers.
+
+This status evaluates our catalog implementation, not insurer quality.
+
+==================================================
+81 – FAMILY COMPLETENESS STATUS
+==================================================
+
+Aggregate diagnostic status by family:
+
+NO_MATERIAL_GAP_FOUND
+GAPS_FOUND
+REVIEW_REQUIRED.
+
+No provider ranking.
+
+==================================================
+82 – SEVERITY
+==================================================
+
+For each gap classify implementation impact:
+
+CRITICAL
+HIGH
+MEDIUM
+LOW
+REVIEW.
+
+CRITICAL:
+could materially invert or seriously misrepresent product comparison.
+
+HIGH:
+important coverage/limit/status absent or semantically wrong.
+
+MEDIUM:
+useful advisor detail missing but main coverage remains understandable.
+
+LOW:
+minor comparison detail.
+
+REVIEW:
+insufficient evidence.
+
+==================================================
+83 – CRITICAL EXAMPLES
+==================================================
+
+Potentially CRITICAL/HIGH if verified:
+
+included vs unavailable wrong
+optional vs included wrong
+wrong product/scope/version
+wrong sum semantics
+wrong age/km threshold
+wrong source
+material totalskade rule missing
+material maskinskade rule missing.
+
+Actual severity must follow evidence.
+
+==================================================
+84 – NO PROVIDER QUALITY JUDGMENT
+==================================================
+
+Do not say:
+
+provider X has poor coverage
+
+because our catalog lacks facts.
+
+The audit evaluates OUR DATA COMPLETENESS.
+
+==================================================
+85 – GAP EVIDENCE
+==================================================
+
+Every MATERIAL/HIGH/CRITICAL gap must contain:
+
+exact product identity
+source artifact
+source section/page if available
+short source evidence
+existing catalog representation
+missing/incorrect dimension
+classification
+severity
+advisor impact
+confidence.
+
+==================================================
+86 – CONFIDENCE
+==================================================
+
+Use:
+
+HIGH
+MEDIUM
+LOW.
+
+Only HIGH/MEDIUM evidence should normally become remediation candidates.
+
+LOW remains review.
+
+==================================================
+87 – MANUAL SECOND REVIEW
+==================================================
+
+Manually reason through every:
+
+CRITICAL
+HIGH
+
+finding before final report.
+
+Also manually review a representative sample of:
+
+MEDIUM
+NO_MATERIAL_GAP_FOUND products.
+
+==================================================
+88 – FALSE POSITIVE CONTROL
+==================================================
+
+Explicitly look for reasons a candidate gap is NOT a gap:
+
+fact inherited
+fact represented under another canonical key
+fact provider-specific
+fact customer-specific
+fact administrative
+fact from wrong version
+fact from wrong scope
+fact from optional add-on
+fact already represented as parent/children.
+
+==================================================
+89 – FALSE NEGATIVE CONTROL
+==================================================
+
+Select representative products with unusually few catalog facts but rich
+source documents.
+
+Perform deeper review.
+
+This is important because our known blindspot is missing data that produces
+no runtime error.
+
+==================================================
+90 – DENSITY OUTLIERS
+==================================================
+
+Within each family, compare source/catalog fact density descriptively.
+
+If one similar product has dramatically fewer structured facts:
+
+flag for deeper review.
+
+Do not assume fewer facts means error.
+
+==================================================
+91 – "INCLUDED" OUTLIERS
+==================================================
+
+Find products where many concepts are represented only as:
+
+Included
+
+while comparable source documents contain structured limits/details.
+
+Deep-review these products for:
+
+CATALOG_FACT_TOO_COARSE.
+
+==================================================
+92 – UNKNOWN OUTLIERS
+==================================================
+
+Use existing product comparison engine to identify products that repeatedly
+produce:
+
+Ikke dokumentert
+
+against several peers.
+
+Then trace those unknowns back to source.
+
+This is SECONDARY evidence only.
+
+==================================================
+93 – UNKNOWN DOES NOT EQUAL GAP
+==================================================
+
+An unknown is a gap only if applicable source actually documents a safe
+advisor-relevant fact that catalog fails to represent.
+
+==================================================
+94 – EXISTING COMPARISON AUDITS
+==================================================
+
+Use existing audit artifacts/tests as supporting evidence where available.
+
+Do not treat previous READY status as proof of source completeness.
+
+==================================================
+95 – EXISTING SOURCE-TO-CATALOG TESTS
+==================================================
+
+Existing spot checks prove selected facts.
+
+They do not prove exhaustive completeness.
+
+Do not stop after tests pass.
+
+==================================================
+96 – AUDIT ALL 204 PRODUCTS
+==================================================
+
+Final report must account for every active catalog product.
+
+Create a product ledger with exactly one row/status per audited product.
+
+If actual count differs from 204:
+
+report actual count and explain.
+
+==================================================
+97 – AUDIT ALL ACTIVE ADD-ONS
+==================================================
+
+Likewise account for every active add-on/component.
+
+Expected approximately 84.
+
+Actual catalog is authoritative.
+
+==================================================
+98 – HISTORICAL PRODUCTS
+==================================================
+
+Historical/obsolete products should be clearly distinguished.
+
+If not eligible/current:
+
+audit only to the extent needed to ensure they do not contaminate current
+comparison.
+
+Do not spend excessive budget deep-reading obsolete products unless they are
+used in customer matching.
+
+==================================================
+99 – SHARED SOURCE OPTIMIZATION
+==================================================
+
+Many products may share the same full terms.
+
+Do NOT reread identical source artifact from scratch for every product.
+
+Build source-level inventories once, then apply product-specific
+applicability.
+
+This is essential for budget efficiency.
+
+==================================================
+100 – HASH DEDUPLICATION
+==================================================
+
+Use SHA-256/source identity to detect reused identical artifacts.
+
+Read identical bytes once.
+
+Apply evidence according to manifest applicability.
+
+==================================================
+101 – SHARED PRODUCT INHERITANCE OPTIMIZATION
+==================================================
+
+Where product hierarchy is explicit:
+
+audit base facts once
+then audit inherited/delta facts for higher levels.
+
+Still produce exact product ledger rows.
+
+==================================================
+102 – FAMILY-FIRST SEMANTIC MAP
+==================================================
+
+For efficiency:
+
+build an advisor-relevant semantic map per family from all source artifacts.
+
+Then audit each product against that family map + exact source applicability.
+
+==================================================
+103 – DO NOT INVENT UNIVERSAL FAMILY SCHEMA
+==================================================
+
+Family semantic map is descriptive.
+
+If only one provider documents a meaningful concept:
+
+it may remain provider-specific.
+
+Do not force all providers into it.
+
+==================================================
+104 – NEW CANONICAL CANDIDATE
+==================================================
+
+If source fact is clearly important but no safe canonical key exists:
+
+classify:
+
+CANONICAL_KEY_MISSING
+
+Do not create key in this audit.
+
+Provide proposed semantic meaning, not implementation.
+
+==================================================
+105 – CANONICAL STRUCTURE INSUFFICIENT
+==================================================
+
+Use only if existing fact model cannot safely represent source semantics
+without losing meaning.
+
+This may require GPT-6 remediation later.
+
+==================================================
+106 – SIMPLE MAPPING GAP
+==================================================
+
+Distinguish easy gaps:
+
+source fact already fits existing canonical key
+
+from architecture gaps.
+
+Mark remediation complexity:
+
+SMALL
+MEDIUM
+LARGE
+UNKNOWN.
+
+==================================================
+107 – SHARED ROOT CAUSE
+==================================================
+
+Several missing facts may come from one cause.
+
+Example:
+
+one product level never inherited an existing component.
+
+Deduplicate into root-cause candidates.
+
+==================================================
+108 – REMEDIATION BATCH
+==================================================
+
+Group findings into likely remediation batches:
+
+CATALOG_DATA_ONLY
+SOURCE_MANIFEST
+CANONICAL_MAPPING
+INHERITANCE
+ADDON
+PRESENTATION
+SHARED_ENGINE
+SOURCE_RESEARCH_REQUIRED
+ARCHITECTURE_REVIEW.
+
+No remediation now.
+
+==================================================
+109 – PDF/CUSTOMER IMPACT
+==================================================
+
+For each material gap classify potential effect:
+
+PRODUCT_MODE_ONLY
+LIKELY_SHARED_WITH_CUSTOMER_MODE
+CATALOG_ENRICHMENT_ONLY
+UNKNOWN.
+
+Remember:
+
+document facts remain authoritative.
+
+==================================================
+110 – DOCUMENT PRIORITY
+==================================================
+
+Do not recommend a catalog change that would override explicit customer
+document facts.
+
+==================================================
+111 – EXTRACTION IMPACT
+==================================================
+
+If missing canonical concept would also require PDF extraction support:
+
+flag:
+
+EXTRACTION_EXTENSION_REQUIRED.
+
+Do not change schema.
+
+==================================================
+112 – PRESENTATION IMPACT
+==================================================
+
+If fact can exist safely but needs a new/updated presentation section:
+
+flag:
+
+PRESENTATION_EXTENSION_REQUIRED.
+
+==================================================
+113 – SOURCE RESEARCH REQUIRED
+==================================================
+
+If local source corpus is insufficient to resolve an important candidate:
+
+flag:
+
+SOURCE_RESEARCH_REQUIRED.
+
+Do not browse web during this audit.
+
+==================================================
+114 – SECURITY / PRIVACY
+==================================================
+
+This audit uses only public source artifacts and repository data.
+
+No private customer PDFs.
+
+No secrets.
+
+Do not alter security/GDPR work.
+
+==================================================
+115 – NITO PREPILOT AUDIT
+==================================================
+
+Preserve the completed NITO pre-pilot audit.
+
+Do not remediate its findings in this task.
+
+Source completeness correctness comes first in this audit.
+
+==================================================
+116 – REPO BASELINE
+==================================================
+
+Record:
+
+branch
+HEAD
+git status
+staged files
+working tree fingerprint
+tracked diff fingerprint
+untracked fingerprint.
+
+Expected current repo may be clean after Båt/Hund/Katt deployment.
+
+Actual state is authoritative.
+
+==================================================
+117 – READ-ONLY GUARANTEE
+==================================================
+
+At end, repo fingerprints must match baseline.
+
+Temporary audit code/output must live outside repo.
+
+==================================================
+118 – TEMP DIRECTORY
+==================================================
+
+Use:
+
+/tmp/source-catalog-completeness-audit/
+
+for all generated scripts and outputs.
+
+==================================================
+119 – OUTPUT FILES
+==================================================
+
+Create at minimum:
+
+audit-summary.md
+audit.json
+product-ledger.csv
+addon-ledger.csv
+gap-findings.csv
+source-fact-inventory.csv
+family-summary.csv
+root-cause-candidates.csv
+manual-review.md
+
+All outside repo.
+
+==================================================
+120 – PRODUCT LEDGER
+==================================================
+
+Fields at minimum:
+
+provider
+insurance_type
+agreement_scope
+product_id
+version
+eligible
+source_artifact_count
+advisor_relevant_source_fact_count
+represented_fact_count
+missing_fact_count
+too_coarse_count
+review_count
+completeness_status
+manual_reviewed.
+
+==================================================
+121 – ADDON LEDGER
+==================================================
+
+Fields:
+
+provider
+insurance_type
+scope
+addon_id
+version
+applicable_products
+source_artifacts
+advisor_relevant_fact_count
+represented
+missing
+status
+notes.
+
+==================================================
+122 – GAP FINDINGS
+==================================================
+
+Fields:
+
+finding_id
+signature
+provider
+insurance_type
+scope
+product
+version
+component
+semantic_concept
+semantic_dimension
+classification
+severity
+confidence
+source_artifact
+source_location
+source_evidence
+catalog_evidence
+advisor_impact
+likely_root_cause
+remediation_batch
+remediation_complexity
+customer_mode_impact
+extraction_extension_required
+presentation_extension_required.
+
+==================================================
+123 – SOURCE FACT INVENTORY
+==================================================
+
+Fields:
+
+source_fact_id
+provider
+insurance_type
+scope
+product
+version
+component
+source_artifact
+source_location
+semantic_subject
+semantic_dimension
+structured_value
+fact_status
+advisor_relevance
+catalog_match
+classification
+confidence.
+
+==================================================
+124 – FAMILY SUMMARY
+==================================================
+
+For each family report diagnostic counts:
+
+products
+source artifacts
+advisor-relevant source facts
+represented
+missing
+too coarse
+mismapped
+structural gaps
+provider-specific
+customer-specific
+review required
+high/critical findings.
+
+No provider ranking.
+
+==================================================
+125 – ROOT CAUSE CANDIDATES
+==================================================
+
+Deduplicate findings into likely shared causes.
+
+Fields:
+
+root_cause_id
+layer
+families
+providers
+affected_products
+finding_count
+description
+evidence
+remediation_batch
+complexity
+gpt6_remediation_recommended.
+
+==================================================
+126 – MANUAL REVIEW FILE
+==================================================
+
+Document:
+
+all CRITICAL/HIGH reviews
+
+plus representative:
+
+MEDIUM
+NO_MATERIAL_GAP_FOUND
+provider-specific
+customer-specific
+not-comparison-relevant
+
+examples.
+
+==================================================
+127 – AUDIT SUMMARY
+==================================================
+
+Use sections:
+
+STATUS
+
+SCOPE
+
+METHODOLOGY
+
+PRODUCT COVERAGE
+
+ADD-ON COVERAGE
+
+FAMILY RESULTS
+
+CRITICAL FINDINGS
+
+HIGH FINDINGS
+
+MEDIUM FINDINGS
+
+POSITIVE CONTROLS
+
+FALSE POSITIVE REVIEW
+
+ROOT CAUSE CANDIDATES
+
+SOURCE PACKAGE GAPS
+
+CANONICAL MODEL GAPS
+
+PRODUCT MODE IMPACT
+
+PDF/CUSTOMER IMPACT
+
+REMEDIATION BATCHES
+
+KNOWN LIMITATIONS
+
+REPO INTEGRITY
+
+RECOMMENDATION.
+
+==================================================
+128 – POSITIVE CONTROL REPORT
+==================================================
+
+Report specifically whether the method independently found meaningful
+source/catalog candidates in:
+
+Hund
+Bobil
+Båt
+MC.
+
+Do not claim success merely because those family names appear.
+
+Explain what methodology surfaced.
+
+==================================================
+129 – BLINDSPOT VALIDATION
+==================================================
+
+Answer explicitly:
+
+Did this audit detect source facts that previous product-comparison audits
+could not detect because the catalog itself lacked the facts?
+
+YES / NO / INCONCLUSIVE
+
+Provide evidence.
+
+==================================================
+130

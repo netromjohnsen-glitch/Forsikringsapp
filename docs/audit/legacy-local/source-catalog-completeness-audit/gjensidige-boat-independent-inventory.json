@@ -1,0 +1,757 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "GJ-BO-001",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Produktnivå",
+      "dimension": "hierarki",
+      "value": "Delkaskoansvar/legal/ulykke/brann/tyveri/redning;Kaskoytrehendelser/seilregatta/transport/opplag/fuel;Plusmotor/ferie/opplagsutstyr/frost/nyverdi.",
+      "location": "IPID1",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-BO-002",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "Europa200nautiskemilfrafastland,inklSvalbard/Island/Storbritannia/Madeira/Azorene/Kanariøyene;hjemtransportbåtbareSkandinavia.",
+      "location": "object",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-003",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Reisevarighet",
+      "dimension": "periode",
+      "value": "Inntil12månedersammenhengendebortefrapermanentbevisangitthavn.",
+      "location": "object",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-004",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sikrede",
+      "dimension": "personkrets",
+      "value": "Eier/forsikringstaker/lovligbruker/tinglystemedeiereogrettigheter.",
+      "location": "object",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-005",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Objekt",
+      "dimension": "fastutstyr/jolle",
+      "value": "Båtfastmontertutstyr;tilhørendejolle<=12fot,utenbordsmotor<=15HK,inntil50k.",
+      "location": "object",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-006",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Løst utstyr/løsøre",
+      "dimension": "sum",
+      "value": "Delkasko/Kasko50k;Plussubegrenset;ikke kontanter/verdipapir/ulovligimport.",
+      "location": "1;object",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-007",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Brann/tyveri",
+      "dimension": "omfang",
+      "value": "Åpneflammer/lyn/eksplosjon,tyveri/forsøk;hærver kbareKaskoPluss.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-008",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Brann/tyveri",
+      "dimension": "egenandel",
+      "value": "4kproduktsideogDelkasko1;kundebevisstyrer.",
+      "location": "Egenandel",
+      "source": "product"
+    },
+    {
+      "id": "GJ-BO-009",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Tyveri",
+      "dimension": "egenandelsfritak",
+      "value": "0hvisFGgodkjentgjenfinningmedtyverialarmifunksjon.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-010",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Redning",
+      "dimension": "utløser",
+      "value": "Skade/tyveri/driftsstans,personsykdom/ulykke/død;assistanse/bergelønn.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-011",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Redning",
+      "dimension": "transport/reparasjon",
+      "value": "Nærmeste kompetenteverkstedellerbilligerereparasjonpåsted;ellershjemtransport. Repairedboathjemtransport.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-012",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Redning",
+      "dimension": "person/hotell",
+      "value": "Hjemtransportbåt/personervedpersonhendelse,nødvendiglokalovernatting/lege/sykehus/hotellalternativtilhjemtransportvedrimeligreparasjonstid.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-013",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Redning",
+      "dimension": "egenandel",
+      "value": "750;0fortotalmedlemiRedningsselskapet.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-014",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Utleie",
+      "dimension": "valg/varighet",
+      "value": "Kreversærskiltbevisavtale;privatinntil3mnd;utenavtaleutleieskaderunntatt.",
+      "location": "IPID2;FAQ",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-BO-015",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Tillegg",
+      "dimension": "fartsområde/bygging",
+      "value": "Fartsområdekanutvides;byggeforsikringmulig.",
+      "location": "2",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-BO-016",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Smartbåt",
+      "dimension": "valg/service",
+      "value": "OptionalGPS/geofence/vannstandtemperaturapp/turlogg;abonnementogkjøp,ikkeautomatisksikringsutstyr.",
+      "location": "Sensorpakke",
+      "source": "product"
+    },
+    {
+      "id": "GJ-BO-017",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sikkerhet",
+      "dimension": "lås/opplag",
+      "value": "Fortøyning/lens/tilsyn/sjødyktig,låstmotor/drive,hengerkobling,scooterutenuniknøkkelfysisklåst,løsøreinnelåst,presenningikkekunkalesje+tilsyn.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-018",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Endring",
+      "dimension": "meldeplikt",
+      "value": "Teknisk/endretbruk/fartsområdeskalavtales;sikringsendringpåvirkeroppgjør.",
+      "location": "1/Pluss2",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-019",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sesongpris",
+      "dimension": "andel",
+      "value": "Jan5feb4mar4apr6mai9jun12jul19aug13sep10okt8nov5des5%;opphørsavregningikke12dellikpris.",
+      "location": "season",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-020",
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Kasko",
+      "dimension": "risiko",
+      "value": "Grunnstøting/kollisjon/stranding/synking/kantring/ytreplutseliguforutsett;maste/bombrudd;tyverihjemtransport.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-021",
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Transport/opplag",
+      "dimension": "dekning",
+      "value": "Transport,opptak,sjøsetting,opplagomfattetdekkethendelse;ikkeopplagskalesje.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-022",
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Seilregatta",
+      "dimension": "dekning/egenandel",
+      "value": "Seilregattaomfattet;2%avforsikringssumminavtaltegenandel;motorregatta/fartsprøveunntatt.",
+      "location": "body;settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-023",
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Drivstoff",
+      "dimension": "skadeomfang",
+      "value": "Drivstoffsystemplutseliguforutsettforurenset/infisert/feilfylling;ikketapavdrivstoffellerjolle/ekstramotor.Kaskomotorskadealeneavforurensetdrivstoffunntatt.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-024",
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Frost/is",
+      "dimension": "unntak/carveout",
+      "value": "Frostogis/følgeskadeunntatt;betaltopplaghostredjepartsviktboblehavndekkes;Plusslandstrømtilleggunntak.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-025",
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fysisk skade",
+      "dimension": "unntak",
+      "value": "Slitasje/gradvisråtekorrosjontæringtretthet,garanti,reparasjonsverditap,seilalene;Kaskovarmgangallcauses.",
+      "location": "body",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-026",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Frost",
+      "dimension": "landstrøm",
+      "value": "Skadevedvarmekildesviktsomfølgeavbruddilandstrømbetingetcovered.",
+      "location": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-027",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Tæring",
+      "dimension": "særutvidelse",
+      "value": "Ekstraordinærtæringoppståttmaksimaltettår.",
+      "location": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-028",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Motorskade",
+      "dimension": "komponenter",
+      "value": "Hovedmotor(er),drivverk/drivlinje,plutseliguforutsettvarmegangogannenplutseliguforutsettskade. Ikkejolle/ekstramotor.",
+      "location": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-029",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Motorskade",
+      "dimension": "alderskonflikt",
+      "value": "Bevis1førstehovedforfalletter10år;dekning4unntarover10år;webframtil10. Ikkevilkårliglikestill.",
+      "location": "1,4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-030",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Motorskade",
+      "dimension": "aldersfradrag",
+      "value": "Etter1årfrakjøptny:5%nyprisprpåbegyntår,max50%;motor/gir/drevfabrikknyforhandleralder.",
+      "location": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-031",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Motorskade",
+      "dimension": "montering",
+      "value": "Demonteringbetales;nymotormonteringinntil50kinkl nødvendigombygging.",
+      "location": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-032",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Motorskade",
+      "dimension": "unntak",
+      "value": "Feilbruk/uforsvarligbelastning/material-konstruksjonsfeil/svak-konstruksjon/feilmontering/garantiogreklamasjon.",
+      "location": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-033",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Motorskade",
+      "dimension": "sikkerhet",
+      "value": "Minstettdrivstoffilterskiftesårlig;produsentbruk/vedlikehold/utrustningdokumentert;ingenHKendring.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-034",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Feriegaranti",
+      "dimension": "sum/varighet",
+      "value": "1500daginntil14;etterdekketskadebåtenikkebrukbartilplanlagtformål.",
+      "location": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-035",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Opplagsutstyr",
+      "dimension": "omfang/sum",
+      "value": "Krybbe,presenning,stativ;webutenmakssum;Kasko/Delkaskounntatt.",
+      "location": "4;webopplagsutstyr",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-036",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Totalskade",
+      "dimension": "terskel",
+      "value": "Båtog/ellermotortaptellerreparasjonskost>60%tilsvarendelisteprisimportørpås kadetidspunkt.",
+      "location": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-037",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Totalskade",
+      "dimension": "alder/basis",
+      "value": "Inntil3årfrabåtog/ellermotorkjøptny;ikkealderfraførsteregistreringellersammetidbåt/motor.",
+      "location": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-038",
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Totalskade",
+      "dimension": "oppgjør",
+      "value": "Nytilsvarendemodellårgangutstyrellerkontantselskapetspris;ikkeubegrensethvorvildetaljhandel.",
+      "location": "17",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-039",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Reparasjon",
+      "dimension": "grunnlag",
+      "value": "Likeverdige deler/forbedringsfradrag/totalcapforsikringssum;ingenfradragformast/rigg.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-040",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Elektronikk",
+      "dimension": "aldersfradrag",
+      "value": "Etter5år10%prpåbegyntårmax80.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-041",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Tap/totalskade",
+      "dimension": "markedsverdi",
+      "value": "Markedsverdifabrikat/type/år/standoppadbegrensetforsikringssum;Plussnygaranti særregel.",
+      "location": "settlement",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-042",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ansvar",
+      "dimension": "sum/egenandel",
+      "value": "Person3 020 000SDR,ting1 510 000SDR;0egenandelbevis.",
+      "location": "liability;1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-043",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ansvar",
+      "dimension": "omfang",
+      "value": "Eier/rettmessigbrukerEuropaperson/ting/formue;vrakfjerningsjenerende/skjemmende;passasjeransvarinntekt<=50kår,sjølovensbegrensning.",
+      "location": "liability",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-044",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ansvar",
+      "dimension": "unntak",
+      "value": "Yrke/næring,nærfamilie/leide-lånte-transporterte-forvarteting,kontrakt,bøter,gradvisforurensning/fukt/forsett.",
+      "location": "liability",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-045",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "sum/egenandel",
+      "value": "100kdød/500k100%invaliditet/15kbehandling;0egenandel.",
+      "location": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-046",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "person/trigger",
+      "value": "Fører/passasjerrettmessigombordellervedbåtnårbåtdirekteårsak;plutseligytre+fall/vridning/bruddspesifikkeutvidelser.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-047",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "behandling",
+      "value": "Inntil2år;offentligleg e/sykehus,fysio/kiro/tann/legerekvirertalternal medisiner/proteser/reise/opptrening;ikkedobbeltoppgjør.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-048",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "død/invaliditetsbegrensninger",
+      "value": "Dødinnen1år,50khvisingenforsørgetektefellebarnforeldre;invaliditetproporsjonal,3årvurdering,multiplepeoplemax1m,ingeninvaliditetveddød1år.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-049",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "unntak",
+      "value": "Sykdommedvirkning/psykiskalene/tyggetann/privateklinikker/slåssing/ulovlig/jordskjelvNorgeogdiagnosescope.",
+      "location": "accident",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-050",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel/geografi",
+      "value": "100k/økonomiskinteresse,4k+20%;Mekle0;EUROPAforbåtikkenorden.WEBegendelavsnittsier0i konfliktmedFAQogfull.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-051",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "tvist/sumstruktur",
+      "value": "Eierbrukerfører/salg/pretakeoverbåttvist;multipleparts100/250/500/750k1m;40%expert,groupdispute20k500k.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-052",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "Mekle",
+      "value": "Alternativupartiskmekling,n oownlawyercost;kanavslutteogbeholdrettshjelp.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-053",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Yrke/erverv/straff/familiearv/inkasso/gjeld/annenfast eiendomførretts tvistutgifter,ankegebyr/tilkjentkost. HTUplussminusinternkonfliktmedlavbåtrelevans.",
+      "location": "legal",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-054",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Vilkår",
+      "dimension": "kundebevis",
+      "value": "Offentligsammenligningsmalikkekundebevis;eksempelsummer/ikkevalgtmåikkebliautomatiskavtale.",
+      "location": "Vilkår",
+      "source": "product"
+    },
+    {
+      "id": "GJ-BO-055",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Registrering",
+      "dimension": "tegning",
+      "value": "<60kkanuten;60–500kutenregisterkreverskrogmotornr;>500kregistrertSmåbåt/Securmark/NOR.",
+      "location": "FAQregistrering",
+      "source": "product"
+    },
+    {
+      "id": "GJ-BO-056",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Objekttyper",
+      "dimension": "valg",
+      "value": "Kajakk/kano/vannscooterDelkasko/Kasko;ingenautomatiskPlussellerallebåtspesifikkeytelserpåslikvariant.",
+      "location": "FAQkajakk",
+      "source": "product"
+    },
+    {
+      "id": "GJ-BO-057",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ettervern",
+      "dimension": "eierskifte",
+      "value": "14d etter eierskifte til ny eier tegner egen forsikring; automatisk opphør kjøretøy samordnes.",
+      "location": "general",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-058",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Generelle unntak",
+      "dimension": "krig",
+      "value": "Motorvogn unntatt UD-reiseadvarselsområde;6uker hvis allerede der når advarsel gis.",
+      "location": "general",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-059",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Generelle unntak",
+      "dimension": "terror/atom",
+      "value": "Terror selskapstak1milliard/48timershendelse og Nordenbegrensning med personskadeansvarunntak; atom/kjemisk unntak egne personskademekanismer.",
+      "location": "general",
+      "source": "full"
+    },
+    {
+      "id": "GJ-BO-060",
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Administrasjon",
+      "dimension": "lov/frister/klage",
+      "value": "Avtalehierarki, årsfornyelse, melding, tvistprosedyre, personvern og klage er kildeinformasjon; ingen ordinære coveragefacts.",
+      "location": "general",
+      "source": "full"
+    }
+  ],
+  "page_reuse": "gjensidige-boat-page-reuse.json",
+  "all_local_contents_read": true,
+  "scope_notes": "3exactlevels. PDFpageandprintedpage differ by4/6; usePDFindex. Conflictsmotor10 andlegal0 retained. No Bilinheritance."
+}

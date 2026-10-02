@@ -1,0 +1,135 @@
+{
+  "status": "PASS",
+  "batch": "B-008",
+  "source_verification": "Own §5.2 PDF9 table Super column20k + explicit Super includes Kasko. Correct exact Super composition only; Kasko existing positive parent and Delkasko remain unchanged. No unrelated inheritance added.",
+  "source_hashes": {
+    "catalog/sources/boat-pet/storebrand-boat-terms.pdf": "e945049a6b9fba643d9804279690fc8e1dfbb1cd4a419a81503e58fd5b959baa"
+  },
+  "changed_products": [
+    "storebrand-bat-super"
+  ],
+  "unchanged_products": 203,
+  "allowed_keys": [
+    "bat.opplagsutstyr.dekning",
+    "bat.opplagsutstyr.grense"
+  ],
+  "deltas": [
+    {
+      "product": "storebrand-bat-super",
+      "view": "base",
+      "key": "bat.opplagsutstyr.dekning",
+      "before": null,
+      "after": {
+        "key": "bat.opplagsutstyr.dekning",
+        "label": "Opplagsutstyr",
+        "value": "Inkludert",
+        "source": {
+          "documentId": "boat-pet:storebrand:båt",
+          "filename": "storebrand-boat-terms.pdf",
+          "termsNumber": "båt03",
+          "effectiveFrom": "2024-09-01",
+          "version": "2024-09-01",
+          "agreementScope": "ordinary",
+          "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+          "company": "Storebrand",
+          "page": 9,
+          "section": "5.2 Dekningstabell",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "storebrand-bat-super",
+      "view": "base",
+      "key": "bat.opplagsutstyr.grense",
+      "before": null,
+      "after": {
+        "key": "bat.opplagsutstyr.grense",
+        "label": "Opplagsutstyr – grense",
+        "value": "20 000 kr",
+        "source": {
+          "documentId": "boat-pet:storebrand:båt",
+          "filename": "storebrand-boat-terms.pdf",
+          "termsNumber": "båt03",
+          "effectiveFrom": "2024-09-01",
+          "version": "2024-09-01",
+          "agreementScope": "ordinary",
+          "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+          "company": "Storebrand",
+          "page": 9,
+          "section": "5.2 Dekningstabell",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "storebrand-bat-super",
+      "view": "product-comparison",
+      "key": "bat.opplagsutstyr.dekning",
+      "before": null,
+      "after": {
+        "key": "bat.opplagsutstyr.dekning",
+        "label": "Opplagsutstyr",
+        "value": "Inkludert",
+        "state": "included",
+        "addOnNames": [],
+        "role": "coverage",
+        "sources": [
+          {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "version": "2024-09-01",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "company": "Storebrand",
+            "page": 9,
+            "section": "5.2 Dekningstabell",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      }
+    },
+    {
+      "product": "storebrand-bat-super",
+      "view": "product-comparison",
+      "key": "bat.opplagsutstyr.grense",
+      "before": null,
+      "after": {
+        "key": "bat.opplagsutstyr.grense",
+        "label": "Opplagsutstyr – grense",
+        "value": "20 000 kr",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "version": "2024-09-01",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "company": "Storebrand",
+            "page": 9,
+            "section": "5.2 Dekningstabell",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-0085"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "be5630dead0c3b23"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

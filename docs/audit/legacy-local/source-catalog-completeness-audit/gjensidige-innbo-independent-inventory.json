@@ -1,0 +1,659 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "GJ-IN-001",
+      "scope": "all",
+      "subject": "Personkrets",
+      "dimension": "husstand",
+      "value": "Fast folkeregistrert husstand, studerende/vernepliktige barn uten adresseendring, delt bosted; ikke leietakere/bokollektiv.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-002",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "ting",
+      "value": "Forsikringssted, barns studiehybel, midlertidig utenfor/salg/flytting i Norden; permanent annenbygning30 000.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-003",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "særting",
+      "value": "Båt og tilhenger bare på forsikringssted; næringsting bare i bygning der.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-004",
+      "scope": "standard",
+      "subject": "Innbosum",
+      "dimension": "kundespesifikk",
+      "value": "Avtalt innbosum, offentlig mal gir ingen fast sum.",
+      "standard_pages": "1",
+      "pluss_pages": "1"
+    },
+    {
+      "id": "GJ-IN-005",
+      "scope": "pluss",
+      "subject": "Innbosum",
+      "dimension": "ubegrenset med grenser",
+      "value": "Ubegrenset når avtalt i bevis; alkohol, kunst, smykker/metall500 000 per kategori; øvrige ting/samlinger500 000 per ting/samling; høyere kan avtales.",
+      "standard_pages": "3",
+      "pluss_pages": "1,3"
+    },
+    {
+      "id": "GJ-IN-006",
+      "scope": "all",
+      "subject": "Kontanter",
+      "dimension": "sum",
+      "value": "20 000 kr kontanter/verdipapirer; digitaleverdier/krypto er eksplisitt unntatt i fullvilkår.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-007",
+      "scope": "all",
+      "subject": "Næringsløsøre",
+      "dimension": "sum/sted",
+      "value": "100 000 kr i bygning på forsikringssted.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-008",
+      "scope": "all",
+      "subject": "Hobbyveksthus",
+      "dimension": "sum/årsaker",
+      "value": "300 000 kr bare brann/natur; glass alene og kollaps unntatt.",
+      "standard_pages": "3–4",
+      "pluss_pages": "3–4"
+    },
+    {
+      "id": "GJ-IN-009",
+      "scope": "all",
+      "subject": "Bier",
+      "dimension": "sum",
+      "value": "Bikuber/honningutstyr100 000; ikke sykdom hos bier under Pluss uhell.",
+      "standard_pages": "3",
+      "pluss_pages": "3–4"
+    },
+    {
+      "id": "GJ-IN-010",
+      "scope": "all",
+      "subject": "Kjøretøydeler",
+      "dimension": "sum",
+      "value": "Private kjøretøydeler/tilbehør30 000.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-011",
+      "scope": "all",
+      "subject": "Tilhenger",
+      "dimension": "sum/sted",
+      "value": "30 000 kr på forsikringssted; registreringspliktig motorvogn unntatt.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-012",
+      "scope": "all",
+      "subject": "Fritidsbåt",
+      "dimension": "sum/sted/årsaker",
+      "value": "60 000 kr på forsikringssted, bare brann/tyveri/natur.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-013",
+      "scope": "all",
+      "subject": "Brann",
+      "dimension": "hendelser",
+      "value": "Brann, lyn, eksplosjon,nedsoting og elektrisk fenomen; ikke svimerke/gnist uten brann.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-014",
+      "scope": "all",
+      "subject": "Vann",
+      "dimension": "hendelser",
+      "value": "Rør/installasjon/akvarium; vann fra terreng/grunn som danner vannspeil; inn via åpning etter dekket bygningsskade.",
+      "standard_pages": "3",
+      "pluss_pages": "3"
+    },
+    {
+      "id": "GJ-IN-015",
+      "scope": "all",
+      "subject": "Generelle skadeunntak",
+      "dimension": "årsaker",
+      "value": "Ikke garanti som ansvarlig kan betale, langvarig søl/kondens, sopp/råte/bakterier/heksesot,kjæledyr/insekter; mistet/tapt/ukjentårsak, underslag/bedrageri.",
+      "standard_pages": "3",
+      "pluss_pages": "3–4"
+    },
+    {
+      "id": "GJ-IN-016",
+      "scope": "all",
+      "subject": "Tyveri",
+      "dimension": "hjem/bebodd",
+      "value": "Tyveri fra bygning på forsikringssted eller bebodd bolig ellers.",
+      "standard_pages": "3",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-017",
+      "scope": "all",
+      "subject": "Tyveri",
+      "dimension": "fellesbod",
+      "value": "Standard30 000; Pluss ingen særskilt sumgrense nevnt for boder i felleskjeller/loft. Fellesbod er ikke fellesrom.",
+      "standard_pages": "3",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-018",
+      "scope": "all",
+      "subject": "Tyveri",
+      "dimension": "uteareal",
+      "value": "Hagemøbler/redskap/grill/robotklipper100 000; annetinnbo30 000 privat uteareal.",
+      "standard_pages": "3",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-019",
+      "scope": "standard",
+      "subject": "Tyveri",
+      "dimension": "andre steder",
+      "value": "Annen ikke-bebodd bygning30 000,garderobeskap30 000,løsøre fra bil5 000,barnevogn.",
+      "standard_pages": "3",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-020",
+      "scope": "standard",
+      "subject": "Tyveri",
+      "dimension": "stedunntak",
+      "value": "Fellesgarasje/fellesrom/alminnelig adgang og ikke-beboelsesrom på byggeplass unntatt.",
+      "standard_pages": "3",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-021",
+      "scope": "pluss",
+      "subject": "Tyveri",
+      "dimension": "Norden",
+      "value": "Annet innbo/løsøre i hele Norden30 000; ikke uteareal på byggeplass.",
+      "standard_pages": "3",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-022",
+      "scope": "all",
+      "subject": "Sykkel",
+      "dimension": "tyverigrense",
+      "value": "30 000 per sykkel/sykkeltilhenger utenfor bygning/bebodd bolig i offentlig mal; faktisk valgt sum i bevis.",
+      "standard_pages": "1,3",
+      "pluss_pages": "1,4"
+    },
+    {
+      "id": "GJ-IN-023",
+      "scope": "all",
+      "subject": "Ran/veskenapping",
+      "dimension": "omfang",
+      "value": "Ran; napping av båret veske30 000.",
+      "standard_pages": "4",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-024",
+      "scope": "all",
+      "subject": "Bygningsskade",
+      "dimension": "leierrom",
+      "value": "Skade etter tyveri/forsøk på rom man leier/bruker30 000.",
+      "standard_pages": "4",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-025",
+      "scope": "all",
+      "subject": "Dyr",
+      "dimension": "skade",
+      "value": "Skade av mus,rotter og andre dyr, men kjæledyr/insekterunntak beholdes; bekjempelse egen dimensjon.",
+      "standard_pages": "4",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-026",
+      "scope": "all",
+      "subject": "Fryser/kjøleskap",
+      "dimension": "temperatur",
+      "value": "Utilsiktet temperaturstigning: mat og lukt på fryser/kjøleskap.",
+      "standard_pages": "4",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-027",
+      "scope": "all",
+      "subject": "Glass/sanitær",
+      "dimension": "brudd",
+      "value": "Bygningsglass inklinnglassetveranda/sanitær; ikke punktert isolerglass;3000 egenandel.",
+      "standard_pages": "1,4",
+      "pluss_pages": "1,4"
+    },
+    {
+      "id": "GJ-IN-028",
+      "scope": "all",
+      "subject": "Andre skadeårsaker",
+      "dimension": "kollaps/slokking",
+      "value": "Kollaps som følger dekket bygningsskade, utstrømming fra slokkeapparat.",
+      "standard_pages": "4",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-029",
+      "scope": "all",
+      "subject": "Naturskade",
+      "dimension": "hendelser/egenandel",
+      "value": "Lovbestemt skred/storm/flom/stormflo/flodbølge/meteor/jordskjelv/vulkan;8 000egenandel.",
+      "standard_pages": "1,4",
+      "pluss_pages": "1,4"
+    },
+    {
+      "id": "GJ-IN-030",
+      "scope": "all",
+      "subject": "Rullestol",
+      "dimension": "sum/tid",
+      "value": "250 000 kr; ulykke innen10år, medfødt10år fra tildeling senest20år fødsel; ikke dobbeltsum hus+innbo/medisinskkomplikasjon.",
+      "standard_pages": "4",
+      "pluss_pages": "5"
+    },
+    {
+      "id": "GJ-IN-031",
+      "scope": "all",
+      "subject": "Etter skade",
+      "dimension": "rydding/flytting/rekonstruksjon",
+      "value": "Rydding/deponering,nødvendig flytting/lagring utover sum; notater/tegninger/datalager50 000.",
+      "standard_pages": "4",
+      "pluss_pages": "5"
+    },
+    {
+      "id": "GJ-IN-032",
+      "scope": "all",
+      "subject": "Opphold",
+      "dimension": "periode",
+      "value": "Avtalt nødvendige merkostnader ved dekket bygningsskade normal reparasjonstid; leidbolig oppsigelsestid; ingen gjenoppbygging maks3mnd.",
+      "standard_pages": "4,15",
+      "pluss_pages": "6,17"
+    },
+    {
+      "id": "GJ-IN-033",
+      "scope": "all",
+      "subject": "Opphold",
+      "dimension": "adkomst/natur",
+      "value": "Blokkert alladkomst ved dekket hendelse eller redning/natur; inntil avtalt sum maks10millioner per kunde.",
+      "standard_pages": "4",
+      "pluss_pages": "6"
+    },
+    {
+      "id": "GJ-IN-034",
+      "scope": "all",
+      "subject": "Leietakerinnredning",
+      "dimension": "tap",
+      "value": "Egenfinansiert innredning tapt ved opphørt leieforhold/skade eller ikke gjenopprettet i bygningsoppgjør.",
+      "standard_pages": "4",
+      "pluss_pages": "6"
+    },
+    {
+      "id": "GJ-IN-035",
+      "scope": "all",
+      "subject": "Yrkesskade",
+      "dimension": "privatansatt",
+      "value": "Lovbestemt yrkesskade for arbeidstaker ansatt som privatperson.",
+      "standard_pages": "4",
+      "pluss_pages": "6"
+    },
+    {
+      "id": "GJ-IN-036",
+      "scope": "pluss",
+      "subject": "Mobilskjerm",
+      "dimension": "omfang",
+      "value": "Bytte knust/sprukket skjerm/deksel viaElcareNordic,1000egenandel; annenreparatør3000.",
+      "standard_pages": "1",
+      "pluss_pages": "1,4"
+    },
+    {
+      "id": "GJ-IN-037",
+      "scope": "pluss",
+      "subject": "Mobilskjerm",
+      "dimension": "unntak/oppgjør",
+      "value": "Ikke riper/slitasje/uteavbruk/telefoninnhold; annen fysisk skade vurderes uhell; erstatningstelefon/depositum5000 ved tidlig oppgjør,14d innsendingsfrist.",
+      "standard_pages": "16",
+      "pluss_pages": "4,18"
+    },
+    {
+      "id": "GJ-IN-038",
+      "scope": "pluss",
+      "subject": "Uhell hjemme",
+      "dimension": "hendelse",
+      "value": "Alleandre skader fra plutselig uforutsett ytre hendelse i bolig/privatuteareal.",
+      "standard_pages": "4",
+      "pluss_pages": "4"
+    },
+    {
+      "id": "GJ-IN-039",
+      "scope": "pluss",
+      "subject": "Uhell borte",
+      "dimension": "sum/område",
+      "value": "Hele verden30 000; tyveri utenfor Norden unntatt.",
+      "standard_pages": "4",
+      "pluss_pages": "4–5"
+    },
+    {
+      "id": "GJ-IN-040",
+      "scope": "pluss",
+      "subject": "Uhell/flytting/utleie",
+      "dimension": "unntak",
+      "value": "Frost/fukt/sopp/råte,insekter/kjæledyr/ukjentårsak/cyber,bruksslitasje; veksthus,rittsykkel/sport,båt/kjøretøy/hengertilbehør, fjernstyrte ting under bruk unntatt.",
+      "standard_pages": "4",
+      "pluss_pages": "4–5"
+    },
+    {
+      "id": "GJ-IN-041",
+      "scope": "pluss",
+      "subject": "Flytting",
+      "dimension": "hendelse/område",
+      "value": "Ny bolig innen Norge; ytre skade og tyveri fra transportmiddel; emballeringskrav.",
+      "standard_pages": "1",
+      "pluss_pages": "1,4–5"
+    },
+    {
+      "id": "GJ-IN-042",
+      "scope": "pluss",
+      "subject": "Sykkel veihjelp",
+      "dimension": "omfang",
+      "value": "Norge offentligvei/biladkomst,stopp løses eller transport verksted/hjem/arbeid;viaGjensidige,ikke ritt/deler;500egenandel.",
+      "standard_pages": "1",
+      "pluss_pages": "1,5"
+    },
+    {
+      "id": "GJ-IN-043",
+      "scope": "pluss",
+      "subject": "Skadeinsekter",
+      "dimension": "arter/sum",
+      "value": "Veggedyr/kakerlakk/skjeggkre/sølvkre,150 000 per skade påforsikringssted;3åteutlegg for kre.",
+      "standard_pages": "4",
+      "pluss_pages": "6"
+    },
+    {
+      "id": "GJ-IN-044",
+      "scope": "pluss",
+      "subject": "Skadeinsekter",
+      "dimension": "begrensninger",
+      "value": "Ikke innboskade,aktivitet før/etter avtale,egenbestilt,forebygging/vedlikehold/fjerningdøde; samtykke kreves.",
+      "standard_pages": "4",
+      "pluss_pages": "6"
+    },
+    {
+      "id": "GJ-IN-045",
+      "scope": "pluss",
+      "subject": "ID-tyveri",
+      "dimension": "hjelp",
+      "value": "Mehrwerk rådgivning,kartlegging,avviseurettmessigekrav/sletteanmerkninger,politianmeldelse.",
+      "standard_pages": "9",
+      "pluss_pages": "6–7"
+    },
+    {
+      "id": "GJ-IN-046",
+      "scope": "pluss",
+      "subject": "ID-tyveri",
+      "dimension": "advokat",
+      "value": "100 000 før domstol hvis Mehrwerk ikke lykkes;1million i domstol;forhåndsgodkjent.",
+      "standard_pages": "9",
+      "pluss_pages": "7"
+    },
+    {
+      "id": "GJ-IN-047",
+      "scope": "pluss",
+      "subject": "ID-tyveri",
+      "dimension": "unntak",
+      "value": "Ingen økonomisk tap/kortkost,næring,utenlandskkreditoruten norskinstans,egen/familiestraffbarhandling; egenadvokatutenforrettshjelpunntak.",
+      "standard_pages": "9",
+      "pluss_pages": "6–7"
+    },
+    {
+      "id": "GJ-IN-048",
+      "scope": "optional",
+      "subject": "Utleie",
+      "dimension": "valg/sum/hendelser",
+      "value": "Kun angitt i Plussbevis:leietakersskadeverk/underslag,6mndmisligholdt leie éngangperleietaker,utkastelse20 000;egenandel10 000.",
+      "standard_pages": "1,15",
+      "pluss_pages": "1,4"
+    },
+    {
+      "id": "GJ-IN-049",
+      "scope": "optional",
+      "subject": "Utleie",
+      "dimension": "begrensninger",
+      "value": "Ikke rettmessig tilbakeholdt leie,ikke utover6mnd ved hus+innbo;skriftligavtale depositum/bankgaranti;varsel14d/betaling14d/utkastelseinnen6uker.",
+      "standard_pages": "1,15",
+      "pluss_pages": "1,4–5,17"
+    },
+    {
+      "id": "GJ-IN-050",
+      "scope": "optional",
+      "subject": "Sykkel høyere sum",
+      "dimension": "valg",
+      "value": "IPID dokumenterer høyere sum valgbar; beløp/bekreftet kjøp i bevis.",
+      "standard_pages": "IPID2",
+      "pluss_pages": "IPID2"
+    },
+    {
+      "id": "GJ-IN-051",
+      "scope": "optional",
+      "subject": "Mobil utvidet",
+      "dimension": "valg",
+      "value": "IPID tilbyr Utvidet mobilforsikring men hovedvilkår kun knust skjerm+uhell; separatvilkår finnes ikke i lokalpakke.",
+      "standard_pages": "IPID2",
+      "pluss_pages": "IPID2"
+    },
+    {
+      "id": "GJ-IN-052",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "grunn",
+      "value": "Standard4 000/Pluss3 000 offentlig eksempel; individuelle valg gjelder foran.",
+      "standard_pages": "1",
+      "pluss_pages": "1"
+    },
+    {
+      "id": "GJ-IN-053",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "sikkerhetsfritak",
+      "value": "Alarm med sentral;vannstoppventilmedattest helebolig;elsjekk siste5år;skade bare på vern/alarm:0egenandel når vilkår oppfylt.",
+      "standard_pages": "16",
+      "pluss_pages": "18"
+    },
+    {
+      "id": "GJ-IN-054",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "sykkel/verdier",
+      "value": "Fastlåst/innelåst,FG-lås over15 000; batteri/GPS tattmed/sikret; visse verdier ikkeekspedertbagasje/synligibil/fellesbod.",
+      "standard_pages": "1",
+      "pluss_pages": "1"
+    },
+    {
+      "id": "GJ-IN-055",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "bolig",
+      "value": "Låsing,varme,stengtstoppekran ved merenn3dager ubeboddikke-fast-bolig,sluk2gangerårlig og synligefeil rettet.",
+      "standard_pages": "1",
+      "pluss_pages": "1"
+    },
+    {
+      "id": "GJ-IN-056",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "grunnlag",
+      "value": "Reparasjon/gjenanskaffelse/kontant etter selskapetsvalg; importvare uten Norgealternativ kjøpesum+frakt/tolltak;arbeidutenfaktura75% eksmva,øvrigtime300.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-057",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "datamobil",
+      "value": "PC/nettbrett/smartklokke10% etter1år; mobil20% etter1år;beggemaks80%.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-058",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "hvitevarelydbilde",
+      "value": "10% per påbegyntår etter5, maks80%.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-059",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "kamera/øvrigelektronikk",
+      "value": "10% etter3år,maks80%.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-060",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "sykkel",
+      "value": "Sykkel/elsykkel/el-spark/ståhjuling10%etter3,maks80%.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-061",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "briller/dekk",
+      "value": "10%etter1,maks80%.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-062",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "annetinnbo",
+      "value": "15% når5år eller eldre, ikke15%hvertår;badekilde10%etter5maks80%.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-063",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "markedsverdi",
+      "value": "Klokker/kunst/samlinger brukt og utrangert=markedsverdi; smykker/metallnypris. Reparasjonutenfradrag unntattbadekilde.",
+      "standard_pages": "15",
+      "pluss_pages": "17"
+    },
+    {
+      "id": "GJ-IN-064",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "sum/område",
+      "value": "Privatperson i Europa5millioner per hendelse/serieskade,4 000egenandel.",
+      "standard_pages": "1,6–7",
+      "pluss_pages": "1,8–9"
+    },
+    {
+      "id": "GJ-IN-065",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "tillegg/unntak",
+      "value": "Leiet eiendom og plutseligforurensning;innredningleie/egenfamilie/yrke/låntting/gradvisfukt/kontrakt og navngittkjøretøydroneansvar unntatt.",
+      "standard_pages": "6",
+      "pluss_pages": "8"
+    },
+    {
+      "id": "GJ-IN-066",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "100 000 grunntvist,4 000+20%;flerpart250k/500k/750k/1m;økonomiskinteresse og sameieresærregel.",
+      "standard_pages": "8–10",
+      "pluss_pages": "10–12"
+    },
+    {
+      "id": "GJ-IN-067",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "område/scope",
+      "value": "Privat Norden,etter salg/nykjøp,bruker av uforsikretmotor/båt når ikke omfattet av annenpolicy;kundensandrepolicy viktig.",
+      "standard_pages": "8–9",
+      "pluss_pages": "10–11"
+    },
+    {
+      "id": "GJ-IN-068",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "mekling",
+      "value": "Mekle.no0egenandel,ingenegenadvokat i mekling;fortsattrett etter avsluttetmekling.",
+      "standard_pages": "8,10",
+      "pluss_pages": "10,12"
+    },
+    {
+      "id": "GJ-IN-069",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "begrensning",
+      "value": "Ikke anke/idømtekostnader/voldgift/familie/yrke/tidligeregrunnlag nytegning;40%sakkyndig og gruppesærgrenser.",
+      "standard_pages": "8–10",
+      "pluss_pages": "10–12"
+    },
+    {
+      "id": "GJ-IN-070",
+      "scope": "all",
+      "subject": "Generelle vilkår",
+      "dimension": "materielle",
+      "value": "14dagereierskifteettervern;krig/terror/Nordenbegrensning/atom og naturskadesvak-konstruksjon;ingenmotorregelenarves.",
+      "standard_pages": "11–12,16",
+      "pluss_pages": "13–14,18"
+    },
+    {
+      "id": "GJ-IN-071",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "avtale/krav",
+      "value": "Frist/klage/skjønn/personvern holdes uten ordinary sammenligningsfakta.",
+      "standard_pages": "11–14",
+      "pluss_pages": "13–16"
+    }
+  ],
+  "source_read_complete": true,
+  "source_files": [
+    "Gjensidige_Innbo_Standard_alminnelige_vilkar.pdf",
+    "Gjensidige_Innbo_Pluss_alminnelige_vilkar.pdf",
+    "Gjensidige_IPID_Innbo_EAP02.pdf"
+  ],
+  "reuse": "gjensidige-innbo-page-reuse.json; all nonidentical Innbo pages read in full; Pluss13–16 match already-read Bil general text after layout stripping",
+  "conflicts": [
+    "IPID includes cryptocurrency versus both fullterms explicitly excluding digital/crypto.",
+    "IPID Online Trygghet listed but no dedicated fullterms in package.",
+    "IPID extendedmobile option requires missing separate scope.",
+    "Pluss IDservice Mehrwerk versus old Standard generic Pluss clauseTenerity; use exactPluss not blind lowerinheritance.",
+    "Fullterms both legal tablecoverHTU15k and exceptionHTU generic conflict; not arbitrary yes/no."
+  ]
+}

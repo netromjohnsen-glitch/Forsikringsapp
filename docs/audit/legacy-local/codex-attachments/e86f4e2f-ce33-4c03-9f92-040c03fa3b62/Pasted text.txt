@@ -1,0 +1,1050 @@
+NITO_CATALOG_REMEDIATION_TRIAGE
+
+MODE:
+READ-ONLY TRIAGE / REMEDIATION PLANNING
+
+MODEL:
+GPT-6 Astra
+Reasoning:
+Extra High
+
+==================================================
+1 – FORMÅL
+==================================================
+
+SOURCE → CATALOG COMPLETENESS AUDIT er nå COMPLETE.
+
+Denne oppgaven skal IKKE rette katalogen.
+
+Oppgaven skal gjøre den ferdige auditen om til en:
+
+SAFE
+PRIORITIZED
+SOURCE-BACKED
+HIGH-LEVERAGE
+
+remediation plan.
+
+Vi skal finne:
+
+1. hvilke funn som faktisk må rettes før NITO-pilot
+2. hvilke funn som deler samme root cause
+3. hvilke rettinger som kan gjøres samlet og sikkert
+4. hvilke funn som krever source research først
+5. hvilke funn som krever canonical/mapping review
+6. hvilke funn som kan vente
+7. hvilken rekkefølge rettingene bør implementeres i
+8. hvilke regresjonstester hver retting trenger
+9. hvilke rettinger også kan påvirke PDF/customer comparison
+10. hvilke batches som gir størst correctness-forbedring per endring.
+
+IKKE implementer noe.
+
+==================================================
+2 – AUDIT BASELINE
+==================================================
+
+Completed audit:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_COMPLETE
+
+Branch:
+main
+
+HEAD:
+d3a37985fce4ada65fa2f7a88462d8834e4677af
+
+Frozen catalog basis:
+29.09.2026
+
+Audit completion:
+01.10.2026
+
+Scope:
+
+204/204 products reviewed
+84/84 add-ons reviewed
+12 insurance families
+10 provider IDs
+3 agreement scopes
+
+322 local originals
+246 PDFs
+76 HTML
+291 unique file hashes
+356 runtime source references
+
+5 646 catalog assertions reverse-checked
+
+8 104 source-rule occurrences
+3 852 unique source/semantic rules.
+
+==================================================
+3 – CURRENT AUDIT RESULT
+==================================================
+
+GLOBAL_CATALOG_STATUS:
+REMEDIATION_REQUIRED
+
+CATALOG_PILOT_GATE:
+REMEDIATION_REQUIRED
+
+P0:
+0
+
+P1:
+3 281 occurrences
+1 589 signatures
+
+P2:
+2 433 occurrences
+1 019 signatures
+
+P3:
+0
+
+TOTAL:
+5 714 finding occurrences
+2 608 signatures
+
+VERIFIED_CATALOG_FALSE_UNKNOWNS:
+29
+
+TOO_COARSE:
+2 910 occurrences
+
+STRICTLY VERIFIED UNSUPPORTED CATALOG CLAIMS:
+8
+
+SEMANTICALLY MISMAPPED SOURCE FINDINGS:
+38
+
+STRUCTURAL MAPPING GAPS:
+5
+
+SOURCE CONFLICT POSTS:
+70
+
+SOURCE RESEARCH QUEUE:
+115 entries
+110 open
+3 closed
+2 aliases
+
+ROOT CAUSE POSTS:
+60
+
+PROPOSED REMEDIATION GROUPS:
+56
+
+==================================================
+4 – IMPORTANT INTERPRETATION
+==================================================
+
+3 281 P1 occurrences are NOT 3 281 independent bugs.
+
+Many rules repeat across:
+
+product levels
+providers
+inheritance
+shared terms
+shared mappings
+add-ons.
+
+The purpose of this triage is to reduce thousands of occurrences into the
+smallest SAFE set of remediation actions.
+
+Do not treat occurrence count as implementation count.
+
+==================================================
+5 – PRIMARY INPUTS
+==================================================
+
+Use the completed audit artifacts under:
+
+/tmp/source-catalog-completeness-audit/
+
+Primary files:
+
+audit-summary.md
+audit.json
+product-ledger.csv
+addon-ledger.csv
+gap-findings.csv
+source-fact-inventory.csv
+family-summary.csv
+root-cause-candidates.csv
+manual-review.md
+quality-check.json
+
+Also use existing:
+
+source research queue
+remediation batch metadata
+semantic maps
+supporting audit artifacts
+
+if present.
+
+==================================================
+6 – DO NOT REPEAT THE FULL AUDIT
+==================================================
+
+The source completeness audit is COMPLETE.
+
+Do NOT:
+
+- reread all 322 originals
+- regenerate all 45 source inventories
+- rerun all 204 product reviews
+- rerun the 5 646 assertion reverse audit
+- recreate findings from scratch.
+
+Trust validated audit artifacts as the starting point.
+
+==================================================
+7 – TARGETED SOURCE RECHECK IS ALLOWED
+==================================================
+
+You MAY inspect an original source when necessary to resolve:
+
+- ambiguity in a remediation group
+- apparent finding duplication
+- applicability uncertainty
+- severity disagreement
+- root-cause classification
+- safe remediation design.
+
+Keep targeted rechecks narrow.
+
+Do not turn triage into another full source audit.
+
+==================================================
+8 – REPO SAFETY
+==================================================
+
+This task is READ-ONLY.
+
+DO NOT modify:
+
+production code
+catalog data
+canonical definitions
+source manifests
+source artifacts
+tests
+documentation
+.env files
+Railway
+deployment state.
+
+DO NOT:
+
+stage
+commit
+push
+deploy
+reset
+revert
+stash
+git clean.
+
+All triage outputs must be written under:
+
+/tmp/source-catalog-remediation-triage/
+
+==================================================
+9 – VERIFY BASELINE
+==================================================
+
+Before triage:
+
+git rev-parse HEAD
+git status --short
+
+Verify expected HEAD:
+
+d3a37985fce4ada65fa2f7a88462d8834e4677af
+
+Expected working tree:
+
+CLEAN
+
+Also verify the completed audit artifacts parse.
+
+If repo baseline has changed:
+
+STOP.
+
+Do not mix triage with a changed catalog state.
+
+==================================================
+10 – AUDIT ARTIFACT INTEGRITY
+==================================================
+
+Verify:
+
+audit.json parses
+all relevant CSVs parse
+finding IDs resolve
+root-cause references resolve
+product identities resolve
+remediation references resolve
+counts are consistent enough to support triage.
+
+Do not modify completed audit outputs.
+
+==================================================
+11 – FIRST TRIAGE TARGET
+==================================================
+
+Start with ALL P0/P1 findings.
+
+P0 currently = 0.
+
+Every P1 signature must end in one of:
+
+FIX_BEFORE_NITO
+SOURCE_RESEARCH_FIRST
+CANONICAL_REVIEW_FIRST
+MAPPING_REVIEW_FIRST
+HUMAN_DOMAIN_REVIEW
+DEFER_SAFE
+DUPLICATE / COVERED_BY_OTHER_BATCH
+FALSE_POSITIVE_AFTER_RECHECK.
+
+No P1 may disappear silently.
+
+==================================================
+12 – P2 TRIAGE
+==================================================
+
+Do NOT deeply triage all P2 immediately.
+
+First complete P1 triage.
+
+Then identify P2 findings that:
+
+A. share a remediation mechanism with approved P1 fixes
+
+or
+
+B. are extremely cheap/safe to fix in the same batch
+
+or
+
+C. materially improve advisor comprehension.
+
+Other P2 may remain deferred.
+
+==================================================
+13 – PILOT STANDARD
+==================================================
+
+For NITO pilot, target:
+
+P0 unresolved = 0
+P1 unresolved = 0
+
+for active pilot products,
+
+except where an unresolved item is explicitly:
+
+SOURCE_RESEARCH_REQUIRED
+or
+HUMAN_REVIEW_REQUIRED
+
+and product/UI is conservatively represented so it cannot mislead.
+
+Do not require perfection of every low-value P2.
+
+==================================================
+14 – PRIORITY PRINCIPLE
+==================================================
+
+Prioritize:
+
+WRONG INFORMATION
+>
+WRONG PRODUCT/SCOPE
+>
+FALSE POSITIVE COVERAGE
+>
+FALSE UNKNOWN
+>
+MATERIAL MISSING FACT
+>
+TOO-COARSE MATERIAL FACT
+>
+USEFUL DETAIL
+>
+POLISH.
+
+==================================================
+15 – WRONG CLAIMS FIRST
+==================================================
+
+The 8 strictly verified unsupported catalog claims receive special review.
+
+Examples already identified include:
+
+- Storebrand Innbo Super:
+  unsupported moving limit per item
+
+- Frende Bil:
+  parking bonus condition
+
+- Gjensidige Hus:
+  oppspyling
+
+- Gjensidige MC Delkasko:
+  ferie/leiebil extension.
+
+For each determine:
+
+exact affected products
+exact catalog assertion
+exact source support state
+advisor consequence
+safest correction
+regression needed
+whether shared root cause exists.
+
+==================================================
+16 – SEMANTIC MISMATCHES
+==================================================
+
+Review all:
+
+38 semantically mismapped findings
+
+and
+
+5 structural mapping gaps.
+
+These may be higher leverage than simple missing facts.
+
+Group by shared mapping mechanism.
+
+==================================================
+17 – FALSE UNKNOWNS
+==================================================
+
+Review all:
+
+29 VERIFIED_CATALOG_FALSE_UNKNOWNS.
+
+For each classify root cause:
+
+MISSING_CATALOG_FACT
+WRONG_CANONICAL_KEY
+INHERITANCE_GAP
+ADDON_GAP
+PRESENTATION_MAPPING
+SCOPE_MAPPING
+OTHER.
+
+==================================================
+18 – REISE OVERNATTING POSITIVE CONTROL
+==================================================
+
+Preserve the manually observed testcase:
+
+Tryg Reise Ekstra/Premium
+vs
+Storebrand Standard
+
+concept:
+
+reise med/uten overnatting.
+
+Audit conclusion:
+
+Storebrand source says day trips are covered.
+
+Catalog already contains:
+
+"Dagstur er omfattet"
+
+under another concept/key.
+
+The explicit overnight comparison row nevertheless shows:
+
+"Ikke dokumentert i kataloggrunnlaget."
+
+Treat this as a structural/canonical comparison problem.
+
+Do NOT solve it with UI text inference.
+
+Determine the smallest safe remediation mechanism so:
+
+source truth
+→ catalog truth
+→ comparison truth
+
+align correctly.
+
+Do not implement.
+
+==================================================
+19 – OTHER QUESTION-LIKE DIMENSIONS
+==================================================
+
+Search existing P1/root-cause data for similar patterns:
+
+Kreves overnatting?
+Kreves fuktkontroll?
+Er maskinskade inkludert?
+Er leiebil inkludert?
+Gjelder utleie?
+Dekkes tannsykdom?
+Gjelder tjenestereise?
+
+Determine whether a shared semantic mechanism can safely solve multiple
+cases.
+
+Do NOT force universal yes/no structure where semantics differ.
+
+==================================================
+20 – INHERITANCE ERRORS
+==================================================
+
+Identify all P1 findings caused by:
+
+base → higher-level inheritance
+higher-level override failure
+replacement of base facts
+add-on inheritance
+scope inheritance.
+
+Known examples include:
+
+Gjensidige Reise Pluss:
+20 000 kr inherited instead of 40 000 kr.
+
+Tryg Innbo Ekstra:
+incorrect inherited common-storage limit.
+
+Group similar failures.
+
+==================================================
+21 – PRODUCT LEVEL ERRORS
+==================================================
+
+Identify facts assigned to wrong:
+
+product level
+coverage tier
+component
+add-on.
+
+Known example:
+
+Gjensidige MC Delkasko receiving a rental-car rule supported only for Kasko.
+
+These are high priority because they can overstate coverage.
+
+==================================================
+22 – SCOPE ERRORS
+==================================================
+
+Identify facts incorrectly shared between:
+
+ordinary
+member
+partner
+historical/current
+species
+vehicle types.
+
+Do not merge fixes unless exact applicability is shared.
+
+==================================================
+23 – NUMERIC ERRORS
+==================================================
+
+Identify verified wrong:
+
+currency limits
+age limits
+km limits
+days
+percentages
+deductibles
+periods.
+
+Separate:
+
+WRONG_VALUE
+
+from:
+
+MISSING_VALUE
+
+from:
+
+SOURCE_CONFLICT.
+
+==================================================
+24 – TOO-COARSE TRIAGE
+==================================================
+
+There are:
+
+2 910 TOO_COARSE occurrences.
+
+Do NOT create 2 910 implementation tasks.
+
+Cluster them by semantic mechanism.
+
+Examples:
+
+included without material limit
+sum without condition
+coverage without age/km
+benefit without duration
+benefit without deductible
+parent concept without material child facts.
+
+==================================================
+25 – TOO-COARSE MATERIALITY
+==================================================
+
+For each cluster determine:
+
+MUST_BEFORE_NITO
+SHOULD_BEFORE_NITO
+CAN_WAIT.
+
+Ask:
+
+Would a competent insurance advisor reasonably expect this distinction to be
+visible when comparing these products?
+
+==================================================
+26 – SOURCE CONFLICTS
+==================================================
+
+70 source conflict/application posts exist.
+
+Do NOT remediate by guessing.
+
+Classify each:
+
+SOURCE_RESEARCH_REQUIRED
+VERSION_REVIEW_REQUIRED
+APPLICABILITY_REVIEW_REQUIRED
+HUMAN_DOMAIN_REVIEW_REQUIRED
+SAFE_TO_RESOLVE_FROM_EXISTING_LOCAL_EVIDENCE.
+
+==================================================
+27 – SOURCE RESEARCH QUEUE
+==================================================
+
+There are 110 open source-research queue entries.
+
+Deduplicate them into actual research tasks.
+
+Multiple products may depend on one missing source package.
+
+Return:
+
+number of raw queue entries
+number of unique research tasks.
+
+==================================================
+28 – SOURCE RESEARCH PRIORITY
+==================================================
+
+For each unique research task classify:
+
+BLOCKS_NITO
+HIGH_VALUE
+MEDIUM_VALUE
+LOW_VALUE.
+
+Prioritize source research that blocks:
+
+material coverage status
+major sum
+major deductible
+product level
+scope
+critical comparison concept.
+
+==================================================
+29 – NO WEB RESEARCH
+==================================================
+
+Do NOT perform the source research now.
+
+This task only produces the research plan.
+
+==================================================
+30 – CANONICAL MODEL
+==================================================
+
+The completed audit found:
+
+NO broad schema/engine rebuild proven necessary.
+
+Preserve this conclusion unless triage evidence proves otherwise.
+
+Do not turn local mapping issues into architecture projects.
+
+==================================================
+31 – NEW CANONICAL KEY
+==================================================
+
+Recommend a new canonical key only when:
+
+existing keys cannot safely represent the material source semantics.
+
+Each candidate must explain:
+
+semantic definition
+why existing keys fail
+affected products
+source evidence
+comparison benefit
+false-equivalence risk.
+
+==================================================
+32 – EXISTING KEY PREFERRED
+==================================================
+
+Prefer:
+
+existing canonical key
++
+correct catalog facts
++
+correct inheritance/mapping
+
+where sufficient.
+
+==================================================
+33 – PROVIDER-SPECIFIC DETAIL
+==================================================
+
+If a fact is material but genuinely provider-specific:
+
+keep it provider-specific.
+
+Do not create fake symmetry merely to eliminate unknowns.
+
+==================================================
+34 – CUSTOMER MODE IMPACT
+==================================================
+
+For every remediation group classify:
+
+PRODUCT_MODE_ONLY
+LIKELY_SHARED_WITH_CUSTOMER_MODE
+CATALOG_ENRICHMENT_ONLY
+PDF_EXTRACTION_IMPACT
+UNKNOWN.
+
+==================================================
+35 – DOCUMENT PRIORITY
+==================================================
+
+Preserve invariant:
+
+explicit customer document fact
+>
+catalog enrichment.
+
+No remediation may cause catalog data to overwrite a customer-specific PDF
+fact.
+
+==================================================
+36 – OPTIONALITY
+==================================================
+
+Preserve:
+
+available ≠ selected.
+
+Optional product/add-on information may enrich comparison but must not be
+shown as selected customer coverage without evidence.
+
+==================================================
+37 – PDF COMPARISON
+==================================================
+
+Identify remediation groups likely to improve PDF comparison because customer
+documents may be silent while catalog enrichment supplies product rules.
+
+Examples:
+
+age/km rules
+new-value rules
+coverage limitations
+geography
+deductibles
+duration.
+
+Do NOT redesign PDF UI here.
+
+==================================================
+38 – FUTURE PDF TOP SECTION
+==================================================
+
+Separately preserve the already-decided future UX requirement:
+
+Before "Viktigste forskjeller" and detailed terms, PDF/customer comparison
+should show important pricing/risk assumptions and agreement specifications.
+
+Examples:
+
+Bil:
+annual mileage
+bonus
+vehicle identity/year
+other material pricing assumptions.
+
+Hus/Hytte:
+construction year
+area
+full value vs first-loss
+building sum only when first-loss makes the sum relevant.
+
+Person insurance later:
+insurance sums and other core agreement assumptions.
+
+This is NOT part of current catalog remediation unless an audit finding
+directly affects the underlying semantic representation.
+
+Do not implement now.
+
+==================================================
+39 – REMEDIATION GROUP REVIEW
+==================================================
+
+Review all 56 proposed remediation groups.
+
+For every group answer:
+
+- Is the grouping valid?
+- Are all findings truly same root cause?
+- Should group be split?
+- Should it merge with another group?
+- What exact layer needs change?
+- What is the safest implementation type?
+- How many P1 signatures does it resolve?
+- How many occurrences?
+- How many products?
+- Which families?
+- Customer/PDF impact?
+- Regression risk?
+- Source readiness?
+- Pilot priority?
+
+==================================================
+40 – REMEDIATION LAYERS
+==================================================
+
+Classify each final batch:
+
+CATALOG_DATA
+CANONICAL_MAPPING
+INHERITANCE
+ADDON
+SCOPE
+PRESENTATION_MAPPING
+SHARED_ENGINE
+SOURCE_MANIFEST
+SOURCE_RESEARCH
+HUMAN_REVIEW
+ARCHITECTURE.
+
+==================================================
+41 – COMPLEXITY
+==================================================
+
+Classify:
+
+TRIVIAL_DATA
+DATA_BATCH
+SMALL_CODE
+MEDIUM_CODE
+ARCHITECTURE
+SOURCE_RESEARCH
+HUMAN_REVIEW.
+
+==================================================
+42 – RISK
+==================================================
+
+Classify:
+
+LOW
+MEDIUM
+HIGH.
+
+Risk means:
+
+chance remediation changes correct products incorrectly.
+
+==================================================
+43 – LEVERAGE
+==================================================
+
+Calculate for every final remediation batch:
+
+P1 signatures resolved
+P1 occurrences resolved
+products affected
+families affected.
+
+Do NOT use raw occurrence count alone to prioritize.
+
+==================================================
+44 – HIGH-LEVERAGE SAFE BATCH
+==================================================
+
+Identify batches with:
+
+high P1 reduction
+strong source evidence
+existing canonical support
+low/medium regression risk.
+
+These should normally be early implementation candidates.
+
+==================================================
+45 – DANGEROUS MASS FIX
+==================================================
+
+Flag any batch where a shared change could affect many products beyond the
+validated finding set.
+
+These require stronger regression coverage.
+
+==================================================
+46 – DATA-ONLY FIX
+==================================================
+
+A remediation can be DATA_ONLY only when:
+
+existing canonical structure is sufficient
+applicability is exact
+source evidence is strong
+no shared behavior change is needed.
+
+==================================================
+47 – MAPPING FIX
+==================================================
+
+Use MAPPING when:
+
+facts exist but comparison aligns them incorrectly.
+
+Reise overnatting may be an example.
+
+==================================================
+48 – INHERITANCE FIX
+==================================================
+
+Use INHERITANCE when:
+
+product hierarchy causes:
+
+wrong inherited fact
+missing inherited fact
+failed override
+incorrect replacement.
+
+==================================================
+49 – SOURCE FIX
+==================================================
+
+Do not label catalog problem as SOURCE_FIX unless source metadata/package is
+actually wrong/incomplete.
+
+==================================================
+50 – PRESENTATION FIX
+==================================================
+
+Do not label knowledge gap as presentation issue merely because UI displays
+"Ikke dokumentert".
+
+If catalog lacks fact:
+
+catalog problem.
+
+If fact exists correctly but wrong row/status is shown:
+
+presentation/mapping problem.
+
+==================================================
+51 – REMEDIATION ORDER
+==================================================
+
+Create recommended execution waves.
+
+Suggested framework:
+
+WAVE 0:
+source/integrity blockers requiring clarification before safe edits.
+
+WAVE 1:
+verified wrong/unsupported positive catalog claims.
+
+WAVE 2:
+wrong product level, scope, inheritance and semantic mappings.
+
+WAVE 3:
+verified false unknowns and material missing facts.
+
+WAVE 4:
+high-value TOO_COARSE dimensions.
+
+WAVE 5:
+safe P2 piggyback improvements.
+
+Actual waves must follow evidence.
+
+==================================================
+52 – DO NOT CREATE TOO MANY WAVES
+==================================================
+
+Prefer roughly:
+
+4–8 implementation waves
+
+rather than 56 separate development sessions.
+
+But preserve smaller atomic batches inside waves.
+
+==================================================
+53 – ATOMIC BATCHES
+==================================================
+
+Each batch must be small enough that:
+
+source evidence is coherent
+regression scope is understandable
+rollback is possible
+human review is feasible.
+
+==================================================
+54 – FIRST IMPLEMENTATION BATCH
+==================================================
+
+Recommend the exact first batch after triage.
+
+Do NOT automatically choose RB-11 merely because audit mentioned it.
+
+Choose based on:
+
+source certainty
+advisor impact
+leverage
+implementation simplicity
+regression risk.
+
+==================================================
+55 – FIRST BATCH

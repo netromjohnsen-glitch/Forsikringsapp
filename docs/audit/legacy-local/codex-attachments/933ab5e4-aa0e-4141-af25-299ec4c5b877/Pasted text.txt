@@ -1,0 +1,1114 @@
+NITO_CATALOG_REMEDIATION — WAVE 2 SEMANTIC RESOLUTION
+
+MODE:
+READ-ONLY CANONICAL / MAPPING / SEMANTIC REVIEW
+
+MODEL:
+GPT-6 Astra
+REASONING:
+Extra High
+
+==================================================
+1 – OBJECTIVE
+==================================================
+
+Wave 1 remediation is complete and PASS.
+
+The previously authorized safe Wave 2 subset is also complete and PASS.
+
+This task must resolve the remaining Wave 2 review dependencies for:
+
+B-015
+B-017
+B-018
+B-019
+B-020
+B-021
+B-022
+
+DO NOT IMPLEMENT ANY OF THEM.
+
+The goal is to determine the exact safe semantic/canonical/mapping treatment
+for each batch so that a later implementation run can execute without
+guessing.
+
+==================================================
+2 – CURRENT VERIFIED REMEDIATION STATE
+==================================================
+
+Preserve the existing successful remediation work.
+
+Completed:
+
+Wave 1:
+B-001 through B-007
+PASS
+
+Previously allowed Wave 2:
+B-008 through B-014
+B-016
+PASS
+
+Total P1 signatures resolved:
+21
+
+Do not undo, modify or reinterpret successful batches unless direct evidence
+shows a serious issue.
+
+==================================================
+3 – CURRENT VALIDATION STATE
+==================================================
+
+Latest successful validation:
+
+2038/2038 tests PASS
+
+TypeScript:
+PASS
+
+ESLint:
+PASS
+
+Webpack production build:
+PASS
+
+Synthetic HTTP/PDF runtime:
+PASS
+
+git diff --check:
+PASS
+
+Targeted source→catalog re-audit:
+PASS
+
+22 products intentionally changed.
+
+182 products unchanged in controlled catalog resolution.
+
+16 source hashes verified.
+
+714 comparison directions checked.
+
+496 affected comparison rows checked.
+
+All frozen audit/triage artifacts unchanged.
+
+==================================================
+4 – CURRENT REPO STATE
+==================================================
+
+Branch:
+
+main
+
+HEAD:
+
+d3a37985fce4ada65fa2f7a88462d8834e4677af
+
+Expected:
+
+working tree contains successful remediation changes
+
+0 staged files
+
+no commit
+no push
+no deploy.
+
+This is expected.
+
+DO NOT require clean working tree.
+
+==================================================
+5 – PRESERVE SUCCESSFUL LOCAL CHANGES
+==================================================
+
+Do not edit or discard existing successful remediation changes.
+
+Do not reset.
+Do not revert.
+Do not stash.
+Do not clean.
+
+This task is READ-ONLY with respect to the project.
+
+==================================================
+6 – AUTHORITATIVE INPUTS
+==================================================
+
+Use:
+
+/tmp/source-catalog-completeness-audit/
+
+and:
+
+/tmp/source-catalog-remediation-triage/
+
+and:
+
+/tmp/nito-catalog-remediation-evening/
+
+as authoritative inputs.
+
+Read the exact definitions, dependencies, findings, source evidence and
+regression requirements for:
+
+B-015
+B-017
+B-018
+B-019
+B-020
+B-021
+B-022.
+
+==================================================
+7 – DO NOT RESTART AUDIT
+==================================================
+
+Do not rerun the 204-product completeness audit.
+
+Do not regenerate the triage.
+
+Do not reread all 322 sources.
+
+Use completed evidence.
+
+==================================================
+8 – TARGETED SOURCE RECHECK
+==================================================
+
+You MAY inspect exact local source artifacts needed to answer a specific
+semantic question.
+
+Keep source rechecks narrowly scoped to the seven batches.
+
+No broad source review.
+
+==================================================
+9 – NO WEB RESEARCH
+==================================================
+
+Do not browse.
+
+Do not download new insurer documents.
+
+If local evidence cannot safely resolve a question:
+
+SOURCE_RESEARCH_REQUIRED.
+
+==================================================
+10 – CORE QUESTION
+==================================================
+
+For every remaining Wave 2 batch determine:
+
+Can the current catalog/canonical/comparison architecture represent the
+source truth correctly and safely?
+
+If yes:
+
+specify exact mapping/remediation.
+
+If no:
+
+specify the smallest semantic extension required.
+
+If evidence is insufficient:
+
+do not guess.
+
+==================================================
+11 – REQUIRED FINAL DISPOSITION
+==================================================
+
+Every one of:
+
+B-015
+B-017
+B-018
+B-019
+B-020
+B-021
+B-022
+
+must receive exactly one final disposition:
+
+READY_TO_IMPLEMENT
+
+READY_TO_IMPLEMENT_AFTER_SPLIT
+
+SOURCE_RESEARCH_REQUIRED
+
+HUMAN_DOMAIN_REVIEW_REQUIRED
+
+CANONICAL_EXTENSION_REQUIRED
+
+KEEP_CURRENT_CONSERVATIVE_STATE
+
+BLOCKED_BY_OTHER_BATCH.
+
+==================================================
+12 – NO SILENT UNRESOLVED STATE
+==================================================
+
+No batch may remain merely:
+
+"needs review."
+
+This task IS that review.
+
+If it cannot be resolved:
+
+state exactly why and what evidence/action is needed.
+
+==================================================
+13 – EXISTING KEYS FIRST
+==================================================
+
+Prefer existing canonical keys and structures where they can safely represent
+the source semantics.
+
+Do not create new canonical concepts simply because source wording differs.
+
+==================================================
+14 – NO FALSE EQUIVALENCE
+==================================================
+
+Do not map two facts together merely because they sound similar.
+
+Semantic equivalence must preserve:
+
+subject
+condition
+scope
+period
+unit
+product level
+optionality
+source applicability.
+
+==================================================
+15 – NEW CANONICAL EXTENSION
+==================================================
+
+Recommend a new canonical key/dimension only when existing structures cannot
+safely preserve a material advisor-relevant distinction.
+
+For every proposed extension specify:
+
+semantic definition
+why existing structure fails
+affected products
+affected families
+source evidence
+comparison behavior
+customer-mode implication
+false-equivalence risk
+regression requirements.
+
+==================================================
+16 – MAPPING VS CANONICAL
+==================================================
+
+Distinguish:
+
+MAPPING_ERROR:
+correct semantic structures already exist but facts align incorrectly.
+
+CANONICAL_GAP:
+existing semantic structures cannot safely represent the distinction.
+
+Do not confuse them.
+
+==================================================
+17 – INHERITANCE
+==================================================
+
+If the problem is inheritance rather than mapping:
+
+classify it explicitly.
+
+Determine:
+
+base behavior
+higher-level behavior
+override
+replacement
+product applicability.
+
+==================================================
+18 – PRODUCT LEVEL
+==================================================
+
+Verify facts do not migrate incorrectly between:
+
+base
+standard
+plus/super/top/extra
+optional component.
+
+==================================================
+19 – SCOPE
+==================================================
+
+Preserve:
+
+provider
+insurance type
+agreement scope
+product
+version
+add-on/component.
+
+==================================================
+20 – OPTIONALITY
+==================================================
+
+Preserve:
+
+AVAILABLE
+OPTIONAL
+INCLUDED
+CUSTOMER_SELECTED
+NOT_AVAILABLE
+NOT_COVERED
+UNKNOWN
+
+where relevant.
+
+Never convert product availability into customer selection.
+
+==================================================
+21 – CUSTOMER DOCUMENT PRIORITY
+==================================================
+
+Any proposed mapping must preserve:
+
+explicit customer document fact
+>
+catalog enrichment.
+
+==================================================
+22 – QUESTION-LIKE SEMANTICS
+==================================================
+
+Where a batch involves question-like concepts, determine the underlying
+insurance semantic state, not merely UI wording.
+
+Potential states include:
+
+YES
+NO
+NOT_COVERED
+OPTIONAL
+LIMITED
+GENUINELY_UNKNOWN.
+
+Do not implement presentation changes.
+
+==================================================
+23 – STOREBRAND REISE DAY TRIP / OVERNIGHT
+==================================================
+
+If one of these batches contains the Storebrand Reise issue:
+
+preserve the established evidence:
+
+Storebrand source says day trips are covered.
+
+Catalog already contains:
+
+"Dagstur er omfattet"
+
+under another semantic location.
+
+The explicit overnight comparison currently becomes false unknown.
+
+Determine whether:
+
+A. existing canonical identity can be remapped
+
+B. existing parent/child structure can be reused
+
+C. a small canonical dimension extension is required.
+
+Do not solve this through UI free-text interpretation.
+
+==================================================
+24 – SUBCOVERAGE OVERNIGHT REQUIREMENTS
+==================================================
+
+Do not let a general rule:
+
+day trips covered
+
+erase special overnight requirements for individual benefits such as rental
+car deductible or other subcoverages.
+
+General trip eligibility and subcoverage-specific conditions must remain
+distinct.
+
+==================================================
+25 – GNAGER / INSEKT
+==================================================
+
+If relevant batch involves:
+
+mus
+rotter
+gnagere
+skadeinsekter
+pests
+
+determine whether they are:
+
+siblings
+parent/child
+separate coverages
+inheritance variants.
+
+Do not merge merely under generic "skadedyr" if that loses product
+differences.
+
+==================================================
+26 – BRUK → LIV
+==================================================
+
+If relevant batch involves pet:
+
+Bruk
+Liv
+
+determine exact dependency.
+
+Do not assume Bruk is equivalent to or automatically inherited from Liv
+without source support.
+
+==================================================
+27 – AVGANG VS FREMMØTE
+==================================================
+
+If relevant batch involves Reise:
+
+delay at departure
+
+vs
+
+late arrival/failure to reach departure
+
+must remain separate if source triggers/limits differ.
+
+Do not merge into generic "forsinkelse" when material.
+
+==================================================
+28 – TYPE-SPECIFIC VEHICLE RULES
+==================================================
+
+If relevant batch involves shared vehicle terms:
+
+do not transfer facts across:
+
+Bil
+MC
+Bobil
+Snøscooter
+Campingvogn
+Tilhenger
+
+without exact applicability.
+
+==================================================
+29 – HUMAN DOMAIN QUESTIONS
+==================================================
+
+The triage identified five human-domain questions globally.
+
+Only address one here if it is a dependency of B-015/B-017–B-022.
+
+If textual/local evidence cannot settle an insurance-domain judgment:
+
+HUMAN_DOMAIN_REVIEW_REQUIRED.
+
+Do not simulate human approval.
+
+==================================================
+30 – SOURCE CONFLICT
+==================================================
+
+If applicable local sources conflict materially:
+
+do not select one arbitrarily.
+
+Classify:
+
+SOURCE_RESEARCH_REQUIRED
+
+or, where appropriate:
+
+HUMAN_DOMAIN_REVIEW_REQUIRED.
+
+==================================================
+31 – CURRENT SOURCE CORPUS
+==================================================
+
+Remember:
+
+the audit validates against the frozen local corpus.
+
+Do not claim current public freshness.
+
+==================================================
+32 – PRODUCT COMPARISON IMPACT
+==================================================
+
+For every batch explain how the resolved semantic treatment should affect:
+
+product comparison.
+
+Examples:
+
+same row
+separate row
+parent + child
+provider-specific detail
+no comparison row.
+
+==================================================
+33 – CUSTOMER/PDF IMPACT
+==================================================
+
+For every batch explain whether the resolution also affects:
+
+catalog enrichment in PDF/customer mode.
+
+Do not implement extraction changes.
+
+==================================================
+34 – NO PDF UX
+==================================================
+
+Do not implement the future PDF top section.
+
+==================================================
+35 – NO PERSON INSURANCE
+==================================================
+
+Do not work on person insurance.
+
+==================================================
+36 – NO SECURITY/GDPR
+==================================================
+
+Do not work on security/GDPR.
+
+==================================================
+37 – NO SOURCE FRESHNESS AUDIT
+==================================================
+
+Do not start a new web/source freshness audit.
+
+==================================================
+38 – NO IMPLEMENTATION
+==================================================
+
+ABSOLUTE:
+
+DO NOT MODIFY PROJECT FILES.
+
+No catalog edits.
+No canonical edits.
+No mapping edits.
+No test edits.
+
+==================================================
+39 – NO COMMIT / PUSH / DEPLOY
+==================================================
+
+No stage.
+No commit.
+No push.
+No deploy.
+
+Railway untouched.
+.env.local untouched.
+
+==================================================
+40 – OUTPUT DIRECTORY
+==================================================
+
+Create:
+
+/tmp/nito-wave2-semantic-resolution/
+
+All new review artifacts go there.
+
+==================================================
+41 – REQUIRED OUTPUTS
+==================================================
+
+Create:
+
+wave2-resolution-summary.md
+
+wave2-resolution.json
+
+batch-resolutions.csv
+
+canonical-decisions.csv
+
+mapping-decisions.csv
+
+implementation-ready-batches.md
+
+unresolved-dependencies.csv
+
+regression-plan.csv
+
+quality-check.json.
+
+==================================================
+42 – BATCH RESOLUTION FIELDS
+==================================================
+
+For every batch include:
+
+batch_id
+original_disposition
+final_disposition
+semantic_problem
+source_evidence
+existing_catalog_state
+existing_canonical_state
+decision
+implementation_layer
+affected_products
+affected_families
+customer_mode_impact
+dependencies
+implementation_risk
+recommended_model
+required_tests.
+
+==================================================
+43 – IMPLEMENTATION INSTRUCTIONS
+==================================================
+
+For every READY_TO_IMPLEMENT batch provide exact future instructions:
+
+WHAT TO CHANGE
+
+WHAT NOT TO CHANGE
+
+AFFECTED SCOPE
+
+EXPECTED RESULT
+
+SOURCE/PROVENANCE
+
+TESTS
+
+TARGETED RE-AUDIT
+
+ACCEPTANCE CRITERIA.
+
+No actual code.
+
+==================================================
+44 – SPLIT BATCH
+==================================================
+
+If READY_TO_IMPLEMENT_AFTER_SPLIT:
+
+define exact child batches.
+
+Each child must have:
+
+new stable ID
+scope
+dependency
+implementation layer
+risk
+tests.
+
+==================================================
+45 – SOURCE RESEARCH REQUIRED
+==================================================
+
+If SOURCE_RESEARCH_REQUIRED:
+
+state exact research question.
+
+Not:
+
+"find better source."
+
+Instead:
+
+which provider
+which product
+which version/scope
+which semantic fact
+what evidence is missing.
+
+==================================================
+46 – CANONICAL EXTENSION REQUIRED
+==================================================
+
+If CANONICAL_EXTENSION_REQUIRED:
+
+describe smallest safe extension.
+
+Do not redesign unrelated canonical structures.
+
+==================================================
+47 – KEEP CONSERVATIVE
+==================================================
+
+Use KEEP_CURRENT_CONSERVATIVE_STATE only when:
+
+local evidence cannot justify stronger representation
+
+AND
+
+current behavior is non-misleading.
+
+If current behavior is misleading:
+
+this disposition is not allowed.
+
+==================================================
+48 – REGRESSION PLAN
+==================================================
+
+For each resolved batch specify relevant:
+
+CATALOG_UNIT
+SOURCE_PROVENANCE
+INHERITANCE
+SCOPE
+ADDON
+SAME_PRODUCT
+SIDE_SWAP
+CROSS_PRODUCT
+PRODUCT_COMPARISON
+CUSTOMER_MODE_SYNTHETIC
+TYPE_ISOLATION
+SPECIES_ISOLATION.
+
+==================================================
+49 – POSITIVE CONTROLS
+==================================================
+
+Preserve nearby correct products/facts.
+
+Every implementation-ready decision needs at least one positive-control
+strategy where practical.
+
+==================================================
+50 – NAMED CONTROLS
+==================================================
+
+Preserve existing named controls from the completed audit/triage where they
+intersect these batches.
+
+==================================================
+51 – IMPLEMENTATION RISK
+==================================================
+
+Classify:
+
+LOW
+MEDIUM
+HIGH.
+
+Explain HIGH.
+
+==================================================
+52 – MODEL RECOMMENDATION
+==================================================
+
+Recommend future implementation model per resolved batch:
+
+GPT-6 SOL LIGHT
+GPT-6 SOL MEDIUM
+GPT-6 SOL HIGH
+GPT-6 SOL EXTRA HIGH
+GPT-6 ASTRA EXTRA HIGH.
+
+Do not use Astra by default.
+
+==================================================
+53 – READY DEFINITION
+==================================================
+
+READY_TO_IMPLEMENT requires:
+
+source evidence settled
+semantic interpretation settled
+scope settled
+implementation layer known
+dependencies satisfied or explicitly ordered
+regression plan defined.
+
+==================================================
+54 – NOT READY
+==================================================
+
+If any of those are missing:
+
+do not call it READY_TO_IMPLEMENT.
+
+==================================================
+55 – WAVE 2 COMPLETION PLAN
+==================================================
+
+At the end, produce the exact future execution sequence for completing the
+remaining Wave 2 work.
+
+Example:
+
+B-015A
+→ gate
+→ B-017
+→ B-018B
+...
+
+Use actual resolved dependencies.
+
+==================================================
+56 – WAVE 3 READINESS
+==================================================
+
+Also answer:
+
+After implementing the resolved remaining Wave 2 batches, would Wave 2 be
+semantically complete enough to authorize Wave 3?
+
+Return:
+
+YES
+
+YES_AFTER_SOURCE_RESEARCH
+
+YES_AFTER_HUMAN_REVIEW
+
+NO.
+
+Explain dependencies.
+
+==================================================
+57 – DO NOT REVIEW WAVE 3
+==================================================
+
+Do not triage or implement the 73 Wave 3 batches.
+
+Only assess whether Wave 2 dependencies block entry.
+
+==================================================
+58 – QUALITY CHECK
+==================================================
+
+Validate:
+
+all seven input batches accounted for
+one final disposition each
+all output JSON/CSV parse
+no duplicate child batch IDs
+dependencies resolve
+implementation-ready batches have tests
+source-research tasks are specific
+repo unchanged by THIS task.
+
+==================================================
+59 – PROJECT INTEGRITY
+==================================================
+
+Because successful remediation already exists locally:
+
+do NOT expect a clean working tree.
+
+Instead fingerprint project state BEFORE this review.
+
+At end verify:
+
+HEAD unchanged
+staged files unchanged
+working-tree fingerprint unchanged
+existing successful remediation unchanged
+git diff --check PASS.
+
+==================================================
+60 – AUDIT/TRIAGE INTEGRITY
+==================================================
+
+Verify:
+
+/tmp/source-catalog-completeness-audit/
+
+/tmp/source-catalog-remediation-triage/
+
+/tmp/nito-catalog-remediation-evening/
+
+remain unchanged.
+
+==================================================
+61 – FINAL REPORT
+==================================================
+
+Return:
+
+NITO_WAVE2_SEMANTIC_RESOLUTION
+
+STATUS
+
+BASELINE
+
+BATCH DECISIONS
+
+CANONICAL DECISIONS
+
+MAPPING DECISIONS
+
+SOURCE RESEARCH REQUIRED
+
+HUMAN REVIEW REQUIRED
+
+IMPLEMENTATION-READY BATCHES
+
+RECOMMENDED EXECUTION ORDER
+
+REGRESSION PLAN
+
+WAVE 3 READINESS
+
+PROJECT INTEGRITY
+
+OUTPUT FILES
+
+NEXT STEP.
+
+==================================================
+62 – COUNTS
+==================================================
+
+Explicitly report:
+
+Input batches:
+7
+
+READY_TO_IMPLEMENT:
+X
+
+READY_TO_IMPLEMENT_AFTER_SPLIT:
+X
+
+SOURCE_RESEARCH_REQUIRED:
+X
+
+HUMAN_DOMAIN_REVIEW_REQUIRED:
+X
+
+CANONICAL_EXTENSION_REQUIRED:
+X
+
+KEEP_CURRENT_CONSERVATIVE_STATE:
+X
+
+BLOCKED_BY_OTHER_BATCH:
+X.
+
+Total dispositions must reconcile to:
+
+7.
+
+==================================================
+63 – STATUS
+==================================================
+
+Return one:
+
+WAVE2_SEMANTIC_RESOLUTION_COMPLETE
+
+WAVE2_SEMANTIC_RESOLUTION_PARTIAL
+
+WAVE2_SEMANTIC_RESOLUTION_BLOCKED
+
+WAVE2_SEMANTIC_RESOLUTION_INTEGRITY_FAILURE.
+
+==================================================
+64 – COMPLETE CRITERIA
+==================================================
+
+COMPLETE only if:
+
+all seven batches have final disposition
+all ready batches have exact implementation plan
+all unresolved batches have exact next requirement
+canonical/mapping decisions are explicit
+regression plans exist
+execution order exists
+Wave 3 readiness is assessed
+project state is unchanged by this review.
+
+==================================================
+65 – NEXT STEP
+==================================================
+
+Do NOT start implementation.
+
+Recommend one next action:
+
+implement the now-resolved remaining Wave 2 sequence
+
+OR
+
+perform required source/human review first.
+
+==================================================
+66 – FINAL PRINCIPLE
+==================================================
+
+Wave 1 proved the remediation mechanism.
+
+The safe part of Wave 2 proved controlled multi-batch remediation.
+
+This task resolves the SEMANTIC questions that prevented the rest of Wave 2
+from being safely implemented.
+
+Do not optimize for making every batch implementation-ready.
+
+Optimize for:
+
+CORRECT SOURCE SEMANTICS
+CORRECT SCOPE
+NO FALSE EQUIVALENCE
+MINIMAL SAFE CHANGE
+EXPLICIT UNCERTAINTY.
+
+==================================================
+67 – START
+==================================================
+
+Begin now.
+
+Read the exact completed audit, triage and evening-remediation state.
+
+Review only:
+
+B-015
+B-017
+B-018
+B-019
+B-020
+B-021
+B-022.
+
+Do not modify project files.
+
+Do not implement.
+
+Resolve every batch as far as the frozen local evidence safely permits.
+
+Persist the review artifacts.
+
+Return the required status and STOP.

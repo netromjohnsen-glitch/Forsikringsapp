@@ -1,0 +1,489 @@
+[
+  {
+    "product_identity": "[\"if\",\"hund\",\"ordinary\",\"if-hund-standard\",\"2022-12-01\"]",
+    "key": "dyr.allergi.dekning",
+    "peer_identity": "[\"if\",\"hund\",\"ordinary\",\"if-hund-super\",\"2022-12-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-0044"
+    ],
+    "finding_ids": [
+      "GAP-0029"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing supplied catalog knowledge, not proof of a presentation defect.",
+    "source_scope_note": "Own source justifies missing dimension; peer used only to exercise view. No peer correctness certification."
+  },
+  {
+    "product_identity": "[\"tryg\",\"hund\",\"ordinary\",\"tryg-hund-behandling\",\"2026-09-01\"]",
+    "key": "dyr.diagnostikk.dekning",
+    "peer_identity": "[\"sparebank1-fremtind\",\"hund\",\"ordinary\",\"sparebank1-fremtind-hund-veterin-r\",\"2025-08-07\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-0004"
+    ],
+    "finding_ids": [
+      "GAP-0003"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing supplied catalog knowledge, not proof of a presentation defect.",
+    "source_scope_note": "Own source justifies missing dimension; peer used only to exercise view. No peer correctness certification."
+  },
+  {
+    "product_identity": "[\"storebrand\",\"båt\",\"ordinary\",\"storebrand-bat-super\",\"2024-09-01\"]",
+    "key": "bat.opplagsutstyr.dekning",
+    "peer_identity": "[\"storebrand\",\"båt\",\"ordinary\",\"storebrand-bat-kasko\",\"2024-09-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-0128"
+    ],
+    "finding_ids": [
+      "GAP-0085"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing supplied catalog knowledge, not proof of a presentation defect.",
+    "source_scope_note": "Own source justifies missing dimension; peer used only to exercise view. No peer correctness certification."
+  },
+  {
+    "product_identity": "[\"storebrand\",\"båt\",\"ordinary\",\"storebrand-bat-delkasko\",\"2024-09-01\"]",
+    "key": "bat.redning.dekning",
+    "peer_identity": "[\"storebrand\",\"båt\",\"ordinary\",\"storebrand-bat-kasko\",\"2024-09-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-0099"
+    ],
+    "finding_ids": [
+      "GAP-0063"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing supplied catalog knowledge, not proof of a presentation defect.",
+    "source_scope_note": "Own source justifies missing dimension; peer used only to exercise view. No peer correctness certification."
+  },
+  {
+    "product_identity": "[\"storebrand\",\"båt\",\"ordinary\",\"storebrand-bat-super\",\"2024-09-01\"]",
+    "key": "bat.ulykke.dekning",
+    "peer_identity": "[\"tryg\",\"båt\",\"ordinary\",\"tryg-bat-ansvar\",\"2024-07-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-0116"
+    ],
+    "finding_ids": [
+      "GAP-0076"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing supplied catalog knowledge, not proof of a presentation defect.",
+    "source_scope_note": "Own source justifies missing dimension; peer used only to exercise view. No peer correctness certification."
+  },
+  {
+    "product_identity": "[\"fremtind\",\"mc\",\"ordinary-sparebank1\",\"fremtind-mc-kasko\",null]",
+    "key": "nyverdi.alder",
+    "peer_identity": "[\"tryg\",\"mc\",\"ordinary\",\"tryg-mc-kasko\",\"2026-07-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-0243"
+    ],
+    "finding_ids": [
+      "GAP-0131"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing supplied catalog knowledge, not proof of a presentation defect.",
+    "source_scope_note": "Own source justifies missing dimension; peer used only to exercise view. No peer correctness certification."
+  },
+  {
+    "product_identity": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+    "key": "reise.skadedyr.dekning",
+    "peer_identity": "[\"if\",\"reise\",\"ordinary\",\"if-reise-super\",\"2026-09-20-canonical\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-1664"
+    ],
+    "finding_ids": [
+      "GAP-1087"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing own-source catalog rule, not a presentation defect.",
+    "source_scope_note": "Own fullreise10source supports dimension; peer only exercises existing view, no false cross-provider equivalence.",
+    "runtime_probe_file": "runtime-storebrand-reise-probes.json"
+  },
+  {
+    "product_identity": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+    "key": "reise.skadedyr.egenandel",
+    "peer_identity": "[\"frende\",\"reise\",\"ordinary\",\"frende-reiseforsikring\",\"2026-03-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-1664"
+    ],
+    "finding_ids": [
+      "GAP-1087"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing own-source catalog rule, not a presentation defect.",
+    "source_scope_note": "Own fullreise10source supports dimension; peer only exercises existing view, no false cross-provider equivalence.",
+    "runtime_probe_file": "runtime-storebrand-reise-probes.json"
+  },
+  {
+    "product_identity": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+    "key": "reise.bagasje.aldersfradrag",
+    "peer_identity": "[\"gjensidige\",\"reise\",\"ordinary\",\"gjensidige-reise\",\"2026-09-20-canonical\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-1638"
+    ],
+    "finding_ids": [
+      "GAP-1065"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing own-source catalog rule, not a presentation defect.",
+    "source_scope_note": "Own fullreise10source supports dimension; peer only exercises existing view, no false cross-provider equivalence.",
+    "runtime_probe_file": "runtime-storebrand-reise-probes.json"
+  },
+  {
+    "product_identity": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]",
+    "key": "reise.veterinar",
+    "peer_identity": "[\"frende\",\"reise\",\"ordinary\",\"frende-reiseforsikring\",\"2026-03-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-1737"
+    ],
+    "finding_ids": [
+      "GAP-1145"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing own-source catalog rule, not a presentation defect.",
+    "source_scope_note": "Own fullreise10source supports dimension; peer only exercises existing view, no false cross-provider equivalence.",
+    "runtime_probe_file": "runtime-storebrand-reise-probes.json"
+  },
+  {
+    "product_identity": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]",
+    "key": "reise.skadedyr.dekning",
+    "peer_identity": "[\"if\",\"reise\",\"ordinary\",\"if-reise-super\",\"2026-09-20-canonical\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-1729"
+    ],
+    "finding_ids": [
+      "GAP-1139"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing own-source catalog rule, not a presentation defect.",
+    "source_scope_note": "Own fullreise10source supports dimension; peer only exercises existing view, no false cross-provider equivalence.",
+    "runtime_probe_file": "runtime-storebrand-reise-probes.json"
+  },
+  {
+    "product_identity": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]",
+    "key": "reise.bagasje.aldersfradrag",
+    "peer_identity": "[\"gjensidige\",\"reise\",\"ordinary\",\"gjensidige-reise\",\"2026-09-20-canonical\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-1703"
+    ],
+    "finding_ids": [
+      "GAP-1117"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Missing own-source catalog rule, not a presentation defect.",
+    "source_scope_note": "Own fullreise10source supports dimension; peer only exercises existing view, no false cross-provider equivalence.",
+    "runtime_probe_file": "runtime-storebrand-reise-probes.json"
+  },
+  {
+    "product_identity": "[\"gjensidige\",\"bobil\",\"ordinary\",\"gjensidige-bobil-kasko\",null]",
+    "key": "bobil.skadedyr.dekning",
+    "peer_identity": "[\"gjensidige\",\"bobil\",\"ordinary\",\"gjensidige-bobil-pluss\",null]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-3551"
+    ],
+    "finding_ids": [
+      "GAP-2487"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Own Kasko rule omitted by Pluss-only catalog condition; not a presentation bug.",
+    "source_scope_note": "Own exact source proves coverage; all37base+2optional claims reviewed; peer only exercises view.",
+    "probe": "runtime-gjensidige-mc-bobil-probe.json"
+  },
+  {
+    "product_identity": "[\"gjensidige\",\"båt\",\"ordinary\",\"gjensidige-bat-delkasko\",null]",
+    "key": "bat.redning.dekning",
+    "peer_identity": "[\"gjensidige\",\"båt\",\"ordinary\",\"gjensidige-bat-kasko\",null]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-3878"
+    ],
+    "finding_ids": [
+      "GAP-2744"
+    ],
+    "side_swap_consistent": true,
+    "cause": "SharedboatFire omits redning; own IPID/fullterms both positive. NotUIloss.",
+    "source_scope_note": "Exactownlevelrulesverified;peeronlyviewprobe;nooptionalorparent-equivalent in6facts.",
+    "probe": "runtime-gjensidige-boat-probe.json"
+  },
+  {
+    "product_identity": "[\"if\",\"bil\",\"ordinary\",\"if-bil-kasko\",\"MOT2-2\"]",
+    "key": "nyverdi.alder",
+    "peer_identity": "[\"gjensidige\",\"bil\",\"ordinary\",\"gj-bil-kasko\",null]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-4164"
+    ],
+    "finding_ids": [
+      "GAP-2980"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Egen fullkildeMOT2-2§8.4.2 støtter ordinær nyverdi; eksaktIfBilKasko base+tillegg mangler alle tilsvarende fakta.",
+    "source_scope_note": "Gjensidige brukes kun som visningsprobe; If-kildens egne regler begrunner funnet.",
+    "probe": "runtime-if-motor-probe.json"
+  },
+  {
+    "product_identity": "[\"if\",\"bil\",\"ordinary\",\"if-bil-kasko\",\"MOT2-2\"]",
+    "key": "nyverdi.km",
+    "peer_identity": "[\"gjensidige\",\"bil\",\"ordinary\",\"gj-bil-kasko\",null]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-4164"
+    ],
+    "finding_ids": [
+      "GAP-2980"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Egen fullkildeMOT2-2§8.4.2 støtter ordinær nyverdi; eksaktIfBilKasko base+tillegg mangler alle tilsvarende fakta.",
+    "source_scope_note": "Gjensidige brukes kun som visningsprobe; If-kildens egne regler begrunner funnet.",
+    "probe": "runtime-if-motor-probe.json"
+  },
+  {
+    "product_identity": "[\"if\",\"campingvogn\",\"ordinary\",\"if-campingvogn-super\",\"2024-03\"]",
+    "key": "campingvogn.fukt.dekning",
+    "peer_identity": "[\"storebrand\",\"campingvogn\",\"ordinary\",\"storebrand-campingvogn-super\",\"2026-03-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-4633"
+    ],
+    "finding_ids": [
+      "GAP-3290"
+    ],
+    "side_swap_consistent": true,
+    "cause": "IfCampingvognSuper har ingen egneSuperfakta; egneSV707/web dokumenterer ytelsen.",
+    "source_scope_note": "Storebrand brukes kun som visningsprobe; egneIfkilder beviser fakta. Ingen campingkm antatt.",
+    "probe": "runtime-if-motor-probe.json"
+  },
+  {
+    "product_identity": "[\"if\",\"campingvogn\",\"ordinary\",\"if-campingvogn-super\",\"2024-03\"]",
+    "key": "campingvogn.ferie.dekning",
+    "peer_identity": "[\"storebrand\",\"campingvogn\",\"ordinary\",\"storebrand-campingvogn-super\",\"2026-03-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-4635"
+    ],
+    "finding_ids": [
+      "GAP-3292"
+    ],
+    "side_swap_consistent": true,
+    "cause": "IfCampingvognSuper har ingen egneSuperfakta; egneSV707/web dokumenterer ytelsen.",
+    "source_scope_note": "Storebrand brukes kun som visningsprobe; egneIfkilder beviser fakta. Ingen campingkm antatt.",
+    "probe": "runtime-if-motor-probe.json"
+  },
+  {
+    "product_identity": "[\"if\",\"campingvogn\",\"ordinary\",\"if-campingvogn-super\",\"2024-03\"]",
+    "key": "campingvogn.nyverdi.dekning",
+    "peer_identity": "[\"storebrand\",\"campingvogn\",\"ordinary\",\"storebrand-campingvogn-super\",\"2026-03-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-4642"
+    ],
+    "finding_ids": [
+      "GAP-3299"
+    ],
+    "side_swap_consistent": true,
+    "cause": "IfCampingvognSuper har ingen egneSuperfakta; egneSV707/web dokumenterer ytelsen.",
+    "source_scope_note": "Storebrand brukes kun som visningsprobe; egneIfkilder beviser fakta. Ingen campingkm antatt.",
+    "probe": "runtime-if-motor-probe.json"
+  },
+  {
+    "product_identity": "[\"tryg\",\"campingvogn\",\"ordinary\",\"tryg-campingvogn-kasko\",\"2026-01-01\"]",
+    "key": "campingvogn.naturskade.dekning",
+    "peer_identity": "[\"if\",\"campingvogn\",\"ordinary\",\"if-campingvogn-kasko\",\"2024-03\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-5981"
+    ],
+    "finding_ids": [
+      "GAP-4173"
+    ],
+    "side_swap_consistent": true,
+    "cause": "EgetPAU25255§2.5/IPID/produktnettsidebekrefterNaturskade;exactcatalogmanglerparentogchild.",
+    "source_scope_note": "Ifkunvisningsprobe,Trygskildebevisgiregenproduktregel.",
+    "probe": "runtime-tryg-extensions-probe.json"
+  },
+  {
+    "product_identity": "[\"tryg\",\"reise\",\"ordinary\",\"tryg-reise-ekstra\",\"2026-09-20-canonical\"]",
+    "key": "reise.tjeneste.legehjelp",
+    "peer_identity": "[\"tryg\",\"reise\",\"ordinary\",\"tryg-reise-premium\",\"2026-09-20-canonical\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-6511"
+    ],
+    "finding_ids": [
+      "GAP-4507"
+    ],
+    "side_swap_consistent": true,
+    "cause": "IPIDJan2026 explicit Ekstra Tryg Legehjelp absent from resolvedbase+optional; Premium-only catalogfact.",
+    "source_scope_note": "Exact IPID names Ekstra; not inferred from Premium.",
+    "probe": "runtime-tryg-reise-probe.json"
+  },
+  {
+    "product_identity": "[\"eika-fremtind\",\"campingvogn\",\"ordinary\",\"eika-fremtind-campingvogn-kasko\",\"2024-03-21\"]",
+    "key": "campingvogn.fukt.dekning",
+    "peer_identity": "[\"frende\",\"campingvogn\",\"ordinary\",\"frende-campingvogn-kasko\",\"2026-01-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7581"
+    ],
+    "finding_ids": [
+      "GAP-5321"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Exact applicable source rule absent from resolved base and optional facts; runtime unknown confirmed.",
+    "source_scope_note": "Kasko§1.3s5",
+    "probe": "runtime-fremtind-light-vehicle-probe.json"
+  },
+  {
+    "product_identity": "[\"eika-fremtind\",\"snøscooter\",\"ordinary\",\"eika-fremtind-snoscooter-kasko\",\"2023-10-29\"]",
+    "key": "snoscooter.utstyr.grense",
+    "peer_identity": "[\"frende\",\"snøscooter\",\"ordinary\",\"frende-snoscooter-kasko\",\"2026-01-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7544"
+    ],
+    "finding_ids": [
+      "GAP-5288"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Exact applicable source rule absent from resolved base and optional facts; runtime unknown confirmed.",
+    "source_scope_note": "PMO357.110§1s3–4snø/s4–5MC",
+    "probe": "runtime-fremtind-light-vehicle-probe.json"
+  },
+  {
+    "product_identity": "[\"fremtind\",\"mc\",\"ordinary-sparebank1\",\"fremtind-mc-kasko\",null]",
+    "key": "nyverdi.alder",
+    "peer_identity": "[\"tryg\",\"mc\",\"ordinary\",\"tryg-mc-kasko\",\"2026-07-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7650"
+    ],
+    "finding_ids": [
+      "GAP-5370"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Exact applicable source rule absent from resolved base and optional facts; runtime unknown confirmed.",
+    "source_scope_note": "Mini§3.3.1s6MC",
+    "probe": "runtime-fremtind-light-vehicle-probe.json"
+  },
+  {
+    "product_identity": "[\"fremtind\",\"mc\",\"ordinary-sparebank1\",\"fremtind-mc-kasko\",null]",
+    "key": "nyverdi.km",
+    "peer_identity": "[\"tryg\",\"mc\",\"ordinary\",\"tryg-mc-kasko\",\"2026-07-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7650"
+    ],
+    "finding_ids": [
+      "GAP-5370"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Exact applicable source rule absent from resolved base and optional facts; runtime unknown confirmed.",
+    "source_scope_note": "Mini§3.3.1s6MC",
+    "probe": "runtime-fremtind-light-vehicle-probe.json"
+  },
+  {
+    "product_identity": "[\"sparebank1-fremtind\",\"båt\",\"ordinary\",\"sparebank1-fremtind-bat-delkasko\",\"2024-06-10\"]",
+    "key": "bat.redning.dekning",
+    "peer_identity": "[\"sparebank1-fremtind\",\"båt\",\"ordinary\",\"sparebank1-fremtind-bat-kasko\",\"2024-06-10\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7817"
+    ],
+    "finding_ids": [
+      "GAP-5494"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Exact source-backed rule missing in all resolved/component facts; presentationunknownconfirmed.",
+    "source_scope_note": "Mini§2.5–6s2/4.2s4",
+    "probe": "runtime-fremtind-boat-probe.json"
+  },
+  {
+    "product_identity": "[\"sparebank1-fremtind\",\"båt\",\"ordinary\",\"sparebank1-fremtind-bat-kasko\",\"2024-06-10\"]",
+    "key": "bat.losore.grense",
+    "peer_identity": "[\"if\",\"båt\",\"ordinary\",\"if-bat-kasko\",\"2023-02-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7861"
+    ],
+    "finding_ids": [
+      "GAP-5530"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Exact source-backed rule missing in all resolved/component facts; presentationunknownconfirmed.",
+    "source_scope_note": "Kasko§1.1s5",
+    "probe": "runtime-fremtind-boat-probe.json"
+  },
+  {
+    "product_identity": "[\"sparebank1-fremtind\",\"båt\",\"ordinary\",\"sparebank1-fremtind-bat-toppkasko\",\"2024-06-10\"]",
+    "key": "bat.totalskade.alder",
+    "peer_identity": "[\"storebrand\",\"båt\",\"ordinary\",\"storebrand-bat-super\",\"2024-09-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7910"
+    ],
+    "finding_ids": [
+      "GAP-5571"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Exact source-backed rule missing in all resolved/component facts; presentationunknownconfirmed.",
+    "source_scope_note": "Topp§3.2s7",
+    "probe": "runtime-fremtind-boat-probe.json"
+  },
+  {
+    "product_identity": "[\"sparebank1-fremtind\",\"hund\",\"ordinary\",\"sparebank1-fremtind-hund-veterin-r\",\"2025-08-07\"]",
+    "key": "dyr.allergi.grense",
+    "peer_identity": "[\"frende\",\"hund\",\"ordinary\",\"frende-hund-veterin-r\",\"2026-01-01\"]",
+    "display_state": "unknown",
+    "display_text": "Ikke dokumentert i kataloggrunnlaget",
+    "source_fact_ids": [
+      "SF-7925"
+    ],
+    "finding_ids": [
+      "GAP-5582"
+    ],
+    "side_swap_consistent": true,
+    "cause": "Base15000lifetimeallergysublimitabsent;addonavailabilitydoesnotrepresentbasecoverageorlimit.",
+    "source_scope_note": "Dogvet§7p1",
+    "probe": "runtime-fremtind-pet-probe.json"
+  }
+]

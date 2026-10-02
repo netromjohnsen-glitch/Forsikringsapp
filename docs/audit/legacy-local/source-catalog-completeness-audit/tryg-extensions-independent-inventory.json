@@ -1,0 +1,456 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "TR-EXT-001",
+      "type": "all",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "Europa unntatt Russland/Belarus/Tyrkia; rettshjelp Norden.",
+      "source": "product",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-EXT-002",
+      "type": "all",
+      "scope": "all",
+      "subject": "Sikrede/eierskifte",
+      "dimension": "vilkår",
+      "value": "Registerhovedeier/bevis,panthaveravtalt;14dny eier hvisikkeegenforsikring.",
+      "source": "product",
+      "location": "1 §1/4"
+    },
+    {
+      "id": "TR-EXT-003",
+      "type": "snow",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "Ubegrensetperson/100millting;skadestedlov/norskførerpassasjerbedreregelhvisbosattNorge.",
+      "source": "ansvar",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-EXT-004",
+      "type": "snow",
+      "scope": "all",
+      "subject": "Avregistrering",
+      "dimension": "regelkonflikt",
+      "value": "Fullproduktansvaropphør,webansvar+ulykkeopphør/øvrigfortsetter,IPIDavskiltingavslutterforsikringen.",
+      "source": "product",
+      "location": "1 §4;IPID2;FAQ"
+    },
+    {
+      "id": "TR-EXT-005",
+      "type": "snow",
+      "scope": "all",
+      "subject": "Sesongpremie",
+      "dimension": "fordeling",
+      "value": "Jan12,feb18,marapr22hver,mai8,juni–nov2hver,des6%;månedbetalinglikebeløpmenoppsigelserisikofordelt.",
+      "source": "product",
+      "location": "1–2 §5"
+    },
+    {
+      "id": "TR-EXT-006",
+      "type": "snow",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "førere/bruk",
+      "value": "Dødmannsknapp/-snorbrukeshvismontert;under23meldingunntatteier/ektefelle;kommersiellutleiemåavtales;baneforbudunntattgodkjentkurs+20k.",
+      "source": "safety",
+      "location": "1–2"
+    },
+    {
+      "id": "TR-EXT-007",
+      "type": "snow",
+      "scope": "physical",
+      "subject": "Utstyr",
+      "dimension": "sum/omfang",
+      "value": "Standardkjøretøy/deleroghjelm;fastutstyr10k/foliering,ikketilhenger/avtagbart/spesiallakk.",
+      "source": "physical",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-EXT-008",
+      "type": "snow",
+      "scope": "physical",
+      "subject": "Brann/tyveri",
+      "dimension": "sum/egenandel",
+      "value": "Åpenild/lyn/eksplosjon,tyveri/brukstyveri+forsøkshærverk;BrannTyverinivå6k,Kaskonivå4k.",
+      "source": "physical",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-EXT-009",
+      "type": "snow",
+      "scope": "physical",
+      "subject": "Redning",
+      "dimension": "unavailable",
+      "value": "Transporttilnærmestereparasjonsverkstedikkeerstattet.",
+      "source": "physical",
+      "location": "1–2 §3.1"
+    },
+    {
+      "id": "TR-EXT-010",
+      "type": "snow",
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "omfang",
+      "value": "Kollisjon/utforkjøring/velt/hærverk/feilfylling/ytreplutselig<=ett døgn;valgtegenandelbevis.",
+      "source": "kasko",
+      "location": "1 §2.1"
+    },
+    {
+      "id": "TR-EXT-011",
+      "type": "snow",
+      "scope": "kasko",
+      "subject": "Vær",
+      "dimension": "egenandel",
+      "value": "Værskadeparkertinnendørsgarasje0egenandel.",
+      "source": "kasko",
+      "location": "3 §3.6"
+    },
+    {
+      "id": "TR-EXT-012",
+      "type": "snow",
+      "scope": "all",
+      "subject": "Førerulykke",
+      "dimension": "valgfri/sum",
+      "value": "PAU28002fører/passasjerbarehvisflerpersonregistrert;200kinvaliditetgradert/100kdødinnen1år;valgfritt. PAU28003førerpassasjeralternativmåholdesrettscope.",
+      "source": "accident",
+      "location": "1–2"
+    },
+    {
+      "id": "TR-EXT-013",
+      "type": "snow",
+      "scope": "all",
+      "subject": "Førerulykke",
+      "dimension": "unntak/oppgjør",
+      "value": "PTSDunntakfrapsykiskunntak,tannspising/infeksjonmedenkeltsårunntak,sammenvirkendesykdom/fradragfunksjon;ingeninvaliditetdødinnen1år.",
+      "source": "accident",
+      "location": "1–2 §2–3"
+    },
+    {
+      "id": "TR-EXT-014",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "trekkbil",
+      "value": "Tilhenger/campingvognansvarvia trekkbil,ogsåsisttilkobletbilnårfrakoblet. Ikkeegenansvarsdekning.",
+      "source": "web",
+      "location": "FAQ ansvar"
+    },
+    {
+      "id": "TR-EXT-015",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Grunnsum",
+      "dimension": "kundespesifikk",
+      "value": "Valgtforsikringssumbevis,maxmarkedsverdi;ikkeenverdigaranti.",
+      "source": "physical",
+      "location": "1 §1.1;3 §3.3"
+    },
+    {
+      "id": "TR-EXT-016",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Utstyr",
+      "dimension": "grense",
+      "value": "Fasttilbehør10k;standardekstrahjulsett;spesiallakkikke;utbetalesutoverkjøretøyetsforsikringssum.",
+      "source": "physical",
+      "location": "1 §1.1;siste §3.4"
+    },
+    {
+      "id": "TR-EXT-017",
+      "type": "camp",
+      "scope": "all",
+      "subject": "Fortelt/terrasse",
+      "dimension": "omfang",
+      "value": "Allebyggematerialerkonstruertforvognen;innredningmed. Naturskadespikerteltmåinkluderesivalgtsum.",
+      "source": "physical",
+      "location": "1 §1.1;naturskade"
+    },
+    {
+      "id": "TR-EXT-018",
+      "type": "camp",
+      "scope": "base",
+      "subject": "Løsøre",
+      "dimension": "grense/egenandel",
+      "value": "15ksamlet5k/itemi vogn/fortelt,annenavtaltsum;ikke penger/papirer/antikviteter/smykker;BrannogsåCD/DVD/spill/vin/brennevinunntatt. Utovervognsum.",
+      "source": "physical",
+      "location": "1 §1.1;siste §3.4"
+    },
+    {
+      "id": "TR-EXT-019",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Brann",
+      "dimension": "egenandel",
+      "value": "Åpenild/lyn/eksplosjon;BrannellerBrannTyveri4k,Kasko6k,hvisikkelavereavtalt.",
+      "source": "physical",
+      "location": "brann1§2.1;bt1§2.1;kasko2§2.2"
+    },
+    {
+      "id": "TR-EXT-020",
+      "type": "tow",
+      "scope": "theft",
+      "subject": "Tyveri",
+      "dimension": "egenandel/omfang",
+      "value": "Tyveri/brukstyveri/hærverkiforsøk;BrannTyveri4k,Kasko6k hvislavereikkeavtalt.",
+      "source": "physical",
+      "location": "bt1–2§2.2;kasko2§2.3"
+    },
+    {
+      "id": "TR-EXT-021",
+      "type": "camp",
+      "scope": "theft",
+      "subject": "Tyveri",
+      "dimension": "forteltunntak",
+      "value": "Tyverifraforteltavtøy/duk/lignendeikke. IkkeimportBobilregelomvognfjernet.",
+      "source": "physical",
+      "location": "bt1§2.2;kasko2§2.3"
+    },
+    {
+      "id": "TR-EXT-022",
+      "type": "tow",
+      "scope": "theft",
+      "subject": "Underslag",
+      "dimension": "avtaltutleie",
+      "value": "Tilhengeravtaltutleid,dekkestap3mndettermelding;ikkefamilie/ansatte. Ikkeautomatiskkundevalg.",
+      "source": "physical",
+      "location": "2 §2.2/2.3"
+    },
+    {
+      "id": "TR-EXT-023",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Naturskade",
+      "dimension": "omfang/egenandel",
+      "value": "Brannforsikret;skred/storm/flom/stormflo/flodbølge/meteor/jordskjelv/vulkan;8kegenandel.",
+      "source": "physical",
+      "location": "brann1–2§2.2;bt2§2.3;kasko2–3§2.5"
+    },
+    {
+      "id": "TR-EXT-024",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Naturskade",
+      "dimension": "unntak",
+      "value": "Ikke frost/tele/tørke/nedbør/snøtyngde/isgang/dyr/insekt/bakterie/sopp/råte.",
+      "source": "physical",
+      "location": "naturskadekapittel"
+    },
+    {
+      "id": "TR-EXT-025",
+      "type": "tow",
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "omfang/avgrensning",
+      "value": "Kollisjon/utforkjøring/velt/hærverk/ytreplutselig<=24t;ikke frost/strømbrudd/renkonstruksjonssprekk/insektgnager;naturskadeegenregel.",
+      "source": "kasko",
+      "location": "1 §2.1"
+    },
+    {
+      "id": "TR-EXT-026",
+      "type": "tow",
+      "scope": "kasko",
+      "subject": "Vær",
+      "dimension": "egenandel",
+      "value": "Værskadeparkertinnendørsgarasje0egenandel.",
+      "source": "kasko",
+      "location": "2 §2.1"
+    },
+    {
+      "id": "TR-EXT-027",
+      "type": "tow",
+      "scope": "kasko",
+      "subject": "Glass",
+      "dimension": "egenandel",
+      "value": "3kbytte/0reparasjonhosavtaleverksted;bruddruteytreplutselig,ikkekrakelering/punktert.",
+      "source": "kasko",
+      "location": "2 §2.4"
+    },
+    {
+      "id": "TR-EXT-028",
+      "type": "all",
+      "scope": "physical",
+      "subject": "Reparasjon",
+      "dimension": "oppgjør",
+      "value": "70%takstutenMVAkontant;likeverdigdeler/fradragforbedring;ikkemerverditap/foreløpig/overnattarbeid.",
+      "source": "physical",
+      "location": "§3.2"
+    },
+    {
+      "id": "TR-EXT-029",
+      "type": "all",
+      "scope": "physical",
+      "subject": "Garanti",
+      "dimension": "reparasjon",
+      "value": "8årkarosseri/3årbruktmotorvedservice;mekanikkforhandlergaranti/slitedelerikke;2mndmelding. Kildenharbilgeneriskordlyd,ikkeinfermotorietilhenger.",
+      "source": "physical",
+      "location": "§3.2"
+    },
+    {
+      "id": "TR-EXT-030",
+      "type": "all",
+      "scope": "physical",
+      "subject": "Totalskade",
+      "dimension": "marked",
+      "value": "Markedsverdiførloss,fradragvrak/omregvedbeholdt;Towtakavtaltsum;ingen nyverdigaranti dokumentert.",
+      "source": "physical",
+      "location": "§3.3"
+    },
+    {
+      "id": "TR-EXT-031",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Elektronikk",
+      "dimension": "fradrag",
+      "value": "10%årligfra nytt,maks50%,nyverdiskadedag.",
+      "source": "physical",
+      "location": "§3.3"
+    },
+    {
+      "id": "TR-EXT-032",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Fjerning",
+      "dimension": "utoversum",
+      "value": "Rimelignødvendigfjerningavtotalskadetvognutoverforsikringssumveddekketskade.",
+      "source": "physical",
+      "location": "§3.4"
+    },
+    {
+      "id": "TR-EXT-033",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "grunn",
+      "value": "Lås,nøkkelseparat;demontertforteltlåstbygningikke fellesgarasje;vær/vind/flomflytting/gassvedlikehold.",
+      "source": "safety",
+      "location": "1 §1.2"
+    },
+    {
+      "id": "TR-EXT-034",
+      "type": "tow",
+      "scope": "all",
+      "subject": "Utleie",
+      "dimension": "valg/identifikasjon",
+      "value": "Kommersiellutleierisikoavtales;bevisdekkerutleidcampingvognbegrensetidentifikasjonmedregress.",
+      "source": "safety",
+      "location": "2 §2/3.3"
+    },
+    {
+      "id": "TR-EXT-035",
+      "type": "camp",
+      "scope": "extra",
+      "subject": "Ekstra",
+      "dimension": "kaskotillegg",
+      "value": "CampingvognExtrautvidelseKasko1.risiko,ikkeTilhenger.",
+      "source": "extra",
+      "location": "1"
+    },
+    {
+      "id": "TR-EXT-036",
+      "type": "camp",
+      "scope": "extra",
+      "subject": "Fastutstyr",
+      "dimension": "sum",
+      "value": "50kfastmontert.",
+      "source": "extra",
+      "location": "1 Fastmontert"
+    },
+    {
+      "id": "TR-EXT-037",
+      "type": "camp",
+      "scope": "extra",
+      "subject": "Løsøre",
+      "dimension": "grense/egenandel",
+      "value": "50ksamlet,15kitekstilfortelt,10k/item;valgtsumi tillegg,1kegenandel;ikkehelt/delvisutleie.",
+      "source": "extra",
+      "location": "1 Løstutstyr"
+    },
+    {
+      "id": "TR-EXT-038",
+      "type": "camp",
+      "scope": "extra",
+      "subject": "Skadedyr",
+      "dimension": "omfang",
+      "value": "Insekt/gnager/øvrigskadepåvogn;hensattvognjevnliginnsyn/sikring/åpningerlukket/tomtformat.",
+      "source": "extra",
+      "location": "1; sikkerhet1"
+    },
+    {
+      "id": "TR-EXT-039",
+      "type": "camp",
+      "scope": "extra",
+      "subject": "Fukt",
+      "dimension": "grense/egenandel",
+      "value": "Innen10årførstregny,påløptforsikringstid;8kinntil5år;over5år25%min8k.",
+      "source": "extra",
+      "location": "1 Fuktskade"
+    },
+    {
+      "id": "TR-EXT-040",
+      "type": "camp",
+      "scope": "extra",
+      "subject": "Fukt",
+      "dimension": "vilkår/unntak",
+      "value": "Årligfukttesthvertforsikringsårgodkjentverksted/fabrikkrav,straksutbedring;ikke pipe/frost/fortelt/terrasse/teltvogn;garantiførstmedregresshviskravikkeførerfram.",
+      "source": "extra",
+      "location": "1 Fuktskade; sikkerhet1"
+    },
+    {
+      "id": "TR-EXT-041",
+      "type": "camp",
+      "scope": "extra",
+      "subject": "Ferieavbrudd",
+      "dimension": "sum/tid/vilkår",
+      "value": "Alleredepåbegyntferieavbrytespådekketskade;1.5k/dagmax14restplanlagtedager;leievognog/elleropphold,dokumenterutgift/rute/lengde,ikkeutleie/anskaffelsesgaranti.",
+      "source": "extra",
+      "location": "1 Avbruttferie"
+    },
+    {
+      "id": "TR-EXT-042",
+      "type": "all",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "Norden/motorPGE91500:100k/tvist,250kmin3parter,20kmotTrygsrettshjelp,økonomiskinteressetak;4k+20%.",
+      "source": "legal",
+      "location": "§5.3/6"
+    },
+    {
+      "id": "TR-EXT-043",
+      "type": "all",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "begrensning",
+      "value": "Eier/bruker/fører,ettersalg/førerulykke;familie/yrke/annetkjøretøy/straffmedfornærmetunntak/idømtesaksomkostikke.",
+      "source": "legal",
+      "location": "§5.3/5.5"
+    },
+    {
+      "id": "TR-EXT-044",
+      "type": "all",
+      "scope": "all",
+      "subject": "Generelt",
+      "dimension": "administrasjon",
+      "value": "Felleshøyesteegenandel/krigterror/oppgjørsadministrasjonkildebeholdt.",
+      "source": "general",
+      "location": "1–5"
+    },
+    {
+      "id": "TR-EXT-045",
+      "type": "trailer",
+      "scope": "all",
+      "subject": "Objektvalg",
+      "dimension": "type",
+      "value": "Privatpersonbil/vare/båt/hestetilhenger;godsikkeegenstandardvaredekning.",
+      "source": "web",
+      "location": "FAQ type"
+    }
+  ],
+  "note": "AlluniquePDFsand6HTMLread;identicalhashoriginalsreadonce. SnowPAU26320/25505effectiveOct1;frozenSep29comparisonpreservedwithtemporalnote. HTMLresponsivecheckboxtextnotusedtoinfercoveragewithoutPDF."
+}

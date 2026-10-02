@@ -1,0 +1,1076 @@
+...not safely document a material advisor-relevant counterpart.
+
+And when the source DOES document such a fact:
+
+the catalog should represent it at sufficient semantic depth for a useful,
+honest comparison.
+
+==================================================
+302 – "IKKE DOKUMENTERT" ACCEPTANCE RULE
+==================================================
+
+An "Ikke dokumentert i kataloggrunnlaget" result is acceptable only when at
+least one of these is true:
+
+A.
+Applicable official sources genuinely do not document the fact safely.
+
+B.
+The value is customer-specific and cannot be determined at product level.
+
+C.
+The concept is provider-specific and no meaningful symmetric counterpart
+should be fabricated.
+
+D.
+The source is ambiguous/conflicting and conservative unknown is safer.
+
+E.
+The fact is intentionally outside advisor-relevant catalog scope and this
+decision is justified.
+
+It is NOT acceptable merely because:
+
+"the catalog currently has no fact."
+
+==================================================
+303 – "INKLUDERT" ACCEPTANCE RULE
+==================================================
+
+A plain:
+
+✓ Inkludert
+
+may be sufficient when the source contains no materially useful comparison
+dimensions beyond inclusion.
+
+But if source clearly documents advisor-relevant:
+
+- sum
+- deductible
+- age
+- mileage
+- duration
+- geography
+- payout model
+- important condition
+- major limitation
+
+then evaluate whether:
+
+"Inkludert"
+
+alone is:
+
+CATALOG_FACT_TOO_COARSE.
+
+==================================================
+304 – DETAIL BALANCE
+==================================================
+
+Do not respond to this audit by making the UI enormous.
+
+The desired architecture remains:
+
+important comparable dimensions
++
+nested provider-specific detail
++
+source provenance.
+
+Completeness does not mean visual overload.
+
+==================================================
+305 – SOURCE FACT PRESERVATION
+==================================================
+
+Where multiple material source dimensions exist:
+
+preserve them individually enough that future presentation can decide what
+to show.
+
+Do not destroy semantic information merely to keep UI short.
+
+==================================================
+306 – PRESENTATION IS DOWNSTREAM
+==================================================
+
+This audit should primarily determine whether knowledge exists correctly in
+the catalog/canonical layer.
+
+Whether every fact belongs in the default visible UI is a separate
+presentation decision.
+
+==================================================
+307 – CATALOG AS KNOWLEDGE LAYER
+==================================================
+
+Treat the catalog as a source-backed product knowledge layer.
+
+It should be richer than the default advisor UI when necessary.
+
+The UI may curate.
+
+The catalog should not discard material meaning merely because the default
+view does not show everything.
+
+==================================================
+308 – PRODUCT MODE VS KNOWLEDGE LAYER
+==================================================
+
+Distinguish:
+
+A.
+Fact missing from knowledge/catalog layer.
+
+B.
+Fact exists in knowledge layer but product comparison intentionally does not
+show it by default.
+
+A is a completeness issue.
+
+B may be a presentation decision.
+
+==================================================
+309 – PDF ENRICHMENT CONSEQUENCE
+==================================================
+
+Remember that richer correct catalog facts can also improve customer
+comparison where catalog enrichment is used.
+
+Therefore source completeness is not only a product-mode concern.
+
+==================================================
+310 – NO CATALOG OVERRIDE
+==================================================
+
+Richer catalog must never override an explicit customer-document value.
+
+This invariant remains absolute.
+
+==================================================
+311 – ADVISOR REVIEW USE CASE
+==================================================
+
+The intended user is a knowledgeable insurance advisor.
+
+The knowledge layer should support questions such as:
+
+- How long does this coverage apply?
+- What is the maximum sum?
+- What is the deductible?
+- Is it included or optional?
+- What important restriction differs?
+- What happens at total loss?
+- What geography applies?
+- What does the competing product document?
+
+If applicable source can answer these and catalog cannot, investigate.
+
+==================================================
+312 – CONSUMER DETAIL IS NOT THE STANDARD
+==================================================
+
+Do not reduce advisor relevance merely because a detail might be too complex
+for a future consumer UI.
+
+Advisor product can use deeper data.
+
+==================================================
+313 – SOURCE COMPLETENESS VS LEGAL INTERPRETATION
+==================================================
+
+Do not turn catalog into legal interpretation.
+
+Prefer:
+
+structured source-backed fact
+
+over:
+
+conclusion about what insurer would do in an ambiguous claim.
+
+If interpretation is required:
+
+REVIEW_REQUIRED / SOURCE_AMBIGUOUS.
+
+==================================================
+314 – EXACT WORDING WHEN NEEDED
+==================================================
+
+For nuanced exclusions/conditions where paraphrase risks changing meaning:
+
+retain concise source wording/detail with provenance rather than
+over-normalizing.
+
+==================================================
+315 – NUMERIC PRECISION
+==================================================
+
+Do not round or simplify source-backed thresholds in audit conclusions.
+
+Examples:
+
+"over 80 %"
+
+must not become:
+
+"80 %"
+
+if legal meaning differs.
+
+==================================================
+316 – INCLUSIVE / EXCLUSIVE BOUNDARIES
+==================================================
+
+Preserve distinctions such as:
+
+under 10 years
+through the year it turns 10
+up to and including 10 years
+before first renewal after 10 years.
+
+Do not normalize these to identical age without evidence.
+
+==================================================
+317 – KM BOUNDARIES
+==================================================
+
+Same for:
+
+< 150 000 km
+≤ 150 000 km
+until first renewal after threshold
+age OR mileage, whichever occurs first.
+
+==================================================
+318 – DATE / PERIOD BOUNDARIES
+==================================================
+
+Same for:
+
+insurance year
+calendar year
+rolling period
+claim event
+deductible period
+trip
+policy period.
+
+==================================================
+319 – CURRENCY LIMIT CONTEXT
+==================================================
+
+A kr amount must retain subject.
+
+Examples:
+
+per item
+total luggage
+per day
+per claim
+per dispute
+per person
+per year.
+
+==================================================
+320 – "UNLIMITED"
+==================================================
+
+If source says:
+
+unlimited
+no separate sum limit
+covered within insured value
+
+do not treat these as automatically equivalent.
+
+Preserve semantic mechanism.
+
+==================================================
+321 – SOURCE-BASED ABSENCE
+==================================================
+
+Absence of a concept from one source document is not proof of absence from
+the product if another applicable source documents it.
+
+Audit the complete applicable source package.
+
+==================================================
+322 – IPID OMISSION
+==================================================
+
+IPID omission alone must never produce:
+
+unavailable.
+
+Check full terms/product source first.
+
+==================================================
+323 – FULL TERMS OMISSION
+==================================================
+
+Conversely, if a marketing page mentions a benefit but governing terms do
+not clearly support its applicability:
+
+do not automatically canonicalize.
+
+Flag for source review.
+
+==================================================
+324 – SOURCE DISCOVERY LIMIT
+==================================================
+
+Because this task is intentionally offline/read-only:
+
+do not browse to resolve missing source.
+
+Record exact research requirement for later.
+
+==================================================
+325 – FUTURE RESEARCH PRIORITY
+==================================================
+
+For every SOURCE_RESEARCH_REQUIRED item assign:
+
+P0/P1/P2/P3
+
+based on likely advisor impact.
+
+This lets later web research focus on material gaps.
+
+==================================================
+326 – CURRENT SOURCES ARE EVIDENCE CORPUS
+==================================================
+
+Do not modify source artifacts merely because audit discovers incompleteness.
+
+Original artifacts remain immutable evidence.
+
+==================================================
+327 – AUDIT SCRIPT SAFETY
+==================================================
+
+Temporary audit scripts must not:
+
+write repo files
+stage files
+modify timestamps/content intentionally
+rewrite manifests
+download external data.
+
+Read-only repo access.
+
+==================================================
+328 – TEMP OUTPUT PRIVACY
+==================================================
+
+Audit output contains public source excerpts and catalog metadata only.
+
+No customer data.
+
+==================================================
+329 – LARGE OUTPUT CONTROL
+==================================================
+
+Do not dump every source fact into terminal.
+
+Detailed evidence belongs in:
+
+CSV
+JSON
+Markdown audit files.
+
+Terminal summary should focus on:
+
+coverage
+material findings
+root causes
+next decision.
+
+==================================================
+330 – HUMAN REVIEW USABILITY
+==================================================
+
+Gap files should be usable by a human reviewer.
+
+Sort/group findings by:
+
+priority
+family
+provider
+product
+concept.
+
+Do not produce an unstructured thousands-line blob.
+
+==================================================
+331 – TOP FINDINGS
+==================================================
+
+In summary include:
+
+top P0/P1 findings
+
+but do not hide remaining P1 findings.
+
+Full list must exist in structured output.
+
+==================================================
+332 – EXAMPLE EVIDENCE
+==================================================
+
+For each major root cause include 2–5 representative examples.
+
+Do not overfill summary.
+
+==================================================
+333 – NO AUTO-RANKING PROVIDERS
+==================================================
+
+Never turn finding counts into statements such as:
+
+"Provider X is worst."
+
+Finding counts reflect OUR implementation/source structure.
+
+==================================================
+334 – PRODUCT QUALITY NEUTRALITY
+==================================================
+
+Do not make insurance product recommendations.
+
+This is technical/data QA.
+
+==================================================
+335 – KNOWN MANUAL OBSERVATIONS
+==================================================
+
+Manual advisor testing has shown suspicious asymmetries in several product
+comparisons.
+
+Treat these as test signals, not truth.
+
+Do not simply mirror the advisor's suspicion.
+
+==================================================
+336 – AUDIT MUST BE ABLE TO DISAGREE
+==================================================
+
+If original source proves a suspicious unknown is legitimate:
+
+say so.
+
+A good audit must be capable of concluding:
+
+NO GAP.
+
+==================================================
+337 – CONTROL FAMILY RESULT
+==================================================
+
+For Hund/Bobil/Båt/MC report both:
+
+confirmed gaps
+
+and
+
+manual suspicions that source review disproved.
+
+This validates audit objectivity.
+
+==================================================
+338 – RANDOM FAMILY CONTROLS
+==================================================
+
+Use at least several products from families without manual suspicion as
+negative controls.
+
+Audit should not fabricate gaps everywhere.
+
+==================================================
+339 – NEGATIVE CONTROL SUCCESS
+==================================================
+
+A negative-control product can legitimately have gaps.
+
+The purpose is simply to ensure methodology does not depend on known
+problem families.
+
+==================================================
+340 – MANIFEST DEPENDENCE CHECK
+==================================================
+
+Explicitly verify source fact discovery is NOT limited to facts already
+described in source manifests.
+
+The audit must inspect source CONTENT.
+
+Otherwise it cannot discover the blindspot.
+
+==================================================
+341 – EXISTING CATALOG DEPENDENCE CHECK
+==================================================
+
+Likewise do not generate source fact inventory merely from existing canonical
+keys.
+
+Source content must be able to introduce:
+
+NEW_CANONICAL_CANDIDATE.
+
+==================================================
+342 – SOURCE CONTENT FIRST
+==================================================
+
+For deep-reviewed products:
+
+perform source inventory before looking at exact product catalog facts where
+practical.
+
+This reduces confirmation bias.
+
+==================================================
+343 – TWO-PASS DEEP REVIEW
+==================================================
+
+For manually deep-reviewed products:
+
+PASS 1:
+source → independent semantic inventory.
+
+PASS 2:
+inventory → catalog matching.
+
+Document this.
+
+==================================================
+344 – LLM CONFIRMATION BIAS
+==================================================
+
+Do not search source only for concepts already expected from catalog.
+
+Actively identify unexpected material benefits/limitations.
+
+==================================================
+345 – UNEXPECTED CONCEPT
+==================================================
+
+If source contains advisor-relevant concept absent from entire family
+canonical map:
+
+flag:
+
+NEW_CANONICAL_CANDIDATE
+
+and evaluate materiality.
+
+==================================================
+346 – UNEXPECTED PROVIDER BENEFIT
+==================================================
+
+A unique provider benefit can still be advisor-relevant.
+
+It does not need a symmetric counterpart to belong in knowledge layer.
+
+==================================================
+347 – UNIQUE LIMITATION
+==================================================
+
+Likewise a unique material limitation may be important.
+
+But do not create false negative coverage on peers.
+
+==================================================
+348 – NESTED PROVIDER DETAIL
+==================================================
+
+Unique benefits/limitations may belong under:
+
+provider-specific details
+
+rather than symmetric comparison rows.
+
+Audit can recommend this downstream representation.
+
+==================================================
+349 – CATALOG COMPLETENESS DOES NOT REQUIRE SYMMETRY
+==================================================
+
+This is fundamental.
+
+A complete knowledge layer can contain:
+
+fact only for Provider A
+
+without inventing:
+
+unknown counterpart row for Provider B.
+
+Presentation decides whether/how to show it.
+
+==================================================
+350 – TRUE UNKNOWN HYGIENE
+==================================================
+
+Preserve genuine unknowns.
+
+The goal is not fewer unknowns.
+
+The goal is:
+
+unknown only where evidence does not safely support a stronger statement.
+
+==================================================
+351 – FALSE UNKNOWN HYGIENE
+==================================================
+
+A source-backed material fact that catalog omits and UI renders as unknown is
+a false catalog-level unknown.
+
+Flag it.
+
+==================================================
+352 – UNKNOWN SOURCE VS UNKNOWN CATALOG
+==================================================
+
+Distinguish:
+
+SOURCE_UNKNOWN
+→ source does not answer.
+
+CATALOG_UNKNOWN
+→ catalog does not answer even though source does.
+
+This distinction should appear in audit outputs.
+
+==================================================
+353 – FUTURE UI LANGUAGE
+==================================================
+
+Do not change UI now, but consider whether future wording should distinguish:
+
+"Ikke dokumentert i kildene"
+
+from
+
+"Ikke modellert i katalogen"
+
+during debugging/admin views.
+
+Advisor production UI should not expose internal implementation state
+unnecessarily.
+
+==================================================
+354 – CATALOG GAP MUST NOT SHIP AS SOURCE UNKNOWN
+==================================================
+
+Before pilot, material CATALOG_UNKNOWN cases should ideally be corrected so
+advisor-facing unknown means evidence uncertainty, not our data-entry gap.
+
+==================================================
+355 – COMPLETENESS ACCEPTANCE TARGET
+==================================================
+
+For NITO pilot target:
+
+P0 = 0 unresolved
+P1 = 0 unresolved material source-backed gaps
+
+P2/P3 may remain documented if they do not materially impair advisor
+comparison.
+
+This is proposed QA target, not a legal standard.
+
+==================================================
+356 – AUDIT DOES NOT ENFORCE TARGET YET
+==================================================
+
+This task only reports current state.
+
+Do not modify catalog to hit target.
+
+==================================================
+357 – REMEDIATION ESTIMATE
+==================================================
+
+Estimate later remediation workload:
+
+number of:
+
+DATA_ONLY batches
+SMALL_CODE batches
+MEDIUM_CODE batches
+ARCHITECTURE batches
+SOURCE_RESEARCH batches.
+
+Do not estimate calendar time unless obvious.
+
+==================================================
+358 – BUDGET-AWARE REMEDIATION
+==================================================
+
+Prioritize high-leverage root causes.
+
+If one shared mapping fix resolves 30 P1 findings, identify it.
+
+Do not recommend 30 manual patches if one correct shared fix exists.
+
+==================================================
+359 – NO MASS PATCHING
+==================================================
+
+Future remediation must still preserve exact source applicability.
+
+Do not recommend broad provider/family defaults merely to fill gaps.
+
+==================================================
+360 – SOURCE-SPECIFIC REMEDIATION
+==================================================
+
+Straightforward missing facts should later be added from exact source
+evidence with provenance.
+
+==================================================
+361 – TEST-FIRST REMEDIATION PLAN
+==================================================
+
+For P0/P1 fixes recommend:
+
+regression demonstrating current gap
+
+then implementation
+
+then source/provenance check
+
+then product comparison validation.
+
+Do not write tests now.
+
+==================================================
+362 – BULK RE-AUDIT AFTER FIX
+==================================================
+
+Future remediation should be followed by:
+
+source-to-catalog targeted re-audit
+
++
+product comparison bulk audit
+
++
+full regression suite.
+
+==================================================
+363 – HUMAN STICKPRØVE AFTER FIX
+==================================================
+
+After remediation, recommend random advisor spot checks.
+
+The same human review that discovered this blindspot remains valuable.
+
+==================================================
+364 – SECURITY/GDPR AFTER CORRECTNESS
+==================================================
+
+After source completeness remediation:
+
+return to already completed NITO pre-pilot security/GDPR action list.
+
+Do not restart security audit from scratch unless code changes affect those
+areas.
+
+==================================================
+365 – PERSON INSURANCE REMAINS OUT OF SCOPE
+==================================================
+
+Do not add person insurance during this task or remediation planning.
+
+Current person-insurance privacy gate remains separate.
+
+==================================================
+366 – AUDIT OUTPUT RETENTION
+==================================================
+
+Temporary audit output can remain in /tmp for human review.
+
+Do not commit it.
+
+==================================================
+367 – OPTIONAL COPY FOR HUMAN REVIEW
+==================================================
+
+If convenient, copy:
+
+audit-summary.md
+
+and:
+
+gap-findings.csv
+
+to /mnt/data for easier retrieval.
+
+Do not modify repo.
+
+==================================================
+368 – NO WORD DOCUMENT REQUIRED
+==================================================
+
+Do not spend budget creating Word unless trivial.
+
+Structured CSV/JSON + Markdown are preferred.
+
+==================================================
+369 – AUDIT STOP CONDITION
+==================================================
+
+If context/model budget becomes constrained before all active products are
+accounted for:
+
+do NOT pretend completion.
+
+Persist completed audit output in /tmp.
+
+Return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_PARTIAL
+
+with:
+
+products completed
+products remaining
+families completed
+families remaining.
+
+==================================================
+370 – RESUMABILITY
+==================================================
+
+Audit output should make a partial run resumable without redoing completed
+source inventories unnecessarily.
+
+==================================================
+371 – DETERMINISM
+==================================================
+
+Where possible use deterministic scripts for:
+
+catalog enumeration
+source linkage
+hash deduplication
+ledger reconciliation
+counting
+CSV generation.
+
+Use model reasoning for semantic review.
+
+==================================================
+372 – NO RANDOM PRODUCT OMISSION
+==================================================
+
+If sampling is used for deep manual review:
+
+sampling affects review depth only.
+
+It must NOT affect whether a product receives automated/source-inventory
+ledger coverage.
+
+All active products remain in scope.
+
+==================================================
+373 – EXACT PRODUCT IDENTITY
+==================================================
+
+Product ledger must preserve exact identity.
+
+No display-name-only grouping that could merge:
+
+different scopes
+versions
+providers
+products.
+
+==================================================
+374 – EXACT ADD-ON IDENTITY
+==================================================
+
+Same for add-ons/components.
+
+==================================================
+375 – FAMILY DISPLAY NAME
+==================================================
+
+Report friendly family names in summary but retain canonical internal type in
+structured output.
+
+==================================================
+376 – SOURCE LOCATION
+==================================================
+
+Where possible source evidence should identify:
+
+page
+section
+heading
+or deterministic text location.
+
+Do not fabricate page numbers.
+
+==================================================
+377 – PDF PAGE ACCURACY
+==================================================
+
+If extracted PDF text preserves page mapping:
+
+use it.
+
+If not:
+
+use section/heading and artifact identity.
+
+==================================================
+378 – HTML LOCATION
+==================================================
+
+For HTML:
+
+use heading/section/selector/text anchor where available.
+
+No unstable session-specific IDs.
+
+==================================================
+379 – SOURCE EVIDENCE MINIMIZATION
+==================================================
+
+Short excerpts only.
+
+Enough for reviewer to locate source fact.
+
+==================================================
+380 – CATALOG EVIDENCE
+==================================================
+
+For each gap reference:
+
+catalog product
+canonical key if any
+existing value/status
+source record/provenance if present.
+
+==================================================
+381 – CODE EVIDENCE
+==================================================
+
+For root causes involving materialization/presentation:
+
+reference relevant code file/function.
+
+Do not modify it.
+
+==================================================
+382 – MANIFEST EVIDENCE
+==================================================
+
+For source package/applicability gaps:
+
+reference relevant manifest/source record.
+
+==================================================
+383 – PRODUCT COMPARISON EVIDENCE
+==================================================
+
+For presentation-only findings:
+
+include representative rendered comparison evidence generated locally if
+needed.
+
+No need to render every product.
+
+==================================================
+384 – APPLICATION AI
+==================================================
+
+Do not invoke application extraction AI on customer documents.
+
+Audit reasoning is separate from application runtime.
+
+==================================================
+385 – NETWORK
+==================================================
+
+No provider network calls.
+
+No new source downloads.
+
+==================================================
+386 – RAILWAY
+==================================================
+
+Untouched.
+
+==================================================
+387 – PRODUCTION
+==================================================
+
+No production interaction needed.
+
+This is repository/source-corpus audit.
+
+==================================================
+388 – TRACE
+==================================================
+
+Do not activate tracing.
+
+==================================================
+389 – ENVIRONMENT
+==================================================
+
+Do not alter environment configuration.
+
+==================================================
+390 – TESTS
+==================================================
+
+You may run existing tests/read-only runtime checks if useful.
+
+Do not modify tests.
+
+Do not need to rerun full suite merely to perform source audit unless useful
+for evidence.
+
+==================================================
+391 – BUILD
+==================================================
+
+No build required unless needed to inspect runtime catalog.
+
+Prefer direct deterministic catalog tooling.
+
+==================================================
+392 – GIT
+==================================================
+
+No staging.
+
+No commit.
+
+No push.
+
+==================================================
+393 – FINAL SELF-REVIEW
+==================================================
+
+Before final response verify:
+
+- every active product accounted for
+- every active add-on accounted for
+- all 12 families reported
+- positive controls reviewed
+- random deep checks completed
+- P0/P1 manually reviewed
+- root causes deduplicated
+- source research gaps separated
+- catalog vs presentation gaps separated
+- customer-specific values excluded from false gaps
+- repo unchanged

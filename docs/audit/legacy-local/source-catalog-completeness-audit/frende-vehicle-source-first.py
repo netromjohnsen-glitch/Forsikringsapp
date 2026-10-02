@@ -1,0 +1,66 @@
+from continue_audit import *
+rows='''Personkrets|forsikrede|Forsikringstaker/registrerteier/medeier;rettmessigfører/passasjerforspesifikkedekninger.|2|1|all
+Geografi|omfang|EuropaunntattRussland/Tyrkia/Belarus;rettshjelpNorden.|2|2|all
+Utstyr|hjul|Ekstraoriginalhjulsett;merverdioriginalhjul20000ellerbevis.|2|3.2–3|physical
+Elbil|batteri/ladekabel|Batteriogladekabelmedikjøretøyetsforsikredeobjekt;ikkeautomatiskalleskadeårsaker.|2|3.4|physical
+Utstyr|sikkerhet|Barnesete/alarm/gassalarm/varseltrekant/slokking/sikkerhetsutstyr.|2|3.8|physical
+Ekstrautstyr|sum|Fastmontert20000inklmerlakk/folie;Utvidet50000.|2,5|3.7/8.4|physical
+Løsøre|sum/årsaker|Bil10000;Utvidet20000;tyveriløsørebareKasko(IPID).Bobil/camp20000,Utvidetbobil100000;ikkeTilhenger.|2,3,5|3.9/6.1/8.5/8.8|kasko
+Kontanter|unntak|Kontanterogverdipapirerikkeomfattet.|2|3|physical
+Brann|hendelser/unntak|Brann/lyn;ikkesvimerke/komponentderbrannellerkortslutningstarter;følgeskadedekket.|3|4.1/4.2|physical
+Tyveri|hendelser/unntak|Tyveri/forsøk;ikkehusstand/ansatt,ikkeutlånt/prøvdikketilbakelevert.|3|4.1/4.2|physical
+Glass|omfang|Bruddglassinklglasstak vedtilfeldigplutseligytrepåvirkning.|3|5.1|delkasko
+Veihjelp|hendelser/sted|Hvilkensomhelstårsaksomstanserviderekjøring,ogsåhjemme;bergtilnærmesteverkstedmedpåkoblethenger/campellerbilligerereppåsted.|3|5.2|delkasko
+Hjemtransport|personer|Reparasjonikkesammedag:nødvendigmerutgifthjemellerbilligerehotell,forhåndsgodkjent.|3|5.3|delkasko
+Hjemtransport|kjøretøy|Hentingreparert/etterlattbil1personreise;gjenfunnettyvgodstransporttakmarkedsverdi;forhåndsgodkjent.|3|5.4|delkasko
+Kasko|hendelser|Plutseliguventetkollisjon/utforkjøring/velt/hærverk/feilfylling.|3|6.1|kasko
+Bilnøkkel|basis|Tap/skadet/stjålet/mistetdekkesKasko,avtaltegenandel;Utvidet20000utenegenandel/bonustap.|4,9|6.1.4/8.2/11.11|kasko
+Nyverdi|basisgrense|Kasko1år/under15000km/repmerenn80%nylistepris;ikkleasing;Frendekankontantutbetale.|4,8|6.1/11.7|kasko
+Nyverdi|utvidetgrense|3år/under60000km/repmerenn80%;ikkeleasingellertaptettertyveri.|4|8.1|utvidet
+Kasko|unntak|Motor/gir/drivverkelektronikkkunfølgeskadeannenhendelse;frost/fukt/råte/slitasje/rust/indremerker/lekkasje/underslag;avvistgarantikangimedansvarsovertakelse.|4|6.2|kasko
+Leiebil|valgfri/klasse|Kunvalgt;klasseCveddekketbrann/tyveri/kasko/maskinskade.|4|7|rental
+Leiebil|reparasjon|Helereparasjonstiden.|4|7|rental
+Leiebil|totalskade/tyveri|31dager.|4|7|rental
+Leiebil|kontant|250/dagopptil31dageralternativ.|4|7|rental
+Leiebil|bobilferie|1500/dagopptil15dagerovernatting/transportistedenforbilvedferieavbruddbobil.|4|7|motorhome
+Ladekabel|utvidet|Skadet/stjåletkabelutenegenandel/bonustap.|4,5,9|8.3/11.11|utvidet
+Leasing|startleie|Gjenværendestartleieforholdsmessigbetalt/restperiodevedtotalskadeellertyveri.|5|8.6|utvidet
+Fukt|bobil|Utvidet:bobilskadeoppståttsiste12mndgodkjenttest;ikkeutbedringavlekkasje,rørbruddlekkasjeunntatt.|5|8.7|motorhome
+Maskinskade|tilgjengelighet|Kunvalgt;plutseliguventetnavngittkomponentskadesomhindrerkjøring,fulgtservice,ikketrim/chip.|5|9.1|machine
+Maskinskade|alder/km|9.1/9.3utåretbil12ellerinntil200000km;11.11siereldreenn12ingen. IPIDogsåeldreenn12;ikkeutviskordlydskonflikt.|5,6,9|9.1/9.3/11.11|machine
+Maskinskade|komponenter|Detaljertefremdrifts/kjøle/klima/komfort/sikkerhetssystemer;elbatteri/driveunit/ladekontakt/inverter/overvåkning.|5,6|9.1|machine
+Maskinskade|unntak|Clutchlamell/bremser/lykter/12V/hjuloppheng/mansjett;gradvisslitasje/korrosjon/kaskoskade/garanti/batterikapasitet;avvistgarantikandekkes.|6|9.2/9.3|machine
+Maskinskade|oppgjør|Varsleførrep;ekstraslitajefradrag;utskiftededelermåkunnefremlegges.|8|11.10|machine
+Maskinskade|egenandel|Inntil100000km10000;inntil150000km15000;inntil200000km20000.|9|11.11|machine
+Panthaver|kundespesifikk|Egenvalgbarpanthaver/leasingdekningmedbevis;markedsverditak/restitusjon/insolvensvilkår.|6,7|10|customer
+Oppgjør|reparasjon|Verdiøkningfradrag/verdireduksjonikkedekket;likeverdigenye/bruktedelemedgaranti.|7|11.4|physical
+Oppgjør|kontant|Kanikkekreve;arbeid50%takst,mvafjernesrefunderesetterrep.|7|11.5|physical
+Oppgjør|markedsverdi|Totalskade/tyverimarkedsverdi,tidligst30dagertapt,returnertgjenstandtilbakebetaling.|7,8|11.6|physical
+Snøscooter|tyverioppgjør|Gjenskaffesinnen60dagermarkedsverdi;ellers60%markedsverdi.|8|11.6|snow
+Aldersfradrag|løsøre|Sykkel10%over3maks80;data20%over1maks80;telefon/ettermontertlyd/skjermGPS10%over2maks50;fabrikkmontertlyd/skjermGPSingen.|8|11.8/11.9|kasko
+Egenandel|glass|3000skift,0reparasjon.|9|11.11|delkasko
+Egenandel|redning|750.|9|11.11|delkasko
+Egenandel|brann/tyveri|6000ellerslaverebevis;tyveri0vedfungerendealarm.|9|11.11|physical
+Egenandel|dyr|Avtaltegenandelreduseres6000vedumiddelbarpoliti/viltmelding.|9|11.11|kasko
+Egenandel|ungfører|Ekstra8000kasko;ansvarproporsjonalregressminimum8000.|9,11|11.11/13.2|all
+Årligkjørelengde|avkortning|Overskridelseprisproporsjonal,ogsåtidligereår;ikkebrann/tyveri/glass/redning.|9|11.12|all
+Bonus|opptjening|10%/årtil70;3årpå70gir75.|9|11.13|all
+Bonus|tap|75år4+reset75år1;75år1–3til70;70ellerlavere10tap.|9,10|11.13|all
+Bonus|fritak|Brann/tyveri/glass/redning,parkertukjentkjøretøyavgrensettid,maskin,Utvidetnøkkel/kabel,viltmeldt,naturulykke.|10|11.13|all
+Ulykke|scope|Dekningdersombevis;rettmessigfører/passasjervedbilbruk;plutseligytrekroppshendelseikkesykdom.|10|12.1|all
+Ulykke|død|100000medektefelle/samboer/barnellerunder21.|10|12.2|all
+Ulykke|invaliditet|200000ved100%livsvarigmedisinsk,forholdsmessigellers,tidligerefunksjonsfradrag,3åroppgjør.|10,11|12.3|all
+Ulykke|unntak|Selvmord/rus/psykiskmedspesifikkPTSD+fysiskvarigskadeunntak.|11|12.4|all
+Ansvar|utenombilansvar|Lovbestemtbilansvarplussulovfestet10000000/hendelse/år,ikkvegfraktavtale.|11|13.1|all
+Rettshjelp|scope|Privatkunde/eier/fører/bruker;ogsåsalgtvisterognykjøpførnyforsikring,voldgift/alminneligrett.|11,12|14.1|all
+Rettshjelp|utgifter/unntak|Egenadvokat/sakkyndig/vitnerførsteinstans;ikkanke/idømtkost/førgrunnlag/førforsikring/sameier/yrke/straff/familie;forvaltningsklageførrettunntatt.|12|14.2/14.3|all
+Rettshjelp|sum|100000/tvist,2500003+parter,takøkonomiskinteresse.|12,13|14.4|all
+Rettshjelp|egenandel|4000+20%resten,enpertvist.|13|14.4|all
+Bruksbegrensninger|aktivitet|Ikkeløp/baneutenopplæringsunntak/russebil/transportnæring/terrengunntattsnowATVtraktor/flyplass.|13,14|16|all
+Sikkerhet|vedlikehold|Service/instruks/førerkort/belte/frostvæske/lastogutrustning;årliggodkjentfukttestbobil/camp.|14|18.1|all
+Sikkerhet|tyveri|Låsing/verdier/takboks/dekk/fastutstyr/campforankring/MCutstyrfastlåst.|14,15|18.2|all
+Administrasjon|frist|Skademelding1år,politimelding og dokumentasjon.|7,15|11.1/19|admin'''
+rules=[]
+for n,l in enumerate(rows.splitlines(),1):
+ s,d,v,pg,sec,scope=l.split('|');rules.append(dict(inventory_id=f'FR-VE-{n:03d}',subject=s,dimension=d,value=v,pages=pg,section=sec,scope=scope))
+save('frende-vehicle-independent-inventory.json',dict(source_first=True,catalog_fact_values_inspected=False,source='catalog/sources/frende/Vilkar_kjoretoyforsikring.pdf',pages_read=15,ipids_read=['catalog/sources/frende/IPID_Personbil.pdf'],rules=rules));print(len(rules))

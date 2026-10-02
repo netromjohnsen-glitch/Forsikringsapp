@@ -1,0 +1,91 @@
+INSURANCE_CATALOG_WAVE2_COMPLETION
+
+STATUS
+INSURANCE_CATALOG_WAVE2_BLOCKED
+Stopped under the explicit production/mapping-failure rule. This is not a usage-limit stop. The implementation introduced a duplicate Reise alias group in B-017. No code/test assertion was edited after failure.
+
+BASELINE
+main; HEAD d3a37985fce4ada65fa2f7a88462d8834e4677af; 0 staged.
+597 project-file hashes matched the prior semantic review; 17 pre-existing changed files preserved. Prior full validation was 2038/2038; that result does not validate the current failed B-017 edits.
+
+BATCH RESULTS
+B-019 PASS: 1 P1 signature; lib/storebrand-reise-catalog.ts and tests/nito-remediation-wave2.test.mjs; 4 new tests; 76/76 focused; source audit PASS; 50 directions and 1406 rows.
+B-017 FAIL: 0 resolved; lib/fremtind-reise-catalog.ts, lib/insurance-normalization.ts, lib/catalog-enrichment.ts, tests/nito-remediation-wave2.test.mjs; 8 new tests; 136/138 pass; source hash/section verified; complete targeted audit not reached.
+B-021 BLOCKED / NOT STARTED: B-017 gate failed.
+B-015 BLOCKED / NOT STARTED: sequence stopped.
+B-020 BLOCKED / NOT STARTED: sequence stopped.
+B-022 BLOCKED / NOT STARTED: sequence stopped.
+B-018 BLOCKED / NOT STARTED: B-022 prerequisite not satisfied.
+
+B-019 DAY-TRIP CONTROL
+Existing reise.overnatting now represents Storebrand Standard/Super travel with and without overnight stays, including day trips. The old real comparison capture shows Storebrand unknown; new comparison is an included term with product-page FAQ provenance. Tryg Ekstra/Premium comparisons, side swap, same product, two alternative document overrides pass. Rental-car overnight condition and every other Storebrand resolved base fact remain unchanged. HTML page convention retained; no new source artifact or inference in UI.
+
+CANONICAL EXTENSIONS
+None implemented. B-015, B-020, B-022 remain unstarted. No new semantic keys were added; B-019 and the attempted B-017 reuse existing keys.
+
+MAPPING CHANGES
+B-019: added source-backed reise.overnatting.
+B-017 attempted: separated reise.forsinkelse.fremmote_sum and reise.forsinkelse.avgang_sum; kept rute as common conditions; added separately sourced inaccessible-baggage branch on existing bagasje.forsinket. Added conservative document-parent overlap guard. These changes are NOT approved PASS.
+FAILURE: a new reise property at insurance-normalization.ts:49 is overwritten by the existing reise property at :114. Thus Forsinket fremmøte – sum returns free-text-normalized label rather than the canonical key. This is an actual implementation defect, not a fixture error. It is retained unchanged for review under the no-reset/revert requirement.
+Second failure: existing fremtind-reise-catalog.test.mjs:118 expects the old broad rute string /6 000.*ubegrenset/. That expectation conflicts with the approved split. It was not changed to make tests pass.
+
+ADD-ON SELECTION / B-022
+Not started. No dependency metadata or add-on selection changes made.
+
+B-018 DEPENDENCY RESULT
+Not started. B-022 has not passed.
+
+P1 ACCOUNTING
+Original unique P1 signatures: 1589.
+Previously resolved (verified union of completed batch signature IDs): 21.
+Resolved this run: 1 (0def48b35239d8dc, B-019).
+Cumulative: 22. Remaining unique signatures: 1567.
+Remaining dispositions: FIX_BEFORE_NITO 1034; CANONICAL_REVIEW_FIRST 317; MAPPING_REVIEW_FIRST 165; SOURCE_RESEARCH_FIRST 29; DEFER_SAFE 21; DUPLICATE / COVERED_BY_OTHER_BATCH 1. Deferred/historical work is not claimed resolved. B-017 has no resolution credit.
+
+TEST RESULTS
+12 new regression tests retained: 4 B-019, 8 B-017. No existing test edited this run; no test assertions corrected after failure.
+B-019: 76 tests / 76 pass / 0 fail / 0 skipped.
+B-017: 138 tests / 136 pass / 2 fail / 0 skipped.
+One temporary audit harness correction: Git quoted non-ASCII filenames; switched inventory to NUL-separated paths. This changed no production code/test expectation; checkpoint rerun PASS.
+One proven production mapping failure, one old expectation conflict, both unresolved. No flaky reruns.
+Full suite, TypeScript, ESLint, webpack build and synthetic HTTP/PDF runtime were NOT RUN after the stop. No final Wave 2 PASS is claimed.
+Final git diff --check PASS (not proof of TypeScript correctness).
+
+TARGETED SOURCE→CATALOG RE-AUDIT
+B-019: two local source hashes verified, own-source meaning checked, added claim reversed to Storebrand FAQ; exactly 2 products changed and 202 unchanged.
+B-017: one additional local source hash verified; sections 8.1/8.2 checked; catalog snapshot changes exactly 1 expected product and 203 unchanged. No complete PASS audit after failed gate.
+Current run: 3 catalog-resolution products changed, 201 unchanged; no unexpected product changes. Shared mapping failure separately blocks acceptance.
+All original corpus artifacts remain unchanged. No claim about live source freshness.
+
+COMPARISON REGRESSION
+B-019 matrix: 50 directions, 1406 rows; same-product and side-swap PASS. Before/after artifact retained. B-017 source/comparison tests include same-product/side-swap but full comparison audit/final matrix not reached.
+
+CUSTOMER/PDF REGRESSION
+Synthetic document-over-catalog tests pass for B-019; B-017 precise-key overrides, broad-parent guard, explicit child plus parent and placeholder controls passed. One exact label-normalization test fails, so shared customer behavior is NOT fully validated. No real customer PDFs used. No extraction/prompts or AI calls changed.
+
+POSITIVE CONTROLS
+Existing Wave1/Wave2 tests in the focused runs pass. Historic Eika fingerprints unchanged. No B-022/B-018 optionality acceptance claim.
+
+FILES CHANGED THIS RUN
+lib/storebrand-reise-catalog.ts — B-019 explicit general overnight/day-trip term.
+lib/fremtind-reise-catalog.ts — B-017 attempted delay split and baggage branch.
+lib/insurance-normalization.ts — B-017 attempted exact label aliases; contains blocking duplicate property.
+lib/catalog-enrichment.ts — B-017 attempted broad-document overlap guard.
+tests/nito-remediation-wave2.test.mjs — 12 new tests.
+Previous 17 changed-file contents preserved outside these scoped additions. Final working tree has 21 changed/untracked paths in total. Failed B-017 edits remain; working tree is not ready for publication.
+
+PROJECT INTEGRITY
+HEAD and main unchanged; 0 staged. No commit/push/deploy/reset/revert/stash/clean. No .env/secrets/Railway access or edits. No source manifest/original mutation. No unexpected project mutation. Baseline and current hashes retained.
+
+AUDIT ARTIFACT INTEGRITY
+1058 files across all four immutable input directories rehashed; unchanged. All new artifacts are in /tmp/insurance-catalog-wave2-completion/.
+
+WAVE 3 READINESS
+NOT READY. Wave 2 blocked at B-017; no Wave 3 work performed.
+CATALOG_PILOT_GATE: REMEDIATION_REQUIRED.
+
+OUTPUT FILES
+batch-ledger.csv/json; test-diagnostics.csv; resume.json; canonical-change-register.csv; mapping-change-register.csv; inheritance-change-register.csv; addon-selection-change-register.csv; quality-check.json; p1-accounting.json; final-integrity.json; affected-products.json; B-019-before-after.json; B-019-comparison-before-after.json; B-019-audit.json; test logs and before/after snapshots.
+
+NEXT STEP
+Review/authorize correction of the B-017 implementation defect: merge precise aliases into the existing Reise group, preserving all previous aliases. Review the old broad-rute assertion against the approved new split. Then rerun the complete B-017 gate before B-021. No automatic continuation or rollback performed.

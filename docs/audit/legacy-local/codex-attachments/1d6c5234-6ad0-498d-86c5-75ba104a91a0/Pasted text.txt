@@ -1,0 +1,997 @@
+- P2 occurrences/signatures
+- P3
+- verified catalog false unknowns
+- TOO_COARSE findings
+- unsupported catalog claims
+- semantic mismatches
+- source conflicts
+- source research required
+- canonical/model candidates
+- presentation-only findings.
+
+Also report progress SINCE the previous checkpoint separately from cumulative
+totals.
+
+==================================================
+PARTIAL RESUME POINT
+==================================================
+
+If PARTIAL, report exact continuation point:
+
+- next family
+- next provider
+- next exact product identity
+- next source package
+- next add-on if relevant
+- current partially reviewed product
+- remaining deep reviews
+- remaining reverse source-support checks.
+
+The next run must be able to continue without reconstructing audit state.
+
+==================================================
+RESUME.JSON REQUIREMENT
+==================================================
+
+Before returning PARTIAL, update:
+
+/tmp/source-catalog-completeness-audit/resume.json
+
+with at minimum:
+
+audit_run_id
+repo_head
+catalog_fingerprint
+source_corpus_fingerprint
+completed_products
+partially_reviewed_products
+not_started_products
+completed_addons
+partially_reviewed_addons
+remaining_addons
+family_checkpoints
+source_hashes_already_parsed
+source_inventories_completed
+deep_reviews_completed
+finding_ids
+finding_validation_state
+root_cause_ids
+remediation_batch_ids
+manual_review_state
+last_completed_product
+current_product
+next_product
+last_completed_family
+current_family
+next_family
+counts.
+
+==================================================
+REVIEW STATE
+==================================================
+
+Use explicit review states.
+
+Products:
+
+NOT_STARTED
+SOURCE_INVENTORY_STARTED
+SOURCE_INVENTORY_COMPLETE
+CATALOG_MATCH_STARTED
+PARTIAL_SEMANTIC_REVIEW
+DEEP_REVIEW_COMPLETE
+COMPLETE.
+
+Add-ons:
+
+NOT_STARTED
+SOURCE_REVIEW_STARTED
+SOURCE_REVIEW_COMPLETE
+CATALOG_MATCH_STARTED
+PARTIAL
+COMPLETE.
+
+Families:
+
+NOT_STARTED
+PARTIAL
+COMPLETE.
+
+Do not call something COMPLETE merely because a source file was read.
+
+==================================================
+FINDING VALIDATION STATE
+==================================================
+
+Material findings should distinguish:
+
+CANDIDATE
+SOURCE_VERIFIED
+APPLICABILITY_VERIFIED
+CATALOG_VERIFIED
+MANUALLY_VALIDATED
+FINAL.
+
+Only validated findings should count as final P0/P1.
+
+If usage ends before validation:
+
+preserve candidate as REVIEW_REQUIRED.
+
+==================================================
+EXISTING VALIDATED FINDINGS
+==================================================
+
+Do not accidentally downgrade previously validated findings when merging the
+continuation.
+
+Preserve stable finding IDs.
+
+Preserve stable root-cause IDs where still valid.
+
+==================================================
+COUNT DEFINITIONS
+==================================================
+
+Keep distinct:
+
+source fact occurrence
+unique semantic source fact
+finding occurrence
+finding signature
+root cause.
+
+Do not mix them in totals.
+
+==================================================
+PRIMARY PROGRESS METRIC
+==================================================
+
+The primary progress metric is:
+
+exact products/add-ons semantically accounted for.
+
+NOT:
+
+PDF pages parsed.
+
+Source extraction is groundwork, not semantic completion.
+
+==================================================
+PRODUCT COMPLETION STANDARD
+==================================================
+
+An exact product is COMPLETE only when:
+
+1. applicable source package has been identified
+2. material source content has been reviewed
+3. advisor-relevant source inventory is sufficiently complete
+4. material dimensions have been identified
+5. source facts have been matched to catalog
+6. major catalog claims have been source-support checked
+7. inheritance/components/add-ons have been considered
+8. source conflicts/ambiguities have been recorded
+9. material findings have been classified
+10. review state has been persisted.
+
+==================================================
+ADD-ON COMPLETION STANDARD
+==================================================
+
+An add-on is COMPLETE only when:
+
+availability
+applicability
+optional status
+material limits
+material conditions
+source provenance
+
+have been sufficiently checked against catalog.
+
+==================================================
+FAMILY COMPLETION STANDARD
+==================================================
+
+A family is COMPLETE only when all active in-scope products and material
+active add-ons have appropriate final review state.
+
+==================================================
+FALSE UNKNOWN VS LEGITIMATE UNKNOWN
+==================================================
+
+Continue explicitly distinguishing:
+
+SOURCE_UNKNOWN
+
+from:
+
+CATALOG_UNKNOWN.
+
+SOURCE_UNKNOWN:
+applicable source does not safely answer.
+
+CATALOG_UNKNOWN:
+applicable source answers, but catalog does not.
+
+A material CATALOG_UNKNOWN is a completeness finding.
+
+==================================================
+REISE OVERNATTING TESTCASE – OUTPUT
+==================================================
+
+For the manually observed Reise testcase, record an explicit result in the
+audit artifacts.
+
+Required fields:
+
+provider
+product
+scope
+source artifact(s)
+source location
+source wording/short evidence
+catalog representation
+visible comparison representation
+classification
+confidence
+advisor impact.
+
+The result must independently determine whether Storebrand Standard:
+
+- requires overnight stay
+- does not require overnight stay
+- excludes the relevant no-overnight journey
+- is genuinely ambiguous
+- or cannot be represented correctly by current semantic model.
+
+Do not infer the answer from Tryg.
+
+==================================================
+REISE OVERNATTING PRESENTATION NOTE
+==================================================
+
+Regardless of Storebrand result, preserve a future presentation requirement:
+
+For question-like product dimensions, advisor UI should communicate the
+insurance meaning rather than internal database state.
+
+Preferred semantic states where applicable:
+
+JA
+NEI
+IKKE DEKKET
+TILVALG
+BEGRENSET
+UKLART I TILGJENGELIG KILDEGRUNNLAG.
+
+Do not implement now.
+
+==================================================
+OTHER QUESTION-LIKE FACTS
+==================================================
+
+While auditing, flag similar concepts where generic:
+
+"Ikke dokumentert"
+
+could hide materially different meanings.
+
+Examples:
+
+Kreves fuktkontroll?
+Kreves overnatting?
+Er leiebil inkludert?
+Er maskinskade inkludert?
+Gjelder utleie?
+Dekkes tannsykdom?
+Gjelder tjenestereise?
+
+Do not redesign UI during audit.
+
+Just record semantic/presentation candidates.
+
+==================================================
+NO FALSE NEGATIVES FROM ABSENCE
+==================================================
+
+Absence of source statement in one document is not proof of:
+
+NO
+NOT COVERED
+UNAVAILABLE.
+
+Check complete applicable local source package.
+
+==================================================
+NO FALSE POSITIVES FROM PEERS
+==================================================
+
+A peer product documenting a benefit does not prove this product has it.
+
+Cross-provider comparison is only a search aid.
+
+==================================================
+SOURCE PACKAGE SYNTHESIS
+==================================================
+
+Where multiple applicable sources exist:
+
+full terms
+IPID
+product page
+add-on terms
+shared/general terms
+
+synthesize them carefully.
+
+Do not flatten contradictions.
+
+==================================================
+SOURCE PRECEDENCE
+==================================================
+
+Respect existing source policy and exact applicability.
+
+Do not blindly assume:
+
+full terms always override IPID
+
+or:
+
+newer-looking webpage always overrides terms.
+
+If material sources conflict:
+
+SOURCE_CONFLICT_REVIEW_REQUIRED.
+
+==================================================
+SOURCE VERSION
+==================================================
+
+Preserve:
+
+effective date
+version
+scope
+
+where known.
+
+Do not invent dates.
+
+Do not use retrieval date as effective date unless existing source policy
+explicitly allows it.
+
+==================================================
+SOURCE TABLES
+==================================================
+
+Important facts may exist in:
+
+coverage matrices
+deductible tables
+age tables
+sum tables
+footnotes.
+
+Continue inspecting these when material.
+
+==================================================
+FOOTNOTES
+==================================================
+
+An:
+
+"Inkludert*"
+
+with a material footnote must not become unconditional:
+
+Included.
+
+==================================================
+MATERIAL LIMITATIONS
+==================================================
+
+Continue identifying source-backed limitations that materially affect:
+
+eligibility
+duration
+sum
+deductible
+replacement
+geography
+claim trigger
+coverage termination.
+
+These may belong as:
+
+structured child
+provider-specific detail
+or source-backed limitation.
+
+==================================================
+BOOLEAN LOSSINESS
+==================================================
+
+Detect where rich source meaning was reduced to:
+
+true/false
+
+or:
+
+included
+
+and material comparison dimensions were lost.
+
+==================================================
+FREE-TEXT LOSSINESS
+==================================================
+
+Also detect when one long catalog text contains several material dimensions
+that should perhaps be separately structured.
+
+Classify:
+
+CATALOG_FACT_TOO_COARSE
+
+or:
+
+CANONICAL_STRUCTURE_INSUFFICIENT
+
+depending on model capability.
+
+==================================================
+NUMERIC PRECISION
+==================================================
+
+Do not simplify boundaries.
+
+Preserve differences such as:
+
+under 10 years
+up to and including 10 years
+through policy year
+before first renewal after threshold.
+
+Same for:
+
+km
+percentages
+days
+currency
+nautical miles.
+
+==================================================
+COMBINED LIMITS
+==================================================
+
+Do not collapse:
+
+per event
+per year
+per item
+per person
+per day
+total.
+
+==================================================
+UNLIMITED SEMANTICS
+==================================================
+
+Do not automatically equate:
+
+unlimited
+no separate limit
+within insured value
+within agreed sum.
+
+==================================================
+TOTAL LOSS / NEW VALUE
+==================================================
+
+Where applicable continue auditing:
+
+status
+replacement form
+age
+km
+damage threshold
+ownership requirement
+new-purchase requirement
+leasing limitation
+theft/loss condition
+other material qualification.
+
+==================================================
+MACHINE / ENGINE DAMAGE
+==================================================
+
+Where applicable continue auditing:
+
+status
+included/optional
+vehicle age
+engine age
+km
+covered components
+deductible
+deductible progression
+important exclusions
+applicability.
+
+==================================================
+MOBILITY
+==================================================
+
+Keep distinct where appropriate:
+
+rental car
+rental MC
+replacement vehicle
+hotel
+travel continuation
+feriegaranti
+roadside assistance.
+
+Shared parent may exist, but children may not be equivalent.
+
+==================================================
+PROPERTY WATER / MOISTURE
+==================================================
+
+Keep distinct:
+
+water damage
+water ingress
+consequential damage
+defect itself
+wet room
+leakage
+groundwater/flood
+moisture.
+
+==================================================
+PET SEMANTICS
+==================================================
+
+Continue keeping distinct:
+
+annual veterinary sum
+per-event sum
+medicine sublimit
+dental sublimit
+rehab
+diagnostics
+allergy
+life/death
+disappearance/theft
+loss of use
+waiting period
+reduction age
+termination age
+breed-specific rules.
+
+==================================================
+PET DEDUCTIBLE
+==================================================
+
+Keep distinct:
+
+fixed component
+percentage component
+deductible period
+selectable deductible.
+
+==================================================
+VEHICLE EQUIPMENT
+==================================================
+
+Keep distinct:
+
+fixed equipment
+loose equipment
+luggage
+personal belongings
+special equipment.
+
+==================================================
+DAILY BENEFITS
+==================================================
+
+Keep distinct:
+
+amount per day
+maximum days
+overall cap
+season/period
+trigger.
+
+==================================================
+LEGAL EXPENSES
+==================================================
+
+Where source-backed continue checking:
+
+sum
+deductible
+geography
+special limitations.
+
+==================================================
+LIABILITY
+==================================================
+
+Where source-backed continue checking:
+
+personal injury
+property damage
+statutory/unlimited mechanism
+territory.
+
+==================================================
+GLASS
+==================================================
+
+Where source-backed distinguish:
+
+repair deductible
+replacement deductible
+scope/applicability.
+
+==================================================
+KEY / WRONG FUEL
+==================================================
+
+Where source-backed check:
+
+sum
+deductible
+event/year limits
+scope.
+
+==================================================
+CURRENT AUDIT PHILOSOPHY
+==================================================
+
+Maintain five separate layers:
+
+1. SOURCE TRUTH
+What do applicable official sources say?
+
+2. CATALOG TRUTH
+What has our knowledge layer represented?
+
+3. COMPARISON TRUTH
+How does the engine align catalog facts?
+
+4. CUSTOMER TRUTH
+What does customer's actual document say?
+
+5. PRESENTATION
+What should advisor see?
+
+Do not collapse these layers.
+
+==================================================
+CUSTOMER DOCUMENT PRIORITY
+==================================================
+
+Nothing in this audit changes:
+
+explicit customer document fact
+>
+catalog enrichment.
+
+==================================================
+SOURCE TRUTH PRIORITY
+==================================================
+
+Catalog may not claim more than applicable source safely supports.
+
+==================================================
+COMPARISON CONSERVATISM
+==================================================
+
+When semantic equivalence is uncertain:
+
+preserve separate structures.
+
+Do not create false comparison to reduce unknowns.
+
+==================================================
+CATALOG AS KNOWLEDGE LAYER
+==================================================
+
+The catalog may be richer than default UI.
+
+Do not discard material source meaning solely because displaying every fact
+would make UI long.
+
+==================================================
+PRESENTATION CURATION
+==================================================
+
+UI can later decide:
+
+what is primary
+what is nested
+what is provider-specific.
+
+This audit focuses on knowledge correctness/completeness.
+
+==================================================
+PRE-PILOT CATALOG TARGET
+==================================================
+
+Proposed eventual catalog target before NITO pilot:
+
+P0 unresolved = 0
+P1 unresolved = 0
+
+and no material active product remains:
+
+SOURCE_INSUFFICIENT
+or
+REVIEW_REQUIRED
+
+for core advisor concepts.
+
+P2/P3 may remain documented if safe.
+
+==================================================
+CURRENT GATE
+==================================================
+
+Because verified P1 gaps already exist:
+
+CATALOG_PILOT_GATE remains at least:
+
+REMEDIATION_REQUIRED
+
+until a later remediation run.
+
+This audit cannot make it READY by itself.
+
+==================================================
+NO REMEDIATION YET
+==================================================
+
+Even obvious fixes remain untouched.
+
+We want the broad gap map first.
+
+==================================================
+WHY WE CONTINUE BROADLY
+==================================================
+
+Do not fall back into:
+
+find one problem
+→ fix one problem
+→ find next problem.
+
+We are intentionally doing:
+
+audit broadly
+→ deduplicate root causes
+→ human review
+→ remediate in controlled batches
+→ re-audit.
+
+==================================================
+REMEDIATION LEVERAGE
+==================================================
+
+Continue recording which future fixes may resolve many P1 findings safely.
+
+Do not design implementation beyond what is needed to classify batch and
+risk.
+
+==================================================
+FUTURE TEST PLAN
+==================================================
+
+For each P0/P1 root cause, record proposed regression concept.
+
+Do not write tests now.
+
+==================================================
+FUTURE SOURCE COMPLETENESS PREVENTION
+==================================================
+
+Continue noting which checks can later become deterministic CI.
+
+But do not implement CI now.
+
+==================================================
+CONTINUOUS CHECKPOINT
+==================================================
+
+Persist audit state after meaningful work chunks.
+
+This is mandatory because another usage limit may occur.
+
+==================================================
+USAGE LIMIT BEHAVIOR
+==================================================
+
+If usage reaches 0 again:
+
+that is acceptable.
+
+Do not lower audit quality.
+
+Persist exact state and return PARTIAL.
+
+==================================================
+DO NOT USE SECOND RESET AUTOMATICALLY
+==================================================
+
+If this reset is exhausted:
+
+STOP.
+
+Do not attempt to trigger/use another reset automatically.
+
+The user will decide whether the remaining manual reset should be used.
+
+==================================================
+REPO INTEGRITY
+==================================================
+
+At checkpoint/end verify:
+
+HEAD unchanged
+working tree unchanged
+staged = 0
+tracked diff fingerprint unchanged
+untracked fingerprint unchanged
+git diff --check PASS.
+
+Temporary files under:
+
+/tmp/source-catalog-completeness-audit/
+
+are expected.
+
+==================================================
+INTEGRITY FAILURE
+==================================================
+
+If repo changes unexpectedly:
+
+STOP.
+
+Do not clean/reset/revert.
+
+Return:
+
+SOURCE_CATALOG_AUDIT_INTEGRITY_FAILURE.
+
+==================================================
+OUTPUT VALIDATION
+==================================================
+
+Before normal stop/checkpoint:
+
+validate:
+
+audit.json parses
+CSVs parse
+finding IDs unique
+product identities unique
+root-cause references resolve
+counts reconcile sufficiently for checkpoint.
+
+Do not spend excessive usage on cosmetic formatting.
+
+==================================================
+IF COMPLETE
+==================================================
+
+Return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_COMPLETE
+
+ONLY if ALL original completion criteria are genuinely satisfied.
+
+==================================================
+IF PARTIAL
+==================================================
+
+Return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_PARTIAL
+
+with exact:
+
+- progress since last checkpoint
+- cumulative product coverage
+- cumulative add-on coverage
+- family coverage
+- P0/P1/P2/P3
+- verified false unknowns
+- TOO_COARSE
+- unsupported claims
+- semantic mismatches
+- source conflicts
+- source research queue
+- root causes
+- deep-review count
+- exact next resume point
+- repo integrity
+- output paths.
+
+==================================================
+FINAL HUMAN QUESTION
+==================================================
+
+At a COMPLETE audit, answer:
+
+"Er katalogen vår god nok til at en NITO-rådgiver kan stole på
+produktsammenligningen som beslutningsstøtte, gitt de lokale offisielle
+kildene vi har?"
+
+Use:
+
+JA
+
+JA, MED MINDRE KJENTE BEGRENSNINGER
+
+NEI – REMEDIERING KREVES
+
+KAN IKKE AVGJØRES UTEN MER KILDEGRUNNLAG.
+
+For a PARTIAL audit:
+
+do not pretend this question has been fully answered.
+
+==================================================
+FINAL PRINCIPLE
+==================================================
+
+The goal is NOT:
+
+fewer unknowns.
+
+The goal is:
+
+correctly justified knowledge states.
+
+When the advisor sees:
+
+"Ikke dokumentert"
+
+or future equivalent:
+
+"Uklart i tilgjengelig kildegrunnlag"
+
+it should mean the evidence genuinely does not safely support a stronger
+conclusion.
+
+It should NOT mean:
+
+the official source contained the answer but our catalog never modeled it.
+
+==================================================
+START
+==================================================
+
+Continue now from:
+
+/tmp/source-catalog-completeness-audit/resume.json
+
+Start at the exact saved Frende Bobil continuation point unless resume state
+shows a later completed point.
+
+Use the available weekly usage aggressively but carefully.
+
+Do not remediate.
+
+Persist continuously.
+
+STOP only when:
+
+- full audit is genuinely complete,
+- this usage allocation is exhausted,
+- or a legitimate integrity/tooling blocker occurs.

@@ -1,0 +1,91 @@
+(node:68193) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/analysis-output.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ MC: precise compound document limits 2/17 000 survive canonical rescoping and catalog (13.08225ms)
+✔ MC: precise compound document limits 4/33 000 survive canonical rescoping and catalog (5.315125ms)
+✔ MC: document limit 17 000 km wins catalog and repeated consolidation (19.85ms)
+✔ MC: document limit 31 000 km wins catalog and repeated consolidation (6.440875ms)
+✔ MC: optional motor component activated only by document choice null (1.7085ms)
+✔ MC: optional motor component activated only by document choice Ikke valgt (2.161792ms)
+✔ MC: optional motor component activated only by document choice Valgt (2.194167ms)
+✔ MC: explicit rejection beats even a documented product-inherent base coverage (1.851166ms)
+✔ MC: conflicting explicit optional choices stay unknown without catalog arbitration (2.724958ms)
+✔ MC: terms alone never form a customer object or portfolio contribution (1.346667ms)
+✔ MC: customer + terms separate PDF remains one object with document prices (7.703ms)
+✔ MC: customer + terms same PDF remains one object with document prices (7.537875ms)
+✔ MC: customer endorsement can add detail without copying another object's price (21.593083ms)
+✔ MC: terms wrong provider/type/product/scope/version cannot attach (24.520875ms)
+✔ MC: unknown product keeps customer and evidence without fuzzy catalog match (1.848125ms)
+✔ Bobil: precise compound document limits 2/17 000 survive canonical rescoping and catalog (3.886542ms)
+✔ Bobil: precise compound document limits 4/33 000 survive canonical rescoping and catalog (2.375834ms)
+✔ Bobil: document limit 17 000 km wins catalog and repeated consolidation (7.481042ms)
+✔ Bobil: document limit 31 000 km wins catalog and repeated consolidation (7.230417ms)
+✔ Bobil: optional motor component activated only by document choice null (1.799459ms)
+✔ Bobil: optional motor component activated only by document choice Ikke valgt (2.532834ms)
+✔ Bobil: optional motor component activated only by document choice Valgt (2.45025ms)
+✔ Bobil: explicit rejection beats even a documented product-inherent base coverage (2.276959ms)
+✔ Bobil: conflicting explicit optional choices stay unknown without catalog arbitration (2.731834ms)
+✔ Bobil: terms alone never form a customer object or portfolio contribution (0.645ms)
+✔ Bobil: customer + terms separate PDF remains one object with document prices (8.070917ms)
+✔ Bobil: customer + terms same PDF remains one object with document prices (7.656125ms)
+✔ Bobil: customer endorsement can add detail without copying another object's price (22.91925ms)
+✔ Bobil: terms wrong provider/type/product/scope/version cannot attach (25.117959ms)
+✔ Bobil: unknown product keeps customer and evidence without fuzzy catalog match (2.273ms)
+✔ two MC + two Bobil pair exactly in reversed order across provider/product changes (51.764375ms)
+✔ missing/new MC and Bobil objects remain explicit although types exist on both sides (25.845416ms)
+✔ multiple same-type unidentified objects are never paired by index or product (23.883708ms)
+✔ MC/Bobil terms do not inflate mixed Bil + MC + Bobil portfolio (16.222708ms)
+✔ identical registration text does not cross-match different insurance types (6.608667ms)
+✔ all new products resolve exact sources and add-ons without type/scope/provider leakage (13.513917ms)
+✔ new sources obey authority, validity, exact version and agreement applicability (0.307458ms)
+(node:68194) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (1.871542ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (4.2275ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.285625ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (4.66675ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (13.169334ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (0.960917ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (19.053417ms)
+✔ B-002: explicit customer artwork information retains document authority (1.320833ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.4185ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.470375ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (24.25325ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (1.499291ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (10.059167ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.439584ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (2.672042ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (8.1665ms)
+✔ B-006: Frende parking bonus clause follows §11.13 on Kasko and Utvidet (1.128125ms)
+✔ B-006: parking comparison and explicit customer terms remain stable (7.312042ms)
+✔ B-007: both Gjensidige house levels retain thawing with its own product-page source (1.005042ms)
+✔ B-007: thawing comparison preserves source and document authority in both directions (10.469334ms)
+(node:68195) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-008: Storebrand Super receives source-backed storage equipment and limit (4.058375ms)
+✔ B-008: false unknown is removed without changing Kasko or Delkasko coverage (9.5395ms)
+✔ B-008: explicit customer storage equipment limit still overrides catalog (11.889792ms)
+✔ B-009: Fremtind dog base separates lifetime allergy and annual MR/CT limits (1.458ms)
+✔ B-009: only selected Topp replaces sublimits; product mode retains included base and optional extension (12.622416ms)
+✔ B-009: silent and explicitly rejected Topp do not remove base limits or select addon (13.448417ms)
+✔ B-009: a named selected Topp extends limits without overriding explicit customer values (10.014875ms)
+✔ B-010: life deduction preserves all breed groups, renewal wording and floor (1.114834ms)
+✔ B-010: life remains optional and reduction/expiry stay separate in comparison (15.418125ms)
+✔ B-010: explicit customer life reduction age still has priority (4.869917ms)
+✔ B-011: Extra replaces inherited common-storage cap with its own location rules (1.096291ms)
+✔ B-011: scoped limits survive swaps and explicit customer overrides (6.988417ms)
+✔ B-012: Gjensidige Bobil Kasko has own-source pest coverage without lower-tier leakage (2.035333ms)
+✔ B-012: pest false unknown closes in both directions while document exclusions win (18.492333ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 71
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 623.470042

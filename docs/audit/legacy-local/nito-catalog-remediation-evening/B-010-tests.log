@@ -1,0 +1,87 @@
+(node:68045) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-product-comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Båt/Hund/Katt gir tolv dynamiske produktfamilier (62.943125ms)
+✔ Tryg Båt har source-backed produktpakke (0.592625ms)
+✔ Tryg Hund har source-backed produktpakke (0.146959ms)
+✔ Tryg Katt har source-backed produktpakke (0.452167ms)
+✔ If Båt har source-backed produktpakke (0.4455ms)
+✔ If Hund har source-backed produktpakke (0.286458ms)
+✔ If Katt har source-backed produktpakke (0.598833ms)
+✔ Gjensidige Båt har source-backed produktpakke (0.615542ms)
+✔ Gjensidige Hund har source-backed produktpakke (0.310791ms)
+✔ Gjensidige Katt har source-backed produktpakke (0.198916ms)
+✔ Storebrand Båt har source-backed produktpakke (0.356792ms)
+✔ Storebrand Hund har source-backed produktpakke (0.7895ms)
+✔ Storebrand Katt har source-backed produktpakke (0.239ms)
+✔ Fremtind Båt har source-backed produktpakke (0.349417ms)
+✔ Fremtind Hund har source-backed produktpakke (0.108625ms)
+✔ Fremtind Katt har source-backed produktpakke (0.081375ms)
+✔ Frende Båt har source-backed produktpakke (0.286084ms)
+✔ Frende Hund har source-backed produktpakke (0.085125ms)
+✔ Frende Katt har source-backed produktpakke (0.084583ms)
+✔ 65 offentlige originaler har verifiserbare SHA-256 hashes (22.187541ms)
+✔ Båtproduktstruktur er provider-tro (0.12175ms)
+✔ valgfrie Båt-komponenter forblir valgfrie i produktmodus (26.164ms)
+✔ Storebrand dyr kan velges som Veterinær, Dødsfall eller kombinasjon (23.520375ms)
+✔ Hund-spesifikk bruksverdi lekker ikke til Katt (0.668792ms)
+✔ årlig, hendelsesbasert og valgbar veterinærsum er separate identiteter (11.299292ms)
+✔ fast egenandel og prosentandel beholder separate canonical facts (10.708625ms)
+✔ nytegningsalder, reduksjonsalder og opphørsalder er separate identiteter (0.080833ms)
+✔ Båt aliases normaliseres eksakt uten å bli Bil (0.058209ms)
+✔ 54 representative source-to-catalog checks preserve numeric and conditional semantics (0.5545ms)
+✔ manual product selection is exact for every provider and new family (6.548916ms)
+✔ extraction schema accepts exact new-family facts and rejects arbitrary keys (0.360875ms)
+✔ new-family product comparisons are symmetric and same-product safe (69.468209ms)
+✔ canonical fact families stay isolated across species and vehicle types (0.473459ms)
+✔ kundedokument vinner over katalog og katalogvalg velger ikke valgfritt liv (5.342375ms)
+✔ eksplisitt valgt tillegg kan aktiveres uten å endre dokumentverdi (6.574667ms)
+✔ produktpresentasjon bruker kuratert Båt- og dyrehierarki (51.058459ms)
+✔ Båt bruker sikker serienummerstrategi, mens dyr uten sikker ID behandles konservativt (7.06275ms)
+(node:68046) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (3.584333ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (5.794084ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.137333ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.997209ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (12.147416ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (0.999208ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (31.768333ms)
+✔ B-002: explicit customer artwork information retains document authority (1.114083ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.351542ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.74ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (27.034666ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (1.328667ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (10.379583ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.253375ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (2.628708ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (7.883ms)
+✔ B-006: Frende parking bonus clause follows §11.13 on Kasko and Utvidet (1.150166ms)
+✔ B-006: parking comparison and explicit customer terms remain stable (6.501584ms)
+✔ B-007: both Gjensidige house levels retain thawing with its own product-page source (0.949375ms)
+✔ B-007: thawing comparison preserves source and document authority in both directions (10.8895ms)
+(node:68047) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-008: Storebrand Super receives source-backed storage equipment and limit (10.82575ms)
+✔ B-008: false unknown is removed without changing Kasko or Delkasko coverage (11.848208ms)
+✔ B-008: explicit customer storage equipment limit still overrides catalog (11.750208ms)
+✔ B-009: Fremtind dog base separates lifetime allergy and annual MR/CT limits (1.287458ms)
+✔ B-009: only selected Topp replaces sublimits; product mode retains included base and optional extension (12.600083ms)
+✔ B-009: silent and explicitly rejected Topp do not remove base limits or select addon (15.566334ms)
+✔ B-009: a named selected Topp extends limits without overriding explicit customer values (12.106ms)
+✔ B-010: life deduction preserves all breed groups, renewal wording and floor (1.385041ms)
+✔ B-010: life remains optional and reduction/expiry stay separate in comparison (15.609209ms)
+✔ B-010: explicit customer life reduction age still has priority (5.031583ms)
+ℹ tests 67
+ℹ suites 0
+ℹ pass 67
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 599.320209

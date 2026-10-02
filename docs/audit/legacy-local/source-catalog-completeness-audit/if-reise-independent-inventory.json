@@ -1,0 +1,652 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "IF-RE-001",
+      "scope": "all",
+      "subject": "Sikrede",
+      "dimension": "valg/bosted",
+      "value": "Bevispersoner,Norsk folkeregister/folketrygd;familieektefelle/samboersammeadresse,barn under21medforelderadresse.",
+      "location": "3–4 pkt1.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-002",
+      "scope": "super",
+      "subject": "Familie",
+      "dimension": "barnebarn",
+      "value": "Barnebarn/oldebarnunder21påreisemedtaker,bareutenannenreiseforsikring.",
+      "location": "4 pkt1.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-003",
+      "scope": "all",
+      "subject": "Reise",
+      "dimension": "start/slutt",
+      "value": "Hjemmefra-tilhjem;gyldigførstart,utenkravovernatting forselveproduktet.",
+      "location": "4 pkt1.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-004",
+      "scope": "all",
+      "subject": "Reisedager",
+      "dimension": "Norge",
+      "value": "Ubegrensetantallreisedagerinnenlands,utenlandsbevisfraNorgeuttilinn.",
+      "location": "4 pkt1.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-005",
+      "scope": "all",
+      "subject": "Reisedager",
+      "dimension": "standard/valg",
+      "value": "45standardfrawebtabell,45eller90kundevalgIPID;180ikkeoppgittidagenslokalekanoniskekilder.",
+      "location": "Table45 reisedager; corroboratedIPID1 for45/90choice",
+      "source": "web"
+    },
+    {
+      "id": "IF-RE-006",
+      "scope": "extension",
+      "subject": "Reisedager",
+      "dimension": "ekstra",
+      "value": "Ekstradagerførreisenellersenestsistedag,etteravtale;maks365d;ikkeautomatiskstandard.",
+      "location": "FAQ varighet",
+      "source": "web"
+    },
+    {
+      "id": "IF-RE-007",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "kundevalg",
+      "value": "Nordenellerverdenbevis;ikkehjem/arbeid/studiestedNorgeunderarbeid/studiehellerikkeeiendelerder.",
+      "location": "4 pkt1.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-008",
+      "scope": "all",
+      "subject": "UD",
+      "dimension": "begrensning",
+      "value": "Ikkeområdermedreiseråd;ugyldighele reisen selv ved opphevelse etteravreise.",
+      "location": "4 pkt1.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-009",
+      "scope": "all",
+      "subject": "Ekspedisjon",
+      "dimension": "grunnunntak",
+      "value": "Fjerninfrastruktur/sykehus,Arktis/verdenshavseilas/fjell>5000m krevertilleggsavtale.",
+      "location": "4 pkt1.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-010",
+      "scope": "all",
+      "subject": "Arbeidskonflikt",
+      "dimension": "unntak",
+      "value": "Ikke streik/lockout/konkurs/taptarbeidsfortjeneste.",
+      "location": "5 pkt1.5–6",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-011",
+      "scope": "upper",
+      "subject": "Avbestilling",
+      "dimension": "sum/tid",
+      "value": "Ubegrensetikke-refunderbareegne/medforsikredereisekostnader,bestiltførhendelse,dekningførførsteinnbetaling,avbestillføravreise.",
+      "location": "5 pkt2.1–2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-012",
+      "scope": "upper",
+      "subject": "Avbestilling",
+      "dimension": "personkrets",
+      "value": "Akuttsykdom/ulykke/død selv/nærfamilie/enestemedreisendeogfamilie/enavgruppeinntil6/nøkkelperson/vertselvreiseralene;ikke kjentsykdomskomplikasjon.",
+      "location": "5 pkt2.2.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-013",
+      "scope": "upper",
+      "subject": "Avbestilling",
+      "dimension": "andreutløsere",
+      "value": "Endretfastsattoperasjonsdato,graviditetfør36/28vedflerling,samlivsbrudd,rettsinnkalling,alvorligbolig/forretningsskade,UDreiseråd72t/naturkatastrofe.",
+      "location": "6 pkt2.2.2–8",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-014",
+      "scope": "upper",
+      "subject": "Avbestilling",
+      "dimension": "unntak",
+      "value": "Ikkejobbreise/bonuspoeng/timeshare/andrebetalt/skatt/gebyr/avlystreise/voucher;ikkeforlengetbehandling/venteliste/rus/karantene/frykt/bortfaltformål.",
+      "location": "6–7 pkt2.3–4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-015",
+      "scope": "super",
+      "subject": "Avlyst turisttjeneste",
+      "dimension": "sum/vilkår",
+      "value": "5kperson25kfamilie,reiseovernattingoffentligtjenesteavlyst/flyttetutoverperiode,Supervedbetaling.",
+      "location": "6 pkt2.2.9",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-016",
+      "scope": "upper",
+      "subject": "Forsinkelse",
+      "dimension": "transport/overnatting",
+      "value": "Rimelignødvendigubegrensetinnhenting/overnatting;vedforsinketavgangtransport3k/person,transportørmåikkeinnhenteinnen24t.",
+      "location": "7–8 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-017",
+      "scope": "upper",
+      "subject": "Forsinkelse",
+      "dimension": "utløser/unntak",
+      "value": "Ekstremvær/ekstraordinærtrafikk/tekniskfeilulykke,privatbilberging;sufficientconnectiontime;ikkeflyselskapsansvarEU/matdrikke/bonuspoeng.",
+      "location": "8 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-018",
+      "scope": "super",
+      "subject": "Tapt hotell/tjeneste",
+      "dimension": "sum/tid",
+      "value": "Ankomstmin8tforseint,énhotellnatt/tjeneste5kperson;ikkejobbreise/refunderbart.",
+      "location": "8–9 pkt3.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-019",
+      "scope": "super",
+      "subject": "Tapt leieavtale",
+      "dimension": "sum/tid",
+      "value": "Min1.5tforsinketoppmøte,forhåndsbetaltkansellertbil/MC10kcase;ikkemopedATV/snow/privatleie/jobbreise.",
+      "location": "8–9 pkt3.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-020",
+      "scope": "upper",
+      "subject": "Forsinket bagasje",
+      "dimension": "sum",
+      "value": "Nødvendigklær/reiseartiklerkjøp/leie5kperson25kfamilie;ikkehjemreise.",
+      "location": "9 pkt3.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-021",
+      "scope": "upper",
+      "subject": "Transittbagasje",
+      "dimension": "sum",
+      "value": "Ufrivilligovernattingflyforsinkelse/ikkeadgangbagasje1kperson5kfamilie.",
+      "location": "9 pkt3.3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-022",
+      "scope": "super",
+      "subject": "Spesialbagasje",
+      "dimension": "ekstrasum",
+      "value": "Ytterligere5kperson25kfamilie vedforsinketbarnevogn/instrument/sportsutstyr.",
+      "location": "9 pkt3.3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-023",
+      "scope": "super",
+      "subject": "Bagasje fortsatt savnet",
+      "dimension": "ekstrasum/tid",
+      "value": "Etter5dagerankomstytterligere5kperson25kfamilie.",
+      "location": "9 pkt3.3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-024",
+      "scope": "upper",
+      "subject": "Reisegods",
+      "dimension": "sum/utløser",
+      "value": "Egnetingubegrensetgenerelt;tyveriran/hærverk/natur/trafikk/brann/vann/innsjekket;mistet/bortkommet/underslagikke tyveri.",
+      "location": "10 pkt4.1–2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-025",
+      "scope": "upper",
+      "subject": "Reisegods",
+      "dimension": "tingunntak",
+      "value": "Kjøretøy/båt/kjøreutstyribruk,flyttegods/møbler/samling/dyr/arbeidsgiverting/yrkesting/udeklarertunntatt.",
+      "location": "11–12 pkt4.5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-026",
+      "scope": "upper",
+      "subject": "Reisegods",
+      "dimension": "skadeunntak",
+      "value": "Vanligbruk/kosmetikk/taptøkonomi/luftsportdroneibruk/kjæledyr/innsjekketkoffertunntatt.",
+      "location": "12 pkt4.5.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-027",
+      "scope": "upper",
+      "subject": "Reisegods",
+      "dimension": "oppbevaring",
+      "value": "Verdiersafe/medbærtikkebil/båt/telt;elektronikk/medisin/pass/verdiikkeinnsjekket;sykkellås.",
+      "location": "11 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-028",
+      "scope": "upper",
+      "subject": "Penger",
+      "dimension": "sum",
+      "value": "5kperson10kfamiliecase.",
+      "location": "11 pkt4.3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-029",
+      "scope": "upper",
+      "subject": "Smykker/klokker",
+      "dimension": "sum",
+      "value": "30ksamletperskadetilfelle,kategoritakikkeperitem.",
+      "location": "11 pkt4.3.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-030",
+      "scope": "upper",
+      "subject": "Enkeltgjenstand",
+      "dimension": "sum",
+      "value": "Andreting40kinkltilbehør;sykkelaldrioverskaffelsespris.",
+      "location": "11 pkt4.3.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-031",
+      "scope": "upper",
+      "subject": "Reisegods",
+      "dimension": "aldersoppgjør",
+      "value": "Reparasjontilsvarende,alderbrukfunksjonfradrag,arv/bruktbruktsalgsverdi;ingenfastaldersprosent.",
+      "location": "12–13 pkt4.6",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-032",
+      "scope": "upper",
+      "subject": "Pass",
+      "dimension": "gjenanskaffelse",
+      "value": "Rimelignødvendigpass/innhentingvednavngittefarer4.2.1–6;ikkebaretilfeldigtap.",
+      "location": "10 pkt4.2.8",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-033",
+      "scope": "super",
+      "subject": "Uhell",
+      "dimension": "egenandel/utløser",
+      "value": "Ytreplutseligfysisk,kjentårsak/tid/fremvisning,3kpercase;kap4grenserfortsatt.",
+      "location": "11 pkt4.2.9",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-034",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "sum/utløser",
+      "value": "Ubegrensetrimelignødvendigakuttsykdom/ulykke/død;ikke kjentsykdomskomplikasjon,utgiftinnenreiseperioden.",
+      "location": "13 pkt5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-035",
+      "scope": "all",
+      "subject": "Medisinsk",
+      "dimension": "omfang",
+      "value": "Lege/sykehus,lokaltforeskrevetmedisin/utstyr/spesialist.",
+      "location": "13 pkt5.2.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-036",
+      "scope": "all",
+      "subject": "Tann",
+      "dimension": "sum",
+      "value": "5kperskadetilfelle.",
+      "location": "13 pkt5.2.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-037",
+      "scope": "all",
+      "subject": "Hjemtransport",
+      "dimension": "vilkår",
+      "value": "Legeordre,ikkeadekvatbehandlinglokalt,ledsager,kisteurne;begravelsepåstedmax40k/maksreturkost.",
+      "location": "14 pkt5.2.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-038",
+      "scope": "all",
+      "subject": "Endret reise",
+      "dimension": "periode",
+      "value": "Familiealvorligsykdom/dødpådestinasjon:forlengetopphold/endretruteinntil14d.",
+      "location": "14 pkt5.2.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-039",
+      "scope": "all",
+      "subject": "Tilkallelse",
+      "dimension": "personer",
+      "value": "Inntil3nærefamiliemedlemmer vedsværtalvorlig/livstruende/død,ikkealleredehjemtransportbestemt/lokalthjemsykehus.",
+      "location": "14 pkt5.2.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-040",
+      "scope": "all",
+      "subject": "Hjemkallelse",
+      "dimension": "omfang",
+      "value": "Alvorlignærfamilie/bolig/forretning;énreiseprcasebegrensetreturNorgekost.",
+      "location": "14 pkt5.2.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-041",
+      "scope": "upper",
+      "subject": "Tapte feriedager",
+      "dimension": "beregning",
+      "value": "Forhåndsgodkjenthjemreise/evakueringallemedforsikrede;sykehusmin1dsyke+én;prisandelavdagertapt/planlagt,ingenbonus/timeshare.",
+      "location": "14–15 pkt5.2.5–6",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-042",
+      "scope": "all",
+      "subject": "Returreise",
+      "dimension": "alternativ",
+      "value": "Innenopprinneligreisetid,i stedetfor avbruddkompensasjon ogmaxsammebeløp. Basisgren utenegenferiekompensasjonkreverforbehold.",
+      "location": "15 pkt5.2.7",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-043",
+      "scope": "all",
+      "subject": "Tapt turisttjeneste",
+      "dimension": "sykdomstak",
+      "value": "5kcase vedlegeforbud;ikke itilleggtilferietapkompensasjon.",
+      "location": "15 pkt5.2.8",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-044",
+      "scope": "all",
+      "subject": "Eneste medreisende",
+      "dimension": "sum",
+      "value": "60kcase reise/oppholdsomfølgeavenestemedreisendeshjemtransport/hjemkallelse.",
+      "location": "15 pkt5.2.9",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-045",
+      "scope": "all",
+      "subject": "Psykologisk førstehjelp",
+      "dimension": "timer/vilkår",
+      "value": "10timerakuttkriseetteralvorlighendelse,umiddelbart/inettverk,ikkelangtidspåkjenning/ordinærbehandling.",
+      "location": "15 pkt5.2.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-046",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "unntak",
+      "value": "Ikkeetterhjem/venteliste/privatklinikkNorden/ikkelegerekvirertfly/rus/kosmetikk/feilbehandling/fødsel>=36eller28flerling/søkredning.",
+      "location": "15–16 pkt5.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-047",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "behandlingsperiode",
+      "value": "Sammesykdom/ulykke løpendebehandlingførste30dageretterførstelege/tannlegebesøk.",
+      "location": "16 pkt5.4.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-048",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "forhåndskontakt",
+      "value": "Kontakt vedforventet>10kmedisinsk/alvorligskade/endrethjemreise/hjemtransport/tilkallelse.",
+      "location": "16 pkt5.4.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-049",
+      "scope": "all",
+      "subject": "Evakuering",
+      "dimension": "sum/utløser",
+      "value": "UbegrensetetterUD/angittemyndighet/If vedkrigterror/natur/pandemiutenlands;ikkeforhåndsreiseråd;overnattinginntilevakueringmulig.",
+      "location": "17 pkt6",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-050",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "geografi/sum",
+      "value": "UtenforNorden,privat;10millBasisStandard/15millSuperpercase+sakskost.",
+      "location": "17–19 pkt7",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-051",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "unntak",
+      "value": "Kontraktsansvar,låntting,familie,næring,motor/båt/eiendom/forurensingunntak medsmalehjelpemiddelunntak.",
+      "location": "17–18 pkt7.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-052",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "geografi/sum",
+      "value": "UtenforNorden100kpertvist/250kmin3parter,sammepørsmål;tvistførsluttreise.",
+      "location": "19 pkt8.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-053",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Idømtkost/yrke/eiendom/familie/motor/straff/forvaltningførklageuttømt/Ifoppgjørunntatt;egenandellokalweb0.",
+      "location": "19–20 pkt8.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-054",
+      "scope": "all",
+      "subject": "ID-tyveri",
+      "dimension": "sum/status",
+      "value": "1milljuridiskassistcase,meldetpoliti/skjeddogkonstatertiperioden;forebyggeyterligereogbetalingsanmerkning.",
+      "location": "21 pkt9",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-055",
+      "scope": "all",
+      "subject": "ID-tyveri",
+      "dimension": "unntak",
+      "value": "Ikkenæring/nærfamilie/grovfamiliestraff/økonomisktapannetennjuridisk.",
+      "location": "21 pkt9.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-056",
+      "scope": "super",
+      "subject": "Leid transportmiddel",
+      "dimension": "sum/utløser",
+      "value": "Ubegrensetavtaleegenandel ytre skade/tyveri/nøkkel:bil/bobil<=7500kg,MC>50cc,sykkel/el;ferieminovernatting.",
+      "location": "21–22 pkt10.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-057",
+      "scope": "super",
+      "subject": "Leid transportmiddel",
+      "dimension": "vilkår",
+      "value": "Gyldigførerkort,kaskoCDW+TPmotorkjøretøy;privatleiekunoffentligbildelingsaktør;ikkearbeid/reparasjonserstatning/leasing/abonnement/motorsport/kosmetisksykkel.",
+      "location": "22 pkt10.1–2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-058",
+      "scope": "super",
+      "subject": "Skadedyr",
+      "dimension": "sum/egenandel/sted",
+      "value": "100kcase/2kegenandel,AnticimexiNorgefastboligetterdokumentertutenlandsreise.",
+      "location": "22 pkt11.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-059",
+      "scope": "super",
+      "subject": "Skjeggkre",
+      "dimension": "serviceperiode",
+      "value": "3befaringerførsteår,utstyrselvhjelp/rådi4årforutsattløpendeavtale.",
+      "location": "22 pkt11.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-060",
+      "scope": "super",
+      "subject": "Skadedyr",
+      "dimension": "unntak",
+      "value": "Ikkeandrebygg/fellesbod/fysiskinnboskade/byggåpning/dødedyr/varme/kulde/gass/førstart/etteropphør/utendørs/næring;selvbetaltbilfriadkomst.",
+      "location": "23 pkt11.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-061",
+      "scope": "expedition",
+      "subject": "Ekspedisjon",
+      "dimension": "tillegg",
+      "value": "Utvidergeografi/risikomiljøforpersonerogperiodeibevis;ikkeautomatiskvalgt,ikkegenersøkredningstillagt.",
+      "location": "23 pkt12",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-062",
+      "scope": "all",
+      "subject": "Fast ulykkeserstatning",
+      "dimension": "uttrykkelignei",
+      "value": "Medisinskeutgifterdekkes;ingenutbetalingformedisinsk invaliditetellerdød.",
+      "location": "Dekningstabell sykdom",
+      "source": "web"
+    },
+    {
+      "id": "IF-RE-063",
+      "scope": "all",
+      "subject": "Tjenestereise",
+      "dimension": "omfang",
+      "value": "Selveproduktogmedisinskja;avbestillingnei,Superleieegenandel/forseinkettjenestenefrieunntakholdes.",
+      "location": "FAQ alle reiser",
+      "source": "web"
+    },
+    {
+      "id": "IF-RE-064",
+      "scope": "all",
+      "subject": "Digital lege",
+      "dimension": "service",
+      "value": "Gratis,Hjemmelegene07–22norsk,digitaldersomfysiskikketrengs;kontaktinnen20min;døgnåpenIftelefonadskilt.",
+      "location": "Slik får du hjelp",
+      "source": "help"
+    },
+    {
+      "id": "IF-RE-065",
+      "scope": "all",
+      "subject": "ID-tyveri",
+      "dimension": "juridisk førstelinje",
+      "value": "10timerSolverførstehjelp;separat1milltvist.",
+      "location": "Tabell ID-tyveri",
+      "source": "web"
+    },
+    {
+      "id": "IF-RE-066",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "standard",
+      "value": "IngenegenandelunntattSuperuhell3k/skadedyr2k.",
+      "location": "Egenandeler",
+      "source": "web"
+    },
+    {
+      "id": "IF-RE-067",
+      "scope": "super",
+      "subject": "SmartDelay",
+      "dimension": "service/vilkår",
+      "value": ">1tforsinkelse,selv+4,registrering>=24tfør;FlightStatsmelding;lounge/alternativt40EURpersonutenlounge;ikke kansellert/utsatttilneste24timer.",
+      "location": "Hva er og FAQ",
+      "source": "smart"
+    },
+    {
+      "id": "IF-RE-068",
+      "scope": "super",
+      "subject": "SmartDelay",
+      "dimension": "frivilligekstratjeneste",
+      "value": "AirHelpvalgfritt,>3t/opptil600EURsøknad,35%honorar;ikkeegenubetingetforsikringssum.",
+      "location": "AirHelp",
+      "source": "smart"
+    },
+    {
+      "id": "IF-RE-069",
+      "scope": "super",
+      "subject": "Supergaranti",
+      "dimension": "periode",
+      "value": "2årvedflytting;fullsærvilkårikkeilokalpakke,ingenautomatiskcatalogoverride.",
+      "location": "Supergaranti",
+      "source": "web"
+    },
+    {
+      "id": "IF-RE-070",
+      "scope": "all",
+      "subject": "Psykologisk førstehjelp",
+      "dimension": "kildekonflikt",
+      "value": "Fullvilkår10timer;web10behandlinger. Ikke anta ekvivalens eller utvide automatisk.",
+      "location": "15 pkt5.2.10 vs webtabell",
+      "source": "terms"
+    },
+    {
+      "id": "IF-RE-071",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "prosedyre",
+      "value": "Dokumentasjon/bevisforrang/skjønn/regress,ikkehverprosedyrenyttcanonicalfact;generalGEN2-9deltlokaltmenkontraktversjonavklares.",
+      "location": "3;24–25",
+      "source": "terms"
+    }
+  ],
+  "source_contents_read": [
+    "ERA3-4 all26pages effective2025-03-22",
+    "IPID2pages",
+    "all4localHTMLbodies/FAQ inclSmartDelay",
+    "GEN2-9 exactlocalgeneralreadpreviouscheckpoint;versionapplicabilitynotassumed"
+  ],
+  "scope": "Basis/Standard/Super;45/90 customerchoice and365 extension separate;nohistorical180import;expeditionoptional."
+}

@@ -1,0 +1,52 @@
+{
+  "status": "INSURANCE_CATALOG_WAVE2_BLOCKED",
+  "all_seven_accounted_for": true,
+  "execution_order_respected": true,
+  "dependencies_respected": true,
+  "all_pass_have_tests_and_audit": true,
+  "canonical_extension_batches_not_started": true,
+  "P1_counts_reconciled": true,
+  "unexpected_project_mutations": [],
+  "unexpected_product_changes": [],
+  "new_alias_mapping_gate": "FAIL",
+  "full_wave2_gate": "NOT_RUN",
+  "test_outputs_parse": true,
+  "tests": {
+    "B-019": {
+      "tests": 76,
+      "pass": 76,
+      "fail": 0,
+      "skipped": 0
+    },
+    "B-017": {
+      "tests": 138,
+      "pass": 136,
+      "fail": 2,
+      "skipped": 0
+    },
+    "new_tests_added": 12,
+    "new_tests_edited_after_failure": 0,
+    "new_test_failures": 1,
+    "old_test_failures": 1,
+    "audit_harness_corrections": 1,
+    "flaky_reruns": 0
+  },
+  "typescript": "NOT_RUN_AFTER_STOP",
+  "lint": "NOT_RUN_AFTER_STOP",
+  "webpack": "NOT_RUN_AFTER_STOP",
+  "synthetic_runtime": "NOT_RUN_AFTER_STOP",
+  "head_unchanged": true,
+  "branch": "main",
+  "staged_files": 0,
+  "diff_check": "PASS",
+  "prior_work_preserved": true,
+  "immutable_input_files_verified": 1058,
+  "immutable_inputs_unchanged": true,
+  "sources_and_manifests_unchanged": true,
+  "source_hashes_targeted_verified": 3,
+  "env_read_or_changed": false,
+  "railway_accessed": false,
+  "commit_push_deploy": false,
+  "wave3": "NOT_STARTED",
+  "catalog_pilot_gate": "REMEDIATION_REQUIRED"
+}

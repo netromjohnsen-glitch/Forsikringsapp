@@ -1,0 +1,406 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FIN-01",
+      "subject": "Personkrets",
+      "dimension": "eligibility",
+      "value": "Fastfolkeregistrerthusstandikkebokollektiv;utdanning/vernepliktbarnutensadresseendring;egnebarnannetstedunder20;14deierskifte;2mndsamlivsbrudd.",
+      "location": "§1s1",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-02",
+      "subject": "Geografi",
+      "dimension": "duration",
+      "value": "AvtaltstedogNordenmidlertidiginntil3år+nybosted;naturogsvakvindNorge;ansvar/rettshjelpNorden.",
+      "location": "§2s1",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-03",
+      "subject": "Forsikringssum",
+      "dimension": "agreed",
+      "value": "Avtalttotalinnbosumbevis;egneogtingrisikooverførtvedlov/skriftligavtale.",
+      "location": "§3.1s1",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-04",
+      "subject": "Objektgrenser",
+      "dimension": "valuables",
+      "value": "Gull/smykker350k,annetmetall350k,vin/sprit500k,kunst500k,enkeltting/samling350k;utvidbarbevis. IPIDkunst350k konflikt.",
+      "location": "§3.1s1;IPIDs1",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-05",
+      "subject": "Lagring",
+      "dimension": "sum",
+      "value": "EksterntlagerStandard100k/Topp350k;ikkeubegresetsum.",
+      "location": "§3.1s1",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-06",
+      "subject": "Sykkel",
+      "dimension": "sum",
+      "value": "Standard20k/Topp40k;el-sykkellovlig.",
+      "location": "§3.1s1",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-07",
+      "subject": "Penger",
+      "dimension": "sum",
+      "value": "Standard15k/Topp30k;verdipapirmed.",
+      "location": "§3.1.1s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-08",
+      "subject": "Ting",
+      "dimension": "small_objects",
+      "value": "Kano/kajakk/seilbrett;hageutstyr≤10km/t;hobbyveksthus/telt20k/40k.",
+      "location": "§3.1.1s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-09",
+      "subject": "Kjøretøytilbehør",
+      "dimension": "sum",
+      "value": "Løsebildeler20k/40k,båtdeler20k/40kibygning/container;tilhenger20k/40k;ikkemotorkjøretøy/elsparkesykkel/nøklerhjulfelger.",
+      "location": "§3.1.1s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-10",
+      "subject": "Yrkesløsøre",
+      "dimension": "limits",
+      "value": "Standardhjem50k/arbeidsbygning25k/skap5k;Topp100k/50k/10k;ikkefastselvstendigvirksomhetutenforbolig.",
+      "location": "§3.1.1s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-11",
+      "subject": "Leid/sameid bolig",
+      "dimension": "fixtures",
+      "value": "Varmepumpe/kjøling;egentillegginnredningStandard100k/Toppingensærgrensehvisikkeerstattetbygning/leieopphør;integrertehvitevarer;tyverirom20k/40k.",
+      "location": "§3.1.2s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-12",
+      "subject": "Ubeboelig",
+      "dimension": "accommodation",
+      "value": "Normalreparasjonstidgodkjentmeropphold;Standard100k/Toppingenegenbeløpsgrense;fradragsparteutgifter/leietap.",
+      "location": "§3.2s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-13",
+      "subject": "Merutgifter",
+      "dimension": "removal",
+      "value": "Nødvendigflytting/lagring/rydding/bortkjøring/deponering.",
+      "location": "§3.2s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-14",
+      "subject": "Rekonstruksjon",
+      "dimension": "sum",
+      "value": "25k/50knotaterfoto/data;ikkereiseopphold;Toppikkeetteruhell/mobil.",
+      "location": "§3.2s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-15",
+      "subject": "Gass/vann",
+      "dimension": "loss",
+      "value": "Lekkasjeutstrømning20k/40k.",
+      "location": "§3.2s2",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-16",
+      "subject": "Brann",
+      "dimension": "coverage",
+      "value": "Brann/lyn/spenningsfeil/eksplosjon/nedsoting;ikkesvi/gnistutenbrann/heksesot.",
+      "location": "§4.1s3",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-17",
+      "subject": "Vann",
+      "dimension": "coverage",
+      "value": "Rør/utstyr/akvarium;grunn/avløpståendeovergulv;ikkesøl/bruk/kondens/soppråte.",
+      "location": "§4.2s3",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-18",
+      "subject": "Vann",
+      "dimension": "ingress",
+      "value": "Toppoverterrenggjennomutettbygg;Standardingenpositivslikregel.",
+      "location": "§4.2s3",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-19",
+      "subject": "Glass/porcelain",
+      "dimension": "scope",
+      "value": "Standardbruddleidsameieglassdørvindu/sanitær/platetoppinnbygging;ikkereper/punktering. Topp§4.10annetplutseligmedunntak.",
+      "location": "Standard§4.3s3;Topp§3.1.2s2/§4.10s5",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-20",
+      "subject": "Vind/snø",
+      "dimension": "coverage",
+      "value": "Standardeksplicitvindsvakstorm/snøtakrasikketelt/veksthus;Toppannenfysiskplutselig§4.10medunntak.",
+      "location": "Standard§4.4–5s3;Topp§4.10s5",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-21",
+      "subject": "Tyveri hjemme",
+      "dimension": "limits",
+      "value": "Bygning;hærverkvedtyveri/ulovliginntrengningikkeøvrig;fellesbod100k/350k;privatuteareal50k/100k;ikkeverdigjenstanderbod/ute/felles.",
+      "location": "Standard§4.6.1s4;Topp§4.3.1s3",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-22",
+      "subject": "Tyveri utenfor",
+      "dimension": "limits",
+      "value": "Annenbeboddbolig;arbeidpersonlig20k/40k;sykehus200k;allmennbygning20k/40k;barnevognsykkelhenger;ikkepengerverdipapir/fritidsboligavtale.",
+      "location": "Standard§4.6.2s4;Topp§4.3.2s3–4",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-23",
+      "subject": "Tyveri lager",
+      "dimension": "limits",
+      "value": "100k/350kbygning/container;ikkeverdigjenstander.",
+      "location": "Standard§4.6.3s4;Topp§4.3.3s4",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-24",
+      "subject": "Tyveri fra bil/båt",
+      "dimension": "limits",
+      "value": "40kpersonligogyrkesløsøre,bilMCbåt/låstboks;ikkeverdigjenstander.",
+      "location": "§4.3.4s4",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-25",
+      "subject": "Ran",
+      "dimension": "scope",
+      "value": "Ran/overfall;nappingfra/påveske20k/40k;ikkefritidsboligavtale.",
+      "location": "Standard§4.7s4;Topp§4.4s4",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-26",
+      "subject": "Matvarer",
+      "dimension": "sum",
+      "value": "Utilsiktettemperatur20k/50k;skadepåfrysekjøleenhetsomfølgeomfattes;oppbevarskadetmat.",
+      "location": "Standard§4.8s4;Topp§4.5s4",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-27",
+      "subject": "Flytting",
+      "dimension": "coverage",
+      "value": "Nordenhelflyttingtransport/inn-utbæring/lagringstyveri;transporttyveri100k;enkeltgjenstand100k.",
+      "location": "§4.6s4",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-28",
+      "subject": "Flytting",
+      "dimension": "exclusions",
+      "value": "Ikkeverdigjenstandstyveribil/tilhenger,kosmetisk,tilhenger/hobbyhus,penger,piano/flygel,dyr/planter,underslag.",
+      "location": "§4.6s4",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-29",
+      "subject": "Insekter",
+      "dimension": "limits",
+      "value": "Veggedyr/kakerlakk/skjeggkre150k;skjeggkre3befaringer;ikkeførinnflytting/etterutflytting.",
+      "location": "§4.7s4",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-30",
+      "subject": "Mobil",
+      "dimension": "repair",
+      "value": "Tilfeldigplutseligytrekjenttidårsak;avtaleverksted;ikkemangel/kosmetisk/innholdgjenoppretting;2kegenandel.",
+      "location": "§4.8s4;§6.2s8",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-31",
+      "subject": "Mus/rotter",
+      "dimension": "scope",
+      "value": "Skadeinnefraaktivitetstartetetteravtale;ikketingslagretgarasje/utebod/låve.",
+      "location": "§4.9s4–5",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-32",
+      "subject": "Uhell",
+      "dimension": "limits",
+      "value": "Annenfysiskplutseligytrekjenttid/årsak;utenforsted50k;§4.1–9unntakgjelderfortsatt.",
+      "location": "§4.10s5",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-33",
+      "subject": "Uhell",
+      "dimension": "excluded_objects",
+      "value": "Ikke sykkelmikromob/sportunderbruk,fjernstyrt/drone,veksthus/telt,motorkjøretøytilhenger,mobil,frimerkerpenger,yrkesgjenstand,utleiet,innsjekket,basseng,dyr(unntakakvarieglass).",
+      "location": "§4.10s5",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-34",
+      "subject": "Uhell",
+      "dimension": "excluded_causes",
+      "value": "Ikkeegenmangel/slitasje,kjæledyr,kondensfukt,bakterierinsekter,utettglass,frost;mistet/borte/ukjent/kosmetisk/underslagrekonstruksjon.",
+      "location": "§4.10s5",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-35",
+      "subject": "Rullestol",
+      "dimension": "limits",
+      "value": "300k/hendelsevarigulykkeinvaliditetellerbarnmedfødt/adoptert;boligsikredesvedhendelse,godkjentfør,utgifterinnen10år.",
+      "location": "§4.11s5–6",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-36",
+      "subject": "ID-tyveri",
+      "dimension": "assistance",
+      "value": "Mistankeelleroppdaget/dokumentertperiode;rådogkredittoppryddingNorden,0assistanseegenandel.",
+      "location": "§4.12s6",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-37",
+      "subject": "ID-tyveri",
+      "dimension": "legal",
+      "value": "1milljuridisktvist/betalingsanmerkning;godkjenning4k+20%;ikkeøkonomisk/indirektetap,næring,familie/tiltrodde.",
+      "location": "§4.12.1–2s6;§6.2s8",
+      "scope": "top"
+    },
+    {
+      "id": "FIN-38",
+      "subject": "Oppgjør",
+      "dimension": "cash_work",
+      "value": "Likeverdigreparasjon/nytt/kontantvalg;250/timeegeninnsats;75%arbeidutendok/MVAikke.",
+      "location": "Standard§5.1s4;Topp§5.1s7",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-39",
+      "subject": "Oppgjør",
+      "dimension": "used",
+      "value": "Min1/3verdifallforfradrag;bruktkjøpgavearv/samler/ikkebruk/andreennhusstandmarkedsverdi;edeltmetallnyverdi.",
+      "location": "Standard§5.3s5;Topp§5.3s7",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-40",
+      "subject": "Aldersfradrag",
+      "dimension": "table",
+      "value": "Max80%;hvitebrune5år10%,mobil1år20%,elektronikk1år10%,varmepumpe5år10%,jacuzzi5år10%,sykkel3år10%,briller1år10%;påbegyntår.",
+      "location": "Standard§5.3.1s5;Topp§5.3.1s7",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-41",
+      "subject": "Egenandel",
+      "dimension": "general",
+      "value": "Bevisstyrt;høyesteperhendelse/utstyr,etteravkorting.",
+      "location": "Standard§6s5;Topp§6s8",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-42",
+      "subject": "Egenandel",
+      "dimension": "prevention",
+      "value": "FGalarmsentralbrann/tyveri,elNEK,vannhovedinntak,sikkerhetsutstyr:min3k/4kreduksjon;overvannsforebygging0.",
+      "location": "Standard§6.1s5;Topp§6.1s8",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-43",
+      "subject": "Egenandel",
+      "dimension": "special",
+      "value": "Sykkel4kFGregistrerttyveri2k;bygningsglass/sanitær/hvitevarer2k;ansvar4k;legal4k+20%;natur8k.",
+      "location": "Standard§6.2s6;Topp§6.2s8",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-44",
+      "subject": "Yrkesskade",
+      "dimension": "limits",
+      "value": "Privatarbeidsgiveruten sumtak/egenandel;ikkefrivillig/enkeloppdrag/under10timeuke.",
+      "location": "Standard§7s6;Topp§7s8",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-45",
+      "subject": "Ansvar",
+      "dimension": "agreed",
+      "value": "Nordenprivatretterstatning;sumibevisperhendelse;person/ting/følgetap,egenandel4k.",
+      "location": "StandardAnsvars6–8;ToppAnsvars9–10",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-46",
+      "subject": "Ansvar",
+      "dimension": "exclusions",
+      "value": "Kontrakt/leide-lånte/familie/felles/næring/fast eiendom/forurensningikketilfeldig/objektivtforeldreansvarunntatt.",
+      "location": "StandardAnsvar§3.1s6–7;Topp§3.1s9–10",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-47",
+      "subject": "Ansvar",
+      "dimension": "special_objects",
+      "value": "Unntakfraobjektunntak:el25km/t,gressmaskin/rullestol,hanggliderutenmotor,båt≤14fot≤10hk,kano;droneA1–A3hobbyregistrert750000SDR.",
+      "location": "StandardAnsvar§3.1s7;Topp§3.1s9",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-48",
+      "subject": "Rettshjelp",
+      "dimension": "limits",
+      "value": "Privattvist100køkonomiskinteresse,min3parterkan250k;15kFinKN25kforlik/jordskifte,sakkyndig20%;4k+20%.",
+      "location": "StandardRettshjelps8–10;ToppRettshjelps11–13",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-49",
+      "subject": "Rettshjelp",
+      "dimension": "exclusions",
+      "value": "Tvistegrunnlagføravtale/yrke/familie/straff/annetobjekt/motorkjøretøy/båt>15foteller10hk;egenbygningsrettshjelpikkeparalleltviaInnbo.",
+      "location": "StandardRettshjelps8–10;ToppRettshjelps11–13",
+      "scope": "all"
+    },
+    {
+      "id": "FIN-50",
+      "subject": "Naturskade",
+      "dimension": "scope",
+      "value": "BrannforsikretløsøreNorge;ras/storm/flom/stormflo/flodbølge/meteor/jordskjelv/vulkan;antenne/markiseegenutvidelse;ikkevanlignedbør/frost/tele/tørke/snøtyngde.",
+      "location": "§3.6s3;StandardNatur10–11;ToppNatur13–14",
+      "scope": "all"
+    }
+  ],
+  "source_package": "Standard11p+Topp14p+IPID2p. Shared legal/nature reused by exact clause and text; top is standalone broader full terms, not blind inheritance."
+}

@@ -1,0 +1,1056 @@
+{
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "source": "catalog/sources/storebrand/hus/Vilkar-hus-og-hytte-HUS10.pdf",
+  "pages_read": 49,
+  "other_read": [
+    "Full9pageUTLEI03",
+    "Full2pageIPID",
+    "FullHTML",
+    "general11sharedhashalreadyreviewed"
+  ],
+  "rules": [
+    {
+      "inventory_id": "SB-HU-001",
+      "subject": "Avtale",
+      "dimension": "bevis",
+      "value": "Valgt Standard/Super, bygninger, fullverdi/førsterisiko og egenandel er bevisstyrt; bevis går foran.",
+      "pages": [
+        1,
+        2,
+        20,
+        30
+      ],
+      "section": "Innledning/B.6/B.7",
+      "levels": "both",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "SB-HU-002",
+      "subject": "Sikrede",
+      "dimension": "eiere",
+      "value": "Tinglyst eier/panthaver/sikkerhetsrett; dødsbo; ny eier14d eller tidligere nyforsikring, ikke mangelskrav.",
+      "pages": [
+        5
+      ],
+      "section": "B.1",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-HU-003",
+      "subject": "Geografi",
+      "dimension": "sted",
+      "value": "Bevisadressen; naturNorge,ansvar/rettshjelpNorden. Generell B.2 droneEuropa versus D-eieransvar uten droneavsnitt krever scopesjekk.",
+      "pages": [
+        5
+      ],
+      "section": "B.2",
+      "levels": "both",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "SB-HU-004",
+      "subject": "Bygning",
+      "dimension": "omfang",
+      "value": "Bevisførte bygg,grunnmur/fundament/fastutstyr,midlertidignedmontertmontering/reparasjon;ikkeutstyrfornæring/landbruk,drivhus/plasthall/antikvariskeløsninger.",
+      "pages": [
+        5,
+        6
+      ],
+      "section": "B.3.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-005",
+      "subject": "Småbygg",
+      "dimension": "nivå/areal",
+      "value": "Frittstående opptil10m² uoppført i bevis omfattes medStandard. Superkolonnen sierikkeomfattet; ikke anta manglende grunnStandard for småbygg når hovedhuset harSuper.",
+      "pages": [
+        5,
+        6
+      ],
+      "section": "B.3.1",
+      "levels": "both",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "SB-HU-006",
+      "subject": "Rør/solceller",
+      "dimension": "omfang",
+      "value": "Tilknyttede rør/kabler framtiloffentlignett/brønn/tank/kum;privatforbrukssolceller;ikkebrønn/borehull/drens/spredning/infiltrasjon,bortsettfrabrann/naturpådrens.",
+      "pages": [
+        6
+      ],
+      "section": "B.3.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-007",
+      "subject": "Hage",
+      "dimension": "areal/omfang",
+      "value": "5dekar,hage/gjerde/flaggstang,fasttilknyttetbasseng/boblebad/badestamp;ikke drivhus.",
+      "pages": [
+        6
+      ],
+      "section": "B.3.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-008",
+      "subject": "Brygge",
+      "dimension": "sum/årsaker",
+      "value": "Privatflytebrygge/trebrygge/friterrasse100000 vedbrann/natur;ikke fellesandel/stein/betong/molo/gangbro. B.3p6har setningomannenskade som p7 utelukker; ikkeutvidutenavklaring.",
+      "pages": [
+        5,
+        6,
+        7,
+        13,
+        14
+      ],
+      "section": "B.3/B.4.9",
+      "levels": "both",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "SB-HU-009",
+      "subject": "Utsmykning",
+      "dimension": "sum",
+      "value": "Kunstnerisk utsmykning på bygning500000.",
+      "pages": [
+        5
+      ],
+      "section": "B.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-HU-010",
+      "subject": "Trygghetsgaranti",
+      "dimension": "nybygg",
+      "value": "Nye uthus/naust/garasje/tilbygg/påbygg sidenhovedforfall dekkesmidlertidig;meldførnestefornyelse.",
+      "pages": [
+        7
+      ],
+      "section": "B.3.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-011",
+      "subject": "Brann",
+      "dimension": "omfang",
+      "value": "Brann/eksplosjon/slukkeutstrømming/nedsoting;plutseliggnist/svi10000;ikkeheksesot,sprengningsrystelse gårB4.7.",
+      "pages": [
+        7,
+        8
+      ],
+      "section": "B.4.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-012",
+      "subject": "Brann",
+      "dimension": "egenandel",
+      "value": "FGsentralalarmaktivgir0.",
+      "pages": [
+        8
+      ],
+      "section": "B.4.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-013",
+      "subject": "Elektrisk",
+      "dimension": "omfang",
+      "value": "Lyn/elektriskfenomen/kabelbrudd;varmepumpe/basseng bareoverspenning pånett dokumentertavnettselskap.",
+      "pages": [
+        8
+      ],
+      "section": "B.4.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-014",
+      "subject": "Snø",
+      "dimension": "omfang",
+      "value": "Snø/ispress,takras;ikkesvakkonstruksjon/råte/montasje,drivhus/pergola/paviljong,hage/basseng/brygge/kunutstyr.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-015",
+      "subject": "Snø",
+      "dimension": "eldrebygg/rydding",
+      "value": "Ikkeikkeboligtakeldreenn50år;svakkonstruksjonogslikteldretak kanlikevel få200000 dokumentertrydding.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-016",
+      "subject": "Rørbrudd",
+      "dimension": "omfang",
+      "value": "Innvendig/utvendigrør,tilknyttetbereder/tank/pumpe/kum;rimeligtiningutvendigvann/avløp ogoppstopping/spyling.",
+      "pages": [
+        9
+      ],
+      "section": "B.4.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-017",
+      "subject": "Rørbrudd",
+      "dimension": "unntak",
+      "value": "Ikkesvank/motfall/deformasjon,takrenne/nedløp/sluk,drens/infiltrasjon/spredning(barebrann/natur),konstruksjon/montasje/råtesamvirkning.",
+      "pages": [
+        10
+      ],
+      "section": "B.4.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-018",
+      "subject": "Vann",
+      "dimension": "omfang",
+      "value": "Rørlekkasje/overløp/tilbakeslag,akvarium/slukkeapparat;plutselig terreng/grunnvannvannspeil utovergulv,ikkeoppforetgulv;flomlignendeplutselighageskade.",
+      "pages": [
+        10
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-019",
+      "subject": "Vann",
+      "dimension": "unntak",
+      "value": "Ikkeannetinntrengningsmåte,søl/sopp/råte/mugg/kondens,dampskade,utettvåtrom/sluk,takrenne/nedløp/taksluk,tapavvæske/gass;SuperseC.",
+      "pages": [
+        10,
+        11
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-020",
+      "subject": "Vann",
+      "dimension": "egenandelfritak",
+      "value": "Heleboligvannstopper vedinnvendigbrudd,aktivFGvannalarm,overvannsforebyggendetiltak.",
+      "pages": [
+        11
+      ],
+      "section": "B.4.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-021",
+      "subject": "Tyveri",
+      "dimension": "omfang/unntak",
+      "value": "Fastbygningsdel/hage/bassengtilknyttet;ikkehusstand,leieboer/gjesterutenutleietillegg,kosmetiskemerker.",
+      "pages": [
+        11
+      ],
+      "section": "B.4.6",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-022",
+      "subject": "Plutselig",
+      "dimension": "hovedomfang",
+      "value": "Andreplutseligeuforutsetteskader inklvindunderstorm,glassbrudd/nedfeltplatetopp.",
+      "pages": [
+        12
+      ],
+      "section": "B.4.7",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-023",
+      "subject": "Plutselig",
+      "dimension": "unntak",
+      "value": "Ingenmaskinalene/utvendigrør/bareutstyr/hage,svakgrunn/konstruksjon/rust/slitasje/egensvikt/kosmetikk;vann/råte/dyr/håndverkerfeilfølger egneB/C-regler.",
+      "pages": [
+        12
+      ],
+      "section": "B.4.7",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-024",
+      "subject": "Psykolog",
+      "dimension": "timer/vilkår",
+      "value": "10timeretteralvorligbrann/ran/overfall/voldtektvedhjem;avtaltbehandler,politi,reisefolketrygd,noreiseutland,terapiinnen12mnd.",
+      "pages": [
+        13
+      ],
+      "section": "B.4.8",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-025",
+      "subject": "Natur",
+      "dimension": "omfang/tomt",
+      "value": "Lovnaturinkl ustabilgrunn;gjenoppføringsforbudnyfaregir totalskade ogtomtomsetningsverdi opp til5dekar.",
+      "pages": [
+        13,
+        14
+      ],
+      "section": "B.4.9",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-026",
+      "subject": "Natur",
+      "dimension": "unntak/egenandel",
+      "value": "Kunantenne/markise/skiltogikke-direkteforebygging unntatt;8000 datert2024/2025,tilenhvertidlovbestemt.",
+      "pages": [
+        14,
+        30
+      ],
+      "section": "B.4.9/B.7",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-027",
+      "subject": "Oppføring",
+      "dimension": "omfang",
+      "value": "Bygning/materialer,entreprenør medforsikretmenikkehansløsøre;egetverktøy100000,leie/lånbrakkermedskriftligansvar50000.",
+      "pages": [
+        14,
+        15
+      ],
+      "section": "B.4.10",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-028",
+      "subject": "Oppføring",
+      "dimension": "utløser/unntak",
+      "value": "Tyverilåstbrakke/lukketbygg,montertglassundertransport/montering;ikkeute-tyveri,åpentbyggsnø/is/vindunderstorm/terreng-rørvann,råte/skadedyr/håndverkerfeil.",
+      "pages": [
+        15
+      ],
+      "section": "B.4.10",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-029",
+      "subject": "Oppføring",
+      "dimension": "ansvar",
+      "value": "Graving/sprengning300000ting og3000000person.",
+      "pages": [
+        15
+      ],
+      "section": "B.4.10",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-030",
+      "subject": "Skadedyr",
+      "dimension": "bekjempelse",
+      "value": "Insekter/rotter/mus inne;forhåndskontakt/rekvirertleverandør,aktivitetstarteriforsikringstid;kartleggingoginntil2behandlinger hvisførsteforsøksvikter.",
+      "pages": [
+        15,
+        16
+      ],
+      "section": "B.4.11",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-031",
+      "subject": "Gnagere",
+      "dimension": "skade/lukt",
+      "value": "Bygningsskaderotter/musogdødgnager vedvarendelukt;svekkingisolasjonmåpåvises.",
+      "pages": [
+        16
+      ],
+      "section": "B.4.11",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-032",
+      "subject": "Skadedyr",
+      "dimension": "unntak",
+      "value": "Ikkegassing/varme/frys,forebygging,innbo/varer/planter/utendørs/næringsrelatert,aktivitetfør/etterforsikring,ikkeavtalttiltak,kosmetikk.",
+      "pages": [
+        16
+      ],
+      "section": "B.4.11",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-033",
+      "subject": "Rullestol",
+      "dimension": "sum/krav",
+      "value": "500000beggenivå,ikkefritidsbolig;ulykke/fødseliforsikringstid,minst50%invaliditet,medfødtfastslått2år,utgifter5år,offentligstøttefratrekk,samletmedinnbo.",
+      "pages": [
+        16,
+        17
+      ],
+      "section": "B.4.12",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-034",
+      "subject": "Rydding",
+      "dimension": "sum",
+      "value": "Riving/rydding/deponering veddekketskade;førsterisikotillegg20%avsum.",
+      "pages": [
+        18
+      ],
+      "section": "B.5.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-035",
+      "subject": "Bokostnader",
+      "dimension": "beregning",
+      "value": "Dokumentertenødvendigemerutgifter opptilmarkedsleie;udokumentert50%;umøblertgodkjentrom,12mndmarkedsleiebasis,sparteutgifterogegenforbedringsforsinkelseunntatt.",
+      "pages": [
+        18
+      ],
+      "section": "B.5.2.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-036",
+      "subject": "Husleietap",
+      "dimension": "skade",
+      "value": "Bevisavtaltutleie,tapteinntekter fraskadetilnormalferdigstillelse;markedsleie/høyesttidligereleie;ikkeøktreparasjontidforegneforbedringer.",
+      "pages": [
+        18
+      ],
+      "section": "B.5.2.1.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-037",
+      "subject": "Prisstigning",
+      "dimension": "mekanisme",
+      "value": "SSBbyggekostindeks franormalreparasjonsperiode;utbetalesetterreparasjon;samordnetmedbokost/leietap ellerFALrenter(høyeste).",
+      "pages": [
+        19,
+        23,
+        24
+      ],
+      "section": "B.5.3/B.6.4.4",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-HU-038",
+      "subject": "Klima",
+      "dimension": "sum/terskel",
+      "value": "150000vedfullverdi ogreparasjonover75%avgjenoppbygging;tiltakutoverlovkravvedgjenoppføring.",
+      "pages": [
+        19
+      ],
+      "section": "B.5.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-039",
+      "subject": "Fullverdi",
+      "dimension": "krav",
+      "value": "Fastfolkeregistrertbolig,gjenoppbyggingsammeeiendom/sammekommunevedoffentligforbud,sammeformål,5år,sikrede/ektefelle/samboerbyggherre;ellerssærregler.",
+      "pages": [
+        20,
+        21
+      ],
+      "section": "B.6.1/B.6.2.1.1",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-040",
+      "subject": "Førsterisiko/andrebygg",
+      "dimension": "verdiøkning",
+      "value": "Førsterisikobegrensetsum;andrebygginklgarasje/utleieboligfradragforverdiøkningover40%.",
+      "pages": [
+        20,
+        21
+      ],
+      "section": "B.6.1.2/B.6.2.1.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-041",
+      "subject": "Oppgjør",
+      "dimension": "selvarbeid",
+      "value": "Utenhåndverkerfaktura75%normaltimeeksmva;annetegetarbeid300/time,høyestselskapetskostnad.",
+      "pages": [
+        20
+      ],
+      "section": "B.6.2",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-HU-042",
+      "subject": "Gjenoppføringavvik",
+      "dimension": "oppgjør",
+      "value": "Annetsted/formål/eiergirallverdiøkningsfradrag;ikkegjenoppført5årtakomsetning/bruksverdi.",
+      "pages": [
+        21,
+        22
+      ],
+      "section": "B.6.3.1–2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-043",
+      "subject": "Kjøpannenbolig",
+      "dimension": "oppgjør",
+      "value": "Totalskade,boligiNorgesammeformål;taklavesteavgjenoppføringspriseKSMVAogtidligereomsetning+100%;oppussingmaks1mill/2år;alt5år;ikkepåbud/prisstigning,leietaptilovertakelse.",
+      "pages": [
+        22
+      ],
+      "section": "B.6.3.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-044",
+      "subject": "Hageoppgjør",
+      "dimension": "ungeplanter",
+      "value": "Gjenopprettingellerslavesteavkostnad/verditap,planterunggartnerivekst;ikkeforebygging.",
+      "pages": [
+        23
+      ],
+      "section": "B.6.4.3",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-HU-045",
+      "subject": "Påbud",
+      "dimension": "sum/vilkår",
+      "value": "Direkteskadedeltekniskpåbud,grunn/fundament;fredet1mill;5år,forholdsmessigareal,hvisikkeannetoffentligdekket;ikketidligerekrav/antikvarisk/metode/forebygging.",
+      "pages": [
+        25
+      ],
+      "section": "B.6.4.9",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-046",
+      "subject": "Sikkerhet",
+      "dimension": "krav",
+      "value": "Vedlikehold/takrenne2årlig,varme/snømåking/låsing,fagfolkVVS/el,krypkjeller2årlig,oljetankkontroll15årderetter5;stoppkranfravær3uker(hus),ladingoriginalogtilsyn.",
+      "pages": [
+        26,
+        27,
+        28,
+        29,
+        40
+      ],
+      "section": "B.6.4.10/D.4",
+      "levels": "both",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "SB-HU-047",
+      "subject": "Aldersfradrag",
+      "dimension": "tabell",
+      "value": "Bereder/fyr/pumpe5år5%,varme/kjøling/vent/strøm10år10%,hvitevare5år10%,utvendigikkeplastrør/tank/kum/bunnledning20år5%,basseng/badeinnretning2år10%;allemaks80%.",
+      "pages": [
+        29
+      ],
+      "section": "B.6.4.11",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-048",
+      "subject": "Aldersfradrag",
+      "dimension": "grunnlag",
+      "value": "Fradragreparasjon/graving/istandsettelse;eldstedelvedulikaldre;kunetterfrieår.",
+      "pages": [
+        29
+      ],
+      "section": "B.6.4.11",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-049",
+      "subject": "Egenandel",
+      "dimension": "samordning",
+      "value": "Bevisetsvalgteegenandel,kunhøyestevedsammehendelseflereStorebrandforsikringer.",
+      "pages": [
+        30
+      ],
+      "section": "B.7",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-050",
+      "subject": "Egenandel",
+      "dimension": "tillegg8000",
+      "value": "Enøkning8000frostinnrør,innrør>50år/plastute>30,takinntrengning>30,våtrom>30,maskinfølgevann>20utenlekkasjestopp;ikkeleggflereøkninger.",
+      "pages": [
+        30
+      ],
+      "section": "B.7.2",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-051",
+      "subject": "Egenandel",
+      "dimension": "bekjempelse",
+      "value": "Skadedyrbekjempelse2000.",
+      "pages": [
+        30
+      ],
+      "section": "B.7.3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-052",
+      "subject": "Egenandel",
+      "dimension": "fritak",
+      "value": "AlarmFGbrann/innbrudd/vann,heleboligvannstopp,overvannstiltak,rullestol0.",
+      "pages": [
+        30,
+        31
+      ],
+      "section": "B.7.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-053",
+      "subject": "Utleiebruk",
+      "dimension": "bevis/næring",
+      "value": "Avtalthele/delutleie;familierettlinjeikkeutleie;næringunntatt,korrektbosted/godkjentareal.",
+      "pages": [
+        33
+      ],
+      "section": "B.8.2.6",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-054",
+      "subject": "Ubebodd",
+      "dimension": "reduksjon",
+      "value": "Barebrann/natur/ansvar ogtakverditap;ubeboddetter12mndellerikkehovedbolig/innbofjernet;bevisførtutleie/fritidsbrukunntatt.",
+      "pages": [
+        33
+      ],
+      "section": "B.8.2.8",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-055",
+      "subject": "Takvann",
+      "dimension": "omfang/alder",
+      "value": "Superfølgeskadeinntrengningoverterreng,takunder50år;ikkeutbedreutetthet/allelagførbærendesjikt/vedlikehold/konstruksjon/kondens.",
+      "pages": [
+        34
+      ],
+      "section": "C.1.1",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-056",
+      "subject": "Dyr/insekter",
+      "dimension": "skade/unntak",
+      "value": "Fysiskbygning ogdødgnagerlukt;ikkekjæledyr/kosmetikk/indirektetap/næring/innbo/åpningpåvisning;isolasjonmåværesvekket,biltilkomstekstrakostkunde.",
+      "pages": [
+        34,
+        35
+      ],
+      "section": "C.1.2",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-057",
+      "subject": "Sopp/råte",
+      "dimension": "omfang/tid",
+      "value": "Ektehussopp/treødeleggenderåteutvikletiforsikringstid;ikkeandelutvikletfør/etter.",
+      "pages": [
+        35
+      ],
+      "section": "C.1.3",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-058",
+      "subject": "Sopp/råte",
+      "dimension": "bygningsdelunntak",
+      "value": "Ikkefastinnredning/dør/vindu/lekter/tak/laft/utvendigtreverk utenforreisverk,soppkosmetikk,innendørsbassengrom,laftyttervegg,ikkeboligbyggeldre50.",
+      "pages": [
+        35
+      ],
+      "section": "C.1.3",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-059",
+      "subject": "Sopp/råte",
+      "dimension": "kostunntak",
+      "value": "Ikkeikke-dekkettilkomst/forutgåendevann,forebygging/kosmetikk/indirektetap;isolasjonfunksjon,biltilkomstreisebetaleskunde.",
+      "pages": [
+        35
+      ],
+      "section": "C.1.3",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-060",
+      "subject": "Våtrom",
+      "dimension": "følgeskade",
+      "value": "Superdekkerfølgeskade,ikkeselvevåtrom/sjiktinnenbjelkelag/stenderverk.",
+      "pages": [
+        36
+      ],
+      "section": "C.1.4",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-061",
+      "subject": "Håndverker",
+      "dimension": "vilkår",
+      "value": "Superdirektefølgeskadeellerlekkasjevåtrom,autorisertarbeid<10åriereidtid/faktura/tekniskforskrift;skadeoppdagetiforsikringstid.",
+      "pages": [
+        36,
+        37
+      ],
+      "section": "C.1.5",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-062",
+      "subject": "Håndverker",
+      "dimension": "reklamasjon/feil",
+      "value": "Innenreklamasjonmåskriftligavslag/konkurs;lekkasjevåtrominklfeilen,ikkebarefeiluten skade.",
+      "pages": [
+        36,
+        37
+      ],
+      "section": "C.1.5",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-063",
+      "subject": "Håndverker",
+      "dimension": "unntak",
+      "value": "Ikkeegne/medeide/arbeidsgiverfirmaarbeid,kosmetikk,kondens,maskinalene,utvendigrør/hage/basseng,kjentfeil,sopp/råte.",
+      "pages": [
+        37
+      ],
+      "section": "C.1.5",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-064",
+      "subject": "Vannstopper",
+      "dimension": "tilskudd",
+      "value": "6000veddekketinnvendigrørbrudd,forhåndsavtaltogdokumentertmontert.",
+      "pages": [
+        37
+      ],
+      "section": "C.1.6",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-065",
+      "subject": "Ansvar",
+      "dimension": "rolle/sum",
+      "value": "EiendommenseierpersonansvarNorden5000000+saksomkostnader;4000egenandel.",
+      "pages": [
+        38,
+        40
+      ],
+      "section": "D.1–6",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-066",
+      "subject": "Ansvar",
+      "dimension": "unntak",
+      "value": "Kontrakt,leie/lån/bruk,familie,næring,annenfastbolig,motor/båt/luft/sprengning(oppføringegenregel),forsett/gradvisforurensning/sopp/smitte.",
+      "pages": [
+        39,
+        40
+      ],
+      "section": "D.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-067",
+      "subject": "Rettshjelp",
+      "dimension": "sum",
+      "value": "100000;3–10parter250000,11–25=500000,26–49=750000,50+=1mill;egenhusstandikkeflereparter;økonomiskinteressetak.",
+      "pages": [
+        41
+      ],
+      "section": "E",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-068",
+      "subject": "Rettshjelp",
+      "dimension": "omfang",
+      "value": "Eier/festerNorden,advokat/rett/vitne/godkjentsakkyndig;ettertotalskadeogboligskifte;rettsmegling7500.",
+      "pages": [
+        42,
+        43
+      ],
+      "section": "E.1–3",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-069",
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Yrke/annenfastbolig/familie/arv/ubestridtinkasso/motor/båt/luft/straff/gammeltgrunnlag/juridiskperson/sameiere/finans>1mill/idømtekost/anke/voldgift;identifisertmotpartførvidereadvokatetterbedrageriforsøk.",
+      "pages": [
+        43,
+        44,
+        45
+      ],
+      "section": "E.4",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-070",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4000+20%resterende;enpertvist.",
+      "pages": [
+        45
+      ],
+      "section": "E.5",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-071",
+      "subject": "Tegning",
+      "dimension": "Superkrav",
+      "value": "Produktsidefastbebodd/godtvedlikeholdt/bygget1924ellersenere/ikkesopp-råte-insektskadeellerutleiesiste5år;egnekravover70år.",
+      "pages": [
+        0
+      ],
+      "section": "Produktside FAQ",
+      "levels": "super",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-072",
+      "subject": "Vilkårsgaranti",
+      "dimension": "periode/unntak",
+      "value": "Produktside2åretterbytte;innholdikkeegenandel/samarbeidspartnerdekning.",
+      "pages": [
+        0
+      ],
+      "section": "Produktside FAQ",
+      "levels": "both",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-073",
+      "subject": "Egenandel",
+      "dimension": "produktsidekonflikt",
+      "value": "Nettsidealarmminus4000vsfullvilkår0;nettsideflom/snø8000vsfullvilkåravtaltsatsmednaturspesial. Ikkevelgregeltenkelt.",
+      "pages": [
+        0
+      ],
+      "section": "Produktside FAQ/B.7",
+      "levels": "both",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "SB-HU-074",
+      "subject": "Rullestol",
+      "dimension": "IPIDkonflikt",
+      "value": "IPIDlisterombyggingunderSuper;nyer/fullHUS10 B.4.12 sierbeggenivå. Primærvilkårbevares,kildedatoavklares.",
+      "pages": [
+        0
+      ],
+      "section": "IPIDp1/B.4.12",
+      "levels": "both",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "SB-HU-075",
+      "subject": "Utleie",
+      "dimension": "aktivering",
+      "value": "Bevisførtavtaltførnyttforholdmedflytteunntak,privat/nonnæring/godkjentfastbolig;HUS10F siermaks3forhold,UTLEI03ingenmaks3påstand.",
+      "pages": [
+        46
+      ],
+      "section": "F/UTLEI03A",
+      "levels": "addon",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "SB-HU-076",
+      "subject": "Utleie",
+      "dimension": "leietap",
+      "value": "6måneder,hendelsenstartbegjæringnamsmann,slutttilbakelevering+2mnd,enkeltgangperleietaker;UTLEI03takmånedsleiebevis.",
+      "pages": [
+        47
+      ],
+      "section": "F.1/UTLEI03A.3.1",
+      "levels": "addon",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-077",
+      "subject": "Utleie",
+      "dimension": "utkastelse",
+      "value": "Nødvendigerimeligekost20000 vednektingutflytting/bruddavtale.",
+      "pages": [
+        47
+      ],
+      "section": "F.2/UTLEI03A.3.2",
+      "levels": "addon",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-078",
+      "subject": "Utleie",
+      "dimension": "skadeverk",
+      "value": "Forsettligskadeleietaker/gjestpåboliginnboute;ikkedyr/slitasje/hardbruk/kosmetikk/rydding/søl.",
+      "pages": [
+        47
+      ],
+      "section": "F.3/UTLEI03A.3.3",
+      "levels": "addon",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-079",
+      "subject": "Utleie",
+      "dimension": "tyveri",
+      "value": "500000tyveri/underslagleietaker/husstandpåsted.",
+      "pages": [
+        46,
+        47
+      ],
+      "section": "F.4/UTLEI03A.3.4",
+      "levels": "addon",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-080",
+      "subject": "Utleie",
+      "dimension": "depositum/egenandel",
+      "value": "Minst2mnddepositumførinnflytting;3mndegenandel,høyeregaranti/depositumhelefradrag;korttidfritidsboligegenregel.",
+      "pages": [
+        46,
+        47
+      ],
+      "section": "F/F.5/UTLEI03A.4",
+      "levels": "addon",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-081",
+      "subject": "Utleie",
+      "dimension": "frister",
+      "value": "Skriftligutkastelsesvarselinnen14dmed14dbetalingsfrist;begjæringinnen1mndfra varsel,Storebrandinnen6ukerfraforfall.",
+      "pages": [
+        28
+      ],
+      "section": "B.6.4.10/UTLEI03A.6.8",
+      "levels": "addon",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-082",
+      "subject": "Utleie",
+      "dimension": "oppgjør",
+      "value": "UTLEI03byggtakomsetningsverdifall,altverdiøkningsfradrag;innbobrukt/alder;75%håndverkertimeutenfaktura,300annetegetarbeid;ikkemervekstreparasjon.",
+      "pages": [
+        48,
+        49
+      ],
+      "section": "F.6–7/UTLEI03A.6",
+      "levels": "addon",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "SB-HU-083",
+      "subject": "Administrasjon",
+      "dimension": "generelle",
+      "value": "Fornyelse,politi,skjønn,regress,avgift/oppgjørsprosedyre ikke hverenegen sammenligningsrad.",
+      "pages": [
+        1,
+        24,
+        31,
+        45,
+        49
+      ],
+      "section": "Generelle/B.8/E.6",
+      "levels": "both",
+      "kind": "ADMINISTRATIVE"
+    }
+  ],
+  "notes": [
+    "Hytte-onlybranchesnotactivatedforHus;readtoavoidleakage.",
+    "IPIDrullestol,webalarmegenandelandbryggetextsourceconflictqueued.",
+    "UTLEI03exactapplicabilitynotassumedmerelybecausenewer."
+  ]
+}

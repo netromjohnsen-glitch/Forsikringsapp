@@ -1,0 +1,71 @@
+EVENING_REMEDIATION_CONTINUATION_COMPLETE
+
+Kontrollert fortsettelse fra B-001/B-002, ikke restart. HEAD d3a37985fce4ada65fa2f7a88462d8834e4677af på main. De to PASS-batchene og deres8tester er bevart. Ingen staging/commit/push/deploy.
+
+B-003 diagnose: Uavhengig kontraktkontroll viste at ukjent/ikke-tilgjengelig add-on skal gi feil (ikke undefined), og at addOns er ExtractedAddOn-objekter, ikke strenger. To nye tester ble korrigert etter dokumentert diagnose. Produksjonskontrakten ble ikke endret for å passe tester.
+
+BATCHRESULTATER:
+B-001 | PASS | Wave1 | 1 P1 | 5 nye tester | Avgrens Gjensidige MC ferie-leie til dokumenterte nivåer
+B-002 | PASS | Wave1 | 1 P1 | 3 nye tester | Fjern kunstnerisk utsmykning fra Fremtind Hus Standard
+B-003 | PASS | Wave1 | 1 P1 | 3 nye tester | Korriger If Båt aldersgrener for motor/gir-egenandel
+B-004 | PASS | Wave1 | 1 P1 | 3 nye tester | Korriger If Reise sykdoms- og ulykkesutløser
+B-005 | PASS | Wave1 | 1 P1 | 2 nye tester | Fjern udokumentert gjenstandsgrense i Storebrand Innbo Super
+B-006 | PASS | Wave1 | 1 P1 | 2 nye tester | Korriger Frende Bil parkeringsbonusvilkår
+B-007 | PASS | Wave1 | 1 P1 | 2 nye tester | Avgrens Gjensidige Hus rørservice til dokumentert tining
+B-008 | PASS | Wave2 | 1 P1 | 3 nye tester | Gjenopprett Storebrand Båt Super opplagsutstyr
+B-009 | PASS | Wave2 | 2 P1 | 4 nye tester | Korriger Fremtind Hund base/Topp for allergi og diagnostikk
+B-010 | PASS | Wave2 | 1 P1 | 3 nye tester | Bevar Fremtind Hund rasegrupper ved livsfradrag
+B-011 | PASS | Wave2 | 1 P1 | 2 nye tester | Korriger Tryg Innbo Ekstras arv av fellesbodgrense
+B-012 | PASS | Wave2 | 1 P1 | 2 nye tester | Knytt Gjensidige Bobil skadedyr til Kasko
+B-013 | PASS | Wave2 | 1 P1 | 2 nye tester | Korriger Storebrand Hus aldersfradragets materialomfang
+B-014 | PASS | Wave2 | 6 P1 | 4 nye tester | Korriger Gjensidige Innbo geografi, sted og egenandel
+B-016 | PASS | Wave2 | 1 P1 | 2 nye tester | Korriger Gjensidige Reise Pluss enkeltgjenstands-overstyring
+
+Wave1gate PASS:7P1 og8 strict unsupported claims kontrollert;2016/2016tester. Wave2gate PASS for tillatt scope:8batcher/14P1. Totalt21P1 (2tidligere+19denne fortsettelsen),29P1-forekomster og3tilgrensendeP2-forekomster,32lukkede funn-IDer. Dette er ikke en ny full katalogaudit.
+
+SKIPPET FOR MANGLENDE FORHÅNDSVURDERING:
+B-015 | MAPPING_REVIEW_FIRST | CR-254
+B-017 | MAPPING_REVIEW_FIRST | CR-382
+B-018 | MAPPING_REVIEW_FIRST | CR-162
+B-019 | MAPPING_REVIEW_FIRST | CR-394
+B-020 | MAPPING_REVIEW_FIRST | CR-230, CR-231
+B-021 | MAPPING_REVIEW_FIRST | CR-381
+B-022 | CANONICAL_REVIEW_FIRST | CR-160, CR-292
+
+TESTDIAGNOSTIKK:4nye testcases korrigert (B0032,B0061,B0091). Ingen batch krevde mer enn2nye harnesskorreksjoner.6eksisterende testcases i4filer oppdatert fordi de eksplisitt forventet kildeavkreftede verdier/scope (B0041,B0051,B0101,B0143). B014 var én samlet kildebasert forventningsoppdatering, ikke gjentatt mutasjon av produksjon. Full evidens i test-diagnostics.csv.
+B006: en artifact PASS ble skrevet før testresultatet var korrekt kontrollert. Dette ble rettet og batchen kjørt grønn før B007 startet; historikken er bevart i ledger/diagnostikk.
+Første sluttkjøring:2037/2038; én eksisterende tracing-test feilet på global rekkefølge av parallelle progress-hendelser. Resultat-snapshots var identiske. Ingen kode/test ble endret. Isolert22/22PASS og ny fullkjøring2038/2038PASS. Feillogg bevart. Timing-følsom test registrert som gjenværende teknisk begrensning.
+Ingen observerte produksjonsregresjoner eller uløste testfeil.
+
+SLUTTVALIDERING:2038/2038 (1996eksisterende+42nye).34nye i denne fortsettelsen,8bevart fraB001/B002. TypeScriptPASS, ESLintPASS, webpack production buildPASS, syntetisk HTTP/PDF-runtimePASS, git diff --checkPASS. Ingen reelle kunde-PDFer eller eksterne AI-kall brukt.
+
+MÅLRETTET RE-AUDIT:15aksepterte batcher revidert mot egne frosne kilder og parent/detail-/nivåkrav.16kildehashes verifisert.204produktidentiteter/202aktive beholdt.22produkter endret innen eksakte tillatte nøkler;182produkter helt uendret i base, alle enkeltvise tillegg og materialisert produktmodus.714sammenligningsretninger/496berørte rader bestått, inklusive sidebytte og likt produkt. Hele factlister per nøkkel (inklusive duplikater) ble kontrollert; ingen uventede felter eller metadata endret.
+Kundekontroller: eksplisitt dokumentverdi vinner; stille/avvist valgfritt tillegg forblir uvalgt; valgt Topp overstyrer bare de relevante grensene; alder/reduksjon/opphør, perår/livstid/pergjenstand og sted/produktnivå holdes adskilt. Ingen motor-, UI-, matching-, normaliserings- eller schemaendringer.
+B010: fullvilkårets komplette rasegrupper5/7/9 ogopphør8/10/12 gjengis med hovedforfall og eksplisitt kildeattribusjon. SC068-konflikten mot produktsidens tidspunkt er ikke avgjort.
+
+ENDREDE PROSJEKTFILER (11katalogproduksjon+6testfiler):
+lib/boat-pet-catalog.ts
+lib/fremtind-hus-catalog.ts
+lib/frende-catalog.ts
+lib/gjensidige-hus-catalog.ts
+lib/gjensidige-innbo-catalog.ts
+lib/gjensidige-reise-catalog.ts
+lib/if-reise-catalog.ts
+lib/mc-bobil-gjensidige-storebrand-catalog.ts
+lib/storebrand-hus-catalog.ts
+lib/storebrand-innbo-catalog.ts
+lib/tryg-innbo-catalog.ts
+tests/boat-pet-catalog.test.mjs
+tests/gjensidige-innbo-catalog.test.mjs
+tests/if-reise-catalog.test.mjs
+tests/nito-remediation-wave1.test.mjs
+tests/nito-remediation-wave2.test.mjs
+tests/storebrand-innbo-catalog.test.mjs
+
+INTEGRITET:main/HEADuendret,0staged.17tilsiktede lokale endrede/nye filer. Alle892filer i audit-/triagedirektoriene uendret både i filsett og hash. Offentlige originalkilder og manifests uendret. Ingen .env.local-/Railway-endringer, ingen nye kilder eller private dokumenter. Ingen commit/push/reset/revert/stash/clean.
+
+ARTEFAKTER:batch-ledger.csv/json,resume.json,test-diagnostics.csv,validation.json,wave1-gate.json,wave2-gate.json,final-targeted-audit.json,final-comparison-audit.json,final-integrity.json og per-batch før/etter/audit/patch/testlogger ligger i /tmp/nito-catalog-remediation-evening/.
+
+NESTE STEG: menneskelig gjennomgang av disse lokale endringene og de syv ventende Wave2-forhåndsvurderingene. Ingen neste implementeringsbatch er startet. Wave3(73batcher/1035P1),Wave4/5,kildeforskning/reviews og endelig full re-audit gjenstår; krever ny godkjenning.
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED.
+Ingen pilot-ready-påstand.

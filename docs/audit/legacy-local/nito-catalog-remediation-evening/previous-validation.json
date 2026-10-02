@@ -1,0 +1,38 @@
+{
+  "full_suite": {
+    "total": 2004,
+    "pass": 2004,
+    "fail": 0,
+    "existing_tests": 1996,
+    "new_retained_tests": 8
+  },
+  "typescript": "PASS",
+  "eslint": "PASS",
+  "webpack_production_build": "PASS",
+  "synthetic_http_pdf_runtime": "PASS",
+  "git_diff_check": "PASS",
+  "source_reaudit": "PASS for retained B-001/B-002",
+  "source_audit_and_triage_hashes_unchanged": 892,
+  "baseline_head": "d3a37985fce4ada65fa2f7a88462d8834e4677af",
+  "final_head": "d3a37985fce4ada65fa2f7a88462d8834e4677af",
+  "branch": "main",
+  "staged_files": 0,
+  "changed_files": [
+    "lib/fremtind-hus-catalog.ts",
+    "lib/mc-bobil-gjensidige-storebrand-catalog.ts",
+    "tests/nito-remediation-wave1.test.mjs"
+  ],
+  "git_status_short": "M lib/fremtind-hus-catalog.ts\n M lib/mc-bobil-gjensidige-storebrand-catalog.ts\n?? tests/nito-remediation-wave1.test.mjs",
+  "status": "EVENING_REMEDIATION_BLOCKED",
+  "wave_1_gate": "WAVE_1_REMEDIATION_BLOCKED",
+  "catalog_pilot_gate": "REMEDIATION_REQUIRED",
+  "B003_test_failure": {
+    "total": 71,
+    "pass": 69,
+    "fail": 2,
+    "classification": "new test contract errors; no production regression proven; isolated attempt removed"
+  },
+  "no_commit_push_deploy": true,
+  "no_new_sources_or_customer_data": true,
+  "timestamp": "2026-10-01T16:32:24.249753+00:00"
+}

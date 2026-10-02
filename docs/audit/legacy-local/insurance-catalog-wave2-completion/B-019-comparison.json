@@ -1,0 +1,113 @@
+{
+  "batch": "B-019",
+  "products": [
+    "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+    "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+  ],
+  "directions": 50,
+  "rows": 1406,
+  "sameProduct": "PASS",
+  "sideSwap": "PASS",
+  "examples": [
+    {
+      "a": "storebrand-reise-standard",
+      "b": "tryg-reise-ekstra",
+      "row": {
+        "key": "reise.overnatting",
+        "label": "Krav om overnatting",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Reiser med og uten overnatting er omfattet; også dagsturer.",
+          "facts": [
+            {
+              "key": "reise.overnatting",
+              "label": "Krav om overnatting",
+              "value": "Reiser med og uten overnatting er omfattet; også dagsturer.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "storebrandReiseProductPage",
+                  "section": "FAQ: Når gjelder reiseforsikringen?",
+                  "page": 1,
+                  "filename": "Reiseforsikring-produktside.html",
+                  "termsNumber": "Ikke oppgitt",
+                  "effectiveFrom": "",
+                  "company": "Storebrand",
+                  "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring",
+                  "productCode": "Ikke oppgitt",
+                  "version": "Ikke oppgitt",
+                  "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "storebrandReiseProductPage",
+              "section": "FAQ: Når gjelder reiseforsikringen?",
+              "page": 1,
+              "filename": "Reiseforsikring-produktside.html",
+              "termsNumber": "Ikke oppgitt",
+              "effectiveFrom": "",
+              "company": "Storebrand",
+              "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring",
+              "productCode": "Ikke oppgitt",
+              "version": "Ikke oppgitt",
+              "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+          "facts": [
+            {
+              "key": "reise.overnatting",
+              "label": "Reise med eller uten overnatting",
+              "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseExtra",
+                  "section": "Produktstruktur og produktside",
+                  "page": 1,
+                  "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                  "termsNumber": "PRF46001",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                  "productCode": "PRF46001",
+                  "version": "PRF46001",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseExtra",
+              "section": "Produktstruktur og produktside",
+              "page": 1,
+              "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+              "termsNumber": "PRF46001",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+              "productCode": "PRF46001",
+              "version": "PRF46001",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "different": true
+      }
+    }
+  ]
+}

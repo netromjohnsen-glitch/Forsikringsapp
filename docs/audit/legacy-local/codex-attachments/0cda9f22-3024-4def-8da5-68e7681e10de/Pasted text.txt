@@ -1,0 +1,1000 @@
+NITO_CATALOG_REMEDIATION — EVENING CONTINUATION
+
+MODE:
+CONTROLLED IMPLEMENTATION + REGRESSION + TARGETED RE-AUDIT
+
+MODEL:
+GPT-6 Astra
+REASONING:
+Extra High
+
+This is a CONTINUATION of the existing evening remediation run.
+
+DO NOT restart remediation.
+
+==================================================
+1 – RESUME
+==================================================
+
+Resume from:
+
+/tmp/nito-catalog-remediation-evening/resume.json
+
+Use existing:
+
+/tmp/source-catalog-completeness-audit/
+
+and:
+
+/tmp/source-catalog-remediation-triage/
+
+as immutable audit/planning inputs.
+
+Continue from:
+
+B-003
+
+unless resume.json proves a later valid checkpoint exists.
+
+==================================================
+2 – CURRENT VERIFIED STATE
+==================================================
+
+B-001:
+PASS
+
+Result:
+Gjensidige MC Delkasko no longer receives the incorrect rental-MC claims.
+Legitimate Kasko coverage remains.
+
+B-002:
+PASS
+
+Result:
+Fremtind Hus Standard exposes the source-backed decoration exclusion.
+Topp retains its legitimate coverage with its own provenance.
+
+P1 signatures resolved:
+2
+
+B-001 and B-002 changes MUST be preserved.
+
+==================================================
+3 – CURRENT PROJECT CHANGES
+==================================================
+
+Expected successful project changes are limited to:
+
+lib/mc-bobil-gjensidige-storebrand-catalog.ts
+
+lib/fremtind-hus-catalog.ts
+
+tests/nito-remediation-wave1.test.mjs
+
+Verify actual state before proceeding.
+
+Do not discard B-001/B-002.
+
+==================================================
+4 – CURRENT BASELINE
+==================================================
+
+Branch:
+
+main
+
+Expected HEAD:
+
+d3a37985fce4ada65fa2f7a88462d8834e4677af
+
+Expected:
+
+0 staged files
+
+No commit
+No push
+No deploy
+No Railway changes
+No .env.local changes.
+
+Working tree is expected to contain successful B-001/B-002 remediation.
+
+==================================================
+5 – PREVIOUS VALIDATION
+==================================================
+
+Previous successful preserved state:
+
+2004/2004 tests PASS
+
+TypeScript:
+PASS
+
+ESLint:
+PASS
+
+webpack production build:
+PASS
+
+synthetic HTTP/PDF runtime:
+PASS
+
+git diff --check:
+PASS
+
+targeted source audit:
+PASS
+
+201 unrelated products unchanged in controlled catalog resolution.
+
+Preserve this quality level.
+
+==================================================
+6 – B-003 STOP REASON
+==================================================
+
+Previous B-003 attempt stopped because TWO NEW TESTS were incorrectly
+constructed.
+
+Reported causes:
+
+1. incorrect expectation for invalid add-on behavior
+
+2. incorrect data structure for `addOns`.
+
+No production regression was demonstrated.
+
+The failed B-003 attempt was isolated and removed.
+
+==================================================
+7 – FIRST TASK
+==================================================
+
+Start by independently verifying that the B-003 failures were genuinely
+TEST HARNESS / FIXTURE errors.
+
+Do NOT assume the previous diagnosis is correct merely because the previous
+agent wrote it.
+
+Inspect:
+
+- exact failed assertions
+- actual production contract
+- existing test conventions
+- expected add-on structure
+- B-003 batch requirements.
+
+==================================================
+8 – TEST-ERROR RECOVERY RULE
+==================================================
+
+NEW RULE:
+
+A newly written test failure does NOT automatically stop the entire
+remediation run.
+
+If and ONLY IF the failure is conclusively caused by:
+
+TEST_FIXTURE_ERROR
+TEST_HARNESS_ERROR
+INVALID_TEST_EXPECTATION
+TEST_DATA_SHAPE_ERROR
+
+and production behavior is independently shown to be correct relative to
+the source-backed batch requirement:
+
+the agent MAY:
+
+1. correct the new test
+2. rerun it
+3. rerun relevant existing regression
+4. continue the batch.
+
+==================================================
+9 – PRODUCTION FAILURE RULE
+==================================================
+
+STOP if the failure may indicate:
+
+production regression
+source mismatch
+scope mismatch
+unexpected inheritance
+canonical mismatch
+wrong product behavior
+wrong add-on behavior
+customer-mode regression
+or uncertain cause.
+
+Do not rewrite a test merely to make production pass.
+
+==================================================
+10 – TEST CORRECTION EVIDENCE
+==================================================
+
+Before correcting a failed test, record in the evening audit artifacts:
+
+test name
+failure
+why test was wrong
+production contract used as evidence
+existing test/reference used
+correction made.
+
+This must remain reviewable.
+
+==================================================
+11 – NO TEST EXPECTATION DRIFT
+==================================================
+
+Never change expected output solely because actual output differs.
+
+Expected behavior must derive from:
+
+validated source truth
++
+documented application contract
++
+approved remediation batch.
+
+==================================================
+12 – COMPLETE B-003
+==================================================
+
+After test-fixture diagnosis:
+
+complete B-003 according to its exact triage batch definition.
+
+Use:
+
+/tmp/source-catalog-remediation-triage/
+
+as authority.
+
+Do not broaden B-003.
+
+==================================================
+13 – B-003 ACCEPTANCE
+==================================================
+
+B-003 passes only if:
+
+- exact source-backed remediation is implemented
+- relevant tests PASS
+- corrected new tests PASS
+- existing nearby tests PASS
+- targeted source→catalog audit PASS
+- positive controls remain correct
+- no unrelated products change unexpectedly
+- provenance remains correct
+- git diff --check PASS.
+
+==================================================
+14 – AFTER B-003
+==================================================
+
+If B-003 PASS:
+
+continue sequentially with:
+
+B-004
+B-005
+B-006
+B-007
+
+according to the exact remediation plan.
+
+Do not skip ahead.
+
+==================================================
+15 – WAVE 1
+==================================================
+
+Wave 1 contains:
+
+7 batches.
+
+B-001:
+already PASS
+
+B-002:
+already PASS
+
+B-003–B-007:
+remaining.
+
+Complete Wave 1 sequentially.
+
+==================================================
+16 – BATCH EXECUTION LOOP
+==================================================
+
+For every remaining batch:
+
+1. read exact triage definition
+2. verify dependencies
+3. verify source readiness
+4. identify exact affected scope
+5. capture pre-change behavior where relevant
+6. implement smallest safe change
+7. add/run required regression
+8. run targeted source→catalog audit
+9. verify positive controls
+10. verify unrelated nearby behavior
+11. persist result
+12. proceed only after PASS.
+
+==================================================
+17 – TEST FIXTURE RECOVERY APPLIES TO ALL BATCHES
+==================================================
+
+For B-003 onward:
+
+if a newly added test fails:
+
+diagnose first.
+
+If conclusively TEST_ONLY:
+
+correct test
+rerun
+continue.
+
+If not conclusively TEST_ONLY:
+
+STOP.
+
+==================================================
+18 – REPEATED TEST-HARNESS FAILURE
+==================================================
+
+If the same batch requires more than TWO test-harness corrections:
+
+STOP that batch.
+
+Return:
+
+TEST_HARNESS_REVIEW_REQUIRED.
+
+Do not enter an endless test-adjustment loop.
+
+==================================================
+19 – PRODUCTION RETRY LIMIT
+==================================================
+
+Do not repeatedly mutate production code until tests turn green.
+
+If first remediation attempt reveals unexpected semantics:
+
+investigate once.
+
+If still uncertain:
+
+STOP.
+
+==================================================
+20 – WAVE 1 GATE
+==================================================
+
+After B-001 through B-007 PASS:
+
+run full Wave 1 gate from triage.
+
+At minimum verify:
+
+all seven targeted P1 signatures resolved
+all unsupported/wrong targeted claims corrected
+source provenance correct
+nearby positive controls preserved
+same-product stable where relevant
+side-swap stable where relevant
+scope/product-level isolation correct
+targeted source→catalog re-audit PASS
+broad relevant regression PASS
+TypeScript PASS
+ESLint PASS
+production build PASS
+git diff --check PASS.
+
+==================================================
+21 – WAVE 1 FAILURE
+==================================================
+
+If Wave 1 gate fails:
+
+STOP.
+
+Do not enter Wave 2.
+
+Preserve successful batches.
+
+Return exact failure.
+
+==================================================
+22 – WAVE 2 ENTRY
+==================================================
+
+Only if:
+
+WAVE_1_GATE = PASS
+
+continue to the safe Wave 2 subset.
+
+Previously identified candidates:
+
+B-008
+B-009
+B-010
+B-011
+B-012
+B-013
+B-014
+B-016
+
+BUT:
+
+do not trust this list blindly.
+
+Re-read triage state and verify each is still:
+
+implementation-ready
+source-ready
+dependency-complete
+risk <= MEDIUM
+complexity <= MEDIUM_CODE
+without unresolved canonical/human/source prerequisite.
+
+==================================================
+23 – WAVE 2 SAFE SUBSET
+==================================================
+
+Implement only Wave 2 batches satisfying ALL safe-entry criteria.
+
+Skip and record any that do not.
+
+==================================================
+24 – WAVE 2 ORDER
+==================================================
+
+Respect exact dependency order from triage.
+
+If no dependency ordering exists between safe batches:
+
+use the triage-recommended order.
+
+==================================================
+25 – NO WAVE 2 PARALLEL WRITES
+==================================================
+
+One writer.
+
+No parallel subagents modifying project files.
+
+==================================================
+26 – WAVE 2 BATCH LOOP
+==================================================
+
+Use the same strict batch execution loop and test-fixture recovery rule as
+Wave 1.
+
+==================================================
+27 – WAVE 2 GATE
+==================================================
+
+After all allowed safe Wave 2 batches:
+
+run the Wave 2 gate defined by triage.
+
+Verify:
+
+targeted P1 resolved
+inheritance/scope/mapping correct
+positive controls preserved
+no unexpected cross-product effects
+targeted source→catalog re-audit PASS
+comparison regressions PASS
+broad relevant tests PASS
+build/static checks PASS.
+
+==================================================
+28 – DO NOT START WAVE 3
+==================================================
+
+ABSOLUTE STOP:
+
+DO NOT START WAVE 3.
+
+Wave 3 has:
+
+73 batches
+1 035 P1 signatures.
+
+It requires separate human approval.
+
+==================================================
+29 – PRESERVE CUSTOMER PRIORITY
+==================================================
+
+Always preserve:
+
+explicit customer document fact
+>
+catalog enrichment.
+
+==================================================
+30 – PRESERVE OPTIONALITY
+==================================================
+
+Always preserve:
+
+available ≠ selected
+
+optional ≠ included.
+
+==================================================
+31 – NO SOURCE RESEARCH
+==================================================
+
+Do not browse web.
+
+Do not download new sources.
+
+If source research is required:
+
+record and skip/stop according to dependency.
+
+==================================================
+32 – NO CANONICAL INVENTION
+==================================================
+
+Do not create new canonical architecture unless the exact batch has already
+completed required canonical review.
+
+Unexpected architecture requirement:
+
+STOP batch.
+
+==================================================
+33 – NO UI WORK
+==================================================
+
+Do not implement unrelated UI changes.
+
+==================================================
+34 – NO PDF UX WORK
+==================================================
+
+Do not implement:
+
+bonus
+annual mileage
+construction year
+area
+full value/first-loss top section
+person insurance sums.
+
+Those are later tasks.
+
+==================================================
+35 – NO PERSON INSURANCE
+==================================================
+
+Do not build person insurance.
+
+==================================================
+36 – NO SECURITY/GDPR
+==================================================
+
+Do not work on security/GDPR tasks.
+
+==================================================
+37 – NO LANDING PAGE
+==================================================
+
+Do not work on marketing/landing page.
+
+==================================================
+38 – NO DEPLOY
+==================================================
+
+No deploy.
+
+==================================================
+39 – NO PUSH
+==================================================
+
+No push.
+
+==================================================
+40 – NO COMMIT
+==================================================
+
+Do not commit.
+
+==================================================
+41 – NO STAGE
+==================================================
+
+Keep staged files = 0.
+
+==================================================
+42 – NO RAILWAY
+==================================================
+
+Railway untouched.
+
+==================================================
+43 – NO ENV
+==================================================
+
+Secrets and .env.local untouched.
+
+==================================================
+44 – NO CUSTOMER DATA
+==================================================
+
+No real customer documents.
+
+==================================================
+45 – SUCCESSFUL WORK PRESERVATION
+==================================================
+
+Never discard successful B-001/B-002 or later successful batches merely
+because a later batch fails.
+
+==================================================
+46 – FAILED BATCH ISOLATION
+==================================================
+
+If a failed current batch can be cleanly isolated:
+
+remove only that failed batch's unapproved changes.
+
+Preserve earlier PASS batches.
+
+If isolation is uncertain:
+
+STOP without destructive cleanup.
+
+==================================================
+47 – CHANGE ATTRIBUTION
+==================================================
+
+Every changed project line should be attributable to a successful remediation
+batch or an approved regression test.
+
+No unrelated cleanup/refactoring.
+
+==================================================
+48 – NO DRIVE-BY REFACTORING
+==================================================
+
+Do not refactor code merely because a better structure is noticed.
+
+Record future suggestion separately.
+
+==================================================
+49 – BATCH LEDGER
+==================================================
+
+Continue updating:
+
+/tmp/nito-catalog-remediation-evening/batch-ledger.csv
+
+for every attempted batch.
+
+==================================================
+50 – RESUME STATE
+==================================================
+
+Continue updating:
+
+/tmp/nito-catalog-remediation-evening/resume.json
+
+after every PASS.
+
+==================================================
+51 – TEST-DIAGNOSTIC LOG
+==================================================
+
+Create/update:
+
+/tmp/nito-catalog-remediation-evening/test-diagnostics.csv
+
+Columns:
+
+batch_id
+test
+failure_type
+production_or_test
+evidence
+action
+result.
+
+==================================================
+52 – REGRESSION COUNT
+==================================================
+
+Track:
+
+existing tests run
+new tests added
+new tests corrected
+tests passed
+tests failed
+failures attributable to test harness
+failures attributable to production
+unresolved failures.
+
+==================================================
+53 – P1 COUNT
+==================================================
+
+Track cumulative:
+
+P1 signatures resolved this run
+
+plus previously resolved:
+
+2.
+
+Do not claim a P1 resolved until batch acceptance PASS.
+
+==================================================
+54 – TARGETED AUDIT
+==================================================
+
+After every PASS:
+
+perform targeted source→catalog verification.
+
+Do not rely on tests alone.
+
+==================================================
+55 – BROAD REGRESSION
+==================================================
+
+After Wave 1 and at final stop:
+
+run broad relevant regression.
+
+==================================================
+56 – SYNTHETIC CUSTOMER MODE
+==================================================
+
+Where triage indicates customer-mode impact and existing synthetic tests are
+available:
+
+run them.
+
+No private PDFs.
+
+==================================================
+57 – REPO INTEGRITY
+==================================================
+
+Periodically verify:
+
+git status --short
+git diff --check
+staged files = 0.
+
+==================================================
+58 – AUDIT ARTIFACT INTEGRITY
+==================================================
+
+Audit and triage directories remain immutable.
+
+Verify they are unchanged at final stop.
+
+==================================================
+59 – USAGE
+==================================================
+
+Substantial usage remains.
+
+Use it productively.
+
+Do not stop simply to conserve usage.
+
+But never trade semantic safety for throughput.
+
+==================================================
+60 – CHECKPOINT BEFORE LIMIT
+==================================================
+
+If usage/system limit approaches:
+
+finish current safe atomic batch if possible
+persist ledger
+persist resume
+run integrity check
+stop.
+
+Do not start another batch if it cannot reasonably be checkpointed safely.
+
+==================================================
+61 – FINAL STATUS
+==================================================
+
+Return one:
+
+EVENING_REMEDIATION_CONTINUATION_COMPLETE
+
+EVENING_REMEDIATION_CONTINUATION_PARTIAL
+
+EVENING_REMEDIATION_CONTINUATION_BLOCKED
+
+EVENING_REMEDIATION_INTEGRITY_FAILURE.
+
+==================================================
+62 – COMPLETE
+==================================================
+
+COMPLETE means:
+
+B-003–B-007 PASS
+Wave 1 gate PASS
+
+AND
+
+all Wave 2 batches allowed by this prompt have either:
+
+PASS
+
+or
+
+been safely SKIPPED because their documented prerequisite was not met
+
+AND
+
+Wave 2 gate for implemented scope PASS.
+
+==================================================
+63 – PARTIAL
+==================================================
+
+PARTIAL means:
+
+additional batches passed
+
+but usage/time/system constraints stopped safe continuation.
+
+==================================================
+64 – BLOCKED
+==================================================
+
+BLOCKED means:
+
+production semantics
+source evidence
+regression
+or unresolved test diagnosis
+
+prevents safe continuation.
+
+==================================================
+65 – FINAL REPORT
+==================================================
+
+Report:
+
+RESUME BASELINE
+
+B-003 DIAGNOSIS
+
+WAVE 1
+- B-001 through B-007 status
+- P1 resolved
+- gate
+
+WAVE 2
+- candidates
+- implemented
+- skipped
+- blocked
+- P1 resolved
+- gate
+
+TEST DIAGNOSTICS
+- test-only failures corrected
+- production failures
+- unresolved failures
+
+TOTAL P1 RESOLVED
+
+FILES CHANGED
+
+TESTS ADDED
+
+TESTS RUN
+
+TARGETED RE-AUDITS
+
+CUSTOMER/PDF REGRESSION
+
+REPO INTEGRITY
+
+AUDIT/TRIAGE INTEGRITY
+
+NEXT BATCH
+
+NEXT RECOMMENDED ACTION.
+
+==================================================
+66 – PILOT GATE
+==================================================
+
+Do NOT claim pilot-ready.
+
+Even successful completion leaves:
+
+Wave 3
+Wave 4
+Wave 5
+source research/reviews
+final full re-audit
+
+pending.
+
+CATALOG_PILOT_GATE remains:
+
+REMEDIATION_REQUIRED.
+
+==================================================
+67 – FINAL PRINCIPLE
+==================================================
+
+The previous run demonstrated that:
+
+STOP-ON-FAIL works.
+
+This continuation improves it to:
+
+FAIL
+→ DIAGNOSE
+→ if conclusively TEST-ONLY:
+   CORRECT TEST
+   RETEST
+   CONTINUE
+
+→ otherwise:
+   STOP.
+
+Never convert:
+
+production mismatch
+
+into:
+
+test fixture error
+
+merely to keep the run going.
+
+==================================================
+68 – START
+==================================================
+
+Resume now from:
+
+/tmp/nito-catalog-remediation-evening/resume.json
+
+Independently validate the B-003 test diagnosis.
+
+Complete B-003.
+
+Then B-004 through B-007.
+
+Run Wave 1 gate.
+
+If PASS:
+
+continue only through the safe, implementation-ready Wave 2 subset.
+
+DO NOT START WAVE 3.
+
+Do not commit.
+Do not push.
+Do not deploy.
+
+Persist progress continuously.

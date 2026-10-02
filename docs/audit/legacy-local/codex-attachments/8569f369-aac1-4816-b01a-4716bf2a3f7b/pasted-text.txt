@@ -1,0 +1,1121 @@
+==================================================
+590 – SOURCE HASH FAILURE
+==================================================
+
+If an applicable source artifact does not match its expected SHA-256:
+
+classify:
+
+SOURCE_INTEGRITY_FAILURE
+
+List every affected:
+
+provider
+insurance type
+scope
+product
+source artifact.
+
+Do not silently regenerate/redownload the artifact.
+
+Do not use that artifact as trusted evidence until resolved.
+
+==================================================
+591 – SOURCE DUPLICATE VALIDATION
+==================================================
+
+Identical SHA-256 artifacts may be parsed once for efficiency.
+
+But verify that each source record referencing the artifact has correct:
+
+provider
+insurance type
+scope
+product/component applicability.
+
+Identical bytes do not automatically imply identical applicability.
+
+==================================================
+592 – SOURCE MANIFEST CONSISTENCY
+==================================================
+
+Check for:
+
+- artifact referenced but missing
+- artifact present but unreferenced where unexpected
+- wrong hash
+- wrong document type
+- wrong provider
+- wrong insurance type
+- wrong scope
+- wrong product/component linkage.
+
+Report separately from catalog completeness.
+
+==================================================
+593 – SOURCE PACKAGE READINESS
+==================================================
+
+Assign every active provider × family source package:
+
+SOURCE_READY
+SOURCE_READY_WITH_GAPS
+SOURCE_RESEARCH_REQUIRED
+SOURCE_INTEGRITY_FAILURE.
+
+This evaluates OUR evidence package, not provider quality.
+
+==================================================
+594 – PRODUCT SOURCE READINESS
+==================================================
+
+Each exact active product should similarly have enough applicable source
+evidence to support its modeled material facts.
+
+If not:
+
+product completeness cannot be confidently declared.
+
+==================================================
+595 – PRODUCT WITHOUT FULL TERMS
+==================================================
+
+Absence of full terms is not automatically failure if existing official
+sources are sufficient for the product's material facts.
+
+But if important detail cannot be assessed:
+
+SOURCE_RESEARCH_REQUIRED.
+
+==================================================
+596 – PRODUCT WITH FULL TERMS
+==================================================
+
+Presence of full terms does not automatically mean source package is
+complete.
+
+Check applicability/version and whether relevant add-on documents are also
+needed.
+
+==================================================
+597 – ADD-ON SOURCE READINESS
+==================================================
+
+For each active add-on determine whether its:
+
+availability
+applicability
+major limits
+major conditions
+
+have adequate official evidence.
+
+==================================================
+598 – SOURCE PACKAGE SUMMARY
+==================================================
+
+Create a matrix:
+
+Provider | Family | Active products | Source readiness | Material source gaps
+
+for all actual provider/family combinations.
+
+==================================================
+599 – PRODUCT COMPLETENESS SUMMARY
+==================================================
+
+Create a second matrix by family:
+
+Family
+Active products
+No material gap
+Minor gaps
+Material gaps
+Review required
+Source insufficient.
+
+==================================================
+600 – GAP ORIGIN SUMMARY
+==================================================
+
+Summarize where material findings originate:
+
+SOURCE_PACKAGE
+CATALOG_DATA
+CANONICAL_MODEL
+INHERITANCE
+ADDON
+APPLICABILITY
+PRESENTATION
+SOURCE_CONFLICT
+OTHER.
+
+==================================================
+601 – SOURCE UTILIZATION SUMMARY
+==================================================
+
+Report whether material applicable source information appears systematically
+underutilized in any family/provider implementation.
+
+Do not infer from fact counts alone.
+
+Evidence required.
+
+==================================================
+602 – IPID-ONLY PATTERN
+==================================================
+
+If some products appear effectively modeled only at IPID-level despite
+richer applicable full terms:
+
+identify exact products and evidence.
+
+This may explain many:
+
+Included
+
+without important dimensions.
+
+==================================================
+603 – FULL-TERMS-UTILIZATION PATTERN
+==================================================
+
+Conversely identify implementations where full terms are already being used
+well.
+
+These serve as good internal reference patterns for remediation.
+
+==================================================
+604 – INTERNAL GOLD-STANDARD EXAMPLES
+==================================================
+
+Identify several existing products whose source→catalog modeling appears
+particularly complete and semantically clean.
+
+Do NOT rank insurers.
+
+These are implementation examples only.
+
+Use them later as architectural patterns where semantics genuinely match.
+
+==================================================
+605 – INTERNAL BAD-PATTERN EXAMPLES
+==================================================
+
+Identify representative implementation patterns causing material gaps.
+
+Examples only if evidenced:
+
+- parent-only boolean modeling
+- omitted numeric children
+- missing inheritance
+- add-on mapped only as availability
+- rich source ignored
+- provider-specific details dropped.
+
+==================================================
+606 – NO COPY-PASTE MODELING
+==================================================
+
+Do not recommend copying a "gold-standard" product's canonical facts to
+another provider.
+
+Reuse architecture/pattern only.
+
+Every insurance fact still requires its own source evidence.
+
+==================================================
+607 – FAMILY COMPLETENESS MAP
+==================================================
+
+For every family create a semantic map showing:
+
+major concept
+material dimensions found across source corpus
+providers/products documenting them
+existing canonical support
+gaps/candidates.
+
+This is diagnostic.
+
+==================================================
+608 – FAMILY MAP BIL
+==================================================
+
+Ensure Bil map includes actual discovered material dimensions, not merely
+the seed list from this prompt.
+
+The seed list is a starting point.
+
+==================================================
+609 – FAMILY MAP HUS
+==================================================
+
+Same principle.
+
+Unexpected material source concepts must be allowed to emerge.
+
+==================================================
+610 – FAMILY MAP INNBO
+==================================================
+
+Same.
+
+==================================================
+611 – FAMILY MAP REISE
+==================================================
+
+Same.
+
+==================================================
+612 – FAMILY MAP SNØSCOOTER
+==================================================
+
+Same.
+
+==================================================
+613 – FAMILY MAP CAMPINGVOGN
+==================================================
+
+Same.
+
+==================================================
+614 – FAMILY MAP TILHENGER
+==================================================
+
+Same.
+
+==================================================
+615 – FAMILY MAP MC
+==================================================
+
+Same, with special attention to manually observed asymmetry.
+
+==================================================
+616 – FAMILY MAP BOBIL
+==================================================
+
+Same.
+
+==================================================
+617 – FAMILY MAP BÅT
+==================================================
+
+Same.
+
+==================================================
+618 – FAMILY MAP HUND
+==================================================
+
+Same.
+
+==================================================
+619 – FAMILY MAP KATT
+==================================================
+
+Same.
+
+==================================================
+620 – FAMILY MAP DISCOVERY
+==================================================
+
+If actual catalog contains another active family:
+
+create equivalent semantic map automatically.
+
+Do not skip because prompt listed twelve.
+
+==================================================
+621 – SEMANTIC MAP OUTPUT
+==================================================
+
+Store family semantic maps in audit JSON and optionally:
+
+family-semantic-map.csv
+
+under /tmp.
+
+==================================================
+622 – MATERIAL DIMENSION COVERAGE
+==================================================
+
+For each major concept distinguish:
+
+concept exists in catalog
+
+from:
+
+material dimensions adequately represented.
+
+This is central to detecting TOO_COARSE.
+
+==================================================
+623 – SOURCE DIMENSION ABSENCE
+==================================================
+
+If source does not document a dimension:
+
+do not penalize catalog.
+
+==================================================
+624 – PEER DIMENSION ABSENCE
+==================================================
+
+If another provider documents a dimension but exact product source does not:
+
+do not fabricate it.
+
+==================================================
+625 – PEER DIMENSION SEARCH
+==================================================
+
+But peer dimensions can tell the audit what to search for in the exact
+product's own source.
+
+This is allowed.
+
+==================================================
+626 – TOP PRODUCT EXPECTATION
+==================================================
+
+Do not assume top-tier product must contain every lower-tier or peer benefit.
+
+Only source establishes it.
+
+==================================================
+627 – PRODUCT NAME EXPECTATION
+==================================================
+
+Names such as:
+
+Super
+Pluss
+Ekstra
+Topp
+Utvidet
+
+do not establish semantic equivalence.
+
+==================================================
+628 – PRODUCT LEVEL RELATIONSHIP
+==================================================
+
+Catalog/source should explicitly establish:
+
+inheritance
+replacement
+independent modules
+
+where relevant.
+
+==================================================
+629 – SAME PROVIDER CROSS-LEVEL REVIEW
+==================================================
+
+Within each family/provider with multiple levels:
+
+review whether source→catalog delta between levels matches documented product
+difference.
+
+This can reveal missing top-level benefits.
+
+==================================================
+630 – LOWER-LEVEL OVERINCLUSION
+==================================================
+
+Also detect if higher-level fact has accidentally leaked into lower product.
+
+This is potentially more serious than omission.
+
+==================================================
+631 – CROSS-SCOPE OVERINCLUSION
+==================================================
+
+Detect ordinary/member scope leakage.
+
+==================================================
+632 – CROSS-VERSION OVERINCLUSION
+==================================================
+
+Detect stale/newer version fact leakage.
+
+==================================================
+633 – CROSS-TYPE OVERINCLUSION
+==================================================
+
+Detect facts copied between insurance families without source applicability.
+
+==================================================
+634 – CROSS-SPECIES OVERINCLUSION
+==================================================
+
+Hund/Katt isolation.
+
+==================================================
+635 – CROSS-BOAT-TYPE OVERINCLUSION
+==================================================
+
+Where Båt source differentiates boat/motor type:
+
+verify applicability.
+
+==================================================
+636 – UNDERINCLUSION VS OVERINCLUSION
+==================================================
+
+Completeness audit must inspect both:
+
+UNDERINCLUSION:
+source fact missing.
+
+OVERINCLUSION:
+catalog claims fact source does not support.
+
+Both affect trust.
+
+==================================================
+637 – OVERINCLUSION CLASSIFICATION
+==================================================
+
+Add:
+
+CATALOG_FACT_NOT_SUPPORTED_BY_APPLICABLE_SOURCE
+
+when evidence supports it.
+
+This may be P0/P1 depending on materiality.
+
+==================================================
+638 – OVERINCLUSION MANUAL REVIEW
+==================================================
+
+Every material unsupported catalog fact must be manually rechecked for:
+
+other applicable source
+inheritance
+source version
+scope
+component.
+
+==================================================
+639 – CATALOG SOURCE SUPPORT RATIO
+==================================================
+
+Diagnostic counts may include:
+
+catalog facts checked
+source-supported
+support unclear
+unsupported candidates.
+
+Do not turn into provider score.
+
+==================================================
+640 – SOURCE/CATALOG BIDIRECTIONAL AUDIT
+==================================================
+
+The complete audit is therefore bidirectional:
+
+SOURCE → CATALOG
+for omissions
+
+and
+
+CATALOG → SOURCE
+for unsupported claims.
+
+==================================================
+641 – BIDIRECTIONAL PRIORITY
+==================================================
+
+Potential unsupported positive coverage may deserve higher priority than a
+missing secondary detail.
+
+Severity follows advisor impact.
+
+==================================================
+642 – UNSUPPORTED INCLUDED
+==================================================
+
+If catalog says:
+
+Included
+
+but no applicable source supports it:
+
+potential CRITICAL/HIGH.
+
+Do not conclude until manual source-package review.
+
+==================================================
+643 – UNSUPPORTED OPTIONAL
+==================================================
+
+If catalog says optional availability without source support:
+
+flag.
+
+==================================================
+644 – UNSUPPORTED NUMERIC VALUE
+==================================================
+
+If catalog numeric value lacks matching applicable evidence:
+
+flag.
+
+==================================================
+645 – STALE VALUE
+==================================================
+
+If value appears supported only by older/non-applicable source while current
+source differs:
+
+STALE_SOURCE_CANDIDATE / semantic contradiction.
+
+==================================================
+646 – SOURCE SUPPORT STATUS
+==================================================
+
+For catalog facts classify:
+
+SUPPORTED
+SUPPORTED_BY_INHERITANCE
+SUPPORTED_BY_COMPONENT
+SUPPORT_AMBIGUOUS
+UNSUPPORTED_CANDIDATE.
+
+==================================================
+647 – BIDIRECTIONAL LEDGER
+==================================================
+
+Product ledger should include:
+
+catalog_fact_count
+supported_catalog_fact_count
+unsupported_candidate_count
+
+in addition to source completeness counts.
+
+==================================================
+648 – NO DUPLICATE SUPPORT REQUIREMENT
+==================================================
+
+One valid applicable source may be enough.
+
+Do not require every source document to repeat a fact.
+
+==================================================
+649 – SOURCE QUALITY
+==================================================
+
+Use existing source policy to judge evidence quality.
+
+Do not invent a numerical source-quality score.
+
+==================================================
+650 – PRODUCT PAGE MARKETING LANGUAGE
+==================================================
+
+Be cautious with broad marketing phrases.
+
+Prefer precise terms/IPID for structured legal limits where available.
+
+But do not ignore a clearly documented current product benefit solely because
+it appears on a product page.
+
+==================================================
+651 – FACT CONTRADICTION ESCALATION
+==================================================
+
+Where product page and terms materially conflict:
+
+SOURCE_CONFLICT_REVIEW_REQUIRED.
+
+No automatic interpretation.
+
+==================================================
+652 – HISTORICAL SOURCE CONTAMINATION
+==================================================
+
+Check old/historical source artifacts are not supporting current product
+facts unless intentionally/version-correct.
+
+==================================================
+653 – SOURCE ARTIFACT NAMING
+==================================================
+
+Do not rely solely on filename to determine applicability.
+
+Manifest/content/version evidence matters.
+
+==================================================
+654 – URL IS NOT APPLICABILITY
+==================================================
+
+A provider URL alone does not prove exact product/scope applicability.
+
+==================================================
+655 – PRODUCT PAGE SHARED URL
+==================================================
+
+Shared product pages may cover multiple levels.
+
+Extract exact level applicability where possible.
+
+==================================================
+656 – SOURCE SECTION REFERENCES
+==================================================
+
+For major findings capture section heading/page to make human review fast.
+
+==================================================
+657 – REVIEW EFFICIENCY
+==================================================
+
+Human reviewer should be able to validate a P1 finding without rereading an
+entire 80-page document.
+
+Provide concise locator/evidence.
+
+==================================================
+658 – EVIDENCE CONTEXT
+==================================================
+
+Include enough surrounding semantic context to avoid misleading isolated
+phrases.
+
+Still keep excerpts short.
+
+==================================================
+659 – AUDIT EXCERPT PARAPHRASING
+==================================================
+
+Where source copyright/size concerns apply:
+
+prefer concise paraphrase plus location over long copied passages.
+
+==================================================
+660 – TEMP OUTPUT SECURITY
+==================================================
+
+Audit output contains public source data only.
+
+Still avoid including any accidental secrets discovered in repository.
+
+If a secret is unexpectedly found:
+
+report category/location without value.
+
+==================================================
+661 – SECRET DISCOVERY
+==================================================
+
+Unexpected secret exposure is outside catalog completeness but must be
+reported separately as:
+
+SECURITY_SIDE_FINDING
+
+without expanding into security remediation.
+
+==================================================
+662 – PRIVATE DATA DISCOVERY
+==================================================
+
+If private customer data is unexpectedly found among source artifacts:
+
+STOP affected audit use immediately.
+
+Report:
+
+PRIVATE_DATA_SIDE_FINDING
+
+without reproducing data.
+
+==================================================
+663 – PRIVATE DATA IS NOT SOURCE
+==================================================
+
+Never use accidental private data as insurance-product evidence.
+
+==================================================
+664 – SOURCE ARTIFACT PUBLICNESS
+==================================================
+
+Where uncertain whether artifact is public official source:
+
+flag source package review.
+
+==================================================
+665 – AUDIT SIDE FINDINGS
+==================================================
+
+Keep unrelated security/privacy/code findings separate from source
+completeness counts.
+
+==================================================
+666 – TESTED SOURCE ORIGINALS
+==================================================
+
+Report whether all applicable original artifacts passed integrity/readability
+checks.
+
+==================================================
+667 – SOURCE TEXT CACHE
+==================================================
+
+Temporary extracted source text may be cached under /tmp for audit
+efficiency.
+
+Do not write it into repo.
+
+==================================================
+668 – AUDIT RESUME METADATA
+==================================================
+
+If audit needs resumption, save:
+
+completed families
+completed products
+source hashes parsed
+finding IDs
+ledger state
+
+under /tmp.
+
+==================================================
+669 – RESUME SAFETY
+==================================================
+
+On resume verify repo HEAD/fingerprint still matches original audit baseline.
+
+If not:
+
+do not combine results from different repository states without explicit
+reconciliation.
+
+==================================================
+670 – AUDIT VERSION ID
+==================================================
+
+Include audit run ID/timestamp in outputs.
+
+==================================================
+671 – SOURCE CORPUS FINGERPRINT
+==================================================
+
+Create deterministic fingerprint of source artifacts/manifest relevant to
+audit where practical.
+
+This makes future comparison possible.
+
+==================================================
+672 – CATALOG FINGERPRINT
+==================================================
+
+Create deterministic fingerprint of catalog state where practical.
+
+==================================================
+673 – FUTURE DELTA AUDIT
+==================================================
+
+Recommend future source updates use delta audit against fingerprints rather
+than repeating full 204-product review unnecessarily.
+
+==================================================
+674 – CURRENT FULL AUDIT
+==================================================
+
+This run IS a full baseline audit.
+
+Do not reduce it to delta-only because no prior completeness baseline exists.
+
+==================================================
+675 – FUTURE NEW PRODUCT GATE
+==================================================
+
+A new product should not enter product comparison until:
+
+source package reviewed
+material source facts modeled
+source support verified
+comparison semantics validated.
+
+==================================================
+676 – FUTURE SOURCE UPDATE GATE
+==================================================
+
+A changed source should trigger review only of affected:
+
+products
+facts
+add-ons
+presentation
+
+plus relevant regression.
+
+==================================================
+677 – SOURCE EXPIRY / REVIEW DATE
+==================================================
+
+Evaluate whether source packages should later have review metadata.
+
+Do not invent legal expiry.
+
+Possible metadata:
+
+last checked
+effective date
+source version
+next review status.
+
+No implementation.
+
+==================================================
+678 – SOURCE FRESHNESS IS SEPARATE
+==================================================
+
+This audit primarily checks completeness against CURRENT LOCAL SOURCE CORPUS.
+
+It does NOT prove those sources are the newest available on the public web.
+
+Report this clearly.
+
+==================================================
+679 – FRESHNESS FUTURE TASK
+==================================================
+
+If needed, recommend a separate:
+
+SOURCE_FRESHNESS_AUDIT
+
+later.
+
+Do not browse now.
+
+==================================================
+680 – PILOT IMPLICATION OF FRESHNESS
+==================================================
+
+If known local sources have unknown/stale dates:
+
+include in source research/review queue according to materiality.
+
+==================================================
+681 – NO FALSE CURRENT CLAIM
+==================================================
+
+Do not call source "current" solely because it is the newest local artifact.
+
+Use:
+
+latest local applicable source
+
+unless effective/current status is proven.
+
+==================================================
+682 – PRODUCT AVAILABILITY FRESHNESS
+==================================================
+
+Likewise this audit does not independently prove every product is still sold
+today unless local evidence does.
+
+Catalog eligibility policy remains separate.
+
+==================================================
+683 – SOURCE COMPLETENESS FINAL QUESTION
+==================================================
+
+For every active product, the audit should be able to answer:
+
+"Given the official source corpus we currently possess, are the material
+advisor-relevant product facts represented accurately enough in our catalog?"
+
+with:
+
+YES
+YES_WITH_MINOR_GAPS
+NO
+REVIEW_REQUIRED
+SOURCE_INSUFFICIENT.
+
+==================================================
+684 – SOURCE SUPPORT FINAL QUESTION
+==================================================
+
+Also answer:
+
+"Are the material catalog claims supported by applicable source evidence?"
+
+same product-level status.
+
+==================================================
+685 – PRODUCT FINAL STATUS
+==================================================
+
+Combine completeness + support into:
+
+CATALOG_PRODUCT_STATUS:
+
+READY
+READY_WITH_MINOR_GAPS
+REMEDIATION_REQUIRED
+REVIEW_REQUIRED
+SOURCE_INSUFFICIENT.
+
+==================================================
+686 – PRODUCT READY
+==================================================
+
+READY requires:
+
+no material omission
+no material unsupported claim
+no material semantic mismatch
+adequate source evidence.
+
+==================================================
+687 – READY WITH MINOR GAPS
+==================================================
+
+Only P2/P3/deferable issues.
+
+==================================================
+688 – REMEDIATION REQUIRED
+==================================================
+
+At least one verified material source-backed catalog issue.
+
+==================================================
+689 – REVIEW REQUIRED
+==================================================
+
+Evidence/semantics unresolved.
+
+==================================================
+690 – SOURCE INSUFFICIENT
+==================================================
+
+Local official corpus insufficient for material conclusion.
+
+==================================================
+691 – FAMILY FINAL STATUS
+==================================================
+
+Family status should aggregate product statuses conservatively.
+
+One material product issue means family has:
+
+REMEDIATION_REQUIRED
+
+for catalog QA purposes.
+
+==================================================
+692 – GLOBAL CATALOG STATUS
+==================================================
+
+Return:
+
+GLOBAL_CATALOG_STATUS:
+
+READY
+READY_WITH_MINOR_GAPS
+REMEDIATION_REQUIRED
+ARCHITECTURE_REVIEW_REQUIRED
+SOURCE_RESEARCH_REQUIRED.
+
+==================================================
+693 – GLOBAL STATUS PRECEDENCE
+==================================================
+
+If architecture issue blocks safe remediation:
+
+ARCHITECTURE_REVIEW_REQUIRED.
+
+Else if material source corpus gaps prevent conclusions:
+
+SOURCE_RESEARCH_REQUIRED.
+
+Else if verified material catalog gaps:
+
+REMEDIATION_REQUIRED.
+
+Else if only minor:
+
+READY_WITH_MINOR_GAPS.
+
+Else:
+
+READY.
+
+==================================================
+694 – MIXED CONDITIONS
+==================================================
+
+If both remediation and source research are needed:
+
+report both queues.
+
+Choose dominant global status based on which blocks reaching pilot target.
+
+Explain.
+
+==================================================
+695 – PILOT TARGET RECHECK
+==================================================
+
+Recall proposed pre-pilot catalog target:
+
+P0 unresolved = 0
+P1 unresolved = 0
+
+plus no material source insufficiency for active pilot products.
+
+Audit only reports whether current state meets target.
+
+==================================================
+696 – DO NOT CHANGE PILOT AUTH
+==================================================
+
+Security/GDPR remediation remains separate.
+
+No auth changes here.
+
+==================================================
+697 – DO NOT CHANGE FEEDBACK
+==================================================
+
+Feedback implementation remains separate.
+
+==================================================
+698 – DO NOT CHANGE HEADERS
+==================================================
+
+Security headers remain separate.
+
+==================================================
+699 – DO NOT CHANGE RATE LIMITING
+==================================================
+
+Rate limiting remains separate.
+
+==================================================
+700 – DO NOT START PERSON INSURANCE
+==================================================
+
+Person insurance remains out of scope.
+
+==================================================
+701 – END-OF-AUDIT REPO COMMANDS
+==================================================
+
+Run read-only:
+
+git rev-parse HEAD
+git status --short
+git diff --check
+
+plus previously chosen fingerprints.
+
+Do not modify repo to make checks pass.
+
+==================================================

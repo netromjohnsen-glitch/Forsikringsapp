@@ -1,0 +1,474 @@
+[
+  {
+    "left": "[\"eika-fremtind\",\"campingvogn\",\"ordinary\",\"eika-fremtind-campingvogn-kasko\",\"2024-03-21\"]",
+    "right": "[\"frende\",\"campingvogn\",\"ordinary\",\"frende-campingvogn-kasko\",\"2026-01-01\"]",
+    "forward": [
+      {
+        "key": "campingvogn.fukt.dekning",
+        "label": "Fuktskade",
+        "conceptId": "campingvogn.fukt",
+        "conceptLabel": "Fuktskade",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "✓ Inkludert – Inkludert i produktnivået",
+          "facts": [
+            {
+              "key": "campingvogn.fukt.dekning",
+              "label": "Fuktskade",
+              "value": "Inkludert i produktnivået",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "vehicle:frende-CaravanInsurance.pdf",
+                  "filename": "frende-CaravanInsurance.pdf",
+                  "url": "https://api.frende.no/documents/terms/public/pnc/CaravanInsurance",
+                  "termsNumber": "",
+                  "effectiveFrom": "2026-01-01",
+                  "page": 3,
+                  "section": "6.1.2",
+                  "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "vehicle:frende-CaravanInsurance.pdf",
+              "filename": "frende-CaravanInsurance.pdf",
+              "url": "https://api.frende.no/documents/terms/public/pnc/CaravanInsurance",
+              "termsNumber": "",
+              "effectiveFrom": "2026-01-01",
+              "page": 3,
+              "section": "6.1.2",
+              "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "campingvogn.fukt.dekning",
+        "label": "Fuktskade",
+        "conceptId": "campingvogn.fukt",
+        "conceptLabel": "Fuktskade",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "✓ Inkludert – Inkludert i produktnivået",
+          "facts": [
+            {
+              "key": "campingvogn.fukt.dekning",
+              "label": "Fuktskade",
+              "value": "Inkludert i produktnivået",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "vehicle:frende-CaravanInsurance.pdf",
+                  "filename": "frende-CaravanInsurance.pdf",
+                  "url": "https://api.frende.no/documents/terms/public/pnc/CaravanInsurance",
+                  "termsNumber": "",
+                  "effectiveFrom": "2026-01-01",
+                  "page": 3,
+                  "section": "6.1.2",
+                  "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "vehicle:frende-CaravanInsurance.pdf",
+              "filename": "frende-CaravanInsurance.pdf",
+              "url": "https://api.frende.no/documents/terms/public/pnc/CaravanInsurance",
+              "termsNumber": "",
+              "effectiveFrom": "2026-01-01",
+              "page": 3,
+              "section": "6.1.2",
+              "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ]
+  },
+  {
+    "left": "[\"eika-fremtind\",\"snøscooter\",\"ordinary\",\"eika-fremtind-snoscooter-kasko\",\"2023-10-29\"]",
+    "right": "[\"frende\",\"snøscooter\",\"ordinary\",\"frende-snoscooter-kasko\",\"2026-01-01\"]",
+    "forward": [
+      {
+        "key": "snoscooter.utstyr.grense",
+        "label": "Fastmontert utstyr – forsikringssum",
+        "conceptId": "snøscooter.utstyr",
+        "conceptLabel": "Fastmontert utstyr",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "20 000 kr fastmontert ekstrautstyr",
+          "facts": [
+            {
+              "key": "snoscooter.utstyr.grense",
+              "label": "Fastmontert utstyr – forsikringssum",
+              "value": "20 000 kr fastmontert ekstrautstyr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "vehicle:frende-SnowmobileInsurance.pdf",
+                  "filename": "frende-SnowmobileInsurance.pdf",
+                  "url": "https://api.frende.no/documents/terms/public/pnc/SnowmobileInsurance",
+                  "termsNumber": "",
+                  "effectiveFrom": "2026-01-01",
+                  "page": 2,
+                  "section": "3.7",
+                  "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "vehicle:frende-SnowmobileInsurance.pdf",
+              "filename": "frende-SnowmobileInsurance.pdf",
+              "url": "https://api.frende.no/documents/terms/public/pnc/SnowmobileInsurance",
+              "termsNumber": "",
+              "effectiveFrom": "2026-01-01",
+              "page": 2,
+              "section": "3.7",
+              "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "snoscooter.utstyr.grense",
+        "label": "Fastmontert utstyr – forsikringssum",
+        "conceptId": "snøscooter.utstyr",
+        "conceptLabel": "Fastmontert utstyr",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "20 000 kr fastmontert ekstrautstyr",
+          "facts": [
+            {
+              "key": "snoscooter.utstyr.grense",
+              "label": "Fastmontert utstyr – forsikringssum",
+              "value": "20 000 kr fastmontert ekstrautstyr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "vehicle:frende-SnowmobileInsurance.pdf",
+                  "filename": "frende-SnowmobileInsurance.pdf",
+                  "url": "https://api.frende.no/documents/terms/public/pnc/SnowmobileInsurance",
+                  "termsNumber": "",
+                  "effectiveFrom": "2026-01-01",
+                  "page": 2,
+                  "section": "3.7",
+                  "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "vehicle:frende-SnowmobileInsurance.pdf",
+              "filename": "frende-SnowmobileInsurance.pdf",
+              "url": "https://api.frende.no/documents/terms/public/pnc/SnowmobileInsurance",
+              "termsNumber": "",
+              "effectiveFrom": "2026-01-01",
+              "page": 2,
+              "section": "3.7",
+              "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ]
+  },
+  {
+    "left": "[\"fremtind\",\"mc\",\"ordinary-sparebank1\",\"fremtind-mc-kasko\",null]",
+    "right": "[\"tryg\",\"mc\",\"ordinary\",\"tryg-mc-kasko\",\"2026-07-01\"]",
+    "forward": [
+      {
+        "key": "nyverdi.alder",
+        "label": "Totalskadegaranti – aldersgrense",
+        "conceptId": "mc.totalskade",
+        "conceptLabel": "Totalskade og nyverdi",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "Innen ett år etter registrering som fabrikkny på forsikringstakeren",
+          "facts": [
+            {
+              "key": "nyverdi.alder",
+              "label": "Totalskadegaranti – aldersgrense",
+              "value": "Innen ett år etter registrering som fabrikkny på forsikringstakeren",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+                  "filename": "tryg-05PAU25405.pdf",
+                  "termsNumber": "PAU25405",
+                  "effectiveFrom": "2026-07-01",
+                  "version": "2026-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+                  "company": "Tryg",
+                  "page": 4,
+                  "section": "3.4",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+              "filename": "tryg-05PAU25405.pdf",
+              "termsNumber": "PAU25405",
+              "effectiveFrom": "2026-07-01",
+              "version": "2026-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+              "company": "Tryg",
+              "page": 4,
+              "section": "3.4",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      },
+      {
+        "key": "nyverdi.km",
+        "label": "Totalskadegaranti – kilometergrense",
+        "conceptId": "mc.totalskade",
+        "conceptLabel": "Totalskade og nyverdi",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "Ikke kjørt mer enn 10 000 km",
+          "facts": [
+            {
+              "key": "nyverdi.km",
+              "label": "Totalskadegaranti – kilometergrense",
+              "value": "Ikke kjørt mer enn 10 000 km",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+                  "filename": "tryg-05PAU25405.pdf",
+                  "termsNumber": "PAU25405",
+                  "effectiveFrom": "2026-07-01",
+                  "version": "2026-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+                  "company": "Tryg",
+                  "page": 4,
+                  "section": "3.4",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+              "filename": "tryg-05PAU25405.pdf",
+              "termsNumber": "PAU25405",
+              "effectiveFrom": "2026-07-01",
+              "version": "2026-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+              "company": "Tryg",
+              "page": 4,
+              "section": "3.4",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "nyverdi.alder",
+        "label": "Totalskadegaranti – aldersgrense",
+        "conceptId": "mc.totalskade",
+        "conceptLabel": "Totalskade og nyverdi",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Innen ett år etter registrering som fabrikkny på forsikringstakeren",
+          "facts": [
+            {
+              "key": "nyverdi.alder",
+              "label": "Totalskadegaranti – aldersgrense",
+              "value": "Innen ett år etter registrering som fabrikkny på forsikringstakeren",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+                  "filename": "tryg-05PAU25405.pdf",
+                  "termsNumber": "PAU25405",
+                  "effectiveFrom": "2026-07-01",
+                  "version": "2026-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+                  "company": "Tryg",
+                  "page": 4,
+                  "section": "3.4",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+              "filename": "tryg-05PAU25405.pdf",
+              "termsNumber": "PAU25405",
+              "effectiveFrom": "2026-07-01",
+              "version": "2026-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+              "company": "Tryg",
+              "page": 4,
+              "section": "3.4",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      },
+      {
+        "key": "nyverdi.km",
+        "label": "Totalskadegaranti – kilometergrense",
+        "conceptId": "mc.totalskade",
+        "conceptLabel": "Totalskade og nyverdi",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Ikke kjørt mer enn 10 000 km",
+          "facts": [
+            {
+              "key": "nyverdi.km",
+              "label": "Totalskadegaranti – kilometergrense",
+              "value": "Ikke kjørt mer enn 10 000 km",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+                  "filename": "tryg-05PAU25405.pdf",
+                  "termsNumber": "PAU25405",
+                  "effectiveFrom": "2026-07-01",
+                  "version": "2026-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+                  "company": "Tryg",
+                  "page": 4,
+                  "section": "3.4",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mcb:tryg:mc:tryg-05PAU25405.pdf",
+              "filename": "tryg-05PAU25405.pdf",
+              "termsNumber": "PAU25405",
+              "effectiveFrom": "2026-07-01",
+              "version": "2026-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25405&vilk=Kasko-MC",
+              "company": "Tryg",
+              "page": 4,
+              "section": "3.4",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "batch": "B-012",
+  "source_verification": "Own Kasko PDF3 Hvilke skader explicitly covers rodents/insects/other pests. Pluss remains unchanged with own provenance; lower tiers and MC unchanged. No moisture coverage added.",
+  "source_hashes": {
+    "catalog/sources/mc-bobil/gjensidige-bobil-kasko-vilkar.pdf": "7971a0170cf272cacec8e9da23633fa630245631d04e99f455b174dd3a2fc734"
+  },
+  "changed_products": [
+    "gjensidige-bobil-kasko"
+  ],
+  "unchanged_products": 203,
+  "allowed_keys": [
+    "bobil.skadedyr.dekning"
+  ],
+  "deltas": [
+    {
+      "product": "gjensidige-bobil-kasko",
+      "view": "base",
+      "key": "bobil.skadedyr.dekning",
+      "before": null,
+      "after": {
+        "key": "bobil.skadedyr.dekning",
+        "label": "Skadedyr",
+        "value": "Skader som skyldes gnagere, insekter og andre skadedyr",
+        "source": {
+          "documentId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "filename": "gjensidige-bobil-kasko-vilkar.pdf",
+          "termsNumber": "",
+          "effectiveFrom": "",
+          "agreementScope": "ordinary",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Kasko-alminnelige-vilkar.pdf",
+          "company": "gjensidige",
+          "page": 3,
+          "section": "Hvilke skader – skadedyr",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "gjensidige-bobil-kasko",
+      "view": "product-comparison",
+      "key": "bobil.skadedyr.dekning",
+      "before": null,
+      "after": {
+        "key": "bobil.skadedyr.dekning",
+        "label": "Skadedyr",
+        "value": "Skader som skyldes gnagere, insekter og andre skadedyr",
+        "state": "included",
+        "addOnNames": [],
+        "role": "coverage",
+        "sources": [
+          {
+            "documentId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+            "filename": "gjensidige-bobil-kasko-vilkar.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "agreementScope": "ordinary",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Kasko-alminnelige-vilkar.pdf",
+            "company": "gjensidige",
+            "page": 3,
+            "section": "Hvilke skader – skadedyr",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      }
+    },
+    {
+      "product": "gjensidige-bobil-kasko",
+      "view": "gjensidige-bobil-utleie",
+      "key": "bobil.skadedyr.dekning",
+      "before": null,
+      "after": {
+        "key": "bobil.skadedyr.dekning",
+        "label": "Skadedyr",
+        "value": "Skader som skyldes gnagere, insekter og andre skadedyr",
+        "source": {
+          "documentId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "filename": "gjensidige-bobil-kasko-vilkar.pdf",
+          "termsNumber": "",
+          "effectiveFrom": "",
+          "agreementScope": "ordinary",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Kasko-alminnelige-vilkar.pdf",
+          "company": "gjensidige",
+          "page": 3,
+          "section": "Hvilke skader – skadedyr",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "gjensidige-bobil-kasko",
+      "view": "gjensidige-bobil-fortelt",
+      "key": "bobil.skadedyr.dekning",
+      "before": null,
+      "after": {
+        "key": "bobil.skadedyr.dekning",
+        "label": "Skadedyr",
+        "value": "Skader som skyldes gnagere, insekter og andre skadedyr",
+        "source": {
+          "documentId": "mc-bobil:gjensidige-bobil-kasko-vilkar.pdf:bobil",
+          "filename": "gjensidige-bobil-kasko-vilkar.pdf",
+          "termsNumber": "",
+          "effectiveFrom": "",
+          "agreementScope": "ordinary",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Kasko-alminnelige-vilkar.pdf",
+          "company": "gjensidige",
+          "page": 3,
+          "section": "Hvilke skader – skadedyr",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg."
+        }
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-2487"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "d67df16cac74ac1a"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

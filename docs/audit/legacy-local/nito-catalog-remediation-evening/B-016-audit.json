@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "batch": "B-016",
+  "source_verification": "Own Plus PDF6 explicitly other baggage not special categories40k/item. Standard20k preserved; unlimited Plus total unchanged. Own provenance and replacesBase prevents duplicate or inherited20k. Explicit customer25k/55k wins.",
+  "source_hashes": {
+    "catalog/sources/gjensidige/reise/reise-pluss-alminnelige-vilkar.pdf": "97823ecfea0e62a98965bc51ebaac61ee05f3b42766333f959cf2c29ceacea04"
+  },
+  "changed_products": [
+    "gjensidige-reise-pluss"
+  ],
+  "unchanged_products": 203,
+  "allowed_keys": [
+    "reise.bagasje.per_gjenstand"
+  ],
+  "deltas": [
+    {
+      "product": "gjensidige-reise-pluss",
+      "view": "base",
+      "key": "reise.bagasje.per_gjenstand",
+      "before": {
+        "key": "reise.bagasje.per_gjenstand",
+        "label": "Enkeltgjenstand",
+        "value": "Annet reisegods enn særskilte kategorier er begrenset til 20 000 kr per gjenstand.",
+        "source": {
+          "documentId": "gjensidigeReiseTerms",
+          "section": "Reisegods",
+          "page": 6,
+          "filename": "reise-alminnelige-vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/reise/Reise-alminnelige-vilkar.pdf",
+          "productCode": "Ikke oppgitt",
+          "version": "Ikke oppgitt",
+          "note": "Forsikringsbeviset går foran for produkt, sikrede, reisevarighet, summer, egenandeler, utvidelser og særvilkår."
+        }
+      },
+      "after": {
+        "key": "reise.bagasje.per_gjenstand",
+        "label": "Enkeltgjenstand",
+        "value": "Annet reisegods enn særskilte kategorier er begrenset til 40 000 kr per gjenstand.",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjensidigeReisePlussTerms",
+          "section": "Reisegods",
+          "page": 6,
+          "filename": "reise-pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Ikke oppgitt",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/reise/Reise-Pluss-alminnelige-vilkar.pdf",
+          "productCode": "Ikke oppgitt",
+          "version": "Ikke oppgitt",
+          "note": "Forsikringsbeviset går foran for produkt, sikrede, reisevarighet, summer, egenandeler, utvidelser og særvilkår."
+        }
+      }
+    },
+    {
+      "product": "gjensidige-reise-pluss",
+      "view": "product-comparison",
+      "key": "reise.bagasje.per_gjenstand",
+      "before": {
+        "key": "reise.bagasje.per_gjenstand",
+        "label": "Enkeltgjenstand",
+        "value": "Annet reisegods enn særskilte kategorier er begrenset til 20 000 kr per gjenstand.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjensidigeReiseTerms",
+            "section": "Reisegods",
+            "page": 6,
+            "filename": "reise-alminnelige-vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/reise/Reise-alminnelige-vilkar.pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran for produkt, sikrede, reisevarighet, summer, egenandeler, utvidelser og særvilkår."
+          }
+        ]
+      },
+      "after": {
+        "key": "reise.bagasje.per_gjenstand",
+        "label": "Enkeltgjenstand",
+        "value": "Annet reisegods enn særskilte kategorier er begrenset til 40 000 kr per gjenstand.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "gjensidigeReisePlussTerms",
+            "section": "Reisegods",
+            "page": 6,
+            "filename": "reise-pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/reise/Reise-Pluss-alminnelige-vilkar.pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran for produkt, sikrede, reisevarighet, summer, egenandeler, utvidelser og særvilkår."
+          }
+        ]
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-2256"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "764ee65f51c3d731"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

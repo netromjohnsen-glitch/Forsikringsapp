@@ -1,0 +1,2825 @@
+{
+  "generatedAt": "2026-10-02T06:16:53.640Z",
+  "readOnly": true,
+  "asOf": "2026-10-02T12:00:00.000Z",
+  "products": [
+    {
+      "identity": {
+        "company": "Tryg",
+        "insuranceType": "Innbo",
+        "name": "Innbo",
+        "providerId": "tryg",
+        "productId": "tryg-innbo",
+        "version": "2026-07-01",
+        "sourceId": "trygInnbo",
+        "componentIds": [
+          "trygInnboShared",
+          "trygInnbo"
+        ]
+      },
+      "facts": [],
+      "addons": [
+        {
+          "id": "tryg-innbo-utleie",
+          "name": "Utleieforsikring",
+          "componentId": "trygInnboUtleie",
+          "providerId": "tryg",
+          "requiresLevel": [
+            "tryg-innbo",
+            "tryg-innbo-ekstra"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": {
+        "company": "Tryg",
+        "insuranceType": "Innbo",
+        "name": "Innbo Ekstra",
+        "providerId": "tryg",
+        "productId": "tryg-innbo-ekstra",
+        "version": "2026-07-01",
+        "sourceId": "trygInnboExtra",
+        "inheritsProductId": "tryg-innbo",
+        "componentIds": [
+          "trygInnboExtra"
+        ]
+      },
+      "facts": [
+        {
+          "key": "flytting.transport.grense",
+          "label": "Transportskade ved flytting – grense",
+          "value": "30 000 kr per skadetilfelle ved transportbyrå, idrettslag, forening eller lignende",
+          "source": {
+            "documentId": "trygInnboExtra",
+            "section": "2.4",
+            "page": 4,
+            "filename": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+            "termsNumber": "PPK13302",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302"
+          }
+        },
+        {
+          "key": "skadedyr.dekning",
+          "label": "Bekjempelse av skadeinsekter, mus og rotter",
+          "value": "Utgifter til reduksjon eller utryddelse på fast bosted i Norge",
+          "source": {
+            "documentId": "trygInnboExtra",
+            "section": "2.6",
+            "page": 5,
+            "filename": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+            "termsNumber": "PPK13302",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302"
+          }
+        },
+        {
+          "key": "skadedyr.grense",
+          "label": "Skadedyrbekjempelse – grense",
+          "value": "150 000 kr per skadetilfelle",
+          "source": {
+            "documentId": "trygInnboExtra",
+            "section": "2.6",
+            "page": 5,
+            "filename": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+            "termsNumber": "PPK13302",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302"
+          }
+        },
+        {
+          "key": "skadedyr.egenandel",
+          "label": "Skadedyrbekjempelse – egenandel",
+          "value": "2 000 kr per skadetilfelle",
+          "deductibleClassification": "override",
+          "source": {
+            "documentId": "trygInnboExtra",
+            "section": "2.6",
+            "page": 5,
+            "filename": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+            "termsNumber": "PPK13302",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302"
+          }
+        }
+      ],
+      "addons": [
+        {
+          "id": "tryg-innbo-utleie",
+          "name": "Utleieforsikring",
+          "componentId": "trygInnboUtleie",
+          "providerId": "tryg",
+          "requiresLevel": [
+            "tryg-innbo",
+            "tryg-innbo-ekstra"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": {
+        "company": "Fremtind",
+        "insuranceType": "Reise",
+        "name": "Reise",
+        "providerId": "fremtind",
+        "productId": "fremtind-reise",
+        "version": "PRE-450.200-015",
+        "sourceId": "fremtindReiseUnifiedTerms",
+        "componentIds": [
+          "fremtindReiseActiveTerms",
+          "fremtindReiseActiveIpid"
+        ]
+      },
+      "facts": [
+        {
+          "key": "reise.forsinkelse.rute",
+          "label": "Forsinket reise",
+          "value": "Nødvendige merutgifter til overnatting og innhenting av påbegynt reise ved dokumentert vær, uforutsett trafikkforhold, teknisk feil eller trafikkuhell. Overnatting er begrenset til 6 000 kr per person; innhenting av reiseruten er ubegrenset etter vilkåret.",
+          "source": {
+            "documentId": "fremtindReiseUnifiedTerms",
+            "section": "8.2",
+            "page": 5,
+            "filename": "canonical/fremtind-reise-vilkar.pdf",
+            "termsNumber": "PRE-450.200-015",
+            "effectiveFrom": "2025-03-17",
+            "company": "Fremtind",
+            "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/reise/Reise_PM.pdf",
+            "productCode": "PRE-450.200-015",
+            "version": "PRE-450.200-015",
+            "note": "Aktivt Fremtind-produkt for SpareBank 1, DNB og Eika nytegning; forsikringsbevis og særvilkår går foran."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.ankomst",
+          "label": "Forsinket ankomst",
+          "value": "Ved mer enn åtte timers dokumentert forsinkelse erstattes tapt ferie med 500 kr per påbegynt døgn, inntil 5 000 kr per person, og ubenyttede turisttjenester med inntil 5 000 kr per skadetilfelle.",
+          "source": {
+            "documentId": "fremtindReiseUnifiedTerms",
+            "section": "8.2",
+            "page": 6,
+            "filename": "canonical/fremtind-reise-vilkar.pdf",
+            "termsNumber": "PRE-450.200-015",
+            "effectiveFrom": "2025-03-17",
+            "company": "Fremtind",
+            "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/reise/Reise_PM.pdf",
+            "productCode": "PRE-450.200-015",
+            "version": "PRE-450.200-015",
+            "note": "Aktivt Fremtind-produkt for SpareBank 1, DNB og Eika nytegning; forsikringsbevis og særvilkår går foran."
+          }
+        }
+      ],
+      "addons": []
+    },
+    {
+      "identity": {
+        "company": "Storebrand",
+        "insuranceType": "Reise",
+        "name": "Standard",
+        "providerId": "storebrand",
+        "productId": "storebrand-reise-standard",
+        "version": "2026-09-20-canonical",
+        "sourceId": "storebrandReiseTerms",
+        "componentIds": [
+          "storebrandReiseCommon",
+          "storebrandReiseStandard",
+          "storebrandReiseServices"
+        ]
+      },
+      "facts": [
+        {
+          "key": "reise.forsinkelse.rute",
+          "label": "Forsinket fremmøte/avgang",
+          "value": "Overnatting inntil 3 000 kr per person og videretransport inntil 20 000 kr per person ved dokumenterte årsaker.",
+          "source": {
+            "documentId": "storebrandReiseTerms",
+            "section": "B.3",
+            "page": 8,
+            "filename": "reise10-vilkar-reiseforsikring.pdf",
+            "termsNumber": "reise10",
+            "effectiveFrom": "2025-06-01",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+            "productCode": "reise10",
+            "version": "reise10",
+            "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+          }
+        }
+      ],
+      "addons": []
+    },
+    {
+      "identity": {
+        "company": "Storebrand",
+        "insuranceType": "Reise",
+        "name": "Super",
+        "providerId": "storebrand",
+        "productId": "storebrand-reise-super",
+        "version": "2026-09-20-canonical",
+        "sourceId": "storebrandReiseTerms",
+        "componentIds": [
+          "storebrandReiseSuper"
+        ],
+        "inheritsProductId": "storebrand-reise-standard"
+      },
+      "facts": [
+        {
+          "key": "reise.forsinkelse.rute",
+          "label": "Forsinket fremmøte/avgang",
+          "value": "Ingen generell øvre sum for dokumentert nødvendig overnatting og videretransport.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "storebrandReiseTerms",
+            "section": "B.3",
+            "page": 8,
+            "filename": "reise10-vilkar-reiseforsikring.pdf",
+            "termsNumber": "reise10",
+            "effectiveFrom": "2025-06-01",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+            "productCode": "reise10",
+            "version": "reise10",
+            "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement",
+          "label": "Tapt hotell og arrangement",
+          "value": "5 000 kr per person ved kvalifiserende forsinkelse.",
+          "source": {
+            "documentId": "storebrandReiseTerms",
+            "section": "C.1.2 punkt 5",
+            "page": 27,
+            "filename": "reise10-vilkar-reiseforsikring.pdf",
+            "termsNumber": "reise10",
+            "effectiveFrom": "2025-06-01",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+            "productCode": "reise10",
+            "version": "reise10",
+            "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale",
+          "label": "Tapt leiebilavtale",
+          "value": "10 000 kr per hendelse.",
+          "source": {
+            "documentId": "storebrandReiseTerms",
+            "section": "C.1.2 punkt 5",
+            "page": 27,
+            "filename": "reise10-vilkar-reiseforsikring.pdf",
+            "termsNumber": "reise10",
+            "effectiveFrom": "2025-06-01",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+            "productCode": "reise10",
+            "version": "reise10",
+            "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+          }
+        }
+      ],
+      "addons": []
+    },
+    {
+      "identity": {
+        "company": "Tryg",
+        "insuranceType": "Reise",
+        "name": "Reise Ekstra",
+        "providerId": "tryg",
+        "productId": "tryg-reise-ekstra",
+        "version": "2026-09-20-canonical",
+        "sourceId": "trygReiseExtra",
+        "componentIds": [
+          "trygReiseExtra",
+          "trygReiseExtraSums"
+        ],
+        "inheritsProductId": "tryg-reise"
+      },
+      "facts": [
+        {
+          "key": "reise.overnatting",
+          "label": "Reise med eller uten overnatting",
+          "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseExtra",
+            "section": "Produktstruktur og produktside",
+            "page": 1,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.rute",
+          "label": "Forsinket avgang og fremmøte",
+          "value": "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.",
+          "source": {
+            "documentId": "trygReiseBase",
+            "section": "3.1",
+            "page": 2,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement",
+          "label": "Tapt hotell og arrangement",
+          "value": "Ubenyttet hotellovernatting og forhåndsbetalt arrangement etter minst fem timers dekket forsinkelse; inntil én hotellovernatting.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseExtra",
+            "section": "3.2",
+            "page": 3,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale",
+          "label": "Tapt leiebilavtale",
+          "value": "Kansellert forhåndsbetalt leiebilavtale for bil etter minst 1,5 times dekket forsinkelse; privatleie, andre kjøretøy og bil for andre er unntatt.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseExtra",
+            "section": "3.2–3.3",
+            "page": 3,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.avgang_sum",
+          "label": "Forsinket avgang – sum",
+          "value": "3 000 kr.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Forsinket avgang",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.fremmote_sum",
+          "label": "Forsinket fremmøte – sum",
+          "value": "Ingen øvre forsikringssum; overnatting inntil 3 000 kr.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Forsinket fremmøte",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement_sum",
+          "label": "Tapt hotell/arrangement – sum",
+          "value": "5 000 kr.",
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Tapt hotellovernatting og arrangement",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale_sum",
+          "label": "Tapt leiebilavtale – sum",
+          "value": "8 000 kr per skadetilfelle.",
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Tapt leiebilavtale",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        }
+      ],
+      "addons": [
+        {
+          "id": "tryg-reise-ulykke-ekstra",
+          "name": "Ulykke Ekstra",
+          "componentId": "trygReiseAccidentExtra",
+          "providerId": "tryg",
+          "requiresLevel": [
+            "tryg-reise-ekstra"
+          ],
+          "insuranceTypes": [
+            "Reise"
+          ],
+          "exclusiveGroup": "tryg-reise-ulykke"
+        }
+      ]
+    },
+    {
+      "identity": {
+        "company": "Tryg",
+        "insuranceType": "Reise",
+        "name": "Reise Premium",
+        "providerId": "tryg",
+        "productId": "tryg-reise-premium",
+        "version": "2026-09-20-canonical",
+        "sourceId": "trygReisePremium",
+        "componentIds": [
+          "trygReisePremium",
+          "trygReisePremiumServices",
+          "trygReisePremiumLegal",
+          "trygReiseAccidentPremium"
+        ],
+        "inheritsProductId": "tryg-reise-ekstra"
+      },
+      "facts": [
+        {
+          "key": "reise.overnatting",
+          "label": "Reise med eller uten overnatting",
+          "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseExtra",
+            "section": "Produktstruktur og produktside",
+            "page": 1,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.rute",
+          "label": "Forsinket avgang og fremmøte",
+          "value": "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.",
+          "source": {
+            "documentId": "trygReiseBase",
+            "section": "3.1",
+            "page": 2,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement",
+          "label": "Tapt hotell og arrangement",
+          "value": "Ubenyttet hotellovernatting og forhåndsbetalt arrangement etter minst fem timers dekket forsinkelse; inntil én hotellovernatting.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseExtra",
+            "section": "3.2",
+            "page": 3,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale",
+          "label": "Tapt leiebilavtale",
+          "value": "Kansellert forhåndsbetalt leiebilavtale for bil etter minst 1,5 times dekket forsinkelse; privatleie, andre kjøretøy og bil for andre er unntatt.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseExtra",
+            "section": "3.2–3.3",
+            "page": 3,
+            "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+            "termsNumber": "PRF46001",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+            "productCode": "PRF46001",
+            "version": "PRF46001",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.avgang_sum",
+          "label": "Forsinket avgang – sum",
+          "value": "3 000 kr.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Forsinket avgang",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.fremmote_sum",
+          "label": "Forsinket fremmøte – sum",
+          "value": "Ingen øvre forsikringssum; overnatting inntil 3 000 kr.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Forsinket fremmøte",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement_sum",
+          "label": "Tapt hotell/arrangement – sum",
+          "value": "5 000 kr.",
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Tapt hotellovernatting og arrangement",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale_sum",
+          "label": "Tapt leiebilavtale – sum",
+          "value": "8 000 kr per skadetilfelle.",
+          "source": {
+            "documentId": "trygReiseSums",
+            "section": "Tapt leiebilavtale",
+            "page": 1,
+            "filename": "Forsikringssummer-08.2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "",
+            "company": "Tryg",
+            "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+            "productCode": "Ikke oppgitt",
+            "version": "Ikke oppgitt",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        }
+      ],
+      "addons": []
+    },
+    {
+      "identity": {
+        "company": "Gjensidige",
+        "insuranceType": "Hus",
+        "name": "Hus",
+        "providerId": "gjensidige",
+        "productId": "gjensidige-hus",
+        "version": "Alminnelige vilkår",
+        "sourceId": "gjensidigeHusStandard",
+        "componentIds": [
+          "gjensidigeHusIpid",
+          "gjensidigeHusProduct",
+          "gjensidigeHusStandard"
+        ]
+      },
+      "facts": [
+        {
+          "key": "hus.skadedyr.bekjempelse",
+          "label": "Bekjempelse av skadedyr",
+          "value": "Bekjempelse av mus, rotter og andre skadedyr med inntil fire bein.",
+          "source": {
+            "documentId": "gjensidigeHusStandard",
+            "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Standard",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+            "section": "Hus – Dekkes",
+            "page": 3,
+            "version": "Alminnelige vilkår"
+          }
+        },
+        {
+          "key": "hus.skadedyr.bygningsskade",
+          "label": "Bygningsskade fra skadedyr",
+          "value": "Skade som følge av mus, rotter og andre skadedyr med inntil fire bein.",
+          "source": {
+            "documentId": "gjensidigeHusStandard",
+            "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Standard",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+            "section": "Hus – Dekkes",
+            "page": 3,
+            "version": "Alminnelige vilkår"
+          }
+        }
+      ],
+      "addons": [
+        {
+          "id": "gjensidige-hus-utleie",
+          "name": "Utleie",
+          "componentId": "gjensidigeHusRental",
+          "providerId": "gjensidige",
+          "requiresLevel": [
+            "gjensidige-hus",
+            "gjensidige-hus-pluss"
+          ],
+          "insuranceTypes": [
+            "Hus"
+          ]
+        },
+        {
+          "id": "gjensidige-hus-rate-insekter",
+          "name": "Sopp, råte og skadeinsekter",
+          "componentId": "gjensidigeHusRotOption",
+          "providerId": "gjensidige",
+          "requiresLevel": [
+            "gjensidige-hus"
+          ],
+          "insuranceTypes": [
+            "Hus"
+          ]
+        },
+        {
+          "id": "gjensidige-hus-smart",
+          "name": "Hus Smart",
+          "componentId": "gjensidigeHusSmart",
+          "providerId": "gjensidige",
+          "requiresLevel": [
+            "gjensidige-hus",
+            "gjensidige-hus-pluss"
+          ],
+          "insuranceTypes": [
+            "Hus"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": {
+        "company": "Gjensidige",
+        "insuranceType": "Hus",
+        "name": "Hus Pluss",
+        "providerId": "gjensidige",
+        "productId": "gjensidige-hus-pluss",
+        "version": "Alminnelige vilkår",
+        "sourceId": "gjensidigeHusPluss",
+        "componentIds": [
+          "gjensidigeHusPluss"
+        ],
+        "inheritsProductId": "gjensidige-hus"
+      },
+      "facts": [
+        {
+          "key": "hus.skadedyr.bekjempelse",
+          "label": "Bekjempelse av skadeinsekter",
+          "value": "Bekjempelse av blant annet stokkmaur, husbukk, stripet borebille, kakerlakk, veggedyr og skjeggkre. Gjensidige velger metode.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Råte og skadeinsekter",
+            "page": 6,
+            "version": "Alminnelige vilkår"
+          }
+        },
+        {
+          "key": "hus.skadedyr.bygningsskade",
+          "label": "Bygningsskade fra treødeleggende insekter",
+          "value": "Materialnedbrytning fra treødeleggende insekter på fullverdiforsikret bygning.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Råte og skadeinsekter",
+            "page": 6,
+            "version": "Alminnelige vilkår"
+          }
+        },
+        {
+          "key": "hus.skadedyr.egenandel",
+          "label": "Bekjempelse av skadeinsekter – egenandel",
+          "value": "2 000 kroner.",
+          "deductibleClassification": "override",
+          "source": {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Forsikringsoversikt",
+            "page": 1,
+            "version": "Alminnelige vilkår"
+          }
+        }
+      ],
+      "addons": [
+        {
+          "id": "gjensidige-hus-utleie",
+          "name": "Utleie",
+          "componentId": "gjensidigeHusRental",
+          "providerId": "gjensidige",
+          "requiresLevel": [
+            "gjensidige-hus",
+            "gjensidige-hus-pluss"
+          ],
+          "insuranceTypes": [
+            "Hus"
+          ]
+        },
+        {
+          "id": "gjensidige-hus-smart",
+          "name": "Hus Smart",
+          "componentId": "gjensidigeHusSmart",
+          "providerId": "gjensidige",
+          "requiresLevel": [
+            "gjensidige-hus",
+            "gjensidige-hus-pluss"
+          ],
+          "insuranceTypes": [
+            "Hus"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": {
+        "providerId": "frende",
+        "company": "Frende",
+        "insuranceType": "Hund",
+        "agreementScope": "ordinary",
+        "productId": "frende-hund-veterin-r",
+        "name": "Veterinær",
+        "version": "2026-01-01",
+        "sourceId": "boat-pet:frende:hund",
+        "componentIds": [
+          "frende-hund-veterin-r"
+        ]
+      },
+      "facts": [],
+      "addons": [
+        {
+          "id": "frende-hund-medisin",
+          "name": "Medisin",
+          "providerId": "frende",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Hund"
+          ],
+          "requiresLevel": [
+            "frende-hund-veterin-r"
+          ],
+          "componentId": "frende-hund-medisin"
+        },
+        {
+          "id": "frende-hund-tann",
+          "name": "Tann",
+          "providerId": "frende",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Hund"
+          ],
+          "requiresLevel": [
+            "frende-hund-veterin-r"
+          ],
+          "componentId": "frende-hund-tann"
+        },
+        {
+          "id": "frende-hund-tap",
+          "name": "Tap",
+          "providerId": "frende",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Hund"
+          ],
+          "requiresLevel": [
+            "frende-hund-veterin-r"
+          ],
+          "componentId": "frende-hund-tap"
+        },
+        {
+          "id": "frende-hund-bruksverdi",
+          "name": "Bruksverdi",
+          "providerId": "frende",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Hund"
+          ],
+          "requiresLevel": [
+            "frende-hund-veterin-r"
+          ],
+          "componentId": "frende-hund-bruksverdi"
+        }
+      ]
+    },
+    {
+      "identity": {
+        "providerId": "frende",
+        "company": "Frende",
+        "insuranceType": "Katt",
+        "agreementScope": "ordinary",
+        "productId": "frende-katt-veterin-r",
+        "name": "Veterinær",
+        "version": "2026-01-01",
+        "sourceId": "boat-pet:frende:katt",
+        "componentIds": [
+          "frende-katt-veterin-r"
+        ]
+      },
+      "facts": [],
+      "addons": [
+        {
+          "id": "frende-katt-medisin",
+          "name": "Medisin",
+          "providerId": "frende",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Katt"
+          ],
+          "requiresLevel": [
+            "frende-katt-veterin-r"
+          ],
+          "componentId": "frende-katt-medisin"
+        },
+        {
+          "id": "frende-katt-tap",
+          "name": "Tap",
+          "providerId": "frende",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Katt"
+          ],
+          "requiresLevel": [
+            "frende-katt-veterin-r"
+          ],
+          "componentId": "frende-katt-tap"
+        }
+      ]
+    },
+    {
+      "identity": {
+        "providerId": "gjensidige",
+        "company": "Gjensidige",
+        "insuranceType": "Hund",
+        "agreementScope": "ordinary",
+        "productId": "gjensidige-hund-behandling",
+        "name": "Behandling",
+        "version": null,
+        "sourceId": "boat-pet:gjensidige:hund",
+        "componentIds": [
+          "gjensidige-hund-behandling"
+        ]
+      },
+      "facts": [],
+      "addons": [
+        {
+          "id": "gjensidige-hund-liv",
+          "name": "Liv",
+          "providerId": "gjensidige",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Hund"
+          ],
+          "requiresLevel": [
+            "gjensidige-hund-behandling"
+          ],
+          "componentId": "gjensidige-hund-liv"
+        },
+        {
+          "id": "gjensidige-hund-bruk",
+          "name": "Bruk",
+          "providerId": "gjensidige",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Hund"
+          ],
+          "requiresLevel": [
+            "gjensidige-hund-behandling"
+          ],
+          "componentId": "gjensidige-hund-bruk"
+        }
+      ]
+    },
+    {
+      "identity": {
+        "providerId": "gjensidige",
+        "company": "Gjensidige",
+        "insuranceType": "Katt",
+        "agreementScope": "ordinary",
+        "productId": "gjensidige-katt-behandling",
+        "name": "Behandling",
+        "version": null,
+        "sourceId": "boat-pet:gjensidige:katt",
+        "componentIds": [
+          "gjensidige-katt-behandling"
+        ]
+      },
+      "facts": [],
+      "addons": [
+        {
+          "id": "gjensidige-katt-liv",
+          "name": "Liv",
+          "providerId": "gjensidige",
+          "agreementScope": "ordinary",
+          "insuranceTypes": [
+            "Katt"
+          ],
+          "requiresLevel": [
+            "gjensidige-katt-behandling"
+          ],
+          "componentId": "gjensidige-katt-liv"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "gjensidige-hus",
+      "addons": [
+        "gjensidige-hus-rate-insekter"
+      ],
+      "facts": [
+        {
+          "key": "hus.skadedyr.bekjempelse",
+          "label": "Bekjempelse av skadeinsekter",
+          "value": "Bekjempelse av blant annet stokkmaur, husbukk, stripet borebille, kakerlakk, veggedyr og skjeggkre. Gjensidige velger metode.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Råte og skadeinsekter",
+            "page": 6,
+            "version": "Alminnelige vilkår"
+          },
+          "qualificationSource": {
+            "documentId": "gjensidigeHusIpid",
+            "filename": "IPID-Husforsikring-EAP01.pdf",
+            "termsNumber": "EAP01",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+            "section": "Utvidelser",
+            "page": 2,
+            "version": "EAP01",
+            "productCode": "EAP01"
+          }
+        },
+        {
+          "key": "hus.skadedyr.bygningsskade",
+          "label": "Bygningsskade fra treødeleggende insekter",
+          "value": "Materialnedbrytning fra treødeleggende insekter på fullverdiforsikret bygning.",
+          "replacesBase": true,
+          "source": {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Råte og skadeinsekter",
+            "page": 6,
+            "version": "Alminnelige vilkår"
+          },
+          "qualificationSource": {
+            "documentId": "gjensidigeHusIpid",
+            "filename": "IPID-Husforsikring-EAP01.pdf",
+            "termsNumber": "EAP01",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+            "section": "Utvidelser",
+            "page": 2,
+            "version": "EAP01",
+            "productCode": "EAP01"
+          }
+        },
+        {
+          "key": "hus.skadedyr.egenandel",
+          "label": "Bekjempelse av skadeinsekter – egenandel",
+          "value": "2 000 kroner.",
+          "deductibleClassification": "override",
+          "source": {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Forsikringsoversikt",
+            "page": 1,
+            "version": "Alminnelige vilkår"
+          },
+          "qualificationSource": {
+            "documentId": "gjensidigeHusIpid",
+            "filename": "IPID-Husforsikring-EAP01.pdf",
+            "termsNumber": "EAP01",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+            "section": "Utvidelser",
+            "page": 2,
+            "version": "EAP01",
+            "productCode": "EAP01"
+          }
+        }
+      ]
+    },
+    {
+      "id": "frende-hund-veterin-r",
+      "addons": [
+        "frende-hund-tap"
+      ],
+      "facts": [
+        {
+          "key": "dyr.liv.dekning",
+          "label": "Liv, død og tap",
+          "value": "Valgfri dekning når oppført i forsikringsbeviset",
+          "source": {
+            "documentId": "boat-pet:frende:hund",
+            "filename": "frende-dog-terms.pdf",
+            "termsNumber": "Hundeforsikring",
+            "effectiveFrom": "2026-01-01",
+            "version": "2026-01-01",
+            "agreementScope": "ordinary",
+            "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+            "company": "Frende",
+            "page": 3,
+            "section": "Tap",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+          }
+        },
+        {
+          "key": "dyr.liv.forsvinning",
+          "label": "Liv, død og tap – forsvinning",
+          "value": "Inkludert i valgt Tap-dekning",
+          "source": {
+            "documentId": "boat-pet:frende:hund",
+            "filename": "frende-dog-terms.pdf",
+            "termsNumber": "Hundeforsikring",
+            "effectiveFrom": "2026-01-01",
+            "version": "2026-01-01",
+            "agreementScope": "ordinary",
+            "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+            "company": "Frende",
+            "page": 3,
+            "section": "Tap",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+          }
+        },
+        {
+          "key": "dyr.liv.opphor",
+          "label": "Liv, død og tap – opphørsalder",
+          "value": "Første hovedforfall etter 10 år",
+          "source": {
+            "documentId": "boat-pet:frende:hund",
+            "filename": "frende-dog-terms.pdf",
+            "termsNumber": "Hundeforsikring",
+            "effectiveFrom": "2026-01-01",
+            "version": "2026-01-01",
+            "agreementScope": "ordinary",
+            "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+            "company": "Frende",
+            "page": 2,
+            "section": "Hvor og når",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+          }
+        }
+      ]
+    },
+    {
+      "id": "frende-hund-veterin-r",
+      "addons": [
+        "frende-hund-bruksverdi"
+      ],
+      "facts": [
+        {
+          "key": "hund.bruksverdi.dekning",
+          "label": "Bruksverdi",
+          "value": "Hundespesifikk del av valgt Tap-dekning",
+          "source": {
+            "documentId": "boat-pet:frende:hund",
+            "filename": "frende-dog-terms.pdf",
+            "termsNumber": "Hundeforsikring",
+            "effectiveFrom": "2026-01-01",
+            "version": "2026-01-01",
+            "agreementScope": "ordinary",
+            "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+            "company": "Frende",
+            "page": 4,
+            "section": "Tap av brukshund",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+          }
+        },
+        {
+          "key": "hund.bruksverdi.grense",
+          "label": "Bruksverdi – grense",
+          "value": "50 % av forsikringssummen for tap av hunden",
+          "source": {
+            "documentId": "boat-pet:frende:hund",
+            "filename": "frende-dog-terms.pdf",
+            "termsNumber": "Hundeforsikring",
+            "effectiveFrom": "2026-01-01",
+            "version": "2026-01-01",
+            "agreementScope": "ordinary",
+            "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+            "company": "Frende",
+            "page": 4,
+            "section": "Tap av brukshund",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gjensidige-hund-behandling",
+      "addons": [
+        "gjensidige-hund-bruk"
+      ],
+      "facts": [
+        {
+          "key": "hund.bruksverdi.dekning",
+          "label": "Bruksverdi",
+          "value": "Valgfri modul",
+          "source": {
+            "documentId": "boat-pet:gjensidige:hund",
+            "filename": "gjensidige-dog-ipid.pdf",
+            "termsNumber": "EAP32",
+            "effectiveFrom": "",
+            "version": "",
+            "agreementScope": "ordinary",
+            "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+            "company": "Gjensidige",
+            "page": 1,
+            "section": "Bruk",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+          }
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "a": "tryg-reise-ekstra",
+      "b": "storebrand-reise-standard",
+      "rows": [
+        {
+          "key": "reise.overnatting",
+          "label": "Reise med eller uten overnatting",
+          "conceptId": "reise.rammer",
+          "conceptLabel": "Reisens rammer",
+          "conceptTier": "primary",
+          "first": {
+            "state": "included",
+            "text": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+            "facts": [
+              {
+                "key": "reise.overnatting",
+                "label": "Reise med eller uten overnatting",
+                "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseExtra",
+                    "section": "Produktstruktur og produktside",
+                    "page": 1,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseExtra",
+                "section": "Produktstruktur og produktside",
+                "page": 1,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.rute",
+          "label": "Forsinket avgang og fremmøte",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.rute",
+                "label": "Forsinket avgang og fremmøte",
+                "value": "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseBase",
+                    "section": "3.1",
+                    "page": 2,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseBase",
+                "section": "3.1",
+                "page": 2,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "included",
+            "text": "Overnatting inntil 3 000 kr per person og videretransport inntil 20 000 kr per person ved dokumenterte årsaker.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.rute",
+                "label": "Forsinket fremmøte/avgang",
+                "value": "Overnatting inntil 3 000 kr per person og videretransport inntil 20 000 kr per person ved dokumenterte årsaker.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "storebrandReiseTerms",
+                    "section": "B.3",
+                    "page": 8,
+                    "filename": "reise10-vilkar-reiseforsikring.pdf",
+                    "termsNumber": "reise10",
+                    "effectiveFrom": "2025-06-01",
+                    "company": "Storebrand",
+                    "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                    "productCode": "reise10",
+                    "version": "reise10",
+                    "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "storebrandReiseTerms",
+                "section": "B.3",
+                "page": 8,
+                "filename": "reise10-vilkar-reiseforsikring.pdf",
+                "termsNumber": "reise10",
+                "effectiveFrom": "2025-06-01",
+                "company": "Storebrand",
+                "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                "productCode": "reise10",
+                "version": "reise10",
+                "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement",
+          "label": "Tapt hotell og arrangement",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Ubenyttet hotellovernatting og forhåndsbetalt arrangement etter minst fem timers dekket forsinkelse; inntil én hotellovernatting.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.hotell_arrangement",
+                "label": "Tapt hotell og arrangement",
+                "value": "Ubenyttet hotellovernatting og forhåndsbetalt arrangement etter minst fem timers dekket forsinkelse; inntil én hotellovernatting.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseExtra",
+                    "section": "3.2",
+                    "page": 3,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseExtra",
+                "section": "3.2",
+                "page": 3,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale",
+          "label": "Tapt leiebilavtale",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Kansellert forhåndsbetalt leiebilavtale for bil etter minst 1,5 times dekket forsinkelse; privatleie, andre kjøretøy og bil for andre er unntatt.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.leiebilavtale",
+                "label": "Tapt leiebilavtale",
+                "value": "Kansellert forhåndsbetalt leiebilavtale for bil etter minst 1,5 times dekket forsinkelse; privatleie, andre kjøretøy og bil for andre er unntatt.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseExtra",
+                    "section": "3.2–3.3",
+                    "page": 3,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseExtra",
+                "section": "3.2–3.3",
+                "page": 3,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.avgang_sum",
+          "label": "Forsinket avgang – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "3 000 kr.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.avgang_sum",
+                "label": "Forsinket avgang – sum",
+                "value": "3 000 kr.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Forsinket avgang",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Forsinket avgang",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.fremmote_sum",
+          "label": "Forsinket fremmøte – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Ingen øvre forsikringssum; overnatting inntil 3 000 kr.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.fremmote_sum",
+                "label": "Forsinket fremmøte – sum",
+                "value": "Ingen øvre forsikringssum; overnatting inntil 3 000 kr.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Forsinket fremmøte",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Forsinket fremmøte",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement_sum",
+          "label": "Tapt hotell/arrangement – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "5 000 kr.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.hotell_arrangement_sum",
+                "label": "Tapt hotell/arrangement – sum",
+                "value": "5 000 kr.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Tapt hotellovernatting og arrangement",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Tapt hotellovernatting og arrangement",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale_sum",
+          "label": "Tapt leiebilavtale – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "8 000 kr per skadetilfelle.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.leiebilavtale_sum",
+                "label": "Tapt leiebilavtale – sum",
+                "value": "8 000 kr per skadetilfelle.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Tapt leiebilavtale",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Tapt leiebilavtale",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        }
+      ]
+    },
+    {
+      "a": "tryg-reise-premium",
+      "b": "storebrand-reise-super",
+      "rows": [
+        {
+          "key": "reise.overnatting",
+          "label": "Reise med eller uten overnatting",
+          "conceptId": "reise.rammer",
+          "conceptLabel": "Reisens rammer",
+          "conceptTier": "primary",
+          "first": {
+            "state": "included",
+            "text": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+            "facts": [
+              {
+                "key": "reise.overnatting",
+                "label": "Reise med eller uten overnatting",
+                "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseExtra",
+                    "section": "Produktstruktur og produktside",
+                    "page": 1,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseExtra",
+                "section": "Produktstruktur og produktside",
+                "page": 1,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.rute",
+          "label": "Forsinket avgang og fremmøte",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.rute",
+                "label": "Forsinket avgang og fremmøte",
+                "value": "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseBase",
+                    "section": "3.1",
+                    "page": 2,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseBase",
+                "section": "3.1",
+                "page": 2,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "included",
+            "text": "Ingen generell øvre sum for dokumentert nødvendig overnatting og videretransport.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.rute",
+                "label": "Forsinket fremmøte/avgang",
+                "value": "Ingen generell øvre sum for dokumentert nødvendig overnatting og videretransport.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "storebrandReiseTerms",
+                    "section": "B.3",
+                    "page": 8,
+                    "filename": "reise10-vilkar-reiseforsikring.pdf",
+                    "termsNumber": "reise10",
+                    "effectiveFrom": "2025-06-01",
+                    "company": "Storebrand",
+                    "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                    "productCode": "reise10",
+                    "version": "reise10",
+                    "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "storebrandReiseTerms",
+                "section": "B.3",
+                "page": 8,
+                "filename": "reise10-vilkar-reiseforsikring.pdf",
+                "termsNumber": "reise10",
+                "effectiveFrom": "2025-06-01",
+                "company": "Storebrand",
+                "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                "productCode": "reise10",
+                "version": "reise10",
+                "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement",
+          "label": "Tapt hotell og arrangement",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Ubenyttet hotellovernatting og forhåndsbetalt arrangement etter minst fem timers dekket forsinkelse; inntil én hotellovernatting.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.hotell_arrangement",
+                "label": "Tapt hotell og arrangement",
+                "value": "Ubenyttet hotellovernatting og forhåndsbetalt arrangement etter minst fem timers dekket forsinkelse; inntil én hotellovernatting.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseExtra",
+                    "section": "3.2",
+                    "page": 3,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseExtra",
+                "section": "3.2",
+                "page": 3,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "included",
+            "text": "5 000 kr per person ved kvalifiserende forsinkelse.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.hotell_arrangement",
+                "label": "Tapt hotell og arrangement",
+                "value": "5 000 kr per person ved kvalifiserende forsinkelse.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "storebrandReiseTerms",
+                    "section": "C.1.2 punkt 5",
+                    "page": 27,
+                    "filename": "reise10-vilkar-reiseforsikring.pdf",
+                    "termsNumber": "reise10",
+                    "effectiveFrom": "2025-06-01",
+                    "company": "Storebrand",
+                    "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                    "productCode": "reise10",
+                    "version": "reise10",
+                    "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "storebrandReiseTerms",
+                "section": "C.1.2 punkt 5",
+                "page": 27,
+                "filename": "reise10-vilkar-reiseforsikring.pdf",
+                "termsNumber": "reise10",
+                "effectiveFrom": "2025-06-01",
+                "company": "Storebrand",
+                "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                "productCode": "reise10",
+                "version": "reise10",
+                "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale",
+          "label": "Tapt leiebilavtale",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Kansellert forhåndsbetalt leiebilavtale for bil etter minst 1,5 times dekket forsinkelse; privatleie, andre kjøretøy og bil for andre er unntatt.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.leiebilavtale",
+                "label": "Tapt leiebilavtale",
+                "value": "Kansellert forhåndsbetalt leiebilavtale for bil etter minst 1,5 times dekket forsinkelse; privatleie, andre kjøretøy og bil for andre er unntatt.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseExtra",
+                    "section": "3.2–3.3",
+                    "page": 3,
+                    "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                    "termsNumber": "PRF46001",
+                    "effectiveFrom": "2026-01-01",
+                    "company": "Tryg",
+                    "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                    "productCode": "PRF46001",
+                    "version": "PRF46001",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseExtra",
+                "section": "3.2–3.3",
+                "page": 3,
+                "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                "termsNumber": "PRF46001",
+                "effectiveFrom": "2026-01-01",
+                "company": "Tryg",
+                "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                "productCode": "PRF46001",
+                "version": "PRF46001",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "included",
+            "text": "10 000 kr per hendelse.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.leiebilavtale",
+                "label": "Tapt leiebilavtale",
+                "value": "10 000 kr per hendelse.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "storebrandReiseTerms",
+                    "section": "C.1.2 punkt 5",
+                    "page": 27,
+                    "filename": "reise10-vilkar-reiseforsikring.pdf",
+                    "termsNumber": "reise10",
+                    "effectiveFrom": "2025-06-01",
+                    "company": "Storebrand",
+                    "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                    "productCode": "reise10",
+                    "version": "reise10",
+                    "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "storebrandReiseTerms",
+                "section": "C.1.2 punkt 5",
+                "page": 27,
+                "filename": "reise10-vilkar-reiseforsikring.pdf",
+                "termsNumber": "reise10",
+                "effectiveFrom": "2025-06-01",
+                "company": "Storebrand",
+                "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                "productCode": "reise10",
+                "version": "reise10",
+                "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.avgang_sum",
+          "label": "Forsinket avgang – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "3 000 kr.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.avgang_sum",
+                "label": "Forsinket avgang – sum",
+                "value": "3 000 kr.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Forsinket avgang",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Forsinket avgang",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.fremmote_sum",
+          "label": "Forsinket fremmøte – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "Ingen øvre forsikringssum; overnatting inntil 3 000 kr.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.fremmote_sum",
+                "label": "Forsinket fremmøte – sum",
+                "value": "Ingen øvre forsikringssum; overnatting inntil 3 000 kr.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Forsinket fremmøte",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Forsinket fremmøte",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement_sum",
+          "label": "Tapt hotell/arrangement – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "5 000 kr.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.hotell_arrangement_sum",
+                "label": "Tapt hotell/arrangement – sum",
+                "value": "5 000 kr.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Tapt hotellovernatting og arrangement",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Tapt hotellovernatting og arrangement",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        },
+        {
+          "key": "reise.forsinkelse.leiebilavtale_sum",
+          "label": "Tapt leiebilavtale – sum",
+          "conceptId": "reise.forsinkelse",
+          "conceptLabel": "Forsinkelse",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "included",
+            "text": "8 000 kr per skadetilfelle.",
+            "facts": [
+              {
+                "key": "reise.forsinkelse.leiebilavtale_sum",
+                "label": "Tapt leiebilavtale – sum",
+                "value": "8 000 kr per skadetilfelle.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "trygReiseSums",
+                    "section": "Tapt leiebilavtale",
+                    "page": 1,
+                    "filename": "Forsikringssummer-08.2026.pdf",
+                    "termsNumber": "Ikke oppgitt",
+                    "effectiveFrom": "",
+                    "company": "Tryg",
+                    "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                    "productCode": "Ikke oppgitt",
+                    "version": "Ikke oppgitt",
+                    "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "trygReiseSums",
+                "section": "Tapt leiebilavtale",
+                "page": 1,
+                "filename": "Forsikringssummer-08.2026.pdf",
+                "termsNumber": "Ikke oppgitt",
+                "effectiveFrom": "",
+                "company": "Tryg",
+                "url": "https://media.tryg.no/prod/tryg-no-2-0-media/2026-09/570_Forsikringsummer_08.2026%20(002).pdf",
+                "productCode": "Ikke oppgitt",
+                "version": "Ikke oppgitt",
+                "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        }
+      ]
+    },
+    {
+      "a": "gjensidige-hus",
+      "b": "gjensidige-hus-pluss",
+      "rows": [
+        {
+          "key": "hus.skadedyr.bekjempelse",
+          "label": "Bekjempelse av skadedyr",
+          "conceptId": "hus.rate-skadedyr",
+          "conceptLabel": "Råte og skadedyr",
+          "conceptTier": "primary",
+          "first": {
+            "state": "included",
+            "text": "Bekjempelse av mus, rotter og andre skadedyr med inntil fire bein.",
+            "facts": [
+              {
+                "key": "hus.skadedyr.bekjempelse",
+                "label": "Bekjempelse av skadedyr",
+                "value": "Bekjempelse av mus, rotter og andre skadedyr med inntil fire bein.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "gjensidigeHusStandard",
+                    "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                    "termsNumber": "Hus Standard",
+                    "effectiveFrom": "",
+                    "company": "Gjensidige",
+                    "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                    "section": "Hus – Dekkes",
+                    "page": 3,
+                    "version": "Alminnelige vilkår"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Hus – Dekkes",
+                "page": 3,
+                "version": "Alminnelige vilkår"
+              }
+            ]
+          },
+          "second": {
+            "state": "included",
+            "text": "Bekjempelse av blant annet stokkmaur, husbukk, stripet borebille, kakerlakk, veggedyr og skjeggkre. Gjensidige velger metode.",
+            "facts": [
+              {
+                "key": "hus.skadedyr.bekjempelse",
+                "label": "Bekjempelse av skadeinsekter",
+                "value": "Bekjempelse av blant annet stokkmaur, husbukk, stripet borebille, kakerlakk, veggedyr og skjeggkre. Gjensidige velger metode.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "gjensidigeHusPluss",
+                    "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                    "termsNumber": "Hus Pluss",
+                    "effectiveFrom": "",
+                    "company": "Gjensidige",
+                    "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                    "section": "Råte og skadeinsekter",
+                    "page": 6,
+                    "version": "Alminnelige vilkår"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Råte og skadeinsekter",
+                "page": 6,
+                "version": "Alminnelige vilkår"
+              }
+            ]
+          },
+          "different": true
+        },
+        {
+          "key": "hus.skadedyr.bygningsskade",
+          "label": "Bygningsskade fra skadedyr",
+          "conceptId": "hus.rate-skadedyr",
+          "conceptLabel": "Råte og skadedyr",
+          "conceptTier": "primary",
+          "first": {
+            "state": "included",
+            "text": "Skade som følge av mus, rotter og andre skadedyr med inntil fire bein.",
+            "facts": [
+              {
+                "key": "hus.skadedyr.bygningsskade",
+                "label": "Bygningsskade fra skadedyr",
+                "value": "Skade som følge av mus, rotter og andre skadedyr med inntil fire bein.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "gjensidigeHusStandard",
+                    "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                    "termsNumber": "Hus Standard",
+                    "effectiveFrom": "",
+                    "company": "Gjensidige",
+                    "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                    "section": "Hus – Dekkes",
+                    "page": 3,
+                    "version": "Alminnelige vilkår"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Hus – Dekkes",
+                "page": 3,
+                "version": "Alminnelige vilkår"
+              }
+            ]
+          },
+          "second": {
+            "state": "included",
+            "text": "Materialnedbrytning fra treødeleggende insekter på fullverdiforsikret bygning.",
+            "facts": [
+              {
+                "key": "hus.skadedyr.bygningsskade",
+                "label": "Bygningsskade fra treødeleggende insekter",
+                "value": "Materialnedbrytning fra treødeleggende insekter på fullverdiforsikret bygning.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "gjensidigeHusPluss",
+                    "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                    "termsNumber": "Hus Pluss",
+                    "effectiveFrom": "",
+                    "company": "Gjensidige",
+                    "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                    "section": "Råte og skadeinsekter",
+                    "page": 6,
+                    "version": "Alminnelige vilkår"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Råte og skadeinsekter",
+                "page": 6,
+                "version": "Alminnelige vilkår"
+              }
+            ]
+          },
+          "different": true
+        },
+        {
+          "key": "hus.skadedyr.egenandel",
+          "label": "Bekjempelse av skadeinsekter – egenandel",
+          "conceptId": "hus.rate-skadedyr",
+          "conceptLabel": "Råte og skadedyr",
+          "conceptTier": "primary",
+          "first": {
+            "state": "optional",
+            "text": "Tilgjengelig som tillegg (Sopp, råte og skadeinsekter) – 2 000 kroner.",
+            "facts": [
+              {
+                "key": "hus.skadedyr.egenandel",
+                "label": "Bekjempelse av skadeinsekter – egenandel",
+                "value": "2 000 kroner.",
+                "state": "optional",
+                "addOnNames": [
+                  "Sopp, råte og skadeinsekter"
+                ],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "gjensidigeHusPluss",
+                    "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                    "termsNumber": "Hus Pluss",
+                    "effectiveFrom": "",
+                    "company": "Gjensidige",
+                    "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                    "section": "Forsikringsoversikt",
+                    "page": 1,
+                    "version": "Alminnelige vilkår"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Forsikringsoversikt",
+                "page": 1,
+                "version": "Alminnelige vilkår"
+              }
+            ]
+          },
+          "second": {
+            "state": "included",
+            "text": "2 000 kroner.",
+            "facts": [
+              {
+                "key": "hus.skadedyr.egenandel",
+                "label": "Bekjempelse av skadeinsekter – egenandel",
+                "value": "2 000 kroner.",
+                "state": "included",
+                "addOnNames": [],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "gjensidigeHusPluss",
+                    "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                    "termsNumber": "Hus Pluss",
+                    "effectiveFrom": "",
+                    "company": "Gjensidige",
+                    "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                    "section": "Forsikringsoversikt",
+                    "page": 1,
+                    "version": "Alminnelige vilkår"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Forsikringsoversikt",
+                "page": 1,
+                "version": "Alminnelige vilkår"
+              }
+            ]
+          },
+          "different": true
+        }
+      ]
+    },
+    {
+      "a": "frende-hund-veterin-r",
+      "b": "gjensidige-hund-behandling",
+      "rows": [
+        {
+          "key": "hund.bruksverdi.dekning",
+          "label": "Bruksverdi",
+          "conceptId": "hund.bruksverdi",
+          "conceptLabel": "Bruksverdi",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "optional",
+            "text": "Tilgjengelig som tillegg (Bruksverdi) – Hundespesifikk del av valgt Tap-dekning",
+            "facts": [
+              {
+                "key": "hund.bruksverdi.dekning",
+                "label": "Bruksverdi",
+                "value": "Hundespesifikk del av valgt Tap-dekning",
+                "state": "optional",
+                "addOnNames": [
+                  "Bruksverdi"
+                ],
+                "role": "coverage",
+                "sources": [
+                  {
+                    "documentId": "boat-pet:frende:hund",
+                    "filename": "frende-dog-terms.pdf",
+                    "termsNumber": "Hundeforsikring",
+                    "effectiveFrom": "2026-01-01",
+                    "version": "2026-01-01",
+                    "agreementScope": "ordinary",
+                    "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+                    "company": "Frende",
+                    "page": 4,
+                    "section": "Tap av brukshund",
+                    "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                    "sourceType": "full_terms"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "boat-pet:frende:hund",
+                "filename": "frende-dog-terms.pdf",
+                "termsNumber": "Hundeforsikring",
+                "effectiveFrom": "2026-01-01",
+                "version": "2026-01-01",
+                "agreementScope": "ordinary",
+                "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+                "company": "Frende",
+                "page": 4,
+                "section": "Tap av brukshund",
+                "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                "sourceType": "full_terms"
+              }
+            ]
+          },
+          "second": {
+            "state": "optional",
+            "text": "Tilgjengelig som tillegg (Bruk) – Valgfri modul",
+            "facts": [
+              {
+                "key": "hund.bruksverdi.dekning",
+                "label": "Bruksverdi",
+                "value": "Valgfri modul",
+                "state": "optional",
+                "addOnNames": [
+                  "Bruk"
+                ],
+                "role": "coverage",
+                "sources": [
+                  {
+                    "documentId": "boat-pet:gjensidige:hund",
+                    "filename": "gjensidige-dog-ipid.pdf",
+                    "termsNumber": "EAP32",
+                    "effectiveFrom": "",
+                    "version": "",
+                    "agreementScope": "ordinary",
+                    "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+                    "company": "Gjensidige",
+                    "page": 1,
+                    "section": "Bruk",
+                    "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                    "sourceType": "ipid"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "boat-pet:gjensidige:hund",
+                "filename": "gjensidige-dog-ipid.pdf",
+                "termsNumber": "EAP32",
+                "effectiveFrom": "",
+                "version": "",
+                "agreementScope": "ordinary",
+                "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+                "company": "Gjensidige",
+                "page": 1,
+                "section": "Bruk",
+                "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                "sourceType": "ipid"
+              }
+            ]
+          },
+          "different": true
+        },
+        {
+          "key": "hund.bruksverdi.grense",
+          "label": "Bruksverdi – grense",
+          "conceptId": "hund.bruksverdi",
+          "conceptLabel": "Bruksverdi",
+          "conceptTier": "secondary",
+          "first": {
+            "state": "optional",
+            "text": "Tilgjengelig som tillegg (Bruksverdi) – 50 % av forsikringssummen for tap av hunden",
+            "facts": [
+              {
+                "key": "hund.bruksverdi.grense",
+                "label": "Bruksverdi – grense",
+                "value": "50 % av forsikringssummen for tap av hunden",
+                "state": "optional",
+                "addOnNames": [
+                  "Bruksverdi"
+                ],
+                "role": "term",
+                "sources": [
+                  {
+                    "documentId": "boat-pet:frende:hund",
+                    "filename": "frende-dog-terms.pdf",
+                    "termsNumber": "Hundeforsikring",
+                    "effectiveFrom": "2026-01-01",
+                    "version": "2026-01-01",
+                    "agreementScope": "ordinary",
+                    "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+                    "company": "Frende",
+                    "page": 4,
+                    "section": "Tap av brukshund",
+                    "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                    "sourceType": "full_terms"
+                  }
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "documentId": "boat-pet:frende:hund",
+                "filename": "frende-dog-terms.pdf",
+                "termsNumber": "Hundeforsikring",
+                "effectiveFrom": "2026-01-01",
+                "version": "2026-01-01",
+                "agreementScope": "ordinary",
+                "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+                "company": "Frende",
+                "page": 4,
+                "section": "Tap av brukshund",
+                "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                "sourceType": "full_terms"
+              }
+            ]
+          },
+          "second": {
+            "state": "unknown",
+            "text": "Ikke dokumentert i kataloggrunnlaget",
+            "facts": [],
+            "sources": []
+          },
+          "different": true
+        }
+      ]
+    }
+  ],
+  "registries": {
+    "innbo": [],
+    "reise": [],
+    "bolig": [],
+    "hund": [
+      "hund.bruksverdi.dekning",
+      "hund.bruksverdi.grense",
+      "hund.bruksverdi.alder",
+      "hund.bruksverdi.begrensning"
+    ],
+    "katt": []
+  },
+  "customerExplicitKey": [
+    {
+      "name": "Reise med eller uten overnatting",
+      "value": "Syntetisk dokumentregel",
+      "key": "reise.overnatting",
+      "coverageOrigin": "document"
+    }
+  ],
+  "existingAliasIdentity": [
+    [
+      "reise.forsinkelse.avgang_sum",
+      "reise.forsinkelse.avgang_sum"
+    ],
+    [
+      "reise.forsinkelse.fremmote_sum",
+      "reise.forsinkelse.fremmote_sum"
+    ],
+    [
+      "reise.overnatting",
+      "reise.overnatting"
+    ],
+    [
+      "flytting.transport.grense",
+      "flytting.transport.grense"
+    ],
+    [
+      "hus.skadedyr.bekjempelse",
+      "hus.skadedyr.bekjempelse"
+    ]
+  ]
+}

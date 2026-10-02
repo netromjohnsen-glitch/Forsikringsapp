@@ -1,0 +1,1000 @@
+Vi skal gjennomføre den mest omfattende correctness-auditen hittil av
+Forsikringsassistentens kildebelagte produktkatalog:
+
+SOURCE → CATALOG COMPLETENESS AUDIT
+
+MODELL:
+GPT-6 Ultra / høyeste tilgjengelige reasoning.
+
+Dette er en READ-ONLY AUDIT.
+
+IKKE endre produksjonskode.
+IKKE endre katalogdata.
+IKKE endre canonical facts.
+IKKE endre manifests.
+IKKE endre source artifacts.
+IKKE endre tester.
+IKKE endre dokumentasjon i repo.
+IKKE commit.
+IKKE push.
+IKKE deploy.
+IKKE reset/revert/stash.
+IKKE endre Railway.
+IKKE endre .env.local.
+IKKE aktiver tracing.
+
+Målet er først å finne og forstå ALLE sannsynlige source-to-catalog gaps.
+
+Rettelser kommer i en separat oppgave etter human review.
+
+==================================================
+1 – WHY THIS AUDIT EXISTS
+==================================================
+
+Tidligere audits har bevist mye:
+
+- source provenance fungerer
+- comparison semantics er hardenet
+- optional ≠ included
+- document > catalog
+- cross-type isolation
+- same-product controls
+- side-swap
+- product presentation
+- runtime correctness.
+
+Men manuell rådgivertesting har avdekket en ny mulig blindspot:
+
+Katalogen kan korrekt vise:
+
+"Ikke dokumentert i kataloggrunnlaget"
+
+selv om relevant informasjon faktisk finnes i originalvilkåret, men aldri ble
+canonicalisert/materialisert i katalogen.
+
+Tidligere audits spurte hovedsakelig:
+
+"Presenterer motoren katalogen korrekt?"
+
+Denne auditen skal spørre:
+
+"Representerer katalogen de viktige rådgiverrelevante fakta som faktisk
+finnes i originalkildene?"
+
+==================================================
+2 – AUDIT SCOPE
+==================================================
+
+Audit HELE aktive katalogen.
+
+Forventet nåværende størrelse omtrent:
+
+- 204 katalogprodukter
+- 202 product-comparison eligible products
+- 84 add-ons/components
+- 12 insurance families
+
+Men:
+
+faktisk runtime/repo state er fasit.
+
+Audit ALLE aktuelle katalogprodukter.
+
+Ikke bare Hund/Bobil/Båt/MC.
+
+==================================================
+3 – ALL INSURANCE FAMILIES
+==================================================
+
+Audit:
+
+Bil
+Hus
+Innbo
+Reise
+Snøscooter
+Campingvogn
+Tilhenger
+MC
+Bobil
+Båt
+Hund
+Katt
+
+plus any other currently active family discovered dynamically.
+
+==================================================
+4 – ALL PROVIDERS / SCOPES
+==================================================
+
+Audit every actual:
+
+providerId
+insuranceType
+agreementScope
+productId
+version
+
+combination in active catalog.
+
+Do not assume ordinary products cover membership scopes.
+
+Do not collapse scopes.
+
+==================================================
+5 – UNIT OF AUDIT
+==================================================
+
+The primary unit is:
+
+ONE EXACT CATALOG PRODUCT
+
+identified by:
+
+providerId
++
+insuranceType
++
+agreementScope
++
+productId
++
+version
+
+For each product:
+
+find every applicable source record/artifact.
+
+Then compare:
+
+SOURCE KNOWLEDGE
+
+against:
+
+CATALOG REPRESENTATION.
+
+==================================================
+6 – NOT ALL-PAIRS
+==================================================
+
+Do NOT compare every product against every other product.
+
+That would be redundant.
+
+The core audit is:
+
+PRODUCT
+↕
+ITS OWN OFFICIAL SOURCES
+
+Cross-provider comparison is used later only to identify useful semantic
+counterparts and validate advisor relevance.
+
+==================================================
+7 – SOURCE HIERARCHY
+==================================================
+
+Inspect all applicable existing local source artifacts.
+
+Typical hierarchy:
+
+1. full policy terms
+2. IPID / product sheet
+3. official product page
+4. documented add-on terms
+5. other already-approved official source artifact.
+
+Do not use new web research in the first pass.
+
+The existing source package is the audit corpus.
+
+==================================================
+8 – SOURCE APPLICABILITY
+==================================================
+
+Before extracting candidate facts, verify source applies to exact:
+
+provider
+insurance type
+agreement scope
+product
+version
+component/add-on
+boat type/species/other applicability where relevant.
+
+A fact from wrong scope/version/product must NOT be treated as missing from
+catalog.
+
+==================================================
+9 – SOURCE DATE / VERSION
+==================================================
+
+Respect known source version/date metadata.
+
+If unknown:
+
+do not invent.
+
+Do not use retrieval date as effective date unless existing source policy
+explicitly permits it.
+
+==================================================
+10 – FULL SOURCE READING
+==================================================
+
+For every exact product, inspect enough of all applicable source artifacts to
+identify advisor-relevant coverage information.
+
+Do not rely only on existing manifest fact mappings.
+
+The point is specifically to discover information that may NOT already be
+mapped.
+
+==================================================
+11 – NO OCR UNLESS NECESSARY
+==================================================
+
+Use normal text extraction.
+
+OCR only if an applicable official source is genuinely image-only and
+necessary.
+
+Report OCR usage separately.
+
+==================================================
+12 – ADVISOR-RELEVANT FACT DEFINITION
+==================================================
+
+A source fact is a candidate for catalog representation when it could
+materially help an insurance advisor understand:
+
+- what is covered
+- what is not covered
+- coverage scope
+- important limit
+- insurance sum
+- deductible
+- duration
+- age limit
+- kilometer limit
+- geographical scope
+- waiting period
+- payout rule
+- replacement/new-value rule
+- important condition
+- important exclusion
+- optional availability
+- customer-specific choice structure
+- product-level distinction
+- major service/benefit
+- materially different provider mechanism.
+
+==================================================
+13 – DO NOT CANONICALIZE EVERYTHING
+==================================================
+
+The goal is NOT:
+
+every sentence in the policy terms becomes a catalog fact.
+
+Examples that often do NOT need independent canonical rows:
+
+- ordinary claims-notification procedure
+- generic duty to mitigate loss
+- general legal boilerplate
+- generic fraud provisions
+- definitions that do not create product differences
+- administrative clauses
+- wording with no realistic comparison value.
+
+Classify such material:
+
+NOT_COMPARISON_RELEVANT
+
+rather than a gap.
+
+==================================================
+14 – MATERIALITY TEST
+==================================================
+
+For every candidate fact ask:
+
+Would a competent insurance advisor reasonably care about this when
+comparing this product with another product?
+
+If YES:
+candidate advisor-relevant fact.
+
+If NO:
+do not force into catalog.
+
+If uncertain:
+REVIEW_REQUIRED.
+
+==================================================
+15 – SOURCE FACT INVENTORY
+==================================================
+
+For every product create an internal structured source fact inventory.
+
+Each candidate should contain:
+
+source_fact_id
+provider
+insurance_type
+agreement_scope
+product_id
+version
+component/addon if applicable
+source_record
+source_artifact
+source_section/page if available
+source_text_excerpt
+semantic_subject
+semantic_dimension
+structured_value if safely extractable
+applicability
+advisor_relevance
+confidence.
+
+==================================================
+16 – SOURCE QUOTE LIMIT
+==================================================
+
+Store only short evidence excerpts sufficient for review.
+
+Do not duplicate entire policy documents into audit outputs.
+
+==================================================
+17 – CATALOG INVENTORY
+==================================================
+
+For the same exact product inventory existing:
+
+canonical fact keys
+coverage status
+values
+limits
+components
+inheritance
+add-ons
+source provenance
+presentation mappings.
+
+==================================================
+18 – MATCH SOURCE → CATALOG
+==================================================
+
+For every advisor-relevant source fact attempt deterministic semantic
+matching to existing catalog representation.
+
+Do not use fuzzy text matching as final evidence.
+
+Semantic reasoning is allowed in audit, but every conclusion must be
+traceable to source + catalog evidence.
+
+==================================================
+19 – PRIMARY CLASSIFICATIONS
+==================================================
+
+Every advisor-relevant source fact should receive one:
+
+SOURCE_FACT_PRESENT_AND_CATALOGUED
+
+SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG
+
+CATALOG_FACT_TOO_COARSE
+
+CATALOG_FACT_SEMANTICALLY_MISMAPPED
+
+STRUCTURAL_MAPPING_GAP
+
+SOURCE_FACT_PRESENT_AS_PROVIDER_SPECIFIC_DETAIL
+
+SOURCE_FACT_CUSTOMER_SPECIFIC
+
+SOURCE_FACT_OPTIONAL_COMPONENT
+
+SOURCE_FACT_ALREADY_REPRESENTED_BY_PARENT
+
+SOURCE_FACT_ALREADY_REPRESENTED_BY_CHILDREN
+
+SOURCE_AMBIGUOUS
+
+NOT_COMPARISON_RELEVANT
+
+REVIEW_REQUIRED.
+
+==================================================
+20 – MISSING FROM CATALOG
+==================================================
+
+Use:
+
+SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG
+
+only when:
+
+- applicable source clearly documents the fact
+- fact is advisor-relevant
+- catalog lacks safe equivalent representation
+- it is not merely customer-specific
+- it is not already represented semantically elsewhere.
+
+==================================================
+21 – TOO COARSE
+==================================================
+
+Use:
+
+CATALOG_FACT_TOO_COARSE
+
+when catalog representation exists but omits materially useful structured
+detail.
+
+Example pattern:
+
+Catalog:
+Totalskade = included
+
+Source:
+Totalskade = included
++ 3 years
++ 20 000 km
++ >80 % damage threshold
++ new replacement mechanism.
+
+Do NOT automatically classify every omitted source sentence as TOO_COARSE.
+
+Materiality required.
+
+==================================================
+22 – SEMANTICALLY MISMAPPED
+==================================================
+
+Use:
+
+CATALOG_FACT_SEMANTICALLY_MISMAPPED
+
+when catalog contains information but under wrong semantic meaning.
+
+Examples conceptually:
+
+annual limit represented as per-event limit
+
+exclusion represented as unavailable coverage
+
+optional component represented as included
+
+new-enrollment age represented as termination age.
+
+This is potentially high severity.
+
+==================================================
+23 – STRUCTURAL MAPPING GAP
+==================================================
+
+Use when:
+
+source concept is represented partially or under a different structure such
+that cross-provider comparison becomes misleading/incomplete.
+
+Example:
+
+Provider A:
+Feriegaranti
+- 14 days
+- 2 000/day
+
+Provider B:
+Leiebil
+- 15 days
+
+Do not assume they are equivalent.
+
+Audit whether there is a shared higher-level concept plus provider-specific
+children.
+
+==================================================
+24 – PROVIDER-SPECIFIC DETAIL
+==================================================
+
+Some source facts are useful but inherently provider-specific.
+
+These should often remain nested detail.
+
+Do NOT force symmetric unknown on every other provider.
+
+==================================================
+25 – CUSTOMER-SPECIFIC
+==================================================
+
+Facts such as:
+
+actual selected deductible
+actual selected insurance sum
+actual insured value
+
+may correctly be absent from product catalog.
+
+Catalog may instead document:
+
+selectable range/options
+"specified in policy schedule"
+
+where useful.
+
+Do not flag missing actual customer value as catalog gap.
+
+==================================================
+26 – OPTIONAL COMPONENT
+==================================================
+
+Optional coverage must remain optional.
+
+Audit whether source-backed optional components are:
+
+- represented
+- attached to correct products
+- correctly scoped
+- not materialized as selected.
+
+==================================================
+27 – PARENT / CHILD
+==================================================
+
+Before declaring missing:
+
+check whether information is already represented through:
+
+parent concept
+child facts
+provider-specific nested detail.
+
+Do not create duplicate canonical facts.
+
+==================================================
+28 – CROSS-PROVIDER RELEVANCE
+==================================================
+
+After source inventory for a family is built, use other providers only to
+help answer:
+
+"Is this source fact useful for product comparison?"
+
+Do not use another provider as evidence that a coverage exists in this
+product.
+
+==================================================
+29 – NO INDUSTRY ASSUMPTIONS
+==================================================
+
+Never conclude:
+
+"all insurers normally cover X"
+
+therefore catalog should contain X.
+
+Only exact source evidence counts.
+
+==================================================
+30 – POSITIVE CONTROLS
+==================================================
+
+We have manual advisor observations in multiple families.
+
+Use these comparisons as POSITIVE CONTROL AREAS:
+
+- Hund
+- Bobil
+- Båt
+- MC
+
+IMPORTANT:
+
+Do NOT assume the manually suspicious rows are actually catalog errors.
+
+The audit must independently inspect applicable original sources and decide.
+
+==================================================
+31 – POSITIVE CONTROL PURPOSE
+==================================================
+
+The audit method should be capable of surfacing source/catalog asymmetry in
+these areas if source evidence actually supports it.
+
+If audit reports these families perfectly complete:
+
+perform manual second review of source → catalog methodology before trusting
+the result.
+
+==================================================
+32 – DO NOT HARD-CODE EXPECTED ANSWERS
+==================================================
+
+Do not write detector rules like:
+
+"Tryg Bobil totalskade must exist."
+
+Instead:
+
+read source
+inventory facts
+match catalog
+classify.
+
+==================================================
+33 – BOBIL CONTROL AREAS
+==================================================
+
+Without assuming error, ensure source inventory examines deeply:
+
+- totalskade/new-value
+- maskinskade components
+- fukt/water
+- feriegaranti/mobility
+- leiebil
+- equipment/løsøre
+- optional accident
+- geography.
+
+==================================================
+34 – BÅT CONTROL AREAS
+==================================================
+
+Examine:
+
+- totalskade/new boat
+- motor/maskinskade
+- redning/berging
+- ferieavbrudd
+- løsøre/bagasje
+- opplagsutstyr
+- jolle/motor
+- seil/rigg
+- transport/opplag
+- accident
+- geography
+- deductible.
+
+==================================================
+35 – MC CONTROL AREAS
+==================================================
+
+Examine:
+
+- maskinskade
+- totalskade/new MC
+- parked MC
+- rental vehicle
+- roadside assistance
+- key
+- incorrect fueling
+- equipment
+- baggage
+- accident
+- geography.
+
+==================================================
+36 – HUND CONTROL AREAS
+==================================================
+
+Examine:
+
+- veterinary coverage
+- annual/per-event sum
+- deductible model
+- deductible period
+- medicine
+- diagnostics
+- dental accident
+- dental disease
+- rehabilitation
+- allergy
+- birth
+- waiting period
+- life/death
+- disappearance/theft
+- loss of use
+- reduction age
+- termination age
+- breed-specific rules.
+
+==================================================
+37 – ALL OTHER FAMILIES
+==================================================
+
+Do NOT treat control families as higher audit scope.
+
+Audit the remaining families with the same depth.
+
+==================================================
+38 – BIL
+==================================================
+
+Inventory advisor-relevant facts including where source-backed:
+
+- Kasko
+- Maskinskade
+- totalskade/new-value
+- leiebil/mobility
+- parking damage
+- glass
+- roadside assistance
+- key
+- incorrect fueling
+- equipment
+- baggage
+- driver/passenger
+- fire/theft/nature
+- liability
+- legal expenses
+- geography
+- deductibles
+- EV-specific benefits.
+
+==================================================
+39 – HUS
+==================================================
+
+Include where source-backed:
+
+- sudden damage
+- reconstruction
+- water
+- roof/exterior penetration
+- consequential damage vs defect
+- wet room
+- rot
+- pests
+- craftsmanship errors
+- weather/nature
+- rental
+- liability
+- services
+- age deductions
+- sums/deductibles.
+
+==================================================
+40 – INNBO
+==================================================
+
+Include where source-backed:
+
+- accidental damage
+- theft
+- fire/water/nature
+- bicycle
+- valuables
+- insurance sum
+- pests
+- moving
+- residence/geography
+- liability
+- legal expenses
+- identity/cyber assistance
+- limits/deductibles.
+
+==================================================
+41 – REISE
+==================================================
+
+Include where source-backed:
+
+- trip duration
+- geography
+- cancellation
+- illness
+- medical treatment
+- repatriation
+- baggage
+- delay
+- interruption
+- accident
+- rental car
+- evacuation
+- liability
+- legal assistance
+- services
+- sums/deductibles.
+
+==================================================
+42 – SNØSCOOTER
+==================================================
+
+Include where source-backed:
+
+- Kasko
+- equipment
+- luggage
+- roadside/rescue
+- driver/passenger accident
+- driver accident
+- fire
+- theft
+- liability
+- legal expenses
+- geography
+- season
+- sums/deductibles.
+
+==================================================
+43 – CAMPINGVOGN
+==================================================
+
+Include where source-backed:
+
+- Kasko
+- moisture
+- interrupted holiday
+- contents
+- fixed equipment
+- awning
+- pests
+- glass
+- fire
+- theft
+- nature
+- legal expenses
+- geography
+- sums/deductibles.
+
+==================================================
+44 – TILHENGER
+==================================================
+
+Include where source-backed:
+
+- Kasko
+- fixed equipment
+- fire
+- theft
+- nature
+- legal expenses
+- sums/deductibles
+- geography.
+
+==================================================
+45 – KATT
+==================================================
+
+Audit independently from Hund.
+
+No Hund source may establish Katt facts.
+
+==================================================
+46 – ADD-ONS
+==================================================
+
+Audit all active add-ons/components too.
+
+The catalog has approximately 84 add-ons.
+
+Each source-backed add-on must be checked for:
+
+- availability
+- applicable products
+- scope
+- status
+- important limits
+- important conditions
+- provenance.
+
+==================================================
+47 – PRODUCT INHERITANCE
+==================================================
+
+Audit source-backed inheritance.
+
+If higher product inherits lower level:
+
+verify catalog does not lose important inherited facts.
+
+Also verify it does not inherit facts source excludes.
+
+==================================================
+48 – PRODUCT VERSION
+==================================================
+
+Do not compare facts across incompatible versions without explicit source
+policy.
+
+==================================================
+49 – AGREEMENT SCOPE
+==================================================
+
+Audit scope-specific products independently.
+
+Membership/partner products may differ from ordinary products.
+
+No source leakage between scopes.
+
+==================================================
+50 – SOURCE COVERAGE MAP
+==================================================
+
+For each exact product generate:
+
+SOURCE COVERAGE MAP
+
+with major semantic concepts found in source.
+
+Then:
+
+CATALOG COVERAGE MAP.
+
+Diff them.
+
+==================================================
+51 – COVERAGE MAP LEVEL
+==================================================
+
+Map should include both:
+
+PARENT CONCEPT
+and
+MATERIAL CHILD DIMENSIONS.
+
+Example:
+
+Maskinskade
+  status
+  age
+  mileage
+  deductible
+  covered components
+  limitations
+
+where source supports them.
+
+==================================================
+52 – DO NOT OVERCOUNT CHILDREN
+==================================================
+
+Multiple values forming one model should not inflate issue counts.
+
+Example:
+
+deductible
+- fixed
+- percentage
+- period
+
+may form one structured issue signature if the entire deductible model is
+missing.
+
+Keep occurrence-level evidence separately.
+
+==================================================
+53 – ISSUE SIGNATURE
+==================================================
+
+Deduplicate gaps into signatures such as:
+
+provider
+insurance type
+scope
+product/version
+semantic concept
+missing dimension
+classification.
+
+==================================================
+54 – ROOT CAUSE CANDIDATE
+==================================================
+
+For each gap classify likely cause:
+
+SOURCE_NOT_MAPPED
+CATALOG_TOO_COARSE
+CANONICAL_KEY_MISSING
+CANONICAL_STRUCTURE_INSUFFICIENT
+INHERITANCE_GAP
+ADDON_MAPPING_GAP
+APPLICABILITY_GAP
+PRESENTATION_ONLY
+SOURCE_AMBIGUITY
+INTENTIONAL_NOT_MODELED
+UNKNOWN.
+
+This is hypothesis, not final

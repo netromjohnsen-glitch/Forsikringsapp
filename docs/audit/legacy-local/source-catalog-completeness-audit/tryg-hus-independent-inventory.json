@@ -1,0 +1,592 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "THU-01",
+      "subject": "Forsikringsform",
+      "dimension": "scope",
+      "value": "Bygning fullverdi som standard, førsterisiko hvis bevis; Ekstra fullverdi. Særgrenser før bevisbeløp.",
+      "doc": "05PPK11501.pdf",
+      "location": "s1;11502s1",
+      "scope": "both"
+    },
+    {
+      "id": "THU-02",
+      "subject": "Bygning",
+      "dimension": "art",
+      "value": "Kunstnerisk utsmykning ikke Basis, inkludert Ekstra.",
+      "doc": "05PPK11501.pdf",
+      "location": "s1§1.1;11502s1",
+      "scope": "both"
+    },
+    {
+      "id": "THU-03",
+      "subject": "Rør",
+      "dimension": "insured_property",
+      "value": "Inn-/utvendige rør, unntatt basseng/brønn/borehull/drens/infiltrasjon/spredeledning; drens likevel brann/natur.",
+      "doc": "05PPK11501.pdf",
+      "location": "s1§1.2;11502s1",
+      "scope": "both"
+    },
+    {
+      "id": "THU-04",
+      "subject": "Hage",
+      "dimension": "sum_scope",
+      "value": "Basis500 000, ingen slik grense brann/natur ved bolighus/våningshus; Ekstra ingen særgrense. Basseng fastkoblet medregnes, brygger ikke.",
+      "doc": "05PPK11501.pdf",
+      "location": "s1§1.3;11502s1",
+      "scope": "both"
+    },
+    {
+      "id": "THU-05",
+      "subject": "Brygge",
+      "dimension": "sum_perils",
+      "value": "Flytebrygge/trebrygge100 000 kun brann/natur; høyere sum krever bevis.",
+      "doc": "05PPK11501.pdf",
+      "location": "s1§1.3;11502s1",
+      "scope": "both"
+    },
+    {
+      "id": "THU-06",
+      "subject": "Endringer",
+      "dimension": "automatic_cover",
+      "value": "Ny garasje/naust/uthus/tilbygg på stedet dekket fra oppføring til neste fornyelse selv ikke i bevis; meldes.",
+      "doc": "05PPK11501.pdf",
+      "location": "s2§1.4;11502s1",
+      "scope": "both"
+    },
+    {
+      "id": "THU-07",
+      "subject": "Riving/rydding",
+      "dimension": "additional_expenses",
+      "value": "Nødvendige merutgifter; ved førsterisiko20%sum. Kommer i tillegg til avtalt sum.",
+      "doc": "05PPK11501.pdf",
+      "location": "s2§1.5;11502s1",
+      "scope": "both"
+    },
+    {
+      "id": "THU-08",
+      "subject": "Offentlig påbud",
+      "dimension": "sum",
+      "value": "Basis2mill per tilfelle /førsterisiko20%max2mill; Ekstra ingen særgrense unntatt fredet bygning1mill.",
+      "doc": "05PPK11501.pdf",
+      "location": "s2§1.5;11502s2",
+      "scope": "both"
+    },
+    {
+      "id": "THU-09",
+      "subject": "Offentlig påbud",
+      "dimension": "conditions",
+      "value": "Kun skadeutløste påbud/skadet bygningsdel; ikke kjellerutgraving eller krav som kunne stilles uten skade; fem år gjenoppføring.",
+      "doc": "05PPK11501.pdf",
+      "location": "s2§1.5,s7§3.6;11502s2,7",
+      "scope": "both"
+    },
+    {
+      "id": "THU-10",
+      "subject": "Ubeboelighet/leietap",
+      "dimension": "duration",
+      "value": "Normal reparasjonstid, markedspris umøblerte rom, sparte utgifter/renter trekkes. Korttidsleieinntekter ikke omfattet.",
+      "doc": "05PPK11501.pdf",
+      "location": "s2§1.5,s7–8§3.7–3.8;11502s8",
+      "scope": "both"
+    },
+    {
+      "id": "THU-11",
+      "subject": "Prisstigning",
+      "dimension": "duration",
+      "value": "Normal reparasjon/gjenoppføring etter SSB, tillegg til sum.",
+      "doc": "05PPK11501.pdf",
+      "location": "s2§1.5,s8§3.9;11502s8",
+      "scope": "both"
+    },
+    {
+      "id": "THU-12",
+      "subject": "Klimatiltak",
+      "dimension": "sum_trigger",
+      "value": "Basis25 000/Ekstra50 000 ved fullverdi gjenoppføring og skade>75% av nybyggpris; utover offentlige krav, forhåndsgodkjent dokumentert energi/utslippsreduksjon.",
+      "doc": "05PPK11501.pdf",
+      "location": "s2§1.6,s8§3.10;11502s2,8",
+      "scope": "both"
+    },
+    {
+      "id": "THU-13",
+      "subject": "Rullestoltilpasning",
+      "dimension": "sum_conditions",
+      "value": "250 000 samlet alle sikrede per tilfelle; ulykke eller medfødt≥50%varig invaliditet; kostnad innen5år,0egenandel.",
+      "doc": "05PPK11502.pdf",
+      "location": "s2§1.10,s8§3.11",
+      "scope": "extra"
+    },
+    {
+      "id": "THU-14",
+      "subject": "Brann/elektrisk",
+      "dimension": "coverage",
+      "value": "Løs ild/elektrisk/lyn; ikke svi/gnist uten brann/kosmetikk.",
+      "doc": "05PPK11501.pdf",
+      "location": "s3§2.1–2.2;11502s3",
+      "scope": "both"
+    },
+    {
+      "id": "THU-15",
+      "subject": "Alarm",
+      "dimension": "deductible_reduction",
+      "value": "Brann/vannalarm alarmsentral6 000 redusert egenandel. Skade kun alarm/overspenningsvern0egenandel.",
+      "doc": "05PPK11501.pdf",
+      "location": "s3§2.1/2.3,s5§3.2;11502s3–5",
+      "scope": "both"
+    },
+    {
+      "id": "THU-16",
+      "subject": "Vann",
+      "dimension": "triggers",
+      "value": "Rør/akvarium/slokker, utvendig rør eller åpning etter dekket skade; terreng må gi stående vann over laveste gulv.",
+      "doc": "05PPK11501.pdf",
+      "location": "s3§2.3;11502s3",
+      "scope": "both"
+    },
+    {
+      "id": "THU-17",
+      "subject": "Vann",
+      "dimension": "standard_exclusions",
+      "value": "Basis ikke annen tak-/nedbør-/kondens/sopp/råte-/utettvåtromskade eller våtrommet selv.",
+      "doc": "05PPK11501.pdf",
+      "location": "s3§2.3",
+      "scope": "base"
+    },
+    {
+      "id": "THU-18",
+      "subject": "Vannstopper/overvann",
+      "dimension": "zero_deductible",
+      "value": "0egenandel ved innvendig rørbrudd med automatisk ventil i bruk hele bygget; overvannstank/magasin/dam ved ekstremnedbør.",
+      "doc": "05PPK11501.pdf",
+      "location": "s3§2.3;11502s3–4",
+      "scope": "both"
+    },
+    {
+      "id": "THU-19",
+      "subject": "Gjentatt vannskade",
+      "dimension": "deductible_progression",
+      "value": "+20 000 ved tilsvarende skade siste36mnd fra terreng eller innvendige rør; Ekstra også flatt tak/balkong/terrasse.",
+      "doc": "05PPK11501.pdf",
+      "location": "s3§2.3;11502s4",
+      "scope": "both"
+    },
+    {
+      "id": "THU-20",
+      "subject": "Terrengvann",
+      "dimension": "minimum_deductible",
+      "value": "Minimum8 000.",
+      "doc": "05PPK11501.pdf",
+      "location": "s4§2.3;11502s4",
+      "scope": "both"
+    },
+    {
+      "id": "THU-21",
+      "subject": "Tak/vegg lekkasje",
+      "dimension": "extra_scope",
+      "value": "Ekstra plutselig lekkasje over bakkeplan og utettvåtrom følge på tilstøtende/underliggende rom; ikke tak/takgjennomføring eldre50år, selve tak/veggsjikt, vedlikehold, konstruksjonsfeil eller sopp/råte.",
+      "doc": "05PPK11502.pdf",
+      "location": "s3§2.3",
+      "scope": "extra"
+    },
+    {
+      "id": "THU-22",
+      "subject": "Våtrom",
+      "dimension": "craftsman_conditions",
+      "value": "Ekstra følgeskade på våtrom fra autorisert arbeid/konstruksjon/montering innen10år mens forsikring aktiv; ikke feil uten følgeskade, ufaglært/eget arbeid/kosmetikk/sopp/råte.",
+      "doc": "05PPK11502.pdf",
+      "location": "s3§2.3",
+      "scope": "extra"
+    },
+    {
+      "id": "THU-23",
+      "subject": "Rørbrudd",
+      "dimension": "scope_deductible",
+      "value": "Innvendige rør/utstyr; utvendige væskerør/tanker/pumper/elektriske ledninger; egenandel per bruddsted.",
+      "doc": "05PPK11501.pdf",
+      "location": "s4§2.4;11502s4",
+      "scope": "both"
+    },
+    {
+      "id": "THU-24",
+      "subject": "Rørbrudd",
+      "dimension": "base_exclusions",
+      "value": "Basis ikke takrenne/nedløp eller frosset utvendig rør uten fysisk brudd.",
+      "doc": "05PPK11501.pdf",
+      "location": "s4§2.4",
+      "scope": "base"
+    },
+    {
+      "id": "THU-25",
+      "subject": "Staking/rørinspeksjon",
+      "dimension": "deductible",
+      "value": "Ekstra første staking/TV-undersøkelse0egenandel.",
+      "doc": "05PPK11502.pdf",
+      "location": "s4§2.4",
+      "scope": "extra"
+    },
+    {
+      "id": "THU-26",
+      "subject": "Tyveri/skadeverk",
+      "dimension": "scope",
+      "value": "På stedet; ikke beboers skadeverk i utleid rom/kosmetikk.",
+      "doc": "05PPK11501.pdf",
+      "location": "s4§2.5;11502s4",
+      "scope": "both"
+    },
+    {
+      "id": "THU-27",
+      "subject": "Plutselig skade",
+      "dimension": "base_exclusions",
+      "value": "Basis ikke fundament/setning/jordtrykk/frost/tele/konstruksjon/montering/slit/dyr; isolerglassutett ikke omfattet; glassbrudd unntak fra fundament/dyr; hage flomlikt likevel.",
+      "doc": "05PPK11501.pdf",
+      "location": "s4§2.6",
+      "scope": "base"
+    },
+    {
+      "id": "THU-28",
+      "subject": "Plutselig skade",
+      "dimension": "extra_exclusions",
+      "value": "Ekstra ikke kjæledyr/insekter/råte/slit/kosmetikk eller håndverkerfeil selv; følge av faglært arbeid innen10år, bare nødvendig tilkomst til følgeskade. Hage dyr/frost/klima ikke, flomlikt likevel.",
+      "doc": "05PPK11502.pdf",
+      "location": "s4§2.6",
+      "scope": "extra"
+    },
+    {
+      "id": "THU-29",
+      "subject": "Vær/snø",
+      "dimension": "deductible",
+      "value": "Vind under storm/snø/takras minimum8 000; Basis sprengning på stedet min10 000.",
+      "doc": "05PPK11501.pdf",
+      "location": "s5§2.6;11502s5",
+      "scope": "both"
+    },
+    {
+      "id": "THU-30",
+      "subject": "Gjenoppføring",
+      "dimension": "conditions",
+      "value": "Samme sted/formål/eier eller ektefelle/samboer/livsarving innen5år. Nybyggkjøp ikke gjenoppføring; ikke estetisk matching av uskadde deler.",
+      "doc": "05PPK11501.pdf",
+      "location": "s5–6§3.3;11502s5–6",
+      "scope": "both"
+    },
+    {
+      "id": "THU-31",
+      "subject": "Gjenoppføring",
+      "dimension": "alternative_settlement",
+      "value": "Annet sted i Norge: verdiøkning over40%trekkes; annet formål: hele økning; andre eiere/ikke innen5år/utenforland:max markedsverditap; riving:materialsalgsverdi.",
+      "doc": "05PPK11501.pdf",
+      "location": "s6§3.3.2;11502s6–7",
+      "scope": "both"
+    },
+    {
+      "id": "THU-32",
+      "subject": "Totalskade bolig",
+      "dimension": "purchase_alternative",
+      "value": "Annen bolig samme formål/fylke innen2år; eks.moms og maxgammelmarkedsverdi; ikke påbud/prisstigning; rettighetshavere samtykker.",
+      "doc": "05PPK11501.pdf",
+      "location": "s6§3.3.2E;11502s6",
+      "scope": "both"
+    },
+    {
+      "id": "THU-33",
+      "subject": "Fullverdigaranti",
+      "dimension": "condition",
+      "value": "Ekstra totalskade ingen fradrag for verdiøkning ved nytt.",
+      "doc": "05PPK11502.pdf",
+      "location": "s6§3.3.1",
+      "scope": "extra"
+    },
+    {
+      "id": "THU-34",
+      "subject": "Aldersfradrag",
+      "dimension": "tables",
+      "value": "Utvendig ikkeplast/bunnledning20år→5%max80; tank/kum20→5%max100; varmepumpe/varmtvann/pumpe/elektronikk5→10%max100; annenvarme10→10%max100; hvitevarer/boblebad5→10%max80;solcelle20→10%max80.",
+      "doc": "05PPK11501.pdf",
+      "location": "s7§3.4;11502s7",
+      "scope": "both"
+    },
+    {
+      "id": "THU-35",
+      "subject": "Aldersfradrag",
+      "dimension": "mechanism",
+      "value": "Før egenandel, hele reparasjon, eldste del; ikke fullverditotalskade/brann/natur.",
+      "doc": "05PPK11501.pdf",
+      "location": "s7§3.4;11502s7",
+      "scope": "both"
+    },
+    {
+      "id": "THU-36",
+      "subject": "Isolerglass",
+      "dimension": "deduction",
+      "value": "Ekstra punktering10frie år så10%max100; kun punktering, ikke alt glassbrudd.",
+      "doc": "05PPK11502.pdf",
+      "location": "s7§3.4",
+      "scope": "extra"
+    },
+    {
+      "id": "THU-37",
+      "subject": "Hageoppgjør",
+      "dimension": "plant_age",
+      "value": "Gjenoppretting; plante som vanlig ung handelsvare.",
+      "doc": "05PPK11501.pdf",
+      "location": "s7§3.5;11502s7",
+      "scope": "both"
+    },
+    {
+      "id": "THU-38",
+      "subject": "Oppgjør",
+      "dimension": "labor",
+      "value": "Eget arbeid300/time; leverandørpriser, dokumentert betalt moms; selskapet velger metode/ombruk.",
+      "doc": "05PPK11501.pdf",
+      "location": "s5§3.1;11502s5",
+      "scope": "both"
+    },
+    {
+      "id": "THU-39",
+      "subject": "Sikkerhet",
+      "dimension": "material_obligations",
+      "value": "Autoriserte VVS/elektro, reklamer håndverker, tak/rørfeil raskt, rens vår/høst, stopp vann etter1mndubebodd, varme/snø, oljetank ute av bruk fjernes.",
+      "doc": "05000PF115.pdf",
+      "location": "s1–2",
+      "scope": "both"
+    },
+    {
+      "id": "THU-40",
+      "subject": "Utleie/fraflytting",
+      "dimension": "risk_change",
+      "value": "Utleie må avtales unntatt nærfamilie; fraflytting begrenser skade som skyldes den, brann/natur fortsatt.",
+      "doc": "05000PF115.pdf",
+      "location": "s2§2",
+      "scope": "both"
+    },
+    {
+      "id": "THU-41",
+      "subject": "Ansvar",
+      "dimension": "temporal_scope",
+      "value": "Privat eiendomsansvar Norden; PGE90020lokalt5mill/4 000 gjelder01.10.2026, etter frosset snapshot.",
+      "doc": "05PGE90020.pdf",
+      "location": "s1–2",
+      "scope": "both"
+    },
+    {
+      "id": "THU-42",
+      "subject": "Rettshjelp",
+      "dimension": "sum_scope",
+      "value": "100 000/tvist250 000min3parter;20 000Trygtvist;økonomiskinteressetak;4 000+20%;Nordeneiendom,salg/vissekjøp,ikkeannenfast eiendom.",
+      "doc": "05PGE91500.pdf",
+      "location": "s2§5.2,s4§6",
+      "scope": "both"
+    },
+    {
+      "id": "THU-43",
+      "subject": "Natur",
+      "dimension": "scope",
+      "value": "Brannforsikret hus/innbo; hage5dekar/vei innenområdet, flyte/trebrygge100 000ikkeandel;8 000deduct;ikkevær/frostsnø alene.",
+      "doc": "05PGE90010.pdf",
+      "location": "s1–2",
+      "scope": "both"
+    },
+    {
+      "id": "THU-44",
+      "subject": "Utleietillegg",
+      "dimension": "limits",
+      "value": "Skadeverk bygg/hage/innbo500 000;tyveri/underslag500 000 pertilfelle fra leietaker/gjester;ubetalthusleie6mndén gang/leietaker;utkastelse20 000;6 000deduct leietap3mndmin10 000.",
+      "doc": "05PPK11506.pdf",
+      "location": "s1§§1–2",
+      "scope": "rental"
+    },
+    {
+      "id": "THU-45",
+      "subject": "Utleietillegg",
+      "dimension": "safety",
+      "value": "Skriftlig avtale tvangsfravikelse14d;depositum/bankgaranti3mndførinnflytting;varsel14dettermislighold,retting14d,begjæring/meldingTryginnen6uker.",
+      "doc": "05000PF121.pdf",
+      "location": "s1",
+      "scope": "rental"
+    },
+    {
+      "id": "THU-46",
+      "subject": "Utleietillegg",
+      "dimension": "settlement",
+      "value": "Kosmetikk/vedlikeholdunntatt;bygningsreglervedbygg;innbomin1/3verdifallførfradrag,brukt/arvet/gavemarkedstak,300/time.",
+      "doc": "05PPK11506.pdf",
+      "location": "s1–3",
+      "scope": "rental"
+    },
+    {
+      "id": "THU-47",
+      "subject": "Råte/skadedyr",
+      "dimension": "scope_sum",
+      "value": "VISbolig/frittståendegarasje,ikke næring/landbruk/basseng;råte,nedbrytningfraaktivvann>1år,dyr,innvendigmus/rotter+skadeinsekter;ubegrenset hvis ikke bevisgrenser.",
+      "doc": "05PPK40502.pdf",
+      "location": "s1§§1–2",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-48",
+      "subject": "Råte/skadedyr",
+      "dimension": "major_exclusions",
+      "value": "Ikke utvendigtreverk/dør/vindu/tak/fastinnredning vedråte/vann;ikkemugg,kjæledyr,forebygging,tetting,utilstrekkeligisolasjonutenpåvistfall;utvendig/bunnrør,dyrebrann/vann,terrengvann,konstruksjonsvann ikke.",
+      "doc": "05PPK40502.pdf",
+      "location": "s1§3",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-49",
+      "subject": "Råte/skadedyr",
+      "dimension": "time_scope",
+      "value": "Ingen skadeutvikling før/etter avtale;skadedyrførstartkanunntaksvisdekkeshvisforrigebygningdekningvilledekket;samtykke førbekjempelse.",
+      "doc": "05PPK40502.pdf",
+      "location": "s1§3,s3§4.3.3",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-50",
+      "subject": "Råte/skadedyr",
+      "dimension": "deductible",
+      "value": "Skade6 000/bekjempelse2 000 med mindrebevis.",
+      "doc": "05PPK40502.pdf",
+      "location": "s2§4.2",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-51",
+      "subject": "Råte/skadedyr",
+      "dimension": "loss_of_rent",
+      "value": "Normalreparasjon/markedsleie,sparingtrekkes;skriftligleiekontrakt,godkjenterom;utenboutgift50%markedspris;flytting/lagringdekkes,ikkehjemmekontor.",
+      "doc": "05PPK40502.pdf",
+      "location": "s2§4.3.1",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-52",
+      "subject": "Råte/skadedyr",
+      "dimension": "equipment_age",
+      "value": "5frieårforinnebygdmaskin/varmepumpe/varmtvann/boblebad,10forvarmekabel/annenvarme;10%påbegyntårmax80;eldstedel.",
+      "doc": "05PPK40502.pdf",
+      "location": "s2§4.3.2",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-53",
+      "subject": "Råte/skadedyr",
+      "dimension": "water_age",
+      "value": "Tak/balkong>30år,rør>50,våtrom>20:50%skadekostnad,max200 000;eldste konstruksjon.",
+      "doc": "05PPK40502.pdf",
+      "location": "s3§4.4",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-54",
+      "subject": "Råte/skadedyr",
+      "dimension": "water_caps",
+      "value": "Takvann200 000/skade600 000/år;kondenshvitevarer/varmepumpe50 000/skade100 000/år.",
+      "doc": "05PPK40502.pdf",
+      "location": "s3§4.6",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-55",
+      "subject": "Råte/skadedyr",
+      "dimension": "price_vacancy",
+      "value": "Prisstigning24mnd;fraflyttingbare råte/skadedyr ikke langvarigvann;VISgodkjentegetarbeid250/time.",
+      "doc": "05PPK40502.pdf",
+      "location": "s2§4.1,s3§4.5/4.7",
+      "scope": "rot"
+    },
+    {
+      "id": "THU-56",
+      "subject": "Bygg under oppføring",
+      "dimension": "scope",
+      "value": "Egetfullverdi underbygging,materialerlossetinkl,flyttedatoBygning11501;utvendigledninger/kunstikke.",
+      "doc": "05PPK11503.pdf",
+      "location": "s1§1.1",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-57",
+      "subject": "Bygg under oppføring",
+      "dimension": "garden",
+      "value": "Hage50 000,ikkegrensebrann/natur;flyte/brygge100 000brann;ekstrabryggevedbevis.",
+      "doc": "05PPK11503.pdf",
+      "location": "s1§1.2",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-58",
+      "subject": "Bygg under oppføring",
+      "dimension": "expenses",
+      "value": "Hvis entreprenørikkeharforsikring:riving/rydding,leietap24mnd,brakke/bod,egetinnbo300 000.",
+      "doc": "05PPK11503.pdf",
+      "location": "s1§1.3",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-59",
+      "subject": "Bygg under oppføring",
+      "dimension": "water_pipe",
+      "value": "Basisvannunntak;terreng8 000;likvannskade36mnd+20 000;rørtestetavfagkyndigforinnvendigbrudd.",
+      "doc": "05PPK11503.pdf",
+      "location": "s2§2.3–2.4",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-60",
+      "subject": "Bygg under oppføring",
+      "dimension": "theft",
+      "value": "Skadeverkbygg/tyverifra brakke;ting kun tettbyggdørvindupåplass,veggerkledd,taklagt.",
+      "doc": "05PPK11503.pdf",
+      "location": "s3§2.5",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-61",
+      "subject": "Bygg under oppføring",
+      "dimension": "sudden",
+      "value": "Basisunntakfundament/konstruksjon/slit/dyr;vind/snø8 000sprengning10 000;glassunntakbevares.",
+      "doc": "05PPK11503.pdf",
+      "location": "s3§2.6",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-62",
+      "subject": "Bygg under oppføring",
+      "dimension": "liability",
+      "value": "Privat byggherreansvarutvidettilbygg/graving/sprengningpåstedet.",
+      "doc": "05PPK11503.pdf",
+      "location": "s3§2.7",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-63",
+      "subject": "Bygg under oppføring",
+      "dimension": "settlement",
+      "value": "Samme5år/sted/formålbyggeregler;ikkeordinæralternativkjøpannenbolig;aldersfradragsamebasetabell;innboarbeid75%/egen200,timebygg300.",
+      "doc": "05PPK11503.pdf",
+      "location": "s4–7§3",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-64",
+      "subject": "Bygg under oppføring",
+      "dimension": "safety",
+      "value": "Stoppventilstengtutenarbeid,frosttømming,brakkerasikretmotborttransport.",
+      "doc": "05000PF118.pdf",
+      "location": "s1",
+      "scope": "construction"
+    },
+    {
+      "id": "THU-65",
+      "subject": "IPID",
+      "dimension": "extra_coverage",
+      "value": "2022Ekstraoppsummerer punktertvindu,utvendigrørtining,dyr,klimatiltak;råteskadedyrtilvalg. Fyll ikkeubetingededyre-ellerklimapåstander fra kortarket.",
+      "doc": "IPID-Hus.pdf",
+      "location": "s1",
+      "scope": "both"
+    }
+  ],
+  "rule_count": 65,
+  "all_sixteen_sources_read": true
+}

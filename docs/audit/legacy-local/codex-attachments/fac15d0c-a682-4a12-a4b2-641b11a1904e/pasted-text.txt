@@ -1,0 +1,1054 @@
+...represent the source semantics safely without loss or false equivalence.
+
+==================================================
+50 – EXISTING ROOT CAUSES
+==================================================
+
+Preserve and refine the six existing root-cause candidates:
+
+1. For begrenset kildeutvalg i katalogdefinisjoner.
+2. Tap av betingelser og dimensjoner ved oppsummering.
+3. Ufullstendig sammensetning av produktnivåer.
+4. Utelatte typebestemte regler og tillegg.
+5. Utelatte egenandels-/oppgjørsdetaljer.
+6. Utelatte regler innen korrekt avgrenset kanal-scope.
+
+New evidence may:
+
+- strengthen
+- split
+- merge
+- disprove
+
+these candidates.
+
+Do not force new findings into them if evidence supports another cause.
+
+==================================================
+51 – ROOT CAUSE DEDUPLICATION
+==================================================
+
+Prioritize finding shared causes.
+
+Do not create 20 independent root causes when one mapping/materialization
+problem explains 20 product findings.
+
+But:
+
+do not overgeneralize across providers/families without evidence.
+
+==================================================
+52 – P0 / P1
+==================================================
+
+P0/P1 findings require:
+
+exact source evidence
+exact product applicability
+exact catalog state
+advisor relevance
+manual verification
+confidence.
+
+P0 should remain rare.
+
+Do not inflate severity merely because a fact is missing.
+
+==================================================
+53 – P0
+==================================================
+
+Potential P0 examples if verified:
+
+- included vs unavailable materially wrong
+- optional represented as included
+- unsupported major positive coverage
+- wrong scope/version
+- materially wrong sum/period semantics
+- materially wrong age/km rule
+- severe cross-product/source contamination.
+
+Manual verification required.
+
+==================================================
+54 – P1
+==================================================
+
+P1 normally includes:
+
+material source-backed fact omitted
+material false catalog unknown
+important TOO_COARSE dimension
+important inheritance/add-on omission
+important source-backed condition lost.
+
+==================================================
+55 – P2
+==================================================
+
+P2:
+
+useful advisor detail but omission does not materially distort main
+comparison.
+
+Record efficiently.
+
+==================================================
+56 – P3
+==================================================
+
+Do not spend meaningful remaining budget actively hunting P3.
+
+Record only if encountered naturally.
+
+==================================================
+57 – EXISTING P1 FINDINGS
+==================================================
+
+Preserve previously verified P1 findings.
+
+Do not re-open them without contradictory evidence.
+
+Existing examples include material gaps across:
+
+Tryg Hund/Katt
+If Hund/Katt
+Storebrand Båt
+Frende kjøretøy
+Tryg Innbo
+Fremtind MC/Bobil.
+
+Continue beyond these products.
+
+==================================================
+58 – EXISTING P2
+==================================================
+
+Preserve existing P2 findings unless contradictory evidence appears.
+
+Do not spend substantial reasoning reclassifying them while products remain
+untouched.
+
+==================================================
+59 – UNSUPPORTED CATALOG CLAIMS
+==================================================
+
+Previous audit had no final proven unsupported claim.
+
+Continue reverse audit where efficient.
+
+Prioritize:
+
+positive coverage
+numeric values
+optional availability
+major limits.
+
+One previous candidate:
+
+Tryg Innbo Ekstra inherited tyveri.fellesgarasje.grense
+
+requires complete source-package check before any conclusion.
+
+==================================================
+60 – FALSE UNKNOWN DISCOVERY
+==================================================
+
+Continue counting only VERIFIED false catalog unknowns.
+
+Required chain:
+
+source supports fact
+→ exact product applicability
+→ catalog lacks safe representation
+→ comparison/presentation produces unknown or equivalent omission.
+
+==================================================
+61 – TOO-COARSE DISCOVERY
+==================================================
+
+Continue detecting material source dimensions lost by broad catalog
+summaries.
+
+Examples from prior run include:
+
+- lifetime condition
+- rollover condition
+- daily rate
+- season.
+
+Find similar patterns elsewhere.
+
+==================================================
+62 – SOURCE SUPPORT REVERSE CHECK
+==================================================
+
+When inspecting a product deeply, also verify major existing catalog claims
+have applicable source support.
+
+This gives high value without requiring an entirely separate second pass
+later.
+
+==================================================
+63 – PRODUCT STATUS
+==================================================
+
+Continue filling product ledger with:
+
+completeness_status
+source_support_status
+catalog_product_status.
+
+Do not mark READY before sufficient semantic review.
+
+==================================================
+64 – NO PREMATURE READY
+==================================================
+
+Products previously only partially reviewed remain PARTIAL.
+
+Do not promote to READY merely because no additional gap was found in a
+single section.
+
+==================================================
+65 – PRODUCT COMPLETION
+==================================================
+
+A product can be marked semantically complete only after:
+
+- applicable source package reviewed
+- major advisor-relevant concepts inventoried
+- material dimensions checked
+- catalog matching completed
+- major existing catalog claims support-checked
+- findings recorded
+- source insufficiency/conflicts recorded.
+
+==================================================
+66 – ADD-ON COMPLETION
+==================================================
+
+Equivalent standard for add-ons, scaled to their source scope.
+
+==================================================
+67 – FAMILY COMPLETION
+==================================================
+
+Do not mark family complete until all active in-scope products/add-ons have
+appropriate product-level status.
+
+==================================================
+68 – ALL 12 FAMILY CHECKPOINTS
+==================================================
+
+Previous run left all 12 family checkpoints incomplete.
+
+Continue checkpoints systematically.
+
+==================================================
+69 – EFFICIENCY: SHARED SOURCES
+==================================================
+
+Reuse semantic inventories for identical source hashes.
+
+Do not reread identical bytes.
+
+But preserve product applicability.
+
+==================================================
+70 – EFFICIENCY: SHARED TERMS
+==================================================
+
+If one full-terms document applies to many product levels:
+
+read once
+
+then apply exact level sections/matrices/footnotes.
+
+==================================================
+71 – EFFICIENCY: PRODUCT HIERARCHY
+==================================================
+
+Where inheritance is explicit:
+
+audit base facts once
+
+then audit deltas/higher-level additions.
+
+Still give every exact product its own ledger status.
+
+==================================================
+72 – EFFICIENCY: EXISTING EXTRACTION
+==================================================
+
+Prefer existing extracted text/cache.
+
+Do not re-run expensive parsing without reason.
+
+==================================================
+73 – EFFICIENCY: SCRIPTING
+==================================================
+
+Use deterministic scripts for:
+
+enumeration
+hash matching
+source linkage
+fact counting
+ledger reconciliation
+candidate generation.
+
+Use Extra High reasoning for semantic interpretation.
+
+==================================================
+74 – EFFICIENCY: REPORTING
+==================================================
+
+Update structured audit artifacts incrementally.
+
+Do not repeatedly regenerate polished long Markdown reports during the run.
+
+==================================================
+75 – BUDGET USAGE
+==================================================
+
+Du kan bruke HELE gjenværende ukesbudsjett på denne auditen.
+
+Ikke reserver kapasitet til senere oppgaver.
+
+Fortsett så langt systemet tillater med samme kvalitetskrav.
+
+Det er helt akseptabelt at ukesbudsjettet går til 0 %.
+
+==================================================
+76 – BUDGET PRIORITY
+==================================================
+
+Use remaining capacity:
+
+P0/P1 discovery
+>
+untouched product coverage
+>
+material add-on coverage
+>
+root-cause deduplication
+>
+P2
+>
+P3
+>
+report polish.
+
+==================================================
+77 – DO NOT LOWER QUALITY TO COVER MORE
+==================================================
+
+Ikke reduser auditkvaliteten for å rekke flere produkter.
+
+A shallow:
+
+"source contains many details"
+
+is not a valid semantic review.
+
+If capacity ends:
+
+checkpoint honestly.
+
+==================================================
+78 – DO NOT STOP EARLY TO SAVE BUDGET
+==================================================
+
+Do NOT voluntarily stop merely to preserve weekly budget.
+
+The user explicitly authorizes using all remaining weekly budget on this
+audit.
+
+Continue until:
+
+A. original audit completion criteria are met
+
+or
+
+B. system/budget limit prevents further useful work
+
+or
+
+C. a legitimate integrity/tooling blocker occurs.
+
+==================================================
+79 – IF BUDGET LIMIT APPROACHES
+==================================================
+
+As remaining capacity becomes constrained:
+
+do NOT spend final capacity on prose polish.
+
+Prioritize:
+
+1. persist current semantic work
+2. reconcile ledgers
+3. update resume.json
+4. preserve validated finding IDs/root causes
+5. record exact next product/family/add-on
+6. verify repo integrity.
+
+==================================================
+80 – RESUME CHECKPOINT
+==================================================
+
+Maintain:
+
+/tmp/source-catalog-completeness-audit/resume.json
+
+throughout the continuation.
+
+It must make another run possible without repeating completed work.
+
+==================================================
+81 – RESUME JSON
+==================================================
+
+At minimum preserve:
+
+audit_run_id
+repo_head
+catalog_fingerprint
+source_corpus_fingerprint
+completed_products
+partially_reviewed_products
+not_started_products
+completed_addons
+partial_addons
+remaining_addons
+family_checkpoints
+source_hashes_parsed
+deep_reviews_completed
+finding_ids
+root_cause_ids
+remediation_batch_ids
+last_completed_product
+next_product
+last_completed_family
+next_family
+manual_review_state
+counts.
+
+==================================================
+82 – CHECKPOINT FREQUENCY
+==================================================
+
+Do not wait until the very last moment to persist resume state.
+
+Checkpoint after meaningful chunks/families.
+
+==================================================
+83 – NO LOSS OF EXISTING WORK
+==================================================
+
+Never overwrite existing validated findings with a new empty/partial
+structure.
+
+Merge continuation state carefully.
+
+==================================================
+84 – FINDING IDS
+==================================================
+
+Preserve existing stable finding IDs.
+
+New findings get new non-colliding IDs.
+
+==================================================
+85 – ROOT CAUSE IDS
+==================================================
+
+Preserve existing root-cause IDs where still valid.
+
+Do not renumber merely for presentation.
+
+==================================================
+86 – DUPLICATE FINDINGS
+==================================================
+
+Before creating a new finding:
+
+check whether same signature already exists.
+
+Record occurrence under existing signature/root cause where appropriate.
+
+==================================================
+87 – EXISTING SOURCE FACT INVENTORY
+==================================================
+
+Reuse previously validated source facts.
+
+Do not re-reason them unless needed for:
+
+new product applicability
+conflict
+root-cause analysis.
+
+==================================================
+88 – SOURCE CONTENT INDEPENDENCE
+==================================================
+
+For untouched products, source semantic review must still be capable of
+discovering facts absent from catalog.
+
+Do not shortcut this requirement merely because budget is lower.
+
+==================================================
+89 – PRODUCT SELECTION ORDER
+==================================================
+
+Prioritize remaining products using high-value heuristics:
+
+1. active/current
+2. rich/full source available
+3. suspiciously thin catalog
+4. high unknown frequency
+5. top/extended product
+6. product sharing source with many others
+7. products likely to expose shared root cause
+8. remaining ordinary products
+9. historical/deprioritized products.
+
+But all active products remain eventual scope.
+
+==================================================
+90 – SHARED-SOURCE LEVERAGE
+==================================================
+
+If one source document supports many remaining products:
+
+prefer auditing it early.
+
+One semantic inventory may advance many product ledgers.
+
+==================================================
+91 – FAMILY LEVERAGE
+==================================================
+
+If one family has many remaining products sharing structure:
+
+finish that semantic map and propagate only source-supported applicability.
+
+==================================================
+92 – PROVIDER LEVERAGE
+==================================================
+
+If one provider's shared terms span several products/families:
+
+reuse extraction and semantic patterns carefully.
+
+Do not copy facts across families without source applicability.
+
+==================================================
+93 – ACTIVE PRODUCTS FIRST
+==================================================
+
+If budget ends before historical products receive deep review:
+
+that is preferable to leaving active pilot products untouched.
+
+Still ledger historical products and record remaining scope honestly.
+
+==================================================
+94 – PILOT MATERIALITY
+==================================================
+
+Prioritize material facts affecting advisor decision support before low-value
+administrative details.
+
+==================================================
+95 – CUSTOMER-MODE IMPACT
+==================================================
+
+When a finding could also affect catalog enrichment in customer comparison:
+
+mark:
+
+LIKELY_SHARED_WITH_CUSTOMER_MODE.
+
+These deserve high remediation visibility later.
+
+==================================================
+96 – DOCUMENT PRIORITY
+==================================================
+
+Nothing in this audit changes:
+
+explicit customer document fact
+>
+catalog.
+
+==================================================
+97 – EXTRACTION
+==================================================
+
+Do not modify application PDF extraction.
+
+If source completeness reveals a concept that customer PDF extraction also
+cannot represent:
+
+flag:
+
+EXTRACTION_EXTENSION_REQUIRED.
+
+No implementation.
+
+==================================================
+98 – PRESENTATION
+==================================================
+
+If fact already exists correctly in catalog but is hidden/misgrouped:
+
+PRESENTATION_ONLY.
+
+Do not misclassify as catalog gap.
+
+==================================================
+99 – CANONICAL ARCHITECTURE
+==================================================
+
+If existing model cannot safely represent material source semantics:
+
+flag:
+
+CANONICAL_STRUCTURE_INSUFFICIENT
+
+or:
+
+NEW_CANONICAL_CANDIDATE.
+
+Do not redesign now.
+
+==================================================
+100 – SOURCE RESEARCH
+==================================================
+
+If local source corpus cannot answer material question:
+
+SOURCE_RESEARCH_REQUIRED.
+
+Do not browse.
+
+==================================================
+101 – SOURCE FRESHNESS
+==================================================
+
+This audit checks completeness against LOCAL source corpus.
+
+It does not prove public web freshness.
+
+Do not spend current budget on freshness research.
+
+==================================================
+102 – MANUAL REVIEW
+==================================================
+
+Every new P0/P1 must receive manual evidence-chain review before final
+checkpoint.
+
+Do not leave unverified P1 merely to increase coverage count.
+
+==================================================
+103 – P2 MANUAL REVIEW
+==================================================
+
+Sample P2 for classifier quality.
+
+Do not manually inspect every P2 while many products remain untouched.
+
+==================================================
+104 – NO-FINDING CONTROL
+==================================================
+
+Continue deep-checking some products with few/no findings to detect false
+negatives.
+
+==================================================
+105 – POSITIVE CONTROLS
+==================================================
+
+Continue tracking:
+
+Hund
+Bobil
+Båt
+MC
+
+but do not let them consume all remaining budget.
+
+==================================================
+106 – NEGATIVE CONTROLS
+==================================================
+
+Review products/families without known manual suspicion.
+
+The audit must not depend on user-discovered problems.
+
+==================================================
+107 – METHOD QUALITY
+==================================================
+
+Continue evaluating:
+
+REASONABLE
+OVER_SENSITIVE
+UNDER_SENSITIVE
+MIXED
+UNRELIABLE.
+
+If positive controls are missed:
+
+adjust TEMP audit methodology.
+
+Do not modify repo.
+
+==================================================
+108 – BLINDSPOT QUESTION
+==================================================
+
+The continuation should keep answering:
+
+Would this audit have detected source-backed catalog omissions BEFORE a human
+advisor happened to notice them in product comparison?
+
+==================================================
+109 – FUTURE QA
+==================================================
+
+Continue collecting evidence for deterministic future prevention.
+
+Do not implement future CI yet.
+
+==================================================
+110 – SOURCE → CATALOG FUTURE GATE
+==================================================
+
+Keep candidate future acceptance model:
+
+SOURCE_READY
++
+SOURCE_TO_CATALOG_COMPLETE
++
+COMPARISON_SEMANTICS_READY
++
+RUNTIME/UI_READY
++
+HUMAN SPOT CHECK.
+
+==================================================
+111 – DO NOT REMEDIATE
+==================================================
+
+Even if an obvious fix is discovered:
+
+DO NOT FIX IT.
+
+We still want the broadest possible gap map before remediation.
+
+==================================================
+112 – DO NOT ADD TESTS
+==================================================
+
+Do not write regression tests yet.
+
+Record proposed tests in remediation metadata only.
+
+==================================================
+113 – DO NOT COMMIT
+==================================================
+
+No commit.
+
+==================================================
+114 – DO NOT PUSH
+==================================================
+
+No push.
+
+==================================================
+115 – DO NOT DEPLOY
+==================================================
+
+No deploy.
+
+==================================================
+116 – NO RAILWAY
+==================================================
+
+Railway untouched.
+
+==================================================
+117 – NO ENV
+==================================================
+
+.env.local untouched.
+
+==================================================
+118 – NO TRACE
+==================================================
+
+Production tracing remains OFF.
+
+==================================================
+119 – NO PRIVATE DATA
+==================================================
+
+No customer documents.
+
+Audit corpus remains:
+
+public source artifacts
+catalog
+code
+tests
+existing audit artifacts.
+
+==================================================
+120 – OUTPUT DIRECTORY
+==================================================
+
+Continue updating:
+
+/tmp/source-catalog-completeness-audit/
+
+Do not create a new audit directory unless technically necessary.
+
+==================================================
+121 – REQUIRED OUTPUTS
+==================================================
+
+Preserve/update:
+
+audit-summary.md
+audit.json
+product-ledger.csv
+addon-ledger.csv
+gap-findings.csv
+source-fact-inventory.csv
+family-summary.csv
+root-cause-candidates.csv
+manual-review.md
+resume.json
+
+plus existing optional audit files.
+
+==================================================
+122 – PRODUCT LEDGER
+==================================================
+
+Every active product eventually needs:
+
+exact identity
+source artifact count
+advisor-relevant source fact count
+represented count
+missing count
+too-coarse count
+unsupported count
+review count
+completeness status
+source support status
+catalog product status
+finding references.
+
+==================================================
+123 – ADD-ON LEDGER
+==================================================
+
+Equivalent status for every active add-on.
+
+==================================================
+124 – FAMILY SUMMARY
+==================================================
+
+Update incrementally.
+
+Do not call family complete prematurely.
+
+==================================================
+125 – ROOT CAUSES
+==================================================
+
+Prioritize root causes with high remediation leverage.
+
+One shared cause explaining many P1 findings is especially valuable.
+
+==================================================
+126 – REMEDIATION BATCHES
+==================================================
+
+Continue grouping findings into:
+
+CATALOG_DATA_ONLY
+SOURCE_MANIFEST
+CANONICAL_MAPPING
+INHERITANCE
+ADDON
+PRESENTATION
+SHARED_ENGINE
+SOURCE_RESEARCH_REQUIRED
+ARCHITECTURE_REVIEW.
+
+No execution.
+
+==================================================
+127 – REMEDIATION COMPLEXITY
+==================================================
+
+Classify:
+
+DATA_ONLY
+SMALL_CODE
+MEDIUM_CODE
+ARCHITECTURE
+SOURCE_RESEARCH
+UNKNOWN.
+
+==================================================
+128 – GPT6 REMEDIATION FLAG
+==================================================
+
+Use:
+
+GPT6_REMEDIATION_RECOMMENDED = true
+
+only where future fix genuinely involves difficult semantic/architecture
+reasoning.
+
+Do not flag simple catalog data additions merely because many exist.
+
+==================================================
+129 – PILOT PRIORITY
+==================================================
+
+For findings/batches:
+
+MUST_BEFORE_NITO
+SHOULD_BEFORE_NITO
+CAN_WAIT.
+
+==================================================
+130 – CURRENT CATALOG GATE
+==================================================
+
+Previous checkpoint concluded:
+
+GLOBAL_CATALOG_STATUS = REMEDIATION_REQUIRED
+
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED
+
+because verified material gaps already exist.
+
+Do not downgrade this merely because audit remains partial.
+
+It can only improve after future remediation, which is NOT part of this task.
+
+==================================================
+131 – CONTINUATION GOAL
+==================================================
+
+The goal of this run is therefore NOT to make catalog READY.
+
+The goal is to discover as much of the remaining material gap map as
+possible before remediation.
+
+==================================================
+132 – COMPLETE IF POSSIBLE
+==================================================
+
+If remaining budget unexpectedly permits completion of the original full
+audit:
+
+complete it.
+
+Use ALL original completion criteria.
+
+Do not lower standards.
+
+==================================================
+133 – IF COMPLETE
+==================================================
+
+Only return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_COMPLETE
+
+if:
+
+- all active products accounted and semantically audited
+- all active add-ons accounted appropriately
+- all families complete
+- source coverage reconciled
+- deep-review requirement met
+- P0/P1 manually verified
+- counts reconcile
+- outputs validate
+- repo unchanged
+- all original completion requirements are satisfied.
+
+==================================================
+134 – IF PARTIAL
+==================================================
+
+If system/budget limit prevents completion:
+
+return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_PARTIAL
+
+This is expected and acceptable.
+
+Do not rush shallow reviews to avoid PARTIAL status.
+
+==================================================
+135 – PARTIAL CHECKPOINT REQUIREMENTS
+==================================================
+
+Before returning PARTIAL:
+
+1. Persist all completed semantic work.
+2. Update resume.json.
+3. Update product ledger.
+4. Update add-on ledger.
+5. Update findings.
+6. Update root causes.
+7. Update family checkpoints.
+8. Preserve manual validations.
+9. Reconcile counts.
+10. Verify repo integrity.
+
+==================================================
+136 – PARTIAL FINAL REPORT
+==================================================
+
+Report:
+
+PRODUCTS
+- total
+- fully/deeply reviewed
+- partially reviewed
+- not started
+
+ADD-ONS
+- reviewed
+- partial
+- remaining
+
+FAMILIES
+- completed
+- partial
+- not started
+
+FINDINGS
+- P0
+- P1 occurrences
+- P1 signatures
+- P2
+- P3
+- verified

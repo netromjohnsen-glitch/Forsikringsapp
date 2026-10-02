@@ -1,0 +1,462 @@
+[
+  {
+    "left": "[\"sparebank1-fremtind\",\"hund\",\"ordinary\",\"sparebank1-fremtind-hund-veterin-r\",\"2025-08-07\"]",
+    "right": "[\"if\",\"hund\",\"ordinary\",\"if-hund-super\",\"2022-12-01\"]",
+    "forward": [
+      {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "conceptId": "hund.medisin-diagnostikk",
+        "conceptLabel": "Medisin og diagnostikk",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "MR/CT innen valgt forsikringssum",
+          "facts": [
+            {
+              "key": "dyr.diagnostikk.grense",
+              "label": "Diagnostikk – grense",
+              "value": "MR/CT innen valgt forsikringssum",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:sparebank1-fremtind:hund",
+                  "filename": "fremtind-dog-vet-terms.pdf",
+                  "termsNumber": "PBK-231.200-004",
+                  "effectiveFrom": "2025-08-07",
+                  "version": "2025-08-07",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+                  "company": "Fremtind",
+                  "page": 2,
+                  "section": "Veterinærutgifter",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:sparebank1-fremtind:hund",
+              "filename": "fremtind-dog-vet-terms.pdf",
+              "termsNumber": "PBK-231.200-004",
+              "effectiveFrom": "2025-08-07",
+              "version": "2025-08-07",
+              "agreementScope": "ordinary",
+              "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+              "company": "Fremtind",
+              "page": 2,
+              "section": "Veterinærutgifter",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      },
+      {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "conceptId": "hund.allergi-fodsel",
+        "conceptLabel": "Allergi, sykdom og fødsel",
+        "conceptTier": "secondary",
+        "first": {
+          "state": "optional",
+          "text": "Tilgjengelig som tillegg (Topp veterinærutgifter) – Valgfri utvidelse",
+          "facts": [
+            {
+              "key": "dyr.allergi.dekning",
+              "label": "Allergi og atopi",
+              "value": "Valgfri utvidelse",
+              "state": "optional",
+              "addOnNames": [
+                "Topp veterinærutgifter"
+              ],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "boat-pet:sparebank1-fremtind:hund",
+                  "filename": "fremtind-dog-vet-terms.pdf",
+                  "termsNumber": "PBK-231.200-004",
+                  "effectiveFrom": "2025-08-07",
+                  "version": "2025-08-07",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+                  "company": "Fremtind",
+                  "page": 3,
+                  "section": "Topp veterinærutgifter",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:sparebank1-fremtind:hund",
+              "filename": "fremtind-dog-vet-terms.pdf",
+              "termsNumber": "PBK-231.200-004",
+              "effectiveFrom": "2025-08-07",
+              "version": "2025-08-07",
+              "agreementScope": "ordinary",
+              "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+              "company": "Fremtind",
+              "page": 3,
+              "section": "Topp veterinærutgifter",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "✓ Inkludert – Inkludert innen valgt veterinærsum",
+          "facts": [
+            {
+              "key": "dyr.allergi.dekning",
+              "label": "Allergi og atopi",
+              "value": "Inkludert innen valgt veterinærsum",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "boat-pet:if:hund",
+                  "filename": "if-dog-terms.pdf",
+                  "termsNumber": "Hundeforsikring",
+                  "effectiveFrom": "2022-12-01",
+                  "version": "2022-12-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hundeforsikring",
+                  "company": "If",
+                  "page": 1,
+                  "section": "Super",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:if:hund",
+              "filename": "if-dog-terms.pdf",
+              "termsNumber": "Hundeforsikring",
+              "effectiveFrom": "2022-12-01",
+              "version": "2022-12-01",
+              "agreementScope": "ordinary",
+              "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hundeforsikring",
+              "company": "If",
+              "page": 1,
+              "section": "Super",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "conceptId": "hund.medisin-diagnostikk",
+        "conceptLabel": "Medisin og diagnostikk",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "MR/CT innen valgt forsikringssum",
+          "facts": [
+            {
+              "key": "dyr.diagnostikk.grense",
+              "label": "Diagnostikk – grense",
+              "value": "MR/CT innen valgt forsikringssum",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:sparebank1-fremtind:hund",
+                  "filename": "fremtind-dog-vet-terms.pdf",
+                  "termsNumber": "PBK-231.200-004",
+                  "effectiveFrom": "2025-08-07",
+                  "version": "2025-08-07",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+                  "company": "Fremtind",
+                  "page": 2,
+                  "section": "Veterinærutgifter",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:sparebank1-fremtind:hund",
+              "filename": "fremtind-dog-vet-terms.pdf",
+              "termsNumber": "PBK-231.200-004",
+              "effectiveFrom": "2025-08-07",
+              "version": "2025-08-07",
+              "agreementScope": "ordinary",
+              "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+              "company": "Fremtind",
+              "page": 2,
+              "section": "Veterinærutgifter",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      },
+      {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "conceptId": "hund.allergi-fodsel",
+        "conceptLabel": "Allergi, sykdom og fødsel",
+        "conceptTier": "secondary",
+        "first": {
+          "state": "included",
+          "text": "✓ Inkludert – Inkludert innen valgt veterinærsum",
+          "facts": [
+            {
+              "key": "dyr.allergi.dekning",
+              "label": "Allergi og atopi",
+              "value": "Inkludert innen valgt veterinærsum",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "boat-pet:if:hund",
+                  "filename": "if-dog-terms.pdf",
+                  "termsNumber": "Hundeforsikring",
+                  "effectiveFrom": "2022-12-01",
+                  "version": "2022-12-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hundeforsikring",
+                  "company": "If",
+                  "page": 1,
+                  "section": "Super",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:if:hund",
+              "filename": "if-dog-terms.pdf",
+              "termsNumber": "Hundeforsikring",
+              "effectiveFrom": "2022-12-01",
+              "version": "2022-12-01",
+              "agreementScope": "ordinary",
+              "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hundeforsikring",
+              "company": "If",
+              "page": 1,
+              "section": "Super",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "optional",
+          "text": "Tilgjengelig som tillegg (Topp veterinærutgifter) – Valgfri utvidelse",
+          "facts": [
+            {
+              "key": "dyr.allergi.dekning",
+              "label": "Allergi og atopi",
+              "value": "Valgfri utvidelse",
+              "state": "optional",
+              "addOnNames": [
+                "Topp veterinærutgifter"
+              ],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "boat-pet:sparebank1-fremtind:hund",
+                  "filename": "fremtind-dog-vet-terms.pdf",
+                  "termsNumber": "PBK-231.200-004",
+                  "effectiveFrom": "2025-08-07",
+                  "version": "2025-08-07",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+                  "company": "Fremtind",
+                  "page": 3,
+                  "section": "Topp veterinærutgifter",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:sparebank1-fremtind:hund",
+              "filename": "fremtind-dog-vet-terms.pdf",
+              "termsNumber": "PBK-231.200-004",
+              "effectiveFrom": "2025-08-07",
+              "version": "2025-08-07",
+              "agreementScope": "ordinary",
+              "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+              "company": "Fremtind",
+              "page": 3,
+              "section": "Topp veterinærutgifter",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      }
+    ]
+  },
+  {
+    "left": "[\"sparebank1-fremtind\",\"hund\",\"ordinary\",\"sparebank1-fremtind-hund-veterin-r\",\"2025-08-07\"]",
+    "right": "[\"frende\",\"hund\",\"ordinary\",\"frende-hund-veterin-r\",\"2026-01-01\"]",
+    "forward": [
+      {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "conceptId": "hund.allergi-fodsel",
+        "conceptLabel": "Allergi, sykdom og fødsel",
+        "conceptTier": "secondary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "Inntil 15 000 kr",
+          "facts": [
+            {
+              "key": "dyr.allergi.grense",
+              "label": "Allergi og atopi – grense",
+              "value": "Inntil 15 000 kr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:frende:hund",
+                  "filename": "frende-dog-terms.pdf",
+                  "termsNumber": "Hundeforsikring",
+                  "effectiveFrom": "2026-01-01",
+                  "version": "2026-01-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+                  "company": "Frende",
+                  "page": 2,
+                  "section": "Veterinærutgifter",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:frende:hund",
+              "filename": "frende-dog-terms.pdf",
+              "termsNumber": "Hundeforsikring",
+              "effectiveFrom": "2026-01-01",
+              "version": "2026-01-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+              "company": "Frende",
+              "page": 2,
+              "section": "Veterinærutgifter",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "conceptId": "hund.allergi-fodsel",
+        "conceptLabel": "Allergi, sykdom og fødsel",
+        "conceptTier": "secondary",
+        "first": {
+          "state": "included",
+          "text": "Inntil 15 000 kr",
+          "facts": [
+            {
+              "key": "dyr.allergi.grense",
+              "label": "Allergi og atopi – grense",
+              "value": "Inntil 15 000 kr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:frende:hund",
+                  "filename": "frende-dog-terms.pdf",
+                  "termsNumber": "Hundeforsikring",
+                  "effectiveFrom": "2026-01-01",
+                  "version": "2026-01-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+                  "company": "Frende",
+                  "page": 2,
+                  "section": "Veterinærutgifter",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:frende:hund",
+              "filename": "frende-dog-terms.pdf",
+              "termsNumber": "Hundeforsikring",
+              "effectiveFrom": "2026-01-01",
+              "version": "2026-01-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+              "company": "Frende",
+              "page": 2,
+              "section": "Veterinærutgifter",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ]
+  }
+]

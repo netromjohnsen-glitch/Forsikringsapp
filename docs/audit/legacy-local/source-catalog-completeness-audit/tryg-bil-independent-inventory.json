@@ -1,0 +1,492 @@
+{
+  "source_first": true,
+  "originals": "All9localBiloriginals+explicitlyreferencedsharedPGE91500/PGE91000read. PAU27008Octoberdatepreserved,noonlinefreshnessclaim.",
+  "rules": [
+    {
+      "id": "TR-BIL-001",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "Ubegrenset personskade;100millannen skade.",
+      "location": "1 §1.1",
+      "source": "ansvar"
+    },
+    {
+      "id": "TR-BIL-002",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "utland",
+      "value": "Skadestedetslov;Norskfører/passasjerfastbosattNorgehøyerenorskregel.",
+      "location": "1 §1.1",
+      "source": "ansvar"
+    },
+    {
+      "id": "TR-BIL-003",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "status",
+      "value": "Inkludert henvisningPGE91500.",
+      "location": "1 §1.2",
+      "source": "ansvar"
+    },
+    {
+      "id": "TR-BIL-004",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum",
+      "value": "100k/tvist;250k3ellerflereparter;20ktvistmotTrygomrettshjelp;økonomiskinteressebegrenser.",
+      "location": "4 §6.1",
+      "source": "legal"
+    },
+    {
+      "id": "TR-BIL-005",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4k+20%overskytende,énpertvist.",
+      "location": "5 §6.2",
+      "source": "legal"
+    },
+    {
+      "id": "TR-BIL-006",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "område/rolle",
+      "value": "Norden,eier/rettmessigfører/bruker,ettersalgtvistogdirektepersonskadefører.",
+      "location": "1 §3.1;2–3 §5.3",
+      "source": "legal"
+    },
+    {
+      "id": "TR-BIL-007",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Ikkeannetkjøretøy/yrke/familie/sameiere/straffmedenfornærmetunntak/idømtkost;fullvilkår5.5.",
+      "location": "1 §2.1;3–4 §5.5",
+      "source": "legal"
+    },
+    {
+      "id": "TR-BIL-008",
+      "scope": "physical",
+      "subject": "Utstyr",
+      "dimension": "grense",
+      "value": "Fastmontert/foliering10k;ekstrastandarddekksettinkl;spesiallakkikke,ikkeavtagbartutstyr/tilhenger.",
+      "location": "1 §1",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-009",
+      "scope": "physical",
+      "subject": "Brann",
+      "dimension": "omfang/egenandel",
+      "value": "Åpenflamme/lyn/eksplosjon,6khvisikkelavereavtalt.",
+      "location": "Delkasko1§2.1;Kasko2§2.2",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-010",
+      "scope": "physical",
+      "subject": "Tyveri",
+      "dimension": "omfang/egenandel",
+      "value": "Tyveri/brukstyveri/deler,tyveriforsøk/hærverk,6khvisikkelavereavtalt.",
+      "location": "Delkasko1§2.2;Kasko2§2.3",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-011",
+      "scope": "physical",
+      "subject": "Glass",
+      "dimension": "omfang/egenandel",
+      "value": "Ruterinklglasstak,3kbytte/0reparasjon;avtaleverksted,EUtilstandkrav.",
+      "location": "Delkasko1§2.3;Kasko2§2.4",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-012",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "persontransport",
+      "value": "Skade/tyveriikkeutbedretraskt;hjem/videremaxhjemkostrimeligst;førersykdom/ulykke/dødpassasjerer.",
+      "location": "Delkasko1–2§2.4;Kasko2§2.5",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-013",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "utløser/mål",
+      "value": "Skade/utelåst/start/driftsstopp/tomdrivstoffstrøm;bilogtilhenger,nærmesteverksted,henting.",
+      "location": "Delkasko2§2.4;Kasko2§2.5",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-014",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "tak/egenandel",
+      "value": "Maks50%kjøretøyverdi;750egenandel.",
+      "location": "Delkasko2§2.4;Kasko2–3§2.5",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-015",
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "unntak",
+      "value": "Ikkehaikere/annenavtale/garanti/redningsabonnement/utenveitilknytning.",
+      "location": "Delkasko2§2.4;Kasko2§2.5",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-016",
+      "scope": "physical",
+      "subject": "Oppgjør",
+      "dimension": "kontant/forbedring",
+      "value": "70%takstutenMVAvedkontantreparasjon;ingenleiebil;slitasjeforbedringfradrag,markedsverdiførtotal.",
+      "location": "Delkasko2–3§3;Kasko3§3",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-017",
+      "scope": "physical",
+      "subject": "Garanti",
+      "dimension": "reparasjon",
+      "value": "8årkarosseri,3årbruktmotorvedservice;mekaniskforhandlergaranti,slitedelerunntatt;starterutlevering,følgerbil,2mndmeldemangel.",
+      "location": "Delkasko2–3§3.2;Kasko3§3.2",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-018",
+      "scope": "physical",
+      "subject": "Elektronikk",
+      "dimension": "aldersfradrag",
+      "value": "Fastmontert elektronikk10%perårfra nytt,maks50%;nyverdipåskadedagen.",
+      "location": "Delkasko3§3.3;Kasko4§3.3",
+      "source": "physical"
+    },
+    {
+      "id": "TR-BIL-019",
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "utløser",
+      "value": "Sammenstøt/utforkjøring/velt/hærverk/feilfylling/ytreplutselig<=1d/uventet;ikkemaskinbrudd/frost.",
+      "location": "1 §2.1",
+      "source": "kasko"
+    },
+    {
+      "id": "TR-BIL-020",
+      "scope": "kasko",
+      "subject": "Ungfører",
+      "dimension": "egenandel",
+      "value": "Under23år+5k,unntatthovedeier/samboerektefelle/2000kmTryglappen;godkjentbane+20k.",
+      "location": "1 §2.1",
+      "source": "kasko"
+    },
+    {
+      "id": "TR-BIL-021",
+      "scope": "kasko",
+      "subject": "Dyr/vær",
+      "dimension": "egenandel",
+      "value": "Dyrpåkjørsel2kutenbonusveddokumentertpolitiviltnemnd;værgarasjeparkert0egenandel.",
+      "location": "1 §2.1",
+      "source": "kasko"
+    },
+    {
+      "id": "TR-BIL-022",
+      "scope": "kasko",
+      "subject": "Nyverdi",
+      "dimension": "grenser",
+      "value": "Innen1årnyregistrertpåtaker;reparasjon>80%nyverdi,ikkeover15kkm.",
+      "location": "4 §3.4",
+      "source": "kasko"
+    },
+    {
+      "id": "TR-BIL-023",
+      "scope": "kasko",
+      "subject": "Nyverdi",
+      "dimension": "form/vilkår",
+      "value": "Nybiltilsvarende;utgåttmodellkjøpekontrakt;tyveriikkeigjen3uker;kontantalternativ;leasingunntatt.",
+      "location": "4 §3.4",
+      "source": "kasko"
+    },
+    {
+      "id": "TR-BIL-024",
+      "scope": "extra",
+      "subject": "Ekstra",
+      "dimension": "tilvalg",
+      "value": "Bil/ElbilEkstraertilleggtilKasko.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-025",
+      "scope": "extra",
+      "subject": "Parkertskade",
+      "dimension": "bonus/alder",
+      "value": "Uk jentskadevolder,avtaleverksted,innen6årførstregistrert;normalKaskoegenandel.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-026",
+      "scope": "extra",
+      "subject": "Utstyr",
+      "dimension": "samletgrense",
+      "value": "Fastmontert+ekstradekkfelgerikke-standard samlet50k/sammehendelse;folieringmed,ikkeavtagbart.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-027",
+      "scope": "bil-extra",
+      "subject": "Feilfylling",
+      "dimension": "rens",
+      "value": "15kmotorrens/1kegenandel.BilEkstraspesifikt,ikkeimporttilElbilEkstra.",
+      "location": "1 §1",
+      "source": "bil-extra"
+    },
+    {
+      "id": "TR-BIL-028",
+      "scope": "extra",
+      "subject": "Leiebil",
+      "dimension": "periode/type",
+      "value": "TilsvarendebilstørrelsemaksVWID4,ubegrensetkm,normalreparasjonmax60d.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-029",
+      "scope": "extra",
+      "subject": "Leiebil",
+      "dimension": "kondemnasjon/tyveri",
+      "value": "60dfratyverimeldt;14detterkondemnasjonsbeskjed,likevelmax60d.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-030",
+      "scope": "extra",
+      "subject": "Leiebil",
+      "dimension": "naturulykke",
+      "value": "Bruttveiforbindelsehindrerbiltilgang,inntil10d.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-031",
+      "scope": "extra",
+      "subject": "Leiebil",
+      "dimension": "kvalifikasjon/unntak",
+      "value": "Dekket skadeoveregenandel,leverandørformidlet;ikkeglassalene/nøkkel/ordinærkontant;ikkebøter/leieskade/egenandel/drivstoff/lading/parkering/bom/dropoff.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-032",
+      "scope": "extra",
+      "subject": "Bagasje",
+      "dimension": "sum/egenandel",
+      "value": "Tyverifra bil/låstboks10ksamlet5k/gjenstand1kegenandel;ikkenæring/penger/papir/dyr;trafikk/brannviaansvar.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-033",
+      "scope": "extra",
+      "subject": "Nøkkel",
+      "dimension": "årstak/egenandel",
+      "value": "Bilnøkkelogkupevarmerfjernkontrolltap/skade20k/forsikringsår,1kegenandel.",
+      "location": "1 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-034",
+      "scope": "extra",
+      "subject": "Ladekabel",
+      "dimension": "fare/egenandel",
+      "value": "Brann/tyveri/ytreplutseliguventetskade1kegenandel.",
+      "location": "Bil1/Elbil2 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-035",
+      "scope": "extra",
+      "subject": "Totalskade",
+      "dimension": "alder/km/terskel",
+      "value": "Innen3årnyregistrertpåtaker,maks60kkm,>80%nyverdi.",
+      "location": "2 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-036",
+      "scope": "extra",
+      "subject": "Totalskade",
+      "dimension": "tilleggsytelse/form",
+      "value": "Nybilmodellnivåårgang;abonnement/serviceavtalekjøretøyverdi10k;utgåttmodellkontrakt,3uketyveri/kontant.",
+      "location": "2 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-037",
+      "scope": "extra",
+      "subject": "Leasing",
+      "dimension": "startleie",
+      "value": "Totalskade/totalforsvinninggjenståendestartleieproporsjonetterrestperiode.",
+      "location": "2 §1",
+      "source": "extra"
+    },
+    {
+      "id": "TR-BIL-038",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "tilvalg/grenser",
+      "value": "TilleggKasko;200kkmellerutperiodenbilenblir10årførst;aldersidenførstereg.",
+      "location": "1 §1",
+      "source": "motor"
+    },
+    {
+      "id": "TR-BIL-039",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "komponenter",
+      "value": "Motor/gir/drivlinje/elektronikk/styring/AC/varme/sikkerhetkomfortliste;EVhøyvoltbatteri/ladekontakt/onboardlader.",
+      "location": "1–2 §1",
+      "source": "motor"
+    },
+    {
+      "id": "TR-BIL-040",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "delgrense",
+      "value": "Eksos/katalysator/partikkelfilter/dobbeltmasse/clutchbareinntil100kkm.",
+      "location": "1 §1",
+      "source": "motor"
+    },
+    {
+      "id": "TR-BIL-041",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "egenandel",
+      "value": "Inntil120kkm10k;120–160k14k;160–200k18k.",
+      "location": "2 §1",
+      "source": "motor"
+    },
+    {
+      "id": "TR-BIL-042",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Ikkelavvoltbatteri/mansjettalene/luftfjær/slitasje/korrosjon/modifisert/leasedEVbatteriannetdekket/garantiansvarmedregressnårkravikkeførerfram/bodel.",
+      "location": "2 §1",
+      "source": "motor"
+    },
+    {
+      "id": "TR-BIL-043",
+      "scope": "rental",
+      "subject": "Leiebil separat",
+      "dimension": "kilderegler",
+      "value": "PAU27008effective1Oct2026:VW e-up10dnormalreparasjonubegrensetkm,angittleverandør,ikkeglass/nøkkel/ordinærkontant;ingenbonustap. Eksaktaktivkatalogkoblingsjekkes.",
+      "location": "1",
+      "source": "rental"
+    },
+    {
+      "id": "TR-BIL-044",
+      "scope": "accident",
+      "subject": "Ulykke",
+      "dimension": "rolle/utløser",
+      "value": "Fører/passasjer i/påkjøretøy,ogutenforhvisdirekteårsak;plutseligytrefysiskulykke.",
+      "location": "1 §1–2",
+      "source": "accident"
+    },
+    {
+      "id": "TR-BIL-045",
+      "scope": "accident",
+      "subject": "Ulykke",
+      "dimension": "sum/dødstid",
+      "value": "200kmedisinskinvaliditetgradert,100kdødinnen1år.",
+      "location": "1–2 §2.2/3",
+      "source": "accident"
+    },
+    {
+      "id": "TR-BIL-046",
+      "scope": "accident",
+      "subject": "Ulykke",
+      "dimension": "unntak",
+      "value": "PsykiskunntattmedPTSDunntak,ansiktsvansiringmed,spisetann/infeksjonmedsårunntak/matforgiftning/sykdomutelatt.",
+      "location": "1 §2.3",
+      "source": "accident"
+    },
+    {
+      "id": "TR-BIL-047",
+      "scope": "accident",
+      "subject": "Ulykke",
+      "dimension": "oppgjør",
+      "value": "Tidligerefunksjon/sykdomfradrag;ingeninvaliditetveddødinnen1år;etter1årinvaliditet;delinvaliditetforholdsmessig.",
+      "location": "2 §3",
+      "source": "accident"
+    },
+    {
+      "id": "TR-BIL-048",
+      "scope": "accident-extra",
+      "subject": "Ulykke Ekstra",
+      "dimension": "sum",
+      "value": "500kinvaliditet,under18år1mill;100kdødinnen1år.",
+      "location": "1–2 §2/3",
+      "source": "accident-extra"
+    },
+    {
+      "id": "TR-BIL-049",
+      "scope": "accident-extra",
+      "subject": "Ulykke Ekstra",
+      "dimension": "sykehus",
+      "value": "5kengangsbeløpperskadetilfellevedmin48tsammenhengendeinnleggelse.",
+      "location": "1–2 §2.3/3.3",
+      "source": "accident-extra"
+    },
+    {
+      "id": "TR-BIL-050",
+      "scope": "accident-extra",
+      "subject": "Ulykke Ekstra",
+      "dimension": "vilkår",
+      "value": "Sammerolleulykke/unntakoggradertinvaliditet/tidligerefunksjon/1årdødregelsomPAU28003.",
+      "location": "1–2 §2–3",
+      "source": "accident-extra"
+    },
+    {
+      "id": "TR-BIL-051",
+      "scope": "all",
+      "subject": "Felles egenandel",
+      "dimension": "samtidighet",
+      "value": "Sammehendelseiflereselskapetsforsikringerkunhøyesteegenandel.",
+      "location": "2 §2.3",
+      "source": "general"
+    },
+    {
+      "id": "TR-BIL-052",
+      "scope": "all",
+      "subject": "Generelt",
+      "dimension": "hovedunntak",
+      "value": "Krigkjemi/atom/jordskjelvvulkan;fredeligavreiseutlandkrig1månedunntak;terror500millhendelse1mrdårligaggregertselskap.",
+      "location": "3–4 §5",
+      "source": "general"
+    },
+    {
+      "id": "TR-BIL-053",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "øvrig",
+      "value": "Oppsigelse/garantiordning/skjønn/personvern/valutaadministrasjonkildebeholdt,ikkebehovegenproduktrad.",
+      "location": "1–5",
+      "source": "general"
+    },
+    {
+      "id": "TR-BIL-054",
+      "scope": "all",
+      "subject": "Bonus",
+      "dimension": "nivå",
+      "value": "Ansvarbonustap;Delkaskoskaderikkebonus;Kaskokun§2.1minusdyrvilkår;alleundersøktetilleggutbetalingaleneikkebonustap.",
+      "location": "sistekapitler",
+      "source": "ansvar"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+[
+  {
+    "left": "[\"tryg\",\"campingvogn\",\"ordinary\",\"tryg-campingvogn-kasko\",\"2026-01-01\"]",
+    "right": "[\"if\",\"campingvogn\",\"ordinary\",\"if-campingvogn-kasko\",\"2024-03\"]",
+    "forward": [
+      {
+        "key": "campingvogn.naturskade.dekning",
+        "label": "Naturskade",
+        "conceptId": "campingvogn.naturskade",
+        "conceptLabel": "Naturskade",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "✓ Inkludert – Inkludert i produktnivået",
+          "facts": [
+            {
+              "key": "campingvogn.naturskade.dekning",
+              "label": "Naturskade",
+              "value": "Inkludert i produktnivået",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+                  "filename": "if-Vilkaar-4103ea25.pdf",
+                  "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+                  "termsNumber": "MOT2-2",
+                  "effectiveFrom": "2024-03",
+                  "page": 5,
+                  "section": "4.5–4.6",
+                  "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+              "filename": "if-Vilkaar-4103ea25.pdf",
+              "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+              "termsNumber": "MOT2-2",
+              "effectiveFrom": "2024-03",
+              "page": 5,
+              "section": "4.5–4.6",
+              "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "campingvogn.naturskade.dekning",
+        "label": "Naturskade",
+        "conceptId": "campingvogn.naturskade",
+        "conceptLabel": "Naturskade",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "✓ Inkludert – Inkludert i produktnivået",
+          "facts": [
+            {
+              "key": "campingvogn.naturskade.dekning",
+              "label": "Naturskade",
+              "value": "Inkludert i produktnivået",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+                  "filename": "if-Vilkaar-4103ea25.pdf",
+                  "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+                  "termsNumber": "MOT2-2",
+                  "effectiveFrom": "2024-03",
+                  "page": 5,
+                  "section": "4.5–4.6",
+                  "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+              "filename": "if-Vilkaar-4103ea25.pdf",
+              "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+              "termsNumber": "MOT2-2",
+              "effectiveFrom": "2024-03",
+              "page": 5,
+              "section": "4.5–4.6",
+              "note": "Offentlig produktgrunnlag; kundens forsikringsbevis går foran. Ukjent dokumentdato er ikke en bekreftet gyldighetsdato."
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ]
+  },
+  {
+    "left": "[\"tryg\",\"tilhenger\",\"ordinary\",\"tryg-tilhenger-kasko\",\"2026-01-01\"]",
+    "right": "[\"if\",\"tilhenger\",\"ordinary\",\"if-tilhenger-kasko\",\"2024-03\"]",
+    "forward": [],
+    "reverse": []
+  }
+]

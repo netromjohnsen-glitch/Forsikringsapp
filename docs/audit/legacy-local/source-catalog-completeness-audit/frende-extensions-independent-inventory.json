@@ -1,0 +1,190 @@
+{
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "shared_inventory": "frende-vehicle-independent-inventory.json",
+  "shared_terms_hash": "088201db9b2f6071e81d24d716a74233176cd3694ac2be1a92e44be6952e8f88",
+  "sharedterms_read_all15pages": true,
+  "general_read_all4pages": true,
+  "html_read": [
+    "frende-snoscooterforsikring.html",
+    "frende-campingvognforsikring.html",
+    "frende-tilhengerforsikring.html"
+  ],
+  "special_rules": [
+    {
+      "id": "FR-EXT-001",
+      "type": "snow",
+      "subject": "Fører/passasjerulykke",
+      "dimension": "valgfritt",
+      "value": "Tilvalg på alle3Snønivåer;100000dødmedfamilie/under21,200000100%invaliditet,proposjonalt,3årsoppgjør,12.4unntak.",
+      "location": "HTMLtable+PDF10–11punkt12"
+    },
+    {
+      "id": "FR-EXT-002",
+      "type": "snow",
+      "subject": "Bonus",
+      "dimension": "ingen",
+      "value": "Ingen bonusopptjening for snøscooter.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-003",
+      "type": "snow",
+      "subject": "Tyverioppgjør",
+      "dimension": "gjenanskaffelse",
+      "value": "Markedsverdi hvis tilsvarende scooter kjøpes innen60d;ellers60%avmarkedsverdi;ikke sammenbland med erstatningssumtak.",
+      "location": "PDF8punkt11.6"
+    },
+    {
+      "id": "FR-EXT-004",
+      "type": "snow",
+      "subject": "Kjøreutstyr",
+      "dimension": "objekter",
+      "value": "Dress/hansker/støvler/hjelm forsikret;fastlåst/nedlåstkrav18.2.9.",
+      "location": "PDF2punkt3.5/PDF15"
+    },
+    {
+      "id": "FR-EXT-005",
+      "type": "snow",
+      "subject": "Tegning",
+      "dimension": "bruk",
+      "value": "Norskregistrertserieprivat;ikkuregistrert/konkurranse/bane;komplettchassis/importregistrering.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-006",
+      "type": "snow",
+      "subject": "Terreng",
+      "dimension": "begrensningunntak",
+      "value": "Generellterrengforbudgjelderikkesnøscooter;øvrigeløp/baneogfarligiskravgjelder.",
+      "location": "PDF13–14punkt16/18.1.8"
+    },
+    {
+      "id": "FR-EXT-007",
+      "type": "camp",
+      "subject": "Fukt",
+      "dimension": "kaskovilkår",
+      "value": "Godkjentfukttestskadeoppståttsisteåret;ikkereplekkasje,rørbruddlekkasjeunntatt;årligtestavcaravanforhandlerogtiltak.",
+      "location": "PDF3punkt6.1.2/PDF14punkt18.1.11"
+    },
+    {
+      "id": "FR-EXT-008",
+      "type": "camp",
+      "subject": "Løsøre",
+      "dimension": "sumvalg",
+      "value": "20000ellerbevis;HTMLutvidelse100000eller200000,10kpertingkunHTML.",
+      "location": "PDF2punkt3.9/HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-009",
+      "type": "camp",
+      "subject": "Løsøre",
+      "dimension": "tyveristed",
+      "value": "Tyveriløsøre20kfravognogtilkobletforteltavtre/glassfiber.",
+      "location": "PDF3punkt4.1.3"
+    },
+    {
+      "id": "FR-EXT-010",
+      "type": "camp",
+      "subject": "Fortelt/tilbygg",
+      "dimension": "objektscope",
+      "value": "Fortelt/spikerteltomfattet,totalforsikringssumvogn+tilbygg;platting/terrasseknyttetvogn.",
+      "location": "PDF2punkt3.10–11/HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-011",
+      "type": "camp",
+      "subject": "Naturskade",
+      "dimension": "kasko",
+      "value": "Kaskodekkernaturskadepåvognogspikertelt,HTMLexplicit.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-012",
+      "type": "camp",
+      "subject": "Egenandel",
+      "dimension": "valg",
+      "value": "6000/8000/12000valgmuligheter;faktiskvalgkundespesifikt.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-013",
+      "type": "camp",
+      "subject": "Utleie",
+      "dimension": "tilleggsegenandel",
+      "value": "6000ekstravedbrann/tyveri/kasko underutleidvogn.",
+      "location": "PDF9punkt11.11"
+    },
+    {
+      "id": "FR-EXT-014",
+      "type": "camp",
+      "subject": "Tegning",
+      "dimension": "objekt",
+      "value": "Privatcampingvogn/husvogn;combi-camp/påhengsvognforsikressomtilhenger.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-015",
+      "type": "camp",
+      "subject": "Utvidelse",
+      "dimension": "besiktigelse",
+      "value": "Øktdekningsomfangkreverbefaringogskadefrivogn.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-016",
+      "type": "trailer",
+      "subject": "Ansvar",
+      "dimension": "tilknytning",
+      "value": "Trekkbilensansvardekning,lasttrekkbilogsåfrakoblet;ikkeegeninkludertansvarpåtilhengerpolicy.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-017",
+      "type": "trailer",
+      "subject": "Last",
+      "dimension": "ikkeegentilhengerdekning",
+      "value": "Fullterms3.9/6.1.3ekskltilhenger;20ktransportlastavhengigseparatFrendeInnboutvidetuhell,ikkeegenkundedekning.",
+      "location": "PDF2–3/HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-018",
+      "type": "trailer",
+      "subject": "Frakoblet",
+      "dimension": "kasko/brann/tyveri",
+      "value": "Disseegenskadedekningerogsånårtilhengerikkeerfestettilbil.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-019",
+      "type": "trailer",
+      "subject": "Egenandel",
+      "dimension": "særregel",
+      "value": "Tilhengerforsikringskade2000;generellbrann/tyveri6000stårisammetabell,scopefortolkningikkeautomatisk.",
+      "location": "PDF9punkt11.11"
+    },
+    {
+      "id": "FR-EXT-020",
+      "type": "trailer",
+      "subject": "Tegning",
+      "dimension": "objekter",
+      "value": "Norskregistrertbil/båt/hestehenger,ogsåsnow-slede/MChenger/fritidstraktorhenger/uregistrert;privatbruk.",
+      "location": "HTMLFAQ"
+    },
+    {
+      "id": "FR-EXT-021",
+      "type": "trailer",
+      "subject": "Produktkjøp",
+      "dimension": "enkeltstående",
+      "value": "Kan kjøpes alene;bil/trailermåikkesammeselskap.",
+      "location": "HTMLFAQ"
+    }
+  ],
+  "applicability_notes": [
+    "No machine/rental/newvalueBilrule transferred to extensions without exact source",
+    "No bonus transfer:11.13explicitBilBobilMC;SnøFAQnobonus",
+    "No automaticglass/roadsideDelkaskoterm transferred to BrannTyveri or Kasko extension",
+    "Snow accident explicitoptional all3levels; camp/trailer noaccidentpolicyinferred",
+    "Trailerownliability and transportlastmustnotbeinventedfromotherpolicybenefit"
+  ]
+}

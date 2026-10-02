@@ -1,0 +1,584 @@
+{
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "source": "catalog/sources/frende/Vilkar_kjoretoyforsikring.pdf",
+  "pages_read": 15,
+  "ipids_read": [
+    "catalog/sources/frende/IPID_Personbil.pdf"
+  ],
+  "rules": [
+    {
+      "inventory_id": "FR-VE-001",
+      "subject": "Personkrets",
+      "dimension": "forsikrede",
+      "value": "Forsikringstaker/registrerteier/medeier;rettmessigfører/passasjerforspesifikkedekninger.",
+      "pages": "2",
+      "section": "1",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-002",
+      "subject": "Geografi",
+      "dimension": "omfang",
+      "value": "EuropaunntattRussland/Tyrkia/Belarus;rettshjelpNorden.",
+      "pages": "2",
+      "section": "2",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-003",
+      "subject": "Utstyr",
+      "dimension": "hjul",
+      "value": "Ekstraoriginalhjulsett;merverdioriginalhjul20000ellerbevis.",
+      "pages": "2",
+      "section": "3.2–3",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-004",
+      "subject": "Elbil",
+      "dimension": "batteri/ladekabel",
+      "value": "Batteriogladekabelmedikjøretøyetsforsikredeobjekt;ikkeautomatiskalleskadeårsaker.",
+      "pages": "2",
+      "section": "3.4",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-005",
+      "subject": "Utstyr",
+      "dimension": "sikkerhet",
+      "value": "Barnesete/alarm/gassalarm/varseltrekant/slokking/sikkerhetsutstyr.",
+      "pages": "2",
+      "section": "3.8",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-006",
+      "subject": "Ekstrautstyr",
+      "dimension": "sum",
+      "value": "Fastmontert20000inklmerlakk/folie;Utvidet50000.",
+      "pages": "2,5",
+      "section": "3.7/8.4",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-007",
+      "subject": "Løsøre",
+      "dimension": "sum/årsaker",
+      "value": "Bil10000;Utvidet20000;tyveriløsørebareKasko(IPID).Bobil/camp20000,Utvidetbobil100000;ikkeTilhenger.",
+      "pages": "2,3,5",
+      "section": "3.9/6.1/8.5/8.8",
+      "scope": "kasko"
+    },
+    {
+      "inventory_id": "FR-VE-008",
+      "subject": "Kontanter",
+      "dimension": "unntak",
+      "value": "Kontanterogverdipapirerikkeomfattet.",
+      "pages": "2",
+      "section": "3",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-009",
+      "subject": "Brann",
+      "dimension": "hendelser/unntak",
+      "value": "Brann/lyn;ikkesvimerke/komponentderbrannellerkortslutningstarter;følgeskadedekket.",
+      "pages": "3",
+      "section": "4.1/4.2",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-010",
+      "subject": "Tyveri",
+      "dimension": "hendelser/unntak",
+      "value": "Tyveri/forsøk;ikkehusstand/ansatt,ikkeutlånt/prøvdikketilbakelevert.",
+      "pages": "3",
+      "section": "4.1/4.2",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-011",
+      "subject": "Glass",
+      "dimension": "omfang",
+      "value": "Bruddglassinklglasstak vedtilfeldigplutseligytrepåvirkning.",
+      "pages": "3",
+      "section": "5.1",
+      "scope": "delkasko"
+    },
+    {
+      "inventory_id": "FR-VE-012",
+      "subject": "Veihjelp",
+      "dimension": "hendelser/sted",
+      "value": "Hvilkensomhelstårsaksomstanserviderekjøring,ogsåhjemme;bergtilnærmesteverkstedmedpåkoblethenger/campellerbilligerereppåsted.",
+      "pages": "3",
+      "section": "5.2",
+      "scope": "delkasko"
+    },
+    {
+      "inventory_id": "FR-VE-013",
+      "subject": "Hjemtransport",
+      "dimension": "personer",
+      "value": "Reparasjonikkesammedag:nødvendigmerutgifthjemellerbilligerehotell,forhåndsgodkjent.",
+      "pages": "3",
+      "section": "5.3",
+      "scope": "delkasko"
+    },
+    {
+      "inventory_id": "FR-VE-014",
+      "subject": "Hjemtransport",
+      "dimension": "kjøretøy",
+      "value": "Hentingreparert/etterlattbil1personreise;gjenfunnettyvgodstransporttakmarkedsverdi;forhåndsgodkjent.",
+      "pages": "3",
+      "section": "5.4",
+      "scope": "delkasko"
+    },
+    {
+      "inventory_id": "FR-VE-015",
+      "subject": "Kasko",
+      "dimension": "hendelser",
+      "value": "Plutseliguventetkollisjon/utforkjøring/velt/hærverk/feilfylling.",
+      "pages": "3",
+      "section": "6.1",
+      "scope": "kasko"
+    },
+    {
+      "inventory_id": "FR-VE-016",
+      "subject": "Bilnøkkel",
+      "dimension": "basis",
+      "value": "Tap/skadet/stjålet/mistetdekkesKasko,avtaltegenandel;Utvidet20000utenegenandel/bonustap.",
+      "pages": "4,9",
+      "section": "6.1.4/8.2/11.11",
+      "scope": "kasko"
+    },
+    {
+      "inventory_id": "FR-VE-017",
+      "subject": "Nyverdi",
+      "dimension": "basisgrense",
+      "value": "Kasko1år/under15000km/repmerenn80%nylistepris;ikkleasing;Frendekankontantutbetale.",
+      "pages": "4,8",
+      "section": "6.1/11.7",
+      "scope": "kasko"
+    },
+    {
+      "inventory_id": "FR-VE-018",
+      "subject": "Nyverdi",
+      "dimension": "utvidetgrense",
+      "value": "3år/under60000km/repmerenn80%;ikkeleasingellertaptettertyveri.",
+      "pages": "4",
+      "section": "8.1",
+      "scope": "utvidet"
+    },
+    {
+      "inventory_id": "FR-VE-019",
+      "subject": "Kasko",
+      "dimension": "unntak",
+      "value": "Motor/gir/drivverkelektronikkkunfølgeskadeannenhendelse;frost/fukt/råte/slitasje/rust/indremerker/lekkasje/underslag;avvistgarantikangimedansvarsovertakelse.",
+      "pages": "4",
+      "section": "6.2",
+      "scope": "kasko"
+    },
+    {
+      "inventory_id": "FR-VE-020",
+      "subject": "Leiebil",
+      "dimension": "valgfri/klasse",
+      "value": "Kunvalgt;klasseCveddekketbrann/tyveri/kasko/maskinskade.",
+      "pages": "4",
+      "section": "7",
+      "scope": "rental"
+    },
+    {
+      "inventory_id": "FR-VE-021",
+      "subject": "Leiebil",
+      "dimension": "reparasjon",
+      "value": "Helereparasjonstiden.",
+      "pages": "4",
+      "section": "7",
+      "scope": "rental"
+    },
+    {
+      "inventory_id": "FR-VE-022",
+      "subject": "Leiebil",
+      "dimension": "totalskade/tyveri",
+      "value": "31dager.",
+      "pages": "4",
+      "section": "7",
+      "scope": "rental"
+    },
+    {
+      "inventory_id": "FR-VE-023",
+      "subject": "Leiebil",
+      "dimension": "kontant",
+      "value": "250/dagopptil31dageralternativ.",
+      "pages": "4",
+      "section": "7",
+      "scope": "rental"
+    },
+    {
+      "inventory_id": "FR-VE-024",
+      "subject": "Leiebil",
+      "dimension": "bobilferie",
+      "value": "1500/dagopptil15dagerovernatting/transportistedenforbilvedferieavbruddbobil.",
+      "pages": "4",
+      "section": "7",
+      "scope": "motorhome"
+    },
+    {
+      "inventory_id": "FR-VE-025",
+      "subject": "Ladekabel",
+      "dimension": "utvidet",
+      "value": "Skadet/stjåletkabelutenegenandel/bonustap.",
+      "pages": "4,5,9",
+      "section": "8.3/11.11",
+      "scope": "utvidet"
+    },
+    {
+      "inventory_id": "FR-VE-026",
+      "subject": "Leasing",
+      "dimension": "startleie",
+      "value": "Gjenværendestartleieforholdsmessigbetalt/restperiodevedtotalskadeellertyveri.",
+      "pages": "5",
+      "section": "8.6",
+      "scope": "utvidet"
+    },
+    {
+      "inventory_id": "FR-VE-027",
+      "subject": "Fukt",
+      "dimension": "bobil",
+      "value": "Utvidet:bobilskadeoppståttsiste12mndgodkjenttest;ikkeutbedringavlekkasje,rørbruddlekkasjeunntatt.",
+      "pages": "5",
+      "section": "8.7",
+      "scope": "motorhome"
+    },
+    {
+      "inventory_id": "FR-VE-028",
+      "subject": "Maskinskade",
+      "dimension": "tilgjengelighet",
+      "value": "Kunvalgt;plutseliguventetnavngittkomponentskadesomhindrerkjøring,fulgtservice,ikketrim/chip.",
+      "pages": "5",
+      "section": "9.1",
+      "scope": "machine"
+    },
+    {
+      "inventory_id": "FR-VE-029",
+      "subject": "Maskinskade",
+      "dimension": "alder/km",
+      "value": "9.1/9.3utåretbil12ellerinntil200000km;11.11siereldreenn12ingen. IPIDogsåeldreenn12;ikkeutviskordlydskonflikt.",
+      "pages": "5,6,9",
+      "section": "9.1/9.3/11.11",
+      "scope": "machine"
+    },
+    {
+      "inventory_id": "FR-VE-030",
+      "subject": "Maskinskade",
+      "dimension": "komponenter",
+      "value": "Detaljertefremdrifts/kjøle/klima/komfort/sikkerhetssystemer;elbatteri/driveunit/ladekontakt/inverter/overvåkning.",
+      "pages": "5,6",
+      "section": "9.1",
+      "scope": "machine"
+    },
+    {
+      "inventory_id": "FR-VE-031",
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Clutchlamell/bremser/lykter/12V/hjuloppheng/mansjett;gradvisslitasje/korrosjon/kaskoskade/garanti/batterikapasitet;avvistgarantikandekkes.",
+      "pages": "6",
+      "section": "9.2/9.3",
+      "scope": "machine"
+    },
+    {
+      "inventory_id": "FR-VE-032",
+      "subject": "Maskinskade",
+      "dimension": "oppgjør",
+      "value": "Varsleførrep;ekstraslitajefradrag;utskiftededelermåkunnefremlegges.",
+      "pages": "8",
+      "section": "11.10",
+      "scope": "machine"
+    },
+    {
+      "inventory_id": "FR-VE-033",
+      "subject": "Maskinskade",
+      "dimension": "egenandel",
+      "value": "Inntil100000km10000;inntil150000km15000;inntil200000km20000.",
+      "pages": "9",
+      "section": "11.11",
+      "scope": "machine"
+    },
+    {
+      "inventory_id": "FR-VE-034",
+      "subject": "Panthaver",
+      "dimension": "kundespesifikk",
+      "value": "Egenvalgbarpanthaver/leasingdekningmedbevis;markedsverditak/restitusjon/insolvensvilkår.",
+      "pages": "6,7",
+      "section": "10",
+      "scope": "customer"
+    },
+    {
+      "inventory_id": "FR-VE-035",
+      "subject": "Oppgjør",
+      "dimension": "reparasjon",
+      "value": "Verdiøkningfradrag/verdireduksjonikkedekket;likeverdigenye/bruktedelemedgaranti.",
+      "pages": "7",
+      "section": "11.4",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-036",
+      "subject": "Oppgjør",
+      "dimension": "kontant",
+      "value": "Kanikkekreve;arbeid50%takst,mvafjernesrefunderesetterrep.",
+      "pages": "7",
+      "section": "11.5",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-037",
+      "subject": "Oppgjør",
+      "dimension": "markedsverdi",
+      "value": "Totalskade/tyverimarkedsverdi,tidligst30dagertapt,returnertgjenstandtilbakebetaling.",
+      "pages": "7,8",
+      "section": "11.6",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-038",
+      "subject": "Snøscooter",
+      "dimension": "tyverioppgjør",
+      "value": "Gjenskaffesinnen60dagermarkedsverdi;ellers60%markedsverdi.",
+      "pages": "8",
+      "section": "11.6",
+      "scope": "snow"
+    },
+    {
+      "inventory_id": "FR-VE-039",
+      "subject": "Aldersfradrag",
+      "dimension": "løsøre",
+      "value": "Sykkel10%over3maks80;data20%over1maks80;telefon/ettermontertlyd/skjermGPS10%over2maks50;fabrikkmontertlyd/skjermGPSingen.",
+      "pages": "8",
+      "section": "11.8/11.9",
+      "scope": "kasko"
+    },
+    {
+      "inventory_id": "FR-VE-040",
+      "subject": "Egenandel",
+      "dimension": "glass",
+      "value": "3000skift,0reparasjon.",
+      "pages": "9",
+      "section": "11.11",
+      "scope": "delkasko"
+    },
+    {
+      "inventory_id": "FR-VE-041",
+      "subject": "Egenandel",
+      "dimension": "redning",
+      "value": "750.",
+      "pages": "9",
+      "section": "11.11",
+      "scope": "delkasko"
+    },
+    {
+      "inventory_id": "FR-VE-042",
+      "subject": "Egenandel",
+      "dimension": "brann/tyveri",
+      "value": "6000ellerslaverebevis;tyveri0vedfungerendealarm.",
+      "pages": "9",
+      "section": "11.11",
+      "scope": "physical"
+    },
+    {
+      "inventory_id": "FR-VE-043",
+      "subject": "Egenandel",
+      "dimension": "dyr",
+      "value": "Avtaltegenandelreduseres6000vedumiddelbarpoliti/viltmelding.",
+      "pages": "9",
+      "section": "11.11",
+      "scope": "kasko"
+    },
+    {
+      "inventory_id": "FR-VE-044",
+      "subject": "Egenandel",
+      "dimension": "ungfører",
+      "value": "Ekstra8000kasko;ansvarproporsjonalregressminimum8000.",
+      "pages": "9,11",
+      "section": "11.11/13.2",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-045",
+      "subject": "Årligkjørelengde",
+      "dimension": "avkortning",
+      "value": "Overskridelseprisproporsjonal,ogsåtidligereår;ikkebrann/tyveri/glass/redning.",
+      "pages": "9",
+      "section": "11.12",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-046",
+      "subject": "Bonus",
+      "dimension": "opptjening",
+      "value": "10%/årtil70;3årpå70gir75.",
+      "pages": "9",
+      "section": "11.13",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-047",
+      "subject": "Bonus",
+      "dimension": "tap",
+      "value": "75år4+reset75år1;75år1–3til70;70ellerlavere10tap.",
+      "pages": "9,10",
+      "section": "11.13",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-048",
+      "subject": "Bonus",
+      "dimension": "fritak",
+      "value": "Brann/tyveri/glass/redning,parkertukjentkjøretøyavgrensettid,maskin,Utvidetnøkkel/kabel,viltmeldt,naturulykke.",
+      "pages": "10",
+      "section": "11.13",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-049",
+      "subject": "Ulykke",
+      "dimension": "scope",
+      "value": "Dekningdersombevis;rettmessigfører/passasjervedbilbruk;plutseligytrekroppshendelseikkesykdom.",
+      "pages": "10",
+      "section": "12.1",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-050",
+      "subject": "Ulykke",
+      "dimension": "død",
+      "value": "100000medektefelle/samboer/barnellerunder21.",
+      "pages": "10",
+      "section": "12.2",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-051",
+      "subject": "Ulykke",
+      "dimension": "invaliditet",
+      "value": "200000ved100%livsvarigmedisinsk,forholdsmessigellers,tidligerefunksjonsfradrag,3åroppgjør.",
+      "pages": "10,11",
+      "section": "12.3",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-052",
+      "subject": "Ulykke",
+      "dimension": "unntak",
+      "value": "Selvmord/rus/psykiskmedspesifikkPTSD+fysiskvarigskadeunntak.",
+      "pages": "11",
+      "section": "12.4",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-053",
+      "subject": "Ansvar",
+      "dimension": "utenombilansvar",
+      "value": "Lovbestemtbilansvarplussulovfestet10000000/hendelse/år,ikkvegfraktavtale.",
+      "pages": "11",
+      "section": "13.1",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-054",
+      "subject": "Rettshjelp",
+      "dimension": "scope",
+      "value": "Privatkunde/eier/fører/bruker;ogsåsalgtvisterognykjøpførnyforsikring,voldgift/alminneligrett.",
+      "pages": "11,12",
+      "section": "14.1",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-055",
+      "subject": "Rettshjelp",
+      "dimension": "utgifter/unntak",
+      "value": "Egenadvokat/sakkyndig/vitnerførsteinstans;ikkanke/idømtkost/førgrunnlag/førforsikring/sameier/yrke/straff/familie;forvaltningsklageførrettunntatt.",
+      "pages": "12",
+      "section": "14.2/14.3",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-056",
+      "subject": "Rettshjelp",
+      "dimension": "sum",
+      "value": "100000/tvist,2500003+parter,takøkonomiskinteresse.",
+      "pages": "12,13",
+      "section": "14.4",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-057",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4000+20%resten,enpertvist.",
+      "pages": "13",
+      "section": "14.4",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-058",
+      "subject": "Bruksbegrensninger",
+      "dimension": "aktivitet",
+      "value": "Ikkeløp/baneutenopplæringsunntak/russebil/transportnæring/terrengunntattsnowATVtraktor/flyplass.",
+      "pages": "13,14",
+      "section": "16",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-059",
+      "subject": "Sikkerhet",
+      "dimension": "vedlikehold",
+      "value": "Service/instruks/førerkort/belte/frostvæske/lastogutrustning;årliggodkjentfukttestbobil/camp.",
+      "pages": "14",
+      "section": "18.1",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-060",
+      "subject": "Sikkerhet",
+      "dimension": "tyveri",
+      "value": "Låsing/verdier/takboks/dekk/fastutstyr/campforankring/MCutstyrfastlåst.",
+      "pages": "14,15",
+      "section": "18.2",
+      "scope": "all"
+    },
+    {
+      "inventory_id": "FR-VE-061",
+      "subject": "Administrasjon",
+      "dimension": "frist",
+      "value": "Skademelding1år,politimelding og dokumentasjon.",
+      "pages": "7,15",
+      "section": "11.1/19",
+      "scope": "admin"
+    }
+  ],
+  "additional_package_sources_read": [
+    "frende-mc-ipid.pdf pages1–2",
+    "frende-mc-page.html full",
+    "frende-mc-mileage.html full",
+    "frende-bobil-ipid.pdf pages1–2",
+    "frende-bobil-page.html except truncated non-material shared navigation before maincontent"
+  ],
+  "additional_rules": [
+    {
+      "id": "FR-MC-01",
+      "source": "frende-mc-page.html",
+      "rule": "MC accident explicitly Tilvalg all3levels; rentalmotorcycle notoffered. Enginecoverage excluded perIPID."
+    },
+    {
+      "id": "FR-MC-02",
+      "source": "frende-mc-mileage.html",
+      "rule": "Mileagechoices tobeexactchecked; neveractualcustomerchoice."
+    },
+    {
+      "id": "FR-BO-01",
+      "source": "frende-bobil-page.html",
+      "rule": "Bobil accident included alllevels; maskin optionalonlyUtvidettable conflictsIPIDoptionKasko; 150kstartleie,10kperitemcontents20k/Utvidetwebalso20k/accessory20k conflictterms100k/50k;FAQcashnormalreptimeversusterms31days. No chosenarbitrary precedence."
+    }
+  ]
+}

@@ -1,0 +1,1196 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "IF-MO-001",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "Europa, bare europeisk Tyrkia; Kosovo, Russland og Belarus unntatt. Rettshjelp bare Norden.",
+      "location": "3 pkt2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-002",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "all",
+      "subject": "Avtalevalg",
+      "dimension": "individuelt bevis",
+      "value": "Dekningsnivå, tilvalg, sum og egenandel bestemmes av bevis; kundeverdi skal ikke oppfinnes fra standardvilkåret.",
+      "location": "2,4,18",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-003",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "rettslig mekanisme",
+      "value": "Ansvar etter lov på skadested; EØS bruker norsk lov når gunstigere, særregel personskade utenfor EØS. Ingen egenandel.",
+      "location": "4 pkt4.1;19 pkt8.5.1",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-004",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Fører/passasjer",
+      "dimension": "personkrets og sum",
+      "value": "Rettmessig fører og passasjer uten betaling; 200 000 medisinsk invaliditet proporsjonal grad og 100 000 dødsfall. Bevis avklarer avtalt ulykkesdekning.",
+      "location": "21–22 pkt11.2–11.5",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-005",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Fører/passasjer",
+      "dimension": "utløsende hendelse og begrensninger",
+      "value": "Ulykke under bruk; fører utenfor ved kjøretøy som direkte årsak. Tannskade ikke invaliditet; arr under15% unntatt; sykdomsutløst og psykisk lidelse ikke omfattet.",
+      "location": "22 pkt11.4/11.6",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-006",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Fører/passasjer",
+      "dimension": "dødsfallstid",
+      "value": "Dødsfall må følge ulykken innen2år; tidligere invaliditetsutbetaling trekkes fra.",
+      "location": "23–24 pkt11.7",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-007",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "rolle og etteropphør",
+      "value": "Personlig eier/rettmessig bruker/fører; økonomisk tvist bare sikret i bevis. Tvist etter salg og leasingretur kan omfattes.",
+      "location": "24 pkt12",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-008",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum og flerpart",
+      "value": "100 000 per tvist; 250 000 hvis minst3parter på samme side og i vesentlig samme spørsmål. Ikke idømte saksomkostninger.",
+      "location": "10–11 pkt23.2–23.3",
+      "source": "general"
+    },
+    {
+      "id": "IF-MO-009",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4 000 +20% av overskytende; én egenandel per tvist.",
+      "location": "19 pkt8.5.2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-010",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "materielle unntak",
+      "value": "Ingen førerkortbeslag/straffesak som mistenkt; næringsutøvelse og eksisterende tvistegrunnlag unntatt; administrative klagemuligheter må utnyttes.",
+      "location": "11 pkt23.5",
+      "source": "general"
+    },
+    {
+      "id": "IF-MO-011",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Brann/natur",
+      "dimension": "utløsning",
+      "value": "Brann må ha åpen flamme; kortslutning elektronikk/batteri først ved åpen flamme utenfor enheten. Natur i Norden: skred/storm/flom/stormflo/jordskjelv/vulkan.",
+      "location": "4–5 pkt4.2/4.5",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-012",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Tyveri/hærverk",
+      "dimension": "utløsning og underslag",
+      "value": "Tyveri/forsøk, ikke husholdningsmedlem; forsettlige skader, ikke påkjørsel. Underslag prøvekjøring ved offentlig annonsert salg omfattet, andre underslag unntatt.",
+      "location": "5 pkt4.3/4.4",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-013",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Glass",
+      "dimension": "omfang og erstatningstak",
+      "value": "Brudd i glass/plexi kupe/førerhus/lasterom; ikke lykter/slitasje. Utskifting maks50% av gjenanskaffelsesverdi.",
+      "location": "5 pkt4.6",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-014",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Glass",
+      "dimension": "egenandel",
+      "value": "3 000 ved bytte;0 ved reparasjon.",
+      "location": "19 pkt8.5.4",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-015",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Fastmontert utstyr/bagasje",
+      "dimension": "sum og samlet mekanisme",
+      "value": "40 000 samlet, maks50% av kjøretøyverdi. Høyere sum kan avtales; ordinært fabrikk-/nybilutstyr inngår som del av kjøretøy.",
+      "location": "3 pkt3",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-016",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Utstyr/bagasje",
+      "dimension": "avgrensning",
+      "value": "Ikke penger/verdipapirer eller fast hjemmeladestasjon. Bagasje låst; verdigjenstander/data/foto/pass skal ikke etterlates.",
+      "location": "4 pkt3;15 pkt7.2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-017",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "utløsning",
+      "value": "Motorstopp, startproblem, tomt/drivstoff/strøm, feilfylling, nøkkel innelåst/mistet, ekstraordinær punktering; nærmeste egnede verksted eller rimeligere nødreparasjon. Krever fremkommelig lovlig adkomst.",
+      "location": "5–6 pkt4.7",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-018",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "hjemtransport og sum",
+      "value": "Rimeligste hjemtransport ved ventetid over3dager/omfattende skade mv; maks50% av kjøretøyverdi. Feilfylling tanktømming maks5 000. Ikke ordinær verkstedreparasjon eller annen garanti/medlemsdekning.",
+      "location": "6 pkt4.7",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-019",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "egenandel",
+      "value": "750 kroner; ingen bonustap.",
+      "location": "19 pkt8.5.6;20 pkt9.4",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-020",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Egenandel",
+      "dimension": "standard og individuelle avvik",
+      "value": "Brann/tyveri/hærverk/natur standard8 000; individuell/særvilkår går foran.",
+      "location": "18–19 pkt8.5",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-021",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "utløsning",
+      "value": "Kollisjon/utforkjøring/velt og annen tilfeldig plutselig ytre hendelse; feilfylling, men separat maskindekning kreves for internt havari uten ytre dekket skade.",
+      "location": "6 pkt4.8;13 pkt5",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-022",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "egenandel og dyrepåkjørsel",
+      "value": "Standard8 000; dyrepåkjørsel løs på vei reduserer2 000 ved straks politimelding/viltnemnd og gir ikke bonustap. Individuelt bevis går foran.",
+      "location": "19–20 pkt8.5.5/9.4",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-023",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Skadeoppgjør",
+      "dimension": "verdi og avtalt sum",
+      "value": "Tilsvarende gjenanskaffelsesverdi før skaden; bevis sum øvre tak; ikke verdiforringelse. Kontantreparasjon fratrekker50% arbeid og moms til kvittert.",
+      "location": "16–18 pkt8",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-024",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "physical",
+      "subject": "Nyverdi standard",
+      "dimension": "alder/km/terskel",
+      "value": "Innen1år fra førstegangsregistrering, ikke mer enn15 000km, reparasjon over80% kjøpesum ny. Kontant-/tilsvarendeoppgjør mulig.",
+      "location": "18 pkt8.4.2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-025",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "physical",
+      "subject": "Nyverdi standard",
+      "dimension": "forutsetninger",
+      "value": "Ikke leasing/drosje/trafikkskole/utleie/prøvekjennemerke/CD/tollskilt; norsk merkeforhandler gjenkjøp, original kjøpsdokumentasjon/prismekanisme, ellers gjenanskaffelsesverdi.",
+      "location": "18 pkt8.4.2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-026",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Viktige unntak",
+      "dimension": "vær/slitasje/tuning",
+      "value": "Ikke varme/korrosjon/slitasje/gradvis forringelse; nedbør/snøisvekt/frost/issprengning også medvirkende årsak; ikke ulovlig tuning eller lov/garanti-ansvar hos selger. Særvilkår kan utvide.",
+      "location": "13 pkt5.2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-027",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "all",
+      "subject": "Bruksbegrensning",
+      "dimension": "bane/is/utleie",
+      "value": "Bane unntatt bortsett fra nevnt føreropplæring/godkjent trening. Islagt vann uten offentlig merket trasé unntatt. Utleie må avtales; bobil/camping særregel separat.",
+      "location": "14 pkt6.1",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-028",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Årlig kjørelengde/ung fører",
+      "dimension": "kundevalg og konsekvens",
+      "value": "Overskridelse avtalt kjørelengde kan redusere erstatning forholdsmessig; ukorrekt yngstealder tilsvarende eller bevisets særskilte egenandel. Ikke totalskade/maskinskade-km.",
+      "location": "14–15 pkt6.2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-029",
+      "types": [
+        "bil"
+      ],
+      "scope": "kasko",
+      "subject": "Reparasjonstrygghet",
+      "dimension": "varighet/omfang",
+      "value": "Livslang til vraking på betalt kaskokarosserireparasjon hos anvist avtaleverksted, person/varebil<=3,5tonn; mekanikk/elektronikk/batteri/slitedeler unntatt.",
+      "location": "17 pkt8.3.7",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-030",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade",
+      "dimension": "valg og terskel",
+      "value": "Valgfri med Kasko; plutselig uforutsett skade på navngitte komponenter; skade når kjørt mer enn200 000km unntatt. Ingen motorvognalder oppgitt her.",
+      "location": "6–9 pkt4.9",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-031",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade",
+      "dimension": "komponenter",
+      "value": "Motor/gir/kraftoverføring, høyvoltbatteri og intern lading, elektronisk styring, styring/varme/kjøling, spesifisert sikkerhet/komfort; ikke generell all-komponent-garanti.",
+      "location": "7–8 pkt4.9.1",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-032",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Clutchlamell/understell/bremser/hjullager/eksos/DPF/ekstern ladekabel/slanger/ledningsnett alene/startbatteri/luftbelg unntatt; slitasje/klima/oljeforbruk/software/tuning/garanti også medvirkende årsak.",
+      "location": "8–9 pkt4.9.2–4.9.3",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-033",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade",
+      "dimension": "egenandel/fradrag",
+      "value": "8 000 etter kilometerfradrag: før100k0%, passert100k10%,150k20%,175k30%; skade over200k ikke dekket. Fradrag per uavhengig feil.",
+      "location": "9 pkt4.9.6",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-034",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade",
+      "dimension": "vedlikehold og oppgjør",
+      "value": "Fabrikantservice/registerreim og godkjent verksted, dokumentasjon. Ikke standard/Super nyverdioppgjør; totalskade etter gjenanskaffelsesverdi minus kilometerfradrag og egenandel.",
+      "location": "9–10 pkt4.9.4–4.9.7",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-035",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "rental",
+      "subject": "Leiebil",
+      "dimension": "valg/utløsning",
+      "value": "Valgfri med Kasko, erstatningsmessig skade/tyveri; glass alene ikke nok; ikke overlapp lov/garanti, men inntil7d forhandleransvar ellers dekningsmessig skade over egenandel.",
+      "location": "10 pkt4.10",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-036",
+      "types": [
+        "bil"
+      ],
+      "scope": "rental",
+      "subject": "Leiebil",
+      "dimension": "reparasjon",
+      "value": "Inntil90dager faktisk reparasjon fra innlevering til ferdig.",
+      "location": "10 pkt4.10.5",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-037",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "rental",
+      "subject": "Leiebil",
+      "dimension": "dagpris og alternativ",
+      "value": "Tilsvarende størrelse, maks500kr/d inklmva; valgfri kontant200kr/d, normal taksert reparasjonstid maks15d.",
+      "location": "10 pkt4.10.3–4.10.5",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-038",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "rental",
+      "subject": "Leiebil",
+      "dimension": "tyveri/totalskade",
+      "value": "Fra skademelding/faktisk savntid til10d etter tilbud/avgjørelse; kontantbegrenset15d. Bobil særvilkår45d total øvre tak.",
+      "location": "10–11 pkt4.10.5",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-039",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "rental",
+      "subject": "Leiebil",
+      "dimension": "maskinskade/utenfor Norden",
+      "value": "Ved avtalt maskindekning avklaring inntil7d; hvis dekket ordinær reparasjonsperiode. Utenfor Norden ved >3dagers reparasjon eller tyveri ekstra15d utover normal avbruddstid. Bobil45d særgrense.",
+      "location": "10 pkt4.10.1",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-040",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "super",
+      "subject": "Nyverdi Super",
+      "dimension": "alder/km/terskel",
+      "value": "Skade innen3år fra registrert fabrikkny, før60 000km, reparasjon må overstige gjenanskaffelsesverdi. Ikke leaset.",
+      "location": "11 pkt4.11.1A",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-041",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "super",
+      "subject": "Nyverdi Super",
+      "dimension": "gjenkjøp/tyveri",
+      "value": "Ny samme merke/modell fra norsk merkeforhandler ellers normaloppgjør. Modell utgått siste listepris. Totaltyveri ikke gjenfunnet30d følger8.4 og ikke automatisk3år-garanti.",
+      "location": "11 pkt4.11.1A",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-042",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "super",
+      "subject": "Leasing/startleie",
+      "dimension": "forholdsmessig tap",
+      "value": "Totaltap eller totaltyveri erstatter betalt startleie forholdsmessig etter gjenstående måneder. Separat fra ny bil til eier.",
+      "location": "11 pkt4.11.1B",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-043",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "super",
+      "subject": "Uhell",
+      "dimension": "barn og betingelser",
+      "value": "Nøkkel inklparkeringsvarmerfjernkontroll mistet/stjålet/skadet med kjent tidspunkt/årsak; feil væske; ladekabel ytre skade/tyveri/hærverk, ikke fast ladestasjon.",
+      "location": "11–12 pkt4.11.2",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-044",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "super",
+      "subject": "Uhell",
+      "dimension": "sum/egenandel/bonus",
+      "value": "20 000 per skadetilfelle;1 000egenandel; intet bonustap. Overskytende kan velges ordinær Kasko med dens egenandel/bonus.",
+      "location": "12 pkt4.11.3/4.11.6/4.11.7",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-045",
+      "types": [
+        "bil",
+        "bobil"
+      ],
+      "scope": "super",
+      "subject": "Parkering",
+      "dimension": "sum/utløsning/egenandel",
+      "value": "Ukjent annet kjøretøy skader parkert bil, kjent sted/tid, straks melding;20 000 per hendelse, valgt Kaskoegenandel, intet bonustap.",
+      "location": "12 pkt4.11.4–4.11.7",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-046",
+      "types": [
+        "bil",
+        "mc",
+        "bobil",
+        "snøscooter",
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "all",
+      "subject": "Administrative bestemmelser",
+      "dimension": "avtale/oppsigelse/skjønn",
+      "value": "Premie, varsler, svik, klage, skjønn og lovvalg beholdes i kilde; ikke alle til egne sammenligningsfakta.",
+      "location": "2,19–26;GEN3–12",
+      "source": "mot"
+    },
+    {
+      "id": "IF-MO-047",
+      "types": [
+        "mc",
+        "snøscooter"
+      ],
+      "scope": "physical",
+      "subject": "Kjøreutstyr",
+      "dimension": "omfang",
+      "value": "Personlig hjelm/dress/hansker/støvler/ryggskinne/airbagutstyr inngår i tillegg til motorvilkåret. WebMC sier ubegrenset sum.",
+      "location": "1 pkt1",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-048",
+      "types": [
+        "mc"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade MC",
+      "dimension": "valg/eligibility",
+      "value": "Valgfritt tillegg til Kasko bare mellomtung/tung; ikke lettMC/moped/snøscooter. Kjøp før7år fra IPID/web, opphør når8år eller mer fra særvilkår.",
+      "location": "1–2 pkt2",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-049",
+      "types": [
+        "mc"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade MC",
+      "dimension": "komponenter",
+      "value": "Navngitte motor-/gir-/drivverks-/elMC-/motorstyrings-/varme-/ABS/TCS/GPS-komponenter. Ikke Bilens hele komfortliste.",
+      "location": "1–2 pkt2.1",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-050",
+      "types": [
+        "mc"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade MC",
+      "dimension": "egenandel/aldersfradrag",
+      "value": "4 000 etter aldersfradrag av motor/gir/drivverk: mindre5år10%, tilogmed5år15%,6år20%,7år30%; alder fra1.januar etter nykjøpsår. Ingen egen generell kmgrense.",
+      "location": "2 pkt2.6",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-051",
+      "types": [
+        "mc"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade MC",
+      "dimension": "unntak",
+      "value": "Slitasje/varme/klima/dårlig lagret drivstoff/software/tuning;clutchlamell/kjede/drev/belte/ramme/fjæring/brems/ekstern kabel/startbatterier unntatt. Garantiansvar likevel hvis kundekrav ikke fører frem og ellers dekket.",
+      "location": "2 pkt2.2–2.3",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-052",
+      "types": [
+        "mc"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade MC",
+      "dimension": "oppgjør",
+      "value": "Ikke nyverdi; maks gjenanskaffelsesverdi minus aldersfradrag og egenandel, per uavhengig feil.",
+      "location": "2–3 pkt2.5–2.7",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-053",
+      "types": [
+        "mc",
+        "snøscooter"
+      ],
+      "scope": "physical",
+      "subject": "Tyveri",
+      "dimension": "låsreduksjon",
+      "value": "FG-godkjent tilleggslås i bruk reduserer bevisegenandel2 000; utstyr låst til kjøretøy eller boltet rom.",
+      "location": "3 pkt3/4.1",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-054",
+      "types": [
+        "mc",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Egenandel særregel",
+      "dimension": "annen/ung fører og utmark",
+      "value": "10 000 tillegg ved avvik eier-enestefører/yngstealder;ektefelle/samboer likestilt.10 000 tillegg hvis ikke dokumentert lovlig utmark/vassdrag/offentlig scooterløype.",
+      "location": "3 pkt4.2",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-055",
+      "types": [
+        "mc",
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Sesongpremie",
+      "dimension": "oppsigelse",
+      "value": "MC sommervektet/snøscooter vintervektet eksakt månedsfordeling i tabell;1/30 perdag; bytte prorata uten sesongtabell.",
+      "location": "3–4 pkt5",
+      "source": "692"
+    },
+    {
+      "id": "IF-MO-056",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Tilbygg",
+      "dimension": "sum og nivåspørsmål",
+      "value": "Bygningskonstruksjon til campingvogn/bobil40 000; særvilkåret angir ikke Kasko-minimum, campingweb angir Kasko/Super, ikke Delkasko.",
+      "location": "2 pkt1",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-057",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Frigjøring/transport",
+      "dimension": "sum og scope",
+      "value": "Frigjøring campingvogn fra tilbygg og transport til kjørbar vei5 000 ved dekket skade, går foran vanlig veihjelp. Ikke automatisk alle bobiltransportkostnader.",
+      "location": "2 pkt2.1",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-058",
+      "types": [
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Stasjonær campingvogn",
+      "dimension": "transport",
+      "value": "Forsikret også frakt etter kjøp og til/fra vinterlagring; vinterlagring annet sted omfattet.",
+      "location": "2 pkt2.2",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-059",
+      "types": [
+        "bobil"
+      ],
+      "scope": "rental",
+      "subject": "Leiebil Bobil",
+      "dimension": "maks dager",
+      "value": "Valgfritt på Kasko/Super; reparasjon/totalskade/tyveri oppad45dager, ordinære kontantregler beholdt.",
+      "location": "2 pkt3.2",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-060",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Fukt/vann",
+      "dimension": "alder",
+      "value": "Nyere enn15år fra produksjonsår; ikke automatisk inkluderende15år.",
+      "location": "2 pkt3.3.1",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-061",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Fukt/vann",
+      "dimension": "intern lekkasje",
+      "value": "Ferskvann/avløp/varmerør boenhet: ingen krav om fuktkontroll.",
+      "location": "2 pkt3.3.1",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-062",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Fukt/vann",
+      "dimension": "annen fukt/kontroll",
+      "value": "Andre fuktskader krever bestått kontroll hos autorisert caravanforhandler/Viking;gjelder1år etter kontroll, ny kontroll nødvendig, måleresultater og stedskisse dokumenteres.",
+      "location": "3 pkt3.3.1",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-063",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Fukt/vann",
+      "dimension": "frost/snø",
+      "value": "Frost/snøtyngde også som medvirkende årsak unntatt;frostsikring/avtapping/vedlikehold kreves.",
+      "location": "3 pkt3.3.1",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-064",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Feriegaranti",
+      "dimension": "dagbeløp/varighet/utløsning",
+      "value": "Dekket skade etter påbegynt ferietur: dokumentert alternativ overnatting/leiebil1 500perdag, resterende planlagt ferie maks15dager. Ikke fri kontantytelse.",
+      "location": "3 pkt3.3.2",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-065",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Utstyr/bagasje",
+      "dimension": "utvidet samlet sum",
+      "value": "Samlet100 000 i campingvogn/bobil/campingpåbygg.",
+      "location": "3 pkt3.3.3",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-066",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Skadedyr",
+      "dimension": "scope",
+      "value": "Uforutsett insekts-/gnagerskade på kjøretøy;utstyr/bagasje bare samtidig kjøretøyskade. Lukket ved lagring.",
+      "location": "3 pkt3.3.4",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-067",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Særskilte unntak",
+      "dimension": "løsøre/tilbygg/frost",
+      "value": "Ingen tyveri løse ting fra dukfortelt, ingen montering/demonteringtilbygg, løst uhell krever samtidig kjøretøyskade, ingen frost/snø/tette isolerglassfuger/vibrasjon-vridning.",
+      "location": "3–4 pkt4",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-068",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Sikkerhetskrav",
+      "dimension": "tilbygg/flom",
+      "value": "Tilbygg lukket/låst/sikret, forskriftsmessig plassering;campingvogn ikke flomutsatt.",
+      "location": "4 pkt5",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-069",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "physical",
+      "subject": "Utleie",
+      "dimension": "egenandel",
+      "value": "Ikke forhåndsavtalt utleie gir10 000økt egenandel; web>10 000årsinntekt varsles; hovedvilkår utleieansvarforbehold må scopeavklares.",
+      "location": "5 pkt6.2.1",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-070",
+      "types": [
+        "bobil"
+      ],
+      "scope": "all",
+      "subject": "Sesongpremie",
+      "dimension": "oppsigelse",
+      "value": "Måneder3/3/5/7/10/15/18/16/10/6/4/3%;1/30dag, bytte prorata uten sesongfordeling.",
+      "location": "5 pkt7",
+      "source": "707"
+    },
+    {
+      "id": "IF-MO-071",
+      "types": [
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Tilhenger",
+      "dimension": "objektverdi/bonus",
+      "value": "Gjenanskaffelsesverdi serieutførelse+fast utstyr;bevis dekning;ingen bonus.",
+      "location": "1 pkt1–4",
+      "source": "709"
+    },
+    {
+      "id": "IF-MO-072",
+      "types": [
+        "mc"
+      ],
+      "scope": "physical",
+      "subject": "Bagasje og utstyr",
+      "dimension": "web-sum/utstyrstype",
+      "value": "Fastmontert/bagasje40k felles, separat ikke monterte kjøretøydeler40k;kjøreutstyr ubegrenset.",
+      "location": "Kjøreutstyr, bagasje og fastmontert utstyr",
+      "source": "web-mc"
+    },
+    {
+      "id": "IF-MO-073",
+      "types": [
+        "mc"
+      ],
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "valgbare",
+      "value": "Kundevelger2 000–25 000; ansvar0,veihjelp750,FGtyveri-2000.",
+      "location": "FAQ egenandel",
+      "source": "web-mc"
+    },
+    {
+      "id": "IF-MO-074",
+      "types": [
+        "mc"
+      ],
+      "scope": "all",
+      "subject": "Bonus",
+      "dimension": "start/maks",
+      "value": "60%start,75%maks,10%årlig til70deretter3årtil75;min40vedoverføring og matching av bedre;nyBil/MCsammebonusfor eier/ektefelle/samboer.",
+      "location": "FAQ bonus",
+      "source": "web-mc"
+    },
+    {
+      "id": "IF-MO-075",
+      "types": [
+        "bobil"
+      ],
+      "scope": "super",
+      "subject": "Nyverdi Super",
+      "dimension": "motstrid i samme side",
+      "value": "Webintro sier3år/100 000km;dekningstabell3år/60 000km og MOT60 000. Ikke vilkårlig velge100k.",
+      "location": "Fordeler/ekstra erstatning",
+      "source": "web-bobil"
+    },
+    {
+      "id": "IF-MO-076",
+      "types": [
+        "bobil"
+      ],
+      "scope": "machine",
+      "subject": "Maskinskade",
+      "dimension": "tegning",
+      "value": "Kan kjøpes før15år og under150 000km;skadegrense200 000,ikke samme som tegning.",
+      "location": "Motor- og girskade",
+      "source": "web-bobil"
+    },
+    {
+      "id": "IF-MO-077",
+      "types": [
+        "bobil",
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Supergaranti",
+      "dimension": "service/varighet",
+      "value": "Ved flytting minst like gode vilkår som forrige selskap i2år;egen garanti lenket, ikke komplett lokal fullregel.",
+      "location": "Supergaranti",
+      "source": "web-living"
+    },
+    {
+      "id": "IF-MO-078",
+      "types": [
+        "campingvogn"
+      ],
+      "scope": "super",
+      "subject": "Nyverdi",
+      "dimension": "web-alder",
+      "value": "Ny vogn ved totalskade inntil3år;MOT generisk Super med bil/km krever typevurdering, web har ingen kmgrense for campingvogn.",
+      "location": "Ekstra erstatning",
+      "source": "web-camping"
+    },
+    {
+      "id": "IF-MO-079",
+      "types": [
+        "campingvogn"
+      ],
+      "scope": "higher-equipment",
+      "subject": "Utstyr/bagasje",
+      "dimension": "valgbar høyere sum",
+      "value": "Kan kjøpe høyere samlet sum opptil300 000; ikke basis100/40k byttet uten kundevalg.",
+      "location": "Ekstra erstatning for bagasje og fastmontert utstyr",
+      "source": "web-camping"
+    },
+    {
+      "id": "IF-MO-080",
+      "types": [
+        "campingvogn"
+      ],
+      "scope": "higher-building",
+      "subject": "Tilbygg",
+      "dimension": "valgbar høyere sum",
+      "value": "Høyere enn40 000 kan kjøpes, beløp individuelt.",
+      "location": "Tilleggsdekning for spikertelt og tilbygg",
+      "source": "web-camping"
+    },
+    {
+      "id": "IF-MO-081",
+      "types": [
+        "campingvogn",
+        "tilhenger"
+      ],
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "trekkbil/egen plikt",
+      "value": "Egen ansvarsforsikring ikke pålagt;trekkbilens ansvar ved kjøring;egen skade krever egen fysisk dekning.",
+      "location": "FAQ",
+      "source": "web-nonmotor"
+    },
+    {
+      "id": "IF-MO-082",
+      "types": [
+        "snøscooter"
+      ],
+      "scope": "physical",
+      "subject": "Tyveri",
+      "dimension": "kildekonflikt egenandel",
+      "value": "Webintro/SV692 sier FG-2000;FAQ standard8000til4000 med FG og0medFG+alarm. Konflikt dokumenteres, ikke justeres bort.",
+      "location": "Fordeler/FAQ egenandel",
+      "source": "web-snow"
+    },
+    {
+      "id": "IF-MO-083",
+      "types": [
+        "snøscooter"
+      ],
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "valg",
+      "value": "4 000–25 000;ansvar0.",
+      "location": "FAQ egenandel",
+      "source": "web-snow"
+    },
+    {
+      "id": "IF-MO-084",
+      "types": [
+        "snøscooter"
+      ],
+      "scope": "physical",
+      "subject": "Utstyr/bagasje",
+      "dimension": "web-sum",
+      "value": "Samlet40 000;deler tilhørende kjøretøy men umontert separat40 000.",
+      "location": "Fastmontert tilleggsutstyr og bagasje",
+      "source": "web-snow"
+    },
+    {
+      "id": "IF-MO-085",
+      "types": [
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Veihjelp",
+      "dimension": "egenandelkildekonflikt",
+      "value": "Web500;MOT750;S709 angir ingen avvik. Ikke hevde én sikkert gjeldende standard uten avklaring.",
+      "location": "Veihjelp i Europa",
+      "source": "web-trailer"
+    },
+    {
+      "id": "IF-MO-086",
+      "types": [
+        "tilhenger"
+      ],
+      "scope": "physical",
+      "subject": "Egenandel",
+      "dimension": "valg",
+      "value": "Web valg2 000eller4 000;MOTdefault8000medbevisoverstyring. Skille kundens valg fra default.",
+      "location": "Egenandel ved skade",
+      "source": "web-trailer"
+    }
+  ],
+  "source_contents_read": [
+    "MOT2-2 all26pages",
+    "GEN2-9 all13pages",
+    "SV692 all4pages",
+    "SV707 all5pages",
+    "S709 bothpages",
+    "MC/Bobil IPID bothpages each",
+    "MC/Bobil/Camping/Snoscooter/Tilhenger HTML allbody content"
+  ],
+  "scope_notes": "Exact type and component rules apply; common document alone does not prove identical product. Specific conflicts retained; no canonical source data modified."
+}

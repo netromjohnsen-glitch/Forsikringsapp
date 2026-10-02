@@ -1,0 +1,406 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "TR-PET-001",
+      "type": "both",
+      "scope": "base",
+      "subject": "Geografi/sikrede",
+      "dimension": "område",
+      "value": "Europa;taker/ektefelle/samboersammefolkeregisteradresse.",
+      "source": "product",
+      "location": "1 §1/3"
+    },
+    {
+      "id": "TR-PET-002",
+      "type": "both",
+      "scope": "base",
+      "subject": "Alder/opphør",
+      "dimension": "behandling",
+      "value": "Fra35dagertilhelelivet;selgesavhendesslutterstraks.",
+      "source": "product",
+      "location": "1 §4"
+    },
+    {
+      "id": "TR-PET-003",
+      "type": "both",
+      "scope": "all",
+      "subject": "Karenstid",
+      "dimension": "20dogunntak",
+      "value": "20dsykdomfraoppstart/sumøkning/utvidelse;ikkeekvivalentflyttingsammeeier;ingenvalpekullventetid/valpoverlevertmedTrygkull.",
+      "source": "product",
+      "location": "1 §4"
+    },
+    {
+      "id": "TR-PET-004",
+      "type": "both",
+      "scope": "base",
+      "subject": "Veterinær",
+      "dimension": "omfang",
+      "value": "Sykdometterførstesymptom/ulykkeplutseligytrefysisk;undersøkelse/behandling CT/MRmedrekvisisjon.",
+      "source": "treatment",
+      "location": "1 §2/3"
+    },
+    {
+      "id": "TR-PET-005",
+      "type": "both",
+      "scope": "base",
+      "subject": "Medisin/fôr",
+      "dimension": "egenandelmekanisme",
+      "value": "Veterinærordinertmedisin/legemiddel/spesialsjampo/spesialfôr;sisteto50%utgift. Ikkeegenandel50%generelt.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-006",
+      "type": "both",
+      "scope": "base",
+      "subject": "Avlivning",
+      "dimension": "behandling",
+      "value": "Anbefaltavveterinærdekkes;ikke kremasjon/etterutgifter iBehandling.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-007",
+      "type": "both",
+      "scope": "base",
+      "subject": "Tenner",
+      "dimension": "ulykkesskade",
+      "value": "Trekkavfrakturvedulykke;ikketann/tannkjøttsykdomogandrentannbehandling.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-008",
+      "type": "dog",
+      "scope": "base",
+      "subject": "Fødselshjelp",
+      "dimension": "kvalifikasjon",
+      "value": "Uavhengigårsakkenhundetter18mnd,veterinærbekrefterlivifare;ikke keisersnittEngelsk/Franskbulldog/Bostonterrier/Chihuahua/Pomeranianogblandinger.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-009",
+      "type": "cat",
+      "scope": "base",
+      "subject": "Fødselshjelp",
+      "dimension": "kvalifikasjon",
+      "value": "Veterinærbekrefterlivifare,ingen18mndellerhundraseunntak.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-010",
+      "type": "dog",
+      "scope": "base",
+      "subject": "Ledd/skjelett",
+      "dimension": "kvalifikasjon",
+      "value": "HD/AD/AA/OCD/patella/shortulna/CalvéLeggPerthes kreversammenhengendedekningfra før4mndsammeellerannet selskap.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-011",
+      "type": "cat",
+      "scope": "base",
+      "subject": "Ledd/skjelett",
+      "dimension": "kvalifikasjon",
+      "value": "HD/CalvéLeggPerthes kreversammenhengendedekningfra før4mnd;ikkekopierhundenslistetilkatt.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-012",
+      "type": "both",
+      "scope": "base",
+      "subject": "Unntak",
+      "dimension": "vesentlige",
+      "value": "Reise/transport/forebyggende/kryptorkisme/navlebrokk/kastreringsteriliseringmedunntakkjønnsorgansykdom/tidligereskader/sykdomutelatt.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-013",
+      "type": "dog",
+      "scope": "base",
+      "subject": "Rehabilitering",
+      "dimension": "unavailable",
+      "value": "Fysio/kiro/akupunktur/hydro/trykkbølgeunntattigrunn;Extraegenutvidelse.",
+      "source": "treatment",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-PET-014",
+      "type": "both",
+      "scope": "base",
+      "subject": "Egenandel",
+      "dimension": "fast/tilfelle",
+      "value": "2.5k per sykdom/ulykkestilfelle;følgebesøkfor sammeårsakénskade.",
+      "source": "treatment",
+      "location": "1 §3;2 §4"
+    },
+    {
+      "id": "TR-PET-015",
+      "type": "both",
+      "scope": "base",
+      "subject": "Forsikringssum",
+      "dimension": "hendelse/år",
+      "value": "Valgtbevis,sumpert sykdom/ulykke,allehendelsersamletårlig sammevalgtetak;ingenfastsumoppfunnet.",
+      "source": "treatment",
+      "location": "1 §1;2 §4"
+    },
+    {
+      "id": "TR-PET-016",
+      "type": "both",
+      "scope": "all",
+      "subject": "Behandlingetteropphør",
+      "dimension": "begrensning",
+      "value": "Utgifteretteropphørerstattesikke selvomsykdomstartetiforsikringstid.",
+      "source": "treatment",
+      "location": "2 §4"
+    },
+    {
+      "id": "TR-PET-017",
+      "type": "both",
+      "scope": "extra",
+      "subject": "Extra",
+      "dimension": "tilleggsstruktur",
+      "value": "Erstatningi tilleggtilBehandling;egnesummerogegenandeler,20d/ekvivalentflytteunntak.",
+      "source": "extra",
+      "location": "1–2 §3"
+    },
+    {
+      "id": "TR-PET-018",
+      "type": "both",
+      "scope": "extra",
+      "subject": "Rehabilitering",
+      "dimension": "sum/vilkår",
+      "value": "Fysio/kiro/akupunktur/hydro/trykkbølge;rekvirertogdyreklinikk/autorisertbehandler;10k/sykdomulykke,2.5kegenandelpertilfelle.",
+      "source": "extra",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-019",
+      "type": "both",
+      "scope": "extra",
+      "subject": "Tenner",
+      "dimension": "sum/egenandel",
+      "value": "Tannskade/sykdom/tannkjøtt/melketenner/bittfeilmedmedisinskproblem;30k/sykdomulykkeOG30k/år;2.5kegenandelpertilfelle.",
+      "source": "extra",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-020",
+      "type": "both",
+      "scope": "extra",
+      "subject": "Tenner",
+      "dimension": "vilkår",
+      "value": "Tannsteinkunvedperiodontitt;melketenner/bittfeilkreverdekningfør4mnd.",
+      "source": "extra",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-021",
+      "type": "cat",
+      "scope": "extra",
+      "subject": "TR",
+      "dimension": "årstak",
+      "value": "Tannresorpsjon5k/årinnenodontologiens30k/år;ikkeheleproduktetsforsikringssum.",
+      "source": "extra",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-022",
+      "type": "dog",
+      "scope": "extra",
+      "subject": "Huggorm",
+      "dimension": "egenandel",
+      "value": "Undersøkelse/behandlinghuggormbitt0egenandel.",
+      "source": "extra",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-023",
+      "type": "both",
+      "scope": "extra",
+      "subject": "Valp/kattunge",
+      "dimension": "sum/periode",
+      "value": "Livreddendeavmorensungerførste10d;5k/unge10k/kull,0egenandel. Skiltfraegen12ukersValpekullprodukt.",
+      "source": "extra",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-024",
+      "type": "both",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "tilvalg/utløser",
+      "value": "HundDød/RASEKATTDød,valgtbevis;sykdomulykkedød/nødvendigvetavlivning/tyveriforsvinning,ikkenåralternativbehandlinggirgodeprognoser.",
+      "source": "life",
+      "location": "1 §1/2"
+    },
+    {
+      "id": "TR-PET-025",
+      "type": "both",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "leddvilkår",
+      "value": "Før4mnduavbruttledddekningkrevesdødpåsammeartsdiagnosersombehandling.",
+      "source": "life",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-026",
+      "type": "dog",
+      "scope": "life",
+      "subject": "Kremering",
+      "dimension": "sum",
+      "value": "2kutoversum.",
+      "source": "life",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-027",
+      "type": "cat",
+      "scope": "life",
+      "subject": "Kremering",
+      "dimension": "sum",
+      "value": "1kutoversum.",
+      "source": "life",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-028",
+      "type": "both",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "unntak",
+      "value": "Offentligkrav/atferd/psyke/temperament/preexisting/20dsykdomogøktbevisutelatt,medekvivalentflytteunntak.",
+      "source": "life",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-029",
+      "type": "dog",
+      "scope": "life",
+      "subject": "Forsvinning",
+      "dimension": "ventetid",
+      "value": "Politimelding+annonsering,tidligst30dettermeldtsavnet,ikkeetterlysingsutgifter.",
+      "source": "life",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-030",
+      "type": "cat",
+      "scope": "life",
+      "subject": "Forsvinning",
+      "dimension": "ventetid",
+      "value": "Annonsering,tidligst3mndettermeldtsavnet,ikkeetterlysingsutgifter;nettsideleggerpolitivilkårtil.",
+      "source": "life",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-PET-031",
+      "type": "dog",
+      "scope": "life",
+      "subject": "Bruksverdi",
+      "dimension": "vilkår",
+      "value": "Varignedsattavl/bruketterakuttsykdomulykke;tispe3kull/hann5bedekninger;ferdigtrent/ferdighetogarbeidkonkurransesiste12mnd;under8år.",
+      "source": "life",
+      "location": "1–2 §2"
+    },
+    {
+      "id": "TR-PET-032",
+      "type": "dog",
+      "scope": "life",
+      "subject": "Bruksverdi",
+      "dimension": "sum",
+      "value": "50%forsikringssum;utbetaltsumbortfallerfratrekksenerefalle død.",
+      "source": "life",
+      "location": "2 §3"
+    },
+    {
+      "id": "TR-PET-033",
+      "type": "dog",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "aldersfradrag",
+      "value": "Gjenanskaffelsesrasesumtak,20%årligfra7år,navngittstorefra5,navngittsmåfra9;min50%/min5k;0egenandel.",
+      "source": "life",
+      "location": "2 §3"
+    },
+    {
+      "id": "TR-PET-034",
+      "type": "cat",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "aldersfradrag",
+      "value": "Gjenanskaffelsesrasesumtak,20%årligfra7år,min40%,0egenandel.",
+      "source": "life",
+      "location": "1–2 §3"
+    },
+    {
+      "id": "TR-PET-035",
+      "type": "both",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "opphør",
+      "value": "Førsteforfall etter12år;ikkeautomatisk12årsdagsstopp.",
+      "source": "product",
+      "location": "1 §4"
+    },
+    {
+      "id": "TR-PET-036",
+      "type": "both",
+      "scope": "base",
+      "subject": "FirstVet",
+      "dimension": "tilgang",
+      "value": "Ubegrensetgratisvideo07–24hverdag.",
+      "source": "web",
+      "location": "FirstVet"
+    },
+    {
+      "id": "TR-PET-037",
+      "type": "both",
+      "scope": "base",
+      "subject": "Direkteoppgjør",
+      "dimension": "tjeneste",
+      "value": "Trygharikkedirekteoppgjør;flestesakergjøresoppstraks/påkontoinnen48timer,ikkeabsoluttgaranti.",
+      "source": "web",
+      "location": "Raskoggodhjelp"
+    },
+    {
+      "id": "TR-PET-038",
+      "type": "dog",
+      "scope": "life",
+      "subject": "Liv",
+      "dimension": "kildekonflikt",
+      "value": "PLB52001småraseralder9vsweb10;foregåendeSC001bevares.",
+      "source": "web",
+      "location": "FAQ erstatninghunddør"
+    },
+    {
+      "id": "TR-PET-039",
+      "type": "dog",
+      "scope": "base",
+      "subject": "Avlivning",
+      "dimension": "kildekonflikt",
+      "value": "Fulltermsdekkeravlivninganbefaltvet;webFAQlistesierikkeavlivning/offentligekrav;skalikkeslettefullvilkårspositiv.",
+      "source": "web",
+      "location": "FAQ dekkesikke"
+    },
+    {
+      "id": "TR-PET-040",
+      "type": "both",
+      "scope": "base",
+      "subject": "Administrative",
+      "dimension": "øvrig",
+      "value": "Sikkerhetstell/opplysninger/oppgjørkildebeholdt;valpekull12uker/papegøyeutenforaktivtscope.",
+      "source": "ipid",
+      "location": "1–2"
+    }
+  ],
+  "note": "Allsevenfullpetterms+twoHTML+IPIDread;PLB52000appliesbothspeciesdespitedogfilename;priorpartialfactsandSC001reused."
+}

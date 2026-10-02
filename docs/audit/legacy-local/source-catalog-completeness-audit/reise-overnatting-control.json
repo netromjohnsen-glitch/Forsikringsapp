@@ -1,0 +1,94 @@
+{
+  "id": "CONTROL-REISE-OVERNATTING-001",
+  "provider": "storebrand",
+  "product": "storebrand-reise-standard",
+  "product_identity": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+  "scope": "ordinary",
+  "source_artifacts": [
+    {
+      "path": "catalog/sources/storebrand/reise/canonical/reise10-vilkar-reiseforsikring.pdf",
+      "sha256": "d44b4ef668a51db2e2d0c72714737dee59cb74d10fad13b65e3cde5695e5e414"
+    },
+    {
+      "path": "catalog/sources/storebrand/reise/canonical/Reiseforsikring-produktside.html",
+      "sha256": "fc65e95caadecb0ad10d557b276e8befaf39fe5da9ebb40f70c8d3d87ce2636d"
+    },
+    {
+      "path": "catalog/sources/storebrand/reise/canonical/IPID-reiseforsikring.pdf",
+      "sha256": "1a8fb745305aaa2edf9fa9230c7e157c6e3f3e65130de063615f07232e319d37"
+    }
+  ],
+  "source_location": "reise10June2025 PDF4B1.2–3 andproductHTMLFAQ",
+  "short_source_evidence": "Du og tingene dine er forsikret, enten du er på dagstur eller lengre reiser.",
+  "source_answer": "B: does not require overnight stay for general journey coverage",
+  "model_answer": "E: representation disperses dimensions across keys; not absence of sourceknowledge",
+  "scope_qualifications": "No claimallbenefitsapplywithoutovernight: B2.1eventcancellation andSupercarhire benefit requireovernight; location/medicalmunicipality exclusionsremain. Businessjourneys not inferred fromTryg.",
+  "catalog_representation": {
+    "key": "reise.omrade.verden",
+    "label": "Geografisk område",
+    "value": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+    "source": {
+      "documentId": "storebrandReiseTerms",
+      "section": "B.1",
+      "page": 4,
+      "filename": "reise10-vilkar-reiseforsikring.pdf",
+      "termsNumber": "reise10",
+      "effectiveFrom": "2025-06-01",
+      "company": "Storebrand",
+      "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+      "productCode": "reise10",
+      "version": "reise10",
+      "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+    }
+  },
+  "visible_comparison_representation": [
+    {
+      "first": "[\"tryg\",\"reise\",\"ordinary\",\"tryg-reise-ekstra\",\"2026-09-20-canonical\"]",
+      "second": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+      "overnight_row": {
+        "key": "reise.overnatting",
+        "label": "Reise med eller uten overnatting",
+        "storebrand_state": "unknown",
+        "storebrand_text": "Ikke dokumentert i kataloggrunnlaget"
+      },
+      "other_row": {
+        "key": "reise.omrade.verden",
+        "storebrand_text": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden."
+      },
+      "side_swap_consistent": true
+    },
+    {
+      "first": "[\"tryg\",\"reise\",\"ordinary\",\"tryg-reise-premium\",\"2026-09-20-canonical\"]",
+      "second": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+      "overnight_row": {
+        "key": "reise.overnatting",
+        "label": "Reise med eller uten overnatting",
+        "storebrand_state": "unknown",
+        "storebrand_text": "Ikke dokumentert i kataloggrunnlaget"
+      },
+      "other_row": {
+        "key": "reise.omrade.verden",
+        "storebrand_text": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden."
+      },
+      "side_swap_consistent": true
+    }
+  ],
+  "classification": "STRUCTURAL_MAPPING_GAP",
+  "confidence": "HIGH",
+  "advisor_impact": "Avoidable unknown on specificovernight question despite sourceandcatalogknowingdaytripcoverage.",
+  "strict_verified_catalog_false_unknown": false,
+  "source_fact_id": "SF-2412",
+  "finding_id": "GAP-1642",
+  "future_presentation_requirement": {
+    "states": [
+      "JA",
+      "NEI",
+      "IKKE DEKKET",
+      "TILVALG",
+      "BEGRENSET",
+      "UKLART I TILGJENGELIG KILDEGRUNNLAG"
+    ],
+    "principle": "Use explicitsource-backedsemanticdimension; retain unknownforgenuineambiguity, not UIinference/free-textparsing."
+  },
+  "implemented": false
+}

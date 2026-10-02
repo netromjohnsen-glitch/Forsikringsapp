@@ -1,0 +1,1103 @@
+Vi skal gjennomføre en full READ-ONLY:
+
+NITO PRE-PILOT SECURITY, GDPR & PRODUCT READINESS AUDIT
+
+av Forsikringsassistenten.
+
+MODELL:
+GPT-5.6 Medium.
+
+Dette er en AUDIT.
+
+IKKE gjør kodeendringer.
+IKKE rett bugs.
+IKKE endre dokumentasjon.
+IKKE endre Railway.
+IKKE endre environment variables.
+IKKE endre .env.local.
+IKKE aktiver production tracing.
+IKKE commit.
+IKKE push.
+IKKE deploy.
+IKKE reset.
+IKKE revert.
+IKKE stash.
+
+Hvis du finner problemer:
+DOKUMENTER dem.
+
+Vi skal gjennomgå funnene før rettelser.
+
+==================================================
+1 – HOVEDMÅL
+==================================================
+
+Vi vurderer om Forsikringsassistenten er klar til en begrenset intern pilot
+hos NITO Forsikringssenter med ekte forsikringsrådgivere.
+
+Piloten kan innebære behandling av ekte kundedokumenter.
+
+Audit skal svare på to hovedspørsmål:
+
+A.
+Er den tekniske løsningen sikker og personvernmessig forsvarlig nok til at
+ekte kundedata kan behandles i en kontrollert pilot?
+
+B.
+Er produktet modent nok til at en annen forsikringsrådgiver kan bruke det
+uten at utvikleren sitter ved siden av og forklarer/redder arbeidsflyten?
+
+==================================================
+2 – VIKTIG BEGRENSNING
+==================================================
+
+Dette er:
+
+technical security audit
+privacy engineering audit
+GDPR readiness/gap analysis
+product readiness audit
+
+Det er IKKE:
+
+juridisk godkjenning
+juridisk rådgivning
+formell GDPR-sertifisering
+penetrasjonstest fra tredjepart
+Finanstilsynet-godkjenning.
+
+Rapporten skal eksplisitt skille:
+
+TECHNICALLY VERIFIED
+
+fra:
+
+LEGAL / ORGANIZATIONAL REVIEW REQUIRED.
+
+==================================================
+3 – NO PRIVATE DATA
+==================================================
+
+Audit skal IKKE bruke ekte kundedokumenter.
+
+Bruk:
+
+syntetiske testdata
+offentlige source artifacts
+eksisterende testfixtures.
+
+Ingen:
+
+kundenavn
+polisenummer
+registreringsnummer fra ekte kunder
+adresse
+helseopplysninger
+private PDF-er.
+
+==================================================
+4 – BASELINE
+==================================================
+
+Før audit:
+
+registrer:
+
+- branch
+- HEAD
+- git status
+- staged files
+- modified files
+- untracked files
+- production deployment state if safely available
+- application URL/configuration without exposing secrets
+- test baseline
+- catalog size
+- eligible insurance families.
+
+Fingerprint working tree.
+
+Audit must leave repo unchanged.
+
+==================================================
+5 – CURRENT EXPECTED PRODUCT STATE
+==================================================
+
+Expected current architecture includes approximately:
+
+12 skadeforsikringsfamilier:
+
+- Bil
+- Hus
+- Innbo
+- Reise
+- Snøscooter
+- Campingvogn
+- Tilhenger
+- MC
+- Bobil
+- Båt
+- Hund
+- Katt
+
+Verify actual state.
+
+Do not hardcode expected counts if repository differs.
+
+==================================================
+6 – SECURITY THREAT MODEL
+==================================================
+
+Create a concise threat model for the pilot.
+
+Identify at minimum:
+
+ASSETS:
+- customer PDFs
+- extracted customer facts
+- comparison results
+- authentication/session
+- API credentials
+- provider catalog/source data
+- feedback attachments
+- application configuration.
+
+ACTORS:
+- authorized advisor
+- unauthorized internet user
+- another pilot user
+- malicious uploaded document
+- compromised browser/session
+- accidental internal disclosure.
+
+TRUST BOUNDARIES:
+- browser
+- Next.js frontend
+- server/API routes
+- PDF processing
+- AI provider
+- Railway/runtime
+- logging/telemetry
+- feedback storage
+- any external services.
+
+==================================================
+7 – DATA FLOW MAP
+==================================================
+
+Trace the actual data flow for:
+
+A. PDF comparison
+B. manual comparison
+C. hybrid comparison
+D. product comparison
+E. feedback submission
+F. authentication/pilot access
+
+For each step record:
+
+- data entering
+- processing location
+- external recipient
+- persistence
+- cache
+- logging
+- retention/deletion
+- output.
+
+Do not infer architecture.
+
+Inspect actual code/configuration.
+
+==================================================
+8 – CUSTOMER PDF LIFECYCLE
+==================================================
+
+Determine exactly what happens to uploaded PDFs.
+
+Answer:
+
+- Does browser send entire PDF to server?
+- Is file written to disk?
+- Is it kept in memory?
+- Is it persisted?
+- Is it cached?
+- Is it sent to AI provider?
+- Is original PDF sent or extracted text?
+- Is it included in logs?
+- Is filename logged?
+- When is it deleted/released?
+- Can another request/user access it?
+- What happens after error/timeout?
+- What happens after server restart?
+
+If any answer cannot be proven:
+
+mark UNKNOWN / REVIEW REQUIRED.
+
+==================================================
+9 – EXTRACTED TEXT LIFECYCLE
+==================================================
+
+Same audit for:
+
+- extracted PDF text
+- model input
+- model output
+- normalized facts
+- customer comparison result.
+
+Search actual logging paths.
+
+==================================================
+10 – DATA MINIMIZATION
+==================================================
+
+Assess whether app sends/processes more customer information than required.
+
+Look for opportunities where:
+
+- filename
+- irrelevant PDF pages
+- customer name
+- address
+- policy number
+- object identifiers
+- free text
+
+are unnecessarily transmitted or retained.
+
+Do not implement changes.
+
+==================================================
+11 – AI PROVIDER DATA FLOW
+==================================================
+
+Identify actual AI integration.
+
+Document:
+
+- provider/API
+- model configuration
+- data sent
+- whether entire PDF or extracted content is sent
+- server-side only or client-side
+- retry behavior
+- error logging
+- response handling.
+
+Do not print API keys.
+
+==================================================
+12 – AI PRIVACY CONFIGURATION
+==================================================
+
+Audit code/configuration for available privacy-related settings and behavior.
+
+Do not assume contractual/data-retention terms from code alone.
+
+Separate:
+
+TECHNICAL OBSERVATION
+
+from:
+
+CONTRACTUAL/LEGAL VERIFICATION REQUIRED.
+
+==================================================
+13 – DATA PROCESSOR MAP
+==================================================
+
+Based on actual architecture identify likely processors/subprocessors such as:
+
+- hosting
+- AI provider
+- logging/monitoring
+- feedback storage
+- analytics
+- email/service providers if present.
+
+Do not invent services.
+
+For each classify:
+
+USED / NOT USED / UNKNOWN.
+
+Legal/DPA status may require manual review.
+
+==================================================
+14 – GDPR ROLE QUESTIONS
+==================================================
+
+Document questions requiring organizational/legal decision:
+
+- Who is controller during NITO pilot?
+- Is app provider a processor?
+- Is NITO controller?
+- Are there joint-controller scenarios?
+- What instructions govern processing?
+- Who handles data subject requests?
+- Who handles deletion requests?
+- Who reports incidents?
+
+Do not decide these solely from code.
+
+==================================================
+15 – PROCESSING PURPOSE
+==================================================
+
+Identify the apparent technical purpose:
+
+insurance-document comparison
+coverage analysis
+advisor support
+feedback/pilot improvement.
+
+Flag any processing not necessary for those purposes.
+
+==================================================
+16 – LEGAL BASIS
+==================================================
+
+Do NOT declare legal basis.
+
+Create a section:
+
+LEGAL BASIS – LEGAL REVIEW REQUIRED
+
+listing actual processing activities that need a documented basis.
+
+==================================================
+17 – SPECIAL CATEGORY DATA
+==================================================
+
+Current skadeforsikring documents may still contain sensitive information.
+
+Search architecture for ability to process arbitrary document text.
+
+Assess whether health/special-category data could accidentally enter the
+system.
+
+This is especially important before future person insurance.
+
+Do not use real health data.
+
+==================================================
+18 – PERSON INSURANCE GATE
+==================================================
+
+Explicitly assess whether current architecture should be considered ready to
+receive person-insurance documents containing potential health data.
+
+Do not implement person insurance.
+
+Return:
+
+PERSON_INSURANCE_PRIVACY_GATE:
+READY / NOT_READY / LEGAL_REVIEW_REQUIRED
+
+with reasons.
+
+Be conservative.
+
+==================================================
+19 – RETENTION
+==================================================
+
+Find actual retention behavior for:
+
+- PDF
+- extracted text
+- AI input/output
+- normalized customer facts
+- comparison result
+- feedback text
+- feedback screenshot/image
+- logs.
+
+For each:
+
+KNOWN
+UNKNOWN
+
+and actual retention mechanism/time if provable.
+
+==================================================
+20 – DELETION
+==================================================
+
+Determine whether customer data can be deleted from every persistent
+location.
+
+Identify:
+
+- automatic deletion
+- manual deletion
+- missing deletion mechanism
+- backups/logs outside application control.
+
+No assumptions.
+
+==================================================
+21 – LOGGING AUDIT
+==================================================
+
+Search production code for:
+
+console.log
+console.error
+logger
+telemetry
+trace
+analytics
+error reporting
+request logging.
+
+Inspect whether any can contain:
+
+PDF text
+model response
+prompt
+customer name
+address
+registration
+VIN
+policy number
+price
+object identifiers
+filename
+source excerpt.
+
+==================================================
+22 – PRODUCTION TRACE
+==================================================
+
+Audit production tracing implementation.
+
+Confirm current default/status where safely possible.
+
+Verify whitelist protections.
+
+Confirm tracing cannot accidentally include forbidden customer fields.
+
+Do not activate it.
+
+==================================================
+23 – ERROR HANDLING
+==================================================
+
+Audit server/client errors for leakage of:
+
+stack traces
+filesystem paths
+API response bodies
+model response
+PDF text
+secrets
+customer facts.
+
+Test safely using synthetic malformed inputs.
+
+==================================================
+24 – AUTHENTICATION
+==================================================
+
+Audit current pilot authentication.
+
+Determine:
+
+- how pilot access works
+- where authentication is enforced
+- cookie/session behavior
+- expiration
+- logout
+- brute-force protection
+- whether auth is server-enforced
+- whether API routes independently enforce authorization.
+
+Do not retrieve or expose pilot secret.
+
+==================================================
+25 – AUTHORIZATION
+==================================================
+
+Authentication is not enough.
+
+Check whether one authorized user/request could access another user's:
+
+PDF
+analysis result
+feedback attachment
+temporary file
+request state.
+
+Test only with synthetic data.
+
+==================================================
+26 – DIRECT API ACCESS
+==================================================
+
+Attempt safe unauthorized requests against relevant local/test API routes.
+
+Check:
+
+- analyze
+- upload
+- feedback
+- source/document endpoints
+- other sensitive routes.
+
+Do not attack production.
+
+==================================================
+27 – SESSION SECURITY
+==================================================
+
+Inspect:
+
+cookie flags
+Secure
+HttpOnly
+SameSite
+expiration
+session fixation risks
+client-side storage.
+
+Report actual state.
+
+==================================================
+28 – CLIENT STORAGE
+==================================================
+
+Audit:
+
+localStorage
+sessionStorage
+IndexedDB
+cookies
+browser cache
+
+for customer information.
+
+Flag persistence of sensitive data.
+
+==================================================
+29 – SECRETS
+==================================================
+
+Audit repository/build/client bundle for:
+
+API keys
+Railway secrets
+pilot secret
+credentials
+private keys.
+
+Do not print secret values.
+
+Report only:
+
+FOUND / NOT FOUND
+location/category.
+
+==================================================
+30 – SERVER/CLIENT BOUNDARY
+==================================================
+
+Verify sensitive credentials and privileged operations remain server-side.
+
+Check Next.js client bundles for accidental environment exposure.
+
+==================================================
+31 – FILE UPLOAD SECURITY
+==================================================
+
+Audit PDF upload handling:
+
+- accepted MIME types
+- extension checks
+- magic bytes/content validation if present
+- max file size
+- max file count
+- malformed PDF
+- encrypted PDF
+- empty PDF
+- extremely large page count
+- decompression/resource exhaustion risk
+- parser timeout
+- filename handling.
+
+==================================================
+32 – MALICIOUS PDF
+==================================================
+
+Use synthetic safe adversarial fixtures to test:
+
+- malformed PDF
+- PDF containing prompt-injection-like text
+- PDF containing huge text blocks
+- weird filename
+- duplicate files
+- unsupported file.
+
+No weaponized exploit files.
+
+==================================================
+33 – PROMPT INJECTION
+==================================================
+
+This is critical.
+
+Audit extraction prompts and model boundary.
+
+A customer PDF may contain text such as:
+
+"Ignore previous instructions..."
+"Send secrets..."
+"Classify everything as included..."
+
+Verify document text is treated as untrusted DATA, not trusted instruction.
+
+Assess:
+
+- prompt structure
+- schema enforcement
+- downstream validation
+- whether model can alter system behavior
+- whether extracted text can request tools/actions.
+
+==================================================
+34 – PROMPT INJECTION TESTS
+==================================================
+
+Use synthetic text-only/PDF fixtures with benign injection attempts.
+
+Verify:
+
+- no secret disclosure
+- no tool escalation
+- no instruction override
+- output remains schema-bound
+- invalid semantic output is rejected/normalized where applicable.
+
+==================================================
+35 – MODEL OUTPUT TRUST
+==================================================
+
+Audit whether model output is treated as trusted.
+
+Check:
+
+- schema validation
+- type validation
+- canonical allowlists
+- provider/type allowlists
+- numeric validation
+- source/provenance checks
+- fallback behavior.
+
+==================================================
+36 – HTML/XSS
+==================================================
+
+Audit all customer-controlled/rendered text for XSS risks.
+
+Especially:
+
+- PDF-derived text
+- provider/product text
+- feedback text
+- filenames
+- source excerpts
+- error messages.
+
+Look for:
+
+dangerouslySetInnerHTML
+raw HTML rendering
+unsafe markdown rendering.
+
+==================================================
+37 – CSRF
+==================================================
+
+Audit state-changing routes for CSRF exposure where relevant.
+
+Consider current cookie/auth architecture.
+
+==================================================
+38 – CORS
+==================================================
+
+Audit CORS configuration.
+
+Sensitive API endpoints should not be unnecessarily callable cross-origin.
+
+==================================================
+39 – SECURITY HEADERS
+==================================================
+
+Audit production headers where applicable:
+
+Content-Security-Policy
+X-Content-Type-Options
+Referrer-Policy
+Permissions-Policy
+HSTS
+frame-ancestors / clickjacking protection.
+
+Report missing/recommended controls.
+
+Do not modify yet.
+
+==================================================
+40 – DEPENDENCIES
+==================================================
+
+Run safe dependency/security inspection.
+
+Use existing package tooling.
+
+Report:
+
+known vulnerabilities
+severity
+direct/transitive dependency
+whether reachable/relevant where determinable.
+
+Do not blindly upgrade dependencies.
+
+==================================================
+41 – NEXT.JS SECURITY
+==================================================
+
+Audit current Next.js version and known security implications using locally
+available package metadata/security tooling.
+
+If current vulnerability status requires external verification:
+
+mark:
+
+CURRENT SECURITY ADVISORY CHECK REQUIRED
+
+rather than guessing.
+
+==================================================
+42 – RATE LIMITING
+==================================================
+
+Determine whether expensive endpoints have:
+
+rate limiting
+concurrency limiting
+request size limits
+AI cost protection.
+
+Assess risk of:
+
+unauthorized cost generation
+DoS
+accidental repeated analysis.
+
+==================================================
+43 – DOUBLE SUBMIT
+==================================================
+
+Test:
+
+double-click Analyze
+rapid repeated requests
+refresh during analysis.
+
+Look for:
+
+duplicate AI calls
+duplicate state
+cross-request contamination.
+
+==================================================
+44 – REQUEST ISOLATION
+==================================================
+
+Test multiple simultaneous synthetic requests.
+
+Verify:
+
+- no objectRef leakage
+- no trace leakage
+- no result crossover
+- no temporary-file collision
+- no shared mutable customer state.
+
+==================================================
+45 – DOS / RESOURCE SAFETY
+==================================================
+
+Review:
+
+PDF parsing
+AI requests
+source rendering
+large comparisons
+
+for obvious unbounded resource consumption.
+
+No destructive load testing.
+
+==================================================
+46 – SOURCE ENDPOINT SECURITY
+==================================================
+
+Audit source viewing/download behavior.
+
+Verify users cannot use source endpoints for arbitrary filesystem reads or
+path traversal.
+
+==================================================
+47 – PATH TRAVERSAL
+==================================================
+
+Test safe synthetic traversal strings against any file/source parameter.
+
+No production attack.
+
+==================================================
+48 – SSRF
+==================================================
+
+Determine whether user input can cause server to fetch arbitrary URLs.
+
+If yes:
+audit SSRF protections.
+
+If no:
+report not applicable.
+
+==================================================
+49 – FEEDBACK WIDGET
+==================================================
+
+Audit feedback flow.
+
+Determine:
+
+- data collected
+- screenshot/image support
+- storage location
+- retention
+- access control
+- filenames/metadata
+- possibility of customer data being captured accidentally
+- deletion mechanism.
+
+==================================================
+50 – FEEDBACK PRIVACY UX
+==================================================
+
+Assess whether advisor is warned not to include unnecessary customer data in
+feedback.
+
+A screenshot can contain customer information.
+
+Flag if safeguard is missing.
+
+==================================================
+51 – DATA EXPORT
+==================================================
+
+Determine whether customer data can be exported/downloaded.
+
+Audit authorization and privacy implications if feature exists.
+
+==================================================
+52 – ANALYTICS
+==================================================
+
+Identify any analytics/tracking.
+
+Report:
+
+provider
+events
+customer-data exposure risk
+cookie implications.
+
+If none:
+say none found.
+
+==================================================
+53 – THIRD-PARTY SCRIPTS
+==================================================
+
+Audit third-party browser scripts.
+
+Identify whether any script could observe customer/result pages.
+
+==================================================
+54 – CACHE
+==================================================
+
+Audit:
+
+browser cache
+server cache
+Next.js caching
+CDN/proxy caching
+
+for customer-specific responses.
+
+Sensitive customer analysis must not accidentally become shared/public
+cache.
+
+==================================================
+55 – HTTP RESPONSE HEADERS
+==================================================
+
+Inspect sensitive response caching headers.
+
+Flag public/shared caching of customer-specific data.
+
+==================================================
+56 – BACKUPS
+==================================================
+
+Determine from code/config what can be known about backups.
+
+If hosting backup behavior cannot be verified from repo:
+
+mark organizational/vendor review required.
+
+==================================================
+57 – INCIDENT RESPONSE
+==================================================
+
+Audit whether project has documented process for:
+
+- suspected data breach
+- credential leak
+- wrong-user data exposure
+- AI provider incident
+- lost advisor access
+- deletion request.
+
+If missing:
+flag documentation gap.
+
+==================================================
+58 – GDPR PROCESSING RECORD
+==================================================
+
+Check whether there is documentation equivalent to a processing inventory:
+
+- purpose
+- data categories
+- data subjects
+- recipients/processors
+- retention
+- security controls
+- transfers.
+
+Do not fabricate missing entries.
+
+==================================================
+59 – PRIVACY NOTICE
+==================================================
+
+Check whether pilot users/data subjects have appropriate privacy information
+available.
+
+Audit for:
+
+- what data is processed
+- why
+- who receives it
+- retention
+- rights/contact
+- AI processing where relevant.
+
+Legal review required.
+
+==================================================
+60 – DPA
+==================================================
+
+Identify processor relationships that likely require:
+
+databehandleravtale / DPA.
+
+Do not claim agreements exist unless evidence exists.
+
+==================================================
+61 – INTERNATIONAL TRANSFERS
+==================================================
+
+Identify services that may involve international data transfer.
+
+Contractual/legal status must be manually verified.
+
+Do not infer from vendor brand alone.
+
+==================================================
+62 – DPIA SCREENING
+==================================================
+
+Perform a structured DPIA SCREENING, not a legal conclusion.
+
+Consider:
+
+- new technology
+- insurance/customer financial context
+- potentially sensitive document content
+- future health data
+- systematic processing
+- AI analysis
+- scale of pilot
+- consequences of incorrect disclosure.
+
+Return:
+
+DPIA_SCREENING:
+LIKELY_REQUIRED
+RECOMMENDED
+LIKELY_NOT_REQUIRED
+LEGAL_REVIEW_REQUIRED
+
+with reasoning.
+
+==================================================
+63 – DATA SUBJECT RIGHTS
+==================================================
+
+Assess technical ability to support:
+
+access
+deletion
+correction
+restriction where applicable.
+
+Do not assume legal applicability.
+
+==================================================
+64 – PRIVACY BY DESIGN
+==================================================
+
+Assess:
+
+- minimization
+- purpose limitation
+- retention
+- access control
+- default privacy
+- separation of customer/catalog data
+- auditability.
+
+==================================================
+65 – SECURITY DOCUMENTATION
+==================================================
+
+Check whether project has:
+
+security overview
+data flow
+incident procedure
+access-control description

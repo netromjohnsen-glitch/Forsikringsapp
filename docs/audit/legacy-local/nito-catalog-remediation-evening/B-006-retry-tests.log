@@ -1,0 +1,67 @@
+(node:67292) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (0.7375ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (8.215875ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (3.090917ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (1.897916ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (5.429417ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (0.932333ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.361209ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (1.76175ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.526334ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.053ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.260917ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (0.983833ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (0.857042ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (0.92425ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (0.921041ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (1.097ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (0.878333ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (3.336166ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (0.93075ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (1.768541ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.023041ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (10.387917ms)
+✔ normalisering er forsikringstypeavgrenset (0.596917ms)
+(node:67293) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ offisielle Frende-kilder har kontrollert hash, dato og dokumentankere (86.479833ms)
+✔ Frende har dokumentert Ansvar → Delkasko → Kasko → Utvidet-arv (3.49325ms)
+✔ Leiebil og Maskinskade er uavhengige tillegg på Kasko og Utvidet (0.798708ms)
+✔ egenandeler beholder standard-, referanse- og særskilt klassifisering (0.645792ms)
+✔ UI-runtime beholder begge Frende-tillegg til sammenligning mot Tryg (34.348084ms)
+✔ Frende sammenlignes kildeisolert mot Fremtind og If (22.882125ms)
+(node:67294) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (2.092791ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (2.600166ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.111417ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.290791ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (13.253583ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (1.146292ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (19.073208ms)
+✔ B-002: explicit customer artwork information retains document authority (1.055709ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.324333ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.7925ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (24.5435ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (1.564541ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (9.125875ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.356666ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (3.019375ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (7.416542ms)
+✔ B-006: Frende parking bonus clause follows §11.13 on Kasko and Utvidet (1.17125ms)
+✔ B-006: parking comparison and explicit customer terms remain stable (6.921917ms)
+ℹ tests 47
+ℹ suites 0
+ℹ pass 47
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 707.31775

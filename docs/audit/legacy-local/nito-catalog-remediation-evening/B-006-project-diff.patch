@@ -1,0 +1,145 @@
+diff --git a/lib/boat-pet-catalog.ts b/lib/boat-pet-catalog.ts
+index fa9669b..5f5f0d7 100644
+--- a/lib/boat-pet-catalog.ts
++++ b/lib/boat-pet-catalog.ts
+@@ -105,7 +105,7 @@ const boatProducts: BoatPetProductDefinition[] = [
+ const boatAddOns: BoatPetAddOnDefinition[] = [
+   { providerId: "tryg", company: "Tryg", type: "båt", agreementScope: "ordinary", id: "tryg-bat-maskinskade", name: "Maskinskade", sourceId: sourceId("tryg", "båt"), requiresLevel: ["Kasko/Ansvar", "Båt Ekstra"], rows: [row("bat.maskinskade.dekning", "Valgfritt tillegg", "tryg", "båt", 1, "Maskinskade", undefined, "boat-pet:tryg:båt:machinery"), row("bat.maskinskade.alder", "Innenbordsmotor under 15 år; utenbordsmotor/seilbåt under 12 år", "tryg", "båt", 1, "Maskinskade", undefined, "boat-pet:tryg:båt:machinery")] },
+   { providerId: "tryg", company: "Tryg", type: "båt", agreementScope: "ordinary", id: "tryg-bat-ulykke", name: "Fører- og passasjerulykke", sourceId: sourceId("tryg", "båt"), requiresLevel: ["Ansvar", "Brann/Ansvar", "Brann/Tyveri/Ansvar", "Kasko/Ansvar", "Båt Ekstra"], rows: [row("bat.ulykke.dekning", "Valgfritt tillegg", "tryg", "båt", 1, "Fører- og passasjerulykke", undefined, "boat-pet:tryg:båt:accident")] },
+-  { providerId: "if", company: "If", type: "båt", agreementScope: "ordinary", id: "if-bat-motor-gir", name: "Motor- og girskade", sourceId: sourceId("if", "båt"), requiresLevel: ["Kasko", "Super"], rows: [row("bat.maskinskade.dekning", "Valgfritt tillegg til Kasko", "if", "båt", 5, "4.9"), row("bat.maskinskade.alder", "Dekningen opphører når motor, gir eller drivverk er eldre enn 15 år", "if", "båt", 5, "4.9.2"), row("bat.maskinskade.egenandel", "Aldersgradert prosentandel, minst 8 000 kr", "if", "båt", 6, "4.9.5", "coverage") ] },
++  { providerId: "if", company: "If", type: "båt", agreementScope: "ordinary", id: "if-bat-motor-gir", name: "Motor- og girskade", sourceId: sourceId("if", "båt"), requiresLevel: ["Kasko", "Super"], rows: [row("bat.maskinskade.dekning", "Valgfritt tillegg til Kasko", "if", "båt", 5, "4.9"), row("bat.maskinskade.alder", "Dekningen opphører når motor, gir eller drivverk er eldre enn 15 år", "if", "båt", 5, "4.9.2"), row("bat.maskinskade.egenandel", "Alder på motor, gir og drivverk: til og med 5 år 4 000 kr; over 5 til og med 10 år 8 000 kr; til og med 11 år 10 %, 12 år 20 %, 13 år 30 %, 14 år 40 % og 15 år 50 % av reparasjonskostnaden. Minst 8 000 kr gjelder prosentgrenene. Over 15 år opphører dekningen. Alder regnes fra 1. januar året etter kjøp som ny.", "if", "båt", 6, "4.9.5", "coverage") ] },
+   { providerId: "frende", company: "Frende", type: "båt", agreementScope: "ordinary", id: "frende-bat-maskinskade", name: "Maskinskade", sourceId: sourceId("frende", "båt"), requiresLevel: ["Kasko", "Utvidet"], rows: [row("bat.maskinskade.dekning", "Valgfritt når oppført i forsikringsbeviset", "frende", "båt", 1, "Valgfrie dekninger")] },
+   { providerId: "frende", company: "Frende", type: "båt", agreementScope: "ordinary", id: "frende-bat-ulykke", name: "Fører- og passasjerulykke", sourceId: sourceId("frende", "båt"), requiresLevel: ["Brann og tyveri", "Kasko", "Utvidet"], rows: [row("bat.ulykke.dekning", "Valgfritt når oppført i forsikringsbeviset", "frende", "båt", 1, "Valgfrie dekninger")] },
+ ];
+diff --git a/lib/fremtind-hus-catalog.ts b/lib/fremtind-hus-catalog.ts
+index 78455b8..fe2d97a 100644
+--- a/lib/fremtind-hus-catalog.ts
++++ b/lib/fremtind-hus-catalog.ts
+@@ -31,7 +31,7 @@ const standard = facts("fremtindHusStandard", [
+   ["bygninger.dekning", "Forsikrede bygninger", "Bygningen i forsikringsbeviset med fastmontert utstyr. Tilleggsbygg må avtales; bygg inntil 10 m² BTA har bare brann- og naturskadedekning uten særskilt avtale.", "3.1 Bygning", 2],
+   ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr som er vanlig for bygningens formål, herunder bygningsrør, oppvarmingsutstyr og integrerte installasjoner.", "3.1 Bygning", 2],
+   ["andrebygninger.endring", "Bygningsendringer", "Tilbygg og andre verdiøkende forandringer må meldes for å unngå underforsikring. Topp omfatter bygningsmessige forandringer i avtaleperioden frem til periodens utløp.", "3.1 / 5.2.2", 2],
+-  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning av bygningen omfattes.", "3.1 Bygning", 2],
++  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning er unntatt på Standard.", "3.1 Bygning – Omfattes ikke", 3],
+   ["ror.utvendig", "Utvendige rør og ledninger", "Utvendige rør og ledninger med tilknyttet utstyr frem til offentlig ledning eller brønn. Overvanns-/infiltrasjonsledning, spredegrøft, brønn og borehull er unntatt.", "3.2", 2],
+   ["hage.objekter", "Hage og tomt", "Hageanlegg og tomt inntil fem mål rundt boligen.", "3.3", 2],
+   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 200 000 kroner.", "3.3", 2],
+@@ -72,6 +72,7 @@ const standard = facts("fremtindHusStandard", [
+   ["rettshjelp.egenandel", "Rettshjelp – egenandel", "4 000 kroner pluss 20 % av overskytende utgifter.", "6.6 / FFE-003.001-003 punkt 5.2", 7, "override"],
+ ]);
+ const form = standard.find((fact) => fact.key === "hus.forsikringsform")!;
++standard.find((fact) => fact.key === "hus.bygninger.utsmykning")!.coverageAvailability = "unavailable";
+ form.structuredValue = { kind: "insurance_form", forms: ["full_value", "first_loss"], defaultForm: "full_value", authority: "policy" };
+ standard.push(
+   age("utvendige_ledninger", "utvendige og bunnledninger, sjø-/jordvarmeledning", 20, 5),
+@@ -87,6 +88,7 @@ standard.push(
+ );
+ 
+ const topp = facts("fremtindHusTopp", [
++  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning av bygningen omfattes.", "1.1 Bygning", 1, undefined, true],
+   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 500 000 kroner.", "1.1", 1, undefined, true],
+   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Følgeskade fra utett tak når taket er inntil 50 år, og vann over terreng som trenger inn gjennom utett bygning. Selve taket/veggen og feilen er unntatt.", "2.1", 1, undefined, true],
+   ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "Bekjempelse etter påvist aktivitet på fullverdiforsikret bolig; Fremtind velger metode og skadedyrsfirma. Insekter er unntatt.", "2.2", 1, undefined, true],
+diff --git a/lib/frende-catalog.ts b/lib/frende-catalog.ts
+index 82c364d..09a75cc 100644
+--- a/lib/frende-catalog.ts
++++ b/lib/frende-catalog.ts
+@@ -52,7 +52,7 @@ export const frendeFacts: Record<string, CatalogFact[]> = {
+     ["brann.egenandel","Brann – standardegenandel","6 000 kr med mindre lavere egenandel står i forsikringsbeviset","11.11",9,false,"standard"],
+     ["tyveri.egenandel","Tyveri – standardegenandel","6 000 kr med mindre lavere egenandel står i forsikringsbeviset","11.11",9,false,"standard"],
+     ["bonus.kasko","Bonus ved kaskoskade","Skader med utbetaling kan redusere bonus etter bonusnivå og opptjeningsår","11.13",9],
+-    ["bonus.parkert","Parkeringsskade – bonustap","Ingen bonustap når skadevolder er ukjent, bilen er under seks år og skaden meldes til politiet","11.13",10],
++    ["bonus.parkert","Parkeringsskade – bonustap","Ingen bonustap ved skade som et ukjent kjøretøy påfører kjøretøyet mens det står parkert, når skaden kan knyttes til en bestemt parkering i et avgrenset tidsrom","11.13",10],
+   ]),
+   frendeUtvidet: facts("frendeUtvidet", [
+     ["nyverdi.alder","Totalskadegaranti – alder","Under 3 år","8.1",4,true],
+diff --git a/lib/if-reise-catalog.ts b/lib/if-reise-catalog.ts
+index 70e57c3..09102c9 100644
+--- a/lib/if-reise-catalog.ts
++++ b/lib/if-reise-catalog.ts
+@@ -24,7 +24,7 @@ const common = facts("ifReiseTerms", [
+   ["varighet.norge", "Reisevarighet i Norge", "Ubegrenset antall dager per reise i Norge.", "IPID – hvilken forsikring", 1],
+   ["overnatting", "Reise med eller uten overnatting", "Forsikringen gjelder fra du forlater hjemmet; ordinær reise krever ikke overnatting, men enkelte Super-dekninger krever feriereise med minst én overnatting.", "1 Generelt", 3],
+   ["tjenestereise", "Jobbreise", "Ordinært reiseomfang kan gjelde uten at reisen er ferie, men avbestilling, tapt ferie og enkelte Super-ytelser gjelder ikke jobbreiser.", "2–5", 5],
+-  ["medisinsk.behandling", "Sykdom og ulykkesskade på reise", "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.", "5.1–5.2", 13],
++  ["medisinsk.behandling", "Sykdom og ulykkesskade på reise", "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.", "5.1–5.2", 13],
+   ["medisinsk.tann", "Tannbehandling", "Nødvendig tannbehandling ved akutt tannsykdom eller ulykkesskade dekkes inntil 5 000 kr per skadetilfelle.", "5.2.1", 13],
+   ["hjemtransport", "Hjemtransport", "Rimelige og nødvendige utgifter ved medisinsk nødvendig, forhåndsgodkjent hjemtransport; også ledsagelse og hjemtransport av kiste eller urne. Begravelse på stedet kan erstattes inntil 40 000 kr.", "5.2.2 og 5.4", 14],
+   ["evakuering", "Evakuering", "Nødvendige merutgifter til reise og overnatting til nærmeste sikre destinasjon eller hjemsted i Norge etter ordre/råd fra myndigheter ved krig, terror, politisk uro eller naturkatastrofe; ingen generell øvre sum.", "6", 17],
+@@ -39,7 +39,6 @@ const common = facts("ifReiseTerms", [
+   ["medisinsk.kjent", "Kjent sykdom", "Forverring eller komplikasjon ved sykdom/lidelse kjent før avreise er ikke dekket som uventet akutt sykdom. For avbestilling er skjæringstidspunktet før reisen ble betalt. Ifs helsesjekk kan brukes som forhåndsvurdering.", "2.2.1 og 5.3", 6],
+   ["aktivitet.unntak", "Sport og ekspedisjon", "Medisinske utgifter ved blant annet dykking, klatring, tandemhopp og frikjøring kan omfattes. Ekspedisjoner og turer med dårlig infrastruktur, lang avstand til sykehus eller vanskelig transport krever særskilt tilleggsforsikring.", "12", 23],
+   ["omrade.ud", "UD, krig og terror", "Områder med offisielt UD-reiseråd er unntatt etter vilkårets tidsregler. Avbestilling krever at rådet fortsatt gjelder 72 timer før avreise; evakuering har egne hendelsesvilkår.", "2.2.7 og 6", 6],
+-  ["sikkerhet.reisegods", "Sikkerhetsforskrifter", "Personlige eiendeler skal være under tilsyn, forsvarlig oppbevart, låst, emballert og korrekt innsjekket; verdigjenstander skal ikke ligge i innsjekket bagasje. Ved forsinkelse må tilstrekkelig tid beregnes.", "3.1.2 og 4.4", 8],
+ ]);
+ 
+ const services = facts("ifReiseHelp", [
+@@ -57,6 +56,7 @@ const basis = facts("ifReiseTerms", [
+ ]);
+ 
+ const standard = facts("ifReiseTerms", [
++  ["sikkerhet.reisegods", "Sikkerhetsforskrifter", "Personlige eiendeler skal være under tilsyn, forsvarlig oppbevart, låst, emballert og korrekt innsjekket; verdigjenstander skal ikke ligge i innsjekket bagasje. Ved forsinkelse må tilstrekkelig tid beregnes.", "3.1.2 og 4.4", 8],
+   ["avbestilling.dekning", "Avbestilling", "Ubegrenset forsikringssum for ikke-refunderbare reisekostnader ved dokumenterte årsaker som akutt sykdom, alvorlig ulykkesskade, dødsfall, boligskade, UD-råd og naturkatastrofe. Ingen egenandel; jobbreiser er unntatt.", "2", 5, undefined, true],
+   ["forsinkelse.rute", "Forsinket avgang og fremmøte", "Nødvendige merutgifter til overnatting og innhenting av fastlagt reiserute. Alternativ transport ved forsinket offentlig transport er begrenset til 3 000 kr per person.", "3.1", 7, undefined, true],
+   ["bagasje.forsinket", "Forsinket bagasje", "Nødvendige innkjøp på utreise: 5 000 kr per person og 25 000 kr per familie. Ufrivillig transitt med overnatting: 1 000/5 000 kr. PIR og originalkvitteringer kreves; hjemreise er unntatt.", "3.3", 9, undefined, true],
+diff --git a/lib/mc-bobil-gjensidige-storebrand-catalog.ts b/lib/mc-bobil-gjensidige-storebrand-catalog.ts
+index 63a1636..2459d4f 100644
+--- a/lib/mc-bobil-gjensidige-storebrand-catalog.ts
++++ b/lib/mc-bobil-gjensidige-storebrand-catalog.ts
+@@ -342,6 +342,8 @@ for (const type of ["mc", "bobil"] as const) {
+     );
+     if (type === "mc" && tier !== "ansvar") rows.push(
+       ...at(`mc-bobil:gjensidige-mc-produkt.html:mc`, 1, "Personlige ting", [["mc.bagasje.begrensning", "Ting i låst oppbevaringsrom på motorsykkelen; skaden må være av en type valgt forsikring dekker"]]),
++    );
++    if (type === "mc" && tier === "kasko") rows.push(
+       ...at(sourceId, 4, "Veihjelp ved feriereiser utenfor Norden", [["mc.leiekjoretoy.dekning", "Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden"], ["mc.leiekjoretoy.dager", "Inntil 15 dager"], ["mc.leiekjoretoy.begrensning", "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie"]]),
+     );
+     if (type === "bobil" && tier !== "ansvar") rows.push(...at(sourceId, 3, "Hva er forsikret – fortelt", [["utstyr.begrensning", "Fortelt omfattes ikke av fastmontert ekstrautstyr; krever egen utvidelse"]]));
+diff --git a/lib/storebrand-innbo-catalog.ts b/lib/storebrand-innbo-catalog.ts
+index 8062992..b8d8533 100644
+--- a/lib/storebrand-innbo-catalog.ts
++++ b/lib/storebrand-innbo-catalog.ts
+@@ -112,7 +112,7 @@ export const storebrandInnboFacts: Record<string, CatalogFact[]> = {
+     ["sykkel.uhell.grense", "Sykkel og sportsutstyr under bruk – grense", "40 000 kr i Norden; elsparkesykkel og luftsportsutstyr er unntatt", "sbInnboSuper", "C.1.3", 19],
+     ["sykkel.uhell.egenandel", "Sykkel og sportsutstyr under bruk – egenandel", "2 000 kr per skadet gjenstand, høyst avtalt egenandel", "sbInnboSuper", "C.1.3", 19, false, "override"],
+     ["ulykke.boligtilpasning.grense", "Tilpasning av bolig etter ulykke – grense", "300 000 kr ved minst 50 % medisinsk invaliditet; utgiftene må påløpe innen 5 år", "sbInnboSuper", "C.1.4", 20],
+-    ["flytting.transport.grense", "Skade ved privat flytting", "Avtalt forsikringssum, maksimalt 50 000 kr per gjenstand, ved plutselig ytre skade under transport eller bæring i Norge", "sbInnboSuper", "C.1.5", 20],
++    ["flytting.transport.grense", "Skade ved privat flytting", "Avtalt forsikringssum ved plutselig og uforutsett ytre skade under transport eller bæring ved flytting til ny bolig eller lagringsplass i Norge. Etter C.1.2 er skade utenfor boligen eller ved at ting mistes ned, faller ned eller velter begrenset til 100 000 kr per hendelse; dette gjelder også ved flytting.", "sbInnboSuper", "C.1.5 og C.1.2 (PDF side 18)", 20],
+     ["skadedyr.dekning", "Bekjempelse av skadedyr", "Bekjempelse av gnagere og skadeinsekter i oppgitt fast bolig eller fritidsbolig i Norge, utført av Storebrands samarbeidspartner", "sbInnboSuper", "C.1.6", 20],
+     ["skadedyr.grense", "Skadedyrbekjempelse – grense", "150 000 kr per skadetilfelle", "sbInnboSuper", "C.1.6", 20],
+     ["skadedyr.egenandel", "Skadedyrbekjempelse – egenandel", "2 000 kr", "sbInnboSuper", "C.1.6", 21, false, "override"],
+diff --git a/tests/if-reise-catalog.test.mjs b/tests/if-reise-catalog.test.mjs
+index 285d1e5..714fde0 100644
+--- a/tests/if-reise-catalog.test.mjs
++++ b/tests/if-reise-catalog.test.mjs
+@@ -116,7 +116,13 @@ test("sport UD og sikkerhetskrav kommer fra If og ikke Tryg", () => {
+   const items = resolveCatalogFacts(product("Basis"), []);
+   assert.match(fact(items, "reise.aktivitet.unntak").value, /dykking.*tandemhopp.*Ekspedisjoner/);
+   assert.match(fact(items, "reise.omrade.ud").value, /72 timer/);
+-  assert.match(fact(items, "reise.sikkerhet.reisegods").value, /tilsyn.*låst.*innsjekket/);
++  // ERA3-4 kapittel 3/4 gjelder Standard/Super; Basis har ikke disse dekningene.
++  assert.equal(fact(items, "reise.sikkerhet.reisegods"), undefined);
++  for (const level of ["Standard", "Super"]) {
++    const safety = fact(resolveCatalogFacts(product(level), []), "reise.sikkerhet.reisegods");
++    assert.match(safety.value, /tilsyn.*låst.*innsjekket/);
++    assert.equal(safety.source.company, "If");
++  }
+   assert.equal(items.every((f) => f.source.company === "If"), true);
+ });
+ 
+diff --git a/tests/storebrand-innbo-catalog.test.mjs b/tests/storebrand-innbo-catalog.test.mjs
+index 11f6968..4138ac8 100644
+--- a/tests/storebrand-innbo-catalog.test.mjs
++++ b/tests/storebrand-innbo-catalog.test.mjs
+@@ -115,7 +115,10 @@ test("Super strukturerer uhell, tyveri ute, flytting, skadedyr, ID-tyveri og bol
+   const superFacts = resolveCatalogFacts(product("Storebrand", "Super"), []);
+   assert.match(fact(superFacts, "uhell.dekning").value, /100 000 kr/);
+   assert.match(fact(superFacts, "tyveri.utenforhjem.grense").value, /50 000 kr/);
+-  assert.match(fact(superFacts, "flytting.transport.grense").value, /50 000 kr per gjenstand/);
++  const moving = fact(superFacts, "flytting.transport.grense").value;
++  assert.match(moving, /^Avtalt forsikringssum/);
++  assert.match(moving, /utenfor boligen eller.*mistes ned, faller ned eller velter.*100 000 kr per hendelse/);
++  assert.doesNotMatch(moving, /50 000 kr per gjenstand/);
+   assert.equal(fact(superFacts, "skadedyr.grense").value, "150 000 kr per skadetilfelle");
+   assert.match(fact(superFacts, "idtyveri.grense").value, /1 000 000 kr/);
+   assert.match(fact(superFacts, "ulykke.boligtilpasning.grense").value, /300 000 kr/);

@@ -1,0 +1,47 @@
+{
+  "flaggedReviewed": 18,
+  "unflaggedReviewed": 12,
+  "unknownsReviewed": 18,
+  "detectorAssessment": "OVER_SENSITIVE",
+  "materialFindings": 0,
+  "reviewNotes": [
+    "Båt maskinskade egenandel is a distinct fact and a true source-backed one-sided value, not a collapsed maskinskade concept.",
+    "Båt ferieavbrudd days, total limit and daily amount remain separate canonical identities.",
+    "Båt jolle limit and opplagsutstyr are provider-specific details and do not imply missing base coverage.",
+    "Båt totalskade age remains separate from totalskade coverage.",
+    "Pet annual/selectable/per-event sums remain separate; no annual/per-event equivalence was observed.",
+    "Pet fixed, percentage and period deductibles remain separate; mixed Frende deductible is preserved.",
+    "Pet rollover remains a separate value and does not increase the base annual sum.",
+    "Life reduction start, annual reduction and termination age remain separate facts.",
+    "Hund bruksverdi appears only in Hund and did not appear in either Katt rendering.",
+    "Optional life, boat machinery, boat accident and pet modules remained optional.",
+    "Generic references to the insurance certificate describe customer-specific selection and contain no customer data.",
+    "No status/text contradiction, duplicate display label, internal key leak, source anomaly, order anomaly or cross-type leakage was observed.",
+    "All same-product controls produced zero differences and all side-swap controls preserved the semantic key set.",
+    "Ten additional unflagged rows across kasko, redning, transport, veterinary treatment, medicine, geography, liability and source buttons were coherent.",
+    "Unknown rows reviewed were conservative and did not assert absence of coverage.",
+    "The SAME_CONCEPT_DIFFERENT_STRUCTURE heuristic intentionally over-flags distinct child facts sharing a presentation concept.",
+    "The CUSTOMER_SPECIFIC_REFERENCE heuristic intentionally flags generic source wording, not customer information.",
+    "No audit candidate requires root-cause work before publication."
+  ],
+  "visual": {
+    "desktopComparisons": [
+      "Båt Tryg Båt Ekstra vs If Super",
+      "Båt Storebrand Super vs Frende Utvidet",
+      "Hund Tryg Behandling vs If Super",
+      "Hund Storebrand Veterinær og Dødsfall vs Fremtind Veterinær",
+      "Katt Tryg Behandling vs If Super",
+      "Katt Storebrand Veterinær og Dødsfall vs Fremtind Veterinær"
+    ],
+    "mobile390": ["Båt", "Hund", "Katt"],
+    "quickNavigation": "PASS",
+    "headingHierarchy": "PASS",
+    "optionalStatus": "PASS",
+    "longValues": "PASS",
+    "sourceButtons": "PASS",
+    "pageOverflow": "PASS",
+    "customerOrPriceLeakage": "NONE",
+    "consoleWarningsOrErrors": 0
+  },
+  "recommendation": "READY_TO_PUBLISH"
+}

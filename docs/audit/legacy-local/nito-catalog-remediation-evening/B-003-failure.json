@@ -1,0 +1,16 @@
+{
+  "status": "FAIL",
+  "batch": "B-003",
+  "tests": {
+    "total": 71,
+    "pass": 69,
+    "fail": 2
+  },
+  "causes": [
+    "New test expected undefined for an invalid Delkasko add-on, but selectedComponents correctly throws.",
+    "New synthetic fixture used string addOns, violating the ExtractedAddOn[] input contract; deriveCanonicalCoverages reads addOn.name."
+  ],
+  "production_regression_proven": false,
+  "required_action": "Stop sequence; preserve B-001/B-002; archive and remove only isolated B-003 attempt. Resume requires correctly shaped tests and a fresh B-003 gate.",
+  "restoration": "Exact SHA-256 match to successful B-002 checkpoint for both affected files."
+}

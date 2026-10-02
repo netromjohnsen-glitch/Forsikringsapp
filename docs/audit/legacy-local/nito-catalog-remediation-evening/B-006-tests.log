@@ -1,0 +1,92 @@
+(node:67202) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (0.881291ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (8.556167ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (2.77475ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (1.786958ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (5.559209ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (0.913ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.251291ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (1.686542ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.250792ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.495042ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.32475ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (1.131125ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (0.898417ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (1.0515ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (1.1585ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (0.998916ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (1.086541ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (3.535667ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (0.9875ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (1.704833ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.193833ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (11.690625ms)
+✔ normalisering er forsikringstypeavgrenset (0.600834ms)
+(node:67204) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ offisielle Frende-kilder har kontrollert hash, dato og dokumentankere (88.385ms)
+✔ Frende har dokumentert Ansvar → Delkasko → Kasko → Utvidet-arv (4.261333ms)
+✔ Leiebil og Maskinskade er uavhengige tillegg på Kasko og Utvidet (0.844458ms)
+✔ egenandeler beholder standard-, referanse- og særskilt klassifisering (0.6905ms)
+✔ UI-runtime beholder begge Frende-tillegg til sammenligning mot Tryg (40.174667ms)
+✔ Frende sammenlignes kildeisolert mot Fremtind og If (23.286208ms)
+(node:67205) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (2.468334ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (7.077083ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.142541ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (4.582667ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (12.830458ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (0.875375ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (29.651875ms)
+✔ B-002: explicit customer artwork information retains document authority (1.013042ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.70425ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.498834ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (23.924541ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (1.487875ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (9.004125ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.217208ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (2.712958ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (7.595459ms)
+✔ B-006: Frende parking bonus clause follows §11.13 on Kasko and Utvidet (1.027125ms)
+✖ B-006: parking comparison and explicit customer terms remain stable (6.255042ms)
+ℹ tests 47
+ℹ suites 0
+ℹ pass 46
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 697.371125
+
+✖ failing tests:
+
+test at tests/nito-remediation-wave1.test.mjs:179:1
+✖ B-006: parking comparison and explicit customer terms remain stable (6.255042ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(f)
+  
+      at assertSwap (file:///Users/morten/Documents/forsikringsapp/tests/nito-remediation-wave1.test.mjs:121:10)
+      at TestContext.<anonymous> (file:///Users/morten/Documents/forsikringsapp/tests/nito-remediation-wave1.test.mjs:180:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

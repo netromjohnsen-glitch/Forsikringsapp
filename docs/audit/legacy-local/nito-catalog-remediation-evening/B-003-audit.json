@@ -1,0 +1,228 @@
+{
+  "status": "PASS",
+  "batch": "B-003",
+  "source_verification": "Own reviewed PDF p6 §4.9.5: fixed 4000 <=5y, 8000 >5 <=10y, 10/20/30/40/50 percent through ages11/12/13/14/15 minimum8000 only percentage branches; age from Jan1 year after purchase; expires over15y. Optional component only; base unchanged; page/provenance intact.",
+  "source_hashes": {
+    "catalog/sources/boat-pet/if-boat-terms.pdf": "57e7aac8542dd10bfc92611f380b68754905b6808a66590307af86517c2072ae"
+  },
+  "changed_products": [
+    "if-bat-kasko",
+    "if-bat-super"
+  ],
+  "unchanged_products": 202,
+  "allowed_keys": [
+    "bat.maskinskade.egenandel"
+  ],
+  "deltas": [
+    {
+      "product": "if-bat-kasko",
+      "view": "product-comparison",
+      "key": "bat.maskinskade.egenandel",
+      "before": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Aldersgradert prosentandel, minst 8 000 kr",
+        "state": "optional",
+        "addOnNames": [
+          "Motor- og girskade"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:if:båt",
+            "filename": "if-boat-terms.pdf",
+            "termsNumber": "BÅT2-1",
+            "effectiveFrom": "2023-02-01",
+            "version": "2023-02-01",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+            "company": "If",
+            "page": 6,
+            "section": "4.9.5",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      },
+      "after": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Alder på motor, gir og drivverk: til og med 5 år 4 000 kr; over 5 til og med 10 år 8 000 kr; til og med 11 år 10 %, 12 år 20 %, 13 år 30 %, 14 år 40 % og 15 år 50 % av reparasjonskostnaden. Minst 8 000 kr gjelder prosentgrenene. Over 15 år opphører dekningen. Alder regnes fra 1. januar året etter kjøp som ny.",
+        "state": "optional",
+        "addOnNames": [
+          "Motor- og girskade"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:if:båt",
+            "filename": "if-boat-terms.pdf",
+            "termsNumber": "BÅT2-1",
+            "effectiveFrom": "2023-02-01",
+            "version": "2023-02-01",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+            "company": "If",
+            "page": 6,
+            "section": "4.9.5",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      }
+    },
+    {
+      "product": "if-bat-kasko",
+      "view": "if-bat-motor-gir",
+      "key": "bat.maskinskade.egenandel",
+      "before": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Aldersgradert prosentandel, minst 8 000 kr",
+        "deductibleClassification": "coverage",
+        "source": {
+          "documentId": "boat-pet:if:båt",
+          "filename": "if-boat-terms.pdf",
+          "termsNumber": "BÅT2-1",
+          "effectiveFrom": "2023-02-01",
+          "version": "2023-02-01",
+          "agreementScope": "ordinary",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+          "company": "If",
+          "page": 6,
+          "section": "4.9.5",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Alder på motor, gir og drivverk: til og med 5 år 4 000 kr; over 5 til og med 10 år 8 000 kr; til og med 11 år 10 %, 12 år 20 %, 13 år 30 %, 14 år 40 % og 15 år 50 % av reparasjonskostnaden. Minst 8 000 kr gjelder prosentgrenene. Over 15 år opphører dekningen. Alder regnes fra 1. januar året etter kjøp som ny.",
+        "deductibleClassification": "coverage",
+        "source": {
+          "documentId": "boat-pet:if:båt",
+          "filename": "if-boat-terms.pdf",
+          "termsNumber": "BÅT2-1",
+          "effectiveFrom": "2023-02-01",
+          "version": "2023-02-01",
+          "agreementScope": "ordinary",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+          "company": "If",
+          "page": 6,
+          "section": "4.9.5",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "if-bat-super",
+      "view": "product-comparison",
+      "key": "bat.maskinskade.egenandel",
+      "before": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Aldersgradert prosentandel, minst 8 000 kr",
+        "state": "optional",
+        "addOnNames": [
+          "Motor- og girskade"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:if:båt",
+            "filename": "if-boat-terms.pdf",
+            "termsNumber": "BÅT2-1",
+            "effectiveFrom": "2023-02-01",
+            "version": "2023-02-01",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+            "company": "If",
+            "page": 6,
+            "section": "4.9.5",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      },
+      "after": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Alder på motor, gir og drivverk: til og med 5 år 4 000 kr; over 5 til og med 10 år 8 000 kr; til og med 11 år 10 %, 12 år 20 %, 13 år 30 %, 14 år 40 % og 15 år 50 % av reparasjonskostnaden. Minst 8 000 kr gjelder prosentgrenene. Over 15 år opphører dekningen. Alder regnes fra 1. januar året etter kjøp som ny.",
+        "state": "optional",
+        "addOnNames": [
+          "Motor- og girskade"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:if:båt",
+            "filename": "if-boat-terms.pdf",
+            "termsNumber": "BÅT2-1",
+            "effectiveFrom": "2023-02-01",
+            "version": "2023-02-01",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+            "company": "If",
+            "page": 6,
+            "section": "4.9.5",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      }
+    },
+    {
+      "product": "if-bat-super",
+      "view": "if-bat-motor-gir",
+      "key": "bat.maskinskade.egenandel",
+      "before": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Aldersgradert prosentandel, minst 8 000 kr",
+        "deductibleClassification": "coverage",
+        "source": {
+          "documentId": "boat-pet:if:båt",
+          "filename": "if-boat-terms.pdf",
+          "termsNumber": "BÅT2-1",
+          "effectiveFrom": "2023-02-01",
+          "version": "2023-02-01",
+          "agreementScope": "ordinary",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+          "company": "If",
+          "page": 6,
+          "section": "4.9.5",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "bat.maskinskade.egenandel",
+        "label": "Motor- og maskinskade – egenandel",
+        "value": "Alder på motor, gir og drivverk: til og med 5 år 4 000 kr; over 5 til og med 10 år 8 000 kr; til og med 11 år 10 %, 12 år 20 %, 13 år 30 %, 14 år 40 % og 15 år 50 % av reparasjonskostnaden. Minst 8 000 kr gjelder prosentgrenene. Over 15 år opphører dekningen. Alder regnes fra 1. januar året etter kjøp som ny.",
+        "deductibleClassification": "coverage",
+        "source": {
+          "documentId": "boat-pet:if:båt",
+          "filename": "if-boat-terms.pdf",
+          "termsNumber": "BÅT2-1",
+          "effectiveFrom": "2023-02-01",
+          "version": "2023-02-01",
+          "agreementScope": "ordinary",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=B%C3%A5tforsikring",
+          "company": "If",
+          "page": 6,
+          "section": "4.9.5",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-3706",
+    "GAP-3746"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "d07e9ae8a55beeaf"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

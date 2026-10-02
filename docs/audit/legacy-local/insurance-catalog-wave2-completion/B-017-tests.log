@@ -1,0 +1,209 @@
+(node:86738) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (1.700125ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (14.936334ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (2.825958ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (2.045833ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (9.508167ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (1.569167ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (4.874917ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (3.663625ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (4.193584ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.096834ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.9265ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (1.011209ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (1.280542ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (2.093416ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (1.438584ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (3.348792ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (2.441083ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (7.979458ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (1.687792ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (2.315875ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.56725ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (21.598625ms)
+✔ normalisering er forsikringstypeavgrenset (0.657042ms)
+(node:86739) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/analysis-output.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ dokumentets maskinskadealder er den eneste effektive verdien (12.996166ms)
+✔ dokumentets maskinskadekilometer vinner også når katalogverdien er lik (3.055416ms)
+✔ canonical Maskinskade-sammendrag bruker 10 år og lekker ikke 12 år (3.587958ms)
+✔ Kasko totalskadegaranti bruker dokumentets 15 000 km fremfor katalogens 20 000 km (1.311ms)
+✔ Pluss totalskadegaranti beholder dokumentets separate 3 år og 60 000 km (1.220542ms)
+✔ generisk totalskadeetikett får sikkert scope fra modellens canonical fact-ID (1.582291ms)
+✔ leiebilens fire varigheter får separate canonical nøkler (2.458542ms)
+✔ leiebilsammendrag bruker 30 dager ved tekniske problemer, ikke katalogens 15 (2.685ms)
+✔ fullt leiebilsammendrag beholder reparasjon, totalskade, teknisk problem og feriereise (4.882458ms)
+✔ Kia Kasko beholder eksplisitt ikke valgt Leiebil (2.762625ms)
+✔ Kia-displaynavn katalogmatches med separat canonical Kasko-identitet (1.584792ms)
+✔ Leaf-displaynavn katalogmatches med separat canonical Pluss-identitet (0.869542ms)
+✔ ukjent canonical produktidentitet fuzzy-matches ikke via et Kasko-lignende displaynavn (0.834791ms)
+✔ eksplisitt ukjent canonical produktidentitet faller ikke tilbake til displaynavnet (0.057333ms)
+✔ katalogmatch er uavhengig av bilmodell og registreringsnummer i displaynavnet (1.729208ms)
+✔ konfliktende catalogFacts beholdes som audit selv når dokumentverdien vinner (1.60575ms)
+✔ presentation får ikke den konfliktende katalogalderen som kundeverdi (18.114ms)
+✔ Viktigste forskjeller bruker effektive totalskadeverdier (6.649625ms)
+✔ detaljert sammenligning bruker effektive canonical kundeverdier (10.761667ms)
+✔ katalogkilde vises fortsatt når katalogen supplerer et manglende felt (1.315125ms)
+✔ samme resolution-path fungerer for Tryg uten providerspesialregel (0.922667ms)
+✔ feriereiseverdien kan ikke lekke til tekniske problemer (1.367875ms)
+✔ maskinskadealder kolliderer ikke med parkerings- eller totalskadealder (1.499ms)
+✔ modell-schema krever separat canonical produktidentitet (0.3025ms)
+✔ Pluss totalskadegrense splittes også når uttrekket plasserer paret på aldersnøkkelen (1.390875ms)
+✔ sammensatt totalskadealias normaliseres uten fuzzy matching (4.028292ms)
+✔ generisk aldersgrense tolkes ikke som totalskadegaranti (4.319708ms)
+✔ varierende dokumentgrenser hardkodes ikke til pilotens 3 år og 60 000 km (0.813959ms)
+✔ Pluss beholder tre separate dokumenterte premiefakta og konsistent objekttotal (5.240792ms)
+✔ Kasko beholder tre separate dokumenterte premiefakta og konsistent objekttotal (3.016417ms)
+✔ Tryg-premie bruker samme generelle TFA-normalisering (1.987666ms)
+✔ manglende total beregnes ikke fra ekskl-premie og avgift (1.718166ms)
+✔ avtaletotal overføres ikke til hvert kjøretøy (0.642584ms)
+✔ document selected status and canonical addon metadata restore addon overview (1.433209ms)
+✔ ikke valgt leiebil listes aldri som valgt tillegg (0.9365ms)
+✔ standarddekninger og katalog alene skaper ikke dokumenterte tillegg (1.703ms)
+✔ Tryg dokumentert Leiebil-tillegg vises gjennom samme tilleggsoversikt (2.430291ms)
+✔ bilnøkkel og førstegangsregistrering beholdes under korrekthetsoppryddingen (2.33225ms)
+✔ JSON-uttrekk med canonical premium keys går gjennom validering, enrichment og presentasjon (2.198833ms)
+✔ motstridende eksplisitte premietotaler velges ikke vilkårlig (0.927416ms)
+✔ tilleggsoversikten dupliserer ikke addOns og effektive statuser (4.705625ms)
+✔ separat totalskadealder beholder hele dokumentformuleringen uten konkurrerende kortverdi (0.986166ms)
+(node:86740) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ sju offisielle Fremtind Reise-kilder er lokale og hashverifiserte (10.865375ms)
+✔ aktiv Fremtind Reise er én produktgenerasjon og historisk Eika er eksplisitt separat (3.1725ms)
+✔ aktive kilder er PRE-450.200-015 og IPID V.104 for alle tre kanaler (0.109833ms)
+✔ aktiv generasjon har ett nivå uten historiske plusstillegg (0.730417ms)
+✔ historiske kilder og produkter er tydelig avgrenset til Eika-generasjonen (0.217ms)
+✔ alle aktive fakta peker bare på aktivt hovedvilkår eller IPID (22.4415ms)
+✔ aktiv standard er 70 dager og andre varigheter er bare kundespesifikke valg (0.370333ms)
+✔ SpareBank 1 DNB og Eika nytegning velger samme aktive katalogreferanse (2.33025ms)
+✔ historisk Eika P10 og P10P beholder 77 dager og Reise Pluss-arv (0.458666ms)
+✔ aktiv og historisk provenance og fakta lekker ikke mellom generasjoner (1.852583ms)
+✖ aktive reisegods forsinkelse leiebil og sykdomsfakta følger nytt vilkår (1.033958ms)
+✔ aktiv reiseavbrudd avbestilling ulykke og rettshjelp følger nytt vilkår (0.247292ms)
+✔ manual flow krever eksplisitt historisk navn og stabil katalogreferanse (1.60525ms)
+✔ feil katalogreferanse kan ikke bytte aktiv og historisk generasjon (0.807417ms)
+✔ kundedokumentets avtalte reisevarighet kan beholdes uten automatisk katalogkobling (0.381ms)
+✔ PDF-uttrekk bevarer eksplisitt produktgenerasjon og avtalt varighet uten automatisk remapping (0.10275ms)
+✔ aktiv mot historisk viser reell 70 mot 77-dagers forskjell (10.256667ms)
+✔ SpareBank 1 mot DNB aktiv Reise gir ingen falsk varighetsforskjell (2.708875ms)
+✔ fire forsikringstyper for Fremtind er fortsatt isolert (2.129625ms)
+(node:86741) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (1.589917ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (3.153541ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.086875ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (6.063042ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (16.657416ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (1.147375ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (21.989584ms)
+✔ B-002: explicit customer artwork information retains document authority (1.23825ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.74825ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.47275ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (27.205833ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (1.996666ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (9.813667ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.9055ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (3.01725ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (9.159458ms)
+✔ B-006: Frende parking bonus clause follows §11.13 on Kasko and Utvidet (1.470625ms)
+✔ B-006: parking comparison and explicit customer terms remain stable (7.440417ms)
+✔ B-007: both Gjensidige house levels retain thawing with its own product-page source (1.144334ms)
+✔ B-007: thawing comparison preserves source and document authority in both directions (10.907875ms)
+(node:86742) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-008: Storebrand Super receives source-backed storage equipment and limit (5.855208ms)
+✔ B-008: false unknown is removed without changing Kasko or Delkasko coverage (15.759792ms)
+✔ B-008: explicit customer storage equipment limit still overrides catalog (15.831458ms)
+✔ B-009: Fremtind dog base separates lifetime allergy and annual MR/CT limits (2.740916ms)
+✔ B-009: only selected Topp replaces sublimits; product mode retains included base and optional extension (15.279375ms)
+✔ B-009: silent and explicitly rejected Topp do not remove base limits or select addon (15.399584ms)
+✔ B-009: a named selected Topp extends limits without overriding explicit customer values (10.395417ms)
+✔ B-010: life deduction preserves all breed groups, renewal wording and floor (1.232958ms)
+✔ B-010: life remains optional and reduction/expiry stay separate in comparison (16.700625ms)
+✔ B-010: explicit customer life reduction age still has priority (5.843333ms)
+✔ B-011: Extra replaces inherited common-storage cap with its own location rules (1.282834ms)
+✔ B-011: scoped limits survive swaps and explicit customer overrides (7.891083ms)
+✔ B-012: Gjensidige Bobil Kasko has own-source pest coverage without lower-tier leakage (1.40825ms)
+✔ B-012: pest false unknown closes in both directions while document exclusions win (18.908666ms)
+✔ B-013: Storebrand house deductions preserve material and indoor-electric scope (2.201542ms)
+✔ B-013: house scope qualifiers survive comparisons and customer priority (18.780375ms)
+✔ B-014: private vehicle parts and liability retain their own geographic scopes (1.603292ms)
+✔ B-014: Plus bicycle accident/vandalism is worldwide while theft and storage remain distinct (10.968917ms)
+✔ B-014: optional rent default deductible is not vandalism deductible or implicit selection (3.328ms)
+✔ B-014: source-specific corrections preserve comparison symmetry and document authority (15.377208ms)
+✔ B-016: Gjensidige Reise Plus replaces Standard single-item sum using its own source (1.080834ms)
+✔ B-016: per-item improvement remains distinct from total and explicit customer sums (8.1885ms)
+✔ B-019: Storebrand Standard and Super share explicit source-backed day-trip eligibility (1.235208ms)
+✔ B-019: Tryg Ekstra/Premium and Storebrand overnight row is known and symmetric (30.253416ms)
+✔ B-019: general day trips do not erase rental car overnight or geography conditions (0.195584ms)
+✔ B-019: explicit document overnight terms override general catalog eligibility (3.325833ms)
+✔ B-017: active Fremtind separates missed transport from delayed departure and combined cap (7.086625ms)
+✔ B-017: unavailable checked bag branch has separate source and no four-hour requirement (0.240917ms)
+✔ B-017: existing delay identities compare without historical Eika fallback (13.598292ms)
+✖ B-017: precise Reise labels map only in Reise, preserving generic delay (0.744125ms)
+✔ B-017: explicit precise document amounts win with alternative values (2.776167ms)
+✔ B-017: broad document delay blocks uncertain catalog children across repeated normalization (11.459083ms)
+✔ B-017: broad plus explicit child retains customer child but blocks uncertain sibling (0.83025ms)
+✔ B-017: undocumented broad placeholders allow exact catalog children (1.441292ms)
+ℹ tests 138
+ℹ suites 0
+ℹ pass 136
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 672.34175
+
+✖ failing tests:
+
+test at tests/fremtind-reise-catalog.test.mjs:112:1
+✖ aktive reisegods forsinkelse leiebil og sykdomsfakta følger nytt vilkår (1.033958ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /6 000.*ubegrenset/. Input:
+  
+  'Rimelige og nødvendige merutgifter etter at reisen er påbegynt, ved vær eller annen plutselig og uforutsett hendelse som gir ekstraordinære trafikkforhold, teknisk feil eller trafikkuhell på offentlig transport, teknisk feil eller trafikkuhell som krever berging av privat kjøretøy, eller nødlanding. Forsinkelse, årsak og merutgifter må dokumenteres; selskapet skal kontaktes før bestilling av billetter. Utgifter andre aktører har ansvar for, reiser som ikke gjennomføres, mat og drikke omfattes ikke.'
+  
+      at TestContext.<anonymous> (file:///Users/morten/Documents/forsikringsapp/tests/fremtind-reise-catalog.test.mjs:118:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Rimelige og nødvendige merutgifter etter at reisen er påbegynt, ved vær eller annen plutselig og uforutsett hendelse som gir ekstraordinære trafikkforhold, teknisk feil eller trafikkuhell på offentlig transport, teknisk feil eller trafikkuhell som krever berging av privat kjøretøy, eller nødlanding. Forsinkelse, årsak og merutgifter må dokumenteres; selskapet skal kontaktes før bestilling av billetter. Utgifter andre aktører har ansvar for, reiser som ikke gjennomføres, mat og drikke omfattes ikke.',
+    expected: /6 000.*ubegrenset/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/nito-remediation-wave2.test.mjs:277:1
+✖ B-017: precise Reise labels map only in Reise, preserving generic delay (0.744125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'forsinket fremmøte sum'
+  - 'reise.forsinkelse.fremmote_sum'
+  
+      at TestContext.<anonymous> (file:///Users/morten/Documents/forsikringsapp/tests/nito-remediation-wave2.test.mjs:280:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'forsinket fremmøte sum',
+    expected: 'reise.forsinkelse.fremmote_sum',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "batch": "B-005",
+  "source_verification": "Own innbo09 p20 C1.5 agreed sum, no50000/item; C1.2 p18 100000/event only outside dwelling or dropped/fallen/toppled. Standard untouched; customers retain sums.",
+  "source_hashes": {
+    "catalog/sources/storebrand/innbo/Storebrand_Innbo_innbo09.pdf": "926c4b93a76b49868bc596784fac9133613f80dc2487d96ab608eb73cfa90776"
+  },
+  "changed_products": [
+    "sb-innbo-super"
+  ],
+  "unchanged_products": 203,
+  "allowed_keys": [
+    "flytting.transport.grense"
+  ],
+  "deltas": [
+    {
+      "product": "sb-innbo-super",
+      "view": "base",
+      "key": "flytting.transport.grense",
+      "before": {
+        "key": "flytting.transport.grense",
+        "label": "Skade ved privat flytting",
+        "value": "Avtalt forsikringssum, maksimalt 50 000 kr per gjenstand, ved plutselig ytre skade under transport eller bæring i Norge",
+        "source": {
+          "documentId": "sbInnboSuper",
+          "section": "C.1.5",
+          "page": 20,
+          "filename": "Storebrand_Innbo_innbo09.pdf",
+          "termsNumber": "innbo09",
+          "effectiveFrom": "2024-07-02",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/9b3b5c27-3e81-4201-b0aa-a27ea63add19:9655c7f64a7b98c7016c3130c592dbacdc1d312c/vilkar-innboforsikring.pdf",
+          "productCode": "17035l",
+          "version": "innbo09",
+          "note": "Forsikringsbeviset angir valgt nivå og forsikringssum og gjelder foran vilkåret"
+        }
+      },
+      "after": {
+        "key": "flytting.transport.grense",
+        "label": "Skade ved privat flytting",
+        "value": "Avtalt forsikringssum ved plutselig og uforutsett ytre skade under transport eller bæring ved flytting til ny bolig eller lagringsplass i Norge. Etter C.1.2 er skade utenfor boligen eller ved at ting mistes ned, faller ned eller velter begrenset til 100 000 kr per hendelse; dette gjelder også ved flytting.",
+        "source": {
+          "documentId": "sbInnboSuper",
+          "section": "C.1.5 og C.1.2 (PDF side 18)",
+          "page": 20,
+          "filename": "Storebrand_Innbo_innbo09.pdf",
+          "termsNumber": "innbo09",
+          "effectiveFrom": "2024-07-02",
+          "company": "Storebrand",
+          "url": "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/9b3b5c27-3e81-4201-b0aa-a27ea63add19:9655c7f64a7b98c7016c3130c592dbacdc1d312c/vilkar-innboforsikring.pdf",
+          "productCode": "17035l",
+          "version": "innbo09",
+          "note": "Forsikringsbeviset angir valgt nivå og forsikringssum og gjelder foran vilkåret"
+        }
+      }
+    },
+    {
+      "product": "sb-innbo-super",
+      "view": "product-comparison",
+      "key": "flytting.transport.grense",
+      "before": {
+        "key": "flytting.transport.grense",
+        "label": "Skade ved privat flytting",
+        "value": "Avtalt forsikringssum, maksimalt 50 000 kr per gjenstand, ved plutselig ytre skade under transport eller bæring i Norge",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "sbInnboSuper",
+            "section": "C.1.5",
+            "page": 20,
+            "filename": "Storebrand_Innbo_innbo09.pdf",
+            "termsNumber": "innbo09",
+            "effectiveFrom": "2024-07-02",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/9b3b5c27-3e81-4201-b0aa-a27ea63add19:9655c7f64a7b98c7016c3130c592dbacdc1d312c/vilkar-innboforsikring.pdf",
+            "productCode": "17035l",
+            "version": "innbo09",
+            "note": "Forsikringsbeviset angir valgt nivå og forsikringssum og gjelder foran vilkåret"
+          }
+        ]
+      },
+      "after": {
+        "key": "flytting.transport.grense",
+        "label": "Skade ved privat flytting",
+        "value": "Avtalt forsikringssum ved plutselig og uforutsett ytre skade under transport eller bæring ved flytting til ny bolig eller lagringsplass i Norge. Etter C.1.2 er skade utenfor boligen eller ved at ting mistes ned, faller ned eller velter begrenset til 100 000 kr per hendelse; dette gjelder også ved flytting.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "sbInnboSuper",
+            "section": "C.1.5 og C.1.2 (PDF side 18)",
+            "page": 20,
+            "filename": "Storebrand_Innbo_innbo09.pdf",
+            "termsNumber": "innbo09",
+            "effectiveFrom": "2024-07-02",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/9b3b5c27-3e81-4201-b0aa-a27ea63add19:9655c7f64a7b98c7016c3130c592dbacdc1d312c/vilkar-innboforsikring.pdf",
+            "productCode": "17035l",
+            "version": "innbo09",
+            "note": "Forsikringsbeviset angir valgt nivå og forsikringssum og gjelder foran vilkåret"
+          }
+        ]
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-0931"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "0eb8ba09123305ee"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

@@ -1,0 +1,5686 @@
+Vi skal gjennomføre en full READ-ONLY:
+
+NITO PRE-PILOT SECURITY, GDPR & PRODUCT READINESS AUDIT
+
+av Forsikringsassistenten.
+
+MODELL:
+GPT-5.6 Medium.
+
+Dette er en AUDIT.
+
+IKKE gjør kodeendringer.
+IKKE rett bugs.
+IKKE endre dokumentasjon.
+IKKE endre Railway.
+IKKE endre environment variables.
+IKKE endre .env.local.
+IKKE aktiver production tracing.
+IKKE commit.
+IKKE push.
+IKKE deploy.
+IKKE reset.
+IKKE revert.
+IKKE stash.
+
+Hvis du finner problemer:
+DOKUMENTER dem.
+
+Vi skal gjennomgå funnene før rettelser.
+
+==================================================
+1 – HOVEDMÅL
+==================================================
+
+Vi vurderer om Forsikringsassistenten er klar til en begrenset intern pilot
+hos NITO Forsikringssenter med ekte forsikringsrådgivere.
+
+Piloten kan innebære behandling av ekte kundedokumenter.
+
+Audit skal svare på to hovedspørsmål:
+
+A.
+Er den tekniske løsningen sikker og personvernmessig forsvarlig nok til at
+ekte kundedata kan behandles i en kontrollert pilot?
+
+B.
+Er produktet modent nok til at en annen forsikringsrådgiver kan bruke det
+uten at utvikleren sitter ved siden av og forklarer/redder arbeidsflyten?
+
+==================================================
+2 – VIKTIG BEGRENSNING
+==================================================
+
+Dette er:
+
+technical security audit
+privacy engineering audit
+GDPR readiness/gap analysis
+product readiness audit
+
+Det er IKKE:
+
+juridisk godkjenning
+juridisk rådgivning
+formell GDPR-sertifisering
+penetrasjonstest fra tredjepart
+Finanstilsynet-godkjenning.
+
+Rapporten skal eksplisitt skille:
+
+TECHNICALLY VERIFIED
+
+fra:
+
+LEGAL / ORGANIZATIONAL REVIEW REQUIRED.
+
+==================================================
+3 – NO PRIVATE DATA
+==================================================
+
+Audit skal IKKE bruke ekte kundedokumenter.
+
+Bruk:
+
+syntetiske testdata
+offentlige source artifacts
+eksisterende testfixtures.
+
+Ingen:
+
+kundenavn
+polisenummer
+registreringsnummer fra ekte kunder
+adresse
+helseopplysninger
+private PDF-er.
+
+==================================================
+4 – BASELINE
+==================================================
+
+Før audit:
+
+registrer:
+
+- branch
+- HEAD
+- git status
+- staged files
+- modified files
+- untracked files
+- production deployment state if safely available
+- application URL/configuration without exposing secrets
+- test baseline
+- catalog size
+- eligible insurance families.
+
+Fingerprint working tree.
+
+Audit must leave repo unchanged.
+
+==================================================
+5 – CURRENT EXPECTED PRODUCT STATE
+==================================================
+
+Expected current architecture includes approximately:
+
+12 skadeforsikringsfamilier:
+
+- Bil
+- Hus
+- Innbo
+- Reise
+- Snøscooter
+- Campingvogn
+- Tilhenger
+- MC
+- Bobil
+- Båt
+- Hund
+- Katt
+
+Verify actual state.
+
+Do not hardcode expected counts if repository differs.
+
+==================================================
+6 – SECURITY THREAT MODEL
+==================================================
+
+Create a concise threat model for the pilot.
+
+Identify at minimum:
+
+ASSETS:
+- customer PDFs
+- extracted customer facts
+- comparison results
+- authentication/session
+- API credentials
+- provider catalog/source data
+- feedback attachments
+- application configuration.
+
+ACTORS:
+- authorized advisor
+- unauthorized internet user
+- another pilot user
+- malicious uploaded document
+- compromised browser/session
+- accidental internal disclosure.
+
+TRUST BOUNDARIES:
+- browser
+- Next.js frontend
+- server/API routes
+- PDF processing
+- AI provider
+- Railway/runtime
+- logging/telemetry
+- feedback storage
+- any external services.
+
+==================================================
+7 – DATA FLOW MAP
+==================================================
+
+Trace the actual data flow for:
+
+A. PDF comparison
+B. manual comparison
+C. hybrid comparison
+D. product comparison
+E. feedback submission
+F. authentication/pilot access
+
+For each step record:
+
+- data entering
+- processing location
+- external recipient
+- persistence
+- cache
+- logging
+- retention/deletion
+- output.
+
+Do not infer architecture.
+
+Inspect actual code/configuration.
+
+==================================================
+8 – CUSTOMER PDF LIFECYCLE
+==================================================
+
+Determine exactly what happens to uploaded PDFs.
+
+Answer:
+
+- Does browser send entire PDF to server?
+- Is file written to disk?
+- Is it kept in memory?
+- Is it persisted?
+- Is it cached?
+- Is it sent to AI provider?
+- Is original PDF sent or extracted text?
+- Is it included in logs?
+- Is filename logged?
+- When is it deleted/released?
+- Can another request/user access it?
+- What happens after error/timeout?
+- What happens after server restart?
+
+If any answer cannot be proven:
+
+mark UNKNOWN / REVIEW REQUIRED.
+
+==================================================
+9 – EXTRACTED TEXT LIFECYCLE
+==================================================
+
+Same audit for:
+
+- extracted PDF text
+- model input
+- model output
+- normalized facts
+- customer comparison result.
+
+Search actual logging paths.
+
+==================================================
+10 – DATA MINIMIZATION
+==================================================
+
+Assess whether app sends/processes more customer information than required.
+
+Look for opportunities where:
+
+- filename
+- irrelevant PDF pages
+- customer name
+- address
+- policy number
+- object identifiers
+- free text
+
+are unnecessarily transmitted or retained.
+
+Do not implement changes.
+
+==================================================
+11 – AI PROVIDER DATA FLOW
+==================================================
+
+Identify actual AI integration.
+
+Document:
+
+- provider/API
+- model configuration
+- data sent
+- whether entire PDF or extracted content is sent
+- server-side only or client-side
+- retry behavior
+- error logging
+- response handling.
+
+Do not print API keys.
+
+==================================================
+12 – AI PRIVACY CONFIGURATION
+==================================================
+
+Audit code/configuration for available privacy-related settings and behavior.
+
+Do not assume contractual/data-retention terms from code alone.
+
+Separate:
+
+TECHNICAL OBSERVATION
+
+from:
+
+CONTRACTUAL/LEGAL VERIFICATION REQUIRED.
+
+==================================================
+13 – DATA PROCESSOR MAP
+==================================================
+
+Based on actual architecture identify likely processors/subprocessors such as:
+
+- hosting
+- AI provider
+- logging/monitoring
+- feedback storage
+- analytics
+- email/service providers if present.
+
+Do not invent services.
+
+For each classify:
+
+USED / NOT USED / UNKNOWN.
+
+Legal/DPA status may require manual review.
+
+==================================================
+14 – GDPR ROLE QUESTIONS
+==================================================
+
+Document questions requiring organizational/legal decision:
+
+- Who is controller during NITO pilot?
+- Is app provider a processor?
+- Is NITO controller?
+- Are there joint-controller scenarios?
+- What instructions govern processing?
+- Who handles data subject requests?
+- Who handles deletion requests?
+- Who reports incidents?
+
+Do not decide these solely from code.
+
+==================================================
+15 – PROCESSING PURPOSE
+==================================================
+
+Identify the apparent technical purpose:
+
+insurance-document comparison
+coverage analysis
+advisor support
+feedback/pilot improvement.
+
+Flag any processing not necessary for those purposes.
+
+==================================================
+16 – LEGAL BASIS
+==================================================
+
+Do NOT declare legal basis.
+
+Create a section:
+
+LEGAL BASIS – LEGAL REVIEW REQUIRED
+
+listing actual processing activities that need a documented basis.
+
+==================================================
+17 – SPECIAL CATEGORY DATA
+==================================================
+
+Current skadeforsikring documents may still contain sensitive information.
+
+Search architecture for ability to process arbitrary document text.
+
+Assess whether health/special-category data could accidentally enter the
+system.
+
+This is especially important before future person insurance.
+
+Do not use real health data.
+
+==================================================
+18 – PERSON INSURANCE GATE
+==================================================
+
+Explicitly assess whether current architecture should be considered ready to
+receive person-insurance documents containing potential health data.
+
+Do not implement person insurance.
+
+Return:
+
+PERSON_INSURANCE_PRIVACY_GATE:
+READY / NOT_READY / LEGAL_REVIEW_REQUIRED
+
+with reasons.
+
+Be conservative.
+
+==================================================
+19 – RETENTION
+==================================================
+
+Find actual retention behavior for:
+
+- PDF
+- extracted text
+- AI input/output
+- normalized customer facts
+- comparison result
+- feedback text
+- feedback screenshot/image
+- logs.
+
+For each:
+
+KNOWN
+UNKNOWN
+
+and actual retention mechanism/time if provable.
+
+==================================================
+20 – DELETION
+==================================================
+
+Determine whether customer data can be deleted from every persistent
+location.
+
+Identify:
+
+- automatic deletion
+- manual deletion
+- missing deletion mechanism
+- backups/logs outside application control.
+
+No assumptions.
+
+==================================================
+21 – LOGGING AUDIT
+==================================================
+
+Search production code for:
+
+console.log
+console.error
+logger
+telemetry
+trace
+analytics
+error reporting
+request logging.
+
+Inspect whether any can contain:
+
+PDF text
+model response
+prompt
+customer name
+address
+registration
+VIN
+policy number
+price
+object identifiers
+filename
+source excerpt.
+
+==================================================
+22 – PRODUCTION TRACE
+==================================================
+
+Audit production tracing implementation.
+
+Confirm current default/status where safely possible.
+
+Verify whitelist protections.
+
+Confirm tracing cannot accidentally include forbidden customer fields.
+
+Do not activate it.
+
+==================================================
+23 – ERROR HANDLING
+==================================================
+
+Audit server/client errors for leakage of:
+
+stack traces
+filesystem paths
+API response bodies
+model response
+PDF text
+secrets
+customer facts.
+
+Test safely using synthetic malformed inputs.
+
+==================================================
+24 – AUTHENTICATION
+==================================================
+
+Audit current pilot authentication.
+
+Determine:
+
+- how pilot access works
+- where authentication is enforced
+- cookie/session behavior
+- expiration
+- logout
+- brute-force protection
+- whether auth is server-enforced
+- whether API routes independently enforce authorization.
+
+Do not retrieve or expose pilot secret.
+
+==================================================
+25 – AUTHORIZATION
+==================================================
+
+Authentication is not enough.
+
+Check whether one authorized user/request could access another user's:
+
+PDF
+analysis result
+feedback attachment
+temporary file
+request state.
+
+Test only with synthetic data.
+
+==================================================
+26 – DIRECT API ACCESS
+==================================================
+
+Attempt safe unauthorized requests against relevant local/test API routes.
+
+Check:
+
+- analyze
+- upload
+- feedback
+- source/document endpoints
+- other sensitive routes.
+
+Do not attack production.
+
+==================================================
+27 – SESSION SECURITY
+==================================================
+
+Inspect:
+
+cookie flags
+Secure
+HttpOnly
+SameSite
+expiration
+session fixation risks
+client-side storage.
+
+Report actual state.
+
+==================================================
+28 – CLIENT STORAGE
+==================================================
+
+Audit:
+
+localStorage
+sessionStorage
+IndexedDB
+cookies
+browser cache
+
+for customer information.
+
+Flag persistence of sensitive data.
+
+==================================================
+29 – SECRETS
+==================================================
+
+Audit repository/build/client bundle for:
+
+API keys
+Railway secrets
+pilot secret
+credentials
+private keys.
+
+Do not print secret values.
+
+Report only:
+
+FOUND / NOT FOUND
+location/category.
+
+==================================================
+30 – SERVER/CLIENT BOUNDARY
+==================================================
+
+Verify sensitive credentials and privileged operations remain server-side.
+
+Check Next.js client bundles for accidental environment exposure.
+
+==================================================
+31 – FILE UPLOAD SECURITY
+==================================================
+
+Audit PDF upload handling:
+
+- accepted MIME types
+- extension checks
+- magic bytes/content validation if present
+- max file size
+- max file count
+- malformed PDF
+- encrypted PDF
+- empty PDF
+- extremely large page count
+- decompression/resource exhaustion risk
+- parser timeout
+- filename handling.
+
+==================================================
+32 – MALICIOUS PDF
+==================================================
+
+Use synthetic safe adversarial fixtures to test:
+
+- malformed PDF
+- PDF containing prompt-injection-like text
+- PDF containing huge text blocks
+- weird filename
+- duplicate files
+- unsupported file.
+
+No weaponized exploit files.
+
+==================================================
+33 – PROMPT INJECTION
+==================================================
+
+This is critical.
+
+Audit extraction prompts and model boundary.
+
+A customer PDF may contain text such as:
+
+"Ignore previous instructions..."
+"Send secrets..."
+"Classify everything as included..."
+
+Verify document text is treated as untrusted DATA, not trusted instruction.
+
+Assess:
+
+- prompt structure
+- schema enforcement
+- downstream validation
+- whether model can alter system behavior
+- whether extracted text can request tools/actions.
+
+==================================================
+34 – PROMPT INJECTION TESTS
+==================================================
+
+Use synthetic text-only/PDF fixtures with benign injection attempts.
+
+Verify:
+
+- no secret disclosure
+- no tool escalation
+- no instruction override
+- output remains schema-bound
+- invalid semantic output is rejected/normalized where applicable.
+
+==================================================
+35 – MODEL OUTPUT TRUST
+==================================================
+
+Audit whether model output is treated as trusted.
+
+Check:
+
+- schema validation
+- type validation
+- canonical allowlists
+- provider/type allowlists
+- numeric validation
+- source/provenance checks
+- fallback behavior.
+
+==================================================
+36 – HTML/XSS
+==================================================
+
+Audit all customer-controlled/rendered text for XSS risks.
+
+Especially:
+
+- PDF-derived text
+- provider/product text
+- feedback text
+- filenames
+- source excerpts
+- error messages.
+
+Look for:
+
+dangerouslySetInnerHTML
+raw HTML rendering
+unsafe markdown rendering.
+
+==================================================
+37 – CSRF
+==================================================
+
+Audit state-changing routes for CSRF exposure where relevant.
+
+Consider current cookie/auth architecture.
+
+==================================================
+38 – CORS
+==================================================
+
+Audit CORS configuration.
+
+Sensitive API endpoints should not be unnecessarily callable cross-origin.
+
+==================================================
+39 – SECURITY HEADERS
+==================================================
+
+Audit production headers where applicable:
+
+Content-Security-Policy
+X-Content-Type-Options
+Referrer-Policy
+Permissions-Policy
+HSTS
+frame-ancestors / clickjacking protection.
+
+Report missing/recommended controls.
+
+Do not modify yet.
+
+==================================================
+40 – DEPENDENCIES
+==================================================
+
+Run safe dependency/security inspection.
+
+Use existing package tooling.
+
+Report:
+
+known vulnerabilities
+severity
+direct/transitive dependency
+whether reachable/relevant where determinable.
+
+Do not blindly upgrade dependencies.
+
+==================================================
+41 – NEXT.JS SECURITY
+==================================================
+
+Audit current Next.js version and known security implications using locally
+available package metadata/security tooling.
+
+If current vulnerability status requires external verification:
+
+mark:
+
+CURRENT SECURITY ADVISORY CHECK REQUIRED
+
+rather than guessing.
+
+==================================================
+42 – RATE LIMITING
+==================================================
+
+Determine whether expensive endpoints have:
+
+rate limiting
+concurrency limiting
+request size limits
+AI cost protection.
+
+Assess risk of:
+
+unauthorized cost generation
+DoS
+accidental repeated analysis.
+
+==================================================
+43 – DOUBLE SUBMIT
+==================================================
+
+Test:
+
+double-click Analyze
+rapid repeated requests
+refresh during analysis.
+
+Look for:
+
+duplicate AI calls
+duplicate state
+cross-request contamination.
+
+==================================================
+44 – REQUEST ISOLATION
+==================================================
+
+Test multiple simultaneous synthetic requests.
+
+Verify:
+
+- no objectRef leakage
+- no trace leakage
+- no result crossover
+- no temporary-file collision
+- no shared mutable customer state.
+
+==================================================
+45 – DOS / RESOURCE SAFETY
+==================================================
+
+Review:
+
+PDF parsing
+AI requests
+source rendering
+large comparisons
+
+for obvious unbounded resource consumption.
+
+No destructive load testing.
+
+==================================================
+46 – SOURCE ENDPOINT SECURITY
+==================================================
+
+Audit source viewing/download behavior.
+
+Verify users cannot use source endpoints for arbitrary filesystem reads or
+path traversal.
+
+==================================================
+47 – PATH TRAVERSAL
+==================================================
+
+Test safe synthetic traversal strings against any file/source parameter.
+
+No production attack.
+
+==================================================
+48 – SSRF
+==================================================
+
+Determine whether user input can cause server to fetch arbitrary URLs.
+
+If yes:
+audit SSRF protections.
+
+If no:
+report not applicable.
+
+==================================================
+49 – FEEDBACK WIDGET
+==================================================
+
+Audit feedback flow.
+
+Determine:
+
+- data collected
+- screenshot/image support
+- storage location
+- retention
+- access control
+- filenames/metadata
+- possibility of customer data being captured accidentally
+- deletion mechanism.
+
+==================================================
+50 – FEEDBACK PRIVACY UX
+==================================================
+
+Assess whether advisor is warned not to include unnecessary customer data in
+feedback.
+
+A screenshot can contain customer information.
+
+Flag if safeguard is missing.
+
+==================================================
+51 – DATA EXPORT
+==================================================
+
+Determine whether customer data can be exported/downloaded.
+
+Audit authorization and privacy implications if feature exists.
+
+==================================================
+52 – ANALYTICS
+==================================================
+
+Identify any analytics/tracking.
+
+Report:
+
+provider
+events
+customer-data exposure risk
+cookie implications.
+
+If none:
+say none found.
+
+==================================================
+53 – THIRD-PARTY SCRIPTS
+==================================================
+
+Audit third-party browser scripts.
+
+Identify whether any script could observe customer/result pages.
+
+==================================================
+54 – CACHE
+==================================================
+
+Audit:
+
+browser cache
+server cache
+Next.js caching
+CDN/proxy caching
+
+for customer-specific responses.
+
+Sensitive customer analysis must not accidentally become shared/public
+cache.
+
+==================================================
+55 – HTTP RESPONSE HEADERS
+==================================================
+
+Inspect sensitive response caching headers.
+
+Flag public/shared caching of customer-specific data.
+
+==================================================
+56 – BACKUPS
+==================================================
+
+Determine from code/config what can be known about backups.
+
+If hosting backup behavior cannot be verified from repo:
+
+mark organizational/vendor review required.
+
+==================================================
+57 – INCIDENT RESPONSE
+==================================================
+
+Audit whether project has documented process for:
+
+- suspected data breach
+- credential leak
+- wrong-user data exposure
+- AI provider incident
+- lost advisor access
+- deletion request.
+
+If missing:
+flag documentation gap.
+
+==================================================
+58 – GDPR PROCESSING RECORD
+==================================================
+
+Check whether there is documentation equivalent to a processing inventory:
+
+- purpose
+- data categories
+- data subjects
+- recipients/processors
+- retention
+- security controls
+- transfers.
+
+Do not fabricate missing entries.
+
+==================================================
+59 – PRIVACY NOTICE
+==================================================
+
+Check whether pilot users/data subjects have appropriate privacy information
+available.
+
+Audit for:
+
+- what data is processed
+- why
+- who receives it
+- retention
+- rights/contact
+- AI processing where relevant.
+
+Legal review required.
+
+==================================================
+60 – DPA
+==================================================
+
+Identify processor relationships that likely require:
+
+databehandleravtale / DPA.
+
+Do not claim agreements exist unless evidence exists.
+
+==================================================
+61 – INTERNATIONAL TRANSFERS
+==================================================
+
+Identify services that may involve international data transfer.
+
+Contractual/legal status must be manually verified.
+
+Do not infer from vendor brand alone.
+
+==================================================
+62 – DPIA SCREENING
+==================================================
+
+Perform a structured DPIA SCREENING, not a legal conclusion.
+
+Consider:
+
+- new technology
+- insurance/customer financial context
+- potentially sensitive document content
+- future health data
+- systematic processing
+- AI analysis
+- scale of pilot
+- consequences of incorrect disclosure.
+
+Return:
+
+DPIA_SCREENING:
+LIKELY_REQUIRED
+RECOMMENDED
+LIKELY_NOT_REQUIRED
+LEGAL_REVIEW_REQUIRED
+
+with reasoning.
+
+==================================================
+63 – DATA SUBJECT RIGHTS
+==================================================
+
+Assess technical ability to support:
+
+access
+deletion
+correction
+restriction where applicable.
+
+Do not assume legal applicability.
+
+==================================================
+64 – PRIVACY BY DESIGN
+==================================================
+
+Assess:
+
+- minimization
+- purpose limitation
+- retention
+- access control
+- default privacy
+- separation of customer/catalog data
+- auditability.
+
+==================================================
+65 – SECURITY DOCUMENTATION
+==================================================
+
+Check whether project has:
+
+security overview
+data flow
+incident procedure
+access-control description- retention/deletion policy
+- processor/vendor inventory
+- privacy notice
+- DPIA screening/assessment
+- backup/recovery procedure
+- vulnerability/dependency process.
+
+Classify each:
+
+PRESENT
+PARTIAL
+MISSING
+LEGAL_REVIEW_REQUIRED.
+
+==================================================
+66 – OPERATIONAL ACCESS
+==================================================
+
+Determine who can technically access:
+
+- Railway project
+- production environment
+- environment variables
+- deployment logs
+- customer uploads
+- feedback
+- source artifacts.
+
+If actual organizational access cannot be proven from repo:
+
+mark:
+ORGANIZATIONAL_VERIFICATION_REQUIRED.
+
+Do not guess.
+
+==================================================
+67 – LEAST PRIVILEGE
+==================================================
+
+Assess whether application/service credentials appear scoped according to
+least privilege.
+
+Do not expose credential values.
+
+==================================================
+68 – DEVELOPMENT VS PRODUCTION
+==================================================
+
+Audit separation between:
+
+local development
+test
+production.
+
+Check whether:
+
+- test data can enter production
+- production secrets are used locally unnecessarily
+- debug functionality is exposed
+- development endpoints exist in production.
+
+==================================================
+69 – PRODUCTION DEBUG
+==================================================
+
+Search for:
+
+debug routes
+test endpoints
+development bypasses
+temporary authentication bypasses
+verbose diagnostics.
+
+Flag anything reachable in production.
+
+==================================================
+70 – PILOT AUTH SECRET
+==================================================
+
+Audit architecture of pilot access without reading or displaying the actual
+secret.
+
+Assess whether one shared pilot code creates unacceptable risk for multiple
+advisors.
+
+Consider:
+
+- accountability
+- revocation
+- individual access
+- session sharing
+- offboarding
+- auditability.
+
+This may be acceptable for development but inappropriate for real customer
+data.
+
+Classify clearly.
+
+==================================================
+71 – USER ISOLATION
+==================================================
+
+For a multi-advisor pilot, determine whether the application has an actual
+user/account boundary.
+
+If all advisors effectively share one access identity:
+
+report implications explicitly.
+
+Do not call it secure multi-user authorization if it is not.
+
+==================================================
+72 – PILOT SCALE
+==================================================
+
+Assume limited internal pilot with approximately a handful of advisors.
+
+Do not evaluate as if it were a public consumer launch.
+
+But:
+
+real customer data still requires meaningful controls.
+
+==================================================
+73 – SECURITY FINDING SEVERITY
+==================================================
+
+Security/readiness findings may use:
+
+BLOCKER
+IMPORTANT
+POLISH
+
+Definitions:
+
+BLOCKER:
+should be resolved before advisors process real customer data.
+
+IMPORTANT:
+should preferably be resolved before pilot or immediately during tightly
+controlled pilot.
+
+POLISH:
+does not materially prevent safe pilot.
+
+Do not inflate severity.
+
+==================================================
+74 – SECURITY EVIDENCE
+==================================================
+
+Every security finding must include:
+
+- finding ID
+- severity
+- affected component
+- evidence
+- attack/failure scenario
+- likely impact
+- whether technically verified or inferred
+- recommended remediation direction
+- validation needed after remediation.
+
+Do not implement remediation.
+
+==================================================
+75 – GDPR FINDING CLASSIFICATION
+==================================================
+
+For GDPR/privacy findings use:
+
+TECHNICAL_BLOCKER
+DOCUMENTATION_GAP
+ORGANIZATIONAL_DECISION
+LEGAL_REVIEW_REQUIRED
+VENDOR_CONTRACT_REVIEW
+PRIVACY_POLISH.
+
+This prevents legal questions from being presented as code bugs.
+
+==================================================
+76 – PRODUCT READINESS AUDIT
+==================================================
+
+Now audit whether the app is actually usable by another insurance advisor.
+
+Assume advisor has:
+
+- normal insurance knowledge
+- no knowledge of the codebase
+- no developer beside them
+- no knowledge of internal canonical concepts.
+
+==================================================
+77 – FIRST IMPRESSION
+==================================================
+
+Open application from a fresh session.
+
+Assess whether advisor immediately understands:
+
+- what the tool does
+- what they can upload
+- difference between Sammenlign avtaler and Sammenlign produkter
+- whether customer documents are required
+- what happens to uploaded information.
+
+Flag unclear onboarding.
+
+==================================================
+78 – PILOT LOGIN UX
+==================================================
+
+Assess:
+
+- clarity
+- error state
+- session expiry
+- logout
+- return after expiry
+- keyboard
+- mobile.
+
+Do not expose login secret.
+
+==================================================
+79 – CUSTOMER COMPARISON HAPPY PATH
+==================================================
+
+Walk through actual local/test UI using synthetic documents:
+
+1. enter app
+2. select Sammenlign avtaler
+3. upload documents
+4. optionally add manual agreement
+5. start analysis
+6. observe progress
+7. receive result
+8. review price
+9. review important differences
+10. open detailed comparison
+11. inspect source
+12. start another comparison.
+
+Record every confusing/friction point.
+
+==================================================
+80 – PRODUCT COMPARISON HAPPY PATH
+==================================================
+
+Walk through:
+
+Sammenlign produkter
+
+for representative:
+
+Bil
+Hus
+Båt
+Hund
+Katt.
+
+Verify:
+
+- type selection
+- provider
+- scope where applicable
+- product
+- compare
+- quick navigation
+- detail hierarchy
+- source buttons
+- changing selection
+- returning to customer mode.
+
+==================================================
+81 – MODE CLARITY
+==================================================
+
+Determine whether advisor can clearly distinguish:
+
+Sammenlign avtaler
+vs
+Sammenlign produkter.
+
+The product comparison must not imply:
+
+customer-selected coverage
+customer price
+actual customer agreement.
+
+==================================================
+82 – EMPTY STATE
+==================================================
+
+Test application before any input.
+
+Advisor should understand what to do next.
+
+Flag developer-centric or ambiguous empty states.
+
+==================================================
+83 – SINGLE DOCUMENT
+==================================================
+
+Test insufficient input.
+
+Does app clearly explain what is missing?
+
+No crash.
+
+No developer error.
+
+==================================================
+84 – INVALID FILE TYPE
+==================================================
+
+Try safe unsupported file type.
+
+Expected:
+
+clear human-readable rejection.
+
+==================================================
+85 – EMPTY PDF
+==================================================
+
+Use synthetic empty/minimal PDF.
+
+Expected:
+
+safe error
+no crash
+no internal leak.
+
+==================================================
+86 – MALFORMED PDF
+==================================================
+
+Use safe malformed fixture.
+
+Expected:
+
+controlled failure
+useful message
+no stack trace/customer leak.
+
+==================================================
+87 – ENCRYPTED PDF
+==================================================
+
+If parser supports detection:
+
+test password-protected/encrypted PDF safely.
+
+Advisor should receive understandable guidance.
+
+==================================================
+88 – LARGE PDF
+==================================================
+
+Test near allowed size boundary using synthetic data.
+
+Do not stress production.
+
+Assess:
+
+- clear limit
+- predictable behavior
+- no browser freeze.
+
+==================================================
+89 – MAX FILE COUNT
+==================================================
+
+Test:
+
+limit
+limit + 1.
+
+Advisor should understand maximum.
+
+==================================================
+90 – DUPLICATE DOCUMENT
+==================================================
+
+Upload same synthetic document twice.
+
+Assess whether:
+
+- duplicate is accepted intentionally
+- detected
+- creates duplicate objects
+- causes confusing result.
+
+Document behavior.
+
+==================================================
+91 – WRONG DOCUMENT
+==================================================
+
+Use a safe PDF unrelated to insurance.
+
+Expected:
+
+controlled handling.
+
+It should not fabricate a valid insurance portfolio.
+
+==================================================
+92 – PARTIAL DOCUMENT
+==================================================
+
+Use document with incomplete insurance information.
+
+Check whether app distinguishes:
+
+missing documentation
+
+from:
+
+coverage absent.
+
+==================================================
+93 – UNKNOWN PROVIDER
+==================================================
+
+Test synthetic unknown provider.
+
+Expected:
+
+document facts preserved where possible
+catalog enrichment conservative
+clear result.
+
+No forced fuzzy provider mapping.
+
+==================================================
+94 – UNKNOWN PRODUCT
+==================================================
+
+Same for unknown product.
+
+No forced product match.
+
+==================================================
+95 – MISSING PRICE
+==================================================
+
+Test customer agreement with no price.
+
+Verify:
+
+- portfolio price completeness
+- labels
+- no fake 0
+- no incorrect total.
+
+==================================================
+96 – MISSING OBJECT ID
+==================================================
+
+Test object without secure identifier.
+
+Verify conservative matching and understandable UI.
+
+==================================================
+97 – MULTIPLE SAME-TYPE OBJECTS
+==================================================
+
+Test:
+
+two cars
+two dogs
+or equivalent synthetic objects.
+
+Ensure no cross-object fact leakage.
+
+==================================================
+98 – MIXED PORTFOLIO
+==================================================
+
+Test representative portfolio with several types.
+
+Ensure:
+
+- progress
+- object counts
+- matching
+- price
+- detail sections
+
+remain understandable.
+
+==================================================
+99 – MANUAL ONLY
+==================================================
+
+Test fully manual flow if supported.
+
+Advisor should understand:
+
+- provider
+- type
+- product
+- optional fields
+- unknown/manual product.
+
+==================================================
+100 – HYBRID
+==================================================
+
+Test:
+
+PDF on one side
+manual agreement on other.
+
+This is an important advisor workflow.
+
+Verify document > catalog and customer-specific values.
+
+==================================================
+101 – ANALYSIS PROGRESS
+==================================================
+
+Assess progress UI.
+
+Does advisor understand:
+
+- files received
+- processing
+- products identified
+- completion
+- failure?
+
+No misleading object counts.
+
+==================================================
+102 – SLOW ANALYSIS
+==================================================
+
+Simulate/observe slow path safely.
+
+Check:
+
+- loading state
+- no accidental duplicate submit
+- ability to understand app is still working
+- timeout behavior.
+
+==================================================
+103 – DOUBLE CLICK
+==================================================
+
+Double-click Analyze safely.
+
+Expected:
+
+no duplicate uncontrolled processing.
+
+==================================================
+104 – REFRESH DURING ANALYSIS
+==================================================
+
+Test local/synthetic flow.
+
+Document behavior.
+
+If work is lost:
+is that understandable?
+
+If state persists:
+is it safe?
+
+==================================================
+105 – BACK BUTTON
+==================================================
+
+Test browser back/forward behavior.
+
+No stale customer result should unexpectedly appear in wrong context.
+
+==================================================
+106 – START NEW COMPARISON
+==================================================
+
+Advisor must have an obvious safe way to start again.
+
+Old customer state should not contaminate new analysis.
+
+==================================================
+107 – PRICE PRESENTATION
+==================================================
+
+Check:
+
+- annual premium
+- TFA
+- completeness
+- missing prices
+- price difference.
+
+No misleading arithmetic.
+
+==================================================
+108 – IMPORTANT DIFFERENCES
+==================================================
+
+Customer mode:
+
+assess whether "Viktigste forskjeller" is understandable.
+
+Check:
+
+- coverage names
+- values
+- better/worse language if any
+- unknowns
+- optional states
+- sources.
+
+Do not make insurance recommendations.
+
+==================================================
+109 – DETAILED COMPARISON
+==================================================
+
+Assess:
+
+- hierarchy
+- scanability
+- long text
+- sources
+- empty values
+- provider-specific details
+- mobile behavior.
+
+==================================================
+110 – "IKKE DOKUMENTERT"
+==================================================
+
+This is important.
+
+Assess whether advisor can understand that:
+
+"Ikke dokumentert"
+
+does NOT necessarily mean:
+
+"ikke dekket".
+
+If UI wording risks this misunderstanding:
+
+flag as IMPORTANT/BLOCKER depending on context.
+
+==================================================
+111 – OPTIONAL
+==================================================
+
+Assess whether:
+
+"Tilgjengelig som tillegg"
+
+is clearly distinct from:
+
+included in customer's agreement.
+
+==================================================
+112 – CATALOG VS CUSTOMER
+==================================================
+
+Assess whether UI makes clear when information comes from:
+
+customer document
+
+vs
+
+general catalog/source information.
+
+If advisor could mistake catalog availability for customer selection:
+
+flag.
+
+==================================================
+113 – CONFLICTS
+==================================================
+
+Test existing conflict presentation.
+
+Advisor should understand:
+
+- conflicting information exists
+- app did not silently choose
+- where evidence came from.
+
+==================================================
+114 – SOURCE BUTTONS
+==================================================
+
+Test representative sources across:
+
+Bil
+Hus
+Båt
+Hund
+Katt.
+
+Check:
+
+- correct document
+- correct source role
+- readable
+- no local filesystem path
+- no broken source.
+
+==================================================
+115 – SOURCE TRUST
+==================================================
+
+Advisor should understand source is supporting evidence.
+
+No implication that app guarantees legal interpretation beyond source.
+
+==================================================
+116 – FEEDBACK
+==================================================
+
+Walk through feedback widget.
+
+Test:
+
+- category
+- text
+- screenshot/image if supported
+- submit
+- success
+- failure.
+
+Check whether advisor knows what feedback is for.
+
+==================================================
+117 – FEEDBACK CUSTOMER DATA WARNING
+==================================================
+
+If screenshot/upload can contain customer information:
+
+assess whether UI provides sufficient warning/minimization guidance.
+
+Potential privacy BLOCKER/IMPORTANT.
+
+==================================================
+118 – FEEDBACK CONTEXT
+==================================================
+
+Verify feedback stores only intended context.
+
+No accidental full customer state/model response unless explicitly designed
+and justified.
+
+==================================================
+119 – MOBILE
+==================================================
+
+Test key flows at approximately:
+
+390 px.
+
+At minimum:
+
+login
+mode selection
+upload
+manual registration
+result
+product comparison
+feedback.
+
+No horizontal page overflow.
+
+==================================================
+120 – DESKTOP
+==================================================
+
+Test normal desktop width.
+
+Look for:
+
+broken alignment
+huge empty areas
+unreadable long comparisons
+buttons moving unexpectedly.
+
+==================================================
+121 – KEYBOARD
+==================================================
+
+Navigate primary flows using keyboard.
+
+Check:
+
+focus
+selects
+buttons
+details
+source buttons
+feedback.
+
+==================================================
+122 – SCREEN READER SEMANTICS
+==================================================
+
+Inspect accessible names/roles for:
+
+mode tabs/buttons
+file upload
+Analyze
+product selectors
+Product A/B
+quick navigation
+details
+source buttons
+feedback.
+
+No full external accessibility certification required.
+
+==================================================
+123 – COLOR / STATUS
+==================================================
+
+Important statuses should not depend solely on color.
+
+==================================================
+124 – LANGUAGE
+==================================================
+
+Audit visible Norwegian text.
+
+Look for:
+
+- developer terminology
+- English leakage
+- canonical/internal terminology
+- inconsistent capitalization
+- unclear insurance terminology
+- spelling/grammar issues.
+
+Do not rewrite yet.
+
+==================================================
+125 – PROFESSIONALISM
+==================================================
+
+Assess whether the application looks like:
+
+A. a pilot-ready advisor tool
+or
+B. an internal developer prototype.
+
+Evaluate:
+
+- consistency
+- spacing
+- hierarchy
+- loading
+- errors
+- empty states
+- source presentation
+- feedback
+- navigation.
+
+Provide concrete evidence.
+
+==================================================
+126 – NO OVER-POLISH
+==================================================
+
+Minor aesthetic preference is POLISH.
+
+Do not call something BLOCKER merely because another design might look
+better.
+
+==================================================
+127 – BROWSER CONSOLE
+==================================================
+
+During walkthrough capture:
+
+React warnings
+client exceptions
+network failures.
+
+No silent ignored runtime errors.
+
+==================================================
+128 – NETWORK INSPECTION
+==================================================
+
+During local/test walkthrough inspect relevant requests.
+
+Look for:
+
+- customer data in URL/query string
+- unexpected third-party calls
+- repeated requests
+- sensitive responses cached improperly.
+
+==================================================
+129 – PERFORMANCE UX
+==================================================
+
+Record rough:
+
+initial load
+analysis feedback responsiveness
+product comparison responsiveness.
+
+Do not require synthetic benchmark perfection.
+
+Flag only material advisor-facing delay/problem.
+
+==================================================
+130 – BROWSER COMPATIBILITY
+==================================================
+
+Primary user currently may use Safari.
+
+Audit should not assume Chrome-only behavior.
+
+At minimum inspect whether implementation relies on browser-specific APIs.
+
+If actual Safari automation is unavailable:
+
+mark manual Safari smoke required.
+
+==================================================
+131 – SAFARI MANUAL GATE
+==================================================
+
+Create explicit manual checklist for Safari:
+
+- login
+- upload
+- analysis
+- result
+- details
+- sources
+- product comparison
+- feedback.
+
+This must be performed before pilot if not automated.
+
+==================================================
+132 – PRODUCTION VS LOCAL
+==================================================
+
+Most destructive/adversarial tests should run locally/test only.
+
+Production smoke should be non-destructive and use no private data.
+
+==================================================
+133 – PRODUCTION CONFIG REVIEW
+==================================================
+
+Where safely possible inspect deployment configuration without exposing
+secret values.
+
+Check:
+
+- environment separation
+- production mode
+- HTTPS
+- debug behavior
+- tracing state.
+
+==================================================
+134 – RAILWAY
+==================================================
+
+READ-ONLY only.
+
+Do not change:
+
+variables
+domains
+deployment
+service settings.
+
+If access requires secrets:
+do not retrieve them.
+
+==================================================
+135 – DOMAIN / HTTPS
+==================================================
+
+Assess production domain/HTTPS state.
+
+Flag if pilot is expected to use an obviously temporary/untrusted-looking
+URL and this materially affects professionalism/security.
+
+Do not buy/configure domain.
+
+==================================================
+136 – PRIVACY UX
+==================================================
+
+Before upload, assess whether advisor receives enough information about:
+
+- intended use
+- customer-data handling
+- not uploading unnecessary information
+- pilot nature
+- support/contact.
+
+Legal wording requires review.
+
+==================================================
+137 – USER INSTRUCTIONS
+==================================================
+
+Determine whether a new advisor can learn:
+
+- what documents to upload
+- supported types
+- file limits
+- how manual registration works
+- meaning of results
+- how to report problems.
+
+If not:
+flag onboarding/documentation gap.
+
+==================================================
+138 – PILOT OPERATING GUIDE
+==================================================
+
+Check whether there is a concise pilot guide covering:
+
+- access
+- intended use
+- prohibited use
+- customer-data precautions
+- known limitations
+- feedback
+- incident/contact process.
+
+If absent:
+flag IMPORTANT.
+
+==================================================
+139 – KNOWN LIMITATIONS
+==================================================
+
+Pilot users should know relevant limitations such as:
+
+- unknown does not mean uncovered
+- catalog is supporting information
+- customer document is authoritative where documented
+- multiple objects without secure identity may remain unresolved
+- comparison is decision support, not automatic advice.
+
+Assess whether these are communicated appropriately.
+
+==================================================
+140 – INSURANCE ADVICE BOUNDARY
+==================================================
+
+Audit product language for statements that could look like:
+
+"choose this"
+"best"
+"recommended"
+"you should buy"
+
+unless such advisory functionality is intentionally and legally supported.
+
+Current tool should primarily present documented differences.
+
+==================================================
+141 – AUTOMATED DECISION MAKING
+==================================================
+
+Determine whether app makes automated decisions about customers.
+
+If it only extracts/compares facts:
+document that.
+
+If any scoring/recommendation exists:
+flag for privacy/legal review.
+
+==================================================
+142 – CUSTOMER IMPACT OF ERRORS
+==================================================
+
+Identify failure modes that could materially mislead an advisor:
+
+- false included coverage
+- false unavailable coverage
+- wrong price
+- wrong object matching
+- wrong source
+- customer/catalog confusion.
+
+Confirm existing regression controls where available.
+
+==================================================
+143 – PILOT MONITORING
+==================================================
+
+Assess how pilot issues will be noticed.
+
+Possible mechanisms:
+
+feedback widget
+application errors
+manual advisor report.
+
+Do not enable invasive telemetry.
+
+Identify minimum safe monitoring needed.
+
+==================================================
+144 – SUPPORT PROCESS
+==================================================
+
+Can pilot advisor report:
+
+"this comparison looks wrong"
+
+and provide enough safe context for debugging?
+
+Assess without requiring customer document retention.
+
+==================================================
+145 – INCIDENT ESCALATION UX
+==================================================
+
+Pilot guide should distinguish:
+
+ordinary bug
+
+from:
+
+possible customer-data/security incident.
+
+If missing:
+flag documentation gap.
+
+==================================================
+146 – RECOVERY
+==================================================
+
+Assess whether app can safely recover from:
+
+analysis failure
+browser refresh
+bad document
+provider/catalog mismatch.
+
+No corrupted state should persist into next customer.
+
+==================================================
+147 – DATA BETWEEN CUSTOMERS
+==================================================
+
+Critical test:
+
+complete synthetic Customer A comparison.
+
+Then start Customer B comparison.
+
+Verify no Customer A:
+
+price
+object
+fact
+filename
+source state
+feedback context
+
+appears in Customer B session/result.
+
+==================================================
+148 – NEW BROWSER SESSION
+==================================================
+
+Verify customer state is not unintentionally restored in a new session if
+that is not intended.
+
+==================================================
+149 – LOGOUT
+==================================================
+
+After logout/session expiry:
+
+sensitive customer result should not remain accessible through protected
+application routes.
+
+Browser-history/cache behavior should be assessed.
+
+==================================================
+150 – PILOT USER ACCOUNT MODEL
+==================================================
+
+Conclude whether current authentication architecture supports:
+
+MULTI_ADVISOR_REAL_DATA_PILOT
+
+or only:
+
+SINGLE_TRUSTED_TESTER
+
+This is a major gate.
+
+==================================================
+151 – SECURITY GATE DECISION
+==================================================
+
+Return:
+
+SECURITY_GATE:
+PASS
+PASS_WITH_ACTIONS
+FAIL
+
+FAIL if a BLOCKER makes real customer-data pilot unsafe.
+
+==================================================
+152 – GDPR READINESS DECISION
+==================================================
+
+Return:
+
+GDPR_READINESS:
+READY_FOR_CONTROLLED_PILOT
+READY_AFTER_DOCUMENTATION_ACTIONS
+NOT_READY
+LEGAL_REVIEW_REQUIRED
+
+This is readiness/gap analysis, not legal certification.
+
+==================================================
+153 – PRODUCT GATE DECISION
+==================================================
+
+Return:
+
+PRODUCT_GATE:
+PILOT_READY
+PILOT_READY_WITH_MINOR_ISSUES / PILOT_NOT_READY
+
+==================================================
+154 – OVERALL NITO PILOT GATE
+==================================================
+
+Combine:
+
+SECURITY_GATE
+GDPR_READINESS
+PRODUCT_GATE
+
+into one final:
+
+NITO_PILOT_GATE:
+
+READY
+READY_WITH_ACTIONS
+NOT_READY
+
+Rules:
+
+READY:
+No BLOCKER findings.
+Technical security controls sufficient for controlled pilot.
+Required privacy/security documentation exists or only genuinely minor
+actions remain.
+Product can be used independently by pilot advisors.
+
+READY_WITH_ACTIONS:
+No immediate technical security blocker, but clearly defined actions must be
+completed before or at pilot start.
+
+NOT_READY:
+One or more BLOCKER findings make real-customer pilot unsafe or materially
+unreliable.
+
+Do not choose READY merely because automated tests pass.
+
+==================================================
+155 – BLOCKER DEFINITION
+==================================================
+
+Examples that SHOULD normally be BLOCKER before processing real customer
+documents:
+
+- unauthorized access to customer data
+- shared customer state across users/requests
+- customer PDFs/text persisted without understood retention
+- secrets exposed to client
+- sensitive API route accessible without required authorization
+- customer data written to unsafe logs
+- cross-user access to feedback/uploads
+- arbitrary file/path access
+- serious prompt-injection path capable of changing privileged behavior
+- shared authentication model incapable of safely separating pilot users,
+  if separate users are required
+- customer data accessible after logout when it should be protected
+- production debug endpoint exposing sensitive information.
+
+Do not mechanically classify every missing header/document as BLOCKER.
+
+==================================================
+156 – IMPORTANT DEFINITION
+==================================================
+
+Examples likely IMPORTANT:
+
+- missing pilot operating guide
+- unclear retention documentation
+- missing privacy wording requiring legal review
+- insufficient feedback privacy warning
+- incomplete incident-response documentation
+- weak onboarding
+- Safari not yet manually smoke-tested
+- shared pilot code where individual accountability is desired but other
+  controls make a very limited pilot possible.
+
+Actual severity must follow evidence.
+
+==================================================
+157 – POLISH DEFINITION
+==================================================
+
+Examples:
+
+- minor wording inconsistency
+- spacing
+- non-critical empty-state improvement
+- cosmetic alignment
+- optional explanatory copy.
+
+Do not spend pilot-blocker budget on these.
+
+==================================================
+158 – FINDING DEDUPLICATION
+==================================================
+
+The same underlying problem may appear in:
+
+security
+privacy
+product readiness.
+
+Create:
+
+finding_signature
+
+and deduplicate where appropriate.
+
+Example:
+
+shared pilot authentication
+
+may affect:
+
+security
+GDPR accountability
+operational readiness
+
+but should not become three unrelated root causes.
+
+==================================================
+159 – ROOT-CAUSE LAYER
+==================================================
+
+For every BLOCKER/IMPORTANT finding classify likely layer:
+
+AUTHENTICATION
+AUTHORIZATION
+DATA_LIFECYCLE
+LOGGING
+AI_BOUNDARY
+FILE_UPLOAD
+INPUT_VALIDATION
+OUTPUT_VALIDATION
+CLIENT_STORAGE
+CACHE
+NETWORK
+FEEDBACK
+ERROR_HANDLING
+INFRASTRUCTURE
+PRIVACY_DOCUMENTATION
+LEGAL_ORGANIZATIONAL
+PRODUCT_UX
+ACCESSIBILITY
+OPERATIONS
+UNKNOWN.
+
+No fixes.
+
+==================================================
+160 – REMEDIATION EFFORT
+==================================================
+
+Estimate remediation size conservatively:
+
+SMALL
+MEDIUM
+LARGE
+UNKNOWN.
+
+This is engineering scope, not severity.
+
+Example:
+
+adding missing explanatory copy may be SMALL.
+
+building proper multi-user authentication may be LARGE.
+
+==================================================
+161 – FIX ORDER
+==================================================
+
+Create a recommended remediation order based on:
+
+1. real-customer security blockers
+2. privacy/data-lifecycle blockers
+3. authorization/isolation
+4. correctness risks
+5. operational pilot blockers
+6. important UX
+7. polish.
+
+Do not implement.
+
+==================================================
+162 – QUICK WINS
+==================================================
+
+Identify SMALL remediation items that materially improve pilot safety or
+usability.
+
+Do not automatically fix them.
+
+==================================================
+163 – ARCHITECTURE ESCALATION
+==================================================
+
+Flag findings requiring GPT-6/high reasoning if remediation would involve:
+
+- authentication architecture
+- multi-user authorization
+- customer-data persistence architecture
+- AI/privacy boundary redesign
+- major file-processing redesign
+- session architecture
+- complex prompt-injection defenses
+- major data lifecycle redesign.
+
+Use:
+
+GPT6_REVIEW_RECOMMENDED = true
+
+per finding where appropriate.
+
+==================================================
+164 – LEGAL REVIEW QUEUE
+==================================================
+
+Create a separate queue for questions that code cannot answer.
+
+At minimum consider:
+
+- controller/processor roles
+- processing legal basis
+- DPA requirements
+- vendor/subprocessor contracts
+- international transfers
+- privacy notice wording
+- retention policy approval
+- DPIA conclusion
+- insurance-distribution boundary if pilot scope changes.
+
+Do not turn these into speculative technical conclusions.
+
+==================================================
+165 – ORGANIZATIONAL REVIEW QUEUE
+==================================================
+
+Separate organizational items such as:
+
+- who gets Railway access
+- who can see logs
+- pilot-user onboarding/offboarding
+- incident contact
+- deletion request owner
+- feedback triage owner
+- pilot support contact.
+
+==================================================
+166 – PERSON INSURANCE READINESS
+==================================================
+
+Create a dedicated section:
+
+PERSON INSURANCE PRIVACY READINESS
+
+We plan to add later:
+
+- Barneforsikring
+- Liv
+- Uførepensjon
+- Uførekapital
+- Kritisk sykdom
+
+Do not implement them.
+
+Assess what security/privacy changes should happen BEFORE such documents are
+accepted.
+
+Health-related/special-category data must be treated as a separate future
+gate.
+
+==================================================
+167 – PILOT WITHOUT PERSON INSURANCE
+==================================================
+
+Evaluate current NITO pilot independently from future person insurance.
+
+Do not block current skadeforsikring pilot solely because person insurance
+would require stronger controls later, unless current architecture already
+creates an unacceptable risk.
+
+==================================================
+168 – DATA CLASSIFICATION
+==================================================
+
+Create a practical data classification for current app:
+
+PUBLIC
+INTERNAL
+CUSTOMER_PERSONAL
+CUSTOMER_SENSITIVE
+SECRET
+
+Map representative data:
+
+public provider terms
+catalog
+customer PDF
+extracted facts
+comparison result
+feedback screenshot
+API key
+pilot auth secret.
+
+Use this to reason about controls.
+
+==================================================
+169 – DATA INVENTORY
+==================================================
+
+Create a table:
+
+Data category
+Source
+Purpose
+Where processed
+Where stored
+External recipient
+Retention
+Access
+Deletion
+Classification
+Evidence
+Gap.
+
+Unknown must remain UNKNOWN.
+
+==================================================
+170 – ENDPOINT INVENTORY
+==================================================
+
+Create inventory of application endpoints/routes.
+
+For each:
+
+method
+purpose
+authentication required
+authorization model
+accepts customer data
+external calls
+rate limit
+input validation
+response sensitivity
+cache behavior.
+
+==================================================
+171 – EXTERNAL SERVICE INVENTORY
+==================================================
+
+List actual external services discovered.
+
+For each:
+
+purpose
+customer data sent YES/NO/UNKNOWN
+secret required
+server/client
+contractual review needed
+international transfer review needed.
+
+No invented vendors.
+
+==================================================
+172 – STORAGE INVENTORY
+==================================================
+
+List actual storage locations discovered:
+
+memory
+temporary filesystem
+database
+object storage
+browser storage
+logs
+feedback storage
+external AI provider
+other.
+
+If none:
+say none.
+
+==================================================
+173 – LOG INVENTORY
+==================================================
+
+List each logging mechanism and what it can receive.
+
+Include:
+
+production trace
+framework logs
+custom logs
+error logs
+browser console
+deployment logs
+
+where applicable.
+
+==================================================
+174 – ACCESS MATRIX
+==================================================
+
+Create a technical access matrix:
+
+Role/actor
+Can access app
+Can upload
+Can analyze
+Can see own result
+Can see other user's result
+Can see feedback
+Can see logs
+Can deploy
+Can read secrets.
+
+Use:
+
+YES
+NO
+UNKNOWN
+NOT_APPLICABLE.
+
+Do not guess organizational permissions.
+
+==================================================
+175 – PILOT USER MODEL
+==================================================
+
+Describe actual current pilot-user model.
+
+Examples:
+
+shared access code
+individual accounts
+session-only identity
+no persistent user identity.
+
+Use actual implementation.
+
+This is critical for deciding whether 4 advisors can safely use the tool.
+
+==================================================
+176 – FOUR-ADVISOR SCENARIO
+==================================================
+
+Explicitly model the intended pilot:
+
+approximately four advisors may use the application.
+
+Test/assess:
+
+- concurrent use
+- session isolation
+- customer isolation
+- feedback attribution
+- logout/revocation
+- shared authentication implications
+- accidental cross-user disclosure.
+
+==================================================
+177 – CONCURRENT ADVISOR TEST
+==================================================
+
+Using synthetic data, simulate at least two concurrent advisor/browser
+sessions where technically possible.
+
+Customer A and Customer B must not cross.
+
+Test:
+
+- upload state
+- analysis state
+- results
+- object references
+- progress
+- feedback context.
+
+==================================================
+178 – SHARED PILOT CODE TEST
+==================================================
+
+If current auth uses shared pilot code:
+
+test whether possession of code gives access to all application functionality.
+
+Document:
+
+what the code protects
+what it does not protect
+whether users have distinct server identities after entry.
+
+Do not reveal code.
+
+==================================================
+179 – REVOCATION
+==================================================
+
+Assess whether access can be revoked for:
+
+one advisor
+
+without revoking all advisors.
+
+If not:
+document as operational/security limitation.
+
+==================================================
+180 – AUDITABILITY
+==================================================
+
+Assess whether security-relevant actions can be attributed to an individual
+advisor.
+
+Do not recommend invasive customer-data logging.
+
+We need accountability without logging document contents.
+
+==================================================
+181 – SAFE AUDIT LOGGING
+==================================================
+
+If current app has no auditability:
+
+describe minimal privacy-preserving metadata that COULD be useful later:
+
+user/session identity
+timestamp
+action category
+success/failure
+request-local reference
+
+without:
+
+PDF text
+customer identifiers
+prices
+filenames
+source excerpts.
+
+Do not implement.
+
+==================================================
+182 – DATA RETENTION TARGET
+==================================================
+
+Compare actual technical behavior to a privacy-minimizing pilot target.
+
+Do not invent legally required retention periods.
+
+A useful technical principle is:
+
+customer analysis data should persist no longer than needed for the intended
+workflow unless explicitly justified.
+
+Report mismatch.
+
+==================================================
+183 – FEEDBACK RETENTION
+==================================================
+
+Feedback may legitimately need longer retention than analysis request data.
+
+But screenshot/customer-data risk must be handled separately.
+
+Document actual state and required policy decision.
+
+==================================================
+184 – BROWSER MEMORY
+==================================================
+
+Assess whether customer information remains in:
+
+React state
+browser memory
+history
+DOM
+
+after:
+
+new comparison
+logout
+tab close
+
+where testable.
+
+==================================================
+185 – CLIPBOARD
+==================================================
+
+If app has copy functionality:
+
+assess whether sensitive data can be copied accidentally.
+
+Not necessarily a blocker.
+
+==================================================
+186 – DOWNLOADS
+==================================================
+
+If app allows downloaded reports/files:
+
+assess local-device privacy implications.
+
+If feature absent:
+not applicable.
+
+==================================================
+187 – PRINT
+==================================================
+
+If browser print produces customer result:
+
+document that this is browser behavior.
+
+No need to block unless app intentionally provides unsafe persistent export.
+
+==================================================
+188 – SOURCE ARTIFACT BOUNDARY
+==================================================
+
+Public source artifacts are not customer data.
+
+Ensure security controls do not accidentally treat them as private and
+customer files as public.
+
+==================================================
+189 – STATIC ASSET CHECK
+==================================================
+
+Verify customer uploads/results are not written under:
+
+public/
+static/
+or another web-accessible asset directory.
+
+BLOCKER if real customer data can become public static content.
+
+==================================================
+190 – TEMP FILE NAMING
+==================================================
+
+If temporary files exist:
+
+assess predictable filenames
+collision risk
+cross-request access
+cleanup.
+
+==================================================
+191 – FILE PERMISSIONS
+==================================================
+
+Where inspectable, assess permissions/access to temporary customer files.
+
+If hosting behavior cannot be proven:
+mark infrastructure review.
+
+==================================================
+192 – MEMORY LIFETIME
+==================================================
+
+If processing is memory-only:
+
+document request lifetime and whether global/shared variables can retain
+customer state.
+
+==================================================
+193 – GLOBAL STATE
+==================================================
+
+Search for mutable module/global state containing request/customer data.
+
+Cross-request customer state is potentially BLOCKER.
+
+==================================================
+194 – WEAKMAP / REQUEST REFERENCES
+==================================================
+
+Existing request-local reference mechanisms should be reviewed for
+concurrency/isolation.
+
+Confirm no reference from one request resolves into another.
+
+==================================================
+195 – SERVERLESS / LONG-LIVED PROCESS
+==================================================
+
+Assess architecture assuming server process may be reused across requests.
+
+Do not rely on process termination for privacy cleanup unless architecture
+guarantees it.
+
+==================================================
+196 – MODEL REQUEST IDENTIFIERS
+==================================================
+
+Assess whether external AI requests contain unnecessary customer-identifying
+metadata.
+
+Do not expose actual request IDs if sensitive.
+
+==================================================
+197 – MODEL ERROR BODY
+==================================================
+
+Ensure upstream AI error bodies cannot be dumped directly to customer UI or
+logs with input contents.
+
+==================================================
+198 – RETRY
+==================================================
+
+Audit retry behavior.
+
+Repeated AI requests may duplicate customer-data transmission.
+
+Document actual behavior and whether bounded.
+
+==================================================
+199 – TIMEOUT
+==================================================
+
+Audit timeouts for:
+
+PDF processing
+AI
+HTTP request.
+
+Unbounded processing is security/availability risk.
+
+==================================================
+200 – CANCEL
+==================================================
+
+If analysis can be cancelled/aborted:
+
+verify cleanup.
+
+If not:
+document behavior.
+
+==================================================
+201 – FILE COUNT / SIZE COST ABUSE
+==================================================
+
+Assess whether authenticated/unauthenticated user can create excessive AI
+cost through allowed file count/size.
+
+Rate limiting and pilot access matter here.
+
+==================================================
+202 – PUBLIC ACCESS
+==================================================
+
+Determine whether any expensive/sensitive route is reachable without pilot
+authentication.
+
+BLOCKER if an unauthenticated internet user can invoke customer-analysis AI
+path when that is not intended.
+
+==================================================
+203 – SOURCE ROUTES
+==================================================
+
+Public source viewing may be less sensitive.
+
+Still verify no arbitrary file read/path traversal.
+
+==================================================
+204 – BUILD OUTPUT
+==================================================
+
+Inspect production build for accidental inclusion of:
+
+.env
+private test fixtures
+customer PDFs
+audit artifacts
+local absolute paths
+secrets.
+
+==================================================
+205 – SOURCE MAPS
+==================================================
+
+Assess production source-map exposure if relevant.
+
+Do not call it blocker unless sensitive internals/secrets are exposed.
+
+==================================================
+206 – ERROR PAGE
+==================================================
+
+Test 404/500-style safe cases.
+
+No internal path/stack leakage in production-like build.
+
+==================================================
+207 – ROBOTS / INDEXING
+==================================================
+
+Assess whether pilot application should be discoverable/indexable.
+
+If pilot pages are publicly indexable:
+flag operational/privacy consideration.
+
+Authentication remains primary control.
+
+==================================================
+208 – CLICKJACKING
+==================================================
+
+Assess framing protection.
+
+Especially relevant for authenticated application.
+
+==================================================
+209 – MIME SNIFFING
+==================================================
+
+Assess `X-Content-Type-Options` or equivalent.
+
+==================================================
+210 – REFERRER LEAKAGE
+==================================================
+
+Ensure customer-sensitive data is not placed in URLs that could leak through
+Referer headers.
+
+==================================================
+211 – URL STATE
+==================================================
+
+Check URLs for:
+
+customer names
+filenames
+policy IDs
+object IDs
+prices
+analysis contents.
+
+Sensitive state should not be encoded in URL unnecessarily.
+
+==================================================
+212 – PRODUCTION CACHE CONTROL
+==================================================
+
+Customer-analysis routes/pages should not be shared-cached.
+
+Verify where possible.
+
+==================================================
+213 – SERVICE WORKER
+==================================================
+
+If service worker/PWA exists:
+
+audit caching of customer data.
+
+If absent:
+not applicable.
+
+==================================================
+214 – AUTOFILL
+==================================================
+
+If manual customer fields include sensitive data:
+
+assess browser autofill implications.
+
+Likely low priority for current app.
+
+==================================================
+215 – SCREENSHOTS
+==================================================
+
+Feedback screenshots are a special risk.
+
+Assess:
+
+- screenshot capture scope
+- preview
+- removal before submit
+- storage
+- access
+- retention.
+
+==================================================
+216 – FEEDBACK REDACTION
+==================================================
+
+Determine whether user can redact/remove screenshot.
+
+If not:
+consider IMPORTANT if screenshots can easily contain customer information.
+
+Do not implement.
+
+==================================================
+217 – FEEDBACK DEFAULT
+==================================================
+
+Prefer privacy-safe default conceptually:
+
+no screenshot unless user intentionally adds one.
+
+Audit actual behavior.
+
+==================================================
+218 – DATA PROCESSING ON ERROR
+==================================================
+
+If analysis fails halfway:
+
+determine what data remains:
+
+server
+browser
+logs
+external provider.
+
+==================================================
+219 – DATA PROCESSING ON SUCCESS
+==================================================
+
+Same after successful result.
+
+==================================================
+220 – USER EXPECTATION
+==================================================
+
+Compare actual lifecycle with what a reasonable advisor would expect from
+UI.
+
+If app appears ephemeral but secretly persists customer documents:
+BLOCKER/IMPORTANT depending on actual behavior.
+
+==================================================
+221 – CONSENT LANGUAGE
+==================================================
+
+Do not assume consent is correct GDPR basis.
+
+If UI uses "consent" language:
+flag for legal review unless role/basis is established.
+
+==================================================
+222 – COOKIE NOTICE
+==================================================
+
+Determine whether non-essential cookies/analytics exist.
+
+If only strictly necessary auth cookie:
+document.
+
+Legal determination remains separate.
+
+==================================================
+223 – PRIVACY NOTICE LINK
+==================================================
+
+Assess whether pilot UI provides accessible privacy information.
+
+If missing:
+likely documentation/readiness action.
+
+==================================================
+224 – CONTACT
+==================================================
+
+Pilot should have clear contact for:
+
+ordinary support
+privacy question
+security incident.
+
+Can be organizational documentation rather than app UI.
+
+==================================================
+225 – PILOT TERMS
+==================================================
+
+Assess need for concise pilot-use rules:
+
+- authorized advisors only
+- supported use
+- no person-insurance/health documents yet if not approved
+- no unnecessary customer data
+- report incorrect comparison
+- report security/privacy incident immediately.
+
+==================================================
+226 – CURRENT PRODUCT LIMIT
+==================================================
+
+Explicitly determine whether pilot should initially be limited to:
+
+skadeforsikring
+
+until person-insurance privacy gate is completed.
+
+This is likely but must follow actual audit.
+
+==================================================
+227 – TEST DATA MODE
+==================================================
+
+Assess whether advisors have a safe demo/test dataset available before using
+real customers.
+
+If not:
+recommend creating one as readiness action.
+
+No need to implement during audit.
+
+==================================================
+228 – DEMO SCENARIO
+==================================================
+
+Define what a safe synthetic demo should cover:
+
+- PDF comparison
+- price
+- important differences
+- detailed comparison
+- source
+- manual/hybrid
+- product comparison
+- feedback.
+
+Do not create customer-like PII.
+
+==================================================
+229 – TRAINING REQUIREMENT
+==================================================
+
+Assess whether pilot requires a short advisor briefing.
+
+Likely topics:
+
+- what tool does
+- what it does not do
+- unknown semantics
+- source interpretation
+- customer document authority
+- privacy handling
+- feedback.
+
+==================================================
+230 – INDEPENDENT USE TEST
+==================================================
+
+After reading only existing UI/pilot documentation, determine whether a
+competent insurance advisor could complete a comparison without developer
+assistance.
+
+Return:
+
+YES
+YES_WITH_GUIDE
+NO.
+
+==================================================
+231 – ERROR RECOVERY TEST
+==================================================
+
+Determine whether advisor can recover without developer after:
+
+invalid file
+failed analysis
+unknown product
+missing object
+expired session.
+
+==================================================
+232 – SUPPORT DEPENDENCY
+==================================================
+
+Flag any workflow that currently requires:
+
+developer terminal
+Railway access
+manual database intervention
+code change
+
+for ordinary pilot use.
+
+BLOCKER/IMPORTANT depending on frequency.
+
+==================================================
+233 – DATA CLEANUP DEPENDENCY
+==================================================
+
+If deleting customer data requires developer shell access:
+
+document clearly.
+
+This may be acceptable only with controlled operational process and should
+be reviewed.
+
+==================================================
+234 – OBSERVABILITY WITHOUT PII
+==================================================
+
+Assess whether operators can diagnose:
+
+request failed
+analysis timed out
+source missing
+
+without seeing customer document contents.
+
+This is desired.
+
+==================================================
+235 – FEEDBACK LOOP
+==================================================
+
+Assess whether pilot feedback can be linked to:
+
+feature/page
+insurance type
+timestamp
+safe request-local context
+
+without storing unnecessary customer data.
+
+==================================================
+236 – CORRECTNESS DISCLAIMER
+====================================================================================================
+236 – CORRECTNESS DISCLAIMER
+==================================================
+
+Assess whether pilot users are appropriately informed that the tool is:
+
+decision support
+
+and not a replacement for advisor responsibility or authoritative policy
+interpretation.
+
+Do not use alarming/legalistic wording unnecessarily.
+
+The goal is clear expectations.
+
+==================================================
+237 – SOURCE DISCLAIMER
+==================================================
+
+Assess whether advisor understands:
+
+- source buttons show supporting evidence
+- public catalog information may differ from customer's individually agreed
+  terms
+- customer document has priority where the system has documented customer
+  facts
+- "Ikke dokumentert" is not the same as "ikke dekket".
+
+Flag ambiguity.
+
+==================================================
+238 – AI TRANSPARENCY
+==================================================
+
+Assess whether pilot users should be informed that AI is used to extract/
+structure customer documents.
+
+Do not draft final legal wording.
+
+Classify as:
+
+PRIVACY_DOCUMENTATION
+LEGAL_REVIEW_REQUIRED
+
+where appropriate.
+
+==================================================
+239 – HUMAN REVIEW
+==================================================
+
+Assess whether workflow appropriately expects advisor review before acting
+on result.
+
+The application should not imply that AI output is infallible.
+
+==================================================
+240 – HIGH-RISK RESULT UX
+==================================================
+
+Look for results that deserve particularly clear uncertainty presentation:
+
+- conflict
+- missing documentation
+- unmatched object
+- incomplete price
+- unknown product
+- uncertain identity.
+
+Advisor should not mistake uncertainty for a definitive conclusion.
+
+==================================================
+241 – SILENT FAILURE
+==================================================
+
+Search for conditions where:
+
+- fact is dropped
+- object is dropped
+- source is lost
+- price is omitted
+- optional component disappears
+
+without visible indication or safe internal handling.
+
+Use existing tests/traces where relevant.
+
+No code changes.
+
+==================================================
+242 – PARTIAL SUCCESS
+==================================================
+
+If one document/object fails while others succeed:
+
+assess whether advisor understands that result is partial.
+
+Do not let partial portfolio look complete.
+
+==================================================
+243 – COMPLETENESS
+==================================================
+
+Audit existing completeness indicators.
+
+Check:
+
+- price completeness
+- object completeness
+- source/document completeness where applicable.
+
+No invented completeness score.
+
+==================================================
+244 – TRUST SIGNALS
+==================================================
+
+Assess whether useful trust signals exist:
+
+- source links
+- documented/unknown distinction
+- conflict presentation
+- clear product identity
+- actual customer price
+- feedback path.
+
+Do not add marketing claims.
+
+==================================================
+245 – OVERCONFIDENCE
+==================================================
+
+Search visible copy for overly certain language such as:
+
+"garantert"
+"alltid"
+"fullstendig"
+"korrekt"
+"beste"
+
+where system evidence does not justify it.
+
+Flag.
+
+==================================================
+246 – PRODUCT COMPARISON TRUST
+==================================================
+
+In product mode verify clearly:
+
+- no customer price
+- no customer-selected-state implication
+- optional remains optional
+- catalog basis is communicated
+- sources available.
+
+==================================================
+247 – CUSTOMER COMPARISON TRUST
+==================================================
+
+In customer mode verify clearly:
+
+- actual document facts are distinguished appropriately
+- catalog enrichment does not masquerade as document fact
+- source/evidence remains traceable.
+
+==================================================
+248 – ADVISOR RESPONSIBILITY
+==================================================
+
+Determine whether a short pilot instruction should say:
+
+advisor must review the comparison and underlying source/customer documents
+before relying on it in customer advice.
+
+Classify as operating-guide/legal-review item, not code correctness.
+
+==================================================
+249 – PILOT SCOPE BOUNDARY
+==================================================
+
+Recommend an explicit initial pilot scope based on findings.
+
+Possible structure:
+
+ALLOWED:
+- supported skadeforsikring comparison
+- product comparison
+- synthetic/demo testing
+- controlled real-customer use if gates pass.
+
+NOT YET ALLOWED:
+- person insurance/health documents
+- unsupported products
+- public consumer access
+- automated recommendation/sale
+- uncontrolled external sharing.
+
+Use actual audit findings.
+
+==================================================
+250 – PILOT USER COUNT
+==================================================
+
+Assess whether current architecture can safely support the intended number
+of pilot advisors concurrently.
+
+Return:
+
+SUPPORTED
+SUPPORTED_WITH_CONTROLS
+NOT_SUPPORTED
+
+with evidence.
+
+==================================================
+251 – PILOT DURATION
+==================================================
+
+No need to invent pilot duration.
+
+But recommend that pilot have:
+
+defined start
+defined review point
+defined owner
+defined stop condition
+
+as organizational readiness items.
+
+==================================================
+252 – STOP CONDITIONS
+==================================================
+
+Suggest pilot stop/escalation conditions such as:
+
+- suspected customer-data exposure
+- cross-user result leakage
+- repeated material comparison errors
+- source/provenance corruption
+- unauthorized access
+- uncontrolled customer-data persistence.
+
+Do not automate them.
+
+==================================================
+253 – PILOT SUCCESS METRICS
+==================================================
+
+Suggest privacy-safe pilot metrics.
+
+Examples:
+
+- comparisons attempted
+- comparisons completed
+- failure category counts
+- advisor feedback category
+- correction reports
+- time-to-result
+
+without:
+
+customer names
+policy numbers
+document text
+prices
+identifiers.
+
+==================================================
+254 – NO INVASIVE ANALYTICS
+==================================================
+
+Do not recommend adding broad behavioral analytics merely for convenience.
+
+Privacy-minimizing pilot measurement preferred.
+
+==================================================
+255 – FEEDBACK METRICS
+==================================================
+
+Assess whether feedback categories can provide sufficient pilot learning
+without tracking every advisor action.
+
+==================================================
+256 – PRE-PILOT DOCUMENT PACK
+==================================================
+
+Audit should identify which documents we need before pilot.
+
+Potential documents:
+
+1. Pilot operating guide
+2. Privacy information / privacy notice
+3. Data-flow map
+4. Processing/data inventory
+5. Retention/deletion policy
+6. Security overview
+7. Incident-response procedure
+8. Vendor/processor inventory
+9. DPA checklist
+10. DPIA screening
+11. Known limitations
+12. Advisor quick-start guide
+13. Pilot feedback process
+14. Pilot stop/escalation process.
+
+Classify each:
+
+REQUIRED_BEFORE_REAL_DATA
+RECOMMENDED_BEFORE_PILOT
+CAN_FOLLOW_DURING_PILOT
+LEGAL_REVIEW_REQUIRED.
+
+==================================================
+257 – DO NOT WRITE LEGAL DOCUMENTS
+==================================================
+
+This audit may outline missing documentation.
+
+Do NOT present generated privacy/DPA/DPIA text as legally approved.
+
+Drafting can happen in a later task with explicit review markers.
+
+==================================================
+258 – EXISTING DOCUMENTATION REVIEW
+==================================================
+
+Inspect current repo documentation before declaring something missing.
+
+Reuse existing:
+
+security
+GDPR
+architecture
+source
+trace
+pilot
+
+documentation where present.
+
+==================================================
+259 – DOCUMENT CONSISTENCY
+==================================================
+
+Flag documentation that contradicts actual code.
+
+Actual implementation is technical evidence.
+
+Do not silently rewrite docs.
+
+==================================================
+260 – STALE DOCUMENTATION
+==================================================
+
+Identify docs referring to obsolete:
+
+product counts
+families
+data flows
+auth behavior
+retention
+AI behavior.
+
+Classify by pilot impact.
+
+==================================================
+261 – README / DEVELOPER DOCS
+==================================================
+
+Developer documentation is not automatically adequate pilot documentation.
+
+Assess separately.
+
+==================================================
+262 – SECURITY TEST COVERAGE
+==================================================
+
+Inventory existing automated tests covering:
+
+- auth
+- authorization
+- trace privacy
+- concurrency
+- request isolation
+- file validation
+- prompt injection
+- source access
+- XSS
+- customer/catalog priority
+- logging.
+
+Report gaps.
+
+==================================================
+263 – DO NOT ADD TESTS
+==================================================
+
+Audit only.
+
+Missing tests become remediation findings.
+
+==================================================
+264 – DEPENDENCY AUDIT OUTPUT
+==================================================
+
+If package audit reports vulnerabilities:
+
+record exact package/advisory/severity if available.
+
+Do not upgrade.
+
+Distinguish:
+
+production dependency
+development dependency
+transitive dependency.
+
+==================================================
+265 – FALSE POSITIVE SECURITY FINDINGS
+==================================================
+
+Manually review automated scanner findings before elevating them.
+
+Do not call every dependency warning a pilot blocker.
+
+==================================================
+266 – SECURITY BY OBSCURITY
+==================================================
+
+Do not treat:
+
+unknown URL
+pilot page not indexed
+hard-to-guess endpoint
+
+as sufficient access control.
+
+==================================================
+267 – AUTHENTICATION BY UI
+==================================================
+
+Do not assume hidden UI protects API.
+
+Verify server enforcement.
+
+==================================================
+268 – CLIENT-SIDE VALIDATION
+==================================================
+
+Do not treat client validation as sufficient.
+
+Check server-side validation for security-sensitive input.
+
+==================================================
+269 – FILE LIMIT SERVER ENFORCEMENT
+==================================================
+
+If UI says max N files / size:
+
+verify server also enforces relevant limits.
+
+==================================================
+270 – MIME SERVER ENFORCEMENT
+==================================================
+
+Same for accepted file types.
+
+==================================================
+271 – SCHEMA SERVER ENFORCEMENT
+==================================================
+
+Verify AI/model output schema validation happens in trusted code path.
+
+==================================================
+272 – CATALOG TRUST BOUNDARY
+==================================================
+
+Catalog/source artifacts are trusted application data only because they are
+versioned/validated.
+
+Verify customer input cannot modify catalog at runtime.
+
+==================================================
+273 – FEEDBACK TRUST BOUNDARY
+==================================================
+
+Feedback text/image is untrusted user input.
+
+Verify it cannot execute/render unsafe content.
+
+==================================================
+274 – SOURCE HTML TRUST BOUNDARY
+==================================================
+
+Public source HTML stored locally must not be rendered unsafely as executable
+provider HTML inside advisor UI.
+
+==================================================
+275 – MARKDOWN TRUST BOUNDARY
+==================================================
+
+If markdown is rendered anywhere:
+
+audit sanitization.
+
+==================================================
+276 – DOWNLOAD HEADER
+==================================================
+
+If source PDFs are served through app:
+
+inspect Content-Type and Content-Disposition behavior.
+
+No arbitrary inline HTML execution.
+
+==================================================
+277 – CONTENT SNIFFING
+==================================================
+
+Relevant source/download routes should not allow browser MIME confusion.
+
+==================================================
+278 – OPEN REDIRECT
+==================================================
+
+Check whether login/return URLs can cause arbitrary redirects.
+
+If feature absent:
+not applicable.
+
+==================================================
+279 – AUTH BRUTE FORCE
+==================================================
+
+If pilot access uses a code/password:
+
+assess:
+
+- rate limiting
+- lockout/backoff
+- logging without secret
+- guessability architecture.
+
+Do not attempt aggressive brute force.
+
+==================================================
+280 – AUTH SECRET STORAGE
+==================================================
+
+Verify auth secret is:
+
+not in repo
+not in client bundle
+not logged.
+
+Do not print it.
+
+==================================================
+281 – PASSWORD COMPARISON
+==================================================
+
+If code performs secret comparison:
+
+inspect for obvious unsafe handling.
+
+No need for speculative cryptographic redesign unless evidence warrants it.
+
+==================================================
+282 – SESSION INVALIDATION
+==================================================
+
+Assess whether changing pilot access credentials invalidates existing
+sessions.
+
+If not:
+document operational implication.
+
+==================================================
+283 – SESSION EXPIRATION
+==================================================
+
+Verify actual expiration behavior.
+
+Indefinite session may be inappropriate for real-data pilot.
+
+Classify based on actual risk.
+
+==================================================
+284 – LOGOUT FUNCTION
+==================================================
+
+If no logout exists:
+
+assess pilot impact, especially shared workstations.
+
+==================================================
+285 – SHARED WORKSTATION
+==================================================
+
+Consider advisor environments where browser/computer may remain logged in.
+
+Assess:
+
+session timeout
+logout
+customer state clearing.
+
+==================================================
+286 – CUSTOMER STATE RESET
+==================================================
+
+Explicitly verify "new comparison" clears all previous customer-specific
+state.
+
+==================================================
+287 – SOURCE STATE RESET
+==================================================
+
+Ensure source panels/references from previous customer do not remain attached
+to new customer result.
+
+==================================================
+288 – FEEDBACK STATE RESET
+==================================================
+
+Ensure feedback draft/context does not accidentally carry customer-specific
+context into next case.
+
+==================================================
+289 – ERROR STATE RESET
+==================================================
+
+Old errors should not be mistaken as current-customer errors.
+
+==================================================
+290 – MANUAL REGISTRATION STATE RESET
+==================================================
+
+Manual customer objects from previous case must not persist into next case.
+
+==================================================
+291 – BROWSER TAB ISOLATION
+==================================================
+
+If practical test two tabs with different synthetic customers.
+
+Check for shared client state/collision.
+
+==================================================
+292 – SERVER REQUEST ISOLATION
+==================================================
+
+Use existing concurrency tests plus safe synthetic runtime to validate
+request isolation.
+
+==================================================
+293 – AI CONCURRENCY
+==================================================
+
+Check simultaneous extraction requests do not mix responses.
+
+Existing tests may already cover this.
+
+==================================================
+294 – SOURCE CONCURRENCY
+==================================================
+
+Source lookup for one request/product must not attach to another customer's
+object.
+
+==================================================
+295 – PRICE CONCURRENCY
+==================================================
+
+Customer price from request A must never appear in B.
+
+==================================================
+296 – FEEDBACK CONCURRENCY
+==================================================
+
+If feedback is server-stored:
+
+ensure concurrent submissions cannot overwrite/cross-associate.
+
+==================================================
+297 – PRIVACY TEST CASE A
+==================================================
+
+Create synthetic Customer A with distinctive fake markers.
+
+After full workflow search:
+
+logs
+browser state
+server temporary storage
+next request
+
+for marker persistence.
+
+Do not use real PII.
+
+==================================================
+298 – PRIVACY TEST CASE B
+==================================================
+
+Repeat with synthetic Customer B.
+
+Verify no A marker appears.
+
+==================================================
+299 – LOG REDACTION
+==================================================
+
+If logs contain synthetic customer markers:
+
+document exact path/category.
+
+Do not expose actual real data.
+
+Potential BLOCKER depending on production behavior.
+
+==================================================
+300 – TRACE REDACTION
+==================================================
+
+Verify production trace whitelist with synthetic markers.
+
+Tracing stays OFF.
+
+Test locally/unit path only.
+
+==================================================
+301 – ERROR REDACTION
+==================================================
+
+Trigger safe parser/model error and inspect logs/UI for synthetic marker
+leakage.
+
+==================================================
+302 – FEEDBACK REDACTION TEST
+==================================================
+
+If screenshot/text feedback is stored:
+
+test synthetic marker handling.
+
+Document retention/access.
+
+==================================================
+303 – NETWORK DATA TEST
+==================================================
+
+Inspect outbound requests using synthetic markers.
+
+Confirm expected recipients only.
+
+==================================================
+304 – UNEXPECTED THIRD PARTY
+==================================================
+
+Any customer marker sent to an unexpected third party is potential BLOCKER.
+
+==================================================
+305 – NO REAL PRODUCTION ADVERSARIAL TEST
+==================================================
+
+Do not upload adversarial files to production.
+
+Do not fuzz production.
+
+Do not load test production.
+
+Local/test environment only.
+
+==================================================
+306 – SAFE PRODUCTION SMOKE
+==================================================
+
+Production checks may include only non-destructive:
+
+- HTTPS
+- auth page
+- expected protected behavior
+- static/public source behavior
+- normal synthetic/demo flow if explicitly safe.
+
+No real customer data.
+
+==================================================
+307 – CURRENT DEPLOYMENT
+==================================================
+
+Record production commit/deployment if safely determinable.
+
+Audit should know whether local audited code matches deployed code.
+
+If not:
+state clearly.
+
+==================================================
+308 – LOCAL VS PRODUCTION GAP
+==================================================
+
+If local contains uncommitted/unpublished changes:
+
+do not claim production has those controls.
+
+Report:
+
+LOCAL_STATE
+PRODUCTION_STATE
+
+separately.
+
+==================================================
+309 – PILOT GATE TARGET VERSION
+==================================================
+
+Define exact git commit/working-tree state intended for pilot.
+
+A pilot gate without version identity is insufficient.
+
+==================================================
+310 – REPRODUCIBILITY
+==================================================
+
+Record:
+
+git HEAD
+working tree fingerprint
+Node version
+relevant dependency versions
+audit timestamp.
+
+==================================================
+311 – AUDIT OUTPUT DIRECTORY
+==================================================
+
+Do not pollute repo.
+
+Create:
+
+/tmp/nito-prepilot-audit/
+
+for generated audit artifacts/scripts.
+
+==================================================
+312 – REQUIRED OUTPUT FILES
+==================================================
+
+Create at minimum:
+
+1. `nito-prepilot-audit.json`
+2. `nito-prepilot-audit.md`
+3. `security-findings.csv`
+4. `product-readiness-findings.csv`
+5. `data-inventory.csv`
+6. `endpoint-inventory.csv`
+7. `external-services.csv`
+8. `access-matrix.csv`
+9. `pilot-manual-checklist.md`
+10. `legal-organizational-review.md`
+
+All outside repo.
+
+==================================================
+313 – OPTIONAL WORD REPORT
+==================================================
+
+If easy with available tooling, create:
+
+`NITO-prepilot-audit.docx`
+
+But do not consume significant time/budget on formatting.
+
+Markdown + structured files are sufficient.
+
+==================================================
+314 – AUDIT JSON
+==================================================
+
+JSON should contain:
+
+metadata
+version identity
+threat model
+data flows
+data inventory
+endpoint inventory
+external services
+storage
+logging
+authentication
+authorization
+file upload
+AI boundary
+prompt injection
+client security
+network/security headers
+dependencies
+feedback
+retention/deletion
+GDPR readiness
+DPIA screening
+product readiness
+accessibility
+Safari/manual requirements
+findings
+deduplicated signatures
+legal review queue
+organizational review queue
+pilot gate decision.
+
+==================================================
+315 – SECURITY FINDINGS CSV
+==================================================
+
+Fields:
+
+finding_id
+signature
+severity
+category
+component
+evidence
+verified_or_inferred
+scenario
+impact
+remediation_direction
+effort
+gpt6_review_recommended
+pilot_blocking
+validation_needed.
+
+==================================================
+316 – PRODUCT FINDINGS CSV
+==================================================
+
+Fields:
+
+finding_id
+severity
+workflow
+screen/component
+evidence
+advisor_impact
+reproduction
+remediation_direction
+effort
+pilot_blocking.
+
+==================================================
+317 – DATA INVENTORY CSV
+==================================================
+
+Fields:
+
+data_category
+classification
+source
+purpose
+processing_location
+storage
+external_recipient
+retention
+access
+deletion
+evidence
+gap.
+
+==================================================
+318 – ENDPOINT INVENTORY CSV
+==================================================
+
+Fields:
+
+route
+method
+purpose
+auth_required
+authorization
+customer_data
+external_calls
+input_validation
+rate_limit
+cache_behavior
+response_sensitivity
+finding_refs.
+
+==================================================
+319 – EXTERNAL SERVICES CSV
+==================================================
+
+Fields:
+
+service
+purpose
+customer_data_sent
+server_or_client
+secret_required
+technical_evidence
+dpa_review
+transfer_review
+notes.
+
+==================================================
+320 – ACCESS MATRIX CSV
+==================================================
+
+Include actors such as:
+
+unauthenticated user
+pilot advisor
+other pilot advisor
+developer/operator
+hosting platform
+AI provider
+
+where applicable.
+
+Do not invent actual organizational access rights.
+
+==================================================
+321 – PILOT MANUAL CHECKLIST
+==================================================
+
+Create a concise human checklist for remaining manual steps.
+
+Especially:
+
+Safari
+production auth
+production HTTPS
+logout/session
+privacy notice
+pilot guide
+incident contact
+processor/DPA confirmation
+DPIA/legal review.
+
+==================================================
+322 – LEGAL / ORGANIZATIONAL REVIEW
+==================================================
+
+Create a concise document containing ONLY items code cannot resolve.
+
+No pseudo-legal conclusions.
+
+==================================================
+323 – MAIN MARKDOWN REPORT
+==================================================
+
+Use sections:
+
+EXECUTIVE SUMMARY
+
+VERSION / SCOPE
+
+OVERALL PILOT GATE
+
+BLOCKERS
+
+IMPORTANT FINDINGS
+
+POLISH
+
+THREAT MODEL
+
+DATA FLOW
+
+DATA LIFECYCLE
+
+AUTHENTICATION / AUTHORIZATION
+
+FILE / PDF SECURITY
+
+AI / PROMPT INJECTION
+
+LOGGING / TRACE
+
+FEEDBACK
+
+INFRASTRUCTURE / NETWORK
+
+DEPENDENCIES
+
+GDPR READINESS
+
+DPIA SCREENING
+
+PERSON INSURANCE PRIVACY GATE
+
+PRODUCT READINESS
+
+ADVISOR WORKFLOW
+
+ERROR / RECOVERY
+
+ACCESSIBILITY / MOBILE / SAFARI
+
+PILOT OPERATING MODEL
+
+LEGAL REVIEW QUEUE
+
+ORGANIZATIONAL REVIEW QUEUE
+
+REMEDIATION ORDER
+
+MANUAL CHECKLIST
+
+FINAL DECISION
+
+==================================================
+324 – EXECUTIVE SUMMARY
+==================================================
+
+Answer in plain Norwegian:
+
+- Kan fire rådgivere bruke appen?
+- Kan de bruke ekte skadeforsikringsdokumenter?
+- Hva må eventuelt gjøres først?
+- Er dataflyten forstått?
+- Finnes tekniske personvernblokkere?
+- Finnes juridiske/organisatoriske avklaringer?
+- Er produktet forståelig uten utvikler?
+- Er personforsikring klar eller ikke?
+
+==================================================
+325 – FINDING EVIDENCE
+==================================================
+
+Every BLOCKER and IMPORTANT finding must be evidence-backed.
+
+Use:
+
+file
+function
+route
+runtime observation
+test result
+configuration behavior
+
+where available.
+
+No vague:
+
+"security could be better."
+
+====================================================================================================
+326 – FINDING TRACEABILITY
+==================================================
+
+Every BLOCKER/IMPORTANT finding must be traceable from:
+
+finding
+→ evidence
+→ affected component
+→ failure/attack scenario
+→ pilot impact
+→ remediation direction
+→ required retest.
+
+Do not recommend broad rewrites without evidence.
+
+==================================================
+327 – FALSE POSITIVE REVIEW
+==================================================
+
+Before finalizing:
+
+manually review every BLOCKER.
+
+Also manually review at least:
+
+10 IMPORTANT findings
+
+and
+
+10 areas with NO FINDING.
+
+The audit should not become a checklist that automatically fails everything.
+
+==================================================
+328 – BLOCKER CONFIDENCE
+==================================================
+
+For each BLOCKER assign evidence confidence:
+
+HIGH
+MEDIUM
+LOW.
+
+A LOW-confidence automated finding should normally be:
+
+REVIEW_REQUIRED
+
+rather than an unquestioned pilot blocker until manually verified.
+
+==================================================
+329 – SECURITY POSITIVE CONTROLS
+==================================================
+
+Document security controls that are already good.
+
+Examples only if verified:
+
+- server-side secrets
+- request-local references
+- trace whitelist
+- no customer persistence
+- schema validation
+- authenticated API
+- source allowlisting
+- document > catalog isolation
+- no runtime provider web.
+
+This prevents report from becoming only a list of problems.
+
+==================================================
+330 – PRODUCT POSITIVE CONTROLS
+==================================================
+
+Likewise report existing strengths such as:
+
+- clear unknown handling
+- source provenance
+- optional vs included
+- object isolation
+- price completeness
+- error handling
+- responsive UI
+
+ONLY when actually verified.
+
+==================================================
+331 – EXISTING TEST EVIDENCE
+==================================================
+
+Existing tests may support findings/positive controls.
+
+But:
+
+test existence is not proof production configuration is identical.
+
+Distinguish:
+
+CODE-LEVEL VERIFIED
+RUNTIME VERIFIED
+PRODUCTION VERIFIED
+MANUAL REVIEW REQUIRED.
+
+==================================================
+332 – PRODUCTION CLAIMS
+==================================================
+
+Do not claim production security state based solely on local code when
+deployment/configuration could differ.
+
+==================================================
+333 – AUTH PRODUCTION CHECK
+==================================================
+
+If safe non-secret production verification is possible:
+
+confirm sensitive route protection.
+
+Do not bypass authentication.
+
+Do not brute-force.
+
+==================================================
+334 – HTTPS CHECK
+==================================================
+
+If production URL is available without secrets:
+
+verify HTTPS and obvious certificate behavior.
+
+No invasive scanning.
+
+==================================================
+335 – SECURITY HEADERS PRODUCTION CHECK
+==================================================
+
+Safe HEAD/GET inspection of public/auth page is allowed.
+
+No destructive requests.
+
+==================================================
+336 – CACHE PRODUCTION CHECK
+==================================================
+
+Safe inspection of response headers is allowed.
+
+No customer data.
+
+==================================================
+337 – ROBOTS PRODUCTION CHECK
+==================================================
+
+Safe inspection only.
+
+==================================================
+338 – NO EXTERNAL PENETRATION TEST
+==================================================
+
+This task is NOT authorization for:
+
+port scanning
+vulnerability exploitation
+credential attacks
+bypass attempts
+high-volume fuzzing
+DoS testing
+third-party infrastructure attacks.
+
+Stay within code review and safe local/test verification.
+
+==================================================
+339 – LOCAL SECURITY TESTS
+==================================================
+
+Safe local tests are allowed for:
+
+auth enforcement
+input validation
+path traversal strings
+prompt injection strings
+XSS strings
+malformed files
+concurrency
+cache
+state isolation.
+
+No destructive exploit development.
+
+==================================================
+340 – PROMPT INJECTION RESULT
+==================================================
+
+Return one of:
+
+ROBUST_AGAINST_TESTED_CASES
+PARTIAL_DEFENSE
+MATERIAL_WEAKNESS
+NOT_TESTED
+
+and list tested cases.
+
+Do not claim universal prompt-injection safety.
+
+==================================================
+341 – FILE UPLOAD RESULT
+==================================================
+
+Return:
+
+ADEQUATE_FOR_PILOT
+ACTION_REQUIRED
+BLOCKER
+
+with:
+
+size
+type
+count
+malformed handling
+resource controls.
+
+==================================================
+342 – AUTH RESULT
+==================================================
+
+Return:
+
+ADEQUATE_FOR_FOUR_ADVISOR_PILOT
+ADEQUATE_ONLY_WITH_CONTROLS
+INADEQUATE_FOR_REAL_DATA
+
+with evidence.
+
+==================================================
+343 – USER ISOLATION RESULT
+==================================================
+
+Return:
+
+VERIFIED
+PARTIAL
+NOT_PRESENT
+UNKNOWN.
+
+==================================================
+344 – DATA LIFECYCLE RESULT
+==================================================
+
+Return:
+
+EPHEMERAL_AND_VERIFIED
+PERSISTENT_AND_CONTROLLED
+PARTIALLY_UNDERSTOOD
+NOT_ACCEPTABLE
+UNKNOWN.
+
+==================================================
+345 – LOGGING RESULT
+==================================================
+
+Return:
+
+PRIVACY_SAFE_FOR_TESTED_PATHS
+ACTION_REQUIRED
+BLOCKER
+UNKNOWN.
+
+==================================================
+346 – FEEDBACK PRIVACY RESULT
+==================================================
+
+Return:
+
+ADEQUATE
+ACTION_REQUIRED
+BLOCKER
+NOT_APPLICABLE.
+
+==================================================
+347 – DEPENDENCY RESULT
+==================================================
+
+Return:
+
+NO_MATERIAL_KNOWN_FINDING
+ACTION_REQUIRED
+BLOCKER
+EXTERNAL_ADVISORY_CHECK_REQUIRED.
+
+==================================================
+348 – PRODUCT INDEPENDENCE RESULT
+==================================================
+
+Return:
+
+ADVISOR_CAN_USE_INDEPENDENTLY
+ADVISOR_CAN_USE_WITH_QUICK_GUIDE
+DEVELOPER_SUPPORT_REQUIRED.
+
+==================================================
+349 – SAFARI RESULT
+==================================================
+
+Return:
+
+VERIFIED
+MANUAL_SMOKE_REQUIRED
+KNOWN_ISSUE.
+
+Do not claim Safari verified through Chrome.
+
+==================================================
+350 – ACCESSIBILITY RESULT
+==================================================
+
+Return:
+
+ADEQUATE_FOR_PILOT
+ACTION_REQUIRED
+MATERIAL_BARRIER.
+
+This is not a WCAG certification.
+
+==================================================
+351 – INCIDENT READINESS RESULT
+==================================================
+
+Return:
+
+READY
+DOCUMENTATION_REQUIRED
+PROCESS_REQUIRED
+NOT_READY.
+
+==================================================
+352 – PRIVACY DOCUMENTATION RESULT
+==================================================
+
+Return:
+
+SUFFICIENT_FOR_TECHNICAL_PILOT
+ACTION_REQUIRED
+LEGAL_REVIEW_REQUIRED
+MISSING.
+
+==================================================
+353 – DPA RESULT
+==================================================
+
+Return:
+
+EVIDENCE_FOUND
+REVIEW_REQUIRED
+MISSING_OR_UNVERIFIED
+NOT_APPLICABLE.
+
+Do not infer signed agreements from vendor usage.
+
+==================================================
+354 – DPIA RESULT
+==================================================
+
+Use the screening classification from earlier.
+
+Do not call a screening a completed DPIA.
+
+==================================================
+355 – PERSON INSURANCE RESULT
+==================================================
+
+Be especially conservative.
+
+Future person-insurance documents may contain health information.
+
+Do not return READY merely because skadeforsikring pilot is ready.
+
+==================================================
+356 – NITO PILOT VERSION
+==================================================
+
+Report exact version proposed for pilot:
+
+commit hash
+
+or
+
+working-tree fingerprint if not committed.
+
+After publication this should ideally be a commit.
+
+==================================================
+357 – RELEASE FREEZE
+==================================================
+
+Recommend that once pilot gate passes:
+
+pilot version should be identified/frozen.
+
+Further changes should be deliberately validated before entering pilot.
+
+Do not implement branch/release mechanics now.
+
+==================================================
+358 – PILOT CHANGE CONTROL
+==================================================
+
+Assess whether there is a simple process for:
+
+change
+test
+deploy
+smoke
+pilot notification
+
+during pilot.
+
+If absent:
+organizational recommendation.
+
+==================================================
+359 – ROLLBACK
+==================================================
+
+Assess whether deployment platform/version control permits rollback to known
+good version.
+
+Do not perform rollback.
+
+==================================================
+360 – BACKUP VS ROLLBACK
+==================================================
+
+Do not confuse:
+
+application deployment rollback
+
+with:
+
+customer-data backup.
+
+Treat separately.
+
+==================================================
+361 – CUSTOMER DATA BACKUP NEED
+==================================================
+
+If customer data is intentionally ephemeral:
+
+persistent backup may not be desirable.
+
+Do not recommend storing customer documents merely for backup.
+
+Privacy minimization may favor no persistence.
+
+==================================================
+362 – SOURCE/CATALOG BACKUP
+==================================================
+
+Public source/catalog/versioned code is different and should already be
+recoverable through repository/version control.
+
+==================================================
+363 – PILOT INCIDENT EXAMPLE
+==================================================
+
+Operating guide should know how to respond to:
+
+Advisor reports:
+"I can see information from the previous customer."
+
+This is immediate pilot stop/security escalation.
+
+Audit whether such process exists.
+
+==================================================
+364 – CORRECTNESS INCIDENT EXAMPLE
+==================================================
+
+Advisor reports:
+"App says coverage is included, but source says it is excluded."
+
+This should trigger:
+
+comparison correctness investigation
+
+without necessarily being a personal-data incident.
+
+==================================================
+365 – FEEDBACK VS INCIDENT
+==================================================
+
+Pilot users should be able to distinguish:
+
+ordinary feedback
+correctness bug
+security/privacy incident.
+
+Assess documentation.
+
+==================================================
+366 – PILOT OWNER
+==================================================
+
+Organizational review should assign an owner for:
+
+pilot
+technical incidents
+privacy questions
+advisor support.
+
+Audit cannot assign people automatically.
+
+==================================================
+367 – PRIVACY CONTACT
+==================================================
+
+Legal/organizational review should determine appropriate privacy contact.
+
+==================================================
+368 – VENDOR INCIDENTS
+==================================================
+
+Review queue should include how incidents at:
+
+hosting
+AI provider
+other processors
+
+would be handled/communicated.
+
+==================================================
+369 – DATA BREACH PROCESS
+==================================================
+
+Do not give legal conclusions about notification deadlines without verified
+legal review.
+
+Identify need for documented breach assessment/escalation process.
+
+==================================================
+370 – DATA SUBJECT REQUEST PROCESS
+==================================================
+
+Identify whether team can locate/delete relevant stored personal data if a
+request is received.
+
+If system is ephemeral:
+document what remains in logs/feedback/external services.
+
+==================================================
+371 – CUSTOMER DATA LOCATION
+==================================================
+
+Report every technically verified location where customer data can exist.
+
+This is one of the most important audit outputs.
+
+==================================================
+372 – DATA FLOW DIAGRAM
+==================================================
+
+Create a simple text/Mermaid-style data-flow diagram in Markdown if useful.
+
+Do not add it to repo.
+
+Show:
+
+Advisor browser
+→ app/server
+→ PDF parser
+→ AI provider
+→ normalized comparison
+→ browser
+
+plus:
+
+logging
+feedback
+storage
+
+only where actual.
+
+==================================================
+373 – TRUST BOUNDARY DIAGRAM
+==================================================
+
+Mark external processor boundaries.
+
+No speculative components.
+
+==================================================
+374 – MINIMUM SAFE PILOT CONFIGURATION
+==================================================
+
+Based on findings, describe the minimum safe configuration for pilot.
+
+For example, if evidence supports it:
+
+- named/authorized advisors
+- skadeforsikring only
+- no person insurance
+- no unnecessary feedback screenshots
+- defined incident contact
+- known retention behavior
+- privacy information
+- limited duration
+- no public B2C access.
+
+Use actual audit results.
+
+==================================================
+375 – PILOT DATA MINIMIZATION RULES
+==================================================
+
+Suggest operational rules only where helpful, e.g.:
+
+- upload only documents needed for comparison
+- avoid unrelated attachments
+- do not paste customer data into feedback
+- use screenshot only when necessary
+- do not use person-insurance documents until separately approved.
+
+These are pilot safeguards, not substitutes for technical security.
+
+==================================================
+376 – PILOT USER TRAINING
+==================================================
+
+Assess whether 10–20 minute onboarding plus quick guide would likely be
+sufficient.
+
+Do not require extensive training unless evidence supports it.
+
+==================================================
+377 – PILOT QUICK GUIDE CONTENT
+==================================================
+
+If needed, list recommended guide sections:
+
+1. Logg inn
+2. Sammenlign avtaler
+3. PDF/manual/hybrid
+4. Forstå resultatet
+5. Ikke dokumentert
+6. Kilder
+7. Sammenlign produkter
+8. Personvern
+9. Feedback
+10. Feil/sikkerhet.
+
+Do not draft final guide during audit unless trivial.
+
+==================================================
+378 – PILOT CHECKLIST BEFORE FIRST REAL CUSTOMER
+==================================================
+
+Create a final checklist with checkboxes.
+
+At minimum:
+
+[ ] target commit deployed
+[ ] security blockers resolved
+[ ] privacy/data flow reviewed
+[ ] retention known
+[ ] DPA/vendor review completed or explicitly accepted
+[ ] DPIA screening reviewed
+[ ] privacy information available
+[ ] incident contact assigned
+[ ] pilot guide available
+[ ] advisors authorized
+[ ] Safari smoke completed
+[ ] synthetic demo completed
+[ ] no person-insurance documents unless separately approved
+[ ] production smoke passed.
+
+==================================================
+379 – GO/NO-GO TABLE
+==================================================
+
+Create table:
+
+Area
+Status
+Blocker?
+Required action
+Owner type
+Evidence.
+
+Areas:
+
+Security
+Authentication
+Authorization
+Data lifecycle
+Logging
+AI boundary
+File upload
+Feedback
+Infrastructure
+GDPR documentation
+DPA/vendors
+DPIA
+Product UX
+Accessibility
+Safari
+Operations
+Person insurance.
+
+==================================================
+380 – DO NOT AUTO-REMEDIATE
+==================================================
+
+Even if a fix appears trivial:
+
+do not change project.
+
+The purpose is to see the full picture first.
+
+==================================================
+381 – NO COMMIT
+==================================================
+
+No commit.
+
+==================================================
+382 – NO PUSH
+==================================================
+
+No push.
+
+==================================================
+383 – NO DEPLOY
+==================================================
+
+No deploy.
+
+==================================================
+384 – NO RAILWAY CHANGE
+==================================================
+
+Railway read-only.
+
+==================================================
+385 – NO ENV CHANGE
+==================================================
+
+`.env.local` untouched.
+
+==================================================
+386 – NO TRACE ACTIVATION
+==================================================
+
+Production tracing remains OFF.
+
+==================================================
+387 – AUDIT GENERATED FILES
+==================================================
+
+All generated audit files must remain outside repo.
+
+If a temporary script is needed:
+
+/tmp/nito-prepilot-audit/
+
+only.
+
+==================================================
+388 – REPO INTEGRITY
+==================================================
+
+At end:
+
+git status
+git diff --check
+git rev-parse HEAD
+
+must match baseline.
+
+Fingerprint existing modified/untracked files if necessary.
+
+==================================================
+389 – INTEGRITY FAILURE
+==================================================
+
+If audit unexpectedly modifies a pre-existing project file:
+
+STOP.
+
+Do not automatically reset/revert.
+
+Return:
+
+NITO_PREPILOT_AUDIT_INTEGRITY_FAILURE
+
+with exact file.
+
+==================================================
+390 – OUTPUT VALIDATION
+==================================================
+
+Validate:
+
+JSON parses
+CSV files parse
+Markdown files are readable
+cross-file finding counts agree.
+
+==================================================
+391 – COUNT CONSISTENCY
+==================================================
+
+Report:
+
+total findings
+BLOCKER
+IMPORTANT
+POLISH
+
+and deduplicated signatures.
+
+Counts must agree across JSON/Markdown/CSV.
+
+==================================================
+392 – MANUAL REVIEW COUNTS
+==================================================
+
+Report how many:
+
+security findings
+product findings
+positive controls
+
+were manually inspected.
+
+==================================================
+393 – LIMITATIONS
+==================================================
+
+Explicitly state audit limitations.
+
+At minimum:
+
+- not a formal penetration test
+- not legal advice
+- not GDPR certification
+- no real customer data used
+- no destructive production testing
+- organizational permissions may require manual verification
+- vendor contractual terms may require manual verification
+- Safari may require manual smoke
+- security advisories may change over time.
+
+==================================================
+394 – FINAL REPORT FORMAT
+==================================================
+
+Return concise final terminal/report summary with:
+
+NITO_PREPILOT_AUDIT:
+COMPLETE / PARTIAL / BLOCKED
+
+VERSION
+
+OVERALL GATE
+
+SECURITY GATE
+
+GDPR READINESS
+
+PRODUCT GATE
+
+PERSON INSURANCE PRIVACY GATE
+
+BLOCKERS
+
+IMPORTANT FINDINGS
+
+POLISH
+
+DATA LIFECYCLE
+
+AUTH / USER ISOLATION
+
+AI / PROMPT INJECTION
+
+FILE SECURITY
+
+LOGGING / TRACE
+
+FEEDBACK
+
+DEPENDENCIES
+
+PRODUCT READINESS
+
+SAFARI / ACCESSIBILITY
+
+LEGAL REVIEW QUEUE
+
+ORGANIZATIONAL REVIEW QUEUE
+
+PILOT CHECKLIST
+
+OUTPUT FILES
+
+REPO INTEGRITY
+
+LIMITATIONS
+
+NEXT STEP
+
+==================================================
+395 – FINAL GATE EXAMPLE
+==================================================
+
+Do not copy values.
+
+Example structure only:
+
+OVERALL GATE:
+NITO_PILOT_GATE = READY_WITH_ACTIONS
+
+SECURITY_GATE = PASS_WITH_ACTIONS
+GDPR_READINESS = READY_AFTER_DOCUMENTATION_ACTIONS
+PRODUCT_GATE = PILOT_READY
+PERSON_INSURANCE_PRIVACY_GATE = NOT_READY
+
+BLOCKERS:
+0
+
+IMPORTANT:
+X
+
+POLISH:
+Y
+
+Again:
+use actual results.
+
+==================================================
+396 – OUTPUT PATHS
+==================================================
+
+Report exact existing paths for generated audit files under:
+
+/tmp/nito-prepilot-audit/
+
+Do not claim a file exists unless verified.
+
+==================================================
+397 – OPTIONAL USER COPY
+==================================================
+
+If straightforward, copy main Markdown report to:
+
+/mnt/data/NITO-prepilot-audit.md
+
+and optional Word report to:
+
+/mnt/data/NITO-prepilot-audit.docx
+
+Do not modify repo to do this.
+
+==================================================
+398 – NEXT STEP DECISION
+==================================================
+
+If:
+
+NITO_PILOT_GATE = READY
+
+recommend:
+freeze/version + final production smoke + pilot onboarding.
+
+If:
+
+READY_WITH_ACTIONS
+
+recommend:
+fix/document ONLY required actions, then rerun affected gates.
+
+If:
+
+NOT_READY
+
+recommend:
+resolve BLOCKERS first.
+
+==================================================
+399 – GPT-6 NEXT STEP
+==================================================
+
+If any BLOCKER or complex IMPORTANT finding has:
+
+GPT6_REVIEW_RECOMMENDED = true
+
+list those findings separately.
+
+Do NOT start GPT-6 work automatically.
+
+==================================================
+400 – PERSON INSURANCE NEXT STEP
+==================================================
+
+Do not start person insurance.
+
+If privacy gate is not ready:
+
+list prerequisites for next week's person-insurance work.
+
+==================================================
+401 – PILOT SCOPE NEXT STEP
+==================================================
+
+Recommend exact safe pilot scope based on audit.
+
+Do not broaden beyond evidence.
+
+==================================================
+402 – FINAL SUCCESS TOKENS
+==================================================
+
+If audit completed:
+
+NITO_PREPILOT_AUDIT_COMPLETE
+
+If partially completed but useful:
+
+NITO_PREPILOT_AUDIT_PARTIAL
+
+If audit cannot meaningfully complete:
+
+NITO_PREPILOT_AUDIT_BLOCKED
+
+If repo integrity changed:
+
+NITO_PREPILOT_AUDIT_INTEGRITY_FAILURE
+
+==================================================
+403 – STOP
+==================================================
+
+STOP.
+
+No fixes.
+No documentation edits in repo.
+No commit.
+No push.
+No deploy.
+No Railway changes.
+No environment changes.
+No tracing activation.
+
+Wait for human review.

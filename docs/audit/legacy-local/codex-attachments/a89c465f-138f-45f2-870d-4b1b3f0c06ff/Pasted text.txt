@@ -1,0 +1,1017 @@
+==================================================
+220 – AGE SEMANTICS
+==================================================
+
+Keep distinct:
+
+entry age
+coverage age
+reduction age
+termination age
+vehicle age
+engine age
+building age
+pet age.
+
+Do not merge merely because all are represented numerically in years.
+
+==================================================
+221 – DISTANCE / MILEAGE
+==================================================
+
+Keep distinct:
+
+annual mileage
+vehicle accumulated mileage
+machine-damage mileage threshold
+new-value mileage threshold.
+
+==================================================
+222 – DURATION
+==================================================
+
+Keep distinct:
+
+trip duration
+rental duration
+treatment duration
+benefit duration
+waiting period
+deductible period
+repair period
+coverage period.
+
+==================================================
+223 – DEDUCTIBLE
+==================================================
+
+Keep distinct:
+
+fixed deductible
+percentage deductible
+fixed + percentage
+selectable deductible
+special deductible
+age-graded deductible
+mileage-graded deductible
+deductible period.
+
+==================================================
+224 – INSURANCE SUM
+==================================================
+
+Keep distinct:
+
+agreed sum
+first-loss sum
+annual maximum
+per-event maximum
+per-item maximum
+per-person maximum
+daily benefit
+lifetime maximum
+sub-limit.
+
+==================================================
+225 – INCLUDED / OPTIONAL / AVAILABLE
+==================================================
+
+Preserve:
+
+INCLUDED
+OPTIONAL
+AVAILABLE
+CUSTOMER_SELECTED
+NOT_AVAILABLE
+NOT_COVERED
+UNKNOWN
+
+as distinct states where the domain requires them.
+
+==================================================
+226 – NEGATIVE FACTS
+==================================================
+
+A source-backed:
+
+NOT COVERED
+
+may be as important as a positive coverage fact.
+
+Do not discard negative product facts merely because catalog historically
+focused on positive benefits.
+
+==================================================
+227 – EXCLUSIONS
+==================================================
+
+Not every exclusion belongs in comparison.
+
+Prioritize exclusions that:
+
+materially differentiate products
+or
+materially qualify a headline benefit.
+
+==================================================
+228 – CONDITIONS
+==================================================
+
+Likewise prioritize conditions that change practical eligibility or value.
+
+Examples:
+
+minimum damage threshold
+overnight requirement
+repair requirement
+ownership period
+inspection requirement
+season
+geographic trigger
+claim-free requirement.
+
+==================================================
+229 – SERVICE BENEFITS
+==================================================
+
+Services such as:
+
+medical helpline
+roadside assistance
+identity support
+lounge
+digital doctor
+
+should be triaged based on actual advisor relevance and product
+differentiation.
+
+Do not assume all services are P1.
+
+==================================================
+230 – CUSTOMER VALUE VS PRODUCT FACT
+==================================================
+
+Keep distinction:
+
+product offers selectable 8 000 / 12 000 deductible
+
+vs
+
+customer selected 12 000.
+
+Catalog can hold the first.
+
+Customer document owns the second.
+
+==================================================
+231 – SOURCE-BACKED TEXT
+==================================================
+
+Future remediation may use concise normalized wording.
+
+It need not copy source language verbatim.
+
+But normalized wording must preserve material meaning.
+
+==================================================
+232 – NO LEGAL INTERPRETATION
+==================================================
+
+Do not make claims about likely claims settlement beyond what applicable
+sources state.
+
+==================================================
+233 – INSURANCE DOMAIN CAUTION
+==================================================
+
+Where a source clause is legally/semantically ambiguous:
+
+route to review.
+
+Do not infer insurer intent.
+
+==================================================
+234 – MATERIALITY QUESTION
+==================================================
+
+For every disputed P1 classification ask:
+
+"If an advisor compared these exact products, could omission or error
+reasonably affect understanding of the product difference?"
+
+If yes:
+
+normally material.
+
+==================================================
+235 – TRUST QUESTION
+==================================================
+
+Also ask:
+
+"Would an advisor reasonably lose trust in the tool if they knew the source
+contained this information but the tool omitted or misstated it?"
+
+Use as secondary materiality signal.
+
+==================================================
+236 – USER-OBSERVED BUGS
+==================================================
+
+User-observed issues should remain explicit positive controls even if their
+root cause becomes part of a larger batch.
+
+Do not let deduplication make them disappear from regression planning.
+
+==================================================
+237 – STOREBRAND REISE CONTROL
+==================================================
+
+Specifically preserve:
+
+Storebrand Reise Standard day-trip / overnight comparison
+
+as named regression control.
+
+==================================================
+238 – HUND CONTROL
+==================================================
+
+Preserve previously user-observed Hund issues as named regression controls
+where present in audit findings.
+
+==================================================
+239 – BOBIL CONTROL
+==================================================
+
+Preserve previously user-observed Bobil issues as named regression controls.
+
+==================================================
+240 – BÅT CONTROL
+==================================================
+
+Preserve Båt manual spot-check cases.
+
+==================================================
+241 – MC CONTROL
+==================================================
+
+Preserve MC manual spot-check cases.
+
+==================================================
+242 – CONTROL REGISTRY
+==================================================
+
+Create:
+
+regression-control-registry.csv
+
+Columns:
+
+control_id
+origin
+provider
+family
+product
+concept
+known_problem
+root_cause
+batch_id
+required_test
+human_spot_check_required.
+
+==================================================
+243 – FUTURE HUMAN SPOT CHECK SET
+==================================================
+
+Recommend a final post-remediation manual sample containing:
+
+all named user-observed controls
+
+plus
+
+random source-ready products from every family.
+
+==================================================
+244 – RANDOM SAMPLE SIZE
+==================================================
+
+Recommend a practical human sample size.
+
+Do not require manual checking of all 204 products after automated
+re-audit unless evidence shows automation remains unreliable.
+
+==================================================
+245 – AUDIT METHOD LESSONS
+==================================================
+
+Record lessons from the completed audit that should become permanent QA
+rules.
+
+At minimum consider:
+
+source→catalog direction
+catalog→source direction
+false unknown detection
+inheritance validation
+source conflict preservation
+same-product
+side-swap
+provider/type isolation.
+
+==================================================
+246 – FUTURE CI CANDIDATES
+==================================================
+
+Create:
+
+future-ci-candidates.csv
+
+with deterministic checks that could prevent recurrence.
+
+Examples:
+
+orphan canonical facts
+unsupported inherited fact
+wrong scope inheritance
+duplicate semantic identities
+source reference missing
+product level override failure.
+
+Do not implement CI.
+
+==================================================
+247 – MODEL-BASED QA
+==================================================
+
+Separate future QA into:
+
+DETERMINISTIC CI
+
+and
+
+PERIODIC MODEL-BASED SOURCE AUDIT.
+
+Not every semantic source-completeness check can become deterministic.
+
+==================================================
+248 – SOURCE UPDATE PROCESS
+==================================================
+
+Recommend a future process for new/updated insurer terms:
+
+new source
+→ source integrity/version check
+→ independent semantic inventory/diff
+→ catalog update
+→ source→catalog validation
+→ comparison regression
+→ publication.
+
+Do not implement.
+
+==================================================
+249 – NO FUTURE SOURCE DRIFT
+==================================================
+
+The completed audit is based on frozen local sources.
+
+Triage should explicitly recommend a future freshness/version process so the
+catalog does not become stale after remediation.
+
+==================================================
+250 – SOURCE VERSION REGISTER
+==================================================
+
+If existing architecture already supports source version/effective date:
+
+recommend using it consistently.
+
+If not:
+
+flag as future process/metadata consideration.
+
+Do not redesign architecture unless required.
+
+==================================================
+251 – REMEDIATION DEFINITION OF DONE
+==================================================
+
+The overall remediation program is NOT done when:
+
+all batches have been edited.
+
+It is done only after:
+
+implementation
++
+tests
++
+targeted re-audits
++
+full final source→catalog re-audit
++
+bulk comparison audit
++
+human spot checks
+
+meet the agreed pilot gate.
+
+==================================================
+252 – NO SELF-CERTIFICATION
+==================================================
+
+The same implementation run should not be the only evidence that its changes
+are correct.
+
+Use independent regression/re-audit step after implementation.
+
+==================================================
+253 – FINAL CATALOG TARGET
+==================================================
+
+Desired final state:
+
+P0 = 0
+
+P1 = 0
+
+for resolved active-product scope,
+
+with any remaining unresolved source questions:
+
+explicitly documented
+conservatively represented
+non-misleading
+and approved for pilot limitation where applicable.
+
+==================================================
+254 – P2 TARGET
+==================================================
+
+P2 does not need to be zero for pilot.
+
+But high-value, low-risk P2 should be piggybacked when efficient.
+
+==================================================
+255 – PILOT TRUST TARGET
+==================================================
+
+After remediation, an advisor should be able to interpret:
+
+"Ikke dokumentert"
+or future equivalent
+
+as a genuine evidence limitation,
+
+not as:
+
+"we failed to model information already present in our own source package."
+
+==================================================
+256 – PILOT PRODUCT TARGET
+==================================================
+
+Advisor should also not see:
+
+coverage on wrong product level
+wrong sum
+wrong geography
+wrong optional/included state
+wrong inherited fact.
+
+==================================================
+257 – CUSTOMER MODE TARGET
+==================================================
+
+Catalog enrichment must improve customer comparison without overriding:
+
+explicit customer document values
+customer-selected options
+customer-specific limits.
+
+==================================================
+258 – PERFORMANCE
+==================================================
+
+Do not recommend semantic correctness changes that require unnecessary
+runtime AI calls if deterministic catalog/mapping can represent the fact.
+
+==================================================
+259 – COST
+==================================================
+
+Prefer deterministic catalog knowledge for stable public product terms.
+
+Do not move stable facts into runtime AI merely to avoid catalog work.
+
+==================================================
+260 – SOURCE PROVENANCE TARGET
+==================================================
+
+Material catalog facts should remain traceable to applicable source.
+
+==================================================
+261 – REPORT STYLE
+==================================================
+
+Final terminal report should be concise.
+
+Detailed information belongs in structured outputs.
+
+Do not dump 1 589 P1 signatures into terminal.
+
+==================================================
+262 – FINAL TERMINAL REPORT
+==================================================
+
+Use these sections:
+
+NITO_CATALOG_REMEDIATION_TRIAGE
+
+STATUS
+
+BASELINE
+
+P1 RECONCILIATION
+
+FINAL ROOT CAUSES
+
+FINAL REMEDIATION BATCHES
+
+REMEDIATION WAVES
+
+PILOT MINIMUM SET
+
+SOURCE RESEARCH
+
+HUMAN REVIEW
+
+CANONICAL / MAPPING REVIEW
+
+TOP LEVERAGE BATCHES
+
+FIRST RECOMMENDED IMPLEMENTATION BATCH
+
+PARALLELIZATION
+
+PDF / CUSTOMER IMPACT
+
+REGRESSION STRATEGY
+
+FINAL RE-AUDIT STRATEGY
+
+REPO INTEGRITY
+
+OUTPUT FILES
+
+NEXT STEP.
+
+==================================================
+263 – STATUS
+==================================================
+
+Return one:
+
+TRIAGE_COMPLETE
+
+TRIAGE_PARTIAL
+
+TRIAGE_BLOCKED
+
+TRIAGE_INTEGRITY_FAILURE.
+
+==================================================
+264 – P1 RECONCILIATION REPORT
+==================================================
+
+Explicitly show:
+
+P1 input signatures:
+1 589
+
+Then counts by final disposition.
+
+The sum MUST equal:
+
+1 589.
+
+If it does not:
+
+TRIAGE_PARTIAL.
+
+==================================================
+265 – ROOT CAUSE REPORT
+==================================================
+
+Report:
+
+existing root-cause posts
+final implementation root causes
+merges
+splits
+unresolved root causes.
+
+==================================================
+266 – REMEDIATION BATCH REPORT
+==================================================
+
+Report:
+
+existing proposed groups:
+56
+
+final batches:
+X
+
+implementation-ready:
+X
+
+source-research-first:
+X
+
+canonical/mapping-review-first:
+X
+
+human-review-first:
+X
+
+deferred:
+X.
+
+==================================================
+267 – WAVE REPORT
+==================================================
+
+Report:
+
+number of waves
+
+and for each:
+
+purpose
+batch count
+P1 signatures targeted
+dependency gate.
+
+==================================================
+268 – PILOT MINIMUM REPORT
+==================================================
+
+Report exact number of:
+
+batches
+source research tasks
+human review tasks
+canonical/mapping review tasks
+
+required for:
+
+PILOT_MINIMUM_SET.
+
+==================================================
+269 – FULL QUALITY REPORT
+==================================================
+
+Separately report:
+
+FULL_PREPILOT_QUALITY_SET.
+
+Do not conflate with pilot minimum.
+
+==================================================
+270 – SOURCE RESEARCH REPORT
+==================================================
+
+Report:
+
+raw open queue entries:
+110
+
+unique deduplicated research tasks:
+X
+
+pilot-blocking:
+X
+
+non-pilot-blocking:
+X.
+
+==================================================
+271 – HUMAN REVIEW REPORT
+==================================================
+
+Report number and main categories.
+
+==================================================
+272 – CANONICAL REVIEW REPORT
+==================================================
+
+Report exact semantic questions requiring architecture/mapping judgment.
+
+==================================================
+273 – TOP LEVERAGE REPORT
+==================================================
+
+Show top high-leverage safe batches.
+
+Do not prioritize solely by raw occurrence count.
+
+==================================================
+274 – FIRST IMPLEMENTATION REPORT
+==================================================
+
+Give ONE exact recommended first implementation batch.
+
+Explain briefly:
+
+why first
+what it fixes
+risk
+expected leverage
+required tests
+recommended model.
+
+==================================================
+275 – PARALLELIZATION REPORT
+==================================================
+
+Report:
+
+SAFE_FOR_SUBAGENT count
+
+MAIN_AGENT_REVIEW_REQUIRED count
+
+NOT_SAFE_FOR_PARALLEL_EXECUTION count.
+
+Do not spawn them.
+
+==================================================
+276 – PDF IMPACT REPORT
+==================================================
+
+Report how many final batches are:
+
+PRODUCT_MODE_ONLY
+LIKELY_SHARED_WITH_CUSTOMER_MODE
+CATALOG_ENRICHMENT_ONLY
+PDF_EXTRACTION_IMPACT
+UNKNOWN.
+
+==================================================
+277 – REGRESSION REPORT
+==================================================
+
+Summarize required test categories and named controls.
+
+==================================================
+278 – FINAL RE-AUDIT REPORT
+==================================================
+
+Specify:
+
+targeted wave re-audits
+
+and
+
+final full re-audit.
+
+==================================================
+279 – REPO INTEGRITY REPORT
+==================================================
+
+Report:
+
+baseline HEAD
+final HEAD
+working tree
+staged files
+git diff --check
+repo mutation YES/NO.
+
+==================================================
+280 – OUTPUT FILE REPORT
+==================================================
+
+Verify exact paths for all required triage artifacts.
+
+==================================================
+281 – LIMITATIONS
+==================================================
+
+State clearly:
+
+- triage relies primarily on completed audit artifacts
+- no new web research was performed
+- unresolved source conflicts remain unresolved
+- no remediation was implemented
+- no real customer documents were used
+- no legal approval is implied
+- source freshness beyond frozen corpus is not proven.
+
+==================================================
+282 – NEXT STEP
+==================================================
+
+Recommend ONE next action after triage.
+
+Normally:
+
+human review of triage
+
+then:
+
+implement first approved remediation wave/batch.
+
+Do not start it.
+
+==================================================
+283 – SUCCESS CRITERIA
+==================================================
+
+Return:
+
+NITO_CATALOG_REMEDIATION_TRIAGE_COMPLETE
+
+only if:
+
+1. all 1 589 P1 signatures have final disposition
+2. counts reconcile
+3. all 56 existing remediation groups are reviewed
+4. final root causes are reconciled
+5. final remediation batches exist
+6. dependencies exist
+7. waves exist
+8. pilot minimum set exists
+9. source research queue is deduplicated
+10. human review queue exists
+11. canonical/mapping review queue exists
+12. regression requirements exist
+13. named positive controls are preserved
+14. PDF/customer impact is classified
+15. parallelization safety is classified
+16. required outputs parse
+17. repo remains unchanged.
+
+==================================================
+284 – PARTIAL CRITERIA
+==================================================
+
+Return:
+
+NITO_CATALOG_REMEDIATION_TRIAGE_PARTIAL
+
+if useful triage work was completed but any required major reconciliation
+remains incomplete.
+
+Persist exact resume point under:
+
+/tmp/source-catalog-remediation-triage/resume.json
+
+Do not pretend COMPLETE.
+
+==================================================
+285 – BLOCKED CRITERIA
+==================================================
+
+Return:
+
+NITO_CATALOG_REMEDIATION_TRIAGE_BLOCKED
+
+only if triage cannot meaningfully proceed because:
+
+audit artifacts are missing/corrupt
+finding references cannot be reconciled
+repo baseline changed
+or another fundamental blocker exists.
+
+==================================================
+286 – INTEGRITY FAILURE
+==================================================
+
+If repo changes unexpectedly:
+
+NITO_CATALOG_REMEDIATION_TRIAGE_INTEGRITY_FAILURE
+
+takes precedence.
+
+Do not reset/revert.
+
+==================================================
+287 – BUDGET USE
+==================================================
+
+Use enough reasoning to produce trustworthy triage.
+
+Do not consume large budget rereading already completed source work.
+
+The expensive discovery audit is complete.
+
+This task should leverage that work.
+
+==================================================
+288 – BUDGET PRIORITY
+==================================================
+
+Prioritize:
+
+P1 reconciliation
+>
+root-cause correctness
+>
+batch design
+>
+dependencies
+>
+pilot minimum
+>
+source research deduplication
+>
+regression planning
+>
+P2 piggyback
+>
+report polish.
+
+==================================================
+289 – STOP WHEN TRIAGE IS COMPLETE
+==================================================
+
+Do not use remaining budget to:
+
+start remediation
+perform source research
+write tests
+improve UI
+work on person insurance
+work on security/GDPR.
+
+STOP when triage is complete.
+
+==================================================
+290 – FINAL HUMAN QUESTION
+==================================================
+
+End the report by answering:
+
+"Har vi nå en trygg og konkret plan for å korrigere den fullførte
+source→catalog-auditen uten å rette tusenvis av funn tilfeldig én etter én?"
+
+Answer one:
+
+JA
+
+JA, MEN NOEN BATCHES KREVER KILDE-/DOMENEVURDERING FØRST
+
+NEI – TRIAGE ER IKKE TILSTREKKELIG
+
+and explain briefly.
+
+==================================================
+291 – ABSOLUTE FINAL RULE
+==================================================
+
+DO NOT FIX ANYTHING.
+
+The completed audit told us:
+
+WHAT IS WRONG.
+
+This triage must tell us:
+
+WHAT SHARES A ROOT CAUSE
+WHAT MUST BE FIXED FIRST
+WHAT CAN BE FIXED TOGETHER
+WHAT REQUIRES SOURCE RESEARCH
+WHAT REQUIRES HUMAN/CANONICAL REVIEW
+WHAT CAN RUN IN PARALLEL
+HOW EACH FIX WILL BE VERIFIED
+WHAT IS REQUIRED BEFORE NITO PILOT.
+
+Only after human review of this triage may remediation begin.
+
+==================================================
+292 – START
+==================================================
+
+Begin now.
+
+Read the completed audit artifacts from:
+
+/tmp/source-catalog-completeness-audit/
+
+Verify repo baseline.
+
+Create:
+
+/tmp/source-catalog-remediation-triage/
+
+Perform the complete read-only triage.
+
+Do not modify project files.
+
+Do not remediate.
+
+Do not browse for new sources.
+
+Return the required completion status and STOP.

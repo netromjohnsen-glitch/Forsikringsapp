@@ -1,0 +1,608 @@
+{
+  "status": "PASS",
+  "batch": "B-009",
+  "source_verification": "Own PBK231.200-004 p1§7 allergy15000 lifetime; MR/CT15000 per year inside selected sum. Own p3 Topp removes those sublimits within selected sum. Existing replacesBase metadata set only on these four exact Topp facts; no builder/engine changes. Silent/rejected choices retain base; selected addon extends; explicit document limit wins. Cat unchanged.",
+  "source_hashes": {
+    "catalog/sources/boat-pet/fremtind-dog-vet-terms.pdf": "5897fd60318410bdc5481e12d4cd6454e7fe4741682a13e5289991f211b7d9f7"
+  },
+  "changed_products": [
+    "sparebank1-fremtind-hund-veterin-r"
+  ],
+  "unchanged_products": 203,
+  "allowed_keys": [
+    "dyr.allergi.dekning",
+    "dyr.allergi.grense",
+    "dyr.diagnostikk.dekning",
+    "dyr.diagnostikk.grense"
+  ],
+  "deltas": [
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "base",
+      "key": "dyr.allergi.dekning",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "value": "Utredning, behandling og medisiner til atopi/allergi",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "base",
+      "key": "dyr.allergi.grense",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "value": "Inntil 15 000 kr i løpet av hundens liv, innenfor valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "base",
+      "key": "dyr.diagnostikk.dekning",
+      "before": null,
+      "after": {
+        "key": "dyr.diagnostikk.dekning",
+        "label": "Diagnostikk",
+        "value": "MR/CT inkludert",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "base",
+      "key": "dyr.diagnostikk.grense",
+      "before": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innen valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 2,
+          "section": "Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT samlet inntil 15 000 kr per forsikringsår, innenfor valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "product-comparison",
+      "key": "dyr.allergi.grense",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "value": "Innenfor valgt forsikringssum; ingen egen livstidsgrense på 15 000 kr når Topp er valgt",
+        "state": "optional",
+        "addOnNames": [
+          "Topp veterinærutgifter"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:sparebank1-fremtind:hund",
+            "filename": "fremtind-dog-vet-terms.pdf",
+            "termsNumber": "PBK-231.200-004",
+            "effectiveFrom": "2025-08-07",
+            "version": "2025-08-07",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+            "company": "Fremtind",
+            "page": 3,
+            "section": "Topp veterinærutgifter",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "product-comparison",
+      "key": "dyr.diagnostikk.grense",
+      "before": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innen valgt forsikringssum",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:sparebank1-fremtind:hund",
+            "filename": "fremtind-dog-vet-terms.pdf",
+            "termsNumber": "PBK-231.200-004",
+            "effectiveFrom": "2025-08-07",
+            "version": "2025-08-07",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+            "company": "Fremtind",
+            "page": 2,
+            "section": "Veterinærutgifter",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      },
+      "after": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innenfor valgt forsikringssum; ingen egen årsgrense på 15 000 kr når Topp er valgt",
+        "state": "optional",
+        "addOnNames": [
+          "Topp veterinærutgifter"
+        ],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "boat-pet:sparebank1-fremtind:hund",
+            "filename": "fremtind-dog-vet-terms.pdf",
+            "termsNumber": "PBK-231.200-004",
+            "effectiveFrom": "2025-08-07",
+            "version": "2025-08-07",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+            "company": "Fremtind",
+            "page": 3,
+            "section": "Topp veterinærutgifter",
+            "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+            "sourceType": "full_terms"
+          }
+        ]
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.allergi.dekning",
+      "before": {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "value": "Valgfri utvidelse",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "value": "Valgfri utvidelse",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.allergi.grense",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "value": "Innenfor valgt forsikringssum; ingen egen livstidsgrense på 15 000 kr når Topp er valgt",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.diagnostikk.dekning",
+      "before": {
+        "key": "dyr.diagnostikk.dekning",
+        "label": "Diagnostikk",
+        "value": "Valgfri utvidelse",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "dyr.diagnostikk.dekning",
+        "label": "Diagnostikk",
+        "value": "Valgfri utvidelse",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.diagnostikk.grense",
+      "before": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innen valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 2,
+          "section": "Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innenfor valgt forsikringssum; ingen egen årsgrense på 15 000 kr når Topp er valgt",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-liv",
+      "key": "dyr.allergi.dekning",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "value": "Utredning, behandling og medisiner til atopi/allergi",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-liv",
+      "key": "dyr.allergi.grense",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "value": "Inntil 15 000 kr i løpet av hundens liv, innenfor valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-liv",
+      "key": "dyr.diagnostikk.dekning",
+      "before": null,
+      "after": {
+        "key": "dyr.diagnostikk.dekning",
+        "label": "Diagnostikk",
+        "value": "MR/CT inkludert",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-liv",
+      "key": "dyr.diagnostikk.grense",
+      "before": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innen valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 2,
+          "section": "Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT samlet inntil 15 000 kr per forsikringsår, innenfor valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-bruk",
+      "key": "dyr.allergi.dekning",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "value": "Utredning, behandling og medisiner til atopi/allergi",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-bruk",
+      "key": "dyr.allergi.grense",
+      "before": null,
+      "after": {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "value": "Inntil 15 000 kr i løpet av hundens liv, innenfor valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-bruk",
+      "key": "dyr.diagnostikk.dekning",
+      "before": null,
+      "after": {
+        "key": "dyr.diagnostikk.dekning",
+        "label": "Diagnostikk",
+        "value": "MR/CT inkludert",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "product": "sparebank1-fremtind-hund-veterin-r",
+      "view": "sparebank1-fremtind-hund-bruk",
+      "key": "dyr.diagnostikk.grense",
+      "before": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innen valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 2,
+          "section": "Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      },
+      "after": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT samlet inntil 15 000 kr per forsikringsår, innenfor valgt forsikringssum",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-5582",
+    "GAP-5584"
+  ],
+  "P1_resolved": 2,
+  "signatures": [
+    "bc895acebf091f9d",
+    "f01b778d102c1d15"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

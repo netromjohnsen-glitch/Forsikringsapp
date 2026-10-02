@@ -1,0 +1,34 @@
+(node:68683) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/production-trace-server.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ price trace: extraction and role boundary distinguish customer (55.196708ms)
+✔ price trace: extraction and role boundary distinguish supporting (34.08325ms)
+✔ price trace: extraction and role boundary distinguish absent (30.772458ms)
+✔ price trace: extraction and role boundary distinguish mixed (40.415ms)
+✔ price trace: price-bearing supporting records are explicitly blocked for the actual attached customer (32.432375ms)
+✔ price trace: ordinary attachment preserves before/after customer prices (30.467625ms)
+✔ price trace: a test-injected later loss is distinguishable from extraction absence or supporting placement (29.679458ms)
+✔ price trace: ON/OFF equality and exact refs, reverse=false, split=false (54.910625ms)
+✔ price trace: ON/OFF equality and exact refs, reverse=false, split=true (76.8995ms)
+✔ price trace: ON/OFF equality and exact refs, reverse=true, split=false (52.771292ms)
+✔ price trace: ON/OFF equality and exact refs, reverse=true, split=true (72.90275ms)
+✔ price trace: merged customer refs link back to every extracted record across batches (65.279ms)
+✔ price trace: terms-only prices keep a source record ref without an invented customer target (3.07625ms)
+✔ price trace: concurrent requests have isolated refs, roles, price states and trace IDs (85.3515ms)
+✔ price trace: valid key is distinct from an undocumented value and zero stays documented (0.200584ms)
+✔ price trace: later label normalization is visible without claiming the explicit key existed at extraction (31.849417ms)
+✔ price trace: unknown role and missing identity remain eligible without an invented role (27.467792ms)
+✔ price trace: invalid identity is a boolean, never raw IDs or their hashes (26.818375ms)
+✔ price trace: denylist at every new top-level and nested price boundary (0.923334ms)
+✔ price trace: closed enums, refs, complete key vectors and boolean types fail closed (0.215459ms)
+✔ price trace: records with private labels, product text, filenames and values yield structural metadata only (35.042625ms)
+✔ price trace: sink or attachment observer failures cannot alter customer output (56.280167ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1017.922209

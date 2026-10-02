@@ -1,0 +1,96 @@
+(node:66114) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (0.947167ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (10.125625ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (3.278417ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (2.06975ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (5.919666ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (0.989875ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.738708ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (2.524708ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.939792ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.045958ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (2.025375ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (2.051792ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (0.924166ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (0.95125ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (0.998208ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (0.971916ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (1.141542ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (5.301084ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (1.281375ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (2.32325ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.460917ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (13.968791ms)
+✔ normalisering er forsikringstypeavgrenset (0.7515ms)
+(node:66115) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ fire produktfiler og tre kanaloversikter er lokale, uendrede og registrert (7.381ms)
+✔ fullvilkår og IPID dokumenterer Standard, Topp og arv (80.953042ms)
+✔ Fremtind er provider og kanalene lager ikke dupliserte Hus-produkter (1.588083ms)
+✔ Eika, SpareBank 1, DNB og ukjent kanal løser samme canonical produkt (4.008458ms)
+✔ Standard modellerer forsikringsbevis, form, objekter og grunnskader (0.339708ms)
+✔ Topp erstatter Standard for tak, våtrom, håndverkerfeil og skadedyr (0.781292ms)
+✔ råte/insekter er ett separat tillegg på begge nivåer uten å duplisere Topp-skadedyr (7.499833ms)
+✔ utleietillegget skiller mislighold fra ordinært bygningsskadeleietap (0.230792ms)
+✔ gjenoppføring, påbud og Topp-totalskade har dokumenterte grenser (0.258542ms)
+✔ egenandeler og aldersfradrag er klassifisert separat (0.204792ms)
+✔ ansvar og rettshjelp har riktig rolle, summer og egenandeler (0.14325ms)
+✔ ingen fremtidige kilder eller udokumenterte kanaloverrides aktiveres (0.193084ms)
+✔ Fremtind sammenlignes mot alle fire eksisterende Hus-selskaper uten kildemiks (20.470667ms)
+✔ runtime flyter gjennom kanal, tillegg, effective/base og presentasjon (24.597375ms)
+✔ Fremtind Bil, Innbo og Hus beholder kanal og typeisolasjon (1.813375ms)
+(node:66116) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (4.011292ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (10.861334ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (2.193625ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.762125ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (16.797375ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (0.948708ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (35.528709ms)
+✔ B-002: explicit customer artwork information retains document authority (1.672041ms)
+(node:66117) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-product-comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ catalog eligibility is derived from the current source-backed catalog (21.109041ms)
+✔ providers and products are filtered by exact insurance type (54.250459ms)
+✔ agreement scope is exact and channel-aware (47.437208ms)
+✔ exact product identity is required and unknown IDs fail closed (22.17675ms)
+✔ materialization excludes customer price and actual mileage facts (2.141958ms)
+✔ included and optional coverage remain different product-level states (3.331167ms)
+✔ missing catalog evidence stays unknown instead of becoming unavailable (2.848833ms)
+✔ explicit negative catalog evidence becomes unavailable (2.234958ms)
+✔ same exact product has no false meaningful differences (2.646416ms)
+✔ side swap preserves the semantic difference set (4.924667ms)
+✔ cross-type comparisons are rejected without fallback (0.239917ms)
+✔ Bil uses one generic source-backed product comparison path (2.640209ms)
+✔ Hus uses one generic source-backed product comparison path (3.9525ms)
+✔ Innbo uses one generic source-backed product comparison path (1.666333ms)
+✔ Reise uses one generic source-backed product comparison path (2.068625ms)
+✔ Snøscooter uses one generic source-backed product comparison path (0.689875ms)
+✔ Campingvogn uses one generic source-backed product comparison path (0.621334ms)
+✔ Tilhenger uses one generic source-backed product comparison path (0.41425ms)
+✔ MC uses one generic source-backed product comparison path (1.990833ms)
+✔ Bobil uses one generic source-backed product comparison path (3.581625ms)
+✔ same-provider levels compare without provider-name differences (2.47975ms)
+✔ synthetic member scope stays isolated without provider-specific code (0.349334ms)
+✔ catalog additions are discovered and removed products cannot remain selectable (0.196375ms)
+✔ product mode renders its own labels without customer, price, object, PDF or analysis language (0.884ms)
+✔ product mode has no API, AI, PDF, object matching or runtime provider fetch path (0.227625ms)
+✔ fact-specific sources are retained without local source paths (3.027ms)
+ℹ tests 72
+ℹ suites 0
+ℹ pass 72
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 792.412834

@@ -1,0 +1,725 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "IF-HU-001",
+      "scope": "all",
+      "subject": "Sikrede",
+      "dimension": "eierskifte",
+      "value": "Tinglyst eier/pant;ny eier inntil14d uten annen forsikring.",
+      "location": "4 pkt1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-002",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "sted",
+      "value": "Forsikringsstedet i bevis.",
+      "location": "4 pkt2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-003",
+      "scope": "all",
+      "subject": "Bygning",
+      "dimension": "omfang",
+      "value": "Fastmontert utstyr;utvendige ledninger til sprede/offentligledning;ikke brønn/borehull.",
+      "location": "4 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-004",
+      "scope": "all",
+      "subject": "Småbygg",
+      "dimension": "areal",
+      "value": "Frittliggende<=10m² på stedet også uten bevisføring.",
+      "location": "4 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-005",
+      "scope": "all",
+      "subject": "Kunst",
+      "dimension": "sum",
+      "value": "Fast utsmykning200k.",
+      "location": "4 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-006",
+      "scope": "all",
+      "subject": "Hage",
+      "dimension": "areal/omfang",
+      "value": "5dekar med tilførselsvei,fasttilkoblet basseng,gjerde/flaggstang.",
+      "location": "5 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-007",
+      "scope": "all",
+      "subject": "Brygge",
+      "dimension": "sum/form",
+      "value": "Egen fast trebrygge100k;ikke fellesbrygge/andre kaiarter.",
+      "location": "5 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-008",
+      "scope": "all",
+      "subject": "Trygghetsgaranti",
+      "dimension": "varighet",
+      "value": "Nye bygg/tilbygg siden siste forfall med,meldeplikt før neste.",
+      "location": "5 pkt3.1.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-009",
+      "scope": "all",
+      "subject": "Riving/rydding",
+      "dimension": "dekning",
+      "value": "Verdiløse rester etter dekket skade.",
+      "location": "5 pkt3.2.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-010",
+      "scope": "all",
+      "subject": "Ubeboelig",
+      "dimension": "beregning",
+      "value": "Normal utbedringstid,rom godkjent varigopphold;markedsleie tilsvarende umøblert bolig,nødvendig dokumenterttap;uten faktiske boutgifter50%;fratrekk spart.",
+      "location": "5 pkt3.2.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-011",
+      "scope": "all",
+      "subject": "Påbud",
+      "dimension": "omfang/unntak",
+      "value": "Skadddel/endret teknisk krav direktefølge;grunnarbeid/byggetillatelsesbetingelse med;ikke latentpåbud/kulturminne/kjellerutgraving/størrebygg/taptareal.",
+      "location": "5–6 pkt3.2.3;18 pkt5.5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-012",
+      "scope": "all",
+      "subject": "Prisstigning",
+      "dimension": "mekanisme",
+      "value": "SSBindeks til normal utbedring,utbetales etter reparasjon.",
+      "location": "6 pkt3.2.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-013",
+      "scope": "super",
+      "subject": "Boligsjekk",
+      "dimension": "intervall/vilkår",
+      "value": "Kostnadsfri Anticimex hvert4år ved forespørsel;helårsbolig,ikke næringsrom/fritid/utenbiladkomst.",
+      "location": "6 pkt3.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-014",
+      "scope": "super",
+      "subject": "Overvannsrapport",
+      "dimension": "sum/utløser",
+      "value": "10k én gang per eiendom ved dekket vanninntrengning/flomskade hage.",
+      "location": "6 pkt3.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-015",
+      "scope": "all",
+      "subject": "Brann",
+      "dimension": "utløser/svi",
+      "value": "Brann/nedsoting/eksplosjon;gnist/svi uten brann10k.",
+      "location": "6–7 pkt4.1.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-016",
+      "scope": "all",
+      "subject": "Elektrisk",
+      "dimension": "utløser",
+      "value": "Lyn/kortslutning/kabelbrudd; basseng bare nettleverandørdokumentert overspenning.",
+      "location": "7 pkt4.1.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-017",
+      "scope": "all",
+      "subject": "Natur",
+      "dimension": "omfang",
+      "value": "Lovbestemte naturhendelser Norge inklflodbølge/meteoritt og ustabilgrunn;ikke generell forebygging.",
+      "location": "7 pkt4.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-018",
+      "scope": "all",
+      "subject": "Snø/is",
+      "dimension": "utløser",
+      "value": "Snø/isras fra/på tak,tyngde/press.",
+      "location": "7 pkt4.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-019",
+      "scope": "all",
+      "subject": "Snø/is",
+      "dimension": "unntak/rydding",
+      "value": "Råte/konstruksjonsfeil,veksthus/pergola,hage/basseng/brygge,ikke-boligtak>50år unntatt;svakkonstruksjon/gammeltikke-bolig150krydding likevel.",
+      "location": "7 pkt4.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-020",
+      "scope": "all",
+      "subject": "Vann",
+      "dimension": "utløser",
+      "value": "Rørlekkasje/tilbakeslag/utstrømming/brudd;terrengvann krever synlig vann pågulv,ikke oppforetgulv;flomliknende hageskade.",
+      "location": "7–8 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-021",
+      "scope": "all",
+      "subject": "Frosset ledning",
+      "dimension": "tiningstak",
+      "value": "50kinklmerutgift/tap for utvendig ledning uteavdrift.",
+      "location": "8 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-022",
+      "scope": "upper",
+      "subject": "Vanninntrenging",
+      "dimension": "takalder/utett",
+      "value": "Overterreng;ikke selve utetthet;tak/balkong/terrasse/overgang eldre50årunntatt,eldstedelalder.",
+      "location": "8 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-023",
+      "scope": "upper",
+      "subject": "Våtrom",
+      "dimension": "følgeskade",
+      "value": "Følgeskade dekket,selvevåtromikke;Basis uttrykkelig ikke tilstøtende/underliggende.",
+      "location": "8 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-024",
+      "scope": "all",
+      "subject": "Vann",
+      "dimension": "unntak",
+      "value": "Takrenne/nedløp/drens/spredning,kondens/damp,sopp/råte/bakterier,slukoppforing/våttolerante gulvvegger unntatt.",
+      "location": "8 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-025",
+      "scope": "all",
+      "subject": "Tyveri/skadeverk",
+      "dimension": "begrensning",
+      "value": "Påstedet;husstandsskadeverk/kosmetikkunntatt;politianmeldelse.",
+      "location": "8 pkt4.5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-026",
+      "scope": "super",
+      "subject": "Nøkkel",
+      "dimension": "sum/egenandel",
+      "value": "5k perhendelse for låsbytte ved tapt utgangsdørnøkkel;1kegenandel.",
+      "location": "9 pkt4.6;20 pkt5.7.5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-027",
+      "scope": "all",
+      "subject": "Annen skade",
+      "dimension": "plutselig",
+      "value": "Plutseliguforutsett annet enn nevnte farer,ikke alt fysisk tap.",
+      "location": "9 pkt4.7",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-028",
+      "scope": "all",
+      "subject": "Annen skade",
+      "dimension": "unntak",
+      "value": "Rør/tank,kondens/frost/tele/heksesot/setning/materialfeil/rust/konstruksjon,råte/organismer,isolerglassutett,maskinalene,markise/pergola,hage/basseng/brygge og innblåstsnø unntatt. Egne farer må ikke omtolkes.",
+      "location": "9 pkt4.7",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-029",
+      "scope": "all",
+      "subject": "Utleie",
+      "dimension": "inkludertvilkår",
+      "value": "Privat helårsbolig,ikke næring;skriftligavtale medfravikelse,min2mnddepositum/bankgaranti førinnflytting.",
+      "location": "9–10 pkt4.8",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-030",
+      "scope": "all",
+      "subject": "Utleie",
+      "dimension": "husleietap",
+      "value": "6mnd fra namsmannbegjæring til tilbakebesittelse+2mnd;én gang per leieavtale.",
+      "location": "10 pkt4.8.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-031",
+      "scope": "all",
+      "subject": "Utleie",
+      "dimension": "utkastelse",
+      "value": "20k nødvendigfravikelse.",
+      "location": "10 pkt4.8.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-032",
+      "scope": "all",
+      "subject": "Utleie",
+      "dimension": "skadeverk/tyveri",
+      "value": "Leietaker/gjestforsettlig skade;tyveri/underslagleietaker/husstand;ikkekosmetikk/dyr/hardellerfeilbruk.",
+      "location": "10 pkt4.8.3–4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-033",
+      "scope": "upper",
+      "subject": "Boligtilpasning",
+      "dimension": "sum/utløser",
+      "value": "250kmin50%ulykkesinvaliditet ellerbarnfødtmedskade/sykdom,utgiftinnen5år;alternativtdokumentavgift250k vedflyttprimærbolig.",
+      "location": "10–11 pkt4.9",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-034",
+      "scope": "all",
+      "subject": "Gnagere",
+      "dimension": "skade/bekjempelse",
+      "value": "Fysiskbygningsskade,vedvarendeluktdødegnagere og bekjempelse Anticimex;bevisetsfast/fritidNordensbolig.",
+      "location": "11 pkt4.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-035",
+      "scope": "upper",
+      "subject": "Skadedyr",
+      "dimension": "utvidelse",
+      "value": "Fysiskbygningsskade og bekjempelse skadeinsekter;husbukksærunntak tillater varme/frysing/gass hvisnødvendig.",
+      "location": "11 pkt4.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-036",
+      "scope": "all",
+      "subject": "Skadedyr/gnagere",
+      "dimension": "unntak",
+      "value": "Ikke kosmetikk/isolasjonutenpåvistsvekkelse/innbo/konstruksjonsåpning/næringsangrep/ikke-boligbygg/vedlikehold/indirektetap.",
+      "location": "11–12 pkt4.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-037",
+      "scope": "all",
+      "subject": "Skadedyr/gnagere",
+      "dimension": "tid/leverandør",
+      "value": "Ikke aktivitetførstart/etteropphør;kontaktIfAnticimexførtiltak,ekstratransport betales utenbiladkomst.",
+      "location": "11 pkt4.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-038",
+      "scope": "upper",
+      "subject": "Råte/sopp",
+      "dimension": "utløser",
+      "value": "Treødeleggendesopp/råte utviklet i perioden;ingen del etteropphør.",
+      "location": "12 pkt4.11",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-039",
+      "scope": "upper",
+      "subject": "Råte/sopp",
+      "dimension": "unntak",
+      "value": "Ikke tidligeredekningsløs vannskade,mugg/blåved/bakterier,ytterdør/vindu/frilufttreverk/laftyttervegg ellerikke-boligbygg>50år.",
+      "location": "12 pkt4.11",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-040",
+      "scope": "super",
+      "subject": "Håndverker våtrom",
+      "dimension": "vilkår",
+      "value": "Konstatertfølgeskade=>selvevåtromgulvvegg ved autorisertfeil<10år,faktura;utoverreklamasjon elleransvarligkonkurs.",
+      "location": "13 pkt4.12.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-041",
+      "scope": "super",
+      "subject": "Håndverker følgeskade",
+      "dimension": "vilkår",
+      "value": "Autorisertfeil<10år/faktura/reklamertid;utenfor reklamasjon ellerkonkurs;ikke selvefeil/tilkomst.",
+      "location": "13–14 pkt4.12.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-042",
+      "scope": "super",
+      "subject": "Håndverker",
+      "dimension": "fellesunntak",
+      "value": "Ikke egen-/egetfirmaarbeid,kosmetikk,kjentførSuper,råte/bakterier,arbeid>10år,andrebetalingsdyktigesansvar;følgeskadeikkeanleggalene/utvendigrør/hage/basseng/kondens.",
+      "location": "13–14 pkt4.12",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-043",
+      "scope": "super",
+      "subject": "Håndverker",
+      "dimension": "juridiskservice",
+      "value": "Innen reklamasjon15kperforsikringsår,0egenandel,Solver,offentligsalærsats+200.",
+      "location": "13 pkt4.12.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-044",
+      "scope": "all",
+      "subject": "Bygging",
+      "dimension": "ting/sum",
+      "value": "Nybygg/tilbygg,materialer;egenverktøy100k,låntbrakke50k medskriftligansvar;entreprenørverktøyikke.",
+      "location": "14 pkt4.13.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-045",
+      "scope": "all",
+      "subject": "Bygging",
+      "dimension": "risiko",
+      "value": "Tyverilåst/bruddglass;vær/vann/snø før tettbygg unntatt;uhell/utleie/skadedyr/råte/håndverkerunntattunderoppføring.",
+      "location": "14–15 pkt4.13.2–3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-046",
+      "scope": "all",
+      "subject": "Bygging",
+      "dimension": "ansvarsutvidelse",
+      "value": "Grave/sprengningsansvar300kting/3millperson.",
+      "location": "15 pkt4.13.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-047",
+      "scope": "all",
+      "subject": "Fullverdi",
+      "dimension": "mekanisme",
+      "value": "Sammeformål/sted(godkjentkommunealternativ)/eierfamilie/5år;areal-/endringsunderforsikring;beviskanhaførsterisiko.",
+      "location": "15–16 pkt5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-048",
+      "scope": "all",
+      "subject": "Fullverdi",
+      "dimension": "verdiøkning",
+      "value": "40%verdiøkningfradrag ikke fastbolig;kjøpannetfradragover100%;fraflyttet markedsverditap.",
+      "location": "16 pkt5.1.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-049",
+      "scope": "all",
+      "subject": "Annen bolig",
+      "dimension": "vilkår/tak",
+      "value": "Totalskade=>kjøp i Norge sammeformålinnen5år,maxgjenoppføringutenmva/omsetning+100%;oppussing1millinnen2år;ingenpåbud/prisstigning;megler50k.",
+      "location": "16–17 pkt5.1–5.2.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-050",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "kontant/estetikk",
+      "value": "Punktreparasjon,ikke uskadetgjennomgåendeparkett/fargenyanse;arbeidutenfaktura75%avtalepris utenmva.",
+      "location": "15 pkt5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-051",
+      "scope": "all",
+      "subject": "Hageoppgjør",
+      "dimension": "vekster",
+      "value": "Ungvanliggartnerivekst,ikkevoksentreverdi;utenreparasjonlavestkost/markedsverditap;ikkeforebygging.",
+      "location": "17 pkt5.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-052",
+      "scope": "all",
+      "subject": "Vannutstyr",
+      "dimension": "aldersfradrag",
+      "value": "Varmtvann/fyrkjele/pumper5%påbegyntårfra5år,max80%.",
+      "location": "19 pkt5.7.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-053",
+      "scope": "all",
+      "subject": "Varme/kjøling",
+      "dimension": "aldersfradrag",
+      "value": "Elektriskvarme/kjøling10%påbegyntårfra5år,max80%.",
+      "location": "19 pkt5.7.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-054",
+      "scope": "all",
+      "subject": "Teknisk utstyr",
+      "dimension": "aldersfradrag",
+      "value": "Varmekabel/ventilasjon/strømproduksjon10%fra10år,max80%.",
+      "location": "19 pkt5.7.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-055",
+      "scope": "all",
+      "subject": "Hvitevarer",
+      "dimension": "aldersfradrag",
+      "value": "Integrert10%fra5år,max80%.",
+      "location": "19 pkt5.7.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-056",
+      "scope": "all",
+      "subject": "Utvendig rør",
+      "dimension": "aldersfradrag",
+      "value": "Ikkeplast5%fra20år,max80%,inklgraving/eldstedel;bunnledninglikt.",
+      "location": "19 pkt5.7.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-057",
+      "scope": "all",
+      "subject": "Basseng/bad",
+      "dimension": "aldersfradrag",
+      "value": "10%fra2år,max80%,inklinnvendigtilknyttetelektrisk.",
+      "location": "19 pkt5.7.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-058",
+      "scope": "upper",
+      "subject": "Tak/våtrom",
+      "dimension": "ekstrafradrag",
+      "value": "Over30år tillegg8k utoveregenandel,eldstedel.",
+      "location": "19 pkt5.7.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-059",
+      "scope": "all",
+      "subject": "Innvendig rør",
+      "dimension": "ekstrafradrag",
+      "value": "Over50år tillegg8k utoveregenandel.",
+      "location": "19 pkt5.7.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-060",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "kundevalg",
+      "value": "Bevisstyrt,høyesteénvedsammehendelse;aldersfradragfør.",
+      "location": "19 pkt5.7",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-061",
+      "scope": "all",
+      "subject": "Naturskade/vind",
+      "dimension": "egenandel",
+      "value": "Natur8k;vindunderstorm8kellerhøyereavtalt.",
+      "location": "20 pkt5.7.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-062",
+      "scope": "all",
+      "subject": "Frost innvendigrør",
+      "dimension": "egenandel",
+      "value": "Avtalt+8k,ikke hvisbaretining elleraldersfradrag>50årallerede.",
+      "location": "20 pkt5.7.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-063",
+      "scope": "all",
+      "subject": "Glass/sanitær",
+      "dimension": "egenandel",
+      "value": "Alene4k.",
+      "location": "20 pkt5.7.6",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-064",
+      "scope": "all",
+      "subject": "Utleie",
+      "dimension": "egenandel",
+      "value": "Vanligtyveriskadeverk:depositummin10k;IfUtleie3mnd leie ellerhøyere sikkerhet,førstfradrag.",
+      "location": "20 pkt5.7.7",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-065",
+      "scope": "all",
+      "subject": "Skadedyr/gnagere",
+      "dimension": "egenandel",
+      "value": "Bekjempelse2k,0råd/art/tilsendtmiddel;ikke2kallebygningsskader.",
+      "location": "20 pkt5.7.8",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-066",
+      "scope": "all",
+      "subject": "Fraflyttet",
+      "dimension": "restriksjon",
+      "value": "12mnd;uriktigbeboddopplysning=>ingenpest/råte/overterrengvann,øvrig+16kfradrag,markedsverditap;utleid/fritidbevisunntak.",
+      "location": "21–22 pkt6.1.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-067",
+      "scope": "all",
+      "subject": "Utleie/bruk",
+      "dimension": "restriksjon",
+      "value": "Uriktigegenbeboelse=>ikkeutleie+16køvrig;næringsutleieansvarbort,ulovligbrukhelt/delvisbort.",
+      "location": "22 pkt6.1.2–4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-068",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "vedlikehold",
+      "value": "Utbedre tak/lekkasje,strøm/VVSautorisert,frostvern,vannsteng>3uker/3d,halvårstilsyn/snømåking.",
+      "location": "22–23 pkt6.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-HU-069",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "rolle/sum/egenandel",
+      "value": "Personligeierenforsikret eiendomNorden5mill+kost,4kegenandel;utbyggingsansvarannentak.",
+      "location": "PDF3–4 pkt2",
+      "source": "legal"
+    },
+    {
+      "id": "IF-HU-070",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "rolle/sum/egenandel",
+      "value": "PersonligeierNordiskforsikret eiendom;100k/250kmin3parter,4k+20%resten;etter-salg/nyboligkontinuitet.",
+      "location": "PDF1–2 pkt1",
+      "source": "legal"
+    },
+    {
+      "id": "IF-HU-071",
+      "scope": "all",
+      "subject": "Ansvar/rettshjelp",
+      "dimension": "materielleunntak",
+      "value": "Anneteiendom/næring/låntting/familie/gravearbeidgrunnvilkår/latenttvist/salærsatsbegrensning.",
+      "location": "PDF1–4",
+      "source": "legal"
+    },
+    {
+      "id": "IF-HU-072",
+      "scope": "all",
+      "subject": "Byggteknisk rådgivning",
+      "dimension": "inkludert",
+      "value": "Fagekspertråd gratis påalle3nivå.",
+      "location": "Dekningstabell",
+      "source": "web"
+    },
+    {
+      "id": "IF-HU-073",
+      "scope": "super",
+      "subject": "Juridisk rådgivning",
+      "dimension": "timer",
+      "value": "Solver2timerprivatrettperår,adskilt15k håndverkertvist.",
+      "location": "Tjenester",
+      "source": "web"
+    },
+    {
+      "id": "IF-HU-074",
+      "scope": "super",
+      "subject": "Supergaranti",
+      "dimension": "periode",
+      "value": "Minstlikegodevilkårvedflytting,2år;egenfullgarantitekst mangler i pakken.",
+      "location": "Supergaranti",
+      "source": "web"
+    },
+    {
+      "id": "IF-HU-075",
+      "scope": "super",
+      "subject": "Tryggere Hjem",
+      "dimension": "alarm/egenandel",
+      "value": "Ohmaalarm inkludert Super;ingenegenandel vedutløstsensorogbegrensningstiltak;fulletjenestereglerikkemed.",
+      "location": "Fordeler",
+      "source": "web"
+    },
+    {
+      "id": "IF-HU-076",
+      "scope": "all",
+      "subject": "Standard egenandel",
+      "dimension": "nivå",
+      "value": "WebBasis/Utvidet10k,Super8k;kundebevisforrang.",
+      "location": "FAQ egenandel",
+      "source": "web"
+    },
+    {
+      "id": "IF-HU-077",
+      "scope": "all",
+      "subject": "Nivånavn",
+      "dimension": "kildeavvik",
+      "value": "IPIDStandard/Super vs BGN/WebBasis/Utvidet/Super;datertanvendelighet IPIDikkeavklart. Ikke tvingStandardtilBasisutenbelegg.",
+      "location": "1",
+      "source": "ipid"
+    },
+    {
+      "id": "IF-HU-078",
+      "scope": "all",
+      "subject": "Generelle vilkår",
+      "dimension": "pakketilhørighet",
+      "value": "Lokalfil er2020generellevilkår medhelseforsikring ogavtaleperiode,ikkeGEN2-9. AnvendelighetforBGN1-0måbekreftes før generellepåstander.",
+      "location": "1–6",
+      "source": "general"
+    },
+    {
+      "id": "IF-HU-079",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "prosedyre",
+      "value": "Skjønn/klage/skademelding ogregress,ikkebehovforegenfacthverprosedyre.",
+      "location": "20–24",
+      "source": "terms"
+    }
+  ],
+  "source_contents_read": [
+    "BGN1-0 all25pages",
+    "IPID2pages",
+    "full local product HTML",
+    "SV0064pages reused exacthash and property clauses checked",
+    "General file first5pages;healthsection outofscope;wrong-packagecandidate"
+  ],
+  "notes": "No web freshness;full exact Basis/Utvidet/Super local rules isolated;IPID level issue and generalpackage applicability unresolved."
+}

@@ -1,0 +1,335 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FRE-01",
+      "subject": "Personkrets",
+      "dimension": "eligibility",
+      "value": "Nordisk folkeregistrert adresse og norsk trygd/EØS; familie ektefelle/samboer egne/foster/vergebarn/husstandsbarn; barn til21; barne/oldebarn alene med sikrede.",
+      "location": "§1 s1"
+    },
+    {
+      "id": "FRE-02",
+      "subject": "Utstasjonert",
+      "dimension": "special",
+      "value": "Særavtale diplomater/militære utenforNorden; medisinsk arbeidsordning, hjemkallelse ved nærfamilie; ikke ordinær global oppholdsdekning.",
+      "location": "§1 s1"
+    },
+    {
+      "id": "FRE-03",
+      "subject": "Geografi",
+      "dimension": "scope",
+      "value": "Hele verden fra/til fastadresse Norden; ansvar/rettshjelp bare utenforNorden.",
+      "location": "§2–3 s1"
+    },
+    {
+      "id": "FRE-04",
+      "subject": "Reisetid",
+      "dimension": "choice",
+      "value": "Fullvilkår antalldøgn avtaltbevis; IPID V104standard70d; ingen valgalternativ90/120/180 i lokal fulltekst/IPID.",
+      "location": "§3 s1;IPID s2"
+    },
+    {
+      "id": "FRE-05",
+      "subject": "Geografi",
+      "dimension": "exclusions",
+      "value": "Ikke fastarbeid/studie/barnehage i Norden tid (unntakmobil); militær; over6000m/ekspedisjoner/UDfrarådet hele reisen.",
+      "location": "§2 s1"
+    },
+    {
+      "id": "FRE-06",
+      "subject": "Avtale",
+      "dimension": "timing",
+      "value": "Må kjøpes førreise; avbestilling underavtale føravreise; ulykke24t stopper75år.",
+      "location": "§3 s1–2"
+    },
+    {
+      "id": "FRE-07",
+      "subject": "Generelle unntak",
+      "dimension": "risk",
+      "value": "Arbeidskonflikt/konkurs/lønnstap/rus/slagsmålforbrytelse/selvmord/lete-redning.",
+      "location": "§4 s2"
+    },
+    {
+      "id": "FRE-08",
+      "subject": "Reisegods",
+      "dimension": "scope",
+      "value": "Personlig låntleid skriftlig førreise, arbeidsgivers ansvar, innsjekket når reiser med; ingen samlet generell sum angitt.",
+      "location": "§7.1 s3"
+    },
+    {
+      "id": "FRE-09",
+      "subject": "Reisegods",
+      "dimension": "sublimits",
+      "value": "Kontanter10000/person;pass15000/skade inklreise/opphold foranskaffelse ikke ny hjemreise; arbeidsgiver50000.",
+      "location": "§7.1 s3"
+    },
+    {
+      "id": "FRE-10",
+      "subject": "Reisegods",
+      "dimension": "valuables",
+      "value": "40000samlet/skade for navngitt gruppe smykker/elektronikk/musikk/sport/våpen/kjøreutstyr og sykkel uten bosted/studie/arbeidskommune; øvrigenkeltgjenstand40000perting/skade.",
+      "location": "§7.1 s3"
+    },
+    {
+      "id": "FRE-11",
+      "subject": "Reisegods",
+      "dimension": "excluded_objects",
+      "value": "Ikke motorvogn/utstyr i bruk/sammenbil,el-sykkel/småel,båt unntattkano/kajakk/seilbrett,luftsport,flytte/varer/verktøy/dokumentdata/kort/programvare/drone/inventar/sykkelibruk/lokal/matfirma-mobil.",
+      "location": "§7.1 s3"
+    },
+    {
+      "id": "FRE-12",
+      "subject": "Reisegods",
+      "dimension": "triggers",
+      "value": "Tyveri ikke mistetbeholdtfinner;ran/hærverk/natur/brann/vann/trafikk/båtkollisjon/innsjekket tap.",
+      "location": "§7.2 s3"
+    },
+    {
+      "id": "FRE-13",
+      "subject": "Reisegods",
+      "dimension": "exclusions",
+      "value": "Ikke emballasje/væskelekkasje/kosmetikk/egenmangel/slitasje/ukjent/mistet/sporti bruk/elsykkel/arbeidsgivermobil.",
+      "location": "§7.2 s3–4"
+    },
+    {
+      "id": "FRE-14",
+      "subject": "Uhell",
+      "dimension": "limits",
+      "value": "Annen plutselig fysisk2500/skade; samme unntak, ikke mobil/data/nett/lesebrett/fjernstyrt/drone.",
+      "location": "§7.3 s4"
+    },
+    {
+      "id": "FRE-15",
+      "subject": "Mobil",
+      "dimension": "scope",
+      "value": "Plutselig ytre kjentårsak/tid, avtaleverksted, også fastarbeid/studie; ikke hjemme/kosmetisk/egenfeil/fukt/innhold/firma;2000egenandel.",
+      "location": "§7.4/7.5.6 s4–5"
+    },
+    {
+      "id": "FRE-16",
+      "subject": "Reisegodsoppgjør",
+      "dimension": "methods",
+      "value": "Fradrag alder/bruk/forbedring, bruktkjøp/gave/arv markedspris; selskap velger reparasjon/nytt/kontant og leverandør; smykker/edelmetall nypris, samleobjekt bruktverdi.",
+      "location": "§7.5 s4–5"
+    },
+    {
+      "id": "FRE-17",
+      "subject": "Aldersfradrag",
+      "dimension": "table",
+      "value": "Mobil1år20%, elektronikk1år10%,sykkel3år20%,briller1år10%,max80perpåbegyntår; toalettsaker50%.",
+      "location": "§7.5.1 s4"
+    },
+    {
+      "id": "FRE-18",
+      "subject": "Forsinket bagasje",
+      "dimension": "limits",
+      "value": "5000/person klær/toalett og leiebarnevogn/sport;4timer men ingenventetidjobbreise;PIR og kvittering; ikke hjemreise.",
+      "location": "§8.1 s5"
+    },
+    {
+      "id": "FRE-19",
+      "subject": "Forsinket reise",
+      "dimension": "triggers",
+      "value": "Vær/ekstraordinærtrafikk/teknisk/ulykke privatbergingsbehov/nødlanding; merkostikke EU261 ansvar,måreisen gjennomføres;mat/drikkeunntatt.",
+      "location": "§8.2 s5–6"
+    },
+    {
+      "id": "FRE-20",
+      "subject": "Forsinket fremmøte",
+      "dimension": "limits",
+      "value": "For sent tilbetalt kollektivtransport;innhentingubegrenset,overnatting6000/person/skade.",
+      "location": "§8.2 s5"
+    },
+    {
+      "id": "FRE-21",
+      "subject": "Forsinket avgang",
+      "dimension": "limits",
+      "value": "Forhåndsbetalttransport ikkeavgang;6000/person/skade;innhenting nårtransportørikkeinnen24t;klær/toalett500/person vedovernatting ogbagutilgjengelig.",
+      "location": "§8.2 s5–6"
+    },
+    {
+      "id": "FRE-22",
+      "subject": "Forsinket ankomst",
+      "dimension": "limits",
+      "value": "Merenn8t rutefly/charter/turoperatør;500/person/påbegyntdøgn max5000/person;turisttjenester5000/skade.",
+      "location": "§8.2 s6"
+    },
+    {
+      "id": "FRE-23",
+      "subject": "Leiebil",
+      "dimension": "scope",
+      "value": "Fritid/tjeneste personbil fra godkjentfirma medkasko; egenandel dokumentert i kontrakt; ikkeleasing/langtids/bilpool/privat/flytting/reparasjonsbil/feilfylling/andretyper.",
+      "location": "§9 s6"
+    },
+    {
+      "id": "FRE-24",
+      "subject": "Medisinsk",
+      "dimension": "scope",
+      "value": "Akutt uventet/kroniskakutt/ulykke; sykehus/lege/medisin/utstyr/transport/opphold ved utsatthjemreise; ingen hovedbeløpsgrense angitt.",
+      "location": "§10.1 s6–7"
+    },
+    {
+      "id": "FRE-25",
+      "subject": "Medisinsk",
+      "dimension": "exclusions",
+      "value": "Ikke etterhjemkomst/kjent før/planned/uke36/frivilligabort/privateklinikkNorden/fortsattutland nårhjemtransportforsvarlig/tolk/mat/nærfamiliesykpåreisemålmerkost.",
+      "location": "§10.1 s6–7"
+    },
+    {
+      "id": "FRE-26",
+      "subject": "Psykolog",
+      "dimension": "sum",
+      "value": "Førstehjelp etterhjemkomst ran/ulykke/natur/terror25000/skade.",
+      "location": "§10.1 s7"
+    },
+    {
+      "id": "FRE-27",
+      "subject": "Tann",
+      "dimension": "limits",
+      "value": "Ulykke5000/skade,spising/plutseligtannsykdom1000/skade; nødvendigpåreisen.",
+      "location": "§10.1 s7"
+    },
+    {
+      "id": "FRE-28",
+      "subject": "Innhenting etter sykdom",
+      "dimension": "sum",
+      "value": "150000/skade etterlegeinstruks;kontakt førnye billetter.",
+      "location": "§10.1 s7"
+    },
+    {
+      "id": "FRE-29",
+      "subject": "Tilkalling",
+      "dimension": "limits",
+      "value": "2nærmeste Norden vedakutt fysiskalvorlig eller2blir;2veddød;forhåndsgodkjenning;telefon5000/skade.",
+      "location": "§10.1 s7"
+    },
+    {
+      "id": "FRE-30",
+      "subject": "Eneste medreisende",
+      "dimension": "sum",
+      "value": "Hotell/innhenting/hjemreise/forsinkelse/avbrutt;50000/skade.",
+      "location": "§10.2 s7"
+    },
+    {
+      "id": "FRE-31",
+      "subject": "Hjemtransport",
+      "dimension": "triggers",
+      "value": "Akutt alvorlig/kroniskforverring/ulykke/egenellerfamiliedød/boligforretningsskade; nødvendigbehandlingikke tilgjengelig, avtalt, pasientreisekmsats/losji; ikke nyhjemreisevedfortsattdestinasjon.",
+      "location": "§10.3 s7–8"
+    },
+    {
+      "id": "FRE-32",
+      "subject": "Avbrutt reise",
+      "dimension": "limits",
+      "value": "Sykehus/hjemtransport2000/person/døgn begrensetreisekostnad; alternativretur;enestemedreisende/medforsikret må være reiseforsikret hososs;ikkevisum/eiendom/poeng.",
+      "location": "§10.4 s8"
+    },
+    {
+      "id": "FRE-33",
+      "subject": "Sengeleie",
+      "dimension": "limits",
+      "value": "Legeordinert minst3d fraførstebesøk;750/person/dag maks10d/reise;ettfamiliemedlem/enesteledsager.",
+      "location": "§10.5 s8"
+    },
+    {
+      "id": "FRE-34",
+      "subject": "Ubenyttet arrangement",
+      "dimension": "sum",
+      "value": "5000/skade vedlegeforbud/akuttsyk/ulykke; forhåndsbetaltutflukt/turisttjeneste ikke transport/overnattingunderveis.",
+      "location": "§10.6 s8–9"
+    },
+    {
+      "id": "FRE-35",
+      "subject": "Medisinsk",
+      "dimension": "duration",
+      "value": "30d fraførstelegebehandling med unntak når hjemreiseuforsvarlig; forhånd SOSsykehus/hjemreise/tilkall/kost>5000.",
+      "location": "§10.7 s9"
+    },
+    {
+      "id": "FRE-36",
+      "subject": "Ulykke",
+      "dimension": "sums",
+      "value": "Under21invaliditet700k/død150k;21–70 500k/begge;70–75 100k/begge;behandling5%avinvalidsum.",
+      "location": "§11.1 s9"
+    },
+    {
+      "id": "FRE-37",
+      "subject": "Ulykke",
+      "dimension": "sports",
+      "value": "Ekstrem/organisertluft/paraski/dykk>40/kamp/motorløp/ekspedisjon/risikoyrke/organisertkonkurranse/idrettinntekt>1G; aktivitetsunntak gjelderikkeunder16.",
+      "location": "§11.1 s9"
+    },
+    {
+      "id": "FRE-38",
+      "subject": "Ulykke",
+      "dimension": "other_exclusions",
+      "value": "Sykdom/disposisjon,psykiskutenfysisk,behandlingmedisinkomplikasjon,arr<15%,flått/insekt/virus,kriminalitet/slagsmål,rustilstander;visseunntakikkeunder16.",
+      "location": "§11.1 s9–10"
+    },
+    {
+      "id": "FRE-39",
+      "subject": "Ulykke behandling",
+      "dimension": "limits",
+      "value": "Norden2år,ikkeutgifterunder1000;barnutsatttannoppgjørsenest23år;ikkeprivatutengodkjenning/hjelpemidler/spisetann.",
+      "location": "§11.2 s10"
+    },
+    {
+      "id": "FRE-40",
+      "subject": "Ulykke invaliditet",
+      "dimension": "conditions",
+      "value": "Varig fastslåttinnen3år;proposjonalgradmax100%;førsykdomsandel trekkes.",
+      "location": "§11.4 s10–11"
+    },
+    {
+      "id": "FRE-41",
+      "subject": "Avbestilling",
+      "dimension": "triggers",
+      "value": "Egen/enesteledsager/nærfamilie/samreisendegruppe≤8/nøkkelpersonsykdom;boligforretningsskade;UD/lokalevak72tfør;vitne/meddommer;innenlandregjeringsråd.",
+      "location": "§12.1 s11"
+    },
+    {
+      "id": "FRE-42",
+      "subject": "Avbestilling",
+      "dimension": "expenses",
+      "value": "Egenandelavforhåndsbetaltreise/opphold/turisttjeneste ikkeandre;dyrepensjonat2500;ingenhovedsumangitt.",
+      "location": "§12.1 s11"
+    },
+    {
+      "id": "FRE-43",
+      "subject": "Avbestilling",
+      "dimension": "exclusions",
+      "value": "Forutsigbar/planlagtbehandling/forlengesykehus,graviditet/frivilligabort/fødsel36;visum/skatter/timeshare/returnertepoeng/delreise/alleredeUDfrarådet/deltakerarrangement.",
+      "location": "§12.1 s11"
+    },
+    {
+      "id": "FRE-44",
+      "subject": "Evakuering",
+      "dimension": "scope",
+      "value": "Natur/pandemiutenNorge,krig/terror tidligerefredelig;myndighetensråd,tilnærmestesikredestinasjon;andresrefusjonunntatt.",
+      "location": "§13 s12"
+    },
+    {
+      "id": "FRE-45",
+      "subject": "Evakuering",
+      "dimension": "lost_holiday",
+      "value": "2000/person/døgn max150000/forsikringsår ut frareisekost.",
+      "location": "§13 s12"
+    },
+    {
+      "id": "FRE-46",
+      "subject": "Ansvar",
+      "dimension": "scope",
+      "value": "UtenforNorden,bevisstyrtsum;person/ting/følgetap;kontrakt/familie/lånt/næring/fast eiendom/motorkjøretøynegativ med14fot10hkbåt/drone750kSDR-unntak.",
+      "location": "Ansvar s12–14"
+    },
+    {
+      "id": "FRE-47",
+      "subject": "Rettshjelp",
+      "dimension": "limits",
+      "value": "UtenforNorden;100k/økonomiskinteresse,250kmin3parter;FinKN15kforlik25ksakkyndig20%;bevisegenandel+20%;preexisting/yrke/familie/straff/objektunntak.",
+      "location": "Rettshjelp s14–17"
+    }
+  ],
+  "review": "17p current full terms and V104 IPID; responsibility/legal shared exacttext with House except layout; EikaFAQ77d belongs P10 not inferredcurrent. Ownchannelwebsitecopies absent."
+}

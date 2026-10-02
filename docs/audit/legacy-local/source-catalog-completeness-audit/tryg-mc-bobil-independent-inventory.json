@@ -1,0 +1,616 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "TR-MB-001",
+      "type": "both",
+      "scope": "all",
+      "subject": "Sikrede",
+      "dimension": "rolle",
+      "value": "Registrert eier/forsikringsbevis; ansvar rettmessig fører; panthaver etter avtale.",
+      "source": "product",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-002",
+      "type": "both",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "Europa unntatt Russland, Belarus og Tyrkia; rettshjelp Norden; særskilt grenseforsikring kan kreves.",
+      "source": "product",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-MB-003",
+      "type": "both",
+      "scope": "all",
+      "subject": "Eierskifte",
+      "dimension": "etterdekning",
+      "value": "Ny eier inntil14d hvis ikke egen forsikring; ansvar avsluttes ved eierskifte.",
+      "source": "product",
+      "location": "1 §3–4"
+    },
+    {
+      "id": "TR-MB-004",
+      "type": "mc",
+      "scope": "all",
+      "subject": "Avregistrering",
+      "dimension": "videreføring",
+      "value": "Ansvar opphører, andre dekninger videreføres.",
+      "source": "product",
+      "location": "1 §4"
+    },
+    {
+      "id": "TR-MB-005",
+      "type": "bobil",
+      "scope": "all",
+      "subject": "Avregistrering",
+      "dimension": "videreføring",
+      "value": "Produktvilkår sier hele forsikringen opphører; IPID samme. Nettside sier kun ansvar/ulykke, øvrig videreføres. Kildekonflikt.",
+      "source": "product",
+      "location": "1 §4"
+    },
+    {
+      "id": "TR-MB-006",
+      "type": "mc",
+      "scope": "all",
+      "subject": "Sesongpremie",
+      "dimension": "fordeling",
+      "value": "Måneder jan–des2/2/3/6/14/16/16/16/14/6/3/2%; lik månedlig betaling er ikke lik risikopremie ved oppsigelse.",
+      "source": "product",
+      "location": "1–2 §5"
+    },
+    {
+      "id": "TR-MB-007",
+      "type": "both",
+      "scope": "all",
+      "subject": "Bonus",
+      "dimension": "regler",
+      "value": "AlternativA75% ellerB80%; A treårsopptjening, første skade tilbakeår1; B10%-tap; ansvar/Kasko bonustap med angitte unntak; brann/tyveri/redning ikke tap.",
+      "source": "product",
+      "location": "2 §5–6"
+    },
+    {
+      "id": "TR-MB-008",
+      "type": "both",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "service",
+      "value": "Autoriserte dokumenterte servicer; ikke effektøkning; fører kompetanse og sikring.",
+      "source": "safety",
+      "location": "1–3"
+    },
+    {
+      "id": "TR-MB-009",
+      "type": "mc",
+      "scope": "all",
+      "subject": "Fører/bruk",
+      "dimension": "avgrensning",
+      "value": "Eier/ektefelle med mindre annen fører valgt; ikke kommersiell utleie/bud; låst bagasje tas ut over natten; bane forbudt med godkjentkurs-unntak og20kegenandel.",
+      "source": "safety",
+      "location": "1–2"
+    },
+    {
+      "id": "TR-MB-010",
+      "type": "bobil",
+      "scope": "all",
+      "subject": "Årlig kjørelengde",
+      "dimension": "kundespesifikk",
+      "value": "Valgt i bevis; delår prorata; overkjøring meldes; avkortning ikke brann/tyveri/glass/redning/maskin.",
+      "source": "safety",
+      "location": "2"
+    },
+    {
+      "id": "TR-MB-011",
+      "type": "bobil",
+      "scope": "all",
+      "subject": "Sikring/utleie",
+      "dimension": "vilkår",
+      "value": "Fortelt demonteres og låst bygning; fellesgarasje ikke tilstrekkelig; jevnlig skadedyrkontroll; gassvedlikehold. Kommersiell utleie må avtales, begrenset identifikasjon med regress.",
+      "source": "safety",
+      "location": "1–2"
+    },
+    {
+      "id": "TR-MB-012",
+      "type": "both",
+      "scope": "physical",
+      "subject": "Utstyr",
+      "dimension": "fastmontert",
+      "value": "10k fastmontert inklfoliering; ekstra standardhjulsett; ikke avtagbart/tilhenger/spesiallakk.",
+      "source": "physical",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-013",
+      "type": "mc",
+      "scope": "physical",
+      "subject": "Bagasje",
+      "dimension": "grunnsum",
+      "value": "10k i låst boks; ikke penger/papirer/næringsgods. Web Kasko har dessuten5k per enkeltgjenstand.",
+      "source": "physical",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-014",
+      "type": "bobil",
+      "scope": "physical",
+      "subject": "Bagasje/fortelt",
+      "dimension": "grunnsum",
+      "value": "Løsøre15k,5k/gjenstand; fortelt med. Ikke penger/papirer/antikviteter/smykker/CD/DVD/spill/vin/brennevin.",
+      "source": "physical",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-015",
+      "type": "bobil",
+      "scope": "physical",
+      "subject": "Fortelt/terrasse",
+      "dimension": "materialomfang",
+      "value": "Bobil fast innredning og fortelt/terrasse alle byggematerialer; Kasko løsørerad sier tekstilfortelt.",
+      "source": "physical",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-016",
+      "type": "both",
+      "scope": "physical",
+      "subject": "Brann",
+      "dimension": "status/egenandel",
+      "value": "Åpen flamme/eksplosjon/lyn;6k med mindre lavere avtalt.",
+      "source": "physical",
+      "location": "Delkasko1§2.1;Kasko2§2.2"
+    },
+    {
+      "id": "TR-MB-017",
+      "type": "both",
+      "scope": "physical",
+      "subject": "Tyveri",
+      "dimension": "status/egenandel",
+      "value": "Tyveri/brukstyveri/deler;hærverk vedtyveriforsøk;6k med mindre lavere avtalt.",
+      "source": "physical",
+      "location": "Delkasko1§2.2;Kasko2§2.3"
+    },
+    {
+      "id": "TR-MB-018",
+      "type": "bobil",
+      "scope": "physical",
+      "subject": "Tyveri",
+      "dimension": "fortelt/rental",
+      "value": "Ikke løsøre fra tekstilfortelt, ikke fra fortelt når bobil fjernet, ikke fortelt/terrasse når bobil fjernet; meldt avtaltutleie underslag3mnd, ikke familie/ansatte.",
+      "source": "physical",
+      "location": "Delkasko1§2.2;Kasko2§2.3"
+    },
+    {
+      "id": "TR-MB-019",
+      "type": "mc",
+      "scope": "physical",
+      "subject": "Glass",
+      "dimension": "avgrensning",
+      "value": "Bare tre/firehjulsMC; vindskjerm ikke; reparasjon0,bytte3k.",
+      "source": "physical",
+      "location": "Delkasko1§2.3;Kasko2§2.4"
+    },
+    {
+      "id": "TR-MB-020",
+      "type": "bobil",
+      "scope": "physical",
+      "subject": "Glass",
+      "dimension": "avgrensning",
+      "value": "Reparasjon0/bytte3k; avtaleverksted; ikkeEU-riper/slitasje/krakelering/punktertglass.",
+      "source": "physical",
+      "location": "Delkasko1§2.3;Kasko2§2.4"
+    },
+    {
+      "id": "TR-MB-021",
+      "type": "both",
+      "scope": "physical",
+      "subject": "Redning",
+      "dimension": "utløsere",
+      "value": "Skade/start/innlåst/tomdrivstoff/strøm/driftsstopp; tilhenger med, nærmeste verksted/henting; fører sykdom/ulykke/død gir passasjerretur.",
+      "source": "physical",
+      "location": "Delkasko1–2§2.4;Kasko2§2.5"
+    },
+    {
+      "id": "TR-MB-022",
+      "type": "both",
+      "scope": "physical",
+      "subject": "Redning",
+      "dimension": "tak/egenandel",
+      "value": "750egenandel; transport50%kjøretøyverdi; rimeligst reise, videre maks hjemkost; ikke offroad/haik/annetabonnement/garanti.",
+      "source": "physical",
+      "location": "Delkasko2§2.4;Kasko2–3§2.5"
+    },
+    {
+      "id": "TR-MB-023",
+      "type": "both",
+      "scope": "physical",
+      "subject": "Oppgjør",
+      "dimension": "form",
+      "value": "Reparasjon70%takstutenMVA vedkontant, ingenleiebil; bruktelikeverdige deler og forbedringsfradrag; markedsverdi vedtotaltap.",
+      "source": "physical",
+      "location": "Delkasko2–3§3;Kasko3§3"
+    },
+    {
+      "id": "TR-MB-024",
+      "type": "both",
+      "scope": "physical",
+      "subject": "Verkstedgaranti",
+      "dimension": "varighet",
+      "value": "8årkarosseri/3årbruktmotorvedservice; følger kjøretøyet, melde mangel2mnd; slitedelerikke.",
+      "source": "physical",
+      "location": "Delkasko2–3§3.2;Kasko3§3.2"
+    },
+    {
+      "id": "TR-MB-025",
+      "type": "bobil",
+      "scope": "physical",
+      "subject": "Elektronikk",
+      "dimension": "aldersfradrag",
+      "value": "10%perår fra nytt,maks50%,nyverdi skadedag. MC-terms inneholder ikke samme faste prosentsats.",
+      "source": "physical",
+      "location": "Delkasko3§3.3;Kasko4§3.3"
+    },
+    {
+      "id": "TR-MB-026",
+      "type": "both",
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "utløsere",
+      "value": "Sammenstøt/utforkjøring/velt/hærverk/feilfylling; ytreplutselig<=24t/uventet; ikke maskinbrudd/frost.",
+      "source": "kasko",
+      "location": "1 §2.1"
+    },
+    {
+      "id": "TR-MB-027",
+      "type": "bobil",
+      "scope": "kasko",
+      "subject": "Skadedyr",
+      "dimension": "omfang",
+      "value": "Mus/rotter/insekter/skadedyr dekket; fortelt/terrasse med; ikke frost eller sviktendestrøm alene.",
+      "source": "kasko",
+      "location": "1 §2.1"
+    },
+    {
+      "id": "TR-MB-028",
+      "type": "both",
+      "scope": "kasko",
+      "subject": "Dyr/vær",
+      "dimension": "egenandel",
+      "value": "Dyrepåkjørsel2k uten bonustap nårpoliti/viltnemndvarslet; værskade parkertgarasje0.",
+      "source": "kasko",
+      "location": "1 §2.1"
+    },
+    {
+      "id": "TR-MB-029",
+      "type": "bobil",
+      "scope": "kasko",
+      "subject": "Ungfører",
+      "dimension": "egenandel",
+      "value": "Under23+5k med unntak forsikringstaker. Ikke Bil-unntak for ektefelle/Tryglappen.",
+      "source": "kasko",
+      "location": "1 §2.1"
+    },
+    {
+      "id": "TR-MB-030",
+      "type": "mc",
+      "scope": "kasko",
+      "subject": "Nyverdi",
+      "dimension": "grenser",
+      "value": "Innen1år førstregsomny på taker; inntil10kkm; skade>80%nyverdi inkl rabatter.",
+      "source": "kasko",
+      "location": "4 §3.4"
+    },
+    {
+      "id": "TR-MB-031",
+      "type": "mc",
+      "scope": "kasko",
+      "subject": "Nyverdi",
+      "dimension": "vilkår/form",
+      "value": "Tilsvarende nyMC, utgåttmodell kjøpekontrakt; tyveri3uker;kontantalternativ;leasing unntatt. Ingen3årsutvidelse i MCExtra.",
+      "source": "kasko",
+      "location": "4 §3.4"
+    },
+    {
+      "id": "TR-MB-032",
+      "type": "bobil",
+      "scope": "kasko",
+      "subject": "Nyverdi",
+      "dimension": "ingen sikker regel",
+      "value": "Fullt lokalpakke gir ikke egen standard nyverdiregel for Bobil; ikke lån Bil/MC.",
+      "source": "kasko",
+      "location": "1–4"
+    },
+    {
+      "id": "TR-MB-033",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Maskinskade",
+      "dimension": "inkludert/alder",
+      "value": "MCExtraKaskotillegg; motor/gir/drivlinje/ECU,diagnosekost; innen8årførstreg; ingen kilometergrense oppgitt.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-034",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Maskinskade",
+      "dimension": "egenandel",
+      "value": "4k inntil3år;6k fra3til7år. Ikke anta egenandel for7–8år eller eksakt3årsgrense.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-035",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Ikke slitasje/korrosjon/tuning/vanligkaskoskade; garanti med dekning+regress hvis kravikkeførerfram.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-036",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Parkert velting",
+      "dimension": "bonus/alder",
+      "value": "Ukjent skadevolder/velt ved parkering, innen6år, ingenbonustap.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-037",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "LeieMC/bil",
+      "dimension": "sum/periode",
+      "value": "500kr/dag10dnormalreparasjon; firmafaktura,ikkeandreleieutgifter. Nettside oppgir også gruppeB/100kmprdag; versjon/applicability må bevares.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-038",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Bagasje",
+      "dimension": "sum/vilkår",
+      "value": "30k låst boks; ikkehaikere/næring/penger/papirer/dyr.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-039",
+      "type": "both",
+      "scope": "extra",
+      "subject": "Fastutstyr",
+      "dimension": "sum",
+      "value": "MC: fastmontert50k/foliering,ikkeavtagbart. Bobil: fastmontert+ekstrahjul/felger samlet50k/hendelse.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-040",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Ferge/tog",
+      "dimension": "bonustap",
+      "value": "Skade vedtransport på tog/ferge ingenbonustap.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-041",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Reservedeler",
+      "dimension": "langtur",
+      "value": "Tekniskhavari minst3timerskjøringhjemmefra;3k ekstra levering;0egenandel.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-042",
+      "type": "both",
+      "scope": "extra",
+      "subject": "Feilfylling",
+      "dimension": "sum/egenandel",
+      "value": "Motorrens15k,egenandel1k.",
+      "source": "extra",
+      "location": "mc2/bobil1 §1"
+    },
+    {
+      "id": "TR-MB-043",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Nøkkel",
+      "dimension": "sum/egenandel",
+      "value": "20k tap/skade,1kegenandel; ikke eksplisitt årstak som Bobil.",
+      "source": "extra",
+      "location": "2 §1"
+    },
+    {
+      "id": "TR-MB-044",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Sykehus",
+      "dimension": "sum/varighet",
+      "value": "5k engangsbeløp/skadetilfelle ved48tinnleggelse.",
+      "source": "extra",
+      "location": "2 §1"
+    },
+    {
+      "id": "TR-MB-045",
+      "type": "mc",
+      "scope": "extra",
+      "subject": "Ulykke utvidelse",
+      "dimension": "betinget sum",
+      "value": "Bare hvis fører/passasjerulykke valgt og medisinsk invaliditet>25%, økes200ktil500k.",
+      "source": "extra",
+      "location": "2 §1"
+    },
+    {
+      "id": "TR-MB-046",
+      "type": "bobil",
+      "scope": "extra",
+      "subject": "Bagasje/fortelt",
+      "dimension": "sum/egenandel",
+      "value": "100k løsøre,15kfortelt,10k/gjenstand; valgtutvidelse i tillegg;1kegenandel;ikkeutleie/haik/næring/verdier/dyr.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-047",
+      "type": "bobil",
+      "scope": "extra",
+      "subject": "Nøkkel",
+      "dimension": "årstak/egenandel",
+      "value": "20k/forsikringsår, bilnøkkelogvarmerfjernkontroll,1kegenandel.",
+      "source": "extra",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-MB-048",
+      "type": "bobil",
+      "scope": "extra",
+      "subject": "Fukt",
+      "dimension": "alder/egenandel",
+      "value": "Tak/vegg/gulv,innen15årførstreg/perioden;8k inntil10år,25%min8k10årellereldre. Bevar grenseoverlapp.",
+      "source": "extra",
+      "location": "1 §1 Fuktskade"
+    },
+    {
+      "id": "TR-MB-049",
+      "type": "bobil",
+      "scope": "extra",
+      "subject": "Fukt",
+      "dimension": "vilkår/unntak",
+      "value": "Årligkontrollhverforsikringsårgodkjentverksted,utbedringumiddelbart; ikke fortelt/terrasse/rørlekkasje/frost;garantiregress.",
+      "source": "safety",
+      "location": "1 sikkerhetsforskrift;1 Ekstra Fuktskade"
+    },
+    {
+      "id": "TR-MB-050",
+      "type": "bobil",
+      "scope": "extra",
+      "subject": "Ferieavbrudd",
+      "dimension": "beløp/tid",
+      "value": "Alleredepåbegyntreiseavbruttavdekketskade;2k/dagrestplanlagttidmax14d; leiebilog/ellerovernatting; dokumentertrute;ikkeutleie/andreleieutgifter/tilgjengelighetsgaranti.",
+      "source": "extra",
+      "location": "1 §1 Avbrutt ferie"
+    },
+    {
+      "id": "TR-MB-051",
+      "type": "mc",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "nettside konflikt",
+      "value": "Nettside Europa/Israel/TyrkiaunntattRusslandBelarus vs hovedproduktvilkår eksklTyrkia.",
+      "source": "web",
+      "location": "FAQ Hvor gjelder"
+    },
+    {
+      "id": "TR-MB-052",
+      "type": "mc",
+      "scope": "physical",
+      "subject": "Tyverialarm",
+      "dimension": "egenandel",
+      "value": "FG/fabrikkmontertsøkealarmaktivert fjerner tyveriegenandel ifølge produktside.",
+      "source": "web",
+      "location": "FAQ egenandel"
+    },
+    {
+      "id": "TR-MB-053",
+      "type": "bobil",
+      "scope": "all",
+      "subject": "Avregistrering",
+      "dimension": "nettside konflikt",
+      "value": "Nettside kunansvar/ulykkeopphører,øvrigdekket; fullvilkår/IPIDaltopphører.",
+      "source": "web",
+      "location": "FAQ avregistrering"
+    },
+    {
+      "id": "TR-MB-054",
+      "type": "bobil",
+      "scope": "extra",
+      "subject": "Fukt",
+      "dimension": "Avara alternativ",
+      "value": "AvaraMoist fra2026 godkjentsomårligfukttest;10%markedsrabatt erikke selvstendigdekning.",
+      "source": "web",
+      "location": "FAQ Avara"
+    },
+    {
+      "id": "TR-MB-055",
+      "type": "bobil",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "tilvalg/grenser",
+      "value": "TilleggKasko/BobilExtra:200kkm ellerutperiodenkjøretøy10årførst,ikke bodel;10/14/18kved120/160/200kkm. Inngangs180kkmpåweb skiltfraopphør200k.",
+      "source": "motor",
+      "location": "1–2 §1"
+    },
+    {
+      "id": "TR-MB-056",
+      "type": "bobil",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "komponenter/unntak",
+      "value": "Motor/gir/drivlinje/elektronikkmeddelgrense100kkmforutvalgtedeler,garanti/slitasje/korrosjon/modifikasjonunntak; bodelutstyrunntatt.",
+      "source": "motor",
+      "location": "1–2 §1"
+    },
+    {
+      "id": "TR-MB-057",
+      "type": "both",
+      "scope": "all",
+      "subject": "Ulykke",
+      "dimension": "valgfri",
+      "value": "Fører/passasjerulykke valgfritt alle nivåer;200kinvaliditet/100kdød,tilleggsforsikringikkekundevalg.",
+      "source": "accident",
+      "location": "1–2"
+    },
+    {
+      "id": "TR-MB-058",
+      "type": "both",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "Ubegrensetperson/100millting;Bilansvarsloven.",
+      "source": "ansvar",
+      "location": "1 §1.1"
+    },
+    {
+      "id": "TR-MB-059",
+      "type": "both",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "PGE91500motorNorden:100k/tvist,250k3parter,20ktvistTrygrettshjelp,økonomiskinteressetak;4k+20%.",
+      "source": "legal",
+      "location": "2–5 §5.3/6"
+    },
+    {
+      "id": "TR-MB-060",
+      "type": "both",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "hovedunntak",
+      "value": "Familie/yrke/annetkjøretøy/straffmedenfornærmetunntak/idømtkostikke;ettersalgogførerpersonskademed.",
+      "source": "legal",
+      "location": "2–4 §5.3/5.5"
+    },
+    {
+      "id": "TR-MB-061",
+      "type": "both",
+      "scope": "all",
+      "subject": "Generelt",
+      "dimension": "øvrig",
+      "value": "Felleshøyesteegenandelsregel/krigmedutlandsunntak/terroraggregat; oppgjøradministrasjon kildebeholdt.",
+      "source": "general",
+      "location": "1–5"
+    }
+  ],
+  "read_scope": "All dedicated local MC/Bobil fullterms/IPIDs/productHTML/terms-index plus explicit shared references. No catalog consulted in deriving rules; reused exact Bil shared wording only after applicability verified."
+}

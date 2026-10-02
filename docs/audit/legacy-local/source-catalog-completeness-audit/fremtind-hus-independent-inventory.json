@@ -1,0 +1,474 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FHU-01",
+      "subject": "Bygning",
+      "dimension": "eligibility",
+      "value": "Permanent bolig; ikke næring eller minst tre eierseksjoner; fraflyttet/ubebodd bare brann og natur.",
+      "location": "IPID s1",
+      "scope": "all",
+      "source": "IPID_Hus.pdf"
+    },
+    {
+      "id": "FHU-02",
+      "subject": "Sikrede",
+      "dimension": "ownership",
+      "value": "Eier/panthaver; 14 dagers eierskifte inntil ny forsikring; dødsbo.",
+      "location": "Standard §1 s2",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-03",
+      "subject": "Geografi",
+      "dimension": "place",
+      "value": "Bevissted; natur og vind svakere enn storm i Norge.",
+      "location": "Standard §2 s2",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-04",
+      "subject": "Bygning",
+      "dimension": "scope",
+      "value": "Fast utstyr og midlertidig lagrede materialer i Norge; småbygg inntil10m2 kun brann/natur; kunst bare Topp.",
+      "location": "Standard §3.1 s3;Topp §1 s1",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-05",
+      "subject": "Utvendige ledninger",
+      "dimension": "scope",
+      "value": "Til offentlig ledning/brønn; ikke overvann/infiltrasjon/drensfelt/brønnhull.",
+      "location": "Standard §3.2 s3",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-06",
+      "subject": "Hage",
+      "dimension": "limits",
+      "value": "5 dekar; basseng/boblebad Standard200000/Topp500000; egen tre/flytebrygge100000 inkl montering, ikke fellesbrygge/landbruk.",
+      "location": "Standard §3.3 s3;Topp §1 s1",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-07",
+      "subject": "Offentlig påbud",
+      "dimension": "limits",
+      "value": "Nødvendig oppgradering ved dekket skade; førsterisiko20%av sum. Ingen uavhengig eksisterende påbud, arealtap, antikvarisk metode eller forebygging.",
+      "location": "Standard §3.4 s3;§5.5.1 s6",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-08",
+      "subject": "Riving/rydding",
+      "dimension": "limits",
+      "value": "Nødvendig kostnad, førsterisiko20%av sum; normal gjenoppbyggingsperiode prisstigning og flytting/lagring.",
+      "location": "Standard §3.4 s3;§5.5.3 s7",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-09",
+      "subject": "Ubeboelig/rentetap",
+      "dimension": "period",
+      "value": "Normal reparasjonstid; umøblert markedsleie, ikke korttidsleie; sparte utgifter/renter trekkes. Fritidsbolig25k/ubegrenset er ikke Hus-grense.",
+      "location": "Standard §3.4 s3;§5.5.2 s6;Topp §1 s1",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-10",
+      "subject": "Brann",
+      "dimension": "scope",
+      "value": "Brann/lyn/spenning/eksplosjon/sprenging/nedsoting; ikke svi/gnist uten brann, heksesot, material-/konstruksjons-/monteringsfeil eller spenning i bygg.",
+      "location": "Standard §4.1 s3",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-11",
+      "subject": "Vann",
+      "dimension": "scope",
+      "value": "Rør/tilkoblet utstyr/akvarium; grunn/avløp må stå over gulv; tilstøtende rom ved utett våtrom. Ikke søl/bruk/kondens, våtrommet selv, takrenne/takdrensnedløp, sopp/råte.",
+      "location": "Standard §4.2 s4",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-12",
+      "subject": "Rørbrudd",
+      "dimension": "limits",
+      "value": "Innvendig rør/radiator/bereder, utvendig tank/kum; tining ute50k inkl følgekost; ikke takrenne/nedløp/drensledning.",
+      "location": "Standard §4.3 s4",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-13",
+      "subject": "Annen skade",
+      "dimension": "scope",
+      "value": "Tilfeldig plutselig fysisk skade, med tidligere unntak; ikke fundament/tele/setning/design/slitasje, dyr/insekter, kosmetisk, punktert glass, hageklima, bassengfrost/snø, brygge/snøstopper ved snø, renterhærverk.",
+      "location": "Standard §4.4 s4",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-14",
+      "subject": "Natur",
+      "dimension": "extension",
+      "value": "Lovbestemt natur; antenner/markiser/flytebrygge egen utvidelse, ikke bryggemooring/forskyvning alene.",
+      "location": "Standard §4.5 s4;Natur s12–13",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-15",
+      "subject": "Oppgjør",
+      "dimension": "method",
+      "value": "Selskap velger reparasjon/nytt/kontant; egeninnsats250/time; udokumentert arbeid75% eksMVA.",
+      "location": "Standard §5.1 s5",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-16",
+      "subject": "Gjenoppbygging",
+      "dimension": "period",
+      "value": "Innen5år, kjøp er ikke gjenoppbygging; max gjenoppføringspris minus rest.",
+      "location": "Standard §5.2.1 s5",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-17",
+      "subject": "Fullverdi",
+      "dimension": "conditions",
+      "value": "Samme sted/formål og eier/ektefelle/arving innen5år ingen aldersfradrag; annet sted/formål fradrag verdiøkning>40%; ingen gjenoppbygging/annen eier markedsverditap og all verdiøkning.",
+      "location": "Standard §5.2.2 s5",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-18",
+      "subject": "Boligkjøp etter totalskade",
+      "dimension": "limits",
+      "value": "Kjøp i Norge samme formål innen2år; min gjenoppføring eksMVA og markedsverdi+40%; innenfor sum1mill tilpasning innen2år etterkjøp; ikke offentligpåbud/prisstigning; rentetap stopper overtakelse.",
+      "location": "Standard §5.2.2.4 s5",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-19",
+      "subject": "Førsterisiko",
+      "dimension": "limit",
+      "value": "Avtalt maksimal sum; verdiøkning>40%trekkes. Vesentlig ubrukt bygg markedsverditap og alle forbedringer trekkes.",
+      "location": "Standard §5.2.3 s5;§5.2.4–5 s6",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-20",
+      "subject": "Aldersfradrag",
+      "dimension": "table",
+      "value": "12 rader max80%: nonplast ute-/undergrunnsrør20år5%; nonplast/glassfibertank20år5%; sjø/jordvarmeslange20år5%; basseng5år10%; jordvarme7år10%; luftvarme5år10%; bereder/vannpumpe5år5%; varmekabel10år10%; hvitevarer5år10%; solcelle20år5%; smarthus5år10%.",
+      "location": "Standard §5.3 s6",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-21",
+      "subject": "Aldersfradrag",
+      "dimension": "trigger",
+      "value": "Kun elektrisk/lyn/annet plutselig/rørbrudd; påbegynt år etter friperiode; eldste del, alle reparasjonskostnader.",
+      "location": "Standard §5.3 s6",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-22",
+      "subject": "Hageoppgjør",
+      "dimension": "limits",
+      "value": "Reparasjonskost; uten reparasjon min markedsfall/kost; unge butikkplanter; ingen forebygging.",
+      "location": "Standard §5.4 s6",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-23",
+      "subject": "Egenandel",
+      "dimension": "general",
+      "value": "Bevis, etter avkorting; høyeste ved samme hendelse.",
+      "location": "Standard §6 s7",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-24",
+      "subject": "Egenandel",
+      "dimension": "prevention",
+      "value": "6000reduksjon FGalarmsentral/NEK405-02 siste5år/vannhovedventil/sikkerhetsutstyr; overvannsforebyggingstiltak0.",
+      "location": "Standard §6.1 s7",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-25",
+      "subject": "Egenandel",
+      "dimension": "special",
+      "value": "Glass/sanitær2000; integrerte hvitevarer2000; gjentatt vann sammeårsak24mnd+20000; ansvar4000; rettshjelp4000+20%; natur8000.",
+      "location": "Standard §6.2–7 s7–8",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-26",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "Rettslig person/ting/følgetap, bevisstyrt sum; DNB produktside5mill per skade; ingen generell sum fastslått i fullvilkår.",
+      "location": "Ansvar §3 s8–9;DNB sammenligning",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-27",
+      "subject": "Ansvar",
+      "dimension": "exclusions",
+      "value": "Kontrakt, familie/felles/leide-lånte, næring, gradvis forurensning, forsett; byggherre eget forsikret bygg unntak fra grave/sprengningsnegativ.",
+      "location": "Ansvar §3 s8–9",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-28",
+      "subject": "Rettshjelp",
+      "dimension": "limits",
+      "value": "100k/tvist økonomiskinteresse; kan250k minst3parter; FinKN15k, forlik/jordskifte25k; ikke rettsoppnevnt sakkyndig20%;4000+20%.",
+      "location": "Rettshjelp §4–5 s10–12",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-29",
+      "subject": "Rettshjelp",
+      "dimension": "eligibility",
+      "value": "Personlig eier/fester avtalt eiendom; ikke preexisting tvist; også solgt eiendom og ny bolig/tomt før innflytting når gammel forsikret på kjøpstid.",
+      "location": "Rettshjelp §1–3 s10",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-30",
+      "subject": "Rettshjelp",
+      "dimension": "exclusions",
+      "value": "Yrke/familie/straff/andre eiendommer, ikke direkte innkreving ubestridt; husleietvist unntak fra namsmyndighetnegativ.",
+      "location": "Rettshjelp §4.2 s10–11",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-31",
+      "subject": "Naturskade",
+      "dimension": "limits",
+      "value": "Brannforsikret Norge og tomt5dekar; ikke alminnelig frost/tele/nedbør/snø; byggenekt ved nyfare gir tomtemarkedsverdi5dekar og totalskadeerstatning.",
+      "location": "Natur §1–3 s12–13",
+      "scope": "all",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-32",
+      "subject": "Utett tak/vegg",
+      "dimension": "scope",
+      "value": "Følgeskade tak≤50år eller overterrenginntrengning; ikke kondens, selve tak/vegg eller mangelutbedring.",
+      "location": "Topp §2.1 s1",
+      "scope": "top",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-33",
+      "subject": "Dyr/skadedyr",
+      "dimension": "scope",
+      "value": "Fullverdibygg; fysisk skade, redusert isolasjon, lukt; bekjempelse ved påvist aktivitet med valgt firma; ikke førperiode/kosmetisk/ren rengjøring/udokumentert isolasjonstap, kjæledyr/insekter/bakterier.",
+      "location": "Topp §2.2 s1",
+      "scope": "top",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-34",
+      "subject": "Håndverker våtrom",
+      "dimension": "conditions",
+      "value": "Autorisert/godkjent; feil material/design/montasje; utenfor reklamasjon eller innenfor ved konkurs; rettidig reklamasjon; oppdaget innen10år; ingen mangel selv/egenarbeid/kjentfeil/udokumentertforskrift.",
+      "location": "Topp §2.3 s1",
+      "scope": "top",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-35",
+      "subject": "Håndverker øvrig",
+      "dimension": "conditions",
+      "value": "Fundament/setning/tele/material/design/montasje; samme10år/reklamasjon/godkjenning; ikke kondens/drenering/råte/bakterier eller tak/vegg selv ved lekkasje.",
+      "location": "Topp §2.4 s2",
+      "scope": "top",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-36",
+      "subject": "Totalskadegaranti",
+      "dimension": "trigger",
+      "value": "Skade>75%gjenoppføringspris uten riving/rydding/prisstigning i nevner; rest rives/fjernes innen2år.",
+      "location": "Topp §3.1 s2",
+      "scope": "top",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-37",
+      "subject": "Skadedyr",
+      "dimension": "deductible",
+      "value": "Bekjempelse2000, øvrig bevis/Standard.",
+      "location": "Topp §4 s2",
+      "scope": "top",
+      "source": "Vilkar_Topp_Hus.pdf"
+    },
+    {
+      "id": "FHU-38",
+      "subject": "Råte/sopp",
+      "dimension": "optional",
+      "value": "Valgfri bevisavtale, bare fullverdibygg; treødeleggende sopp/råte.",
+      "location": "§1 s1",
+      "scope": "rot",
+      "source": "Vilkar_Sopp_og_Rate_valgbar.pdf"
+    },
+    {
+      "id": "FHU-39",
+      "subject": "Råte/sopp",
+      "dimension": "exclusions",
+      "value": "Ikke blåved/sverte/mugg/jordslag, kosmetisk, over taksperre, dør/vindu/lekter/utvendig tre eller laftetyttervegg; bare utvikling i forsikringstid; ikke tilgang via ikkeerstatningsmessig konstruksjon.",
+      "location": "§1.1 s1",
+      "scope": "rot",
+      "source": "Vilkar_Sopp_og_Rate_valgbar.pdf"
+    },
+    {
+      "id": "FHU-40",
+      "subject": "Insekter",
+      "dimension": "scope",
+      "value": "Fysisk skade/isolasjon/lukt; skadegjørende insektbekjempelse; ikke kosmetisk eller før/etterperiode; firma/metode bestemmes.",
+      "location": "§1.2 s1",
+      "scope": "rot",
+      "source": "Vilkar_Sopp_og_Rate_valgbar.pdf"
+    },
+    {
+      "id": "FHU-41",
+      "subject": "Råte/insekter",
+      "dimension": "deductible",
+      "value": "Krypkjeller/jordgulv +15000; insektbekjempelse2000; øvrig bevis.",
+      "location": "§2 s1",
+      "scope": "rot",
+      "source": "Vilkar_Sopp_og_Rate_valgbar.pdf"
+    },
+    {
+      "id": "FHU-42",
+      "subject": "Utleie",
+      "dimension": "optional",
+      "value": "Lovlig utleie og varslet/avtalt bevis; kan omfatte hel/delbolig.",
+      "location": "IPID s1;§1 s1",
+      "scope": "rental",
+      "source": "Vilkar_Utleie_valgbar.pdf"
+    },
+    {
+      "id": "FHU-43",
+      "subject": "Utleie",
+      "dimension": "rent",
+      "value": "6mnd ubetalt leie, kun én gang per leietaker; avtaltleie og eventuell rettslig innkrevingskostnad.",
+      "location": "§1.1/2.1 s1",
+      "scope": "rental",
+      "source": "Vilkar_Utleie_valgbar.pdf"
+    },
+    {
+      "id": "FHU-44",
+      "subject": "Utleie",
+      "dimension": "eviction",
+      "value": "20000 nødvendige juridiske utkastelseskost ved opphørt/bruttavtale.",
+      "location": "§1.2 s1",
+      "scope": "rental",
+      "source": "Vilkar_Utleie_valgbar.pdf"
+    },
+    {
+      "id": "FHU-45",
+      "subject": "Utleie",
+      "dimension": "vandalism",
+      "value": "500000/skade, forsettlig leietaker/gjest, bolig/tilhørendeinnbo/uteareal; ikke slitasje/kosmetisk/vedlikehold/kjæledyr.",
+      "location": "§1.3 s1",
+      "scope": "rental",
+      "source": "Vilkar_Utleie_valgbar.pdf"
+    },
+    {
+      "id": "FHU-46",
+      "subject": "Utleie",
+      "dimension": "settlement",
+      "value": "Innbo min1/3verdifall før fradrag, bruktkjøp/arv/gave markedsverdi; bygg egne regler.",
+      "location": "§2.3–4 s1",
+      "scope": "rental",
+      "source": "Vilkar_Utleie_valgbar.pdf"
+    },
+    {
+      "id": "FHU-47",
+      "subject": "Utleie",
+      "dimension": "deductible",
+      "value": "3mnd leie (min depositum/garanti) trekkes først; korttidsutleie under1mnd egenandel30000.",
+      "location": "§3 s1",
+      "scope": "rental",
+      "source": "Vilkar_Utleie_valgbar.pdf"
+    },
+    {
+      "id": "FHU-48",
+      "subject": "Egenandel",
+      "dimension": "choice",
+      "value": "SpareBank1 og DNB fra6000til25000; kundens faktiskvalg ikke antatt.",
+      "location": "Egenandeler/FAQ",
+      "scope": "all",
+      "source": "SpareBank1-husforsikring.html"
+    },
+    {
+      "id": "FHU-49",
+      "subject": "Medlemsfordel",
+      "dimension": "scope",
+      "value": "LOfavør Topp til standardpris og1000lavere egenandel; skal ikke inn i ordinary.",
+      "location": "LOfavør-boks",
+      "scope": "all",
+      "source": "SpareBank1-husforsikring.html"
+    },
+    {
+      "id": "FHU-50",
+      "subject": "Kanaloversikt",
+      "dimension": "transition",
+      "value": "Eika nytegning fra13.10.2025; eksisterende vilkår individuelt i nettbank.",
+      "location": "Vilkår ingress",
+      "scope": "all",
+      "source": "Eika-vilkarsoversikt.html"
+    },
+    {
+      "id": "FHU-51",
+      "subject": "Glass",
+      "dimension": "thermal",
+      "value": "Begge nivå dekker termisk brudd; punktert vindu er ikke brudddekning.",
+      "location": "FAQ termisk/punktert vindu",
+      "scope": "all",
+      "source": "SpareBank1-husforsikring.html"
+    },
+    {
+      "id": "FHU-52",
+      "subject": "Sikkerhet",
+      "dimension": "conditions",
+      "value": "Steng hovedkran/tøm ved ubebodd>7d, varme/frost/snomåking, godkjent elektroVVS og vedlikehold; ikke generisk inkludert uten plikter.",
+      "location": "Sikkerhetsforskrift FAQ",
+      "scope": "all",
+      "source": "SpareBank1-husforsikring.html"
+    }
+  ],
+  "review": "13p full terms, 2p IPID, both1paddons, SB1/DNB complete material website contents and Eika archive. LOfavør kept outside ordinary."
+}

@@ -1,0 +1,91 @@
+(node:66878) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-product-comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Båt/Hund/Katt gir tolv dynamiske produktfamilier (69.133292ms)
+✔ Tryg Båt har source-backed produktpakke (0.584125ms)
+✔ Tryg Hund har source-backed produktpakke (0.13725ms)
+✔ Tryg Katt har source-backed produktpakke (0.116875ms)
+✔ If Båt har source-backed produktpakke (0.324ms)
+✔ If Hund har source-backed produktpakke (0.218167ms)
+✔ If Katt har source-backed produktpakke (0.495834ms)
+✔ Gjensidige Båt har source-backed produktpakke (0.468833ms)
+✔ Gjensidige Hund har source-backed produktpakke (0.559583ms)
+✔ Gjensidige Katt har source-backed produktpakke (0.359416ms)
+✔ Storebrand Båt har source-backed produktpakke (0.538333ms)
+✔ Storebrand Hund har source-backed produktpakke (0.248209ms)
+✔ Storebrand Katt har source-backed produktpakke (0.202083ms)
+✔ Fremtind Båt har source-backed produktpakke (0.307458ms)
+✔ Fremtind Hund har source-backed produktpakke (0.081333ms)
+✔ Fremtind Katt har source-backed produktpakke (0.073875ms)
+✔ Frende Båt har source-backed produktpakke (0.273875ms)
+✔ Frende Hund har source-backed produktpakke (0.080667ms)
+✔ Frende Katt har source-backed produktpakke (0.080167ms)
+✔ 65 offentlige originaler har verifiserbare SHA-256 hashes (22.262083ms)
+✔ Båtproduktstruktur er provider-tro (0.142334ms)
+✔ valgfrie Båt-komponenter forblir valgfrie i produktmodus (24.077667ms)
+✔ Storebrand dyr kan velges som Veterinær, Dødsfall eller kombinasjon (22.656792ms)
+✔ Hund-spesifikk bruksverdi lekker ikke til Katt (0.624333ms)
+✔ årlig, hendelsesbasert og valgbar veterinærsum er separate identiteter (11.512125ms)
+✔ fast egenandel og prosentandel beholder separate canonical facts (11.070292ms)
+✔ nytegningsalder, reduksjonsalder og opphørsalder er separate identiteter (0.094417ms)
+✔ Båt aliases normaliseres eksakt uten å bli Bil (0.061209ms)
+✔ 54 representative source-to-catalog checks preserve numeric and conditional semantics (0.610625ms)
+✔ manual product selection is exact for every provider and new family (7.240375ms)
+✔ extraction schema accepts exact new-family facts and rejects arbitrary keys (0.451542ms)
+✔ new-family product comparisons are symmetric and same-product safe (72.373125ms)
+✔ canonical fact families stay isolated across species and vehicle types (0.473875ms)
+✔ kundedokument vinner over katalog og katalogvalg velger ikke valgfritt liv (5.58ms)
+✔ eksplisitt valgt tillegg kan aktiveres uten å endre dokumentverdi (6.977209ms)
+✔ produktpresentasjon bruker kuratert Båt- og dyrehierarki (53.553417ms)
+✔ Båt bruker sikker serienummerstrategi, mens dyr uten sikker ID behandles konservativt (6.521542ms)
+(node:66879) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (1.534125ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (9.1625ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (2.73775ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (1.77125ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (7.176709ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (1.083458ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.261083ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (1.716209ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.235959ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.213ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.210375ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (0.963ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (1.142083ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (1.017917ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (0.991042ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (1.19975ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (1.222334ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (4.326667ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (0.959417ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (1.642834ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.061167ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (10.466959ms)
+✔ normalisering er forsikringstypeavgrenset (0.946666ms)
+(node:66880) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (3.178625ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (8.52825ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.116917ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.871ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (12.982083ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (1.113917ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (29.489ms)
+✔ B-002: explicit customer artwork information retains document authority (1.065ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.460917ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.860291ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (24.255333ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 71
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 618.420958

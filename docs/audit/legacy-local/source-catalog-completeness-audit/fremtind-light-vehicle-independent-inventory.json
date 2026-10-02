@@ -1,0 +1,402 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FLV-01",
+      "subject": "Personkrets",
+      "dimension": "scope",
+      "value": "Eier/rettmessigfører/panthaveravtalt;14d eierskifte inntilnyavtale.",
+      "location": "PMO357§1s1",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-02",
+      "subject": "Geografi",
+      "dimension": "scope",
+      "value": "SnøscooterNorden,ansvarEØS;MC EuropaTyrkiaIsrael;rettshjelpNorden.",
+      "location": "PMO357§2s1;IPID",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-03",
+      "subject": "Avregistrering",
+      "dimension": "transition",
+      "value": "Minikasko/Kasko blirlagring;bareansvar avsluttes.",
+      "location": "PMO357§5s1",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-04",
+      "subject": "Sesongpris",
+      "dimension": "table",
+      "value": "Snø Jan–Des14/14/23/23/10/1/1/1/1/1/4/7%;MC2/2/4/8/12/14/14/14/14/9/5/2%;ikkeproporsjonalårsrefusjon,ikkebilbytte.",
+      "location": "PMO004.411s1snø/s2MC",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-05",
+      "subject": "Ansvar",
+      "dimension": "limits",
+      "value": "Ubegrensetperson/100millting/hendelse,norskregelgunstigEØS,kontraktsansvarunntatt;traktor10mill gjelderikkeMCsnø.",
+      "location": "FMO001§1–2s1–2snø/s2–3MC",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-06",
+      "subject": "Ulykke",
+      "dimension": "sums",
+      "value": "Førerpassasjer i/på/utenforkjøretøy, måkjøretøyutløst;død100kvedpartner/barnunder20ellers50k;invaliditetvoksen200kbarnunder20 1mill.",
+      "location": "FMO002§1–2s2snø/s3MC",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-07",
+      "subject": "Ulykke",
+      "dimension": "limits",
+      "value": "Ikke sykdom/besvimelse/forgiftning/rus(siste2ikkeunder16);dødinnen1år,invalid1årvurderingendelig3år,proposjonal.",
+      "location": "FMO002§1/5s2–3snø/s3–4MC",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-08",
+      "subject": "Rettshjelp",
+      "dimension": "limits",
+      "value": "Norden,eier/bruker,ogsolgtobjekt;100k/tvistinteressetak,250kmin3parter,FinKN15kforlik25ksakkyndig20%;egenandelbevis+20%.",
+      "location": "FF003s8–10snø/s9–11MC",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-09",
+      "subject": "Rettshjelp",
+      "dimension": "exclusions",
+      "value": "Ikkegrunnlagføravtale/yrke/familie/straff/annetobjekt/salærtvist;ingen vilkårligfast egenandel.",
+      "location": "FF003s8–10snø/s9–11MC",
+      "scope": "all",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-10",
+      "subject": "Minikasko",
+      "dimension": "object",
+      "value": "Serieutførelse og ekstradekk;fasttillegg10000,brannsluk/førstehjelp,kjøreutstyr;ingenoppgittegenkjøreutstyrsum i PDF.",
+      "location": "PMO357.110§1s3–4snø/s4–5MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-11",
+      "subject": "Brann",
+      "dimension": "scope",
+      "value": "Brann/lyn/eksplosjon.",
+      "location": "Mini§2.1s4snø/s5MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-12",
+      "subject": "Tyveri",
+      "dimension": "scope",
+      "value": "Tyveri/brukstyveri/forsøk/hærverk;ikkehusstand/ansattsjåfør;dekk/felguskaddunntatt;stjålen nøkkelprogrammering/omkodingnårforebyggende.",
+      "location": "Mini§2.2/3.5s4/6snø/s5/7MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-13",
+      "subject": "Glass",
+      "dimension": "applicability",
+      "value": "Bareveteran/mopedbil/traktor;ikkegenereltMC/snøscooter.",
+      "location": "Mini§2.3s4snø/s5MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-14",
+      "subject": "Redning kjøretøy",
+      "dimension": "scope",
+      "value": "Transportetterdekketskade,tilligger inkl,nærmesteverksted;driftsstoppSNØekskl,terrengstoppikke,MCdriftsstopp/hjem/tomdrivstoff;egenandel500.",
+      "location": "Mini§2.4.2s5/4.3s7snø/s6/8MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-15",
+      "subject": "Feilfylling",
+      "dimension": "limits",
+      "value": "Tøm/rens10000,nystartmotorfeildrivstoffikke;IPIDviserfeilfyllingunderKasko menrenseytelseiMini.",
+      "location": "Mini§2.4.2s5snø/s6MC;IPID",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-16",
+      "subject": "Totalskade",
+      "dimension": "market",
+      "value": "Markedsverdi,selskapgjenoppbygge/restbeholdfradrag;stjåletvent21d.",
+      "location": "Mini§3.3/3.5s5–6snø/s6–7MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-17",
+      "subject": "Oppgjør",
+      "dimension": "repair",
+      "value": "Selskapverkstedvalg,slitasjefradrag,50%arbeidkontanteksMVA;ikkegaranti/verditap/foreløpig/overtid/flyfrakt.",
+      "location": "Mini§3.4s6snø/s7MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-18",
+      "subject": "Alarm",
+      "dimension": "deductible",
+      "value": "4000reduksjontyveri aktivFG/fabrikkalarmellerFGgjenfinning.",
+      "location": "Mini§4.1s7snø/s8MC",
+      "scope": "mini",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-19",
+      "subject": "Kasko",
+      "dimension": "scope",
+      "value": "Kollisjon/utforkjøring/velt/annenytre;maskinskade/leiebilunntattmedMCegenrentalpositiv.",
+      "location": "Kasko§1s7snø/s8MC",
+      "scope": "kasko",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-20",
+      "subject": "Kasko",
+      "dimension": "excluded_use",
+      "value": "Forsett/rus/ulovligterreng/bane(unntaktrafikkskole/godkjentkurs)/utleie/erverv.",
+      "location": "Kasko§1s7snø/s8MC",
+      "scope": "kasko",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-21",
+      "subject": "Kasko",
+      "dimension": "deductible",
+      "value": "Bevisvalg;under23ikkeopplyst+12000;dyre2000reduksjonkunveteranikkeMC/snø.",
+      "location": "Kasko§3s7–8snø/s8–9MC",
+      "scope": "kasko",
+      "type": "motor"
+    },
+    {
+      "id": "FLV-22",
+      "subject": "Løsøre",
+      "dimension": "limits",
+      "value": "MC husstandstinglåstpåmontertboks5000,ikkepenger/smykker/klokker;verdifallmin1/3førfradrag.",
+      "location": "Mini§1.3/3.8s5/7MC",
+      "scope": "mini",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-23",
+      "subject": "Personreise",
+      "dimension": "limits",
+      "value": "MC hjemreiseførerpassasjersyk/død/drift/dekketskade/tyveri;fortsattreisehvisrimeligere;utekaskoNordenrental350/dag30dveddekketskadeikkealenedrift;forhåndgodkjent. SNØikke.",
+      "location": "Mini§2.4.1s5–6MC",
+      "scope": "mini",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-24",
+      "subject": "Nyverdi",
+      "dimension": "conditions",
+      "value": "MCogmoped≤3mnd≤2000km,kost>80%nypris,ingenførskade>10%,registrertfabrikkny påeier. SNØikke.",
+      "location": "Mini§3.3.1s6MC",
+      "scope": "mini",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-25",
+      "subject": "Leiebil",
+      "dimension": "limits",
+      "value": "MCKasko350/dag15dnormalreparasjon,godkjentleverandør. SNØikke.",
+      "location": "Kasko§1.2s8MC",
+      "scope": "kasko",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-26",
+      "subject": "Bonus",
+      "dimension": "rules",
+      "value": "MCstart60web;bonus ingenforulykke/legal/branntyv/glassredning/natur/dyr;75%4årførsteskade0;80førsteskade70%;bevisvalg;3årubruktbortfaller.",
+      "location": "PMO004.412s2MC",
+      "scope": "all",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-27",
+      "subject": "Egenandel",
+      "dimension": "choice",
+      "value": "MCKasko4000/7000/10000/15000;kundespesifiktvalg.",
+      "location": "SB1webEgenandeler",
+      "scope": "kasko",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-28",
+      "subject": "Kjøreutstyr",
+      "dimension": "source_boundary",
+      "value": "SB1websamlerkjøreutstyrunder10000tillegg;fullPDFfører egenbulletkjøreutstyrutenfastsum. Ikkeantaekstraubegresetsum.",
+      "location": "SB1webTilleggsutstyr;Mini§1.2s5MC",
+      "scope": "mini",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-29",
+      "subject": "Sikkerhet",
+      "dimension": "requirements",
+      "value": "MCkjøreutstyrlåsttilsykkel/veske,nøkkelseparat/service/hjelm/førerrett;tilhengersikringmedMC;LOfavør1000lavereegenandelikkeordinary.",
+      "location": "SB1webSikkerhetsforskrifter",
+      "scope": "all",
+      "type": "mc"
+    },
+    {
+      "id": "FLV-30",
+      "subject": "Typer/nivå",
+      "dimension": "scope",
+      "value": "CampingMini/Kasko;TilhengerkunKaskomedMini,EuropaTyrkiaIsrael;14deierskifte/bevisegenandel høyesteperhendelse.",
+      "location": "PMO354§1–4s1;IPID",
+      "scope": "all",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-31",
+      "subject": "Forsikringsobjekt",
+      "dimension": "scope",
+      "value": "Tilhengerbevis;campingfasteutstyr/fortelt/tilbygg/campingbyggibevis;løsøresamlebevis,10000perting,ikkecashpapir/smykker/yrkesløsøre.",
+      "location": "Mini§1s1",
+      "scope": "all",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-32",
+      "subject": "Brann/tyveri",
+      "dimension": "scope",
+      "value": "Brannlyn/eksplosjon,tyv/forsøk/hærverk;ikkehusstand/ansattsjåfør,tyverifraførtelt,lås/omkodingelleruskaddhjul.",
+      "location": "Mini§2.1–2s1–2",
+      "scope": "all",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-33",
+      "subject": "Glass",
+      "dimension": "limits",
+      "value": "Campingglassinkl takluke,600reparasjonsgrense0egenandel,2500skifte ogmax50%markedsverdi;ikkeTilhenger.",
+      "location": "Mini§2.3/3.5.1/4.2s2–4",
+      "scope": "all",
+      "type": "camp"
+    },
+    {
+      "id": "FLV-34",
+      "subject": "Redning",
+      "dimension": "scope",
+      "value": "Transportnærmesteverkstedetterdekketskade/driftpåtilgjengeligvei;billigerereparerpåsted;ikkeservice;500egenandel.",
+      "location": "Mini§2.4/4.3s2/4",
+      "scope": "all",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-35",
+      "subject": "Sum/oppgjør",
+      "dimension": "limits",
+      "value": "Avtaltmarkedsverditak,fortelt/tilbyggmåinkludert;totalrestfradrag.",
+      "location": "Mini§3.1–2s2",
+      "scope": "all",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-36",
+      "subject": "Nyverdi",
+      "dimension": "conditions",
+      "value": "Camping/Tilhenger≤1årfabrikknyregistrertpåeier,rep>80%nypris,ikkeførskade>10%.",
+      "location": "Mini§3.2s2",
+      "scope": "all",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-37",
+      "subject": "Oppgjør",
+      "dimension": "repair",
+      "value": "Selskapvalg,slitasjefradrag,50%arbeid kontant/MVAdokumentert;stjålet21d;ingenverdifall/garanti/overtid/flyfrakt.",
+      "location": "Mini§3.3–4s2–3",
+      "scope": "all",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-38",
+      "subject": "Aldersfradrag",
+      "dimension": "objects",
+      "value": "Campinghvit/brun5år10%,elektronikk1år20%,fortelt2år10%,påbegyntårmax80%;genereltverdifallmin1/3førfradrag.",
+      "location": "Mini§3.5.3–4s3",
+      "scope": "all",
+      "type": "camp"
+    },
+    {
+      "id": "FLV-39",
+      "subject": "Tilbygg",
+      "dimension": "rigging",
+      "value": "Campingtilbyggned/opprigg20000nårannen dekket skade.",
+      "location": "Mini§3.5.4s3",
+      "scope": "all",
+      "type": "camp"
+    },
+    {
+      "id": "FLV-40",
+      "subject": "Alarm",
+      "dimension": "deductible",
+      "value": "CampingtyveriaktivFG/fabrikkalarm ellerFGsikring4000reduksjon.",
+      "location": "Mini§4.1s4",
+      "scope": "all",
+      "type": "camp"
+    },
+    {
+      "id": "FLV-41",
+      "subject": "Kasko",
+      "dimension": "scope",
+      "value": "Plutseligytrekollisjon/velt;ikkeforsett/rus/erverv/tilhengergodsutenannenhendelse/campingråte/forteltløsørevann/monteringsskadeutenannenhendelse.",
+      "location": "Kasko§1.1s4",
+      "scope": "kasko",
+      "type": "tow"
+    },
+    {
+      "id": "FLV-42",
+      "subject": "Ferieavbrudd",
+      "dimension": "limits",
+      "value": "KunCampingKasko,planlagtferie>3d,hindretavdekketskade;1500/dagmax15normalrep;godkjent,dokumentert.",
+      "location": "Kasko§1.2s4–5",
+      "scope": "kasko",
+      "type": "camp"
+    },
+    {
+      "id": "FLV-43",
+      "subject": "Fukt",
+      "dimension": "conditions",
+      "value": "KunCampingKasko,til15år;godkjentbeståttautorisertkontrollførskade,gyldig1år;innenforsikringsperioden;ikkeTilhenger.",
+      "location": "Kasko§1.3s5",
+      "scope": "kasko",
+      "type": "camp"
+    },
+    {
+      "id": "FLV-44",
+      "subject": "Ansvar/ulykke/rettshjelp",
+      "dimension": "conflict",
+      "value": "IPIDCamping/TilhengerharAnsvar-liste,5sfullpakkeharikkedissetre;ikkeimportbilforsikringautomatisk.",
+      "location": "IPIDV103s1;fullpakke",
+      "scope": "all",
+      "type": "tow"
+    }
+  ],
+  "review": "Snow10p, MC11p token-diffsharedfullterms plusbonusread, twoIPIDs, SB1completeMCweb; tow5p/IPID2p. Exacttype-specific rules preserved. Generelle sharedPDF already reviewed earlier."
+}

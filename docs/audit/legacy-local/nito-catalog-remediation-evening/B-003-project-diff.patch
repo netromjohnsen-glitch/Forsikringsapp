@@ -1,0 +1,55 @@
+diff --git a/lib/boat-pet-catalog.ts b/lib/boat-pet-catalog.ts
+index fa9669b..5f5f0d7 100644
+--- a/lib/boat-pet-catalog.ts
++++ b/lib/boat-pet-catalog.ts
+@@ -105,7 +105,7 @@ const boatProducts: BoatPetProductDefinition[] = [
+ const boatAddOns: BoatPetAddOnDefinition[] = [
+   { providerId: "tryg", company: "Tryg", type: "båt", agreementScope: "ordinary", id: "tryg-bat-maskinskade", name: "Maskinskade", sourceId: sourceId("tryg", "båt"), requiresLevel: ["Kasko/Ansvar", "Båt Ekstra"], rows: [row("bat.maskinskade.dekning", "Valgfritt tillegg", "tryg", "båt", 1, "Maskinskade", undefined, "boat-pet:tryg:båt:machinery"), row("bat.maskinskade.alder", "Innenbordsmotor under 15 år; utenbordsmotor/seilbåt under 12 år", "tryg", "båt", 1, "Maskinskade", undefined, "boat-pet:tryg:båt:machinery")] },
+   { providerId: "tryg", company: "Tryg", type: "båt", agreementScope: "ordinary", id: "tryg-bat-ulykke", name: "Fører- og passasjerulykke", sourceId: sourceId("tryg", "båt"), requiresLevel: ["Ansvar", "Brann/Ansvar", "Brann/Tyveri/Ansvar", "Kasko/Ansvar", "Båt Ekstra"], rows: [row("bat.ulykke.dekning", "Valgfritt tillegg", "tryg", "båt", 1, "Fører- og passasjerulykke", undefined, "boat-pet:tryg:båt:accident")] },
+-  { providerId: "if", company: "If", type: "båt", agreementScope: "ordinary", id: "if-bat-motor-gir", name: "Motor- og girskade", sourceId: sourceId("if", "båt"), requiresLevel: ["Kasko", "Super"], rows: [row("bat.maskinskade.dekning", "Valgfritt tillegg til Kasko", "if", "båt", 5, "4.9"), row("bat.maskinskade.alder", "Dekningen opphører når motor, gir eller drivverk er eldre enn 15 år", "if", "båt", 5, "4.9.2"), row("bat.maskinskade.egenandel", "Aldersgradert prosentandel, minst 8 000 kr", "if", "båt", 6, "4.9.5", "coverage") ] },
++  { providerId: "if", company: "If", type: "båt", agreementScope: "ordinary", id: "if-bat-motor-gir", name: "Motor- og girskade", sourceId: sourceId("if", "båt"), requiresLevel: ["Kasko", "Super"], rows: [row("bat.maskinskade.dekning", "Valgfritt tillegg til Kasko", "if", "båt", 5, "4.9"), row("bat.maskinskade.alder", "Dekningen opphører når motor, gir eller drivverk er eldre enn 15 år", "if", "båt", 5, "4.9.2"), row("bat.maskinskade.egenandel", "Alder på motor, gir og drivverk: til og med 5 år 4 000 kr; over 5 til og med 10 år 8 000 kr; til og med 11 år 10 %, 12 år 20 %, 13 år 30 %, 14 år 40 % og 15 år 50 % av reparasjonskostnaden. Minst 8 000 kr gjelder prosentgrenene. Over 15 år opphører dekningen. Alder regnes fra 1. januar året etter kjøp som ny.", "if", "båt", 6, "4.9.5", "coverage") ] },
+   { providerId: "frende", company: "Frende", type: "båt", agreementScope: "ordinary", id: "frende-bat-maskinskade", name: "Maskinskade", sourceId: sourceId("frende", "båt"), requiresLevel: ["Kasko", "Utvidet"], rows: [row("bat.maskinskade.dekning", "Valgfritt når oppført i forsikringsbeviset", "frende", "båt", 1, "Valgfrie dekninger")] },
+   { providerId: "frende", company: "Frende", type: "båt", agreementScope: "ordinary", id: "frende-bat-ulykke", name: "Fører- og passasjerulykke", sourceId: sourceId("frende", "båt"), requiresLevel: ["Brann og tyveri", "Kasko", "Utvidet"], rows: [row("bat.ulykke.dekning", "Valgfritt når oppført i forsikringsbeviset", "frende", "båt", 1, "Valgfrie dekninger")] },
+ ];
+diff --git a/lib/fremtind-hus-catalog.ts b/lib/fremtind-hus-catalog.ts
+index 78455b8..fe2d97a 100644
+--- a/lib/fremtind-hus-catalog.ts
++++ b/lib/fremtind-hus-catalog.ts
+@@ -31,7 +31,7 @@ const standard = facts("fremtindHusStandard", [
+   ["bygninger.dekning", "Forsikrede bygninger", "Bygningen i forsikringsbeviset med fastmontert utstyr. Tilleggsbygg må avtales; bygg inntil 10 m² BTA har bare brann- og naturskadedekning uten særskilt avtale.", "3.1 Bygning", 2],
+   ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr som er vanlig for bygningens formål, herunder bygningsrør, oppvarmingsutstyr og integrerte installasjoner.", "3.1 Bygning", 2],
+   ["andrebygninger.endring", "Bygningsendringer", "Tilbygg og andre verdiøkende forandringer må meldes for å unngå underforsikring. Topp omfatter bygningsmessige forandringer i avtaleperioden frem til periodens utløp.", "3.1 / 5.2.2", 2],
+-  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning av bygningen omfattes.", "3.1 Bygning", 2],
++  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning er unntatt på Standard.", "3.1 Bygning – Omfattes ikke", 3],
+   ["ror.utvendig", "Utvendige rør og ledninger", "Utvendige rør og ledninger med tilknyttet utstyr frem til offentlig ledning eller brønn. Overvanns-/infiltrasjonsledning, spredegrøft, brønn og borehull er unntatt.", "3.2", 2],
+   ["hage.objekter", "Hage og tomt", "Hageanlegg og tomt inntil fem mål rundt boligen.", "3.3", 2],
+   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 200 000 kroner.", "3.3", 2],
+@@ -72,6 +72,7 @@ const standard = facts("fremtindHusStandard", [
+   ["rettshjelp.egenandel", "Rettshjelp – egenandel", "4 000 kroner pluss 20 % av overskytende utgifter.", "6.6 / FFE-003.001-003 punkt 5.2", 7, "override"],
+ ]);
+ const form = standard.find((fact) => fact.key === "hus.forsikringsform")!;
++standard.find((fact) => fact.key === "hus.bygninger.utsmykning")!.coverageAvailability = "unavailable";
+ form.structuredValue = { kind: "insurance_form", forms: ["full_value", "first_loss"], defaultForm: "full_value", authority: "policy" };
+ standard.push(
+   age("utvendige_ledninger", "utvendige og bunnledninger, sjø-/jordvarmeledning", 20, 5),
+@@ -87,6 +88,7 @@ standard.push(
+ );
+ 
+ const topp = facts("fremtindHusTopp", [
++  ["bygninger.utsmykning", "Kunstnerisk utsmykning", "Kunstnerisk utsmykning av bygningen omfattes.", "1.1 Bygning", 1, undefined, true],
+   ["hage.basseng", "Basseng og boblebad", "Utvendig basseng og boblebad med ledninger inntil 500 000 kroner.", "1.1", 1, undefined, true],
+   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Følgeskade fra utett tak når taket er inntil 50 år, og vann over terreng som trenger inn gjennom utett bygning. Selve taket/veggen og feilen er unntatt.", "2.1", 1, undefined, true],
+   ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "Bekjempelse etter påvist aktivitet på fullverdiforsikret bolig; Fremtind velger metode og skadedyrsfirma. Insekter er unntatt.", "2.2", 1, undefined, true],
+diff --git a/lib/mc-bobil-gjensidige-storebrand-catalog.ts b/lib/mc-bobil-gjensidige-storebrand-catalog.ts
+index 63a1636..2459d4f 100644
+--- a/lib/mc-bobil-gjensidige-storebrand-catalog.ts
++++ b/lib/mc-bobil-gjensidige-storebrand-catalog.ts
+@@ -342,6 +342,8 @@ for (const type of ["mc", "bobil"] as const) {
+     );
+     if (type === "mc" && tier !== "ansvar") rows.push(
+       ...at(`mc-bobil:gjensidige-mc-produkt.html:mc`, 1, "Personlige ting", [["mc.bagasje.begrensning", "Ting i låst oppbevaringsrom på motorsykkelen; skaden må være av en type valgt forsikring dekker"]]),
++    );
++    if (type === "mc" && tier === "kasko") rows.push(
+       ...at(sourceId, 4, "Veihjelp ved feriereiser utenfor Norden", [["mc.leiekjoretoy.dekning", "Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden"], ["mc.leiekjoretoy.dager", "Inntil 15 dager"], ["mc.leiekjoretoy.begrensning", "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie"]]),
+     );
+     if (type === "bobil" && tier !== "ansvar") rows.push(...at(sourceId, 3, "Hva er forsikret – fortelt", [["utstyr.begrensning", "Fortelt omfattes ikke av fastmontert ekstrautstyr; krever egen utvidelse"]]));

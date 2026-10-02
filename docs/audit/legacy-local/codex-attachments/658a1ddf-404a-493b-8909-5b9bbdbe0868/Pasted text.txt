@@ -1,0 +1,1143 @@
+INSURANCE_CATALOG_REMEDIATION — COMPLETE REMAINING WAVE 2
+
+MODE:
+CONTROLLED IMPLEMENTATION + REGRESSION + TARGETED RE-AUDIT
+
+MODEL:
+GPT-6 Astra
+REASONING:
+Extra High
+
+==================================================
+1 – OBJECTIVE
+==================================================
+
+Complete the remaining Wave 2 remediation for Forsikringsassistentens
+insurance catalog.
+
+Wave 1 is complete and PASS.
+
+The previously authorized implementation-ready subset of Wave 2 is complete
+and PASS.
+
+The remaining semantic/canonical review has now been completed separately.
+
+This run MAY modify project files.
+
+Implement the remaining Wave 2 sequence exactly as resolved:
+
+B-019
+→ B-017
+→ B-021
+→ B-015
+→ B-020
+→ B-022
+→ B-018
+
+with an independent gate after every batch.
+
+After all seven batches:
+
+run the COMPLETE WAVE 2 GATE.
+
+ABSOLUTE STOP after Wave 2.
+
+DO NOT START WAVE 3.
+
+==================================================
+2 – AUTHORITATIVE INPUTS
+==================================================
+
+Use the completed artifacts from:
+
+/tmp/source-catalog-completeness-audit/
+
+/tmp/source-catalog-remediation-triage/
+
+/tmp/nito-catalog-remediation-evening/
+
+/tmp/nito-wave2-semantic-resolution/
+
+The latest semantic resolution is authoritative for:
+
+B-015
+B-017
+B-018
+B-019
+B-020
+B-021
+B-022.
+
+Read especially:
+
+/tmp/nito-wave2-semantic-resolution/wave2-resolution-summary.md
+
+/tmp/nito-wave2-semantic-resolution/wave2-resolution.json
+
+/tmp/nito-wave2-semantic-resolution/batch-resolutions.csv
+
+/tmp/nito-wave2-semantic-resolution/canonical-decisions.csv
+
+/tmp/nito-wave2-semantic-resolution/mapping-decisions.csv
+
+/tmp/nito-wave2-semantic-resolution/implementation-ready-batches.md
+
+/tmp/nito-wave2-semantic-resolution/unresolved-dependencies.csv
+
+/tmp/nito-wave2-semantic-resolution/regression-plan.csv
+
+/tmp/nito-wave2-semantic-resolution/quality-check.json
+
+Do not reconstruct these decisions from scratch.
+
+==================================================
+3 – CURRENT VERIFIED STATE
+==================================================
+
+Preserve all successful remediation already present locally.
+
+Completed and PASS:
+
+Wave 1:
+B-001 through B-007
+
+Previously authorized Wave 2:
+B-008 through B-014
+B-016
+
+Total P1 signatures already resolved:
+21
+
+Latest full validation:
+
+2038/2038 tests PASS
+
+TypeScript:
+PASS
+
+ESLint:
+PASS
+
+Webpack production build:
+PASS
+
+Synthetic HTTP/PDF runtime:
+PASS
+
+git diff --check:
+PASS
+
+Targeted source→catalog re-audit:
+PASS
+
+22 products intentionally changed.
+
+182 products unchanged in controlled catalog resolution.
+
+==================================================
+4 – CURRENT REPO STATE
+==================================================
+
+Branch:
+
+main
+
+Expected HEAD:
+
+d3a37985fce4ada65fa2f7a88462d8834e4677af
+
+Expected:
+
+successful local remediation changes are present
+
+0 staged files
+
+no commit
+no push
+no deploy.
+
+Do NOT require a clean working tree.
+
+==================================================
+5 – BASELINE FINGERPRINT
+==================================================
+
+Before making any new changes:
+
+record:
+
+HEAD
+branch
+staged files
+working-tree fingerprint
+changed file list
+git diff --check
+
+and preserve the existing successful remediation state.
+
+If state differs unexpectedly from the documented post-remediation state:
+
+STOP.
+
+Do not reset/revert/stash/clean.
+
+==================================================
+6 – PRESERVE PRIOR WORK
+==================================================
+
+Do not undo or rewrite successful B-001–B-014/B-016 changes except where an
+explicit dependency in the semantic-resolution artifacts requires a
+controlled extension.
+
+No broad refactoring.
+
+==================================================
+7 – IMPLEMENTATION ORDER
+==================================================
+
+Implement EXACTLY in this order:
+
+1. B-019
+2. B-017
+3. B-021
+4. B-015
+5. B-020
+6. B-022
+7. B-018
+
+Do not reorder unless an authoritative dependency artifact proves the saved
+order is invalid.
+
+If that happens:
+
+STOP and report the contradiction.
+
+==================================================
+8 – WHY THIS ORDER MATTERS
+==================================================
+
+The order preserves documented dependencies.
+
+In particular:
+
+B-021 follows B-017's mapping/document-priority validation.
+
+B-018 depends on B-022 because Bruksverdi cannot safely be moved/represented
+before add-on selection evidence is constrained.
+
+Do not bypass these dependencies.
+
+==================================================
+9 – BATCH EXECUTION LOOP
+==================================================
+
+For EACH batch:
+
+STEP 1
+Read exact semantic-resolution decision.
+
+STEP 2
+Read exact original remediation batch definition.
+
+STEP 3
+Verify dependencies.
+
+STEP 4
+Verify applicable local source evidence.
+
+STEP 5
+Identify smallest safe implementation.
+
+STEP 6
+Capture relevant pre-change behavior.
+
+STEP 7
+Add regression tests where specified.
+
+STEP 8
+Implement only the approved batch scope.
+
+STEP 9
+Run focused deterministic tests.
+
+STEP 10
+Run comparison regressions.
+
+STEP 11
+Run targeted source→catalog re-audit.
+
+STEP 12
+Verify nearby positive controls.
+
+STEP 13
+Verify customer/document priority where relevant.
+
+STEP 14
+Run git diff --check.
+
+STEP 15
+Classify batch:
+
+PASS
+FAIL
+BLOCKED
+REVIEW_REQUIRED.
+
+STEP 16
+Persist checkpoint.
+
+Only then proceed.
+
+==================================================
+10 – TEST FAILURE DIAGNOSIS
+==================================================
+
+Use the improved test-failure rule established by the previous run.
+
+If a NEW test fails:
+
+diagnose before stopping.
+
+If conclusively:
+
+TEST_FIXTURE_ERROR
+TEST_HARNESS_ERROR
+INVALID_TEST_EXPECTATION
+TEST_DATA_SHAPE_ERROR
+
+and production behavior is independently proven correct:
+
+the test MAY be corrected and rerun.
+
+==================================================
+11 – PRODUCTION FAILURE
+==================================================
+
+If failure may represent:
+
+production regression
+source mismatch
+scope mismatch
+wrong inheritance
+wrong canonical behavior
+wrong mapping
+customer-priority regression
+unexpected add-on selection
+or uncertain cause:
+
+STOP.
+
+Do not rewrite tests to make production pass.
+
+==================================================
+12 – TEST CORRECTION LOG
+==================================================
+
+Any corrected new test must record:
+
+batch
+test
+original failure
+why test was wrong
+evidence
+correction
+rerun result.
+
+==================================================
+13 – RETRY LIMIT
+==================================================
+
+Maximum two clearly justified test-harness corrections per batch.
+
+After that:
+
+STOP with:
+
+TEST_HARNESS_REVIEW_REQUIRED.
+
+==================================================
+14 – B-019
+==================================================
+
+Implement the approved Storebrand Reise day-trip / overnight mapping.
+
+Semantic resolution:
+
+existing `reise.overnatting` structure is sufficient.
+
+Do NOT create a new canonical key for this problem.
+
+Storebrand's documented day-trip rule must map to the existing overnight
+semantic concept so the explicit comparison row no longer becomes a false
+unknown.
+
+==================================================
+15 – B-019 SAFETY
+==================================================
+
+Preserve separately:
+
+general trip eligibility
+
+and
+
+subcoverage-specific overnight requirements.
+
+Do not let:
+
+"Dagstur er omfattet"
+
+erase an overnight requirement for a specific subcoverage.
+
+==================================================
+16 – B-019 REGRESSION
+==================================================
+
+At minimum verify:
+
+Storebrand Standard day trip represented correctly
+
+Tryg Reise Ekstra/Premium comparison aligned correctly
+
+false "Ikke dokumentert" removed for the general overnight concept
+
+subcoverage overnight requirements preserved
+
+side swap stable
+
+same-product stable
+
+source provenance retained
+
+no arbitrary free-text UI inference.
+
+==================================================
+17 – B-017
+==================================================
+
+Implement the approved separation/reuse of existing keys for:
+
+forsinket avgang
+
+and
+
+fremmøte / missed departure as defined by the resolved evidence.
+
+Do not collapse them into generic delay.
+
+==================================================
+18 – B-017 REGRESSION
+==================================================
+
+Verify:
+
+correct trigger
+correct amount
+correct condition
+correct product level
+correct source
+separate semantic identities
+side swap
+same product.
+
+==================================================
+19 – B-021
+==================================================
+
+Implement the approved Storebrand departure vs arrival/fremmøte amount
+separation.
+
+Preserve the source-backed conditions when Super extends the product.
+
+Do not use one amount as a fallback for another delay concept.
+
+==================================================
+20 – B-021 DEPENDENCY
+==================================================
+
+Before B-021:
+
+verify B-017 PASS.
+
+If B-017 does not pass:
+
+do not implement B-021.
+
+==================================================
+21 – B-015
+==================================================
+
+Implement the approved canonical extension for:
+
+tyveri/skadeverk under flytting
+
+as a precise semantic concept.
+
+Do NOT continue representing this as generic:
+
+transportskade.
+
+==================================================
+22 – B-015 CANONICAL RULE
+==================================================
+
+Use the exact semantic definition from:
+
+canonical-decisions.csv
+
+and the resolution report.
+
+Do not broaden the key beyond the documented meaning.
+
+==================================================
+23 – B-015 MIGRATION
+==================================================
+
+Only migrate facts proven to represent:
+
+the exact new canonical concept.
+
+Do not mechanically remap every existing transport-related fact.
+
+==================================================
+24 – B-015 REGRESSION
+==================================================
+
+Verify:
+
+moving theft/vandalism
+transport damage
+ordinary theft
+moving scope
+
+remain semantically distinct where source requires it.
+
+==================================================
+25 – B-020
+==================================================
+
+Implement the approved canonical extension separating:
+
+animal/rodent-related damage
+
+from
+
+insect-related damage
+
+according to the semantic resolution.
+
+==================================================
+26 – B-020 INHERITANCE
+==================================================
+
+Preserve the finding that higher product level must not replace a legitimate
+base animal/rodent coverage merely because insect coverage is added.
+
+Test:
+
+base
+higher level
+inheritance
+override.
+
+==================================================
+27 – B-020 NO GENERIC COLLAPSE
+==================================================
+
+Do not collapse everything into generic:
+
+"skadedyr"
+
+if doing so loses material product differences.
+
+==================================================
+28 – B-022
+==================================================
+
+Implement the approved canonical/selection extension for:
+
+Bruk → Liv dependency
+
+and constrained add-on selection evidence.
+
+This is a higher-risk batch.
+
+Read the full semantic-resolution decision before editing anything.
+
+==================================================
+29 – B-022 CORE SAFETY
+==================================================
+
+A child/subcoverage fact must NOT automatically prove that the entire add-on
+was selected by the customer.
+
+Preserve:
+
+product availability
+
+vs
+
+customer selection.
+
+==================================================
+30 – B-022 SPECIES SAFETY
+==================================================
+
+Preserve correct species semantics.
+
+Do not transfer Hund Bruk rules to Katt without source support.
+
+Implement the documented artsriktig Bruk treatment for Katt exactly as
+resolved.
+
+==================================================
+31 – B-022 CUSTOMER MODE
+==================================================
+
+This batch can affect PDF/customer comparison.
+
+Explicit customer document evidence remains authoritative.
+
+Catalog presence or a child fact must not fabricate customer-selected add-on
+status.
+
+==================================================
+32 – B-022 REGRESSION
+==================================================
+
+At minimum test:
+
+add-on available but not selected
+
+add-on explicitly selected
+
+child fact present without selection proof
+
+Liv selected
+
+Bruk dependency
+
+Hund
+
+Katt
+
+same-product
+
+side-swap
+
+customer document priority
+
+catalog enrichment
+
+species isolation.
+
+==================================================
+33 – B-018
+==================================================
+
+Implement B-018 ONLY after:
+
+B-022 PASS.
+
+Move/represent Frende Bruksverdi according to the approved semantic
+resolution.
+
+Do not use Bruksverdi child facts as independent proof that the full
+component/add-on is selected.
+
+==================================================
+34 – B-018 REGRESSION
+==================================================
+
+Verify:
+
+correct component placement
+
+correct availability
+
+correct customer selection behavior
+
+Liv relationship
+
+Bruk relationship
+
+Hund/Katt isolation where applicable
+
+source provenance.
+
+==================================================
+35 – EXISTING KEYS FIRST
+==================================================
+
+For B-019/B-017/B-021:
+
+use existing canonical structures exactly as resolved.
+
+Do not create unnecessary keys.
+
+==================================================
+36 – CANONICAL EXTENSIONS
+==================================================
+
+For B-015/B-020/B-022:
+
+implement ONLY the explicitly approved minimal extensions.
+
+No adjacent canonical redesign.
+
+==================================================
+37 – CANONICAL REGISTRY
+==================================================
+
+If the architecture has:
+
+canonical registry
+label registry
+ordering
+section mapping
+presentation mapping
+normalization map
+
+update only the required pieces.
+
+Do not leave new keys partially registered.
+
+==================================================
+38 – CANONICAL COMPLETENESS
+==================================================
+
+For every new canonical concept verify:
+
+identity
+label
+section
+ordering if required
+normalization behavior
+comparison behavior
+source provenance
+customer-mode behavior
+side swap
+same product.
+
+==================================================
+39 – NO INTERNAL LABEL LEAKAGE
+==================================================
+
+New internal canonical names must not leak into advisor-facing UI.
+
+==================================================
+40 – NO DUPLICATE CONCEPTS
+==================================================
+
+Verify canonical extensions do not create duplicate visible rows for the same
+semantic fact.
+
+==================================================
+41 – DOCUMENT PRIORITY
+==================================================
+
+ABSOLUTE INVARIANT:
+
+explicit customer document fact
+>
+catalog enrichment.
+
+Run regression where B-022/B-018 or other changed mapping can affect
+customer mode.
+
+==================================================
+42 – OPTIONALITY
+==================================================
+
+ABSOLUTE INVARIANT:
+
+available ≠ selected
+
+optional ≠ included.
+
+==================================================
+43 – SOURCE PROVENANCE
+==================================================
+
+Every newly added/moved/corrected material fact must retain correct applicable
+source provenance.
+
+==================================================
+44 – NO SOURCE GUESSING
+==================================================
+
+If implementation exposes an ambiguity not resolved in the semantic-review
+artifacts:
+
+STOP that batch.
+
+Do not infer.
+
+==================================================
+45 – NO NEW WEB RESEARCH
+==================================================
+
+Do not browse.
+
+Do not download new insurer terms.
+
+==================================================
+46 – FROZEN CORPUS
+==================================================
+
+All factual implementation is against the frozen audited local corpus.
+
+Do not claim public-source freshness.
+
+==================================================
+47 – POSITIVE CONTROLS
+==================================================
+
+Use the documented positive controls from:
+
+completed audit
+triage
+semantic resolution.
+
+Correct nearby facts must remain correct.
+
+==================================================
+48 – USER-OBSERVED REISE CONTROL
+==================================================
+
+The manually observed:
+
+Tryg Reise Ekstra/Premium
+vs
+Storebrand Standard
+
+overnight/day-trip case
+
+is a mandatory regression control for B-019 and final Wave 2 gate.
+
+==================================================
+49 – EXISTING REMEDIATION CONTROLS
+==================================================
+
+Preserve all successful controls from B-001–B-014/B-016.
+
+No regression of earlier fixes.
+
+==================================================
+50 – NO DRIVE-BY FIXES
+==================================================
+
+If you notice another unrelated P1 while editing:
+
+record it.
+
+Do not fix it unless it belongs to the current approved batch.
+
+==================================================
+51 – NO REFACTORING
+==================================================
+
+No unrelated refactoring.
+
+==================================================
+52 – NO UI REDESIGN
+==================================================
+
+Do not redesign product comparison UI.
+
+==================================================
+53 – NO PDF TOP SECTION
+==================================================
+
+Do not implement:
+
+bonus
+annual mileage
+construction year
+area
+full value/first-loss
+person insurance sums.
+
+==================================================
+54 – NO PERSON INSURANCE
+==================================================
+
+Person insurance remains out of scope.
+
+==================================================
+55 – NO SECURITY/GDPR
+==================================================
+
+Security/GDPR work remains separate.
+
+==================================================
+56 – NO LANDING PAGE
+==================================================
+
+No website/marketing work.
+
+==================================================
+57 – NO DEPLOY
+==================================================
+
+Do not deploy.
+
+==================================================
+58 – NO COMMIT
+==================================================
+
+Do not commit.
+
+==================================================
+59 – NO PUSH
+==================================================
+
+Do not push.
+
+==================================================
+60 – NO STAGE
+==================================================
+
+Keep staged files = 0.
+
+==================================================
+61 – NO RAILWAY / ENV
+==================================================
+
+Do not touch:
+
+Railway
+.env.local
+secrets.
+
+==================================================
+62 – NO PRIVATE CUSTOMER DATA
+==================================================
+
+Use only synthetic customer-mode tests.
+
+==================================================
+63 – OUTPUT DIRECTORY
+==================================================
+
+Create:
+
+/tmp/insurance-catalog-wave2-completion/
+
+Use this directory for new run artifacts.
+
+Do not mutate completed audit/triage/review directories.
+
+==================================================
+64 – BATCH LEDGER
+==================================================
+
+Create:
+
+batch-ledger.csv
+
+Columns:
+
+batch_id
+status
+files_changed
+canonical_changes
+catalog_changes
+tests_added
+tests_corrected
+tests_run
+targeted_audit
+P1_signatures_resolved
+customer_mode_checked
+regressions
+notes.
+
+==================================================
+65 – TEST DIAGNOSTICS
+==================================================
+
+Create:
+
+test-diagnostics.csv
+
+recording all non-immediate-PASS test behavior.
+
+==================================================
+66 – RESUME
+==================================================
+
+Create/update:
+
+resume.json
+
+after every PASS.
+
+Include:
+
+baseline
+completed_batches
+current_batch
+next_batch
+files_changed
+tests_added
+canonical_changes
+P1_resolved
+gate_status.
+
+==================================================
+67 – BATCH GATE
+==================================================
+
+Every batch must independently PASS before the next begins.
+
+No deferred batch-level testing.
+
+==================================================
+68 – TARGETED SOURCE AUDIT
+==================================================
+
+Every batch requires targeted source→catalog recheck.
+
+Tests alone are insufficient.
+
+==================================================
+69 – COMPARISON TESTING
+==================================================
+
+Use relevant:
+
+same-product
+side-swap
+cross-product
+product-level
+scope
+add-on
+species
+type
+
+regression.
+
+==================================================
+70 – FULL WAVE 2 GATE
+==================================================
+
+After all seven batches PASS:
+
+run a COMPLETE Wave 2 gate covering:
+
+B-008 through B-022
+
+including previously completed:
+
+B-008–B-014
+B-016
+
+and newly completed:
+
+B-015
+B-017
+B-018
+B-019
+B-020
+B-021
+B-022.
+
+==================================================
+71 – WAVE 2 GATE REQUIREMENTS
+==================================================
+
+Verify:
+
+all approved Wave 2 P1 signatures resolved
+
+all semantic-resolution decisions implemented correctly
+
+all canonical extensions complete
+
+no false cross-product inheritance
+
+no optional/selected regression
+
+no document-priority regression
+
+no type/species leakage
+
+source provenance correct
+
+named positive controls PASS
+
+Storebrand Reise day-trip control PASS
+
+same-product PASS where relevant
+
+side-swap PASS where relevant
+
+targeted source→catalog audit PASS
+
+broad product-comparison regression PASS
+
+synthetic customer-mode regression PASS where affected
+
+full relevant tests PASS
+
+TypeScript PASS
+
+ESLint PASS
+
+webpack production build PASS
+
+synthetic HTTP/PDF runtime PASS
+
+git diff --check PASS.
+
+==================================================
+72 – FULL TEST SUITE
+==================================================
+
+At final Wave 2 gate:
+
+run full test suite.
+
+Do not rely only on targeted tests.
+
+==================================================
+73 – FLAKY TEST HANDLING
+==================================================
+
+If an existing test fails once in a way that appears timing/concurrency
+sensitive:
+
+preserve failure evidence
+
+rerun isolated test
+
+rerun full suite without code/test modification.
+
+Only classify as flaky if behavior is reproducibly consistent with prior
+known semantics and no production output differs.
+
+If uncertain:
+
+STOP.
+
+==================================================
+74 – WAVE 2 FAILURE
+==================================================
+
+If any final Wave 2 gate fails:
+
+do NOT start Wave 3.
+
+Preserve successful atomic batches.
+
+Return exact failure.
+
+==================================================
+75 – ABSOLUTE WAVE 3 STOP
+==================================================
+
+EVEN IF EVERYTHING PASSES:
+
+DO NOT START WAVE 3.
+
+Do not inspect Wave 3 for

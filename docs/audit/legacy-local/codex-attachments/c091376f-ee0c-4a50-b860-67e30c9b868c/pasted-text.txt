@@ -1,0 +1,723 @@
+==================================================
+789 – PILOT GATE REPORT
+==================================================
+
+State one exact:
+
+CATALOG_PILOT_GATE.
+
+Explain whether source/catalog correctness currently permits NITO pilot from
+a catalog perspective.
+
+Do NOT combine this with the separate security/GDPR gate.
+
+==================================================
+790 – FAMILY RESULTS REPORT
+==================================================
+
+Include all in-scope families.
+
+For each report:
+
+- products audited
+- add-ons audited
+- advisor-relevant source facts
+- verified missing facts
+- too-coarse facts
+- unsupported catalog claims
+- semantic mismatches
+- P0
+- P1
+- P2/P3
+- source insufficiency
+- family status.
+
+==================================================
+791 – P0 FINDINGS REPORT
+==================================================
+
+List every P0 individually.
+
+For each include:
+
+finding ID
+exact product identity
+concept/dimension
+source evidence
+catalog state
+advisor impact
+root-cause ID
+remediation batch
+confidence
+manual verification result.
+
+If none:
+
+state:
+
+P0 = 0
+
+explicitly.
+
+==================================================
+792 – P1 FINDINGS REPORT
+==================================================
+
+List every deduplicated P1 finding/root-cause group sufficiently to support
+human review.
+
+Do not hide P1 findings behind aggregate counts.
+
+Full occurrence-level detail remains in structured output.
+
+==================================================
+793 – P2 / P3 REPORT
+==================================================
+
+Summarize:
+
+counts
+main patterns
+families affected
+whether deferable.
+
+Do not dump every low-value row into terminal.
+
+==================================================
+794 – FALSE UNKNOWN REPORT
+==================================================
+
+For:
+
+VERIFIED_CATALOG_FALSE_UNKNOWNS
+
+report representative cases showing:
+
+source fact
+catalog absence
+visible consequence
+why source safely supports stronger representation.
+
+These are especially important because they validate the blindspot.
+
+==================================================
+795 – TOO-COARSE REPORT
+==================================================
+
+For material too-coarse cases show examples where catalog has:
+
+parent/included
+
+but source contains material child dimensions.
+
+==================================================
+796 – UNSUPPORTED CLAIM REPORT
+==================================================
+
+List every material unsupported catalog claim individually.
+
+These may be more serious than omissions.
+
+==================================================
+797 – SEMANTIC MISMATCH REPORT
+==================================================
+
+List every material mismatch involving:
+
+status
+period
+unit
+age
+km
+sum
+deductible
+applicability
+scope/version
+
+or other meaning.
+
+==================================================
+798 – POSITIVE CONTROLS REPORT
+==================================================
+
+Use subsections:
+
+HUND
+BOBIL
+BÅT
+MC
+
+For each report:
+
+- source packages inspected
+- products deep-reviewed
+- manually suspicious concepts investigated
+- confirmed gaps
+- disproved suspicions
+- structural-only findings
+- legitimate unknowns
+- methodology conclusion.
+
+==================================================
+799 – SOURCE PACKAGE GAPS REPORT
+==================================================
+
+List exact packages/products requiring additional official source research.
+
+Include:
+
+what source is currently available
+what material question remains unanswered
+why current source cannot resolve it
+priority.
+
+==================================================
+800 – SOURCE CONFLICT REPORT
+==================================================
+
+List exact unresolved source conflicts.
+
+No forced resolution.
+
+==================================================
+801 – CANONICAL MODEL GAP REPORT
+==================================================
+
+List exact semantic concepts requiring:
+
+NEW_CANONICAL_CANDIDATE
+
+or:
+
+CANONICAL_STRUCTURE_INSUFFICIENT.
+
+For each explain why current structure is unsafe/inadequate.
+
+==================================================
+802 – PRESENTATION GAP REPORT
+==================================================
+
+List facts that are already correctly catalogued but not presented
+appropriately.
+
+Keep separate from knowledge gaps.
+
+==================================================
+803 – ROOT CAUSE REPORT
+==================================================
+
+For every P0/P1 root cause include:
+
+root-cause ID
+confidence
+affected families
+affected products
+finding count
+layer
+evidence
+remediation complexity
+pilot priority
+GPT6 remediation recommendation.
+
+==================================================
+804 – PDF / CUSTOMER IMPACT REPORT
+==================================================
+
+Report material findings grouped:
+
+PRODUCT_MODE_ONLY
+LIKELY_SHARED_WITH_CUSTOMER_MODE
+CATALOG_ENRICHMENT_ONLY
+UNKNOWN.
+
+Highlight any correction requiring PDF extraction/schema work.
+
+==================================================
+805 – REMEDIATION BATCH REPORT
+==================================================
+
+For every batch:
+
+batch ID
+priority
+finding/root-cause IDs
+families/products
+layer
+complexity
+source readiness
+expected leverage
+tests required
+customer-mode impact
+GPT-6 recommendation
+pilot requirement.
+
+==================================================
+806 – SOURCE RESEARCH QUEUE REPORT
+==================================================
+
+List exact future web-research tasks.
+
+Do not research now.
+
+==================================================
+807 – DEEP REVIEW REPORT
+==================================================
+
+Report:
+
+total deep-reviewed products
+count by family
+count by provider
+non-ordinary scopes
+rich/top products
+lower/basic controls
+high-unknown controls
+low-fact controls.
+
+==================================================
+808 – MANUAL VALIDATION REPORT
+==================================================
+
+Report:
+
+P0 total / manually validated
+P1 total / manually validated
+represented facts sampled
+P2 sampled
+non-relevant facts sampled
+customer-specific sampled
+provider-specific sampled.
+
+==================================================
+809 – AUDIT METHOD QUALITY
+==================================================
+
+Return:
+
+AUDIT_METHOD =
+REASONABLE
+OVER_SENSITIVE
+UNDER_SENSITIVE
+MIXED
+UNRELIABLE.
+
+Explain actual observed false-positive/false-negative behavior.
+
+==================================================
+810 – AUDIT QUALITY CHECK REPORT
+==================================================
+
+Print:
+
+A. Source content inspected beyond mapped facts: YES/NO
+B. Full terms inspected where available: YES/NO
+C. Tables/footnotes inspected: YES/NO
+D. Every active product ledgered: YES/NO
+E. Every active add-on ledgered: YES/NO
+F. Blindspot candidates independently detected: YES/NO
+G. False positives manually reviewed: YES/NO
+H. Customer-specific values separated: YES/NO
+I. Provider symmetry not forced: YES/NO
+J. Repo unchanged: YES/NO
+
+If any critical item is NO:
+
+explain impact on audit completeness.
+
+==================================================
+811 – REPO INTEGRITY REPORT
+==================================================
+
+Report:
+
+baseline HEAD
+final HEAD
+baseline status fingerprint
+final status fingerprint
+baseline tracked diff fingerprint
+final tracked diff fingerprint
+baseline untracked fingerprint
+final untracked fingerprint
+staged before/after
+repo mutation YES/NO.
+
+==================================================
+812 – OUTPUT FILE REPORT
+==================================================
+
+Report exact verified paths.
+
+At minimum:
+
+/tmp/source-catalog-completeness-audit/audit-summary.md
+/tmp/source-catalog-completeness-audit/audit.json
+/tmp/source-catalog-completeness-audit/product-ledger.csv
+/tmp/source-catalog-completeness-audit/addon-ledger.csv
+/tmp/source-catalog-completeness-audit/gap-findings.csv
+/tmp/source-catalog-completeness-audit/source-fact-inventory.csv
+/tmp/source-catalog-completeness-audit/family-summary.csv
+/tmp/source-catalog-completeness-audit/root-cause-candidates.csv
+/tmp/source-catalog-completeness-audit/manual-review.md
+
+plus any optional outputs actually created.
+
+==================================================
+813 – LIMITATIONS REPORT
+==================================================
+
+State clearly:
+
+- no new web research performed
+- completeness is relative to local official source corpus
+- semantic model reasoning is not mathematical proof
+- no customer documents used
+- no production changes
+- no legal claim-outcome interpretation
+- historical products may have lower deep-review priority
+- public-source freshness is not independently proven by this audit.
+
+==================================================
+814 – RECOMMENDATION REPORT
+==================================================
+
+Give exact recommended next action.
+
+Examples depending on actual evidence:
+
+- approve RB-A/RB-B remediation before pilot
+- perform source research for specific packages first
+- architecture review specific canonical questions
+- defer P2/P3
+- no material remediation required.
+
+Do not automatically recommend fixing everything.
+
+==================================================
+815 – NEXT STEP REPORT
+==================================================
+
+The next task after this audit should be ONE of:
+
+A.
+Human review of P0/P1 then remediation prompt.
+
+B.
+Source research for unresolved material packages.
+
+C.
+Architecture review for specific semantic model gaps.
+
+D.
+If catalog is ready, return to pending NITO security/GDPR actions.
+
+Choose based on evidence.
+
+==================================================
+816 – DO NOT START NEXT STEP
+==================================================
+
+Do not automatically:
+
+research
+fix
+refactor
+add tests
+commit
+push
+deploy.
+
+STOP after report.
+
+==================================================
+817 – SUCCESS CRITERIA FOR COMPLETE AUDIT
+==================================================
+
+Return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_COMPLETE
+
+only if:
+
+1. all active products are accounted for
+2. all active add-ons/components are accounted for
+3. all in-scope families are reported
+4. applicable source corpus is accounted for
+5. source content was inspected beyond existing mappings
+6. deep-review target was met
+7. positive controls were investigated independently
+8. all P0/P1 were manually validated
+9. source vs catalog gaps are separated from presentation gaps
+10. customer-specific values are separated from product facts
+11. provider symmetry was not forced
+12. unsupported catalog claims were checked
+13. source integrity was checked
+14. counts reconcile
+15. outputs parse
+16. repo is unchanged.
+
+==================================================
+818 – PARTIAL CRITERIA
+==================================================
+
+Return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_PARTIAL
+
+if:
+
+useful systematic work was completed
+
+but one or more major scope areas remain unaudited or insufficiently
+validated.
+
+Report exact remaining work.
+
+==================================================
+819 – BLOCKED CRITERIA
+==================================================
+
+Return:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_BLOCKED
+
+only when audit cannot meaningfully proceed due to:
+
+source accessibility
+catalog enumeration
+tooling
+integrity
+or another fundamental blocker.
+
+==================================================
+820 – INTEGRITY FAILURE TOKEN
+==================================================
+
+If repo changes unexpectedly:
+
+SOURCE_CATALOG_AUDIT_INTEGRITY_FAILURE
+
+takes precedence.
+
+==================================================
+821 – CATALOG PILOT TARGET
+==================================================
+
+For eventual NITO pilot, recommend catalog gate READY only when:
+
+P0 unresolved = 0
+
+P1 unresolved = 0
+
+and no material active product remains:
+
+SOURCE_INSUFFICIENT
+or
+REVIEW_REQUIRED
+
+for a core advisor comparison concept.
+
+P2/P3 can remain documented where safe.
+
+==================================================
+822 – PILOT GATE IS NOT PERFECTION
+==================================================
+
+Do not require every clause in every insurance condition to be modeled.
+
+The pilot target is:
+
+material advisor-relevant completeness and correctness.
+
+==================================================
+823 – PILOT GATE IS NOT JUST NO WRONG FACTS
+==================================================
+
+Material missing source-backed information also matters.
+
+An app can be technically truthful but still materially incomplete.
+
+==================================================
+824 – ADVISOR TRUST STANDARD
+==================================================
+
+Ask:
+
+Would a competent advisor reasonably expect the tool to surface this
+difference when comparing these products?
+
+If yes and source clearly supports it:
+
+the knowledge layer should normally represent it.
+
+==================================================
+825 – UNKNOWN TRUST STANDARD
+==================================================
+
+When an advisor sees:
+
+"Ikke dokumentert i kataloggrunnlaget"
+
+after remediation, that statement should primarily mean:
+
+the applicable evidence does not safely support a stronger product-level
+fact
+
+rather than:
+
+we never modeled information that was already in our source package.
+
+==================================================
+826 – FINAL QA PHILOSOPHY
+==================================================
+
+Maintain these separate truths:
+
+SOURCE TRUTH:
+What do official applicable documents actually say?
+
+CATALOG TRUTH:
+What has our knowledge layer represented?
+
+COMPARISON TRUTH:
+How does the engine align represented facts?
+
+CUSTOMER TRUTH:
+What does the customer's actual document say?
+
+PRESENTATION:
+What should the advisor see by default?
+
+Do not collapse these layers.
+
+==================================================
+827 – CUSTOMER TRUTH PRIORITY
+==================================================
+
+Nothing in future completeness remediation changes:
+
+explicit customer document fact
+>
+catalog enrichment.
+
+==================================================
+828 – SOURCE TRUTH PRIORITY
+==================================================
+
+Catalog may not claim more than applicable source safely supports.
+
+==================================================
+829 – COMPARISON CONSERVATISM
+==================================================
+
+When semantic equivalence is uncertain:
+
+preserve separate structures.
+
+Do not create false comparison merely to reduce unknowns.
+
+==================================================
+830 – PRESENTATION CURATION
+==================================================
+
+A richer knowledge layer does not require displaying every fact at once.
+
+The product UI can continue to prioritize:
+
+major coverage
+major limits
+major conditions
+
+with nested detail and provenance.
+
+==================================================
+831 – FUTURE CONSUMER VERSION
+==================================================
+
+Do not optimize this audit for a future consumer UI.
+
+The immediate target is trustworthy advisor-grade product knowledge.
+
+==================================================
+832 – FUTURE PERSON INSURANCE
+==================================================
+
+Do not generalize skadeforsikring completeness model blindly into future
+person insurance.
+
+That domain requires separate architecture/privacy review.
+
+==================================================
+833 – BUDGET STOP
+==================================================
+
+Once all required audit evidence and outputs exist:
+
+STOP.
+
+Do not spend remaining reasoning budget polishing P3 classifications.
+
+==================================================
+834 – FINAL HUMAN QUESTION
+==================================================
+
+End the report by answering plainly:
+
+"Er katalogen vår nå god nok til at en NITO-rådgiver kan stole på
+produktsammenligningen som beslutningsstøtte, gitt de lokale offisielle
+kildene vi har?"
+
+Answer:
+
+JA
+JA, MED MINDRE KJENTE BEGRENSNINGER
+NEI – REMEDIERING KREVES
+KAN IKKE AVGJØRES UTEN MER KILDEGRUNNLAG
+
+and explain briefly.
+
+This is a catalog/data-quality judgment, not a recommendation about any
+insurance product.
+
+==================================================
+835 – FINAL TOKENS
+==================================================
+
+Return exactly one audit completion token:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_COMPLETE
+
+or
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_PARTIAL
+
+or
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT_BLOCKED
+
+or
+
+SOURCE_CATALOG_AUDIT_INTEGRITY_FAILURE
+
+Then STOP.
+
+==================================================
+836 – ABSOLUTE FINAL RULE
+==================================================
+
+DO NOT FIX ANYTHING.
+
+This audit exists because earlier QA could correctly verify the behavior of
+an incomplete knowledge layer.
+
+We now need to know:
+
+what the official sources contain,
+what our catalog contains,
+what is missing,
+what is unsupported,
+what is ambiguous,
+and what actually matters to an insurance advisor.
+
+Only after that map is complete will remediation begin.
+
+STOP.

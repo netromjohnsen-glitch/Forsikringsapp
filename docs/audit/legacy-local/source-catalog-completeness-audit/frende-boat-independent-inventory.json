@@ -1,0 +1,567 @@
+{
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "source": "catalog/sources/boat-pet/frende-boat-terms.pdf",
+  "pages_read": 13,
+  "other_read": [
+    "IPID2",
+    "HTMLfull"
+  ],
+  "rules": [
+    {
+      "inventory_id": "FR-BA-001",
+      "subject": "Sikrede",
+      "dimension": "personkrets",
+      "value": "Forsikringstaker/medeier,rettmessigfører foransvar,ulykke/passasjer ettervalgtdekning.",
+      "pages": [
+        2
+      ],
+      "section": "1",
+      "levels": "all",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "FR-BA-002",
+      "subject": "Fartsområde",
+      "dimension": "grunn/utvidelse",
+      "value": "Norge/Sverige/Danmark/Finland12nm,KattegatSkagerrakØstersjø;mai1–sept30Europa200nm/overfartIslandUKSvalbardMadeiraAzoreneKanari;helårutvidelsebevis.",
+      "pages": [
+        2
+      ],
+      "section": "2",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-003",
+      "subject": "Forsikretobjekt",
+      "dimension": "sum",
+      "value": "Førsterisikobåt+fastutstyrinntilbevisetsum;motoraleneegengrenikkehelebåt.",
+      "pages": [
+        2,
+        6
+      ],
+      "section": "3/10.3",
+      "levels": "all",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "FR-BA-004",
+      "subject": "Jolle",
+      "dimension": "sum/dimensjon",
+      "value": "Egenjolle10fot/motor10hkbruktmedbåt20000totalt.",
+      "pages": [
+        2
+      ],
+      "section": "3.2",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-005",
+      "subject": "Løsøre",
+      "dimension": "sum/applicability",
+      "value": "Grunnvilkår10000medbevisvalg,Utvidet50000;HTMLbranntyveriikkemedmensgrunn3inkl;IPIDtyveripersonligunntatt.",
+      "pages": [
+        2,
+        5
+      ],
+      "section": "3.3/7.3",
+      "levels": "all",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "FR-BA-006",
+      "subject": "Utstyrsavgrensning",
+      "dimension": "unntak",
+      "value": "Ikkekontant/verdipapir/opplagsmateriellutenUtvidet;fastmontert måikkeenkeltfjernes.",
+      "pages": [
+        2
+      ],
+      "section": "3",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-007",
+      "subject": "Brann",
+      "dimension": "omfang",
+      "value": "Brann/lyn/eksplosjon;ikkevarmgangmotor/drivverkellerstartkomponentbrannkortslutning,menfølgeskadedekkes.",
+      "pages": [
+        3
+      ],
+      "section": "4.1–2",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-008",
+      "subject": "Tyveri",
+      "dimension": "omfang/unntak",
+      "value": "Tyveriforsøkbåt/fra/landutstyrlåstkunegentilgang;ikkehusstand/ansatt/utlånikkereturnert.",
+      "pages": [
+        3
+      ],
+      "section": "4",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-009",
+      "subject": "Bergelønn",
+      "dimension": "branntyveri",
+      "value": "Sjølov16ansvarbergelønninkl4.1;ikkenødvendigvishele5.3redning.",
+      "pages": [
+        3
+      ],
+      "section": "4.1.4",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-010",
+      "subject": "Kasko",
+      "dimension": "omfang",
+      "value": "Ytreskadehærverk/kollisjon/grunnstrandingkantringsynkingmastbom,transport,betaltopplagboblehavnsfeil.",
+      "pages": [
+        3
+      ],
+      "section": "5.1",
+      "levels": "kasko",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-011",
+      "subject": "Kasko",
+      "dimension": "unntak",
+      "value": "Seilvindalene/isberøring/frostnedbør/snøtakunntattbetaltopplag/varmgang/feildrivstoff/gammeltufikset;motorspesifikkeårsaker;feilslitasjefølgedekketomsjødyktig.",
+      "pages": [
+        3
+      ],
+      "section": "5.2",
+      "levels": "kasko",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-012",
+      "subject": "Redning",
+      "dimension": "utløser",
+      "value": "Dekketskadeellerførerpassasjerakuttsykeulykkedød;ikkevannscooter/kano/kajakk.",
+      "pages": [
+        3,
+        4
+      ],
+      "section": "5.1/5.3",
+      "levels": "kasko",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-013",
+      "subject": "Redning",
+      "dimension": "tiltak",
+      "value": "Sleptrygghavn/verkstedforhåndsavtalt/bergelønn/lokallegehotell/hjemreiseperson/avtalthotell;vrak10%sumvedoffentligpålegg.",
+      "pages": [
+        4
+      ],
+      "section": "5.3",
+      "levels": "kasko",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-014",
+      "subject": "Hjemtransportbåt",
+      "dimension": "område/sum",
+      "value": "GrunnNorgeSverigeogtakbåtverdi;Utvidetøvrigfartsområde50000.",
+      "pages": [
+        2,
+        4,
+        5
+      ],
+      "section": "2/5.3/7.4",
+      "levels": "kasko",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-015",
+      "subject": "Redning",
+      "dimension": "egenandel",
+      "value": "750.",
+      "pages": [
+        4
+      ],
+      "section": "5.3",
+      "levels": "kasko",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-016",
+      "subject": "Maskin",
+      "dimension": "valg/omfang",
+      "value": "Valgfrittvedbevis;varmgangkjølesystemtilstoppet,dieseldyr,bruddmotor/gir/aksling/styring/ror/drivstoff;undersøkelse/demonteringinkl.",
+      "pages": [
+        4
+      ],
+      "section": "6.1",
+      "levels": "machine",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-017",
+      "subject": "Maskin",
+      "dimension": "unntak",
+      "value": "Garanti først menavslagkanoverta;vedlikehold/frost/korrosjon/feilbruk/slitasjeutmattelse/lettbåtsekstramotorunntatt.",
+      "pages": [
+        4
+      ],
+      "section": "6.2",
+      "levels": "machine",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-018",
+      "subject": "Maskin",
+      "dimension": "oppgjør",
+      "value": "Takmotor/drivverkmarkedsverdi,ukjenthendelsesdato=meldedato.",
+      "pages": [
+        7
+      ],
+      "section": "10.5",
+      "levels": "machine",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-019",
+      "subject": "Maskin",
+      "dimension": "egenandelalder",
+      "value": "Tom5år6000;6år10%min7000;7år20%min8000;8år30%min9000;9år40%min10000;10år50%min11000;11år60%min12000;12+70%min13000. Ingenmaksforsikringsalderoppgitt.",
+      "pages": [
+        7,
+        8
+      ],
+      "section": "10.7",
+      "levels": "machine",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-020",
+      "subject": "Opplagsutstyr",
+      "dimension": "sum/unntak",
+      "value": "Utvidet30000plutseligskade/tyveribukkerpresenningdokk;ikkehenger. HTMLsier10000,fullvilkår30000.",
+      "pages": [
+        4,
+        5
+      ],
+      "section": "7.1",
+      "levels": "utvidet",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "FR-BA-021",
+      "subject": "Ferieavbrudd",
+      "dimension": "sum/vilkår",
+      "value": "Utvidetmai1–aug31,dekketskadeplanlagtmin7dagersferie;leiebåt/bil/hotell1500døgn14d.",
+      "pages": [
+        5
+      ],
+      "section": "7.2",
+      "levels": "utvidet",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-022",
+      "subject": "Totalskade",
+      "dimension": "terskel/vilkår",
+      "value": "Utvidet80%nykjøpesum/3åretterfabrikknyforhandler,nybåtinklfastoriginaltaksum;ikkenæring/utleie/frostnedbør/snøunntattbetaltopplag. HTML60%.",
+      "pages": [
+        5
+      ],
+      "section": "7.5",
+      "levels": "utvidet",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "FR-BA-023",
+      "subject": "Branntyverimotor",
+      "dimension": "separatprodukt",
+      "value": "Egenmotorbevis,pkt8dekkerbrann/tyveriframontertellerlåstbygg. Ikkeautomatiskfullbåtprodukt.",
+      "pages": [
+        5
+      ],
+      "section": "8",
+      "levels": "all",
+      "kind": "REVIEW"
+    },
+    {
+      "inventory_id": "FR-BA-024",
+      "subject": "Panthaverleasing",
+      "dimension": "valg",
+      "value": "Tilleggsbevis/skriftligbekreftelse;kaskoutvidelseøkonomiskinteressemarkedsverdi,manglendekundesolvens/regressmotkunde;ikkemisligholdavdrag/renter.",
+      "pages": [
+        5,
+        6
+      ],
+      "section": "9",
+      "levels": "all",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "FR-BA-025",
+      "subject": "Oppgjør",
+      "dimension": "kontant",
+      "value": "Førsterisikotak,reparerlikestand,verdiøkningfradrag,ikkeetterverditap;kontantikkekrav,mvaetterfakturaog50%arbeidtakst.",
+      "pages": [
+        6
+      ],
+      "section": "10.3–4",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-026",
+      "subject": "Oppgjør",
+      "dimension": "totaltap",
+      "value": "Markedsverdiellersløsørenymedaldersfradrag,defektmarkedsverdi;tyveri30dørfortapt.",
+      "pages": [
+        7
+      ],
+      "section": "10.5",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-027",
+      "subject": "Aldersfradrag",
+      "dimension": "tabell",
+      "value": "HusholdTVradio3frie10%max80;data1fri20%80;kalesjeseil1fri10%80;rigg4frie10%60;hekkaggregat4frie10%60;øvrigfast1fri10%80.",
+      "pages": [
+        7
+      ],
+      "section": "10.6",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-028",
+      "subject": "Egenandel",
+      "dimension": "bevis",
+      "value": "Valgtperhendelsebevis.",
+      "pages": [
+        7
+      ],
+      "section": "10.7",
+      "levels": "all",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "FR-BA-029",
+      "subject": "Egenandel",
+      "dimension": "ung/vinter",
+      "value": "+8000omunder23førerstridmedbevis; +4000synkingfortøydnov1–mars15.",
+      "pages": [
+        7
+      ],
+      "section": "10.7",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-030",
+      "subject": "Egenandel",
+      "dimension": "tyverifritak",
+      "value": "0tyveriFGgjenfinningkombinertFGinnbruddsalarm.",
+      "pages": [
+        7
+      ],
+      "section": "10.7",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-031",
+      "subject": "Ulykke",
+      "dimension": "valg/omfang",
+      "value": "Valgfrittbevis,førerpassasjerrettmessigbåtbruk,ytreuventetfysiskhendelseikkesykdom.",
+      "pages": [
+        8
+      ],
+      "section": "11.1",
+      "levels": "accident",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-032",
+      "subject": "Ulykke",
+      "dimension": "død",
+      "value": "100000hvisetterlatterektefellesamboerbarnellerunder21;begunstigetregler.",
+      "pages": [
+        8
+      ],
+      "section": "11.2",
+      "levels": "accident",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-033",
+      "subject": "Ulykke",
+      "dimension": "invalid",
+      "value": "200000full/proposjonalt,oppgjør3år,tidligerefunksjon/sykdomfradrag,dødførfastsettelseerstatterinvalid.",
+      "pages": [
+        8
+      ],
+      "section": "11.3",
+      "levels": "accident",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-034",
+      "subject": "Ulykke",
+      "dimension": "unntak",
+      "value": "Ryggnakkeutenbrudd/selvmord/psykiskutenPTSDmedfysiskvarigskade/rus/motorsport.",
+      "pages": [
+        8,
+        9
+      ],
+      "section": "11.4",
+      "levels": "accident",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-035",
+      "subject": "Ansvar",
+      "dimension": "rolle/sum",
+      "value": "Eierfører,3.02mSDRperson/1.51mSDRting;0egenandel,allebåterikkeegemotor.",
+      "pages": [
+        9,
+        10
+      ],
+      "section": "12",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-036",
+      "subject": "Ansvar",
+      "dimension": "unntak",
+      "value": "Forsett/yrke/familie/egetselskap50%/egenandelavfelleseie/låntbrukt/kontrakt/gradvisforurensning;forlistforurensningalltidunntatt,vrakover10%.",
+      "pages": [
+        9
+      ],
+      "section": "12.2",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-037",
+      "subject": "Rettshjelp",
+      "dimension": "område/rolle",
+      "value": "Nordenpersonligeierrettmessigbrukerfører,tvistvedsalg/nykjøp,fellesgrunnlagén;voldgiftkanomfattes.",
+      "pages": [
+        2,
+        10
+      ],
+      "section": "13.1",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-038",
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "100000,3+parter250000,økonomiskinteressetak;4000+20%restenénpertvist.",
+      "pages": [
+        11
+      ],
+      "section": "13.4",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-039",
+      "subject": "Rettshjelp",
+      "dimension": "utgifter/unntak",
+      "value": "Egenadvokat/rett/vitne/sakkyndig,ikkeanke/idømtkost/gamlettvistgrunnlag/yrke/familie/arv/straff/sameier/ubestridtinkasso/egenavslag.",
+      "pages": [
+        10,
+        11
+      ],
+      "section": "13.2–3",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-040",
+      "subject": "Bruk",
+      "dimension": "utleiekonkurranse",
+      "value": "Ingenkonkurranse/fartsprøve,utleiebeviskanavtales;HTMLstandardikkeutleie.",
+      "pages": [
+        12
+      ],
+      "section": "15",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-041",
+      "subject": "Sikkerhet",
+      "dimension": "vinter/fortøyning",
+      "value": "Sjødyktig/lens/tilsyn,opplagsstøtteikkepersonligløsøreombord;sjøventilstengtikkeibruknov1–mars31.",
+      "pages": [
+        12
+      ],
+      "section": "16.1–4",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-042",
+      "subject": "Sikkerhet",
+      "dimension": "lås/vedlikehold",
+      "value": "10fot/jolle/vannscootersikres,hengertilfastpunkt+hjullås,låstlukketbåt,nøkkeladskilt,motorboltet,fastutstyrverktøy,fuel-filterårlig/råteårlig/bolterårlig.",
+      "pages": [
+        12,
+        13
+      ],
+      "section": "16.5–15",
+      "levels": "all",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "FR-BA-043",
+      "subject": "Sikkerhet",
+      "dimension": "fører",
+      "value": "Sertifikat15m+,under16ikkemotor10HK+eller8m+,lanterner/navigasjon.",
+      "pages": [
+        13
+      ],
+      "section": "16.16–20",
+      "levels": "all",
+      "kind": "P2"
+    },
+    {
+      "inventory_id": "FR-BA-044",
+      "subject": "Tegning",
+      "dimension": "HTML",
+      "value": "Fritidsbåtunder50fot/under50knop,ikkefastbolighusbåt.",
+      "pages": [
+        0
+      ],
+      "section": "FAQ",
+      "levels": "all",
+      "kind": "P1"
+    },
+    {
+      "inventory_id": "FR-BA-045",
+      "subject": "Administrasjon",
+      "dimension": "frister",
+      "value": "Meldkrav1år/politi,dokumentasjon,fornyelse/regressikkehveregencomparisonrad.",
+      "pages": [
+        6,
+        11,
+        13
+      ],
+      "section": "10/13/17",
+      "levels": "all",
+      "kind": "ADMINISTRATIVE"
+    }
+  ]
+}

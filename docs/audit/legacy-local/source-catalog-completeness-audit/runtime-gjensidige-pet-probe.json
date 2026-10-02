@@ -1,0 +1,338 @@
+[
+  {
+    "left": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+    "right": "[\"tryg\",\"hund\",\"ordinary\",\"tryg-hund-behandling\",\"2026-09-01\"]",
+    "forward": [
+      {
+        "key": "dyr.rehabilitering.dekning",
+        "label": "Rehabilitering",
+        "conceptId": "hund.rehabilitering",
+        "conceptLabel": "Rehabilitering",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "optional",
+          "text": "Tilgjengelig som tillegg (Ekstra) – Valgfritt tillegg",
+          "facts": [
+            {
+              "key": "dyr.rehabilitering.dekning",
+              "label": "Rehabilitering",
+              "value": "Valgfritt tillegg",
+              "state": "optional",
+              "addOnNames": [
+                "Ekstra"
+              ],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "boat-pet:tryg:hund:extra",
+                  "filename": "tryg-dog-extra-terms.pdf",
+                  "termsNumber": "PLB52003",
+                  "effectiveFrom": "2025-07-01",
+                  "version": "2025-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+                  "company": "Tryg",
+                  "page": 1,
+                  "section": "Hund Ekstra",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:tryg:hund:extra",
+              "filename": "tryg-dog-extra-terms.pdf",
+              "termsNumber": "PLB52003",
+              "effectiveFrom": "2025-07-01",
+              "version": "2025-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+              "company": "Tryg",
+              "page": 1,
+              "section": "Hund Ekstra",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      },
+      {
+        "key": "dyr.rehabilitering.grense",
+        "label": "Rehabilitering – grense",
+        "conceptId": "hund.rehabilitering",
+        "conceptLabel": "Rehabilitering",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Inntil 5 000 kr",
+          "facts": [
+            {
+              "key": "dyr.rehabilitering.grense",
+              "label": "Rehabilitering – grense",
+              "value": "Inntil 5 000 kr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:gjensidige:hund",
+                  "filename": "gjensidige-dog-ipid.pdf",
+                  "termsNumber": "EAP32",
+                  "effectiveFrom": "",
+                  "version": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+                  "company": "Gjensidige",
+                  "page": 1,
+                  "section": "Behandling",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "ipid"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:gjensidige:hund",
+              "filename": "gjensidige-dog-ipid.pdf",
+              "termsNumber": "EAP32",
+              "effectiveFrom": "",
+              "version": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+              "company": "Gjensidige",
+              "page": 1,
+              "section": "Behandling",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "ipid"
+            }
+          ]
+        },
+        "second": {
+          "state": "optional",
+          "text": "Tilgjengelig som tillegg (Ekstra) – 10 000 kr per sykdom eller ulykkesskade",
+          "facts": [
+            {
+              "key": "dyr.rehabilitering.grense",
+              "label": "Rehabilitering – grense",
+              "value": "10 000 kr per sykdom eller ulykkesskade",
+              "state": "optional",
+              "addOnNames": [
+                "Ekstra"
+              ],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:tryg:hund:extra",
+                  "filename": "tryg-dog-extra-terms.pdf",
+                  "termsNumber": "PLB52003",
+                  "effectiveFrom": "2025-07-01",
+                  "version": "2025-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+                  "company": "Tryg",
+                  "page": 1,
+                  "section": "Hund Ekstra",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:tryg:hund:extra",
+              "filename": "tryg-dog-extra-terms.pdf",
+              "termsNumber": "PLB52003",
+              "effectiveFrom": "2025-07-01",
+              "version": "2025-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+              "company": "Tryg",
+              "page": 1,
+              "section": "Hund Ekstra",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "dyr.rehabilitering.dekning",
+        "label": "Rehabilitering",
+        "conceptId": "hund.rehabilitering",
+        "conceptLabel": "Rehabilitering",
+        "conceptTier": "primary",
+        "first": {
+          "state": "optional",
+          "text": "Tilgjengelig som tillegg (Ekstra) – Valgfritt tillegg",
+          "facts": [
+            {
+              "key": "dyr.rehabilitering.dekning",
+              "label": "Rehabilitering",
+              "value": "Valgfritt tillegg",
+              "state": "optional",
+              "addOnNames": [
+                "Ekstra"
+              ],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "boat-pet:tryg:hund:extra",
+                  "filename": "tryg-dog-extra-terms.pdf",
+                  "termsNumber": "PLB52003",
+                  "effectiveFrom": "2025-07-01",
+                  "version": "2025-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+                  "company": "Tryg",
+                  "page": 1,
+                  "section": "Hund Ekstra",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:tryg:hund:extra",
+              "filename": "tryg-dog-extra-terms.pdf",
+              "termsNumber": "PLB52003",
+              "effectiveFrom": "2025-07-01",
+              "version": "2025-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+              "company": "Tryg",
+              "page": 1,
+              "section": "Hund Ekstra",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      },
+      {
+        "key": "dyr.rehabilitering.grense",
+        "label": "Rehabilitering – grense",
+        "conceptId": "hund.rehabilitering",
+        "conceptLabel": "Rehabilitering",
+        "conceptTier": "primary",
+        "first": {
+          "state": "optional",
+          "text": "Tilgjengelig som tillegg (Ekstra) – 10 000 kr per sykdom eller ulykkesskade",
+          "facts": [
+            {
+              "key": "dyr.rehabilitering.grense",
+              "label": "Rehabilitering – grense",
+              "value": "10 000 kr per sykdom eller ulykkesskade",
+              "state": "optional",
+              "addOnNames": [
+                "Ekstra"
+              ],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:tryg:hund:extra",
+                  "filename": "tryg-dog-extra-terms.pdf",
+                  "termsNumber": "PLB52003",
+                  "effectiveFrom": "2025-07-01",
+                  "version": "2025-07-01",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+                  "company": "Tryg",
+                  "page": 1,
+                  "section": "Hund Ekstra",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:tryg:hund:extra",
+              "filename": "tryg-dog-extra-terms.pdf",
+              "termsNumber": "PLB52003",
+              "effectiveFrom": "2025-07-01",
+              "version": "2025-07-01",
+              "agreementScope": "ordinary",
+              "url": "https://www.tryg.no/forsikringer/hundeforsikring",
+              "company": "Tryg",
+              "page": 1,
+              "section": "Hund Ekstra",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Inntil 5 000 kr",
+          "facts": [
+            {
+              "key": "dyr.rehabilitering.grense",
+              "label": "Rehabilitering – grense",
+              "value": "Inntil 5 000 kr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "boat-pet:gjensidige:hund",
+                  "filename": "gjensidige-dog-ipid.pdf",
+                  "termsNumber": "EAP32",
+                  "effectiveFrom": "",
+                  "version": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+                  "company": "Gjensidige",
+                  "page": 1,
+                  "section": "Behandling",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+                  "sourceType": "ipid"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "boat-pet:gjensidige:hund",
+              "filename": "gjensidige-dog-ipid.pdf",
+              "termsNumber": "EAP32",
+              "effectiveFrom": "",
+              "version": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+              "company": "Gjensidige",
+              "page": 1,
+              "section": "Behandling",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.",
+              "sourceType": "ipid"
+            }
+          ]
+        },
+        "different": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,358 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "EP10-01",
+      "subject": "Produkt",
+      "dimension": "version",
+      "value": "P10 01.01.2025+P15 Pluss; historisk og ikke aktiv nytegning. N75bedrift ikkeordinary.",
+      "location": "s2/27–30",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-02",
+      "subject": "Personer",
+      "dimension": "eligibility",
+      "value": "Norgeadresse/folkeregister/norsktrygd/retur;familiepartner sammeadresse;barn21;barne/oldebarn medreisende utenannenreiseforsikring.",
+      "location": "§1.2 s4",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-03",
+      "subject": "Reise",
+      "dimension": "scope",
+      "value": "77d,heleverden,start/sluttNorge,fritid/tjeneste,IKKE kravovernatting;utvidelseavtalesføravreise.",
+      "location": "§1.3 s5",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-04",
+      "subject": "Reise",
+      "dimension": "exclusions",
+      "value": "Ikkehjem/arbeid/studie/barnehage (arbeidsskapunntak),ekspedisjoner,krigsrisikovedinnreise;streik/konkurs/lønnstap.",
+      "location": "§1.3 s5",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-05",
+      "subject": "Evakuering",
+      "dimension": "limits",
+      "value": "Nærmestsikkert/hjemNorge ogoppholdmax45d;tapferie1600/døgn/sikret max45d,Pluss2500;UDkrig/naturutenNorge/epidemiutenNorge.",
+      "location": "§1.3 s5;P15.14s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-06",
+      "subject": "Reisegods",
+      "dimension": "sum",
+      "value": "Standard40000enkelt/familie120000nårminst2reiser;Plussingen totalsum.",
+      "location": "§2.3s6;P15.4s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-07",
+      "subject": "Reisegods",
+      "dimension": "sublimits",
+      "value": "PassStandard20000/person/Plussubegrenset;cash6000/10000perhendelse;arbeidsgiver10000/skade tjeneste;sykkel10000/40000;skap5000;øvrigting15000/40000perting.",
+      "location": "§2.3s6;P15.1–5s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-08",
+      "subject": "Reisegods",
+      "dimension": "scope",
+      "value": "Privatting,leidansvarskontrakt,innsjekketmedsammetransportunntatttransportørseparasjon;ikkeverktøy/varer/data/flytte/motor/båt/seilbrett/mat/dyr,luftsport/droneibruk.",
+      "location": "§2.3s6",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-09",
+      "subject": "Reisegods",
+      "dimension": "triggers",
+      "value": "Tyveri/ran/innbrudd/natur/trafikk/brann/vann/båtuhell/innsjekket;ikkemistet/finner.",
+      "location": "§2.4s7",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-10",
+      "subject": "Reisegods",
+      "dimension": "exclusions",
+      "value": "Normalbruk/kosmetisk/transportøransvar/væske/gjenstandsknus/indirektetap/familiehærverk/underslag/kjæledyr.",
+      "location": "§2.4s7",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-11",
+      "subject": "Reisegods",
+      "dimension": "settlement",
+      "value": "Alderbruk anvendelighetsfradrag,økonomisktap;kontant/reparasjon/tilsvarende;egenandel500førreduksjon,høyesteavtaleperhendelse;Pluss0.",
+      "location": "§2.5–6s8;P15.19s28",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-12",
+      "subject": "Reisegods",
+      "dimension": "security",
+      "value": "Tilsyn/lås/safe;verdifulleibilhanskeromseparatbagasje/skiboks;ikkebil/camping/båt/telt00–06;ingeninnsjekkingverdifulle;sykkellås.",
+      "location": "§2.7s9",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-13",
+      "subject": "Medisinsk",
+      "dimension": "scope",
+      "value": "Akutt/ulykke/kroniskakutt/død;sykehus/lege/fysio/medisin/transport/hotellkost;3.50/kmprivat;telefon5000;kriseterapi ran/ulykke forhåndgodkjent.",
+      "location": "§3.3–4s10–11",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-14",
+      "subject": "Tann",
+      "dimension": "limits",
+      "value": "Ulykke10000/person,akutt/spising1000/skade iutlandet.",
+      "location": "§3.4s10",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-15",
+      "subject": "Medisinsk",
+      "dimension": "exclusions",
+      "value": "Kjentogbehandlingsbehov/sannsynlig,konsultasjonsreise/planlagt,privateNorden,fortsattutlandfrivillig;graviditetmenakuttalvorligfør36dekket;fødsel36.",
+      "location": "§3.4s10",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-16",
+      "subject": "Aktiviteter",
+      "dimension": "restrictions",
+      "value": "Kamp,luftsport,strikk/base,superG/utfor,motor,dypdykk40/fridykk10,ekspedisjon;høydesyke>4000;rus/slagsmål/feilbehandling/redningsaksjon. Fjell/offpiste/kite/downhillkanavtales/Plussinkl.",
+      "location": "§3.4s11;8.4s22–23;P15.16s28",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-17",
+      "subject": "Hjemtransport",
+      "dimension": "scope",
+      "value": "Legeforordnet/godkjent nødv ekstrareise/ledsager;egen/familiesyk/død,boligforretningkontorskade,nødvendigblodtransfusjoniNorge;egen død.",
+      "location": "§3.4s11",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-18",
+      "subject": "Reiseavbrudd",
+      "dimension": "limits",
+      "value": "Sykehus/legebeordretsengeleie/hjemreise;1600/døgn/sikret (families3matrise3200);Plussubegrensetmenreellkost;egenbil3.50/kmsamlet;utflukt10000/Plussubegrenset.",
+      "location": "§3.4s11–12;P15.13s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-19",
+      "subject": "Reiseavbrudd",
+      "dimension": "conditions",
+      "value": "Bare reiser≤77d,innhentingalternativikkeplussavbrudd;legeførstebesøk ogSOSved>5d;ettfamiliemedlemmedsammeforsikring.",
+      "location": "§3.4s11–12",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-20",
+      "subject": "Eneste ledsager",
+      "dimension": "sum",
+      "value": "100000/skade ekstrakost utoverkompensasjon;hele reisen sammen,ikkefellesadresse/medforsikret;forhåndsgodkjent.",
+      "location": "§3.4s12",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-21",
+      "subject": "Tilkalling",
+      "dimension": "scope",
+      "value": "2familiemedlem/nærstående;godkjenningøkonomifly/opphold;ikkeskade/hospitalhjemfylket/snarlighjemtransport.",
+      "location": "§3.4s13",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-22",
+      "subject": "Medisinsk",
+      "dimension": "duration",
+      "value": "60d fortløpendebehandlingførstelege;SOSvedsykehuseller>5000;ingenegenandel.",
+      "location": "§3.5–7s13",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-23",
+      "subject": "Ansvar",
+      "dimension": "limits",
+      "value": "UtenforNorden privat15mill;reisekostrettsmøte;500egenandelStandard/0Pluss.",
+      "location": "§4.2–5s14–15;P15.19s28",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-24",
+      "subject": "Ansvar",
+      "dimension": "exclusions",
+      "value": "Næring/kontrakt/punitiv/familie/reiseledsager/leide-lånte/forurensning/fast eiendom/motorbåtluft,medsmallmachine10km/t/rullestol15/kano/paragliderunntak.",
+      "location": "§4.3s14–15",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-25",
+      "subject": "Rettshjelp",
+      "dimension": "limits",
+      "value": "UtenforNorden100000/tvist,250000min3parter,økonomiskinteresse;500egenandel/Pluss0.",
+      "location": "§5.2–5s16–17;P15.19s28",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-26",
+      "subject": "Rettshjelp",
+      "dimension": "exclusions",
+      "value": "Grunnlagpåreisen;yrke/eiendom/familie/straff/motorkjøretøysmv/mellomsameiere/salær/preexisting/avslagrettshjelp.",
+      "location": "§5.3s16–17",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-27",
+      "subject": "Forsinket fremmøte",
+      "dimension": "limits",
+      "value": "≥1.5timerettertransportstart, vær/teknisk/ulykke/nødlanding;innhentingubegrenset;losji6000person20000familieellersamme dag,Plussubegrensetlosji;EU261fradrag.",
+      "location": "§6.3s18;P15.9s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-28",
+      "subject": "Forsinket fremmøte sykdom",
+      "dimension": "limits",
+      "value": "Legeordre20000/person50000familie,Plussubegrenset.",
+      "location": "§6.3s18;P15.10s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-29",
+      "subject": "Forsinket avgang",
+      "dimension": "limits",
+      "value": "Offentlig betalttransportvær/teknisk;6000/person20000familielosji beggeproduktnivå;bekreftetårsaken.",
+      "location": "§6.3s18",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-30",
+      "subject": "Forsinket bagasje",
+      "dimension": "limits",
+      "value": "4timer6000/personklær/toalett/sportleie påutreise;21d før tapt;Plusstjeneste10000 menss3matrise6000.",
+      "location": "§6.3s18;P15.8s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-31",
+      "subject": "Avbestilling",
+      "dimension": "limits",
+      "value": "50000person100000familie;Plussubegrenset;ikke-refunderbarogførstebetalingetterforsikringsstart.",
+      "location": "§7.3s19;P15.11s27",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-32",
+      "subject": "Avbestilling",
+      "dimension": "triggers",
+      "value": "Sykdomegen/nærfamilie/enesteledsager,boligkontorskade,fremskyndetutsattbehandlingmelding<14d,rettsinnkalling<14d,ledsagerkort,krigepideminatur<72tfør.",
+      "location": "§7.4s19",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-33",
+      "subject": "Avbestilling",
+      "dimension": "exclusions",
+      "value": "Kjent/arrangementavlyst/påregnelig/medisinskråd/rus;graviditetskomplikasjonfør36unntak;skattavgiftbonus;seminarkursbilletterikke.",
+      "location": "§7.3s19",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-34",
+      "subject": "Ulykke",
+      "dimension": "scope",
+      "value": "24tutenreise;risikoyrkeunntak,begrensetkontorarbeidmedmenoffshore/luft/sjøtransportunntak.",
+      "location": "§8.2s21",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-35",
+      "subject": "Ulykke",
+      "dimension": "sums",
+      "value": "Standardensliginvalid400000,død300000;familievoksen300000/300000,barn500000/50000. Plussenslig700000/300000,familievoksen700000/500000,barn700000/150000;75år100000reduksjon,fra80kundinvaliditet.",
+      "location": "§8.3s21;P15.15s28",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-36",
+      "subject": "Ulykke",
+      "dimension": "exclusions",
+      "value": "Sykeligtilstand/degenerativ/psykisk/forgiftning/behandling/infeksjon,insekterunntaklokal/blodforgiftning;yrke/risikosport/proinntekt>1G,militærutland,motivetforsett.",
+      "location": "§8.4s21–23",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-37",
+      "subject": "Ulykke",
+      "dimension": "settlement",
+      "value": "Dødinnen1år;invaliditet3år/barnunder16 5år,legesymptom3år;ingenkosmetisk/tanninvaliditet;max100%;min1årførsluttoppgjør.",
+      "location": "§8.5s24",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-38",
+      "subject": "Ulykke behandling",
+      "dimension": "limits",
+      "value": "2år/5%invalidsum;kriseterapi6mnd;barnpermanenttannsenere menoppgjør2år;egenandel1000,barntannunder21 500;Plussfritak.",
+      "location": "§8.5/7/9s25;P15.19s28",
+      "scope": "both"
+    },
+    {
+      "id": "EP10-39",
+      "subject": "Uhell",
+      "dimension": "sum",
+      "value": "Pluss6000/FORSIKRINGSÅR,kjenttidsfestetytrehendelse;ikkearbeidsgiver.",
+      "location": "P15.6s27",
+      "scope": "plus"
+    },
+    {
+      "id": "EP10-40",
+      "subject": "Forsinket fly",
+      "dimension": "sum",
+      "value": ">8tut/hjemværellerteknikk,1000/påbegyntdøgn,max5000person10000hendelse.",
+      "location": "P15.7s27",
+      "scope": "plus"
+    },
+    {
+      "id": "EP10-41",
+      "subject": "Avbestilling",
+      "dimension": "group",
+      "value": "Gruppe≤6enblirsyk,ogbarnevakt/avløsernøkkelperson.",
+      "location": "P15.12s27",
+      "scope": "plus"
+    },
+    {
+      "id": "EP10-42",
+      "subject": "Leiebil",
+      "dimension": "scope",
+      "value": "Kunferiefritid,kaskoCDW+TP,kontraktegenandel;ikkeoffroad/motor,leasing/bilpool/privat/flytting/reparasjonsbil.",
+      "location": "P15.17s28",
+      "scope": "plus"
+    },
+    {
+      "id": "EP10-43",
+      "subject": "Veterinær",
+      "dimension": "sum",
+      "value": "Akuttsyk/ulykkepåreiseutenNorden2500/skade.",
+      "location": "P15.18s28",
+      "scope": "plus"
+    },
+    {
+      "id": "EP10-44",
+      "subject": "Bedrift",
+      "dimension": "scope",
+      "value": "N75egenbevisavtale,arbeidsgiver50000,remplassering14d/retur2mnd;ikkeordinaryarv.",
+      "location": "N75s29–30",
+      "scope": "outside"
+    }
+  ],
+  "review": "All30p, P10PIPID, historicalFAQ77d and claims settlementwebsite read; P15overridesexplicit, N75excluded fromordinary. Not evidence active currentFremtind."
+}

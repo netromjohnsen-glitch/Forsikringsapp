@@ -1,0 +1,144 @@
+(node:65937) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/analysis-client.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "result": "PASS",
+  "checks": [
+    "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+    "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+    "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+    "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+    "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+    "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+    "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+    "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+    "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+    "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+    "unauthorized",
+    "manual/catalog",
+    "synthetic PDF to mocked AI to response",
+    "two-side concurrency",
+    "N documents to M products",
+    "capacity limit",
+    "invalid PDF before AI",
+    "strict form fields",
+    "429/no retries/sibling abort",
+    "admission released",
+    "private logging",
+    "semantic fallback telemetry/no unnecessary AI"
+  ],
+  "syntheticMetrics": {
+    "event": "analysis.metrics",
+    "requestId": "def08989-b23b-4e10-bff0-1877a2f2fd74",
+    "status": 200,
+    "totalMs": 635.470834,
+    "timings": {
+      "uploadValidation": 1.0537909999999897,
+      "pdfWorker": 443.5273329999999,
+      "pdfParsing": 59.65191600000003,
+      "textExtraction": 15.80616699999996,
+      "inputPreparation": 0.7179169999999431,
+      "aiExtraction": 350.24299999999994,
+      "structuredOutput": 0.7055410000000393,
+      "catalogLookup": 0.015958999999838852,
+      "documentNormalization": 6.616958000000068,
+      "catalogEnrichment": 8.124750999999605,
+      "semanticMatching": 0.39800000000013824,
+      "response": 0.1527089999999589
+    },
+    "semanticMatcher": {
+      "audit": {
+        "candidates": [],
+        "decisions": [],
+        "omitted": 0,
+        "outcome": "NO_DECISION"
+      },
+      "invoked": false,
+      "deterministicMatches": 4,
+      "unresolvedCandidates": 0,
+      "semanticCandidatesSent": 0,
+      "semanticMatchesAccepted": 0,
+      "durationMs": 0.38512500000001637,
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    "existingDocumentCount": 1,
+    "offerDocumentCount": 1,
+    "successfulDocuments": 2,
+    "failedDocuments": 0,
+    "identifiedProducts": 8,
+    "partialSuccess": false,
+    "progressTransport": "json",
+    "batchCount": 2,
+    "batches": [
+      {
+        "documentsPerBatch": 1,
+        "pagesPerBatch": 1,
+        "estimatedInputSize": 16118
+      },
+      {
+        "documentsPerBatch": 1,
+        "pagesPerBatch": 1,
+        "estimatedInputSize": 16118
+      }
+    ],
+    "extractionCalls": 2,
+    "maxConcurrentExtractions": 2,
+    "totalPages": 2,
+    "totalBytes": 1780,
+    "tokenTotals": {
+      "inputTokens": 246,
+      "outputTokens": 90,
+      "totalTokens": 336,
+      "cachedInputTokens": 24
+    },
+    "uploadBytes": 1780,
+    "documentCount": 2,
+    "parsedDocumentCount": 2,
+    "products": 8,
+    "documents": [
+      {
+        "index": 0,
+        "bytes": 614,
+        "pages": 1,
+        "characters": 56,
+        "durationMs": 343.269625
+      },
+      {
+        "index": 1,
+        "bytes": 614,
+        "pages": 1,
+        "characters": 56,
+        "durationMs": 100.27466700000002
+      }
+    ],
+    "calls": [
+      {
+        "kind": "extraction",
+        "model": "gpt-5.6-luna",
+        "durationMs": 170.58854199999996,
+        "success": true,
+        "usage": {
+          "inputTokens": 123,
+          "outputTokens": 45,
+          "totalTokens": 168,
+          "cachedInputTokens": 12
+        }
+      },
+      {
+        "kind": "extraction",
+        "model": "gpt-5.6-luna",
+        "durationMs": 179.66637500000002,
+        "success": true,
+        "usage": {
+          "inputTokens": 123,
+          "outputTokens": 45,
+          "totalTokens": 168,
+          "cachedInputTokens": 12
+        }
+      }
+    ]
+  },
+  "mcBobilSyntheticDurationMs": 1042
+}

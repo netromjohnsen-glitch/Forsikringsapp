@@ -1,0 +1,623 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "IF-IN-001",
+      "scope": "all",
+      "subject": "Sikrede",
+      "dimension": "husstand",
+      "value": "Bevisperson, ektefelle/samboer folkeregister og fast husstand; ikke bokollektiv. Annens ting bare skriftlig risiko-/forsikringsplikt førskade.",
+      "location": "3 pkt1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-002",
+      "scope": "all",
+      "subject": "Forsikringssum",
+      "dimension": "kundevalg",
+      "value": "Beviset bestemmer sum. Ubegrenset gjelder bare når avtalt; ingen underforsikringsregel, men avtalte objektgrenser gjelder.",
+      "location": "6 pkt3.4;12 pkt5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-003",
+      "scope": "all",
+      "subject": "Ubegrenset sum",
+      "dimension": "særgrenser",
+      "value": "500k hver for smykker/ur/gull, kunst, annet edelt metall, alkohol, enkeltgjenstand/samling. Høyere sum kan avtales. Ikke én felles500kpott.",
+      "location": "6 pkt3.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-004",
+      "scope": "all",
+      "subject": "Trygghetsgaranti",
+      "dimension": "nyanskaffelse",
+      "value": "Dokumentert kjøpt etter hovedforfall dekkes utover sum; må meldes før neste forfall for videre dekning.",
+      "location": "6 pkt3.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-005",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "Basis",
+      "value": "Forsikringsstedet; naturskade bare Norge. Utvidede nivåers tillegg separat.",
+      "location": "4 pkt2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-006",
+      "scope": "upper",
+      "subject": "Geografi",
+      "dimension": "utenfor hjem",
+      "value": "Norden midlertidig inntil2år, salg/flytting, permanent lagring i annenbygning40k. Båt/kjøretøydeler/tilhenger/basseng/yrkesløsøre bare hjemme.",
+      "location": "4 pkt2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-007",
+      "scope": "all",
+      "subject": "Penger",
+      "dimension": "sum",
+      "value": "Penger/verdipapirer10k samlet.",
+      "location": "4 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-008",
+      "scope": "all",
+      "subject": "Kjøretøydeler",
+      "dimension": "sum/omfang",
+      "value": "Løse deler40k på forsikringssted; dekk/felg og registreringspliktig/>25km/tkjøretøy med fasttilbehør unntatt.",
+      "location": "4–5 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-009",
+      "scope": "all",
+      "subject": "Småbåt/tilhenger",
+      "dimension": "sum/omfang",
+      "value": "Båt inntil15fot/10hk40k perbåt/motor og biltilhenger40k pertilhenger bare forsikringsstedet; egne skadetypeunntak gjelder.",
+      "location": "4 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-010",
+      "scope": "all",
+      "subject": "Yrkesløsøre",
+      "dimension": "sum",
+      "value": "40k samlet på stedet, eid eller skriftlig forsikringsplikt, arbeidsgivers ting ikke uten overført eierskap.",
+      "location": "4–5 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-011",
+      "scope": "all",
+      "subject": "Hobbybygg/basseng",
+      "dimension": "sum",
+      "value": "Hobbyveksthus/plasthall/lagertelt40k;frittstående basseng/bad40k bare på stedet, skadetypeunntak gjelder.",
+      "location": "4 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-012",
+      "scope": "super",
+      "subject": "Integrerte hvitevarer",
+      "dimension": "sum",
+      "value": "40k per hendelse.",
+      "location": "5 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-013",
+      "scope": "all",
+      "subject": "Ting unntatt",
+      "dimension": "digitale/dyr/toll",
+      "value": "Digitalvaluta/digitalkunst/dyr/ikke-tolldeklarerte ting unntatt; ikke verdiantakelser om kunden.",
+      "location": "5 pkt3.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-014",
+      "scope": "all",
+      "subject": "Rydding/flytting",
+      "dimension": "utover sum",
+      "value": "Nødvendig rydding/bortkjøring av rester og flytting/lagring etterdekketskade utoverforsikringssum.",
+      "location": "5 pkt3.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-015",
+      "scope": "all",
+      "subject": "Ubeboelig bolig",
+      "dimension": "opphold",
+      "value": "Nødvendige merutgifter ved dekket bygningsskade på folkeregistrert fastbolig; utover1uke forhåndsavtale;fratrekk sparte utgifter/husleietap.",
+      "location": "5 pkt3.2.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-016",
+      "scope": "baseupper",
+      "subject": "Ubeboelig bolig",
+      "dimension": "hotelltak",
+      "value": "Hotell100k, øvrigopphold ingen særskilt sumgrense.",
+      "location": "5 pkt3.2.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-017",
+      "scope": "super",
+      "subject": "Ubeboelig bolig",
+      "dimension": "hotelltak",
+      "value": "Ingen særskilt begrensning forhotell; utløser/faktiske rimelige merutgifterfortsatt.",
+      "location": "5 pkt3.2.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-018",
+      "scope": "all",
+      "subject": "Prisstigning",
+      "dimension": "mekanisme",
+      "value": "Dokumentert prisstigning til normal reparasjon/gjenkjøp, SSBindeks minus opptjente renter, utovergrunnsum.",
+      "location": "5 pkt3.2.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-019",
+      "scope": "all",
+      "subject": "Rekonstruksjon",
+      "dimension": "sum/utgifter",
+      "value": "Notater/tegninger/datalagre40k, ikke reise/opphold, utovergrunnsum.",
+      "location": "5 pkt3.2.5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-020",
+      "scope": "all",
+      "subject": "Tilleggsinnredning",
+      "dimension": "sum",
+      "value": "Selvbekostet i leid/sameid bolig som ikke utbedres100k.",
+      "location": "5 pkt3.2.6",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-021",
+      "scope": "all",
+      "subject": "Brann",
+      "dimension": "utløsning/unntak",
+      "value": "Brann/plutselig nedsoting/eksplosjon, ikke svi/gnist utenbrann.",
+      "location": "6 pkt4.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-022",
+      "scope": "all",
+      "subject": "Elektrisk",
+      "dimension": "utløsning/unntak",
+      "value": "Kortslutning/lysbue/overslag/overspenning; basseng bare nettleverandørdokumentert overspenning.",
+      "location": "6 pkt4.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-023",
+      "scope": "all",
+      "subject": "Naturskade",
+      "dimension": "område/unntak",
+      "value": "Lovbestemtehendelser bare Norge; ikke tilhenger/småbåt/tingideres eller skade alene påskilt/antenne/markise.",
+      "location": "6–7 pkt4.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-024",
+      "scope": "all",
+      "subject": "Vann",
+      "dimension": "utløsning/unntak",
+      "value": "Plutselig utstrømming rør/tilkoblet utstyr/akvarium/slokker og vannplutseliginnibygg; ikke sopp/råte/bakterier eller kosmetiskflekk.",
+      "location": "7 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-025",
+      "scope": "all",
+      "subject": "Vann",
+      "dimension": "tap væske",
+      "value": "Taptgass/vann/væske ved slik utstrømming40k.",
+      "location": "7 pkt4.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-026",
+      "scope": "all",
+      "subject": "Tyveri",
+      "dimension": "stedgrenser",
+      "value": "Forsikringssted: bodmedfellesadgang100k;fellesrom/garasje40k;privatute40k perhendelse.",
+      "location": "7 pkt4.5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-027",
+      "scope": "all",
+      "subject": "Innbrudd",
+      "dimension": "bygningssum",
+      "value": "Bygningsskade40k.",
+      "location": "7 pkt4.5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-028",
+      "scope": "all",
+      "subject": "Leietakertyveri",
+      "dimension": "basisgrense",
+      "value": "Tyveri/underslag leietaker/husstand/gjester40k, ubegrenset bare når IfUtleiekriterier oppfylt på øvrenivå; ikke utenomhjemutleie.",
+      "location": "7 pkt4.5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-029",
+      "scope": "upper",
+      "subject": "Tyveri ute",
+      "dimension": "steder/sykkel",
+      "value": "Arbeidsplass/sykehjem/felles/offentlig rom/veskenapping/andresteder40k perhendelse;sykkel/elsykkel/tilhenger/barnevogn40k per objekt.",
+      "location": "7 pkt4.5.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-030",
+      "scope": "all",
+      "subject": "Ran",
+      "dimension": "geografi",
+      "value": "Basis på forsikringssted,Utvidet/Super også utenfor innenNorden. Politianmeldelse.",
+      "location": "7–8 pkt4.5.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-031",
+      "scope": "all",
+      "subject": "Skadeverk",
+      "dimension": "utløsning/sum/unntak",
+      "value": "Forsettlig;leietaker/gjest eller utenforhjem40k;ikke husstand/dyrehold/kosmetisk/hardellerfeilbruk. IfUtleie kan utvide ogsåbygningsskade.",
+      "location": "8 pkt4.5.3",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-032",
+      "scope": "all",
+      "subject": "Bygningsfølgeskade",
+      "dimension": "dokumentasjon",
+      "value": "Direktefølge av erstatningsmessig skade underhuseiers forsikring med dokumentertdekning.",
+      "location": "8 pkt4.6",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-033",
+      "scope": "super",
+      "subject": "Frysevarer",
+      "dimension": "sum/utløsning",
+      "value": "40k temperaturstigning ved strømbrudd/elektrisk fenomen, ikke enhver temperaturstigning.",
+      "location": "8 pkt4.7",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-034",
+      "scope": "upper",
+      "subject": "Glass/sanitær",
+      "dimension": "unntak",
+      "value": "Brudd, ikke kosmetiske riper/avskalling, utettisolerglass, næringstilknyttet ellerhobbyveksthus.",
+      "location": "8 pkt4.8",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-035",
+      "scope": "upper",
+      "subject": "Flytting",
+      "dimension": "hendelse",
+      "value": "Plutseligytre undertransport/inn-/utbæringtilnybolig/fritidsbolig;ikkekosmetisk.",
+      "location": "8–9 pkt4.9",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-036",
+      "scope": "upper",
+      "subject": "Uhell",
+      "dimension": "utløser/geografi/tak",
+      "value": "Annenfysisk plutseligytre skade; kjentårsak/tid oggjenstandmåfremvises;utenforforsikringssted40kperhendelse innenNorden.",
+      "location": "9 pkt4.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-037",
+      "scope": "upper",
+      "subject": "Uhell",
+      "dimension": "ting unntatt",
+      "value": "Leid/utleid løsøre,båt/tilhenger/arbeidsmaskin,hobbybygg,luftsport/droneibruk,innsjekketbagasjeunntatt.",
+      "location": "9 pkt4.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-038",
+      "scope": "upper",
+      "subject": "Uhell",
+      "dimension": "årsaker unntatt",
+      "value": "Frost/bakterier/insekter/kjæledyr/kosmetikk/slitasje/alder/snøvekt/vindunderstorm,gnagereiikke-boligbyggunntatt.",
+      "location": "9 pkt4.10",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-039",
+      "scope": "upper",
+      "subject": "Utleie",
+      "dimension": "inkludert med vilkår",
+      "value": "Privat helårsbolig,ikke næring;skriftlig avtale med tvangsfravikelse,minimum2mnddepositum innbetalt førinnflytting ellerbankgaranti.",
+      "location": "9 pkt4.11",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-040",
+      "scope": "upper",
+      "subject": "Utleie",
+      "dimension": "leietap",
+      "value": "Maks6mnd,fra begjæringnamsmann tiltilbakebesittelse+2mnd;én gangperleietaker.",
+      "location": "10 pkt4.11.1",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-041",
+      "scope": "upper",
+      "subject": "Utleie",
+      "dimension": "utkastelse",
+      "value": "Rimelig nødvendig fravikelseskostnadmaks20k.",
+      "location": "10 pkt4.11.2",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-042",
+      "scope": "upper",
+      "subject": "Utleie",
+      "dimension": "egenandel og frister",
+      "value": "3mndhusleie egenandel fratrekkes først, høyere sikkerhet ogsåfratrekk;14d varsel/14drettefrist, begjæringogIfvarslinginnen6ukerførstemislighold.",
+      "location": "13 pkt5.4;16 pkt6.4.5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-043",
+      "scope": "upper",
+      "subject": "Utleid bolig",
+      "dimension": "tyveriegenandel",
+      "value": "Vanlig leietakertyveri/underslag/skadeverk: høyesteav10k/depositum; separat fra3mnd IfUtleie.",
+      "location": "13 pkt5.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-044",
+      "scope": "super",
+      "subject": "Bunad",
+      "dimension": "sum/område/vilkår",
+      "value": "500kheleverdeninkltilbehør;plutseligytre eller tapmed kjentårsak/tid;ikke slitasje/feil/gradvis/insekter/mark.",
+      "location": "4 pkt2;10 pkt4.12",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-045",
+      "scope": "super",
+      "subject": "Bunad",
+      "dimension": "egenandel",
+      "value": "500kroner.",
+      "location": "14 pkt5.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-046",
+      "scope": "upper",
+      "subject": "Boligtilpasning",
+      "dimension": "sum/utløser",
+      "value": "250kvedmin50%varigmedinvalidetterulykke ellerbarnfødtmedfødt skade/sykdom i perioden;dokumenterte utgifter innen5år,tilleggtiloffentligstøtte.",
+      "location": "10 pkt4.13",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-047",
+      "scope": "all",
+      "subject": "ID-tyveri",
+      "dimension": "juridisk service/sum",
+      "value": "Forebyggingvidere misbruk/fjernefeilbetalingsanmerkning;1millperhendelse,samletrelatertehandlinger. Ikkefaktiskøkonomisktaputover juridiskassist.",
+      "location": "10–11 pkt4.14",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-048",
+      "scope": "all",
+      "subject": "ID-tyveri",
+      "dimension": "unntak",
+      "value": "Næring/nærfamiliehandling/grovuaktsomfamili ehandlingunntatt;oppståttogkonstatert i forsikringstid.",
+      "location": "11 pkt4.14",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-049",
+      "scope": "upper",
+      "subject": "Skadedyr",
+      "dimension": "bekjempelse/sum/sted",
+      "value": "Anticimex150kperhendelse;gnagere/skjeggkre/veggedyr/kakerlakker i bevisets fastbolig/fritidsboligNorge;kontakt førtiltak.",
+      "location": "11 pkt4.15",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-050",
+      "scope": "upper",
+      "subject": "Skadedyr",
+      "dimension": "ingen fysisk skade",
+      "value": "Bekjempelseikkeinnboskade/døde dyr/etterlatenskaper/konstruksjonsåpning;visseuhellskaderannenregel.",
+      "location": "11–12 pkt4.15",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-051",
+      "scope": "upper",
+      "subject": "Skadedyr",
+      "dimension": "tid/tiltak/tilgjengelighet",
+      "value": "Aktivitetførstart/etteropphørikke;ingenikke-skadeinsekt/råteinsekt/gassing/varmefrysing/andreleverandør utenavtale;utenbiladkomstkundenekstratransport.",
+      "location": "11–12 pkt4.15",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-052",
+      "scope": "upper",
+      "subject": "Skadedyr",
+      "dimension": "bygningstyper",
+      "value": "Ikkenæringsrelatertangrep/garasje/låve/utebod/fellesadkomstbod/utendørs/vareparti/planter ellerforebyggendevedlikehold.",
+      "location": "12 pkt4.15",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-053",
+      "scope": "upper",
+      "subject": "Skadedyr",
+      "dimension": "egenandel/service",
+      "value": "2kbekjempelse,0rådgivning/artsbestemmelse/selvtiltakutstyrsendtavAnticimex.",
+      "location": "13 pkt5.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-054",
+      "scope": "all",
+      "subject": "Oppgjør",
+      "dimension": "alder/bruktverdi",
+      "value": "Lavest reparasjon/tilsvarendegjenkjøp,fradrag for alder/bruk/anvendelighet. Bruktkjøpt/arvet/gitt/ikke i bruk/utrangertogbo bruktsalgsverdi;ikke fasttallstabell.",
+      "location": "12 pkt5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-055",
+      "scope": "all",
+      "subject": "Sykkel",
+      "dimension": "oppgjørstak",
+      "value": "Aldri over faktisk anskaffelsespris;skiltfra40ktyverigrense.",
+      "location": "12 pkt5",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-056",
+      "scope": "all",
+      "subject": "Egenandel",
+      "dimension": "standard",
+      "value": "4kperhendelse omikkeavtaltannet;fradrag før egenandel;sammehendelseflereIfprodukter barehøyesteegenandel.",
+      "location": "13 pkt5.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-057",
+      "scope": "all",
+      "subject": "Naturskade",
+      "dimension": "egenandel",
+      "value": "Naturskade 8 000 kr står i svart under Basis. Øvre nivåer er generelt tillegg i blått, ikke en uttrykkelig erstatning av Basis-naturskaderegelen. Overskriften alene beviser ikke 4 000 kr for Utvidet/Super.",
+      "location": "13 pkt5.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-058",
+      "scope": "super",
+      "subject": "Uhell/tyveri/ran/skadeverk",
+      "dimension": "redusert egenandel",
+      "value": "2kpergjenstand,maks4kperhendelse. Ikkeubetinget2khelehendelsen.",
+      "location": "13 pkt5.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-059",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "100kpertvist/250kmin3parter;4k+20%resten;boligselgertvist salærsats+200tak.",
+      "location": "PDF2 pkt1.6–1.7",
+      "source": "liability"
+    },
+    {
+      "id": "IF-IN-060",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "rolle/område",
+      "value": "Innbo:privatperson,Norden;etter-salg ognyboligførinnflyttmedkontinuitet;øvrigeeiendom/motor/båt/driftunntak/carveouts.",
+      "location": "PDF1–2 pkt1.1–1.5",
+      "source": "liability"
+    },
+    {
+      "id": "IF-IN-061",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "sum/egenandel/område",
+      "value": "Privatperson,Norden;5millperhendelse+sakskost,4kegenandel;modellfly/drone750kSDRmedvilkår.",
+      "location": "PDF3–4 pkt2.2–2.7",
+      "source": "liability"
+    },
+    {
+      "id": "IF-IN-062",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "unntak/carveouts",
+      "value": "Lånt/leidting/familie/næring/avtaleansvar/motorunntatt;arbeidsmaskin<=10km/t<=750kgpåegengrunn ogsmåbåt<15fot/<10hk carveout;drone utenoperatørtillatelse.",
+      "location": "PDF3 pkt2.5",
+      "source": "liability"
+    },
+    {
+      "id": "IF-IN-063",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "vann/tyveri",
+      "value": "Boligfravær>3uker/fritid>3d stengvann;sykkellås/ikkelaGPSigjen;verdierikkefellesbod/ikkeetterlatikjøretøy;halvårligtilsyn.",
+      "location": "15–16 pkt6.4",
+      "source": "terms"
+    },
+    {
+      "id": "IF-IN-064",
+      "scope": "cycleaddon",
+      "subject": "Sykkeltillegg",
+      "dimension": "tilgjengelighet",
+      "value": "IPIDtilleggvedverdi>40k;detaljer/sumvalgikkeifullkildepakken.",
+      "location": "1",
+      "source": "ipid"
+    },
+    {
+      "id": "IF-IN-065",
+      "scope": "valueaddon",
+      "subject": "Høy verdi",
+      "dimension": "tilgjengelighet",
+      "value": "Tilleggforenkeltgjenstand/samling>500k;sumfraavtale,ikkeautomatiskbasis.",
+      "location": "2",
+      "source": "ipid"
+    },
+    {
+      "id": "IF-IN-066",
+      "scope": "super",
+      "subject": "Supergaranti",
+      "dimension": "kildebegrensning",
+      "value": "IPIDgarantertlikesåbraellerbedrevilkårvedflytting;fullgarantiregelikkeiIBO/SV006.",
+      "location": "1",
+      "source": "ipid"
+    },
+    {
+      "id": "IF-IN-067",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "frister/prioritet",
+      "value": "Bevisforrang,generellevilkårunntattgenerellrettshjelp erstattetSV006,politimelding/klage/skjønn;ikkeegetfaktumhverprosedyre.",
+      "location": "3,14–18",
+      "source": "terms"
+    }
+  ],
+  "source_contents_read": [
+    "IBO2-1 all18pages",
+    "SV006 all4physicalpages;printed2–5",
+    "IPID bothpages",
+    "GEN2-9 exactshared13pages read in prior motor checkpoint"
+  ],
+  "scope_notes": "Basis/Utvidet/Super separate, no customer sum invented, coverage risk differs from thing eligibility. Generallegal23 is expressly displaced bySV006.",
+  "deductible_visual_review": {
+    "artifact": "catalog/sources/if/innbo/If_Innboforsikring_IBO2-1.pdf",
+    "page": 13,
+    "render": "if-innbo-page13.png",
+    "read_with": "page2 level/colour explanation",
+    "rejected_inference": "Do not replace upper-tier 8000 by4000 based only on heading; no such explicit reduction in source."
+  }
+}

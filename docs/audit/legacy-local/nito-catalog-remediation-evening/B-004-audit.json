@@ -1,0 +1,361 @@
+{
+  "status": "PASS",
+  "batch": "B-004",
+  "source_verification": "ERA3-4 own p13 §5.1 unqualified accident; acute illness and known-condition unchanged. Baggage/delay safety removed from Basis per own table p2 and chapters3/4 p7/10/11; retained verbatim for Standard/Super. Cancellation severity untouched.",
+  "source_hashes": {
+    "catalog/sources/if/reise/canonical/Helars-reiseforsikring-vilkar.pdf": "1311ec0273592571c46ec37f2874791f420c900583e601c3ae95c0a1fda4b566"
+  },
+  "changed_products": [
+    "if-reise-basis",
+    "if-reise-standard",
+    "if-reise-super"
+  ],
+  "unchanged_products": 201,
+  "allowed_keys": [
+    "reise.medisinsk.behandling",
+    "reise.sikkerhet.reisegods"
+  ],
+  "deltas": [
+    {
+      "product": "if-reise-basis",
+      "view": "base",
+      "key": "reise.medisinsk.behandling",
+      "before": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "source": {
+          "documentId": "ifReiseTerms",
+          "section": "5.1–5.2",
+          "page": 13,
+          "filename": "Helars-reiseforsikring-vilkar.pdf",
+          "termsNumber": "ERA3-4",
+          "effectiveFrom": "2025-03-22",
+          "company": "If",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+          "productCode": "ERA3-4",
+          "version": "ERA3-4",
+          "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+        }
+      },
+      "after": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "source": {
+          "documentId": "ifReiseTerms",
+          "section": "5.1–5.2",
+          "page": 13,
+          "filename": "Helars-reiseforsikring-vilkar.pdf",
+          "termsNumber": "ERA3-4",
+          "effectiveFrom": "2025-03-22",
+          "company": "If",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+          "productCode": "ERA3-4",
+          "version": "ERA3-4",
+          "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+        }
+      }
+    },
+    {
+      "product": "if-reise-basis",
+      "view": "base",
+      "key": "reise.sikkerhet.reisegods",
+      "before": {
+        "key": "reise.sikkerhet.reisegods",
+        "label": "Sikkerhetsforskrifter",
+        "value": "Personlige eiendeler skal være under tilsyn, forsvarlig oppbevart, låst, emballert og korrekt innsjekket; verdigjenstander skal ikke ligge i innsjekket bagasje. Ved forsinkelse må tilstrekkelig tid beregnes.",
+        "source": {
+          "documentId": "ifReiseTerms",
+          "section": "3.1.2 og 4.4",
+          "page": 8,
+          "filename": "Helars-reiseforsikring-vilkar.pdf",
+          "termsNumber": "ERA3-4",
+          "effectiveFrom": "2025-03-22",
+          "company": "If",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+          "productCode": "ERA3-4",
+          "version": "ERA3-4",
+          "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+        }
+      },
+      "after": null
+    },
+    {
+      "product": "if-reise-basis",
+      "view": "product-comparison",
+      "key": "reise.medisinsk.behandling",
+      "before": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "ifReiseTerms",
+            "section": "5.1–5.2",
+            "page": 13,
+            "filename": "Helars-reiseforsikring-vilkar.pdf",
+            "termsNumber": "ERA3-4",
+            "effectiveFrom": "2025-03-22",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+            "productCode": "ERA3-4",
+            "version": "ERA3-4",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        ]
+      },
+      "after": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "ifReiseTerms",
+            "section": "5.1–5.2",
+            "page": 13,
+            "filename": "Helars-reiseforsikring-vilkar.pdf",
+            "termsNumber": "ERA3-4",
+            "effectiveFrom": "2025-03-22",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+            "productCode": "ERA3-4",
+            "version": "ERA3-4",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        ]
+      }
+    },
+    {
+      "product": "if-reise-basis",
+      "view": "product-comparison",
+      "key": "reise.sikkerhet.reisegods",
+      "before": {
+        "key": "reise.sikkerhet.reisegods",
+        "label": "Sikkerhetsforskrifter",
+        "value": "Personlige eiendeler skal være under tilsyn, forsvarlig oppbevart, låst, emballert og korrekt innsjekket; verdigjenstander skal ikke ligge i innsjekket bagasje. Ved forsinkelse må tilstrekkelig tid beregnes.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "ifReiseTerms",
+            "section": "3.1.2 og 4.4",
+            "page": 8,
+            "filename": "Helars-reiseforsikring-vilkar.pdf",
+            "termsNumber": "ERA3-4",
+            "effectiveFrom": "2025-03-22",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+            "productCode": "ERA3-4",
+            "version": "ERA3-4",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        ]
+      },
+      "after": null
+    },
+    {
+      "product": "if-reise-standard",
+      "view": "base",
+      "key": "reise.medisinsk.behandling",
+      "before": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "source": {
+          "documentId": "ifReiseTerms",
+          "section": "5.1–5.2",
+          "page": 13,
+          "filename": "Helars-reiseforsikring-vilkar.pdf",
+          "termsNumber": "ERA3-4",
+          "effectiveFrom": "2025-03-22",
+          "company": "If",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+          "productCode": "ERA3-4",
+          "version": "ERA3-4",
+          "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+        }
+      },
+      "after": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "source": {
+          "documentId": "ifReiseTerms",
+          "section": "5.1–5.2",
+          "page": 13,
+          "filename": "Helars-reiseforsikring-vilkar.pdf",
+          "termsNumber": "ERA3-4",
+          "effectiveFrom": "2025-03-22",
+          "company": "If",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+          "productCode": "ERA3-4",
+          "version": "ERA3-4",
+          "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+        }
+      }
+    },
+    {
+      "product": "if-reise-standard",
+      "view": "product-comparison",
+      "key": "reise.medisinsk.behandling",
+      "before": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "ifReiseTerms",
+            "section": "5.1–5.2",
+            "page": 13,
+            "filename": "Helars-reiseforsikring-vilkar.pdf",
+            "termsNumber": "ERA3-4",
+            "effectiveFrom": "2025-03-22",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+            "productCode": "ERA3-4",
+            "version": "ERA3-4",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        ]
+      },
+      "after": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "ifReiseTerms",
+            "section": "5.1–5.2",
+            "page": 13,
+            "filename": "Helars-reiseforsikring-vilkar.pdf",
+            "termsNumber": "ERA3-4",
+            "effectiveFrom": "2025-03-22",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+            "productCode": "ERA3-4",
+            "version": "ERA3-4",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        ]
+      }
+    },
+    {
+      "product": "if-reise-super",
+      "view": "base",
+      "key": "reise.medisinsk.behandling",
+      "before": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "source": {
+          "documentId": "ifReiseTerms",
+          "section": "5.1–5.2",
+          "page": 13,
+          "filename": "Helars-reiseforsikring-vilkar.pdf",
+          "termsNumber": "ERA3-4",
+          "effectiveFrom": "2025-03-22",
+          "company": "If",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+          "productCode": "ERA3-4",
+          "version": "ERA3-4",
+          "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+        }
+      },
+      "after": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "source": {
+          "documentId": "ifReiseTerms",
+          "section": "5.1–5.2",
+          "page": 13,
+          "filename": "Helars-reiseforsikring-vilkar.pdf",
+          "termsNumber": "ERA3-4",
+          "effectiveFrom": "2025-03-22",
+          "company": "If",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+          "productCode": "ERA3-4",
+          "version": "ERA3-4",
+          "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+        }
+      }
+    },
+    {
+      "product": "if-reise-super",
+      "view": "product-comparison",
+      "key": "reise.medisinsk.behandling",
+      "before": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller alvorlig ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "ifReiseTerms",
+            "section": "5.1–5.2",
+            "page": 13,
+            "filename": "Helars-reiseforsikring-vilkar.pdf",
+            "termsNumber": "ERA3-4",
+            "effectiveFrom": "2025-03-22",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+            "productCode": "ERA3-4",
+            "version": "ERA3-4",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        ]
+      },
+      "after": {
+        "key": "reise.medisinsk.behandling",
+        "label": "Sykdom og ulykkesskade på reise",
+        "value": "Rimelige, nødvendige og dokumenterte utgifter ved uventet akutt sykdom eller ulykkesskade: lege, sykehus, medisiner og behandling. Ingen generell øvre sum og ingen egenandel.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "ifReiseTerms",
+            "section": "5.1–5.2",
+            "page": 13,
+            "filename": "Helars-reiseforsikring-vilkar.pdf",
+            "termsNumber": "ERA3-4",
+            "effectiveFrom": "2025-03-22",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring",
+            "productCode": "ERA3-4",
+            "version": "ERA3-4",
+            "note": "Forsikringsbeviset går foran vilkårene og avgjør valgt nivå, personkrets, område, reisevarighet, summer, egenandeler og særvilkår."
+          }
+        ]
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-3553",
+    "GAP-3590",
+    "GAP-3631",
+    "GAP-5714"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "b9a4784069bf37d9"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

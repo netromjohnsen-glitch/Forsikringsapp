@@ -1,0 +1,1098 @@
+implementation.
+
+Do not implement any Wave 3 batch.
+
+Do not use remaining budget on Wave 3.
+
+Wave 3 requires separate explicit human authorization after this Wave 2
+completion report has been reviewed.
+
+==================================================
+76 – WAVE 3 READINESS ASSESSMENT
+==================================================
+
+After Wave 2 gate:
+
+you MAY report whether Wave 3 entry conditions are satisfied.
+
+Return one:
+
+WAVE_3_READY_FOR_HUMAN_AUTHORIZATION
+
+WAVE_3_NOT_READY
+
+WAVE_3_BLOCKED.
+
+This is an assessment only.
+
+Do not begin Wave 3.
+
+==================================================
+77 – P1 ACCOUNTING
+==================================================
+
+Track:
+
+P1 signatures resolved before this run:
+21
+
+P1 signatures resolved by each new batch
+
+P1 signatures resolved in this run
+
+cumulative P1 signatures resolved after Wave 2.
+
+Do not estimate.
+
+Use exact triage/signature mappings.
+
+==================================================
+78 – P1 REMAINING
+==================================================
+
+After Wave 2 completion calculate exact remaining P1 signature count from the
+authoritative triage/remediation state.
+
+Do not simply subtract unless the mapping proves no overlaps/reclassification.
+
+Report:
+
+original P1 signatures:
+1 589
+
+resolved:
+X
+
+remaining:
+X
+
+source/review-dependent:
+X
+
+deferred historical:
+X.
+
+==================================================
+79 – CANONICAL CHANGE REGISTER
+==================================================
+
+Create:
+
+canonical-change-register.csv
+
+For every canonical change record:
+
+batch_id
+concept
+old_structure
+new_structure
+affected_keys
+affected_products
+affected_families
+reason
+source_basis
+comparison_effect
+customer_mode_effect
+tests
+status.
+
+==================================================
+80 – MAPPING CHANGE REGISTER
+==================================================
+
+Create:
+
+mapping-change-register.csv
+
+for:
+
+B-019
+B-017
+B-021
+
+and any other mapping changes actually required.
+
+==================================================
+81 – INHERITANCE CHANGE REGISTER
+==================================================
+
+Create:
+
+inheritance-change-register.csv
+
+for changes affecting inheritance.
+
+Especially verify B-020 and any other batch where higher product levels may
+replace or inherit base facts.
+
+==================================================
+82 – ADD-ON SELECTION REGISTER
+==================================================
+
+Create:
+
+addon-selection-change-register.csv
+
+for B-022/B-018.
+
+Document:
+
+availability
+selection evidence
+child-fact behavior
+Liv dependency
+Bruk dependency
+species behavior
+customer-mode behavior.
+
+==================================================
+83 – FILE IMPACT
+==================================================
+
+At final gate report exact project files changed by:
+
+prior remediation
+
+and
+
+this run.
+
+Distinguish them where possible.
+
+==================================================
+84 – NO ACCIDENTAL FILE EXPANSION
+==================================================
+
+If a batch unexpectedly requires edits to many more shared files than the
+semantic-resolution plan predicted:
+
+STOP before broadening the implementation.
+
+Do not turn a bounded batch into architecture work without approval.
+
+==================================================
+85 – CUSTOMER MODE REGRESSION
+==================================================
+
+For all seven remaining Wave 2 batches classify actual customer-mode impact.
+
+For batches affecting customer mode:
+
+run synthetic comparison regression.
+
+Verify:
+
+document facts win
+catalog enrichment only fills appropriate gaps
+optional add-ons are not fabricated as selected
+object/product identity remains isolated.
+
+==================================================
+86 – PRODUCT MODE REGRESSION
+==================================================
+
+Verify product comparison remains deterministic and source-backed.
+
+No AI calls should be necessary for product comparison.
+
+==================================================
+87 – AI CALLS
+==================================================
+
+Do not introduce runtime AI calls as part of remediation.
+
+Stable public product semantics belong in deterministic knowledge/mapping.
+
+==================================================
+88 – PDF OPERATIONS
+==================================================
+
+Synthetic PDF/customer regression is allowed where existing test fixtures
+support it.
+
+Do not process real customer PDFs.
+
+==================================================
+89 – SOURCE HASHES
+==================================================
+
+Where targeted audit depends on local source artifacts:
+
+verify expected source hashes before relying on them.
+
+If source artifact unexpectedly changed:
+
+STOP affected batch.
+
+==================================================
+90 – SOURCE MANIFESTS
+==================================================
+
+Do not modify source manifests in this run unless an approved batch explicitly
+requires it.
+
+The seven semantic-resolution decisions did not authorize general source
+manifest cleanup.
+
+==================================================
+91 – EXISTING AUDIT ARTIFACTS
+==================================================
+
+Treat these directories as immutable:
+
+/tmp/source-catalog-completeness-audit/
+
+/tmp/source-catalog-remediation-triage/
+
+/tmp/nito-catalog-remediation-evening/
+
+/tmp/nito-wave2-semantic-resolution/
+
+At final gate verify their fingerprints remain unchanged.
+
+==================================================
+92 – CURRENT RUN ARTIFACTS
+==================================================
+
+All run-specific artifacts go under:
+
+/tmp/insurance-catalog-wave2-completion/
+
+These may be created/updated freely.
+
+==================================================
+93 – QUALITY CHECK
+==================================================
+
+Create:
+
+quality-check.json
+
+Validate at minimum:
+
+all seven batches accounted for
+execution order respected
+dependencies respected
+all PASS batches have tests
+all PASS batches have targeted audit
+canonical decisions match semantic-resolution artifact
+mapping decisions match semantic-resolution artifact
+P1 counts reconcile
+changed files accounted for
+new canonical concepts fully registered
+no duplicate canonical identities introduced
+no internal labels leaked
+no unexpected product changes
+test outputs parse
+repo integrity checks pass
+frozen audit artifacts unchanged.
+
+==================================================
+94 – EXPECTED PRODUCT DIFF
+==================================================
+
+Build a deterministic expected-vs-actual affected-product check.
+
+For every batch:
+
+expected affected products
+
+vs
+
+actual catalog-resolution changes.
+
+Unexpected changed product:
+
+investigate.
+
+If not clearly explained by approved shared behavior:
+
+STOP.
+
+==================================================
+95 – NON-AFFECTED PRODUCT CONTROL
+==================================================
+
+Verify a representative set of non-affected products remains byte/semantic
+equivalent in resolved catalog output where practical.
+
+==================================================
+96 – PREVIOUS 182 CONTROL
+==================================================
+
+The previous remediation run verified 182/204 products unchanged.
+
+Do not assume the same count after this run because additional products may
+legitimately change.
+
+Calculate the new expected unchanged set.
+
+==================================================
+97 – SOURCE-TO-CATALOG CONTROL
+==================================================
+
+For every corrected fact verify:
+
+applicable source
+→ normalized source meaning
+→ catalog fact
+→ canonical identity
+→ comparison representation.
+
+==================================================
+98 – REVERSE CONTROL
+==================================================
+
+For changed products also verify:
+
+catalog material claim
+→ applicable source support.
+
+This protects against fixing omissions while introducing unsupported claims.
+
+==================================================
+99 – NO COUNT GAMING
+==================================================
+
+Do not mark a P1 resolved merely because:
+
+row disappeared
+fact was hidden
+comparison stopped displaying it.
+
+Resolution requires correct semantic representation or approved conservative
+state.
+
+==================================================
+100 – FALSE UNKNOWN CONTROL
+==================================================
+
+If any of these batches resolve verified false unknowns:
+
+explicitly demonstrate before/after behavior.
+
+==================================================
+101 – STOREBRAND REISE BEFORE/AFTER
+==================================================
+
+For B-019 preserve a concrete before/after artifact showing:
+
+BEFORE:
+Storebrand Standard overnight/day-trip concept displayed false unknown.
+
+AFTER:
+correct source-backed day-trip/overnight meaning.
+
+Include side-swap validation.
+
+==================================================
+102 – CANONICAL EXTENSION BEFORE/AFTER
+==================================================
+
+For B-015, B-020, B-022 create concise before/after semantic examples.
+
+Do not use screenshots unless existing automated tooling already supports
+them cheaply.
+
+Structured output is sufficient.
+
+==================================================
+103 – B-015 FALSE COLLISION CONTROL
+==================================================
+
+Verify the new moving theft/vandalism concept does NOT collide with:
+
+ordinary transport damage
+ordinary theft
+general vandalism
+
+unless source semantics explicitly justify shared representation.
+
+==================================================
+104 – B-020 FALSE COLLISION CONTROL
+==================================================
+
+Verify:
+
+rodent/animal damage
+
+and
+
+insect damage
+
+remain independently representable.
+
+==================================================
+105 – B-022 SELECTION FALSE POSITIVE CONTROL
+==================================================
+
+Explicitly test:
+
+child fact exists in catalog
+
+but customer has NOT selected add-on.
+
+Expected:
+
+do NOT infer selected add-on.
+
+==================================================
+106 – B-022 SELECTION POSITIVE CONTROL
+==================================================
+
+Explicitly test:
+
+customer document clearly selects relevant add-on.
+
+Expected:
+
+customer selection is honored.
+
+==================================================
+107 – B-022 DOCUMENT OVERRIDE CONTROL
+==================================================
+
+If customer document explicitly contradicts generic catalog availability:
+
+customer document wins within supported semantics.
+
+==================================================
+108 – B-018 DEPENDENCY CONTROL
+==================================================
+
+Before implementing B-018:
+
+run the B-022 selection controls.
+
+If any fail:
+
+do not start B-018.
+
+==================================================
+109 – B-018 AFTER CONTROL
+==================================================
+
+After B-018:
+
+rerun B-022 controls.
+
+Ensure Bruksverdi placement did not reopen selection inference.
+
+==================================================
+110 – FULL WAVE 2 COMPARISON MATRIX
+==================================================
+
+After all seven PASS:
+
+run a bounded matrix across all Wave 2 affected products covering:
+
+same-product
+side-swap
+relevant cross-provider comparisons
+product-level differences
+optional/included states
+unknown states.
+
+==================================================
+111 – NO NEEDLESS ALL-PAIR EXPLOSION
+==================================================
+
+Do not generate every theoretical product pair if existing deterministic
+coverage proves equivalent behavior.
+
+Use targeted exhaustive coverage over changed semantic concepts.
+
+==================================================
+112 – FULL TEST SUITE RESULT
+==================================================
+
+Record exact:
+
+test count
+pass count
+fail count
+skipped count if applicable.
+
+==================================================
+113 – BUILD RESULT
+==================================================
+
+Record exact:
+
+TypeScript
+ESLint
+webpack production build
+synthetic runtime
+
+results.
+
+==================================================
+114 – PERFORMANCE REGRESSION
+==================================================
+
+If existing tests/benchmarks expose material runtime regression from mapping
+changes:
+
+report it.
+
+Do not undertake unrelated performance optimization.
+
+==================================================
+115 – NO SOURCE RESEARCH FALLBACK
+==================================================
+
+If a supposedly resolved semantic decision turns out not implementable from
+the frozen evidence:
+
+STOP that batch.
+
+Do not browse as fallback.
+
+==================================================
+116 – SEMANTIC RESOLUTION CONTRADICTION
+==================================================
+
+If implementation discovers that the semantic-resolution artifact contradicts
+the actual validated source evidence:
+
+STOP.
+
+Return:
+
+SEMANTIC_RESOLUTION_CONTRADICTION
+
+with exact evidence.
+
+Do not silently follow the plan over source truth.
+
+==================================================
+117 – SOURCE TRUTH WINS
+==================================================
+
+Validated applicable source truth remains authoritative over planning
+artifacts.
+
+Planning artifacts organize implementation; they do not override evidence.
+
+==================================================
+118 – CURRENT CATALOG STATE
+==================================================
+
+Remember current project state already contains successful remediation.
+
+Compare against CURRENT local working tree, not original HEAD catalog alone.
+
+==================================================
+119 – NO DOUBLE-FIX
+==================================================
+
+Before editing a fact:
+
+verify it has not already been corrected by an earlier successful batch.
+
+==================================================
+120 – DUPLICATE TEST AVOIDANCE
+==================================================
+
+Reuse existing regression tests where they already prove the required
+behavior.
+
+Do not create duplicate tests merely to increase test count.
+
+==================================================
+121 – TEST NAMING
+==================================================
+
+New tests should identify:
+
+batch
+semantic behavior
+expected invariant
+
+clearly enough for future maintenance.
+
+==================================================
+122 – TEST COMMENTS
+==================================================
+
+Where a regression is non-obvious, document why the behavior matters and
+which source-backed semantic distinction is being protected.
+
+Avoid excessive comments.
+
+==================================================
+123 – SOURCE REFERENCES IN TESTS
+==================================================
+
+Follow existing project conventions.
+
+Do not hardcode local `/tmp` paths into production tests unless existing test
+architecture explicitly uses them.
+
+==================================================
+124 – TEMPORARY AUDIT CODE
+==================================================
+
+Temporary validation scripts belong under:
+
+/tmp/insurance-catalog-wave2-completion/
+
+not the project repo
+
+unless they are legitimate permanent regression tests.
+
+==================================================
+125 – NO TEMPORARY PRODUCTION CODE
+==================================================
+
+Do not leave debugging/tracing helpers in production files.
+
+==================================================
+126 – ERROR LOGGING
+==================================================
+
+Do not introduce logging of:
+
+raw customer text
+PDF contents
+filenames
+personal data
+
+during remediation.
+
+==================================================
+127 – SECURITY INVARIANTS
+==================================================
+
+Although security work is out of scope:
+
+do not weaken existing security/privacy behavior.
+
+==================================================
+128 – PUBLIC SOURCE ONLY
+==================================================
+
+Catalog facts remain based on the existing public/local source corpus.
+
+No customer-specific information enters product catalog.
+
+==================================================
+129 – FINAL PROJECT STATE
+==================================================
+
+At successful completion:
+
+HEAD should remain unchanged.
+
+Working tree should contain:
+
+previous successful remediation
++
+this successful Wave 2 completion
++
+approved regression tests.
+
+Staged:
+0.
+
+==================================================
+130 – NO AUTOMATIC COMMIT
+==================================================
+
+Even after complete PASS:
+
+DO NOT COMMIT.
+
+The user will review the full Wave 2 result first.
+
+==================================================
+131 – NO AUTOMATIC PUSH
+==================================================
+
+DO NOT PUSH.
+
+==================================================
+132 – NO AUTOMATIC DEPLOY
+==================================================
+
+DO NOT DEPLOY.
+
+==================================================
+133 – FINAL STATUS VALUES
+==================================================
+
+Return one:
+
+INSURANCE_CATALOG_WAVE2_COMPLETE
+
+INSURANCE_CATALOG_WAVE2_PARTIAL
+
+INSURANCE_CATALOG_WAVE2_BLOCKED
+
+INSURANCE_CATALOG_WAVE2_INTEGRITY_FAILURE.
+
+==================================================
+134 – COMPLETE CRITERIA
+==================================================
+
+Return:
+
+INSURANCE_CATALOG_WAVE2_COMPLETE
+
+only if:
+
+B-019 PASS
+B-017 PASS
+B-021 PASS
+B-015 PASS
+B-020 PASS
+B-022 PASS
+B-018 PASS
+
+AND
+
+full Wave 2 gate PASS.
+
+==================================================
+135 – PARTIAL CRITERIA
+==================================================
+
+PARTIAL only if:
+
+one or more additional batches PASS
+
+but usage/system limit prevents safe completion.
+
+Persist exact resume point.
+
+==================================================
+136 – BLOCKED CRITERIA
+==================================================
+
+BLOCKED if:
+
+source/semantic contradiction
+production regression
+unresolved test behavior
+dependency failure
+unexpected canonical blast radius
+
+prevents safe continuation.
+
+==================================================
+137 – INTEGRITY FAILURE
+==================================================
+
+INTEGRITY_FAILURE if:
+
+unexpected unrelated project mutation
+audit artifact mutation
+staged state mutation
+source hash mutation
+
+cannot be safely explained.
+
+==================================================
+138 – FINAL REPORT FORMAT
+==================================================
+
+Return:
+
+INSURANCE_CATALOG_WAVE2_COMPLETION
+
+STATUS
+
+BASELINE
+
+BATCH RESULTS
+
+B-019 DAY-TRIP CONTROL
+
+CANONICAL EXTENSIONS
+
+MAPPING CHANGES
+
+ADD-ON SELECTION / B-022
+
+B-018 DEPENDENCY RESULT
+
+P1 ACCOUNTING
+
+TEST RESULTS
+
+TARGETED SOURCE→CATALOG RE-AUDIT
+
+COMPARISON REGRESSION
+
+CUSTOMER/PDF REGRESSION
+
+POSITIVE CONTROLS
+
+FILES CHANGED
+
+PROJECT INTEGRITY
+
+AUDIT ARTIFACT INTEGRITY
+
+WAVE 3 READINESS
+
+OUTPUT FILES
+
+NEXT STEP.
+
+==================================================
+139 – BATCH RESULTS TABLE
+==================================================
+
+For each:
+
+B-019
+B-017
+B-021
+B-015
+B-020
+B-022
+B-018
+
+report:
+
+status
+P1 resolved
+files
+tests
+targeted audit
+notes.
+
+==================================================
+140 – CANONICAL EXTENSION REPORT
+==================================================
+
+Report exactly what new canonical concepts were added for:
+
+B-015
+B-020
+B-022
+
+and why existing structures were insufficient.
+
+==================================================
+141 – MAPPING REPORT
+==================================================
+
+Report exact existing-key mapping changes for:
+
+B-019
+B-017
+B-021.
+
+==================================================
+142 – ADD-ON REPORT
+==================================================
+
+Report how B-022 changed selection inference and how B-018 now behaves under
+that rule.
+
+==================================================
+143 – P1 REPORT
+==================================================
+
+Report:
+
+Original triage P1 signatures:
+1 589
+
+Resolved before this run:
+21
+
+Resolved this run:
+X
+
+Cumulative resolved:
+X
+
+Remaining:
+X
+
+Do not count deferred historical signatures as resolved.
+
+==================================================
+144 – TEST REPORT
+==================================================
+
+Report:
+
+full suite
+new tests
+updated tests
+test-only failures corrected
+production failures
+flaky reruns
+final unresolved failures.
+
+==================================================
+145 – RE-AUDIT REPORT
+==================================================
+
+Report:
+
+source hashes verified
+products expected to change
+products actually changed
+unexpected product changes
+comparison directions checked
+affected rows checked
+false unknown controls.
+
+==================================================
+146 – CUSTOMER MODE REPORT
+==================================================
+
+Explicitly report whether:
+
+document > catalog
+
+still holds.
+
+Also report:
+
+optional ≠ selected
+
+status after B-022/B-018.
+
+==================================================
+147 – WAVE 3 READINESS
+==================================================
+
+If full Wave 2 gate PASS:
+
+return:
+
+WAVE_3_READY_FOR_HUMAN_AUTHORIZATION
+
+but DO NOT START IT.
+
+If not:
+
+state exact blocker.
+
+==================================================
+148 – PILOT GATE
+==================================================
+
+Even after Wave 2 COMPLETE:
+
+CATALOG_PILOT_GATE remains:
+
+REMEDIATION_REQUIRED.
+
+Wave 3–5 and final full validation remain.
+
+==================================================
+149 – NEXT STEP
+==================================================
+
+If COMPLETE:
+
+recommend:
+
+human review of Wave 2 completion
+
+then
+
+separate authorization for Wave 3.
+
+Do not start Wave 3.
+
+==================================================
+150 – USAGE
+==================================================
+
+There is substantial usage available.
+
+Use enough reasoning and testing to complete Wave 2 safely.
+
+Do not stop merely to conserve usage.
+
+But do not consume remaining usage on work outside this scope.
+
+==================================================
+151 – CHECKPOINTING
+==================================================
+
+Checkpoint after EVERY successful batch.
+
+Do not wait until the end.
+
+==================================================
+152 – STOP BEFORE RISK
+==================================================
+
+If uncertainty emerges:
+
+STOP.
+
+A partial correct Wave 2 is better than a complete speculative Wave 2.
+
+==================================================
+153 – FINAL PRINCIPLE
+==================================================
+
+The remaining Wave 2 work contains three different remediation classes:
+
+EXISTING-KEY MAPPING:
+B-019
+B-017
+B-021
+
+MINIMAL CANONICAL EXTENSION:
+B-015
+B-020
+B-022
+
+DEPENDENT CATALOG PLACEMENT:
+B-018
+
+Do not blur these together.
+
+For every batch:
+
+SOURCE TRUTH
+→ SEMANTIC DECISION
+→ MINIMAL IMPLEMENTATION
+→ REGRESSION
+→ TARGETED RE-AUDIT
+→ PASS
+→ CHECKPOINT.
+
+==================================================
+154 – START
+==================================================
+
+Begin now.
+
+Verify current local remediation state.
+
+Read the completed semantic-resolution artifacts.
+
+Implement:
+
+B-019
+→ B-017
+→ B-021
+→ B-015
+→ B-020
+→ B-022
+→ B-018.
+
+Gate every batch.
+
+Then run the complete Wave 2 gate.
+
+DO NOT START WAVE 3.
+
+Do not commit.
+Do not stage.
+Do not push.
+Do not deploy.
+
+Return the required final status and STOP.

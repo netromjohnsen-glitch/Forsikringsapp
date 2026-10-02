@@ -1,0 +1,475 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FBI-01",
+      "subject": "Avtale",
+      "dimension": "persons",
+      "value": "Forsikringstaker/rettmessigbruker;panthaveravtalt;14d eierskifte inntil nyforsikring.",
+      "doc": "ansvar",
+      "location": "s1§1",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-02",
+      "subject": "Geografi",
+      "dimension": "territory",
+      "value": "Europa unntattTyrkia/Kosovo/Russland/Belarus;grenseforsikring etterland,egenansvardakunførerpassasjer.",
+      "doc": "ansvar",
+      "location": "s1§2",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-03",
+      "subject": "Avregistrering",
+      "dimension": "transition",
+      "value": "KunAnsvaravsluttes;Mini/Kasko/Toppomgjøreslagring;solgt/vraket/stjålet/leasingopphørslutter.",
+      "doc": "ansvar",
+      "location": "s1§5",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-04",
+      "subject": "Egenandel",
+      "dimension": "customer_selected",
+      "value": "Bevisstyrt;sammehendelsekunhøyesteegenandel,fradragførreduksjon.",
+      "doc": "ansvar",
+      "location": "s1§4",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-05",
+      "subject": "Bonus",
+      "dimension": "exceptions",
+      "value": "Ikke tap vedulykke/legal/brann/tyveri/hærverk/glass/redning/leiebil/maskin/natur/dyr;Topparkeringtilførsteforfall6år.",
+      "doc": "ansvar",
+      "location": "s1Bonus",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-06",
+      "subject": "Bonus",
+      "dimension": "system",
+      "value": "Ubruktbort3år;60oglavere+10/-10,70etter3år+5/-10,75etter3år+ordning/-5;valgfri75år4førsteska0eller80/-10.",
+      "doc": "ansvar",
+      "location": "s1–2Bonus",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-07",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "Personubegrenset;ting100mill;EØSnorskregelomgunstigere;kontraktsansvarunntatt.",
+      "doc": "ansvar",
+      "location": "s2FMO001§1–2",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-08",
+      "subject": "Førerpassasjer",
+      "dimension": "scope",
+      "value": "Ulykkeri/utenforkjøretøyhvorbilendirekteårsak;ikke sykdom/besvimelse/forgiftning/rusmidler;to sisteikkeunder16.",
+      "doc": "ansvar",
+      "location": "s2–3FMO002",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-09",
+      "subject": "Førerpassasjer",
+      "dimension": "sums",
+      "value": "Død100kmedektefelle/samboer/barnunder20ellers50k;invaliditetvoksen200k,barnunder20 1mill.",
+      "doc": "ansvar",
+      "location": "s3§2",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-10",
+      "subject": "Førerpassasjer",
+      "dimension": "settlement",
+      "value": "Dødinnen1år;tidligereinvaliditettrekkesfra;varigmedisinskgradetter1åropptil3årforholdsmessig.",
+      "doc": "ansvar",
+      "location": "s3§5",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-11",
+      "subject": "Rettshjelp",
+      "dimension": "scope",
+      "value": "Personligeier/rettmessigfører/bruker;Norden;tvistoppstårperiode,ikketvistegrunnlagfør;ogsåettersalgtidligereeier.",
+      "doc": "ansvar",
+      "location": "s4FFE003§1–3",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-12",
+      "subject": "Rettshjelp",
+      "dimension": "sums",
+      "value": "100køkonomiskinteresse;min3parterkan250k;FinKN15k,forlik/jordskifte25k,sakkyndig20%sum.",
+      "doc": "ansvar",
+      "location": "s4–5§4–5",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-13",
+      "subject": "Rettshjelp",
+      "dimension": "deductible",
+      "value": "Egenandelbevis+20%advokat/sakkyndig;enpertvist.",
+      "doc": "ansvar",
+      "location": "s6§5.2",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-14",
+      "subject": "Rettshjelp",
+      "dimension": "exclusions",
+      "value": "Ikkeyrke/erverv/andreobjekter/straff/familie/inkasso/konkurs;forvaltningsklageførstuttømt.",
+      "doc": "ansvar",
+      "location": "s4–5§4.2",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-15",
+      "subject": "Forsikrede ting",
+      "dimension": "scope",
+      "value": "Bil levertnyforhandler,ekstradekk/felger,nøkkel,ladekabel;ikkefastmontertbygningsladekabel,ugodkjenttrim.",
+      "doc": "mini",
+      "location": "s4§1.1",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-16",
+      "subject": "Tilleggsutstyr",
+      "dimension": "sum",
+      "value": "50k fastmontertellerbevisvalg;slokkeapparat/førstehjelp/barneseter;Bobil50kforteltgjelderikkepersonbil.",
+      "doc": "mini",
+      "location": "s4§1.2",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-17",
+      "subject": "Personlige eiendeler",
+      "dimension": "sum_exclusions",
+      "value": "20k;ikke penger/gavekort/verdipapir/smykker/klokker;Bobil40k10kitemikkebil.",
+      "doc": "mini",
+      "location": "s4§1.3",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-18",
+      "subject": "Brann",
+      "dimension": "trigger",
+      "value": "Brann,lyn,eksplosjon.",
+      "doc": "mini",
+      "location": "s4§2.1",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-19",
+      "subject": "Tyveri/hærverk",
+      "dimension": "trigger",
+      "value": "Tyveri/forsøk;ikkehusstand/ansattsjåfør;underslagvedprøvekjøringsalgmedoffentligannonse;hærverk.",
+      "doc": "mini",
+      "location": "s4§2.2",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-20",
+      "subject": "Glass",
+      "dimension": "scope",
+      "value": "Brudd rute/glasstak/takluke;ikkesolcelle;skifteopptil50%markedsverdi.",
+      "doc": "mini",
+      "location": "s4§2.3;s6§3.5",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-21",
+      "subject": "Redning",
+      "dimension": "persons",
+      "value": "Hjemrimeligstevedulykke/sykdom/død,dekketskade/upåregneligstopp/tyveri;viderereisehvisbilligere.",
+      "doc": "mini",
+      "location": "s5§2.4.1",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-22",
+      "subject": "Redning leiebil",
+      "dimension": "conditional",
+      "value": "UtenforNordenveddekketskadeikkebaredriftsstans600/dag45d,følgfastlagtruteogforhåndsgodkjent.",
+      "doc": "mini",
+      "location": "s5§2.4.1",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-23",
+      "subject": "Redning",
+      "dimension": "car_transport",
+      "value": "Bil+tilhenger/campingtilnærmestverksted,ogbostedsdriftsstans/tomtank;hentetransportmax50%markedsverdi.",
+      "doc": "mini",
+      "location": "s5§2.4.2",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-24",
+      "subject": "Feilfylling",
+      "dimension": "emptying",
+      "value": "Tømming/rens10k,nårikke startetmotor feilfuel;skadeetterstartikkeunderdenneredningsytelsen.",
+      "doc": "mini",
+      "location": "s5§2.4.2",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-25",
+      "subject": "Totalskade",
+      "dimension": "market_settlement",
+      "value": "Markedsverdi tilsvarende vesentligstand;nybil1år15kkm>80%nyverdi,ikkelesing;utgåttmodellkontantsisteliste.",
+      "doc": "mini",
+      "location": "s5–6§3.2",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-26",
+      "subject": "Leasing",
+      "dimension": "start_rent",
+      "value": "1år15kkm>80%,startleienedskrivesgjenværendemåneder.",
+      "doc": "mini",
+      "location": "s6§3.2.2",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-27",
+      "subject": "Reparasjon",
+      "dimension": "guarantee",
+      "value": "8årvedavtaleverkstedprivatbil≤3500kgfra2023;ikkeglass/slitasje;leiebil600/dag45d,veihjelp;reklamasjon2mnd.",
+      "doc": "mini",
+      "location": "s6§3.3",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-28",
+      "subject": "Reparasjon",
+      "dimension": "settlement",
+      "value": "Tilvarendeogbruktedeler;forringelsefratrekk;kontantarbeid50%eksMVA,MVAetterdokumentert;ikkeverditap/garantitap.",
+      "doc": "mini",
+      "location": "s6§3.3",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-29",
+      "subject": "Tyveri",
+      "dimension": "waiting_key",
+      "value": "Bilikkeretur21dmarkedsverdi;stjåletnøkkelomkodingnyhvisforebyggende.",
+      "doc": "mini",
+      "location": "s6§3.4",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-30",
+      "subject": "Eiendeler",
+      "dimension": "depreciation",
+      "value": "Alder/slitasjemvfradragkunverdiforringelse≥1/3.",
+      "doc": "mini",
+      "location": "s7§3.7",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-31",
+      "subject": "Kjørelengde/trim",
+      "dimension": "risk",
+      "value": "Årligavtaltkjørelengdeoverstigelseproporsjonalreduksjon;godkjenttrimogsåmeldes;ugodkjentikke.",
+      "doc": "mini",
+      "location": "s7§3.10",
+      "scope": "physical"
+    },
+    {
+      "id": "FBI-32",
+      "subject": "Kasko",
+      "dimension": "trigger",
+      "value": "Sammenstøt/utforkjøring/velt/feilfuel/annenplutseligytrepåvirkning.",
+      "doc": "kasko",
+      "location": "s8§1.1",
+      "scope": "kasko"
+    },
+    {
+      "id": "FBI-33",
+      "subject": "Kasko",
+      "dimension": "exclusions",
+      "value": "Maskin/leiebilegnedekninger;slitasje/gradvis/frost,ruskjøring/utmark/bane(medkursunntak),utleiehvisikkeavtalt,drosje/bud/næringikke.",
+      "doc": "kasko",
+      "location": "s8§1.1",
+      "scope": "kasko"
+    },
+    {
+      "id": "FBI-34",
+      "subject": "Kasko",
+      "dimension": "deductible",
+      "value": "Bevisvalgt;+12kveduopplystførerunder23;dyrredusererinntil2k.",
+      "doc": "kasko",
+      "location": "s8§3.1",
+      "scope": "kasko"
+    },
+    {
+      "id": "FBI-35",
+      "subject": "Bilnøkkel",
+      "dimension": "limits",
+      "value": "Topp15kny/programmering/omkodingautorisertvedmistet/stjålet/plutseligytre;egenandel1k.",
+      "doc": "topp",
+      "location": "s8§1.1.1;s10§3.1",
+      "scope": "topp"
+    },
+    {
+      "id": "FBI-36",
+      "subject": "Ladekabel",
+      "dimension": "limits",
+      "value": "Topp10ktyveri/plutseligytre,ikkebygningsfast;egenandel1k.",
+      "doc": "topp",
+      "location": "s9§1.1.2;s10§3.2",
+      "scope": "topp"
+    },
+    {
+      "id": "FBI-37",
+      "subject": "Rens interiør",
+      "dimension": "limits",
+      "value": "10kplutseligsøl1kegenandelutenbonustap;ikkeelektronikk/følge/rifter;over10kordinærkasko.",
+      "doc": "topp",
+      "location": "s9§1.1.3;s10§3.3",
+      "scope": "topp"
+    },
+    {
+      "id": "FBI-38",
+      "subject": "Parkering",
+      "dimension": "age_conditions",
+      "value": "Tilførstehovedforfalletter6år;ukjentskadevolder,kjenttid/sted;ellersordinærkaskobonus.",
+      "doc": "topp",
+      "location": "s9§1.1.4",
+      "scope": "topp"
+    },
+    {
+      "id": "FBI-39",
+      "subject": "Feilfylling",
+      "dimension": "deductible",
+      "value": "Topp1kegenandel;bonustap.",
+      "doc": "topp",
+      "location": "s9§1.1.5;s10§3.4",
+      "scope": "topp"
+    },
+    {
+      "id": "FBI-40",
+      "subject": "Totalskade",
+      "dimension": "expanded",
+      "value": "3år100kkm>80%nyverdi;ikkelease;utgåttmodellkontantsisteliste.",
+      "doc": "topp",
+      "location": "s9§2.1",
+      "scope": "topp"
+    },
+    {
+      "id": "FBI-41",
+      "subject": "Leasing",
+      "dimension": "expanded",
+      "value": "3år100kkm>80%,startleieforholdsmessigrestmåneder.",
+      "doc": "topp",
+      "location": "s9§2.1",
+      "scope": "topp"
+    },
+    {
+      "id": "FBI-42",
+      "subject": "Leiebil",
+      "dimension": "optional_limits",
+      "value": "ValgfriKasko/Topp;600/dag45dnormalreparasjon tilsvarendebil;godkjentleverandør;ikkeglass/drivstoff/bom/parkering.",
+      "doc": "rental",
+      "location": "s1§1;IPIDV106s1",
+      "scope": "addon_rental"
+    },
+    {
+      "id": "FBI-43",
+      "subject": "Leiebil",
+      "dimension": "total_loss",
+      "value": "Totalskade/tyveri15d etter tilbud sendt,totalt45d fra skademelding.",
+      "doc": "rental",
+      "location": "s1§2.1",
+      "scope": "addon_rental"
+    },
+    {
+      "id": "FBI-44",
+      "subject": "Maskinskade",
+      "dimension": "optional_limits",
+      "value": "ValgfriKasko/Topp;tilførste hovedforfall etter10år eller200 000kmførst.",
+      "doc": "machine",
+      "location": "s1§1.1;IPIDV106s1",
+      "scope": "addon_machine"
+    },
+    {
+      "id": "FBI-45",
+      "subject": "Maskinskade",
+      "dimension": "components",
+      "value": "Plutseligtilfeldig;motorblokk/topplokk/turbo/coil/innsuginnsprøyting/EGR/vann/start/dynamo/lambda/NOX/AdBlue;EVbatteriDCinverterladerelmotorstyringladekontakt/PTCACmedbatterifunksjon;gir/driv/servo/styring.",
+      "doc": "machine",
+      "location": "s1§1.1",
+      "scope": "addon_machine"
+    },
+    {
+      "id": "FBI-46",
+      "subject": "Maskinskade",
+      "dimension": "exclusions",
+      "value": "Ikke bremser/fjæring/tørrclutch/ledning/høyvoltskabel/understell/slitasje/eksosrør/infotainment;ikkeoljevarmgangfrostirrfukt/gradvis/garanti/trimugodkjent/terrengbaneunntattkurs.",
+      "doc": "machine",
+      "location": "s1§1.1",
+      "scope": "addon_machine"
+    },
+    {
+      "id": "FBI-47",
+      "subject": "Maskinskade",
+      "dimension": "battery_deduction",
+      "value": "Bilfra5år10%perårmax50%,egenandeletterfradrag;bruktlikeverdigkunegenandel;uvanligslitasjeekstrafratrekk.",
+      "doc": "machine",
+      "location": "s1§2.1",
+      "scope": "addon_machine"
+    },
+    {
+      "id": "FBI-48",
+      "subject": "Maskinskade",
+      "dimension": "deductible",
+      "value": "Til99999km10k;100000–14999915k;150000–20000020k.",
+      "doc": "machine",
+      "location": "s2§3",
+      "scope": "addon_machine"
+    },
+    {
+      "id": "FBI-49",
+      "subject": "Maskinskade",
+      "dimension": "settlement",
+      "value": "Ikkekontantoppgjør;øvrigMinikasko§3.",
+      "doc": "machine",
+      "location": "s2§2.2",
+      "scope": "addon_machine"
+    },
+    {
+      "id": "FBI-50",
+      "subject": "Kanal/version",
+      "dimension": "legacy_separation",
+      "value": "EikaM05PPluss/Kasko6år60kmaskininkludert/nybil1år15k mv er annet dokument enn dagensV106medvalgfriekomponenter.Offisiellkanalside dagensnytegningfra13.10.2025;ikkeoverførhistoriskEika.",
+      "doc": "legacy",
+      "location": "s1–2;Eikavilkår/IPIDsidelokalt",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-51",
+      "subject": "Generelle vilkår",
+      "dimension": "exceptions",
+      "value": "Generelle begrensningerkrig/terror/atom;terrorfelles500mill/år,tingutenforNordenikke;bevisforrang.",
+      "doc": "general",
+      "location": "s1§1",
+      "scope": "all"
+    },
+    {
+      "id": "FBI-52",
+      "subject": "Administrativt",
+      "dimension": "administration",
+      "value": "Skjønn/renter/kravmelding/oppsigelse/gjenopptak/lovvalg;grunnleggendeadministrasjon,ikkeallemånycanonicalrad.",
+      "doc": "general",
+      "location": "s1–3§2–15",
+      "scope": "all"
+    }
+  ],
+  "scope_note": "PMO shared terms explicitly checked across four level PDFs. Channel-specific published additions require saved source artifacts; do not infer from insurer alone.",
+  "source_comparison": "Shared text diff reviewed, only pagination/layout reorder; same named legal clauses. Minikasko nybil rule is in its own full terms, IPID lists it under Kasko: record source applicability conflict."
+}

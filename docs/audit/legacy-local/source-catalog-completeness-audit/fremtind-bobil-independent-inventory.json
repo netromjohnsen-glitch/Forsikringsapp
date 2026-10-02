@@ -1,0 +1,520 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FBO-01",
+      "subject": "Avtale",
+      "dimension": "persons",
+      "value": "Forsikringstaker/rettmessigbruker;panthaveravtalt;14d eierskifte inntil nyforsikring.",
+      "location": "s1§1",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-02",
+      "subject": "Geografi",
+      "dimension": "territory",
+      "value": "Europa unntattTyrkia/Kosovo/Russland/Belarus;grenseforsikring etterland,egenansvardakunførerpassasjer.",
+      "location": "s1§2",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-03",
+      "subject": "Avregistrering",
+      "dimension": "transition",
+      "value": "KunAnsvaravsluttes;Mini/Kasko/Toppomgjøreslagring;solgt/vraket/stjålet/leasingopphørslutter.",
+      "location": "s1§5",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-04",
+      "subject": "Egenandel",
+      "dimension": "customer_selected",
+      "value": "Bevisstyrt;sammehendelsekunhøyesteegenandel,fradragførreduksjon.",
+      "location": "s1§4",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-05",
+      "subject": "Bonus",
+      "dimension": "exceptions",
+      "value": "Ikke tap vedulykke/legal/brann/tyveri/hærverk/glass/redning/leiebil/maskin/natur/dyr;Topparkeringtilførsteforfall6år.",
+      "location": "s1Bonus",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-06",
+      "subject": "Bonus",
+      "dimension": "system",
+      "value": "Ubruktbort3år;60oglavere+10/-10,70etter3år+5/-10,75etter3år+ordning/-5;valgfri75år4førsteska0eller80/-10.",
+      "location": "s1–2Bonus",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-07",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "Personubegrenset;ting100mill;EØSnorskregelomgunstigere;kontraktsansvarunntatt.",
+      "location": "s2FMO001§1–2",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-08",
+      "subject": "Førerpassasjer",
+      "dimension": "scope",
+      "value": "Ulykkeri/utenforkjøretøyhvorbilendirekteårsak;ikke sykdom/besvimelse/forgiftning/rusmidler;to sisteikkeunder16.",
+      "location": "s2–3FMO002",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-09",
+      "subject": "Førerpassasjer",
+      "dimension": "sums",
+      "value": "Død100kmedektefelle/samboer/barnunder20ellers50k;invaliditetvoksen200k,barnunder20 1mill.",
+      "location": "s3§2",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-10",
+      "subject": "Førerpassasjer",
+      "dimension": "settlement",
+      "value": "Dødinnen1år;tidligereinvaliditettrekkesfra;varigmedisinskgradetter1åropptil3årforholdsmessig.",
+      "location": "s3§5",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-11",
+      "subject": "Rettshjelp",
+      "dimension": "scope",
+      "value": "Personligeier/rettmessigfører/bruker;Norden;tvistoppstårperiode,ikketvistegrunnlagfør;ogsåettersalgtidligereeier.",
+      "location": "s4FFE003§1–3",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-12",
+      "subject": "Rettshjelp",
+      "dimension": "sums",
+      "value": "100køkonomiskinteresse;min3parterkan250k;FinKN15k,forlik/jordskifte25k,sakkyndig20%sum.",
+      "location": "s4–5§4–5",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-13",
+      "subject": "Rettshjelp",
+      "dimension": "deductible",
+      "value": "Egenandelbevis+20%advokat/sakkyndig;enpertvist.",
+      "location": "s6§5.2",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-14",
+      "subject": "Rettshjelp",
+      "dimension": "exclusions",
+      "value": "Ikkeyrke/erverv/andreobjekter/straff/familie/inkasso/konkurs;forvaltningsklageførstuttømt.",
+      "location": "s4–5§4.2",
+      "scope": "all",
+      "doc": "ansvar"
+    },
+    {
+      "id": "FBO-15",
+      "subject": "Forsikrede ting",
+      "dimension": "scope",
+      "value": "Bil levertnyforhandler,ekstradekk/felger,nøkkel,ladekabel;ikkefastmontertbygningsladekabel,ugodkjenttrim.",
+      "location": "s4§1.1",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-16",
+      "subject": "Tilleggsutstyr",
+      "dimension": "sum",
+      "value": "Fastmontert50kellerbevis;Bobilfortelt/tilbygg50k,ikketyverinårbobilfjernet.",
+      "location": "s4§1.2",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-17",
+      "subject": "Personlige eiendeler",
+      "dimension": "sum_exclusions",
+      "value": "Bobil40kmax10kperting;ikkecash/gavekort/papir/smykke/klokke/tyverifratilbyggnårbobilborte.",
+      "location": "s4§1.3",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-18",
+      "subject": "Brann",
+      "dimension": "trigger",
+      "value": "Brann,lyn,eksplosjon.",
+      "location": "s4§2.1",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-19",
+      "subject": "Tyveri/hærverk",
+      "dimension": "trigger",
+      "value": "Tyveri/forsøk;ikkehusstand/ansattsjåfør;underslagvedprøvekjøringsalgmedoffentligannonse;hærverk.",
+      "location": "s4§2.2",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-20",
+      "subject": "Glass",
+      "dimension": "scope",
+      "value": "Brudd rute/glasstak/takluke;ikkesolcelle;skifteopptil50%markedsverdi.",
+      "location": "s4§2.3;s6§3.5",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-21",
+      "subject": "Redning",
+      "dimension": "persons",
+      "value": "Hjemrimeligstevedulykke/sykdom/død,dekketskade/upåregneligstopp/tyveri;viderereisehvisbilligere.",
+      "location": "s5§2.4.1",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-22",
+      "subject": "Redning leiebil",
+      "dimension": "conditional",
+      "value": "UtenforNordenveddekketskadeikkebaredriftsstans600/dag45d,følgfastlagtruteogforhåndsgodkjent.",
+      "location": "s5§2.4.1",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-23",
+      "subject": "Redning",
+      "dimension": "car_transport",
+      "value": "Bil+tilhenger/campingtilnærmestverksted,ogbostedsdriftsstans/tomtank;hentetransportmax50%markedsverdi.",
+      "location": "s5§2.4.2",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-24",
+      "subject": "Feilfylling",
+      "dimension": "emptying",
+      "value": "Tømming/rens10k,nårikke startetmotor feilfuel;skadeetterstartikkeunderdenneredningsytelsen.",
+      "location": "s5§2.4.2",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-25",
+      "subject": "Totalskade",
+      "dimension": "market_settlement",
+      "value": "Markedsverdi tilsvarende vesentligstand;nybil1år15kkm>80%nyverdi,ikkelesing;utgåttmodellkontantsisteliste.",
+      "location": "s5–6§3.2",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-26",
+      "subject": "Leasing",
+      "dimension": "start_rent",
+      "value": "1år15kkm>80%,startleienedskrivesgjenværendemåneder.",
+      "location": "s6§3.2.2",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-27",
+      "subject": "Reparasjon",
+      "dimension": "guarantee",
+      "value": "8årreparasjonsgarantiordlydprivatbil≤3500kg;ingen sikker ubetingetallebobilregel;trengerklassifikasjon/vekt.",
+      "location": "s6§3.3",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-28",
+      "subject": "Reparasjon",
+      "dimension": "settlement",
+      "value": "Tilvarendeogbruktedeler;forringelsefratrekk;kontantarbeid50%eksMVA,MVAetterdokumentert;ikkeverditap/garantitap.",
+      "location": "s6§3.3",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-29",
+      "subject": "Tyveri",
+      "dimension": "waiting_key",
+      "value": "Bilikkeretur21dmarkedsverdi;stjåletnøkkelomkodingnyhvisforebyggende.",
+      "location": "s6§3.4",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-30",
+      "subject": "Eiendeler",
+      "dimension": "depreciation",
+      "value": "Alder/slitasjemvfradragkunverdiforringelse≥1/3.",
+      "location": "s7§3.7",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-31",
+      "subject": "Kjørelengde/trim",
+      "dimension": "risk",
+      "value": "Årligavtaltkjørelengdeoverstigelseproporsjonalreduksjon;godkjenttrimogsåmeldes;ugodkjentikke.",
+      "location": "s7§3.10",
+      "scope": "physical",
+      "doc": "mini"
+    },
+    {
+      "id": "FBO-32",
+      "subject": "Kasko",
+      "dimension": "trigger",
+      "value": "Sammenstøt/utforkjøring/velt/feilfuel/annenplutseligytrepåvirkning.",
+      "location": "s8§1.1",
+      "scope": "kasko",
+      "doc": "kasko"
+    },
+    {
+      "id": "FBO-33",
+      "subject": "Kasko",
+      "dimension": "exclusions",
+      "value": "Maskin/leiebilegnedekninger;slitasje/gradvis/frost,ruskjøring/utmark/bane(medkursunntak),utleiehvisikkeavtalt,drosje/bud/næringikke.",
+      "location": "s8§1.1",
+      "scope": "kasko",
+      "doc": "kasko"
+    },
+    {
+      "id": "FBO-34",
+      "subject": "Kasko",
+      "dimension": "deductible",
+      "value": "Bevisvalgt;+12kveduopplystførerunder23;dyrredusererinntil2k.",
+      "location": "s8§3.1",
+      "scope": "kasko",
+      "doc": "kasko"
+    },
+    {
+      "id": "FBO-35",
+      "subject": "Topp løsøre",
+      "dimension": "sum",
+      "value": "100000total/10000perting;øvrigMini gjelder.",
+      "location": "Topp§1.1s8",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-36",
+      "subject": "Topp nøkkel",
+      "dimension": "limits",
+      "value": "15000autorisertny/programmeringomkodingmistet/stjålet/plutseligytre;1000egenandel.",
+      "location": "Topp§2.1.1s8–9/4.1s10",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-37",
+      "subject": "Topp ladekabel",
+      "dimension": "limits",
+      "value": "10000tyveri/plutseligytre;ikke fastibygg;1000egenandel.",
+      "location": "Topp§2.1.2s9/4.2s10",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-38",
+      "subject": "Topp rens",
+      "dimension": "limits",
+      "value": "10000plutseligsølutenbonus/1000egenandel;ikkefølgeelektronikk/rift;over10kordinærkasko.",
+      "location": "Topp§2.1.3s9/4.3s10",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-39",
+      "subject": "Topp parkering",
+      "dimension": "conditions",
+      "value": "Ukjentvolder/kjenttidsted;tilførstehovedforfalletter6år;ellersordinærkasko.",
+      "location": "Topp§2.1.4s9",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-40",
+      "subject": "Topp feilfylling",
+      "dimension": "deductible",
+      "value": "1000egenandel menbonustap.",
+      "location": "Topp§2.1.5s9/4.4s10",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-41",
+      "subject": "Topp ferieavbrudd",
+      "dimension": "limits",
+      "value": "Alternativovernatting1500/dag15drestplanlagtferie,etterpåbegyntferie/dekketskade,dokumentertkvittering.",
+      "location": "Topp§2.1.6s9/3.1s10",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-42",
+      "subject": "Topp fukt",
+      "dimension": "conditions",
+      "value": "Tak/vegger/gulv;beståttautorisertcaravantestgyldig1år;ikkeutenforperiode/eldre15årfraregistrertny.",
+      "location": "Topp§2.1.7s9",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-43",
+      "subject": "Topp nyverdi",
+      "dimension": "conditions",
+      "value": "3år/100000km/>80%nypris;ikkelesing;utgåttmodellkontantsisteliste.",
+      "location": "Topp§3.1s9–10",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-44",
+      "subject": "Topp leasing",
+      "dimension": "conditions",
+      "value": "3år/100000km/>80%nypris startleiemedforholdsmessigrestmåneder.",
+      "location": "Topp§3.1s10",
+      "scope": "topp",
+      "doc": "topp"
+    },
+    {
+      "id": "FBO-45",
+      "subject": "Leiebil",
+      "dimension": "optional_limits",
+      "value": "ValgfriKasko/Topp;600/dag45dnormalreparasjon tilsvarendebil;godkjentleverandør;ikkeglass/drivstoff/bom/parkering.",
+      "location": "s1§1;IPIDV106s1",
+      "scope": "addon_rental",
+      "doc": "rental"
+    },
+    {
+      "id": "FBO-46",
+      "subject": "Leiebil",
+      "dimension": "total_loss",
+      "value": "Totalskade/tyveri15d etter tilbud sendt,totalt45d fra skademelding.",
+      "location": "s1§2.1",
+      "scope": "addon_rental",
+      "doc": "rental"
+    },
+    {
+      "id": "FBO-47",
+      "subject": "Maskinskade",
+      "dimension": "optional_limits",
+      "value": "ValgfriKasko/Topp;tilførste hovedforfall etter10år eller200 000kmførst.",
+      "location": "s1§1.1;IPIDV106s1",
+      "scope": "addon_machine",
+      "doc": "machine"
+    },
+    {
+      "id": "FBO-48",
+      "subject": "Maskinskade",
+      "dimension": "components",
+      "value": "Plutseligtilfeldig;motorblokk/topplokk/turbo/coil/innsuginnsprøyting/EGR/vann/start/dynamo/lambda/NOX/AdBlue;EVbatteriDCinverterladerelmotorstyringladekontakt/PTCACmedbatterifunksjon;gir/driv/servo/styring.",
+      "location": "s1§1.1",
+      "scope": "addon_machine",
+      "doc": "machine"
+    },
+    {
+      "id": "FBO-49",
+      "subject": "Maskinskade",
+      "dimension": "exclusions",
+      "value": "Ikke bremser/fjæring/tørrclutch/ledning/høyvoltskabel/understell/slitasje/eksosrør/infotainment;ikkeoljevarmgangfrostirrfukt/gradvis/garanti/trimugodkjent/terrengbaneunntattkurs.",
+      "location": "s1§1.1",
+      "scope": "addon_machine",
+      "doc": "machine"
+    },
+    {
+      "id": "FBO-50",
+      "subject": "Maskinskade",
+      "dimension": "battery_deduction",
+      "value": "Bilfra5år10%perårmax50%,egenandeletterfradrag;bruktlikeverdigkunegenandel;uvanligslitasjeekstrafratrekk.",
+      "location": "s1§2.1",
+      "scope": "addon_machine",
+      "doc": "machine"
+    },
+    {
+      "id": "FBO-51",
+      "subject": "Maskinskade",
+      "dimension": "deductible",
+      "value": "Til99999km10k;100000–14999915k;150000–20000020k.",
+      "location": "s2§3",
+      "scope": "addon_machine",
+      "doc": "machine"
+    },
+    {
+      "id": "FBO-52",
+      "subject": "Maskinskade",
+      "dimension": "settlement",
+      "value": "Ikkekontantoppgjør;øvrigMinikasko§3.",
+      "location": "s2§2.2",
+      "scope": "addon_machine",
+      "doc": "machine"
+    },
+    {
+      "id": "FBO-53",
+      "subject": "Utleie",
+      "dimension": "channel_rule",
+      "value": "DNB inkludererprivatutleie2mnd/årgratis;sammesideforbudutleie;fullkaskokreverbevis.",
+      "location": "DNB Leieut og Hvaikkedekket;Kasko§1.1",
+      "scope": "kasko",
+      "doc": "web"
+    },
+    {
+      "id": "FBO-54",
+      "subject": "Kanal-versjon",
+      "dimension": "conflict",
+      "value": "DNBmatrix80ktoppbagasje motfull100k;webFAQ10kutstyrmotPDF50k;webNordenmotPDFEuropaekskl4land;webferie2ukermotPDF15d;webinkludertmaskin/leieToppmotIPIDvalgfri og ingenkomponentiToppPDF.",
+      "location": "DNBpage/fullPMO2025/IPIDV106",
+      "scope": "all",
+      "doc": "web"
+    },
+    {
+      "id": "FBO-55",
+      "subject": "Minikasko nyverdi",
+      "dimension": "level_conflict",
+      "value": "FullMini har1år15kkmregel;DNBmatrixnybilbareKasko. Ikkevelg nivåtilfeldig.",
+      "location": "Mini§3.2s5/DNBmatrix",
+      "scope": "physical",
+      "doc": "web"
+    },
+    {
+      "id": "FBO-56",
+      "subject": "Sikkerhet",
+      "dimension": "customer_rule",
+      "value": "Forsikringsbevis valgte komponenter/årligkjørelengde/sikkerhetsforskrifter;kundedata harforrang.",
+      "location": "Full§3s1/IPIDV106s2",
+      "scope": "all",
+      "doc": "ipid"
+    },
+    {
+      "id": "FBO-57",
+      "subject": "Generelle vilkår",
+      "dimension": "scope",
+      "value": "Felles vilkår/lovvalg/krig/terror/atom;tidligerehashkontrollert;ikkevilkårligproduktvalg.",
+      "location": "Generelle§1–15",
+      "scope": "all",
+      "doc": "general"
+    }
+  ],
+  "shared_inventory_reuse": "FBI01–34 current 2025 common clauses; exactbobil additions reviewed13p, DNBHTML complete, IPID/rental/machine samehash earlier reviewed; Bobil top exact not Bil top.",
+  "source_conflicts_preserved": true
+}

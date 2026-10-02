@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "scope": "Retained B-001/B-002 only; not a complete Wave 1 gate or full source audit",
+  "baseline_products": 204,
+  "changed_products": [
+    "fremtind-hus-standard",
+    "fremtind-hus-topp",
+    "gjensidige-mc-delkasko"
+  ],
+  "unchanged_products": 201,
+  "closed_findings": [
+    "GAP-2361",
+    "GAP-5106"
+  ],
+  "P1_signatures_resolved": 2,
+  "source_hashes_verified": {
+    "catalog/sources/mc-bobil/gjensidige-mc-delkasko-vilkar.pdf": "45952992dfe399ab2739be019307a485044639516cc7a75dfbbdd030437495e7",
+    "catalog/sources/mc-bobil/gjensidige-mc-kasko-vilkar.pdf": "735f518bd45c6470965c1ea6be2f596b6504cee9a09c47718a629ed319db5e58",
+    "catalog/sources/fremtind/hus/canonical/Vilkar_Topp_Hus.pdf": "6c77bd57259d8d01390bccaf415f14f6b245e45345b597b6f651574ebaeebec3"
+  },
+  "targeted_P1_remaining": 0,
+  "outside_scope_unresolved": true,
+  "wrong_positive_removed_without_negative_invention": true,
+  "Standard_explicit_exclusion_Topp_inclusion_own_sources": true,
+  "B003_attempt_absent": true
+}

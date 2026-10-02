@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "review_status": "WAVE2_SEMANTIC_RESOLUTION_COMPLETE",
+  "checks": {
+    "seven_batches": true,
+    "one_disposition_each": true,
+    "all_ready_have_exact_plan": true,
+    "all_unresolved_have_exact_requirement": true,
+    "dependencies_resolve": true,
+    "execution_order_respects_dependencies": true,
+    "child_batch_ids_unique": true,
+    "no_source_research_needed": true,
+    "no_human_domain_dependency": true,
+    "all_sources_have_verified_hashes": true,
+    "head_unchanged": true,
+    "branch_unchanged": true,
+    "staged_unchanged": true,
+    "git_status_unchanged": true,
+    "project_membership_and_hashes_unchanged": true,
+    "immutable_inputs_membership_and_hashes_unchanged": true,
+    "git_diff_check_pass": true,
+    "all_required_outputs_except_quality_present": true,
+    "output_json_csv_parse": true
+  },
+  "counts": {
+    "READY_TO_IMPLEMENT": 3,
+    "READY_TO_IMPLEMENT_AFTER_SPLIT": 0,
+    "SOURCE_RESEARCH_REQUIRED": 0,
+    "HUMAN_DOMAIN_REVIEW_REQUIRED": 0,
+    "CANONICAL_EXTENSION_REQUIRED": 3,
+    "KEEP_CURRENT_CONSERVATIVE_STATE": 0,
+    "BLOCKED_BY_OTHER_BATCH": 1
+  },
+  "input_batches": 7,
+  "total_dispositions": 7,
+  "ready_batches": [
+    "B-017",
+    "B-019",
+    "B-021"
+  ],
+  "canonical_decision_count": 8,
+  "mapping_decision_count": 7,
+  "planned_regressions": 69,
+  "new_project_tests_executed": 0,
+  "prior_full_suite": "2038/2038 PASS; not rerun",
+  "targeted_read_only_probes": {
+    "product_count": 13,
+    "addon_combinations": 4,
+    "comparison_pairs": 4,
+    "synthetic_document_key_cases": 1,
+    "catalog_mutations": 0
+  },
+  "source_hash_checks": 12,
+  "head": "d3a37985fce4ada65fa2f7a88462d8834e4677af",
+  "branch": "main",
+  "staged_count": 0,
+  "existing_working_tree_changes": 17,
+  "project_fingerprint_file_count": 597,
+  "immutable_input_fingerprint_file_count": 1045,
+  "project_changed_paths": [],
+  "input_changed_paths": [],
+  "parse_checks": {
+    "wave2-resolution.json": "PASS",
+    "batch-resolutions.csv": {
+      "status": "PASS",
+      "rows": 7
+    },
+    "canonical-decisions.csv": {
+      "status": "PASS",
+      "rows": 8
+    },
+    "mapping-decisions.csv": {
+      "status": "PASS",
+      "rows": 7
+    },
+    "unresolved-dependencies.csv": {
+      "status": "PASS",
+      "rows": 4
+    },
+    "regression-plan.csv": {
+      "status": "PASS",
+      "rows": 69
+    }
+  },
+  "forbidden_operations": {
+    "project_writes": false,
+    "private_PDF_access": false,
+    "env_read_or_write": false,
+    "web_or_download": false,
+    "stage_commit_push_deploy": false,
+    "reset_revert_stash_clean": false,
+    "Railway_changes": false,
+    "Wave3_review_or_implementation": false
+  },
+  "output_directory": "/tmp/nito-wave2-semantic-resolution"
+}

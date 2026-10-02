@@ -1,0 +1,634 @@
+[
+  {
+    "first": "[\"tryg\",\"reise\",\"ordinary\",\"tryg-reise-ekstra\",\"2026-09-20-canonical\"]",
+    "second": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+    "rows": [
+      {
+        "key": "reise.omrade.verden",
+        "label": "Geografisk område",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseProduct",
+                  "section": "3 Hvor forsikringen gjelder",
+                  "page": 1,
+                  "filename": "PRF46000-Produktvilkar.pdf",
+                  "termsNumber": "PRF46000",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+                  "productCode": "PRF46000",
+                  "version": "PRF46000",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseProduct",
+              "section": "3 Hvor forsikringen gjelder",
+              "page": 1,
+              "filename": "PRF46000-Produktvilkar.pdf",
+              "termsNumber": "PRF46000",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+              "productCode": "PRF46000",
+              "version": "PRF46000",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "storebrandReiseTerms",
+                  "section": "B.1",
+                  "page": 4,
+                  "filename": "reise10-vilkar-reiseforsikring.pdf",
+                  "termsNumber": "reise10",
+                  "effectiveFrom": "2025-06-01",
+                  "company": "Storebrand",
+                  "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                  "productCode": "reise10",
+                  "version": "reise10",
+                  "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "storebrandReiseTerms",
+              "section": "B.1",
+              "page": 4,
+              "filename": "reise10-vilkar-reiseforsikring.pdf",
+              "termsNumber": "reise10",
+              "effectiveFrom": "2025-06-01",
+              "company": "Storebrand",
+              "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+              "productCode": "reise10",
+              "version": "reise10",
+              "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "different": true
+      },
+      {
+        "key": "reise.overnatting",
+        "label": "Reise med eller uten overnatting",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+          "facts": [
+            {
+              "key": "reise.overnatting",
+              "label": "Reise med eller uten overnatting",
+              "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseExtra",
+                  "section": "Produktstruktur og produktside",
+                  "page": 1,
+                  "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                  "termsNumber": "PRF46001",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                  "productCode": "PRF46001",
+                  "version": "PRF46001",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseExtra",
+              "section": "Produktstruktur og produktside",
+              "page": 1,
+              "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+              "termsNumber": "PRF46001",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+              "productCode": "PRF46001",
+              "version": "PRF46001",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ],
+    "reversed": [
+      {
+        "key": "reise.omrade.verden",
+        "label": "Geografisk område",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "storebrandReiseTerms",
+                  "section": "B.1",
+                  "page": 4,
+                  "filename": "reise10-vilkar-reiseforsikring.pdf",
+                  "termsNumber": "reise10",
+                  "effectiveFrom": "2025-06-01",
+                  "company": "Storebrand",
+                  "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                  "productCode": "reise10",
+                  "version": "reise10",
+                  "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "storebrandReiseTerms",
+              "section": "B.1",
+              "page": 4,
+              "filename": "reise10-vilkar-reiseforsikring.pdf",
+              "termsNumber": "reise10",
+              "effectiveFrom": "2025-06-01",
+              "company": "Storebrand",
+              "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+              "productCode": "reise10",
+              "version": "reise10",
+              "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseProduct",
+                  "section": "3 Hvor forsikringen gjelder",
+                  "page": 1,
+                  "filename": "PRF46000-Produktvilkar.pdf",
+                  "termsNumber": "PRF46000",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+                  "productCode": "PRF46000",
+                  "version": "PRF46000",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseProduct",
+              "section": "3 Hvor forsikringen gjelder",
+              "page": 1,
+              "filename": "PRF46000-Produktvilkar.pdf",
+              "termsNumber": "PRF46000",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+              "productCode": "PRF46000",
+              "version": "PRF46000",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "different": true
+      },
+      {
+        "key": "reise.overnatting",
+        "label": "Reise med eller uten overnatting",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+          "facts": [
+            {
+              "key": "reise.overnatting",
+              "label": "Reise med eller uten overnatting",
+              "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseExtra",
+                  "section": "Produktstruktur og produktside",
+                  "page": 1,
+                  "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                  "termsNumber": "PRF46001",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                  "productCode": "PRF46001",
+                  "version": "PRF46001",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseExtra",
+              "section": "Produktstruktur og produktside",
+              "page": 1,
+              "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+              "termsNumber": "PRF46001",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+              "productCode": "PRF46001",
+              "version": "PRF46001",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "different": true
+      }
+    ]
+  },
+  {
+    "first": "[\"tryg\",\"reise\",\"ordinary\",\"tryg-reise-premium\",\"2026-09-20-canonical\"]",
+    "second": "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+    "rows": [
+      {
+        "key": "reise.omrade.verden",
+        "label": "Geografisk område",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseProduct",
+                  "section": "3 Hvor forsikringen gjelder",
+                  "page": 1,
+                  "filename": "PRF46000-Produktvilkar.pdf",
+                  "termsNumber": "PRF46000",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+                  "productCode": "PRF46000",
+                  "version": "PRF46000",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseProduct",
+              "section": "3 Hvor forsikringen gjelder",
+              "page": 1,
+              "filename": "PRF46000-Produktvilkar.pdf",
+              "termsNumber": "PRF46000",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+              "productCode": "PRF46000",
+              "version": "PRF46000",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "storebrandReiseTerms",
+                  "section": "B.1",
+                  "page": 4,
+                  "filename": "reise10-vilkar-reiseforsikring.pdf",
+                  "termsNumber": "reise10",
+                  "effectiveFrom": "2025-06-01",
+                  "company": "Storebrand",
+                  "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                  "productCode": "reise10",
+                  "version": "reise10",
+                  "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "storebrandReiseTerms",
+              "section": "B.1",
+              "page": 4,
+              "filename": "reise10-vilkar-reiseforsikring.pdf",
+              "termsNumber": "reise10",
+              "effectiveFrom": "2025-06-01",
+              "company": "Storebrand",
+              "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+              "productCode": "reise10",
+              "version": "reise10",
+              "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "different": true
+      },
+      {
+        "key": "reise.overnatting",
+        "label": "Reise med eller uten overnatting",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+          "facts": [
+            {
+              "key": "reise.overnatting",
+              "label": "Reise med eller uten overnatting",
+              "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseExtra",
+                  "section": "Produktstruktur og produktside",
+                  "page": 1,
+                  "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                  "termsNumber": "PRF46001",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                  "productCode": "PRF46001",
+                  "version": "PRF46001",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseExtra",
+              "section": "Produktstruktur og produktside",
+              "page": 1,
+              "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+              "termsNumber": "PRF46001",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+              "productCode": "PRF46001",
+              "version": "PRF46001",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ],
+    "reversed": [
+      {
+        "key": "reise.omrade.verden",
+        "label": "Geografisk område",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden fra du forlater hjemmet, men ikke hjemme, på arbeidssted eller undervisningssted. Dagstur er omfattet. Ansvar og rettshjelp gjelder bare utenfor Norden.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "storebrandReiseTerms",
+                  "section": "B.1",
+                  "page": 4,
+                  "filename": "reise10-vilkar-reiseforsikring.pdf",
+                  "termsNumber": "reise10",
+                  "effectiveFrom": "2025-06-01",
+                  "company": "Storebrand",
+                  "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+                  "productCode": "reise10",
+                  "version": "reise10",
+                  "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "storebrandReiseTerms",
+              "section": "B.1",
+              "page": 4,
+              "filename": "reise10-vilkar-reiseforsikring.pdf",
+              "termsNumber": "reise10",
+              "effectiveFrom": "2025-06-01",
+              "company": "Storebrand",
+              "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+              "productCode": "reise10",
+              "version": "reise10",
+              "note": "Forsikringsbeviset går foran og angir nivå, sikrede, reisedager, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+          "facts": [
+            {
+              "key": "reise.omrade.verden",
+              "label": "Geografisk område",
+              "value": "Reiser i hele verden, men ikke fast/midlertidig bosted eller fast arbeids-/skole-/undervisningssted. Fritidsarrangement på slike steder er unntatt fra stedsbegrensningen.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseProduct",
+                  "section": "3 Hvor forsikringen gjelder",
+                  "page": 1,
+                  "filename": "PRF46000-Produktvilkar.pdf",
+                  "termsNumber": "PRF46000",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+                  "productCode": "PRF46000",
+                  "version": "PRF46000",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseProduct",
+              "section": "3 Hvor forsikringen gjelder",
+              "page": 1,
+              "filename": "PRF46000-Produktvilkar.pdf",
+              "termsNumber": "PRF46000",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Produkt&vilkNr=05PRF46000",
+              "productCode": "PRF46000",
+              "version": "PRF46000",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "different": true
+      },
+      {
+        "key": "reise.overnatting",
+        "label": "Reise med eller uten overnatting",
+        "conceptId": "reise.rammer",
+        "conceptLabel": "Reisens rammer",
+        "conceptTier": "primary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+          "facts": [
+            {
+              "key": "reise.overnatting",
+              "label": "Reise med eller uten overnatting",
+              "value": "Reise Ekstra gjelder fritids- og tjenestereiser med og uten overnatting.",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "trygReiseExtra",
+                  "section": "Produktstruktur og produktside",
+                  "page": 1,
+                  "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+                  "termsNumber": "PRF46001",
+                  "effectiveFrom": "2026-01-01",
+                  "company": "Tryg",
+                  "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+                  "productCode": "PRF46001",
+                  "version": "PRF46001",
+                  "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "trygReiseExtra",
+              "section": "Produktstruktur og produktside",
+              "page": 1,
+              "filename": "PRF46001-Reise-Reise-Ekstra.pdf",
+              "termsNumber": "PRF46001",
+              "effectiveFrom": "2026-01-01",
+              "company": "Tryg",
+              "url": "https://www.tryg.no/odpdf?vilk=Reise-Reise-Ekstra-Dekningsvilkaar&vilkNr=05PRF46001",
+              "productCode": "PRF46001",
+              "version": "PRF46001",
+              "note": "Forsikringsbeviset går foran vilkårene og avgjør valgte personer, dekninger, reisevarighet, summer, egenandeler og særvilkår."
+            }
+          ]
+        },
+        "different": true
+      }
+    ]
+  }
+]

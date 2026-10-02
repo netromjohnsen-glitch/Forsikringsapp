@@ -1,0 +1,1303 @@
+{
+  "phase": "SOURCE_INVENTORY_COMPLETE",
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "source": "catalog/sources/storebrand/vilkar-motorvognforsikring-motor09.pdf",
+  "read": "all33physicalpages;BilBobilandMCstoredHTML;general11alreadyreadbyidenticalhash",
+  "rules": [
+    {
+      "inventory_id": "SB-MO-001",
+      "subject": "Produktomfang",
+      "dimension": "nivå/bevis",
+      "value": "Ansvar,Delkasko,Kasko,Super etterbevis; MC/Snøscooterproduktside bare Ansvar/Delkasko/Kasko; bevis går foran.",
+      "page": 1,
+      "section": "Innledning+1.1",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "SB-MO-002",
+      "subject": "Forsikret",
+      "dimension": "person/bruk",
+      "value": "Norgebosatt forsikringstaker; ansvar også rettmessigfører; panthaver måha bekreftelse.",
+      "page": 5,
+      "section": "2",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-003",
+      "subject": "Ansvar",
+      "dimension": "registrering",
+      "value": "Norskregistrert kjøretøy; ansvar opphører automatisk vedavregistrering, øvrigvalgtkasko fortsetter.",
+      "page": 6,
+      "section": "3 og6.1",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-004",
+      "subject": "Geografi",
+      "dimension": "hovedregel",
+      "value": "EØS+Sveits, andreGrøntkortland iEuropainntil3måneder; ikkeTyrkia,Russland,Belarus,Kosovo.",
+      "page": 6,
+      "section": "4",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-005",
+      "subject": "Ansvar",
+      "dimension": "sum",
+      "value": "Personubegrenset,ting100millioner;utenlandsstedslov,innenEØSnorsk hvisgunstigere;ingenegenandel.",
+      "page": 9,
+      "section": "6.1",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-006",
+      "subject": "Brann",
+      "dimension": "årsak/unntak",
+      "value": "Åpenflamme,lyn,eksplosjon; batterialeneskade,kortslutning/opphetingutenåpenild ikke brann.",
+      "page": 9,
+      "section": "6.2.1",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-007",
+      "subject": "Brann",
+      "dimension": "egenandel",
+      "value": "8000 medmindrebevisannet;ladekabelaleneforsikretelbil/hybrid2000.",
+      "page": 10,
+      "section": "6.2.1",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-008",
+      "subject": "Tyveri",
+      "dimension": "omfang",
+      "value": "Tyveri/forsøk,åpenbartyverirelatert hærverk/innbrudd;husstandsmedlem ikketyveri;underslagprøvekjøring vedannonsert salg inkludert.",
+      "page": 10,
+      "section": "6.2.2",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-009",
+      "subject": "Tyveri",
+      "dimension": "egenandel",
+      "value": "8000 standard;FGalarmidriftskade reduserer4000.",
+      "page": 10,
+      "section": "6.2.2",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-010",
+      "subject": "Utstyr",
+      "dimension": "standard",
+      "value": "Originalsommer/vinterhjul,sikkerhetsutstyr,fastutstyrfraforhandlerførlevering,softwareoriginal;nøkleroriginale.",
+      "page": 7,
+      "section": "5",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-011",
+      "subject": "Sikkerhetsutstyr",
+      "dimension": "MC/Snøscooter",
+      "value": "Kjøredress,hjelm,hanske,støvler omfattes;ingen sumgrense men utstyretsoppgjørsregel.",
+      "page": 7,
+      "section": "5",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "MC",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-012",
+      "subject": "Fastmontert utstyr",
+      "dimension": "sum/relativt tak",
+      "value": "Delkasko/Kasko20000,Super50000;ikke merenn50prosent kjøretøyetsgjenanskaffelsesverdi;ettermontertsoftware/dekor/lakk/hjul/takboks.",
+      "page": 7,
+      "section": "5 og6.4.7",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-013",
+      "subject": "Bagasje",
+      "dimension": "Bil",
+      "value": "Delkasko/Kasko10000,Super20000;veddekketbrann/tyveri/kasko. Ikke penger/verdipapirer iSuper.",
+      "page": 7,
+      "section": "5 og6.4.6",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-014",
+      "subject": "Bagasje",
+      "dimension": "Bobil",
+      "value": "Delkasko/Kasko30000;Super100000 for løsøre/personligeeiendeler.",
+      "page": 7,
+      "section": "5 og6.4.8",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-015",
+      "subject": "Bagasje",
+      "dimension": "MC/Snøscooteravgrensning",
+      "value": "Felles tabellgir10000 ordinærbagasje;MCproduktsiden unntarbagasje oggods;Superutvidelse eksplisitt ikkeMC/scooter. Avklar ordinærkollisjon.",
+      "page": 7,
+      "section": "5 og6.4.6 +MCweb",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "MC",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "SOURCE_CONFLICT"
+    },
+    {
+      "inventory_id": "SB-MO-016",
+      "subject": "Ladekabel",
+      "dimension": "omfang",
+      "value": "Bil/elhybrid kabel oppbevartbil/låstbod/skap/lading;fastbygningsladestasjonikke;2000egenandelskadealene.",
+      "page": 7,
+      "section": "5 og6.2.1/6.2.2/6.3",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-017",
+      "subject": "Aldersfradrag",
+      "dimension": "utstyr/dekk",
+      "value": "Etterettårkan reduseredekk25prosentperårmax100;annetutstyr10prosentpåbegyntårmax50.",
+      "page": 8,
+      "section": "5",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-018",
+      "subject": "Aldersfradrag",
+      "dimension": "bagasje",
+      "value": "Klær1fradragsfrittår/10prosent;elektrisk5/10prosent;mobil/data1/20prosent;annet5/5prosent;allemax80. Kildetekstenregner toårklær20prosent.",
+      "page": 8,
+      "section": "5 – tabell",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-019",
+      "subject": "Veihjelp",
+      "dimension": "geografi",
+      "value": "DelkaskoNorden,Kasko/SuperEØS/Sveits+øvrigEuropamax3mnd oggeografiunntak.",
+      "page": 11,
+      "section": "6.2.3 og4",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-020",
+      "subject": "Veihjelp",
+      "dimension": "årsaker",
+      "value": "Verksted/repsted vedkollisjon/tyveri/startstopp/tomellerfeilfylt tank/utelåsing/nøkkel/punktering;sykdom/ulykke/død kanhindreviderekjøring.",
+      "page": 11,
+      "section": "6.2.3",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-021",
+      "subject": "Veihjelp",
+      "dimension": "hjemtransporttak",
+      "value": "Kjøretøyshjemtransportmaks50prosent kjøretøyverdi; subsidiærgaranti/medlemskap;passasjerreise/opphold rimeligste måte;tilhenger/campingunderbrukomfattesutenannendekning.",
+      "page": 11,
+      "section": "6.2.3",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-022",
+      "subject": "Veihjelp",
+      "dimension": "tilkomst/egenandel",
+      "value": "Normaltfremkommeligutenadgangsrestriksjon;bestillesStorebrand;750egenandel.",
+      "page": 11,
+      "section": "6.2.3,12/egenandel",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-023",
+      "subject": "Transport",
+      "dimension": "Snøscootersærregel",
+      "value": "Transportkost50prosent,begrenset halvpartavskadeerstatning,nårskadeoveregenandel;ingenandretransportutgifter. Websierikkeordinærveihjelp.",
+      "page": 11,
+      "section": "6.2.3/5",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-024",
+      "subject": "Glass",
+      "dimension": "tak/egenandel",
+      "value": "Plutselig brudd allekjøretøyruter;byttetak50prosentgjenanskaffelse;3000bytte,0reparasjon.",
+      "page": 12,
+      "section": "6.2.4",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-025",
+      "subject": "Naturskade",
+      "dimension": "dekning/egenandel",
+      "value": "Skred/storm/flom/stormflo/jordskjelv/vulkan iNorden;8000medmindreannet.",
+      "page": 12,
+      "section": "6.2.5",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-026",
+      "subject": "Kasko",
+      "dimension": "årsaker",
+      "value": "Sammenstøt/utforkjøring/velt/hærverk/feilfylling/annenplutseligytrepåvirkning i tilleggDelkasko.",
+      "page": 12,
+      "section": "6.3",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-027",
+      "subject": "Kasko",
+      "dimension": "egenandel/dyr",
+      "value": "Bevisegenandel;dyrepåkjørsel reduserer6000 vedumiddelbarmeldingpoliti/viltnemnd.",
+      "page": 13,
+      "section": "6.3",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-028",
+      "subject": "Nyverdi",
+      "dimension": "ordinærpersonbil",
+      "value": "Registrertperson/varebil;inntil1år15000km,rep>80prosentnylistepris;ikketidligereskade>10prosent;ikkelaset/taxi/trafikkskole/utleie/prøve/turist/eksport/diplomat;gjenkjøp.",
+      "page": 24,
+      "section": "10.3,fortsetter25",
+      "levels": [
+        "D",
+        "K"
+      ],
+      "types": [
+        "Bil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-029",
+      "subject": "Nyverdi",
+      "dimension": "Bobilordinær",
+      "value": "TabellviserKasko1år15000;full10.3begrensettilregistrertperson/varebil. Bobilregistreringsklasse kanavgjøre;ikkeubetingettransfer.",
+      "page": 24,
+      "section": "10.3 +1.2",
+      "levels": [
+        "K"
+      ],
+      "types": [
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "SOURCE_AMBIGUOUS"
+    },
+    {
+      "inventory_id": "SB-MO-030",
+      "subject": "Nyverdi",
+      "dimension": "Super",
+      "value": "Inntil3år60000km;førstefabrikkregistrertpåforsikringstaker;taptellerrep>nylistepris;ingenførskade>10prosent;ikkeleased;gjenkjøp.",
+      "page": 13,
+      "section": "6.4.1,fortsetter14",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-031",
+      "subject": "Startleie",
+      "dimension": "Super",
+      "value": "Totalskadekvalifiserer6.4.1 ellertaptettertyveri30d;startleienedskrivesmåneder;ingenytelsehvisleasingfortsetterutenny startleie.",
+      "page": 14,
+      "section": "6.4.2",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-032",
+      "subject": "Maskinskade",
+      "dimension": "alder/km",
+      "value": "Inntil200000km og12år fraførstereg;ingenetterpassering;kmegenandel8000<100000,15000<150000,20000til200000;ingenbonus.",
+      "page": 14,
+      "section": "6.4.3 og16",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-033",
+      "subject": "Maskinskade",
+      "dimension": "komponenter",
+      "value": "Plutseliguforutsett fremdriftshindrendemekanisk/elektronisk skade i oppgitte motor/gir/drivlinje/elhybridbatteri/ladekomponenter,servo,varme/kjøledeler;clutch/svinghjul/sylinder/vaierkuninntil100000km.",
+      "page": 14,
+      "section": "6.4.3,15",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-034",
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Ikke følgeskadefraekskludertkomponent;clutchlamell,slanger/filter/tank,understell/brems/lager/DPF,eksternladekabel,startbatteri,annetutenfordrivlinje.",
+      "page": 15,
+      "section": "6.4.3",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-035",
+      "subject": "Maskinskade",
+      "dimension": "årsaksunntak/service",
+      "value": "Ikkevarmgang/slitasje/korrosjon/klima/oljeoverforbruk/kapasitetstap/konstruksjonsoftwarefeil/ikke godkjenttrim;servicefulgtogdokumentert;garantikravførst,forgjeveskravkanomfattes.",
+      "page": 16,
+      "section": "6.4.3",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-036",
+      "subject": "Bilnøkkel",
+      "dimension": "sum/egenandel",
+      "value": "Mistet/stjålet/ytre skadet;ny/programmering/omkodingautorisert;20000/1000egenandel.",
+      "page": 16,
+      "section": "6.4.4,17",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-037",
+      "subject": "Bilnøkkel",
+      "dimension": "unntak",
+      "value": "Ikke gjenglemt/tekniskfeilalene,låsbytte/ECUomprogrammering,ekstradelnøkkel.",
+      "page": 17,
+      "section": "6.4.4",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-038",
+      "subject": "Parkering",
+      "dimension": "sum/vilkår",
+      "value": "25000utenbonus;tillfeldigskadefraannetukjentkjøretøy,kjenttid/sted,avtaleverksted;valgtkaskoegenandel;over25000ordinærbonus.",
+      "page": 17,
+      "section": "6.4.5",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-039",
+      "subject": "Fukt",
+      "dimension": "BobilSuper",
+      "value": "Nyereenn8produksjonsår;ferskvann/avløp/varmeanlegglekkasje;beståttautorisertfuktkontrollgiromfangettår;nykontrollkreves;ikkefrost;8000egenandel.",
+      "page": 18,
+      "section": "6.4.8/1",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-040",
+      "subject": "Feriegaranti",
+      "dimension": "BobilSuper",
+      "value": "Erstatningsmessigskadeetterpåbegyntferie;alternativovernatting1500/dagrestferiemaks15d;dokumentasjon.",
+      "page": 18,
+      "section": "6.4.8/2",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-041",
+      "subject": "Leiebil",
+      "dimension": "valg/årsaker",
+      "value": "BarebevisvalgtpåKasko/Super,dekkerutbetaltbrann/tyveri/kasko/skadevolderansvar;Supermaskinskadeinkl;ikke glassalene;forhåndsgodkjent.",
+      "page": 18,
+      "section": "7",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-MO-042",
+      "subject": "Leiebil",
+      "dimension": "klasse",
+      "value": "StandardklasseC/utvidetklasseI,ikkestørreennskadetkjøretøy;utennettverk350/dag.",
+      "page": 19,
+      "section": "7.1",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-MO-043",
+      "subject": "Leiebil",
+      "dimension": "reparasjon",
+      "value": "Maks60d,over30dspesialavtale;utenavtaleverksted15d;normalreparasjon+ventingmaksnormaltid.",
+      "page": 19,
+      "section": "7.2",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-MO-044",
+      "subject": "Leiebil",
+      "dimension": "kontant",
+      "value": "Ingenleid250/dagmax21dnormalrep;ingenleiebilkostvedkontantoppgjør.",
+      "page": 19,
+      "section": "7.1–7.2",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-MO-045",
+      "subject": "Leiebil",
+      "dimension": "totalskade/tyveri",
+      "value": "Totalskadefraregistrerttil15d etteravgjørelse;tyverifaktisktid+15d ettertilbud;utenleiebil250/dag15d.",
+      "page": 19,
+      "section": "7.2",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-MO-046",
+      "subject": "Leiebil",
+      "dimension": "maskin/veibrudd",
+      "value": "Supermaskin15d føravgjørelse,erstatningsmessiginntil60d;utilgjengeligvednaturulykkeveibrudd10d.",
+      "page": 19,
+      "section": "7.2",
+      "levels": [
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "Bobil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-MO-047",
+      "subject": "Generelle unntak",
+      "dimension": "bane/is/trim",
+      "value": "Banekjøringunntattmedobligatoriskopplæring/glattbanetreningunntak;islagtutenmerketvei,ikke godkjenttrim,egenmaskin/elektronikkuteneksternskadeunntatt.",
+      "page": 20,
+      "section": "8",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-048",
+      "subject": "Bruk",
+      "dimension": "utleie/næring",
+      "value": "Skadevedbetaltprivatutleie/formidletutleie/næringunntattutenavtale;ogsåhåndverkerbiltil/fraarbeid.",
+      "page": 20,
+      "section": "8/17–18",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-049",
+      "subject": "Egenandel",
+      "dimension": "ungfører",
+      "value": "Vedavtaltingenunder23menyngrefører:15000ekstra.",
+      "page": 21,
+      "section": "9.1",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-050",
+      "subject": "Sikkerhet",
+      "dimension": "kjørelengde/service",
+      "value": "Årligavtaltkjørelengde,sikkerhet/service/frost/sertifikat,last,låsing/spesifikklagring;risikoendringproportionalavkortning.",
+      "page": 21,
+      "section": "9.1–9.2,22",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "SB-MO-051",
+      "subject": "Oppgjør",
+      "dimension": "reparasjon",
+      "value": "Slitasjefradrag/skjønn,tilsvarendebruktedeler;utenverkstedarbeid50prosent;ikkeverdifall/avsavn/arbeidsinntekt.",
+      "page": 23,
+      "section": "10.2,24",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-052",
+      "subject": "Oppgjør",
+      "dimension": "kosmetikkMC/Scooter",
+      "value": "Kosmetikkskadeutenfunksjonstap kanrepareres/utbetales skjønn,ikkekravnye deler.",
+      "page": 23,
+      "section": "10.2",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "MC",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-053",
+      "subject": "Reparasjonsgaranti",
+      "dimension": "Bil",
+      "value": "Person/varebilinntil3,5tonn:8år fordekketskadereparasjonvedavtaleverksted,uavhengigsenereforsikringsgiver;kravinnento mndoppdaget.",
+      "page": 24,
+      "section": "10.2.1",
+      "levels": [
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-054",
+      "subject": "Bonus",
+      "dimension": "unntak",
+      "value": "Ingenbonustapdelkaskoskade,leiebilalene,Supermaskin,rapportertdyr,natur,feilfylling,nøkkel/parkeringSuper,øvelseskjøring.",
+      "page": 26,
+      "section": "11.2",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-055",
+      "subject": "Bonus",
+      "dimension": "opptrapping/tap",
+      "value": "10poeng/skadefrittåropp70,3år70gir75;75ettertredjeårettap0mennullstillopptjening;førdet5;andre10.",
+      "page": 26,
+      "section": "11.3–11.4",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-056",
+      "subject": "Ulykke",
+      "dimension": "avtale/rolle/sum",
+      "value": "Bevisvalgtfører/passasjer,ikke betaltpassasjer;død100000,invaliditet200000,barnunder18500000prosentvis;førerutenforkjøretøyhvisdirekteårsak.",
+      "page": 27,
+      "section": "12.1–12.3",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-057",
+      "subject": "Ulykke",
+      "dimension": "unntak",
+      "value": "Ikkepsykisk/adferd;sykdomogsykdomsdisposisjon,ryggutenpåvistbrudd;arr/vansiringunder15prosentikkedekket.",
+      "page": 28,
+      "section": "12.4",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-058",
+      "subject": "Ulykke",
+      "dimension": "tidsfrist/invaliditetsberegning",
+      "value": "Dødinnen2år;ettertoårkuninvaliditet;dødannenårsakinntoåringen;tidligerefunksjonstaptrekkes,medvirkendeforholdforholdsmessig.",
+      "page": 29,
+      "section": "12.5.2–12.5.3",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-059",
+      "subject": "Rettshjelp",
+      "dimension": "rolle/geografi",
+      "value": "Eier/rettmessigfører/bruker/Norden;etterfølgendetvistvedsalg/tilbakeleveringleasingfortsetter.",
+      "page": 30,
+      "section": "13.1–13.3,31",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-060",
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "100000pertvist;3–10parter250000;11–25500000;26–49750000;50+énmillion;4000+20prosent én per tvist.",
+      "page": 32,
+      "section": "13.5–13.6",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-061",
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Ikkenæring/familie/straff/førerkort/ubestridtgjeld/konkurs/advokatsalær/sameier/preeksisterendegrunnlag/ankerettsgebyr/motpartskost. Forvaltningsøksmålbareuttømtklage;BALavslagførjuridiskhjelp.",
+      "page": 31,
+      "section": "13.4,32",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-062",
+      "subject": "Administrasjon",
+      "dimension": "generellevilkår",
+      "value": "Skademelding/skjønn/regress/fornyelse/klage oggenerellemotorforsikringsregler;ikkehverparagraphpremiumrad.",
+      "page": 1,
+      "section": "Innledning+10+13.7",
+      "levels": [
+        "A",
+        "D",
+        "K",
+        "S"
+      ],
+      "types": [
+        "Bil",
+        "MC",
+        "Bobil",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "ADMINISTRATIVE"
+    },
+    {
+      "inventory_id": "SB-MO-063",
+      "subject": "Tegning",
+      "dimension": "MC/scooter",
+      "value": "Produktside:bilforsikringStorebrandkreves forMC;privateNorgeregistrerte;ATV/snøscooterinntil175HK.",
+      "page": null,
+      "section": "MCwebFAQ",
+      "levels": [
+        "A",
+        "D",
+        "K"
+      ],
+      "types": [
+        "MC",
+        "Snøscooter"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-064",
+      "subject": "Banekurs",
+      "dimension": "MC",
+      "value": "Produktside skriftligforhåndsgodkjentførerkurskanomfattes;ingenallbanedekning.",
+      "page": null,
+      "section": "MCwebFAQ",
+      "levels": [
+        "A",
+        "D",
+        "K"
+      ],
+      "types": [
+        "MC"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-065",
+      "subject": "Egenandel",
+      "dimension": "MCene-fører",
+      "value": "Vedavtaltrabattforbareforsikringstakerogannenfører:15000ekstra; ikke detsammesomunder23.",
+      "page": null,
+      "section": "MCwebFAQ",
+      "levels": [
+        "A",
+        "D",
+        "K"
+      ],
+      "types": [
+        "MC"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-MO-066",
+      "subject": "Tegningsalder",
+      "dimension": "BilSuper",
+      "value": "ProduktsidekjøpSuperforbilsomsyvårellernyere;ikkeopphørsalder12år.",
+      "page": null,
+      "section": "BilwebFAQ",
+      "levels": [
+        "S"
+      ],
+      "types": [
+        "Bil"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    }
+  ],
+  "notes": [
+    "PhysicalPDFpage=printedpage+1.",
+    "Sharedterms explicitlyincludeBil/MC/Bobil/Scooter,onlyexplicittypespecificexceptionssharedselectively.",
+    "MCbagageconflictandBobilordinarynewvalueunresolvednotguessed.",
+    "Accidentbevisconditionversusproductmatrixmustpreserveavailabilityselectiondistinction."
+  ]
+}

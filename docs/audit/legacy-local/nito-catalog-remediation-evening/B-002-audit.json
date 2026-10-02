@@ -1,0 +1,381 @@
+{
+  "status": "PASS",
+  "batch": "B-002",
+  "source_verification": "Public package PDF p3 Standard §3.1 excludes decoration; p1 Topp §1.1 includes it. Standard unavailable, Topp replacesBase with own section/page. Both optional add-ons preserve these states.",
+  "source_hashes": {
+    "catalog/sources/fremtind/hus/canonical/Vilkar_Topp_Hus.pdf": "6c77bd57259d8d01390bccaf415f14f6b245e45345b597b6f651574ebaeebec3"
+  },
+  "changed_products": [
+    "fremtind-hus-standard",
+    "fremtind-hus-topp"
+  ],
+  "unchanged_products": 202,
+  "allowed_keys": [
+    "hus.bygninger.utsmykning"
+  ],
+  "deltas": [
+    {
+      "product": "fremtind-hus-standard",
+      "view": "base",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning",
+          "page": 2,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning er unntatt på Standard.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning – Omfattes ikke",
+          "page": 3,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        },
+        "coverageAvailability": "unavailable"
+      }
+    },
+    {
+      "product": "fremtind-hus-standard",
+      "view": "product-comparison",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "fremtindHusStandard",
+            "filename": "Vilkar_Topp_Hus.pdf",
+            "termsNumber": "PBK-200.100-015",
+            "effectiveFrom": "2024-01-01",
+            "company": "Fremtind",
+            "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+            "section": "3.1 Bygning",
+            "page": 2,
+            "version": "015",
+            "productCode": "PBK-200.100",
+            "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+          }
+        ]
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning er unntatt på Standard.",
+        "state": "unavailable",
+        "addOnNames": [],
+        "role": "coverage",
+        "sources": [
+          {
+            "documentId": "fremtindHusStandard",
+            "filename": "Vilkar_Topp_Hus.pdf",
+            "termsNumber": "PBK-200.100-015",
+            "effectiveFrom": "2024-01-01",
+            "company": "Fremtind",
+            "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+            "section": "3.1 Bygning – Omfattes ikke",
+            "page": 3,
+            "version": "015",
+            "productCode": "PBK-200.100",
+            "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+          }
+        ]
+      }
+    },
+    {
+      "product": "fremtind-hus-standard",
+      "view": "fremtind-hus-rate-insekter",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning",
+          "page": 2,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning er unntatt på Standard.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning – Omfattes ikke",
+          "page": 3,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        },
+        "coverageAvailability": "unavailable"
+      }
+    },
+    {
+      "product": "fremtind-hus-standard",
+      "view": "fremtind-hus-utleie",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning",
+          "page": 2,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning er unntatt på Standard.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning – Omfattes ikke",
+          "page": 3,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        },
+        "coverageAvailability": "unavailable"
+      }
+    },
+    {
+      "product": "fremtind-hus-topp",
+      "view": "base",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning",
+          "page": 2,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "replacesBase": true,
+        "source": {
+          "documentId": "fremtindHusTopp",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.200-010",
+          "effectiveFrom": "2023-03-15",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "1.1 Bygning",
+          "page": 1,
+          "version": "010",
+          "productCode": "PBK-200.200",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      }
+    },
+    {
+      "product": "fremtind-hus-topp",
+      "view": "product-comparison",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "fremtindHusStandard",
+            "filename": "Vilkar_Topp_Hus.pdf",
+            "termsNumber": "PBK-200.100-015",
+            "effectiveFrom": "2024-01-01",
+            "company": "Fremtind",
+            "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+            "section": "3.1 Bygning",
+            "page": 2,
+            "version": "015",
+            "productCode": "PBK-200.100",
+            "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+          }
+        ]
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "fremtindHusTopp",
+            "filename": "Vilkar_Topp_Hus.pdf",
+            "termsNumber": "PBK-200.200-010",
+            "effectiveFrom": "2023-03-15",
+            "company": "Fremtind",
+            "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+            "section": "1.1 Bygning",
+            "page": 1,
+            "version": "010",
+            "productCode": "PBK-200.200",
+            "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+          }
+        ]
+      }
+    },
+    {
+      "product": "fremtind-hus-topp",
+      "view": "fremtind-hus-rate-insekter",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning",
+          "page": 2,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "replacesBase": true,
+        "source": {
+          "documentId": "fremtindHusTopp",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.200-010",
+          "effectiveFrom": "2023-03-15",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "1.1 Bygning",
+          "page": 1,
+          "version": "010",
+          "productCode": "PBK-200.200",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      }
+    },
+    {
+      "product": "fremtind-hus-topp",
+      "view": "fremtind-hus-utleie",
+      "key": "hus.bygninger.utsmykning",
+      "before": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "source": {
+          "documentId": "fremtindHusStandard",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.100-015",
+          "effectiveFrom": "2024-01-01",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "3.1 Bygning",
+          "page": 2,
+          "version": "015",
+          "productCode": "PBK-200.100",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      },
+      "after": {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning av bygningen omfattes.",
+        "replacesBase": true,
+        "source": {
+          "documentId": "fremtindHusTopp",
+          "filename": "Vilkar_Topp_Hus.pdf",
+          "termsNumber": "PBK-200.200-010",
+          "effectiveFrom": "2023-03-15",
+          "company": "Fremtind",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/eiendom/Vilkar_Topp_Hus.pdf",
+          "section": "1.1 Bygning",
+          "page": 1,
+          "version": "010",
+          "productCode": "PBK-200.200",
+          "note": "Kanonisk Fremtind-kilde distribuert gjennom Eika, SpareBank 1 og DNB; forsikringsbeviset avgjør avtalte valg."
+        }
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-5106"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "8249889091145082"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}

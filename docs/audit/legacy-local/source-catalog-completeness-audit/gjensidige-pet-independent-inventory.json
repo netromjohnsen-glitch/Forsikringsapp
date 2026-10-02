@@ -1,0 +1,674 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "GJ-PE-001",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Veterinær",
+      "dimension": "omfang/periodetak",
+      "value": "Sykdom/ulykke,bevisvalgtmaksperforsikringsårOGsammeskadetilfelle;nyårsresetikkegjenåpnercasegrense.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-002",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Veterinær",
+      "dimension": "sumvalg",
+      "value": "20/30/40/50kvalg,ikke50kuniverselt.",
+      "location": "Behandling",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-003",
+      "species": [
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Veterinær",
+      "dimension": "sumvalg",
+      "value": "Kundevelgeropptil50kårlig;ingenminimumtrinndokumentert her.",
+      "location": "Behandling",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-004",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "Heleverden.",
+      "location": "2",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-PE-005",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Varighet",
+      "dimension": "opphør",
+      "value": "Behandlingvarerheledyretslivtiloppsagt/eierskifte;livaldersgrensegjelderikkeveterinær.",
+      "location": "Opphør3;FAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-006",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Egenandel",
+      "dimension": "formel/periode",
+      "value": "Standardfast1300+20%restenperulykke/sykdom,ikkemedhverregning;beviskanrenprosent.",
+      "location": "Egenandel",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-007",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Egenandel",
+      "dimension": "valg",
+      "value": "Fast2000eller3500kanvelgesforlaverepremie;20%resten.",
+      "location": "Egenandel",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-008",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Karens",
+      "dimension": "20d/kjente",
+      "value": "Sykdomtilstedevedtegning/første20dikkeomfattet;ogsåsumøkning/utvidelse.Eksisterendetilstandogsymptomfatterikkebaredefinitivdiagnose.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-009",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Allergikarens",
+      "dimension": "kildekonflikt",
+      "value": "Web60dagersallergi;full2generell20dingenegen60;IPID20generisk. Separatallergiregellokaltwebdokumentertmenfullversjonukjent.",
+      "location": "FAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-010",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Medisiner",
+      "dimension": "omfang",
+      "value": "Veterinærrekvirertmedisin/preparat/bandasje/beskyttelseveddekketskade/dokumentertjournal.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-011",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Allergi",
+      "dimension": "sum",
+      "value": "Allergi/atopi5kinnengrunnsum. CatIPIDlifetimecap;bevis/full5kutenegenperiodedefinisjon.",
+      "location": "1",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-012",
+      "species": [
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Allergi",
+      "dimension": "livstidsperiode/vilkår",
+      "value": "IPID5kallergisumgjelderhelekattenslevetid;fullsymptomøre/hudførtegning/karenstidutelukker.",
+      "location": "1",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-PE-013",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "MR/CT",
+      "dimension": "sum/periodetak",
+      "value": "5kperårELLERskadetilfelleinngårivalgtforsikringssum.",
+      "location": "MRogCT",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-014",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Medfødt/ledd",
+      "dimension": "eligibility",
+      "value": "HD/AD/AA/OCD/patella/shortulna/CalvéLeggPerthes/annenmedfødtkreveruavbruttvetforsikretfør4mnd,ogHDforeldreNKKfrieogegnebilderNKKavlest.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-015",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Korsbånd",
+      "dimension": "eligibility",
+      "value": "Uavbruttvetfra før4mndELLERmin1årførskade.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-016",
+      "species": [
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Medfødt",
+      "dimension": "unntak",
+      "value": "Medfødtemisdannelserunntatt.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-017",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Tann",
+      "dimension": "melketann/bitt",
+      "value": "Tilbakeholdtemelketenner/bittfeil/feilstiltmedisinskproblem:kontinuitetfør4mnd;forbittstillingvetattest7uker–4mndutenanmerkning.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-018",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Tann",
+      "dimension": "karies/emalje",
+      "value": "Karies/emaljedefekteromfattet;årligtannhelsekontroll+rensvedbehov. Tannabscessavskalling/frakturcarveout.",
+      "location": "1–2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-019",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Tann",
+      "dimension": "fraktur/unntak",
+      "value": "Ulykkesfrakturinkludert;gingivitt/stomatitt/periodontitt/tannstein/følgersamtøvrigtannikke;abscesscarveoutsep.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-020",
+      "species": [
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Tann",
+      "dimension": "fraktur/unntak",
+      "value": "Trekkingpermanentulykkesfrakturinkludert;TR/FORL/stomatitt/gingivitt/periodontitt/tannstein/øvrigtannutelukket.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-021",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Fysikalsk behandling",
+      "dimension": "source scope",
+      "value": "Fullakupunkturv etrekvirertinkludert;fullRehabiliteringogfysikalski5ktillegg;webfysio/kiro/akupunkturiBehandlingmenssvømme/wateroptional. Scopekonfliktikkeautomatiskallinkludert.",
+      "location": "2–3",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-022",
+      "species": [
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Rehabilitering",
+      "dimension": "unntak",
+      "value": "Rehabilitering/fysikalsk/vanntreningogalternativbehandlingutelukket.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-023",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Avliving/kremering",
+      "dimension": "sum/aldersvilkår",
+      "value": "Dog2000tilrasensLivopphørsalder;cat1500før13år;samletinnenvalgtvet sum,erstatningsmessigdiagnose.",
+      "location": "1–3",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-024",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Keisersnitt",
+      "dimension": "antall/karens",
+      "value": "Ettlivstid;min1åruavbruttvetpåbehandlingstid. Dogogsåmin20mndalder;catingen20mndregel.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-025",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Diagnostikk ledd/rygg",
+      "dimension": "sum/selvskadenunntatt",
+      "value": "Undersøkelsefremtildiagnose3kselvdiagnoseikkeerdekket.",
+      "location": "1,3",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-026",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Komplikasjon",
+      "dimension": "carveout",
+      "value": "Normaltikkehovedsykdomunntatt,menkastrering/sterilisering/vaksinasjoniforsikringstidkomplikasjoninkludert.",
+      "location": "2–3",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-027",
+      "species": [
+        "dog"
+      ],
+      "component": "base",
+      "subject": "Behandlingsunntak",
+      "dimension": "hormon/organ",
+      "value": "Kryptorkisme/innbiltsvangerskap/hormonubalanse/navlebrokk;kastrasjonforhudepilepsiatferdinnbiltdrektighetunormalløpjur/cyster/CEHutelukket.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-028",
+      "species": [
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Behandlingsunntak",
+      "dimension": "organ",
+      "value": "Kryptorkisme/navlebrokkutelukket.",
+      "location": "2",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-029",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Andre unntak",
+      "dimension": "materielle",
+      "value": "Forebyggende/rutine/atferd/aggressivitet/ulovligimport;reise/diettfôr/oljesjampo/gebyrattest,alternativbehandlingutelukket.",
+      "location": "2–3",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-030",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Online veterinær",
+      "dimension": "service",
+      "value": "FirstVetubegrensetvideokonsultasjon0egenandel;diagnose/råd/henvisning.",
+      "location": "Onlineveterinær",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-031",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Obduksjon",
+      "dimension": "sum/krav",
+      "value": "Nødvendigobduksjonvedusikkerdiagnoseinnt il1500;utenobduksjonkandekningbortfalle;veterinærattest.",
+      "location": "settlement",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-032",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Direkteoppgjør",
+      "dimension": "service/egenkostnad",
+      "value": "Vetkanvanligvisordnedirekteoppgjør,kundebetaleregenandelogevveterinæradmin gebyrselv.",
+      "location": "FAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-033",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Tegning",
+      "dimension": "aldersvindu",
+      "value": "Dogfra5ukertil7år;catfra5ukertil10år. Ikkeopphørsalder.",
+      "location": "FAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-034",
+      "species": [
+        "dog"
+      ],
+      "component": "rehab",
+      "subject": "Rehabilitering",
+      "dimension": "optional/grense",
+      "value": "ValgfritilleggvedBehandling;5kperår/skadetilfelleinnenvetmaks,etterdekketskade.",
+      "location": "IPID1;webRehabilitering",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-PE-035",
+      "species": [
+        "dog"
+      ],
+      "component": "rehab",
+      "subject": "Rehabilitering",
+      "dimension": "frist/sted",
+      "value": "Måfullføres3mndettervetforeskrivelsepåklinikkellervethenviststed.",
+      "location": "8",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-036",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "død/tyveri",
+      "value": "Død/avlivningdyrevelferdvedulykke/sykdom;dogtyveri/bortkomst;catbaretyveriinnbruddbygning,bortkomstunntatt.",
+      "location": "2",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-037",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "sum/egenandel",
+      "value": "Kundevalgtlivsum;0egenandel;ikkeautomatiskdelavBehandling.",
+      "location": "1",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-038",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "karens/tilstand",
+      "value": "Sykdomførstart/første20dogsumøkning/utvidelse;medfødtdogeligibilityfør4mndmv,catmedfødtunntatt;dyrevelferdattest.",
+      "location": "2",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-039",
+      "species": [
+        "dog"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "opphør/raser",
+      "value": "Hovedforfallåret8storeliste/12småliste/10øvrige;eksakteraserogblandinghøydeitilknyttettabell.Kundensrasemåavklares.",
+      "location": "2–3",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-040",
+      "species": [
+        "cat"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "opphør",
+      "value": "Hovedforfallåret13;ikkefødselsdag.",
+      "location": "2",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-041",
+      "species": [
+        "dog"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "aldersfradrag",
+      "value": "Fraforfallåret5store/9små/7øvrige:20%årlig,minsum1500. Ikkealdersfradragpåvet.",
+      "location": "8;webraselister",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-042",
+      "species": [
+        "cat"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "aldersfradrag",
+      "value": "Fraforfallåret10:20%årlig,minsum1500.",
+      "location": "7",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-043",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "life",
+      "subject": "Tyveri/bortkomst",
+      "dimension": "venteperiode",
+      "value": "Politimelding/etterlysning;minimum3mndetterregistrertkrav.Vedgjenfinnbetalingtilbakecatuttrykkelig.",
+      "location": "settlement",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-044",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "use",
+      "subject": "Bruk",
+      "dimension": "dependency",
+      "value": "OptionalBrukleggestilLiv;ikkeegenvalgfriBehandlingautomatisk.",
+      "location": "Liv/Bruk",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-045",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "use",
+      "subject": "Bruk",
+      "dimension": "tap/avl",
+      "value": "Livsvarigtapinnenforsikretbruk;avldokumentert100%fysiskmistetevne,hannfarmin1kull2år,hunnnormalfødselmin1kull2år.",
+      "location": "2",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-046",
+      "species": [
+        "dog"
+      ],
+      "component": "use",
+      "subject": "Bruk",
+      "dimension": "arbeidshund",
+      "value": "Jakt/gjeting/tjeneste:trent/regelmessigbrukt/min50%funksjonstap,utredetbehandletrehabiliterttilstrekkelig.",
+      "location": "2",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-047",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "use",
+      "subject": "Bruk",
+      "dimension": "opphør",
+      "value": "Dogforfallåret8;catforfallåret10.",
+      "location": "dog3/cat2",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-048",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "use",
+      "subject": "Bruk",
+      "dimension": "gjenverdi",
+      "value": "Utbetalingsumminusgjenverdiminst5k;Livsumreduserestilgjenverdi.",
+      "location": "settlement",
+      "source": "life"
+    },
+    {
+      "id": "GJ-PE-049",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "life",
+      "subject": "Liv",
+      "dimension": "dokumentasjonterskel",
+      "value": "Dog>30k/cat>20kkrevervetattest/verdidokument/IDmerking.",
+      "location": "FAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-050",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "other",
+      "subject": "Kull",
+      "dimension": "separat produkt",
+      "value": "Valp6k/5–12uker,kitten6k/5–15uker,morpåGjensidige;min1000eller20%perunge;kjøpførfødsel. Egetproduktutenfornåværendekatalog,ikketvingbase.",
+      "location": "Kull",
+      "source": "product"
+    },
+    {
+      "id": "GJ-PE-051",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Sikkerhet",
+      "dimension": "tilsyn/forebyggende",
+      "value": "Vaksine/tannårlig/transportvarmsolbil/vetstraks,korrektrase;dogikkebundettilbil/utentilsyn.",
+      "location": "1",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-052",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Definisjoner",
+      "dimension": "skadetid/sammesykdom",
+      "value": "Discoverytime,alleutgifterforsammesykdomsammesak;frisktikkekroniskvet12mndellerdiagnoseuten symptomer.",
+      "location": "3",
+      "source": "treatment"
+    },
+    {
+      "id": "GJ-PE-053",
+      "species": [
+        "dog",
+        "cat"
+      ],
+      "component": "base",
+      "subject": "Administrativt",
+      "dimension": "bevis/klage",
+      "value": "Årsvilkår/frister/bevisprioritetadmin;offentligeeksemplerikkekundebevis.",
+      "location": "1,general",
+      "source": "treatment"
+    }
+  ],
+  "page_reuse": "gjensidige-pet-page-reuse.json",
+  "all_source_contents_read": true,
+  "scope_notes": "Treatment2products plus optionalLiv/Bruk/Rehab, separatekullnotinvented. Exactdog/catdifferences preserved. Generalsharedpage textverified."
+}

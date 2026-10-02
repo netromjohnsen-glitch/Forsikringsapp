@@ -1,0 +1,1056 @@
+sources
+→ independent advisor-relevant fact inventory
+→ canonical semantic model
+→ product catalog
+→ comparison behavior
+→ source→catalog completeness gate
+→ human validation
+→ publication.
+
+Do not repeat the skadeforsikring process where catalog completeness was only
+proven after broad implementation.
+
+This is a FUTURE PROCESS RECOMMENDATION only.
+
+Do not build person insurance now.
+
+==================================================
+136 – FUTURE PERSON INSURANCE CUSTOMER DATA
+==================================================
+
+Preserve the future distinction between:
+
+STANDARD PRODUCT TERMS
+
+and
+
+INDIVIDUAL CUSTOMER RESERVATIONS.
+
+The first person-insurance version may compare:
+
+- insurance sums from ordinary customer agreement documents
+- standard public product terms
+- standard age/termination rules
+- standard waiting periods
+- standard payment structures
+- other non-individual product rules
+
+without attempting to interpret individual health reservations.
+
+Individual reservation documents may contain sensitive health information and
+require a separate privacy/security architecture before they are supported.
+
+Do not implement this now.
+
+==================================================
+137 – NO ASSUMPTION OF NO RESERVATION
+==================================================
+
+Future person-insurance comparison must never infer:
+
+"No individual reservation"
+
+merely because no reservation document was uploaded.
+
+A future safe state may instead be:
+
+"Individual reservations not assessed in this comparison."
+
+This is future product guidance only.
+
+==================================================
+138 – TRIAGE QUALITY STANDARD
+==================================================
+
+A good triage does NOT maximize the number of remediation batches.
+
+A good triage produces:
+
+the smallest number of semantically coherent,
+source-backed,
+independently testable,
+low-blast-radius remediation batches
+
+that together account for every P1 signature.
+
+==================================================
+139 – NO MEGA-BATCH
+==================================================
+
+Do not create:
+
+"Fix all catalog data"
+
+or:
+
+"Fix all P1"
+
+as one batch.
+
+That is not actionable or safely testable.
+
+==================================================
+140 – NO MICRO-BATCH EXPLOSION
+==================================================
+
+Likewise do not create one batch per finding.
+
+Use root-cause leverage.
+
+==================================================
+141 – BATCH COHERENCE
+==================================================
+
+A remediation batch is coherent when its findings share:
+
+the same semantic mechanism
+
+AND/OR
+
+the same source-backed catalog operation
+
+AND
+
+a manageable regression surface.
+
+==================================================
+142 – BATCH SPLIT CONDITIONS
+==================================================
+
+Split a proposed batch when:
+
+- different canonical semantics are involved
+- different source certainty applies
+- different agreement scopes apply
+- one subset requires architecture work
+- one subset requires source research
+- regression blast radius differs materially
+- fixes would touch unrelated implementation layers.
+
+==================================================
+143 – BATCH MERGE CONDITIONS
+==================================================
+
+Merge batches only when:
+
+- same root mechanism is proven
+- same implementation layer applies
+- source evidence is independently settled
+- regression plan can safely cover combined scope.
+
+==================================================
+144 – PRIORITY SCORE INPUTS
+==================================================
+
+For internal planning, assess each batch using:
+
+ADVISOR_IMPACT
+SOURCE_CERTAINTY
+P1_LEVERAGE
+FALSE_INFORMATION_RISK
+CUSTOMER_MODE_IMPACT
+IMPLEMENTATION_COMPLEXITY
+REGRESSION_RISK
+PILOT_RELEVANCE.
+
+Do NOT create a fake mathematically precise score unless useful.
+
+Qualitative reasoning is acceptable.
+
+==================================================
+145 – FALSE INFORMATION RISK
+==================================================
+
+Highest concern:
+
+catalog says something materially wrong.
+
+Next:
+
+catalog assigns a valid fact to the wrong product/scope.
+
+Next:
+
+catalog falsely implies included vs optional.
+
+Next:
+
+catalog gives materially incomplete/unknown information.
+
+Use this ordering when other factors are comparable.
+
+==================================================
+146 – TRUST IMPACT
+==================================================
+
+Prioritize issues likely to damage advisor trust.
+
+Examples:
+
+obviously wrong sum
+wrong geography
+wrong product level
+false "not documented"
+optional shown as included
+material condition omitted.
+
+==================================================
+147 – FREQUENCY IS SECONDARY
+==================================================
+
+A fact does not become more severe solely because it occurs many times.
+
+But repeated occurrence may make the root-cause remediation higher leverage.
+
+==================================================
+148 – CATALOG DATA VS ENGINE
+==================================================
+
+For every batch explicitly state:
+
+Does this require changing:
+
+A. only catalog facts
+B. catalog inheritance
+C. canonical mapping
+D. comparison engine
+E. presentation mapping
+F. source package
+G. multiple layers.
+
+Do not use vague:
+
+"fix logic."
+
+==================================================
+149 – EXACT FILE IMPACT
+==================================================
+
+Where possible, identify likely project files/modules that a future
+implementation would need to touch.
+
+READ ONLY.
+
+Do not edit them.
+
+This improves future batch isolation and subagent planning.
+
+==================================================
+150 – FILE COLLISION ANALYSIS
+==================================================
+
+Use likely file impact to identify batches that should not run in parallel.
+
+Two batches modifying the same shared canonical/inheritance module should
+normally remain sequential.
+
+==================================================
+151 – DATA BATCH PARALLELIZATION
+==================================================
+
+Independent provider/family catalog-data batches may be safe to parallelize
+if:
+
+different files
+settled sources
+no shared mapping change
+independent tests.
+
+Mark accordingly.
+
+==================================================
+152 – SOURCE RESEARCH BLOCKERS
+==================================================
+
+A remediation batch with unresolved material source conflict cannot be
+implementation-ready merely because a likely answer exists.
+
+Set:
+
+SOURCE_READY = NO.
+
+==================================================
+153 – PARTIAL SOURCE READINESS
+==================================================
+
+If some findings in a batch are source-ready and others are not:
+
+split the batch if doing so preserves semantic coherence.
+
+Do not let one unresolved item unnecessarily block many safe fixes.
+
+==================================================
+154 – HUMAN DOMAIN REVIEW
+==================================================
+
+Use human insurance-domain review where the question is not purely textual.
+
+Examples:
+
+whether two differently worded source concepts are genuinely equivalent
+for advisor comparison
+
+or
+
+whether a detail is materially important enough for default comparison.
+
+Do not use human review as a substitute for missing source evidence.
+
+==================================================
+155 – SOURCE RESEARCH VS HUMAN REVIEW
+==================================================
+
+Keep distinct:
+
+SOURCE_RESEARCH:
+we lack sufficient evidence.
+
+HUMAN_DOMAIN_REVIEW:
+evidence exists but judgment about semantic/product treatment is required.
+
+==================================================
+156 – CANONICAL REVIEW VS MAPPING REVIEW
+==================================================
+
+Keep distinct:
+
+CANONICAL_REVIEW:
+current semantic model may be insufficient.
+
+MAPPING_REVIEW:
+model is sufficient but facts are assigned/aligned incorrectly.
+
+==================================================
+157 – PRESENTATION REVIEW
+==================================================
+
+Keep distinct:
+
+PRESENTATION:
+knowledge and comparison semantics are correct, but user-facing expression
+is inadequate.
+
+Do not classify false unknown caused by missing catalog fact as presentation.
+
+==================================================
+158 – CUSTOMER-SPECIFIC VALUES
+==================================================
+
+Do not create remediation tasks to hardcode:
+
+customer's actual bonus
+customer's annual mileage
+customer's selected deductible
+customer's selected insurance sum
+customer's individual reservation.
+
+These belong to customer document extraction/state.
+
+==================================================
+159 – PRODUCT OPTION RANGES
+==================================================
+
+Catalog MAY represent:
+
+available deductible choices
+available insurance-sum choices
+available duration choices
+
+when product-level source documents them.
+
+Keep these distinct from customer selection.
+
+==================================================
+160 – FULL VALUE / FIRST LOSS
+==================================================
+
+Preserve future PDF comparison principle:
+
+For house/cabin:
+
+FULL VALUE:
+building insurance sum is normally not a primary comparison field.
+
+FIRST LOSS:
+agreed building insurance sum is materially relevant and should be surfaced.
+
+This does not automatically create a current catalog remediation finding.
+
+==================================================
+161 – PRODUCT COMPARISON FIRST
+==================================================
+
+Current commercial expectation is that advisor product comparison may be used
+more frequently than customer PDF comparison.
+
+Therefore remediation must make:
+
+product comparison
+
+highly trustworthy.
+
+But do not sacrifice customer-mode correctness.
+
+==================================================
+162 – PROVENANCE UX
+==================================================
+
+Future implementation should preserve:
+
+"Vis kilde"
+
+or equivalent provenance access for material facts.
+
+Triage should flag any remediation mechanism that would lose provenance.
+
+==================================================
+163 – PROVENANCE LOSS
+==================================================
+
+A remediation that fixes a value but removes traceability is not acceptable.
+
+==================================================
+164 – SOURCE ALIASING
+==================================================
+
+Where identical source artifacts/hashes serve multiple products:
+
+reuse provenance safely.
+
+Do not duplicate or relabel source applicability incorrectly.
+
+==================================================
+165 – HISTORICAL PRODUCTS
+==================================================
+
+Two historical products were audited.
+
+Do not allow low-value historical remediation to delay active NITO products
+unless historical facts affect current matching or comparison.
+
+Classify accordingly.
+
+==================================================
+166 – ACTIVE PRODUCT PRIORITY
+==================================================
+
+Active/current products take precedence for:
+
+MUST_BEFORE_NITO.
+
+==================================================
+167 – ADD-ON PRIORITY
+==================================================
+
+Material add-ons visible to advisors must be included in pilot remediation
+where their current state can mislead.
+
+==================================================
+168 – ADD-ON SOURCE GAPS
+==================================================
+
+If add-on availability is known but detailed add-on terms are missing:
+
+do not fabricate detail.
+
+Route to source research if material.
+
+==================================================
+169 – 19 SOURCE PACKAGE GAPS
+==================================================
+
+The audit reports:
+
+19 products with explicit source-package gap in at least one dimension/add-on.
+
+Review each for pilot impact.
+
+Do not assume all 19 block the entire product.
+
+==================================================
+170 – 124 PRODUCTS WITH SOURCE/APPLICABILITY QUESTIONS
+==================================================
+
+The audit reports:
+
+124 products with at least one source/applicability question.
+
+This does NOT mean 124 products are unusable.
+
+Determine which questions:
+
+block a material fact
+affect only secondary detail
+or can be conservatively represented.
+
+==================================================
+171 – CONSERVATIVE REPRESENTATION
+==================================================
+
+Where source uncertainty remains after research planning:
+
+prefer an honest conservative state over a guessed positive/negative claim.
+
+==================================================
+172 – UNKNOWN LANGUAGE
+==================================================
+
+Future UI should distinguish internal catalog absence from genuine evidence
+uncertainty.
+
+Potential future wording:
+
+"Uklart i tilgjengelig kildegrunnlag"
+
+for genuine evidence uncertainty.
+
+Do not implement UI wording now.
+
+==================================================
+173 – FALSE UNKNOWN TARGET
+==================================================
+
+After full remediation, the 29 currently verified false unknowns should no
+longer be false unknowns.
+
+Either:
+
+correct source-backed meaning is represented
+
+or
+
+later source review proves the original classification invalid.
+
+==================================================
+174 – UNSUPPORTED CLAIM TARGET
+==================================================
+
+After remediation:
+
+verified unsupported material catalog claims should be:
+
+removed
+corrected
+or supported by newly validated applicable source.
+
+Never merely hide them in UI.
+
+==================================================
+175 – SEMANTIC MISMATCH TARGET
+==================================================
+
+After remediation:
+
+wrongly mapped facts must either:
+
+map correctly
+
+or
+
+remain separate if equivalence cannot be proven.
+
+==================================================
+176 – TOO-COARSE TARGET
+==================================================
+
+Do NOT require all 2 910 TOO_COARSE occurrences to become separate visible
+rows.
+
+Goal:
+
+material semantics preserved in knowledge layer.
+
+Presentation can remain curated.
+
+==================================================
+177 – SOURCE CONFLICT TARGET
+==================================================
+
+Do NOT require every source conflict to be resolved before pilot if:
+
+conflicted dimension is non-material
+
+and
+
+UI/catalog remains conservative.
+
+Material conflicts require resolution/research/review.
+
+==================================================
+178 – SOURCE RESEARCH EFFICIENCY
+==================================================
+
+For source research planning, prefer tasks that resolve many products.
+
+Example pattern:
+
+one current full-terms document
+
+may resolve 12 raw queue entries.
+
+==================================================
+179 – RESEARCH TARGET SPECIFICITY
+==================================================
+
+Each research task must say exactly what is needed.
+
+Bad:
+
+"Find more Gjensidige sources."
+
+Good:
+
+"Find current official Gjensidige MC Kasko/Pluss full terms that establish
+whether ferie-leieutvidelse applies to Delkasko, Kasko, or Pluss."
+
+==================================================
+180 – CANONICAL QUESTION SPECIFICITY
+==================================================
+
+Likewise canonical review questions must be concrete.
+
+Bad:
+
+"Improve Reise mapping."
+
+Good:
+
+"Determine whether 'dagstur omfattes' and 'reise uten overnatting omfattes'
+should share one canonical semantic identity while preserving subcoverage
+overnight requirements."
+
+==================================================
+181 – HUMAN REVIEW SPECIFICITY
+==================================================
+
+Human review items must be answerable.
+
+Provide:
+
+source evidence
+current catalog behavior
+specific question
+consequence of each interpretation.
+
+==================================================
+182 – IMPLEMENTATION INSTRUCTIONS LATER
+==================================================
+
+The final triage should be detailed enough that each remediation batch can
+later be turned into a standalone Codex implementation prompt without
+rerunning this triage.
+
+==================================================
+183 – NO AMBIGUOUS BATCH TITLES
+==================================================
+
+Use titles such as:
+
+"Correct Gjensidige Reise Pluss item-limit override"
+
+or:
+
+"Repair Reise day-trip/overnight semantic mapping"
+
+not:
+
+"Fix Reise."
+
+==================================================
+184 – WAVE SIZE
+==================================================
+
+Aim for waves that can be:
+
+implemented
+tested
+reviewed
+targeted-re-audited
+
+within a manageable Codex session.
+
+==================================================
+185 – WAVE 0
+==================================================
+
+Wave 0 should contain only blockers that must be resolved before safe
+implementation.
+
+Do not put every source research task into Wave 0.
+
+==================================================
+186 – WAVE 1
+==================================================
+
+Wave 1 should normally prioritize high-confidence wrong information with
+small/controlled blast radius.
+
+==================================================
+187 – WAVE 2
+==================================================
+
+Wave 2 may address shared:
+
+inheritance
+scope
+mapping
+
+mechanisms once direct wrong claims are stabilized.
+
+==================================================
+188 – WAVE 3
+==================================================
+
+Wave 3 may address high-confidence missing facts / false unknowns.
+
+==================================================
+189 – WAVE 4
+==================================================
+
+Wave 4 may address high-value TOO_COARSE enrichment.
+
+==================================================
+190 – ACTUAL EVIDENCE OVERRIDES TEMPLATE
+==================================================
+
+The wave framework above is guidance.
+
+If actual dependencies require different order:
+
+use the evidence.
+
+==================================================
+191 – SOURCE RESEARCH MAY RUN BETWEEN WAVES
+==================================================
+
+Future source research can be a separate parallel workstream when it does not
+modify repo.
+
+Triage should identify where research can happen while safe remediation
+continues elsewhere.
+
+==================================================
+192 – NO AUTOMATIC RESEARCH
+==================================================
+
+Do not perform it now.
+
+==================================================
+193 – PILOT MINIMUM
+==================================================
+
+Identify the smallest remediation set that would allow:
+
+CATALOG_PILOT_GATE = READY
+
+under the audit's quality standard.
+
+This is:
+
+PILOT_MINIMUM_SET.
+
+==================================================
+194 – FULL QUALITY SET
+==================================================
+
+Separately identify:
+
+FULL_PREPILOT_QUALITY_SET.
+
+This may include:
+
+high-value P2
+additional enrichment
+non-blocking source research.
+
+==================================================
+195 – PILOT MINIMUM IS NOT CORNER CUTTING
+==================================================
+
+Do not exclude a P1 from pilot minimum merely to reduce work.
+
+All active-product P1 must have safe disposition.
+
+==================================================
+196 – SAFE DISPOSITION
+==================================================
+
+A P1 can have safe disposition without immediate factual fix only when:
+
+source evidence genuinely remains unresolved
+
+AND
+
+current representation is conservative/non-misleading
+
+AND
+
+pilot limitation is explicitly documented.
+
+==================================================
+197 – PILOT LIMITATION REGISTER
+==================================================
+
+Create:
+
+pilot-known-limitations.csv
+
+for unresolved but safely represented issues.
+
+Columns:
+
+limitation_id
+provider
+family
+product
+concept
+reason unresolved
+current safe behavior
+advisor impact
+pilot communication needed
+follow-up task.
+
+==================================================
+198 – ADVISOR GUIDE IMPACT
+==================================================
+
+Identify whether any unresolved safe limitations need inclusion in the future
+advisor quick guide.
+
+Do not write the guide now.
+
+==================================================
+199 – SOURCE CONFLICT COMMUNICATION
+==================================================
+
+Do not expose internal source conflict detail to advisor by default unless it
+materially affects comparison reliability.
+
+But pilot team should know relevant limitations.
+
+==================================================
+200 – REMEDIATION ACCEPTANCE
+==================================================
+
+Each batch must have explicit acceptance criteria.
+
+Example:
+
+- exact affected products corrected
+- exact source provenance retained
+- no non-applicable product receives fact
+- targeted regression PASS
+- targeted source→catalog re-audit produces no P0/P1 for batch signatures.
+
+==================================================
+201 – BATCH ROLLBACK BOUNDARY
+==================================================
+
+Recommend future commit boundary per batch or coherent sub-batch.
+
+Do not commit now.
+
+==================================================
+202 – LARGE DATA BATCH
+==================================================
+
+If a data batch touches many products:
+
+recommend chunking by:
+
+provider
+family
+or semantic concept
+
+if that improves reviewability.
+
+==================================================
+203 – SHARED CODE BATCH
+==================================================
+
+Shared-code remediation should be isolated from broad catalog data edits when
+possible.
+
+This makes regression attribution easier.
+
+==================================================
+204 – SOURCE MANIFEST BATCH
+==================================================
+
+Source-manifest corrections should be separate from semantic catalog
+corrections where practical.
+
+==================================================
+205 – TEST-FIRST DECISION
+==================================================
+
+For high-risk shared behavior fixes:
+
+recommend:
+
+regression test first
+→ implementation
+→ targeted re-audit.
+
+For trivial source-backed data correction:
+
+implementation + focused test may be sufficient.
+
+==================================================
+206 – ASTRA USE
+==================================================
+
+Recommend Astra Extra High only where it provides clear value.
+
+Examples:
+
+cross-family canonical mapping
+high-blast-radius inheritance
+ambiguous semantic equivalence
+complex conflict triage.
+
+==================================================
+207 – SOL USE
+==================================================
+
+Recommend Sol for well-defined implementation work.
+
+Do not spend Astra budget on changing a source-backed number from 20 000 to
+40 000.
+
+==================================================
+208 – LIGHT/MEDIUM USE
+==================================================
+
+Mechanical changes and deterministic tests should prefer cheaper reasoning
+where safe.
+
+==================================================
+209 – FUTURE GPT-6.1
+==================================================
+
+If GPT-6.1 Sol becomes available before implementation:
+
+flag batches currently recommended for Sol High/Extra High as candidates for
+GPT-6.1 Sol.
+
+Do not depend on future availability.
+
+==================================================
+210 – SUBAGENT VALUE
+==================================================
+
+Estimate which future wave could benefit from subagents.
+
+Best candidates:
+
+independent source-ready provider/family data batches.
+
+Worst candidates:
+
+shared canonical architecture.
+
+==================================================
+211 – SUBAGENT WRITE OWNERSHIP
+==================================================
+
+Future parallel implementation must avoid multiple agents writing the same
+shared catalog/canonical file simultaneously.
+
+Triage should surface likely collisions.
+
+==================================================
+212 – MAIN AGENT RESPONSIBILITY
+==================================================
+
+Future main remediation agent should own:
+
+batch coordination
+shared architecture
+final integration
+full regression
+re-audit reconciliation.
+
+==================================================
+213 – QUALITY OVER SPEED
+==================================================
+
+The goal is not to make P1 count zero by deleting rows or weakening
+comparison.
+
+The goal is to make P1 count zero because source/catalog/comparison semantics
+are correct.
+
+==================================================
+214 – DO NOT HIDE PROBLEMS
+==================================================
+
+Never recommend:
+
+remove comparison row
+
+solely to avoid false unknown.
+
+A row may be removed only if triage determines the concept is genuinely not
+advisor-relevant or semantically invalid.
+
+==================================================
+215 – DO NOT OVERFILL CATALOG
+==================================================
+
+Likewise do not solve completeness by dumping entire terms into free text.
+
+Preserve structured advisor-relevant knowledge.
+
+==================================================
+216 – DUPLICATE SEMANTICS
+==================================================
+
+Where multiple catalog facts represent the same source meaning:
+
+determine whether they are:
+
+legitimate child dimensions
+aliases
+duplicate facts
+presentation alternatives.
+
+Do not automatically merge.
+
+==================================================
+217 – LABELS
+==================================================
+
+A label mismatch alone is not necessarily semantic error.
+
+Prioritize meaning.
+
+==================================================
+218 – UNITS
+==================================================
+
+Correct value with wrong unit/period is a semantic error.
+
+Treat accordingly.
+
+==================================================
+219 – PERIODS
+==================================================
+
+Keep distinct:
+
+per year
+per event
+per insurance period
+per item
+per person
+per day
+lifetime.
+
+==================================================
+220 – AGE
+==================================================
+
+Keep distinct:
+
+entry age

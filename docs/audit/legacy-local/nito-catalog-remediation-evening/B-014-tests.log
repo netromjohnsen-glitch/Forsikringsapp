@@ -1,0 +1,94 @@
+(node:68408) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manuelle Bil-begreper normaliseres deterministisk til katalogens hovedkeys (1.222459ms)
+✔ manuell Ansvar og Maskinskade samles med katalogfacts på én key (7.399542ms)
+✔ Reise holder sykeledsagelse samlet og tre varighetskonsepter separate (1.522625ms)
+✔ Reise skiller eget og leid sportsutstyr samt ordinær og gjentatt mobilegenandel (0.720708ms)
+✔ historisk Eika flykompensasjon holdes fra hotell- og arrangementsrefusjon (0.251458ms)
+✔ Hus holder ulike egenandelsutløsere og gjenoppføringsytelser separate (0.70125ms)
+✔ sikre Hus- og Bil-P1-keys er standardisert (2.011042ms)
+✔ Innbo bruker separate målepunkter for verdigjenstander (1.40775ms)
+✔ ukjent manuelt produkt beholder fakta uten fuzzy katalogkobling og UI viser status (0.289917ms)
+✔ detaljfakta samles per familie med hoveddekning før støttefakta (0.859875ms)
+✔ Maskinskade beholder reelt ulike eller uklare kilometerintervaller separate (4.712834ms)
+✔ sikre Bil-underfakta samles på samme rad uten å endre provenance (15.381625ms)
+✔ Bil bruker felles canonical keys for ansvar, rettshjelp og ung fører (0.162416ms)
+✔ tidligere sikre katalognøkler normaliseres eksplisitt uten tekstmatching (0.065333ms)
+✔ Hus samler gjentatt vannskade og sikre like objektgrupper (3.005083ms)
+✔ ekte one-sided Innbo- og Reise-fakta forblir separate (5.196875ms)
+(node:68409) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ offisielle Gjensidige Innbo-kilder er lokale, uendrede og kildeidentifisert (160.353542ms)
+✔ UI bruker Innbo og Innbo Pluss, mens Innbo Ung holdes utenfor ordinær katalog (2.078083ms)
+✔ forsikringssum og base/effective følger dagens alminnelige dokumenter (1.998542ms)
+✔ brann, vann, natur, ansvar, rettshjelp og bygningsglass har kilder og riktige grenser (0.136208ms)
+✔ Innbo Pluss strukturerer uhell, sykkel, mobil, skadedyr, flytting og ID-tyveri (0.143583ms)
+✔ utleie og høyere sykkelsum er valg, ikke ubetinget Pluss-dekning (0.413ms)
+✔ egenandelene er klassifisert uten å blande generell og særskilt verdi (0.108709ms)
+✔ Tryg Innbo mot Gjensidige Innbo sammenligner dokumenterte fellesbegreper (10.105958ms)
+✔ Tryg Innbo Ekstra mot Gjensidige Pluss beholder reelle forskjeller (4.959625ms)
+✔ If Basis mot Gjensidige Innbo bruker samme ansvar- og rettshjelpsnøkler (3.096375ms)
+✔ If Utvidet og Super mot Gjensidige Pluss holder delvis overlappende konsepter adskilt (9.426834ms)
+✔ UI-formet runtime beholder Pluss, utleie, effective/base og presentasjon (14.56625ms)
+✔ Innbo-hovedvisningen prioriterer sentrale dekninger og utleie foran rettshjelp (5.241458ms)
+✔ Bil og Innbo på begge sider har ingen provider-, tillegg- eller kildelekkasje (2.573875ms)
+(node:68410) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (1.194833ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (2.348292ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.096ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.839334ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (13.682875ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (0.671292ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (19.41825ms)
+✔ B-002: explicit customer artwork information retains document authority (1.026042ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (0.911417ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.819958ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (23.219833ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (0.975ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (9.40325ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.414708ms)
+✔ B-005: moving sum has no invented per-item maximum and preserves the conditional rule (1.415916ms)
+✔ B-005: moving comparison keeps Standard separate and document sums authoritative (7.537375ms)
+✔ B-006: Frende parking bonus clause follows §11.13 on Kasko and Utvidet (0.729583ms)
+✔ B-006: parking comparison and explicit customer terms remain stable (6.701208ms)
+✔ B-007: both Gjensidige house levels retain thawing with its own product-page source (0.61175ms)
+✔ B-007: thawing comparison preserves source and document authority in both directions (10.423167ms)
+(node:68411) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-008: Storebrand Super receives source-backed storage equipment and limit (3.822083ms)
+✔ B-008: false unknown is removed without changing Kasko or Delkasko coverage (10.932916ms)
+✔ B-008: explicit customer storage equipment limit still overrides catalog (12.061291ms)
+✔ B-009: Fremtind dog base separates lifetime allergy and annual MR/CT limits (1.1105ms)
+✔ B-009: only selected Topp replaces sublimits; product mode retains included base and optional extension (13.074084ms)
+✔ B-009: silent and explicitly rejected Topp do not remove base limits or select addon (13.325208ms)
+✔ B-009: a named selected Topp extends limits without overriding explicit customer values (9.221667ms)
+✔ B-010: life deduction preserves all breed groups, renewal wording and floor (0.8245ms)
+✔ B-010: life remains optional and reduction/expiry stay separate in comparison (14.842875ms)
+✔ B-010: explicit customer life reduction age still has priority (5.091ms)
+✔ B-011: Extra replaces inherited common-storage cap with its own location rules (0.77725ms)
+✔ B-011: scoped limits survive swaps and explicit customer overrides (7.01625ms)
+✔ B-012: Gjensidige Bobil Kasko has own-source pest coverage without lower-tier leakage (1.001083ms)
+✔ B-012: pest false unknown closes in both directions while document exclusions win (18.131542ms)
+✔ B-013: Storebrand house deductions preserve material and indoor-electric scope (1.254458ms)
+✔ B-013: house scope qualifiers survive comparisons and customer priority (19.709583ms)
+✔ B-014: private vehicle parts and liability retain their own geographic scopes (0.960833ms)
+✔ B-014: Plus bicycle accident/vandalism is worldwide while theft and storage remain distinct (9.566208ms)
+✔ B-014: optional rent default deductible is not vandalism deductible or implicit selection (2.734792ms)
+✔ B-014: source-specific corrections preserve comparison symmetry and document authority (14.371ms)
+ℹ tests 70
+ℹ suites 0
+ℹ pass 70
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 710.615958

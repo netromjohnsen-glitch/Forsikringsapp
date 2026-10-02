@@ -1,0 +1,36 @@
+--- tests/nito-remediation-wave1.test.mjs
++++ tests/nito-remediation-wave1.test.mjs
+@@ -84,3 +84,33 @@
+   const term = result.insurances[0].importantTerms.find(f => f.key === 'hus.bygninger.utsmykning');
+   assert.equal(term.value, value); assert.equal(term.coverageOrigin, 'document');
+ });
++
++// B-003 / GAP-3706, GAP-3746: young-engine fixed deductibles are not percentage minima.
++test('B-003: motor/gir deductible keeps all exact age branches, basis and source', () => {
++  assert.equal(hash('catalog/sources/boat-pet/if-boat-terms.pdf'), '57e7aac8542dd10bfc92611f380b68754905b6808a66590307af86517c2072ae');
++  for (const id of ['if-bat-kasko', 'if-bat-super']) {
++    const f = fact(id, 'bat.maskinskade.egenandel', ['if-bat-motor-gir']);
++    for (const clause of ['til og med 5 år 4 000 kr', 'over 5 til og med 10 år 8 000 kr', '11 år 10 %', '12 år 20 %', '13 år 30 %', '14 år 40 %', '15 år 50 %', 'av reparasjonskostnaden', 'Minst 8 000 kr gjelder prosentgrenene', '1. januar året etter kjøp som ny']) assert.ok(f.value.includes(clause), clause);
++    assert.equal(f.source.page, 6); assert.equal(f.source.section, '4.9.5');
++    assert.equal(fact(id, f.key), undefined);
++  }
++});
++test('B-003: motor/gir remains optional on both supported tiers and absent on Delkasko', () => {
++  const a = 'if-bat-kasko', b = 'if-bat-super';
++  const f = rows(a, b).find(r => r.key === 'bat.maskinskade.egenandel');
++  const r = rows(b, a).find(r => r.key === f.key);
++  assert.equal(f.first.state, 'optional'); assert.equal(f.second.state, 'optional');
++  assert.deepEqual(f.first, r.second); assert.deepEqual(f.second, r.first);
++  assert.equal(compareCatalogProducts(product(a), product(a)).differenceCount, 0);
++  assert.equal(fact('if-bat-delkasko', f.key, ['if-bat-motor-gir']), undefined);
++});
++test('B-003: explicit customer deductible wins over optional catalog branches', () => {
++  for (const value of ['6 500 kr', '12 500 kr']) {
++    const result = enrichExtractedAgreementWithCatalog({ company: 'If', totalAnnualPremium: null,
++      insurances: [{ type: 'Båt', productName: 'Kasko', annualPremium: null, deductible: null, coverageSummary: null,
++        addOns: ['Motor- og girskade'], addOnIds: ['if-bat-motor-gir'],
++        importantTerms: [{ name: 'Maskinskade – egenandel', value, canonicalKey: 'bat.maskinskade.egenandel' }] }] });
++    const term = result.insurances[0].importantTerms.find(f => f.key === 'bat.maskinskade.egenandel');
++    assert.equal(term.value, value); assert.equal(term.coverageOrigin, 'document');
++  }
++});

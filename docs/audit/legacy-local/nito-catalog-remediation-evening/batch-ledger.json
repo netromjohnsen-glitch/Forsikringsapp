@@ -1,0 +1,353 @@
+[
+  {
+    "batch_id": "B-001",
+    "wave": 1,
+    "status": "PASS",
+    "files_changed": [
+      "lib/mc-bobil-gjensidige-storebrand-catalog.ts",
+      "tests/nito-remediation-wave1.test.mjs"
+    ],
+    "tests_added": "5",
+    "tests_run": "116 focused; 2001 full; TypeScript, ESLint, webpack build, synthetic HTTP/PDF runtime PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-001-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-002",
+    "wave": 1,
+    "status": "PASS",
+    "files_changed": [
+      "tests/nito-remediation-wave1.test.mjs",
+      "lib/fremtind-hus-catalog.ts"
+    ],
+    "tests_added": "3",
+    "tests_run": "72 focused tests PASS; 202 other products unchanged",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-002-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-003",
+    "wave": 1,
+    "status": "FAIL",
+    "files_changed": [
+      "lib/boat-pet-catalog.ts",
+      "tests/nito-remediation-wave1.test.mjs"
+    ],
+    "tests_added": "0 retained (3 attempted, archived outside repo)",
+    "tests_run": "69/71 PASS; 2 new test-contract errors; existing 60 tests PASS",
+    "targeted_audit": "NOT_REACHED; own source p6 verified; diagnostics in B-003-failure.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 0,
+    "regressions": "No production regression proven; 2 new test failures",
+    "notes": "STOP-ON-FAIL. Isolated attempt removed with exact B-002 checkpoint hash verification; previous PASS batches retained."
+  },
+  {
+    "batch_id": "B-003",
+    "wave": 1,
+    "status": "PASS",
+    "files_changed": [
+      "lib/boat-pet-catalog.ts",
+      "tests/nito-remediation-wave1.test.mjs"
+    ],
+    "tests_added": "3",
+    "tests_run": "71/71 focused; 2 diagnosed test-only corrections; targeted source audit PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-003-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-004",
+    "wave": 1,
+    "status": "PASS",
+    "files_changed": [
+      "lib/if-reise-catalog.ts",
+      "tests/nito-remediation-wave1.test.mjs",
+      "tests/if-reise-catalog.test.mjs"
+    ],
+    "tests_added": "3",
+    "tests_run": "52/52 focused PASS; stale existing Basis expectation corrected from source; targeted audit PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-004-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-005",
+    "wave": 1,
+    "status": "PASS",
+    "files_changed": [
+      "tests/storebrand-innbo-catalog.test.mjs",
+      "tests/nito-remediation-wave1.test.mjs",
+      "lib/storebrand-innbo-catalog.ts"
+    ],
+    "tests_added": "2",
+    "tests_run": "54/54 focused PASS; source-backed existing test correction; targeted audit PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-005-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-006",
+    "wave": 1,
+    "status": "PASS",
+    "files_changed": [
+      "lib/frende-catalog.ts",
+      "tests/nito-remediation-wave1.test.mjs"
+    ],
+    "tests_added": "2",
+    "tests_run": "47/47 focused PASS; one new product-mode contract test corrected; source audit PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-006-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained. Premature PASS artifact corrected before B-007 implementation; see test-diagnostics.csv."
+  },
+  {
+    "batch_id": "B-007",
+    "wave": 1,
+    "status": "PASS",
+    "files_changed": [
+      "lib/gjensidige-hus-catalog.ts",
+      "tests/nito-remediation-wave1.test.mjs"
+    ],
+    "tests_added": "2",
+    "tests_run": "57/57 focused PASS; source-backed thawing retained both levels; audit PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-007-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-008",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "tests/nito-remediation-wave2.test.mjs",
+      "lib/boat-pet-catalog.ts"
+    ],
+    "tests_added": "3",
+    "tests_run": "83/83 focused PASS; false unknown cleared; source audit PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-008-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-009",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "tests/nito-remediation-wave2.test.mjs",
+      "lib/boat-pet-catalog.ts"
+    ],
+    "tests_added": "4",
+    "tests_run": "116/116 focused PASS; selected/silent/rejected/document controls; own-source audit PASS",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-009-audit.json",
+    "P1_signatures_targeted": 2,
+    "P1_signatures_resolved": 2,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-010",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "tests/nito-remediation-wave2.test.mjs",
+      "lib/boat-pet-catalog.ts",
+      "tests/boat-pet-catalog.test.mjs"
+    ],
+    "tests_added": "3",
+    "tests_run": "67/67 focused PASS (both remediation suites + boat/pet catalog/pipeline); stale existing regex corrected from full source",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-010-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-011",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "tests/nito-remediation-wave2.test.mjs",
+      "lib/tryg-innbo-catalog.ts"
+    ],
+    "tests_added": "2",
+    "tests_run": "42/42 focused PASS; ordinary/Extra location and document-priority controls",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-011-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-012",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "lib/mc-bobil-gjensidige-storebrand-catalog.ts",
+      "tests/nito-remediation-wave2.test.mjs"
+    ],
+    "tests_added": "2",
+    "tests_run": "71/71 focused PASS; MC/Bobil catalog/pipeline and both remediation suites",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-012-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-013",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "tests/nito-remediation-wave2.test.mjs",
+      "lib/storebrand-hus-catalog.ts"
+    ],
+    "tests_added": "2",
+    "tests_run": "55/55 focused PASS; House catalog controls and both remediation suites",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-013-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-014",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "lib/gjensidige-innbo-catalog.ts",
+      "tests/gjensidige-innbo-catalog.test.mjs",
+      "tests/nito-remediation-wave2.test.mjs"
+    ],
+    "tests_added": "4",
+    "tests_run": "70/70 focused PASS;6 source corrections,3 source-disproved existing expectations updated once",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-014-audit.json",
+    "P1_signatures_targeted": 6,
+    "P1_signatures_resolved": 6,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-016",
+    "wave": 2,
+    "status": "PASS",
+    "files_changed": [
+      "tests/nito-remediation-wave2.test.mjs",
+      "lib/gjensidige-reise-catalog.ts"
+    ],
+    "tests_added": "2",
+    "tests_run": "58/58 focused PASS; travel catalog and both remediation suites",
+    "targeted_audit": "/tmp/nito-catalog-remediation-evening/B-016-audit.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 1,
+    "regressions": 0,
+    "notes": "Own public source and exact product controls verified; immutable evidence retained."
+  },
+  {
+    "batch_id": "B-015",
+    "wave": 2,
+    "status": "SKIPPED_PREREQUISITE",
+    "files_changed": [],
+    "tests_added": 0,
+    "tests_run": "Not implemented",
+    "targeted_audit": "wave2-entry.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 0,
+    "regressions": 0,
+    "notes": "MAPPING_REVIEW_FIRST; required: CR-254"
+  },
+  {
+    "batch_id": "B-017",
+    "wave": 2,
+    "status": "SKIPPED_PREREQUISITE",
+    "files_changed": [],
+    "tests_added": 0,
+    "tests_run": "Not implemented",
+    "targeted_audit": "wave2-entry.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 0,
+    "regressions": 0,
+    "notes": "MAPPING_REVIEW_FIRST; required: CR-382"
+  },
+  {
+    "batch_id": "B-018",
+    "wave": 2,
+    "status": "SKIPPED_PREREQUISITE",
+    "files_changed": [],
+    "tests_added": 0,
+    "tests_run": "Not implemented",
+    "targeted_audit": "wave2-entry.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 0,
+    "regressions": 0,
+    "notes": "MAPPING_REVIEW_FIRST; required: CR-162"
+  },
+  {
+    "batch_id": "B-019",
+    "wave": 2,
+    "status": "SKIPPED_PREREQUISITE",
+    "files_changed": [],
+    "tests_added": 0,
+    "tests_run": "Not implemented",
+    "targeted_audit": "wave2-entry.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 0,
+    "regressions": 0,
+    "notes": "MAPPING_REVIEW_FIRST; required: CR-394"
+  },
+  {
+    "batch_id": "B-020",
+    "wave": 2,
+    "status": "SKIPPED_PREREQUISITE",
+    "files_changed": [],
+    "tests_added": 0,
+    "tests_run": "Not implemented",
+    "targeted_audit": "wave2-entry.json",
+    "P1_signatures_targeted": 2,
+    "P1_signatures_resolved": 0,
+    "regressions": 0,
+    "notes": "MAPPING_REVIEW_FIRST; required: CR-230, CR-231"
+  },
+  {
+    "batch_id": "B-021",
+    "wave": 2,
+    "status": "SKIPPED_PREREQUISITE",
+    "files_changed": [],
+    "tests_added": 0,
+    "tests_run": "Not implemented",
+    "targeted_audit": "wave2-entry.json",
+    "P1_signatures_targeted": 1,
+    "P1_signatures_resolved": 0,
+    "regressions": 0,
+    "notes": "MAPPING_REVIEW_FIRST; required: CR-381"
+  },
+  {
+    "batch_id": "B-022",
+    "wave": 2,
+    "status": "SKIPPED_PREREQUISITE",
+    "files_changed": [],
+    "tests_added": 0,
+    "tests_run": "Not implemented",
+    "targeted_audit": "wave2-entry.json",
+    "P1_signatures_targeted": 2,
+    "P1_signatures_resolved": 0,
+    "regressions": 0,
+    "notes": "CANONICAL_REVIEW_FIRST; required: CR-160, CR-292"
+  }
+]

@@ -1,0 +1,4115 @@
+{
+  "title": "NITO_WAVE2_SEMANTIC_RESOLUTION",
+  "status": "WAVE2_SEMANTIC_RESOLUTION_COMPLETE",
+  "review_date": "2026-10-02",
+  "mode": "READ_ONLY_PROJECT; new artifacts only in /tmp/nito-wave2-semantic-resolution",
+  "baseline": {
+    "head": "d3a37985fce4ada65fa2f7a88462d8834e4677af",
+    "branch": "main",
+    "staged_count": 0,
+    "working_tree_expected_modified_or_untracked": 17,
+    "previous_validated_tests": "2038/2038 PASS (previous run, NOT rerun in this review)",
+    "previous_gates": "TypeScript, ESLint, webpack build, synthetic HTTP/PDF, diff check and targeted re-audit PASS",
+    "completed_batches": "B-001–B-014 and B-016",
+    "resolved_P1_signatures_before_review": 21,
+    "previously_intentional_products": 22,
+    "previously_unchanged_products": 182,
+    "previous_verified_hashes": 16,
+    "previous_comparison_directions": 714,
+    "previous_affected_comparison_rows": 496
+  },
+  "input_batches": [
+    "B-015",
+    "B-017",
+    "B-018",
+    "B-019",
+    "B-020",
+    "B-021",
+    "B-022"
+  ],
+  "counts": {
+    "READY_TO_IMPLEMENT": 3,
+    "READY_TO_IMPLEMENT_AFTER_SPLIT": 0,
+    "SOURCE_RESEARCH_REQUIRED": 0,
+    "HUMAN_DOMAIN_REVIEW_REQUIRED": 0,
+    "CANONICAL_EXTENSION_REQUIRED": 3,
+    "KEEP_CURRENT_CONSERVATIVE_STATE": 0,
+    "BLOCKED_BY_OTHER_BATCH": 1
+  },
+  "batches": [
+    {
+      "batch_id": "B-015",
+      "title": "Skill Tryg Innbo flyttetyveri fra generell transportskade",
+      "original_disposition": "MAPPING_REVIEW_FIRST",
+      "final_disposition": "CANONICAL_EXTENSION_REQUIRED",
+      "semantic_problem": "MAPPING_ERROR + narrow CANONICAL_GAP: profesjonell flyttings tyveri/skadeverk står som generell transportskade.",
+      "source_evidence": [
+        "S01"
+      ],
+      "existing_catalog_state": "trygInnboExtra: flytting.transport.grense = 30 000 per skadetilfelle ved transportbyrå/idrettslag/forening.",
+      "existing_canonical_state": "flytting.transport.grense er brukt av andre tilbydere for ytre skade/transport/bæring. Ingen egen presis flyttetyveri/skadeverk-identitet finnes. CatalogFact kan lagre en ny termnøkkel uten skjemaendring.",
+      "decision": "Flytt akkurat denne opplysningen til ny flytting.tyveri_skadeverk.grense. Privat og profesjonell flytting beholdes som eksplisitt kvalifiserte grener i samme term. Ingen global alias fra transport til tyveri.",
+      "implementation_layer": "catalog + narrow canonical identity + explicit mapping",
+      "affected_products": [
+        "[\"tryg\",\"innbo\",\"ordinary\",\"tryg-innbo-ekstra\",\"2026-07-01\"]"
+      ],
+      "affected_families": [
+        "Innbo"
+      ],
+      "customer_mode_impact": "Samme presise dokumentnøkkel vinner. Eksakt, entydig label kan mappes; gamle generiske dokumentfacts om transport må beholdes uten å omdøpes eller få denne tyverigrensen tillagt.",
+      "dependencies": [],
+      "original_review_dependencies": [
+        "CR-254"
+      ],
+      "implementation_risk": "MEDIUM",
+      "recommended_model": "GPT-6 SOL HIGH",
+      "required_tests": [
+        "R-015-01",
+        "R-015-02",
+        "R-015-03",
+        "R-015-04",
+        "R-015-05",
+        "R-015-06",
+        "R-015-07",
+        "R-015-08",
+        "R-015-09"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "finding_signatures": [
+        "b45608cad7c89e92"
+      ],
+      "implementation_files": [
+        "lib/tryg-innbo-catalog.ts",
+        "lib/insurance-normalization.ts",
+        "lib/catalog-enrichment.ts",
+        "tests/nito-remediation-wave2.test.mjs"
+      ],
+      "plan": {
+        "what_to_change": [
+          "Definer bare flytting.tyveri_skadeverk.grense (term) under eksisterende Innbo flytting-familie. Flytt Tryg Ekstra-raden dit; slett den feilaktige transportgrensen fra denne komponenten.",
+          "Verdien må uttrykkelig omtale tyveri/skadeverk under privat flytting og særgrensen 30 000 kr per skadetilfelle for transportbyrå/idrettslag/forening o.l. Ingen påstand om ubegrenset privat erstatning.",
+          "Registrer eventuelt bare hele, godkjente Innbo-labels som identifiserer flyttetyveri/skadeverk. Ikke alias transportskade eller generell tyverigrense. Generiske dokumentfacts bevares; ved uttrykkelig bredt dokumentert flyttevilkår må mulig overlapp blokkeres konservativt i katalogberikelsen.",
+          "Eksakt guard: i Innbo skal en document-origin flytting.transport.grense med dokumentert innhold blokkere katalogutfylling av flytting.tyveri_skadeverk.grense. Presis dokumentert child beholdes alltid. Dette omdøper ikke parent og hevder ikke at hendelsene er like; det hindrer usikker overlapping i eldre dokumentdata."
+        ],
+        "what_not_to_change": [
+          "Tryg Innbo basis, uhell §2.5, valgt innbosum, flytteområde/varighet og utleie.",
+          "Andre provideres flytting.transport.grense, inkludert B-005 Storebrand. Ingen migrering av deres fakta basert på Tryg."
+        ],
+        "affected_scope": [
+          "[\"tryg\",\"innbo\",\"ordinary\",\"tryg-innbo-ekstra\",\"2026-07-01\"]"
+        ],
+        "expected_result": "Egen presis flyttetyveri/skadeverk-rad; Tryg har ikke lenger en falsk generell transportgrense. Andre leverandørers usplittede fakta beholdes separat.",
+        "source_provenance": "trygInnboExtra, S01 §2.4 PDF 4. Samme offentlige original/hash; ingen ny source artifact.",
+        "targeted_reaudit": "Kun Tryg Innbo Ekstra berørt fact/komponent; kontroll av basis og B-005 Storebrand; avgrensede sammenligninger med transportskadeprodukter begge veier.",
+        "acceptance_criteria": [
+          "Ingen endring utenfor batchens eksplisitte provider/type/scope/version/komponenter.",
+          "Ingen offentlig kildesannhet utledes fra sammenligningsmotpart. Fravær av presis motpart = unknown, ikke not covered.",
+          "Eksplisitt dokument X vinner over katalog Y med minst to alternative verdipar; taus valgfri dekning blir ikke selected.",
+          "Samme produkt mot seg selv og begge sideretninger gir stabil semantikk; kilder følger korrekt fact.",
+          "Alle tidligere godkjente Wave 1 og Wave 2-endringer består uendret; ingen ekstra oppgaver tas med.",
+          "Egen presis flyttetyveri/skadeverk-rad; Tryg har ikke lenger en falsk generell transportgrense. Andre leverandørers usplittede fakta beholdes separat."
+        ],
+        "tests": [
+          "R-015-01",
+          "R-015-02",
+          "R-015-03",
+          "R-015-04",
+          "R-015-05",
+          "R-015-06",
+          "R-015-07",
+          "R-015-08",
+          "R-015-09"
+        ]
+      },
+      "remaining_requirement": "Ny implementeringsautorisasjon må eksplisitt omfatte den spesifiserte minimale utvidelsen og dens gate. Kildespørsmålet er avklart i frosset korpus; utvidelsen er ikke implementert eller regresjonsvalidert her.",
+      "audit_finding_ids": [
+        "GAP-4435"
+      ],
+      "audit_source_fact_ids": [
+        "SF-6305"
+      ],
+      "review_dependencies_resolution": {
+        "CR-254": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition"
+      },
+      "code_references": [
+        "lib/product-catalog.ts:279 availableAddOns; :315 selectedComponents; :343 resolveCatalogFacts",
+        "lib/catalog-enrichment.ts:74 selectedScopedAddOns; :188–258 document priority",
+        "lib/catalog-product-comparison.ts:190 materializeCatalogProduct; :220 valueForKey",
+        "lib/insurance-normalization.ts:460 normalizeTermName; :505 normalizeCatalogTermKey"
+      ],
+      "risk_explanation": "Begrenset kilde-/mappingendring innen oppgitt scope; særskilte dokumentprioritets- og arvstester kreves."
+    },
+    {
+      "batch_id": "B-017",
+      "title": "Skill Fremtind Reise avgang, innhenting og transittutgift",
+      "original_disposition": "MAPPING_REVIEW_FIRST",
+      "final_disposition": "READY_TO_IMPLEMENT",
+      "semantic_problem": "MAPPING_ERROR / for grov oppsummering: ubegrenset innhenting ved fremmøte fremstår som generell regel også ved forsinket avgang.",
+      "source_evidence": [
+        "S02"
+      ],
+      "existing_catalog_state": "fremtind-reise: reise.forsinkelse.rute blander hendelser; avgangens samlede 6 000-grense og 24-timersvilkår mangler.",
+      "existing_canonical_state": "reise.forsinkelse.avgang_sum og reise.forsinkelse.fremmote_sum finnes allerede hos Tryg. Verdier er kvalifiserte tekster, ikke bare skalare tall.",
+      "decision": "Gjenbruk begge eksisterende hendelsesnøkler med egne fullstendige utløsere/beløp. Behold rute som ikke-numerisk felles ramme. Legg til den dokumenterte 500-kronersregelen som egen kildebelagt term under eksisterende reise.bagasje.forsinket, tydelig knyttet til utilgjengelig bagasje ved forsinkelse med overnatting.",
+      "implementation_layer": "catalog + explicit normalization/enrichment compatibility mapping",
+      "affected_products": [
+        "[\"fremtind\",\"reise\",\"ordinary\",\"fremtind-reise\",\"PRE-450.200-015\"]"
+      ],
+      "affected_families": [
+        "Reise"
+      ],
+      "customer_mode_impact": "Ikke avled kundens faktiske merutgifter fra produktgrenser. Nøyaktige dokumentnøkler/entydige hendelseslabels vinner; dokumentert bred rute-term blokkerer ny katalogavgang/fremmøte når dokumentet ikke kan deles sikkert. Historisk Eika er urørt.",
+      "dependencies": [],
+      "original_review_dependencies": [
+        "CR-382"
+      ],
+      "implementation_risk": "MEDIUM",
+      "recommended_model": "GPT-6 SOL HIGH",
+      "required_tests": [
+        "R-017-01",
+        "R-017-02",
+        "R-017-03",
+        "R-017-04",
+        "R-017-05",
+        "R-017-06",
+        "R-017-07",
+        "R-017-08",
+        "R-017-09",
+        "R-017-10"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "finding_signatures": [
+        "8caf6fc009da76e7"
+      ],
+      "implementation_files": [
+        "lib/fremtind-reise-catalog.ts",
+        "lib/insurance-normalization.ts",
+        "lib/catalog-enrichment.ts",
+        "tests/nito-remediation-wave2.test.mjs"
+      ],
+      "plan": {
+        "what_to_change": [
+          "Behold reise.forsinkelse.rute som felles vilkårsramme (påbegynt reise; dokumenterte utløsere; relevante utgifts-/transportørunntak). Fjern den overbrede ubegrenset-påstanden fra rammen.",
+          "Bruk eksisterende reise.forsinkelse.fremmote_sum: for sent til forhåndsbetalt offentlig transport; hotell 6 000 kr per person per skadetilfelle; innhenting ubegrenset.",
+          "Bruk eksisterende reise.forsinkelse.avgang_sum: forhåndsbetalt transport går ikke til avtalt tid; hotell + innhenting samlet 6 000 kr per person per skadetilfelle. Bare innhentingen har vilkår om at transportøren ikke klarer ruten innen 24 timer. Ikke 6 000 for hver av de to utgiftstypene.",
+          "Behold opprinnelig reise.bagasje.forsinket §8.1. Legg til en separat CatalogFact med samme eksisterende nøkkel, presis label om utilgjengelig ekspedert bagasje og 500 kr/person ved overnatting, med egen §8.2 PDF 6-kilde. Ikke påfør denne grenen §8.1s firetimerskrav, og ikke gjør 500 til generell bagasjegrense.",
+          "Definer eksplisitte Reise-labelaliaser for avgangssum og fremmøtesum dersom manglende. Ingen alias fra rute til én av dem. I katalogberikelse: dersom en reell dokument-origin rute-term fortsatt er uspesifisert, ikke fyll de to spesifiserte katalogbarna over den. Ved eksplisitt barn + bred rute bevares barnet og rute; uavklart søsken blokkeres. Unknown-placeholder er ikke dokumentert innhold. Ikke splitt beløp ved friteksttolking."
+        ],
+        "what_not_to_change": [
+          "Historiske eika-reise-p10 / eika-reise-pluss, 70/90/120/180-varighet og kanalregler.",
+          "Forsinket ankomst/tapt ferie 500/døgn og 5 000-grenser; eksisterende forsinket bagasje 5 000 og jobb-/hjemreiseregler.",
+          "Ingen skalarsammenligning som ignorerer at fremmøtebeløp kan ha ulik fordeling mellom hotell og transport."
+        ],
+        "affected_scope": [
+          "[\"fremtind\",\"reise\",\"ordinary\",\"fremtind-reise\",\"PRE-450.200-015\"]"
+        ],
+        "expected_result": "Fremmøte og avgang blir separate allerede kjente sammenligningsrader; betinget transittbeløp har egen kilde og beholdt hendelse.",
+        "source_provenance": "fremtindReiseUnifiedTerms, S02 §8.2 PDF 5–6; ikke historisk Eika-kilde.",
+        "targeted_reaudit": "Bare aktivt fremtind-reise PRE-450.200-015, forsinkelses-/utilgjengelig-bagasjegrener; uendret historisk Eika-fingerprint. Kontroll mot Tryg og senere B-021 uten å endre Tryg-data.",
+        "acceptance_criteria": [
+          "Ingen endring utenfor batchens eksplisitte provider/type/scope/version/komponenter.",
+          "Ingen offentlig kildesannhet utledes fra sammenligningsmotpart. Fravær av presis motpart = unknown, ikke not covered.",
+          "Eksplisitt dokument X vinner over katalog Y med minst to alternative verdipar; taus valgfri dekning blir ikke selected.",
+          "Samme produkt mot seg selv og begge sideretninger gir stabil semantikk; kilder følger korrekt fact.",
+          "Alle tidligere godkjente Wave 1 og Wave 2-endringer består uendret; ingen ekstra oppgaver tas med.",
+          "Fremmøte og avgang blir separate allerede kjente sammenligningsrader; betinget transittbeløp har egen kilde og beholdt hendelse."
+        ],
+        "tests": [
+          "R-017-01",
+          "R-017-02",
+          "R-017-03",
+          "R-017-04",
+          "R-017-05",
+          "R-017-06",
+          "R-017-07",
+          "R-017-08",
+          "R-017-09",
+          "R-017-10"
+        ]
+      },
+      "remaining_requirement": null,
+      "audit_finding_ids": [
+        "GAP-5157"
+      ],
+      "audit_source_fact_ids": [
+        "SF-7385"
+      ],
+      "review_dependencies_resolution": {
+        "CR-382": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition"
+      },
+      "code_references": [
+        "lib/product-catalog.ts:279 availableAddOns; :315 selectedComponents; :343 resolveCatalogFacts",
+        "lib/catalog-enrichment.ts:74 selectedScopedAddOns; :188–258 document priority",
+        "lib/catalog-product-comparison.ts:190 materializeCatalogProduct; :220 valueForKey",
+        "lib/insurance-normalization.ts:460 normalizeTermName; :505 normalizeCatalogTermKey"
+      ],
+      "risk_explanation": "Begrenset kilde-/mappingendring innen oppgitt scope; særskilte dokumentprioritets- og arvstester kreves."
+    },
+    {
+      "batch_id": "B-018",
+      "title": "Samle dokumentert brukstap under Frende Hund Tap",
+      "original_disposition": "MAPPING_REVIEW_FIRST",
+      "final_disposition": "BLOCKED_BY_OTHER_BATCH",
+      "semantic_problem": "PRODUCT_COMPONENT_ERROR: del av valgt Tap er eksponert som selvstendig tillegg. I tillegg kan generisk tilleggsinferens velge hele Tap fra en underdekning etter en naiv flytting.",
+      "source_evidence": [
+        "S03"
+      ],
+      "existing_catalog_state": "Tap alene gir bare dyr.liv.*. Separat frende-hund-bruksverdi gir hund.bruksverdi.* uten Tap. Bekreftet med read-only resolverprobe.",
+      "existing_canonical_state": "hund.bruksverdi.dekning/grense/alder/begrensning finnes. Komponentstruktur støtter innhold i Tap. Men selectedScopedAddOns søker alle komponentens hoveddekninger; den skiller ikke kjøpsbevis fra inkluderende underdekning.",
+      "decision": "Etter felles seleksjonsguard fra B-022: flytt Bruksverdi inn i frende-hund-tap; fjern den separate kjøpbare Bruksverdi-komponenten; behold betingelser og 50 %-regel. Ikke opprett Bruk → Liv-avhengighet for Frende: dette er inklusjon i Tap.",
+      "implementation_layer": "catalog composition + shared add-on selection-evidence guard",
+      "affected_products": [
+        "[\"frende\",\"hund\",\"ordinary\",\"frende-hund-veterin-r\",\"2026-01-01\"]"
+      ],
+      "affected_families": [
+        "Hund"
+      ],
+      "customer_mode_impact": "Bare eksplisitt Tap/Liv-valg kan gi katalogbasert Tap-innhold. Dokumentert Bruksverdi alene bevares som dokumentfakta, men velger ikke hele Tap. Bruksverdi ikke valgt skal ikke oppheve øvrig dokumentert Tap.",
+      "dependencies": [
+        "B-022"
+      ],
+      "original_review_dependencies": [
+        "CR-162"
+      ],
+      "implementation_risk": "MEDIUM",
+      "recommended_model": "GPT-6 SOL HIGH",
+      "required_tests": [
+        "R-018-01",
+        "R-018-02",
+        "R-018-03",
+        "R-018-04",
+        "R-018-05",
+        "R-018-06",
+        "R-018-07",
+        "R-018-08",
+        "R-018-09"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "finding_signatures": [
+        "461c6c588118df04"
+      ],
+      "implementation_files": [
+        "lib/boat-pet-catalog.ts",
+        "tests/nito-remediation-wave2.test.mjs"
+      ],
+      "plan": {
+        "what_to_change": [
+          "Etter B-022s selectionEvidenceKeys-guard: sett Tap-komponentens kjøpsbevis til dyr.liv.dekning / eksakt Tap-navn. hund.bruksverdi.* skal ikke kunne velge hele Tap eller blokkere resten av Tap ved et avslag bare på underdekningen.",
+          "Flytt hund.bruksverdi.dekning og .grense til frende-hund-tap; inkluder kildekvalifisering med eksisterende .alder/.begrensning: ferdig trent, regelmessig bruk, helt tap etter sykdom/ulykke, under 8 år, avl unntatt, særvilkår §7.3 og veterinærattest.",
+          "Behold 50 % av valgt Tap-sum og avkorting av senere dødsfallserstatning etter §8.4, uten å regne ut kundens sum. Fjern frende-hund-bruksverdi fra kjøpbar add-on-liste og den nå overflødige komponenten.",
+          "Gamle manuelle payloads med kun det fjernede ID-et skal avvises tydelig av eksisterende ukjent-tillegg-validering; aldri remappes automatisk til Tap. Gamle dokumentfacts/add-on-tekst bevares som dokumentasjon uten valgt Tap."
+        ],
+        "what_not_to_change": [
+          "Frende Katt, Medisin/Tann, Tap-hovedopphør ved hovedforfall etter 10 år. Bruksverdiens under 8 år er et annet vilkår.",
+          "Ingen avhengighetsregel Bruk→Liv for Frende; ingen endring av andre selskapers selvstendige Bruk/Liv."
+        ],
+        "affected_scope": [
+          "[\"frende\",\"hund\",\"ordinary\",\"frende-hund-veterin-r\",\"2026-01-01\"]"
+        ],
+        "expected_result": "Tap valgt gir betinget bruksverdidekning i Hund. Uvalgt Tap gir ikke kundevalgt Bruksverdi. Produktmodus viser én tilgjengelig Tap-pakke med Bruksverdi som innhold.",
+        "source_provenance": "S03 §§7.1.3,7.3,8.2,8.4 PDF 3–4; samme boat-pet:frende:hund original.",
+        "targeted_reaudit": "Frende Hund base/Tap og ingen/Tap-avslag/Bruksverdi alene/Tap+underdekning-avslag; Frende Katt og andre tillegg uendret. Kjør B-022s felles seleksjonsregresjoner igjen.",
+        "acceptance_criteria": [
+          "Ingen endring utenfor batchens eksplisitte provider/type/scope/version/komponenter.",
+          "Ingen offentlig kildesannhet utledes fra sammenligningsmotpart. Fravær av presis motpart = unknown, ikke not covered.",
+          "Eksplisitt dokument X vinner over katalog Y med minst to alternative verdipar; taus valgfri dekning blir ikke selected.",
+          "Samme produkt mot seg selv og begge sideretninger gir stabil semantikk; kilder følger korrekt fact.",
+          "Alle tidligere godkjente Wave 1 og Wave 2-endringer består uendret; ingen ekstra oppgaver tas med.",
+          "Tap valgt gir betinget bruksverdidekning i Hund. Uvalgt Tap gir ikke kundevalgt Bruksverdi. Produktmodus viser én tilgjengelig Tap-pakke med Bruksverdi som innhold."
+        ],
+        "tests": [
+          "R-018-01",
+          "R-018-02",
+          "R-018-03",
+          "R-018-04",
+          "R-018-05",
+          "R-018-06",
+          "R-018-07",
+          "R-018-08",
+          "R-018-09"
+        ]
+      },
+      "remaining_requirement": "B-022s selectionEvidenceKeys-kontrakt og delt seleksjonsguard må være implementert og bestå gate før Tap-komposisjonen endres. Ikke tilstrekkelig å flytte to katalograder.",
+      "audit_finding_ids": [
+        "GAP-1284"
+      ],
+      "audit_source_fact_ids": [
+        "SF-1902"
+      ],
+      "review_dependencies_resolution": {
+        "CR-162": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition"
+      },
+      "code_references": [
+        "lib/product-catalog.ts:279 availableAddOns; :315 selectedComponents; :343 resolveCatalogFacts",
+        "lib/catalog-enrichment.ts:74 selectedScopedAddOns; :188–258 document priority",
+        "lib/catalog-product-comparison.ts:190 materializeCatalogProduct; :220 valueForKey",
+        "lib/insurance-normalization.ts:460 normalizeTermName; :505 normalizeCatalogTermKey"
+      ],
+      "risk_explanation": "Begrenset kilde-/mappingendring innen oppgitt scope; særskilte dokumentprioritets- og arvstester kreves.",
+      "proof_boundary": "Feil nåværende komponentvalg er observert i resolverprobe. Risikoen etter en naiv flytting er utledet fra selectedScopedAddOns-koden, ikke fra en implementert eller mutert testkatalog."
+    },
+    {
+      "batch_id": "B-019",
+      "title": "Representer Storebrand Reise dagstur på korrekt overnattingsdimensjon",
+      "original_disposition": "MAPPING_REVIEW_FIRST",
+      "final_disposition": "READY_TO_IMPLEMENT",
+      "semantic_problem": "MAPPING_ERROR: kjent dagsturregel ligger under geografi; reise.overnatting blir falskt ukjent.",
+      "source_evidence": [
+        "S04",
+        "S05"
+      ],
+      "existing_catalog_state": "reise.omrade.verden inneholder Dagstur er omfattet. Probe viser unknown på reise.overnatting for Standard og Super mot Tryg.",
+      "existing_canonical_state": "reise.overnatting finnes hos Tryg; eksisterende presentation-concept reise.rammer gjenkjenner den. Dette er term/eligibility, ikke fravær av dekning.",
+      "decision": "Legg eksplisitt kildebelagt reise.overnatting i Storebrands common-komponent. Betydning: dagstur YES, generelt overnattingskrav NO. Behold geografi og alle fordelsspesifikke overnattingsvilkår. Ingen ny state-enum, ingen UI-teksttolking.",
+      "implementation_layer": "catalog mapping only",
+      "affected_products": [
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+      ],
+      "affected_families": [
+        "Reise"
+      ],
+      "customer_mode_impact": "Dokumentert reise.overnatting har forrang. Ny term sier ikke at alle fordeler gjelder uten overnatting; leiebil/arrangementsavbestilling har egne betingelser.",
+      "dependencies": [],
+      "original_review_dependencies": [
+        "CR-394"
+      ],
+      "implementation_risk": "LOW",
+      "recommended_model": "GPT-6 SOL MEDIUM",
+      "required_tests": [
+        "R-019-01",
+        "R-019-02",
+        "R-019-03",
+        "R-019-04",
+        "R-019-05",
+        "R-019-06",
+        "R-019-07",
+        "R-019-08",
+        "R-019-09"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "finding_signatures": [
+        "0def48b35239d8dc"
+      ],
+      "implementation_files": [
+        "lib/storebrand-reise-catalog.ts",
+        "tests/nito-remediation-wave2.test.mjs"
+      ],
+      "plan": {
+        "what_to_change": [
+          "Legg en reise.overnatting-term i common ved hjelp av eksisterende faktafunksjon og storebrandReiseProductPage. Bruk eksplisitt positiv dagsturformulering med kildens betydning: reiser med og uten overnatting omfattes generelt.",
+          "Standard og Super arver termen. Behold geografi-factens øvrige informasjon; ingen UI-parser av Dagstur og ingen ny boolsk sammenligningsmotor.",
+          "Knyt direkte dagsturbevis til S05 FAQ, støttet av S04 B.1.2–3. Ikke gi FAQ en konstruert PDF-side/gyldighetsdato; bruk eksisterende HTML-kildekonvensjon."
+        ],
+        "what_not_to_change": [
+          "Storebrands geografiske unntak, medisinske kommunevilkår, avbestilling/arrangement, leiebilens overnattingskrav og tjenestereise.",
+          "Tryg Ekstra/Premium og deres fritids-/tjenestereiseformuleringer; generell reiseadgang er ikke lik dekning av alle fordeler."
+        ],
+        "affected_scope": [
+          "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+          "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+        ],
+        "expected_result": "Storebrand får kjent dagsturregel på reise.overnatting i samme rad som Tryg; tilstanden er dokumentert term, ikke unavailable fordi krav på overnatting er NO.",
+        "source_provenance": "Eksisterende storebrandReiseProductPage S05 FAQ; fullvilkår S04 PDF 4 underbygger den generelle rammen.",
+        "targeted_reaudit": "Standard/Super mot Tryg Ekstra/Premium begge veier, samme produkt; reise.overnatting skal ikke være unknown. Leiebil/arrangementsavbestilling og alle øvrige facts uendret.",
+        "acceptance_criteria": [
+          "Ingen endring utenfor batchens eksplisitte provider/type/scope/version/komponenter.",
+          "Ingen offentlig kildesannhet utledes fra sammenligningsmotpart. Fravær av presis motpart = unknown, ikke not covered.",
+          "Eksplisitt dokument X vinner over katalog Y med minst to alternative verdipar; taus valgfri dekning blir ikke selected.",
+          "Samme produkt mot seg selv og begge sideretninger gir stabil semantikk; kilder følger korrekt fact.",
+          "Alle tidligere godkjente Wave 1 og Wave 2-endringer består uendret; ingen ekstra oppgaver tas med.",
+          "Storebrand får kjent dagsturregel på reise.overnatting i samme rad som Tryg; tilstanden er dokumentert term, ikke unavailable fordi krav på overnatting er NO."
+        ],
+        "tests": [
+          "R-019-01",
+          "R-019-02",
+          "R-019-03",
+          "R-019-04",
+          "R-019-05",
+          "R-019-06",
+          "R-019-07",
+          "R-019-08",
+          "R-019-09"
+        ]
+      },
+      "remaining_requirement": null,
+      "audit_finding_ids": [
+        "GAP-1642"
+      ],
+      "audit_source_fact_ids": [
+        "SF-2412"
+      ],
+      "review_dependencies_resolution": {
+        "CR-394": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition"
+      },
+      "inherited_scope_reason": "Super bruker common/Standard; kilde B.3 gjelder begge nivåer.",
+      "code_references": [
+        "lib/product-catalog.ts:279 availableAddOns; :315 selectedComponents; :343 resolveCatalogFacts",
+        "lib/catalog-enrichment.ts:74 selectedScopedAddOns; :188–258 document priority",
+        "lib/catalog-product-comparison.ts:190 materializeCatalogProduct; :220 valueForKey",
+        "lib/insurance-normalization.ts:460 normalizeTermName; :505 normalizeCatalogTermKey"
+      ],
+      "risk_explanation": "Eksisterende termnøkkel og eksisterende source record; kun presis plassering av allerede kjent regel."
+    },
+    {
+      "batch_id": "B-020",
+      "title": "Bevar Gjensidige Hus gnagerfakta ved råte-/insektutvidelse",
+      "original_disposition": "MAPPING_REVIEW_FIRST",
+      "final_disposition": "CANONICAL_EXTENSION_REQUIRED",
+      "semantic_problem": "INHERITANCE_ERROR + CANONICAL_GAP: Pluss/tillegg bruker samme nøkler som dyr/gnagere og replacesBase sletter grunnproduktets fakta.",
+      "source_evidence": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "existing_catalog_state": "Standard har hus.skadedyr.bekjempelse/bygningsskade. Pluss og valgt råte/insekter erstatter disse med insektvilkår. Uvalgt tillegg skjules delvis av included-preferanse på samme nøkkel.",
+      "existing_canonical_state": "Generiske skadedyrnøkler skiller handling (bekjempelse/bygningsskade), men ikke dyregruppe. Ingen sikre barn for dyr versus insekter finnes. Kun å fjerne replacesBase er utilstrekkelig i både produkt- og kundemodus.",
+      "decision": "Innfør søsken under hus.skadedyr: dyr.bekjempelse/bygningsskade og insekter.bekjempelse/bygningsskade/egenandel. Grunndyr arves; insekter er optional på Standard og included på Pluss. Råte holdes separat. Ingen global omtolking av andre provideres generiske skadedyrfakta.",
+      "implementation_layer": "canonical children + inheritance + catalog/add-on composition + mapping",
+      "affected_products": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "affected_families": [
+        "Hus"
+      ],
+      "customer_mode_impact": "Dokumentert avslag på insekter skal ikke fjerne dyreskader og omvendt. Bred skadedyr-dokumentasjon er ikke bevis for begge undergrupper; uklar bred dokumentasjon blokkerer katalogutfylling i berørt gren fremfor å overstyres.",
+      "dependencies": [],
+      "original_review_dependencies": [
+        "CR-230",
+        "CR-231"
+      ],
+      "implementation_risk": "MEDIUM",
+      "recommended_model": "GPT-6 SOL EXTRA HIGH",
+      "required_tests": [
+        "R-020-01",
+        "R-020-02",
+        "R-020-03",
+        "R-020-04",
+        "R-020-05",
+        "R-020-06",
+        "R-020-07",
+        "R-020-08",
+        "R-020-09",
+        "R-020-10",
+        "R-020-11"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "finding_signatures": [
+        "eb5ab1901f70dfbd",
+        "fd13be8474440377"
+      ],
+      "implementation_files": [
+        "lib/gjensidige-hus-catalog.ts",
+        "lib/insurance-normalization.ts",
+        "lib/catalog-enrichment.ts",
+        "tests/nito-remediation-wave2.test.mjs"
+      ],
+      "plan": {
+        "what_to_change": [
+          "Definer presise søsken hus.skadedyr.dyr.bekjempelse og .bygningsskade versus hus.skadedyr.insekter.bekjempelse, .bygningsskade og .egenandel. Dyr-grenen betyr mus/rotter/andre dyr etter kildens avgrensning; ikke bare gnagere og ikke insekter.",
+          "Flytt Standard-fakta til dyr-grenen, med fysisk bygningsskade, svekket isolasjonsevne og lukt. Ikke før videre katalogens usikre generelle firebeinsformulering; bruk kildeordlyden med insekt- og øvrige relevante unntak.",
+          "Pluss beholder dyr-grenen via arv og legger til insekter. Endre rotOption-filteret til å kopiere de presise insektnøklene; ingen replacesBase mot dyr-grenen.",
+          "Standard er uten insektdekning i grunndekningen, men utvidelsen er optional i produktmodus. Bruk eksisterende komponentmekanisme: ikke legg en konkurrerende unavailable-fact med samme nøkkel foran den valgfrie komponenten. Bevar eksplisitt grunnunntak som separat betingelse. Uvalgt tillegg hos kunde er unknown eller eksplisitt not_selected, aldri automatisk selected.",
+          "Avgrens hus.rate.dekning til råtesopp og dens unntak når treødeleggende insekter flyttes til egen gren. Ikke slett insektinformasjon; unngå at samme insektdekning gis to konkurrerende canonical identities. Den felles bygningsskadeegenandelen kan fortsatt oppgi begge anvendelsesområder uttrykkelig.",
+          "Behold fullverdikrav, råtesoppgren, 6 000 kr bygningsskade-egenandel med korrekt kombinert scope og 2 000 kr kun insektbekjempelse. Bevar qualificationSource til IPID for Standard-tilgjengelighet.",
+          "Ingen globale aliaser fra generisk skadedyr til dyr eller insekter. Bare eksplisitt typescopede labels må velge barn. Dokumentert bred skadedyrregel må ikke overstyres av nye presise katalogbarn ved usikker scope; blokker berikelse konservativt og behold dokumentteksten.",
+          "Eksakt Hus-guard: document-origin hus.skadedyr.bekjempelse blokkerer katalogfyll av dyr.bekjempelse og insekter.bekjempelse under hus.skadedyr; hus.skadedyr.bygningsskade blokkerer de to tilsvarende bygningsskadebarna; hus.skadedyr.egenandel blokkerer insekter.egenandel. Presise dokumentbarn beholdes. Ingen guarding basert på ordsøk eller gjetting av dyr i verditekst; unknown-placeholder teller ikke som dokumentert innhold."
+        ],
+        "what_not_to_change": [
+          "B-007s bygnings-/våtromsrettelser, øvrige Hus-facts, andre selskapers skadedyrnøkler, Innbo-skadedyr og Bobil.",
+          "Det er ikke tillatt å behandle lukt/isolasjon som bare materialnedbrytning eller å gjøre hele skadedyrfamilien unavailable når bare insekter er avslått."
+        ],
+        "affected_scope": [
+          "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+        ],
+        "expected_result": "Standard/valgt tillegg/Pluss beholder samme dyreskader. Insekter vises som egen valgfri/inkludert gren, med egne kilder og egenandel.",
+        "source_provenance": "S06 PDF 3–4 for grunnregler; S07 PDF 3–4/6/1 for Pluss; S08 PDF 2 som qualificationSource for valgfritt tillegg.",
+        "targeted_reaudit": "Gjensidige Hus uten/med gjensidige-hus-rate-insekter samt Hus Pluss; kontroll av B-007 og motsatt retning. Eksisterende presentation-concept hus.rate-skadedyr gjenbrukes uten redesign.",
+        "acceptance_criteria": [
+          "Ingen endring utenfor batchens eksplisitte provider/type/scope/version/komponenter.",
+          "Ingen offentlig kildesannhet utledes fra sammenligningsmotpart. Fravær av presis motpart = unknown, ikke not covered.",
+          "Eksplisitt dokument X vinner over katalog Y med minst to alternative verdipar; taus valgfri dekning blir ikke selected.",
+          "Samme produkt mot seg selv og begge sideretninger gir stabil semantikk; kilder følger korrekt fact.",
+          "Alle tidligere godkjente Wave 1 og Wave 2-endringer består uendret; ingen ekstra oppgaver tas med.",
+          "Standard/valgt tillegg/Pluss beholder samme dyreskader. Insekter vises som egen valgfri/inkludert gren, med egne kilder og egenandel."
+        ],
+        "tests": [
+          "R-020-01",
+          "R-020-02",
+          "R-020-03",
+          "R-020-04",
+          "R-020-05",
+          "R-020-06",
+          "R-020-07",
+          "R-020-08",
+          "R-020-09",
+          "R-020-10",
+          "R-020-11"
+        ]
+      },
+      "remaining_requirement": "Ny implementeringsautorisasjon må eksplisitt omfatte den spesifiserte minimale utvidelsen og dens gate. Kildespørsmålet er avklart i frosset korpus; utvidelsen er ikke implementert eller regresjonsvalidert her.",
+      "audit_finding_ids": [
+        "GAP-2134",
+        "GAP-2147"
+      ],
+      "audit_source_fact_ids": [
+        "SF-3064",
+        "SF-3082"
+      ],
+      "review_dependencies_resolution": {
+        "CR-230": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition",
+        "CR-231": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition"
+      },
+      "code_references": [
+        "lib/product-catalog.ts:279 availableAddOns; :315 selectedComponents; :343 resolveCatalogFacts",
+        "lib/catalog-enrichment.ts:74 selectedScopedAddOns; :188–258 document priority",
+        "lib/catalog-product-comparison.ts:190 materializeCatalogProduct; :220 valueForKey",
+        "lib/insurance-normalization.ts:460 normalizeTermName; :505 normalizeCatalogTermKey"
+      ],
+      "risk_explanation": "Begrenset kilde-/mappingendring innen oppgitt scope; særskilte dokumentprioritets- og arvstester kreves."
+    },
+    {
+      "batch_id": "B-021",
+      "title": "Skill Storebrand forsinket avgang fra fremmøte",
+      "original_disposition": "MAPPING_REVIEW_FIRST",
+      "final_disposition": "READY_TO_IMPLEMENT",
+      "semantic_problem": "MAPPING_ERROR: 20 000 for fremmøte brukes også om avgang der kilden sier 1 500 for ny transport. Super mister hendelsesvilkår i generell ubegrenset-tekst.",
+      "source_evidence": [
+        "S04"
+      ],
+      "existing_catalog_state": "Standard og Super har bare reise.forsinkelse.rute med sammenblandede hendelser.",
+      "existing_canonical_state": "Gjenbruk samme avgang_sum/fremmote_sum-identiteter som B-017/Tryg. Forskjellige grenser for hotell og transport bevares i tydelig kvalifisert term, uten å gjøre dem til én felles sum.",
+      "decision": "Felles rute-ramme uten blandede summer. Standard: fremmøte hotell 3 000/transport 20 000; avgang hotell 3 000/transport 1 500. Super erstatter hver av de to summetermene med ubegrensede beløp, men beholder 1,5-times/24-times-triggerne i riktig gren.",
+      "implementation_layer": "catalog + existing event identities/inheritance",
+      "affected_products": [
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+      ],
+      "affected_families": [
+        "Reise"
+      ],
+      "customer_mode_impact": "Bruk kompatibilitetsmappingen fra B-017 for dokument > katalog, uten generell alias av rute til én hendelse.",
+      "dependencies": [
+        "B-017"
+      ],
+      "original_review_dependencies": [
+        "CR-381"
+      ],
+      "implementation_risk": "MEDIUM",
+      "recommended_model": "GPT-6 SOL HIGH",
+      "required_tests": [
+        "R-021-01",
+        "R-021-02",
+        "R-021-03",
+        "R-021-04",
+        "R-021-05",
+        "R-021-06",
+        "R-021-07",
+        "R-021-08",
+        "R-021-09"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "finding_signatures": [
+        "a20572d9ec59ed5e"
+      ],
+      "implementation_files": [
+        "lib/storebrand-reise-catalog.ts",
+        "tests/nito-remediation-wave2.test.mjs"
+      ],
+      "plan": {
+        "what_to_change": [
+          "Etter B-017s mapping-/kundeprioritetsgate: skill Standard i eksisterende reise.forsinkelse.fremmote_sum og reise.forsinkelse.avgang_sum.",
+          "Fremmøte: minst 1,5 times kvalifiserende forsinkelse etter påbegynt reise; hotell inntil 3 000/person/hendelse og transport inntil 20 000/person/hendelse. Det er ikke én sum på 23 000 og ikke avgangens 24-timersvilkår.",
+          "Avgang: forhåndsbetalt offentlig transport går ikke som avtalt; hotell 3 000/person/hendelse. Ny transport 1 500/person/hendelse bare hvis transportøren ikke klarer å innhente innen 24 timer. Ikke innfør et generelt 24-timerskrav for hotell.",
+          "Super erstatter de to beløpsgrenene hver for seg med ubegrensede summer, men beholder hendelsesvilkår. Felles rute-ramme skal fortsatt ha kvalifiserende årsaker, transportøransvar og forhåndsgodkjennelse etter B.3.1; ikke alle tenkelige forsinkelser."
+        ],
+        "what_not_to_change": [
+          "B-019s dagsturregel, utilgjengelig bagasje 500, forsinket bagasje 3 000/6 000, andre Super-tillegg, avbestilling og leiebil."
+        ],
+        "affected_scope": [
+          "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+          "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+        ],
+        "expected_result": "Standard får aldri fremmøtebeløpet på avgangsraden; Super-utvidelse fjerner ikke trigger- og dokumentasjonsvilkår.",
+        "source_provenance": "S04 tabell PDF 8, vilkår B.3.1.1–2 PDF 9. Lag riktige side/punktreferanser for beløp og betingelser.",
+        "targeted_reaudit": "Standard/Super hver for seg, innbyrdes og mot Fremtind/Tryg begge veier. 3 000/20 000/1 500 må være i riktige grener.",
+        "acceptance_criteria": [
+          "Ingen endring utenfor batchens eksplisitte provider/type/scope/version/komponenter.",
+          "Ingen offentlig kildesannhet utledes fra sammenligningsmotpart. Fravær av presis motpart = unknown, ikke not covered.",
+          "Eksplisitt dokument X vinner over katalog Y med minst to alternative verdipar; taus valgfri dekning blir ikke selected.",
+          "Samme produkt mot seg selv og begge sideretninger gir stabil semantikk; kilder følger korrekt fact.",
+          "Alle tidligere godkjente Wave 1 og Wave 2-endringer består uendret; ingen ekstra oppgaver tas med.",
+          "Standard får aldri fremmøtebeløpet på avgangsraden; Super-utvidelse fjerner ikke trigger- og dokumentasjonsvilkår."
+        ],
+        "tests": [
+          "R-021-01",
+          "R-021-02",
+          "R-021-03",
+          "R-021-04",
+          "R-021-05",
+          "R-021-06",
+          "R-021-07",
+          "R-021-08",
+          "R-021-09"
+        ]
+      },
+      "remaining_requirement": null,
+      "audit_finding_ids": [
+        "GAP-1057"
+      ],
+      "audit_source_fact_ids": [
+        "SF-1627"
+      ],
+      "review_dependencies_resolution": {
+        "CR-381": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition"
+      },
+      "inherited_scope_reason": "Super bruker common/Standard; kilde B.3 gjelder begge nivåer.",
+      "code_references": [
+        "lib/product-catalog.ts:279 availableAddOns; :315 selectedComponents; :343 resolveCatalogFacts",
+        "lib/catalog-enrichment.ts:74 selectedScopedAddOns; :188–258 document priority",
+        "lib/catalog-product-comparison.ts:190 materializeCatalogProduct; :220 valueForKey",
+        "lib/insurance-normalization.ts:460 normalizeTermName; :505 normalizeCatalogTermKey"
+      ],
+      "risk_explanation": "Begrenset kilde-/mappingendring innen oppgitt scope; særskilte dokumentprioritets- og arvstester kreves."
+    },
+    {
+      "batch_id": "B-022",
+      "title": "Avklar Gjensidige Bruk som avhengig tillegg til Liv",
+      "original_disposition": "CANONICAL_REVIEW_FIRST",
+      "final_disposition": "CANONICAL_EXTENSION_REQUIRED",
+      "semantic_problem": "CANONICAL_GAP: modellen kan kreve hovedprodukt, men ikke annet tillegg. Katt mangler artsriktig Bruk-identitet.",
+      "source_evidence": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "existing_catalog_state": "Gjensidige Hund Bruk kan resolveres alene uten Liv. Katt har ingen Bruk-komponent. Begge hovedprodukter er Behandling; sourceSeeds har IPID, mens relevante fullvilkår allerede finnes lokalt.",
+      "existing_canonical_state": "CatalogAddOn.requiresLevel validerer produkt-ID, ikke tillegg. Ingen requiresAddOnIds. Katt mangler katt.bruksverdi.*; hund.bruksverdi må ikke gjenbrukes.",
+      "decision": "Legg til eksplisitt all-of requiresAddOnIds, adskilt fra availableAddOns. Legg til eksplisitte selectionEvidenceKeys som avgrenser hva som kan velge et sammensatt tillegg. Bruk → samme arts Liv, aldri motsatt eller automatisk valg. Katt får artsavgrenset Bruksverdi. Registrer de eksisterende riktige fullvilkårene og produktsidene som faktakilder.",
+      "implementation_layer": "shared add-on constraints/selection + species registry + catalog + source records",
+      "affected_products": [
+        "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "[\"gjensidige\",\"katt\",\"ordinary\",\"gjensidige-katt-behandling\",null]"
+      ],
+      "affected_families": [
+        "Hund",
+        "Katt"
+      ],
+      "customer_mode_impact": "Streng manuell validering av Bruk uten Liv. PDF med eksplisitt Bruk og taus/avvist Liv beholder dokumentert Bruk, men får ikke Liv valgt eller katalogberikelse som forutsetter Liv. Ingen global Frende/Fremtind/Tryg/If/Storebrand-avhengighet.",
+      "dependencies": [],
+      "original_review_dependencies": [
+        "CR-160",
+        "CR-292"
+      ],
+      "implementation_risk": "HIGH",
+      "recommended_model": "GPT-6 SOL EXTRA HIGH",
+      "required_tests": [
+        "R-022-01",
+        "R-022-02",
+        "R-022-03",
+        "R-022-04",
+        "R-022-05",
+        "R-022-06",
+        "R-022-07",
+        "R-022-08",
+        "R-022-09",
+        "R-022-10",
+        "R-022-11",
+        "R-022-12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "finding_signatures": [
+        "22894946841d0ce5",
+        "3327dc0e4134e2c5"
+      ],
+      "implementation_files": [
+        "lib/product-catalog.ts",
+        "lib/boat-pet-catalog-builder.ts",
+        "lib/boat-pet-catalog.ts",
+        "lib/boat-pet-registry.ts",
+        "lib/catalog-product-comparison.ts",
+        "lib/catalog-enrichment.ts",
+        "lib/presentation-catalog.ts",
+        "lib/manual-agreement.ts",
+        "app/page.tsx (bare nødvendig avhengighetsvalg/validering)",
+        "tests/nito-remediation-wave2.test.mjs",
+        "tests/agreement-scope.test.mjs"
+      ],
+      "plan": {
+        "what_to_change": [
+          "Utvid CatalogAddOn og BoatPetAddOnDefinition med optional requiresAddOnIds:string[] (all-of) og selectionEvidenceKeys:string[]. Fravær bevarer dagens oppførsel. Metadata er produktkonfigurasjon, aldri kundens valg.",
+          "Valider avhengighetsreferanser i samme provider/type/agreementScope og det eksakte produktets versjons-/kildescope, selvreferanse/syklus/dangling/utestengte varianter. requiresLevel forblir hovedproduktkrav.",
+          "availableAddOns skal fortsatt beskrive tilgjengelighet. Streng selectedComponents/manuell input krever eksplisitt hele valgte settet; Bruk alene skal avvises, aldri auto-velge Liv.",
+          "Produktmodus må materialisere en avhengig tilleggspakke med dens nødvendige komponenter i katalogmodus, men merke alle som optional. Skille Bruk-innhold fra Liv-innhold gjennom componentId/evidence; ikke duplisere Liv som om bare Bruk ga det og ikke mutere et kundeseleksjonssett. Eksisterende resolveCatalogFacts(product,[addon.id]) kan ikke brukes uendret for avhengige tillegg.",
+          "I selectedScopedAddOns: selectionEvidenceKeys avgrenser både generisk valgevidens og komponentavslag. Et eksplisitt avslag på underdekning blokkerer bare dens facts, ikke et dokumentert valgt overordnet tillegg. Eksakt navngitt addon-valg kan brukes; intern katalog-ID eller katalogtekst er ikke dokumentevidens.",
+          "PDF: behold Bruk selected/not_selected/conflict fra kundedokumentet. Manglende/avvist Liv med Bruk valgt gir ingen katalogutfylling som forutsetter Liv og ingen automatisk Liv-status. La base og øvrige gyldige komponenter fortsette; ikke kast hele avtalen. Behold rå dokumentfakta/provenance i eksisterende datastrukturer, ikke telemetry.",
+          "Konfigurer Gjensidige Hund Bruk → gjensidige-hund-liv; Katt Bruk → gjensidige-katt-liv. Bruk har eget valg selv når Liv er valgt. Gi Frende Tap selectionEvidenceKeys=[dyr.liv.dekning] i etterfølgende B-018. Ingen global selskapsregel basert på ordet Bruk.",
+          "Utvid Katt-register med katt.bruksverdi.dekning/alder/begrensning (og eventuelt .grense bare når eget fullvilkår faktisk gir et slikt fact). Ingen hund.bruksverdi-key for katt og ingen påfunnet sum. Legg til gjensidige-katt-bruk og artsriktig presentation-metadata i eksisterende Katt-gruppe.",
+          "Registrer de allerede lokale hund-/katt-Liv/Bruk-fullvilkårene og produktsidene som egne runtime sources med eksisterende hashes, ordinary scope og ukjent kildeversjon/dato beholdt. Knytt dependency til produktside og forsikringsinnhold til fullvilkåret; IPID er ikke eneste faktakilde. Bruk eksisterende qualificationSource-mønster (builder kan måtte føre feltet videre).",
+          "Ikke kopier ufullstendig nettsideformulering om nedsatt avlsevne som universell terskel: fullvilkåret krever 100 % fysisk avlsevnetap for katt/avlshund. Hundens arbeidsfunksjon har egen 50 %-betingelse. Fullvilkårets presisering har høyere autoritet; dette er ikke bevis for kildeferskhet."
+        ],
+        "what_not_to_change": [
+          "Ingen selvstendig Liv-produktutvidelse, Valpekull/Kattungekull eller øvrige Wave 3-fakta.",
+          "Ingen global Bruk→Liv for Fremtind eller automatisk Frende Bruk-komponent. Ingen migrering av kundens ukjente kontrakt til ordinary.",
+          "Ingen ny coverage-statusmotor, objektsidentitet, priser, PDF-extraction eller prompt."
+        ],
+        "affected_scope": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+          "[\"gjensidige\",\"katt\",\"ordinary\",\"gjensidige-katt-behandling\",null]"
+        ],
+        "expected_result": "Avhengighet er eksplisitt og håndheves uten å konvertere tilgjengelighet til kundevalg. Artsriktig Bruk blir sammenlignbart bare innen riktig art.",
+        "source_provenance": "S09/S10 produktsidene dokumenterer kjøpsavhengigheten; S11/S12 fullvilkår dokumenterer arts-/hendelsesscope. Originalene finnes allerede; ingen nedlasting/byteendring.",
+        "targeted_reaudit": "Gjensidige Hund/Katt base, Liv, Bruk alene, Liv+Bruk; Frende sammensatt Tap via B-018. Negative provider/type/scope/version/cycle-cases; produktmodus, manuell og syntetisk PDF. Andre tillegg uten metadata må være uendret.",
+        "acceptance_criteria": [
+          "Ingen endring utenfor batchens eksplisitte provider/type/scope/version/komponenter.",
+          "Ingen offentlig kildesannhet utledes fra sammenligningsmotpart. Fravær av presis motpart = unknown, ikke not covered.",
+          "Eksplisitt dokument X vinner over katalog Y med minst to alternative verdipar; taus valgfri dekning blir ikke selected.",
+          "Samme produkt mot seg selv og begge sideretninger gir stabil semantikk; kilder følger korrekt fact.",
+          "Alle tidligere godkjente Wave 1 og Wave 2-endringer består uendret; ingen ekstra oppgaver tas med.",
+          "Avhengighet er eksplisitt og håndheves uten å konvertere tilgjengelighet til kundevalg. Artsriktig Bruk blir sammenlignbart bare innen riktig art."
+        ],
+        "tests": [
+          "R-022-01",
+          "R-022-02",
+          "R-022-03",
+          "R-022-04",
+          "R-022-05",
+          "R-022-06",
+          "R-022-07",
+          "R-022-08",
+          "R-022-09",
+          "R-022-10",
+          "R-022-11",
+          "R-022-12"
+        ]
+      },
+      "remaining_requirement": "Ny implementeringsautorisasjon må eksplisitt omfatte den spesifiserte minimale utvidelsen og dens gate. Kildespørsmålet er avklart i frosset korpus; utvidelsen er ikke implementert eller regresjonsvalidert her.",
+      "audit_finding_ids": [
+        "GAP-2900",
+        "GAP-2936"
+      ],
+      "audit_source_fact_ids": [
+        "SF-4052",
+        "SF-4091"
+      ],
+      "review_dependencies_resolution": {
+        "CR-160": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition",
+        "CR-292": "SEMANTIC_REVIEW_RESOLVED_HERE; no human approval claimed; follow final disposition"
+      },
+      "code_references": [
+        "lib/product-catalog.ts:279 availableAddOns; :315 selectedComponents; :343 resolveCatalogFacts",
+        "lib/catalog-enrichment.ts:74 selectedScopedAddOns; :188–258 document priority",
+        "lib/catalog-product-comparison.ts:190 materializeCatalogProduct; :220 valueForKey",
+        "lib/insurance-normalization.ts:460 normalizeTermName; :505 normalizeCatalogTermKey"
+      ],
+      "risk_explanation": "HIGH: delt tilleggsresolver, produktmodus og PDF/manuell bruker samme primitive. En naiv dependency closure kan feilaktig velge Liv, eller en streng throw kan forkaste kundedokumentet. Krever separat arkitekturgate og negative tester før katalogkobling."
+    }
+  ],
+  "canonical_decisions": [
+    {
+      "decision_id": "CD-015",
+      "batch_ids": [
+        "B-015"
+      ],
+      "classification": "CANONICAL_GAP",
+      "keys": [
+        "flytting.tyveri_skadeverk.grense"
+      ],
+      "semantic_definition": "Tap ved tyveri/skadeverk under flytting med eksplisitt utførerscope og per-skadetilfelle-grense. Term, ikke generell transportskadedekning.",
+      "why_existing_structure_fails_or_suffices": "Generell transport/bæring, tyveri utenfor hjem og uhell er ikke samme hendelse. Ny presis child-key i eksisterende flytting-familie er nok; ingen schemautvidelse.",
+      "affected_products": [
+        "[\"tryg\",\"innbo\",\"ordinary\",\"tryg-innbo-ekstra\",\"2026-07-01\"]"
+      ],
+      "affected_families": [
+        "Innbo"
+      ],
+      "source_evidence": [
+        "S01"
+      ],
+      "comparison_behavior": "Egen rad; ikke match mot transportskade. Motpart uten egen dokumentasjon blir unknown.",
+      "customer_mode_implication": "Eksakt dokumentfact har forrang; aldri global alias av gammel transportnøkkel.",
+      "false_equivalence_risk": "Privat flytting kan få feil 30 000-tak; profesjonelt tyveri kan bli oppfattet som generell transportskade.",
+      "regression_requirements": [
+        "Utfører og hendelse beholdt",
+        "Ingen cross-provider remapping",
+        "Dokumentprioritet med gamle og presise keys"
+      ],
+      "planned_test_ids": [
+        "R-015-01",
+        "R-015-02",
+        "R-015-03",
+        "R-015-04",
+        "R-015-05",
+        "R-015-06",
+        "R-015-07",
+        "R-015-08",
+        "R-015-09"
+      ]
+    },
+    {
+      "decision_id": "CD-017-021",
+      "batch_ids": [
+        "B-017",
+        "B-021"
+      ],
+      "classification": "EXISTING_KEYS_REUSED",
+      "keys": [
+        "reise.forsinkelse.avgang_sum",
+        "reise.forsinkelse.fremmote_sum",
+        "reise.forsinkelse.rute",
+        "reise.bagasje.forsinket"
+      ],
+      "semantic_definition": "Avgang: avtalt transport går ikke som planlagt. Fremmøte: kunden når ikke planlagt transport. Beløp for hotell/transport beholdes kvalifisert; samme key betyr samme hendelsesfamilie, ikke identisk vilkår.",
+      "why_existing_structure_fails_or_suffices": "Eksisterende Tryg-nøkler og tekstlige CatalogFact verdier kan bevare trigger, person/hendelse og hotell/transport. Ingen ny scalar-beløpsmodell er nødvendig for disse batchene.",
+      "affected_products": [
+        "[\"fremtind\",\"reise\",\"ordinary\",\"fremtind-reise\",\"PRE-450.200-015\"]",
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+      ],
+      "affected_families": [
+        "Reise"
+      ],
+      "source_evidence": [
+        "S02",
+        "S04"
+      ],
+      "comparison_behavior": "To egne rader under eksisterende Forsinkelse; hele kvalifiserte verdier sammenlignes, aldri bare 1 500 mot 20 000 uten trigger. Betinget utilgjengelig bagasje beholdes med egen kilde som del av bagasjetermen.",
+      "customer_mode_implication": "Ingen one-to-many alias fra rute. Dokumentert uspesifisert rute må konservativt blokkere nye undergrense-fills som kan stride mot dokumentet.",
+      "false_equivalence_risk": "24 timer må ikke flyttes til fremmøte/hotell; Fremtinds samlede 6 000 må ikke bli 6 000 per utgiftstype.",
+      "regression_requirements": [
+        "Separate hendelsesgrenser",
+        "Standard/Super-arv",
+        "Dokument X > katalog Y",
+        "Ingen Eika-migrering"
+      ],
+      "planned_test_ids": [
+        "R-017-01",
+        "R-017-02",
+        "R-017-03",
+        "R-017-04",
+        "R-017-05",
+        "R-017-06",
+        "R-021-01",
+        "R-021-02",
+        "R-021-03",
+        "R-021-04",
+        "R-021-05",
+        "R-021-06",
+        "R-017-07",
+        "R-017-08",
+        "R-017-09",
+        "R-017-10",
+        "R-021-07",
+        "R-021-08",
+        "R-021-09"
+      ]
+    },
+    {
+      "decision_id": "CD-018",
+      "batch_ids": [
+        "B-018"
+      ],
+      "classification": "EXISTING_KEYS_COMPOSITION_FIX",
+      "keys": [
+        "hund.bruksverdi.dekning",
+        "hund.bruksverdi.grense",
+        "hund.bruksverdi.alder",
+        "hund.bruksverdi.begrensning",
+        "dyr.liv.dekning"
+      ],
+      "semantic_definition": "Frende Bruksverdi er et betinget innhold i valgt Tap, ikke kjøpbart separat produkt.",
+      "why_existing_structure_fails_or_suffices": "Eksisterende keys og komponentmekanisme er tilstrekkelige for fakta; delt seleksjonsguard fra CD-022-SELECT er nødvendig for kundemodus.",
+      "affected_products": [
+        "[\"frende\",\"hund\",\"ordinary\",\"frende-hund-veterin-r\",\"2026-01-01\"]"
+      ],
+      "affected_families": [
+        "Hund"
+      ],
+      "source_evidence": [
+        "S03"
+      ],
+      "comparison_behavior": "Optional via Tap i produktmodus. Valgt Tap materialiserer betingede child facts; ingen egen valgfri Bruksverdi-pakke.",
+      "customer_mode_implication": "Bruksverdi-evidens alene må ikke produsere Liv/Tap-valg. Bare avslag på Bruksverdi må ikke fjerne øvrig Tap.",
+      "false_equivalence_risk": "Frende inklusjon må ikke bli samme arkitekturregel som Gjensidige valgfritt Bruk→Liv.",
+      "regression_requirements": [
+        "Tap-only dekning",
+        "Child selection/not_selected uten parent escalation",
+        "Katt-isolasjon",
+        "Under 8 år mot livsopphør ved hovedforfall etter 10"
+      ],
+      "planned_test_ids": [
+        "R-018-01",
+        "R-018-02",
+        "R-018-03",
+        "R-018-04",
+        "R-018-05",
+        "R-018-06",
+        "R-018-07",
+        "R-018-08",
+        "R-018-09"
+      ]
+    },
+    {
+      "decision_id": "CD-019",
+      "batch_ids": [
+        "B-019"
+      ],
+      "classification": "EXISTING_KEY_REUSED",
+      "keys": [
+        "reise.overnatting"
+      ],
+      "semantic_definition": "Generell adgang for dagstur/reise uten overnatting. YES for dagstur; NO for et generelt overnattingskrav; ikke NOT_COVERED.",
+      "why_existing_structure_fails_or_suffices": "Nøkkelen finnes allerede. Mangel er katalogplassering, ikke manglende produktkunnskap eller behov for ny state-enum.",
+      "affected_products": [
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+      ],
+      "affected_families": [
+        "Reise"
+      ],
+      "source_evidence": [
+        "S04",
+        "S05"
+      ],
+      "comparison_behavior": "Samme rad som Tryg; termtekst med egen kilde. Ingen UI-utledning fra geografi.",
+      "customer_mode_implication": "Overnattingsvilkår for spesifikke fordeler er uavhengige av generell trip eligibility.",
+      "false_equivalence_risk": "Generell dagstur kan feilaktig frigjøre leiebil/avbestilling fra vilkår; Tryg tjenestereise kan kopieres.",
+      "regression_requirements": [
+        "OVERNIGHT-01",
+        "Standard/Super begge veier mot Tryg Ekstra/Premium",
+        "Leiebil og arrangementsavbestilling beholdt"
+      ],
+      "planned_test_ids": [
+        "R-019-01",
+        "R-019-02",
+        "R-019-03",
+        "R-019-04",
+        "R-019-05",
+        "R-019-06",
+        "R-019-07",
+        "R-019-08",
+        "R-019-09"
+      ]
+    },
+    {
+      "decision_id": "CD-020",
+      "batch_ids": [
+        "B-020"
+      ],
+      "classification": "CANONICAL_GAP",
+      "keys": [
+        "hus.skadedyr.dyr.bekjempelse",
+        "hus.skadedyr.dyr.bygningsskade",
+        "hus.skadedyr.insekter.bekjempelse",
+        "hus.skadedyr.insekter.bygningsskade",
+        "hus.skadedyr.insekter.egenandel"
+      ],
+      "semantic_definition": "To søsken etter skadevoldergruppe, hver med handling/ytelse. Dyr betyr kildens mus/rotter/andre dyr med egne unntak, ikke bare gnagere; insekter betyr kildebestemte skadeinsekter.",
+      "why_existing_structure_fails_or_suffices": "Generiske keys får replacesBase og included-preferanse til å slå sammen/fjerne ulike ytelser. Nye child keys er nok; ingen ny product inheritance-motor.",
+      "affected_products": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "affected_families": [
+        "Hus"
+      ],
+      "source_evidence": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "comparison_behavior": "Egne presise rader under eksisterende Råte og skadedyr. Ingen tvungen ekvivalens til andre provideres brede pest-facts. Standard inkludert dyr + optional insekter; Pluss begge.",
+      "customer_mode_implication": "Presise avslag og dokumentfakta for hver gren isoleres. Bred skadedyrregel bevares uten å tolkes som to sikre valg.",
+      "false_equivalence_risk": "Mus/rotter≠insekter; bekjempelse≠materialnedbrytning; lukt/isolasjon≠kun råte; insektegenandel må ikke brukes for alle dyr.",
+      "regression_requirements": [
+        "Standard uten/med tillegg/Pluss",
+        "Ingen inherited fact loss",
+        "Optional vises selv med inkludert søsken",
+        "Dokument X>Y, artsgrenisolasjon"
+      ],
+      "planned_test_ids": [
+        "R-020-01",
+        "R-020-02",
+        "R-020-03",
+        "R-020-04",
+        "R-020-05",
+        "R-020-06",
+        "R-020-07",
+        "R-020-08",
+        "R-020-09",
+        "R-020-10",
+        "R-020-11"
+      ]
+    },
+    {
+      "decision_id": "CD-022-DEP",
+      "batch_ids": [
+        "B-022"
+      ],
+      "classification": "CANONICAL_GAP",
+      "keys": [
+        "CatalogAddOn.requiresAddOnIds"
+      ],
+      "semantic_definition": "Optional all-of liste over tillegg som eksplisitt må være valgt for en gyldig katalogkombinasjon. Krever ikke automatisk kundeseleksjon.",
+      "why_existing_structure_fails_or_suffices": "requiresLevel gjelder hovedprodukt. exclusiveGroup er gjensidig utelukkelse, ikke avhengighet. Produktarv ville uriktig gjøre Bruk inkludert i Liv.",
+      "affected_products": [
+        "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "[\"gjensidige\",\"katt\",\"ordinary\",\"gjensidige-katt-behandling\",null]"
+      ],
+      "affected_families": [
+        "Hund",
+        "Katt"
+      ],
+      "source_evidence": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "comparison_behavior": "Katalogmodus viser conditional optional med dependency-evidens; den kan materialisere en mulig pakke uten kundeseleksjon.",
+      "customer_mode_implication": "Streng manuell validering. PDF dokumentfakta beholdes selv ved ufullstendig/konfliktende avhengighet; bare avhengig katalogberikelse blokkeres.",
+      "false_equivalence_risk": "En dependency closure kan auto-velge Liv; sykler/dangling eller cross-scope referanser kan gi feil produkter.",
+      "regression_requirements": [
+        "Ingen/Bruk/Liv/Liv+Bruk",
+        "Cycle/self/dangling/cross-scope/version negatives",
+        "Product materialization vs customer selection",
+        "Selected/not_selected/unknown/conflict"
+      ],
+      "planned_test_ids": [
+        "R-022-01",
+        "R-022-02",
+        "R-022-03",
+        "R-022-04",
+        "R-022-05",
+        "R-022-06",
+        "R-022-07",
+        "R-022-08",
+        "R-022-09",
+        "R-022-10",
+        "R-022-11",
+        "R-022-12"
+      ]
+    },
+    {
+      "decision_id": "CD-022-SELECT",
+      "batch_ids": [
+        "B-022",
+        "B-018"
+      ],
+      "classification": "CANONICAL_GAP",
+      "keys": [
+        "CatalogAddOn.selectionEvidenceKeys"
+      ],
+      "semantic_definition": "Eksplisitt hvilke canonical parent-keys som kan velge eller blokkere hele tilleggskomponenten; øvrige faktanøkler er innhold/underdekninger. Eksakt navngitt dokumentvalg er fortsatt mulig.",
+      "why_existing_structure_fails_or_suffices": "selectedScopedAddOns utleder alle parent keys fra faktalisten og bruker alle som valg-/avslagsbevis. Dette blander produktkomposisjon og individuell seleksjon.",
+      "affected_products": [
+        "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "[\"gjensidige\",\"katt\",\"ordinary\",\"gjensidige-katt-behandling\",null]",
+        "[\"frende\",\"hund\",\"ordinary\",\"frende-hund-veterin-r\",\"2026-01-01\"]"
+      ],
+      "affected_families": [
+        "Hund",
+        "Katt"
+      ],
+      "source_evidence": [
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S03"
+      ],
+      "comparison_behavior": "Ingen ny fact/rad; kun trygg materialisering/valg. Fravær av metadata bevarer dagens kompatibilitet.",
+      "customer_mode_implication": "Tap kan velges av dokumentert Tap/Liv, ikke av en Bruksverdi-child; Bruksverdi-avslag fjerner bare child, ikke resten av Tap.",
+      "false_equivalence_risk": "Child→parent escalation og child-avslag→parent-avslag. Katalogtekst må aldri være dokumentevidens.",
+      "regression_requirements": [
+        "Explicit parent selected + child not_selected",
+        "Child selected + parent unknown/not_selected",
+        "Unchanged addons without metadata",
+        "No array-order dependence"
+      ],
+      "planned_test_ids": [
+        "R-018-01",
+        "R-018-02",
+        "R-018-03",
+        "R-018-04",
+        "R-018-05",
+        "R-018-06",
+        "R-022-01",
+        "R-022-02",
+        "R-022-03",
+        "R-022-04",
+        "R-022-05",
+        "R-022-06",
+        "R-018-07",
+        "R-018-08",
+        "R-018-09",
+        "R-022-07",
+        "R-022-08",
+        "R-022-09",
+        "R-022-10",
+        "R-022-11",
+        "R-022-12"
+      ]
+    },
+    {
+      "decision_id": "CD-022-CAT",
+      "batch_ids": [
+        "B-022"
+      ],
+      "classification": "CANONICAL_GAP",
+      "keys": [
+        "katt.bruksverdi.dekning",
+        "katt.bruksverdi.alder",
+        "katt.bruksverdi.begrensning"
+      ],
+      "semantic_definition": "Katt: dokumentert tap av avlsegenskaper innen forsikret bruksområde, betinget av eget Bruk-valg og Liv.",
+      "why_existing_structure_fails_or_suffices": "Katt-register mangler Bruk. hund.bruksverdi gjelder hund og blir avvist eller feilsemantisk på katt. Ingen ny generell dyr-liv-fact kan erstatte artsdistinksjonen.",
+      "affected_products": [
+        "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "[\"gjensidige\",\"katt\",\"ordinary\",\"gjensidige-katt-behandling\",null]"
+      ],
+      "affected_families": [
+        "Hund",
+        "Katt"
+      ],
+      "source_evidence": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "comparison_behavior": "Egen Katt Bruksverdi-undergruppe innen eksisterende produktvisning; ingen Hund↔Katt-akse. Other-cat unknown er ikke not covered.",
+      "customer_mode_implication": "Katt Bruk-facts krever dokumentvalg; behold fullvilkårets terskel/varighet som betingelser, ikke vurder individets egnethet.",
+      "false_equivalence_risk": "50 % arbeidshund må ikke bli kattens avlsterskel; Liv 13 år må ikke bli Bruk 10 år.",
+      "regression_requirements": [
+        "Species isolation",
+        "Cat100% versus dog work50%",
+        "Bruk expiry vs Liv",
+        "PDF/document priority and source-page separation"
+      ],
+      "planned_test_ids": [
+        "R-022-01",
+        "R-022-02",
+        "R-022-03",
+        "R-022-04",
+        "R-022-05",
+        "R-022-06",
+        "R-022-07",
+        "R-022-08",
+        "R-022-09",
+        "R-022-10",
+        "R-022-11",
+        "R-022-12"
+      ]
+    }
+  ],
+  "mapping_decisions": [
+    {
+      "mapping_id": "MD-015",
+      "batch_id": "B-015",
+      "classification": "MAPPING_ERROR + narrow CANONICAL_GAP",
+      "from_state": "trygInnboExtra: flytting.transport.grense = 30 000 per skadetilfelle ved transportbyrå/idrettslag/forening.",
+      "to_state": "Flytt akkurat denne opplysningen til ny flytting.tyveri_skadeverk.grense. Privat og profesjonell flytting beholdes som eksplisitt kvalifiserte grener i samme term. Ingen global alias fra transport til tyveri.",
+      "provider_type_scope": [
+        "[\"tryg\",\"innbo\",\"ordinary\",\"tryg-innbo-ekstra\",\"2026-07-01\"]"
+      ],
+      "layer": "catalog + narrow canonical identity + explicit mapping",
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "customer_policy": "Samme presise dokumentnøkkel vinner. Eksakt, entydig label kan mappes; gamle generiske dokumentfacts om transport må beholdes uten å omdøpes eller få denne tyverigrensen tillagt.",
+      "prohibited_shortcut": "Ingen global broad→narrow alias, UI-friteksttolking, summer uten trigger, automatisk addonvalg eller peer-baserte fakta.",
+      "dependency": []
+    },
+    {
+      "mapping_id": "MD-017",
+      "batch_id": "B-017",
+      "classification": "MAPPING_ERROR / for grov oppsummering",
+      "from_state": "fremtind-reise: reise.forsinkelse.rute blander hendelser; avgangens samlede 6 000-grense og 24-timersvilkår mangler.",
+      "to_state": "Gjenbruk begge eksisterende hendelsesnøkler med egne fullstendige utløsere/beløp. Behold rute som ikke-numerisk felles ramme. Legg til den dokumenterte 500-kronersregelen som egen kildebelagt term under eksisterende reise.bagasje.forsinket, tydelig knyttet til utilgjengelig bagasje ved forsinkelse med overnatting.",
+      "provider_type_scope": [
+        "[\"fremtind\",\"reise\",\"ordinary\",\"fremtind-reise\",\"PRE-450.200-015\"]"
+      ],
+      "layer": "catalog + explicit normalization/enrichment compatibility mapping",
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "customer_policy": "Ikke avled kundens faktiske merutgifter fra produktgrenser. Nøyaktige dokumentnøkler/entydige hendelseslabels vinner; dokumentert bred rute-term blokkerer ny katalogavgang/fremmøte når dokumentet ikke kan deles sikkert. Historisk Eika er urørt.",
+      "prohibited_shortcut": "Ingen global broad→narrow alias, UI-friteksttolking, summer uten trigger, automatisk addonvalg eller peer-baserte fakta.",
+      "dependency": []
+    },
+    {
+      "mapping_id": "MD-018",
+      "batch_id": "B-018",
+      "classification": "PRODUCT_COMPONENT_ERROR",
+      "from_state": "Tap alene gir bare dyr.liv.*. Separat frende-hund-bruksverdi gir hund.bruksverdi.* uten Tap. Bekreftet med read-only resolverprobe.",
+      "to_state": "Etter felles seleksjonsguard fra B-022: flytt Bruksverdi inn i frende-hund-tap; fjern den separate kjøpbare Bruksverdi-komponenten; behold betingelser og 50 %-regel. Ikke opprett Bruk → Liv-avhengighet for Frende: dette er inklusjon i Tap.",
+      "provider_type_scope": [
+        "[\"frende\",\"hund\",\"ordinary\",\"frende-hund-veterin-r\",\"2026-01-01\"]"
+      ],
+      "layer": "catalog composition + shared add-on selection-evidence guard",
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "customer_policy": "Bare eksplisitt Tap/Liv-valg kan gi katalogbasert Tap-innhold. Dokumentert Bruksverdi alene bevares som dokumentfakta, men velger ikke hele Tap. Bruksverdi ikke valgt skal ikke oppheve øvrig dokumentert Tap.",
+      "prohibited_shortcut": "Ingen global broad→narrow alias, UI-friteksttolking, summer uten trigger, automatisk addonvalg eller peer-baserte fakta.",
+      "dependency": [
+        "B-022"
+      ]
+    },
+    {
+      "mapping_id": "MD-019",
+      "batch_id": "B-019",
+      "classification": "MAPPING_ERROR",
+      "from_state": "reise.omrade.verden inneholder Dagstur er omfattet. Probe viser unknown på reise.overnatting for Standard og Super mot Tryg.",
+      "to_state": "Legg eksplisitt kildebelagt reise.overnatting i Storebrands common-komponent. Betydning: dagstur YES, generelt overnattingskrav NO. Behold geografi og alle fordelsspesifikke overnattingsvilkår. Ingen ny state-enum, ingen UI-teksttolking.",
+      "provider_type_scope": [
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+      ],
+      "layer": "catalog mapping only",
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "customer_policy": "Dokumentert reise.overnatting har forrang. Ny term sier ikke at alle fordeler gjelder uten overnatting; leiebil/arrangementsavbestilling har egne betingelser.",
+      "prohibited_shortcut": "Ingen global broad→narrow alias, UI-friteksttolking, summer uten trigger, automatisk addonvalg eller peer-baserte fakta.",
+      "dependency": []
+    },
+    {
+      "mapping_id": "MD-020",
+      "batch_id": "B-020",
+      "classification": "INHERITANCE_ERROR + CANONICAL_GAP",
+      "from_state": "Standard har hus.skadedyr.bekjempelse/bygningsskade. Pluss og valgt råte/insekter erstatter disse med insektvilkår. Uvalgt tillegg skjules delvis av included-preferanse på samme nøkkel.",
+      "to_state": "Innfør søsken under hus.skadedyr: dyr.bekjempelse/bygningsskade og insekter.bekjempelse/bygningsskade/egenandel. Grunndyr arves; insekter er optional på Standard og included på Pluss. Råte holdes separat. Ingen global omtolking av andre provideres generiske skadedyrfakta.",
+      "provider_type_scope": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "layer": "canonical children + inheritance + catalog/add-on composition + mapping",
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "customer_policy": "Dokumentert avslag på insekter skal ikke fjerne dyreskader og omvendt. Bred skadedyr-dokumentasjon er ikke bevis for begge undergrupper; uklar bred dokumentasjon blokkerer katalogutfylling i berørt gren fremfor å overstyres.",
+      "prohibited_shortcut": "Ingen global broad→narrow alias, UI-friteksttolking, summer uten trigger, automatisk addonvalg eller peer-baserte fakta.",
+      "dependency": []
+    },
+    {
+      "mapping_id": "MD-021",
+      "batch_id": "B-021",
+      "classification": "MAPPING_ERROR",
+      "from_state": "Standard og Super har bare reise.forsinkelse.rute med sammenblandede hendelser.",
+      "to_state": "Felles rute-ramme uten blandede summer. Standard: fremmøte hotell 3 000/transport 20 000; avgang hotell 3 000/transport 1 500. Super erstatter hver av de to summetermene med ubegrensede beløp, men beholder 1,5-times/24-times-triggerne i riktig gren.",
+      "provider_type_scope": [
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-standard\",\"2026-09-20-canonical\"]",
+        "[\"storebrand\",\"reise\",\"ordinary\",\"storebrand-reise-super\",\"2026-09-20-canonical\"]"
+      ],
+      "layer": "catalog + existing event identities/inheritance",
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "customer_policy": "Bruk kompatibilitetsmappingen fra B-017 for dokument > katalog, uten generell alias av rute til én hendelse.",
+      "prohibited_shortcut": "Ingen global broad→narrow alias, UI-friteksttolking, summer uten trigger, automatisk addonvalg eller peer-baserte fakta.",
+      "dependency": [
+        "B-017"
+      ]
+    },
+    {
+      "mapping_id": "MD-022",
+      "batch_id": "B-022",
+      "classification": "CANONICAL_GAP",
+      "from_state": "Gjensidige Hund Bruk kan resolveres alene uten Liv. Katt har ingen Bruk-komponent. Begge hovedprodukter er Behandling; sourceSeeds har IPID, mens relevante fullvilkår allerede finnes lokalt.",
+      "to_state": "Legg til eksplisitt all-of requiresAddOnIds, adskilt fra availableAddOns. Legg til eksplisitte selectionEvidenceKeys som avgrenser hva som kan velge et sammensatt tillegg. Bruk → samme arts Liv, aldri motsatt eller automatisk valg. Katt får artsavgrenset Bruksverdi. Registrer de eksisterende riktige fullvilkårene og produktsidene som faktakilder.",
+      "provider_type_scope": [
+        "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "[\"gjensidige\",\"katt\",\"ordinary\",\"gjensidige-katt-behandling\",null]"
+      ],
+      "layer": "shared add-on constraints/selection + species registry + catalog + source records",
+      "preserve": [
+        "document > catalog",
+        "optional availability != customer selected",
+        "unknown != not covered",
+        "provider/type/scope/version isolation",
+        "product level and add-on boundaries",
+        "side-swap symmetry without invented equivalents",
+        "age start/reduction/expiry and object age kept distinct",
+        "annual/accumulated/coverage mileage kept distinct",
+        "per event/year/lifetime/selected sum kept distinct",
+        "source page/hash and fact-specific provenance",
+        "same object identity and pricing/TFA are not catalog eligibility"
+      ],
+      "customer_policy": "Streng manuell validering av Bruk uten Liv. PDF med eksplisitt Bruk og taus/avvist Liv beholder dokumentert Bruk, men får ikke Liv valgt eller katalogberikelse som forutsetter Liv. Ingen global Frende/Fremtind/Tryg/If/Storebrand-avhengighet.",
+      "prohibited_shortcut": "Ingen global broad→narrow alias, UI-friteksttolking, summer uten trigger, automatisk addonvalg eller peer-baserte fakta.",
+      "dependency": []
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "S01",
+      "provider": "tryg",
+      "family": "Innbo",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/tryg/innbo/Innbo_og_losore_Ekstra_PPK13302.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/tryg/innbo/Innbo_og_losore_Ekstra_PPK13302.pdf",
+      "sha256": "4cffa3b051f329da0fe178b20243a0920d2b5928e9995d485c35b58a48f1f810",
+      "hash_verified": true,
+      "document_number": "PPK13302",
+      "valid_from": "2026-07-01",
+      "location": "PDF 4 §2.4",
+      "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302",
+      "meaning": "Tyveri og skadeverk under flytting. 30 000 per skadetilfelle ved transportbyrå/idrettslag/forening o.l.; privat flytting omfattes uten denne særgrensen. Ikke bevis for generell transportskade eller ubegrenset erstatning.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S02",
+      "provider": "fremtind",
+      "family": "Reise",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/fremtind/reise/canonical/fremtind-reise-vilkar.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/fremtind/reise/canonical/fremtind-reise-vilkar.pdf",
+      "sha256": "2e410ce7bb27c5d355f564d4fd44c88e28e5199448cb691f139440cacc8d4267",
+      "hash_verified": true,
+      "document_number": "PRE-450.200-015",
+      "valid_from": "2025-03-17",
+      "location": "PDF 5–6 §8.2",
+      "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/reise/Reise_PM.pdf",
+      "meaning": "Fremmøte: overnatting 6 000/person/skadetilfelle, innhenting ubegrenset. Avgang: overnatting og innhenting samlet 6 000/person/skadetilfelle; innhenting først når transportør ikke klarer ruten innen 24 timer. Klær/toalett 500/person ved overnatting og utilgjengelig ekspedert bagasje.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S03",
+      "provider": "frende",
+      "family": "Hund",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/boat-pet/frende-dog-terms.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/boat-pet/frende-dog-terms.pdf",
+      "sha256": "6d052e5092d9f92050dcf95a92fa6ce5deda18a5825cdd00ca1c8cd2658c9135",
+      "hash_verified": true,
+      "document_number": "Hundeforsikring",
+      "valid_from": "2026-01-01",
+      "location": "PDF 3–4 §§7, 7.1.3, 7.3, 8.2, 8.4",
+      "url": "https://www.frende.no/forsikringer/hundeforsikring/",
+      "meaning": "Bruksegenskapstap inngår i valgt Tap, ikke eget kjøpbart tillegg. Ferdig trent og regelmessig brukt hund; helt tap etter sykdom/ulykke; ikke hund åtte år eller eldre; avlsevne er unntatt. 50 % av Tap-summen. Tidligere bruksverdiutbetaling trekkes fra dødsfallserstatningen.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S04",
+      "provider": "storebrand",
+      "family": "Reise",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/storebrand/reise/canonical/reise10-vilkar-reiseforsikring.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/storebrand/reise/canonical/reise10-vilkar-reiseforsikring.pdf",
+      "sha256": "d44b4ef668a51db2e2d0c72714737dee59cb74d10fad13b65e3cde5695e5e414",
+      "hash_verified": true,
+      "document_number": "reise10",
+      "valid_from": "2025-06-01",
+      "location": "PDF 4 B.1.2–3; PDF 8–9 B.3/B.3.1.1–2; PDF 6 B.2.1; C.1 leiebil",
+      "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring/_/attachment/inline/d834efe9-3dd1-4ac5-b81a-e88b9e4aa8d9:e889200271f53a0b6bf8059b3aff6bd43f442696/vilkar-reiseforsikring.pdf",
+      "meaning": "Generell reise starter ved avreise fra hjemmet. B.3-tabell: Standard fremmøte 3 000 hotell/20 000 videretransport, avgang 3 000 hotell/1 500 ny transport per person per hendelse; Super ubegrensede beløp. Fremmøte minst 1,5 time; avgangsinnhenting krever transportør ikke kan innen 24 timer. Beløpsutvidelse fjerner ikke triggerne.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S05",
+      "provider": "storebrand",
+      "family": "Reise",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/storebrand/reise/canonical/Reiseforsikring-produktside.html",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/storebrand/reise/canonical/Reiseforsikring-produktside.html",
+      "sha256": "fc65e95caadecb0ad10d557b276e8befaf39fe5da9ebb40f70c8d3d87ce2636d",
+      "hash_verified": true,
+      "document_number": null,
+      "valid_from": null,
+      "location": "FAQ: Når gjelder reiseforsikringen?",
+      "url": "https://www.storebrand.no/privat/forsikring/reiseforsikring",
+      "meaning": "Du og tingene dine er forsikret på dagstur eller lengre reiser. Dette gjelder generell reiseadgang, ikke alle enkeltfordelers vilkår.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S06",
+      "provider": "gjensidige",
+      "family": "Hus",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "hash_verified": true,
+      "document_number": null,
+      "valid_from": null,
+      "location": "PDF 3–4 Hus – Dekkes / Dekkes ikke",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+      "meaning": "Bekjempelse av levende mus, rotter og andre skadedyr i bygning. Skade fra mus, rotter og andre dyr omfatter fysisk bygningsskade, svekket isolasjon og lukt. Insekter unntas i grunnvilkåret på PDF 4. Ikke en kilde for universell firebeinsavgrensning.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S07",
+      "provider": "gjensidige",
+      "family": "Hus",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "hash_verified": true,
+      "document_number": null,
+      "valid_from": null,
+      "location": "PDF 3–4 grunnskader; PDF 6 Råte og skadeinsekter; PDF 1 egenandeler",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+      "meaning": "Beholder grunnproduktets dyreskader. På fullverdibygning: materialnedbrytning fra råtesopp/treødeleggende insekter; separat insektbekjempelse. Dekningene kommer i tillegg og erstatter ikke gnager-/andre dyreskader.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S08",
+      "provider": "gjensidige",
+      "family": "Hus",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9",
+      "hash_verified": true,
+      "document_number": "EAP01",
+      "valid_from": null,
+      "location": "PDF 2 valgfrie utvidelser",
+      "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+      "meaning": "Sopp/råte/skadeinsekter kan velges på Hus; inkludert i Pluss. Produktnivåbevis, ikke kundens valg.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S09",
+      "provider": "gjensidige",
+      "family": "Hund",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/boat-pet/gjensidige-dog-product.html",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/boat-pet/gjensidige-dog-product.html",
+      "sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+      "hash_verified": true,
+      "document_number": null,
+      "valid_from": null,
+      "location": "Sett sammen / Liv / Bruk (valgfritt)",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "meaning": "Bruk legges til Liv. Valgfritt, ikke ubetinget del av Liv og ikke selvstendig tilvalg på Behandling.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S10",
+      "provider": "gjensidige",
+      "family": "Katt",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/boat-pet/gjensidige-cat-product.html",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/boat-pet/gjensidige-cat-product.html",
+      "sha256": "f9bc6e31f84bfe1660b0014798ce144fa6fc5ee7f34ccbe14acf28feab883d4f",
+      "hash_verified": true,
+      "document_number": null,
+      "valid_from": null,
+      "location": "Sett sammen / Liv / Bruk – tap av bruksverdi som avlskatt",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring",
+      "meaning": "Bruk er valgfritt tillegg til Liv. Gjelder avlskatt, ikke arbeidshund. Nettbeskrivelsen er kortfattet; fullvilkåret presiserer det kvalifiserende tapet.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S11",
+      "provider": "gjensidige",
+      "family": "Hund",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+      "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "hash_verified": true,
+      "document_number": null,
+      "valid_from": null,
+      "location": "PDF 2–3 (trykt 6–7): tap av bruksverdi / opphør",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "meaning": "Livsvarig tap innen forsikret bruksområde. Avl 100 % fysisk tap samt kullkrav; jakt/gjeting/tjeneste minst 50 % funksjonstap og dokumentert trening/bruk. Veterinær og adekvat behandling/rekonvalesens. Bruk opphører ved hovedforfall året hunden fyller 8.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    },
+    {
+      "source_id": "S12",
+      "provider": "gjensidige",
+      "family": "Katt",
+      "agreement_scope": "ordinary",
+      "local_path": "catalog/sources/boat-pet/gjensidige-cat-life-use-terms.pdf",
+      "absolute_path": "/Users/morten/Documents/forsikringsapp/catalog/sources/boat-pet/gjensidige-cat-life-use-terms.pdf",
+      "sha256": "47750999d5bdbe5fc9bf5a2ffe24def17dd1664a2b8f9886bc7868dbf8049f5e",
+      "hash_verified": true,
+      "document_number": null,
+      "valid_from": null,
+      "location": "PDF 2 (trykt 6): tap av bruksverdi, avlskatt / opphør",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring",
+      "meaning": "Avlskatt må ha mistet fysisk avlsevne 100 %, dokumentert av veterinær, med hann-/hunnkullkrav siste to år. Bruk opphører ved hovedforfall året katten fyller 10; Liv 13 er en annen dekning.",
+      "freshness": "Frozen local corpus only; no current-public-freshness claim"
+    }
+  ],
+  "source_research_required": [],
+  "human_domain_review_required": [],
+  "source_qualification": "Only frozen local corpus. Unknown Gjensidige versions/dates remain unknown; no public freshness or broad pilot-readiness claim.",
+  "source_interpretation_notes": [
+    "Gjensidige web Bruk is availability/dependency evidence; exact thresholds/expiry come from its own full terms. General abbreviated webpage wording is not used to relax specific full-term eligibility.",
+    "Frende Bruksverdi inclusion and Gjensidige Bruk dependency are different relationships.",
+    "Original CR human_signoff placeholders are NOT treated as human approval. No global HR queue item is a dependency of these seven batches; future implementation still requires new authorization.",
+    "Source totals are not retested globally; only the 12 artifacts cited by these seven resolutions were targeted hash-checked."
+  ],
+  "execution_order": [
+    {
+      "sequence": 1,
+      "batch_id": "B-019",
+      "requires_passed_batches": [],
+      "gate": "Source hash + egne katalog-/mappingtester + document>catalog + scope + same-product/side-swap + navngitte positive controls + berørt source→catalog re-audit.",
+      "canonical_gate_first": false,
+      "note": "Ingen implementering utført i denne reviewen."
+    },
+    {
+      "sequence": 2,
+      "batch_id": "B-017",
+      "requires_passed_batches": [],
+      "gate": "Source hash + egne katalog-/mappingtester + document>catalog + scope + same-product/side-swap + navngitte positive controls + berørt source→catalog re-audit.",
+      "canonical_gate_first": false,
+      "note": "Ingen implementering utført i denne reviewen."
+    },
+    {
+      "sequence": 3,
+      "batch_id": "B-021",
+      "requires_passed_batches": [
+        "B-017"
+      ],
+      "gate": "Source hash + egne katalog-/mappingtester + document>catalog + scope + same-product/side-swap + navngitte positive controls + berørt source→catalog re-audit.",
+      "canonical_gate_first": false,
+      "note": "Ingen implementering utført i denne reviewen."
+    },
+    {
+      "sequence": 4,
+      "batch_id": "B-015",
+      "requires_passed_batches": [],
+      "gate": "Source hash + egne katalog-/mappingtester + document>catalog + scope + same-product/side-swap + navngitte positive controls + berørt source→catalog re-audit.",
+      "canonical_gate_first": true,
+      "note": "Ingen implementering utført i denne reviewen."
+    },
+    {
+      "sequence": 5,
+      "batch_id": "B-020",
+      "requires_passed_batches": [],
+      "gate": "Source hash + egne katalog-/mappingtester + document>catalog + scope + same-product/side-swap + navngitte positive controls + berørt source→catalog re-audit.",
+      "canonical_gate_first": true,
+      "note": "Ingen implementering utført i denne reviewen."
+    },
+    {
+      "sequence": 6,
+      "batch_id": "B-022",
+      "requires_passed_batches": [],
+      "gate": "Source hash + egne katalog-/mappingtester + document>catalog + scope + same-product/side-swap + navngitte positive controls + berørt source→catalog re-audit.",
+      "canonical_gate_first": true,
+      "note": "B-022 må gate delt add-on/selection-kontrakt før providerdata kobles på; B-018 kjøres deretter."
+    },
+    {
+      "sequence": 7,
+      "batch_id": "B-018",
+      "requires_passed_batches": [
+        "B-022"
+      ],
+      "gate": "Source hash + egne katalog-/mappingtester + document>catalog + scope + same-product/side-swap + navngitte positive controls + berørt source→catalog re-audit.",
+      "canonical_gate_first": false,
+      "note": "Ingen implementering utført i denne reviewen."
+    }
+  ],
+  "final_implementation_gate": [
+    "Hele eksisterende suite må fortsatt bestå (sist dokumentert 2038/2038) sammen med nye regresjoner.",
+    "TypeScript, ESLint, webpack production build, syntetisk HTTP/PDF-runtime og git diff --check.",
+    "Ny målrettet re-audit av bare berørte produkter/familier, og kontrollfingerprint for tidligere validerte 22 produkter/182 uendrede. Ingen ny 204-produkt full-audit.",
+    "Bevar source-originaler og alle tidligere arbeidspunkter. Ingen commit/push/deploy uten egen ordre."
+  ],
+  "wave3_readiness": {
+    "answer": "YES",
+    "conditional": true,
+    "current_wave3_authorized": false,
+    "explanation": "Etter at HELE den spesifiserte sekvensen, inkludert de tre canonical-utvidelsene og B-018-avhengigheten, er implementert og alle gates består, er disse Wave 2-avhengighetene semantisk lukket. Bare de tre READY-batchene er ikke nok. Dette autoriserer ikke Wave 3 nå og sertifiserer ikke pilotklarhet eller løser andre bølgers source/human-spørsmål."
+  },
+  "unresolved_dependencies": [
+    {
+      "dependency_id": "DEP-015",
+      "batch_id": "B-015",
+      "dependency_type": "CANONICAL_EXTENSION_IMPLEMENTATION",
+      "depends_on": [],
+      "exact_requirement": "Ny implementeringsautorisasjon må eksplisitt omfatte den spesifiserte minimale utvidelsen og dens gate. Kildespørsmålet er avklart i frosset korpus; utvidelsen er ikke implementert eller regresjonsvalidert her.",
+      "source_research_required": false,
+      "human_domain_review_required": false,
+      "closure_evidence": "Nye avgrensede regresjoner og targeted source→catalog re-audit fra batchplanen; senere eksplisitt implementeringsautorisasjon.",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "dependency_id": "DEP-018",
+      "batch_id": "B-018",
+      "dependency_type": "OTHER_BATCH",
+      "depends_on": [
+        "B-022"
+      ],
+      "exact_requirement": "B-022s selectionEvidenceKeys-kontrakt og delt seleksjonsguard må være implementert og bestå gate før Tap-komposisjonen endres. Ikke tilstrekkelig å flytte to katalograder.",
+      "source_research_required": false,
+      "human_domain_review_required": false,
+      "closure_evidence": "Nye avgrensede regresjoner og targeted source→catalog re-audit fra batchplanen; senere eksplisitt implementeringsautorisasjon.",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "dependency_id": "DEP-020",
+      "batch_id": "B-020",
+      "dependency_type": "CANONICAL_EXTENSION_IMPLEMENTATION",
+      "depends_on": [],
+      "exact_requirement": "Ny implementeringsautorisasjon må eksplisitt omfatte den spesifiserte minimale utvidelsen og dens gate. Kildespørsmålet er avklart i frosset korpus; utvidelsen er ikke implementert eller regresjonsvalidert her.",
+      "source_research_required": false,
+      "human_domain_review_required": false,
+      "closure_evidence": "Nye avgrensede regresjoner og targeted source→catalog re-audit fra batchplanen; senere eksplisitt implementeringsautorisasjon.",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "dependency_id": "DEP-022",
+      "batch_id": "B-022",
+      "dependency_type": "CANONICAL_EXTENSION_IMPLEMENTATION",
+      "depends_on": [],
+      "exact_requirement": "Ny implementeringsautorisasjon må eksplisitt omfatte den spesifiserte minimale utvidelsen og dens gate. Kildespørsmålet er avklart i frosset korpus; utvidelsen er ikke implementert eller regresjonsvalidert her.",
+      "source_research_required": false,
+      "human_domain_review_required": false,
+      "closure_evidence": "Nye avgrensede regresjoner og targeted source→catalog re-audit fra batchplanen; senere eksplisitt implementeringsautorisasjon.",
+      "status": "NOT_IMPLEMENTED"
+    }
+  ],
+  "regression_plan": [
+    {
+      "test_id": "R-015-01",
+      "batch_id": "B-015",
+      "category": "SOURCE_PROVENANCE",
+      "scenario": "Alle oppgitte kilde-ID-er, egne sider/punkt, original SHA-256 og produkt-/komponentscope",
+      "expected_result": "Originalbytes uendret; fact peker på nøyaktig støttende kilde og qualificationSource der nødvendig.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-02",
+      "batch_id": "B-015",
+      "category": "SCOPE",
+      "scenario": "Samme provider/type men annen agreementScope/versjon, samt annen provider og type",
+      "expected_result": "Ingen kilde-/fact-/addonlekkasje; ordinary og ukjente versjoner konverteres ikke til andre avtaler.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-03",
+      "batch_id": "B-015",
+      "category": "SAME_PRODUCT",
+      "scenario": "Hvert berørt eksakt produkt mot seg selv med samme konfigurasjon",
+      "expected_result": "Ingen kunstig forskjell eller uventet unknown på implementerte presise fakta.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-04",
+      "batch_id": "B-015",
+      "category": "SIDE_SWAP",
+      "scenario": "Alle batchens berørte sammenligninger A→B og B→A",
+      "expected_result": "Tekst, scope, state, kilde og optionality flytter side uten betydningsendring.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-05",
+      "batch_id": "B-015",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eksakt dokumentfact X mot katalog Y, to alternative X/Y-verdipar, ukjent og eksplisitt avslag",
+      "expected_result": "Dokument X beholdes med document-origin; unknown er ikke not_selected; katalogtilgjengelighet er aldri kundens valg.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-06",
+      "batch_id": "B-015",
+      "category": "POSITIVE_CONTROL",
+      "scenario": "Alle navngitte kontroller knyttet til batchen i det frosne regression-control-registry",
+      "expected_result": "Ingen utilsiktet betydningsendring. Kontroller beskytter scope/fakta, ikke den feilaktige nøkkelplasseringen som skal rettes.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-01",
+      "batch_id": "B-017",
+      "category": "SOURCE_PROVENANCE",
+      "scenario": "Alle oppgitte kilde-ID-er, egne sider/punkt, original SHA-256 og produkt-/komponentscope",
+      "expected_result": "Originalbytes uendret; fact peker på nøyaktig støttende kilde og qualificationSource der nødvendig.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-02",
+      "batch_id": "B-017",
+      "category": "SCOPE",
+      "scenario": "Samme provider/type men annen agreementScope/versjon, samt annen provider og type",
+      "expected_result": "Ingen kilde-/fact-/addonlekkasje; ordinary og ukjente versjoner konverteres ikke til andre avtaler.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-03",
+      "batch_id": "B-017",
+      "category": "SAME_PRODUCT",
+      "scenario": "Hvert berørt eksakt produkt mot seg selv med samme konfigurasjon",
+      "expected_result": "Ingen kunstig forskjell eller uventet unknown på implementerte presise fakta.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-04",
+      "batch_id": "B-017",
+      "category": "SIDE_SWAP",
+      "scenario": "Alle batchens berørte sammenligninger A→B og B→A",
+      "expected_result": "Tekst, scope, state, kilde og optionality flytter side uten betydningsendring.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-05",
+      "batch_id": "B-017",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eksakt dokumentfact X mot katalog Y, to alternative X/Y-verdipar, ukjent og eksplisitt avslag",
+      "expected_result": "Dokument X beholdes med document-origin; unknown er ikke not_selected; katalogtilgjengelighet er aldri kundens valg.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-06",
+      "batch_id": "B-017",
+      "category": "POSITIVE_CONTROL",
+      "scenario": "Alle navngitte kontroller knyttet til batchen i det frosne regression-control-registry",
+      "expected_result": "Ingen utilsiktet betydningsendring. Kontroller beskytter scope/fakta, ikke den feilaktige nøkkelplasseringen som skal rettes.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-01",
+      "batch_id": "B-018",
+      "category": "SOURCE_PROVENANCE",
+      "scenario": "Alle oppgitte kilde-ID-er, egne sider/punkt, original SHA-256 og produkt-/komponentscope",
+      "expected_result": "Originalbytes uendret; fact peker på nøyaktig støttende kilde og qualificationSource der nødvendig.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-02",
+      "batch_id": "B-018",
+      "category": "SCOPE",
+      "scenario": "Samme provider/type men annen agreementScope/versjon, samt annen provider og type",
+      "expected_result": "Ingen kilde-/fact-/addonlekkasje; ordinary og ukjente versjoner konverteres ikke til andre avtaler.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-03",
+      "batch_id": "B-018",
+      "category": "SAME_PRODUCT",
+      "scenario": "Hvert berørt eksakt produkt mot seg selv med samme konfigurasjon",
+      "expected_result": "Ingen kunstig forskjell eller uventet unknown på implementerte presise fakta.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-04",
+      "batch_id": "B-018",
+      "category": "SIDE_SWAP",
+      "scenario": "Alle batchens berørte sammenligninger A→B og B→A",
+      "expected_result": "Tekst, scope, state, kilde og optionality flytter side uten betydningsendring.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-05",
+      "batch_id": "B-018",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eksakt dokumentfact X mot katalog Y, to alternative X/Y-verdipar, ukjent og eksplisitt avslag",
+      "expected_result": "Dokument X beholdes med document-origin; unknown er ikke not_selected; katalogtilgjengelighet er aldri kundens valg.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-06",
+      "batch_id": "B-018",
+      "category": "POSITIVE_CONTROL",
+      "scenario": "Alle navngitte kontroller knyttet til batchen i det frosne regression-control-registry",
+      "expected_result": "Ingen utilsiktet betydningsendring. Kontroller beskytter scope/fakta, ikke den feilaktige nøkkelplasseringen som skal rettes.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-01",
+      "batch_id": "B-019",
+      "category": "SOURCE_PROVENANCE",
+      "scenario": "Alle oppgitte kilde-ID-er, egne sider/punkt, original SHA-256 og produkt-/komponentscope",
+      "expected_result": "Originalbytes uendret; fact peker på nøyaktig støttende kilde og qualificationSource der nødvendig.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-02",
+      "batch_id": "B-019",
+      "category": "SCOPE",
+      "scenario": "Samme provider/type men annen agreementScope/versjon, samt annen provider og type",
+      "expected_result": "Ingen kilde-/fact-/addonlekkasje; ordinary og ukjente versjoner konverteres ikke til andre avtaler.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-03",
+      "batch_id": "B-019",
+      "category": "SAME_PRODUCT",
+      "scenario": "Hvert berørt eksakt produkt mot seg selv med samme konfigurasjon",
+      "expected_result": "Ingen kunstig forskjell eller uventet unknown på implementerte presise fakta.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-04",
+      "batch_id": "B-019",
+      "category": "SIDE_SWAP",
+      "scenario": "Alle batchens berørte sammenligninger A→B og B→A",
+      "expected_result": "Tekst, scope, state, kilde og optionality flytter side uten betydningsendring.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-05",
+      "batch_id": "B-019",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eksakt dokumentfact X mot katalog Y, to alternative X/Y-verdipar, ukjent og eksplisitt avslag",
+      "expected_result": "Dokument X beholdes med document-origin; unknown er ikke not_selected; katalogtilgjengelighet er aldri kundens valg.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-06",
+      "batch_id": "B-019",
+      "category": "POSITIVE_CONTROL",
+      "scenario": "Alle navngitte kontroller knyttet til batchen i det frosne regression-control-registry",
+      "expected_result": "Ingen utilsiktet betydningsendring. Kontroller beskytter scope/fakta, ikke den feilaktige nøkkelplasseringen som skal rettes.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-01",
+      "batch_id": "B-020",
+      "category": "SOURCE_PROVENANCE",
+      "scenario": "Alle oppgitte kilde-ID-er, egne sider/punkt, original SHA-256 og produkt-/komponentscope",
+      "expected_result": "Originalbytes uendret; fact peker på nøyaktig støttende kilde og qualificationSource der nødvendig.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-02",
+      "batch_id": "B-020",
+      "category": "SCOPE",
+      "scenario": "Samme provider/type men annen agreementScope/versjon, samt annen provider og type",
+      "expected_result": "Ingen kilde-/fact-/addonlekkasje; ordinary og ukjente versjoner konverteres ikke til andre avtaler.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-03",
+      "batch_id": "B-020",
+      "category": "SAME_PRODUCT",
+      "scenario": "Hvert berørt eksakt produkt mot seg selv med samme konfigurasjon",
+      "expected_result": "Ingen kunstig forskjell eller uventet unknown på implementerte presise fakta.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-04",
+      "batch_id": "B-020",
+      "category": "SIDE_SWAP",
+      "scenario": "Alle batchens berørte sammenligninger A→B og B→A",
+      "expected_result": "Tekst, scope, state, kilde og optionality flytter side uten betydningsendring.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-05",
+      "batch_id": "B-020",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eksakt dokumentfact X mot katalog Y, to alternative X/Y-verdipar, ukjent og eksplisitt avslag",
+      "expected_result": "Dokument X beholdes med document-origin; unknown er ikke not_selected; katalogtilgjengelighet er aldri kundens valg.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-06",
+      "batch_id": "B-020",
+      "category": "POSITIVE_CONTROL",
+      "scenario": "Alle navngitte kontroller knyttet til batchen i det frosne regression-control-registry",
+      "expected_result": "Ingen utilsiktet betydningsendring. Kontroller beskytter scope/fakta, ikke den feilaktige nøkkelplasseringen som skal rettes.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-01",
+      "batch_id": "B-021",
+      "category": "SOURCE_PROVENANCE",
+      "scenario": "Alle oppgitte kilde-ID-er, egne sider/punkt, original SHA-256 og produkt-/komponentscope",
+      "expected_result": "Originalbytes uendret; fact peker på nøyaktig støttende kilde og qualificationSource der nødvendig.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-02",
+      "batch_id": "B-021",
+      "category": "SCOPE",
+      "scenario": "Samme provider/type men annen agreementScope/versjon, samt annen provider og type",
+      "expected_result": "Ingen kilde-/fact-/addonlekkasje; ordinary og ukjente versjoner konverteres ikke til andre avtaler.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-03",
+      "batch_id": "B-021",
+      "category": "SAME_PRODUCT",
+      "scenario": "Hvert berørt eksakt produkt mot seg selv med samme konfigurasjon",
+      "expected_result": "Ingen kunstig forskjell eller uventet unknown på implementerte presise fakta.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-04",
+      "batch_id": "B-021",
+      "category": "SIDE_SWAP",
+      "scenario": "Alle batchens berørte sammenligninger A→B og B→A",
+      "expected_result": "Tekst, scope, state, kilde og optionality flytter side uten betydningsendring.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-05",
+      "batch_id": "B-021",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eksakt dokumentfact X mot katalog Y, to alternative X/Y-verdipar, ukjent og eksplisitt avslag",
+      "expected_result": "Dokument X beholdes med document-origin; unknown er ikke not_selected; katalogtilgjengelighet er aldri kundens valg.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-06",
+      "batch_id": "B-021",
+      "category": "POSITIVE_CONTROL",
+      "scenario": "Alle navngitte kontroller knyttet til batchen i det frosne regression-control-registry",
+      "expected_result": "Ingen utilsiktet betydningsendring. Kontroller beskytter scope/fakta, ikke den feilaktige nøkkelplasseringen som skal rettes.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-01",
+      "batch_id": "B-022",
+      "category": "SOURCE_PROVENANCE",
+      "scenario": "Alle oppgitte kilde-ID-er, egne sider/punkt, original SHA-256 og produkt-/komponentscope",
+      "expected_result": "Originalbytes uendret; fact peker på nøyaktig støttende kilde og qualificationSource der nødvendig.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-02",
+      "batch_id": "B-022",
+      "category": "SCOPE",
+      "scenario": "Samme provider/type men annen agreementScope/versjon, samt annen provider og type",
+      "expected_result": "Ingen kilde-/fact-/addonlekkasje; ordinary og ukjente versjoner konverteres ikke til andre avtaler.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-03",
+      "batch_id": "B-022",
+      "category": "SAME_PRODUCT",
+      "scenario": "Hvert berørt eksakt produkt mot seg selv med samme konfigurasjon",
+      "expected_result": "Ingen kunstig forskjell eller uventet unknown på implementerte presise fakta.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-04",
+      "batch_id": "B-022",
+      "category": "SIDE_SWAP",
+      "scenario": "Alle batchens berørte sammenligninger A→B og B→A",
+      "expected_result": "Tekst, scope, state, kilde og optionality flytter side uten betydningsendring.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-05",
+      "batch_id": "B-022",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eksakt dokumentfact X mot katalog Y, to alternative X/Y-verdipar, ukjent og eksplisitt avslag",
+      "expected_result": "Dokument X beholdes med document-origin; unknown er ikke not_selected; katalogtilgjengelighet er aldri kundens valg.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-06",
+      "batch_id": "B-022",
+      "category": "POSITIVE_CONTROL",
+      "scenario": "Alle navngitte kontroller knyttet til batchen i det frosne regression-control-registry",
+      "expected_result": "Ingen utilsiktet betydningsendring. Kontroller beskytter scope/fakta, ikke den feilaktige nøkkelplasseringen som skal rettes.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-07",
+      "batch_id": "B-015",
+      "category": "CATALOG_UNIT",
+      "scenario": "Ekstra §2.4 privat versus transportbyrå/idrettslag/forening",
+      "expected_result": "30 000 kun profesjonell/organisert tyveri/skadeverk per skadetilfelle; ingen ubegrenset-påstand for privat.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-08",
+      "batch_id": "B-015",
+      "category": "CROSS_PRODUCT",
+      "scenario": "Tryg Innbo basis/Ekstra versus Storebrand Super og andre eksisterende transportskadeprodukter",
+      "expected_result": "Presis tyveri/skadeverk-rad skilles fra generell transport/bæring; B-005 uendret.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-015-09",
+      "batch_id": "B-015",
+      "category": "TYPE_ISOLATION",
+      "scenario": "Liknende transportord i Reise/Bil og uspesifisert dokumentlabel Skade ved flytting",
+      "expected_result": "Ingen feilaktig ny Innbo-tyverikey. Dokumentfakta beholdes konservativt.",
+      "source_ids": [
+        "S01"
+      ],
+      "named_controls": [
+        "PC-0091",
+        "PC-0092",
+        "PC-0093",
+        "PC-1724",
+        "PC-1725",
+        "PC-1726",
+        "PC-1727",
+        "PC-1728",
+        "PC-1729",
+        "PC-1730"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-07",
+      "batch_id": "B-017",
+      "category": "CATALOG_UNIT",
+      "scenario": "Fremmøte, avgang og bagasje uten tilgang under overnatting i samme produkt",
+      "expected_result": "6 000 hotell/ubegrenset innhenting gjelder fremmøte; avgang har samlet 6 000 og betinget 24-timersinnhenting; bagasjegrense 500 særskilt.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-08",
+      "batch_id": "B-017",
+      "category": "INHERITANCE",
+      "scenario": "Aktivt fremtind-reise mot historisk eika-reise-p10/pluss og eksisterende kanalvalg",
+      "expected_result": "Ingen endring av historiske Eika-facts eller varighetsvalg; ingen kopiering mellom source versions.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-09",
+      "batch_id": "B-017",
+      "category": "PRODUCT_COMPARISON",
+      "scenario": "Fremtind mot Tryg og Storebrand etter B-021",
+      "expected_result": "Separate avgang/fremmøte-rader med person/hendelse og hotell/transport uttrykt; ingen falsk likhet basert kun på beløp.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-017-10",
+      "batch_id": "B-017",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Eldre dokument-key reise.forsinkelse.rute med reelt innhold, med/uten presist barn og etter gjentatt normalisering",
+      "expected_result": "Behold dokumenttekst/barn; ingen usikker katalogutfylling av avgang/fremmøte. Tom/unknown-placeholder behandles separat.",
+      "source_ids": [
+        "S02"
+      ],
+      "named_controls": [
+        "PC-2070",
+        "PC-2071",
+        "PC-2072",
+        "PC-2073",
+        "PC-2074",
+        "PC-2075",
+        "PC-2076",
+        "PC-2077",
+        "PC-2078",
+        "PC-2079",
+        "PC-2080",
+        "PC-2081",
+        "PC-2082"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-07",
+      "batch_id": "B-018",
+      "category": "ADDON",
+      "scenario": "Ingen / Tap / Bruksverdi alene / gammelt addon-ID / Tap med Bruksverdi avslått",
+      "expected_result": "Ingen Tap-inferens fra child; Tap-valg gir betinget bruksverdifakta; gammelt ID auto-migreres ikke; child-avslag fjerner ikke Liv.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-08",
+      "batch_id": "B-018",
+      "category": "CATALOG_UNIT",
+      "scenario": "Tap-bruksverdi under 8 år, særvilkår og 50 % av avtalt Tap-sum",
+      "expected_result": "Ingen numerisk kundesum; hovedforfall etter 10 år på Tap forveksles ikke med child-alderskravet; avl-unntak og attest bevares.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-018-09",
+      "batch_id": "B-018",
+      "category": "SPECIES_ISOLATION",
+      "scenario": "Frende Hund/Katt, Medisin/Tann; Fremtind separat Bruk og Storebrand inkludert bruksverdi",
+      "expected_result": "Bare Frende Hund Tap-komposisjon endres; ingen generell Bruk→Liv-policy kopieres.",
+      "source_ids": [
+        "S03"
+      ],
+      "named_controls": [
+        "PC-0571",
+        "PC-0572",
+        "PC-0573",
+        "PC-0574"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-07",
+      "batch_id": "B-019",
+      "category": "PRODUCT_COMPARISON",
+      "scenario": "OVERNIGHT-01: Standard og Super mot Tryg Ekstra/Premium i begge retninger",
+      "expected_result": "Kjent reise.overnatting på Storebrand; ingen false unknown eller unavailable; ingen kopiert tjenestereise.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-08",
+      "batch_id": "B-019",
+      "category": "INHERITANCE",
+      "scenario": "Standard/Super common, særskilt leiebil og avbestilling/arrangement",
+      "expected_result": "Generell dagstur omfattet sameksisterer med spesifikke overnattingskrav; geografi og medisinske unntak uendret.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-019-09",
+      "batch_id": "B-019",
+      "category": "TYPE_ISOLATION",
+      "scenario": "Ordet overnatting i bolig midlertidig bosted og reise sykeledsagelse",
+      "expected_result": "Ingen generell trip eligibility utledes fra en fordelsbetingelse.",
+      "source_ids": [
+        "S04",
+        "S05"
+      ],
+      "named_controls": [
+        "OVERNIGHT-01",
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-07",
+      "batch_id": "B-020",
+      "category": "INHERITANCE",
+      "scenario": "Hus Standard / Standard med råte-insekt-tillegg / Hus Pluss",
+      "expected_result": "Dyr-gren består i alle tre; Pluss/tillegg beholder lukt/isolasjon og legger til insektgren uten erstatning.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-08",
+      "batch_id": "B-020",
+      "category": "ADDON",
+      "scenario": "Insekter tilgjengelig men uvalgt, eksplisitt valgt, eksplisitt avslått; dyr inkludert",
+      "expected_result": "Produktmodus viser optional insekter ved siden av inkludert dyr; kundemodus krever valg og bevarer dyredekning ved insektavslag.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-09",
+      "batch_id": "B-020",
+      "category": "CATALOG_UNIT",
+      "scenario": "Bekjempelse mot bygningsskade, fullverdi, 2 000 versus 6 000 egenandel",
+      "expected_result": "Ingen blanding av handling, insekt/dyr/råte eller egenandelsområde; ikke bare materialnedbrytning for mus/rotter.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-10",
+      "batch_id": "B-020",
+      "category": "CROSS_PRODUCT",
+      "scenario": "Gjensidige mot uendrede Tryg/If/Fremtind/Storebrand/Frende Hus med brede keys",
+      "expected_result": "Ingen automatisk smal motpart fra generisk pest-tekst; ingen global datamigrering.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-020-11",
+      "batch_id": "B-020",
+      "category": "TYPE_ISOLATION",
+      "scenario": "Innbo-skadedyr og Bobil-skadedyr samt presis/uklar dokumentregel for Hus",
+      "expected_result": "Kun Hus-barna mappes når eksplisitt; ingen oppfunnet splitting av brede dokumentfacts.",
+      "source_ids": [
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "named_controls": [
+        "PC-0821",
+        "PC-0822",
+        "PC-0823",
+        "PC-0824",
+        "PC-0825",
+        "PC-0826",
+        "PC-0827",
+        "PC-0828",
+        "PC-0829",
+        "PC-0830",
+        "PC-0831",
+        "PC-0832",
+        "PC-0833",
+        "PC-0834",
+        "PC-0835",
+        "PC-0836",
+        "PC-0837",
+        "PC-0838",
+        "PC-0839",
+        "PC-0840",
+        "PC-0841",
+        "PC-0842",
+        "PC-0843",
+        "PC-0844",
+        "PC-0845",
+        "PC-0846",
+        "PC-0847",
+        "PC-0848",
+        "PC-0849",
+        "PC-0850",
+        "PC-0851",
+        "PC-0852",
+        "PC-0853",
+        "PC-0854",
+        "PC-0855",
+        "PC-0856",
+        "PC-0857",
+        "PC-0858",
+        "PC-0859",
+        "PC-0860",
+        "PC-0861",
+        "PC-0862",
+        "PC-0863",
+        "PC-0864",
+        "PC-0865",
+        "PC-0866",
+        "PC-0867",
+        "PC-0868",
+        "PC-0869",
+        "PC-0870",
+        "PC-0871",
+        "PC-0872",
+        "PC-0873"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-07",
+      "batch_id": "B-021",
+      "category": "CATALOG_UNIT",
+      "scenario": "Standard fremmøte og avgang med summer fra samme kilde-tabell",
+      "expected_result": "3 000/20 000 ved fremmøte; 3 000/1 500 ved avgang; ingen 23 000 eller gjensidig utbytting.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-08",
+      "batch_id": "B-021",
+      "category": "INHERITANCE",
+      "scenario": "Super som arver Standard og erstatter de to summetermene",
+      "expected_result": "Ubegrenset i hver korrekt hendelse; 1,5-time-/24-time-betingelser blir stående; ingen feilrettet hotellterskel.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-021-09",
+      "batch_id": "B-021",
+      "category": "PRODUCT_COMPARISON",
+      "scenario": "Storebrand Standard/Super versus Fremtind og Tryg",
+      "expected_result": "Samme hendelsesfamilie side ved side; hele scoped texts beholdes; bagasje500 og B-019 unaffected.",
+      "source_ids": [
+        "S04"
+      ],
+      "named_controls": [
+        "PC-0532",
+        "PC-0533",
+        "PC-0534",
+        "PC-0535",
+        "PC-0536",
+        "PC-0537",
+        "PC-0538",
+        "PC-0539",
+        "PC-0540",
+        "PC-0541",
+        "PC-0542",
+        "PC-0543"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-07",
+      "batch_id": "B-022",
+      "category": "ADDON",
+      "scenario": "Gjensidige Hund/Katt: ingen, Liv, Bruk, Liv+Bruk; ulike rekkefølger",
+      "expected_result": "Streng manuell Bruk alene avvises; Liv alene inkluderer ikke Bruk; Liv+Bruk gyldig og deterministisk.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-08",
+      "batch_id": "B-022",
+      "category": "SCOPE",
+      "scenario": "Dependency self/cycle/dangling/provider/type/scope/version, ekskludert/foreløpig ugyldig komponent",
+      "expected_result": "Avvis ugyldig katalogkonfigurasjon/valg; ingen global ID-resolving på tvers av produktkontekst.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-09",
+      "batch_id": "B-022",
+      "category": "CUSTOMER_MODE_SYNTHETIC",
+      "scenario": "Bruk selected med Liv missing/not_selected/conflict; Liv selected med Bruk missing/not_selected",
+      "expected_result": "Behold dokumentfacts og base; ingen automatisk Liv eller Bruk; bare betinget katalogberikelse blokkeres, ikke hele avtalen.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-10",
+      "batch_id": "B-022",
+      "category": "PRODUCT_COMPARISON",
+      "scenario": "Produktmodus materialiserer tilgjengelig avhengig Bruk",
+      "expected_result": "Optional med dependency; Liv-facts dupliseres ikke under Bruk og ingen kundevalg muteres.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-11",
+      "batch_id": "B-022",
+      "category": "SPECIES_ISOLATION",
+      "scenario": "Hund arbeidsfunksjon versus Hund avl versus Katt avl og opphør",
+      "expected_result": "Behold 50 % arbeidsfunksjon/100 % fysisk avlsevnetap; 8-års Hund Bruk/10-års Katt Bruk versus separate Liv-opphør. Ingen hund-key på katt.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    },
+    {
+      "test_id": "R-022-12",
+      "batch_id": "B-022",
+      "category": "CROSS_PRODUCT",
+      "scenario": "Alle eksisterende tillegg uten nye metadata; Frende/Tryg/If/Storebrand/Fremtind kontrollkombinasjoner",
+      "expected_result": "Backward compatibility; ingen global Bruk→Liv eller endring av eksisterende topp-/leiebil-/maskinskadetillegg.",
+      "source_ids": [
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "named_controls": [
+        "PC-1056",
+        "PC-1057",
+        "PC-1058",
+        "PC-1059",
+        "PC-1060",
+        "PC-1061"
+      ],
+      "execution_status": "PLANNED_NOT_IMPLEMENTED",
+      "privacy": "Syntetiske avtaler og offentlige katalogkilder; ingen private PDF-er"
+    }
+  ],
+  "child_batches": [],
+  "next_step": "Be om/gi en egen kontrollert implementeringsordre for den nå spesifiserte Wave 2-sekvensen. Start B-019; ingen ny kilde- eller menneskelig domeneavklaring er identifisert som nødvendig for disse sju batchenes avgrensede spørsmål. Ikke start implementering i denne oppgaven."
+}

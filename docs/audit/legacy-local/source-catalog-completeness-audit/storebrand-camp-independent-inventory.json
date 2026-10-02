@@ -1,0 +1,708 @@
+{
+  "source_first": true,
+  "catalog_fact_values_inspected": false,
+  "phase": "SOURCE_INVENTORY_COMPLETE",
+  "source": "catalog/sources/vehicle-extensions/storebrand-vilkar-campingvogn-og-tilhenger.pdf",
+  "read": "Full15physicalpages;bothstoredHTML;general11reusedbyhash",
+  "rules": [
+    {
+      "inventory_id": "SB-CA-001",
+      "subject": "Avtale",
+      "dimension": "bevis/sum",
+      "value": "Valgt nivå og forsikringssum følger beviset. Gjenanskaffelsesverdi, begrenset av bevisets sum.",
+      "page": 4,
+      "section": "5",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "SB-CA-002",
+      "subject": "Tegning",
+      "dimension": "forutsetning",
+      "value": "Norskregistrert, privat bruk/eie, inntil7 500kg; eksisterende Bil/Innbo/Hus/Hytte i Storebrand kreves.",
+      "page": null,
+      "section": "Produktsider/FAQ",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-003",
+      "subject": "Sikrede",
+      "dimension": "personkrets",
+      "value": "Norsk bostedsadresse. Panthaver/økonomisk interessent omfattes ved bekreftelse.",
+      "page": 3,
+      "section": "2",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-004",
+      "subject": "Geografi",
+      "dimension": "område",
+      "value": "EØS/Sveits og andre europeiske Grønt kort-land i inntil3måneder; ikke Tyrkia/Russland/Belarus/Kosovo.",
+      "page": 3,
+      "section": "4, fortsetter4",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-005",
+      "subject": "Ansvar",
+      "dimension": "trekkvogn",
+      "value": "Ingen selvstendig ansvarsforsikring; trekkbilens ansvar dekker ved bruk sammen med bilen.",
+      "page": null,
+      "section": "Produktside FAQ",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-006",
+      "subject": "Utstyr",
+      "dimension": "fastmontert",
+      "value": "Fast utstyr og originale hjul inngår i gjenanskaffelsesverdi/sum.",
+      "page": 4,
+      "section": "5",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-007",
+      "subject": "Fortelt/spikertelt",
+      "dimension": "bevisført",
+      "value": "Fortelt/bygningskonstruksjon må spesifiseres i beviset; inkluderes i avtalt sum.",
+      "page": 4,
+      "section": "5",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-CA-008",
+      "subject": "Fortelt/spikertelt",
+      "dimension": "avgrensning",
+      "value": "Ikke skade under montering/demontering. Ikke sammenbygget konstruksjon: bare brann/lyn/eksplosjon. Ingen tyveri av løse ting i fortelt.",
+      "page": 8,
+      "section": "7/17–20",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-CA-009",
+      "subject": "Løsøre",
+      "dimension": "sum/pergjenstand",
+      "value": "Campingvogn30 000 samlet og5 000 pergjenstand, kamera regnes som én ting; husstand/andre reisefelles løse ting innen sum.",
+      "page": 4,
+      "section": "5",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "B",
+        "K"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-010",
+      "subject": "Løsøre",
+      "dimension": "Superkildekonflikt",
+      "value": "Super100 000 i tabell5, men30 000 i detaljtekst5 og skadeårsaktabeller1/6; produktside30 000. Ikke avgjør uten avklaring.",
+      "page": 4,
+      "section": "5 og1/6",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "SOURCE_CONFLICT"
+    },
+    {
+      "inventory_id": "SB-CA-011",
+      "subject": "Løsøre",
+      "dimension": "sumutvidelse",
+      "value": "Høyere sum kan velges og fremgår av beviset; produktsiden nevner ekstra løsøreforsikring uten fast tilleggssum.",
+      "page": 4,
+      "section": "5 +produktside",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "OPTIONAL"
+    },
+    {
+      "inventory_id": "SB-CA-012",
+      "subject": "Last",
+      "dimension": "tilhenger",
+      "value": "Ting som fraktes på tilhenger er ikke omfattet.",
+      "page": null,
+      "section": "Tilhengerproduktside/FAQ",
+      "types": [
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-013",
+      "subject": "Aldersfradrag",
+      "dimension": "utstyr",
+      "value": "Etterettår:10prosent per påbegyntår, maksimalt50prosent.",
+      "page": 4,
+      "section": "5",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-014",
+      "subject": "Aldersfradrag",
+      "dimension": "bagasje",
+      "value": "Klær1/10prosent,elektrisk5/10prosent,mobil/data1/20prosent,annet5/5prosent;max80. Første tall er antall år uten fradrag; brukt/arv/gave erstattes bruktverdi.",
+      "page": 5,
+      "section": "5 – tabell",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-015",
+      "subject": "Egenandel",
+      "dimension": "samordning",
+      "value": "Kun høyeste egenandel ved samme hendelse.",
+      "page": 5,
+      "section": "5",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-016",
+      "subject": "Brann",
+      "dimension": "omfang/egenandel",
+      "value": "Åpen flamme/lyn/eksplosjon;8 000 med mindre annet avtalt.",
+      "page": 5,
+      "section": "6.1.1",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-017",
+      "subject": "Tyveri",
+      "dimension": "omfang/egenandel",
+      "value": "Tyveri/forsøk og relatert hærverk/innbrudd; ikke husstandsmedlem;8 000 med mindre annet avtalt.",
+      "page": 6,
+      "section": "6.1.2",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-018",
+      "subject": "Veihjelp",
+      "dimension": "nivå/geografi",
+      "value": "Brann/tyveri Norden;Kasko/Super dekket Europa inntil3måneder utenforEØS/Sveits. Nødvendig verkstedtransport eller billigere reparasjon påstedet.",
+      "page": 6,
+      "section": "6.1.3 +4",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-019",
+      "subject": "Veihjelp",
+      "dimension": "faststed/egenandel",
+      "value": "Faststående campingvogn:frigjøring/transport tilkjørbarvei5 000. Veihjelp750egenandel.",
+      "page": 6,
+      "section": "6.1.3",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-020",
+      "subject": "Veihjelp",
+      "dimension": "Tilhengerkonflikt",
+      "value": "Fullvilkår selvstendig veihjelp750; produktside avhenger av trekkbilens dekning og sier500. Smalere kanalregel eller gammel produktside må avklares.",
+      "page": 6,
+      "section": "6.1.3 +tilhengerFAQ",
+      "types": [
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "SOURCE_CONFLICT"
+    },
+    {
+      "inventory_id": "SB-CA-021",
+      "subject": "Kasko",
+      "dimension": "årsaker",
+      "value": "Sammenstøt/utforkjøring/velt/hærverk/naturskade/annen plutselig ytre påvirkning og skadedyr.",
+      "page": 6,
+      "section": "6.2",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-022",
+      "subject": "Kasko",
+      "dimension": "egenandel",
+      "value": "Fremgår av beviset; campingwebvalg4 000/8 000/16 000.",
+      "page": 7,
+      "section": "6.2 +campingFAQ",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "CUSTOMER_SPECIFIC"
+    },
+    {
+      "inventory_id": "SB-CA-023",
+      "subject": "Egenandel",
+      "dimension": "Tilhengerkonflikt",
+      "value": "Fullvilkårbrann/tyveri8 000/beviskanavvike; produktside fast1 000 uten valgmulighet. Ikke velg én uten kildeavklaring.",
+      "page": 6,
+      "section": "6.1 +tilhengerFAQ",
+      "types": [
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "SOURCE_CONFLICT"
+    },
+    {
+      "inventory_id": "SB-CA-024",
+      "subject": "Nyverdi",
+      "dimension": "Super",
+      "value": "Inntil3år fra nyregistrert på forsikringstaker; tapt eller reparasjon overnylistepris; gjenkjøp tilsvarende. Ingen kilometergrense i denne dekningen.",
+      "page": 7,
+      "section": "6.3.1",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-025",
+      "subject": "Fukt/vann",
+      "dimension": "Super",
+      "value": "Campingvognnyereenn15år fra produksjon; fukt vegg/tak/gulv; kontroll uten anmerkning hosforhandler/verksted innenettår før oppdagelse;nykontrollårlig.",
+      "page": 7,
+      "section": "6.3.2",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-026",
+      "subject": "Fukt/vann",
+      "dimension": "unntak",
+      "value": "Frost/snøtyngde også medvirkende årsak unntatt.",
+      "page": 8,
+      "section": "6.3.2 +7/21",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-027",
+      "subject": "Feriegaranti",
+      "dimension": "Super",
+      "value": "Alternativovernatting1 500/dag restenavplanlagtferie,maks15d,etterdekketskade påpåbegyntferie.",
+      "page": 8,
+      "section": "6.3.3",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-028",
+      "subject": "Utleie/næring",
+      "dimension": "særavtale",
+      "value": "Privat/formidlet betaltutleie og næringsbruk unntatt med mindre avtalt.",
+      "page": 8,
+      "section": "7/13–14",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-029",
+      "subject": "Frost/snø/utetthet",
+      "dimension": "unntak",
+      "value": "Frost/snøtyngde unntatt;fukt/vann/råte/utetthet barefølgeskade ellersSuperregel;isolerglassutett ogvibrasjon/vridningujevnvei unntatt.",
+      "page": 8,
+      "section": "7/21–24,fortsetter9",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-030",
+      "subject": "Løsøre",
+      "dimension": "unntak",
+      "value": "Ikke smykker/klokker/kunst/penger/verdipapirer/forbruksvarer. Kaskoløsøre krever ytrehendelse som rammercampingvognen utenfra.",
+      "page": 8,
+      "section": "7/15–19",
+      "types": [
+        "Campingvogn"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-031",
+      "subject": "Generelle unntak",
+      "dimension": "elektronikk/is/garanti",
+      "value": "Elektronikk uten annen dekketytrehendelse, umerketisvei, verdifall/arbeidsinntekt/avsavn unntatt; forgjeves leverandørkravkanlikeveldekkes.",
+      "page": 8,
+      "section": "7",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-032",
+      "subject": "Sikkerhet",
+      "dimension": "forebygging",
+      "value": "Frostvæske/tømming, vedlikehold/service,transportegnethet,låsing;tilbyggvær/vindforsvarligogoffentligkrav;ikkeflomutsattplassering.",
+      "page": 9,
+      "section": "8,fortsetter10",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-033",
+      "subject": "Oppgjør",
+      "dimension": "kosmetikk/reparasjon",
+      "value": "Funksjonsbevarende reparasjon eller skjønnskontant ved kosmetikk; ikke krav nye deler. Verksted/utbedring mågodkjennes;utenverksted50prosentarbeidspris.",
+      "page": 11,
+      "section": "9.2",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-034",
+      "subject": "Rettshjelp",
+      "dimension": "rolle/geografi",
+      "value": "Privat eier/rettmessigfører/bruker iNorden;etterfølgendesalgs-/leasingtilbakeleveringstvist også.",
+      "page": 12,
+      "section": "10.1–10.3,13",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-035",
+      "subject": "Rettshjelp",
+      "dimension": "sum",
+      "value": "100 000;3–10parter250 000,11–25=500 000,26–49=750 000,50+=énmillion.",
+      "page": 14,
+      "section": "10.5",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-036",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4 000+20prosent; én egenandel pertvist uansett flereparter.",
+      "page": 15,
+      "section": "10.6",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-037",
+      "subject": "Rettshjelp",
+      "dimension": "unntak",
+      "value": "Næring,familie,straff/førerkort,sameie,forvaltningførklageuttømt,preeksisterendegrunnlag,motpartskost/ankegebyr og flerekonkretelister.",
+      "page": 14,
+      "section": "10.4",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P1",
+      "kind": "RULE"
+    },
+    {
+      "inventory_id": "SB-CA-038",
+      "subject": "Administrasjon",
+      "dimension": "generelle regler",
+      "value": "Fornyelse/meldeskade/skjønn/regress/oppgjørsadministrasjon og gener07 er kildeinformasjon,ikke hver enegen sammenligningsrad.",
+      "page": 1,
+      "section": "Innledning+9+10.7",
+      "types": [
+        "Campingvogn",
+        "Tilhenger"
+      ],
+      "levels": [
+        "B",
+        "K",
+        "S"
+      ],
+      "priority_if_missing": "P2",
+      "kind": "ADMINISTRATIVE"
+    }
+  ],
+  "notes": [
+    "Superlosore30000vs100000 source conflict preserved.",
+    "Tilhengerwebsite1000/500 vsfullterms8000/750 not silentlynormalized.",
+    "NoSuperforTilhenger;noinheritanceofcampingfukt/ferie/losore."
+  ]
+}

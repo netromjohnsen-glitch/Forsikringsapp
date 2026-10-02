@@ -1,0 +1,72 @@
+(node:66993) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (1.031125ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (8.531084ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (2.687542ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (2.8035ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (5.358542ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (1.476625ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.310208ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (1.665791ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.279125ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.429375ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.305ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (0.98225ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (1.200584ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (1.492958ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (1.005667ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (1.21225ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (0.954625ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (3.702833ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (0.937417ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (1.512958ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.193334ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (11.726375ms)
+✔ normalisering er forsikringstypeavgrenset (0.605167ms)
+(node:66994) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ seks offisielle If Reise-kilder er lokale, registrert og uendrede (8.579584ms)
+✔ If har Basis Standard Super med dokumentert kumulativ arv (2.315708ms)
+✔ forsikringsbevis personkrets område og varighet er kundestyrt (2.70425ms)
+✔ Basis har behandling og evakuering men ikke avbestilling bagasje eller tapt ferie (0.212417ms)
+✔ Standard overstyrer Basis med avbestilling forsinkelse og reisegods (1.4735ms)
+✔ forsinket bagasje har person familie transitt og dokumentasjonsgrenser (0.159166ms)
+✔ reisegods skiller samlet sum enkeltgjenstand penger og smykker (0.147167ms)
+✔ Super tilfører uhell turisttjeneste forsinkelsesytelser og leiebil (0.240333ms)
+✔ sykdom hjemtransport kjent sykdom og tapt ferie er presist skilt (0.230291ms)
+✔ ansvar rettshjelp og Super-grense beholder provenance (0.275792ms)
+✔ SmartDelay digital lege og Reisehjelp er tjenester (0.198542ms)
+✔ If har behandlingsdekning ved ulykke men ingen ulykkeskapital (0.276458ms)
+✔ sport UD og sikkerhetskrav kommer fra If og ikke Tryg (0.337334ms)
+✔ If kan sammenlignes semantisk med Tryg uten varighets- eller ulykkeslekkasje (24.122833ms)
+✔ runtime støtter If Basis Standard Super og isolerer Bil Innbo Hus Reise (24.892458ms)
+(node:66995) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (1.679291ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (5.606792ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.079708ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (5.259666ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (12.577834ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (1.571459ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (27.828292ms)
+✔ B-002: explicit customer artwork information retains document authority (1.018208ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.443417ms)
+✔ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.958417ms)
+✔ B-003: explicit customer deductible wins over optional catalog branches (23.099583ms)
+✔ B-004: all If Reise levels use the unqualified accident trigger from §5.1 (0.900708ms)
+✔ B-004: baggage safety applies only to Standard and Super; Basis negatives survive (8.951334ms)
+✔ B-004: customer-specific medical clause remains authoritative (1.3025ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 379.432834

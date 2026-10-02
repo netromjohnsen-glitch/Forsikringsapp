@@ -1,0 +1,121 @@
+(node:66221) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-product-comparison.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Båt/Hund/Katt gir tolv dynamiske produktfamilier (61.762834ms)
+✔ Tryg Båt har source-backed produktpakke (0.581708ms)
+✔ Tryg Hund har source-backed produktpakke (0.144584ms)
+✔ Tryg Katt har source-backed produktpakke (0.120584ms)
+✔ If Båt har source-backed produktpakke (0.312625ms)
+✔ If Hund har source-backed produktpakke (0.21725ms)
+✔ If Katt har source-backed produktpakke (0.208417ms)
+✔ Gjensidige Båt har source-backed produktpakke (0.296375ms)
+✔ Gjensidige Hund har source-backed produktpakke (0.108ms)
+✔ Gjensidige Katt har source-backed produktpakke (0.139416ms)
+✔ Storebrand Båt har source-backed produktpakke (0.320083ms)
+✔ Storebrand Hund har source-backed produktpakke (0.264834ms)
+✔ Storebrand Katt har source-backed produktpakke (0.397833ms)
+✔ Fremtind Båt har source-backed produktpakke (0.784417ms)
+✔ Fremtind Hund har source-backed produktpakke (0.210833ms)
+✔ Fremtind Katt har source-backed produktpakke (0.195375ms)
+✔ Frende Båt har source-backed produktpakke (0.316ms)
+✔ Frende Hund har source-backed produktpakke (0.088875ms)
+✔ Frende Katt har source-backed produktpakke (0.084875ms)
+✔ 65 offentlige originaler har verifiserbare SHA-256 hashes (20.815667ms)
+✔ Båtproduktstruktur er provider-tro (0.116208ms)
+✔ valgfrie Båt-komponenter forblir valgfrie i produktmodus (23.816333ms)
+✔ Storebrand dyr kan velges som Veterinær, Dødsfall eller kombinasjon (22.144625ms)
+✔ Hund-spesifikk bruksverdi lekker ikke til Katt (0.620417ms)
+✔ årlig, hendelsesbasert og valgbar veterinærsum er separate identiteter (11.325ms)
+✔ fast egenandel og prosentandel beholder separate canonical facts (11.028792ms)
+✔ nytegningsalder, reduksjonsalder og opphørsalder er separate identiteter (0.076291ms)
+✔ Båt aliases normaliseres eksakt uten å bli Bil (0.055792ms)
+✔ 54 representative source-to-catalog checks preserve numeric and conditional semantics (0.533875ms)
+✔ manual product selection is exact for every provider and new family (6.409791ms)
+✔ extraction schema accepts exact new-family facts and rejects arbitrary keys (0.361083ms)
+✔ new-family product comparisons are symmetric and same-product safe (71.760542ms)
+✔ canonical fact families stay isolated across species and vehicle types (0.498291ms)
+✔ kundedokument vinner over katalog og katalogvalg velger ikke valgfritt liv (5.273ms)
+✔ eksplisitt valgt tillegg kan aktiveres uten å endre dokumentverdi (6.722833ms)
+✔ produktpresentasjon bruker kuratert Båt- og dyrehierarki (51.9495ms)
+✔ Båt bruker sikker serienummerstrategi, mens dyr uten sikker ID behandles konservativt (6.2135ms)
+(node:66222) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ uttrekksinstruksen prioriterer kundens forsikringsbevis foran generelle produktvilkår (0.743917ms)
+✔ sammensatt dokumentverdi for maskinskade slår katalogens alder (9.452084ms)
+✔ sammensatt dokumentverdi beholder 200 000 km uten katalogduplikat (2.655709ms)
+✔ eksplisitt negativ leiebilstatus i dekningssammendrag blir not_selected (1.896625ms)
+✔ eksplisitt valgt leiebilstatus i annet dokumentfelt blir selected (6.105917ms)
+✔ manglende leiebilinformasjon for valgfri dekning forblir unknown (1.133125ms)
+✔ førstegangsregistrering flyttes fra sammendrag til canonical dokumentfelt (1.308375ms)
+✔ sammendrag med eksplisitte maskin-, nøkkel- og totalskadegrenser får canonical dokumentforrang (1.705791ms)
+✔ sammendragsparser krysser ikke fra én dekning til en annen (1.740167ms)
+✔ eksplisitt førstegangsregistreringsfelt bruker samme canonical key (1.43375ms)
+✔ Kasko beholder dokumentert bilnøkkelsum på 7 500 kr (1.251333ms)
+✔ Pluss beholder dokumentert bilnøkkelsum på 15 000 kr (0.949416ms)
+✔ Kasko totalskadegaranti bruker dokumentets 1 år og 15 000 km (0.855958ms)
+✔ Pluss totalskadegaranti bruker dokumentets 3 år og 60 000 km (0.930125ms)
+✔ katalogen supplerer fortsatt canonical felt som dokumentet mangler (0.940042ms)
+✔ ulike rå etiketter med samme canonical felt gir dokumentforrang (0.920375ms)
+✔ forskjellige semantiske felt beholdes selv om begge gjelder maskinskade (1.152125ms)
+✔ ukjent nesten-lik etikett fuzzy-matches ikke til canonical detail (3.567792ms)
+✔ dokumentforrang er providernøytral og virker for Tryg Bil (1.013709ms)
+✔ Gjensidige Kasko og Pluss beholder sikre katalogreferanser (2.210209ms)
+✔ dokument- og katalogprovenance forblir atskilt etter sammenslåing (1.857916ms)
+✔ reelt Kasko/Pluss-case beholder kundeverdier gjennom comparison (10.034125ms)
+✔ normalisering er forsikringstypeavgrenset (0.743083ms)
+(node:66223) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/morten/Documents/forsikringsapp/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ B-001: public source identities remain the reviewed Delkasko and Kasko originals (3.442208ms)
+✔ B-001: MC Delkasko has no unsupported holiday rental and retains baggage and assistance (2.32725ms)
+✔ B-001: legitimate Kasko rental keeps its duration, trigger and exact source scope (1.037833ms)
+✔ B-001: comparison is source-backed, side-symmetric and missing is not unavailable (6.883458ms)
+✔ B-001: an explicit customer rental duration still wins over Kasko catalog (12.501042ms)
+✔ B-002: Standard exclusion and Topp inclusion use their own clause and page (0.938625ms)
+✔ B-002: artwork comparison separates an explicit exclusion from an included top benefit (18.653125ms)
+✔ B-002: explicit customer artwork information retains document authority (1.869042ms)
+✔ B-003: motor/gir deductible keeps all exact age branches, basis and source (1.5185ms)
+✖ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.462458ms)
+✖ B-003: explicit customer deductible wins over optional catalog branches (4.132583ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 69
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 547.795333
+
+✖ failing tests:
+
+test at tests/nito-remediation-wave1.test.mjs:98:1
+✖ B-003: motor/gir remains optional on both supported tiers and absent on Delkasko (3.462458ms)
+  Error: Ugyldig eller ikke gyldig tilleggsdekning.
+      at selectedComponents (file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts:327:11)
+      at resolveCatalogFacts (file:///Users/morten/Documents/forsikringsapp/lib/product-catalog.ts:344:22)
+      at facts (file:///Users/morten/Documents/forsikringsapp/tests/nito-remediation-wave1.test.mjs:11:36)
+      at fact (file:///Users/morten/Documents/forsikringsapp/tests/nito-remediation-wave1.test.mjs:12:40)
+      at TestContext.<anonymous> (file:///Users/morten/Documents/forsikringsapp/tests/nito-remediation-wave1.test.mjs:105:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+
+test at tests/nito-remediation-wave1.test.mjs:107:1
+✖ B-003: explicit customer deductible wins over optional catalog branches (4.132583ms)
+  TypeError: Cannot read properties of undefined (reading 'normalize')
+      at normalizeWords (file:///Users/morten/Documents/forsikringsapp/lib/coverage-status.ts:78:49)
+      at file:///Users/morten/Documents/forsikringsapp/lib/coverage-status.ts:185:67
+      at Array.some (<anonymous>)
+      at file:///Users/morten/Documents/forsikringsapp/lib/coverage-status.ts:185:25
+      at Array.find (<anonymous>)
+      at definitionForAddOn (file:///Users/morten/Documents/forsikringsapp/lib/coverage-status.ts:184:22)
+      at file:///Users/morten/Documents/forsikringsapp/lib/coverage-status.ts:276:11
+      at Array.map (<anonymous>)
+      at deriveCanonicalCoverages (file:///Users/morten/Documents/forsikringsapp/lib/coverage-status.ts:264:22)
+      at selectedScopedAddOns (file:///Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts:98:34)

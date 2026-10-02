@@ -1,0 +1,710 @@
+[
+  {
+    "left": "[\"gjensidige\",\"bobil\",\"ordinary\",\"gjensidige-bobil-kasko\",null]",
+    "right": "[\"gjensidige\",\"bobil\",\"ordinary\",\"gjensidige-bobil-pluss\",null]",
+    "forward": [
+      {
+        "key": "bobil.skadedyr.dekning",
+        "label": "Skadedyr",
+        "conceptId": "bobil.skadedyr",
+        "conceptLabel": "Skadedyr",
+        "conceptTier": "secondary",
+        "first": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "second": {
+          "state": "included",
+          "text": "✓ Inkludert – Skader som skyldes gnagere, insekter og andre skadedyr",
+          "facts": [
+            {
+              "key": "bobil.skadedyr.dekning",
+              "label": "Skadedyr",
+              "value": "Skader som skyldes gnagere, insekter og andre skadedyr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+                  "filename": "gjensidige-bobil-pluss-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Pluss-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 3,
+                  "section": "Hvilke skader – fukt og skadedyr",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+              "filename": "gjensidige-bobil-pluss-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Pluss-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 3,
+              "section": "Hvilke skader – fukt og skadedyr",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": true
+      }
+    ],
+    "reverse": [
+      {
+        "key": "bobil.skadedyr.dekning",
+        "label": "Skadedyr",
+        "conceptId": "bobil.skadedyr",
+        "conceptLabel": "Skadedyr",
+        "conceptTier": "secondary",
+        "first": {
+          "state": "included",
+          "text": "✓ Inkludert – Skader som skyldes gnagere, insekter og andre skadedyr",
+          "facts": [
+            {
+              "key": "bobil.skadedyr.dekning",
+              "label": "Skadedyr",
+              "value": "Skader som skyldes gnagere, insekter og andre skadedyr",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+                  "filename": "gjensidige-bobil-pluss-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Pluss-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 3,
+                  "section": "Hvilke skader – fukt og skadedyr",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-bobil-pluss-vilkar.pdf:bobil",
+              "filename": "gjensidige-bobil-pluss-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/Bobil-Pluss-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 3,
+              "section": "Hvilke skader – fukt og skadedyr",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "unknown",
+          "text": "Ikke dokumentert i kataloggrunnlaget",
+          "facts": [],
+          "sources": []
+        },
+        "different": true
+      }
+    ]
+  },
+  {
+    "left": "[\"gjensidige\",\"mc\",\"ordinary\",\"gjensidige-mc-delkasko\",null]",
+    "right": "[\"gjensidige\",\"mc\",\"ordinary\",\"gjensidige-mc-kasko\",null]",
+    "forward": [
+      {
+        "key": "mc.leiekjoretoy.dekning",
+        "label": "Leie-MC",
+        "conceptId": "mc.mobilitet",
+        "conceptLabel": "Veihjelp og leiekjøretøy",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "✓ Inkludert – Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dekning",
+              "label": "Leie-MC",
+              "value": "Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "✓ Inkludert – Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dekning",
+              "label": "Leie-MC",
+              "value": "Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-kasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-kasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": false
+      },
+      {
+        "key": "mc.leiekjoretoy.dager",
+        "label": "Leie-MC – antall dager",
+        "conceptId": "mc.mobilitet",
+        "conceptLabel": "Veihjelp og leiekjøretøy",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Inntil 15 dager",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dager",
+              "label": "Leie-MC – antall dager",
+              "value": "Inntil 15 dager",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Inntil 15 dager",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dager",
+              "label": "Leie-MC – antall dager",
+              "value": "Inntil 15 dager",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-kasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-kasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": false
+      },
+      {
+        "key": "mc.leiekjoretoy.begrensning",
+        "label": "Leie-MC – begrensninger",
+        "conceptId": "mc.mobilitet",
+        "conceptLabel": "Veihjelp og leiekjøretøy",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.begrensning",
+              "label": "Leie-MC – begrensninger",
+              "value": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.begrensning",
+              "label": "Leie-MC – begrensninger",
+              "value": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-kasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-kasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": false
+      }
+    ],
+    "reverse": [
+      {
+        "key": "mc.leiekjoretoy.dekning",
+        "label": "Leie-MC",
+        "conceptId": "mc.mobilitet",
+        "conceptLabel": "Veihjelp og leiekjøretøy",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "✓ Inkludert – Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dekning",
+              "label": "Leie-MC",
+              "value": "Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-kasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-kasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "✓ Inkludert – Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dekning",
+              "label": "Leie-MC",
+              "value": "Leie av tilsvarende kjøretøy ved avbrutt feriereise utenfor Norden",
+              "state": "included",
+              "addOnNames": [],
+              "role": "coverage",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": false
+      },
+      {
+        "key": "mc.leiekjoretoy.dager",
+        "label": "Leie-MC – antall dager",
+        "conceptId": "mc.mobilitet",
+        "conceptLabel": "Veihjelp og leiekjøretøy",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Inntil 15 dager",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dager",
+              "label": "Leie-MC – antall dager",
+              "value": "Inntil 15 dager",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-kasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-kasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Inntil 15 dager",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.dager",
+              "label": "Leie-MC – antall dager",
+              "value": "Inntil 15 dager",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": false
+      },
+      {
+        "key": "mc.leiekjoretoy.begrensning",
+        "label": "Leie-MC – begrensninger",
+        "conceptId": "mc.mobilitet",
+        "conceptLabel": "Veihjelp og leiekjøretøy",
+        "conceptTier": "primary",
+        "first": {
+          "state": "included",
+          "text": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.begrensning",
+              "label": "Leie-MC – begrensninger",
+              "value": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-kasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-kasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-kasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Kasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "second": {
+          "state": "included",
+          "text": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+          "facts": [
+            {
+              "key": "mc.leiekjoretoy.begrensning",
+              "label": "Leie-MC – begrensninger",
+              "value": "Kjøretøyet kan ikke repareres innen 2 virkedager; for å fullføre planlagt ferie",
+              "state": "included",
+              "addOnNames": [],
+              "role": "term",
+              "sources": [
+                {
+                  "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+                  "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+                  "termsNumber": "",
+                  "effectiveFrom": "",
+                  "agreementScope": "ordinary",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+                  "company": "gjensidige",
+                  "page": 4,
+                  "section": "Veihjelp ved feriereiser utenfor Norden",
+                  "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+                  "sourceType": "full_terms"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "documentId": "mc-bobil:gjensidige-mc-delkasko-vilkar.pdf:mc",
+              "filename": "gjensidige-mc-delkasko-vilkar.pdf",
+              "termsNumber": "",
+              "effectiveFrom": "",
+              "agreementScope": "ordinary",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/kjoretoy/MC-Delkasko-alminnelige-vilkar.pdf",
+              "company": "gjensidige",
+              "page": 4,
+              "section": "Veihjelp ved feriereiser utenfor Norden",
+              "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger krever dokumentert valg.",
+              "sourceType": "full_terms"
+            }
+          ]
+        },
+        "different": false
+      }
+    ]
+  }
+]

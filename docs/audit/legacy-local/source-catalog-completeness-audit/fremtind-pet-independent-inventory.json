@@ -1,0 +1,406 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "FPT-01",
+      "subject": "Veterinær",
+      "dimension": "scope",
+      "value": "Navngittdyr/Nordenbosted/verden;hendelseogutgiftiforsikringstid;førstesymptomsomsykdomstid.",
+      "location": "§1–5s1",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-02",
+      "subject": "Karenstid",
+      "dimension": "days",
+      "value": "20dsykdom,60dallergi/hud/øre;ulykkedag1;gjelderutvidelsesum/dekning,ikkeflyttingtilsvarende;førsykdomikke.",
+      "location": "§5s1",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-03",
+      "subject": "Sum",
+      "dimension": "basis",
+      "value": "Kundebevisvalgt sum perforsikringsår;webvalg30/40/50/75k.",
+      "location": "§6s1;webSykdom",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-04",
+      "subject": "Veterinær",
+      "dimension": "coverage",
+      "value": "Nødvendigsykdom/ulykke,reseptmedisin,komplikasjonvaksine/kastrering;innenårssum.",
+      "location": "§7s1",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-05",
+      "subject": "Allergi",
+      "dimension": "lifetime",
+      "value": "Hundatopi/allergiutredning/behandling/medisin15000livstid.",
+      "location": "§7s1",
+      "animal": "dog",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-06",
+      "subject": "Artrose",
+      "dimension": "lifetime",
+      "value": "Hundartrose/forkalkning/spondylose15000livstid,ogsåToppingenoverride.",
+      "location": "§7s1",
+      "animal": "dog",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-07",
+      "subject": "MR/CT",
+      "dimension": "annual",
+      "value": "Samlet15000perår base.",
+      "location": "§7s1",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-08",
+      "subject": "Avliving",
+      "dimension": "sum",
+      "value": "Avliving/kremeringsamlet2000kunveddekketdiagnose.",
+      "location": "§7s1",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-09",
+      "subject": "Hund tann",
+      "dimension": "negative",
+      "value": "Baseikke melketann/bitt/tannstilling/tannstein/stomatitt/gingivitt/periodontitt/karies/resorpsjon/emalje/cyste/rotspissunntattfraktur;ulykkestennerIPID.",
+      "location": "§7s1",
+      "animal": "dog",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-10",
+      "subject": "Katt tann",
+      "dimension": "coverage",
+      "value": "Fraktur/karies/emalje/resorpsjon;resorpsjon15000livstid;melketann/cyste/bittmedisinskfør4mnd;ikkestein/stomatitt/gingivitt/periodontitt/rotspissutenfraktur.",
+      "location": "§7s1",
+      "animal": "cat",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-11",
+      "subject": "Medfødte ledd",
+      "dimension": "condition",
+      "value": "HD/AD/OCD/patella/shortulna/CalveLeggPerthesuavbruttveterinærfør4mnd;hundHDADforeldreHD A/BogAD0.",
+      "location": "§7s2",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-12",
+      "subject": "Hund keisersnitt",
+      "dimension": "condition",
+      "value": "En ganglivstid,20mndalder,1åruavbruttveterinær,NKKetiskparring;raseunntak.",
+      "location": "§7s2",
+      "animal": "dog",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-13",
+      "subject": "Katt keisersnitt",
+      "dimension": "condition",
+      "value": "En ganglivstid,1åruavbruttveterinær,ikke2ellerflere tidligerekeisersnitt.",
+      "location": "§7s2",
+      "animal": "cat",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-14",
+      "subject": "Veterinær",
+      "dimension": "exclusions",
+      "value": "Kosmetikk/psyke/forplantning/hormonbehandling kastreringvedlistetsykdom;følgeravunntattskade/tilstand.",
+      "location": "§7s1",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-15",
+      "subject": "Kostnader",
+      "dimension": "excluded",
+      "value": "Ikke rehab/kiro/alternativ i base;transport/hjemmebesøk/gebyrattest/fôrtilskudd/forebygging.",
+      "location": "§7s2",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-16",
+      "subject": "Hund raser",
+      "dimension": "exclusions",
+      "value": "BOAS/trachea/gane/nesebor/svelg BostonMopsEngFrBulldogChihuahuaPomeranianPekingeseShihTzumixer;øyeøre/hudSharpeiChow;entropionMopsBoxerBulldog;Cavalier syringo/Chiari;keisersnitt7raserogmixer.",
+      "location": "§7s2",
+      "animal": "dog",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-17",
+      "subject": "Katt raser",
+      "dimension": "exclusions",
+      "value": "Perser/ExoticBOASogmixer;Scottishfoldleddskjelettogmixer.",
+      "location": "§7s2",
+      "animal": "cat",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-18",
+      "subject": "Egenandel",
+      "dimension": "structure",
+      "value": "135d fraførsteutgift;hund1300/2000/3500/katt1300/2000/4000 +20%resten;webkatt3500eravvik.",
+      "location": "§8s2",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-19",
+      "subject": "Oppgjør",
+      "dimension": "requirements",
+      "value": "IDkontroll/korrektalder/rase,utenlandskengelsk-maskinskrevetjournal;direkteoppgjørNorge;velferdsavliving/obduksjonbestiltbetales.",
+      "location": "§8s2",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-20",
+      "subject": "Varighet",
+      "dimension": "termination",
+      "value": "Veterinærhelelivetweb;slutterveddød/eierskifte/oppsigelsefull.",
+      "location": "§8s2;webvarighet",
+      "animal": "both",
+      "component": "base",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-21",
+      "subject": "Topp allergi",
+      "dimension": "limit_override",
+      "value": "Tilvalgtårssum;15000livstidbaseoverskrives.",
+      "location": "Topp§dekker s3",
+      "animal": "dog",
+      "component": "topp",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-22",
+      "subject": "Topp MR/CT",
+      "dimension": "limit_override",
+      "value": "Tilvalgtårssum;15000årsbaseoverskrives.",
+      "location": "Topp§dekker s3",
+      "animal": "dog",
+      "component": "topp",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-23",
+      "subject": "Topp tann",
+      "dimension": "condition",
+      "value": "Karies/emalje/resorpsjon;medisinskmelketann/cyste/bittfør4mnd;bitttannstillingattest7uker–4mndutenmerknad.",
+      "location": "Topp§dekker s3",
+      "animal": "dog",
+      "component": "topp",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-24",
+      "subject": "Topp rehab",
+      "dimension": "duration",
+      "value": "Fysio/rehab/kiro innen6mnd etterbestiltavbehandlendeveterinær;innenårssum/valgtegenandel.",
+      "location": "Topp§dekker s3",
+      "animal": "dog",
+      "component": "topp",
+      "doc": "vet"
+    },
+    {
+      "id": "FPT-25",
+      "subject": "Liv",
+      "dimension": "trigger",
+      "value": "Valgfritt;død/avlivingvedulykkeellerdekketsykdom;forsvinning/tyveri;ikkeunntattveterinærtilstand;kundenssum.",
+      "location": "Død/tap s1",
+      "animal": "both",
+      "component": "life",
+      "doc": "life"
+    },
+    {
+      "id": "FPT-26",
+      "subject": "Liv",
+      "dimension": "settlement",
+      "value": "Tilsvarendedyrpåskadedagopptilbevis;dødogeierskifte/oppsigelseavslutter.",
+      "location": "Død/tap s1",
+      "animal": "both",
+      "component": "life",
+      "doc": "life"
+    },
+    {
+      "id": "FPT-27",
+      "subject": "Hund liv",
+      "dimension": "age_table",
+      "value": "20%/årfradragvedhovedforfalletter5/7/9åravhengigrase;gruppert8/10/12år opphør;gulv1500. Heletypeliste i source måbevares,ikkestandardalle7/10.",
+      "location": "Død/tap s1tabeller",
+      "animal": "dog",
+      "component": "life",
+      "doc": "life"
+    },
+    {
+      "id": "FPT-28",
+      "subject": "Katt liv",
+      "dimension": "age",
+      "value": "20%/årfradragvedhovedforfalletter7år,min1500;opphørhovedforfalletter12år.",
+      "location": "Død/tap s1",
+      "animal": "cat",
+      "component": "life",
+      "doc": "life"
+    },
+    {
+      "id": "FPT-29",
+      "subject": "Liv",
+      "dimension": "disappearance",
+      "value": "Politiogannonsering;tidligst3mnd ettermeldtossogpoliti.",
+      "location": "Død/tap s1",
+      "animal": "both",
+      "component": "life",
+      "doc": "life"
+    },
+    {
+      "id": "FPT-30",
+      "subject": "Bruksverdi",
+      "dimension": "trigger",
+      "value": "Valgfritt;varigveterinærdokumenterttapetterbehandlinghvile,praktisk/offisiellbruk siste12mnd;dekketvetårsak.",
+      "location": "Bruksverdi s1",
+      "animal": "dog",
+      "component": "use",
+      "doc": "use"
+    },
+    {
+      "id": "FPT-31",
+      "subject": "Bruksverdi",
+      "dimension": "threshold",
+      "value": "Jakt/gjeter/tjeneste trent/regelmessig minst50%tap;avl100%,min1kullsiste2år/NKK,normalfødselhunn;ikkeutstilling/andreformål.",
+      "location": "Bruksverdi s1",
+      "animal": "dog",
+      "component": "use",
+      "doc": "use"
+    },
+    {
+      "id": "FPT-32",
+      "subject": "Bruksverdi",
+      "dimension": "termination",
+      "value": "Hovedforfall etter8år,ellersdød/eierskifte/oppsigelse;bevisvalgt sum.",
+      "location": "Bruksverdi s1",
+      "animal": "dog",
+      "component": "use",
+      "doc": "use"
+    },
+    {
+      "id": "FPT-33",
+      "subject": "Kjøp",
+      "dimension": "eligibility",
+      "value": "5uker–7år;7–inntil10kunflytting;IDmerkingpåkrevd;hundingennyattestkravweb.",
+      "location": "SB1Greitåvite",
+      "animal": "both",
+      "component": "base",
+      "doc": "web"
+    },
+    {
+      "id": "FPT-34",
+      "subject": "FirstVet",
+      "dimension": "service",
+      "value": "Fri onlineveterinærvedsykdom/skade,vetproduktIPID/web;ingenantattlivkundeservicestatus.",
+      "location": "SB1Online;IPID",
+      "animal": "both",
+      "component": "base",
+      "doc": "web"
+    },
+    {
+      "id": "FPT-35",
+      "subject": "Liv katt",
+      "dimension": "eligibility",
+      "value": "Kunrasekatt.",
+      "location": "SB1matrix/IPID",
+      "animal": "cat",
+      "component": "life",
+      "doc": "web"
+    },
+    {
+      "id": "FPT-36",
+      "subject": "Valpekull",
+      "dimension": "optional",
+      "value": "Valgtillegg6000/valp itilleggtispe,2kulllivstid,fødsel→leveringmax3mnd,kunvet;førfødsel/avlshund/NKKparring. Egetfullvilkårikkei322lokale.",
+      "location": "SB1Valpeforsikring FAQ/IPID",
+      "animal": "dog",
+      "component": "puppy",
+      "doc": "web"
+    },
+    {
+      "id": "FPT-37",
+      "subject": "Produktnivå",
+      "dimension": "structure",
+      "value": "HundTopp er valgfriutvidelseavbasePDF/IPID,webtolevelnavn;livkan kjøpesseparat;ikkeautomatiskvalgt.",
+      "location": "SB1/VetTopp/IPID",
+      "animal": "dog",
+      "component": "base",
+      "doc": "web"
+    },
+    {
+      "id": "FPT-38",
+      "subject": "Katt kildekonflikt",
+      "dimension": "deductible",
+      "value": "Fullvet4000 vsSB1web3500somtredjevalg,ikkevelgarbitrært.",
+      "location": "§8s2/SB1Egenandel",
+      "animal": "cat",
+      "component": "base",
+      "doc": "web"
+    },
+    {
+      "id": "FPT-39",
+      "subject": "Liv kildekonflikt",
+      "dimension": "boundary",
+      "value": "Webmellometteralderogdetåretfyller;fullhovedforfalletterfylt. Riktigdateboundarymåavklares,ikkenormaliserebort.",
+      "location": "SB1varighet/fullDød-tap",
+      "animal": "both",
+      "component": "life",
+      "doc": "web"
+    },
+    {
+      "id": "FPT-40",
+      "subject": "Medlemsfordel",
+      "dimension": "outside_scope",
+      "value": "LOfavør5%prisrabatt ognavnet gjelderikkeordinary;innboansvar ogreisefaqikkevetprodukt.",
+      "location": "SB1LOfavør/FAQ",
+      "animal": "both",
+      "component": "base",
+      "doc": "web"
+    }
+  ],
+  "review": "Dogvet3p includesTopp, catvet2p, life1each,use1,IPID2each,fullmaterialSB1dogandcatweb. Sharedgeneralalreadyread; customer choices not defaulted."
+}

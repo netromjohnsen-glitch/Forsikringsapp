@@ -1,0 +1,477 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "TRE-01",
+      "subject": "Personkrets",
+      "dimension": "eligibility",
+      "value": "FastbosattNorge/folketrygd;enkelt/par/familie;barnadressehosforelderunder21;IPIDtil21 vswebutåret21ogbarnebarnreisemedkonflikt.",
+      "doc": "IPID-Reiseforsikring.pdf",
+      "location": "s1;webFAQ",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-02",
+      "subject": "Reiselengde",
+      "dimension": "standard_conflict",
+      "value": "Reise45,Premium70;Ekstra45tabell/hovedFAQ og70senereFAQ. Bevisavtalt;ikkevelgénutenavklaring.",
+      "doc": "Reiseforsikring-produktside.html",
+      "location": "Reisedager;FAQbackpacking/borteboendebarn",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-03",
+      "subject": "Reiselengde",
+      "dimension": "optional_extension",
+      "value": "Utvidet enkeltreiseinntil12mnd måavtales;ikkeautomatiskbase.",
+      "doc": "Reiseforsikring-produktside.html",
+      "location": "FAQhvorlenge",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-04",
+      "subject": "Reisedefinisjon",
+      "dimension": "overnight_purpose",
+      "value": "Reisebarefritidmedovernatting;Ekstra/Premiumfritid+tjenestereisermed/utenovernatting.",
+      "doc": "Reiseforsikring-produktside.html",
+      "location": "Reiserutenovernatting/FAQ",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-05",
+      "subject": "Geografi",
+      "dimension": "excluded_places",
+      "value": "Verden,ikkefast/midlertidighjem,fastarbeid/skole/SFO/barnehage;fritidsarrangementunntak.UDadvarselvedavreiseugyldighele reisen.",
+      "doc": "PRF46000-Produktvilkar.pdf",
+      "location": "s1–2§3",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-06",
+      "subject": "Reiseperiode",
+      "dimension": "extension",
+      "value": "Fra hjemNorge tilbake;forhåndsbestilthjemreiseutvides2dvedvær/teknikk/nødlanding/terror,30dveddekketsykdom/ulykke.",
+      "doc": "PRF46000-Produktvilkar.pdf",
+      "location": "s2§4",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-07",
+      "subject": "Avbestilling",
+      "dimension": "timing",
+      "value": "Aktivforsikringførførsteinnbetaling;avbestillingsdekningfrakjøptilavreisehjem.",
+      "doc": "PRF46000-Produktvilkar.pdf",
+      "location": "s2§4;PRF46001s1§2.1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-08",
+      "subject": "Avbestilling",
+      "dimension": "triggers",
+      "value": "Akuttsykdom/alvorligulykke/uventetforverring/dødselv/nærfamilie/følge/enestemedreisendesfamilie;offentligsavnetsøk,flyttetfastsattoperasjon,fysiskboligskade,naturkatastrofe/UD.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s1–2§2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-09",
+      "subject": "Avbestilling",
+      "dimension": "limits",
+      "value": "Reise20 000pertilfelle/sikret;Ekstra/Premiumubegrenset.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-10",
+      "subject": "Avbestilling",
+      "dimension": "exclusions",
+      "value": "Ikkeformålsbortfall,forlengetbehandling,karantene/frykt;UDvedbestilling,senerepåløpteutgifter,refusjon/bonus,skatt,tjeneste,andrepersoner,sesongleie/timeshare.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s2§2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-11",
+      "subject": "Forsinkelse",
+      "dimension": "triggers_conditions",
+      "value": "Forhåndsbestiltoffentligavgang/fremmøte;sistelokalrute;vær/teknikk/kollisjon/utforkjøring/nødlanding/terror.Innhenting/overnatting;nybillett nårarrangørikketarigjeninnen24h.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s2–3§3.1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-12",
+      "subject": "Forsinkelse",
+      "dimension": "limits",
+      "value": "Avgang1 500/3 000/3 000;fremmøte20 000/ubegrenset/ubegrenset,herunderovernatting1 500/3 000/3 000.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-13",
+      "subject": "Tapt arrangement/hotell/leiebil",
+      "dimension": "thresholds_limits",
+      "value": "Ekstra/Premium1hotellnatt/arrangement5 000ettermin5h;forhåndsbetaltkansellertbil8 000ettermin1,5h. Reiseikke.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s3§3.2;sumtabells1",
+      "scope": "higher"
+    },
+    {
+      "id": "TRE-14",
+      "subject": "Forsinkelse",
+      "dimension": "exclusions",
+      "value": "Ikketjeneste,streik/personalmangel,privatbilutleier/annetkjøretøy/andrebrukere;EUrefusjonunntattmenfallbacketter24hutenalternativreise.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s3§3.3",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-15",
+      "subject": "Bagasjeforsinkelse",
+      "dimension": "trigger",
+      "value": "Ekspedertikkeankommet;forbyttet4h;transittufrivilligovernatting.PIR/kvittering,innkjøpførsavnettilbake;ikkesistehjemflyplass/streik/refusjon.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s3–4§4",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-16",
+      "subject": "Bagasjeforsinkelse",
+      "dimension": "limits",
+      "value": "Reise2 000/EkstraPremium5 000;transitt500 innen sum.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-17",
+      "subject": "Reisegods",
+      "dimension": "scope",
+      "value": "Egne/hele-reisenlåntleidpersonligeting;tyveri/ran/innsjekket/tap21d/dyrikkeegne/trafikk/båtuhell/brann/vann/natur/hærverkikkefamilieellerlåntbruker.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s3–4§4",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-18",
+      "subject": "Reisegods",
+      "dimension": "limits",
+      "value": "Reise20 000og6 000/itemmedtilbehør;Ekstra/Premiumingenoverordnetmax,40 000/itemmedtilbehør.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-19",
+      "subject": "Reisegods",
+      "dimension": "special_limits",
+      "value": "Nøkler4 000alle;kontanter3 000/6 000samletallesikrede;pass/billettinklreise/opphold5 000/20 000samletalle.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-20",
+      "subject": "Reisegods",
+      "dimension": "material_exclusions",
+      "value": "Unntakslisten etter Uhell nevner mistet/glemt, sykkel i egenkommune, arbeidsgiver/skole, lokaltleidutstyr, motorkjøretøy,data og indirektetap. Avgrensning mot hovedreisegods må ikke avgjøres bare fra plassering; behold eksplisitt uhellscope som katalog.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s4§4.1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-21",
+      "subject": "Uhell",
+      "dimension": "trigger_limits",
+      "value": "Ekstra/Premium8 000/år,1 500egenandel/tilfelle;ytrekjentårsakbestemttid;gjenstandmåvises;ikke mistet/glemt.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s4–5§4",
+      "scope": "higher"
+    },
+    {
+      "id": "TRE-22",
+      "subject": "Reisegods",
+      "dimension": "settlement",
+      "value": "Verditapfradragmin1/3;Trygvelgerreparasjon/ombruk/kontant;gave/arv/brukt/kunst/samlinger/bo markedsverdi.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s5§4.2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-23",
+      "subject": "Mobil",
+      "dimension": "repeated_deductible",
+      "value": "Fraandre tap/skadeinnen3forsikringsår2 000egenandel.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s5§4.2;sumtabells1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-24",
+      "subject": "Reisesyke",
+      "dimension": "trigger",
+      "value": "Uventetakuttsykdom/ulykke/alvorligforverring;fødselsuke37+/svangerskap/frivilligabortikkesykdommenulykke/sykdomkanværedekket.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s5§5.1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-25",
+      "subject": "Reisesyke",
+      "dimension": "hospital_duration",
+      "value": "Sykehusinntil60d;behandling/oppholdtilhjemtransportmedisinskforsvarlig;lege/medisin/fysio/transport.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s6§5.2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-26",
+      "subject": "Reisesyke",
+      "dimension": "limits_companions",
+      "value": "Samletingenmax;Reisetilkalling/ledsager30 000herunder1 500/dag;Ekstra/Premiumingenmax;inntil2nærstående,medisinskbehov/forhåndsgodkjent.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s6§5.2;sumtabells1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-27",
+      "subject": "Familie syk på reisemål",
+      "dimension": "duration",
+      "value": "Alvorlighendelsenærfamiliebosattreisemål14dmeropphold/mat+hjem;godkjennes.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s6§5.2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-28",
+      "subject": "Eneste medreisende syk",
+      "dimension": "limits",
+      "value": "Reise15 000herunder1 500/dag;Ekstra/Premium35 000;barnunder21medforeldererikkemedreisendemenfamilieytelsenkaninkluderebarn.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s6–7§5.3;sumtabells2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-29",
+      "subject": "Hjemtransport",
+      "dimension": "scope",
+      "value": "Ubegrenset;akuttalvorligsykdom/død/familiesavnetoffentligsøk/boligskade/nærfamilie,tidligereennplanlagt,forhåndsgodkjent. Barnunder21/beggeforeldremedsyktbarn;ikkemellommidlertidigogfasthjem.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s7§5.4;sumtabells2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-30",
+      "subject": "Reiseavbrudd",
+      "dimension": "limits_conditions",
+      "value": "Ekstra/Premium1 500/dag perperson;forhåndsbetaltkostnadforholdubenyttedager;sykehus/hjemtransport/evakuering/enesteledsager.EttfamiliemedlemhvisbeggeTryg;ikkehjemreisedag/tjeneste/forlangplanlagtreise/bonus/timeshare.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s7–8§5.5;sumtabells2",
+      "scope": "higher"
+    },
+    {
+      "id": "TRE-31",
+      "subject": "Reisesyke",
+      "dimension": "exclusions",
+      "value": "Kjentforutsebarforverring/planlagtbehandling,etterreisen,tannskade/sykdom,lete/redning,høydesyke;tilkallingikkegenhjem/arbeid/studiekommune.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s8§5.6",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-32",
+      "subject": "Evakuering",
+      "dimension": "conditions",
+      "value": "UbegrensetmerutgiftervedUDevakueringsråd,førstemulighet,tilsikkertsted/Norden;ikkekjent/varsletsituasjonvedinnreise,refusjon,utenbestiltretur.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s8§6;sumtabells2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-33",
+      "subject": "Leiebilegenandel",
+      "dimension": "scope",
+      "value": "Ekstra/Premium40 000;bilfrautleiefirma,påferiemedmin1overnatting;ikkedeling,verkstedbil,flytting/varehenting,annetkjøretøy.",
+      "doc": "PRF46001-Reise-Reise-Ekstra.pdf",
+      "location": "s8–9§7;sumtabells2",
+      "scope": "higher"
+    },
+    {
+      "id": "TRE-34",
+      "subject": "ID-tyveri",
+      "dimension": "service_limits",
+      "value": "Premium25 000juridiskbistandgodkjentnåradministrativhjelpikkelykkes;identitet/sosialemedieroppdaget+anmeldt;ikkeøkonomisktap/nyID/næring/familiekrim/rettssak.",
+      "doc": "PRF46003-Reise-Premium.pdf",
+      "location": "s9§8",
+      "scope": "premium"
+    },
+    {
+      "id": "TRE-35",
+      "subject": "Privatansvar",
+      "dimension": "sum_territory",
+      "value": "Reise4mill,EkstraPremium15mill perhendelsealle;utenforNorden;sumtabellAug2026giraktivebeløp selvfellesvilkår01.10fremtidig.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s2;PRF46000s2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-36",
+      "subject": "Rettshjelp",
+      "dimension": "duration_scope",
+      "value": "UtenforNordenførste45dferieReise/Ekstra,70dPremium;egenreisevarighetsutvidelseutvidesikkeautomatiskher.",
+      "doc": "PGE91500-Rettshjelp.pdf",
+      "location": "s2§5.1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-37",
+      "subject": "Rettshjelp",
+      "dimension": "sum_deductible",
+      "value": "100 000 per tvist;250 000min3parter;20 000Trygtvist/økonomiskinteressetak. Reise er uttrykkelig uten egenandel i §6.2; ikke 4 000+20%.",
+      "doc": "PGE91500-Rettshjelp.pdf",
+      "location": "s4–5§6;sumtabells2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-38",
+      "subject": "Egenandel",
+      "dimension": "selected_options",
+      "value": "Reise1 000;EkstraPremium0eller1 000valg,særreglermobil/uhell/rettshjelpbevares.",
+      "doc": "Reiseforsikring-produktside.html",
+      "location": "FAQegenandel",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-39",
+      "subject": "Tryg Legehjelp",
+      "dimension": "service",
+      "value": "Ekstra/Premiumerfarnenorskelege/sykepleier365dforfamilie;akuttreiseTrygAlarm24/7.",
+      "doc": "IPID-Reiseforsikring.pdf",
+      "location": "s1;webLegehjelp",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-40",
+      "subject": "Lounge",
+      "dimension": "service_conflict",
+      "value": "PremiumSmartDelayregistrertfly>1time,5medreisende/40eurutenlounge;annenboks4medreisende.",
+      "doc": "Reiseforsikring-produktside.html",
+      "location": "Lounge-tabell/nyttiginformasjon",
+      "scope": "premium"
+    },
+    {
+      "id": "TRE-41",
+      "subject": "Ulykke",
+      "dimension": "included_optional",
+      "value": "ReiseUlykkeogEkstraUlykkeEkstravalgbare;PremiumUlykkePremiuminkludert.",
+      "doc": "PRF46000-Produktvilkar.pdf",
+      "location": "s1§2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-42",
+      "subject": "Ulykke",
+      "dimension": "invalidity_sums",
+      "value": "Til69:Ulykke300 000/Ekstra500 000/Premium750 000;fra70alle100 000utåret80;ingenyrkesinntektvurdering.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s3",
+      "scope": "accident"
+    },
+    {
+      "id": "TRE-43",
+      "subject": "Ulykke",
+      "dimension": "death_sums",
+      "value": "Til20:50 000/100 000/100 000;21–69:150 000/500 000/750 000;fra70alle100 000utåret80.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s3",
+      "scope": "accident"
+    },
+    {
+      "id": "TRE-44",
+      "subject": "Ulykke",
+      "dimension": "treatment_limit",
+      "value": "5%invaliditetssum;innen3år;under18permanenttanntilførstebehandlingkanutsettesselv3år,oppgjørvilkår;ikkeprivatklinikk.",
+      "doc": "PRF46010-Ulykke-Ulykke-Ekstra.pdf",
+      "location": "s2–3§3.2;PRF46012s2–3;sumtabells3",
+      "scope": "accident"
+    },
+    {
+      "id": "TRE-45",
+      "subject": "Ulykke",
+      "dimension": "threshold_death",
+      "value": "Varigfra1%hvisikkeannetavtalt,tidligereinvaliditetfratrekkes;dødinnen1årellersikkedødserstatning;dødinnen1åringeninvaliditetutbetaling.",
+      "doc": "PRF46010-Ulykke-Ulykke-Ekstra.pdf",
+      "location": "s1–3§§2–3;PRF46012samme",
+      "scope": "accident"
+    },
+    {
+      "id": "TRE-46",
+      "subject": "Ulykke",
+      "dimension": "exclusions",
+      "value": "Plutseligytrefysisk;ikkesykdomsbesvimelse,behandling,spisetann,matforgiftning,infeksjonstikkunntattsår/blod;PTSDetterulykkediagnosertfagspesialistunntakpsykiskeksklusjon.",
+      "doc": "PRF46010-Ulykke-Ulykke-Ekstra.pdf",
+      "location": "s1§2.1;PRF46012s1",
+      "scope": "accident"
+    },
+    {
+      "id": "TRE-47",
+      "subject": "Ulykke",
+      "dimension": "occupation",
+      "value": "Ulykker som følge av yrkesutøvelse unntatt, med unntak for landbasert kontorarbeid/liten fysiskaktivitet; offshore/sjø/luft/sprengstoff/transport/lager/håndverk/landbruk alltid unntatt.",
+      "doc": "05000PF455-Sikkerhetsforskrift.pdf",
+      "location": "s3§3.2",
+      "scope": "accident"
+    },
+    {
+      "id": "TRE-48",
+      "subject": "Risikoaktiviteter",
+      "dimension": "age_scope",
+      "value": "Base/strikkhopp,kampsport,motorsport,proff≥1G,dykkingutensertifikat,rus,ekspedisjonunntatt;ikkeunder16;lagidrett/sykkelrittkunreisegods.",
+      "doc": "05000PF455-Sikkerhetsforskrift.pdf",
+      "location": "s2§3.1",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-49",
+      "subject": "Reisegods",
+      "dimension": "safety",
+      "value": "Ingenbil/båt/telt/campingvognoppbevaring24–06;verdisakerbæres/safe,tyveriutsattikkeetterlates,elektronikk/verdi/skjørtikkesjekkesinn.",
+      "doc": "05000PF455-Sikkerhetsforskrift.pdf",
+      "location": "s1§1.2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-50",
+      "subject": "Medisinsk sikkerhet",
+      "dimension": "approval",
+      "value": "Kontaktalarmsykehus/utgifter>5 000;skriftliglegeførreisekjentbehandling;godkjennhjemtransport/utsettelse.",
+      "doc": "05000PF455-Sikkerhetsforskrift.pdf",
+      "location": "s2§2",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-51",
+      "subject": "Fellesunntak",
+      "dimension": "strike_bankruptcy",
+      "value": "Streik/lockout/arbeidskonfliktogkonkursøkonomisktapikke.",
+      "doc": "PRF46000-Produktvilkar.pdf",
+      "location": "s2§5",
+      "scope": "all"
+    },
+    {
+      "id": "TRE-52",
+      "subject": "Egen bil",
+      "dimension": "mileage_compensation",
+      "value": "3,50kr/km nårdekningomfatterprivatbilkjøring;ikkeubetingetkjøretøykostnad.",
+      "doc": "Forsikringssummer-08.2026.pdf",
+      "location": "s1,3",
+      "scope": "all"
+    }
+  ],
+  "rule_count": 52,
+  "notes": [
+    "Alle13lokaleoriginalerread/sharedhashreuse. WebFAQinternekonflikterbeholdes;tabellseparateenheter."
+  ]
+}

@@ -1,0 +1,91 @@
+diff --git a/lib/catalog-enrichment.ts b/lib/catalog-enrichment.ts
+index 6c204a0..8a49484 100644
+--- a/lib/catalog-enrichment.ts
++++ b/lib/catalog-enrichment.ts
+@@ -71,6 +71,14 @@ const normalizeLabel = (value: string) => value.normalize("NFKC")
+   .replace(/\s+/gu, " ")
+   .trim();
+ 
++// Older document facts can cover an unsplit condition. Preserve them without
++// guessing their amounts or filling more precise, potentially conflicting terms.
++const broadDocumentCatalogBlocks: Record<string, Record<string, readonly string[]>> = {
++  reise: {
++    "reise.forsinkelse.rute": ["reise.forsinkelse.fremmote_sum", "reise.forsinkelse.avgang_sum"],
++  },
++};
++
+ function selectedScopedAddOns(
+   product: CatalogProduct,
+   insurance: ExtractedInsurance,
+@@ -196,6 +204,11 @@ function enrichInsurance(
+     documentedKeys.add(normalizeTermName(addOn.name, { insuranceType: insurance.type }));
+   }
+   const factKeys = new Set(effectiveFacts.map((fact) => normalizeCatalogTermKey(fact.key)));
++  const overlapRules = broadDocumentCatalogBlocks[normalizeInsuranceType(insurance.type)] ?? {};
++  const overlapBlockedKeys = new Set(documentTerms.flatMap(term =>
++    term.coverageOrigin === "document" && term.value.trim() && !isUndocumentedTermValue(term.value)
++      ? overlapRules[normalizeCatalogTermKey(term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type }))] ?? []
++      : []));
+   const coverageDefinitions = relatedCoveragesForInsuranceType(insurance.type);
+   // Resolve the document's coverage set once, rather than re-deriving the
+   // entire set once for every individual coverage definition.
+@@ -214,6 +227,13 @@ function enrichInsurance(
+   const traceDecisions: { key: string; decision: string }[] = [];
+   const supplementalTerms = effectiveFacts
+     .filter((fact) => {
++      if (overlapBlockedKeys.has(normalizeCatalogTermKey(fact.key))) {
++        if (trace) {
++          blockedKeys.push(normalizeCatalogTermKey(fact.key));
++          traceDecisions.push({ key: normalizeCatalogTermKey(fact.key), decision: "CATALOG_NOT_APPLIED_OTHER_RULE" });
++        }
++        return false;
++      }
+       const definition = coverageForFact(fact);
+       const documentCoverage = definition && documentCoverageStatuses.get(definition.parentKey);
+       // Et eksplisitt avslag eller en dokumentert konflikt skal ikke få
+diff --git a/lib/fremtind-reise-catalog.ts b/lib/fremtind-reise-catalog.ts
+index 863014e..9b2f512 100644
+--- a/lib/fremtind-reise-catalog.ts
++++ b/lib/fremtind-reise-catalog.ts
+@@ -104,7 +104,10 @@ const activeTerms = facts("fremtindReiseUnifiedTerms", [
+   ["bagasje.mobil", "Mobiltelefon", "Reparasjon av privat mobiltelefon ved fysisk skade på reise når årsaken er en kjent, tilfeldig og plutselig ytre hendelse. Skade i hjemmet, kosmetisk skade, fukt, innhold og arbeidsgivers telefon er unntatt.", "7.4", 4],
+   ["bagasje.mobil_egenandel", "Mobiltelefon – egenandel", "2 000 kr.", "7.5.6", 5, "override"],
+   ["bagasje.forsinket", "Forsinket bagasje", "Ved minst fire timers dokumentert forsinkelse på utreise dekkes nødvendige klær, toalettsaker og relevant leieutstyr med inntil 5 000 kr per person. Firetimerskravet gjelder ikke jobbreise; hjemreise er unntatt.", "8.1", 5],
+-  ["forsinkelse.rute", "Forsinket reise", "Nødvendige merutgifter til overnatting og innhenting av påbegynt reise ved dokumentert vær, uforutsett trafikkforhold, teknisk feil eller trafikkuhell. Overnatting er begrenset til 6 000 kr per person; innhenting av reiseruten er ubegrenset etter vilkåret.", "8.2", 5],
++  ["forsinkelse.rute", "Forsinket reise", "Rimelige og nødvendige merutgifter etter at reisen er påbegynt, ved vær eller annen plutselig og uforutsett hendelse som gir ekstraordinære trafikkforhold, teknisk feil eller trafikkuhell på offentlig transport, teknisk feil eller trafikkuhell som krever berging av privat kjøretøy, eller nødlanding. Forsinkelse, årsak og merutgifter må dokumenteres; selskapet skal kontaktes før bestilling av billetter. Utgifter andre aktører har ansvar for, reiser som ikke gjennomføres, mat og drikke omfattes ikke.", "8.2", 5],
++  ["forsinkelse.fremmote_sum", "Forsinket fremmøte – sum", "Når sikrede kommer for sent til forhåndsbetalt offentlig transport etter påbegynt reise: overnatting inntil 6 000 kr per person per skadetilfelle; innhenting av reiseruten uten øvre sum. Vilkårene for forsinket reise gjelder.", "8.2", 5],
++  ["forsinkelse.avgang_sum", "Forsinket avgang – sum", "Når forhåndsbetalt offentlig transport ikke går til avtalt tid: overnatting og innhenting av reiseruten samlet inntil 6 000 kr per person per skadetilfelle. Merutgifter til innhenting dekkes bare dersom transportøren ikke klarer å innhente reiseruten innen 24 timer. Vilkårene for forsinket reise gjelder.", "8.2", 5],
++  ["bagasje.forsinket", "Utilgjengelig ekspedert bagasje ved forsinket avgang", "Nødvendige og dokumenterte merutgifter til klær og toalettsaker inntil 500 kr per person når flyselskapet ikke gir tilgang til ekspedert bagasje og forsinkelsen medfører overnatting.", "8.2", 6],
+   ["forsinkelse.ankomst", "Forsinket ankomst", "Ved mer enn åtte timers dokumentert forsinkelse erstattes tapt ferie med 500 kr per påbegynt døgn, inntil 5 000 kr per person, og ubenyttede turisttjenester med inntil 5 000 kr per skadetilfelle.", "8.2", 6],
+   ["leiebil.egenandel", "Egenandel leid bil", "Egenandel etter leiekontrakt ved ytre skade på eller tyveri av kaskoforsikret personbil leid fra godkjent utleiefirma på ferie- eller tjenestereise. Helårsleie, leasing, bilpool, privatleie, flytting, erstatningsbil, feilfylling og andre kjøretøy er unntatt.", "9.1", 6],
+   ["medisinsk.behandling", "Akutt sykdom og personskade", "Nødvendige dokumenterte utgifter ved akutt uventet sykdom, akutt forverring av kronisk sykdom eller ulykkesskade på reisen. Fortløpende behandling for samme sykdom eller skade er begrenset til de første 30 døgn etter første legebesøk, med unntak når hjemtransport ikke er medisinsk forsvarlig.", "10.1 og 10.7.3", 6],
+diff --git a/lib/insurance-normalization.ts b/lib/insurance-normalization.ts
+index 2146d5c..097afb9 100644
+--- a/lib/insurance-normalization.ts
++++ b/lib/insurance-normalization.ts
+@@ -46,6 +46,10 @@ const termAliases: Record<string, readonly string[]> = {
+ 
+ // Samme ord kan bety noe annet i en annen forsikringstype.
+ const contextualTermAliases: Record<string, Record<string, readonly string[]>> = {
++  reise: {
++    "reise.forsinkelse.fremmote_sum": ["Forsinket fremmøte – sum"],
++    "reise.forsinkelse.avgang_sum": ["Forsinket avgang – sum"],
++  },
+   bil: {
+     "premie.total": ["total årspremie inkl trafikkforsikringsavgift", "total premie inklusive trafikkforsikringsavgift", "årspremie inkl trafikkforsikringsavgift"],
+     "premie.ekskl_tfa": ["premie etter rabatter uten trafikkforsikringsavgift", "premie ekskl trafikkforsikringsavgift", "årspremie ekskl trafikkforsikringsavgift", "premie eksklusive trafikkforsikringsavgift"],
+diff --git a/lib/storebrand-reise-catalog.ts b/lib/storebrand-reise-catalog.ts
+index bf908ec..2f68ee2 100644
+--- a/lib/storebrand-reise-catalog.ts
++++ b/lib/storebrand-reise-catalog.ts
+@@ -23,7 +23,9 @@ const common=facts("storebrandReiseTerms",[
+  ["sikkerhet.reisegods","Sikkerhetsforskrifter","Tilsyn, forsvarlig oppbevaring, låsing, emballering og innsjekking; verdigjenstander skal ikke sendes i innsjekket bagasje. Brudd kan redusere erstatningen.","B.4",11],
+  ["aktivitet.unntak","Sport og aktivitet","Ulykkesdelen har særskilte begrensninger for yrke med forhøyet risiko, motorsport, luftfart og andre dokumenterte risikoforhold. Ekspedisjon og søk/redning er ikke omfattet.","B.6.3",20],
+  ["omrade.ud","UD, krig og terror","Reise til område med UD-advarsel er unntatt etter vilkåret. Avbestilling før avreise og evakuering under reisen behandles separat.","B.2 og B.7",6],
+-]);
++]).concat(facts("storebrandReiseProductPage",[
++ ["overnatting","Krav om overnatting","Reiser med og uten overnatting er omfattet; også dagsturer.","FAQ: Når gjelder reiseforsikringen?",1],
++]));
+ const standard=facts("storebrandReiseTerms",[
+  ["varighet.maks","Maksimal standard reisevarighet","45 dager per reise; avtalt antall dager i forsikringsbeviset styrer.","A sammendrag",2],
+  ["bagasje.dekning","Reisegods","Tyveri, ran, hærverk, brann, vann, naturskade, trafikkskade og transportørbekreftet tap/skade etter vilkåret.","B.4",10],

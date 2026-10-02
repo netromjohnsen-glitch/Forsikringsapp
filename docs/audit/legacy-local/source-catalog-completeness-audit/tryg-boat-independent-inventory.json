@@ -1,0 +1,303 @@
+{
+  "source_first": true,
+  "rules": [
+    {
+      "id": "TR-BOAT-001",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "omfang",
+      "value": "Europa200nautiskemilfrafastlandunntattRusslandfarvann;overfartSvalbard/Island/Storbritannia/Madeira/Azorene/Kanariøyene+territorialfarvann;legalNorden.",
+      "source": "inboard",
+      "location": "1 §3"
+    },
+    {
+      "id": "TR-BOAT-002",
+      "scope": "all",
+      "subject": "Sikrede",
+      "dimension": "rolle",
+      "value": "Bevisnevntkunde,rettmessigbruker/føreransvar,panthaveravtalt.",
+      "source": "inboard",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-BOAT-003",
+      "scope": "all",
+      "subject": "Eierskifte",
+      "dimension": "etterdekning",
+      "value": "14dny eier hvisikkeegenforsikring.",
+      "source": "inboard",
+      "location": "1 §4"
+    },
+    {
+      "id": "TR-BOAT-004",
+      "scope": "all",
+      "subject": "Sesong",
+      "dimension": "premie",
+      "value": "Jan4/feb4/mar5/apr6/mai9/jun13/jul17/aug15/sep11/okt7/nov5/des4%;oppsigelsesrisikoikkeflattfordelt,likmånedligbetalingmulig.",
+      "source": "inboard",
+      "location": "1 §5"
+    },
+    {
+      "id": "TR-BOAT-005",
+      "scope": "all",
+      "subject": "Ansvar/rettshjelp",
+      "dimension": "status",
+      "value": "Ansvar+rettshjelpgjelderi tilleggtilavtaltdekning;privaterstatningsansvar. Sum foransvarikkedokumentertlokaltihoveddekningsvilkår.",
+      "source": "inboard",
+      "location": "1 §2"
+    },
+    {
+      "id": "TR-BOAT-006",
+      "scope": "physical",
+      "subject": "Brann",
+      "dimension": "utløser",
+      "value": "Brann/eksplosjon/kortslutning/lyn,sjøogopplag;ikkesviglo/tingmedhensiktvarme.",
+      "source": "ipid",
+      "location": "1"
+    },
+    {
+      "id": "TR-BOAT-007",
+      "scope": "physical",
+      "subject": "Tyveri",
+      "dimension": "utløser",
+      "value": "Tyveri/brukstyveri/forsøkav/fra;transportetterbranntyverinærmesteverkstedogvrakfjerningetterdekketskade.",
+      "source": "ipid",
+      "location": "1"
+    },
+    {
+      "id": "TR-BOAT-008",
+      "scope": "physical",
+      "subject": "Løsøre",
+      "dimension": "scope/unntak",
+      "value": "Plutseligskadeeiendeleribåtpåweb;IPIDikke penger/papirer/smykker/verdier/opplagutstyr/fortøyningsanordningutenfor. Basissumikkei lokalefullvilkår.",
+      "source": "ipid",
+      "location": "1"
+    },
+    {
+      "id": "TR-BOAT-009",
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "utløser",
+      "value": "Grunnstøting/kollisjon/synking/kantring/transport/slipp/løft/hærverk/feilfylling/ytreplutseligskade.",
+      "source": "web",
+      "location": "Dekningstabell"
+    },
+    {
+      "id": "TR-BOAT-010",
+      "scope": "kasko",
+      "subject": "Kasko",
+      "dimension": "unntak",
+      "value": "Varmganguansettårsakmedmotortilleggsunntak;nedbør/frost/isberøring,seilhardt-værskadeunntatt.",
+      "source": "ipid",
+      "location": "1"
+    },
+    {
+      "id": "TR-BOAT-011",
+      "scope": "kasko",
+      "subject": "Drev",
+      "dimension": "nydelsoppgjør",
+      "value": "Totalskadeinntil5årdrevgisnytt;eldreinntil25%aldersfradrag. Drevetsalderikkehelebåtens.",
+      "source": "web",
+      "location": "Reparasjon/skifteavdrev"
+    },
+    {
+      "id": "TR-BOAT-012",
+      "scope": "kasko",
+      "subject": "Redning",
+      "dimension": "assistanse",
+      "value": "Uforutsettdriftsstans,slep nærmestehavn500egenandel.",
+      "source": "web",
+      "location": "Sleptilland"
+    },
+    {
+      "id": "TR-BOAT-013",
+      "scope": "extra",
+      "subject": "Ekstra",
+      "dimension": "egenandelreduksjon",
+      "value": "Reduksjon2kpåKasko,ikkeassistanseegenandel.",
+      "source": "extra",
+      "location": "1 §1.1"
+    },
+    {
+      "id": "TR-BOAT-014",
+      "scope": "extra",
+      "subject": "Løsøre",
+      "dimension": "sum/vilkår",
+      "value": "100kuavhengigbåtsum,30k/item;avtaltutvidelsei tillegg;ikkeutleie.",
+      "source": "extra",
+      "location": "1 §1.2"
+    },
+    {
+      "id": "TR-BOAT-015",
+      "scope": "extra",
+      "subject": "Dieseldyr",
+      "dimension": "sum/egenandel",
+      "value": "Tank/motorrensreparasjonmaxavtaltsum50k,egenandel2.5k.",
+      "source": "extra",
+      "location": "1 §1.3"
+    },
+    {
+      "id": "TR-BOAT-016",
+      "scope": "extra",
+      "subject": "Opplagsmateriell",
+      "dimension": "sum/egenandel",
+      "value": "30k/2.5kegenandel.",
+      "source": "extra",
+      "location": "1 §1.4"
+    },
+    {
+      "id": "TR-BOAT-017",
+      "scope": "extra",
+      "subject": "Småbåt/motor",
+      "dimension": "grenser",
+      "value": "Ensmåbåt14fot/énutenbordsmotormax25hk,50ksamlet/2.5kegenandel,slepejolle/lettbåt/gummi/redningsflåte.",
+      "source": "extra",
+      "location": "1 §1.5"
+    },
+    {
+      "id": "TR-BOAT-018",
+      "scope": "extra",
+      "subject": "Transport/opphold/hjemreise",
+      "dimension": "utløser",
+      "value": "Nærmesteverkstedhvisikkelokalreparasjonrimeligere;hentingvedetterlattbåt/skadesykdomsentralperson;hjemreiseikke sjødyktig/tyveri3d;sykdomulykkedødførersentralperson.",
+      "source": "extra",
+      "location": "1 §1.6"
+    },
+    {
+      "id": "TR-BOAT-019",
+      "scope": "extra",
+      "subject": "Ferieavbrudd",
+      "dimension": "beløp/tid/utløser",
+      "value": "Påbegyntferiementmerenn6d,avbruttvedtyveri/ikkesjødyktigskade;leiebil/leiebåt/opphold2.5k/dag21d,dokumentasjonskrav.",
+      "source": "extra",
+      "location": "2 §1.6"
+    },
+    {
+      "id": "TR-BOAT-020",
+      "scope": "extra",
+      "subject": "Transport/ferie",
+      "dimension": "samlettak",
+      "value": "Samlettransport/opphold/hjemreise/ferieavbrudd20%båtsummax100k.",
+      "source": "extra",
+      "location": "2 §1.6"
+    },
+    {
+      "id": "TR-BOAT-021",
+      "scope": "extra",
+      "subject": "Vannscooterplattform",
+      "dimension": "sum/egenandel",
+      "value": "Flytedokk/fortøyning30k/2.5kegenandel.",
+      "source": "extra",
+      "location": "2 §1.7"
+    },
+    {
+      "id": "TR-BOAT-022",
+      "scope": "extra",
+      "subject": "Nyverdi",
+      "dimension": "alder/terskel/form",
+      "value": "Nytilsvarendemerke/modellutstyrvedtotalskadeinnen3årkjøptny,>60%nyverdiutenegnerabatter,avtaltsumtak,originalkjøpekontrakt.",
+      "source": "extra",
+      "location": "2 §1.8"
+    },
+    {
+      "id": "TR-BOAT-023",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "valgfri/alder",
+      "value": "TilleggKasko;utperiodenmotor+tilhørendekomponenter12årpåheng/15årinnenbord. IPIDskriverutenbord/seilbåt12år;variantmotortypescopeavklares.",
+      "source": "motor",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-BOAT-024",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "utløser/omfang",
+      "value": "Varmgangplutseligkjøleblokkeringpåbåt/motor;bruddmotor/gir/aksel/styring/ror/drivstoff;instrumentelektriskkabling;diagnoseoveregenandel.",
+      "source": "motor",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-BOAT-025",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "egenandel",
+      "value": "4ktom5årmotorderetter25%min4k.",
+      "source": "motor",
+      "location": "1 §1.1"
+    },
+    {
+      "id": "TR-BOAT-026",
+      "scope": "motor",
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Slitasje/korrosjoninklE10/slitedeler/tidligerebrukinæring;garantimedfallbackregresshviskravikkeførerfram.",
+      "source": "motor",
+      "location": "1 §1"
+    },
+    {
+      "id": "TR-BOAT-027",
+      "scope": "accident",
+      "subject": "Ulykke",
+      "dimension": "valgfri/rolle",
+      "value": "Valgfrittførerpassasjerrettmessigombordogutenforhvisbåtdirekteårsak;IPIDover80unntatt;websykehusmenikkeeksplicittytelseilokaltPFB38900.",
+      "source": "accident",
+      "location": "1 §1/2"
+    },
+    {
+      "id": "TR-BOAT-028",
+      "scope": "accident",
+      "subject": "Ulykke",
+      "dimension": "sum/grad",
+      "value": "200kinvaliditetgradert,100kdødinnen1år;20khvisingenektefelleellerbarnunder20år;samlet1.5mill/ulykkealle.",
+      "source": "accident",
+      "location": "1–2 §3"
+    },
+    {
+      "id": "TR-BOAT-029",
+      "scope": "accident",
+      "subject": "Ulykke",
+      "dimension": "unntak/oppgjør",
+      "value": "PsykiskmedenPTSDunntak,tannspising/infeksjonmedsårunntak;sykdom/tidligerefunksjonfradrag;invaliditetikkev/1årdød.",
+      "source": "accident",
+      "location": "1–2 §2/3"
+    },
+    {
+      "id": "TR-BOAT-030",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "krav",
+      "value": "Fortøyning/tilsyn,vannscooterlåst,aldri motorbåtkonkurranse,trening;keyseparat.",
+      "source": "ipid",
+      "location": "1–2"
+    },
+    {
+      "id": "TR-BOAT-031",
+      "scope": "all",
+      "subject": "Kundevalg",
+      "dimension": "egenandel",
+      "value": "WebKasko/BTfra4k,Ekstra4kreduksjon2k;Maskin4keldreprosent;bevisfastsettervalgtgrunndeductible.",
+      "source": "web",
+      "location": "FAQ egenandel"
+    },
+    {
+      "id": "TR-BOAT-032",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "PGE91500§5.3uttrykkeligmotorvognogbåt;100k250k20k/økonomiskinteresse;4k+20%,Norden,ettersalg/personskadefører.",
+      "source": "legal",
+      "location": "2–5 §5.3/6"
+    },
+    {
+      "id": "TR-BOAT-033",
+      "scope": "all",
+      "subject": "Generelt",
+      "dimension": "kildetilgang",
+      "value": "PFB33000/34000/35000/37000erproduktvilkårikke hovedAnsvar/BT/Kaskodekningsvilkår;dekkendegrunnkildermangler,IPID/webgirbareavgrensedepositivebevis.",
+      "source": "inboard",
+      "location": "1 §2"
+    }
+  ],
+  "note": "Nineboatartifactsread;fourproductvariantsreadseparately,notmislabelledfullKaskoterms. SharedPGE91500exactboat§5.3reviewed."
+}

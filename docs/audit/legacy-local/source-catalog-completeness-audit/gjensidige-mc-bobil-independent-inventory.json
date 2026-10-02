@@ -1,0 +1,1265 @@
+{
+  "source_first": true,
+  "catalog_values_inspected": false,
+  "rules": [
+    {
+      "id": "GJ-MB-001",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Produktnivå",
+      "dimension": "hierarki",
+      "value": "Alleansvar/ulykke/rettshjelp;Delkaskobranntyveriglassutstyr/løsøre/veihjelp;Kaskoutviderkollisjon/utforkjøring/velt. BobilPlussmaterielletillegg,MCingenPluss.",
+      "location": "IPID1",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-MB-002",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ansvar",
+      "dimension": "sum/egenandel",
+      "value": "Personubegrenset,ting100mill,ingenordinæregenandel.",
+      "location": "1",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-003",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "sum/egenandel",
+      "value": "100k,4k+20%,Norden;bevisogøkonomiskinteressebestemmer.",
+      "location": "1;legal",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-004",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "sum/egenandel",
+      "value": "Død100k/invaliditet200k,ingenegenandel;fører/passasjer.",
+      "location": "1",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-005",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Geografi",
+      "dimension": "områder",
+      "value": "Europa minusKosovo/Russland/Belarus;rettshjelpNorden;weboggeneralexcludeUDområder.",
+      "location": "3;general;HTMLgeografi",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-006",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Personkrets",
+      "dimension": "sikrede",
+      "value": "Forsikringstaker/lovligbruker,physicalogsåregistrerteier/tinglystrett;BobilAnsvarogsåregistrerteier.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-007",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Registrering",
+      "dimension": "opphør",
+      "value": "Kunregistrert;avsluttesautomatiskvraking/tyveri/avregistrering/salg/eierskifte/endretleasingtaker;se14d etterverngenerelt.",
+      "location": "1;general",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-008",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ung fører",
+      "dimension": "egenandel",
+      "value": "Rabattalleover23menførermindre23:10kekstrakaskoeller10kvedkunansvar. IkkeBil15k-regel.",
+      "location": "1",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-009",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Uten fører",
+      "dimension": "egenandel",
+      "value": "Trillerutenførerprivat5k,næring15k,ogsånåringenannenegenandel.",
+      "location": "1",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-010",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Bruk/endring",
+      "dimension": "meldeplikt",
+      "value": "Privattilnæringstransport/tekniskendringmeldeplikt;avkortningmulig. Feilstand/årligkjørelengdeproporsjonalprisreduksjon/fraforrigehovedforfall.",
+      "location": "2",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-011",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sikkerhet",
+      "dimension": "lås",
+      "value": "Låstkjøretøy,nøklerseparat,ekstrahjulikkeåpentfellesrom,verdierinnelåstskjult.MCparkerthengerlåstmottrekk.Bobilfortelt/tilbygglukketlåst.",
+      "location": "1",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-012",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sikkerhet",
+      "dimension": "dekk",
+      "value": "Lovligmønsterdybde ogføreforhold.",
+      "location": "1",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-013",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Objekt",
+      "dimension": "ekstrahjul/verdier",
+      "value": "Ettsettekstradekk/felger;kontant/verdipapir/ulovligimportikke.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-014",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "MC sidevogn/tilhenger",
+      "dimension": "omfang",
+      "value": "MC-sidevognogMC-tilhengerincludedforsikredeting.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-015",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Brann",
+      "dimension": "hendelser/egenandel",
+      "value": "Åpneflammer/lyn/eksplosjon;6kegenandeloffentligtemplate.",
+      "location": "1,3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-016",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Tyveri",
+      "dimension": "hendelser/egenandel",
+      "value": "Tyveri/forsøk;6kegenandeloffentligtemplate.",
+      "location": "1,3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-017",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Glass",
+      "dimension": "sum/egenandel",
+      "value": "Bruddpårute(Bobilogsåglasstak);reparasjonssum1000/egenandel0;skifteubegrenset/egenandel3000.",
+      "location": "1,3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-018",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Glass",
+      "dimension": "solcelle",
+      "value": "Solcellepanelskadeikkeglass,evkasko.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-019",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Løsøre",
+      "dimension": "sum/vilkår",
+      "value": "5kpersonligetingilåstoppbevaringsrom,dekkethendelse.",
+      "location": "1;HTML53–54",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-020",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ekstrautstyr",
+      "dimension": "sum/valg",
+      "value": "10kfastmontert/ombygging,dekkethendelse;høyeresumkanvelgesmotpris.",
+      "location": "1;HTML55–57",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-021",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Løsøre",
+      "dimension": "sum/valg",
+      "value": "Delkasko/Kasko10k,Pluss50k,dekkethendelse;høyeresumkanavtales.",
+      "location": "1;HTML56–58",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-022",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fastmontert ekstrautstyr",
+      "dimension": "sum",
+      "value": "Ubegrensetsum,dekkethendelse;forteltkreverseparatutvidelse.",
+      "location": "1,3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-023",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Tilvalg",
+      "dimension": "fortelt/utleie",
+      "value": "Fortelt,utleie,øktløsøre/ekstrautstyrmuligeutvidelser;utleiebeviseksempelikkevalgt erikkeuniverseltnei. Nivåtilgjengelighetutleie3webmarkører +basisbevis.",
+      "location": "IPID1;HTML59–63",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-MB-024",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp",
+      "dimension": "status/egenandel",
+      "value": "750egenandel;skade/tyveri/driftsstansogfører/passasjersykdom/ulykke/død;ogsåhjemmepåweb.",
+      "location": "1,3–4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-025",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp",
+      "dimension": "tauing",
+      "value": "Kjøretøy+henger nærmesteverksted,ogsåutelåsing;ikkeautomatiskreparasjon/deler.",
+      "location": "3–4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-026",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp",
+      "dimension": "hjemtransport/hotell",
+      "value": "Vedpersonhendelseellertyveri/ikkereparertinnen2virkedager:hjemreise;bilrestitusjonetterreparasjon/funn. Alternativthotellrimeligtidoglokaltransport.",
+      "location": "3–4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-027",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp",
+      "dimension": "begrensninger",
+      "value": "Maksobjektverdi;ikkeordinærereiseutgifter/reparasjon/deler/videresendt gods;billigsttransport;kanførerkjørehjemingenhjemtransport;garantiansvarunntatt.",
+      "location": "3–4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-028",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "kasko"
+      ],
+      "subject": "Veihjelp ferie utenforNorden",
+      "dimension": "alternativt kjøretøy",
+      "value": "Ikkereparerbarinnen2virkedager,tilnærmetsammetypekjøretøyinntil15dforfullførtferie.KunKaskoegenutvidelse.",
+      "location": "4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-029",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Veihjelp ferie utenforNorden",
+      "dimension": "alternativt kjøretøy",
+      "value": "Ikkereparerbarinnen3virkedager,tilnærmetsammebilinntil15dforfullførtferie.Kasko/PlussikkeDelkasko.",
+      "location": "4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-030",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Bane/hastighet",
+      "dimension": "unntak/carveout",
+      "value": "Banekjøring/hastighet/fritrening/roadracingunntatt;Norgeobligatoriskførerkort/førerutviklingskursansvarligarrangør/instruktør/trafikksikkerhetlovligdokumentertdeltakelseinkludert.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-031",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fysisk skade",
+      "dimension": "unntak",
+      "value": "Ugodkjenttrim/tuning/software,garanti/importøransvar,verdiforringelseetterreparasjon. Kaskoogsåslitasje/gradvis/varmgang/rust/irr/tæring.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-032",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Fysisk skade",
+      "dimension": "unntak",
+      "value": "Ugodkjenttrim/tuning/software,slitasje/gradvis,garanti/reklamasjon,verdiforringelse;Kasko/Plussujevnveiovertid,frost/snøtyngde;Kaskoogsåfukt,varmgang/rust/irr/tæring.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-033",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Kasko",
+      "dimension": "omfang",
+      "value": "Plutseligytreskade,kollisjon/utforkjøring/velt,hærverk;feilfyllingmotorskadestøttetproduktside.",
+      "location": "3;HTMLkasko",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-034",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Kasko",
+      "dimension": "kundens egenandel",
+      "value": "Offentligtemplate8k;webkundek anvelge6k–12k;ikkeuniverselt8k.",
+      "location": "1;HTMLogFAQ",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-035",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "kasko"
+      ],
+      "subject": "Ladekabel",
+      "dimension": "omfang/egenandel",
+      "value": "ElMCtyveri/ytreskade egenandel2k.",
+      "location": "1,3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-036",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Skadedyr",
+      "dimension": "dekning",
+      "value": "Mus/gnagere,insekter/andre skadedyr,ogsåvinterlagring.",
+      "location": "3;HTML72–73",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-037",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Totalskade",
+      "dimension": "alder/km",
+      "value": "Kasko/Pluss inntil1årfraregistrering/inntil20kkm etterfullterms. Webunder1år;IPIDPlussutvidettotalskadeutenekstranumeric.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-038",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Totalskade",
+      "dimension": "utløser/oppgjør",
+      "value": "Taptellerreparasjonkostovermarkedsverdisammebil;nytilsvarendemarke/modell/utstyrellerkontantselskapetsnybilpris.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-039",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Totalskade",
+      "dimension": "unntak",
+      "value": "Bedriftseidinklleaseunntatt;brann/tyverikunikkebrukt-kjøptavdenneeier.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-040",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "kasko"
+      ],
+      "subject": "Totalskade",
+      "dimension": "type applicability",
+      "value": "Fellesoppgjørsarkavgrensernyverdigarantitilperson/varebil<=3.5t ogbobil,ikkeMC;ingenutledningavMCnyverdi.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-041",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Nøkkel",
+      "dimension": "sum/egenandel",
+      "value": "Tapt/stjålet/skadet15kegenandel1500,1skadeperforsikringsår.",
+      "location": "1,3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-042",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Maskinskade",
+      "dimension": "alder/km",
+      "value": "Førstehovedforfall etter15årfraregistreringeller200kkmførst;webunder15forenklingikkeendret.",
+      "location": "1,3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-043",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Maskinskade",
+      "dimension": "komponenter",
+      "value": "Plutseliguforutsettmotor/gir/drivakslerknuter/mellomaksler/diff/fordelingsgir/start/dynamo/styring/pumper/styringsenhet/turbo/intercooler/EGR/lambda/radiator/kjølevæskebeholder/eksosmanifold/svinghjul/AdBlueelektronikk/HUD+elektronikk. Elhybridhøyspentbatteri/lader/ACvednødkrabbemodus.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-044",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Maskinskade",
+      "dimension": "unntak",
+      "value": "Clutchinklsylinderhydraulikk,unormaloljeforbrukutenbrudd,eksosanleggmenikkemanifold,katalysator/partikkelfilter;slitasje/gradvis/garanti.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-045",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Maskinskade",
+      "dimension": "egenandel",
+      "value": "0–119999km10k;120000–15999914k;160000–20000018k;ingenprosent oppført.",
+      "location": "15",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-046",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Maskinskade",
+      "dimension": "service",
+      "value": "Produsentservice/forbedringsprogramdokumentert,tidligereeierservice,egenrepkvitteringer;ingenmotoreffektendring.",
+      "location": "1",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-047",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Fukt",
+      "dimension": "alder/geometri",
+      "value": "Vegger/tak/gulv,ikkeeldreenn15årfraproduksjon,skadekonstatertiavtaletid.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-048",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Fukt",
+      "dimension": "kontroll",
+      "value": "Fuktighetskontrollutenanmerkningeravforhandler/bobilverkstedmindreenn1årførskadeoppdages. Ikke bareårligegenkontroll.",
+      "location": "3",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-049",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Feriegaranti",
+      "dimension": "sum/dager",
+      "value": "1500dagmax14til dokumentertleiebobil/hotelltilsvarendenårplanlagtferieover6dagerikkebrukbaretterdekketskade.",
+      "location": "4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-050",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Feriegaranti",
+      "dimension": "unntak",
+      "value": "Ikkeutlån/utleie.",
+      "location": "4",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-051",
+      "families": [
+        "Bobil"
+      ],
+      "tiers": [
+        "pluss"
+      ],
+      "subject": "Tegning",
+      "dimension": "alder",
+      "value": "Plusskankjøpesframtilåretbobilen14år;holdseparatfradekningsopphør15.",
+      "location": "36,94",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-052",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Sesongpris",
+      "dimension": "opphør",
+      "value": "Jan1feb1mars2apr6mai14jun15jul18aug17sep15okt8nov2des1%;årsbeløpmånedsdeltmenopphørsavregningsesong.",
+      "location": "ansvar3,øvrig4;HTML93–95",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-053",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "MC-varianter",
+      "dimension": "kundevalg",
+      "value": "Lett/tung;lettfra16 medforelderforsikringhvisunder18,veteran>=30årseparatsammegrunnlevelsutenbonus. Ikkeautomatiskordinærkanoniskveteran.",
+      "location": "143–148",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-054",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Lagring",
+      "dimension": "avregistrering",
+      "value": "Avregistreringstopperpolicyselvvedvinterlagring;egenlagringsforsikringmåavtales,ikkeforutsettinkludert.",
+      "location": "MC109–113/Bobil156–164",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-055",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Oppgjør",
+      "dimension": "reparasjon/kontant",
+      "value": "Likeverdige deler, forbedringsfradrag; kontant arbeid50%, avgifter etter betalt; manglende deler gir kontantoppgjør.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-056",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Oppgjør",
+      "dimension": "tap",
+      "value": "Gjenanskaffelse samme stand/fabrikat/type/årgang; selskapet overtar rester.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-057",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Utstyr",
+      "dimension": "aldersfradrag",
+      "value": "Ettermontert elektronikk: etter første år10% per påbegynt år maks50%.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-058",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Egenandel",
+      "dimension": "dyr",
+      "value": "Avtalt egenandel reduseres2 000 kr ved påkjørsel dyr for kjøretøy til og med3,5t.",
+      "location": "settlement",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-059",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "hendelser",
+      "value": "Rettmessig fører/passasjer i/på/ved motorvogn når motorvogn/tilkobletutstyr direkte årsak; ytre hendelse, fall uten sykdom, kne/ankelvridning, navngitte brudd ved hopp.",
+      "location": "accident",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-060",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "dødsfall vilkår",
+      "value": "Død innen1år; tidligere forskudd trekkes fra;50 000 kr dersom ingen barn/ektefelle/samboer eller forsørgede foreldre.",
+      "location": "accident",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-061",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "invaliditet",
+      "value": "Proporsjonal medisinsk invaliditet, forfunksjon trekkes fra, ingen hvis død innen1år; senest3årsfastsettelse, samlet1million ved flere skadde motorvognpassasjerer.",
+      "location": "accident",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-062",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ulykke",
+      "dimension": "vesentlige unntak",
+      "value": "Sykdom/besvimelse/disposisjon, psykisk skade alene, navngitte muskeltilstander, tann tygging og tanninvaliditet; selvmord med snevert akutt sinnsforvirringsunntak.",
+      "location": "accident",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-063",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "omfang",
+      "value": "Eier/bruker/fører i Norden; også etter salg og ved neste kjøp hvis tilsvarende objekt forsikret før kjøpet.",
+      "location": "legal",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-064",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "kostnader",
+      "value": "Advokat/gebyr/vitner; ikke-rettsoppnevnt sakkyndig maks40% av sum/interesse; gruppesøksmål særgrenser20 000/500 000.",
+      "location": "legal",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-065",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "mekling",
+      "value": "Mekle.no alternativ,0egenandel, ingen egenadvokatutgift, kan avslutte uten å miste videre rettshjelp.",
+      "location": "legal",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-066",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "begrensninger",
+      "value": "Ikke ankegebyr/idømte kostnader/voldgift/før tvist; yrke, familie, straff, ikke forsikret kjøretøy, tidligere grunnlag ved nytegning unntatt; flytting unntak.",
+      "location": "legal",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-067",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "flerpart/sum",
+      "value": "1–2parter100 000;3–10 250 000;11–25 500 000;26–49 750 000;50+1million; ikke over økonomisk interesse.",
+      "location": "legal",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-068",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "4 000 kr pluss20% av dekkede utgifter; én per tvist. Mekle.no0 separat.",
+      "location": "legal",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-069",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Bonus",
+      "dimension": "opptjening/tap",
+      "value": "Tabell0–80%;75merenn3år faller til75førsteår;75første3år til70;70 til60;10–60 tap10;80historisk til70førsteår.",
+      "location": "bonus",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-070",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Bonus",
+      "dimension": "skadefritak",
+      "value": "Brann/tyveri/glass/veihjelp/dyr/natur/ladekabel/nøkkel/maskinskade utenbonustap bare når relevant dekning faktisk følgerproduktet; bonusregeloppfinnerikke dekning.",
+      "location": "bonus",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-071",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Ettervern",
+      "dimension": "eierskifte",
+      "value": "14d etter eierskifte til ny eier tegner egen forsikring; automatisk opphør kjøretøy samordnes.",
+      "location": "general",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-072",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Generelle unntak",
+      "dimension": "krig",
+      "value": "Motorvogn unntatt UD-reiseadvarselsområde;6uker hvis allerede der når advarsel gis.",
+      "location": "general",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-073",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Generelle unntak",
+      "dimension": "terror/atom",
+      "value": "Terror selskapstak1milliard/48timershendelse og Nordenbegrensning med personskadeansvarunntak; atom/kjemisk unntak egne personskademekanismer.",
+      "location": "general",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-074",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Administrasjon",
+      "dimension": "lov/frister/klage",
+      "value": "Avtalehierarki, årsfornyelse, melding, tvistprosedyre, personvern og klage er kildeinformasjon; ingen ordinære coveragefacts.",
+      "location": "general",
+      "source": "terms"
+    },
+    {
+      "id": "GJ-MB-075",
+      "families": [
+        "MC"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Bonus",
+      "dimension": "start",
+      "value": "60%startbonus ogmaks10%tap produktside,eksisterendebonusoverføres;veteranutenbonus separat.",
+      "location": "128–144",
+      "source": "product"
+    },
+    {
+      "id": "GJ-MB-076",
+      "families": [
+        "MC",
+        "Bobil"
+      ],
+      "tiers": [
+        "ansvar",
+        "delkasko",
+        "kasko",
+        "pluss"
+      ],
+      "subject": "Offentlige kilder",
+      "dimension": "kundebevis",
+      "value": "Alminneligevilkår/IPIDoffentligsammenligningsgrunnlagikkeindividuellavtale;bevisetgårforan;datoversjonikkeoppgitt.",
+      "location": "MC164–172/Bobil192–201",
+      "source": "product"
+    }
+  ],
+  "page_reuse": "gjensidige-mc-bobil-page-reuse.json",
+  "complete_contents_read": true,
+  "scope_notes": "Do not inherit Bil-specificlimits. MCtotal-loss typeblock excluded. No optional selection inferred frompublictemplates. BobilPlussnewvalueIPID conflictkept. Individualsettlementsnotassessed."
+}

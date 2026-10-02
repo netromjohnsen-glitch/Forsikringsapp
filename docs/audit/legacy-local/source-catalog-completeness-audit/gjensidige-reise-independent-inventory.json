@@ -1,0 +1,899 @@
+{
+  "method": "PASS1 SOURCE FIRST BEFORE READING GJENSIDIGE REISE CATALOG; publiclocalonly",
+  "rules": [
+    {
+      "id": "GJ-RE-001",
+      "scope": "all",
+      "subject": "Reiseavtale",
+      "dimension": "grunnomfang",
+      "value": "Helårs ferie/fritids/yrkesreiser over hele verden inntil10uker, start/slutt på bostedsadresseNorge.",
+      "standard_pages": "1,3",
+      "pluss_pages": "1,3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-002",
+      "scope": "all",
+      "subject": "Personkrets",
+      "dimension": "bosted",
+      "value": "FolkeregistrertfastNorge, minst6månederårligNorge og folketrygdhelse; ikke utvandret.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-003",
+      "scope": "all",
+      "subject": "Personkrets",
+      "dimension": "familievalg",
+      "value": "Enkeltperson ellerfamilie er kundensvalg; ektefelle/samboer/barn/fosterbarn under21; samboer/fosterbarn sammeadresse.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "ipid"
+    },
+    {
+      "id": "GJ-RE-004",
+      "scope": "all",
+      "subject": "Personkrets",
+      "dimension": "barn/barnebarn",
+      "value": "Barnunder21 uansettmedreisende/egenadresseiNorge;barne/oldebarnbarepåreisealene medforsikret.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-005",
+      "scope": "all",
+      "subject": "Reisested",
+      "dimension": "hjemme/arbeid",
+      "value": "Ikke hjemme/arbeids-/studiested/barnehage;studenter/vernepliktige midlertidigNorge har to bostedsadresser,Svalbardfolketrygdadressegodkjent.",
+      "standard_pages": "3,8",
+      "pluss_pages": "3,9",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-006",
+      "scope": "all",
+      "subject": "Reisestart",
+      "dimension": "avtaletid",
+      "value": "Ikke reise startetfør forsikringensstart,medmindre gyldigkontinuitetannet selskap.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-007",
+      "scope": "all",
+      "subject": "Geografi",
+      "dimension": "krig/ekspedisjon",
+      "value": "OffisiellUDkrig/urofraråding ikkeomfattetutenavtale;Grønlandiskryssing,Himalayaklatring/vandre/sykkelover4500m,Arktis/Antarktisspesialekspedisjonunntatt.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-008",
+      "scope": "all",
+      "subject": "Risikoaktiviteter",
+      "dimension": "unntak/valg",
+      "value": "Boksing,dykkdypere40m,BASEunntatt;fallskjerm/luftsportkanavtales særskilt.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-009",
+      "scope": "all",
+      "subject": "Generelle reiseunntak",
+      "dimension": "hendelser/utgift",
+      "value": "Ingenlete/redningsaksjon,kjøretøy/båthjemtransport,streik/konkurs/arbeidskonflikt,økonomisktaputoveropplistede,refusjonspliktandre,ulovligimport.",
+      "standard_pages": "3",
+      "pluss_pages": "3",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-010",
+      "scope": "all",
+      "subject": "Sikkerhet",
+      "dimension": "bagasje",
+      "value": "Tilsyn/innlåsing;sykkellåsogløstagbarGPS/batteri;ikkeinnsjekket elektronikk/smykker/kontanter/medisin/skjørevarer;forsvarligpakking.",
+      "standard_pages": "2",
+      "pluss_pages": "2",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-011",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "behandling",
+      "value": "Uventetakuttpåreise:lege/medisin/sykehus/alvorligulykkestann ubegrenset;foreskrevetfysio/kiro/kriseterapi ognødvendigtransport3.50kr/km.",
+      "standard_pages": "1,4",
+      "pluss_pages": "1,4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-012",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "godkjenning",
+      "value": "Sykehus/alvorligulykkestann/kriseterapi/ledsager/tilkalling/hjemkalling kreverforhåndsgodkjenningforstjernemerkedeytelser.",
+      "standard_pages": "4,8",
+      "pluss_pages": "4,9",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-013",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "utvidet opphold/rute",
+      "value": "Legerekvirertforlengetoppholdog innhentingavfastrute etterpålagtsengeleie/sykehus mednødvendigeutgifter.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-014",
+      "scope": "all",
+      "subject": "Hjemtransport",
+      "dimension": "sum/alternativ",
+      "value": "Medisinsknødvendig hjemtransport ubegrenset;dødsfalltransportellerbegravelsepåsted50k alternativ.",
+      "standard_pages": "1,4",
+      "pluss_pages": "1,4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-015",
+      "scope": "all",
+      "subject": "Ledsager/tilkalling",
+      "dimension": "personantall",
+      "value": "Énmedreisendeledsager;alvorlig sykdom/skade gir reise ogoppholdfor2tilkalt,reisekostsomfraNorge.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-016",
+      "scope": "all",
+      "subject": "Hjemkalling",
+      "dimension": "hendelser",
+      "value": "Akuttalvorlig sykdom/ulykke/dødsnærfamilie ellerstor skadeegenbolig/forretningkrevertilstedeværelse.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-017",
+      "scope": "all",
+      "subject": "Sykdom",
+      "dimension": "kjent/behandling unntak",
+      "value": "Kjentbehandling/utredning/forverringsfareføravreise;planlagtbehandlingkomplikasjon,rus(unntakbarnunder16),kosmetikk,ordinærtann,tygging,tannkjøtt;fødseletterfullendt37uke;fortsattbehandlingmotrådadhjemtransport;privateklinikkNordenogetterhjemkomst.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-018",
+      "scope": "all",
+      "subject": "Telefon",
+      "dimension": "sykdomssum",
+      "value": "Telefonutgiftervedalvorligsykdom/ulykkeinntil5000.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-019",
+      "scope": "all",
+      "subject": "Feriekompensasjon",
+      "dimension": "vilkår/dager",
+      "value": "Ferie/fritidsreisemedplanlagtvarighettil5uker;lokallegesengeleieellerinnleggelse;fralokallegedag/innleggelsesmaks10dager;ogsåénfamiliemedlem.",
+      "standard_pages": "4",
+      "pluss_pages": "4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-020",
+      "scope": "all",
+      "subject": "Feriekompensasjon",
+      "dimension": "sum",
+      "value": "20kforbetaltferie, ikke bonuspoeng/tredjepartsgaver.",
+      "standard_pages": "1,4",
+      "pluss_pages": "1,4",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-021",
+      "scope": "all",
+      "subject": "Ferieavbrudd",
+      "dimension": "sum",
+      "value": "Godkjenttidlighjemtransport/hjemkalling:Reise50k/Pluss100k,2000perdagperpersonproporsjonaltbetalteutgifter;forhåndsbetalteenkeltarrangementmedfølger.",
+      "standard_pages": "1,5",
+      "pluss_pages": "1,5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-022",
+      "scope": "all",
+      "subject": "Ferieavbrudd",
+      "dimension": "bil/båtgrunnlag",
+      "value": "Egenbil3.50/kmogegenbåt5kr/nautiskmil kortestturretur i prepaidholiday calculation.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-023",
+      "scope": "all",
+      "subject": "Returreise",
+      "dimension": "sum/tid",
+      "value": "Énreturreise10ketterhjemkalling innenplanlagtperiode.",
+      "standard_pages": "1,5",
+      "pluss_pages": "1,5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-024",
+      "scope": "all",
+      "subject": "Reisefølge",
+      "dimension": "én medreisende",
+      "value": "Enestemedreisende syk kanutløse kompmax10d/ekstraopphold/rute/hjemtransport/avbrudd;ogsåfamilieetterangittscope.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-025",
+      "scope": "all",
+      "subject": "Bagasje",
+      "dimension": "hendelser",
+      "value": "Tyveri/ran/skadeverk;brann/vann/natur;trafikkpåve i/vannsnøscooter,boatgrounding/collision/capsize;innsjekkettransporttap/skade;ulykkesomkreverumiddelbarlege;dyrskade.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-026",
+      "scope": "all",
+      "subject": "Bagasje",
+      "dimension": "summer",
+      "value": "Reise100k,Plussubegrenset;andretingpergjenstandReise20k,Pluss40k.",
+      "standard_pages": "1,6",
+      "pluss_pages": "1,6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-027",
+      "scope": "all",
+      "subject": "Bagasje",
+      "dimension": "verdifullegrense",
+      "value": "Elektronisk/optisk/foto/data,klokker/smykker samletReise20k/Pluss40k.",
+      "standard_pages": "1,6",
+      "pluss_pages": "1,6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-028",
+      "scope": "all",
+      "subject": "Bagasje",
+      "dimension": "kontanter",
+      "value": "KontantgavekortReise2k/Pluss5k,perfamilieReise5k/Pluss10k.",
+      "standard_pages": "1,6",
+      "pluss_pages": "1,6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-029",
+      "scope": "all",
+      "subject": "Bagasje",
+      "dimension": "lånt/pass",
+      "value": "Lånte/leietingbraktfra hjeminkludert;pass/reisedoknyutstedelseoginnhentingforhåndsbetaltrute.",
+      "standard_pages": "5–6",
+      "pluss_pages": "5–6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-030",
+      "scope": "all",
+      "subject": "Bagasje",
+      "dimension": "unntak",
+      "value": "Arbeidsgiverting,kjøretøy/båt/tilhenger(nonecanoekayak)/nøklerutstyr;motorklærunderbruk;smykkemetall/mynt;mistet/glemt/underslag/svindel/hittegods;konkurranseskade,husstandskadeverk,kosmetikk,fugl/insekt/egnedyr.",
+      "standard_pages": "5",
+      "pluss_pages": "5",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-031",
+      "scope": "all",
+      "subject": "Sykkel",
+      "dimension": "sum/geografi",
+      "value": "40k sykkel/sykkeltilhenger/småelektriskekjøretøy utenforNorge;elover25km/tunntatt;deler/tilbehørinnen sum.",
+      "standard_pages": "1,3,5,8",
+      "pluss_pages": "1,3,5,9",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-032",
+      "scope": "all",
+      "subject": "Leid sportsutstyr",
+      "dimension": "sum/vilkår",
+      "value": "10kskade/tapmeddokumentertutleierkrav;ikkeby sykkel/sparkesykkel,skadetingikkelevert,tilbehøralene.",
+      "standard_pages": "1,6",
+      "pluss_pages": "1,6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-033",
+      "scope": "all",
+      "subject": "Mobil",
+      "dimension": "hendelser",
+      "value": "Knustskjermeller tyveri/ran/brann; ikke mistet/glemt,slitasje/kosmetikk,innhold,hittegods,arbeidstelefon,smartklokke/tabletPC.",
+      "standard_pages": "6",
+      "pluss_pages": "6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-034",
+      "scope": "all",
+      "subject": "Mobil",
+      "dimension": "erstatningsform",
+      "value": "Elcare;reparert/brukt/rensettilsvarendemodellkanannenfarge;selskapvelgerreparasjon/bytte/kontant.",
+      "standard_pages": "6,18",
+      "pluss_pages": "6,21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-035",
+      "scope": "all",
+      "subject": "Mobil",
+      "dimension": "egenandel",
+      "value": "1000standardpartner,3000pertelefon/skadeannenleverandør.",
+      "standard_pages": "1,6,18",
+      "pluss_pages": "1,6,21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-036",
+      "scope": "all",
+      "subject": "Forsinket bagasje",
+      "dimension": "sum/vilkår",
+      "value": "Reise3k/Pluss5k nødvendige klær/utstyrkjøp/leie under dokumentertforsinkelse;ingenventetid men ikkehjemkomst.",
+      "standard_pages": "1,6",
+      "pluss_pages": "1,6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-037",
+      "scope": "all",
+      "subject": "Forsinket transport",
+      "dimension": "trigger",
+      "value": "Minst1.5t kansellering/forsinkelsepga vær/skred/ras/tekniskmekaniskfeil/trafikkuhell/nødlanding;sittellerplanlagt;oppstått/varsletetteretappestart.",
+      "standard_pages": "6–7",
+      "pluss_pages": "6–7",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-038",
+      "scope": "all",
+      "subject": "Forsinket transport",
+      "dimension": "sum/utgift",
+      "value": "Reise20k/Pluss25k nødvendigekstratransport/overnattingtilinnhentingforhåndsbetaltpublicrute;egenbil3.50/kmkortestevei;ikkepersonellmangel/refusjonspliktreiseellerikkegjennomførtreise.",
+      "standard_pages": "1,6",
+      "pluss_pages": "1,6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-039",
+      "scope": "pluss",
+      "subject": "Forsinket leiebil",
+      "dimension": "sum/vilkår",
+      "value": "10k endringforhåndsbetalteleieavtalenårsenthentingsomfølgeavdekkettransportforsinkelse;ikkeoppgradering.",
+      "standard_pages": "1,6",
+      "pluss_pages": "1,6",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-040",
+      "scope": "pluss",
+      "subject": "Forsinket ankomst",
+      "dimension": "sum/tid",
+      "value": "Minst8timersforsinketferie/fritidsankomst5000 forénforhåndsbetaltovernattingog/ellerenkeltarrangement.",
+      "standard_pages": "1,7",
+      "pluss_pages": "1,7",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-041",
+      "scope": "all",
+      "subject": "Evakuering",
+      "dimension": "hendelser/godkjenning",
+      "value": "Ubegrensetnødvendigeekstrakosthjemellertryggdestinasjonopptilsammekostnad;UD/lokalmyndighetanbefalerforlatepga krig/uro/terror/natur/epidemi,pandemi utenforNorge;forhåndsgodkjent;ikkeinnreiseettervarsel/situasjon.",
+      "standard_pages": "1,7",
+      "pluss_pages": "1,7",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-042",
+      "scope": "all",
+      "subject": "Evakuering",
+      "dimension": "tapteferiedager",
+      "value": "15k totalt2000/dag/personforbetalttransport/losjiproporsjonalavbruttferie.",
+      "standard_pages": "1,7",
+      "pluss_pages": "1,7",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-043",
+      "scope": "all",
+      "subject": "Avbestilling",
+      "dimension": "sum",
+      "value": "Reise50k/Plussubegrensetforhåndsbetaltreise/overnatting/leieogenkeltarrangementveddekketreiseavbestilling.",
+      "standard_pages": "1,7–8",
+      "pluss_pages": "1,7–8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-044",
+      "scope": "all",
+      "subject": "Avbestilling",
+      "dimension": "sykdomskrets",
+      "value": "Akuttsykdom/ulykke/dødself,soletraveller,nærfamilie,nøkkelpersonbarnevakt/reiseleder,gruppeinntil8sammenkjøpt;datoendretplanlagtoperasjonselfspousechildren/soletravellerattestert.",
+      "standard_pages": "7",
+      "pluss_pages": "7",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-045",
+      "scope": "all",
+      "subject": "Avbestilling",
+      "dimension": "andretrigger",
+      "value": "Storbolig/businessskade;UDnyttfrarådingsrådpåavreisedag;naturhendelsehøyst72tfør+evakueringsanbefaling;samlivsbruddfamiliepolicy;rettsoppmøtevitne/jury/meddommer.",
+      "standard_pages": "7–8",
+      "pluss_pages": "7–8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-046",
+      "scope": "all",
+      "subject": "Avbestilling",
+      "dimension": "tid/kontinuitet",
+      "value": "Utløsendehendelseetterhel/delbetalingføravreise;prepolicybookingbarekontinuitetfraannetselskap.",
+      "standard_pages": "7–8",
+      "pluss_pages": "7–8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-047",
+      "scope": "all",
+      "subject": "Avbestilling",
+      "dimension": "unntak",
+      "value": "Pågåendeutredning/behandlingsvurdering,lengresykehusennforventet,fødseletter37uke,alleredeUDvarsel;reisehensiktborte,bonuspoeng,gavertilandre,faste/årligerentalfees,employerpaidbusiness/refusjoner.",
+      "standard_pages": "7–8",
+      "pluss_pages": "7–8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-048",
+      "scope": "pluss",
+      "subject": "Leiebilegenandel",
+      "dimension": "sum/krav",
+      "value": "Ubegrensetfastavtaltegenandelvedskade/tyveri påleiebil/MCover125cm3 påénferiereisemedminsténovernatting;CDW+TP,kundenskontraktbeviserkrav.",
+      "standard_pages": "1,8",
+      "pluss_pages": "1,8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-049",
+      "scope": "pluss",
+      "subject": "Leiebilegenandel",
+      "dimension": "begrensninger",
+      "value": "Ikkeleasing/privatutleier/NOabonnementdelingpool/serviceerstatningsbil;moped/scooter/ATV;leieutoverénferiereise;utleiersavsavn.",
+      "standard_pages": "8",
+      "pluss_pages": "8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-050",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "sum/sted",
+      "value": "15millperhendelse/serieskadeprivatreiseutenforNorden,bevisegenandel.",
+      "standard_pages": "1,9–10",
+      "pluss_pages": "1,12–13",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-051",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "leietbygning",
+      "value": "Skadepåleiefasteiendom/hotellrominkludert;inventarunntatt;rentformuestapkanomfattes.",
+      "standard_pages": "9–10",
+      "pluss_pages": "12–13",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-052",
+      "scope": "all",
+      "subject": "Ansvar",
+      "dimension": "unntak",
+      "value": "Yrke/nærfamilie/kontrakt/bøter/lånteleieting/inventar/gradvisforurensing/fukt/sopp/kriminalitet/vissekjøretøy;elsparkutenforNorgeklassifiseresikkesom motorvogn,fritidsbåtunntakfra båtunntak.",
+      "standard_pages": "9",
+      "pluss_pages": "12",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-053",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "sum/geografi",
+      "value": "PrivattvistutenforNorden100k;ogsåfornærmetistraffesak;begrensetøkonomiskinteresse.",
+      "standard_pages": "1,11–13",
+      "pluss_pages": "1,14–16",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-054",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "flerpart/sakkyndig",
+      "value": "3–10parter250k,11–25500k,26–49750k,50+1m;ikkedomstolsoppnevntsakkyndig40%sum/økonomiskinteresse.",
+      "standard_pages": "11–13",
+      "pluss_pages": "14–16",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-055",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "egenandel",
+      "value": "Reiseingenegenandel medmindreannetbevis;Mekle0;ikkegenerell4k+20regelutenreiseforrang. Reisebevisstandard1000/Pluss0.",
+      "standard_pages": "1,13",
+      "pluss_pages": "1,16",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-056",
+      "scope": "all",
+      "subject": "Rettshjelp",
+      "dimension": "unntak/HTU",
+      "value": "Mekleegenadvokatikke;familie/yrke/eiendomutenforNorden/tidligeregrunnlagogøvrigematerielleunntak. HTU15kpositivogetterfølgendeHTUunntak måregistreres konflikt.",
+      "standard_pages": "11–12",
+      "pluss_pages": "14–15",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-057",
+      "scope": "pluss",
+      "subject": "Ulykke",
+      "dimension": "omfang",
+      "value": "Pluss24/7 ogsåhjemme;varigmedisinskinvaliditet/død/behandlingetterhjemkomst.",
+      "standard_pages": "1,3,8,10",
+      "pluss_pages": "1,3,8,10",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-058",
+      "scope": "pluss",
+      "subject": "Ulykke",
+      "dimension": "voksensummer",
+      "value": "Vokseninvaliditet300k/død100k/behandlingetterhjemkomstinkl tann15k.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-059",
+      "scope": "pluss",
+      "subject": "Ulykke",
+      "dimension": "barnsummer",
+      "value": "Barnunder21 invaliditet500k/død100k/behandling25k.",
+      "standard_pages": "8",
+      "pluss_pages": "8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-060",
+      "scope": "pluss",
+      "subject": "Ulykke",
+      "dimension": "behandlingstid",
+      "value": "2åretterulykke;barnunder21 utsatttannbehandlingtilutgangenåret25 hvisikkeoffentligbetalt.",
+      "standard_pages": "8",
+      "pluss_pages": "8",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-061",
+      "scope": "pluss",
+      "subject": "Ulykke",
+      "dimension": "hendelsesdefinisjon",
+      "value": "Plutseliguforutsettytrefysiskulykke;ogsåikkesykdomsfall,kne/ankelvridning,oppregnedebruddhard/feilhopplanding;psykiskskadebarenårfysiskvarigdekning.",
+      "standard_pages": "10",
+      "pluss_pages": "10",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-062",
+      "scope": "pluss",
+      "subject": "Ulykke",
+      "dimension": "begrensninger",
+      "value": "Ingen lisensidrett,slagsmål/forbrytelse,dykk>40/boksing/BASE;sykdom/diagnoseunntak,smitte,medisinskekomplikasjoner,tyggetann,privatesykehus.",
+      "standard_pages": "8,10",
+      "pluss_pages": "8,10",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-063",
+      "scope": "pluss",
+      "subject": "Ulykke",
+      "dimension": "invaliditet/dødsfrist",
+      "value": "Dødinnen1år;ingeninvaliditetveddødinnen1år;delvisinvaliditetproporsjonal,max100%,endeligstatusetter3år;tidligerefunksjonstap/sykdommedvirkningavkortes.",
+      "standard_pages": "11",
+      "pluss_pages": "11",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-064",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "elektronisk/optisk",
+      "value": "Foto/video/data/annet elektroniskoptisk10%perår.",
+      "standard_pages": "18",
+      "pluss_pages": "21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-065",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "mobil",
+      "value": "20%forhvertpåbegyntår fra1år.",
+      "standard_pages": "18",
+      "pluss_pages": "21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-066",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "klokke/nettbrett",
+      "value": "Smart/aktivitetsklokke/tablet20%perår.",
+      "standard_pages": "18",
+      "pluss_pages": "21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-067",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "klær/sport/briller",
+      "value": "10%perår.",
+      "standard_pages": "18",
+      "pluss_pages": "21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-068",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "sykkel",
+      "value": "20%perårfradetåretsykkeler5år.",
+      "standard_pages": "18",
+      "pluss_pages": "21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-069",
+      "scope": "all",
+      "subject": "Aldersfradrag",
+      "dimension": "maks/annet",
+      "value": "Maks80%;annetbagasje etterbrukstid/slitasje,bruktkjøpbruktpris/arvetmarkedsverdi.",
+      "standard_pages": "18",
+      "pluss_pages": "21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-070",
+      "scope": "all",
+      "subject": "Generelt",
+      "dimension": "krig/katastrofe",
+      "value": "Alleredeiområdenårkrigutbryterinntil6uker;reiseunntatt1mrdterrorcap;atom500millallekunderprhendelse;jordskjelv/vulkanreiseomfattet.",
+      "standard_pages": "15",
+      "pluss_pages": "18",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-071",
+      "scope": "all",
+      "subject": "Administrasjon",
+      "dimension": "vilkår",
+      "value": "Bevisforrang;årsfornyelse,oppgjør/klage/personvern/skadebehandling beholdesutenordinæreproduktdimensjoner.",
+      "standard_pages": "14–18",
+      "pluss_pages": "17–21",
+      "source": "full"
+    },
+    {
+      "id": "GJ-RE-072",
+      "scope": "duration",
+      "subject": "Reisevarighet utvidelse",
+      "dimension": "periode/valg",
+      "value": "Tilleggmåkjøpesføravreise tilhelårspolicy,gjelderénreiseinntil12mnd;kundebestemtdager,måikkeøkenormalstandard10uker.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "extension"
+    },
+    {
+      "id": "GJ-RE-073",
+      "scope": "duration",
+      "subject": "Reisevarighet utvidelse",
+      "dimension": "maks/oppfølging",
+      "value": "42ekstrauker(295dager) stårordrett;kanikkeforlengesunderreise;12mndén gangutenmis folketrygd ifølgeweb.42ukeraritmetikker294,ikkegjett.",
+      "standard_pages": "33–44",
+      "pluss_pages": "33–44",
+      "source": "days"
+    },
+    {
+      "id": "GJ-RE-074",
+      "scope": "airsport",
+      "subject": "Luftsport tilvalg",
+      "dimension": "valg/omfang",
+      "value": "Luftsportkanavtales føravreise;fallskjermfra fly/hang/paraglide/mikro/ultralett;ikkeBASE.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "extension"
+    },
+    {
+      "id": "GJ-RE-075",
+      "scope": "expedition",
+      "subject": "Ekspedisjon tilvalg",
+      "dimension": "valg/grenser",
+      "value": "Himalayaover4500metterIPID;produktsideprofesjoneltarrangert4500–6000ogGrønlandiskryssing;Arktis/Antarktisunntatt.",
+      "standard_pages": "1",
+      "pluss_pages": "1",
+      "source": "extension"
+    },
+    {
+      "id": "GJ-RE-076",
+      "scope": "war",
+      "subject": "Krigsrisiko tilvalg",
+      "dimension": "valg",
+      "value": "Innreisei krig/urofrarådetområdetkanavtalessærskiltetterindividuellvurdering.",
+      "standard_pages": "1–2",
+      "pluss_pages": "1–2",
+      "source": "extension"
+    },
+    {
+      "id": "GJ-RE-077",
+      "scope": "all",
+      "subject": "Reise",
+      "dimension": "overnattingskrav",
+      "value": "Gjelderalle småogstoreturer/butikk/nabolagfraduforlaterhjemmet;overnattingikkegrunnkrav menleiebilegenandelharminsténnatt.",
+      "standard_pages": "31,155,199,214",
+      "pluss_pages": "31,155,199,214",
+      "source": "product"
+    },
+    {
+      "id": "GJ-RE-078",
+      "scope": "all",
+      "subject": "Reise",
+      "dimension": "tegning/alder",
+      "value": "Kjøpfra18år,ingenøvrealderelleralderbasertlavereerstatning;studieoppholdutlandikkeReise/ReisePluss.",
+      "standard_pages": "200–208",
+      "pluss_pages": "200–208",
+      "source": "product"
+    },
+    {
+      "id": "GJ-RE-079",
+      "scope": "all",
+      "subject": "Mobil",
+      "dimension": "produktsideutvidelse",
+      "value": "HTML229 inkludererknustbakside+andre skadersamtidigknustskjerm;fullPDF6 bareknustskjerm/tyveri/ran/brann.",
+      "standard_pages": "228–230",
+      "pluss_pages": "228–230",
+      "source": "product"
+    },
+    {
+      "id": "GJ-RE-080",
+      "scope": "all",
+      "subject": "Feriekompensasjon",
+      "dimension": "produktsidegrense",
+      "value": "HTML59 siermindreenn5uker,fullPDF4 inntil5uker;avbruddwebviser100kutenReise50kpresisering.",
+      "standard_pages": "58–61",
+      "pluss_pages": "58–61",
+      "source": "product"
+    },
+    {
+      "id": "GJ-RE-081",
+      "scope": "all",
+      "subject": "Alarmsentral",
+      "dimension": "tjeneste",
+      "value": "TravelAssistance24/7/365,legepåsted/hjemtransportveiledning/medisinskesykepleierleger;beggeprodukter.",
+      "standard_pages": "30–44",
+      "pluss_pages": "30–44",
+      "source": "alarm"
+    },
+    {
+      "id": "GJ-RE-082",
+      "scope": "all",
+      "subject": "Onlinelege",
+      "dimension": "tjeneste",
+      "value": "DrDropinvideogeneralpracticepåreiseutenforNorge,helefamilievalg;ingenegenandel,åpent07–22norsktid.",
+      "standard_pages": "30–55",
+      "pluss_pages": "30–55",
+      "source": "online"
+    },
+    {
+      "id": "GJ-RE-083",
+      "scope": "all",
+      "subject": "Onlinelege",
+      "dimension": "avgrensning",
+      "value": "Resept/lokalbehandlingoftealarmsentral/lokallege;akuttnødnummer/alarmsentralikkeonline;rabattfysiske/digitalehelsetjenesterikkegratisbehandling.",
+      "standard_pages": "43–44,70–83",
+      "pluss_pages": "43–44,70–83",
+      "source": "online"
+    },
+    {
+      "id": "GJ-RE-084",
+      "scope": "all",
+      "subject": "Kildebruk",
+      "dimension": "kundebevis",
+      "value": "Offentligealminneligevilkår/IPIDlikeforalleogikkedelavkundensavtale;endeligbevispersonliginfoharforrang.",
+      "standard_pages": "257–264",
+      "pluss_pages": "257–264",
+      "source": "product"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "catalog/sources/gjensidige/reise/alarmsentral.html",
+      "sha256": "783af556ab12b49afb3613aff49c7fb06f17d199971ffcfbfbc6b254cc71926f",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/783af556ab12b49afb3613aff49c7fb06f17d199971ffcfbfbc6b254cc71926f.json"
+    },
+    {
+      "path": "catalog/sources/gjensidige/reise/online-lege.html",
+      "sha256": "9e092e683776c6582159a9f5a9a540536fa170d3a1af0646de2767399d77b9fd",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/9e092e683776c6582159a9f5a9a540536fa170d3a1af0646de2767399d77b9fd.json"
+    },
+    {
+      "path": "catalog/sources/gjensidige/reise/produktside.html",
+      "sha256": "c270ef097d9c8c1fd02ca29fc04c057a6d482abc41e32ef3a60405500d97bcda",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/c270ef097d9c8c1fd02ca29fc04c057a6d482abc41e32ef3a60405500d97bcda.json"
+    },
+    {
+      "path": "catalog/sources/gjensidige/reise/reise-alminnelige-vilkar.pdf",
+      "sha256": "dcf6dfd6c62112d634019ce0cd12793dc8009fba7fda527359da2a7828a37a82",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/dcf6dfd6c62112d634019ce0cd12793dc8009fba7fda527359da2a7828a37a82.json"
+    },
+    {
+      "path": "catalog/sources/gjensidige/reise/reise-pluss-alminnelige-vilkar.pdf",
+      "sha256": "97823ecfea0e62a98965bc51ebaac61ee05f3b42766333f959cf2c29ceacea04",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/97823ecfea0e62a98965bc51ebaac61ee05f3b42766333f959cf2c29ceacea04.json"
+    },
+    {
+      "path": "catalog/sources/gjensidige/reise/reisedager.html",
+      "sha256": "cf8c3f94fa4828710b7fe584bcf19aba6b963c07449052193c03dcb9d47a5aa8",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/cf8c3f94fa4828710b7fe584bcf19aba6b963c07449052193c03dcb9d47a5aa8.json"
+    },
+    {
+      "path": "catalog/sources/gjensidige/reise/reiseforsikring-ipid.pdf",
+      "sha256": "4f61ae4add1baac5788289989179ade7320fd63ddaa18724ea9070dc9f18178a",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/4f61ae4add1baac5788289989179ade7320fd63ddaa18724ea9070dc9f18178a.json"
+    },
+    {
+      "path": "catalog/sources/gjensidige/reise/utvidelse-av-varighet-ipid.pdf",
+      "sha256": "90ee33772fb2ab2e1723a7be5a99c222aeb52851d63f18fe7e93b3dda0173279",
+      "review": "ALL_CACHED_MATERIAL_CONTENT_READ; fullterms/PDFtables + fullHTMLsections, navigation excluded",
+      "text_cache": "text/90ee33772fb2ab2e1723a7be5a99c222aeb52851d63f18fe7e93b3dda0173279.json"
+    }
+  ],
+  "exact_page_reuse": {
+    "pluss12–21": "standard9–18; exact normalized text after footer-page removal verified"
+  },
+  "catalog_not_consulted_for_inventory": true
+}

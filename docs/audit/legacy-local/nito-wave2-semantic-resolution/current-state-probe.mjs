@@ -1,0 +1,18 @@
+import {writeFileSync} from 'node:fs';
+import {productCatalog,resolveCatalogFacts,availableAddOns} from '/Users/morten/Documents/forsikringsapp/lib/product-catalog.ts';
+import {compareCatalogProducts} from '/Users/morten/Documents/forsikringsapp/lib/catalog-product-comparison.ts';
+import {canonicalTermIdsForType,normalizeCatalogTermKey} from '/Users/morten/Documents/forsikringsapp/lib/insurance-normalization.ts';
+import {enrichExtractedAgreementWithCatalog} from '/Users/morten/Documents/forsikringsapp/lib/catalog-enrichment.ts';
+const ids=['tryg-innbo','tryg-innbo-ekstra','fremtind-reise','storebrand-reise-standard','storebrand-reise-super','tryg-reise-ekstra','tryg-reise-premium','gjensidige-hus','gjensidige-hus-pluss','frende-hund-veterin-r','frende-katt-veterin-r','gjensidige-hund-behandling','gjensidige-katt-behandling'];
+const p=id=>{let x=productCatalog.products.find(p=>p.productId===id);if(!x)throw Error(id);return x;};
+const match=/flytting|overnatting|forsinkelse|skadedyr|bruksverdi/;
+const asOf=new Date('2026-10-02T12:00:00Z');
+const products=ids.map(id=>({identity:p(id),facts:resolveCatalogFacts(p(id),[],asOf).filter(f=>match.test(f.key)),addons:availableAddOns(p(id),asOf)}));
+const cases=[['gjensidige-hus',['gjensidige-hus-rate-insekter']],['frende-hund-veterin-r',['frende-hund-tap']],['frende-hund-veterin-r',['frende-hund-bruksverdi']],['gjensidige-hund-behandling',['gjensidige-hund-bruk']]].map(([id,addons])=>({id,addons,facts:resolveCatalogFacts(p(id),addons,asOf).filter(f=>/skadedyr|bruksverdi|dyr.liv/.test(f.key))}));
+const pairs=[['tryg-reise-ekstra','storebrand-reise-standard'],['tryg-reise-premium','storebrand-reise-super'],['gjensidige-hus','gjensidige-hus-pluss'],['frende-hund-veterin-r','gjensidige-hund-behandling']];
+const comparisons=pairs.map(([a,b])=>({a,b,rows:compareCatalogProducts(p(a),p(b)).sections.flatMap(s=>s.rows).filter(r=>match.test(r.key))}));
+const extraction={company:'Storebrand',totalAnnualPremium:null,insurances:[{type:'Reise',productName:'Standard',annualPremium:null,deductible:null,coverageSummary:null,addOns:[],importantTerms:[{name:'Reise med eller uten overnatting',value:'Syntetisk dokumentregel',canonicalKey:'reise.overnatting'}]}]};
+const normalized=enrichExtractedAgreementWithCatalog(extraction);
+const evidence={generatedAt:new Date().toISOString(),readOnly:true,asOf:asOf.toISOString(),products,cases,comparisons,registries:Object.fromEntries(['innbo','reise','bolig','hund','katt'].map(t=>[t,canonicalTermIdsForType(t).filter(k=>match.test(k))])),customerExplicitKey:normalized.insurances[0].importantTerms.filter(f=>f.key==='reise.overnatting'),existingAliasIdentity:['reise.forsinkelse.avgang_sum','reise.forsinkelse.fremmote_sum','reise.overnatting','flytting.transport.grense','hus.skadedyr.bekjempelse'].map(k=>[k,normalizeCatalogTermKey(k)])};
+writeFileSync('/tmp/nito-wave2-semantic-resolution/current-state-evidence.json',JSON.stringify(evidence,null,2)+'\n');
+console.log(JSON.stringify({products:products.length,addonCases:cases.map(c=>({product:c.id,addons:c.addons,keys:c.facts.map(f=>f.key)})),overnightRows:comparisons.slice(0,2).map(c=>({a:c.a,b:c.b,row:c.rows.find(r=>r.key==='reise.overnatting')})),customerKey:evidence.customerExplicitKey,registries:evidence.registries},null,2));

@@ -1,0 +1,1056 @@
+==================================================
+487 – NO GENERIC FINDINGS
+==================================================
+
+Do not produce findings such as:
+
+"Some products may be incomplete."
+
+Every material finding must identify:
+
+- exact product(s)
+- exact source evidence
+- exact catalog state
+- exact semantic dimension
+- why the difference matters.
+
+==================================================
+488 – ACTIONABILITY
+==================================================
+
+For every P0/P1 finding answer:
+
+Can this be corrected safely using:
+
+A. existing canonical key + catalog data
+B. existing canonical structure + new child fact
+C. inheritance/add-on correction
+D. presentation correction
+E. new canonical concept
+F. source research
+G. architecture review.
+
+Do not implement.
+
+==================================================
+489 – EXISTING KEY PREFERRED
+==================================================
+
+If existing canonical structure safely represents the source fact:
+
+prefer that remediation path.
+
+Do not propose new canonical keys unnecessarily.
+
+==================================================
+490 – NEW KEY JUSTIFICATION
+==================================================
+
+A NEW_CANONICAL_CANDIDATE must include:
+
+- semantic definition
+- why existing keys are insufficient
+- affected families/products
+- representative source evidence
+- comparison value
+- risk of false equivalence
+- proposed parent concept.
+
+No implementation.
+
+==================================================
+491 – SHARED KEY JUSTIFICATION
+==================================================
+
+Do not propose one shared key across families merely because labels are
+similar.
+
+Semantic equivalence must be demonstrated.
+
+==================================================
+492 – PROVIDER-SPECIFIC REPRESENTATION
+==================================================
+
+If a fact is important but not safely comparable:
+
+recommend provider-specific nested detail rather than universal canonical
+symmetry.
+
+==================================================
+493 – PRODUCT-SPECIFIC REPRESENTATION
+==================================================
+
+Same for highly product-specific mechanisms.
+
+Completeness can be achieved without pretending every provider has the same
+structure.
+
+==================================================
+494 – MATERIAL SOURCE TEXT PRESERVATION
+==================================================
+
+If structured normalization would lose an important condition:
+
+recommend retaining concise original semantic text alongside structured
+dimensions.
+
+==================================================
+495 – NO LOSSY FIX RECOMMENDATION
+==================================================
+
+Do not recommend:
+
+"map all these to X"
+
+unless source evidence proves X preserves material meaning.
+
+==================================================
+496 – REMEDIATION SAFETY
+==================================================
+
+Every proposed remediation batch should state:
+
+- expected affected files/layers
+- likely regression risk
+- exact source evidence required
+- tests needed
+- whether product mode/customer mode both affected.
+
+==================================================
+497 – DATA-ONLY BATCH
+==================================================
+
+A finding may be:
+
+CATALOG_DATA_ONLY
+
+only if:
+
+- suitable canonical key already exists
+- materialization already supports it
+- presentation can already render it or presentation is not required
+- exact source applicability is known.
+
+==================================================
+498 – SMALL CODE BATCH
+==================================================
+
+Use SMALL_CODE when:
+
+existing architecture supports concept but a narrow mapping/materialization
+change is needed.
+
+==================================================
+499 – MEDIUM CODE BATCH
+==================================================
+
+Use MEDIUM_CODE when:
+
+shared mapping/presentation/inheritance behavior needs careful change across
+multiple products.
+
+==================================================
+500 – ARCHITECTURE BATCH
+==================================================
+
+Use ARCHITECTURE only when current model cannot safely preserve source
+semantics.
+
+Do not over-classify.
+
+==================================================
+501 – SOURCE RESEARCH BATCH
+==================================================
+
+Use SOURCE_RESEARCH only when local official corpus is insufficient.
+
+Do not use research merely because catalog is incomplete.
+
+==================================================
+502 – PRESENTATION-ONLY BATCH
+==================================================
+
+If catalog already has correct material fact but UI omits/misgroups it:
+
+PRESENTATION_ONLY.
+
+Do not rewrite catalog.
+
+==================================================
+503 – PILOT PRIORITY
+==================================================
+
+For each remediation batch state:
+
+MUST_BEFORE_NITO
+SHOULD_BEFORE_NITO
+CAN_WAIT.
+
+This evaluates our app readiness, not insurance-product quality.
+
+==================================================
+504 – MUST_BEFORE_NITO
+==================================================
+
+Normally include:
+
+- P0
+- P1 material false unknowns
+- material wrong values
+- optional/included contradictions
+- wrong scope/version
+- material source-backed facts whose absence can mislead an advisor.
+
+==================================================
+505 – SHOULD_BEFORE_NITO
+==================================================
+
+Useful P2 completeness improvements may be SHOULD if they materially improve
+advisor trust/usability but do not create false conclusions.
+
+==================================================
+506 – CAN_WAIT
+==================================================
+
+Low-value source detail and polish can wait.
+
+==================================================
+507 – POSITIVE CONTROL REMEDIATION PRIORITY
+==================================================
+
+Do not automatically prioritize a finding merely because a human happened to
+notice it.
+
+Severity/materiality governs priority.
+
+==================================================
+508 – SYSTEMIC ROOT CAUSE PRIORITY
+==================================================
+
+A shared P1 root cause affecting many products should usually be addressed
+before isolated P2 details.
+
+==================================================
+509 – HIGH-LEVERAGE FIX
+==================================================
+
+Identify fixes likely to resolve multiple verified gaps without broadening
+source applicability incorrectly.
+
+==================================================
+510 – MASS-CHANGE WARNING
+==================================================
+
+If a proposed shared fix would change many products:
+
+mark regression risk explicitly.
+
+==================================================
+511 – CATALOG EXPANSION SIZE
+==================================================
+
+Estimate how many:
+
+products
+add-ons
+facts
+presentation concepts
+
+each remediation batch may affect.
+
+No need for exact line counts.
+
+==================================================
+512 – SOURCE ARTIFACT CHANGES
+==================================================
+
+Most completeness fixes should NOT modify original source artifacts.
+
+If source research later adds new originals:
+
+that is separate.
+
+==================================================
+513 – MANIFEST CHANGES
+==================================================
+
+Only recommend manifest/source-record changes if applicability/provenance is
+actually incomplete or wrong.
+
+Do not edit manifest merely to add canonical facts if existing source linkage
+is sufficient.
+
+==================================================
+514 – PROVENANCE REQUIREMENT FOR FIX
+==================================================
+
+Every future new catalog fact must retain exact source provenance.
+
+No source-less completeness patch.
+
+==================================================
+515 – TEST REQUIREMENT FOR FIX
+==================================================
+
+Every future P0/P1 correction should have regression coverage that would
+have failed before the fix.
+
+==================================================
+516 – SOURCE ASSERTION TEST
+==================================================
+
+Where practical future regression should assert:
+
+exact source-backed value
++
+exact product applicability
++
+canonical identity.
+
+==================================================
+517 – COMPARISON TEST
+==================================================
+
+Where finding affected product comparison:
+
+future regression should verify resulting A/B comparison.
+
+==================================================
+518 – CUSTOMER MODE TEST
+==================================================
+
+Where finding is LIKELY_SHARED_WITH_CUSTOMER_MODE:
+
+future regression must also protect:
+
+document > catalog
+
+and ensure catalog enrichment does not overwrite customer value.
+
+==================================================
+519 – OPTIONAL TEST
+==================================================
+
+Optional fixes must test:
+
+available ≠ selected.
+
+==================================================
+520 – UNKNOWN TEST
+==================================================
+
+A corrected false catalog unknown should receive a regression ensuring it
+does not return solely because another provider/source changes.
+
+==================================================
+521 – SOURCE UPDATE REGRESSION
+==================================================
+
+Future source version updates should invalidate/review affected source-backed
+facts rather than silently retaining stale values.
+
+Recommend process only.
+
+==================================================
+522 – REVIEW OWNERSHIP
+==================================================
+
+Recommend future review roles conceptually:
+
+technical implementation review
+source/provenance review
+insurance-domain review.
+
+Do not assign named people.
+
+==================================================
+523 – DOMAIN REVIEW SAMPLE
+==================================================
+
+After remediation, a knowledgeable insurance advisor should manually inspect
+a random sample from:
+
+all 12 families
+
+not only previously problematic families.
+
+==================================================
+524 – RANDOMIZATION NOT REQUIRED
+==================================================
+
+Do not depend on true randomness.
+
+A deterministic rotating sample is acceptable.
+
+==================================================
+525 – HUMAN QA CHECKLIST
+==================================================
+
+Recommend future advisor spot-check questions:
+
+1. Does anything important look unexpectedly unknown?
+2. Does one provider appear suspiciously less detailed?
+3. Are optional coverages clearly optional?
+4. Are sums/periods comparable?
+5. Are age/km/duration rules visible where important?
+6. Are unique benefits represented without fake symmetry?
+7. Does source support the displayed fact?
+8. Does anything look duplicated or misleading?
+
+==================================================
+526 – AUDIT HISTORY
+==================================================
+
+Document that this audit was triggered by advisor spot checks revealing a
+class of issue not covered by comparison-only QA.
+
+This should become part of future QA rationale.
+
+==================================================
+527 – QA LAYERS
+==================================================
+
+Recommend maintaining four separate QA layers:
+
+LAYER 1:
+SOURCE / PROVENANCE
+"Do we have the correct official evidence?"
+
+LAYER 2:
+SOURCE → CATALOG COMPLETENESS
+"Did we model the material evidence?"
+
+LAYER 3:
+CATALOG / COMPARISON SEMANTICS
+"Do we compare the modeled facts correctly?"
+
+LAYER 4:
+ADVISOR / HUMAN REVIEW
+"Does the result make professional sense?"
+
+Do not collapse these into one test suite conceptually.
+
+==================================================
+528 – FIFTH QA LAYER
+==================================================
+
+Operational/security/privacy pilot readiness remains separate:
+
+LAYER 5:
+SECURITY / GDPR / OPERATIONS.
+
+Do not mix correctness findings with security findings.
+
+==================================================
+529 – FUTURE ACCEPTANCE PIPELINE
+==================================================
+
+Recommend future product/source additions pass:
+
+SOURCE_READY
+↓
+SOURCE_TO_CATALOG_COMPLETE
+↓
+SEMANTIC_COMPARISON_READY
+↓
+RUNTIME/UI_READY
+↓
+SECURITY/PRIVACY READY where applicable
+↓
+HUMAN SPOT CHECK.
+
+No implementation.
+
+==================================================
+530 – CURRENT PILOT DECISION
+==================================================
+
+This audit does NOT independently decide NITO pilot security readiness.
+
+It decides whether catalog correctness/completeness needs remediation before
+the existing pilot gate can be considered final.
+
+==================================================
+531 – CATALOG PILOT GATE
+==================================================
+
+Return:
+
+CATALOG_PILOT_GATE =
+READY
+READY_WITH_MINOR_GAPS
+REMEDIATION_REQUIRED
+ARCHITECTURE_REVIEW_REQUIRED
+SOURCE_RESEARCH_REQUIRED.
+
+==================================================
+532 – CATALOG READY
+==================================================
+
+READY requires:
+
+- P0 = 0
+- P1 = 0
+- all active products accounted for
+- positive controls validated
+- no unexplained source-package holes affecting material facts.
+
+==================================================
+533 – READY WITH MINOR GAPS
+==================================================
+
+Use when:
+
+only P2/P3/deferable details remain
+
+and no material advisor conclusion is likely to be impaired.
+
+==================================================
+534 – REMEDIATION REQUIRED
+==================================================
+
+Use when:
+
+one or more verified P0/P1 source-backed gaps exist that current architecture
+can reasonably correct.
+
+==================================================
+535 – ARCHITECTURE REVIEW REQUIRED
+==================================================
+
+Use when:
+
+P0/P1 facts cannot safely fit existing architecture.
+
+==================================================
+536 – SOURCE RESEARCH REQUIRED
+==================================================
+
+Use when:
+
+material products cannot be assessed from current source corpus.
+
+==================================================
+537 – AUDIT COMPLETION VS PILOT GATE
+==================================================
+
+Audit may be:
+
+COMPLETE
+
+while catalog gate is:
+
+REMEDIATION_REQUIRED.
+
+Do not confuse audit success with product readiness.
+
+==================================================
+538 – SOURCE FACT COUNT IS NOT SUCCESS
+==================================================
+
+A large number of extracted facts is not proof of audit quality.
+
+Evidence chain and materiality matter.
+
+==================================================
+539 – LOW FINDING COUNT IS NOT SUCCESS
+==================================================
+
+Likewise few findings are not automatically good.
+
+Positive controls and deep reviews must validate sensitivity.
+
+==================================================
+540 – HIGH FINDING COUNT IS NOT FAILURE
+==================================================
+
+Many gaps may simply reflect previously shallow catalog modeling.
+
+Audit success means accurately mapping them.
+
+==================================================
+541 – AUDIT METHOD REPORT
+==================================================
+
+Report how the audit actually worked:
+
+- deterministic enumeration
+- source hash dedup
+- source content extraction
+- family semantic inventories
+- product applicability
+- semantic matching
+- deep review
+- manual validation
+- reconciliation.
+
+==================================================
+542 – MODEL LIMITATION REPORT
+==================================================
+
+Explicitly acknowledge:
+
+semantic interpretation uses model reasoning and can make mistakes.
+
+Material findings were therefore evidence-backed and manually rechecked.
+
+==================================================
+543 – SOURCE EXTRACTION LIMITATION
+==================================================
+
+Report any source formats/sections that were difficult to extract:
+
+tables
+scans
+broken PDFs
+dynamic HTML.
+
+==================================================
+544 – TABLE LIMITATION
+==================================================
+
+If table extraction is unreliable for a material source:
+
+do not silently treat absent table facts as source unknown.
+
+Flag source extraction review.
+
+==================================================
+545 – PDF EXTRACTION LIMITATION
+==================================================
+
+If source PDF text extraction appears malformed:
+
+flag artifact for manual/source review.
+
+==================================================
+546 – HTML EXTRACTION LIMITATION
+==================================================
+
+If stored HTML is mostly scripts/navigation and material content cannot be
+reliably recovered:
+
+flag.
+
+==================================================
+547 – SOURCE LANGUAGE
+==================================================
+
+Preserve Norwegian source semantics.
+
+Do not translate terminology into English in evidence fields unless internal
+classification requires it.
+
+Human-facing audit summary should preferably be Norwegian.
+
+==================================================
+548 – CANONICAL INTERNAL TERMS
+==================================================
+
+Structured audit output may include internal canonical keys.
+
+Explain them in human summary where necessary.
+
+==================================================
+549 – SUMMARY LANGUAGE
+==================================================
+
+Final summary to human reviewer:
+
+Norwegian.
+
+Technical classification codes may remain English.
+
+==================================================
+550 – NO CODE BLOCK DUMP
+==================================================
+
+Do not dump implementation code in final response.
+
+Report findings and output paths.
+
+==================================================
+551 – OUTPUT FILE SIZE
+==================================================
+
+If source-fact inventory becomes very large:
+
+CSV/JSON may be large.
+
+That is acceptable in /tmp.
+
+Do not truncate material P0/P1 evidence.
+
+==================================================
+552 – SUMMARY SIZE
+==================================================
+
+Keep `audit-summary.md` detailed but navigable.
+
+Use tables and grouped findings.
+
+==================================================
+553 – FINDING REFERENCES
+==================================================
+
+Assign stable IDs such as:
+
+SCG-0001
+SCG-0002
+
+and root causes:
+
+SCRC-001
+SCRC-002.
+
+==================================================
+554 – CROSS-REFERENCE
+==================================================
+
+Gap findings should reference root-cause candidate IDs where assigned.
+
+==================================================
+555 – PRODUCT LEDGER FINDING REFERENCES
+==================================================
+
+Each product ledger row should include material finding IDs or count.
+
+==================================================
+556 – FAMILY SUMMARY FINDING REFERENCES
+==================================================
+
+Family summary should reference relevant root causes.
+
+==================================================
+557 – MANUAL REVIEW REFERENCES
+==================================================
+
+Manual review file should reference finding IDs.
+
+==================================================
+558 – SOURCE RESEARCH REFERENCES
+==================================================
+
+Source research queue should reference affected finding IDs/products.
+
+==================================================
+559 – ARCHITECTURE QUESTION REFERENCES
+==================================================
+
+Architecture review questions should reference findings/root causes.
+
+==================================================
+560 – REMEDIATION BATCH IDs
+==================================================
+
+Assign IDs:
+
+RB-A
+RB-B
+...
+
+so next remediation prompt can target exact batches.
+
+==================================================
+561 – REMEDIATION BATCH CONTENT
+==================================================
+
+Each batch should contain:
+
+finding/root-cause IDs
+affected families/products
+layer
+priority
+complexity
+source readiness
+tests needed
+customer-mode impact
+GPT6 recommendation.
+
+==================================================
+562 – NO REMEDIATION EXECUTION
+==================================================
+
+Again:
+
+creating remediation plan is allowed.
+
+Executing it is not.
+
+==================================================
+563 – EXPECTED NEXT CONVERSATION
+==================================================
+
+The human reviewer will use this report to decide:
+
+which P0/P1 findings are real
+which remediation batches to approve
+whether GPT-6 is needed for correction.
+
+Make outputs suitable for that.
+
+==================================================
+564 – FINAL POSITIVE CONTROL QUESTION
+==================================================
+
+Answer:
+
+Would this audit have warned us about the class of issue discovered manually
+before an advisor saw it?
+
+YES
+PARTIALLY
+NO.
+
+Explain.
+
+This is one of the most important conclusions.
+
+==================================================
+565 – FUTURE PREVENTION QUESTION
+==================================================
+
+Answer:
+
+What deterministic controls can we add later so this specific blindspot is
+less likely to recur?
+
+No implementation.
+
+==================================================
+566 – AUDIT QUALITY RESULT
+==================================================
+
+Return:
+
+AUDIT_METHOD =
+REASONABLE
+OVER_SENSITIVE
+UNDER_SENSITIVE
+MIXED
+UNRELIABLE.
+
+Explain based on manual validation.
+
+==================================================
+567 – DEEP REVIEW COUNT
+==================================================
+
+Report exact number of products deep-reviewed.
+
+Target minimum:
+
+24
+
+unless catalog structure requires more.
+
+==================================================
+568 – PROVIDER DEEP REVIEW COVERAGE
+==================================================
+
+Report deep-review count by provider.
+
+==================================================
+569 – FAMILY DEEP REVIEW COVERAGE
+==================================================
+
+Report deep-review count by family.
+
+Minimum expected:
+
+2 per family where at least two relevant products exist.
+
+==================================================
+570 – SCOPE DEEP REVIEW COVERAGE
+==================================================
+
+Report non-ordinary scopes deep-reviewed.
+
+==================================================
+571 – P0/P1 MANUAL REVIEW COUNT
+==================================================
+
+Report:
+
+P0 findings
+P0 manually verified
+
+P1 findings
+P1 manually verified.
+
+Target:
+
+100 % of P0/P1 manually verified.
+
+==================================================
+572 – REPRESENTED FACT MANUAL SAMPLE
+==================================================
+
+Report number of already-correct represented facts manually checked.
+
+Audit must validate successes as well as failures.
+
+==================================================
+573 – NON-RELEVANT FACT SAMPLE
+==================================================
+
+Report number of source facts classified NOT_COMPARISON_RELEVANT manually
+checked.
+
+==================================================
+574 – CUSTOMER-SPECIFIC SAMPLE
+==================================================
+
+Report number of customer-specific classifications manually checked.
+
+==================================================
+575 – PROVIDER-SPECIFIC SAMPLE
+==================================================
+
+Report number of provider-specific classifications manually checked.
+
+==================================================
+576 – AUDIT LIMITATIONS
+==================================================
+
+Final limitations must include:
+
+- semantic audit is not mathematical proof of exhaustive meaning
+- no new web research
+- source corpus quality bounds conclusions
+- model reasoning can misclassify
+- no customer documents used
+- no production changes
+- no legal interpretation of claim outcomes
+- historical products may receive lower deep-review priority.
+
+==================================================
+577 – RECOMMENDATION SHOULD BE ACTIONABLE
+==================================================
+
+Do not end with:
+
+"review findings."
+
+End with exact recommendation such as:
+
+"Approve RB-A and RB-B for remediation before pilot; defer RB-D; perform
+source research for X; architecture review not required."
+
+Actual recommendation must follow findings.
+
+==================================================
+578 – NO PREDETERMINED FAILURE
+==================================================
+
+Do not assume catalog is incomplete merely because manual samples looked
+suspicious.
+
+Audit can return READY if evidence supports it.
+
+==================================================
+579 – NO PREDETERMINED SUCCESS
+==================================================
+
+Do not protect previous READY status.
+
+If material gaps exist:
+
+report them clearly.
+
+==================================================
+580 – PREVIOUS TEST STATUS
+==================================================
+
+Previous passing tests remain useful regression evidence but are not a reason
+to suppress new source-completeness findings.
+
+==================================================
+581 – WORKING TREE CLEANLINESS
+==================================================
+
+If working tree begins clean:
+
+it must end clean.
+
+If it begins non-clean:
+
+exact baseline must be preserved.
+
+==================================================
+582 – TEMP SCRIPT CLEANUP
+==================================================
+
+Temporary audit scripts may remain under /tmp for reproducibility.
+
+No need to delete them.
+
+==================================================
+583 – NO USER FILE MODIFICATION
+==================================================
+
+Do not modify any pasted/manual comparison evidence files if available.
+
+Read only.
+
+==================================================
+584 – STOP ON REPO MUTATION
+==================================================
+
+If a tool unexpectedly writes into repo:
+
+STOP immediately.
+
+Do not clean it up automatically.
+
+Report exact mutation.
+
+==================================================
+585 – NO AUTO-STAGING
+==================================================
+
+Never stage audit output.
+
+==================================================
+586 – NO GIT CLEAN
+==================================================
+
+Do not run destructive cleanup such as:
+
+git clean
+reset --hard
+checkout -- .
+
+==================================================
+587 – SAFE COMMANDS
+==================================================
+
+Read-only git commands are allowed:
+
+git status
+git diff
+git show
+git log
+git ls-files
+git rev-parse.
+
+==================================================
+588 – SOURCE HASH VERIFICATION
+==================================================
+
+Where manifests provide hashes:
+
+verify artifacts used by audit still match expected hash.
+
+Unexpected mismatch is a source-integrity finding.
+
+==================================================
+589 – SOURCE INTEGRITY PRIORITY
+==================================================
+
+If source artifact hash mismatch occurs:
+
+do not trust completeness conclusions for affected products until resolved.
+
+==================================================
+590

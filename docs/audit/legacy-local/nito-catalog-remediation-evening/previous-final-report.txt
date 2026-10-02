@@ -1,0 +1,68 @@
+NITO CATALOG REMEDIATION — CONTROLLED EVENING RUN
+Status: EVENING_REMEDIATION_BLOCKED
+Wave 1: WAVE_1_REMEDIATION_BLOCKED
+Catalog pilot gate: REMEDIATION_REQUIRED
+
+START / SLUTT
+Branch main. HEAD d3a37985fce4ada65fa2f7a88462d8834e4677af er uendret.
+Arbeidskopien var clean ved start. Ingen staged filer ved slutt.
+Ingen commit, push, deploy, Git reset/revert/stash/clean, branchendring eller Railway-endring.
+Ingen .env-redigering, nye kildenedlastinger eller private kundedokumenter.
+
+WAVE 1
+Forsøkt: B-001, B-002, B-003.
+PASS: B-001, B-002. To P1-signaturer lukket: GAP-2361 og GAP-5106.
+B-001: Fjernet tre leie-MC-facts fra Gjensidige MC Delkasko. Kaskos legitime 15-dagersdekning er bevart. Ingen oppfunnet negativ dekning for Delkasko.
+B-002: Fremtind Hus Standard har nå uttrykkelig unntak for kunstnerisk utsmykning. Topp har egen positiv erstatningsrad, med korrekt Topp-klausul. Standard p3 §3.1; Topp p1 §1.1.
+B-001 golden gate: 116/116 fokuserte; 2001/2001 full suite; tsc/lint/build/syntetisk HTTP/PDF PASS før B-002.
+B-002: 72/72 fokuserte; targeted audit PASS; sluttvalideringen nedenfor gjelder begge.
+B-003: 69/71 i forsøksgruppen; to NYE tester feilet på feil bruk av eksisterende API-kontrakt. Alle 60 eksisterende tester i gruppen bestod. Ingen produksjonsregresjon ble bevist.
+  1. Ugyldig motor/gir-tillegg på Delkasko avvises med exception; den nye testen forventet undefined.
+  2. Ny kundetest sendte string[] for addOns; funksjonen krever ExtractedAddOn[] og leser addOn.name.
+Stoppregelen ble fulgt. Det isolerte B-003-forsøket og dets tre tester er arkivert i B-003-failed-*.patch og fjernet fra prosjektet. Begge berørte filer er hash-verifisert mot siste B-002-checkpoint. Ingen vellykket endring gikk tapt.
+B-004–B-007 ble ikke startet. Fem av sju Wave 1 P1-signaturer gjenstår. Full Wave 1-gate kan derfor ikke godkjennes.
+
+WAVE 2
+Kvalifisert delmengde etter en grønn Wave 1-gate: B-008, B-009, B-010, B-011, B-012, B-013, B-014, B-016.
+Forsøkt 0, PASS 0, P1 lukket 0. Alle avventer Wave 1.
+B-015, B-017, B-018, B-019, B-020, B-021 og B-022 krever uavklart mapping/canonical review og er urørt. Storebrand Reise/overnatting er ikke implementert.
+Wave 3 er ikke startet.
+
+SLUTTVALIDERING AV BEVARTE ENDRINGER
+node --test tests/*.test.mjs: 2004/2004 PASS (1996 eksisterende + 8 nye).
+npx tsc --noEmit: PASS.
+npm run lint: PASS.
+npx next build --webpack: PASS.
+node scripts/verify-analysis-http.mjs: PASS, lokal mock-AI og syntetiske PDF-er.
+git diff --check: PASS.
+Første lokale runtime-forsøk møtte sandbox EPERM på 127.0.0.1. Samme kontroll bestod med tillatelse til lokal port; dette var ingen testassert-feil.
+
+KONSOLIDERT MÅLRETTET KILDEREVISJON
+final-targeted-audit.json: PASS for de to bevarte batchene. Ingen målrettet P1 gjenstår i dette delsettet.
+Gjensidige Delkasko/Kasko originaler og Fremtind Hus-originalens SHA-256 er kontrollert og uendret.
+Runtime-katalogtilstander for 204 produkter sammenlignet ved auditens faste dato; kun de tre forventede produktidentitetene er endret. De øvrige 201 er identiske for base, enkelt-tillegg og materialisert produktmodus.
+Dette er avgrensningskontroll og re-audit av rettede påstander, IKKE en ny full 204-produkt kildeaudit eller sertifisering av uløste katalogfunn.
+Alle 892 opprinnelige audit-/triagefiler er byte-uendret.
+Ingen kjent regresjon i den bevarte implementasjonen. B-003-testfeilene er eksplisitt dokumentert og ikke skjult som PASS.
+
+KUNDE/PDF
+Kundens eksplisitte verdier vinner fortsatt. Optional != selected er bevart. Nye tester dekker kildehash, produktnivå, legitim nabodekning, tillegg, sidebytte, egen sammenligning og dokumentforrang.
+Ingen motor-, normaliserings-, extraction-, pris-, UI-, source-manifest- eller API-endringer.
+Ingen nye AI-kall eller virkelige kundedokumenter.
+
+ENDREDE PROSJEKTFILER
+- lib/mc-bobil-gjensidige-storebrand-catalog.ts: B-001 nivåavgrensning.
+- lib/fremtind-hus-catalog.ts: B-002 negativ Standard og positiv Topp med egne kildepunkter.
+- tests/nito-remediation-wave1.test.mjs: 8 nye bevarte regresjoner, 5 for B-001 og 3 for B-002.
+
+REPO STATUS
+M lib/fremtind-hus-catalog.ts
+ M lib/mc-bobil-gjensidige-storebrand-catalog.ts
+?? tests/nito-remediation-wave1.test.mjs
+HEAD uendret; staged=0; arbeidskopien inneholder kun disse vellykkede lokale endringene.
+
+NESTE BATCH / ANBEFALT HANDLING
+B-003. Ved gjenopptak: korriger testoppsettet til eksisterende API-kontrakter (assert.throws ved ugyldig tillegg; korrekt ExtractedAddOn-objekt), kontroller eget kildepunkt §4.9.5 p6 igjen og gjennomfør batchens komplette gate. Ingen delt motorrettelse er dokumentert nødvendig. Ikke hopp til B-004 eller Wave 2 uten B-003 PASS.
+Se resume.json, batch-ledger.csv, B-003-failure.json og final-targeted-audit.json.
+
+EVENING_REMEDIATION_BLOCKED

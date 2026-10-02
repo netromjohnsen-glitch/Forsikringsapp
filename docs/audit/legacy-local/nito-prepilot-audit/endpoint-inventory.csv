@@ -1,0 +1,6 @@
+route,method,purpose,auth_required,authorization,customer_data,external_calls,input_validation,rate_limit,cache_behavior,response_sensitivity,finding_refs
+/,GET,main application,yes,shared signed session,yes in browser result only,no,n/a GET; proxy auth,not applicable,public static page behind proxy; response header behavior depends route,sensitive after auth,SEC-001;PROD-001
+/pilot-access,GET,pilot login,no,n/a,no,no,n/a,not applicable,public static cache,low,SEC-003;PROD-002
+/api/pilot-access,POST,exchange shared code for session,no prior session,same-origin + shared code,secret candidate only,no,JSON/type/maxLength via verifier; no confirmed rate limit,unverified/none,private no-store,authentication,SEC-001;SEC-002
+/api/analyze,POST,manual/PDF analysis,yes,shared signed session + same-origin,yes,OpenAI for PDF/semantic,"strict form fields, 25 MiB aggregate, file/page/text/product/time/concurrency/schema limits; no confirmed edge rate limit",unverified/none,private no-store; streaming no-store,high,SEC-002;SEC-004;SEC-006
+/api/analysis-trace,POST,temporary structural client receipt,yes and runtime flag,session + same-origin + signed ticket,structural metadata only by schema,no,256 KiB/256 events/5s/closed schema/replay map,not applicable,private no-store,internal diagnostics,SEC-007

@@ -1,0 +1,1124 @@
+==================================================
+702 – END-OF-AUDIT INTEGRITY RESULT
+==================================================
+
+Return:
+
+REPO_INTEGRITY =
+UNCHANGED
+CHANGED
+INCONCLUSIVE.
+
+UNCHANGED requires:
+
+- HEAD identical
+- staged state identical
+- tracked diff fingerprint identical
+- untracked fingerprint identical
+- no project file written by audit.
+
+Temporary /tmp files do not count as repo changes.
+
+==================================================
+703 – INTEGRITY FAILURE
+==================================================
+
+If:
+
+REPO_INTEGRITY = CHANGED
+
+STOP.
+
+Do not reset/revert/clean.
+
+Return:
+
+SOURCE_CATALOG_AUDIT_INTEGRITY_FAILURE
+
+with exact changed paths and observed operation if known.
+
+==================================================
+704 – OUTPUT DIRECTORY VALIDATION
+==================================================
+
+Verify:
+
+/tmp/source-catalog-completeness-audit/
+
+exists and contains all required audit outputs.
+
+Required:
+
+- audit-summary.md
+- audit.json
+- product-ledger.csv
+- addon-ledger.csv
+- gap-findings.csv
+- source-fact-inventory.csv
+- family-summary.csv
+- root-cause-candidates.csv
+- manual-review.md
+
+Also include if created:
+
+- family-semantic-map.csv
+- source-package-summary.csv
+- source-research-queue.csv
+- remediation-batches.csv
+- unsupported-catalog-facts.csv.
+
+==================================================
+705 – OUTPUT PARSE VALIDATION
+==================================================
+
+Validate:
+
+- audit.json parses
+- every CSV parses
+- no duplicate finding IDs
+- no duplicate exact product ledger identities
+- no unexplained missing product identity
+- root-cause references resolve
+- remediation-batch references resolve.
+
+==================================================
+706 – OUTPUT CROSS-CHECK
+==================================================
+
+Counts in:
+
+audit-summary.md
+audit.json
+product-ledger.csv
+addon-ledger.csv
+family-summary.csv
+gap-findings.csv
+
+must reconcile.
+
+If not:
+
+fix TEMPORARY AUDIT OUTPUT only.
+
+Do not modify project.
+
+==================================================
+707 – AUDIT JSON REQUIRED TOP-LEVEL STRUCTURE
+==================================================
+
+Include at minimum:
+
+metadata
+repo_baseline
+catalog_counts
+source_counts
+methodology
+audit_method_result
+product_coverage
+addon_coverage
+source_coverage
+family_results
+provider_diagnostics
+scope_diagnostics
+positive_controls
+blindspot_validation
+findings
+root_causes
+source_package_gaps
+source_conflicts
+canonical_model_gaps
+presentation_gaps
+unsupported_catalog_claims
+remediation_batches
+source_research_queue
+manual_review
+quality_self_check
+repo_integrity
+global_catalog_status
+catalog_pilot_gate
+limitations
+recommendation.
+
+==================================================
+708 – PRODUCT LEDGER REQUIRED IDENTITY
+==================================================
+
+Every product ledger row must preserve:
+
+providerId
+insuranceType
+agreementScope
+productId
+version
+
+or exact equivalent runtime identity.
+
+Display name alone is insufficient.
+
+==================================================
+709 – PRODUCT LEDGER STATUS
+==================================================
+
+Every audited active product must have:
+
+completeness_status
+source_support_status
+catalog_product_status.
+
+No blank final status.
+
+==================================================
+710 – ADD-ON LEDGER STATUS
+==================================================
+
+Every active add-on/component must have equivalent final status.
+
+==================================================
+711 – MATERIAL FINDING EVIDENCE COMPLETENESS
+==================================================
+
+Every P0/P1 finding must have:
+
+source evidence
+catalog evidence
+exact applicability
+manual validation
+confidence
+root-cause candidate or explicit UNKNOWN
+remediation batch or explicit REVIEW_REQUIRED.
+
+==================================================
+712 – UNSUPPORTED CLAIM EVIDENCE
+==================================================
+
+Every:
+
+CATALOG_FACT_NOT_SUPPORTED_BY_APPLICABLE_SOURCE
+
+candidate classified P0/P1 must prove that the complete applicable local
+source package was checked.
+
+Absence from one document is insufficient.
+
+==================================================
+713 – MISSING FACT EVIDENCE
+==================================================
+
+Every:
+
+SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG
+
+P0/P1 finding must prove:
+
+- source applies
+- fact is material
+- no equivalent catalog representation exists
+- no inheritance/component already represents it
+- it is not customer-specific.
+
+==================================================
+714 – TOO-COARSE EVIDENCE
+==================================================
+
+Every P0/P1:
+
+CATALOG_FACT_TOO_COARSE
+
+must identify the exact material dimensions lost.
+
+Do not merely say:
+
+"full terms contain more detail."
+
+==================================================
+715 – STRUCTURAL GAP EVIDENCE
+==================================================
+
+Every material:
+
+STRUCTURAL_MAPPING_GAP
+
+must explain why current structure impairs advisor comparison.
+
+==================================================
+716 – CANONICAL GAP EVIDENCE
+==================================================
+
+Every material:
+
+CANONICAL_KEY_MISSING
+
+or:
+
+CANONICAL_STRUCTURE_INSUFFICIENT
+
+must explain why existing structures cannot safely preserve semantics.
+
+==================================================
+717 – SOURCE RESEARCH EVIDENCE
+==================================================
+
+Every:
+
+SOURCE_RESEARCH_REQUIRED
+
+item must explain what material question cannot be answered from local
+official corpus.
+
+==================================================
+718 – SOURCE CONFLICT EVIDENCE
+==================================================
+
+Every source conflict must contain:
+
+both applicable sources
+conflicting semantic values
+version/date/applicability status
+reason it cannot safely be resolved.
+
+==================================================
+719 – P0 FINAL REVIEW
+==================================================
+
+Before final report:
+
+manually review every P0 one final time.
+
+If evidence chain is not strong:
+
+downgrade to:
+
+P1
+or
+REVIEW.
+
+No speculative P0.
+
+==================================================
+720 – P1 FINAL REVIEW
+==================================================
+
+Likewise manually verify every P1.
+
+P1 should represent a real pre-pilot correctness/completeness action.
+
+==================================================
+721 – P2/P3 SANITY REVIEW
+==================================================
+
+Sample P2/P3 to ensure:
+
+- low-value details are not being inflated
+- customer-specific values are not treated as gaps
+- provider-specific details are not forced symmetric.
+
+==================================================
+722 – NO-FINDING SANITY REVIEW
+==================================================
+
+Deep-review several products with:
+
+NO_MATERIAL_GAP_FOUND.
+
+Purpose:
+
+detect false reassurance.
+
+==================================================
+723 – FAMILY ZERO-GAP REVIEW
+==================================================
+
+If an entire family reports zero gaps:
+
+deep-review at least one additional rich/top product in that family before
+finalizing.
+
+==================================================
+724 – PROVIDER ZERO-GAP REVIEW
+==================================================
+
+If one provider reports zero gaps across many products:
+
+inspect at least several source-rich products before accepting.
+
+Again:
+
+this evaluates OUR implementation, not provider.
+
+==================================================
+725 – POSITIVE CONTROL FINAL REVIEW
+==================================================
+
+Revisit:
+
+Hund
+Bobil
+Båt
+MC.
+
+For each, answer:
+
+Did source-content-first review explain the manually observed asymmetry?
+
+YES / PARTIALLY / NO.
+
+==================================================
+726 – BOBIL FINAL CONTROL
+==================================================
+
+For Bobil, report representative outcomes for:
+
+- totalskade/new-value
+- maskinskade
+- fukt
+- feriegaranti/mobility.
+
+Do not force gaps.
+
+==================================================
+727 – BÅT FINAL CONTROL
+==================================================
+
+For Båt, report representative outcomes for:
+
+- totalskade/new boat
+- motor/maskinskade
+- ferieavbrudd
+- equipment/løsøre
+- opplagsutstyr
+- accident.
+
+==================================================
+728 – MC FINAL CONTROL
+==================================================
+
+For MC, report representative outcomes for:
+
+- maskinskade
+- totalskade
+- parkert MC
+- rental
+- key
+- roadside assistance.
+
+==================================================
+729 – HUND FINAL CONTROL
+==================================================
+
+For Hund, report representative outcomes for:
+
+- veterinary sum semantics
+- deductible
+- medicine/dental/rehab
+- life/death
+- age
+- provider-specific structure.
+
+==================================================
+730 – OTHER FAMILY FINAL CONTROLS
+==================================================
+
+For each remaining family include at least one representative source→catalog
+finding or verified no-gap example.
+
+This proves all families received meaningful review.
+
+==================================================
+731 – BIL FINAL CONTROL
+==================================================
+
+Report representative audit outcome for at least:
+
+- Maskinskade or totalskade
+- mobility
+- one sum/deductible.
+
+==================================================
+732 – HUS FINAL CONTROL
+==================================================
+
+Report representative outcome for:
+
+- water/wet-room/related structure
+- one major limitation
+- one sum/deductible/service where documented.
+
+==================================================
+733 – INNBO FINAL CONTROL
+==================================================
+
+Report representative outcome for:
+
+- uhell
+- valuables/bicycle or sum
+- liability/legal/cyber where documented.
+
+==================================================
+734 – REISE FINAL CONTROL
+==================================================
+
+Report representative outcome for:
+
+- duration
+- cancellation/medical
+- baggage/delay
+- one numeric limit.
+
+==================================================
+735 – SNØSCOOTER FINAL CONTROL
+==================================================
+
+Report representative outcome for:
+
+- equipment
+- rescue
+- accident
+- season/geography or deductible.
+
+==================================================
+736 – CAMPINGVOGN FINAL CONTROL
+==================================================
+
+Report representative outcome for:
+
+- moisture
+- interrupted holiday
+- contents/equipment
+- awning/pests where documented.
+
+==================================================
+737 – TILHENGER FINAL CONTROL
+==================================================
+
+Report representative outcome for:
+
+- Kasko
+- equipment
+- fire/theft/nature
+- legal expenses.
+
+==================================================
+738 – KATT FINAL CONTROL
+==================================================
+
+Report representative outcome for:
+
+- veterinary sum
+- deductible
+- medicine/dental/rehab
+- life/death
+- age/waiting period.
+
+==================================================
+739 – SOURCE PACKAGE FINAL MATRIX
+==================================================
+
+Produce final matrix for all actual:
+
+provider × insurance family
+
+packages.
+
+Columns:
+
+Provider
+Family
+Active products
+Source records
+Artifacts
+Readability
+Integrity
+Applicability
+Source readiness
+Research required
+Material notes.
+
+==================================================
+740 – PRODUCT STATUS FINAL DISTRIBUTION
+==================================================
+
+Report counts:
+
+READY
+READY_WITH_MINOR_GAPS
+REMEDIATION_REQUIRED
+REVIEW_REQUIRED
+SOURCE_INSUFFICIENT.
+
+==================================================
+741 – ADD-ON STATUS FINAL DISTRIBUTION
+==================================================
+
+Same.
+
+==================================================
+742 – GLOBAL P0/P1 DISTRIBUTION
+==================================================
+
+Report P0/P1 by:
+
+family
+provider
+root-cause layer
+remediation batch.
+
+No insurer ranking language.
+
+==================================================
+743 – FALSE UNKNOWN COUNT
+==================================================
+
+Report number of verified material cases where:
+
+source contains fact
+
+but catalog would otherwise produce an honest-looking unknown.
+
+Call these:
+
+VERIFIED_CATALOG_FALSE_UNKNOWNS
+
+for audit purposes.
+
+==================================================
+744 – TOO-COARSE COUNT
+==================================================
+
+Report verified material cases where:
+
+catalog knows parent concept
+
+but misses important dimensions.
+
+==================================================
+745 – UNSUPPORTED CLAIM COUNT
+==================================================
+
+Report verified material catalog claims lacking sufficient applicable source
+support.
+
+==================================================
+746 – SEMANTIC MISMATCH COUNT
+==================================================
+
+Report verified source/catalog semantic mismatches.
+
+==================================================
+747 – SOURCE INSUFFICIENCY COUNT
+==================================================
+
+Report products/add-ons whose material completeness cannot be judged from
+local corpus.
+
+==================================================
+748 – SOURCE CONFLICT COUNT
+==================================================
+
+Report unresolved material source conflicts.
+
+==================================================
+749 – CANONICAL GAP COUNT
+==================================================
+
+Report material concepts requiring canonical/model review.
+
+==================================================
+750 – PRESENTATION-ONLY COUNT
+==================================================
+
+Report facts correctly modeled but inadequately exposed in product comparison.
+
+==================================================
+751 – CUSTOMER-MODE IMPACT COUNT
+==================================================
+
+Report material findings classified:
+
+LIKELY_SHARED_WITH_CUSTOMER_MODE.
+
+These deserve special remediation regression later.
+
+==================================================
+752 – DATA-ONLY FIX COUNT
+==================================================
+
+Report material findings likely solvable with existing canonical structures
+and exact source-backed catalog data.
+
+==================================================
+753 – SHARED-CODE FIX COUNT
+==================================================
+
+Report root causes requiring shared code change.
+
+==================================================
+754 – SOURCE-RESEARCH COUNT
+==================================================
+
+Report source packages/products requiring new research.
+
+==================================================
+755 – ARCHITECTURE COUNT
+==================================================
+
+Report root causes requiring architecture review.
+
+==================================================
+756 – REMEDIATION LEVERAGE
+==================================================
+
+For each proposed batch estimate:
+
+number of material findings addressed
+
+and
+
+number of products affected.
+
+This helps us spend Codex budget efficiently.
+
+==================================================
+757 – RECOMMENDED FIRST REMEDIATION BATCH
+==================================================
+
+Identify the smallest/highest-leverage safe first batch.
+
+Do not execute.
+
+It should normally target:
+
+verified P0/P1
+
+with:
+
+strong source evidence
+existing canonical support
+low architecture risk.
+
+==================================================
+758 – DO NOT MIX RESEARCH AND FIX
+==================================================
+
+A future remediation batch should not silently research new sources while
+editing catalog unless explicitly authorized.
+
+Keep:
+
+source research
+
+and:
+
+source-backed implementation
+
+traceable.
+
+==================================================
+759 – RECOMMENDED ARCHITECTURE QUESTIONS
+==================================================
+
+If architecture review is needed, phrase exact questions.
+
+Example:
+
+"How should annual and per-event limits coexist in the canonical value
+model?"
+
+not:
+
+"Improve canonical architecture."
+
+==================================================
+760 – RECOMMENDED SOURCE RESEARCH QUESTIONS
+==================================================
+
+If source research is needed, phrase exact target.
+
+Example:
+
+"Find current official full terms for Provider X / MC / product Y because
+local IPID documents inclusion but not material age/deductible rules."
+
+==================================================
+761 – RECOMMENDED PRESENTATION QUESTIONS
+==================================================
+
+If presentation review is needed, phrase exact issue.
+
+Example:
+
+"Catalog contains both feriegaranti and leiebil child mechanisms; determine
+whether product UI should show them under shared Mobilitet parent."
+
+==================================================
+762 – AUDIT SUCCESS DOES NOT REQUIRE ZERO FINDINGS
+==================================================
+
+A successful audit can find many problems.
+
+Success means:
+
+we now know what is actually source-backed, missing, unsupported or
+ambiguous.
+
+==================================================
+763 – CORRECTNESS BEFORE COSMETICS
+==================================================
+
+Final recommendation should prioritize:
+
+source truth
+semantic correctness
+catalog completeness
+customer-mode safety
+
+before UI polish.
+
+==================================================
+764 – SECURITY ACTIONS PRESERVED
+==================================================
+
+The existing NITO security/GDPR audit actions remain pending after this
+correctness work.
+
+Do not lose them.
+
+==================================================
+765 – PILOT ORDER
+==================================================
+
+Recommended overall sequence after this audit should be:
+
+1. Human review P0/P1
+2. Source research if material
+3. Correct catalog/canonical gaps
+4. Targeted source-to-catalog re-audit
+5. Product-comparison bulk audit
+6. Full regression
+7. Human advisor spot checks
+8. Security/GDPR remediation
+9. Final NITO pilot gate.
+
+Adjust only if audit evidence requires architecture review earlier.
+
+==================================================
+766 – PERSON INSURANCE ORDER
+==================================================
+
+Person insurance remains AFTER current pilot/privacy architecture work.
+
+Do not let this audit expand scope.
+
+==================================================
+767 – BUDGET CONSERVATION
+==================================================
+
+Do not spend reasoning on P3 wording details while P0/P1 coverage remains.
+
+==================================================
+768 – EARLY MATERIAL FINDING HANDLING
+==================================================
+
+Even if severe findings appear early:
+
+continue read-only audit across all products unless:
+
+repo integrity fails
+source corpus becomes unusable
+or task becomes technically impossible.
+
+We need the whole gap map before fixing.
+
+==================================================
+769 – NO EARLY FIX
+==================================================
+
+Do not stop midway to fix a P0.
+
+Record it and continue.
+
+==================================================
+770 – NO EARLY DECLARATION
+==================================================
+
+Do not declare global root cause after one family.
+
+Wait for cross-family evidence.
+
+==================================================
+771 – FAMILY COMPLETION CHECKPOINT
+==================================================
+
+After each family internally record:
+
+products accounted
+add-ons accounted
+source packages accounted
+candidate findings
+deep reviews completed.
+
+==================================================
+772 – FINAL FAMILY COMPLETION
+==================================================
+
+Audit cannot be COMPLETE unless every in-scope family checkpoint is complete.
+
+==================================================
+773 – PARTIAL AUDIT REPORT
+==================================================
+
+If unable to finish all families:
+
+return useful completed outputs and exact remaining scope.
+
+Do not throw away partial work.
+
+==================================================
+774 – PARTIAL AUDIT NEXT STEP
+==================================================
+
+For PARTIAL status recommend continuing audit, not remediation, unless a
+critical security/integrity issue requires otherwise.
+
+==================================================
+775 – AUDIT BLOCKED
+==================================================
+
+BLOCKED should be rare.
+
+Examples:
+
+catalog cannot be enumerated
+source artifacts inaccessible/corrupt at scale
+repo integrity changed
+critical tooling failure prevents evidence review.
+
+==================================================
+776 – SOURCE RESEARCH REQUIRED IS NOT BLOCKED
+==================================================
+
+Audit can still complete and conclude:
+
+SOURCE_RESEARCH_REQUIRED
+
+for portions of catalog.
+
+==================================================
+777 – ARCHITECTURE REVIEW REQUIRED IS NOT BLOCKED
+==================================================
+
+Likewise audit can complete while remediation requires architecture review.
+
+==================================================
+778 – FINAL AUDIT STATUS
+==================================================
+
+Use:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT =
+COMPLETE
+PARTIAL
+BLOCKED.
+
+Separately:
+
+GLOBAL_CATALOG_STATUS =
+READY
+READY_WITH_MINOR_GAPS
+REMEDIATION_REQUIRED
+ARCHITECTURE_REVIEW_REQUIRED
+SOURCE_RESEARCH_REQUIRED.
+
+And:
+
+CATALOG_PILOT_GATE =
+READY
+READY_WITH_MINOR_GAPS
+REMEDIATION_REQUIRED
+ARCHITECTURE_REVIEW_REQUIRED
+SOURCE_RESEARCH_REQUIRED.
+
+==================================================
+779 – RECOMMENDATION PRECEDENCE
+==================================================
+
+If material P0/P1 catalog gaps are source-backed and fixable:
+
+REMEDIATION_REQUIRED.
+
+If architecture prevents safe fix:
+
+ARCHITECTURE_REVIEW_REQUIRED.
+
+If evidence package prevents determining material truth:
+
+SOURCE_RESEARCH_REQUIRED.
+
+Explain mixed states.
+
+==================================================
+780 – FINAL TERMINAL SUMMARY
+==================================================
+
+Return a concise but sufficiently detailed Norwegian summary.
+
+Use exactly these headings:
+
+SOURCE_CATALOG_COMPLETENESS_AUDIT
+
+VERSION
+
+SCOPE
+
+AUDIT METHOD
+
+PRODUCT COVERAGE
+
+ADD-ON COVERAGE
+
+SOURCE COVERAGE
+
+BLINDSPOT VALIDATION
+
+GLOBAL CATALOG STATUS
+
+CATALOG PILOT GATE
+
+FAMILY RESULTS
+
+P0 FINDINGS
+
+P1 FINDINGS
+
+P2 / P3 SUMMARY
+
+VERIFIED CATALOG FALSE UNKNOWNS
+
+TOO-COARSE FACTS
+
+UNSUPPORTED CATALOG CLAIMS
+
+SEMANTIC MISMATCHES
+
+POSITIVE CONTROLS
+
+SOURCE PACKAGE GAPS
+
+SOURCE CONFLICTS
+
+CANONICAL MODEL GAPS
+
+PRESENTATION GAPS
+
+ROOT CAUSE CANDIDATES
+
+PDF / CUSTOMER IMPACT
+
+REMEDIATION BATCHES
+
+SOURCE RESEARCH QUEUE
+
+DEEP REVIEW
+
+AUDIT QUALITY CHECK
+
+REPO INTEGRITY
+
+OUTPUT FILES
+
+LIMITATIONS
+
+RECOMMENDATION
+
+NEXT STEP
+
+==================================================
+781 – VERSION REPORT
+==================================================
+
+Include:
+
+branch
+HEAD
+working tree state
+catalog fingerprint
+source corpus fingerprint
+audit timestamp/run ID.
+
+==================================================
+782 – SCOPE REPORT
+==================================================
+
+Include actual:
+
+families
+providers
+scopes
+products
+eligible products
+add-ons/components.
+
+==================================================
+783 – AUDIT METHOD REPORT
+==================================================
+
+Describe actual methodology, not merely prompt intent.
+
+Especially confirm whether source content was inspected independently of
+existing canonical facts.
+
+==================================================
+784 – PRODUCT COVERAGE REPORT
+==================================================
+
+Report:
+
+all catalog products
+active/current products
+audited products
+historical/deprioritized products
+unexplained skipped.
+
+==================================================
+785 – ADD-ON COVERAGE REPORT
+==================================================
+
+Same.
+
+==================================================
+786 – SOURCE COVERAGE REPORT
+==================================================
+
+Report:
+
+source records
+artifacts
+unique hashes
+parsed
+deduplicated
+unreadable
+integrity failures
+ambiguous applicability.
+
+==================================================
+787 – BLINDSPOT REPORT
+==================================================
+
+Answer:
+
+Did we confirm the comparison-only audit blindspot?
+
+YES
+PARTIALLY
+NO
+INCONCLUSIVE.
+
+Explain with actual source-backed examples.
+
+==================================================
+788 – GLOBAL STATUS REPORT
+==================================================
+
+State one exact status.
+
+==================================================
+789 – PILOT GATE REPORT

@@ -1,0 +1,395 @@
+{
+  "head": "e8b7acb4dc9bed9cbcc1b80e691b78de39158c01",
+  "methods": {
+    "raw": "Original audit script changed only outDir; original baseline artifacts unchanged.",
+    "visibility": "Same detector with two visibility corrections: omit hierarchy labels hidden by group.showHeading/group.hiddenRowLabels; do not call a term included-looking unless actual text contains ✓ Inkludert and role is coverage. No semantic findings waived.",
+    "before": "Visibility detector executed against git HEAD module snapshot in temp; node_modules reused through temp symlink; baseline matches original HEAD.",
+    "manualReview": "Original runner carries historical manual-review note. No new human review of 20+12+8+5+9 samples is asserted for this rerun."
+  },
+  "paths": {
+    "before": "/private/tmp/forsikringsassistent-product-audit/product-comparison-audit.json",
+    "after": "/private/tmp/product-hardening-audit-after/product-comparison-audit.json",
+    "beforeVisible": "/private/tmp/product-hardening-audit-before-visible/product-comparison-audit.json",
+    "afterVisible": "/private/tmp/product-hardening-audit-after-visible/product-comparison-audit.json"
+  },
+  "currentTrackedFingerprint": "d212a2e81caa7d4a9915a7145f2303e3f744db4a8440a46a631070fbb5a9adda",
+  "afterFingerprint": "d212a2e81caa7d4a9915a7145f2303e3f744db4a8440a46a631070fbb5a9adda",
+  "productionInputUnchanged": true,
+  "identicalMatrix": {
+    "before": true,
+    "after": true,
+    "beforeVisible": true,
+    "afterVisible": true
+  },
+  "metrics": {
+    "before": {
+      "planned_executions": 93,
+      "completed_executions": 93,
+      "failed_executions": 0,
+      "primary_comparisons": 75,
+      "control_executions": 18,
+      "rendered_facts": 7907,
+      "unknown_cells": 2261,
+      "unique_unknown_signatures": 1648,
+      "provider_specific_details": 81,
+      "flag_occurrences": 522,
+      "unique_issue_signatures": 156,
+      "reason_code_distribution": {
+        "CUSTOMER_SPECIFIC_REFERENCE": 120,
+        "DUPLICATE_DISPLAY_LABEL": 264,
+        "INTERNAL_LABEL_LEAK": 45,
+        "OPTIONAL_INCLUDED_CONFLICT": 14,
+        "PARENT_CONTAINS_CHILD_CANDIDATE": 4,
+        "POSSIBLE_DUPLICATE_CONCEPT": 7,
+        "POSSIBLE_EXPLICIT_UNAVAILABLE_MISCLASSIFICATION": 4,
+        "PROVIDER_SPECIFIC_NOT_COMPARABLE": 53,
+        "SAME_CONCEPT_DIFFERENT_STRUCTURE": 4,
+        "STATUS_TEXT_CONTRADICTION": 7
+      },
+      "family_distribution": {
+        "Bil": 80,
+        "Bobil": 32,
+        "Campingvogn": 111,
+        "Hus": 32,
+        "Innbo": 23,
+        "MC": 40,
+        "Reise": 20,
+        "Snøscooter": 112,
+        "Tilhenger": 72
+      },
+      "pdf_customer_relevance": {
+        "LIKELY_SHARED": 40,
+        "PRODUCT_MODE_ONLY": 482
+      },
+      "unknown_classification_distribution": {
+        "CUSTOMER_SPECIFIC_VALUE_NOT_EXPECTED": 82,
+        "INSUFFICIENT_EVIDENCE": 1016,
+        "LIKELY_TRUE_UNKNOWN": 236,
+        "PROVIDER_SPECIFIC_COUNTERPART_NOT_REQUIRED": 658
+      },
+      "network_requests": 0,
+      "ai_calls": 0,
+      "pdf_operations": 0,
+      "runtime_web_requests": 0,
+      "provenanceLinks": 6349,
+      "provenanceAnomalies": 0,
+      "uiCrossChecks": 10,
+      "determinism": 10,
+      "sideSwaps": 9,
+      "sameProductControls": [
+        {
+          "id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__tryg__ordinary__bil-kasko__pau25205__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "hus__tryg__ordinary__tryg-hus-ekstra__2026-01-01__vs__tryg__ordinary__tryg-hus-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "innbo__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__vs__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "reise__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__vs__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "snøscooter__tryg__ordinary__tryg-snoscooter-kasko__null__vs__tryg__ordinary__tryg-snoscooter-kasko__null__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "campingvogn__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__vs__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "tilhenger__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__vs__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "mc__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__vs__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "bobil__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__vs__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        }
+      ],
+      "durationMs": 1411.77
+    },
+    "after": {
+      "planned_executions": 93,
+      "completed_executions": 93,
+      "failed_executions": 0,
+      "primary_comparisons": 75,
+      "control_executions": 18,
+      "rendered_facts": 7906,
+      "unknown_cells": 2262,
+      "unique_unknown_signatures": 1649,
+      "provider_specific_details": 81,
+      "flag_occurrences": 444,
+      "unique_issue_signatures": 135,
+      "reason_code_distribution": {
+        "CUSTOMER_SPECIFIC_REFERENCE": 106,
+        "DUPLICATE_DISPLAY_LABEL": 264,
+        "PARENT_CONTAINS_CHILD_CANDIDATE": 4,
+        "POSSIBLE_DUPLICATE_CONCEPT": 7,
+        "PROVIDER_SPECIFIC_NOT_COMPARABLE": 53,
+        "SAME_CONCEPT_DIFFERENT_STRUCTURE": 4,
+        "STATUS_TEXT_CONTRADICTION": 6
+      },
+      "family_distribution": {
+        "Bil": 80,
+        "Bobil": 32,
+        "Campingvogn": 96,
+        "Hus": 28,
+        "Innbo": 23,
+        "MC": 40,
+        "Reise": 20,
+        "Snøscooter": 69,
+        "Tilhenger": 56
+      },
+      "pdf_customer_relevance": {
+        "LIKELY_SHARED": 21,
+        "PRODUCT_MODE_ONLY": 423
+      },
+      "unknown_classification_distribution": {
+        "CUSTOMER_SPECIFIC_VALUE_NOT_EXPECTED": 73,
+        "INSUFFICIENT_EVIDENCE": 1025,
+        "LIKELY_TRUE_UNKNOWN": 236,
+        "PROVIDER_SPECIFIC_COUNTERPART_NOT_REQUIRED": 659
+      },
+      "network_requests": 0,
+      "ai_calls": 0,
+      "pdf_operations": 0,
+      "runtime_web_requests": 0,
+      "provenanceLinks": 6348,
+      "provenanceAnomalies": 0,
+      "uiCrossChecks": 10,
+      "determinism": 10,
+      "sideSwaps": 9,
+      "sameProductControls": [
+        {
+          "id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__tryg__ordinary__bil-kasko__pau25205__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "hus__tryg__ordinary__tryg-hus-ekstra__2026-01-01__vs__tryg__ordinary__tryg-hus-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "innbo__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__vs__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "reise__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__vs__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "snøscooter__tryg__ordinary__tryg-snoscooter-kasko__null__vs__tryg__ordinary__tryg-snoscooter-kasko__null__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "campingvogn__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__vs__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "tilhenger__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__vs__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "mc__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__vs__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "bobil__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__vs__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        }
+      ],
+      "durationMs": 1428.14
+    },
+    "beforeVisible": {
+      "planned_executions": 93,
+      "completed_executions": 93,
+      "failed_executions": 0,
+      "primary_comparisons": 75,
+      "control_executions": 18,
+      "rendered_facts": 7907,
+      "unknown_cells": 2261,
+      "unique_unknown_signatures": 1648,
+      "provider_specific_details": 81,
+      "flag_occurrences": 522,
+      "unique_issue_signatures": 156,
+      "reason_code_distribution": {
+        "CUSTOMER_SPECIFIC_REFERENCE": 120,
+        "DUPLICATE_DISPLAY_LABEL": 264,
+        "INTERNAL_LABEL_LEAK": 45,
+        "OPTIONAL_INCLUDED_CONFLICT": 14,
+        "PARENT_CONTAINS_CHILD_CANDIDATE": 4,
+        "POSSIBLE_DUPLICATE_CONCEPT": 7,
+        "POSSIBLE_EXPLICIT_UNAVAILABLE_MISCLASSIFICATION": 4,
+        "PROVIDER_SPECIFIC_NOT_COMPARABLE": 53,
+        "SAME_CONCEPT_DIFFERENT_STRUCTURE": 4,
+        "STATUS_TEXT_CONTRADICTION": 7
+      },
+      "family_distribution": {
+        "Bil": 80,
+        "Bobil": 32,
+        "Campingvogn": 111,
+        "Hus": 32,
+        "Innbo": 23,
+        "MC": 40,
+        "Reise": 20,
+        "Snøscooter": 112,
+        "Tilhenger": 72
+      },
+      "pdf_customer_relevance": {
+        "LIKELY_SHARED": 40,
+        "PRODUCT_MODE_ONLY": 482
+      },
+      "unknown_classification_distribution": {
+        "CUSTOMER_SPECIFIC_VALUE_NOT_EXPECTED": 82,
+        "INSUFFICIENT_EVIDENCE": 1016,
+        "LIKELY_TRUE_UNKNOWN": 236,
+        "PROVIDER_SPECIFIC_COUNTERPART_NOT_REQUIRED": 658
+      },
+      "network_requests": 0,
+      "ai_calls": 0,
+      "pdf_operations": 0,
+      "runtime_web_requests": 0,
+      "provenanceLinks": 6349,
+      "provenanceAnomalies": 0,
+      "uiCrossChecks": 10,
+      "determinism": 10,
+      "sideSwaps": 9,
+      "sameProductControls": [
+        {
+          "id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__tryg__ordinary__bil-kasko__pau25205__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "hus__tryg__ordinary__tryg-hus-ekstra__2026-01-01__vs__tryg__ordinary__tryg-hus-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "innbo__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__vs__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "reise__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__vs__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "snøscooter__tryg__ordinary__tryg-snoscooter-kasko__null__vs__tryg__ordinary__tryg-snoscooter-kasko__null__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "campingvogn__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__vs__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "tilhenger__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__vs__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "mc__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__vs__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "bobil__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__vs__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        }
+      ],
+      "durationMs": 6434.92
+    },
+    "afterVisible": {
+      "planned_executions": 93,
+      "completed_executions": 93,
+      "failed_executions": 0,
+      "primary_comparisons": 75,
+      "control_executions": 18,
+      "rendered_facts": 7906,
+      "unknown_cells": 2262,
+      "unique_unknown_signatures": 1649,
+      "provider_specific_details": 81,
+      "flag_occurrences": 174,
+      "unique_issue_signatures": 91,
+      "reason_code_distribution": {
+        "CUSTOMER_SPECIFIC_REFERENCE": 106,
+        "PARENT_CONTAINS_CHILD_CANDIDATE": 4,
+        "POSSIBLE_DUPLICATE_CONCEPT": 7,
+        "PROVIDER_SPECIFIC_NOT_COMPARABLE": 53,
+        "SAME_CONCEPT_DIFFERENT_STRUCTURE": 4
+      },
+      "family_distribution": {
+        "Bil": 80,
+        "Bobil": 4,
+        "Campingvogn": 9,
+        "Hus": 27,
+        "Innbo": 21,
+        "MC": 11,
+        "Reise": 6,
+        "Snøscooter": 8,
+        "Tilhenger": 8
+      },
+      "pdf_customer_relevance": {
+        "LIKELY_SHARED": 15,
+        "PRODUCT_MODE_ONLY": 159
+      },
+      "unknown_classification_distribution": {
+        "CUSTOMER_SPECIFIC_VALUE_NOT_EXPECTED": 73,
+        "INSUFFICIENT_EVIDENCE": 1025,
+        "LIKELY_TRUE_UNKNOWN": 236,
+        "PROVIDER_SPECIFIC_COUNTERPART_NOT_REQUIRED": 659
+      },
+      "network_requests": 0,
+      "ai_calls": 0,
+      "pdf_operations": 0,
+      "runtime_web_requests": 0,
+      "provenanceLinks": 6348,
+      "provenanceAnomalies": 0,
+      "uiCrossChecks": 10,
+      "determinism": 10,
+      "sideSwaps": 9,
+      "sameProductControls": [
+        {
+          "id": "bil__tryg__ordinary__bil-kasko__pau25205__vs__tryg__ordinary__bil-kasko__pau25205__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "hus__tryg__ordinary__tryg-hus-ekstra__2026-01-01__vs__tryg__ordinary__tryg-hus-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "innbo__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__vs__tryg__ordinary__tryg-innbo-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "reise__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__vs__tryg__ordinary__tryg-reise-premium__2026-09-20-canonical__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "snøscooter__tryg__ordinary__tryg-snoscooter-kasko__null__vs__tryg__ordinary__tryg-snoscooter-kasko__null__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "campingvogn__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__vs__tryg__ordinary__tryg-campingvogn-campingvogn-ekstra__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "tilhenger__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__vs__tryg__ordinary__tryg-tilhenger-kasko__2026-01-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "mc__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__vs__tryg__ordinary__tryg-mc-mc-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        },
+        {
+          "id": "bobil__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__vs__tryg__ordinary__tryg-bobil-bobil-ekstra__2026-07-01__same-product-control",
+          "differenceCount": 0
+        }
+      ],
+      "durationMs": 5009.39
+    }
+  },
+  "refreshedAt": "2026-09-29T07:06:14.797Z"
+}

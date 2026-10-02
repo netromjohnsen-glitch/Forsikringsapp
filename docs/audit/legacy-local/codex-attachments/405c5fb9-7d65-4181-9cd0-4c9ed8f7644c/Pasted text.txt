@@ -1,0 +1,1000 @@
+NITO_CATALOG_REMEDIATION — CONTROLLED EVENING RUN
+
+MODE:
+IMPLEMENTATION + REGRESSION + TARGETED RE-AUDIT
+
+MODEL:
+GPT-6 Astra
+REASONING:
+Extra High
+
+==================================================
+1 – OBJECTIVE
+==================================================
+
+The completed SOURCE → CATALOG COMPLETENESS AUDIT and subsequent
+NITO_CATALOG_REMEDIATION_TRIAGE are authoritative planning inputs.
+
+This run MAY modify project files.
+
+The goal is to make meaningful, safe remediation progress while the user is
+away.
+
+Implement:
+
+A. WAVE 1 in full, batch-by-batch
+
+THEN, only if Wave 1 passes its complete gate:
+
+B. implementation-ready, source-ready, low/medium-risk Wave 2 batches whose
+dependencies are already satisfied.
+
+Do NOT proceed to Wave 3 in this run.
+
+Do NOT perform unresolved source research.
+
+Do NOT guess.
+
+==================================================
+2 – AUTHORITATIVE INPUTS
+==================================================
+
+Read completed audit from:
+
+/tmp/source-catalog-completeness-audit/
+
+Read completed triage from:
+
+/tmp/source-catalog-remediation-triage/
+
+Especially:
+
+triage-summary.md
+triage.json
+remediation-plan.csv
+remediation-batches.md
+remediation-waves.md
+p1-triage.csv
+root-cause-triage.csv
+source-research-plan.csv
+human-review-queue.csv
+canonical-review-queue.csv
+regression-control-registry.csv
+quality-check.json
+
+Use exact batch definitions and dependencies.
+
+Do not reconstruct the triage from scratch.
+
+==================================================
+3 – BASELINE
+==================================================
+
+Expected branch:
+
+main
+
+Expected starting HEAD:
+
+d3a37985fce4ada65fa2f7a88462d8834e4677af
+
+Expected starting working tree:
+
+CLEAN
+
+Verify before changing anything.
+
+If baseline differs unexpectedly:
+
+STOP.
+
+Do not reset/revert/stash/clean.
+
+==================================================
+4 – PRESERVE AUDIT ARTIFACTS
+==================================================
+
+Do not modify:
+
+/tmp/source-catalog-completeness-audit/
+
+or:
+
+/tmp/source-catalog-remediation-triage/
+
+Treat them as immutable evidence/planning artifacts.
+
+Create run artifacts under:
+
+/tmp/nito-catalog-remediation-evening/
+
+==================================================
+5 – FIRST BATCH
+==================================================
+
+Start with:
+
+B-001
+
+Gjensidige MC Delkasko leie-MC remediation.
+
+Follow the exact batch description in the triage.
+
+B-001 is the golden remediation control.
+
+Do not proceed to B-002 until B-001 independently passes its acceptance gate.
+
+==================================================
+6 – BATCH EXECUTION LOOP
+==================================================
+
+For EACH approved implementation-ready batch:
+
+STEP 1
+Read exact batch definition.
+
+STEP 2
+Verify dependencies are satisfied.
+
+STEP 3
+Verify source readiness.
+
+STEP 4
+Identify exact files and smallest safe change.
+
+STEP 5
+Capture pre-change behavior where required by regression plan.
+
+STEP 6
+Implement ONLY the batch scope.
+
+STEP 7
+Run batch-specific deterministic tests.
+
+STEP 8
+Run required comparison regressions.
+
+STEP 9
+Run targeted source→catalog re-audit for affected scope.
+
+STEP 10
+Verify positive controls / nearby correct behavior.
+
+STEP 11
+Classify:
+
+PASS
+FAIL
+BLOCKED
+REVIEW_REQUIRED.
+
+STEP 12
+Persist result before moving to next batch.
+
+==================================================
+7 – STOP-ON-FAIL
+==================================================
+
+If any batch produces:
+
+test failure
+unexpected regression
+source ambiguity
+scope ambiguity
+canonical ambiguity
+unplanned shared behavior change
+repo integrity problem
+
+STOP the remediation sequence.
+
+Do NOT attempt speculative repair loops across unrelated batches.
+
+Preserve diagnostics and return exact blocker.
+
+==================================================
+8 – NO GUESSING
+==================================================
+
+Never choose a value because it appears likely.
+
+All factual catalog remediation requires applicable source support already
+validated by audit/triage.
+
+If evidence is insufficient:
+
+STOP that batch as:
+
+SOURCE_RESEARCH_REQUIRED
+
+and do not implement it.
+
+==================================================
+9 – WAVE 1
+==================================================
+
+Implement ALL Wave 1 batches that triage marks implementation-ready.
+
+Wave 1 objective:
+
+correct confirmed materially wrong / unsupported catalog assertions with
+strong source evidence and controlled regression scope.
+
+Expected triage scope:
+
+7 batches
+7 P1 signatures.
+
+Use triage files as authority for exact identities.
+
+Do not infer batch IDs from this prompt.
+
+==================================================
+10 – WAVE 1 SEQUENTIAL EXECUTION
+==================================================
+
+Execute Wave 1 sequentially.
+
+No subagents writing project files.
+
+One writer.
+
+This preserves clear regression attribution.
+
+==================================================
+11 – WAVE 1 GATE
+==================================================
+
+After all Wave 1 batches:
+
+run the exact Wave 1 gate defined by triage.
+
+At minimum verify:
+
+- all targeted wrong assertions corrected
+- no targeted P1 remains
+- source provenance remains correct
+- nearby positive controls remain correct
+- product-level applicability remains correct
+- side-swap behavior remains stable where relevant
+- same-product behavior remains stable where relevant
+- targeted source→catalog re-audit PASS
+- relevant automated tests PASS
+- no new P0/P1 introduced in affected scope.
+
+==================================================
+12 – WAVE 1 FAILURE
+==================================================
+
+If Wave 1 gate does NOT pass:
+
+STOP.
+
+Do not proceed to Wave 2.
+
+Return:
+
+WAVE_1_REMEDIATION_BLOCKED
+
+with exact failures.
+
+==================================================
+13 – WAVE 2 ENTRY
+==================================================
+
+Only after:
+
+WAVE_1_GATE = PASS
+
+inspect Wave 2.
+
+Wave 2 contains:
+
+bounded inheritance
+scope
+mapping
+
+remediation.
+
+Do NOT automatically implement all 15 batches.
+
+==================================================
+14 – SAFE WAVE 2 SUBSET
+==================================================
+
+Implement a Wave 2 batch only if ALL are true:
+
+- triage says implementation-ready
+- source readiness = ready
+- no source research dependency
+- no unresolved human-domain dependency
+- no unresolved canonical-review dependency
+- no unresolved mapping-review prerequisite
+- dependencies satisfied
+- complexity <= MEDIUM_CODE
+- risk <= MEDIUM
+- exact regression plan exists
+- implementation does not require broad architecture redesign.
+
+==================================================
+15 – WAVE 2 EXCLUSIONS
+==================================================
+
+Do NOT implement Wave 2 batches classified:
+
+SOURCE_RESEARCH_FIRST
+CANONICAL_REVIEW_FIRST
+MAPPING_REVIEW_FIRST where review is unresolved
+HUMAN_DOMAIN_REVIEW
+ARCHITECTURE
+HIGH risk
+NOT implementation-ready.
+
+Preserve them untouched.
+
+==================================================
+16 – SHARED MAPPING CAUTION
+==================================================
+
+A mapping fix may affect many products.
+
+Before implementation:
+
+enumerate all affected products/facts.
+
+After implementation:
+
+test both intended and non-intended scope.
+
+If blast radius is larger than triage predicted:
+
+STOP before implementation or revert only YOUR current uncommitted batch
+changes if safe and unambiguous.
+
+Do not reset unrelated work.
+
+==================================================
+17 – INHERITANCE CAUTION
+==================================================
+
+For inheritance remediation verify:
+
+base
+middle
+top
+
+as applicable.
+
+A fix is invalid if it corrects the higher level by breaking the base level.
+
+==================================================
+18 – OPTIONALITY
+==================================================
+
+Preserve:
+
+AVAILABLE ≠ SELECTED
+OPTIONAL ≠ INCLUDED.
+
+No remediation may turn optional coverage into customer-selected coverage.
+
+==================================================
+19 – CUSTOMER DOCUMENT PRIORITY
+==================================================
+
+Preserve:
+
+explicit customer PDF fact
+>
+catalog enrichment.
+
+No remediation may cause catalog facts to overwrite explicit customer values.
+
+==================================================
+20 – SOURCE PROVENANCE
+==================================================
+
+Every changed/added material catalog fact must preserve or receive correct
+source provenance.
+
+A value without correct provenance is not a successful remediation.
+
+==================================================
+21 – FALSE UNKNOWN REGRESSION
+==================================================
+
+Where a batch fixes a false unknown:
+
+verify the comparison now communicates the correct source-backed meaning.
+
+Also verify non-applicable peers remain unpopulated.
+
+==================================================
+22 – WRONG POSITIVE REGRESSION
+==================================================
+
+Where a batch removes/corrects unsupported positive information:
+
+verify:
+
+wrong product no longer receives it
+
+AND
+
+correct products retain legitimate coverage.
+
+==================================================
+23 – NUMERIC REGRESSION
+==================================================
+
+For numeric fixes verify:
+
+value
+unit
+period
+subject
+product
+scope
+source.
+
+==================================================
+24 – CANONICAL SAFETY
+==================================================
+
+Do not create new canonical keys unless the exact batch has already passed
+canonical review in triage.
+
+If new canonical design is unexpectedly required:
+
+STOP that batch.
+
+Do not improvise architecture.
+
+==================================================
+25 – REISE OVERNATTING
+==================================================
+
+The Storebrand Reise day-trip/overnight structural issue is a named positive
+control.
+
+Do NOT implement it unless its exact remediation batch is:
+
+review-complete
+implementation-ready
+dependency-complete
+
+in Wave 2.
+
+If implemented, regression must prove:
+
+- Storebrand day trips are represented correctly
+- no false overnight unknown
+- special subcoverage overnight requirements remain distinct
+- side swap preserves meaning
+- no arbitrary free-text UI inference.
+
+==================================================
+26 – USER-OBSERVED CONTROLS
+==================================================
+
+Preserve all named regression controls from triage:
+
+Reise
+Hund
+Bobil
+Båt
+MC.
+
+Do not declare a wave safe if a relevant named control regresses.
+
+==================================================
+27 – TESTS
+==================================================
+
+Run existing relevant tests.
+
+Add focused regression tests where required by each remediation batch.
+
+Tests added during remediation ARE allowed.
+
+Do not rewrite unrelated tests merely to make them pass.
+
+==================================================
+28 – TEST FAILURE
+==================================================
+
+If an existing test conflicts with corrected source truth:
+
+investigate.
+
+Do not automatically change expected value.
+
+Determine whether:
+
+test is stale
+implementation is wrong
+source applicability is wrong.
+
+If uncertain:
+
+STOP.
+
+==================================================
+29 – TARGETED RE-AUDIT
+==================================================
+
+After each batch:
+
+targeted source→catalog verification.
+
+After each wave:
+
+wave-level source→catalog re-audit.
+
+Do NOT rerun the full 204-product audit after every batch.
+
+==================================================
+30 – NO FULL AUDIT UNTIL APPROPRIATE
+==================================================
+
+Do not spend the evening rerunning the entire original 204/204 completeness
+audit unless the triage explicitly requires it at the current gate.
+
+Full audit belongs after the broader remediation program.
+
+==================================================
+31 – WAVE 2 STOP POINT
+==================================================
+
+Continue safe Wave 2 batches sequentially until:
+
+A. all safe implementation-ready Wave 2 batches are complete
+
+OR
+
+B. a batch fails
+
+OR
+
+C. remaining Wave 2 work requires review/research
+
+OR
+
+D. usage/system limit approaches a point where state should be checkpointed.
+
+==================================================
+32 – DO NOT START WAVE 3
+==================================================
+
+ABSOLUTE RULE:
+
+DO NOT START WAVE 3.
+
+Even if Wave 1 and safe Wave 2 complete successfully.
+
+Wave 3 contains 73 batches / 1 035 P1 signatures and requires separate human
+approval before broad catalog expansion.
+
+==================================================
+33 – NO SOURCE RESEARCH
+==================================================
+
+Do not browse the web.
+
+Do not download new insurer terms.
+
+Do not resolve source conflicts by external research.
+
+Preserve research tasks for later.
+
+==================================================
+34 – NO PERSON INSURANCE
+==================================================
+
+Do not work on person insurance.
+
+==================================================
+35 – NO PDF UX
+==================================================
+
+Do not implement the future PDF top section.
+
+==================================================
+36 – NO SECURITY/GDPR
+==================================================
+
+Do not work on:
+
+security headers
+rate limiting
+GDPR documents
+auth
+feedback
+Safari
+deployment hardening.
+
+==================================================
+37 – NO LANDING PAGE
+==================================================
+
+Do not work on website/marketing/landing-page tasks.
+
+==================================================
+38 – NO DEPLOY
+==================================================
+
+Do NOT deploy.
+
+==================================================
+39 – NO RAILWAY
+==================================================
+
+Do not change Railway.
+
+==================================================
+40 – NO ENV
+==================================================
+
+Do not modify .env.local or secrets.
+
+==================================================
+41 – NO CUSTOMER DATA
+==================================================
+
+Use no real customer documents.
+
+==================================================
+42 – NO PUSH
+==================================================
+
+Do not push.
+
+==================================================
+43 – COMMIT POLICY
+==================================================
+
+Do NOT commit automatically.
+
+Keep project changes local for user review.
+
+If multiple batches succeed:
+
+maintain a structured batch ledger so changes remain attributable.
+
+==================================================
+44 – CHANGE LEDGER
+==================================================
+
+Create:
+
+/tmp/nito-catalog-remediation-evening/batch-ledger.csv
+
+Columns:
+
+batch_id
+wave
+status
+files_changed
+tests_added
+tests_run
+targeted_audit
+P1_signatures_targeted
+P1_signatures_resolved
+regressions
+notes.
+
+==================================================
+45 – CHECKPOINT
+==================================================
+
+Create/update:
+
+/tmp/nito-catalog-remediation-evening/resume.json
+
+after every successful batch.
+
+Include:
+
+baseline_head
+current_wave
+completed_batches
+failed_batches
+blocked_batches
+next_batch
+files_changed
+tests_added
+P1_resolved
+remaining_wave_scope
+gate_status.
+
+==================================================
+46 – BEFORE EACH BATCH
+==================================================
+
+Ensure working tree changes correspond only to already successful batches.
+
+If unexplained changes appear:
+
+STOP.
+
+==================================================
+47 – DO NOT DESTROY SUCCESSFUL WORK
+==================================================
+
+If a later batch fails:
+
+do not reset/revert all previous successful remediation.
+
+Preserve successful changes.
+
+Isolate the failed batch if safely possible.
+
+==================================================
+48 – FAILED CURRENT BATCH
+==================================================
+
+If current batch changes can be safely and unambiguously separated from prior
+successful work:
+
+restore only current failed batch changes.
+
+If not:
+
+STOP without destructive cleanup.
+
+Report exact state.
+
+==================================================
+49 – QUALITY CHECKPOINT
+==================================================
+
+After meaningful progress verify:
+
+git diff --check
+
+and audit output consistency.
+
+==================================================
+50 – FINAL TEST SUITE
+==================================================
+
+At the end of the evening run:
+
+run appropriate broad regression suite covering all changed scopes.
+
+Do not claim entire app validated if only targeted tests were run.
+
+==================================================
+51 – FINAL TARGETED AUDIT
+==================================================
+
+Run one consolidated source→catalog recheck across ALL scopes modified in this
+evening run.
+
+Verify no targeted P1 remains.
+
+==================================================
+52 – COMPARISON REGRESSION
+==================================================
+
+For affected families run appropriate:
+
+same-product
+side-swap
+cross-product
+optional/included
+scope
+type/species isolation
+
+checks.
+
+==================================================
+53 – CUSTOMER MODE
+==================================================
+
+For batches triage classifies:
+
+LIKELY_SHARED_WITH_CUSTOMER_MODE
+
+run existing synthetic customer-mode regression if available and appropriate.
+
+No real customer PDFs.
+
+==================================================
+54 – SUCCESS STATUS
+==================================================
+
+Return one:
+
+EVENING_REMEDIATION_COMPLETE
+
+EVENING_REMEDIATION_PARTIAL
+
+EVENING_REMEDIATION_BLOCKED
+
+EVENING_REMEDIATION_INTEGRITY_FAILURE.
+
+==================================================
+55 – COMPLETE MEANING
+==================================================
+
+EVENING_REMEDIATION_COMPLETE means:
+
+Wave 1 PASS
+
+AND
+
+all safe, dependency-complete Wave 2 batches allowed by this prompt were
+implemented and passed.
+
+It does NOT mean entire catalog remediation is complete.
+
+==================================================
+56 – PARTIAL MEANING
+==================================================
+
+Use PARTIAL when:
+
+meaningful safe remediation succeeded
+
+but usage/time/system constraints stopped further allowed work.
+
+Persist exact resume point.
+
+==================================================
+57 – BLOCKED MEANING
+==================================================
+
+Use BLOCKED when:
+
+a batch or wave gate prevents safe continuation.
+
+==================================================
+58 – FINAL REPORT
+==================================================
+
+Report:
+
+STARTING BASELINE
+
+WAVE 1
+- batches attempted
+- batches passed
+- P1 signatures resolved
+- gate result
+
+WAVE 2
+- eligible safe batches
+- attempted
+- passed
+- blocked/skipped and why
+- P1 signatures resolved
+
+TOTAL
+- files changed
+- tests added
+- tests run
+- targeted audits
+- total P1 signatures resolved
+- known regressions
+- unresolved issues
+
+CUSTOMER/PDF IMPACT
+
+REPO STATUS
+
+NEXT BATCH
+
+NEXT RECOMMENDED ACTION.
+
+==================================================
+59 – DO NOT CLAIM PILOT READY
+==================================================
+
+Even if this evening run succeeds:
+
+CATALOG_PILOT_GATE remains:
+
+REMEDIATION_REQUIRED
+
+because Wave 3–5 and final full validation remain.
+
+==================================================
+60 – FINAL REPO STATE
+==================================================
+
+At end report:
+
+HEAD
+working tree
+staged files
+git diff --check
+changed project files.
+
+Expected:
+
+HEAD unchanged
+staged = 0
+
+working tree MAY contain the successful remediation changes.
+
+==================================================
+61 – HUMAN REVIEW
+==================================================
+
+The user will review the result before:
+
+commit
+push
+deploy
+Wave 3.
+
+==================================================
+62 – USAGE
+==================================================
+
+There is substantial remaining usage available.
+
+You may work for an extended period.
+
+Do not stop merely to conserve usage.
+
+But quality > number of batches.
+
+==================================================
+63 – NO SPEED PRESSURE
+==================================================
+
+The user will be away for the evening.
+
+Take the time needed to:
+
+read batch definitions
+make precise edits
+test them
+re-audit them.
+
+Do not rush.
+
+==================================================
+64 – FINAL PRINCIPLE
+==================================================
+
+This is controlled remediation, not bulk mutation.
+
+For every change:
+
+SOURCE EVIDENCE
+→ EXACT SCOPE
+→ SMALLEST SAFE FIX
+→ REGRESSION TEST
+→ TARGETED RE-AUDIT
+→ PASS
+→ CHECKPOINT.
+
+If that chain cannot be completed:
+
+STOP that path.
+
+==================================================
+65 – START
+==================================================
+
+Begin with B-001.
+
+If B-001 passes:
+
+continue sequentially through Wave 1.
+
+If Wave 1 gate passes:
+
+continue only with the safe, implementation-ready, dependency-complete
+subset of Wave 2.
+
+Do not start Wave 3.
+
+Do not commit.
+Do not push.
+Do not deploy.
+
+Work until the allowed scope is complete or a legitimate stop condition is
+reached.

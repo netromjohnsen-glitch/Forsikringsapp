@@ -1,0 +1,1078 @@
+==================================================
+394 – FINAL COUNT RECONCILIATION
+==================================================
+
+Before declaring the audit complete, reconcile all counts from the same
+authoritative runtime/catalog enumeration.
+
+Report:
+
+PRODUCTS
+- total catalog products
+- active/current products
+- product-comparison eligible products
+- historical/inactive products
+- products audited
+- unexplained skipped products
+
+ADD-ONS
+- total active add-ons/components
+- add-ons audited
+- unexplained skipped add-ons
+
+SOURCES
+- applicable source records
+- applicable source artifacts
+- unique artifact hashes
+- artifacts parsed
+- artifacts deduplicated/reused
+- unreadable artifacts
+- ambiguous artifacts
+
+FINDINGS
+- raw candidate facts
+- advisor-relevant facts
+- represented
+- missing
+- too coarse
+- mismapped
+- structural gaps
+- provider-specific
+- customer-specific
+- ambiguous/review
+- not comparison relevant.
+
+Counts must reconcile.
+
+==================================================
+395 – ACTIVE VS HISTORICAL
+==================================================
+
+Do not accidentally report:
+
+204/204 audited
+
+if some of the 204 are explicitly historical/inactive and the audit policy
+treated them differently.
+
+Report exact denominator for:
+
+ALL CATALOG PRODUCTS
+
+and:
+
+ACTIVE/CURRENT PRODUCTS.
+
+Explain treatment of historical products.
+
+==================================================
+396 – PRODUCT COMPARISON ELIGIBILITY
+==================================================
+
+Product-comparison eligibility is not the same thing as current product
+status.
+
+Preserve both concepts separately.
+
+==================================================
+397 – SOURCE FACT DENOMINATOR
+==================================================
+
+Do not claim:
+
+"X % complete"
+
+unless denominator is clearly defined as:
+
+advisor-relevant source facts identified by this audit.
+
+Prefer raw diagnostic counts.
+
+==================================================
+398 – NO FALSE PRECISION
+==================================================
+
+Do not imply the audit has mathematically proven that every meaningful
+sentence in every source has been identified.
+
+The audit is a systematic semantic review with deterministic coverage of
+products/sources plus model-assisted interpretation.
+
+State this limitation.
+
+==================================================
+399 – MANUAL POSITIVE CONTROL COMPARISONS
+==================================================
+
+The following manually observed comparison areas motivated this audit:
+
+- Hund
+- Bobil
+- Båt
+- MC
+
+If local temporary/user-provided comparison text is available to the audit
+environment, it may be used only as a clue for validation.
+
+The original official source remains authoritative.
+
+==================================================
+400 – BOBIL OBSERVATION PATTERN
+==================================================
+
+A manually observed Bobil comparison contained asymmetric detail around
+areas such as:
+
+- totalskade
+- maskinskade
+- fukt
+- feriegaranti/mobilitet.
+
+Do NOT assume any of these are errors.
+
+Independently determine whether applicable sources contain material facts
+that the catalog omits or represents too coarsely.
+
+==================================================
+401 – BÅT OBSERVATION PATTERN
+==================================================
+
+Manual Båt comparisons showed asymmetric depth around areas such as:
+
+- totalskade
+- motor/maskinskade
+- ferieavbrudd
+- opplagsutstyr
+- løsøre
+- jolle/utstyr
+- accident coverage.
+
+Again:
+
+these are search clues, not expected answers.
+
+==================================================
+402 – MC OBSERVATION PATTERN
+==================================================
+
+Manual MC comparison showed large differences in structured detail around:
+
+- maskinskade
+- totalskade
+- parkert MC
+- leie-MC
+- nøkkel
+- veihjelp.
+
+Do not assume missing peer facts exist.
+
+Read peer source.
+
+==================================================
+403 – HUND OBSERVATION PATTERN
+==================================================
+
+Manual Hund testing previously raised concerns about semantically related
+facts being represented differently across providers.
+
+Audit:
+
+source concept
+→ canonical identity
+→ product representation
+
+independently.
+
+==================================================
+404 – CONTROL SUCCESS CRITERION
+==================================================
+
+A control area is successful if the audit can explain the asymmetry as one
+or more of:
+
+CONFIRMED_CATALOG_GAP
+CONFIRMED_TOO_COARSE
+CONFIRMED_STRUCTURAL_GAP
+PROVIDER_SPECIFIC_DETAIL
+CUSTOMER_SPECIFIC
+LEGITIMATE_SOURCE_UNKNOWN
+SOURCE_AMBIGUITY.
+
+"Nothing found because catalog lacks it" is NOT sufficient reasoning.
+
+==================================================
+405 – PEER UNKNOWN INVESTIGATION
+==================================================
+
+For deep-reviewed comparisons, every materially suspicious peer unknown
+should trigger:
+
+exact peer source inspection.
+
+Do not infer from anchor product.
+
+==================================================
+406 – UNKNOWN RESOLUTION RECORD
+==================================================
+
+For each manually/deep-reviewed suspicious unknown record:
+
+visible concept
+product
+source inspected
+source answer
+catalog answer
+classification
+reason.
+
+==================================================
+407 – SOURCE FACT INVENTORY INDEPENDENCE
+==================================================
+
+At least for the 24+ deep-reviewed products, source fact inventory must be
+constructed independently enough that it could discover facts absent from
+the catalog.
+
+This is mandatory.
+
+==================================================
+408 – SOURCE INVENTORY QUALITY
+==================================================
+
+For each deep-reviewed product answer:
+
+Did source review identify at least one concept/dimension not used as a
+search seed from existing catalog?
+
+YES / NO.
+
+NO is not automatically failure, but repeated NO across rich full terms
+should trigger methodology review.
+
+==================================================
+409 – RICH SOURCE CONTROL
+==================================================
+
+Select several long/rich full-terms artifacts and verify the audit does not
+reduce them to only the concepts already present in catalog.
+
+==================================================
+410 – TABLE EXTRACTION CONTROL
+==================================================
+
+For source documents containing comparison/coverage tables:
+
+manually inspect at least representative table sections.
+
+Verify rows/footnotes are included in semantic inventory where material.
+
+==================================================
+411 – FOOTNOTE CONTROL
+==================================================
+
+At least several source footnotes should be inspected where they modify
+coverage.
+
+This protects against:
+
+included*
+
+where * materially restricts the benefit.
+
+==================================================
+412 – EXCLUSION CONTROL
+==================================================
+
+Inspect representative exclusions.
+
+Verify the audit:
+
+- does not ignore material limitation
+- does not turn exclusion into positive coverage
+- does not turn one exclusion into total unavailability unless source says so.
+
+==================================================
+413 – CUSTOMER-SPECIFIC CONTROL
+==================================================
+
+Inspect representative phrases:
+
+"fremgår av forsikringsbeviset"
+"avtalt sum"
+"valgt egenandel"
+"dersom avtalt"
+
+and ensure they are not falsely reported as missing fixed product values.
+
+==================================================
+414 – OPTIONAL CONTROL
+==================================================
+
+Inspect representative:
+
+optional maskinskade
+optional ulykkesdekning
+optional life/death
+optional leiebil/other add-on
+
+across different families.
+
+==================================================
+415 – INHERITANCE CONTROL
+==================================================
+
+Inspect representative hierarchy:
+
+basic → standard → top
+
+where source explicitly supports inheritance.
+
+Verify top product source/catalog completeness includes inherited material
+facts.
+
+==================================================
+416 – NON-INHERITANCE CONTROL
+==================================================
+
+Find at least one product structure where similarly named levels do NOT
+justify automatic inheritance or where applicability differs.
+
+Ensure audit does not infer inheritance from naming.
+
+==================================================
+417 – SCOPE CONTROL
+==================================================
+
+Deep-review at least one non-ordinary agreement scope where active.
+
+Verify exact source applicability.
+
+==================================================
+418 – VERSION CONTROL
+==================================================
+
+Deep-review at least one product/source with explicit version/effective date.
+
+Verify audit uses matching version.
+
+==================================================
+419 – UNKNOWN VERSION CONTROL
+==================================================
+
+Review at least one known source with unknown date/version.
+
+Verify audit preserves uncertainty rather than inventing chronology.
+
+==================================================
+420 – PUBLIC PRODUCT PAGE CONTROL
+==================================================
+
+Where product page contributes material facts:
+
+verify those facts are not treated as weaker merely because they are HTML.
+
+But check consistency with terms/IPID.
+
+==================================================
+421 – FULL TERMS CONTROL
+==================================================
+
+Where full terms contain materially richer facts than IPID:
+
+verify the audit can surface those extra dimensions.
+
+This is central to the known blindspot.
+
+==================================================
+422 – IPID CONTROL
+==================================================
+
+Where IPID contains a product-level inclusion/availability fact absent from
+full-term extraction:
+
+verify the audit does not lose it.
+
+==================================================
+423 – SOURCE PACKAGE SYNTHESIS
+==================================================
+
+The final source inventory for a product should synthesize all applicable
+sources without flattening contradictions.
+
+==================================================
+424 – NO "BEST SOURCE" SHORTCUT
+==================================================
+
+Do not select one source and ignore the others solely for efficiency.
+
+Deduplicate identical content, but inspect materially different applicable
+sources.
+
+==================================================
+425 – SOURCE RECORD APPLICABILITY FIRST
+==================================================
+
+Before semantic extraction:
+
+determine which product(s)/component(s) the source record applies to.
+
+This prevents rich general terms from being incorrectly copied everywhere.
+
+==================================================
+426 – SOURCE SHARING
+==================================================
+
+If identical source bytes apply to multiple products:
+
+extract semantic source inventory once
+
+then apply only documented relevant sections/facts according to product
+architecture.
+
+==================================================
+427 – SECTION APPLICABILITY
+==================================================
+
+A shared document may contain separate sections for:
+
+product levels
+boat types
+vehicle types
+species
+add-ons.
+
+Do not apply whole document uniformly.
+
+==================================================
+428 – PRODUCT MATRIX TABLES
+==================================================
+
+If source contains matrix with checkmarks across product levels:
+
+use matrix to establish product-level availability.
+
+Footnotes still matter.
+
+==================================================
+429 – NARRATIVE PRODUCT DIFFERENCES
+==================================================
+
+If source expresses product-level differences narratively rather than table:
+
+preserve exact applicability.
+
+==================================================
+430 – ADD-ON SOURCE PACKAGE
+==================================================
+
+An add-on may have:
+
+separate terms
+same terms section
+product page only
+IPID reference.
+
+Audit actual evidence path.
+
+==================================================
+431 – SOURCE PACKAGE GAP VS CATALOG GAP
+==================================================
+
+This distinction must be explicit:
+
+SOURCE_PACKAGE_GAP:
+we do not currently possess enough official evidence.
+
+CATALOG_GAP:
+we possess evidence but catalog fails to represent it.
+
+Do not mix them.
+
+==================================================
+432 – SOURCE CONFLICT VS CATALOG ERROR
+==================================================
+
+If sources conflict:
+
+do not blame catalog for remaining conservative unless catalog chose one
+without justification.
+
+==================================================
+433 – CATALOG CONSERVATISM
+==================================================
+
+A conservative unknown can be correct when source is ambiguous.
+
+Completeness does not mean forced certainty.
+
+==================================================
+434 – MATERIAL LIMITATION REPRESENTATION
+==================================================
+
+Evaluate whether major limitation belongs as:
+
+structured child fact
+provider-specific nested detail
+source-only detail.
+
+Do not require one representation universally.
+
+==================================================
+435 – ADVISOR COMPARISON VALUE
+==================================================
+
+When deciding representation, ask whether omission could cause advisor to
+form a materially incomplete picture of difference between products.
+
+==================================================
+436 – HIGH-VALUE DIMENSION EXAMPLES
+==================================================
+
+Generally high-value dimensions include:
+
+- whether coverage exists
+- optional/included
+- monetary limit
+- deductible
+- duration
+- age/km termination
+- geography
+- replacement rule
+- major qualifying condition
+- major product-specific exclusion.
+
+Still require source/context.
+
+==================================================
+437 – LOWER-VALUE DIMENSION EXAMPLES
+==================================================
+
+Often lower-value:
+
+- claims administration
+- notification addresses
+- general complaint procedure
+- generic definitions
+- legal boilerplate.
+
+Do not canonicalize merely for completeness.
+
+==================================================
+438 – SERVICE BENEFITS
+==================================================
+
+Services can be advisor-relevant:
+
+online doctor/vet
+roadside assistance
+home emergency service
+identity assistance
+legal mediation.
+
+Audit when materially product-differentiating.
+
+==================================================
+439 – CLAIM PROCESS BENEFITS
+==================================================
+
+Operational claims service details should only be canonicalized if they are
+a documented product benefit, not generic provider process.
+
+==================================================
+440 – EXTERNAL PARTNER SERVICES
+==================================================
+
+If source documents third-party service:
+
+catalog may preserve benefit without requiring runtime integration.
+
+==================================================
+441 – LEGAL EXPENSES
+==================================================
+
+Audit common dimensions where source-backed:
+
+sum
+deductible
+geography
+multi-party limit
+special mediation.
+
+Do not assume same across families.
+
+==================================================
+442 – LIABILITY
+==================================================
+
+Audit:
+
+personal injury
+property damage
+territorial scope
+statutory/unlimited limits
+
+where material.
+
+==================================================
+443 – FIRE / THEFT
+==================================================
+
+Parent inclusion may be enough if no material product-specific dimensions
+exist.
+
+But audit deductible/sum/special limitations where documented.
+
+==================================================
+444 – GLASS
+==================================================
+
+Audit:
+
+replacement deductible
+repair deductible
+applicability
+special limitations.
+
+==================================================
+445 – KEY
+==================================================
+
+Audit:
+
+sum
+deductible
+event/year limit
+coverage scope
+
+where source-backed.
+
+==================================================
+446 – INCORRECT FUEL
+==================================================
+
+Audit:
+
+scope
+sum
+deductible
+
+where source-backed.
+
+==================================================
+447 – EQUIPMENT
+==================================================
+
+Distinguish:
+
+fixed equipment
+loose equipment
+luggage
+personal belongings
+special valuables
+awning
+storage equipment.
+
+Do not collapse sums.
+
+==================================================
+448 – DAILY BENEFITS
+==================================================
+
+For daily benefit:
+
+preserve:
+
+amount/day
+max days
+overall cap
+
+as distinct dimensions.
+
+==================================================
+449 – REPLACEMENT VEHICLE
+==================================================
+
+Preserve:
+
+vehicle type
+days
+daily cap
+trigger
+geography
+repair-delay requirement
+
+where material.
+
+==================================================
+450 – INTERRUPTION BENEFIT
+==================================================
+
+Do not automatically equate:
+
+holiday interruption
+rental vehicle
+hotel reimbursement
+travel continuation.
+
+Shared parent may be useful.
+
+==================================================
+451 – PET TREATMENT SUBLIMITS
+==================================================
+
+Audit medicine/dental/rehab sublimits separately from total veterinary sum.
+
+==================================================
+452 – PET ROLLOVER
+==================================================
+
+Unused annual amount carried forward is a mechanism, not simply a larger
+annual sum.
+
+==================================================
+453 – PET LIFE REDUCTION
+==================================================
+
+Preserve:
+
+start age
+rate/amount
+termination age
+breed group
+
+where source-backed.
+
+==================================================
+454 – PROPERTY AGE DEDUCTIONS
+==================================================
+
+Audit material age-deduction structures where product-differentiating.
+
+Do not necessarily canonicalize entire long deduction tables if nested
+detail is sufficient.
+
+==================================================
+455 – WATER / MOISTURE CONDITIONS
+==================================================
+
+Conditions such as required moisture inspection may materially determine
+coverage.
+
+Audit them.
+
+==================================================
+456 – TOTAL LOSS THRESHOLD
+==================================================
+
+Distinguish:
+
+repair cost > X% of new value
+repair cost > market value
+lost/not recovered
+other total-loss definitions.
+
+==================================================
+457 – REPLACEMENT FORM
+==================================================
+
+Distinguish:
+
+new equivalent object
+cash equivalent
+purchase-price guarantee
+market value uplift.
+
+==================================================
+458 – OWNERSHIP CONDITION
+==================================================
+
+Conditions such as:
+
+first owner
+purchased new
+not leased
+private ownership
+
+may materially affect replacement guarantee.
+
+Audit.
+
+==================================================
+459 – SOURCE CONDITION VS COVERAGE
+==================================================
+
+A condition does not necessarily deserve standalone top-level coverage row.
+
+But knowledge layer should retain it if material.
+
+==================================================
+460 – LIMITATION DISPLAY STRATEGY
+==================================================
+
+Audit may recommend:
+
+nested detail
+
+rather than symmetric row.
+
+This is acceptable.
+
+==================================================
+461 – SOURCE-ONLY RETENTION
+==================================================
+
+Some low-value details can remain available only through source link.
+
+Classify intentionally:
+
+SOURCE_ONLY_ACCEPTABLE.
+
+Do not count as material gap.
+
+==================================================
+462 – AUDIT CLASSIFICATION EXTENSION
+==================================================
+
+Add if useful:
+
+SOURCE_ONLY_ACCEPTABLE
+
+to distinguish deliberate non-modeling from accidental omission.
+
+==================================================
+463 – INTENTIONAL NON-MODELING EVIDENCE
+==================================================
+
+If existing documentation explicitly says a detail is intentionally not
+modeled:
+
+record it.
+
+Still assess whether that decision is reasonable for advisor use.
+
+==================================================
+464 – LEGACY DESIGN DECISIONS
+==================================================
+
+Older families may have been modeled under earlier standards.
+
+Do not grandfather material omissions merely because they are old.
+
+==================================================
+465 – NEW FAMILY STANDARD
+==================================================
+
+Likewise do not assume newer Båt/Hund/Katt are automatically more complete.
+
+Audit equally.
+
+==================================================
+466 – CONSISTENCY OF DEPTH
+==================================================
+
+We want broadly comparable semantic depth across products where sources
+support comparable concepts.
+
+Not identical number of facts.
+
+==================================================
+467 – ASYMMETRY REVIEW
+==================================================
+
+Large depth asymmetry should trigger review, not automatic normalization.
+
+Possible valid causes:
+
+richer product
+richer source
+unique benefit
+customer-specific structure.
+
+==================================================
+468 – EMPTY CONCEPT REVIEW
+==================================================
+
+If one provider has zero catalog facts for a major family concept but its
+source mentions that concept:
+
+investigate.
+
+==================================================
+469 – SOURCE SEARCH STRATEGY
+==================================================
+
+Do not rely solely on literal canonical labels.
+
+Use headings, tables, synonyms and semantic context.
+
+==================================================
+470 – AUDIT MODEL REASONING
+==================================================
+
+Use GPT-6 reasoning to understand source semantics.
+
+But every material conclusion must be anchored in exact source evidence.
+
+==================================================
+471 – HALLUCINATION CONTROL
+==================================================
+
+If uncertain whether source supports a fact:
+
+REVIEW_REQUIRED.
+
+Never fill expected insurance knowledge from model memory.
+
+==================================================
+472 – SOURCE IS AUTHORITATIVE
+==================================================
+
+The model's insurance knowledge is not evidence.
+
+Only applicable stored official source artifacts are evidence.
+
+==================================================
+473 – EXISTING USER OBSERVATION IS NOT EVIDENCE
+==================================================
+
+Manual pasted comparison outputs are evidence of UI/catalog behavior only.
+
+They are NOT evidence that an insurer actually offers/misses a coverage.
+
+Official source determines that.
+
+==================================================
+474 – CODE IS NOT PRODUCT SOURCE
+==================================================
+
+Existing catalog code proves what our app currently believes.
+
+It does not prove insurer product truth.
+
+==================================================
+475 – TESTS ARE NOT PRODUCT SOURCE
+==================================================
+
+Existing tests prove expected app behavior.
+
+They do not establish insurance facts independently.
+
+==================================================
+476 – AUDIT SOURCE CHAIN
+==================================================
+
+For every material finding maintain chain:
+
+official source artifact
+→ extracted source evidence
+→ semantic interpretation
+→ exact product applicability
+→ current catalog representation
+→ gap classification.
+
+==================================================
+477 – CHAIN BREAK
+==================================================
+
+If any chain link is uncertain:
+
+lower confidence or REVIEW_REQUIRED.
+
+==================================================
+478 – MATERIAL FINDING MANUAL VALIDATION
+==================================================
+
+Every P0/P1 finding must be manually validated through the complete chain.
+
+==================================================
+479 – P2 SAMPLING
+==================================================
+
+Manual validation may sample P2 findings, but systematic false-positive
+patterns must be corrected in audit classification before final counts.
+
+==================================================
+480 – P3
+==================================================
+
+P3 may be summarized.
+
+Do not spend excessive reasoning budget.
+
+==================================================
+481 – AUDIT ITERATION
+==================================================
+
+If early manual review reveals detector/classifier systematically
+over-sensitive:
+
+adjust temporary audit logic and rerun affected classifications.
+
+Do not modify repo.
+
+==================================================
+482 – UNDER-SENSITIVITY
+==================================================
+
+If positive controls are missed:
+
+adjust methodology before continuing/finalizing.
+
+This is critical.
+
+==================================================
+483 – AUDIT METHOD VALIDATION
+==================================================
+
+Classify detector/methodology after manual review:
+
+REASONABLE
+OVER_SENSITIVE
+UNDER_SENSITIVE
+MIXED
+UNRELIABLE.
+
+A final COMPLETE audit should not have:
+
+UNRELIABLE.
+
+==================================================
+484 – FALSE POSITIVE RATE DESCRIPTION
+==================================================
+
+Do not invent statistical precision.
+
+Describe observed manual-review behavior qualitatively and with counts.
+
+==================================================
+485 – FALSE NEGATIVE LIMITATION
+==================================================
+
+Acknowledge that semantic audit cannot mathematically prove absence of all
+false negatives.
+
+Mitigate through:
+
+100% product/source accounting
+deep reviews
+positive controls
+density outliers
+random controls
+human review.
+
+==================================================
+486 – AUDIT OUTPUT QUALITY
+==================================================
+
+The purpose is to enable the next remediation prompt.
+
+Findings must therefore be:
+
+specific
+deduplicated
+source-backed
+product-scoped
+actionable.
+
+==================================================
+487 – NO GENERIC FINDINGS

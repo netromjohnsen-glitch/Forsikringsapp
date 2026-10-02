@@ -1,0 +1,57 @@
+import json, datetime
+from pathlib import Path
+O=Path('/tmp/source-catalog-completeness-audit')
+rows=[]
+def rule(subject,dimension,value,page,section,scope='vet',species='both',priority='P1',kind='RULE'):
+ rows.append(dict(inventory_id=f'SB-PET-{len(rows)+1:03}',subject=subject,dimension=dimension,value=value,page=page,section=section,component_scope=scope,species=species,priority_if_missing=priority,kind=kind,source='storebrand-pet-terms.pdf'))
+rule('Produktvalg','separate komponenter','Veterinær, dødsfall eller kombinasjon kan velges; ingen automatisk veterinær i dødsfall alene eller motsatt.',1,'IPID – Hvilken forsikring er dette?', 'all',priority='P1');rows[-1]['source']='storebrand-pet-ipid.pdf'
+rule('Gyldighet','ID-merking','Dyr over seks måneder må være ID-merket.',3,'B.1','all')
+rule('Veterinær','geografisk omfang','Sykdom/ulykke oppstått i Europa.',3,'B.1.2')
+rule('Veterinær','behandlingssted','Behandling i Norge; akutt behandling kan utføres i ulykkeslandet innenfor geografisk område.',4,'B.4.1')
+rule('Dødsfall','geografisk omfang','Hele verden.',3,'B.1.2','life')
+rule('Veterinær','fast egenandel','2 500 kr per skadetilfelle.',3,'B.3')
+rule('Dødsfall','egenandel','Ingen egenandel for dødsfall, forsvinning og tapt bruksverdi.',3,'B.3','life')
+rule('Veterinær','hoveddekning','Nødvendige veterinærutgifter ved sykdom og ulykke innenfor valgt forsikringssum per forsikringsår.',4,'B.4.1')
+rule('Veterinær','kundens forsikringssum','Summen følger forsikringsbeviset, gjelder samlet per forsikringsår; forhøyelse gjelder ikke tidligere skade/symptomer.',3,'B.2',kind='CUSTOMER_SPECIFIC')
+rule('Veterinær','medisiner og behandlingsmateriell','Medisiner utlevert eller foreskrevet av veterinær og nødvendig bandasje/body/krage/potesokk brukt ved behandlingen.',4,'B.4.1')
+rule('Tenner','ulykke','Tannskade som direkte skyldes en ulykke.',4,'B.4.1.1')
+rule('Tenner','melketenner/bitt','Medisinsk nødvendige inngrep ved tilbakeholdte melketenner/bittfeil/feilstilte tenner krever sammenhengende forsikring fra fire måneders alder og veterinærattest fra sju uker til fire måneder uten anmerkninger.',4,'B.4.1.1')
+rule('Tenner','sykdomsunntak','Tannsykdommer, blant annet gingivitt og periodontitt, dekkes ikke; særregelen om melketenner/bitt beholdes separat.',7,'B.4.2')
+rule('Fødsel','keisersnitt','Fødselshjelp/keisersnitt én gang i dyrets liv; minst ett år sammenhengende dekning; ikke ved to tidligere keisersnitt. NKKs etiske regler ved hundeavl.',4,'B.4.1.2')
+rule('Fødsel','raseunntak keisersnitt','Boston terrier, chihuahua, engelsk/fransk bulldog og pomeranian unntatt.',8,'Raseavhengige begrensninger',species='hund')
+rule('Allergi','utredning','Utredning én gang i dyrets liv innenfor veterinærsummen.',5,'B.4.1.3')
+rule('Allergi','behandling og medisiner','5 000 kr samlet i dyrets levetid.',5,'B.4.1.3')
+rule('Rehabilitering','sum og vilkår','Fysioterapi/kiropraktikk/rehabilitering 5 000 kr, foreskrevet og utført av veterinær, innen ett år etter skaden; produktsiden presiserer per forsikringsår.',5,'B.4.1.4')
+rule('Bildediagnostikk','sum og frist','MR/CT/scintigrafi 5 000 kr innen ett år etter skaden; produktsiden presiserer per forsikringsår.',5,'B.4.1.5')
+rule('Valpekull','sum og omfang','6 000 kr per valp utover morens forsikringssum; høyst to kull i morens levetid; fra én måned til overlevering, senest tre måneder; etisk avl.',5,'B.4.1.6 (fortsetter side 6)',species='hund')
+rule('Avliving','vilkår og alder','Dyrevelferdsmessig nødvendig etter veterinærens anbefaling; til og med forsikringsåret dyret fyller ti år.',6,'B.4.1.7')
+rule('Kremering','felles/separat','Felleskremering ved erstatningsmessig dødsfall; separat kremering inntil 1 500 kr.',6,'B.4.1.8',priority='P2')
+rule('Veterinær','sykdomskarens','Sykdom påvist eller symptomvist før eller de første 20 dagene dekkes ikke; unntak ved sammenhengende overføring fra annet selskap/tidligere Storebrand-eier.',6,'B.4.2')
+rule('Veterinær','komplikasjoner','Komplikasjoner av udekket behandling unntatt, men komplikasjoner etter vaksine/kastrering/sterilisering dekkes.',6,'B.4.2')
+rule('Veterinær','kastrering/sterilisering','Ikke dekket med mindre del av behandling for dekket sykdom/skade; innbilt svangerskap og kryptorkisme unntatt.',6,'B.4.2')
+rule('Veterinær','alternativ behandling','Akupunktur, gullimplantat og homeopati ikke dekket selv om veterinær foreskriver.',7,'B.4.2',priority='P2')
+rule('Arvelige/medfødte lidelser','unntak og kvalifikasjon','Ikke dekket med mindre sammenhengende Storebrand-forsikring fra fire måneders alder.',7,'B.4.2')
+rule('HD/AD','egen kvalifikasjon','Krever friske tester av dyret og begge foreldrene; hund registrert fri hos NKK, katt frisk fra veterinær. Må ikke likestilles med firemånedersvilkåret.',7,'B.4.2')
+rule('Andre leddlidelser','egen kvalifikasjon','OCD, patellaluksasjon, short ulna og Calvé-Legg-Perthes unntatt med mindre sammenhengende forsikret fra fire måneder.',7,'B.4.2')
+rule('Veterinær','andre viktige unntak','Navlebrokk, importerte parasitter/infeksjoner, atferdsforstyrrelser og forebyggende behandling er unntatt.',7,'B.4.2',priority='P2')
+rule('Veterinær','fôr/utstyr etter behandling','Spesialfôr og utstyr brukt etter konsultasjonen erstattes ikke selv når foreskrevet.',8,'B.4.2',priority='P2')
+rule('Veterinær','reise/tilleggshonorar','Eiers/veterinærs reise/transport ikke dekket; utenomåpningstidstillegg bare når behandlingen nødvendig og ikke kan vente.',8,'B.4.2',priority='P2')
+rule('Rasebegrensninger','katt gane/luftveier','Exotic og perser: deformert gane eller luftveier unntatt.',8,'Raseavhengige begrensninger',species='katt')
+rule('Rasebegrensninger','hund tabell','Gane/luftveier, øyelokk og hud har særskilte rasegrupper. Tabellen skal bevares som raseregel og ikke generaliseres til alle hunder.',8,'Raseavhengige begrensninger',species='hund',priority='P2',kind='REVIEW_TABLE')
+rule('Dødsfall','hoveddekning','Død eller nødvendig avliving etter veterinærens anbefaling ved sykdom eller ulykkesskade.',8,'B.5.1','life')
+rule('Forsvinning/tyveri','ventetid og vilkår','Hund ikke kommet til rette innen tre måneder etter savnetmelding; melding politi/Storebrand og etterlysning.',9,'B.5.1','life','hund')
+rule('Forsvinning/tyveri','ventetid og vilkår','Katt ikke kommet til rette innen seks måneder etter savnetmelding; melding politi/Storebrand og etterlysning.',9,'B.5.1','life','katt')
+rule('Dødsfall','aldersnedtrapping','100 % av forsikringssum til åtte år; 90 % fra åtte, 75 % fra ni, 60 % fra ti. Prosent av opprinnelig sum, ikke årlig prosentvis reduksjon.',9,'B.5.1','life')
+rule('Dødsfall','opphør','Første hovedforfall etter fylte ti år.',9,'B.5.1','life')
+rule('Dødsfall','kundens sum','Avtalt sum følger beviset; offisiell side oppgir tak på 40 000 kr. Ikke kundens faktiske sum.',9,'B.5.1','life',kind='CUSTOMER_SPECIFIC')
+rule('Bruksverdi','erstatningsgrense','Dokumentert varig brukstap ved sykdom/ulykke; verdiforskjell før/etter, høyst 50 % av dødsfallssummen.',9,'B.5.1.1','life','hund')
+rule('Bruksverdi','alder og engangsgrense','Kun én gang i hundens liv; dekningen opphører ved sjuårsdagen.',9,'B.5.1.1','life','hund')
+rule('Bruksverdi','arbeidsevne fremfor avl/utstilling','Trent og jevnlig brukt til praktisk arbeid, eksempelvis jakt/gjeting/trekk/søk/førerhund. Avls- og utstillingsevne omfattes ikke.',11,'C – Bruksverdi','life','hund')
+rule('Dødsfall','sykdomsunntak og kvalifikasjoner','Arvelig/medfødt og enkelte leddlidelser har firemånedersvilkår; HD/AD har testkrav for dyr/foreldre. Navlebrokk, importerte parasitter/infeksjoner og atferd unntatt.',9,'B.5.2 (fortsetter side 10)','life')
+rule('Veterinær','livslang dekning','Veterinærbehandling kan beholdes livet ut; må ikke overføres til tidsbegrenset avliving eller dødsfallsdekningen.',1,'Produktside – fordeler');rows[-1]['source']='storebrand-pet-product.html'
+rule('Veterinær','valgbare summer','20/30/40/50/60 tusen kr per forsikringsår; kundens faktiske valg må dokumenteres.',1,'Produktside – Hvor mye dekker hunde- og katteforsikringen?',kind='CUSTOMER_SPECIFIC');rows[-1]['source']='storebrand-pet-product.html'
+rule('Tjenester','FirstVet','Tre gratis videokonsultasjoner per år dokumentert for veterinærdekning. Ikke bevist ubetinget for dødsfall alene.',1,'IPID – Hva dekker forsikringen?',priority='P2');rows[-1]['source']='storebrand-pet-ipid.pdf'
+rule('Inngangsalder','nytegning/overføring','Tidligere uforsikret dyr under to år; sammenhengende overføring fra annet selskap frem til sju år.',1,'Produktside – Kan jeg forsikre en eldre hund/katt?',scope='all',priority='P2');rows[-1]['source']='storebrand-pet-product.html'
+out={'package':'Storebrand Hund/Katt Dyr04','phase':'SOURCE_INVENTORY_COMPLETE_PENDING_GENERAL_CONDITIONS','recorded_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source_first':True,'catalog_fact_values_inspected':False,'pages_read':{'storebrand-pet-terms.pdf':'1–11 full','storebrand-pet-ipid.pdf':'1–2 full','storebrand-pet-product.html':'all stored text'},'rules':rows}
+(O/'storebrand-pet-independent-inventory.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+print(len(rows),'independent source rules saved BEFORE catalog lookup')

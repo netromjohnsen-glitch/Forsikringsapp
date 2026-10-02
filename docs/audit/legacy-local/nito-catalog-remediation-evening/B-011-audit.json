@@ -1,0 +1,143 @@
+{
+  "status": "PASS",
+  "batch": "B-011",
+  "source_verification": "PPK13302 §2.4 PDF4 replaces unsupported inherited15k with exact location350k/60k/30k branches. Ordinary unchanged, own Extra provenance, object/place qualifiers retained.",
+  "source_hashes": {
+    "catalog/sources/tryg/innbo/Innbo_og_losore_Ekstra_PPK13302.pdf": "4cffa3b051f329da0fe178b20243a0920d2b5928e9995d485c35b58a48f1f810"
+  },
+  "changed_products": [
+    "tryg-innbo-ekstra"
+  ],
+  "unchanged_products": 203,
+  "allowed_keys": [
+    "tyveri.fellesgarasje.grense"
+  ],
+  "deltas": [
+    {
+      "product": "tryg-innbo-ekstra",
+      "view": "base",
+      "key": "tyveri.fellesgarasje.grense",
+      "before": {
+        "key": "tyveri.fellesgarasje.grense",
+        "label": "Tyveri fra felles bod eller garasje – grense",
+        "value": "15 000 kr samlet",
+        "source": {
+          "documentId": "trygInnbo",
+          "section": "2.4",
+          "page": 3,
+          "filename": "Innbo_og_losore_PPK13301.pdf",
+          "termsNumber": "PPK13301",
+          "effectiveFrom": "2026-07-01",
+          "company": "Tryg",
+          "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar&vilkNr=05PPK13301"
+        }
+      },
+      "after": {
+        "key": "tyveri.fellesgarasje.grense",
+        "label": "Tyveri fra felles bod eller garasje – grense",
+        "value": "Stedets regler gjelder: 350 000 kr for bod med adgang fra fellesareal i rom som tilhører sikrede på forsikringsstedet; 60 000 kr for egen privat bod i bygning utenfor forsikringsstedet; 30 000 kr per skadetilfelle på andre steder som ikke er særskilt nevnt i §2.4",
+        "replacesBase": true,
+        "source": {
+          "documentId": "trygInnboExtra",
+          "section": "2.4",
+          "page": 4,
+          "filename": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+          "termsNumber": "PPK13302",
+          "effectiveFrom": "2026-07-01",
+          "company": "Tryg",
+          "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302"
+        }
+      }
+    },
+    {
+      "product": "tryg-innbo-ekstra",
+      "view": "product-comparison",
+      "key": "tyveri.fellesgarasje.grense",
+      "before": {
+        "key": "tyveri.fellesgarasje.grense",
+        "label": "Tyveri fra felles bod eller garasje – grense",
+        "value": "15 000 kr samlet",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "trygInnbo",
+            "section": "2.4",
+            "page": 3,
+            "filename": "Innbo_og_losore_PPK13301.pdf",
+            "termsNumber": "PPK13301",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar&vilkNr=05PPK13301"
+          }
+        ]
+      },
+      "after": {
+        "key": "tyveri.fellesgarasje.grense",
+        "label": "Tyveri fra felles bod eller garasje – grense",
+        "value": "Stedets regler gjelder: 350 000 kr for bod med adgang fra fellesareal i rom som tilhører sikrede på forsikringsstedet; 60 000 kr for egen privat bod i bygning utenfor forsikringsstedet; 30 000 kr per skadetilfelle på andre steder som ikke er særskilt nevnt i §2.4",
+        "state": "included",
+        "addOnNames": [],
+        "role": "term",
+        "sources": [
+          {
+            "documentId": "trygInnboExtra",
+            "section": "2.4",
+            "page": 4,
+            "filename": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+            "termsNumber": "PPK13302",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302"
+          }
+        ]
+      }
+    },
+    {
+      "product": "tryg-innbo-ekstra",
+      "view": "tryg-innbo-utleie",
+      "key": "tyveri.fellesgarasje.grense",
+      "before": {
+        "key": "tyveri.fellesgarasje.grense",
+        "label": "Tyveri fra felles bod eller garasje – grense",
+        "value": "15 000 kr samlet",
+        "source": {
+          "documentId": "trygInnbo",
+          "section": "2.4",
+          "page": 3,
+          "filename": "Innbo_og_losore_PPK13301.pdf",
+          "termsNumber": "PPK13301",
+          "effectiveFrom": "2026-07-01",
+          "company": "Tryg",
+          "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar&vilkNr=05PPK13301"
+        }
+      },
+      "after": {
+        "key": "tyveri.fellesgarasje.grense",
+        "label": "Tyveri fra felles bod eller garasje – grense",
+        "value": "Stedets regler gjelder: 350 000 kr for bod med adgang fra fellesareal i rom som tilhører sikrede på forsikringsstedet; 60 000 kr for egen privat bod i bygning utenfor forsikringsstedet; 30 000 kr per skadetilfelle på andre steder som ikke er særskilt nevnt i §2.4",
+        "replacesBase": true,
+        "source": {
+          "documentId": "trygInnboExtra",
+          "section": "2.4",
+          "page": 4,
+          "filename": "Innbo_og_losore_Ekstra_PPK13302.pdf",
+          "termsNumber": "PPK13302",
+          "effectiveFrom": "2026-07-01",
+          "company": "Tryg",
+          "url": "https://www.tryg.no/odpdf?vilk=Hjemforsikring-Dekningsvilkaar-Ekstra&vilkNr=05PPK13302"
+        }
+      }
+    }
+  ],
+  "closed_findings": [
+    "GAP-4431"
+  ],
+  "P1_resolved": 1,
+  "signatures": [
+    "891bffa82bebd3a0"
+  ],
+  "source_reverse_check": "PASS; own-source subject, scope and provenance reviewed; no broader changes",
+  "known_regressions": 0
+}
