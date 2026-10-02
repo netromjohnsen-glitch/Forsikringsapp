@@ -46,6 +46,13 @@ const termAliases: Record<string, readonly string[]> = {
 
 // Samme ord kan bety noe annet i en annen forsikringstype.
 const contextualTermAliases: Record<string, Record<string, readonly string[]>> = {
+  bolig: {
+    "hus.skadedyr.dyr.bekjempelse": ["Bekjempelse av mus, rotter og andre dyr"],
+    "hus.skadedyr.dyr.bygningsskade": ["Bygningsskade fra mus, rotter og andre dyr"],
+    "hus.skadedyr.insekter.bekjempelse": ["Bekjempelse av skadeinsekter"],
+    "hus.skadedyr.insekter.bygningsskade": ["Bygningsskade fra treødeleggende insekter"],
+    "hus.skadedyr.insekter.egenandel": ["Bekjempelse av skadeinsekter – egenandel"],
+  },
   bil: {
     "premie.total": ["total årspremie inkl trafikkforsikringsavgift", "total premie inklusive trafikkforsikringsavgift", "årspremie inkl trafikkforsikringsavgift"],
     "premie.ekskl_tfa": ["premie etter rabatter uten trafikkforsikringsavgift", "premie ekskl trafikkforsikringsavgift", "årspremie ekskl trafikkforsikringsavgift", "premie eksklusive trafikkforsikringsavgift"],

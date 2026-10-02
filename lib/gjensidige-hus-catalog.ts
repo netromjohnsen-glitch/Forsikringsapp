@@ -51,8 +51,9 @@ const standard = facts("gjensidigeHusStandard", [
   ["vaer.dekning", "Snø, is og vær", "Plutselig bygningsskade kan omfattes, mens vedlikehold, svak konstruksjon og særskilte begrensninger for uferdige utvendige arbeider gjelder.", "Hus – Dekkes / Dekkes ikke", 3],
   ["handverker.folgeskade", "Håndverkerfeil", "Følgeskade etter material-, konstruksjons-, prosjekterings- eller montasjefeil er ikke særskilt omfattet på Hus.", "Hus – Dekkes ikke", 4],
   ["rate.dekning", "Råte og sopp", "Sopp og råte er unntatt på Hus uten valgfri utvidelse.", "Hus – Dekkes ikke", 3],
-  ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "Bekjempelse av mus, rotter og andre skadedyr med inntil fire bein.", "Hus – Dekkes", 3],
-  ["skadedyr.bygningsskade", "Bygningsskade fra skadedyr", "Skade som følge av mus, rotter og andre skadedyr med inntil fire bein.", "Hus – Dekkes", 3],
+  ["skadedyr.dyr.bekjempelse", "Bekjempelse av mus, rotter og andre dyr", "Bekjempelse av levende mus, rotter og andre skadedyr i bygning. Insekter, fredede dyr og bekjempelse av forebyggende karakter er unntatt.", "Hus – Dekkes / Dekkes ikke", 3],
+  ["skadedyr.dyr.bygningsskade", "Bygningsskade fra mus, rotter og andre dyr", "Skade forårsaket av mus, rotter og andre dyr: fysisk skade på bygning/bygningsdel, svekket isolasjonsevne og lukt. Insekter og kjæledyr er unntatt. Isolasjonsskade uten påvist redusert isolasjonsevne, og fjerning av rester/ekskrementer uten bygningsskade er unntatt.", "Hus – Dekkes / Dekkes ikke", 3],
+  ["skadedyr.grunnunntak", "Skadedyr – grunnvilkårets insektunntak", "Bekjempelse av eller skade fra insekter er unntatt i grunndekningen på Hus; egen utvidelse må være avtalt. Pluss har utvidelsen inkludert.", "Hus – Dekkes ikke", 4],
   ["tilpasning.grense", "Ombygging for rullestolbruker", "Inntil 250 000 kroner ved varig rullestolbruk etter plutselig ytre ulykke eller medfødt funksjonsnedsettelse. Egne tiårsfrister og senest 20 år fra fødsel gjelder.", "Hus – Ombygging for rullestolbruker", 5],
   ["brukstap.dekning", "Ubeboelig bolig etter skade", "Tap tilsvarende markedsleie i normal reparasjons-/gjenoppføringstid; uten dokumenterte boutgifter begrenses erstatningen til 50 % av gjeldende leiepris.", "Erstatningsregler – Husleietap og brukstap", 17],
   ["leietap.skade", "Tapt leieinntekt etter bygningsskade", "Registrert leieinntekt etter leiekontrakt i normal reparasjonstid; korttidsutleie bare for inngåtte kontrakter. Dette er skilt fra betalingsmislighold.", "Erstatningsregler – Husleietap og brukstap", 17],
@@ -89,11 +90,11 @@ const pluss = facts("gjensidigeHusPluss", [
   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Følgeskade ved vanninntrengning gjennom utett bygning over bakkenivå. Selve feilen/utettheten og tak eldre enn 50 år er unntatt; bygningen må være fullverdiforsikret.", "Hus – Dekkes / Dekkes ikke", 3, undefined, true],
   ["vatrom.selverommet", "Våtrom – selve rommet", "Skade på våtrom etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år.", "Håndverks- og entreprenørfeil – våtrom", 4, undefined, true],
   ["handverker.folgeskade", "Håndverkerfeil", "Følgeskade på bygning etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år. Selve feilen er unntatt utenfor våtrom.", "Håndverks- og entreprenørfeil", 4, undefined, true],
-  ["rate.dekning", "Råte og sopp", "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper og treødeleggende insekter. Mugg, blåved, svertesopp og utvendig treverk er blant unntakene.", "Råte og skadeinsekter", 6, undefined, true],
-  ["skadedyr.bekjempelse", "Bekjempelse av skadeinsekter", "Bekjempelse av blant annet stokkmaur, husbukk, stripet borebille, kakerlakk, veggedyr og skjeggkre. Gjensidige velger metode.", "Råte og skadeinsekter", 6, undefined, true],
-  ["skadedyr.bygningsskade", "Bygningsskade fra treødeleggende insekter", "Materialnedbrytning fra treødeleggende insekter på fullverdiforsikret bygning.", "Råte og skadeinsekter", 6, undefined, true],
+  ["rate.dekning", "Råte og sopp", "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Mugg, blåved, svertesopp og utvendig treverk er blant unntakene.", "Råte og skadeinsekter", 6, undefined, true],
+  ["skadedyr.insekter.bekjempelse", "Bekjempelse av skadeinsekter", "På fullverdiforsikret bygning: bekjempelse av blant annet stokkmaur, husbukk, stripet borebille, kakerlakk, veggedyr og skjeggkre. Gjensidige velger metode for reduksjon eller utryddelse. Forebygging, aktivitet utenfor forsikringstiden og fjerning av døde insekter/preparater er unntatt.", "Råte og skadeinsekter", 6],
+  ["skadedyr.insekter.bygningsskade", "Bygningsskade fra treødeleggende insekter", "Materialnedbrytning fra treødeleggende insekter på fullverdiforsikret bygning. Skade utviklet før avtalen eller etter opphør, forebygging og bygninger i landbruks-/næringsvirksomhet er unntatt.", "Råte og skadeinsekter", 6],
   ["rate.egenandel", "Råte og skadeinsekter – egenandel", "6 000 kroner for bygningsskade.", "Forsikringsoversikt", 1, "override"],
-  ["skadedyr.egenandel", "Bekjempelse av skadeinsekter – egenandel", "2 000 kroner.", "Forsikringsoversikt", 1, "override"],
+  ["skadedyr.insekter.egenandel", "Bekjempelse av skadeinsekter – egenandel", "2 000 kroner.", "Forsikringsoversikt", 1, "override"],
 ]);
 
 const rental = facts("gjensidigeHusStandard", [
@@ -104,7 +105,7 @@ const rental = facts("gjensidigeHusStandard", [
   ["utleie.egenandel", "Utleie – egenandel", "10 000 kroner ved misligholdt husleie og skadeverk av leietaker.", "Forsikringsoversikt", 1, "override"],
 ]);
 
-const rotOption = pluss.filter((fact) => ["hus.rate.dekning", "hus.skadedyr.bekjempelse", "hus.skadedyr.bygningsskade", "hus.rate.egenandel", "hus.skadedyr.egenandel"].includes(fact.key)).map((fact) => ({ ...fact,
+const rotOption = pluss.filter((fact) => ["hus.rate.dekning", "hus.skadedyr.insekter.bekjempelse", "hus.skadedyr.insekter.bygningsskade", "hus.rate.egenandel", "hus.skadedyr.insekter.egenandel"].includes(fact.key)).map((fact) => ({ ...fact,
   qualificationSource: facts("gjensidigeHusIpid", [["rate.valgfritt", "Råte og skadeinsekter – valgfritt på Hus", "Hus kan utvides med sopp, råte og skadeinsekter; Pluss har dekningen inkludert.", "Utvidelser", 2]])[0].source,
 }));
 
