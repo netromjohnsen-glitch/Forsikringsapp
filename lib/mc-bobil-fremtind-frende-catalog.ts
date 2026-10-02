@@ -363,7 +363,8 @@ const fremtindBase = (type: "mc" | "bobil") => {
       ["rettshjelp.dekning", "Rimelige og nødvendige utgifter til juridisk bistand ved tvist som eier eller rettmessig bruker av kjøretøyet"],
       ["rettshjelp.geografi", "Norden"],
     ]),
-    ...rows(`${id}-rettshjelp`, type === "mc" ? 10 : 12, "Rettshjelp 5.1", [["rettshjelp.grense", "Inntil 100 000 kr per tvist; inntil 250 000 kr ved minst tre parter på samme side"]]),
+    ...(type === "mc" ? rows(`${id}-rettshjelp`, 10, "Rettshjelp 5.1", [["rettshjelp.grense", "Inntil 100 000 kr per tvist; inntil 250 000 kr ved minst tre parter på samme side"]]) :
+      rows("mcb-ff-fremtind-bobil-ansvar", 5, "Rettshjelp 4.2 og 5.1; sakkyndige i 4.1 side 4", [["rettshjelp.grense", "Inntil sikredes økonomiske interesse, maksimalt 100 000 kr per tvist; kan utvides til 250 000 kr ved minst tre parter på sikredes side (ektefeller/samboere regnes som én part). Finansklagenemnda: inntil 15 000 kr; forliksråd/jordskifterett: inntil 25 000 kr. Sakkyndige som ikke er oppnevnt av retten: inntil 20 % av forsikringssummen"]])),
     ...rows(`${id}-rettshjelp`, type === "mc" ? 10 : 12, "Rettshjelp 5.2", [["rettshjelp.egenandel", "Avtalt egenandel i forsikringsbeviset, i tillegg 20 % av advokat- og sakkyndigutgifter", "reference"]]),
   ];
 };
@@ -405,16 +406,24 @@ const fremtindBobilMini = combine(fremtindBase("bobil"),
     ["bobil.losore.begrensning", "Penger, gavekort, verdipapirer, smykker og klokker omfattes ikke; tyveri fra fortelt/tilbygg omfattes ikke når bobilen er fjernet"],
     ["brann.dekning", "Brann, lynnedslag og eksplosjon"], ["tyveri.dekning", "Tyveri, tyveriforsøk og hærverk; underslag ved prøvekjøring i forbindelse med offentlig annonsert salg"],
     ["glass.dekning", "Reparasjon eller skifte av rute, glasstak og takluke ved bruddskade; solcellepanel omfattes ikke"],
-  ]), rows(`${fb}-mini`, 5, "Minikasko 2.4", [["veihjelp.dekning", "Transport til nærmeste verksted ved dekket skade eller upåregnelig driftsstans; assistanse også på bostedsadresse"]]));
+  ]), rows(`${fb}-mini`, 5, "Minikasko 2.4", [["veihjelp.dekning", "Transport til nærmeste verksted ved dekket skade eller upåregnelig driftsstans; assistanse også på bostedsadresse"]]),
+  rows("mcb-ff-fremtind-bobil-minikasko", 5, "Minikasko 2.4.2", [
+    ["feilfylling.dekning", "Tømming og rens av drivstofftank ved feilfylling når motoren ikke har vært startet med feil drivstoff; skade etter motorstart omfattes ikke av denne redningsytelsen"],
+    ["feilfylling.grense", "Inntil 10 000 kr for tømming og rens før motorstart; grensen gjelder denne redningsytelsen, ikke Kaskos dekning av skade ved feilfylling"],
+  ]), rows("mcb-ff-fremtind-bobil-minikasko", 6, "Minikasko 3.2.2", [
+    ["nyverdi.begrensning", "Nybil-erstatning gjelder ikke leaset bil. Startleie erstattes forholdsmessig nedskrevet etter gjenstående leiemåneder ved dekningsmessig skade innen 1 år etter registrering som fabrikkny, ikke kjørt over 15 000 km og reparasjonskostnad over 80 % av nyanskaffelsesverdien på skadedagen (listepris uten rabatter eller spesialpris)"],
+  ]));
 const fremtindBobilKasko = combine(fremtindBobilMini,
   rows(`${fb}-mini`, 5, "Minikasko 3.2.1, anvendt ved dekningsmessig kaskoskade", [
     ["nyverdi.dekning", "Ny bil av tilsvarende modell, type og årsmodell ved dekningsmessig totalskade"],
     ["nyverdi.alder", "Innen 1 år etter registrering som fabrikkny"], ["nyverdi.km", "Ikke kjørt over 15 000 km"],
-    ["nyverdi.skadegrad", "Reparasjonskostnad over 80 % av nyanskaffelsesverdi"], ["nyverdi.begrensning", "Gjelder ikke leaset bil; leasing har egen startleieregel"],
+    ["nyverdi.skadegrad", "Reparasjonskostnad over 80 % av nyanskaffelsesverdi"],
   ]), rows(`${fb}-kasko`, 8, "Kasko 1.1 og 3.1", [
     ["kasko.dekning", "Sammenstøt, utforkjøring, velting, feilfylling eller annen tilfeldig, plutselig ytre påvirkning"],
-    ["kasko.egenandel", "Fremgår av forsikringsbeviset", "reference"], ["feilfylling.dekning", "Skade ved feilfylling av drivstoff"],
     ["kasko.begrensning", "Maskinskade og leiebil krever egen tilleggsdekning; utleie krever at forsikringsbeviset uttrykkelig omfatter det"],
+  ]), rows("mcb-ff-fremtind-bobil-kasko", 8, "Kasko 1.1, 2 og 3.1; tanktømming i Minikasko 2.4.2 side 5", [
+    ["kasko.egenandel", "Egenandel fremgår av forsikringsbeviset; økes med 12 000 kr når fører er under 23 år ved skaden og slik bruk ikke er opplyst. Ved skade påført av dyr reduseres avtalt egenandel med inntil 2 000 kr", "reference"],
+    ["feilfylling.dekning", "Skade ved feilfylling av drivstoff dekkes av Kasko; tømming og rens før motorstart følger separat redningsytelse i Minikasko"],
   ]));
 const fremtindBobilTopp = combine(fremtindBobilKasko,
   rows(fb, 8, "Toppkasko Bobil 1.1", [["bobil.losore.grense", "Inntil 100 000 kr"]]),
@@ -428,6 +437,7 @@ const fremtindBobilTopp = combine(fremtindBobilKasko,
     ["bobil.fukt.begrensning", "Skader oppstått utenfor forsikringsperioden omfattes ikke"],
   ]), rows(fb, 10, "Toppkasko Bobil 3.1 og 4", [
     ["nyverdi.alder", "Innen 3 år etter registrering som fabrikkny"], ["nyverdi.km", "Ikke kjørt over 100 000 km"],
+    ["nyverdi.begrensning", "Nybil-erstatning gjelder ikke leaset bil. Startleie erstattes forholdsmessig nedskrevet etter gjenstående leiemåneder ved dekningsmessig skade innen 3 år etter registrering som fabrikkny, ikke kjørt over 100 000 km og reparasjonskostnad over 80 % av nyanskaffelsesverdien på skadedagen (listepris uten rabatter eller spesialpris)"],
     ["nokkel.egenandel", "1 000 kr", "coverage"], ["feilfylling.egenandel", "1 000 kr; bonustap ved bruk av forsikringen", "coverage"],
   ]));
 
@@ -517,7 +527,7 @@ const additions: McBobilAddOnDefinition[] = [
   { id: "fremtind-bobil-maskinskade", providerId: "fremtind", company: "Fremtind", type: "bobil", agreementScope: "ordinary-dnb",
     name: "Maskinskade", requiresLevel: ["fremtind-bobil-kasko", "fremtind-bobil-topp"], sourceId: "mcb-ff-fremtind-bobil-maskinskade",
     rows: [...rows("mcb-ff-fremtind-bobil-maskinskade", 1, "1.1", [
-      ["maskinskade.dekning", "Tilfeldig og plutselig skade på de oppregnede komponentene i motor, gir, styring og kraftoverføring"],
+      ["maskinskade.dekning", "Tilfeldig og plutselig skade på følgende komponenter: bensin/diesel – motorblokk og innvendige deler, topplokk, ventiler, kamaksel, turbo, wastegate/ladeluftkompressor, coil, innsug og eksosmanifold, innsprøytningssystem med pumper/dyser/sensorer, EGR-ventil/kjøler, vannpumpe, startmotor, dynamo, lambdasonde, NOX-sensor og AdBlue-dyse/styreenhet med tank. El/hybrid – høyvoltsbatteri, DC/DC-spenningsomformer, strømveksler, fabrikkmontert batterilader, el-motor og girkasse, styreenhet for el-motor/høyvoltsbatteri, ladekontakt med stillmotor, PTC-varmer og AC/klimakompressor når de har kjøle-/varmefunksjon mot høyvoltsbatteri. Gir/styring/kraftoverføring – innvendige bevegelige girkassedeler, dobbeltmasse svinghjul, hoved-/slavesylinder, fordelingsgirkasse/vinkeldrev, differensial, mellom-/drivaksel uten mansjetter, innvendig elektronisk girvelger, servopumpe samt elektroniske styreenheter til fremdriftsmotor og girkasse"],
       ["maskinskade.alder", "Til første hovedforfall etter at bobilen har blitt 10 år"], ["maskinskade.km", "Inntil 200 000 km; alder eller kilometer, det som inntreffer først"],
       ["maskinskade.begrensning", "Slitasje, gradvis utviklet skade, varmgang, frost, irr og fukt omfattes ikke"],
     ]), ...rows("mcb-ff-fremtind-bobil-maskinskade", 2, "3. Egenandel", [["maskinskade.egenandel.kilometer", "Til 99 999 km: 10 000 kr; 100 000–149 999 km: 15 000 kr; 150 000–200 000 km: 20 000 kr", "coverage"]])] },
