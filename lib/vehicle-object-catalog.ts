@@ -264,12 +264,22 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
       ...(name === "Kasko" ? included(["kasko"], snow ? 7 : 4, "Kaskoforsikring") : []),
       row("avtale.geografi", snow ? "Norden; lovpliktig ansvar gjelder også hele EØS" : "Europa, Tyrkia og Israel", 1, "2"),
       row("avtale.egenandel", "Avtalt egenandel fremgår av forsikringsbeviset eller vilkåret", 1, "4"),
-      ...(snow ? [row("avtale.sesong", "Sesongvariert pris ved opphør/lagring; kasko/minikasko omgjøres til lagring ved midlertidig avregistrering", 1, "5 og prisberegning")] : name !== "Ansvar" ? included(["redning"], 2, "2.4") : []),
+      ...(snow ? [row("avtale.sesong", "Sesongvariert pris ved opphør/lagring; kasko/minikasko omgjøres til lagring ved midlertidig avregistrering", 1, "5 og prisberegning")] : type !== "campingvogn" && name !== "Ansvar" ? included(["redning"], 2, "2.4") : []),
       ...(type === "campingvogn" ? [
-        ...included(["glass"], 2, "2.3"),
+        row("glass.dekning", "Bruddskade på vindusruter, inkludert takluke; erstatning gis bare når nye ruter innsettes eller skaden repareres", 2, "Minikasko 2.3"),
+        row("glass.grense", "Reparasjon erstattes med inntil 600 kr; ved skifte av ruter erstattes inntil 50 % av campingvognens markedsverdi", 3, "Minikasko 3.5.1; reparasjon i 2.3 side 2 og 4.2 side 4"),
+        row("glass.egenandel", "Ingen egenandel ved reparasjon (erstatning inntil 600 kr); 2 500 kr ved skifte", 4, "Minikasko 4.2"),
+        row("redning.dekning", "Nødvendig transport til nærmeste verksted etter erstatningsmessig skade og/eller driftsstans på normalt fremkommelig vei eller sted uten adkomstrestriksjoner", 2, "Minikasko 2.4"),
+        row("redning.begrensning", "Reparasjon på stedet skal velges når den er billigere enn redning; transport/flytting ved service, vedlikehold eller andre hendelser enn forsikringen omfatter dekkes ikke", 2, "Minikasko 2.4"),
+        row("redning.egenandel", "500 kr", 4, "Minikasko 4.3"),
         row("losore.grense", "10 000 kr per gjenstand; samlet sum fremgår av forsikringsbeviset", 1, "1.2"),
         row("tyveri.begrensning", "Tyveri fra fortelt er unntatt", 2, "2.2"),
         row("fortelt.begrensning", "Fortelt/tilbygg må inngå i avtalt forsikringssum", 2, "3.1"),
+        ...(name === "Kasko" ? [
+          row("fukt.dekning", "Skader som følge av fukt i tak, vegger og gulv etter godkjent og bestått fuktkontroll hos autorisert caravanforhandler", 5, "Kasko 1.3"),
+          row("fukt.alder", "Skader etter 15 år etter registrering som fabrikkny dekkes ikke", 5, "Kasko 1.3"),
+          row("fukt.begrensning", "Dekningen gjelder i inntil 1 år etter godkjent og bestått fuktkontroll; ny kontroll kreves for fortsatt dekning. Skader utenfor forsikringsperioden dekkes ikke", 5, "Kasko 1.3"),
+        ] : []),
       ] : []),
     ], name !== "Kasko" ? ["kasko"] : []);
   }
