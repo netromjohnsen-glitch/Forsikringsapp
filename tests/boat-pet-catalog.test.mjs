@@ -104,7 +104,9 @@ test("Storebrand dyr kan velges som Veterinær, Dødsfall eller kombinasjon", ()
 
 test("Hund-spesifikk bruksverdi lekker ikke til Katt", () => {
   assert.ok(addons("gjensidige", "Hund").some((addon) => addon.name === "Bruk"));
-  assert.equal(addons("gjensidige", "Katt").some((addon) => addon.name === "Bruk"), false);
+  // B-022 adds source-verified Katt Bruk; it must use its own species keys.
+  assert.ok(addons("gjensidige", "Katt").some((addon) => addon.name === "Bruk"));
+  assert.equal(productCatalog.facts["gjensidige-katt-bruk"].some(fact => fact.key.startsWith("hund.")), false);
   assert.ok(addons("frende", "Hund").some((addon) => addon.name === "Bruksverdi"));
   assert.equal(addons("frende", "Katt").some((addon) => addon.name === "Bruksverdi"), false);
   const catFacts = productCatalog.products.filter((product) => product.insuranceType === "Katt").flatMap(facts);

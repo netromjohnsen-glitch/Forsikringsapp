@@ -98,7 +98,7 @@ function selectedScopedAddOns(
   const definitions = relatedCoveragesForInsuranceType(insurance.type);
   const allowed = availableAddOns(product, asOf, null, catalog).map(addOn => {
     const namedKey = normalizeTermName(addOn.name, { insuranceType: insurance.type });
-    const parents = definitions.filter(definition =>
+    const parents = addOn.selectionEvidenceKeys ?? definitions.filter(definition =>
       (catalog.facts?.[addOn.componentId] ?? []).some(fact =>
         normalizeCatalogTermKey(fact.key) === definition.parentKey)).map(definition => definition.parentKey);
     return { addOn, namedKey, parents, specific: !parents.includes(namedKey) };
@@ -141,7 +141,7 @@ function selectedScopedAddOns(
     return { ...candidate, conflict: statuses.size > 1, selected: !blocked && (namedSelection || genericSelection),
       namedSpecificSelection: !blocked && candidate.specific && namedSelection };
   });
-  return candidates.filter(candidate => {
+  const selectedIds = new Set(candidates.filter(candidate => {
     if (!candidate.selected) return false;
     const group = candidate.addOn.exclusiveGroup;
     if (!group) return true;
@@ -152,7 +152,20 @@ function selectedScopedAddOns(
     const selected = candidates.filter(other => other.selected && other.addOn.exclusiveGroup === group);
     const named = selected.filter(other => other.namedSpecificSelection);
     return named.length ? named.length === 1 && named[0].addOn.id === candidate.addOn.id : selected.length === 1;
-  }).map(candidate => candidate.addOn.id);
+  }).map(candidate => candidate.addOn.id));
+  // Missing or rejected prerequisites block only conditional catalog facts.
+  // Preserve the original document and never infer an additional selection.
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const candidate of candidates) {
+      if (selectedIds.has(candidate.addOn.id) && candidate.addOn.requiresAddOnIds?.some(id => !selectedIds.has(id))) {
+        selectedIds.delete(candidate.addOn.id);
+        changed = true;
+      }
+    }
+  }
+  return [...selectedIds];
 }
 
 function enrichInsurance(

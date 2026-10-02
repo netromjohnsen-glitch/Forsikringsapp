@@ -24,6 +24,10 @@ const sourceSeeds: SourceSeed[] = [
   { providerId: "gjensidige", company: "Gjensidige", type: "båt", filename: "gjensidige-boat-ipid.pdf", version: "", termsNumber: "EAP14", url: "https://www.gjensidige.no/forsikring/batforsikring", sha256: "c0e14e39f1c5dce3c6d238e8822eb14267e998ad0e762f08887d05bc3cb9c7a0", sourceType: "ipid" },
   { providerId: "gjensidige", company: "Gjensidige", type: "hund", filename: "gjensidige-dog-ipid.pdf", version: "", termsNumber: "EAP32", url: "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring", sha256: "aa39107d5777e4f0a342918ef9e4ceba8828793665a3dc2eb41172107d1404ba", sourceType: "ipid" },
   { providerId: "gjensidige", company: "Gjensidige", type: "katt", filename: "gjensidige-cat-ipid.pdf", version: "", termsNumber: "EAP30", url: "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring", sha256: "314d266136da6b7b5aec994b70d45591e687bd5baac203fe0609437e7fdc4ee8", sourceType: "ipid" },
+  { id: "boat-pet:gjensidige:hund:life-use", providerId: "gjensidige", company: "Gjensidige", type: "hund", filename: "gjensidige-dog-life-use-terms.pdf", version: "", termsNumber: "Hund Liv og Bruk", url: "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring", sha256: "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea", sourceType: "full_terms" },
+  { id: "boat-pet:gjensidige:katt:life-use", providerId: "gjensidige", company: "Gjensidige", type: "katt", filename: "gjensidige-cat-life-use-terms.pdf", version: "", termsNumber: "Katt Liv og Bruk", url: "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring", sha256: "47750999d5bdbe5fc9bf5a2ffe24def17dd1664a2b8f9886bc7868dbf8049f5e", sourceType: "full_terms" },
+  { id: "boat-pet:gjensidige:hund:product", providerId: "gjensidige", company: "Gjensidige", type: "hund", filename: "gjensidige-dog-product.html", version: "", termsNumber: "Hundeforsikring – produktoversikt", url: "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring", sha256: "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58", sourceType: "product_page" },
+  { id: "boat-pet:gjensidige:katt:product", providerId: "gjensidige", company: "Gjensidige", type: "katt", filename: "gjensidige-cat-product.html", version: "", termsNumber: "Katteforsikring – produktoversikt", url: "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring", sha256: "f9bc6e31f84bfe1660b0014798ce144fa6fc5ee7f34ccbe14acf28feab883d4f", sourceType: "product_page" },
   { providerId: "storebrand", company: "Storebrand", type: "båt", filename: "storebrand-boat-terms.pdf", version: "2024-09-01", termsNumber: "båt03", url: "https://www.storebrand.no/privat/forsikring/batforsikring", sha256: "e945049a6b9fba643d9804279690fc8e1dfbb1cd4a419a81503e58fd5b959baa" },
   { providerId: "storebrand", company: "Storebrand", type: "hund", filename: "storebrand-pet-terms.pdf", version: "2025-02-01", termsNumber: "dyr04", url: "https://www.storebrand.no/privat/forsikring/hundeforsikring", sha256: "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591" },
   { providerId: "storebrand", company: "Storebrand", type: "katt", filename: "storebrand-pet-terms.pdf", version: "2025-02-01", termsNumber: "dyr04", url: "https://www.storebrand.no/privat/forsikring/katteforsikring", sha256: "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591" },
@@ -145,6 +149,25 @@ const petProducts: BoatPetProductDefinition[] = [
 ];
 
 const petAddOn = (providerId: string, company: string, type: "hund" | "katt", id: string, name: string, requiresLevel: string[], rows: BoatPetRow[]): BoatPetAddOnDefinition => ({ providerId, company, type, agreementScope: "ordinary", id, name, sourceId: sourceId(providerId, type), requiresLevel, rows });
+
+const gjensidigeBruk = (type: "hund" | "katt"): BoatPetAddOnDefinition => {
+  const fullTerms = `boat-pet:gjensidige:${type}:life-use`;
+  const qualified = (key: string, value: string, page: number, section: string): BoatPetRow => ({
+    ...row(key, value, "gjensidige", type, page, section, undefined, fullTerms),
+    qualificationSource: { sourceId: `boat-pet:gjensidige:${type}:product`, page: 1, section: "Bruk – tillegg til Liv" },
+  });
+  return {
+    ...petAddOn("gjensidige", "Gjensidige", type, `gjensidige-${type}-bruk`, "Bruk", ["Behandling"], [
+      qualified(`${type}.bruksverdi.dekning`, "Valgfritt tillegg til valgt Liv: livsvarig tap av bruksverdi innenfor forsikret bruksområde som følge av sykdom eller ulykke", 2, "Hvilke skader/hendelser – tap av bruksverdi"),
+      qualified(`${type}.bruksverdi.alder`, `Bruk opphører ved hovedforfall det året ${type === "hund" ? "hunden fyller 8" : "katten fyller 10"} år`, type === "hund" ? 3 : 2, "Opphør – Bruk"),
+      qualified(`${type}.bruksverdi.begrensning`, type === "hund"
+        ? "Bruksegenskapen må være dokumentert tapt av veterinær. Avlshund: fysisk mistet avlsevnen 100 %; hannhund far til minst 1 kull siste 2 år, tispe født minst 1 kull på normal måte siste 2 år før sykdom/skade. Jakthund, gjeterhund og tjenestehund: trent for og regelmessig brukt til formålet, bruksegenskapen nedsatt minst 50 %. Hunden må være utredet, adekvat behandlet og ha gjennomgått tilstrekkelig lang rekonvalesens."
+        : "Avlskatt: bruksegenskapen må være dokumentert tapt av veterinær og avlsevnen fysisk mistet 100 %. Hannkatt far til minst 1 kull siste 2 år; hunnkatt født minst 1 kull på normal måte siste 2 år før sykdom/skade.", 2, "Forutsetninger – tap av bruksverdi"),
+    ]),
+    requiresAddOnIds: [`gjensidige-${type}-liv`],
+    selectionEvidenceKeys: [`${type}.bruksverdi.dekning`],
+  };
+};
 const fremtindDogEarlyLifeGroup = "berner sennenhund, grand danois, irsk ulvehund, leonberger, newfoundlandshund, pyrenéerhund, napolitansk mastiff og sanktbernhardshund";
 const fremtindDogLateLifeGroup = "bichon havanais, border terrier, cairn terrier, chihuahua, chinese crested, dvergschnauzer, finsk lapphund, finsk spets, foxterrier, islandsk fårehund, jack russel terrier, lhasa apso, toy-, dverg- og mellompuddel, kleiner og grosser münsterländer, norrbottenspets, norsk buhund, papillon, phalène, schnauzer, shih tzu, softcoated wheaten terrier, tibetansk spaniel, tibetansk terrier, västgötaspets, welsh springer spaniel, west highland white terrier, whippet";
 const petAddOns: BoatPetAddOnDefinition[] = [
@@ -154,8 +177,9 @@ const petAddOns: BoatPetAddOnDefinition[] = [
   petAddOn("tryg", "Tryg", "katt", "tryg-katt-dod", "Rasekatt død", ["Behandling"], [row("dyr.liv.dekning", "Valgfri separat dekning", "tryg", "katt", 1, "Rasekatt død", undefined, "boat-pet:tryg:katt:life"), row("dyr.liv.forsvinning", "Inkludert i livsdekningen", "tryg", "katt", 1, "Rasekatt død", undefined, "boat-pet:tryg:katt:life"), row("dyr.liv.opphor", "Kan beholdes til katten fyller 12 år", "tryg", "katt", 2, "Når forsikringen slutter", undefined, "boat-pet:tryg:katt:life")]),
   ...(["hund", "katt"] as const).map((type) => petAddOn("if", "If", type, `${type === "hund" ? "if-hund" : "if-katt"}-liv`, "Liv", ["Basis", "Standard", "Super"], [row("dyr.liv.dekning", "Valgfri separat dekning", "if", type, 1, "Liv"), row("dyr.liv.sum.valgbar", "Forsikringssum velges og står i forsikringsbeviset", "if", type, 1, "Liv"), row("dyr.liv.reduksjon.start", type === "hund" ? "Startalder varierer etter dokumentert rasegruppe" : "Fra 10 år", "if", type, 5, "Liv"), row("dyr.liv.reduksjon.sats", "20 % av siste forsikringsårs forsikringssum per fornyelse", "if", type, 5, "Liv"), row("dyr.liv.opphor", type === "hund" ? "Opphørsalder varierer etter dokumentert rasegruppe" : "Ved fornyelse det året katten blir 13 år", "if", type, 5, "Liv")])),
   petAddOn("gjensidige", "Gjensidige", "hund", "gjensidige-hund-liv", "Liv", ["Behandling"], [row("dyr.liv.dekning", "Valgfri modul", "gjensidige", "hund", 1, "Liv")]),
-  petAddOn("gjensidige", "Gjensidige", "hund", "gjensidige-hund-bruk", "Bruk", ["Behandling"], [row("hund.bruksverdi.dekning", "Valgfri modul", "gjensidige", "hund", 1, "Bruk")]),
+  gjensidigeBruk("hund"),
   petAddOn("gjensidige", "Gjensidige", "katt", "gjensidige-katt-liv", "Liv", ["Behandling"], [row("dyr.liv.dekning", "Valgfri modul", "gjensidige", "katt", 1, "Liv")]),
+  gjensidigeBruk("katt"),
   petAddOn("sparebank1-fremtind", "Fremtind", "hund", "sparebank1-fremtind-hund-topp", "Topp veterinærutgifter", ["Veterinær"], [row("dyr.allergi.dekning", "Valgfri utvidelse", "sparebank1-fremtind", "hund", 3, "Topp veterinærutgifter"), row("dyr.diagnostikk.dekning", "Valgfri utvidelse", "sparebank1-fremtind", "hund", 3, "Topp veterinærutgifter"), row("dyr.allergi.grense", "Innenfor valgt forsikringssum; ingen egen livstidsgrense på 15 000 kr når Topp er valgt", "sparebank1-fremtind", "hund", 3, "Topp veterinærutgifter"), row("dyr.diagnostikk.grense", "MR/CT innenfor valgt forsikringssum; ingen egen årsgrense på 15 000 kr når Topp er valgt", "sparebank1-fremtind", "hund", 3, "Topp veterinærutgifter"), row("dyr.tannsykdom.dekning", "Valgfri utvidelse", "sparebank1-fremtind", "hund", 3, "Topp veterinærutgifter"), row("dyr.rehabilitering.dekning", "Valgfri utvidelse", "sparebank1-fremtind", "hund", 3, "Topp veterinærutgifter")]),
   ...(["hund", "katt"] as const).map((type) => {
     const lifeSource = `boat-pet:sparebank1-fremtind:${type}:life`;

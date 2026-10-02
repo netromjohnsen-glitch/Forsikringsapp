@@ -89,6 +89,10 @@ export type CatalogAddOn = {
   providerId: string;
   // null: vedlagte vilkår fastslår ikke hvilket hovednivå som kreves.
   requiresLevel: string[] | null;
+  // All prerequisites must be explicitly selected in customer mode.
+  requiresAddOnIds?: string[];
+  // Only these coverage families can select or reject the whole component.
+  selectionEvidenceKeys?: string[];
   insuranceTypes?: string[];
   // Dokumenterte alternative varianter av ett tillegg kan ikke velges sammen.
   exclusiveGroup?: string;
@@ -312,6 +316,48 @@ export function resolveProductComponentIds(product: CatalogProduct, catalog: Pro
   return collect(product);
 }
 
+// Catalog mode may describe a complete optional package. This does not
+// select anything for a customer; selectedComponents still requires all IDs.
+export function resolveAddOnPackage(product: CatalogProduct, addOnId: string, asOf = new Date(), distributionChannel: string | null = null, catalog: ProductCatalog = productCatalog): string[] {
+  const available = availableAddOns(product, asOf, distributionChannel, catalog);
+  const visiting = new Set<string>();
+  const completed = new Set<string>();
+  const date = asOf.toISOString().slice(0, 10);
+  const visit = (id: string, dependent = false) => {
+    if (visiting.has(id)) throw new Error("Syklisk tilleggsavhengighet.");
+    if (completed.has(id)) return;
+    const matches = available.filter(addOn => addOn.id === id);
+    if (matches.length !== 1) throw new Error("Ugyldig eller utilgjengelig tilleggsavhengighet.");
+    const addOn = matches[0];
+    if (dependent || addOn.requiresAddOnIds?.length) {
+      const entries = catalog.facts?.[addOn.componentId] ?? [];
+      const applies = (reference: CatalogFact["source"]) => {
+        const source = catalog.sources?.[reference.documentId];
+        return Boolean(source && catalogAgreementScope(source) === catalogAgreementScope(product) &&
+          (!source.providerId || source.providerId === product.providerId) &&
+          (!source.insuranceType || normalizeInsuranceType(source.insuranceType) === normalizeInsuranceType(product.insuranceType)) &&
+          (!source.productIds || source.productIds.includes(product.productId)) &&
+          (!source.productVersion || source.productVersion === product.version) &&
+          (!/^\d{4}-\d{2}(?:-\d{2})?$/u.test(source.effectiveFrom) || source.effectiveFrom <= date) &&
+          (!source.validTo || source.validTo >= date));
+      };
+      if (!entries.length || entries.some(fact => !catalogFactScopeApplies(fact, catalog.sources ?? {}, product) ||
+        !applies(fact.source) || (fact.qualificationSource && !applies(fact.qualificationSource)))) {
+        throw new Error("Tilleggsavhengighet har ugyldig kilde- eller produktscope.");
+      }
+    }
+    visiting.add(id);
+    for (const required of addOn.requiresAddOnIds ?? []) visit(required, true);
+    visiting.delete(id);
+    completed.add(id);
+  };
+  visit(addOnId);
+  const ids = [...completed];
+  const groups = ids.map(id => available.find(addOn => addOn.id === id)?.exclusiveGroup).filter(Boolean);
+  if (new Set(groups).size !== groups.length) throw new Error("Alternative tilleggsvarianter kan ikke inngå i samme pakke.");
+  return ids;
+}
+
 function selectedComponents(product: CatalogProduct, addOnIds: string[], asOf: Date, distributionChannel: string | null, catalog: ProductCatalog): { base: string[]; additions: string[] } {
   const today = asOf.toISOString().slice(0, 10);
   const base = resolveProductComponentIds(product, catalog);
@@ -328,6 +374,14 @@ function selectedComponents(product: CatalogProduct, addOnIds: string[], asOf: D
   }
   const groups = uniqueIds.map((id) => addOns.find((addOn) => addOn.id === id)?.exclusiveGroup).filter(Boolean);
   if (new Set(groups).size !== groups.length) throw new Error("Alternative tilleggsvarianter kan ikke velges samtidig.");
+  for (const id of uniqueIds) {
+    if (!addOns.find(addOn => addOn.id === id)?.requiresAddOnIds?.length) continue;
+    const required = resolveAddOnPackage(product, id, asOf, distributionChannel, catalog);
+    if (required.some(requiredId => !uniqueIds.includes(requiredId))) {
+      throw new Error("Tilleggsdekningen krever at tilhørende tillegg er uttrykkelig valgt.");
+    }
+  }
+  if (uniqueIds.some(id => addOns.find(addOn => addOn.id === id)?.requiresAddOnIds?.length)) uniqueIds.sort();
   return {
     base,
     additions: uniqueIds.map((id) => addOns.find((addOn) => addOn.id === id)!.componentId),

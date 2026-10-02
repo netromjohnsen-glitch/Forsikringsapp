@@ -9,6 +9,7 @@ export type BoatPetRow = {
   section: string;
   deductibleClassification?: CatalogFact["deductibleClassification"];
   label?: string;
+  qualificationSource?: Pick<BoatPetRow, "sourceId" | "page" | "section">;
 };
 export type BoatPetProductDefinition = {
   providerId: string;
@@ -25,6 +26,8 @@ export type BoatPetAddOnDefinition = Omit<BoatPetProductDefinition, "productId" 
   id: string;
   requiresLevel: string[];
   exclusiveGroup?: string;
+  requiresAddOnIds?: string[];
+  selectionEvidenceKeys?: string[];
 };
 
 const displayType = (type: BoatPetType) => type === "båt" ? "Båt" : type === "hund" ? "Hund" : "Katt";
@@ -36,6 +39,15 @@ export function buildBoatPetCatalog(
 ) {
   const facts: Record<string, CatalogFact[]> = {};
   function rows(definition: BoatPetProductDefinition | BoatPetAddOnDefinition): CatalogFact[] {
+    const reference = (row: Pick<BoatPetRow, "sourceId" | "page" | "section">): CatalogFact["source"] => {
+      const source = sources[row.sourceId];
+      if (!source || source.providerId !== definition.providerId || source.insuranceType?.toLowerCase() !== definition.type || source.agreementScope !== definition.agreementScope) {
+        throw new Error("Invalid Båt/Hund/Katt qualification source applicability");
+      }
+      return { documentId: source.id, filename: source.filename, termsNumber: source.termsNumber,
+        effectiveFrom: source.effectiveFrom, version: source.version, agreementScope: source.agreementScope,
+        url: source.url, company: source.company, page: row.page, section: row.section };
+    };
     return definition.rows.map((row) => {
       const source = sources[row.sourceId];
       if (!source || source.providerId !== definition.providerId || source.insuranceType?.toLowerCase() !== definition.type || source.agreementScope !== definition.agreementScope) {
@@ -49,6 +61,7 @@ export function buildBoatPetCatalog(
         label: row.label ?? boatPetFactLabel(definition.type, row.key) ?? row.key,
         value: row.value,
         ...(row.deductibleClassification ? { deductibleClassification: row.deductibleClassification } : {}),
+        ...(row.qualificationSource ? { qualificationSource: reference(row.qualificationSource) } : {}),
         source: {
           documentId: source.id,
           filename: source.filename,
@@ -96,6 +109,8 @@ export function buildBoatPetCatalog(
       requiresLevel,
       componentId: definition.id,
       ...(definition.exclusiveGroup ? { exclusiveGroup: definition.exclusiveGroup } : {}),
+      ...(definition.requiresAddOnIds ? { requiresAddOnIds: [...definition.requiresAddOnIds] } : {}),
+      ...(definition.selectionEvidenceKeys ? { selectionEvidenceKeys: [...definition.selectionEvidenceKeys] } : {}),
     };
   });
   return { products, facts, addOns, sources };

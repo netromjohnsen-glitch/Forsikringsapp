@@ -10,6 +10,7 @@ import {
   findCatalogProduct,
   productCatalog,
   resolveCatalogFacts,
+  resolveAddOnPackage,
   type CatalogFact,
   type CatalogProduct,
   type CatalogSource,
@@ -202,8 +203,12 @@ export function materializeCatalogProduct(
   ));
 
   for (const addOn of availableAddOns(product, new Date(), null, catalog)) {
-    const withAddOn = resolveCatalogFacts(product, [addOn.id], new Date(), null, catalog);
+    const packageIds = resolveAddOnPackage(product, addOn.id, new Date(), null, catalog);
+    const withAddOn = resolveCatalogFacts(product, packageIds, new Date(), null, catalog);
+    const ownIdentities = addOn.requiresAddOnIds?.length
+      ? new Set((catalog.facts?.[addOn.componentId] ?? []).map(factIdentity)) : null;
     for (const fact of withAddOn) {
+      if (ownIdentities && !ownIdentities.has(factIdentity(fact))) continue;
       if (customerSpecificKey.test(fact.key) || baseIdentities.has(factIdentity(fact))) continue;
       const existing = facts.find((candidate) => candidate.key === fact.key &&
         normalizeText(candidate.value) === normalizeText(fact.value) && candidate.state === "optional");

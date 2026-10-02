@@ -177,7 +177,7 @@ const boatPetPresentationConcepts: readonly PresentationConcept[] = [
     boatPetConcept(type, "karenstid", "Karenstid", ["dyr.karenstid"], "secondary"),
     boatPetConcept(type, "alder", "Aldersregler", ["dyr.inntaksalder", "dyr.veterinaralder"], "secondary"),
     boatPetConcept(type, "liv", "Liv, død og tap", ["dyr.liv"], "secondary"),
-    ...(type === "hund" ? [boatPetConcept("hund", "bruksverdi", "Bruksverdi", ["hund.bruksverdi"], "secondary")] : []),
+    boatPetConcept(type, "bruksverdi", "Bruksverdi", [`${type}.bruksverdi`], "secondary"),
     concept(`${type}.ovrig`, type, `Andre ${type === "hund" ? "hunde" : "katte"}vilkår`, [/.+/u], "detail", ["misunderstanding-risk"]),
   ]),
 ];

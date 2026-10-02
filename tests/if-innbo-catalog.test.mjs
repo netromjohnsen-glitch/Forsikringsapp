@@ -138,12 +138,19 @@ test("Tryg Innbo mot If Basis viser dokumenterte grenser og ikke antatt manglend
 test("Tryg Innbo Ekstra mot If Utvidet sammenligner like begreper med samme nøkkel", () => {
   const result = compare(manual("Tryg", "Innbo Ekstra"), manual("If", "Utvidet"));
   for (const key of ["uhell.dekning", "tyveri.utenforhjem.grense", "sykkel.tyveri.grense",
-    "flytting.transport.grense", "skadedyr.grense", "rettshjelp.grense"]) {
+    "skadedyr.grense", "rettshjelp.grense"]) {
     const row = fact(result.terms, key);
     assert.ok(row, key);
     assert.ok(row.first, key);
     assert.ok(row.second, key);
   }
+  // B-015 separates Tryg's theft/vandalism from If's transport damage.
+  const movingTheft = fact(result.terms, "flytting.tyveri_skadeverk.grense");
+  assert.match(movingTheft.first, /Tyveri og skadeverk.*30 000 kr per skadetilfelle/u);
+  assert.equal(movingTheft.second, null);
+  const movingTransport = fact(result.terms, "flytting.transport.grense");
+  assert.equal(movingTransport.first, null);
+  assert.equal(movingTransport.second, "Plutselig ytre skade ved transport samt inn- og utbæring til ny bolig eller fritidsbolig");
   assert.equal(fact(result.terms, "skadedyr.grense").first, "150 000 kr per skadetilfelle");
   assert.equal(fact(result.terms, "skadedyr.grense").second, "150 000 kr per skadetilfelle");
   assert.equal(result.raw.some((entry) => entry.termKey === "skadedyr.grense"), false);

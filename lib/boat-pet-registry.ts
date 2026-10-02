@@ -87,7 +87,9 @@ const dogOnly: readonly RelatedCoverage[] = [
 export function boatPetCoverages(type: string): readonly RelatedCoverage[] {
   if (type === "båt") return boat;
   if (type === "hund") return [...veterinary, ...dogOnly];
-  if (type === "katt") return veterinary;
+  if (type === "katt") return [...veterinary,
+    coverage("katt.bruksverdi", "Bruksverdi", ["tap av bruksverdi", "nedsatt bruksverdi", "bruk"], [age, restriction], true),
+  ];
   return [];
 }
 
