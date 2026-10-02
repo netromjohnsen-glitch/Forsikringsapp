@@ -70,9 +70,13 @@ test('R-028-11: explicit document overrides/rejection win; no silent rider selec
  for(const id of ids.slice(1))documentPriority(id,'feilfylling.dekning','Ikke valgt');
  for(const id of ids.slice(2))documentPriority(id,'kasko.egenandel','4 444 kr');
 });
-test('R-028-12: manual positives, geography/contents/Topp deductible held out and MC untouched',()=>{
+test('R-028-12: manual positives, geography/contents/Topp deductible held out and MC main limits preserved',()=>{
  for(const id of ids){const out=manual(id);assert.equal(out.annualPremium,null);assert.equal(out.addOnIds.length,0);assert.equal(out.importantTerms.find(t=>t.key==='rettshjelp.grense').value,legal);assert.equal(fact(id,'avtale.geografi').value,'Europa, unntatt Tyrkia, Kosovo, Russland og Belarus');}
  assert.equal(fact(ids[2],'bobil.losore.grense').value,'Inntil 40 000 kr');assert.equal(fact(ids[3],'bobil.losore.grense').value,'Inntil 100 000 kr');assert.equal(fact(ids[3],'feilfylling.egenandel').value,'1 000 kr; bonustap ved bruk av forsikringen');
- assert.equal(fact('fremtind-mc-kasko','rettshjelp.grense').value,'Inntil 100 000 kr per tvist; inntil 250 000 kr ved minst tre parter på samme side');
+ // B-031 adds own-source MC qualifications; B-028 still preserves its main limits.
+ const mcLegal=fact('fremtind-mc-kasko','rettshjelp.grense');
+ assert.match(mcLegal.value,/(?:Inntil|maksimalt) 100 000 kr per tvist\b/);
+ assert.match(mcLegal.value,/(?:inntil|kan utvides til) 250 000 kr ved minst tre parter på (?:samme|sikredes) side\b/);
+ assert.equal(mcLegal.source.documentId,'mcb-ff-fremtind-mc-terms-rettshjelp');
  assert.ok(productCatalog.addOns.some(a=>a.id===addon&&a.agreementScope==='ordinary-dnb'));
 });

@@ -360,10 +360,12 @@ const fremtindBase = (type: "mc" | "bobil") => {
       ["ulykke.dod", "100 000 kr med ektefelle/samboer eller barn under 20 år; ellers 50 000 kr"],
     ]),
     ...rows(`${id}-rettshjelp`, type === "mc" ? 9 : 10, "Rettshjelp 1–4", [
-      ["rettshjelp.dekning", "Rimelige og nødvendige utgifter til juridisk bistand ved tvist som eier eller rettmessig bruker av kjøretøyet"],
+      ["rettshjelp.dekning", type === "mc"
+        ? "Rimelige og nødvendige utgifter til juridisk bistand ved tvist som personlig eier eller rettmessig bruker/fører av kjøretøyet. Ved salg og opphør av forsikringen i forbindelse med salget dekkes også tvist som tidligere eier/rettighetshaver"
+        : "Rimelige og nødvendige utgifter til juridisk bistand ved tvist som eier eller rettmessig bruker av kjøretøyet"],
       ["rettshjelp.geografi", "Norden"],
     ]),
-    ...(type === "mc" ? rows(`${id}-rettshjelp`, 10, "Rettshjelp 5.1", [["rettshjelp.grense", "Inntil 100 000 kr per tvist; inntil 250 000 kr ved minst tre parter på samme side"]]) :
+    ...(type === "mc" ? rows(`${id}-rettshjelp`, 10, "Rettshjelp 5.1; 4.1–4.2 side 9", [["rettshjelp.grense", "Inntil sikredes økonomiske interesse, maksimalt 100 000 kr per tvist; kan utvides til 250 000 kr ved minst tre parter på sikredes side (ektefeller/samboere regnes som én part). Finansklagenemnda: inntil 15 000 kr; forliksråd/jordskifterett: inntil 25 000 kr. Sakkyndige som ikke er oppnevnt av retten: inntil 20 % av forsikringssummen; interessetaket kan fravikes for utgifter godkjent av selskapet på forhånd"]]) :
       rows("mcb-ff-fremtind-bobil-ansvar", 5, "Rettshjelp 4.2 og 5.1; sakkyndige i 4.1 side 4", [["rettshjelp.grense", "Inntil sikredes økonomiske interesse, maksimalt 100 000 kr per tvist; kan utvides til 250 000 kr ved minst tre parter på sikredes side (ektefeller/samboere regnes som én part). Finansklagenemnda: inntil 15 000 kr; forliksråd/jordskifterett: inntil 25 000 kr. Sakkyndige som ikke er oppnevnt av retten: inntil 20 % av forsikringssummen"]])),
     ...rows(`${id}-rettshjelp`, type === "mc" ? 10 : 12, "Rettshjelp 5.2", [["rettshjelp.egenandel", "Avtalt egenandel i forsikringsbeviset, i tillegg 20 % av advokat- og sakkyndigutgifter", "reference"]]),
   ];
@@ -378,8 +380,8 @@ const fremtindMcMini = combine(fremtindBase("mc"),
     ["mc.bagasje.begrensning", "Gjelder sikredes faste husstand; penger, smykker og klokker omfattes ikke"],
     ["brann.dekning", "Brann, lynnedslag og eksplosjon"], ["tyveri.dekning", "Tyveri, brukstyveri, tyveriforsøk og hærverk"],
   ]),
-  rows(`${fm}-mini`, 6, "Minikasko 2.4", [["veihjelp.dekning", "Transport til nærmeste verksted og nødvendig persontransport ved dekket skade eller upåregnelig driftsstans; assistanse også hjemme"],
-    ["veihjelp.begrensning", "Driftsstans i terreng dekkes ikke; transport begrenset til 50 % av markedsverdi, men grensen gjelder ikke ved erstatningsmessig skade"]]),
+  rows(`${fm}-mini`, 6, "Minikasko 2.4.1–2.4.2; persontransport også side 5", [["veihjelp.dekning", "Transport til nærmeste verksted ved dekket skade eller upåregnelig driftsstans; assistanse også hjemme. Nødvendige merutgifter til hjemreise til bosted med rimeligste kommunikasjonsmiddel ved førers/passasjers ulykkestilfelle, plutselige sykdom eller død som hindrer fortsatt reise med kjøretøyet, dekket skade eller upåregnelig driftsstopp når kjøretøyet ikke kan settes i trafikksikker stand innen rimelig tid, eller tyveri når kjøretøyet ikke kommer til rette innen rimelig tid. Etter sikredes ønske erstattes fortsatt reise til bestemmelsesstedet når dette er rimeligere enn hjemreise. Ved dekket skade, ikke driftsstans alene, utenfor Norden: forhåndsgodkjent leiebil for å følge fastlagt reiserute, inntil 350 kr per dag i maksimalt 30 dager. Drivstoff, fergetransport, veiavgifter, ekstra ulykkesforsikring og særskilt avtalt egenandel for leiebil omfattes ikke"]]),
+  rows(`${fm}-mini`, 6, "Minikasko 2.4", [["veihjelp.begrensning", "Driftsstans i terreng dekkes ikke; transport begrenset til 50 % av markedsverdi, men grensen gjelder ikke ved erstatningsmessig skade"]]),
   rows(`${fm}-mini`, 6, "Minikasko 3.3.1; Kasko 2 viser til Minikasko 3", [
     ["nyverdi.dekning", "Nytt kjøretøy av tilsvarende modell, type og årsmodell med fabrikkmontert tilbehør ved dekningsmessig totalskade på motorsykkel eller moped"],
     ["nyverdi.alder", "Skaden må inntreffe innen 3 måneder etter at kjøretøyet som fabrikkny var registrert på eier"],
@@ -391,7 +393,7 @@ const fremtindMcMini = combine(fremtindBase("mc"),
 const fremtindMcKasko = combine(fremtindMcMini,
   rows(`${fm}-kasko`, 8, "Kasko 1.1–1.2 og 3.1", [
     ["kasko.dekning", "Sammenstøt, utforkjøring, velting eller annen tilfeldig, plutselig ytre påvirkning"],
-    ["kasko.egenandel", "Fremgår av forsikringsbeviset", "reference"],
+    ["kasko.egenandel", "Egenandel fremgår av forsikringsbeviset; økes med 12 000 kr når fører er under 23 år ved skaden og slik bruk ikke er opplyst", "reference"],
     ["kasko.begrensning", "Maskinskade omfattes ikke; utleie og erverv omfattes ikke"],
     ["leiebil.dekning", "Leiebil etter erstatningsmessig skade på motorsykkel; bruk og leverandør må forhåndsgodkjennes"],
     ["leiebil.dager", "Normal reparasjonstid, maksimalt 15 dager"], ["leiebil.dagsgrense", "350 kr per dag"],
