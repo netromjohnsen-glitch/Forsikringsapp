@@ -198,7 +198,8 @@ export function materializeCatalogProduct(
   const facts: ProductComparisonFact[] = baseFacts.map((fact) => productFact(
     fact,
     fact.coverageAvailability ?? (isNonAssertingCoverageDetail(fact.key) ? "included" :
-      coverageStatusFromText(fact.value) === "not_selected" ? "unavailable" : "included"),
+      coverageStatusFromText(fact.value, { subject: fact.label, productName: product.name }) === "not_selected"
+        ? "unavailable" : "included"),
     catalog,
   ));
 

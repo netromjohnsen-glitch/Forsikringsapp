@@ -3,13 +3,15 @@ import { trygReiseSources } from "./tryg-reise-sources.ts";
 export { trygReiseSources } from "./tryg-reise-sources.ts";
 
 type Row = [key: string, label: string, value: string, section: string, page: number,
-  deductibleClassification?: CatalogFact["deductibleClassification"], replacesBase?: boolean];
+  deductibleClassification?: CatalogFact["deductibleClassification"], replacesBase?: boolean,
+  coverageAvailability?: CatalogFact["coverageAvailability"]];
 function facts(sourceId: string, rows: Row[]): CatalogFact[] {
   const source = trygReiseSources[sourceId];
-  return rows.map(([key, label, value, section, page, deductibleClassification, replacesBase]) => ({
+  return rows.map(([key, label, value, section, page, deductibleClassification, replacesBase, coverageAvailability]) => ({
     key: `reise.${key}`, label, value,
     ...(deductibleClassification ? { deductibleClassification } : {}),
     ...(replacesBase ? { replacesBase: true } : {}),
+    ...(coverageAvailability ? { coverageAvailability } : {}),
     source: { documentId: source.id, section, page, filename: source.filename, termsNumber: source.termsNumber,
       effectiveFrom: source.effectiveFrom, company: source.company, url: source.url,
       productCode: source.productCode, version: source.version,
@@ -29,7 +31,7 @@ const productFacts = facts("trygReiseProduct", [
 
 const base = facts("trygReiseBase", [
   ["overnatting", "Reise med overnatting", "Reise gjelder bare fritidsreiser med overnatting.", "Produktstruktur og produktside", 1],
-  ["tjenestereise", "Tjenestereise", "Tjenestereiser er ikke omfattet av Reise; de er også uttrykkelig unntatt fra avbestilling og flere forsinkelses-/reiseavbruddsytelser.", "2.2, 3.3 og 5.5", 2],
+  ["tjenestereise", "Tjenestereise", "Tjenestereiser er ikke omfattet av Reise; de er også uttrykkelig unntatt fra avbestilling og flere forsinkelses-/reiseavbruddsytelser.", "2.2, 3.3 og 5.5", 2, undefined, undefined, "unavailable"],
   ["avbestilling.dekning", "Avbestilling", "Uventet akutt sykdom, alvorlig ulykkesskade, akutt alvorlig forverring av kjent sykdom eller dødsfall hos sikrede, nærmeste familie, reisefølge eller eneste medreisendes nærmeste familie; også angitte savnet-, behandling-, boligskade-, naturkatastrofe- og UD-tilfeller.", "2.1", 1],
   ["avbestilling.ud", "Avbestilling ved UD-reiseadvarsel", "Dekkes når offisiell UD-advarsel foreligger når reisen starter, men ikke hvis advarselen forelå ved bestilling.", "2.1–2.2", 1],
   ["forsinkelse.rute", "Forsinket avgang og fremmøte", "Forsinket forhåndsbestilt offentlig transport eller fremmøte etter kollisjon, utforkjøring, teknisk feil, nødlanding, vær eller terrorhandling/-trussel. Rimelig transport for å innhente ruten og nødvendig overnatting omfattes.", "3.1", 2],

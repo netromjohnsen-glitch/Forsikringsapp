@@ -32,6 +32,7 @@ type EnrichedTerm = ExtractedTerm & {
   sources?: CatalogFact["source"][];
   deductibleClassification?: CatalogFact["deductibleClassification"];
   structuredValue?: CatalogFact["structuredValue"];
+  coverageAvailability?: CatalogFact["coverageAvailability"];
   overriddenBase?: { value: string; source: CatalogFact["source"] }[];
 };
 
@@ -40,6 +41,7 @@ export type CatalogEnrichedInsurance = Omit<ExtractedInsurance, "importantTerms"
   addOns: (ExtractedInsurance["addOns"][number] & { classification?: "standard" | "add_on" })[];
   catalogReference?: CatalogProductReference | null;
   catalogSelectionConfirmed?: boolean;
+  catalogProductName?: string;
   catalogFacts?: CatalogFact[] | null;
   addOnIds?: string[];
 };
@@ -54,6 +56,7 @@ function catalogTerm(fact: CatalogFact, allFacts: readonly CatalogFact[]): Enric
     value: fact.value,
     key: fact.key,
     coverageOrigin: "catalog",
+    ...(fact.coverageAvailability ? { coverageAvailability: fact.coverageAvailability } : {}),
     structuredValue: fact.structuredValue,
     deductibleClassification: fact.deductibleClassification,
     source: fact.source,
@@ -118,7 +121,9 @@ function selectedScopedAddOns(
   const candidates = allowed.map(candidate => {
     const { addOn, parents } = candidate;
     const exactTerms = documentTerms.filter(term => normalizeLabel(term.name) === normalizeLabel(addOn.name));
-    const statuses = new Set(exactTerms.map(term => coverageStatusFromText(term.value))
+    const statuses = new Set(exactTerms.map(term => coverageStatusFromText(term.value, {
+      subject: addOn.name, productName: product.name,
+    }))
       .filter(status => status === "selected" || status === "not_selected"));
     const namedSelection = statuses.has("selected") || documentAddOns.some(entry =>
       normalizeLabel(entry.name) === normalizeLabel(addOn.name));
@@ -316,6 +321,7 @@ function enrichInsurance(
     // Eksakt produktnivå bekrefter produktets ubetingede base. Valgfrie
     // dekninger uten dokumentevidens er filtrert bort over.
     catalogSelectionConfirmed: true,
+    catalogProductName: product.name,
     catalogFacts,
     // Model addOns are evidence of coverage, not sufficient proof of product
     // role. Preserve every term, but separate documented base from additions.

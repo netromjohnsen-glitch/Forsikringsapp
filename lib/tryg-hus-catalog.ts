@@ -7,11 +7,12 @@ export { trygHusSources } from "./tryg-hus-sources.ts";
 // er dokumentert. Felles formuleringer nedenfor er kontrollert i begge PDF-er;
 // hvert produkt får alltid sin egen kilde og sine egne sidetall.
 type Row = [key: string, label: string, value: string, section: string, page: number,
-  classification?: CatalogFact["deductibleClassification"]];
+  classification?: CatalogFact["deductibleClassification"], coverageAvailability?: CatalogFact["coverageAvailability"]];
 function facts(sourceId: string, rows: Row[]): CatalogFact[] {
   const s = trygHusSources[sourceId];
-  return rows.map(([key, label, value, section, page, deductibleClassification]) => ({
+  return rows.map(([key, label, value, section, page, deductibleClassification, coverageAvailability]) => ({
     key: `hus.${key}`, label, value, ...(deductibleClassification ? { deductibleClassification } : {}),
+    ...(coverageAvailability ? { coverageAvailability } : {}),
     source: { documentId: s.id, filename: s.filename, termsNumber: s.termsNumber,
       effectiveFrom: s.effectiveFrom, company: s.company, url: s.url, section, page },
   }));
@@ -79,7 +80,7 @@ function buildingFacts(extra: boolean): CatalogFact[] {
     ["plutselig.dekning", "Annen plutselig og uforutsett bygningsskade", extra ? "Andre plutselige og uforutsette skader enn brann, elektrisk, vann, rørbrudd og tyveri. Følgeskade av håndverkerfeil kan omfattes når fagfolk utførte arbeidet og skaden oppdages innen 10 år; selve feilen og unødvendig tilkomst utbedres ikke." : "Andre plutselige og uforutsette skader enn brann, elektrisk, vann, rørbrudd og tyveri. Unntak blant annet sviktende fundamentering, setninger, jordtrykk, frost/tele og konstruksjons-, material- og monteringsfeil.", "2.6", 4],
     ["plutselig.unntak", "Bygningsskade – slitasje og vedlikehold", "Slitasje, tæring, forbruk, alder, ødeleggelse av tingen selv og kosmetiske skader er unntatt. Naturulykke og skadetyper i 2.1–2.5 behandles uttømmende i sine respektive dekninger.", "2.6", 4],
     ["rate.dekning", "Råte og sopp – bygningsskade", "Sopp og råte er unntatt i ordinær bygningsdekning. Separat råte- og skadedyrdekning må være avtalt.", "2.3, 2.6", 4],
-    ["skadedyr.bygningsskade", "Dyr – fysisk bygningsskade", extra ? "Plutselig og uforutsett skade fra dyr kan omfattes; kjæledyr, insekter, bakterier, sopp og råte er unntatt. Unntaket gjelder ikke bruddskade på glass. Bekjempelse følger ikke automatisk denne dekningen." : "Dyr, insekter, bakterier, sopp og råte er unntatt; unntaket gjelder ikke bruddskade på glass.", "2.6", 4],
+    ["skadedyr.bygningsskade", "Dyr – fysisk bygningsskade", extra ? "Plutselig og uforutsett skade fra dyr kan omfattes; kjæledyr, insekter, bakterier, sopp og råte er unntatt. Unntaket gjelder ikke bruddskade på glass. Bekjempelse følger ikke automatisk denne dekningen." : "Dyr, insekter, bakterier, sopp og råte er unntatt; unntaket gjelder ikke bruddskade på glass.", "2.6", 4, undefined, extra ? undefined : "unavailable"],
     ["vaer.dekning", "Vind, snøtyngde og ras fra tak", "Vind svakere enn storm, snøtyngde og ras fra tak behandles som ordinær bygningsskade; ikke som lovbestemt naturskade.", "2.6", 4],
     ["vaer.begrensning", "Vind, snø og ras – sentrale begrensninger", extra
       ? "Kjæledyr, insekter, bakterier, sopp eller råte, slitasje og alder, kosmetiske skader, utett våtrom, selve håndverkerfeilen samt følgeskade etter eget/ufaglært arbeid eller oppdaget senere enn 10 år er unntatt."

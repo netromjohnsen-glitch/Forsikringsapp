@@ -2,13 +2,15 @@ import type { CatalogFact, CatalogProduct } from "./product-catalog.ts";
 import { ifReiseSources } from "./if-reise-sources.ts";
 export { ifReiseSources } from "./if-reise-sources.ts";
 
-type Row = [string, string, string, string, number, CatalogFact["deductibleClassification"]?, boolean?];
+type Row = [string, string, string, string, number, CatalogFact["deductibleClassification"]?, boolean?,
+  CatalogFact["coverageAvailability"]?];
 function facts(sourceId: string, rows: Row[]): CatalogFact[] {
   const source = ifReiseSources[sourceId];
-  return rows.map(([key, label, value, section, page, deductibleClassification, replacesBase]) => ({
+  return rows.map(([key, label, value, section, page, deductibleClassification, replacesBase, coverageAvailability]) => ({
     key: `reise.${key}`, label, value,
     ...(deductibleClassification ? { deductibleClassification } : {}),
     ...(replacesBase ? { replacesBase: true } : {}),
+    ...(coverageAvailability ? { coverageAvailability } : {}),
     source: { documentId: source.id, section, page, filename: source.filename, termsNumber: source.termsNumber,
       effectiveFrom: source.effectiveFrom, company: source.company, url: source.url,
       productCode: source.productCode, version: source.version,
@@ -52,7 +54,7 @@ const basis = facts("ifReiseTerms", [
   ["bagasje.forsinket", "Forsinket bagasje", "Ikke inkludert i Basis.", "Produktoversikt", 2],
   ["bagasje.dekning", "Personlige eiendeler", "Ikke inkludert i Basis.", "Produktoversikt", 2],
   ["reiseavbrudd", "Tapt ferie", "Ikke inkludert i Basis.", "Produktoversikt", 2],
-  ["leiebil.egenandel", "Leiebilegenandel", "Ikke inkludert i Basis.", "Produktoversikt", 2],
+  ["leiebil.egenandel", "Leiebilegenandel", "Ikke inkludert i Basis.", "Produktoversikt", 2, undefined, undefined, "unavailable"],
 ]);
 
 const standard = facts("ifReiseTerms", [

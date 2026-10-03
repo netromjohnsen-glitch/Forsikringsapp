@@ -202,24 +202,29 @@ function compoundDetails(
 }
 
 function explicitCoverageStatuses(text: string, insuranceType: string): DocumentFact[] {
-  const normalized = normalizeWords(text);
+  // Only complete declarations about the named coverage are evidence. Keep
+  // sentence boundaries until after splitting; a condition or exception can
+  // mention a selected coverage without selecting it for this customer.
+  // Line wraps are whitespace, not new declarations.
+  const statements = text.normalize("NFKC").split(/[.;](?=\s|$)/u).map(normalizeWords);
   const result: DocumentFact[] = [];
   for (const coverage of relatedCoveragesForInsuranceType(insuranceType)) {
     const aliases = new Set([coverage.label, ...(coverage.aliases ?? [])]);
+    const statuses = new Set<"selected" | "not_selected">();
     for (const alias of aliases) {
       const label = normalizeWords(alias);
       const escaped = label.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&").replace(/\s+/gu, "\\s+");
-      const negative = new RegExp(`(?:^|\\s)${escaped}(?:\\s+er)?\\s+ikke\\s+(?:valgt|inkludert)(?:\\s|$)`, "u");
-      const positive = new RegExp(`(?:^|\\s)${escaped}(?:\\s+er)?\\s+(?:valgt|inkludert)(?:\\s|$)`, "u");
-      if (negative.test(normalized)) {
-        result.push(extractedTerm(coverage.parentKey, coverage.label, `${coverage.label} er ikke valgt`));
-        break;
-      }
-      if (positive.test(normalized)) {
-        result.push(extractedTerm(coverage.parentKey, coverage.label, `${coverage.label} er valgt`));
-        break;
+      const negative = new RegExp(`^${escaped}(?:\\s+er)?\\s+ikke\\s+(?:valgt|inkludert)$`, "u");
+      const positive = new RegExp(`^${escaped}(?:\\s+er)?\\s+(?:valgt|inkludert)$`, "u");
+      for (const statement of statements) {
+        if (negative.test(statement)) statuses.add("not_selected");
+        if (positive.test(statement)) statuses.add("selected");
       }
     }
+    // Preserve both explicit declarations so the resolver can report a
+    // document conflict instead of arbitrarily choosing one of them.
+    for (const status of statuses) result.push(extractedTerm(coverage.parentKey, coverage.label,
+      `${coverage.label} er ${status === "not_selected" ? "ikke " : ""}valgt`));
   }
   return result;
 }

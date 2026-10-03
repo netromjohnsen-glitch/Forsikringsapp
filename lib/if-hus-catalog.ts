@@ -56,7 +56,7 @@ const basis = facts("ifHusTerms", [
   ["ror.tining", "Tining av utvendig rør", "Dokumenterte utgifter til tining eller tilrettelegging når utvendig vann-/avløpsledning er frosset: inntil 50 000 kroner inklusive relevante merutgifter og tap.", "4.4", 8],
   ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Ikke dokumentert som egen Basis-utvidelse. Vanninntrengning utenfra over terrengnivå omfattes på Utvidet/Super med vilkårets alders- og objektbegrensninger.", "4.4", 8],
   ["vatrom.folgeskade", "Utett våtrom - følgeskade", "Skade i tilstøtende eller underliggende rom som følge av utett våtrom er unntatt på Basis.", "4.4", 8],
-  ["vatrom.selverommet", "Våtrom - selve rommet og feilen", "Skade i våtrom på gulv/vegg som skal tåle vann og oppforinger rundt sluk er unntatt på Basis. Feil uten skade er ikke dekket.", "4.4", 8],
+  ["vatrom.selverommet", "Våtrom - selve rommet og feilen", "Skade i våtrom på gulv/vegg som skal tåle vann og oppforinger rundt sluk er unntatt på Basis. Feil uten skade er ikke dekket.", "4.4", 8, undefined, undefined, "unavailable"],
   ["tyveri.dekning", "Tyveri og skadeverk på bygning", "Tyveri og skadeverk på forsikringsstedet. Husstandsmedlems skadeverk og kosmetiske skader er unntatt; hendelsen skal politianmeldes.", "4.5", 8],
   ["plutselig.dekning", "Annen plutselig og uforutsett bygningsskade", "Andre plutselige og uforutsette skader, med uttrykkelige unntak for blant annet frost, tele, setninger, konstruksjons-/materialfeil, kondens, sopp/råte og skadedyr.", "4.7", 9],
   ["rate.dekning", "Råte og sopp - bygningsskade", "Sopp og råte er unntatt på Basis.", "4.7", 9],

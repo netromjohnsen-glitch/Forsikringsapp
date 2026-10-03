@@ -182,6 +182,7 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
         importantTerms: (catalogFacts ?? []).filter(item => (catalog.facts?.[addOn.componentId] ?? []).includes(item)).map((item) => ({
           name: item.label, value: item.value, key: item.key, source: item.source,
           coverageOrigin: "catalog" as const,
+          ...(item.coverageAvailability ? { coverageAvailability: item.coverageAvailability } : {}),
           deductibleClassification: item.deductibleClassification,
         })),
       };
@@ -192,6 +193,7 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
           value: (counts.get(item.key) ?? 0) > 1 ? `${item.source.termsNumber}: ${item.value}` : item.value,
           key: item.key,
           coverageOrigin: "catalog" as const,
+          ...(item.coverageAvailability ? { coverageAvailability: item.coverageAvailability } : {}),
           structuredValue: item.structuredValue,
           deductibleClassification: item.deductibleClassification,
           source: item.source,
@@ -226,6 +228,7 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
         : resolvedTerms,
       catalogReference,
       catalogSelectionConfirmed: Boolean(catalogReference),
+      ...(catalogProduct ? { catalogProductName: catalogProduct.name } : {}),
       catalogFacts,
       addOnIds: catalogReference ? selectedAddOnIds : [],
       addOns,
