@@ -143,12 +143,15 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
       ] : type === "snoscooter" ? [
         row("brann.dekning", "Brann, lynnedslag og eksplosjon; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Brann; egenandel side 1"),
         row("tyveri.dekning", "Tyveri og forsøk på tyveri av snøscooteren; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Tyveri; egenandel side 1"),
-      ] : included(["brann", "tyveri"], 2, "Hvilke skader") : []),
+      ] : [
+        row("brann.dekning", "Brann med åpne flammer, lynnedslag og eksplosjon. Offentlig standardegenandel 4 000 kr; kundens forsikringsbevis går foran", 2, "Hvilke skader – Brann; egenandel i dekningsoversikt side 1"),
+        row("tyveri.dekning", "Tyveri og forsøk på tyveri av tilhengeren. Offentlig standardegenandel 4 000 kr; kundens forsikringsbevis går foran", 2, "Hvilke skader – Tyveri; egenandel i dekningsoversikt side 1"),
+      ] : []),
       ...(["Kasko", "Pluss"].includes(name) ? type === "campingvogn" ? [
         row("kasko.dekning", "Skade på campingvognen som følge av plutselig ytre påvirkning; gjelder også fortelt/tilbygg dersom dette er medforsikret. Kasko og Pluss tilbyr egenandel fra 6 000 til 12 000 kr; kundens valg må fremgå av forsikringsbeviset", 3, "Hvilke skader – Kasko; egenandelvalg i produktnettsidens FAQ"),
       ] : type === "snoscooter" ? [
         row("kasko.dekning", "Skade på snøscooteren som følge av plutselig ytre påvirkning; produktnettsiden beskriver kollisjon, utforkjøring og velt som du selv er skyld i, samt motorskade ved feilfylling av drivstoff. Egenandel kan velges fra 4 000 til 8 000 kr; offentlig beviseksempel 8 000 kr er ikke kundens dokumenterte valg. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Kasko; produktnettsidens hendelser og egenandelvalg"),
-      ] : included(["kasko"], 2, "Hvilke skader") : []),
+      ] : [row("kasko.dekning", "Skade på tilhengeren som følge av plutselig ytre påvirkning. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 2, "Hvilke skader – Kasko; egenandel i dekningsoversikt side 1")] : []),
 
       ...(type === "snoscooter" && name !== "Ansvar" ? [
         row("utstyr.dekning", "Fastmontert ekstrautstyr på snøscooteren omfattes ved skade som dekkes av valgt produktnivå", 1, "Fastmontert ekstrautstyr; Hvilke skader side 3"),
@@ -184,11 +187,16 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         ] : []),
       ] : []),
       ...(type === "tilhenger" ? [
-        ...included(["redning"], 2, "Hvilke utgifter"),
+        row("redning.dekning", "Utgifter til hjemtransport av tilhengeren ved avbrutt reise som skyldes ulykke, sykdom eller død hos fører eller passasjerer; også når tilhengeren er funnet igjen etter tyveri eller ikke kan repareres innen to virkedager. Hjemtransporten erstattes bare når tilhengeren er ferdig reparert eller gjenfunnet. Merutgifter begrenses til tilhengerens verdi. Ikke utgifter som hadde påløpt ved hjemreise eller planlagt reise, reparasjon og deler, videresending av gods eller hjemtransport utover rimeligste kommunikasjonsmiddel. Ikke utgifter som kan kreves gjennom garantiordninger knyttet til tilhengeren, eller skade som importør, selger eller reparatør er ansvarlig for etter lov, forskrift, garanti eller reklamasjonsrett. Ikke hjemtransport dersom fører eller passasjer kan kjøre hjem, eller utgifter som kan kreves gjennom trekkvognens veihjelpsforsikring i annet selskap", 2, "Hvilke utgifter – Veihjelp: hjemtransport og begrensninger" + (name === "Kasko" ? "; begrensninger fortsatt side 3" : "")),
         row("avtale.geografi", "Europa unntatt Kosovo, Russland og Belarus", 2, "Hvor gjelder forsikringen"),
       ] : []),
     ];
     const id = product("gjensidige", "Gjensidige", type, name, file, rows, name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name === "Delkasko" ? ["kasko"] : []);
+    if (type === "tilhenger") {
+      for (const fact of vehicleObjectFacts[id]) {
+        if (["tilhenger.brann.dekning", "tilhenger.tyveri.dekning", "tilhenger.kasko.dekning", "tilhenger.redning.dekning"].includes(fact.key)) fact.coverageAvailability = "included";
+      }
+    }
     if (type === "snoscooter") {
       for (const fact of vehicleObjectFacts[id]) {
         if (fact.key.endsWith(".dekning")) fact.coverageAvailability = "included";
