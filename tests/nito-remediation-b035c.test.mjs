@@ -84,7 +84,7 @@ for (const [i,id] of ids.entries()) test(`R-035C-BIND-${i+1}: ${id} source, qual
 
 test('R-035C-N: exact Bobil registry, derived enum and standalone labels',()=>{
   for(const key of ['bonus.parkert','bonus.delkasko']){
-    assert.equal(mcBobilKeyApplies('bobil',key),true);assert.equal(mcBobilKeyApplies('mc',key),false);
+    assert.equal(mcBobilKeyApplies('bobil',key),true);assert.equal(mcBobilKeyApplies('mc',key),true);
     assert.equal(canonicalDocumentFactKeys.filter(k=>k===key).length,1);
     assert.ok(mcBobilFactLabel('bobil',key));
     assert.equal(parsed(policy([term('Dokumentert bonus','Ingen bonustap',key)])).importantTerms[0].canonicalKey,key);
@@ -113,7 +113,14 @@ test('R-035C-N: contextual bonustap retained without asserting its parent',()=>{
   assert.equal(out[0].key,'parkering.bonus');
   assert.equal(parking(policy(out)).status,'unknown');
 });
-for(const type of ['MC','Innbo','Hus','Reise','Campingvogn'])for(const key of ['bonus.parkert','bonus.delkasko'])
+for(const key of ['bonus.parkert','bonus.delkasko'])
+  test(`R-035C-N: approved B-042 MC type extension preserves explicit ${key}`,()=>{
+    const first=normalizeDocumentFacts(policy([term('Syntetisk ukjent bonus','X',key)],{type:'MC'}));
+    assert.deepEqual(first.map(t=>t.key),[key]);assert.equal(first[0].value,'X');
+    assert.deepEqual(normalizeDocumentFacts(policy(first,{type:'MC'})),first);
+    assert.equal(canonicalCoverage(policy(first,{type:'MC'}),'MC','mc.parkert.dekning').status,'unknown');
+  });
+for(const type of ['Innbo','Hus','Reise','Campingvogn'])for(const key of ['bonus.parkert','bonus.delkasko'])
   test(`R-035C-N: new global enum cannot establish ${key} on ${type}`,()=>{
     const out=normalizeDocumentFacts(policy([term('Syntetisk ukjent bonus','X',key)],{type}));
     assert.ok(out.every(t=>t.key!==key));

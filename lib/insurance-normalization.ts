@@ -428,7 +428,7 @@ function hasWholeValueAlias(value: string | null | undefined, aliases: readonly 
 }
 
 export function isAmbiguousBobilParkingBonusLabel(value: string | null, insuranceType: string): boolean {
-  return normalizeInsuranceType(insuranceType) === "bobil" &&
+  return ["mc", "bobil"].includes(normalizeInsuranceType(insuranceType)) &&
     ["parkeringsskade bonustap", "parkeringsdekning bonustap"].includes(normalizeWords(value));
 }
 
@@ -480,10 +480,11 @@ export function normalizeTermName(value: string | null, context: TermContext = {
   const deductibleBand = maskinskadeDeductibleBandKey(value, context, type);
   if (deductibleBand) return deductibleBand;
   const name = normalizeWords(value).replace(/\bpr\b/gu, "per");
-  // This whole label names two distinct identities in active Bobil products.
+  // This whole label can name distinct coverage/bonus identities. MC retains
+  // the same conservative resolution as Bobil, without selecting coverage.
   // A validated explicit key or an exact effective-product row resolves it.
   if (isAmbiguousBobilParkingBonusLabel(value, type)) return name;
-  if (type === "bobil") for (const [key, label] of Object.entries(bobilBonusLabels)) {
+  if (mcBobilTypes.some(id => id === type)) for (const [key, label] of Object.entries(bobilBonusLabels)) {
     if ([key, label].some(alias => normalizeWords(alias) === name)) return key;
   }
   if (type && context.insuredValueConfirmed) {

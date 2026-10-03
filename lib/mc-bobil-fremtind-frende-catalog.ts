@@ -461,15 +461,37 @@ const frendeMini = (id: string) => combine(frendeBase(id),
   rows(id, 9, "11.11", [["veihjelp.egenandel", "750 kr", "coverage"],
     ["brann.egenandel", "6 000 kr med mindre lavere egenandel står i forsikringsbeviset", "standard"],
     ["tyveri.egenandel", "6 000 kr med mindre lavere egenandel står i forsikringsbeviset; ingen egenandel hvis tyverialarm fungerte", "standard"]]));
-const frendeMcMini = combine(frendeMini(rm), rows(rm, 2, "3.5", [
+// MC-only materialization of B-042. Shared Bobil rows remain unchanged.
+const frendeMcBase = combine(frendeBase(rm),
+  rows(rm, 10, "11.13", [["bonus.delkasko",
+    "Ved dekningsmessig skade gir tyveri, brann, glassruteskade og veihjelp ikke bonustap. Fellesvilkårets fritak gjelder også maskinskade, nøkkel/fjernkontroll og ladekabel som erstattes på Utvidet, påkjørsel av dyr omgående meldt til politi eller viltnemnda, og skade som direkte skyldes naturulykke etter naturskadeloven. Fritakene utvider ikke produktets dekninger: MC har ikke maskinskadedekning eller produktnivået Utvidet; henvisningene gir heller ikke selvstendig glassdekning. Parkeringsfritaket representeres separat."]]),
+  rows(rm, 11, "13.1", [["ansvar.dekning",
+    "Ansvar for person- og tingskade etter bilansvarslova; også ansvar etter ulovfestede regler ved bruk av kjøretøyet for skade konstatert i forsikringstiden, inntil 10 000 000 kr per skadetilfelle og samlet per år. Ansvar etter lov om vegfraktavtaler er unntatt"]]),
+  rows(rm, 11, "14.1–14.3 (fortsetter side 12)", [["rettshjelp.dekning",
+    "Privatkundens tvist som personlig eier, rettmessig bruker eller fører av det forsikrede kjøretøyet. Tvisten må oppstå mens kunden er forsikret i Frende; også salgstvist etter at forsikringen opphørte ved salget og tvist med selger ved nytt kjøp før egen forsikring når nåværende kjøretøy var forsikret i Frende ved kjøpet. Alminnelige domstoler og voldgift når rettshjelp ellers ville vært dekket; særdomstol hvis tvisten kunne vært ført for de alminnelige domstolene. Rimelige og nødvendige utgifter til egen advokat, registrert rettshjelper, retten, godkjent advokatmekler og sakkyndige; ved rettssak også vitner og rettsgebyr til forliksråd og tingrett. Ankegebyr og idømte eller avtalte saksomkostninger dekkes ikke. Tilkjente saksomkostninger trekkes fra, med unntak ved dokumentert manglende betalingsevne; forlik etter dom med egne omkostninger krever forhåndsgodkjenning. Unntak: sameiere, yrke/virksomhet, familie/arv/skifte, saker bare under namsmyndighetene, ubestridt inkasso, gjeldsforhandling/konkurs/akkord som skyldner, straffesak, erstatning for krenkelser etter skadeserstatningsloven §§ 3-3, 3-5, 3-6 og 3-6 a, bøter/gebyrer, ulovlig handling og tvist om advokatsalær/sakkyndigutgifter. Forvaltningsvedtak dekkes bare ved søksmål etter fullt utnyttet klageadgang, ikke utgifter før søksmål. Utgifter før tvisten og grunnlag oppstått før forsikringen er unntatt"]]),
+  rows(rm, 12, "14.4 (fortsetter side 13)", [["rettshjelp.grense",
+    "Inntil 100 000 kr per tvist; inntil 250 000 kr ved tre eller flere parter på samme side, også på tvers av flere forsikringer eller selskaper. Erstatningen er dessuten begrenset til kundens økonomiske interesse i saken"]]));
+const frendeMcAccident = combine(frendeAccident(rm),
+  rows(rm, 10, "12.1", [["ulykke.dekning",
+    "Valgfri fører- og passasjerulykke når dekningen står i forsikringsbeviset. Omfatter forsikringstaker, passasjerer og rettmessige brukere ved lovlig bruk av kjøretøyet. Ulykke er kroppsskade direkte forårsaket av en plutselig ytre, uventet fysisk hendelse i forsikringstiden; sykdom, slag, illebefinnende og annen sykelig tilstand er ikke et ulykkestilfelle"]]),
+  rows(rm, 10, "12.3 (fortsetter side 11)", [["ulykke.invaliditet",
+    "200 000 kr ved 100 % livsvarig medisinsk invaliditet; forholdsmessig ved delvis invaliditet og maksimalt 100 % av forsikringssummen for samme ulykkeskade. Tidligere nedsatt funksjon gir fradrag; kroppsdel eller organ uten brukbar funksjon før ulykken gir ikke invaliditetserstatning. Sykelig tilstand, disposisjon eller mén som har medvirket gir forholdsmessig reduksjon. Endelig oppgjør innen tre år; ved uavklart eller endringsbar invaliditet brukes antatt livsvarig medisinsk invaliditet på treårsdagen. Dødsfall før fastsatt invaliditetsgrad gir dødsfallserstatning i stedet"]]));
+const frendeMcMini = combine(frendeMini(rm), frendeMcBase, rows(rm, 2, "3.5", [
   ["mc.kjoreutstyr.dekning", "Kjøredress, hansker, støvler og hjelm omfattes ved forsikring av motorsykkel"],
-]));
+]), rows(rm, 3, "4.1–4.2", [
+  ["brann.dekning", "Skade etter brann eller lynnedslag; svimerker og skade på delen eller komponenten der brann eller kortslutning oppstod er unntatt, men følgeskaden er omfattet"],
+  ["tyveri.dekning", "Tyveri av kjøretøyet og skade ved tyveri eller forsøk på tyveri; tyveri utført av husstand eller ansatte, og kjøretøy som er utlånt eller prøvekjørt og ikke tilbakelevert, er unntatt"],
+]), rows(rm, 3, "5.2–5.4", [["veihjelp.dekning",
+  "Nødvendig berging av kjøretøy og påkoblet tilhenger eller campingvogn til nærmeste verksted; reparasjon på stedet når det er rimeligere enn berging. Skade, motorstopp, punktering, tomt batteri, sykdom eller hvilken som helst annen årsak som hindrer videre kjøring; gjelder også hjemme. Hvis kjøretøyet ikke kan repareres samme dag: rimelige og nødvendige merutgifter til hjemtransport av fører/passasjerer utover planlagt hjemkjøring, eller hotell når det er rimeligere; forhåndsgodkjent av Frende. Henting av reparert eller etterlatt kjøretøy: nødvendige reiseutgifter for én person tilbake til kjøretøyet, forhåndsgodkjent. Gjenfunnet kjøretøy etter tyveri: nødvendige hjemtransportutgifter begrenset til kjøretøyets markedsverdi"]]));
 const frendeMcKasko = combine(frendeMcMini, rows(rm, 3, "6.1", [
   ["kasko.dekning", "Plutselig og uforutsett skade ved sammenstøt, utforkjøring, velt, hærverk og feilfylling"],
   ["feilfylling.dekning", "Skade ved feilfylling av drivstoff"],
   ["mc.bagasje.dekning", "Tyveri av løse ting og bagasje"], ["mc.bagasje.grense", "Inntil 10 000 kr"],
-]), rows(rm, 4, "6.2", [["kasko.begrensning", "Maskinskade, slitasje, rust, frost, fukt og underslag omfattes ikke etter kaskodekningen"],
-  ["kasko.egenandel", "Fremgår av forsikringsbeviset", "reference"]]));
+]), rows(rm, 4, "6.2", [["kasko.begrensning", "Skade på motor, gir, drivverk og elektroniske styreenheter er unntatt med mindre årsaken er en annen skade som omfattes av forsikringen; dette etablerer ikke egen maskinskadedekning. Frost, fukt, vann, råte, innvendige flekker, svimerker, søl, bruksslitasje, rust eller slitasje og underslag er unntatt. Skade fabrikant, leverandør eller reparatør er ansvarlig for dekkes ikke; hvis kravet ikke fører frem, erstattes skaden dersom den omfattes av forsikringen, og Frende overtar kravet"],
+  ["kasko.egenandel", "Fremgår av forsikringsbeviset", "reference"]]),
+  rows(rm, 10, "11.13", [["bonus.parkert",
+    "Dekningsmessig skade som et ukjent kjøretøy påfører motorsykkelen mens den står parkert, gir ikke bonustap når skaden kan knyttes til en bestemt parkering i et avgrenset tidsrom."]])
+    .map(row => ({ ...row, label: "Parkeringsskade – bonustap" })));
 const frendeBobilBonus = rows(rb, 10, "11.13", [["bonus.delkasko",
   "Ved dekningsmessig skade gir tyveri, brann, glassruteskade og veihjelp ikke bonustap. Det samme gjelder valgt maskinskade, tapt/mistet/ødelagt nøkkel eller fjernkontroll og skadet/stjålet ladekabel som erstattes på Utvidet, påkjørsel av dyr omgående meldt til politi eller viltnemnda, og skade som direkte skyldes naturulykke etter naturskadeloven. Fritakene utvider ikke produktets dekninger. Parkeringsfritaket representeres separat."]]);
 const frendeBobilParkedBonus = rows(rb, 10, "11.13", [["bonus.parkert",
@@ -515,7 +537,7 @@ tiers("fremtind", "Fremtind", "bobil", "ordinary-dnb", fb, "2025-09-18", [
   ["ansvar", "Ansvar", fremtindBase("bobil")], ["minikasko", "Minikasko", fremtindBobilMini], ["kasko", "Kasko", fremtindBobilKasko], ["topp", "Topp", fremtindBobilTopp],
 ]);
 tiers("frende", "Frende", "mc", "ordinary", rm, "2026-01-01", [
-  ["ansvar", "Ansvar", frendeBase(rm)], ["delkasko", "Delkasko", frendeMcMini], ["kasko", "Kasko", frendeMcKasko],
+  ["ansvar", "Ansvar", frendeMcBase], ["delkasko", "Delkasko", frendeMcMini], ["kasko", "Kasko", frendeMcKasko],
 ]);
 tiers("frende", "Frende", "bobil", "ordinary", rb, "2026-01-01", [
   ["ansvar", "Ansvar", frendeBobilBase], ["delkasko", "Delkasko", frendeBobilMini], ["kasko", "Kasko", frendeBobilKasko], ["utvidet", "Utvidet", frendeBobilExtended],
@@ -523,7 +545,7 @@ tiers("frende", "Frende", "bobil", "ordinary", rb, "2026-01-01", [
 
 const additions: McBobilAddOnDefinition[] = [
   { id: "frende-mc-ulykke", providerId: "frende", company: "Frende", type: "mc", agreementScope: "ordinary",
-    name: "Fører- og passasjerulykke", requiresLevel: ["frende-mc-ansvar", "frende-mc-delkasko", "frende-mc-kasko"], sourceId: rm, rows: frendeAccident(rm) },
+    name: "Fører- og passasjerulykke", requiresLevel: ["frende-mc-ansvar", "frende-mc-delkasko", "frende-mc-kasko"], sourceId: rm, rows: frendeMcAccident },
   { id: "fremtind-bobil-leiebil", providerId: "fremtind", company: "Fremtind", type: "bobil", agreementScope: "ordinary-dnb",
     name: "Leiebil", requiresLevel: ["fremtind-bobil-kasko", "fremtind-bobil-topp"], sourceId: "mcb-ff-fremtind-bobil-leiebil",
     rows: rows("mcb-ff-fremtind-bobil-leiebil", 1, "1.1 og 2.1", [

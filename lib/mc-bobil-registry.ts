@@ -97,7 +97,7 @@ export const bobilBonusLabels = {
 export function mcBobilFactKeysForType(type: string): string[] {
   if (!mcBobilTypes.some(id => id === type)) return [];
   return [...mcBobilCoverages(type).flatMap(c => [c.parentKey, ...c.details.map(d => d.key)]),
-    ...Object.keys(mcBobilVehicleAliases), ...(type === "bobil" ? Object.keys(bobilBonusLabels) : []),
+    ...Object.keys(mcBobilVehicleAliases), ...Object.keys(bobilBonusLabels),
     "premie.total", "premie.ekskl_tfa", "premie.tfa"];
 }
 type SharedFamily = "ansvar" | "rettshjelp" | "brann" | "naturskade" | "tyveri" | "kasko" | "glass" | "veihjelp" | "ulykke" | "utstyr" | "nokkel" | "feilfylling" | "maskinskade" | "nyverdi" | "leiebil" | "parkering";
@@ -113,7 +113,7 @@ export function mcBobilKeyApplies(type: string, key: string): boolean {
 }
 export function mcBobilFactLabel(type: string, key: string): string | null {
   if (key === "avtale.geografi") return "Geografisk område";
-  if (type === "bobil" && Object.hasOwn(bobilBonusLabels, key)) return bobilBonusLabels[key as keyof typeof bobilBonusLabels];
+  if (mcBobilTypes.some(id => id === type) && Object.hasOwn(bobilBonusLabels, key)) return bobilBonusLabels[key as keyof typeof bobilBonusLabels];
   const coverage = mcBobilCoverages(type).find(c => c.parentKey === key || c.details.some(d => d.key === key));
   if (!coverage) return null;
   const detail = coverage.details.find(d => d.key === key);

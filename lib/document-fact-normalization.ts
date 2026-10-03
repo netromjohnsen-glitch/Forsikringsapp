@@ -52,7 +52,7 @@ function explicitKey(
   // but cannot establish a fact on another insurance type.
   const canonicalKey = rawCanonicalKey && ((/^(mc|bobil)\./u.test(rawCanonicalKey) &&
     !rawCanonicalKey.startsWith(`${type}.`)) ||
-    (["bonus.parkert", "bonus.delkasko"].includes(rawCanonicalKey) && !["bil", "bobil"].includes(type)))
+    (["bonus.parkert", "bonus.delkasko"].includes(rawCanonicalKey) && !["bil", "mc", "bobil"].includes(type)))
     ? undefined : rawCanonicalKey;
   if (canonicalKey && ["bonus.parkert", "parkering.bonus"].includes(canonicalKey) &&
     mcBobilKeyApplies(type, canonicalKey) && isAmbiguousBobilParkingBonusLabel(term.name, type)) return canonicalKey;
@@ -412,7 +412,7 @@ export function normalizeDocumentFacts(insurance: ExtractedInsurance): DocumentF
       ? totalskadeTextFacts(term.value, insurance, term) : []),
     // A bonus clause may condition its consequence on a selected coverage.
     // That qualifier is not an independent customer coverage selection.
-    ...(normalizeInsuranceType(insurance.type) === "bobil" &&
+    ...(["mc", "bobil"].includes(normalizeInsuranceType(insurance.type)) &&
       (["bonus.parkert", "bonus.delkasko", "parkering.bonus"].includes(term.key ?? "") ||
         isAmbiguousBobilParkingBonusLabel(term.name, insurance.type))
       ? [] : explicitCoverageStatuses(term.value, insurance.type)),
