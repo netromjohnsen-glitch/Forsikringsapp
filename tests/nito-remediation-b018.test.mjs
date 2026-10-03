@@ -6,6 +6,7 @@ import { productCatalog, availableAddOns, resolveCatalogFacts, findCatalogProduc
 import { materializeCatalogProduct, compareCatalogProducts } from '../lib/catalog-product-comparison.ts';
 import { enrichExtractedAgreementWithCatalog } from '../lib/catalog-enrichment.ts';
 import { normalizeManualAgreement } from '../lib/manual-agreement.ts';
+import { canonicalCoverage } from '../lib/coverage-status.ts';
 
 // B-018: 461c6c588118df04 / GAP-1284 / SF-1902 / RC-108 / CR-162.
 // Depends on B-022's selectionEvidenceKeys guard, not a Bruk→Liv rule.
@@ -128,10 +129,46 @@ test('R-018-08: under eight, trained regular use, complete loss, vet evidence, b
   assert.equal(r.importantTerms.find(t => t.key === 'dyr.liv.sum.valgbar').value, '44 000 kr');
   const limit = r.importantTerms.find(t => t.key === 'hund.bruksverdi.grense'); assert.match(limit.value, /50 %/u); assert.doesNotMatch(limit.value, /22 000/u);
 });
-test('R-018-09: Frende Katt/Medisin/Tann unchanged, independent Fremtind and included Storebrand use', () => {
+test('R-018-09: Frende Katt semantics preserved after B-041, independent Fremtind and included Storebrand use', () => {
   const p = product('frende-katt-veterin-r');
   const catAddOns = productCatalog.addOns.filter(a => a.providerId === 'frende' && a.insuranceTypes?.includes('Katt'));
-  assert.equal(digest([p, productCatalog.facts[p.productId], catAddOns.map(a => [a, productCatalog.facts[a.componentId]])]), 'b9c61bfcad24653234fea00cab416e92bade800eae472bba353f007dc9da9277');
+  // B-041 changes five source-bound texts and adds two existing restriction keys.
+  // Product/addon metadata, selection evidence and 314 other components were unchanged.
+  assert.equal(digest([p, productCatalog.facts[p.productId], catAddOns.map(a => [a, productCatalog.facts[a.componentId]])]), 'd6129429f8119cad204897e5da127d4170d1122fc281f0c6f0d57924f5996dda');
+  assert.equal(p.providerId, 'frende'); assert.equal(p.insuranceType, 'Katt');
+  assert.equal(p.agreementScope, 'ordinary'); assert.equal(p.version, '2026-01-01');
+  assert.deepEqual(p.componentIds, ['frende-katt-veterin-r']);
+  assert.deepEqual(catAddOns.map(a => a.id), ['frende-katt-medisin', 'frende-katt-tap']);
+  for (const a of catAddOns) {
+    assert.deepEqual(a.requiresLevel, [p.productId]);
+    assert.equal(a.selectionEvidenceKeys, undefined); assert.equal(a.requiresAddOnIds, undefined);
+  }
+  for (const addOnIds of [[], ['frende-katt-medisin'], ['frende-katt-tap'], ['frende-katt-medisin', 'frende-katt-tap']]) {
+    const catFacts = resolveCatalogFacts(p, addOnIds, date);
+    assert.equal(catFacts.some(f => /bruksverdi|tannsykdom/u.test(f.key)), false);
+    assert.equal(catFacts.some(f => f.key === 'dyr.medisin.dekning'), addOnIds.includes('frende-katt-medisin'));
+    assert.equal(catFacts.some(f => f.key === 'dyr.liv.dekning'), addOnIds.includes('frende-katt-tap'));
+    const catManual = normalizeManualAgreement({ company: 'Frende', totalAnnualPremium: '', products: [{
+      type: 'Katt', productName: 'Veterinær', agreementScope: 'ordinary', annualPremium: '', deductible: '',
+      coverageSummary: '', importantTerms: [], addOnIds }] }).insuranceData.insurances[0];
+    assert.equal(canonicalCoverage(catManual, 'Katt', 'dyr.medisin.dekning').status, addOnIds.includes('frende-katt-medisin') ? 'selected' : 'unknown');
+    assert.equal(canonicalCoverage(catManual, 'Katt', 'dyr.liv.dekning').status, addOnIds.includes('frende-katt-tap') ? 'selected' : 'unknown');
+  }
+  const catFacts = resolveCatalogFacts(p, ['frende-katt-tap'], date);
+  const catFact = key => { const f = catFacts.find(f => f.key === key); assert.ok(f, key); return f; };
+  assert.equal(catFact('dyr.veterinar.egenandel.fast').value, 'Minst 1 000 kr per skadetilfelle');
+  assert.equal(catFact('dyr.veterinar.egenandel.fast').deductibleClassification, 'reference');
+  assert.equal(catFact('dyr.veterinar.egenandel.prosent').value, '25 % av skaden');
+  assert.equal(catFact('dyr.veterinar.egenandel.prosent').deductibleClassification, 'coverage');
+  assert.equal(catFact('dyr.liv.opphor').value, 'Første hovedforfall etter 10 år');
+  assert.equal(catFact('dyr.liv.forsvinning').value, 'Inkludert i valgt Tap-dekning');
+  const catDocument = enrichExtractedAgreementWithCatalog({ company: 'Frende', totalAnnualPremium: null, insurances: [{
+    type: 'Katt', productName: 'Veterinær', agreementScope: 'ordinary', annualPremium: null, deductible: null,
+    coverageSummary: null, addOns: [], importantTerms: [term('dyr.liv.dekning', 'Ikke valgt'), term('dyr.veterinar.sum.valgbar', '37 000 kr')] }] }, date).insurances[0];
+  assert.equal(canonicalCoverage(catDocument, 'Katt', 'dyr.liv.dekning').status, 'not_selected');
+  assert.deepEqual(catDocument.addOnIds, []);
+  assert.equal(catDocument.importantTerms.find(t => t.key === 'dyr.veterinar.sum.valgbar').value, '37 000 kr');
+  assert.equal(catDocument.importantTerms.find(t => t.key === 'dyr.veterinar.sum.valgbar').coverageOrigin, 'document');
   for (const [id, fingerprint] of [['frende-hund-medisin', '48a0f654a9541f6bd16de416119817209a50db521f122c7a85fc65adcde48475'],
     ['frende-hund-tann', '00b5fa527c62041a9cfcf187e674aecd6c19a4d51aa6b40172e51fa95a8828e6']]) {
     const a = productCatalog.addOns.find(a => a.id === id); assert.equal(digest([a, productCatalog.facts[a.componentId]]), fingerprint);

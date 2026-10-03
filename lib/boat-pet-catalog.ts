@@ -206,7 +206,15 @@ const petProducts: BoatPetProductDefinition[] = [
     row("dyr.karenstid.sykdom", "20 dager fra opprinnelig kjøp i Frende eller tidligere selskap; eksisterende sykdom eller skade er unntatt. Ved økning av forsikringssummen gjelder karens bare økningen", "frende", "hund", 3, "4.2.11"),
     row("dyr.veterinar.begrensning", "Unntatt forebyggende undersøkelse/behandling, rehabilitering, reiser, fôr, foreskrevne/utleverte medisiner og forbindingsmateriell, alternativ undersøkelse/behandling, adferdsforstyrrelser/unormalt temperament og komplikasjoner etter behandling av sykdom/skade som ikke omfattes. Tannbehandling er avgrenset til trekking av tenner knekt ved ulykke; særskilte raseunntak i 4.2.7–9 gjelder. Behandling etter at hunden ikke lenger er forsikret i Frende er unntatt, selv om sykdom/skade inntraff i forsikringstiden", "frende", "hund", 2, "4.2.1–3, 5–10 og 12 (fortsatt side 3)"),
   ]),
-  petProduct("frende", "Frende", "katt", "Veterinær", "2026-01-01", [...vetBase("frende", "katt", "Per skadetilfelle og samlet per forsikringsår; faktisk sum står i forsikringsbeviset", "Minst 1 000 kr per skadetilfelle"), row("dyr.veterinar.egenandel.prosent", "25 % av skaden", "frende", "katt", 4, "7.6 Egenandel", "coverage"), row("dyr.allergi.grense", "Inntil 15 000 kr", "frende", "katt", 2, "Veterinærutgifter"), row("dyr.karenstid.sykdom", "20 dager", "frende", "katt", 2, "Begrensninger")]),
+  petProduct("frende", "Frende", "katt", "Veterinær", "2026-01-01", [
+    row("dyr.veterinar.dekning", "Rimelige og nødvendige utgifter til undersøkelse og behandling av syk eller skadet katt, inkludert medisiner og materiell som veterinæren bruker, og nødvendig opphold på dyrehospital/-klinikk", "frende", "katt", 2, "4.1.1"),
+    row("dyr.veterinar.sum.valgbar", "Samlet erstatning for alle veterinærutgifter og alle medisinutgifter per skadetilfelle er begrenset til forsikringssummen i forsikringsbeviset; dette gjelder også når samme skadetilfelle gir veterinærutgifter over flere forsikringsår", "frende", "katt", 3, "7.4 Forsikringssum"),
+    row("dyr.veterinar.egenandel.fast", "Minst 1 000 kr per skadetilfelle", "frende", "katt", 1, "Veterinærbehandling", "reference"),
+    row("dyr.veterinar.egenandel.prosent", "25 % av skaden", "frende", "katt", 4, "7.6 Egenandel", "coverage"),
+    row("dyr.allergi.grense", "Inntil 15 000 kr til førstegangsdiagnostisering og behandling av allergi/atopi. Unntatt katt med symptomer på øre- eller hudlidelser før kjøp eller innen 20 dager etterpå. Antistoffer i blodprøve før tre måneder etter kjøp regnes som allergi påbegynt før forsikringen", "frende", "katt", 2, "4.1.2 og 4.2.4"),
+    row("dyr.karenstid.sykdom", "20 dager fra opprinnelig kjøp i Frende eller tidligere selskap; eksisterende sykdom eller skade er unntatt. Ved økning av forsikringssummen gjelder karens bare økningen", "frende", "katt", 2, "4.2.8"),
+    row("dyr.veterinar.begrensning", "Unntatt forebyggende undersøkelse/behandling, rehabilitering, reiser, fôr, foreskrevne/utleverte medisiner og forbindingsmateriell, alternativ undersøkelse/behandling, adferdsforstyrrelser/unormalt temperament og komplikasjoner etter behandling av sykdom/skade som ikke omfattes. Tannbehandling er avgrenset til trekking av tenner knekt ved ulykke. Behandling etter at katten ikke lenger er forsikret i Frende er unntatt, selv om sykdom/skade inntraff i forsikringstiden", "frende", "katt", 2, "4.2.1–3, 5–7 og 9"),
+  ]),
 ];
 
 const petAddOn = (providerId: string, company: string, type: "hund" | "katt", id: string, name: string, requiresLevel: string[], rows: BoatPetRow[]): BoatPetAddOnDefinition => ({ providerId, company, type, agreementScope: "ordinary", id, name, sourceId: sourceId(providerId, type), requiresLevel, rows });
@@ -258,7 +266,7 @@ const petAddOns: BoatPetAddOnDefinition[] = [
   ...(["hund", "katt"] as const).flatMap((type) => [
     petAddOn("frende", "Frende", type, `frende-${type}-medisin`, "Medisin", ["Veterinær"], [type === "hund"
       ? row("dyr.medisin.dekning", "Valgfri dekning når oppført i forsikringsbeviset: rimelige og nødvendige utgifter til reseptbelagte medisiner ved skade/sykdom som omfattes av punkt 4 og 5; 50 % av veterinærforeskrevet spesialfôr. Inntil 20 000 kr per skadetilfelle og samlet per forsikringsår", "frende", type, 3, "6 Medisinutgifter")
-      : row("dyr.medisin.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Medisinutgifter")]),
+      : row("dyr.medisin.dekning", "Valgfri dekning når oppført i forsikringsbeviset: rimelige og nødvendige utgifter til reseptbelagte medisiner ved skade/sykdom som omfattes av punkt 4; 50 % av veterinærforeskrevet spesialfôr. Inntil 20 000 kr per skadetilfelle og samlet per forsikringsår", "frende", type, 3, "5 Medisinutgifter")]),
     ...(type === "hund" ? [petAddOn("frende", "Frende", type, "frende-hund-tann", "Tann", ["Veterinær"], [
       row("dyr.tannsykdom.dekning", "Valgfri dekning når oppført i forsikringsbeviset: rimelige og nødvendige utgifter til tann- og tannkjøttsykdommer, inkludert medisiner/materiell veterinæren bruker og nødvendig klinikkopphold; trekking av tilbakeholdte melketenner og medisinsk nødvendig retting av tannstillingsfeil", "frende", type, 3, "5.1"),
       row("dyr.tannsykdom.grense", "Inntil 20 000 kr per skadetilfelle og samlet per forsikringsår", "frende", type, 3, "5.1"),
@@ -267,7 +275,9 @@ const petAddOns: BoatPetAddOnDefinition[] = [
     { ...petAddOn("frende", "Frende", type, `frende-${type}-tap`, "Tap", ["Veterinær"], [...(type === "hund" ? [
       row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset: hunden dør eller avlives av dyrevernhensyn etter ulykke/sykdom, blir stjålet eller forsvinner, eller helt taper bruksegenskaper etter ulykke/sykdom som dokumentert ferdig trent og regelmessig brukt brukshund", "frende", type, 3, "7.1 (fortsatt side 4)"),
       row("dyr.liv.begrensning", "Unntatt sykdom/skade ved kjøp i Frende eller tidligere selskap, eller innen 20 dager etter kjøp; ved sumøkning bare økningen. Avliving på grunn av adferdsforstyrrelser/unormalt temperament eller komplikasjoner etter behandling/operative inngrep som ikke omfattes er unntatt", "frende", type, 4, "7.2"),
-    ] : [row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Tap")]), row("dyr.liv.forsvinning", "Inkludert i valgt Tap-dekning", "frende", type, 3, "Tap"), row("dyr.liv.opphor", "Første hovedforfall etter 10 år", "frende", type, 2, "Hvor og når"), ...(type === "hund" ? frendeDogUseRows : [])]),
+    ] : [row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Tap"),
+      row("dyr.liv.begrensning", "Unntatt sykdom/skade ved kjøp i Frende eller tidligere selskap, eller som oppstår innen 20 dager etter kjøp; ved sumøkning bare økningen. Avliving etter komplikasjoner etter behandling og operative inngrep som ikke omfattes av forsikringen er unntatt", "frende", type, 3, "6.2"),
+    ]), row("dyr.liv.forsvinning", "Inkludert i valgt Tap-dekning", "frende", type, 3, "Tap"), row("dyr.liv.opphor", "Første hovedforfall etter 10 år", "frende", type, 2, "Hvor og når"), ...(type === "hund" ? frendeDogUseRows : [])]),
       ...(type === "hund" ? { selectionEvidenceKeys: ["dyr.liv.dekning"] } : {}) },
   ]),
 ];

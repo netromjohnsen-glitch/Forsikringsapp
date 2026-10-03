@@ -158,7 +158,7 @@ test("54 representative source-to-catalog checks preserve numeric and conditiona
     "sparebank1-fremtind:Katt": [["dyr.diagnostikk.grense", /15 000 kr/u], ["dyr.liv.reduksjon.sats", /20 %/u], ["dyr.liv.opphor", /12 år/u]],
     "frende:Båt": [["bat.geografi.omrade", /200 nautiske mil/u], ["bat.losore.grense", /10 000 kr/u], ["bat.jolle.grense", /20 000 kr/u]],
     "frende:Hund": [["dyr.veterinar.egenandel.fast", /1 000 kr/u], ["dyr.veterinar.egenandel.prosent", /25 %/u], ["hund.bruksverdi.grense", /50 %/u]],
-    "frende:Katt": [["dyr.allergi.grense", /15 000 kr/u], ["dyr.karenstid.sykdom", /20 dager/u], ["dyr.veterinar.sum.valgbar", /per skadetilfelle.*per forsikringsår/iu]],
+    "frende:Katt": [["dyr.allergi.grense", /15 000 kr/u], ["dyr.karenstid.sykdom", /20 dager/u], ["dyr.veterinar.sum.valgbar", /alle veterinærutgifter og alle medisinutgifter per skadetilfelle.*forsikringssummen i forsikringsbeviset.*samme skadetilfelle.*over flere forsikringsår/iu]],
   };
   assert.equal(Object.values(checks).flat().length, 54);
   for (const [identity, expected] of Object.entries(checks)) {
