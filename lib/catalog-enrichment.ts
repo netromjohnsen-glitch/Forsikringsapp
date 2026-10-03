@@ -50,6 +50,19 @@ export type CatalogEnrichedAgreement = Omit<ExtractedAgreement, "insurances"> & 
   insurances: CatalogEnrichedInsurance[];
 };
 
+// Source identity includes the complete reference, not just its document/location.
+export function catalogSourceIdentity(source: CatalogFact["source"]): string {
+  return JSON.stringify([source.documentId, source.section, source.page, source.filename,
+    source.termsNumber, source.effectiveFrom, source.company, source.url, source.note,
+    source.productCode, source.version, source.agreementScope]);
+}
+
+export function catalogFactSources(fact: CatalogFact): CatalogFact["source"][] {
+  const sources = [fact.source, ...(fact.qualificationSource ? [fact.qualificationSource] : [])];
+  return sources.filter((source, index) => sources.findIndex((candidate) =>
+    catalogSourceIdentity(candidate) === catalogSourceIdentity(source)) === index);
+}
+
 function catalogTerm(fact: CatalogFact, allFacts: readonly CatalogFact[]): EnrichedTerm {
   return {
     name: fact.label,
@@ -60,7 +73,7 @@ function catalogTerm(fact: CatalogFact, allFacts: readonly CatalogFact[]): Enric
     structuredValue: fact.structuredValue,
     deductibleClassification: fact.deductibleClassification,
     source: fact.source,
-    sources: [fact.source],
+    sources: catalogFactSources(fact),
     overriddenBase: fact.replacesBase
       ? allFacts.filter((base) => base.key === fact.key && base !== fact)
         .map((base) => ({ value: base.value, source: base.source }))

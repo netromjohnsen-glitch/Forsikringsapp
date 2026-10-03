@@ -2,6 +2,7 @@ import { agreementScopeAllowed, catalogReferenceForProduct, type CatalogProductR
 import type { AgreementScopeId } from "./agreement-scope.ts";
 import { summarizeManualAnnualPremium } from "./agreement-pricing.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
+import { catalogFactSources } from "./catalog-enrichment.ts";
 
 export type ManualTermInput = { name: string; value: string };
 export type ManualProductInput = {
@@ -181,6 +182,7 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
         coverageOrigin: "catalog" as const,
         importantTerms: (catalogFacts ?? []).filter(item => (catalog.facts?.[addOn.componentId] ?? []).includes(item)).map((item) => ({
           name: item.label, value: item.value, key: item.key, source: item.source,
+          ...(item.qualificationSource ? { sources: catalogFactSources(item) } : {}),
           coverageOrigin: "catalog" as const,
           ...(item.coverageAvailability ? { coverageAvailability: item.coverageAvailability } : {}),
           deductibleClassification: item.deductibleClassification,
@@ -197,17 +199,17 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
           structuredValue: item.structuredValue,
           deductibleClassification: item.deductibleClassification,
           source: item.source,
-          sources: [
-            { ...item.source, note: [
+          sources: catalogFactSources(item).map((source, index) => index === 0
+            ? { ...source, note: [
               ...(item.source.note ? [item.source.note] : []),
               ...(item.replacesBase ? ["Effektiv verdi fra dokumentert utvidelse eller tillegg"] : []),
               ...(item.deductibleClassification ? [deductibleNotes[item.deductibleClassification]] : []),
-            ].join(" · ") || undefined },
-            ...(item.qualificationSource ? [{ ...item.qualificationSource, note:
+            ].join(" · ") || undefined }
+            : { ...source, note: [source.note,
               item.deductibleClassification === "standard"
                 ? "Forbehold for standardegenandel"
-                : "Supplerende kilde for faktumets anvendelse" }] : []),
-          ],
+                : "Supplerende kilde for faktumets anvendelse",
+            ].filter(Boolean).join(" · ") }),
           overriddenBase: item.replacesBase
             ? (catalogFacts ?? []).filter((base) =>
               base.key === item.key && base !== item

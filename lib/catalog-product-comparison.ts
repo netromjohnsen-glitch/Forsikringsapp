@@ -1,4 +1,5 @@
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
+import { catalogFactSources, catalogSourceIdentity } from "./catalog-enrichment.ts";
 import { coverageStatusFromText } from "./coverage-status.ts";
 import { isNonAssertingCoverageDetail } from "./coverage-fact-semantics.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
@@ -81,8 +82,7 @@ const normalizeText = (value: string) => value.normalize("NFKC")
 
 function uniqueSources(sources: readonly ProductComparisonSource[]): ProductComparisonSource[] {
   return sources.filter((source, index) => sources.findIndex((candidate) =>
-    candidate.documentId === source.documentId && candidate.page === source.page &&
-    candidate.section === source.section
+    catalogSourceIdentity(candidate) === catalogSourceIdentity(source)
   ) === index);
 }
 
@@ -91,8 +91,10 @@ function factIdentity(fact: CatalogFact): string {
     fact.source.page, fact.source.section]);
 }
 
-function sourceForFact(fact: CatalogFact, catalog: ProductCatalog): ProductComparisonSource {
-  return { ...fact.source, sourceType: catalog.sources?.[fact.source.documentId]?.sourceType };
+function sourcesForFact(fact: CatalogFact, catalog: ProductCatalog): ProductComparisonSource[] {
+  return catalogFactSources(fact).map((source) => ({
+    ...source, sourceType: catalog.sources?.[source.documentId]?.sourceType,
+  }));
 }
 
 function productFact(
@@ -103,7 +105,7 @@ function productFact(
 ): ProductComparisonFact {
   return { key: fact.key, label: fact.label, value: fact.value, state, addOnNames,
     role: !isNonAssertingCoverageDetail(fact.key) && (fact.coverageAvailability || fact.key.endsWith(".dekning")) ? "coverage" : "term",
-    sources: [sourceForFact(fact, catalog)] };
+    sources: sourcesForFact(fact, catalog) };
 }
 
 export function productCoverageStateLabel(state: ProductCoverageState): string {
@@ -215,7 +217,7 @@ export function materializeCatalogProduct(
         normalizeText(candidate.value) === normalizeText(fact.value) && candidate.state === "optional");
       if (existing) {
         if (!existing.addOnNames.includes(addOn.name)) existing.addOnNames.push(addOn.name);
-        existing.sources = uniqueSources([...existing.sources, sourceForFact(fact, catalog)]);
+        existing.sources = uniqueSources([...existing.sources, ...sourcesForFact(fact, catalog)]);
       } else {
         facts.push(productFact(fact, "optional", catalog, [addOn.name]));
       }
