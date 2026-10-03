@@ -86,9 +86,9 @@ test('R-018-05: two document overrides retain document origin; unknown and rejec
 test('R-018-06: PC-0571–0574 preserve base, Tap expiry, deductibles and customer-specific sums', () => {
   const registry = readFileSync(new URL('../docs/audit/legacy-local/source-catalog-remediation-triage/regression-control-registry.csv', import.meta.url), 'utf8');
   for (let pc = 571; pc <= 574; pc++) assert.ok(registry.includes(`PC-0${pc},AUDITED_POSITIVE,frende`));
-  // Captured from 9987c7e before B-018: all original base/Liv facts unchanged.
-  assert.equal(digest(facts()), 'd2527aed512cfb315d1cfecb25db453a73e86fbdfd6c1ece4fdf243ddb188035');
-  assert.equal(digest(facts([tap]).filter(f => !f.key.startsWith('hund.bruksverdi.'))), '28f5a73fdea1f54ff1cbaba82305979a7b5eec6db2b1f33fb4c19b61635bc45e');
+  // Updated for source-verified B-038 text/provenance; B-018 semantics are asserted below.
+  assert.equal(digest(facts()), '27c5b42872a732bf40c3882f2221bd1c4ded9ab4f5ecd7e9b3c7b6610008ad8f');
+  assert.equal(digest(facts([tap]).filter(f => !f.key.startsWith('hund.bruksverdi.'))), '236e42c804a8c19497f6468ce0d23072f555d0a79adf84a4fab315c52a0ec510');
   assert.match(own('dyr.veterinar.sum.valgbar').value, /faktisk sum står i forsikringsbeviset/u);
   assert.match(own('dyr.veterinar.egenandel.fast').value, /Minst 1 000 kr/u);
   assert.equal(own('dyr.veterinar.egenandel.prosent').value, '25 % av skaden');
@@ -132,8 +132,8 @@ test('R-018-09: Frende Katt/Medisin/Tann unchanged, independent Fremtind and inc
   const p = product('frende-katt-veterin-r');
   const catAddOns = productCatalog.addOns.filter(a => a.providerId === 'frende' && a.insuranceTypes?.includes('Katt'));
   assert.equal(digest([p, productCatalog.facts[p.productId], catAddOns.map(a => [a, productCatalog.facts[a.componentId]])]), 'b9c61bfcad24653234fea00cab416e92bade800eae472bba353f007dc9da9277');
-  for (const [id, fingerprint] of [['frende-hund-medisin', '5f826345b41f1a11f31aea6788bd7148edd72803dd68b317fe5564e18cfb48e4'],
-    ['frende-hund-tann', 'a099b3eace6679163255eddd8108a80efc314224daeb8bab142d0db75d0c5404']]) {
+  for (const [id, fingerprint] of [['frende-hund-medisin', '48a0f654a9541f6bd16de416119817209a50db521f122c7a85fc65adcde48475'],
+    ['frende-hund-tann', '00b5fa527c62041a9cfcf187e674aecd6c19a4d51aa6b40172e51fa95a8828e6']]) {
     const a = productCatalog.addOns.find(a => a.id === id); assert.equal(digest([a, productCatalog.facts[a.componentId]]), fingerprint);
     assert.doesNotThrow(() => facts([id]));
   }
