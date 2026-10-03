@@ -130,19 +130,33 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
     const file = type === "snoscooter" ? (name === "Ansvar" ? "gjensidige-snoscooter-ansvar-alminnelige-vilkar.pdf" : `gjensidige-Snoscooter-${name}-alminnelige-vilkar.pdf`) : type === "campingvogn" ? `gjensidige-Campingvogn-${name}-alminnelige-vilkar.pdf` : `gjensidige-tilhenger-${name.toLowerCase()}-alminnelige-vilkar.pdf`;
     const rows: Row[] = [
       ...(type === "snoscooter" ? [
-        ...included(["ansvar", "rettshjelp", "ulykke"], 3, "Hvilke skader"),
-        row("ansvar.grense", "Ubegrenset personskade; 100 millioner kr tingskade", 1, "Dekningsoversikt"),
-        row("ulykke.grense", "Dødsfall 100 000 kr; invaliditet 200 000 kr", 1, "Dekningsoversikt"),
+        row("ansvar.dekning", "Ansvar etter Bilansvarsloven. Ordinær egenandel 0 kr; særregler om forhøyet egenandel og kundens forsikringsbevis går foran", 1, `Dekningsoversikt; Hvilke skader side ${name === "Ansvar" ? 2 : 3}`),
+        row("ansvar.grense", "Ubegrenset personskade; 100 millioner kr tingskade. Ordinær egenandel 0 kr; særregler om forhøyet egenandel og kundens forsikringsbevis går foran", 1, "Dekningsoversikt – Ansvar"),
+        row("ulykke.dekning", "Ulykkesskade for rettmessig fører og passasjerer som rettmessig oppholder seg i/på/ved motorvognen når motorvognen eller tilkoplet utstyr er den direkte årsak til skaden. Plutselig og uforutsett ytre fysisk hendelse i forsikringstiden; også fall som ikke er forårsaket av sykdom, vridning av kne eller ankel og brudd i skulder, arm, håndledd, lårbein, leggbein, skinnlegg, ankel eller hælbein etter hard eller feil landing etter hopp. Varig medisinsk invaliditet er fysisk eller psykisk funksjonsnedsettelse, uten hensyn til yrke, inntektsevne eller fritidsinteresser. Ordinær egenandel 0 kr. Unntatt skade som følge av deltakelse i slagsmål eller forbrytelser, sykdom, besvimelse eller sykelig tilstand/disposisjon, psykisk skade alene uten samtidig fysisk skade som gir erstatningsmessig varig medisinsk invaliditet, myalgier/uspesifikke smertetilstander, tendinitter, tendinoser og impingement selv om ulykke kan påvises, tannskade ved tygging og invaliditetserstatning for tannskade. Selvmord/forsøk er unntatt; likevel dekkes selvmord ved sannsynliggjort akutt sinnsforvirring med ytre årsak, ikke sinnslidelse", name === "Ansvar" ? 3 : 4, "Ulykke – hvem, hendelser og unntak; egenandel i dekningsoversikt side 1"),
+        row("ulykke.grense", "Dødsfall 100 000 kr; medisinsk invaliditet 200 000 kr ved 100 % invaliditet, etter forsikringsbeviset. Dødsfall må følge av ulykkesskaden innen ett år; tidligere forskudd på invaliditetserstatning for samme skade trekkes fra. Dødsfallssummen begrenses til 50 000 kr dersom den omkomne på skadetidspunktet ikke hadde barn eller ektefelle/samboer i live eller forsørget sine foreldre. Delvis invaliditet erstattes forholdsmessig; ingen invaliditetserstatning ved død innen ett år. Tap/skade på tidligere helt funksjonsudyktig kroppsdel eller organ gir ikke invaliditetserstatning; tidligere delvis funksjonsudyktighet trekkes fra. Endelig erstatning fastsettes senest tre år etter skadedagen, etter antatt varig tilstand på treårsdagen dersom graden fortsatt kan endre seg. Samlet invaliditetsgrad for samme skade er høyst 100 %. Medvirkende sykdom, disposisjon eller mén reduserer dødsfalls-/invaliditetserstatningen forholdsmessig. Skades flere personer ved samme ulykkestilfelle under motorvogn-/arbeidsmaskindekningen, er samlet erstatning begrenset til 1 000 000 kr og fordeles forholdsmessig mellom de skadelidte; dette er ikke en individuell invaliditetssum", name === "Ansvar" ? 4 : 5, "Ulykke – dødsfall og invaliditet; referansesummer i dekningsoversikt side 1"),
+        row("rettshjelp.dekning", "Rettshjelp i Norden som eier, rettmessig bruker eller fører av forsikret motorvogn. Tvist oppstått i forsikringstiden; også tvist som tidligere eier etter salg og opphørt forsikring, og tvist med selger ved neste kjøp før overtakelse/egen forsikring når tidligere tilsvarende kjøretøy var forsikret i Gjensidige på kjøpstidspunktet. Forsikringssum 100 000 kr per tvist etter forsikringsbeviset, alltid begrenset til den økonomiske verdien av sikredes interesse. Ved flere parter forsikret i Gjensidige på sikredes side er det én sum per tvist: 1–2 parter 100 000 kr, 3–10 parter 250 000 kr, 11–25 parter 500 000 kr, 26–49 parter 750 000 kr og 50 eller flere parter 1 000 000 kr. Særregel for gruppesøksmål: fremmet gruppesøksmål samlet inntil 500 000 kr; avvist saksanlegg inntil 20 000 kr per sikrede i Gjensidige, begge begrenset til antatt økonomisk interesse; utbetalt avvisningsdekning trekkes fra ved senere innvilget rettshjelp. Egenandel 4 000 kr pluss 20 % av utgiftene som dekkes av forsikringen; én egenandel per tvist også med flere parter på samme side. Utenrettslig mekling ved Mekle.no har egenandel 0 kr, forutsatt at økonomisk interesse overstiger fast egenandel; egen advokat under meklingen dekkes ikke. Ikke ankegebyr, idømte sakskostnader, voldgift eller utgifter før tvist, offentlig saksbehandling før vedtak eller advokatens reise til Forliksrådet. Tilkjente saksomkostninger trekkes fra, med unntak ved dokumentert manglende betalingsevne hos motpart. Unntatt straffesak, erstatningskrav eller tvist som har utspring i ulovlig handling fra sikredes side; øvrige unntatte tvister gjelder, ærekrenkelse/sjikane/trakassering, yrke/erverv, familie/arv/skifte, namsmyndigheter, ubestridt inkasso/gjeldsordning/konkurs/akkord når sikrede er skyldner, juridiske personer, advokat-/sakkyndigsalær eller merutgifter ved advokatbytte, sameiere med vilkårets særskilte unntak, uforsikret motorvogn/båt i Gjensidige, egen ansvarsforsikringsdekning, foreldede krav/manglende rettslig interesse og avslag på rettshjelp fra Gjensidige. Forvaltningsvedtak er unntatt før fullt utnyttet administrativ klageadgang; senere søksmål kan dekkes, men ikke utgifter under forvaltningsbehandlingen. Tvistegrunnlag før ikrafttreden er unntatt ved nytegning, ikke ved flytting fra annet selskap", name === "Ansvar" ? 5 : 6, `Rettshjelp – omfang og unntak side ${name === "Ansvar" ? "5–6" : "6–7"}; forsikringssum og egenandel side ${name === "Ansvar" ? 7 : 8}`),
+        row("avtale.geografi", "Europa unntatt Kosovo, Russland og Belarus; rettshjelp bare i Norden", name === "Ansvar" ? 2 : 3, "Hvor gjelder forsikringen"),
       ] : []),
       ...(name !== "Ansvar" ? type === "campingvogn" ? [
         row("brann.dekning", "Brann med åpne flammer, lynnedslag og eksplosjon. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 3, "Hvilke skader – Brann; egenandel i dekningsoversikt side 1"),
         row("tyveri.dekning", "Tyveri og forsøk på tyveri av campingvognen. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 3, "Hvilke skader – Tyveri; egenandel i dekningsoversikt side 1"),
-      ] : included(["brann", "tyveri"], type === "tilhenger" ? 2 : 3, "Hvilke skader") : []),
+      ] : type === "snoscooter" ? [
+        row("brann.dekning", "Brann, lynnedslag og eksplosjon; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Brann; egenandel side 1"),
+        row("tyveri.dekning", "Tyveri og forsøk på tyveri av snøscooteren; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Tyveri; egenandel side 1"),
+      ] : included(["brann", "tyveri"], 2, "Hvilke skader") : []),
       ...(["Kasko", "Pluss"].includes(name) ? type === "campingvogn" ? [
         row("kasko.dekning", "Skade på campingvognen som følge av plutselig ytre påvirkning; gjelder også fortelt/tilbygg dersom dette er medforsikret. Kasko og Pluss tilbyr egenandel fra 6 000 til 12 000 kr; kundens valg må fremgå av forsikringsbeviset", 3, "Hvilke skader – Kasko; egenandelvalg i produktnettsidens FAQ"),
-      ] : included(["kasko"], type === "tilhenger" ? 2 : 3, "Hvilke skader") : []),
+      ] : type === "snoscooter" ? [
+        row("kasko.dekning", "Skade på snøscooteren som følge av plutselig ytre påvirkning; produktnettsiden beskriver kollisjon, utforkjøring og velt som du selv er skyld i, samt motorskade ved feilfylling av drivstoff. Egenandel kan velges fra 4 000 til 8 000 kr; offentlig beviseksempel 8 000 kr er ikke kundens dokumenterte valg. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Kasko; produktnettsidens hendelser og egenandelvalg"),
+      ] : included(["kasko"], 2, "Hvilke skader") : []),
 
-      ...(type === "snoscooter" && name !== "Ansvar" ? [row("utstyr.grense", "10 000 kr", 1, "Fastmontert ekstrautstyr"), row("losore.grense", "5 000 kr", 1, "Løsøre"), row("redning.begrensning", "Transport til og fra verksted ved reparasjon er unntatt", 3, "Dekkes ikke")] : []),
+      ...(type === "snoscooter" && name !== "Ansvar" ? [
+        row("utstyr.dekning", "Fastmontert ekstrautstyr på snøscooteren omfattes ved skade som dekkes av valgt produktnivå", 1, "Fastmontert ekstrautstyr; Hvilke skader side 3"),
+        row("utstyr.grense", "10 000 kr for fastmontert ekstrautstyr i basisdekningen. Økt utstyrssum kan avtales som utvidelse; høyere sum krever kundens dokumenterte avtale. Henger er en separat mulig utvidelse, ikke valgt gjennom det offentlige beviseksemplet; fullstendige utvidelsesvilkår og en eventuell høyere sum er ikke dokumentert her", 1, "Fastmontert ekstrautstyr; MOT05 – Mulige utvidelser"),
+        row("losore.dekning", "Skade på eller tyveri av personlige ting i et låst oppbevaringsrom på snøscooteren, ved skade som dekkes av valgt produktnivå", 1, "Personlige ting – Delkasko og Kasko", "gjensidige-snoscooterforsikring.html"),
+        row("losore.grense", "Inntil 5 000 kr for ting i låst oppbevaringsrom på snøscooteren ved skade som dekkes av valgt produktnivå", 1, "Personlige ting – Delkasko og Kasko", "gjensidige-snoscooterforsikring.html"),
+        row("redning.begrensning", "Transport til og fra verksted ved reparasjon er unntatt", 3, "Dekkes ikke"),
+      ] : []),
       ...(type === "campingvogn" ? [
         ...(name === "Delkasko" ? included(["glass"], 3, "Hvilke skader/utgifter") : [
           row("glass.dekning", "Bruddskader på campingvognens ruter og takluker: reparasjon dekkes inntil 1 000 kr uten egenandel; skifte har 3 000 kr i egenandel. Solcellepanel dekkes som kaskoskade, ikke som glasskade", 1, "Glass – dekningsoversikt; Hvilke skader side 3"),
@@ -175,6 +189,20 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
       ] : []),
     ];
     const id = product("gjensidige", "Gjensidige", type, name, file, rows, name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name === "Delkasko" ? ["kasko"] : []);
+    if (type === "snoscooter") {
+      for (const fact of vehicleObjectFacts[id]) {
+        if (fact.key.endsWith(".dekning")) fact.coverageAvailability = "included";
+        const supportingFile = fact.key === "snoscooter.utstyr.grense" ? "gjensidige-MOT05.pdf"
+          : fact.key === "snoscooter.kasko.dekning" ? "gjensidige-snoscooterforsikring.html" : null;
+        if (supportingFile) {
+          const source = vehicleObjectSources[`vehicle:${supportingFile}`];
+          fact.qualificationSource = { documentId: source.id, filename: source.filename, url: source.url,
+            termsNumber: source.termsNumber, effectiveFrom: source.effectiveFrom, page: 1,
+            section: supportingFile === "gjensidige-MOT05.pdf" ? "Mulige utvidelser – Utvide sum for ekstrautstyr; Henger"
+              : "Kasko – Kollisjon, utforkjøring og velt; Feilfylling av drivstoff; FAQ – egenandel 4 000–8 000 kr" };
+        }
+      }
+    }
     if (type === "campingvogn") {
       for (const fact of vehicleObjectFacts[id]) {
         if (["brann", "tyveri", "kasko", "redning", "utstyr", "losore", "naturskade", "fukt", "ferie", ...(name === "Delkasko" ? [] : ["glass"])].some((family) => fact.key === `campingvogn.${family}.dekning`)) {

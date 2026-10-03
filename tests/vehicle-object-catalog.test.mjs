@@ -31,7 +31,12 @@ for(const company of ['Tryg','Gjensidige','Frende','Storebrand','If','Eika'])for
  assert.ok(actual.importantTerms.every(t=>!['leiebil.dekning','maskinskade.km','nyverdi.km'].includes(t.key)));
  // Representative source value for every provider/type, not just existence.
  const representative=company==='If'?get(company,type,'Kasko',`${prefix}.brann.egenandel`):company==='Storebrand'?get(company,type,'Kasko',`${prefix}.rettshjelp.grense`):get(company,type,'Kasko',`${prefix}.avtale.geografi`);
- if(company==='Gjensidige'&&type==='Snøscooter')assert.equal(get(company,type,'Kasko','snoscooter.ulykke.grense').value,'Dødsfall 100 000 kr; invaliditet 200 000 kr');
+ if(company==='Gjensidige'&&type==='Snøscooter'){
+  const value=get(company,type,'Kasko','snoscooter.ulykke.grense').value;
+  assert.match(value,/Dødsfall 100 000 kr/);assert.match(value,/medisinsk invaliditet 200 000 kr ved 100 % invaliditet/);
+  assert.match(value,/dødsfall.*innen ett år/i);assert.match(value,/50 000 kr dersom/);
+  assert.match(value,/Delvis invaliditet erstattes forholdsmessig/);assert.match(value,/flere personer ved samme ulykkestilfelle/);
+ }
  else {assert.ok(representative);assert.ok(representative.source.page>0);if(company==='If')assert.match(representative.value,/8 000/);else if(company==='Storebrand')assert.equal(representative.value,'100 000 kr per tvist');else assert.match(representative.value,/Europa|Norden/);}
 });
 test('Eika means verified channel, never generic Fremtind/SpareBank1/DNB',()=>{
@@ -53,12 +58,13 @@ const approvedProductPages = [
  {providerId:'frende',company:'Frende',productIds:['frende-campingvogn-kasko'],keys:['campingvogn.naturskade.dekning'],filename:'frende-campingvognforsikring.html',url:'https://www.frende.no/forsikringer/campingvognforsikring/',sha256:'14db91b9abaed2a8ffc923f72522a62c3a9d127056193d84ef7c3cb29ec84fba'},
  {providerId:'gjensidige',company:'Gjensidige',productIds:['gjensidige-campingvogn-delkasko','gjensidige-campingvogn-kasko','gjensidige-campingvogn-pluss'],keys:['campingvogn.losore.dekning','campingvogn.losore.grense'],filename:'gjensidige-campingvognforsikring.html',url:'https://www.gjensidige.no/forsikring/kjoretoy/campingvognforsikring',sha256:'4f30c8c2a2dabd6425c61bba12513a824c6a2ac4d24a206a261d4f45b3c278a8'},
  {providerId:'gjensidige',company:'Gjensidige',productIds:['gjensidige-campingvogn-kasko','gjensidige-campingvogn-pluss'],keys:['campingvogn.naturskade.dekning','campingvogn.naturskade.egenandel'],filename:'gjensidige-campingvognforsikring.html',url:'https://www.gjensidige.no/forsikring/kjoretoy/campingvognforsikring',sha256:'4f30c8c2a2dabd6425c61bba12513a824c6a2ac4d24a206a261d4f45b3c278a8'},
+ {providerId:'gjensidige',company:'Gjensidige',insuranceType:'Snøscooter',productIds:['gjensidige-snoscooter-delkasko','gjensidige-snoscooter-kasko'],keys:['snoscooter.losore.dekning','snoscooter.losore.grense'],filename:'gjensidige-snoscooterforsikring.html',url:'https://www.gjensidige.no/forsikring/kjoretoy/snoscooterforsikring',sha256:'a777ebfa6dfb20479382fa62691b1192a6867daf8044fbf6c21ee9f9989e531c'},
 ];
 function assertApprovedProductPage(product,fact,doc){
  const contract=approvedProductPages.find(c=>c.productIds.includes(product.productId)&&c.keys.includes(fact.key));
  assert.ok(contract,`${product.productId}/${fact.key}: no approved product-page binding`);
  assert.equal(product.providerId,contract.providerId);assert.equal(product.company,contract.company);
- assert.equal(product.insuranceType,'Campingvogn');assert.equal(product.agreementScope??'ordinary','ordinary');
+ assert.equal(product.insuranceType,contract.insuranceType??'Campingvogn');assert.equal(product.agreementScope??'ordinary','ordinary');
  assert.equal(fact.source.documentId,`vehicle:${contract.filename}`);assert.equal(fact.source.filename,contract.filename);
  assert.equal(fact.source.url,contract.url);assert.equal(fact.source.page,1);assert.ok(fact.source.section);
  const registered=sources[fact.source.documentId];assert.ok(registered);
