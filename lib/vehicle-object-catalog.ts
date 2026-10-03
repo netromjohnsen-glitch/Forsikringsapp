@@ -134,19 +134,38 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         row("ansvar.grense", "Ubegrenset personskade; 100 millioner kr tingskade", 1, "Dekningsoversikt"),
         row("ulykke.grense", "Dødsfall 100 000 kr; invaliditet 200 000 kr", 1, "Dekningsoversikt"),
       ] : []),
-      ...(name !== "Ansvar" ? included(["brann", "tyveri"], type === "tilhenger" ? 2 : 3, "Hvilke skader") : []),
-      ...(["Kasko", "Pluss"].includes(name) ? included(["kasko"], type === "tilhenger" ? 2 : 3, "Hvilke skader") : []),
+      ...(name !== "Ansvar" ? type === "campingvogn" ? [
+        row("brann.dekning", "Brann med åpne flammer, lynnedslag og eksplosjon. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 3, "Hvilke skader – Brann; egenandel i dekningsoversikt side 1"),
+        row("tyveri.dekning", "Tyveri og forsøk på tyveri av campingvognen. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 3, "Hvilke skader – Tyveri; egenandel i dekningsoversikt side 1"),
+      ] : included(["brann", "tyveri"], type === "tilhenger" ? 2 : 3, "Hvilke skader") : []),
+      ...(["Kasko", "Pluss"].includes(name) ? type === "campingvogn" ? [
+        row("kasko.dekning", "Skade på campingvognen som følge av plutselig ytre påvirkning; gjelder også fortelt/tilbygg dersom dette er medforsikret. Kasko og Pluss tilbyr egenandel fra 6 000 til 12 000 kr; kundens valg må fremgå av forsikringsbeviset", 3, "Hvilke skader – Kasko; egenandelvalg i produktnettsidens FAQ"),
+      ] : included(["kasko"], type === "tilhenger" ? 2 : 3, "Hvilke skader") : []),
 
       ...(type === "snoscooter" && name !== "Ansvar" ? [row("utstyr.grense", "10 000 kr", 1, "Fastmontert ekstrautstyr"), row("losore.grense", "5 000 kr", 1, "Løsøre"), row("redning.begrensning", "Transport til og fra verksted ved reparasjon er unntatt", 3, "Dekkes ikke")] : []),
       ...(type === "campingvogn" ? [
-        ...included(["glass", "redning"], 3, "Hvilke skader/utgifter"),
+        ...(name === "Delkasko" ? included(["glass"], 3, "Hvilke skader/utgifter") : [
+          row("glass.dekning", "Bruddskader på campingvognens ruter og takluker: reparasjon dekkes inntil 1 000 kr uten egenandel; skifte har 3 000 kr i egenandel. Solcellepanel dekkes som kaskoskade, ikke som glasskade", 1, "Glass – dekningsoversikt; Hvilke skader side 3"),
+        ]),
+        row("redning.dekning", "Inkludert i produktnivået. Utgifter til hjemtransport av campingvognen ved avbrutt reise som skyldes ulykke, sykdom eller død hos fører eller passasjerer i trekkvogna; også når campingvognen er funnet igjen etter tyveri eller ikke kan repareres innen to virkedager. Merutgifter begrenses til campingvognens verdi. Ikke utgifter som hadde påløpt ved hjemreise eller planlagt reise, reparasjon og deler, videresending av gods eller skade som importør, selger eller reparatør er ansvarlig for etter lov, forskrift, garanti eller reklamasjonsrett. Ikke hjemtransport dersom fører eller passasjer kan kjøre hjem, eller utgifter som kan kreves gjennom trekkvognas veihjelpsforsikring i annet selskap. Hastighetsløp eller lignende på avsperret område er unntatt, med unntak for opplæring til førerkort", name === "Kasko" ? 4 : 3, "Veihjelp – hjemtransport og begrensninger, side 3–4"),
+        row("utstyr.dekning", "Fastmontert ekstrautstyr omfattes ved skade som dekkes av valgt produktnivå. Fortelt omfattes ikke som fastmontert ekstrautstyr, men krever egen utvidelse", 3, "Hva er forsikret; dekningsoversikt side 1"),
+        row("utstyr.grense", "Ubegrenset sum for fastmontert ekstrautstyr; fortelt/tilbygg har separat avtalt sum og krever egen utvidelse", 1, "Fastmontert ekstrautstyr; Hva er forsikret side 3"),
+        row("losore.dekning", "Personlige ting i campingvognen omfattes ved hendelser som dekkes av valgt produktnivå; også ting i fortelt/tilbygg når dette er medforsikret", 1, "Personlige ting; FAQ – ting inne i campingvognen", "gjensidige-campingvognforsikring.html"),
+        row("losore.grense", `${name === "Pluss" ? "50 000" : "10 000"} kr i basisdekningen. Høyere sum kan avtales ved kontakt med Gjensidige mot tillegg i prisen; eventuell høyere sum må fremgå av kundens forsikringsbevis`, 1, "Personlige ting – basisgrense og avtalt høyere sum", "gjensidige-campingvognforsikring.html"),
+        ...(name === "Delkasko" ? [
+          row("naturskade.dekning", "Skader som følge av flom eller andre naturskader er unntatt fra Delkasko", 3, "Hvilke skader – Dekkes ikke"),
+        ] : [
+          row("naturskade.dekning", "Skader som følge av flom, storm eller skred omfattes av Kasko og Pluss", 1, "Naturskader – Kasko og Pluss", "gjensidige-campingvognforsikring.html"),
+          row("naturskade.egenandel", "Egenandelen ved andre naturskader er summen kunden velger for Kasko/Pluss, med valg fra 6 000 til 12 000 kr; nettsidens offentlige standard er 8 000 kr. Ved flomskader er egenandelen 20 000 kr. Kundens forsikringsbevis går foran", 1, "Naturskader; FAQ – egenandel ved skader", "gjensidige-campingvognforsikring.html"),
+        ]),
         row("avtale.geografi", "Mobil bruk: Europa. Fast sted: Norge, Sverige, Danmark og Finland", 3, "Hvor gjelder forsikringen"),
         row("fortelt.begrensning", "Fortelt/tilbygg krever egen avtalt utvidelse og sum; er ikke fastmontert ekstrautstyr", 3, "Hva er forsikret"),
         ...(["Kasko", "Pluss"].includes(name) ? included(["skadedyr"], 3, "Hvilke skader") : []),
         ...(name === "Pluss" ? [
-          ...included(["fukt", "ferie"], 3, "Pluss"),
+          row("fukt.dekning", "Fuktskader i campingvognens vegger, tak og gulv omfattes på vilkårene for alder og fuktighetstest", 3, "Hvilke skader – Fuktskader"),
+          row("ferie.dekning", "Feriegaranti når campingvognen etter en dekket skade ikke kan benyttes til planlagt ferie med varighet over 6 dager. Dekker dokumenterte utgifter til leie av campingvogn, hotell eller lignende; avbrutt ferie under utlån eller utleie erstattes ikke", 4, "Feriegaranti – kompensasjon for avbrutt ferie, side 3–4"),
           row("fukt.alder", "Ikke eldre enn 15 år fra produksjonsdato", 3, "Fuktskader"),
-          row("fukt.begrensning", "Fuktighetstest uten anmerkning fra forhandler/verksted mindre enn ett år før skaden oppdages", 3, "Fuktskader"),
+          row("fukt.begrensning", "Fuktighetstest uten anmerkninger skal være utført av forhandler eller campingvognverksted mindre enn ett år før skaden oppdages. Skaden må være konstatert i forsikringstiden", 3, "Fuktskader"),
           row("ferie.grense", "Inntil 1 500 kr per dag i inntil 14 dager", 4, "Feriegaranti"),
         ] : []),
       ] : []),
@@ -155,7 +174,21 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         row("avtale.geografi", "Europa unntatt Kosovo, Russland og Belarus", 2, "Hvor gjelder forsikringen"),
       ] : []),
     ];
-    product("gjensidige", "Gjensidige", type, name, file, rows, name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name === "Delkasko" ? ["kasko"] : []);
+    const id = product("gjensidige", "Gjensidige", type, name, file, rows, name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name === "Delkasko" ? ["kasko"] : []);
+    if (type === "campingvogn") {
+      for (const fact of vehicleObjectFacts[id]) {
+        if (["brann", "tyveri", "kasko", "redning", "utstyr", "losore", "naturskade", "fukt", "ferie", ...(name === "Delkasko" ? [] : ["glass"])].some((family) => fact.key === `campingvogn.${family}.dekning`)) {
+          fact.coverageAvailability = fact.key === "campingvogn.naturskade.dekning" && name === "Delkasko" ? "unavailable" : "included";
+        }
+        if (fact.key === "campingvogn.kasko.dekning") {
+          const website = vehicleObjectSources["vehicle:gjensidige-campingvognforsikring.html"];
+          fact.qualificationSource = { documentId: website.id, filename: website.filename, url: website.url,
+            termsNumber: website.termsNumber, effectiveFrom: website.effectiveFrom, page: 1,
+            section: "FAQ – Hva er egenandelen ved skader på campingvognen? Kasko og Pluss: 6 000–12 000 kr" };
+        }
+      }
+      if (name === "Delkasko") vehicleObjectCoverageMatrix[id]["campingvogn.naturskade.dekning"] = "not_included";
+    }
   }
 }
 
