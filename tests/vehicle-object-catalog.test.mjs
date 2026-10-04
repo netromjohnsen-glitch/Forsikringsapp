@@ -38,7 +38,7 @@ for(const company of ['Tryg','Gjensidige','Frende','Storebrand','If','Eika'])for
   assert.match(value,/Delvis invaliditet erstattes forholdsmessig/);assert.match(value,/flere personer ved samme ulykkestilfelle/);
  }
  else {assert.ok(representative);assert.ok(representative.source.page>0);if(company==='If')assert.match(representative.value,/8 000/);else if(company==='Storebrand'){
-  if(type==='Campingvogn'){
+  if(type==='Campingvogn'||type==='Tilhenger'){
    assert.match(representative.value,/Samlet erstatning per tvist inntil 100 000 kr/);
    assert.match(representative.value,/flere parter er på samme side.*forsikring i ulike selskaper/);
    assert.match(representative.value,/3–10 parter på sikredes side: 250 000 kr per tvist/);

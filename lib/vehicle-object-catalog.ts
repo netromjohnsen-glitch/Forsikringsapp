@@ -400,6 +400,24 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         put("losore.begrensning", contents + (name === "Kasko" ? contentsKasko : "") + " " + general, 8, "7.15–19, 7.21", [9, "7.22–24; henvisning til 6.3.2 side 7–8"]);
       }
     }
+    if (type === "tilhenger") {
+      // B084_SOURCE_CLEAR: own camp02 cover, separate from motor09's
+      // subsidiary towing-car assistance. SC-007/SR-053 deductibles stay open.
+      const put = (key: string, value: string, page: number, section: string, qualification?: [number, string]) => {
+        const next = facts(type, file, [row(key, value, page, section)])[0];
+        if (key.endsWith(".dekning")) next.coverageAvailability = "included";
+        if (qualification) next.qualificationSource = { ...next.source, page: qualification[0], section: qualification[1] };
+        const index = vehicleObjectFacts[productId].findIndex((fact) => fact.key === next.key);
+        vehicleObjectFacts[productId][index] = next;
+      };
+      const rescueGeography = name === "Brann og tyveri" ? "i Norden" : "i EØS og Sveits og ved reiser inntil 3 måneder i øvrige europeiske Grønt kort-land der forsikringen gjelder; ikke Tyrkia, Russland, Belarus eller Kosovo";
+      put("redning.dekning", `Veihjelp gjelder ${rescueGeography}. Nødvendig transport av tilhenger til nærmeste verksted uten beløpsgrense. Reparasjon på stedet skal velges dersom dette lar seg gjøre og er billigere enn frakt til verkstedet.`, 6, "6.1.3", [3, "4, fortsetter side 4"]);
+      put("rettshjelp.dekning", "Rettshjelp i Norden for privatpersonen nevnt i forsikringsbeviset, eier og rettmessig bruker eller fører av det forsikrede kjøretøyet, ved tvist i egenskap av eier, rettmessig bruker eller fører. Tvisten må som hovedregel ha oppstått mens forsikringen er i kraft. Etter salg dekkes likevel tvist som tidligere eier når forsikringen opphørte i forbindelse med salget. Etter tilbakelevering av leaset kjøretøy dekkes likevel tvist som leasingtaker når forsikringen opphørte i forbindelse med tilbakeleveringen.", 12, "10.1–10.2", [13, "10.3.1, 10.3.4–5"]);
+      put("rettshjelp.grense", "Samlet erstatning per tvist inntil 100 000 kr, begrenset til forsikringssummen selv om flere parter er på samme side, også når de har forsikring i ulike selskaper. Ved 3–10 parter på sikredes side: 250 000 kr per tvist; 11–25: 500 000 kr; 26–49: 750 000 kr; 50 eller flere: 1 000 000 kr.", 14, "10.5");
+      if (name === "Kasko") {
+        put("kasko.dekning", "Når Kasko er avtalt i forsikringsbeviset, dekkes skade på tilhengeren ved sammenstøt, utforkjøring, velt, hærverk, naturskade eller annen tilfeldig, plutselig ytre påvirkning. Det samme gjelder skade forårsaket av skadedyr. Dette gjelder i tillegg til Brann- og tyveriforsikring.", 6, "6.2");
+      }
+    }
   }
 }
 
