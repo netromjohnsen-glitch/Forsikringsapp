@@ -101,13 +101,59 @@ for (const type of ["campingvogn", "tilhenger"] as const) {
       ...(extra ? [
         ...included(["fukt", "skadedyr", "ferie"], 1, "Utvidelser", "tryg-odpdf-d09fac80.pdf"),
         row("fukt.alder", "Innen 10 år etter første registrering som fabrikkny", 1, "Fuktskade", "tryg-odpdf-d09fac80.pdf"),
-        row("fukt.egenandel", "8 000 kr inntil 5 år; deretter 25 %, minst 8 000 kr", 1, "Fuktskade", "tryg-odpdf-d09fac80.pdf"),
+        row("fukt.egenandel", "8 000 kr for campingvogn inntil 5 år gammel på skadedagen; for campingvogn over 5 år gammel på skadedagen: 25 % av skaden, minst 8 000 kr.", 1, "Fuktskade", "tryg-odpdf-d09fac80.pdf"),
         row("fukt.begrensning", "Rørlekkasje, frost, fortelt, terrasse og teltvogn er unntatt", 1, "Unntak", "tryg-odpdf-d09fac80.pdf"),
         row("ferie.grense", "1 500 kr per dag i resterende planlagt ferie, maksimalt 14 dager", 1, "Avbrutt ferie", "tryg-odpdf-d09fac80.pdf"),
         row("ferie.begrensning", "Ikke ved helt eller delvis utleie", 1, "Avbrutt ferie", "tryg-odpdf-d09fac80.pdf"),
       ] : []),
     ];
-    product("tryg", "Tryg", type, name, file, rows, name === "Brann" ? ["tyveri", "kasko"] : name === "Brann og tyveri" ? ["kasko"] : []);
+    const productId = product("tryg", "Tryg", type, name, file, rows, name === "Brann" ? ["tyveri", "kasko"] : name === "Brann og tyveri" ? ["kasko"] : []);
+    if (type === "campingvogn") {
+      // B-088: the spikertelt insured-sum condition is a product rule,
+      // never proof of a customer's object, sum or effective selection.
+      const put = (key: string, value: string, page: number, section: string, sourceFile = file, qualification?: CatalogFact["source"]) => {
+        const next = facts(type, sourceFile, [row(key, value, page, section)])[0];
+        if (qualification) next.qualificationSource = qualification;
+        const index = vehicleObjectFacts[productId].findIndex((fact) => fact.key === next.key);
+        if (index < 0) vehicleObjectFacts[productId].push(next);
+        else vehicleObjectFacts[productId][index] = next;
+      };
+      const high = name === "Kasko" || extra;
+      const natureSection = name === "Brann" ? "2.2" : name === "Brann og tyveri" ? "2.3" : "2.5";
+      const naturePage = name === "Brann" ? 1 : 2;
+      const natureEndPage = name === "Brann" ? 2 : name === "Brann og tyveri" ? 2 : 3;
+      const natureEnd = facts(type, file, [row("naturskade.begrensning", "", natureEndPage, `${natureSection} – unntak og egenandel`)])[0].source;
+      put("naturskade.begrensning", "Naturskade på spikertelt tilhørende campingvognen er dekket når verdien av spikerteltet er inkludert i forsikringssummen. Direkte skade ved skred, storm, flom, stormflo, flodbølge, meteorittnedslag, jordskjelv eller vulkanutbrudd. Skade som skyldes frost, tele, tørke, nedbør, snøtyngde, isgang, dyr, insekter, bakterier, sopp eller råte, er unntatt. Egenandel ved slik dekningsmessig naturskade på spikertelt er 8 000 kr.", naturePage, natureSection, file, natureEnd);
+      const theftException = name === "Brann" ? "" : " Tyveri fra fortelt av tøy, duk eller lignende materiale er unntatt.";
+      put("fortelt.dekning", "Fortelt og terrasse konstruert for bruk til forsikret campingvogn omfattes uavhengig av byggemateriale. Naturskade på spikertelt krever at verdien av spikerteltet er inkludert i forsikringssummen." + theftException, 1, "1.1; naturskade " + natureSection + (name === "Brann" ? "" : "; tyveri " + (high ? "2.3" : "2.2")), file, natureEnd);
+      put("brann.dekning", "Skade som følge av brann med åpen flamme, eksplosjon og lynnedslag", high ? 2 : 1, high ? "2.2" : "2.1");
+      put("brann.egenandel", `${high ? "6 000" : "4 000"} kr hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset`, high ? 2 : 1, high ? "2.2" : "2.1");
+      if (name !== "Brann") {
+        put("tyveri.dekning", "Skade som følge av tyveri eller brukstyveri av og fra kjøretøyet eller deler av dette med tilhørende fortelt og terrasse. Det samme gjelder skade eller hærverk i forbindelse med forsøk på tyveri. Tyveri fra fortelt av tøy, duk eller lignende materiale er unntatt.", high ? 2 : 1, high ? "2.3" : "2.2, fortsetter side 2");
+        put("tyveri.egenandel", `${high ? "6 000" : "4 000"} kr hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset`, 2, high ? "2.3" : "2.2");
+      }
+      put("losore.grense", extra ? "50 000 kr samlet; 10 000 kr per gjenstand; 15 000 kr i fortelt av tekstil. Dersom personlig løsøre er utvidet, vises dette i forsikringsbeviset; utvidet beløp kommer i tillegg til den samlede erstatningssummen på 50 000 kr." : "15 000 kr samlet; 5 000 kr per gjenstand for løst utstyr og personlige eiendeler i forsikret campingvogn og fortelt. Annen avtalt sum fremgår av forsikringsbeviset. Dette omfattes utover forsikringssummen for vognen.", 1, extra ? "Løst utstyr og bagasje" : "1.1; 3.4 utover forsikringssummen", extra ? "tryg-odpdf-d09fac80.pdf" : file);
+      if (!extra) put("losore.begrensning", "Penger, verdipapirer, antikviteter og smykker omfattes ikke." + (name === "Brann" ? " Cd-er, dvd-er, elektroniske spill, vin og brennevin omfattes heller ikke." : ""), 1, "1.1 – løst utstyr, unntak");
+      if (high) {
+        put("glass.dekning", "Bruddskader på vindusruter som skyldes plutselig, uventet og ytre påvirkning, forutsatt at ruten repareres eller ny rute settes inn hos et av Trygs avtaleverksteder. Skade som skyldes krakelering eller punktert glass er unntatt.", 2, "2.4");
+        put("glass.egenandel", "3 000 kr ved hvert skadetilfelle ved utskifting; ingen egenandel ved reparasjon. Ruten skal repareres eller skiftes hos et av Trygs avtaleverksteder.", 2, "2.4");
+      }
+      const legal = "tryg-odpdf-d8d47def.pdf";
+      put("rettshjelp.grense", "Samlet erstatning inntil 100 000 kr per tvist; ved tre eller flere parter på sikredes side utvides samlet forsikringssum til 250 000 kr. Eiere av samme gjenstand regnes som én part. Summen gjelder samlet selv om flere parter er på samme side og har forsikring i ulike selskaper. Ved tvist mot Tryg om dekning av rettshjelp er samlet sum 20 000 kr uavhengig av antall parter. Trygs ansvar er begrenset til sikredes antatte økonomiske interesse i saken; utgifter utover dette må godkjennes av Tryg på forhånd.", 4, "6.1", legal);
+      put("rettshjelp.egenandel", "4 000 kr og i tillegg 20 % av utgifter som påløper utover 4 000 kr. Én egenandel per tvist selv om flere parter er på samme side.", 5, "6.2", legal);
+      if (extra) {
+        const rider = "tryg-odpdf-d09fac80.pdf";
+        put("utstyr.dekning", "Fastmontert tilbehør som det er lovlig å ha på campingvognen, omfattes ved skade som dekkes av valgt produktnivå.", 1, "Fastmontert tilbehør", rider);
+        put("fukt.dekning", "Skade i campingvogn som følge av fukt i tak, vegger og gulv. Skaden må ha inntruffet i forsikringstiden.", 1, "Fuktskade", rider);
+        const safety = (section: string) => facts(type, "tryg-odpdf-b1fff53e.pdf", [row("fukt.begrensning", "", 1, section)])[0].source;
+        put("losore.egenandel", "1 000 kr", 1, "Løst utstyr og bagasje", rider);
+        put("losore.begrensning", "Løst utstyr og bagasje dekkes ikke ved helt eller delvis utleie av campingvognen. Penger, verdipapirer, antikviteter og smykker omfattes ikke etter grunnvilkårene.", 1, "Løst utstyr og bagasje", rider, facts(type, file, [row("losore.begrensning", "", 1, "1.1 – unntak")])[0].source);
+        put("skadedyr.dekning", "Skade på campingvognen forårsaket av insekter, gnagere og andre skadedyr. Campingvogn som hensettes må ha jevnlig innvendig tilsyn og være sikret mot gnagere og andre skadedyr. Åpninger og ventiler må være stengt og kjøretøyet skal være tømt for mat.", 1, "Skade forårsaket av insekter og gnagere", rider, safety("1.2 – Gnagere og andre skadedyr Campingvogn Ekstra"));
+        put("fukt.begrensning", "Fuktskade som skyldes rørbrudd eller lekkasje fra rør, frost, på fortelt og terrasse uavhengig av byggematerialer eller på teltvogn, er unntatt. Skade som fabrikant, importør, leverandør eller reparatør er ansvarlig for etter garanti, reklamasjon eller annet rettsgrunnlag erstattes ikke. Fører ikke garantikrav eller reklamasjon frem, dekkes skaden hvis øvrige betingelser er til stede; Tryg overtar da sikredes krav. Campingvognen skal kontrolleres for fukt hos forhandler eller autorisert verksted én gang hvert forsikringsår slik at fabrikantens krav til fabrikkgaranti oppfylles. Ved påvist fukt må nødvendige tiltak utføres omgående.", 1, "Fuktskade – unntak og garanti", rider, safety("1.2 – Fuktskade Campingvogn Ekstra"));
+        put("ferie.dekning", "Rimelige og nødvendige merutgifter til leie av campingvogn og/eller opphold når påbegynt ferie må avbrytes fordi campingvognen er utsatt for erstatningsmessig skade.", 1, "Avbrutt ferie", rider);
+        put("ferie.begrensning", "Forsikringstaker må dokumentere utgiftene og opplyse om feriens planlagte rute og lengde. Tryg har ikke ansvar for å fremskaffe campingvogn. Ferieavbrudd dekkes ikke ved helt eller delvis utleie av campingvognen.", 1, "Avbrutt ferie", rider);
+      }
+    }
   }
 }
 for (const [name, family, file, scope] of [
