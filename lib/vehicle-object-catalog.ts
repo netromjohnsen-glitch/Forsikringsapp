@@ -545,6 +545,24 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         put("utstyr.grense", jointLimit + " Produktnettsiden dokumenterer i tillegg inntil 40 000 kr for deler som tilhører kjøretøyet, men som ikke er monterte; dette er en separat grense for slike deler.", 3, "3.1; 3.4", file, web);
       }
     }
+    if (type === "tilhenger") {
+      // B-069: these MOT2-2 dimensions apply explicitly to both trailer levels.
+      const put = (key: string, value: string, page: number, section: string, sourceFile = file, qualification?: CatalogFact["source"]) => {
+        const next = facts(type, sourceFile, [row(key, value, page, section)])[0];
+        if (qualification) next.qualificationSource = qualification;
+        const index = vehicleObjectFacts[productId].findIndex((fact) => fact.key === next.key);
+        if (index < 0) vehicleObjectFacts[productId].push(next);
+        else vehicleObjectFacts[productId][index] = next;
+      };
+      put("avtale.geografi", "Europa; i Tyrkia bare den europeiske delen. Kosovo, Russland og Belarus er unntatt. Rettshjelp gjelder bare i Norden.", 3, "2");
+      put("rettshjelp.geografi", "Norden", 3, "2");
+      put("rettshjelp.dekning", "Rimelige og nødvendige utgifter til advokat, registrert rettshjelper, retten, sakkyndige og vitner når sikrede er part i tvist som personlig eier, rettmessig bruker eller fører av forsikret kjøretøy. Ved økonomiske forhold knyttet til kjøretøyet regnes bare den som er nevnt i forsikringsbeviset som sikret; ved tvist knyttet til bruk er også rettmessig bruker eller fører sikret. Når kjøretøyet er solgt og forsikringen opphørte i forbindelse med salget, dekkes også tvist som tidligere eier. Når et leaset kjøretøy er tilbakelevert og forsikringen opphørte i forbindelse med tilbakeleveringen, dekkes også tvist som leasingtaker.", 24, "12.1–12.3");
+      const legalQualification = facts(type, "if-Vilkaar-df7c20ba.pdf", [row("rettshjelp.grense", "", 10, "23.2")])[0].source;
+      put("rettshjelp.grense", "Samlet erstatning inntil 100 000 kr per tvist. Ved tre eller flere parter på sikredes side, når de faktiske og juridiske problemstillingene i det alt vesentlige er de samme, er samlet forsikringssum inntil 250 000 kr. Idømte saksomkostninger dekkes ikke. Annen forsikringssum i bransjevilkåret går foran.", 11, "23.3", "if-Vilkaar-df7c20ba.pdf", legalQualification);
+      put("brann.dekning", "Skade som følge av brann ved åpen flamme, lynnedslag eller eksplosjon. Skade, inkludert kortslutning, på batterier og elektroniske enheter omfattes bare når det har vært brann med åpen ild på utsiden av enheten.", 4, "4.2");
+      put("naturskade.dekning", "Skade som direkte skyldes naturskade ved skred, storm, flom, stormflo, jordskjelv eller vulkanutbrudd i Norden", 5, "4.5");
+      vehicleObjectCoverageMatrix[productId]["tilhenger.naturskade.dekning"] = "standard";
+    }
   }
 }
 
