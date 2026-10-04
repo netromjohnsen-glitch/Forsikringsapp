@@ -153,6 +153,23 @@ for (const type of ["campingvogn", "tilhenger"] as const) {
         put("ferie.dekning", "Rimelige og nødvendige merutgifter til leie av campingvogn og/eller opphold når påbegynt ferie må avbrytes fordi campingvognen er utsatt for erstatningsmessig skade.", 1, "Avbrutt ferie", rider);
         put("ferie.begrensning", "Forsikringstaker må dokumentere utgiftene og opplyse om feriens planlagte rute og lengde. Tryg har ikke ansvar for å fremskaffe campingvogn. Ferieavbrudd dekkes ikke ved helt eller delvis utleie av campingvognen.", 1, "Avbrutt ferie", rider);
       }
+    } else {
+      // B-095: own Tilhenger fire/theft terms and imported PGE91500 limits.
+      const put = (key: string, value: string, page: number, section: string, sourceFile = file) => {
+        const next = facts(type, sourceFile, [row(key, value, page, section)])[0];
+        const index = vehicleObjectFacts[productId].findIndex((fact) => fact.key === next.key);
+        if (index < 0) vehicleObjectFacts[productId].push(next);
+        else vehicleObjectFacts[productId][index] = next;
+      };
+      const high = name === "Kasko";
+      put("brann.dekning", "Skade som følge av brann med åpen flamme, eksplosjon og lynnedslag", high ? 2 : 1, high ? "2.2" : "2.1");
+      put("brann.egenandel", `${high ? "6 000" : "4 000"} kr hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset`, high ? 2 : 1, high ? "2.2" : "2.1");
+      if (name !== "Brann") {
+        put("tyveri.dekning", "Skade som følge av tyveri eller brukstyveri av og fra tilhengeren eller deler av den, samt skade eller hærverk i forbindelse med forsøk på tyveri. Dersom det fremgår av forsikringsbeviset at tilhengeren er utleid, dekkes tap av utleid tilhenger som følge av underslag. Tilhengeren regnes som tapt når den ikke er kommet til rette innen 3 måneder etter at Tryg har mottatt melding om at den er savnet. Underslag begått av familiemedlemmer eller ansatte hos forsikringstaker dekkes ikke.", high ? 2 : 1, high ? "2.3" : "2.2, fortsetter side 2");
+        put("tyveri.egenandel", `${high ? "6 000" : "4 000"} kr hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset`, 2, high ? "2.3" : "2.2");
+      }
+      put("rettshjelp.grense", "Samlet erstatning inntil 100 000 kr per tvist; ved tre eller flere parter på sikredes side utvides samlet forsikringssum til 250 000 kr. Eiere av samme gjenstand regnes som én part. Summen gjelder samlet selv om flere parter er på samme side og har forsikring i ulike selskaper. Ved tvist mot Tryg om dekning av rettshjelp er samlet sum 20 000 kr uavhengig av antall parter. Trygs ansvar er begrenset til sikredes antatte økonomiske interesse i saken; utgifter utover dette må godkjennes av Tryg på forhånd.", 4, "6.1", "tryg-odpdf-d8d47def.pdf");
+      put("rettshjelp.egenandel", "4 000 kr og i tillegg 20 % av utgifter som påløper utover 4 000 kr. Én egenandel per tvist selv om flere parter er på samme side.", 5, "6.2", "tryg-odpdf-d8d47def.pdf");
     }
   }
 }
