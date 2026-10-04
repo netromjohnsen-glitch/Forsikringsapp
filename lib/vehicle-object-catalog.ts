@@ -233,7 +233,7 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
 for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
   const file = `frende-${type === "snoscooter" ? "Snowmobile" : type === "campingvogn" ? "Caravan" : "Trailer"}Insurance.pdf`;
   for (const name of [...(type === "snoscooter" ? ["Ansvar"] : []), "Brann og tyveri", "Kasko"]) {
-    product("frende", "Frende", type, name, file, [
+    const id = product("frende", "Frende", type, name, file, [
       ...(type === "campingvogn" ? [
         row("rettshjelp.dekning", "Rettshjelp i Norden for privatkunder som personlig eier, rettmessig bruker eller fører. Omfatter tvist etter salg og opphørt forsikring, og kjøp av nytt kjøretøy før ny forsikring når nåværende kjøretøy var forsikret i Frende. Samme tvist blir ikke flere ved flere spørsmål/søksmål. Voldgift og særdomstol omfattes når tvisten ellers kunne vært ført for alminnelige domstoler", 11, "14.1 (fortsatt side 12), jf. 2"),
         row("rettshjelp.grense", "100 000 kr per tvist; 250 000 kr samlet ved minst tre parter på samme side, også på tvers av forsikringer/selskaper. Begrenset til den økonomiske interessen i saken. Uforsikrede parter bærer sin andel og holdes utenfor erstatningsberegningen", 12, "14.4 (fortsatt side 13)"),
@@ -244,7 +244,11 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         row("rettshjelp.grense", "100 000 kr per tvist; 250 000 kr samlet ved minst tre parter på samme side, også på tvers av forsikringer/selskaper. Begrenset til den økonomiske interessen i saken. Uforsikrede parter bærer sin andel og holdes utenfor erstatningsberegningen", 12, "14.4 (fortsatt side 13)"),
         row("rettshjelp.egenandel", "4 000 kr pluss 20 % av øvrige kostnader; én egenandel per tvist også ved flere parter på samme side", 13, "14.4"),
         row("rettshjelp.begrensning", "Rimelige og nødvendige utgifter til egen advokat, registrert rettshjelper, retten, godkjent advokatmekler og sakkyndige; ved rettsbehandling også vitner og rettsgebyr til forliksrådet/tingretten. Ikke ankegebyr, idømte eller avtalte saksomkostninger. Tilkjente omkostninger trekkes fra, med unntak ved dokumentert betalingsudyktig motpart. Unntatt tvist mellom sameiere, yrke/virksomhet, familie/arv/skifte, namsmyndigheter, ubestridt inkasso, gjeldsforhandling, konkurs-/akkordforhandling når du er konkurs- eller akkordskyldner, straffesak, krenkelser/bøter/gebyrer, ulovlig handling, forvaltningsvedtak før fullt utnyttet klageadgang og søksmål, og advokat-/sakkyndigsalær. Ikke utgifter før tvist eller grunnlag som oppstod før forsikringen", 12, "14.2–14.3"),
-      ] : included(["rettshjelp"], 11, "14 (privatkunder)")),
+      ] : [
+        row("rettshjelp.dekning", "Rettshjelp for privatkunder som personlig eier, rettmessig bruker eller fører av den forsikrede tilhengeren. Tvisten må oppstå mens forsikringen gjelder; også tvist som tidligere eier etter salg, når forsikringen i Frende opphørte i forbindelse med salget, og tvist med selger ved kjøp av nytt kjøretøy før ny forsikring når nåværende kjøretøy var forsikret i Frende på kjøpstidspunktet. Samme tvist blir ikke flere ved flere spørsmål, søksmål eller parter på samme side. Dekningen gjelder tvist som kan føres for de alminnelige domstolene. Voldgift og særdomstol omfattes når tvisten ellers kunne vært ført for alminnelige domstoler. Rimelige og nødvendige utgifter til egen advokat, registrert rettshjelper, retten, advokatmekler som er godkjent av Advokatforeningen og sakkyndige; ved rettsbehandling også vitner og rettsgebyr til forliksrådet og tingretten. Ikke rettsgebyr ved anke, kjæremål eller andre rettsmidler, saksomkostninger du blir idømt eller påtar deg i et forlik. Tilkjente omkostninger trekkes fra, med unntak ved dokumentert betalingsudyktig motpart; hvis du i en dom blir tilkjent saksomkostninger, kreves forhåndsgodkjenning fra Frende for et senere forlik som innebærer at du må bære dine egne omkostninger. Unntatt tvist mellom sameiere, tvist som har sammenheng med yrket ditt eller virksomheten din, separasjon/skilsmisse/barnefordeling/samvær/farskap/arv/omstøtelse/underholdsbidrag/oppløsning av økonomisk fellesskap mellom samboere eller oppløsning av husstandsfellesskap/skifte, tvist som bare hører inn under namsmyndighetene, ubestridt inkasso og gjeldsforhandling. Sak som gjelder konkurs eller akkordforhandling er unntatt hvis du er konkurs- eller akkordskyldner. Øvrige unntak gjelder straffesak hvor du er fornærmet, mistenkt, siktet, tiltalt eller saksøkt, erstatning for krenkelser etter skadeserstatningsloven §§ 3-3, 3-5, 3-6 og 3-6 a, eller bøter eller gebyrer, ulovlig handling fra noen som er omfattet av forsikringen. Tvist som gjelder forvaltningsvedtak er unntatt. Likevel erstattes utgifter ved søksmål etter at klageadgangen er fullt utnyttet; utgifter pådratt før søksmål ble reist, er ikke dekket. Unntatt tvist om advokatsalær eller utgifter til sakkyndige. Ikke utgifter før tvist, før søksmål ved forvaltningsvedtak eller grunnlag som oppstod før forsikringen. Samlet grense 100 000 kr per tvist, eller 250 000 kr ved minst tre parter på samme side, begrenset til økonomisk interesse og samlet også på tvers av forsikringer/selskaper. Uforsikrede parter bærer sin andel og holdes utenfor erstatningsberegningen. Egenandel 4 000 kr pluss 20 % av øvrige kostnader, én per tvist", 11, "14.1–14.4 (fortsatt side 12–13)"),
+        row("rettshjelp.grense", "100 000 kr per tvist; 250 000 kr samlet ved minst tre parter på samme side, også på tvers av flere forsikringer eller selskaper. Begrenset til den økonomiske interessen i saken. Uforsikrede parter bærer sin andel og holdes utenfor erstatningsberegningen", 12, "14.4 (fortsatt side 13)"),
+        row("rettshjelp.egenandel", "4 000 kr pluss 20 % av øvrige kostnader; én egenandel per tvist også ved flere parter på samme side", 13, "14.4"),
+      ]),
       ...(type === "snoscooter" ? [row("ansvar.dekning", "Ansvar for person- og tingskade etter bilansvarslova. Også ulovfestet rettslig ansvar ved bruk av snøscooteren for skade konstatert i forsikringstiden: inntil 10 000 000 kr per skadetilfelle og samlet per år. Ansvar etter lov om vegfraktavtaler omfattes ikke", 11, "13.1")] : []),
       ...(name !== "Ansvar" ? type === "campingvogn" ? [
         row("brann.dekning", "Skade etter brann eller lynnedslag", 3, "4.1.1"),
@@ -258,14 +262,19 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         row("tyveri.begrensning", "Tyveri utført av husstandsmedlem eller ansatt omfattes ikke; heller ikke snøscooter som er lånt eller prøvd og ikke levert tilbake", 3, "4.2 a–b"),
         row("brann.egenandel", "6 000 kr med mindre lavere egenandel står i kundens forsikringsbevis", 9, "11.11"),
         row("tyveri.egenandel", "6 000 kr med mindre lavere egenandel står i kundens forsikringsbevis; ingen egenandel hvis tyverialarmen fungerte på skadetidspunktet", 9, "11.11"),
-      ] : included(["brann", "tyveri"], 3, "4") : []),
+      ] : [
+        row("brann.dekning", "Skade på tilhengeren etter brann eller lynnedslag. Svimerker og skade på delen eller komponenten der brann eller kortslutning oppstod erstattes ikke; følgeskaden av brannen eller kortslutningen omfattes. Dekningen gjelder også når tilhengeren ikke er festet til bilen", 3, "4.1.1 og 4.2"),
+        row("tyveri.dekning", "Tyveri av tilhengeren og skade ved tyveri eller forsøk på tyveri etter straffeloven §321. Ikke når den som tok tilhengeren er husstandsmedlem eller ansatt, eller når tilhengeren er lånt eller prøvd og ikke levert tilbake. Dekningen gjelder også når tilhengeren ikke er festet til bilen", 3, "4.1.2 og 4.2 a–b"),
+      ] : []),
       ...(name === "Kasko" ? type === "campingvogn" ? [
         row("kasko.dekning", "Plutselig og uforutsett skade etter sammenstøt, utforkjøring, velt og hærverk; feilfylling av drivstoff der dette er relevant for det forsikrede objektet", 3, "6.1.1"),
         row("kasko.begrensning", "Motor, gir, drivverk og elektroniske styreenheter omfattes bare når årsaken er annen dekket skade. Unntatt frost, fukt, vann, råte, innvendige flekker, svimerker, søl, bruksslitasje, sprekker, gliper, utettheter/lekkasjer, rust/slitasje og underslag. Avvist fabrikant-/leverandør-/reparatøransvar kan omfattes med regress. Campingvognens særskilte fukt- og råteskadedekning i 6.1.2 holdes separat", 4, "6.2"),
       ] : type === "snoscooter" ? [
         row("kasko.dekning", "Plutselig og uforutsett skade etter sammenstøt, utforkjøring, velt og hærverk; feilfylling av drivstoff der dette er relevant for det forsikrede objektet", 3, "6.1.1"),
         row("kasko.begrensning", "Motor, gir, drivverk og elektroniske styreenheter omfattes bare når årsaken er annen dekket skade. Unntatt frost, fukt, vann, råte, innvendige flekker, svimerker, søl, bruksslitasje, rust/slitasje og underslag. Avvist fabrikant-/leverandør-/reparatøransvar kan omfattes når skaden ellers er dekket, med regress", 4, "6.2"),
-      ] : included(["kasko"], 3, "6.1") : []),
+      ] : [
+        row("kasko.dekning", "Plutselig og uforutsett skade på tilhengeren etter sammenstøt, utforkjøring, velt og hærverk; feilfylling av drivstoff der dette er relevant for det forsikrede objektet. Dekningen gjelder også når tilhengeren ikke er festet til bilen", 3, "6.1.1"),
+      ] : []),
       row("avtale.geografi", "Europa unntatt Russland, Tyrkia og Belarus; rettshjelp i Norden", 2, "2"),
       ...(name !== "Ansvar" ? [row("utstyr.grense", "20 000 kr fastmontert ekstrautstyr", 2, "3.7")] : []),
       ...(type === "campingvogn" ? [
@@ -278,8 +287,28 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
           row("naturskade.dekning", "Naturskade på campingvogn og spikertelt/fortelt omfattes når Kasko er valgt", 1, "FAQ: Er campingvogn og spikertelt/fortelt dekket mot naturskader?", "frende-campingvognforsikring.html"),
         ] : []),
       ] : []),
-      ...(type === "tilhenger" ? [row("kasko.begrensning", "Løse ting og bagasje på tilhenger er ikke omfattet", 2, "3.9")] : []),
+      ...(type === "tilhenger" ? [name === "Kasko"
+        ? row("kasko.begrensning", "Motor, gir, drivverk og elektroniske styreenheter omfattes bare når årsaken er annen dekket skade. Unntatt frost, fukt, vann, råte, innvendige flekker, svimerker, søl, bruksslitasje, rust/slitasje og underslag. Skade som fabrikant, leverandør eller reparatør er ansvarlig for er unntatt; hvis kravet ikke fører frem, erstattes skaden når den ellers er dekket, og Frende overtar kravet. Løse ting og bagasje på tilhenger er ikke omfattet", 4, "6.2")
+        : row("kasko.begrensning", "Løse ting og bagasje på tilhenger er ikke omfattet", 2, "3.9")] : []),
     ], name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name !== "Kasko" ? ["kasko"] : []);
+    if (type === "tilhenger") {
+      const website = vehicleObjectSources["vehicle:frende-tilhengerforsikring.html"];
+      for (const fact of vehicleObjectFacts[id]) {
+        if (["tilhenger.rettshjelp.dekning", "tilhenger.brann.dekning", "tilhenger.tyveri.dekning", "tilhenger.kasko.dekning"].includes(fact.key)) fact.coverageAvailability = "included";
+        if (["tilhenger.brann.dekning", "tilhenger.tyveri.dekning", "tilhenger.kasko.dekning"].includes(fact.key)) {
+          fact.qualificationSource = { documentId: website.id, filename: website.filename, url: website.url,
+            termsNumber: website.termsNumber, effectiveFrom: website.effectiveFrom, page: 1,
+            section: "FAQ: Er tilhengeren min dekket av bilens forsikring når hengeren ikke er festet til bilen?",
+            note: "Dokumenterer bare at den aktuelle produktdekningen også gjelder frakoblet tilhenger; kundens forsikringsbevis bestemmer dekningene. Dokumentdato ukjent." };
+        }
+        if (name === "Kasko" && fact.key === "tilhenger.kasko.begrensning") {
+          const source = vehicleObjectSources["vehicle:" + file];
+          fact.qualificationSource = { documentId: source.id, filename: source.filename, url: source.url,
+            termsNumber: source.termsNumber, effectiveFrom: source.effectiveFrom, page: 2,
+            section: "3.9 – Løse ting og bagasje gjelder ikke tilhenger" };
+        }
+      }
+    }
   }
 }
 
