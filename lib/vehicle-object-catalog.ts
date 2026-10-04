@@ -490,7 +490,7 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
   const file = "if-Vilkaar-4103ea25.pdf";
   const levels = type === "snoscooter" ? ["Ansvar", "Delkasko", "Kasko"] : type === "campingvogn" ? ["Delkasko", "Kasko", "Super"] : ["Delkasko", "Kasko"];
   for (const name of levels) {
-    product("if", "If", type, name, file, [
+    const productId = product("if", "If", type, name, file, [
       ...included(["rettshjelp"], 24, "12"),
       ...(type === "snoscooter" ? included(["ansvar", "ulykke"], 4, "4.1 og 11") : []),
       ...(name !== "Ansvar" ? included(["brann", "tyveri"], 4, "4.2–4.3") : []),
@@ -515,6 +515,36 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
       ] : []),
       ...(type === "tilhenger" ? [row("avtale.forsikringssum", "Gjenanskaffelsesverdi av angitt tilhenger med fastmontert utstyr", 1, "1", "if-Vilkaar-b7d19ed7.pdf")] : []),
     ], name === "Ansvar" ? ["brann", "tyveri", "kasko"] : name === "Delkasko" ? ["kasko"] : []);
+    if (type === "snoscooter") {
+      // B-068: MOT2-2's joint equipment/baggage cap is not two separate sums.
+      const put = (key: string, value: string, page: number, section: string, sourceFile = file, qualification?: CatalogFact["source"]) => {
+        const next = facts(type, sourceFile, [row(key, value, page, section)])[0];
+        if (qualification) next.qualificationSource = qualification;
+        const index = vehicleObjectFacts[productId].findIndex((fact) => fact.key === next.key);
+        if (index < 0) vehicleObjectFacts[productId].push(next);
+        else vehicleObjectFacts[productId][index] = next;
+      };
+      const ownSource = (page: number, section: string, sourceFile = file) => facts(type, sourceFile, [row("ansvar.dekning", "", page, section)])[0].source;
+      put("avtale.geografi", "Europa; i Tyrkia bare den europeiske delen. Kosovo, Russland og Belarus er unntatt. Rettshjelp gjelder bare i Norden.", 3, "2");
+      put("rettshjelp.geografi", "Norden", 3, "2");
+      put("ansvar.dekning", "Skade på personer og ting som skades av forsikret kjøretøy. I Norge gjelder norsk bilansvarslov; utenfor Norge gjelder skadestedets lovgivning for bilansvar. Innenfor EØS dekkes skader etter norske regler dersom dette gir høyere dekning. Det samme gjelder utenfor EØS for personskadeerstatning til fører og passasjerer som har vanlig bosted i Norden.", 4, "4.1");
+      put("ansvar.egenandel", "Ingen egenandel", 19, "8.5.1");
+      put("rettshjelp.dekning", "Rimelige og nødvendige utgifter til advokat, registrert rettshjelper, retten, sakkyndige og vitner når sikrede er part i tvist som personlig eier, rettmessig bruker eller fører av forsikret kjøretøy. Ved økonomiske forhold knyttet til kjøretøyet regnes bare den som er nevnt i forsikringsbeviset som sikret; ved tvist knyttet til bruk er også rettmessig bruker eller fører sikret. Når kjøretøyet er solgt og forsikringen opphørte i forbindelse med salget, dekkes også tvist som tidligere eier. Når et leaset kjøretøy er tilbakelevert og forsikringen opphørte i forbindelse med tilbakeleveringen, dekkes også tvist som leasingtaker.", 24, "12.1–12.3");
+      put("rettshjelp.grense", "Samlet erstatning inntil 100 000 kr per tvist. Ved tre eller flere parter på sikredes side, når de faktiske og juridiske problemstillingene i det alt vesentlige er de samme, er samlet forsikringssum inntil 250 000 kr. Idømte saksomkostninger dekkes ikke. Annen forsikringssum i bransjevilkåret går foran.", 11, "23.3", "if-Vilkaar-df7c20ba.pdf", ownSource(10, "23.2", "if-Vilkaar-df7c20ba.pdf"));
+      if (name !== "Ansvar") {
+        put("brann.dekning", "Skade som følge av brann ved åpen flamme, lynnedslag eller eksplosjon. Skade, inkludert kortslutning, på batterier og elektroniske enheter omfattes bare når det har vært brann med åpen ild på utsiden av enheten.", 4, "4.2");
+        put("naturskade.dekning", "Skade som direkte skyldes naturskade ved skred, storm, flom, stormflo, jordskjelv eller vulkanutbrudd i Norden", 5, "4.5");
+        vehicleObjectCoverageMatrix[productId]["snoscooter.naturskade.dekning"] = "standard";
+        put("utstyr.dekning", "Lovlig ettermontert fastmontert tilleggsutstyr omfattes når Delkasko eller Kasko er avtalt; tilleggsutstyr og bagasje har én felles erstatningsgrense.", 3, "3.4");
+        put("losore.dekning", "Bagasje omfattes når Delkasko eller Kasko er avtalt; tilleggsutstyr og bagasje har én felles erstatningsgrense.", 3, "3.4");
+        vehicleObjectCoverageMatrix[productId]["snoscooter.utstyr.dekning"] = "standard";
+        vehicleObjectCoverageMatrix[productId]["snoscooter.losore.dekning"] = "standard";
+        const jointLimit = "Én felles erstatningsgrense på 40 000 kr samlet for ettermontert tilleggsutstyr og bagasje, begrenset til 50 % av kjøretøyets gjenanskaffelsesverdi umiddelbart før skaden. Forsikringssummen kan utvides ved å kontakte If. Utstyr levert og montert før kjøretøyet ble levert som nytt, inngår som del av kjøretøyet.";
+        const web = ownSource(1, "Dekningstabell – Fastmontert tilleggsutstyr og bagasje", "if-snoscooterforsikring.html");
+        put("losore.grense", jointLimit, 3, "3.1; 3.4", file, web);
+        put("utstyr.grense", jointLimit + " Produktnettsiden dokumenterer i tillegg inntil 40 000 kr for deler som tilhører kjøretøyet, men som ikke er monterte; dette er en separat grense for slike deler.", 3, "3.1; 3.4", file, web);
+      }
+    }
   }
 }
 
