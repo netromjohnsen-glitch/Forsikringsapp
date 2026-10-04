@@ -338,7 +338,7 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
   const file = type === "snoscooter" ? "storebrand-vilkar-motorvognforsikring.pdf" : "storebrand-vilkar-campingvogn-og-tilhenger.pdf";
   for (const name of (type === "snoscooter" ? ["Ansvar", "Delkasko", "Kasko"] : type === "campingvogn" ? ["Brann og tyveri", "Kasko", "Super"] : ["Brann og tyveri", "Kasko"])) {
     const snow = type === "snoscooter";
-    product("storebrand", "Storebrand", type, name, file, [
+    const productId = product("storebrand", "Storebrand", type, name, file, [
       ...included(["rettshjelp"], snow ? 30 : 12, "Rettshjelp"),
       ...(snow ? included(["ansvar"], 3, "1.1") : []),
       ...(snow && name !== "Ansvar" ? included(["ulykke"], 5, "Andre dekninger") : []),
@@ -363,6 +363,43 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         ] : []),
       ] : []),
     ], ["Ansvar", "Delkasko", "Brann og tyveri"].includes(name) ? ["kasko"] : []);
+    if (type === "campingvogn") {
+      // B-076: camp02 details are restricted to these caravan tiers. A
+      // restriction alone must not create a new positive coverage parent.
+      const put = (key: string, value: string, page: number, section: string, qualification?: [number, string]) => {
+        const next = facts(type, file, [row(key, value, page, section)])[0];
+        if (key.endsWith(".dekning")) next.coverageAvailability = "included";
+        if (qualification) next.qualificationSource = { ...next.source, page: qualification[0], section: qualification[1] };
+        const index = vehicleObjectFacts[productId].findIndex((fact) => fact.key === next.key);
+        if (index < 0) vehicleObjectFacts[productId].push(next);
+        else vehicleObjectFacts[productId][index] = next;
+      };
+      const general = "Felles skadeunntak i §7.21–24 gjelder også denne dekningen: Skader som følge av frost og snøtyngde, eller hvor frost og/eller snøtyngde er en medvirkende skadeårsak, er unntatt. Fukt-, vann- eller råteskader, sprekker og utettheter er unntatt med mindre skaden er en direkte følge av en annen erstatningsmessig skade. Dersom Super er avtalt, kan likevel vann-/fuktskader være omfattet som beskrevet i §6.3.2. Skade som skyldes at sammenføyningen i isolerglass er utett, er unntatt. Skade som følge av vibrasjoner eller vridninger ved kjøring på ujevn veibane, også hvor slike forhold har vært medvirkende skadeårsak, er unntatt.";
+      const contents = "Smykker, klokker, kunstgjenstander, penger, verdipapirer og lignende, samt forbruksgjenstander som mat, dagligvarer, bensin, diesel og maling, omfattes ikke. Tyveri av løst utstyr og personlige eiendeler i fortelt er unntatt.";
+      const contentsKasko = " Kaskoforsikringen omfatter ikke skade på løst utstyr og personlige eiendeler som skyldes annen tilfeldig, plutselig, ytre påvirkning enn slik skade som rammer campingvognen utenfra.";
+      put("brann.dekning", "Skade som følge av brann ved åpen flamme, lynnedslag eller eksplosjon", 5, "6.1.1");
+      put("tyveri.dekning", "Tyveri eller forsøk på tyveri. Hærverk dekkes når det er åpenbart at det samtidig er gjort forsøk på å stjele campingvognen; det samme gjelder dersom det er gjort innbrudd i campingvognen. Det anses ikke som tyveri dersom den skyldige tilhører sikredes husstand. Egenandelen er 8 000 kr dersom ikke annet fremgår av forsikringsbeviset.", 6, "6.1.2");
+      const rescueGeography = name === "Brann og tyveri" ? "i Norden" : "i EØS og Sveits og ved reiser inntil 3 måneder i øvrige europeiske Grønt kort-land der forsikringen gjelder; ikke Tyrkia, Russland, Belarus eller Kosovo";
+      put("redning.dekning", `Veihjelp gjelder ${rescueGeography}. Nødvendig transport av campingvogn til nærmeste verksted uten beløpsgrense. Reparasjon på stedet skal velges dersom dette lar seg gjøre og er billigere enn frakt til verkstedet. For campingvogn på fast sted dekkes inntil 5 000 kr for transport til kjørbar vei og frigjøring fra bygningskonstruksjon. Egenandelen for veihjelp er 750 kr.`, 6, "6.1.3", [3, "4, fortsetter side 4"]);
+      put("rettshjelp.dekning", "Rettshjelp i Norden for privatpersonen nevnt i forsikringsbeviset, eier og rettmessig bruker eller fører av det forsikrede kjøretøyet, ved tvist i egenskap av eier, rettmessig bruker eller fører. Tvisten må som hovedregel ha oppstått mens forsikringen er i kraft. Etter salg dekkes likevel tvist som tidligere eier når forsikringen opphørte i forbindelse med salget. Etter tilbakelevering av leaset kjøretøy dekkes likevel tvist som leasingtaker når forsikringen opphørte i forbindelse med tilbakeleveringen.", 12, "10.1–10.2", [13, "10.3.1, 10.3.4–5"]);
+      put("rettshjelp.grense", "Samlet erstatning per tvist inntil 100 000 kr, begrenset til forsikringssummen selv om flere parter er på samme side, også når de har forsikring i ulike selskaper. Ved 3–10 parter på sikredes side: 250 000 kr per tvist; 11–25: 500 000 kr; 26–49: 750 000 kr; 50 eller flere: 1 000 000 kr.", 14, "10.5");
+      put("fortelt.begrensning", "Fortelt eller annen bygningskonstruksjon som brukes som tilbygg til campingvognen, må være spesifisert i forsikringsbeviset og inkluderes i avtalt forsikringssum. Tyveri av løst utstyr og personlige eiendeler i fortelt dekkes ikke. Skade på elementer som brukes til tilbygg under montering eller demontering dekkes ikke. Når forsikringsbeviset omfatter en bygningskonstruksjon som ikke er sammenbygget med campingvognen, dekkes kun brann, lyn og eksplosjon.", 4, "5", [8, "7.17–20"]);
+      for (const family of ["brann", "tyveri", ...(name !== "Brann og tyveri" ? ["kasko"] : [])]) {
+        put(`${family}.begrensning`, general, 8, "7.21", [9, "7.22–24; henvisning til 6.3.2 side 7–8"]);
+      }
+      if (name !== "Brann og tyveri") {
+        put("kasko.dekning", "Når Kasko er avtalt i forsikringsbeviset, dekkes skade på campingvognen ved sammenstøt, utforkjøring, velt, hærverk, naturskade eller annen tilfeldig, plutselig ytre påvirkning. Det samme gjelder skade forårsaket av skadedyr. Dette gjelder i tillegg til Brann- og tyveriforsikring.", 6, "6.2", name === "Super" ? [7, "6.3"] : undefined);
+      }
+      if (name === "Super") {
+        put("losore.begrensning", contents + contentsKasko, 8, "7.15–19");
+        put("fukt.begrensning", "Vann-/fuktskade i vegger, tak og gulv for campingvogn nyere enn 15 år fra produksjonsdato. Fuktkontroll uten anmerkninger fra forhandler/verksted mindre enn ett år før skaden oppdages; ny årlig kontroll kreves. Dekningen opphører når forsikringen opphører. " + general, 7, "6.3.2, fortsetter side 8", [8, "7.21–24, fortsetter side 9"]);
+        put("ferie.dekning", "Oppstår en erstatningsmessig skade etter påbegynt ferietur med campingvogn, erstattes utgifter til alternativ overnatting. Kravet må dokumenteres overfor Storebrand.", 8, "6.3.3");
+      } else {
+        put("losore.dekning", "Utstyr og personlige eiendeler i campingvognen omfattes til fordel for eier eller rettmessig bruker og dennes husstand ved hendelser valgt produktnivå dekker. Er forsikringssummen tilstrekkelig, omfattes også løst utstyr som tilhører andre som er med i campingvognen.", 4, "5");
+        put("losore.grense", "30 000 kr samlet; 5 000 kr per gjenstand (førsterisiko). Kamerautstyr regnes som én gjenstand. Forsikringssummen kan utvides; utvidelsen må fremgå av forsikringsbeviset.", 4, "5");
+        put("losore.begrensning", contents + (name === "Kasko" ? contentsKasko : "") + " " + general, 8, "7.15–19, 7.21", [9, "7.22–24; henvisning til 6.3.2 side 7–8"]);
+      }
+    }
   }
 }
 

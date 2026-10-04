@@ -37,7 +37,14 @@ for(const company of ['Tryg','Gjensidige','Frende','Storebrand','If','Eika'])for
   assert.match(value,/dødsfall.*innen ett år/i);assert.match(value,/50 000 kr dersom/);
   assert.match(value,/Delvis invaliditet erstattes forholdsmessig/);assert.match(value,/flere personer ved samme ulykkestilfelle/);
  }
- else {assert.ok(representative);assert.ok(representative.source.page>0);if(company==='If')assert.match(representative.value,/8 000/);else if(company==='Storebrand')assert.equal(representative.value,'100 000 kr per tvist');else assert.match(representative.value,/Europa|Norden/);}
+ else {assert.ok(representative);assert.ok(representative.source.page>0);if(company==='If')assert.match(representative.value,/8 000/);else if(company==='Storebrand'){
+  if(type==='Campingvogn'){
+   assert.match(representative.value,/Samlet erstatning per tvist inntil 100 000 kr/);
+   assert.match(representative.value,/flere parter er på samme side.*forsikring i ulike selskaper/);
+   assert.match(representative.value,/3–10 parter på sikredes side: 250 000 kr per tvist/);
+   assert.match(representative.value,/11–25: 500 000 kr/);assert.match(representative.value,/26–49: 750 000 kr/);assert.match(representative.value,/50 eller flere: 1 000 000 kr/);
+  }else assert.equal(representative.value,'100 000 kr per tvist');
+ }else assert.match(representative.value,/Europa|Norden/);}
 });
 test('Eika means verified channel, never generic Fremtind/SpareBank1/DNB',()=>{
  assert.equal(canonicalProviderId('Eika'),'eika-fremtind');
