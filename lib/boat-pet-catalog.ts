@@ -287,6 +287,7 @@ const gjensidigeBruk = (type: "hund" | "katt"): BoatPetAddOnDefinition => {
       qualified(`${type}.bruksverdi.begrensning`, type === "hund"
         ? "Bruksegenskapen må være dokumentert tapt av veterinær. Avlshund: fysisk mistet avlsevnen 100 %; hannhund far til minst 1 kull siste 2 år, tispe født minst 1 kull på normal måte siste 2 år før sykdom/skade. Jakthund, gjeterhund og tjenestehund: trent for og regelmessig brukt til formålet, bruksegenskapen nedsatt minst 50 %. Hunden må være utredet, adekvat behandlet og ha gjennomgått tilstrekkelig lang rekonvalesens."
         : "Avlskatt: bruksegenskapen må være dokumentert tapt av veterinær og avlsevnen fysisk mistet 100 %. Hannkatt far til minst 1 kull siste 2 år; hunnkatt født minst 1 kull på normal måte siste 2 år før sykdom/skade.", 2, "Forutsetninger – tap av bruksverdi"),
+      ...(type === "hund" ? [qualified("hund.bruksverdi.grense", "Ved tap av bruksverdi er erstatningsgrunnlaget forsikringssummen. Det gjøres fradrag for gjenverdi minimum kr 5 000. Ved utbetalt erstatning for tap av bruksverdi blir forsikringssummen for Død endret i samsvar med gjenverdien.", 8, "Erstatningsgrunnlag – tap av bruksverdi")] : []),
     ]),
     requiresAddOnIds: [`gjensidige-${type}-liv`],
     selectionEvidenceKeys: [`${type}.bruksverdi.dekning`],

@@ -44,11 +44,26 @@ test('R-022-01: four frozen sources, full-term facts and product-page dependency
     assert.equal(s.agreementScope, 'ordinary'); assert.equal(s.sha256, hash);
     assert.equal(createHash('sha256').update(readFileSync(new URL('../catalog/sources/boat-pet/' + s.filename, import.meta.url))).digest('hex'), hash);
   }
-  for (const type of ['hund', 'katt']) for (const f of selectedFacts(type).filter(f => f.key.startsWith(`${type}.bruksverdi.`))) {
-    assert.equal(f.source.documentId, `boat-pet:gjensidige:${type}:life-use`);
-    assert.equal(f.source.page, type === 'hund' && f.key.endsWith('.alder') ? 3 : 2);
-    assert.equal(f.qualificationSource.documentId, `boat-pet:gjensidige:${type}:product`);
-    assert.match(f.qualificationSource.section, /tillegg til Liv/u);
+  for (const type of ['hund', 'katt']) {
+    const contracts = {
+      [`${type}.bruksverdi.dekning`]: [2, 'Hvilke skader/hendelser – tap av bruksverdi'],
+      [`${type}.bruksverdi.alder`]: [type === 'hund' ? 3 : 2, 'Opphør – Bruk'],
+      [`${type}.bruksverdi.begrensning`]: [2, 'Forutsetninger – tap av bruksverdi'],
+      ...(type === 'hund' ? { 'hund.bruksverdi.grense': [8, 'Erstatningsgrunnlag – tap av bruksverdi'] } : {}),
+    };
+    const rows = selectedFacts(type).filter(f => f.key.startsWith(`${type}.bruksverdi.`));
+    assert.deepEqual(rows.map(f => f.key).sort(), Object.keys(contracts).sort());
+    for (const f of rows) {
+      assert.equal(f.source.documentId, `boat-pet:gjensidige:${type}:life-use`);
+      assert.equal(f.source.filename, `gjensidige-${type === 'hund' ? 'dog' : 'cat'}-life-use-terms.pdf`);
+      assert.equal(f.source.page, contracts[f.key][0]);
+      assert.equal(f.source.section, contracts[f.key][1]);
+      assert.equal(f.source.agreementScope, 'ordinary');
+      assert.equal(f.source.version, ''); assert.equal(f.source.effectiveFrom, '');
+      assert.equal(f.qualificationSource.documentId, `boat-pet:gjensidige:${type}:product`);
+      assert.equal(f.qualificationSource.page, 1);
+      assert.equal(f.qualificationSource.section, 'Bruk – tillegg til Liv');
+    }
   }
 });
 test('R-022-02: exact provider, species, agreement and version boundaries', () => {
@@ -168,9 +183,22 @@ test('R-022-10: catalog package is optional, separates evidence and never duplic
     const m = materializeCatalogProduct(product(type));
     const life = m.facts.filter(f => f.key === 'dyr.liv.dekning'); assert.equal(life.length, 1);
     assert.equal(life[0].state, 'optional'); assert.deepEqual(life[0].addOnNames, ['Liv']);
-    const children = m.facts.filter(f => f.key.startsWith(`${type}.bruksverdi.`)); assert.equal(children.length, 3);
+    const children = m.facts.filter(f => f.key.startsWith(`${type}.bruksverdi.`));
+    const identities = [`${type}.bruksverdi.dekning`, `${type}.bruksverdi.alder`, `${type}.bruksverdi.begrensning`,
+      ...(type === 'hund' ? ['hund.bruksverdi.grense'] : [])];
+    assert.equal(children.length, type === 'hund' ? 4 : 3);
+    assert.deepEqual(children.map(f => f.key).sort(), identities.sort());
     for (const f of children) { assert.equal(f.state, 'optional'); assert.deepEqual(f.addOnNames, ['Bruk']); }
     assert.match(children.find(f => f.key === key(type)).value, /tillegg til valgt Liv/u);
+    assert.match(children.find(f => f.key === `${type}.bruksverdi.alder`).value,
+      new RegExp(`hovedforfall.*${type === 'hund' ? 'hunden fyller 8' : 'katten fyller 10'}`, 'u'));
+    assert.match(children.find(f => f.key === `${type}.bruksverdi.begrensning`).value, /100 %.*minst 1 kull siste 2 år/u);
+    if (type === 'hund') {
+      const limit = children.find(f => f.key === 'hund.bruksverdi.grense');
+      assert.match(limit.value, /forsikringssummen.*fradrag for gjenverdi minimum kr 5 000/u);
+      assert.match(limit.value, /forsikringssummen for Død endret i samsvar med gjenverdien/u);
+      assert.equal(limit.role, 'term');
+    }
   }
 });
 test('R-022-11: 50% working dog versus 100% physical breeding loss; distinct Bruk ages and species', () => {
