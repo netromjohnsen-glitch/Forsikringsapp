@@ -1014,7 +1014,12 @@ test('R-071-AGE-STOREBRAND: Bruksverdi remains included in the selected Dødsfal
 });
 test('R-071-AGE-ISOLATION: the exact guard preserves legitimate positive details and customer Liv sum', () => {
   assert.equal(isNonAssertingCoverageDetail(useAgeKey), true);
-  for (const key of ['katt.bruksverdi.alder', 'bat.maskinskade.alder', 'hund.bruksverdi.grense',
+  assert.equal(isNonAssertingCoverageDetail('hund.bruksverdi.grense'), true);
+  const limitOnly = canonicalCoverage({ importantTerms: [{ key: 'hund.bruksverdi.grense',
+    name: 'Bruksverdi – grense', value: '17 000 kr', coverageOrigin: 'document' }] }, 'Hund', useParentKey);
+  assert.equal(limitOnly.status, 'unknown');
+  assert.equal(limitOnly.details.find(detail => detail.key === 'hund.bruksverdi.grense').value, '17 000 kr');
+  for (const key of ['katt.bruksverdi.alder', 'bat.maskinskade.alder',
     'maskinskade.alder', 'maskinskade.km', 'leiebil.dager', 'dyr.liv.sum.valgbar'])
     assert.equal(isNonAssertingCoverageDetail(key), false, key);
   for (const [type, key, value, parent] of [

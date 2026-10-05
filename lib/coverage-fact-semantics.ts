@@ -7,6 +7,7 @@ const nonAssertingKeys = new Set([
   "dyr.liv.reduksjon.sats",
   "dyr.liv.opphor",
   "hund.bruksverdi.alder",
+  "hund.bruksverdi.grense",
 ]);
 
 export function isNonAssertingCoverageDetail(key: string): boolean {
