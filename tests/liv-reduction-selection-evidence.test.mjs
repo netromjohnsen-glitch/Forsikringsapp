@@ -96,11 +96,11 @@ test('source: frozen If Hund §5.2 schedule has the reviewed hash', () => {
 
 test('guard: exactly the three schedule keys; existing restriction identities remain', () => {
   for (const [key] of rules) assert.equal(isNonAssertingCoverageDetail(key), true);
-  for (const key of ['parkering.bonus', 'dyr.liv.begrensning', 'uhell.unntak']) {
+  for (const key of ['parkering.bonus', 'dyr.liv.begrensning', 'uhell.unntak', 'hund.bruksverdi.alder']) {
     assert.equal(isNonAssertingCoverageDetail(key), true);
   }
   for (const key of [parent, 'dyr.liv.sum.valgbar', 'dyr.liv.forsvinning', 'dyr.liv.tyveri',
-    'leiebil.dager', 'maskinskade.alder', 'hund.bruksverdi.alder', 'dyr.veterinaralder.opphor',
+    'leiebil.dager', 'maskinskade.alder', 'dyr.veterinaralder.opphor',
     'dyr.liv.opphor.annet', 'annen.liv.reduksjon.start']) {
     assert.equal(isNonAssertingCoverageDetail(key), false, key);
   }
@@ -243,7 +243,7 @@ test('held-out: Leiebil, Maskinskade, veterinarian sum and Bruksverdi retain the
     ['Hund', 'hund.bruksverdi.alder', '7 år', 'hund.bruksverdi.dekning'],
   ]) {
     const coverage = canonicalCoverage({ importantTerms: [{ key, name: key, value, coverageOrigin: 'document' }] }, type, parentKey);
-    assert.equal(coverage.status, 'selected', key);
+    assert.equal(coverage.status, key === 'hund.bruksverdi.alder' ? 'unknown' : 'selected', key);
     assert.ok(coverage.details.some(d => d.key === key && d.value === value));
   }
 });
