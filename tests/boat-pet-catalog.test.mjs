@@ -28,6 +28,106 @@ const addons = (providerId, type) => (productCatalog.addOns ?? []).filter((addon
 const facts = (product) => resolveCatalogFacts(product, [], new Date("2026-09-29"), null, productCatalog);
 const option = (type, company, name) => productComparisonOptions(type, company, "ordinary").find((product) => product.name === name);
 
+// Coordinator-cleared B-091 provenance tuples; no arbitrary Tryg/Katt sources.
+const b091SourceContracts = {
+  "boat-pet:tryg:katt:treatment": {
+    "id": "boat-pet:tryg:katt:treatment",
+    "filename": "tryg-cat-treatment-terms.pdf",
+    "providerId": "tryg",
+    "company": "Tryg",
+    "insuranceType": "Katt",
+    "agreementScope": "ordinary",
+    "sourceType": "full_terms",
+    "termsNumber": "PLB52006",
+    "effectiveFrom": "2026-07-01",
+    "version": "2026-07-01",
+    "url": "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring",
+    "sha256": "fa7297b2b37cab3f8e8d51151643bcd4293fc7fbb0a33f77de86108af16bf9dc",
+    "documentName": "PLB52006"
+  },
+  "boat-pet:tryg:katt:product": {
+    "id": "boat-pet:tryg:katt:product",
+    "filename": "tryg-dog-product-terms.pdf",
+    "providerId": "tryg",
+    "company": "Tryg",
+    "insuranceType": "Katt",
+    "agreementScope": "ordinary",
+    "sourceType": "full_terms",
+    "termsNumber": "PLB52000",
+    "effectiveFrom": "2026-05-10",
+    "version": "2026-05-10",
+    "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+    "sha256": "a7936fd27cd305b1a6eeb8153d8289dffff5c075e0e50ffbd9590f8bb2d83318",
+    "documentName": "PLB52000"
+  },
+  "boat-pet:tryg:katt:extra": {
+    "id": "boat-pet:tryg:katt:extra",
+    "filename": "tryg-cat-extra-terms.pdf",
+    "providerId": "tryg",
+    "company": "Tryg",
+    "insuranceType": "Katt",
+    "agreementScope": "ordinary",
+    "sourceType": "full_terms",
+    "termsNumber": "PLB52004",
+    "effectiveFrom": "2025-07-01",
+    "version": "2025-07-01",
+    "url": "https://www.tryg.no/forsikringer/katteforsikring",
+    "sha256": "f4267143ea6f0643341503cf60ce50ce7036cf83af21b3ec29f514d1a7738972",
+    "documentName": "PLB52004"
+  },
+  "boat-pet:tryg:katt:life": {
+    "id": "boat-pet:tryg:katt:life",
+    "filename": "tryg-cat-life-terms.pdf",
+    "providerId": "tryg",
+    "company": "Tryg",
+    "insuranceType": "Katt",
+    "agreementScope": "ordinary",
+    "sourceType": "full_terms",
+    "termsNumber": "PLB52005",
+    "effectiveFrom": "2026-01-01",
+    "version": "2026-01-01",
+    "url": "https://www.tryg.no/forsikringer/katteforsikring",
+    "sha256": "8024b9853d3ff80259f939418f31f03e332d280bfca612d613390a7699e5eb3c",
+    "documentName": "PLB52005"
+  }
+};
+const b091ProvenanceBindings = [
+  ["tryg-katt-behandling", "dyr.veterinar.egenandel.fast", "boat-pet:tryg:katt:treatment", 1, "3 Hvilke utgifter som erstattes – Egenandel", null],
+  ["tryg-katt-behandling", "dyr.veterinar.sum.valgbar", "boat-pet:tryg:katt:treatment", 2, "4 Slik beregnes erstatningen", {"source": "boat-pet:tryg:katt:treatment", "page": 1, "section": "1 HVA FORSIKRINGEN OMFATTER"}],
+  ["tryg-katt-behandling", "dyr.diagnostikk.dekning", "boat-pet:tryg:katt:treatment", 1, "2–3 Tilfeller og utgifter", null],
+  ["tryg-katt-behandling", "dyr.veterinaralder.opphor", "boat-pet:tryg:katt:product", 1, "4 Når forsikringen gjelder", null],
+  ["tryg-katt-behandling", "dyr.tannskade.dekning", "boat-pet:tryg:katt:treatment", 1, "3 Hvilke utgifter som erstattes – tannfraktur og unntak", null],
+  ["tryg-katt-behandling", "dyr.fodsel.dekning", "boat-pet:tryg:katt:treatment", 1, "3 Hvilke utgifter som erstattes – fødselshjelp", null],
+  ["tryg-katt-ekstra", "dyr.tannsykdom.grense", "boat-pet:tryg:katt:extra", 1, "2 Tann- og tannkjøttsykdommer", null],
+  ["tryg-katt-ekstra", "dyr.tannsykdom.begrensning", "boat-pet:tryg:katt:extra", 1, "2 Tann- og tannkjøttsykdommer", null],
+  ["tryg-katt-dod", "dyr.liv.dekning", "boat-pet:tryg:katt:life", 1, "1–3 Rasekatt død – omfang, utløsere og erstatning", null],
+  ["tryg-katt-dod", "dyr.liv.begrensning", "boat-pet:tryg:katt:life", 1, "2 Tilleggsbestemmelser – død og avlivning", null],
+  ["tryg-katt-dod", "dyr.liv.reduksjon.start", "boat-pet:tryg:katt:life", 1, "3 Slik beregnes erstatningen", null],
+  ["tryg-katt-dod", "dyr.liv.reduksjon.sats", "boat-pet:tryg:katt:life", 1, "3 Slik beregnes erstatningen", {"source": "boat-pet:tryg:katt:life", "page": 2, "section": "3 Slik beregnes erstatningen – minste erstatning"}],
+  ["tryg-katt-dod", "dyr.liv.opphor", "boat-pet:tryg:katt:product", 1, "4 Når forsikringen gjelder – maksimal alder og første forfall", null]
+];
+const b091ReferenceFields = ["documentId", "filename", "termsNumber", "effectiveFrom", "version", "agreementScope", "url", "company", "page", "section"];
+const b091Reference = (sourceId, page, section) => {
+  const source = b091SourceContracts[sourceId];
+  return Object.fromEntries(b091ReferenceFields.map((field) => [field,
+    field === "documentId" ? sourceId : field === "page" ? page : field === "section" ? section : source[field],
+  ]));
+};
+const b091ActualReference = (reference) => Object.fromEntries(b091ReferenceFields.map((field) => [field, reference[field]]));
+const assertB091Provenance = (fact, binding) => {
+  const [, key, sourceId, page, section, qualification] = binding;
+  assert.equal(fact.key, key);
+  assert.deepEqual(productCatalog.sources[sourceId], b091SourceContracts[sourceId]);
+  assert.deepEqual(b091ActualReference(fact.source), b091Reference(sourceId, page, section));
+  if (qualification) {
+    assert.ok(fact.qualificationSource, `${key}: missing qualification source`);
+    assert.deepEqual(productCatalog.sources[qualification.source], b091SourceContracts[qualification.source]);
+    assert.deepEqual(b091ActualReference(fact.qualificationSource), b091Reference(qualification.source, qualification.page, qualification.section));
+  } else {
+    assert.equal(fact.qualificationSource, undefined);
+  }
+};
+
 test("Båt/Hund/Katt gir tolv dynamiske produktfamilier", () => {
   assert.deepEqual(productComparisonInsuranceTypes(), [
     "Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Båt", "MC", "Bobil", "Hund", "Katt",
@@ -48,7 +148,35 @@ for (const [providerId, company] of packages) {
       assert.ok(packageProducts.length > 0);
       const packageFacts = packageProducts.flatMap(facts);
       assert.ok(packageFacts.length >= 3);
-      assert.equal(packageFacts.every((fact) => fact.source.documentId === source.id), true);
+      if (providerId === "tryg" && type === "Katt") {
+        assert.equal(packageProducts.length, 1);
+        assert.equal(packageProducts[0].productId, "tryg-katt-behandling");
+        assert.equal(packageProducts[0].version, "2026-09-01");
+        const baseBindings = b091ProvenanceBindings.filter(([owner]) => owner === "tryg-katt-behandling");
+        assert.equal(baseBindings.length, 6);
+        for (const binding of baseBindings) {
+          const matches = packageFacts.filter((fact) => fact.key === binding[1]);
+          assert.equal(matches.length, 1);
+          assertB091Provenance(matches[0], binding);
+        }
+        for (const fact of packageFacts.filter((fact) => !baseBindings.some(([, key]) => key === fact.key))) {
+          assert.equal(fact.source.documentId, source.id);
+        }
+        assert.deepEqual(packageFacts.filter((fact) => !baseBindings.some(([, key]) => key === fact.key)).map((fact) => fact.key).sort(),
+          ["dyr.karenstid.sykdom", "dyr.medisin.dekning", "dyr.veterinar.dekning"]);
+        for (const binding of b091ProvenanceBindings.filter(([owner]) => owner !== "tryg-katt-behandling")) {
+          const addon = addons(providerId, type).find((candidate) => candidate.componentId === binding[0]);
+          assert.ok(addon);
+          assert.equal(addon.agreementScope, "ordinary");
+          assert.deepEqual(addon.insuranceTypes, ["Katt"]);
+          assert.deepEqual(addon.requiresLevel, ["tryg-katt-behandling"]);
+          const matches = productCatalog.facts[binding[0]].filter((fact) => fact.key === binding[1]);
+          assert.equal(matches.length, 1);
+          assertB091Provenance(matches[0], binding);
+        }
+      } else {
+        assert.equal(packageFacts.every((fact) => fact.source.documentId === source.id), true);
+      }
       assert.equal(packageFacts.every((fact) => fact.source.agreementScope === "ordinary"), true);
     });
   }
@@ -67,7 +195,40 @@ test("65 offentlige originaler har verifiserbare SHA-256 hashes", () => {
     assert.equal(crypto.createHash("sha256").update(bytes).digest("hex"), document.sha256);
   }
   for (const source of Object.values(productCatalog.sources).filter((entry) => entry.id.startsWith("boat-pet:"))) {
-    const artifact = manifest.documents.find((entry) => entry.filename === source.filename && entry.providerId === source.providerId && entry.insuranceTypes.includes(source.insuranceType.toLocaleLowerCase("nb-NO")));
+    let artifact = manifest.documents.find((entry) => entry.filename === source.filename && entry.providerId === source.providerId && entry.insuranceTypes.includes(source.insuranceType.toLocaleLowerCase("nb-NO")));
+    // B091_EXPLICIT_DYR_KATT_TEST_SOURCE_ADMISSION_EXCEPTION:
+    // Frozen PLB52000 §4 explicitly covers Katt; preserve the historical Hund-only manifest.
+    // Admit only GAP-0015/SF-0023 and GAP-4385/SF-6238, never future versions or other facts.
+    if (source.id === "boat-pet:tryg:katt:product") {
+      assert.deepEqual(source, b091SourceContracts[source.id]);
+      artifact = manifest.documents.find((entry) => entry.filename === "tryg-dog-product-terms.pdf" && entry.providerId === "tryg");
+      assert.deepEqual(artifact, {
+      "providerId": "tryg",
+      "filename": "tryg-dog-product-terms.pdf",
+      "insuranceTypes": [
+            "hund"
+      ],
+      "agreementScope": "ordinary",
+      "documentType": "full_terms",
+      "sha256": "a7936fd27cd305b1a6eeb8153d8289dffff5c075e0e50ffbd9590f8bb2d83318",
+      "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring",
+      "retrievedAt": "2026-09-29",
+      "localPath": "catalog/sources/boat-pet/tryg-dog-product-terms.pdf",
+      "publicOfficialArtifact": true
+});
+      const expectedBindings = b091ProvenanceBindings.filter(([, , sourceId]) => sourceId === source.id);
+      assert.deepEqual(expectedBindings.map(([owner, key]) => [owner, key]).sort(), [
+        ["tryg-katt-behandling", "dyr.veterinaralder.opphor"],
+        ["tryg-katt-dod", "dyr.liv.opphor"],
+      ]);
+      const uses = Object.entries(productCatalog.facts).flatMap(([owner, ownerFacts]) => ownerFacts
+        .filter((fact) => fact.source.documentId === source.id || fact.qualificationSource?.documentId === source.id)
+        .map((fact) => ({ owner, fact })));
+      assert.deepEqual(uses.map(({ owner, fact }) => [owner, fact.key]).sort(), expectedBindings.map(([owner, key]) => [owner, key]).sort());
+      for (const { owner, fact } of uses) {
+        assertB091Provenance(fact, expectedBindings.find(([expectedOwner, key]) => expectedOwner === owner && key === fact.key));
+      }
+    }
     assert.ok(artifact, `Mangler manifestkobling for ${source.id}`);
     assert.equal(source.sha256, artifact.sha256);
   }
@@ -143,7 +304,7 @@ test("54 representative source-to-catalog checks preserve numeric and conditiona
   const checks = {
     "tryg:Båt": [["bat.geografi.omrade", /200 nautiske mil/u], ["bat.maskinskade.alder", /15 år/u], ["bat.ulykke.dekning", /Valgfritt/u]],
     "tryg:Hund": [["dyr.karenstid.sykdom", /20 dager/u], ["dyr.liv.opphor", /12 år/u], ["dyr.veterinar.sum.valgbar", /forsikringsbeviset/u]],
-    "tryg:Katt": [["dyr.karenstid.sykdom", /20 dager/u], ["dyr.liv.opphor", /12 år/u], ["dyr.veterinar.egenandel.fast", /forsikringsbeviset/u]],
+    "tryg:Katt": [["dyr.karenstid.sykdom", /20 dager/u], ["dyr.liv.opphor", /12 år/u], ["dyr.veterinar.egenandel.fast", /^2 500 kr per sykdom og per ulykkestilfelle$/u]],
     "if:Båt": [["bat.geografi.omrade", /200 nautiske mil/u], ["bat.losore.grense", /50 000 kr/u], ["bat.maskinskade.egenandel", /8 000 kr/u]],
     "if:Hund": [["dyr.tannsykdom.grense", /15 000 kr/u], ["dyr.veterinar.rollover", /10 000 kr/u], ["dyr.liv.reduksjon.sats", /20 %/u]],
     "if:Katt": [["dyr.tannsykdom.grense", /5 000 kr/u], ["dyr.veterinar.rollover", /dobbelte/u], ["dyr.liv.opphor", /13 år/u]],
