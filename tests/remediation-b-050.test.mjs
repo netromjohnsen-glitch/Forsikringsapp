@@ -13,7 +13,8 @@ import { isNonAssertingCoverageDetail } from '../lib/coverage-fact-semantics.ts'
 import { documentPipeline } from './helpers/supporting-terms.mjs';
 import { car, term as rawTerm } from './helpers/pilot-quality.mjs';
 
-// B-050 partial closure ONLY: 0a6b5f6f535df685 / GAP-2904 / SF-4056.
+// B-050 bounded contracts: GAP-2904/SF-4056 plus validation-only
+// 1f56c194d413f97d/GAP-2901/SF-4053 and 8e9d297cb0d1bd0e/GAP-2902/SF-4054.
 // Other B-050 findings and historical holds are not closed by this gate.
 const date = new Date('2026-10-05T00:00:00Z');
 const key = 'hund.bruksverdi.grense', parent = 'hund.bruksverdi.dekning', life = 'dyr.liv.dekning';
@@ -140,4 +141,100 @@ test('R-050-PC-1056–1058: allergy, separate offspring and administrative facts
   const html = readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-product.html', import.meta.url), 'utf8');
   assert.match(html, /Kull/iu);
   assert.equal(facts().some(f => /kull|klage|administrativ/iu.test(f.key)), false);
+});
+
+// Existing B-022 Bruk contracts, independently bound to the frozen source.
+const brukRestriction = 'hund.bruksverdi.begrensning';
+const ownBruk = k => {
+  const rows = productCatalog.facts[bruk].filter(f => f.key === k);
+  assert.equal(rows.length, 1);
+  assert.deepEqual(facts().filter(f => f.key === k), rows);
+  return rows[0];
+};
+const avlClauses = [
+  /Avlshund: fysisk mistet avlsevnen 100 %/u,
+  /hannhund far til minst 1 kull siste 2 år/u,
+  /tispe født minst 1 kull på normal måte siste 2 år før sykdom\/skade/u,
+];
+const workingClauses = [
+  /Jakthund, gjeterhund og tjenestehund: trent for og regelmessig brukt til formålet/u,
+  /bruksegenskapen nedsatt minst 50 %/u,
+  /Hunden må være utredet, adekvat behandlet og ha gjennomgått tilstrekkelig lang rekonvalesens/u,
+];
+const assertBrukPage2 = f => {
+  assert.equal(f.source.documentId, 'boat-pet:gjensidige:hund:life-use');
+  assert.equal(f.source.filename, 'gjensidige-dog-life-use-terms.pdf');
+  assert.equal(f.source.termsNumber, 'Hund Liv og Bruk');
+  assert.equal(f.source.company, 'Gjensidige');
+  assert.equal(f.source.agreementScope, 'ordinary');
+  assert.equal(f.source.version, ''); assert.equal(f.source.effectiveFrom, '');
+  assert.equal(f.source.page, 2);
+  assert.equal(f.source.section, f.key === parent ? 'Hvilke skader/hendelser – tap av bruksverdi' : 'Forutsetninger – tap av bruksverdi');
+  const refs = catalogFactSources(f);
+  assert.equal(refs.length, 2);
+  assert.ok(refs.some(s => s.documentId === f.source.documentId && s.page === 2 && s.section === f.source.section));
+  assert.ok(refs.some(s => s.documentId === 'boat-pet:gjensidige:hund:product' && s.page === 1 && s.section === 'Bruk – tillegg til Liv'));
+};
+test('R-050-SF-4053/SF-4054: frozen PDF2/printed6 complete Tap av bruksverdi clauses', async () => {
+  PDFParse.setWorker(getPath());
+  const parser = new PDFParse({ data: readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf', import.meta.url)) });
+  try {
+    const page = (await parser.getText()).pages[1].text.replace(/\s+/gu, ' ').trim();
+    assert.match(page, /Livsvarig tap av bruksverdi innenfor forsikret bruksområde som følge av sykdom eller ulykke/u);
+    assert.match(page, /Bruksegenskapen som er tapt må være dokumentert av veterinær/u);
+    assert.match(page, /Avlshund må ha fysisk mistet avlsevnen 100%/u);
+    assert.match(page, /Hannhund må være far til minst 1 kull siste 2 år, og tispe må ha født minst 1 kull på normal måte siste 2 år, før sykdommen\/skaden oppsto/u);
+    assert.match(page, /Jakthund, gjeterhund og tjenestehund må være trent for og regelmessig brukt til formålet, og bruksegenskapen være nedsatt minst 50%/u);
+    assert.match(page, /Hunden må være utredet, adekvat behandlet og gjennomgått tilstrekkelig lang rekonvalesens/u);
+  } finally { await parser.destroy(); }
+});
+for (const [signature, binding, clauses] of [
+  ['1f56c194d413f97d', 'GAP-2901/SF-4053', avlClauses],
+  ['8e9d297cb0d1bd0e', 'GAP-2902/SF-4054', workingClauses],
+]) test(`R-050-${signature}: ${binding} complete effective and optional-product contract`, () => {
+  const main = ownBruk(parent), restriction = ownBruk(brukRestriction);
+  assert.equal(main.value, 'Valgfritt tillegg til valgt Liv: livsvarig tap av bruksverdi innenfor forsikret bruksområde som følge av sykdom eller ulykke');
+  assert.match(restriction.value, /Bruksegenskapen må være dokumentert tapt av veterinær/u);
+  for (const clause of clauses) assert.match(restriction.value, clause);
+  assertBrukPage2(main); assertBrukPage2(restriction);
+  assert.equal(isNonAssertingCoverageDetail(brukRestriction), true);
+  for (const ids of [[], [liv]]) assert.equal(facts(ids).some(f => f.key === parent || f.key === brukRestriction), false);
+  const materialized = materializeCatalogProduct(product);
+  for (const f of [main, restriction]) {
+    const row = materialized.facts.filter(r => r.key === f.key && r.value === f.value);
+    assert.equal(row.length, 1); assert.equal(row[0].state, 'optional');
+    assert.deepEqual(row[0].addOnNames, ['Bruk']);
+    const expectedSources = catalogFactSources(f).map(source => {
+      const sourceType = productCatalog.sources[source.documentId].sourceType;
+      assert.equal(sourceType, source.documentId === 'boat-pet:gjensidige:hund:life-use' ? 'full_terms' : 'product_page');
+      return { ...source, sourceType };
+    });
+    assert.deepEqual(row[0].sources, expectedSources);
+  }
+});
+test('R-050-BRUK-QUALIFICATIONS: restriction alone cannot select Bruk or Liv; explicit states remain authoritative', () => {
+  const restriction = { ...term(brukRestriction, ownBruk(brukRestriction).value), name: 'Bruksverdi – begrensninger' };
+  for (const [choice, expected, conflict] of [
+    [[], 'unknown', false],
+    [[term(parent, 'Valgt')], 'selected', false],
+    [[term(parent, 'Ikke valgt')], 'not_selected', false],
+    [[term(parent, 'Valgt'), term(parent, 'Ikke valgt')], 'unknown', true],
+  ]) {
+    const out = enrich([term(life, 'Valgt'), ...choice, restriction]);
+    assert.equal(coverage(out).status, expected); assert.equal(coverage(out).conflict, conflict);
+    assert.equal(coverage(out, life).status, 'selected');
+    assert.equal(out.addOnIds.includes(bruk), expected === 'selected');
+    assert.equal(coverage(out).details.find(d => d.key === brukRestriction).value, restriction.value);
+  }
+  const alone = enrich([restriction]);
+  assert.equal(coverage(alone).status, 'unknown'); assert.equal(coverage(alone, life).status, 'unknown');
+  assert.equal(alone.addOnIds.includes(bruk), false);
+});
+test('R-050-BRUK-DOCUMENT: explicit customer restriction wins with exact provenance', () => {
+  const document = { ...term(brukRestriction, 'Kundens dokumenterte særvilkår for Bruk'), name: 'Bruksverdi – begrensninger' };
+  const out = enrich([term(life, 'Valgt'), term(parent, 'Valgt'), document]);
+  const detail = coverage(out).details.find(d => d.key === brukRestriction);
+  assert.equal(detail.value, document.value); assert.deepEqual(detail.sources, [document.source]);
+  assert.equal(coverage(out).status, 'selected');
+  assert.equal(out.importantTerms.filter(t => t.key === brukRestriction).length, 1);
 });
