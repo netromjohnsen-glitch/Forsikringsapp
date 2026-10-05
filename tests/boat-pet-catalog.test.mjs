@@ -128,6 +128,31 @@ const assertB091Provenance = (fact, binding) => {
   }
 };
 
+// B-089-SOURCE-CLEAR exact Hund tuples; the held rehabilitation parent stays unchanged.
+const b089SourceContracts = {"boat-pet:tryg:hund:treatment": {"id": "boat-pet:tryg:hund:treatment", "filename": "tryg-dog-treatment-terms.pdf", "providerId": "tryg", "company": "Tryg", "insuranceType": "Hund", "agreementScope": "ordinary", "sourceType": "full_terms", "termsNumber": "PLB52002", "effectiveFrom": "2026-01-01", "version": "2026-01-01", "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring", "sha256": "63af7ce2b7ce309879d3e97cdfca3014ba249f1dc7347eef44bd7c768fd162d3", "documentName": "PLB52002"}, "boat-pet:tryg:hund:product": {"id": "boat-pet:tryg:hund:product", "filename": "tryg-dog-product-terms.pdf", "providerId": "tryg", "company": "Tryg", "insuranceType": "Hund", "agreementScope": "ordinary", "sourceType": "full_terms", "termsNumber": "PLB52000", "effectiveFrom": "2026-05-10", "version": "2026-05-10", "url": "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring", "sha256": "a7936fd27cd305b1a6eeb8153d8289dffff5c075e0e50ffbd9590f8bb2d83318", "documentName": "PLB52000"}, "boat-pet:tryg:hund:extra": {"id": "boat-pet:tryg:hund:extra", "filename": "tryg-dog-extra-terms.pdf", "providerId": "tryg", "company": "Tryg", "insuranceType": "Hund", "agreementScope": "ordinary", "sourceType": "full_terms", "termsNumber": "PLB52003", "effectiveFrom": "2025-07-01", "version": "2025-07-01", "url": "https://www.tryg.no/forsikringer/hundeforsikring", "sha256": "10972b0580b3cc804419621d3c5193d9be3e8bc24e8bafb58519e6e0a203af2c", "documentName": "PLB52003"}, "boat-pet:tryg:hund:life": {"id": "boat-pet:tryg:hund:life", "filename": "tryg-dog-life-terms.pdf", "providerId": "tryg", "company": "Tryg", "insuranceType": "Hund", "agreementScope": "ordinary", "sourceType": "full_terms", "termsNumber": "PLB52001", "effectiveFrom": "2026-01-01", "version": "2026-01-01", "url": "https://www.tryg.no/forsikringer/hundeforsikring", "sha256": "5d5e22fa589538a2708b87616b339eec0c3f0a27c5b322fa48d1b4582e013fcc", "documentName": "PLB52001"}};
+const b089ProvenanceBindings = [["tryg-hund-behandling", "dyr.veterinar.egenandel.fast", "boat-pet:tryg:hund:treatment", 1, "3 Hvilke utgifter som erstattes – Egenandel", null], ["tryg-hund-behandling", "dyr.veterinar.sum.valgbar", "boat-pet:tryg:hund:treatment", 2, "4 Slik beregnes erstatningen", {"source": "boat-pet:tryg:hund:treatment", "page": 1, "section": "1 HVA FORSIKRINGEN OMFATTER"}], ["tryg-hund-behandling", "dyr.diagnostikk.dekning", "boat-pet:tryg:hund:treatment", 1, "2–3 Tilfeller og utgifter", null], ["tryg-hund-behandling", "dyr.veterinaralder.opphor", "boat-pet:tryg:hund:product", 1, "4 Når forsikringen gjelder", null], ["tryg-hund-behandling", "dyr.tannskade.dekning", "boat-pet:tryg:hund:treatment", 1, "3 Hvilke utgifter som erstattes – tannfraktur og unntak", null], ["tryg-hund-behandling", "dyr.fodsel.dekning", "boat-pet:tryg:hund:treatment", 1, "3 Hvilke utgifter som erstattes – fødselshjelp og unntak", null], ["tryg-hund-ekstra", "dyr.tannsykdom.begrensning", "boat-pet:tryg:hund:extra", 1, "2 Tann- og tannkjøttsykdommer", null], ["tryg-hund-dod", "dyr.liv.dekning", "boat-pet:tryg:hund:life", 1, "1–3 Hund død – omfang, utløsere og erstatning", {"source": "boat-pet:tryg:hund:life", "page": 2, "section": "3 Slik beregnes erstatningen – gjenanskaffelsespris"}], ["tryg-hund-dod", "dyr.liv.begrensning", "boat-pet:tryg:hund:life", 1, "2 Tilleggsbestemmelser – død og avlivning", null], ["tryg-hund-dod", "dyr.liv.reduksjon.start", "boat-pet:tryg:hund:life", 2, "3 Slik beregnes erstatningen – raseavhengig startalder", null], ["tryg-hund-dod", "dyr.liv.reduksjon.sats", "boat-pet:tryg:hund:life", 2, "3 Slik beregnes erstatningen – aldersfradrag og minste erstatning", null], ["tryg-hund-dod", "dyr.liv.opphor", "boat-pet:tryg:hund:product", 1, "4 Når forsikringen gjelder – maksimal alder og første forfall", null]];
+const b089ReferenceFields = ["documentId", "filename", "termsNumber", "effectiveFrom", "version", "agreementScope", "url", "company", "page", "section"];
+const b089Reference = (sourceId, page, section) => {
+  const source = b089SourceContracts[sourceId];
+  return Object.fromEntries(b089ReferenceFields.map((field) => [field,
+    field === "documentId" ? sourceId : field === "page" ? page : field === "section" ? section : source[field],
+  ]));
+};
+const b089ActualReference = (reference) => Object.fromEntries(b089ReferenceFields.map((field) => [field, reference[field]]));
+const assertB089Provenance = (fact, binding) => {
+  const [, key, sourceId, page, section, qualification] = binding;
+  assert.equal(fact.key, key);
+  assert.deepEqual(productCatalog.sources[sourceId], b089SourceContracts[sourceId]);
+  assert.deepEqual(b089ActualReference(fact.source), b089Reference(sourceId, page, section));
+  if (qualification) {
+    assert.ok(fact.qualificationSource, `${key}: missing qualification source`);
+    assert.deepEqual(productCatalog.sources[qualification.source], b089SourceContracts[qualification.source]);
+    assert.deepEqual(b089ActualReference(fact.qualificationSource), b089Reference(qualification.source, qualification.page, qualification.section));
+  } else {
+    assert.equal(fact.qualificationSource, undefined);
+  }
+};
+
 test("Båt/Hund/Katt gir tolv dynamiske produktfamilier", () => {
   assert.deepEqual(productComparisonInsuranceTypes(), [
     "Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Båt", "MC", "Bobil", "Hund", "Katt",
@@ -173,6 +198,32 @@ for (const [providerId, company] of packages) {
           const matches = productCatalog.facts[binding[0]].filter((fact) => fact.key === binding[1]);
           assert.equal(matches.length, 1);
           assertB091Provenance(matches[0], binding);
+        }
+      } else if (providerId === "tryg" && type === "Hund") {
+        assert.equal(packageProducts.length, 1);
+        assert.equal(packageProducts[0].productId, "tryg-hund-behandling");
+        assert.equal(packageProducts[0].version, "2026-09-01");
+        const baseBindings = b089ProvenanceBindings.filter(([owner]) => owner === "tryg-hund-behandling");
+        assert.equal(baseBindings.length, 6);
+        for (const binding of baseBindings) {
+          const matches = packageFacts.filter((fact) => fact.key === binding[1]);
+          assert.equal(matches.length, 1);
+          assertB089Provenance(matches[0], binding);
+        }
+        for (const fact of packageFacts.filter((fact) => !baseBindings.some(([, key]) => key === fact.key))) {
+          assert.equal(fact.source.documentId, source.id);
+        }
+        assert.deepEqual(packageFacts.filter((fact) => !baseBindings.some(([, key]) => key === fact.key)).map((fact) => fact.key).sort(),
+          ["dyr.karenstid.sykdom", "dyr.medisin.dekning", "dyr.veterinar.dekning"]);
+        for (const binding of b089ProvenanceBindings.filter(([owner]) => owner !== "tryg-hund-behandling")) {
+          const addon = addons(providerId, type).find((candidate) => candidate.componentId === binding[0]);
+          assert.ok(addon);
+          assert.equal(addon.agreementScope, "ordinary");
+          assert.deepEqual(addon.insuranceTypes, ["Hund"]);
+          assert.deepEqual(addon.requiresLevel, ["tryg-hund-behandling"]);
+          const matches = productCatalog.facts[binding[0]].filter((fact) => fact.key === binding[1]);
+          assert.equal(matches.length, 1);
+          assertB089Provenance(matches[0], binding);
         }
       } else {
         assert.equal(packageFacts.every((fact) => fact.source.documentId === source.id), true);
