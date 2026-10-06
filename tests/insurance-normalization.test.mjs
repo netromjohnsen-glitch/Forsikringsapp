@@ -3,12 +3,61 @@ import test from "node:test";
 import { groupInsurances, groupTerms } from "../lib/comparison.ts";
 import { buildMatchingBatch } from "../lib/hybrid-matching.ts";
 import { canonicalInsuranceTypeLabel, hasComparableInsuredValue, normalizeCatalogTermKey, normalizeInsuranceType, normalizeTermName } from "../lib/insurance-normalization.ts";
+import { normalizeDocumentFacts } from "../lib/document-fact-normalization.ts";
 
 test("katalogfelt matches bare med godkjente semantiske feltnøkler", () => {
   assert.equal(normalizeCatalogTermKey("rettshjelp"), "rettshjelp.dekning");
   assert.equal(normalizeCatalogTermKey("rettshjelp.dekning"), "rettshjelp.dekning");
   assert.equal(normalizeCatalogTermKey("rettshjelp.egenandel"), "rettshjelp.egenandel");
   assert.notEqual(normalizeCatalogTermKey("ansvar.person.grense"), normalizeCatalogTermKey("ansvar.dekning"));
+});
+
+const diagnosticsSource = { documentId: "customer-diagnostics", filename: "customer.pdf", company: "Gjensidige",
+  page: 4, section: "Kundens diagnostikkvilkår", termsNumber: "KUNDE", effectiveFrom: "", version: "",
+  agreementScope: "ordinary", url: "https://example.invalid/customer", note: "Exact customer reference" };
+const diagnosticsInsurance = (name, canonicalKey, overrides = {}) => ({
+  type: "Hund", company: "Gjensidige", productName: "Behandling", agreementScope: "ordinary",
+  importantTerms: [{ name, value: "4 200 kr", canonicalKey, source: diagnosticsSource }], addOns: [], ...overrides,
+});
+const diagnosticsKeys = ["dyr.diagnostikk.grense", "dyr.diagnostikk.begrensning"];
+
+test("B-050: exact scoped diagnostic labels repair only the two approved identities, stably and without mutation", () => {
+  for (const [names, expected] of [
+    [["MR/CT – grense", "MR og CT – grense"], diagnosticsKeys[0]],
+    [["Undersøkelse ledd/rygg", "Undersøkelse ledd/rygg frem til diagnose",
+      "Undersøkelse av sykdom eller skade i ledd eller rygg"], diagnosticsKeys[1]],
+  ]) for (const name of names) for (const rawKey of [null, ...diagnosticsKeys]) {
+    const input = diagnosticsInsurance(name, rawKey), original = structuredClone(input);
+    const once = normalizeDocumentFacts(input);
+    assert.deepEqual(once, [{ name, value: "4 200 kr", key: expected, source: diagnosticsSource, coverageOrigin: "document" }]);
+    assert.deepEqual(normalizeDocumentFacts({ ...input, importantTerms: once }), once);
+    assert.deepEqual(input, original);
+  }
+});
+
+test("B-050: generic diagnostic labels remain unbound in Hund/Katt even with a raw branch key", () => {
+  for (const type of ["Hund", "Katt"]) for (const name of ["Diagnostikk – grense", "Diagnostikk – begrensninger"])
+    for (const rawKey of [null, ...diagnosticsKeys]) {
+      const input = diagnosticsInsurance(name, rawKey, { type }), original = structuredClone(input);
+      const once = normalizeDocumentFacts(input);
+      assert.deepEqual(once, [{ name, value: "4 200 kr", key: undefined, source: diagnosticsSource, coverageOrigin: "document" }]);
+      assert.deepEqual(normalizeDocumentFacts({ ...input, importantTerms: once }), once);
+      assert.equal(normalizeTermName(name, { insuranceType: type }), name.toLowerCase().replace(" – ", " "));
+      assert.deepEqual(input, original);
+    }
+});
+
+test("B-050: exact diagnostic repair does not cross provider, product, scope or animal boundaries", () => {
+  for (const overrides of [{ company: "Frende" }, { type: "Katt" }, { productName: "Liv" }, { agreementScope: "unknown" }]) {
+    const absent = normalizeDocumentFacts(diagnosticsInsurance("MR/CT – grense", null, overrides));
+    assert.equal(absent[0].key, undefined);
+    const explicit = normalizeDocumentFacts(diagnosticsInsurance("MR/CT – grense", diagnosticsKeys[1], overrides));
+    assert.equal(explicit[0].key, diagnosticsKeys[1]);
+  }
+  for (const name of ["Ultralyd", "Veterinærutgifter", "Undersøkelse – grense", "Diagnostikk", "MR/CT", "MR/CT – grense og annet"])
+    assert.equal(diagnosticsKeys.includes(normalizeDocumentFacts(diagnosticsInsurance(name, null))[0].key), false, name);
+  for (const name of ["MR/CT – grense", "Diagnostikk – grense"])
+    assert.equal(normalizeDocumentFacts(diagnosticsInsurance(name, "dyr.veterinar.sum.valgbar"))[0].key, "dyr.veterinar.sum.valgbar");
 });
 
 test("sikre produktvarianter får samme nøkkel", () => {

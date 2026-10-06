@@ -1,17 +1,26 @@
 {
   "status": "DURABLE_DEVELOPMENT_AGENT_CHECKPOINT_NOT_GLOBAL_EXECUTION_LEDGER",
   "repository": "netromjohnsen-glitch/Forsikringsapp",
-  "application_revision": "b81ee91e8693dc7962040219768283a2270cfea6",
+  "application_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da plus B/C exact candidate",
   "initial_head_origin_remote_main_equal": true,
   "initial_working_tree": "CLEAN",
   "documentation_revision": "git log -1 --format=%H -- docs/audit/checkpoints/development-agent-ef5b0bc/checkpoint.json",
   "validation_identity": {
-    "receipt": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/receipt-f8bd15c89bc0dbd6.json",
-    "tested_base_revision": "b81ee91e8693dc7962040219768283a2270cfea6",
-    "tested_candidate_identity": "b064582f373f3e7b11bbc9230d64bfbbdf1ffc5851d65b49f65f6e13aae4b30d",
-    "latest_implementation_files_match_tested_candidate": true,
-    "prior_receipts_preserved": true,
-    "actual_gate_summary": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/summary.json"
+    "summary": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/summary.json",
+    "tested_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+    "tested_candidate_identity": "78420e98db1823f644c4f785ce739e0c159b3588ad2d6b00425a205f15a05b85",
+    "candidate_files_sha256": {
+      "lib/document-fact-normalization.ts": "eda53d2ef5fe703a406697475f422e397432a2e13cebf2ac9ef10750eb3a02bc",
+      "lib/insurance-normalization.ts": "d7c98f41df8ebe78a1cb64125439a0ec5a3b6241926dea41db1886f56884e418",
+      "lib/boat-pet-catalog.ts": "e70f1ea039f6f4537ca829d4b025711d82469e895fa250feac5c167fca079c37",
+      "tests/coverage-status.test.mjs": "a8187517e133dbb8678d15768cbac751e49ba74602baf24137e66a3cf307d4f9",
+      "tests/insurance-normalization.test.mjs": "7b5b2916b93acf9ab033a7eecd78de1077f267e1ca24f31623ffdf5d4ceb87a2",
+      "tests/catalog-enrichment-provenance.test.mjs": "0f664977a52c413302429a8fa1425508e8581a9caee2e66bdeb9a498583ad4e5",
+      "tests/boat-pet-catalog.test.mjs": "dd68a7bcd14ad065a4b08d09613a079305106882d8fec0dbcfd175636e04aa50",
+      "tests/remediation-b-050.test.mjs": "69aa8fdf4073c9251964a3383e6e0331cad1d36d4a4bbbbde4bcefee6fe53a6c"
+    },
+    "prior_thirteen_receipts_preserved": true,
+    "publication_revision": "Resolve git log -1 --format=%H -- docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-7b2587a3bbc0c772.json"
   },
   "campaign_members": [
     {
@@ -121,9 +130,25 @@
       "receipt_sha256": "dda5f5f2b137be2113cd414033b6265ef2a9215f5477c104abd5b47beca26029",
       "tested_base_revision": "b81ee91e8693dc7962040219768283a2270cfea6",
       "tested_candidate_identity": "b064582f373f3e7b11bbc9230d64bfbbdf1ffc5851d65b49f65f6e13aae4b30d"
+    },
+    {
+      "signature": "7b2587a3bbc0c772",
+      "classification": "NEW_DIAGNOSTICS_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-7b2587a3bbc0c772.json",
+      "receipt_sha256": "c6dff7195c852c00b8bd5e1ecd651d271d0e96a08d385dc6049e9f9a5e4ca748",
+      "tested_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+      "tested_candidate_identity": "78420e98db1823f644c4f785ce739e0c159b3588ad2d6b00425a205f15a05b85"
+    },
+    {
+      "signature": "b5792662cc2fa9f8",
+      "classification": "NEW_DIAGNOSTICS_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-b5792662cc2fa9f8.json",
+      "receipt_sha256": "4c7eb6fa77843631341d3732e8292e67fb9a7cec38f49282c726182ee95be5f2",
+      "tested_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+      "tested_candidate_identity": "78420e98db1823f644c4f785ce739e0c159b3588ad2d6b00425a205f15a05b85"
     }
   ],
-  "documented_unique_count": 13,
+  "documented_unique_count": 15,
   "global_current_resolved": "UNKNOWN",
   "global_current_open": "UNKNOWN",
   "partial_recovery": "docs/audit/checkpoints/g2-recovery-36d7694/checkpoint.json",
@@ -140,16 +165,18 @@
   },
   "future_campaign": {
     "campaign_id": "CURRENT_REVALIDATION_RV01",
-    "used": 11,
+    "used": 19,
     "limit": 12,
-    "last_completed_scope": "B050_PUBLIC_DEDUCTIBLE",
+    "last_completed_scope": "B050_DIAGNOSTICS_B_C",
     "last_scope_used": 2,
     "last_scope_limit": 3,
-    "root_ledger": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/prospective-root-ledger.csv",
+    "root_ledger": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/prospective-root-ledger.csv",
     "typegen_root_reuse_not_recharged": true,
     "historical_20_exception_used": false,
-    "policy": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/campaign-policy.json",
-    "next_scope_requires_explicit_authorization": true
+    "policy": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/campaign-policy.json",
+    "next_scope_requires_explicit_authorization": true,
+    "named_exception": "D10_POSITIVE_SINGLE_SOURCE_RAW_SOURCES_EXPECTATION",
+    "future_correction_capacity": 0
   },
   "historical_holds": {
     "protected_signatures": [
@@ -189,15 +216,11 @@
     ]
   },
   "current_blockers": [
-    "No later implementation packet authorized",
     "Global exact historical closure chain remains incomplete",
-    "Diagnostic distinct-dimension representation needs explicit decision",
-    "Rehabilitation selection/SC-035 needs explicit decision"
+    "Remaining B050 rehabilitation c1440948744bfa17 / SC-035 held; no later scope authorized"
   ],
-  "authorized_packets": [
-    "B050_DIAGNOSTICS_MAPPING_AND_TWO_CATALOG_RULES"
-  ],
-  "next_proposed_packet": "AUTHORIZED_DEPENDENT_DIAGNOSTICS",
+  "authorized_packets": [],
+  "next_proposed_packet": "READONLY_REHABILITATION_SC035_DECISION_REQUIRES_EXPLICIT_SCOPE",
   "plan": "docs/development-agent/next-b050-plan.md",
   "remaining_inventory": "docs/audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json",
   "evidence_sha256": {
@@ -233,7 +256,9 @@
     "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/gate-results.json": "d35fc6ceffed509fa69894f0f348a9607c6884ce1166052a30d0052356a16baa",
     "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/source-reverse-audit.json": "f7f7b75556fd28e4a250db01a6472b17cf5be2dd9400f7ed7fa6aca2238a76e8",
     "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/campaign-policy.json": "ef04d5891eb9491dc808d150db0606480d6a04a046f236e06ae47cde4e595596",
-    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/prospective-root-ledger.csv": "5610fbedb8ff7133576c78785b373fe8c56a3b0c76510d7cf8fa83d48609e661"
+    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/prospective-root-ledger.csv": "5610fbedb8ff7133576c78785b373fe8c56a3b0c76510d7cf8fa83d48609e661",
+    "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-7b2587a3bbc0c772.json": "c6dff7195c852c00b8bd5e1ecd651d271d0e96a08d385dc6049e9f9a5e4ca748",
+    "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-b5792662cc2fa9f8.json": "4c7eb6fa77843631341d3732e8292e67fb9a7cec38f49282c726182ee95be5f2"
   },
   "implementation_files_sha256": {
     "lib/boat-pet-catalog.ts": "f66ecc987bb69f157727ef0d1996197ba996a0e5c9860fd1c1167c89b4e162c5",
@@ -259,13 +284,25 @@
     "signature_credit": []
   },
   "diagnostics_integrity_recovery": {
-    "status": "VERIFIED_PENDING_PUBLICATION",
+    "status": "PUBLISHED_PASS",
     "receipt": "docs/audit/checkpoints/b050-diagnostics-integrity-3c5e869/receipt.json",
     "mechanical_root": "D03_AUTHORIZATION_CRLF_SERIALIZATION",
     "campaign_used": 12,
     "campaign_limit": 12,
     "semantic_used": 1,
     "semantic_limit": 2,
-    "process_correction": "Explicit checked publication sequence; no commit/push after gate failure"
+    "process_correction": "Explicit checked publication sequence; no commit/push after gate failure",
+    "publication_commit": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da"
+  },
+  "diagnostics_mapping_catalog_candidate": {
+    "status": "COMPLETE_PASS",
+    "blocker": null,
+    "candidate_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+    "semantic_used": 2,
+    "semantic_limit": 2,
+    "mechanical_used": 14,
+    "mechanical_limit": 12,
+    "signature_credit": [],
+    "current_gates": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/summary.json"
   }
 }

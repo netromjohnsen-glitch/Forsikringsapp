@@ -1,0 +1,305 @@
+{
+  "status": "BLOCKED_TWO_NEW_UNAUTHORIZED_TEST_CONTRACT_ROOTS",
+  "tested_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+  "candidate_identity": "46cebe540512321b2c0d74123f70e9993a3d7b4489e275b0ea729168ff53f606",
+  "roots": [
+    {
+      "id": "HELD_OUT_QUALIFIED_DETAIL_CUSTOMER_ELIGIBILITY",
+      "test_file": "tests/catalog-enrichment-provenance.test.mjs",
+      "test": "held-out gjensidige-hund-behandling",
+      "line": 148,
+      "candidate": "14/15 PASS",
+      "baseline": "15/15 PASS with unchanged test and exact baseline modules in memory",
+      "cause": "Fixture has no documented diagnostic parent or detail. The assertion assumes every base qualified fact must be imported. Existing enrichment filters details of an undocumented parent; only new dyr.diagnostikk.begrensning is missing.",
+      "code": "lib/catalog-enrichment.ts:289-295",
+      "evidence": "provenance-eligibility-probe.json",
+      "observations": {
+        "silent": "unknown; neither diagnostic detail imported",
+        "explicit_selected": "selected; both detail values and all references preserved",
+        "explicit_refused": "not_selected; no catalog diagnostic details",
+        "documented_MRCT_or_joint_back": "unknown; customer detail retained, other source-bound branch enriched",
+        "product_manual": "both details retained with 1 and 2 references respectively"
+      },
+      "proposed_minimal_decision": "Authorize bounded provenance fixture/eligibility-contract correction: preserve silent-customer exclusion, assert both sources under explicit positive parent or actual documented branch; retain exact ordered union and all other held-out controls. No production change."
+    },
+    {
+      "id": "BOAT_PET_APPROVED_DIAGNOSTIC_SOURCE_ALLOWLIST",
+      "test_file": "tests/boat-pet-catalog.test.mjs",
+      "test": "Gjensidige Hund har source-backed produktpakke",
+      "line": 274,
+      "candidate": "36/37 PASS",
+      "baseline": "37/37 PASS with unchanged test and exact baseline modules in memory",
+      "cause": "Historical exception list contains veterinarian, medicines, dental, sum and deductible rows but not new diagnostics. Both new diagnostic rows fall through to blanket IPID source assertion.",
+      "affected_rows": [
+        {
+          "key": "dyr.diagnostikk.grense",
+          "actual_primary": "boat-pet:gjensidige:hund:product",
+          "source_type": "product_page",
+          "page": 1,
+          "section": "Behandling – MR og CT"
+        },
+        {
+          "key": "dyr.diagnostikk.begrensning",
+          "actual_primary": "boat-pet:gjensidige:hund:treatment",
+          "source_type": "full_terms",
+          "page": 1,
+          "section": "Forsikringen dekker – Behandling (trykt side 5)",
+          "qualification_page": 3,
+          "qualification_section": "Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)"
+        }
+      ],
+      "proposed_minimal_decision": "Authorize exact two-row source contract extension. Preserve all existing bindings, frozen-byte hashes, primary/qualification reference fields, exact IPID remainder (allergy/rehabilitation), no blanket admission."
+    }
+  ],
+  "new_roots_independent": true,
+  "corrections_applied": [],
+  "fresh_gates": [
+    {
+      "label": "source-role-recovery-b050",
+      "status": "PASS",
+      "tap": {
+        "tests": 85,
+        "pass": 85,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "source-role-recovery-b050.log.gz"
+    },
+    {
+      "label": "final-targeted-coverage-status",
+      "status": "PASS",
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-coverage-status.log.gz"
+    },
+    {
+      "label": "final-targeted-insurance-normalization",
+      "status": "PASS",
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-insurance-normalization.log.gz"
+    },
+    {
+      "label": "final-targeted-nito-remediation-b018",
+      "status": "PASS",
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-nito-remediation-b018.log.gz"
+    },
+    {
+      "label": "final-targeted-nito-remediation-b022",
+      "status": "PASS",
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-nito-remediation-b022.log.gz"
+    },
+    {
+      "label": "final-targeted-remediation-b-071",
+      "status": "PASS",
+      "tap": {
+        "tests": 97,
+        "pass": 97,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-remediation-b-071.log.gz"
+    },
+    {
+      "label": "final-targeted-remediation-b-072",
+      "status": "PASS",
+      "tap": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-remediation-b-072.log.gz"
+    },
+    {
+      "label": "final-targeted-liv-reduction-selection-evidence",
+      "status": "PASS",
+      "tap": {
+        "tests": 103,
+        "pass": 103,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-liv-reduction-selection-evidence.log.gz"
+    },
+    {
+      "label": "final-targeted-supporting-terms",
+      "status": "PASS",
+      "tap": {
+        "tests": 43,
+        "pass": 43,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-supporting-terms.log.gz"
+    },
+    {
+      "label": "final-targeted-catalog-enrichment-provenance",
+      "status": "FAIL",
+      "tap": {
+        "tests": 15,
+        "pass": 14,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "final-targeted-catalog-enrichment-provenance.log.gz"
+    },
+    {
+      "label": "diagnose-baseline-provenance",
+      "status": "PASS",
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-baseline-provenance.log.gz"
+    },
+    {
+      "label": "diagnose-related-product-comparison",
+      "status": "PASS",
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-related-product-comparison.log.gz"
+    },
+    {
+      "label": "diagnose-related-boat-pet-catalog",
+      "status": "FAIL",
+      "tap": {
+        "tests": 37,
+        "pass": 36,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-related-boat-pet-catalog.log.gz"
+    },
+    {
+      "label": "diagnose-related-manual-agreement",
+      "status": "PASS",
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-related-manual-agreement.log.gz"
+    },
+    {
+      "label": "diagnose-related-catalog-comparison",
+      "status": "PASS",
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-related-catalog-comparison.log.gz"
+    },
+    {
+      "label": "diagnose-related-product-coverage-evidence",
+      "status": "PASS",
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-related-product-coverage-evidence.log.gz"
+    },
+    {
+      "label": "diagnose-related-product-comparison-semantic",
+      "status": "PASS",
+      "tap": {
+        "tests": 73,
+        "pass": 73,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-related-product-comparison-semantic.log.gz"
+    },
+    {
+      "label": "diagnose-related-comparison-presentation",
+      "status": "PASS",
+      "tap": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-related-comparison-presentation.log.gz"
+    },
+    {
+      "label": "diagnose-baseline-boat-pet",
+      "status": "PASS",
+      "tap": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "diagnose-baseline-boat-pet.log.gz"
+    }
+  ],
+  "full_remediation_fullsuite_typegen_typescript_eslint_build_runtime": "NOT_RUN_AFTER_REGRESSION_STOP",
+  "prior_receipts_preserved": 13,
+  "completion_receipts_created": false,
+  "signatures_not_closed": [
+    "7b2587a3bbc0c772",
+    "b5792662cc2fa9f8"
+  ],
+  "campaign_used": 16,
+  "campaign_limit": 12,
+  "future_capacity": 0,
+  "semantic_scope": "2/2",
+  "historical_reported_unchanged": {
+    "mechanical": "19/16",
+    "semantic": "10/8",
+    "fully_reconstructed": false
+  },
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

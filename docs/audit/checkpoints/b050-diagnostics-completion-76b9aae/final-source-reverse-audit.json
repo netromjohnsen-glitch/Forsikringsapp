@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "source_hashes": {
+    "gjensidige-dog-product.html": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+    "gjensidige-dog-treatment-terms.pdf": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6"
+  },
+  "registry_sha256": "fcb52bd19dcdfc9b0549df3e5a5ee40412f63620dc4bc563972a5b5e6f021c6d",
+  "bindings": {
+    "7b2587a3bbc0c772": [
+      "GAP-2876",
+      "SF-4027"
+    ],
+    "b5792662cc2fa9f8": [
+      "GAP-2884",
+      "SF-4036"
+    ]
+  },
+  "all_metadata_unchanged": true,
+  "unchanged_other_fact_components": 317,
+  "existing_behandling_rows_unchanged": 11,
+  "new_rows": [
+    {
+      "key": "dyr.diagnostikk.grense",
+      "label": "MR/CT – grense",
+      "value": "Innenfor forsikringssummen du har valgt, får du dekket utgifter til MR-undersøkelser og CT-undersøkelser med opptil 5 000 kroner per år eller skadetilfelle.",
+      "source": {
+        "documentId": "boat-pet:gjensidige:hund:product",
+        "filename": "gjensidige-dog-product.html",
+        "termsNumber": "Hundeforsikring – produktoversikt",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+        "company": "Gjensidige",
+        "page": 1,
+        "section": "Behandling – MR og CT",
+        "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+      }
+    },
+    {
+      "key": "dyr.diagnostikk.begrensning",
+      "label": "Undersøkelse ledd/rygg frem til diagnose",
+      "value": "Innenfor valgt forsikringssum: Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, selv om skaden ikke er dekket, med inntil 3 000 kr. Fullvilkåret viser til summen angitt i forsikringsbeviset.",
+      "qualificationSource": {
+        "documentId": "boat-pet:gjensidige:hund:treatment",
+        "filename": "gjensidige-dog-treatment-terms.pdf",
+        "termsNumber": "",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+        "company": "Gjensidige",
+        "page": 3,
+        "section": "Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)"
+      },
+      "source": {
+        "documentId": "boat-pet:gjensidige:hund:treatment",
+        "filename": "gjensidige-dog-treatment-terms.pdf",
+        "termsNumber": "",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+        "company": "Gjensidige",
+        "page": 1,
+        "section": "Forsikringen dekker – Behandling (trykt side 5)",
+        "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+      }
+    }
+  ],
+  "prior_catalog_snapshot": "docs/audit/checkpoints/b050-diagnostics-shared-df3041e/catalog-before.json",
+  "current_command": "node import productCatalog; exact complete metadata/component comparison; frozen bytes and authoritative CSV assertions",
+  "selection_shared_file": "lib/coverage-fact-semantics.ts unchanged from committed baseline; previously authorized A retained",
+  "historical_audit_unchanged": true
+}

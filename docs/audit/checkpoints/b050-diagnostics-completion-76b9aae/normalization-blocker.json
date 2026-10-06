@@ -1,0 +1,26 @@
+{
+  "status": "BLOCKED_NEW_UNAUTHORIZED_MECHANICAL_HARNESS_ROOT",
+  "test_file": "tests/insurance-normalization.test.mjs",
+  "test": "B-050: generic diagnostic labels remain unbound in Hund/Katt even with a raw branch key",
+  "location": 38,
+  "actual_failure": "Strict deep-equality distinguishes omitted key from an own key with value undefined. New expected object omits key; normalizeDocumentFacts/extractedTerm retains key: undefined.",
+  "production_contract": "extractedTerm always returns {name,value,key,coverageOrigin,...source/sources}; undefined key does not establish canonical identity.",
+  "baseline_evidence": "baseline-undefined-key-probe.log.gz; original extractedTerm has identical key property contract on committed HEAD.",
+  "classification": "MECHANICAL_TEST_EXPECTATION_NOT_PRODUCTION_REGRESSION",
+  "corrective_change_not_applied": "Add explicit key: undefined to this exact expected generic normalized object; retain full-field equality, stable normalization, raw immutability and all provenance assertions.",
+  "budget_required_decision": "One additional named root beyond authorized campaign 13/12; no capacity remains and no correction applied.",
+  "verified_reverse_update": "78/78 B050 PASS before newly added diagnostic assertions; both named reverse tests retained exact 11 old rows and exact 2 new rows/provenance.",
+  "current_tests": {
+    "targeted-coverage-status": "19/19 PASS",
+    "targeted-insurance-normalization": "19/20 PASS"
+  },
+  "other_current_gates": "Not run after first new gate failure; B050 with the new diagnostic assertions has not yet run.",
+  "signature_credit": [],
+  "completion_receipts_created": false,
+  "global_resolved_open": "UNKNOWN",
+  "mechanical_used": 13,
+  "mechanical_limit": 12,
+  "semantic_used": 2,
+  "semantic_limit": 2,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

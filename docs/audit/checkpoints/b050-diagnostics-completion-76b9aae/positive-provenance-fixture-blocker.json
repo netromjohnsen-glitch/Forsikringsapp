@@ -1,0 +1,191 @@
+{
+  "status": "BLOCKED_NEW_UNAUTHORIZED_POSITIVE_PROVENANCE_FIXTURE_ROOT",
+  "base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+  "file": "tests/catalog-enrichment-provenance.test.mjs",
+  "line": 207,
+  "test": "Gjensidige Hund diagnostics: silent customer stays unknown; explicit parent and independent document branches preserve exact provenance",
+  "root": "NEW_POSITIVE_DIAGNOSTIC_SINGLE_SOURCE_FIXTURE_EXPECTS_SOURCES",
+  "cause": "New fixture supplies only source. The assertion mistakenly expects raw enriched term.sources === [source]. Existing raw normalization preserves source and does not invent sources. Canonical coverage view correctly exposes detail.sources === [source].",
+  "introduced_by": "new positive assertion in this authorized test-contract correction; not production",
+  "both_branches_same_root": true,
+  "baseline_reproduced": true,
+  "baseline_evidence": "compatibility-source-sources-baseline.json",
+  "candidate_evidence": "compatibility-source-sources-candidate.json",
+  "observations": {
+    "raw_source": "complete exact customer reference preserved",
+    "raw_sources": "absent on baseline and candidate",
+    "canonical_detail_sources": "exact single customer reference on baseline and candidate",
+    "status": "unknown on baseline and candidate",
+    "no_new_selection": true
+  },
+  "new_correction_applied": false,
+  "proposed_minimum_decision": "Authorize only correction of new raw-source/sources expectation. Retain exact raw source assertion, prove raw sources absence in source-only fixture, and compare canonical detail.sources to exact single reference. Preserve positive parent/catalog unions, values and independent overrides. No production or fixture-role change. Budget treatment required; no remaining capacity.",
+  "current_gates": [
+    {
+      "label": "compatibility-targeted-catalog-enrichment-provenance",
+      "status": "FAIL",
+      "tap": {
+        "tests": 16,
+        "pass": 15,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-catalog-enrichment-provenance.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-boat-pet-catalog",
+      "status": "PASS",
+      "tap": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-boat-pet-catalog.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-remediation-b-050",
+      "status": "PASS",
+      "tap": {
+        "tests": 85,
+        "pass": 85,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-remediation-b-050.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-coverage-status",
+      "status": "PASS",
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-coverage-status.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-insurance-normalization",
+      "status": "PASS",
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-insurance-normalization.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-nito-remediation-b018",
+      "status": "PASS",
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-nito-remediation-b018.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-nito-remediation-b022",
+      "status": "PASS",
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-nito-remediation-b022.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-remediation-b-071",
+      "status": "PASS",
+      "tap": {
+        "tests": 97,
+        "pass": 97,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-remediation-b-071.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-remediation-b-072",
+      "status": "PASS",
+      "tap": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-remediation-b-072.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-liv-reduction-selection-evidence",
+      "status": "PASS",
+      "tap": {
+        "tests": 103,
+        "pass": 103,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-liv-reduction-selection-evidence.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-supporting-terms",
+      "status": "PASS",
+      "tap": {
+        "tests": 43,
+        "pass": 43,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-supporting-terms.log.gz"
+    },
+    {
+      "label": "compatibility-targeted-product-comparison",
+      "status": "PASS",
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "compatibility-targeted-product-comparison.log.gz"
+    }
+  ],
+  "tested_current_files_sha256": {
+    "tests/catalog-enrichment-provenance.test.mjs": "f4b00d17c356f374cebed656ef6770ceecbd7fb2ce6c58ba4726319f999c158a",
+    "tests/boat-pet-catalog.test.mjs": "dd68a7bcd14ad065a4b08d09613a079305106882d8fec0dbcfd175636e04aa50",
+    "tests/remediation-b-050.test.mjs": "69aa8fdf4073c9251964a3383e6e0331cad1d36d4a4bbbbde4bcefee6fe53a6c",
+    "lib/boat-pet-catalog.ts": "e70f1ea039f6f4537ca829d4b025711d82469e895fa250feac5c167fca079c37",
+    "lib/insurance-normalization.ts": "d7c98f41df8ebe78a1cb64125439a0ec5a3b6241926dea41db1886f56884e418",
+    "lib/document-fact-normalization.ts": "eda53d2ef5fe703a406697475f422e397432a2e13cebf2ac9ef10750eb3a02bc"
+  },
+  "full_remediation_fullsuite_typegen_typescript_lint_build_runtime": "NOT_RUN; targeted gate did not pass",
+  "completion_receipts_created": false,
+  "signatures_not_closed": [
+    "7b2587a3bbc0c772",
+    "b5792662cc2fa9f8"
+  ],
+  "prior_receipts_preserved": 13,
+  "campaign_used": 18,
+  "campaign_limit": 12,
+  "semantic_scope": "2/2",
+  "historical_counters": "unchanged reported 19/16 mechanical and 10/8 semantic, not fully reconstructed",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

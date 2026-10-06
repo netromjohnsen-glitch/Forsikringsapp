@@ -1,0 +1,21 @@
+{
+  "tested_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+  "method": "Exact git-show baseline modules in memory hooks; Node native stripTypeScriptTypes erases types just as TS execution. Unchanged test file. No checkout/reset.",
+  "baseline_sources_sha256": {
+    "lib/boat-pet-catalog.ts": "f66ecc987bb69f157727ef0d1996197ba996a0e5c9860fd1c1167c89b4e162c5",
+    "lib/document-fact-normalization.ts": "6d2cc5ba2ecb27a939254161fe0914ce21ed73a4ba0bfdc6cb2a89de7084cdae",
+    "lib/insurance-normalization.ts": "3fb42324069e05cd75d3201a8b2ad0ed7aa9db56d6ad415fc435f74d89858176"
+  },
+  "command": [
+    "node",
+    "--test-reporter=tap",
+    "--input-type=module"
+  ],
+  "exit_code": 0,
+  "tap": {
+    "tests": 78,
+    "pass": 78,
+    "fail": 0
+  },
+  "log": "unchanged-head-b050-types-stripped.log.gz"
+}

@@ -1,0 +1,61 @@
+{
+  "status": "BLOCKED_TWO_NEW_UNAUTHORIZED_HARNESS_ROOTS",
+  "base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+  "test_file": "tests/remediation-b-050.test.mjs",
+  "failures": [
+    {
+      "id": "HTML_SOURCE_ENTITY_DECODING",
+      "test": "R-050-DIAGNOSTICS-SOURCE",
+      "line": 790,
+      "cause": "New source harness strips HTML tags but does not decode entities. Decoded frozen source contains exact full MR/CT sentence.",
+      "evidence": "source-html-entity-probe.json",
+      "proposed_bounded_correction": "Decode legitimate HTML entities before exact full-sentence assertion; preserve both hashes and all PDF1/PDF3 qualification checks; no source or production change."
+    },
+    {
+      "id": "GENERAL_TERMS_CUSTOMER_VERSUS_SUPPORTING_EVIDENCE",
+      "test": "R-050-DIAGNOSTICS-ROLES",
+      "line": 863,
+      "cause": "New harness takes insurances[0] for a general_terms-only input. Existing contract intentionally returns zero customer objects and one supportingEvidence record. Calling canonicalCoverage on undefined causes TypeError.",
+      "baseline_reproduced": true,
+      "evidence": "baseline-diagnostic-document-roles.log.gz",
+      "proposed_bounded_correction": "For standalone general_terms assert no customer object and exact supporting record details/provenance, with no asserted selection. Keep unknown-role customer assertions separate. Preserve supporting-attachment checks where valid."
+    }
+  ],
+  "new_roots_independent": true,
+  "corrections_applied": [],
+  "current_gates": {
+    "normalization-recovery": "20/20 PASS",
+    "B050-final-candidate": "83/85 PASS"
+  },
+  "new_diagnostic_tests_passed": [
+    "existing-side separate branch overrides and reverse comparison",
+    "offer-side separate branch overrides and reverse comparison",
+    "all explicit parent states with exact provenance",
+    "generic labels do not override branch",
+    "known/manual versus custom contracts"
+  ],
+  "new_diagnostic_tests_failed": [
+    "source entity representation",
+    "general_terms-only fixture role expectation"
+  ],
+  "fullsuite_typescript_lint_build_runtime": "NOT_RUN_AFTER_NEW_FAILURE",
+  "receipts_created": false,
+  "signatures_not_closed": [
+    "7b2587a3bbc0c772",
+    "b5792662cc2fa9f8"
+  ],
+  "campaign_used": 14,
+  "campaign_limit": 12,
+  "semantic_used": 2,
+  "semantic_limit": 2,
+  "historical_reported_unchanged": {
+    "mechanical": "19/16",
+    "semantic": "10/8",
+    "fully_reconstructed": false
+  },
+  "prior_receipts_preserved": 13,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "next_decision": "Explicit authorization and budget treatment for these two independent, diagnosed harness roots; no capacity remains. Full closure must then run on final candidate.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

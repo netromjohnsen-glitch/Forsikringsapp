@@ -145,11 +145,77 @@ for (const productId of ["if-bil-kasko", "fremtind-hus-standard", "frende-snosco
         if (!ids.length) {
           const customer = enrich({ product, catalog: productCatalog });
           const term = customer.importantTerms.find(t => t.key === fact.key && t.source?.section === fact.source.section);
-          assert.ok(term);
-          assert.deepEqual(term.sources, union(fact));
+          if (productId === "gjensidige-hund-behandling" && fact.key === "dyr.diagnostikk.begrensning") {
+            // A base product detail is available, not proof that this silent
+            // customer has the coverage. Keep the original negative fixture.
+            assert.equal(term, undefined);
+            assert.deepEqual(customer.importantTerms.filter(t => t.key?.startsWith("dyr.diagnostikk.")), []);
+            assert.equal(canonicalCoverage(customer, "Hund", "dyr.diagnostikk.dekning").status, "unknown");
+          } else {
+            assert.ok(term);
+            assert.deepEqual(term.sources, union(fact));
+          }
         }
       }
     }
     assert.ok(count > 0, "held-out must exercise qualified sources");
   });
 }
+
+
+test("Gjensidige Hund diagnostics: silent customer stays unknown; explicit parent and independent document branches preserve exact provenance", () => {
+  const product = productCatalog.products.find(p => p.productId === "gjensidige-hund-behandling");
+  const reference = (kind, page, section, primary = false) => ({
+    documentId: `boat-pet:gjensidige:hund:${kind}`,
+    filename: kind === "product" ? "gjensidige-dog-product.html" : "gjensidige-dog-treatment-terms.pdf",
+    termsNumber: kind === "product" ? "Hundeforsikring – produktoversikt" : "",
+    effectiveFrom: "", version: "", agreementScope: "ordinary",
+    url: "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring", company: "Gjensidige", page, section,
+    ...(primary ? { note: "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg." } : {}),
+  });
+  const expected = [
+    { key: "dyr.diagnostikk.grense", value: "Innenfor forsikringssummen du har valgt, får du dekket utgifter til MR-undersøkelser og CT-undersøkelser med opptil 5 000 kroner per år eller skadetilfelle.",
+      label: "MR/CT – grense", sources: [reference("product", 1, "Behandling – MR og CT", true)] },
+    { key: "dyr.diagnostikk.begrensning", value: "Innenfor valgt forsikringssum: Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, selv om skaden ikke er dekket, med inntil 3 000 kr. Fullvilkåret viser til summen angitt i forsikringsbeviset.",
+      label: "Undersøkelse ledd/rygg frem til diagnose", sources: [reference("treatment", 1, "Forsikringen dekker – Behandling (trykt side 5)", true),
+        reference("treatment", 3, "Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)")] },
+  ];
+  const definition = "dyr.diagnostikk.dekning";
+  const s = { product, catalog: productCatalog };
+  const silent = enrich(s);
+  assert.deepEqual(silent.importantTerms.filter(t => expected.some(e => e.key === t.key)), []);
+  assert.equal(canonicalCoverage(silent, "Hund", definition).status, "unknown");
+  const chosen = enrich(s, [{ name: "Diagnostikk", canonicalKey: definition, value: "Valgt" }]);
+  assert.equal(canonicalCoverage(chosen, "Hund", definition).status, "selected");
+  for (const e of expected) {
+    const matches = chosen.importantTerms.filter(t => t.key === e.key); assert.equal(matches.length, 1);
+    assert.equal(matches[0].value, e.value); assert.equal(matches[0].coverageOrigin, "catalog");
+    assert.deepEqual(matches[0].source, e.sources[0]); assert.deepEqual(matches[0].sources, e.sources);
+  }
+  const customerSource = { documentId: "diagnostics-customer", filename: "customer.pdf", company: "Gjensidige", page: 2, section: "Avtalt diagnostikk" };
+  for (const [index, e] of expected.entries()) {
+    const customerValue = index === 0 ? "4 200 kr" : "2 700 kr";
+    const customer = enrich(s, [{ name: e.label, canonicalKey: e.key, value: customerValue, source: customerSource }]);
+    assert.equal(canonicalCoverage(customer, "Hund", definition).status, "unknown");
+    assert.equal(canonicalCoverage(customer, "Hund", definition).conflict, false);
+    assert.deepEqual(customer.addOnIds, []);
+    for (const [i, branch] of expected.entries()) {
+      const matches = customer.importantTerms.filter(t => t.key === branch.key); assert.equal(matches.length, 1);
+      assert.equal(matches[0].value, i === index ? customerValue : branch.value);
+      assert.equal(matches[0].coverageOrigin, i === index ? "document" : "catalog");
+      assert.deepEqual(matches[0].source, i === index ? customerSource : branch.sources[0]);
+      if (i === index) {
+        // Raw enrichment preserves the fixture's single-source representation;
+        // canonical coverage exposes its exact singleton provenance list.
+        assert.equal(Object.hasOwn(matches[0], "sources"), false);
+        assert.equal(matches[0].sources, undefined);
+        const details = canonicalCoverage(customer, "Hund", definition).details.filter(d => d.key === branch.key);
+        assert.equal(details.length, 1);
+        assert.equal(details[0].value, customerValue);
+        assert.deepEqual(details[0].sources, [customerSource]);
+      } else {
+        assert.deepEqual(matches[0].sources, branch.sources);
+      }
+    }
+  }
+});

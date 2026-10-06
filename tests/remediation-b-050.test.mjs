@@ -13,6 +13,7 @@ import { normalizeManualAgreement } from '../lib/manual-agreement.ts';
 import { isNonAssertingCoverageDetail } from '../lib/coverage-fact-semantics.ts';
 import { documentPipeline } from './helpers/supporting-terms.mjs';
 import { car, term as rawTerm } from './helpers/pilot-quality.mjs';
+import { groupInsurances, groupTerms } from '../lib/comparison.ts';
 
 // B-050 bounded contracts: GAP-2904/SF-4056 plus validation-only
 // 1f56c194d413f97d/GAP-2901/SF-4053 and 8e9d297cb0d1bd0e/GAP-2902/SF-4054.
@@ -629,8 +630,9 @@ test('R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source ch
   for (const [component, rows] of Object.entries(before.facts)) {
     if (component !== id) assert.deepEqual(after.facts[component], rows, component);
     else {
-      assert.deepEqual(after.facts[component].filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)), rows.filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)));
-      assert.equal(after.facts[component].length, rows.length + 6);
+      assert.deepEqual(after.facts[component].filter(f => ![...treatmentKeys, ...publicDeductibleKeys, ...diagnosticKeys].includes(f.key)), rows.filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)));
+      assert.equal(after.facts[component].length, rows.length + 8);
+      assertApprovedDiagnosticRows(after);
     }
   }
   assert.equal(compareCatalogProducts(product, product).differenceCount, 0);
@@ -735,8 +737,9 @@ test('R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata
   for (const [component, rows] of Object.entries(before.facts)) {
     if (component !== id) assert.deepEqual(after.facts[component], rows, component);
     else {
-      assert.deepEqual(after.facts[component].filter(f => !publicDeductibleKeys.includes(f.key)), rows.filter(f => !publicDeductibleKeys.includes(f.key)));
-      assert.equal(after.facts[component].length, rows.length + 2);
+      assert.deepEqual(after.facts[component].filter(f => ![...publicDeductibleKeys, ...diagnosticKeys].includes(f.key)), rows.filter(f => !publicDeductibleKeys.includes(f.key)));
+      assert.equal(after.facts[component].length, rows.length + 4);
+      assertApprovedDiagnosticRows(after);
       for (const k of publicDeductibleKeys) assert.equal(after.facts[component].filter(f => f.key === k).length, 1);
       const old = rows.find(f => f.key === publicDeductibleKeys[0]), current = after.facts[component].find(f => f.key === old.key);
       for (const field of Object.keys(old).filter(k => !['value', 'source', 'deductibleClassification'].includes(k))) assert.deepEqual(current[field], old[field]);
@@ -746,4 +749,189 @@ test('R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata
   const other = productCatalog.products.find(p => p.productId === 'frende-hund-veterin-r'); assert.ok(other);
   const forward = compareCatalogProducts(product, other).sections.flatMap(s => s.rows), reverse = compareCatalogProducts(other, product).sections.flatMap(s => s.rows);
   for (const row of forward) { const swapped = reverse.find(r => r.key === row.key); assert.ok(swapped); assert.deepEqual(row.first, swapped.second); assert.deepEqual(row.second, swapped.first); }
+});
+
+// Exact completion contract derived from the frozen MR/CT paragraph and
+// Treatment PDF1/printed5 + PDF3/printed7, not from candidate output.
+const diagnosticKeys = ['dyr.diagnostikk.grense', 'dyr.diagnostikk.begrensning'];
+const diagnosticReference = (source, page, section, primary = false) => ({
+  documentId: source === 'product' ? 'boat-pet:gjensidige:hund:product' : 'boat-pet:gjensidige:hund:treatment',
+  filename: source === 'product' ? 'gjensidige-dog-product.html' : 'gjensidige-dog-treatment-terms.pdf',
+  termsNumber: source === 'product' ? 'Hundeforsikring – produktoversikt' : '',
+  effectiveFrom: '', version: '', agreementScope: 'ordinary',
+  url: 'https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring',
+  company: 'Gjensidige', page, section,
+  ...(primary ? { note: 'Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg.' } : {}),
+});
+const approvedDiagnosticRows = [
+  { key: diagnosticKeys[0], label: 'MR/CT – grense',
+    value: 'Innenfor forsikringssummen du har valgt, får du dekket utgifter til MR-undersøkelser og CT-undersøkelser med opptil 5 000 kroner per år eller skadetilfelle.',
+    source: diagnosticReference('product', 1, 'Behandling – MR og CT', true) },
+  { key: diagnosticKeys[1], label: 'Undersøkelse ledd/rygg frem til diagnose',
+    value: 'Innenfor valgt forsikringssum: Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, selv om skaden ikke er dekket, med inntil 3 000 kr. Fullvilkåret viser til summen angitt i forsikringsbeviset.',
+    source: diagnosticReference('treatment', 1, 'Forsikringen dekker – Behandling (trykt side 5)', true),
+    qualificationSource: diagnosticReference('treatment', 3, 'Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)') },
+];
+function assertApprovedDiagnosticRows(after) {
+  const committed = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b050-diagnostics-shared-df3041e/catalog-before.json', import.meta.url)));
+  assert.equal(committed.facts[id].length, 11);
+  assert.equal(after.facts[id].length, 13);
+  assert.deepEqual(after.facts[id].filter(f => !diagnosticKeys.includes(f.key)), committed.facts[id]);
+  assert.deepEqual(after.facts[id].filter(f => diagnosticKeys.includes(f.key)), approvedDiagnosticRows);
+  for (const expected of approvedDiagnosticRows) {
+    assert.equal(after.facts[id].filter(f => f.key === expected.key).length, 1);
+    const row = materializeCatalogProduct(product).facts.find(f => f.key === expected.key);
+    assert.equal(row.value, expected.value);
+    const refs = [expected.source, ...(expected.qualificationSource ? [expected.qualificationSource] : [])];
+    assert.deepEqual(row.sources, refs.map(s => ({ ...s, sourceType: s.documentId.endsWith(':product') ? 'product_page' : 'full_terms' })));
+  }
+}
+
+test('R-050-DIAGNOSTICS-SOURCE: exact frozen MR/CT and PDF1/3 clauses preserve distinct qualifications', async () => {
+  const site = readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-product.html', import.meta.url), 'utf8')
+    .replace(/<[^>]*>/gu, ' ')
+    // Frozen HTML uses a named non-breaking-space entity; compare its rendered
+    // text without changing the original bytes or dropping any qualification.
+    .replace(/&nbsp;/gu, '\u00a0').replace(/\u00a0/gu, ' ').replace(/\s+/gu, ' ');
+  assert.ok(site.includes(approvedDiagnosticRows[0].value));
+  PDFParse.setWorker(getPath());
+  const parser = new PDFParse({ data: readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf', import.meta.url)) });
+  try {
+    const pages = (await parser.getText()).pages.map(p => p.text.replace(/\s+/gu, ' '));
+    assert.ok(pages[0].includes('Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, selv om skaden ikke er dekket, med inntil 3 000'));
+    assert.ok(pages[2].includes('Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, er dekket inntil summen angitt i forsikringsbeviset, selv om skaden ikke er dekket'));
+  } finally { await parser.destroy(); }
+});
+
+const diagnosticTerm = (index, value, canonicalKey = null) => ({ name: approvedDiagnosticRows[index].label, value, canonicalKey });
+const diagnosticRecord = (terms, role = 'individual_agreement') => ({ ...record(terms, role), coverageSummary: null });
+const diagnosticState = out => canonicalCoverage(out, 'Hund', 'dyr.diagnostikk.dekning');
+const diagnosticCustomerSources = (side, role = 'individual_agreement') => [{ documentId: `pdf:${side}:0`, filename: 'Dokument 1',
+  termsNumber: 'Ikke oppgitt', effectiveFrom: '', page: 0, section: 'Dokumentopplysninger; side/punkt ikke identifisert', documentRole: role }];
+
+for (const side of ['existing', 'offer']) test(`R-050-DIAGNOSTICS-PIPELINE: ${side} each exact customer branch overrides only its own catalog rule`, () => {
+  for (const indices of [[0], [1], [0, 1]]) {
+    const customer = indices.map(i => diagnosticTerm(i, ['4 200 kr', '2 700 kr'][i]));
+    const out = documentPipeline([[diagnosticRecord(customer)]], side).insuranceData.insurances[0];
+    const covered = diagnosticState(out);
+    assert.equal(covered.status, 'unknown'); assert.equal(covered.conflict, false);
+    assert.deepEqual(out.addOnIds, []);
+    for (const [i, expected] of approvedDiagnosticRows.entries()) {
+      const rows = out.importantTerms.filter(t => t.key === expected.key); assert.equal(rows.length, 1);
+      const t = rows[0], overridden = indices.includes(i);
+      assert.equal(t.value, overridden ? ['4 200 kr', '2 700 kr'][i] : expected.value);
+      assert.equal(t.coverageOrigin, overridden ? 'document' : 'catalog');
+      const refs = overridden ? diagnosticCustomerSources(side) : [expected.source, ...(expected.qualificationSource ? [expected.qualificationSource] : [])];
+      assert.deepEqual(t.sources, refs);
+      const detail = covered.details.find(d => d.key === expected.key);
+      assert.equal(detail.value, t.value); assert.deepEqual(detail.sources, refs);
+    }
+    // Compare actual extracted customer objects in both directions; catalogs
+    // are covered separately by the exact source-bound reverse assertions.
+    const other = documentPipeline([[diagnosticRecord([diagnosticTerm(0, '4 100 kr'), diagnosticTerm(1, '2 600 kr')])]], side === 'existing' ? 'offer' : 'existing').insuranceData.insurances[0];
+    const forward = groupTerms(groupInsurances([out], [other], null)[0], null);
+    const reverse = groupTerms(groupInsurances([other], [out], null)[0], null);
+    for (const expected of approvedDiagnosticRows) {
+      const f = forward.find(t => t.key === expected.key), r = reverse.find(t => t.key === expected.key);
+      assert.ok(f); assert.ok(r); assert.equal(f.first, r.second); assert.equal(f.second, r.first);
+      assert.deepEqual(f.firstSources, r.secondSources); assert.deepEqual(f.secondSources, r.firstSources);
+    }
+    assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown');
+  }
+});
+
+test('R-050-DIAGNOSTICS-SELECTION: both precise details preserve every explicit parent state and provenance', () => {
+  for (const [choices, status, conflict] of [[[], 'unknown', false], [['Valgt'], 'selected', false],
+    [['Ikke valgt'], 'not_selected', false], [['Valgt', 'Ikke valgt'], 'unknown', true]]) {
+    const terms = [diagnosticTerm(0, '4 200 kr'), diagnosticTerm(1, '2 700 kr'),
+      ...choices.map(value => ({ name: 'Diagnostikk', canonicalKey: 'dyr.diagnostikk.dekning', value }))];
+    const out = documentPipeline([[diagnosticRecord(terms)]]).insuranceData.insurances[0];
+    assert.equal(diagnosticState(out).status, status); assert.equal(diagnosticState(out).conflict, conflict);
+    for (const expected of approvedDiagnosticRows) assert.deepEqual(out.importantTerms.find(t => t.key === expected.key).sources, diagnosticCustomerSources('existing'));
+  }
+});
+
+test('R-050-DIAGNOSTICS-GENERIC: unbound document labels cannot overwrite the other catalog branch', () => {
+  for (const [precise, rawKey] of [[0, diagnosticKeys[1]], [1, diagnosticKeys[0]]])
+    for (const name of ['Diagnostikk – grense', 'Diagnostikk – begrensninger']) {
+      const generic = { name, value: '9 999 kr', canonicalKey: rawKey };
+      const out = documentPipeline([[diagnosticRecord([diagnosticTerm(precise, '4 200 kr'), generic])]]).insuranceData.insurances[0];
+      const other = approvedDiagnosticRows[1 - precise];
+      assert.equal(out.importantTerms.find(t => t.key === other.key).value, other.value);
+      assert.equal(out.importantTerms.find(t => t.name === name).key, undefined);
+      assert.equal(diagnosticState(out).status, 'unknown');
+    }
+});
+
+test('R-050-DIAGNOSTICS-ROLES: general terms stay supporting evidence; unknown role and real customer states remain separate', () => {
+  const terms = [diagnosticTerm(0, '4 200 kr'), diagnosticTerm(1, '2 700 kr')];
+  const expectedSupportingTerms = sources => approvedDiagnosticRows.map((row, i) => ({
+    name: row.label, value: ['4 200 kr', '2 700 kr'][i], key: row.key,
+    coverageOrigin: 'catalog', sources,
+  }));
+  const standalone = documentPipeline([[diagnosticRecord(terms, 'general_terms')]]).insuranceData;
+  assert.deepEqual(standalone.insurances, []);
+  assert.equal(standalone.totalAnnualPremium, null);
+  assert.equal(standalone.supportingEvidence.length, 1);
+  const supporting = standalone.supportingEvidence[0];
+  assert.equal(supporting.company, 'Gjensidige'); assert.equal(supporting.type, 'Hund');
+  assert.equal(supporting.productName, 'Behandling'); assert.equal(supporting.canonicalProductName, 'Behandling');
+  assert.equal(supporting.agreementScope, 'ordinary'); assert.equal(supporting.documentRole, 'general_terms');
+  assert.deepEqual(supporting.addOns, []);
+  assert.deepEqual(supporting.documentReferences, [{ side: 'existing', documentIndex: 0 }]);
+  assert.deepEqual(supporting.documentSources, diagnosticCustomerSources('existing', 'general_terms'));
+  assert.deepEqual(supporting.importantTerms, expectedSupportingTerms(diagnosticCustomerSources('existing', 'general_terms')));
+  assert.equal(diagnosticState(supporting).status, 'unknown');
+  assert.equal(diagnosticState(supporting).conflict, false);
+
+  const unknown = documentPipeline([[diagnosticRecord(terms, 'unknown')]]).insuranceData;
+  assert.equal(unknown.insurances.length, 1); assert.deepEqual(unknown.supportingEvidence, []);
+  const out = unknown.insurances[0];
+  assert.equal(out.documentRole, 'unknown'); assert.equal(diagnosticState(out).status, 'unknown');
+  for (const expected of approvedDiagnosticRows) {
+    const t = out.importantTerms.find(t => t.key === expected.key); assert.ok(t);
+    assert.deepEqual(t.sources, diagnosticCustomerSources('existing', 'unknown'));
+  }
+
+  // Generic terms can attach to a real, correctly scoped customer, but cannot
+  // establish or reverse their selection or replace effective catalog details.
+  for (const [choices, status, conflict] of [[[], 'unknown', false], [['Valgt'], 'selected', false],
+    [['Ikke valgt'], 'not_selected', false], [['Valgt', 'Ikke valgt'], 'unknown', true]]) {
+    const customer = diagnosticRecord(choices.map(value => ({ name: 'Diagnostikk', canonicalKey: 'dyr.diagnostikk.dekning', value })));
+    const attached = documentPipeline([[customer], [diagnosticRecord(terms, 'general_terms')]]).insuranceData;
+    assert.equal(attached.insurances.length, 1); assert.equal(attached.supportingEvidence.length, 1);
+    const insurance = attached.insurances[0];
+    assert.equal(insurance.documentRole, 'individual_agreement');
+    assert.equal(diagnosticState(insurance).status, status); assert.equal(diagnosticState(insurance).conflict, conflict);
+    assert.deepEqual(insurance.addOnIds, []);
+    const evidence = insurance.recordEvidence.filter(r => r.documentRole === 'general_terms');
+    assert.equal(evidence.length, 1);
+    const refs = [{ ...diagnosticCustomerSources('existing', 'general_terms')[0], documentId: 'pdf:existing:1', filename: 'Dokument 2' }];
+    assert.deepEqual(evidence[0].sources, refs);
+    assert.deepEqual(evidence[0].importantTerms, expectedSupportingTerms(refs));
+    assert.deepEqual(attached.supportingEvidence[0].importantTerms, expectedSupportingTerms(refs));
+    if (status === 'selected') for (const expected of approvedDiagnosticRows) {
+      const detail = diagnosticState(insurance).details.find(d => d.key === expected.key);
+      assert.equal(detail.value, expected.value);
+      assert.deepEqual(detail.sources, [expected.source, ...(expected.qualificationSource ? [expected.qualificationSource] : [])]);
+    }
+  }
+});
+
+test('R-050-DIAGNOSTICS-MANUAL: known catalog and custom input retain their separate contracts', () => {
+  const input = customProduct => ({ company: 'Gjensidige', products: [{ type: 'Hund', productName: 'Behandling', customProduct,
+    importantTerms: [diagnosticTerm(0, '4 200 kr'), diagnosticTerm(1, '2 700 kr')], addOnIds: [] }] });
+  const known = normalizeManualAgreement(input(false)).insuranceData.insurances[0];
+  assert.equal(diagnosticState(known).status, 'unknown');
+  for (const expected of approvedDiagnosticRows) {
+    const t = known.importantTerms.find(t => t.key === expected.key);
+    assert.equal(t.value, expected.value); assert.equal(t.coverageOrigin, 'catalog'); assert.deepEqual(t.source, expected.source);
+    const refs = [expected.source, ...(expected.qualificationSource ? [{ ...expected.qualificationSource, note: 'Supplerende kilde for faktumets anvendelse' }] : [])];
+    assert.deepEqual(t.sources, refs);
+  }
+  const custom = normalizeManualAgreement(input(true)).insuranceData.insurances[0];
+  assert.equal(diagnosticState(custom).status, 'unknown');
+  assert.deepEqual(custom.importantTerms.map(t => [t.name, t.value, t.key, t.coverageOrigin]), [
+    ['MR/CT – grense', '4 200 kr', undefined, undefined], ['Undersøkelse ledd/rygg frem til diagnose', '2 700 kr', undefined, undefined],
+  ]);
 });

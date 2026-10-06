@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "fullsuite_files": 145,
+  "fullsuite_tests": 3943,
+  "fullsuite_pass": 3943,
+  "fullsuite_fail": 0,
+  "remediation_files": 47,
+  "remediation_tests": 1792,
+  "remediation_pass": 1792,
+  "remediation_fail": 0,
+  "failures": [],
+  "method": "Each exact manifest testfile run once in fresh Node process; complete remediation subset executed as part of complete fullsuite; all safely runnable files collected despite failure",
+  "commands_recorded": "gate-results.json",
+  "candidate": {
+    "tested_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+    "files_sha256": {
+      "lib/document-fact-normalization.ts": "eda53d2ef5fe703a406697475f422e397432a2e13cebf2ac9ef10750eb3a02bc",
+      "lib/insurance-normalization.ts": "d7c98f41df8ebe78a1cb64125439a0ec5a3b6241926dea41db1886f56884e418",
+      "lib/boat-pet-catalog.ts": "e70f1ea039f6f4537ca829d4b025711d82469e895fa250feac5c167fca079c37",
+      "tests/coverage-status.test.mjs": "a8187517e133dbb8678d15768cbac751e49ba74602baf24137e66a3cf307d4f9",
+      "tests/insurance-normalization.test.mjs": "7b5b2916b93acf9ab033a7eecd78de1077f267e1ca24f31623ffdf5d4ceb87a2",
+      "tests/catalog-enrichment-provenance.test.mjs": "0f664977a52c413302429a8fa1425508e8581a9caee2e66bdeb9a498583ad4e5",
+      "tests/boat-pet-catalog.test.mjs": "dd68a7bcd14ad065a4b08d09613a079305106882d8fec0dbcfd175636e04aa50",
+      "tests/remediation-b-050.test.mjs": "69aa8fdf4073c9251964a3383e6e0331cad1d36d4a4bbbbde4bcefee6fe53a6c"
+    },
+    "diff_sha256": "f3b8d078a0082b7a65c22490d511523ed4f395b4a55a10e0806943b639a0d416",
+    "candidate_identity": "78420e98db1823f644c4f785ce739e0c159b3588ad2d6b00425a205f15a05b85"
+  }
+}

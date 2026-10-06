@@ -48,6 +48,20 @@ function explicitKey(
   const rawKey = term.canonicalKey || (prior.coverageOrigin === "document" ? prior.key : undefined);
   const rawCanonicalKey = typeof rawKey === "string" ? rawKey : undefined;
   const type = normalizeInsuranceType(insurance.type);
+  const diagnosticKeys = ["dyr.diagnostikk.grense", "dyr.diagnostikk.begrensning"];
+  const diagnosticLabel = normalizeWords(term.name);
+  const diagnosticIdentity = !rawCanonicalKey || diagnosticKeys.includes(rawCanonicalKey);
+  // Generic labels cannot prove which of these two distinct rules was meant.
+  // Preserve unrelated, valid explicit identities rather than remapping them.
+  if (["hund", "katt"].includes(type) && diagnosticIdentity &&
+      ["diagnostikk grense", "diagnostikk begrensninger"].includes(diagnosticLabel)) return diagnosticLabel;
+  // Correct only these exact branch identities in the verified product scope.
+  if (type === "hund" && insurance.company === "Gjensidige" &&
+      insurance.productName === "Behandling" && insurance.agreementScope === "ordinary" && diagnosticIdentity) {
+    if (["mr ct grense", "mr og ct grense"].includes(diagnosticLabel)) return "dyr.diagnostikk.grense";
+    if (["undersøkelse ledd rygg", "undersøkelse ledd rygg frem til diagnose",
+      "undersøkelse av sykdom eller skade i ledd eller rygg"].includes(diagnosticLabel)) return "dyr.diagnostikk.begrensning";
+  }
   // Newly registered type-specific keys are legal extraction enum members,
   // but cannot establish a fact on another insurance type.
   const canonicalKey = rawCanonicalKey && ((/^(mc|bobil)\./u.test(rawCanonicalKey) &&

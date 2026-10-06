@@ -270,7 +270,24 @@ for (const [providerId, company] of packages) {
           assert.deepEqual(matches[0].qualificationSource, reference(treatment, 8,
             'Egenandel ved veterinærutgifter og medisiner (trykt side 13)' + (key.endsWith('.periode') ? '; skadetilfelle definert PDF-side 3 (trykt side 7)' : '')));
         }
-        for (const other of packageFacts.filter(f => f !== fact && !bindings.some(([key]) => key === f.key) && !deductibleKeys.includes(f.key)))
+        // Only these two new B-050 rows extend the exact Behandling source
+        // contract; every remaining unrelated row still requires the IPID.
+        const diagnosticKeys = ['dyr.diagnostikk.grense', 'dyr.diagnostikk.begrensning'];
+        const diagnosticRows = productCatalog.facts['gjensidige-hund-behandling'].filter(f => diagnosticKeys.includes(f.key));
+        assert.equal(diagnosticRows.length, 2);
+        assert.deepEqual(packageFacts.filter(f => diagnosticKeys.includes(f.key)), diagnosticRows);
+        for (const key of diagnosticKeys) assert.equal(diagnosticRows.filter(f => f.key === key).length, 1);
+        const mrct = diagnosticRows.find(f => f.key === diagnosticKeys[0]);
+        assert.equal(mrct.label, 'MR/CT – grense');
+        assert.equal(mrct.value, 'Innenfor forsikringssummen du har valgt, får du dekket utgifter til MR-undersøkelser og CT-undersøkelser med opptil 5 000 kroner per år eller skadetilfelle.');
+        assert.deepEqual(mrct.source, { ...reference(website, 1, 'Behandling – MR og CT'), note: fact.source.note });
+        assert.equal(mrct.qualificationSource, undefined);
+        const joint = diagnosticRows.find(f => f.key === diagnosticKeys[1]);
+        assert.equal(joint.label, 'Undersøkelse ledd/rygg frem til diagnose');
+        assert.equal(joint.value, 'Innenfor valgt forsikringssum: Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, selv om skaden ikke er dekket, med inntil 3 000 kr. Fullvilkåret viser til summen angitt i forsikringsbeviset.');
+        assert.deepEqual(joint.source, { ...reference(treatment, 1, 'Forsikringen dekker – Behandling (trykt side 5)'), note: fact.source.note });
+        assert.deepEqual(joint.qualificationSource, reference(treatment, 3, 'Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)'));
+        for (const other of packageFacts.filter(f => f !== fact && !bindings.some(([key]) => key === f.key) && !deductibleKeys.includes(f.key) && !diagnosticKeys.includes(f.key)))
           assert.equal(other.source.documentId, source.id);
         assert.deepEqual(packageFacts.filter(f => f.source.documentId === source.id).map(f => f.key).sort(),
           ['dyr.allergi.grense', 'dyr.rehabilitering.grense']);

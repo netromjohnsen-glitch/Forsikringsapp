@@ -1,0 +1,48 @@
+{
+  "status": "BLOCKED_EXISTING_REVERSE_AUDIT_CONTRACT",
+  "base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
+  "candidate_tests": {
+    "B018": "9/9 PASS",
+    "B022": "12/12 PASS",
+    "B071": "97/97 PASS",
+    "B072": "47/47 PASS",
+    "B050": "76/78 PASS"
+  },
+  "failures": [
+    "R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source change; 317 components and metadata preserved",
+    "R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata and other components unchanged"
+  ],
+  "test_file": "tests/remediation-b-050.test.mjs",
+  "locations": [
+    631,
+    738
+  ],
+  "root": "Two historical whole-component reverse audits permit only their original authorized row deltas. Both reject the two later authorized diagnostic rows outside those old key allowlists.",
+  "unchanged_head_test": "78/78 PASS using exact baseline production modules in memory",
+  "candidate_catalog_audit": "317 other components, all metadata and all 11 established Behandling rows unchanged; only two new diagnostic rows.",
+  "no_production_defect_proven": true,
+  "mechanical_campaign_used": 12,
+  "mechanical_campaign_limit": 12,
+  "new_correction_roots_applied": [],
+  "semantic_scope_used": 2,
+  "semantic_scope_limit": 2,
+  "semantic_second_root_status": "IMPLEMENTED_UNVALIDATED",
+  "signatures_not_closed": [
+    "7b2587a3bbc0c772",
+    "b5792662cc2fa9f8"
+  ],
+  "completion_receipts_created": false,
+  "fullsuite_build_runtime_on_BC": "NOT_RUN_AFTER_STOP",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "next_required_decision": "Authorize narrowly scoped updates of the two historical reverse-audit contracts to admit only the exact two source-verified diagnostic rows, with exact row/value/provenance assertions and preservation of all earlier assertions. Mechanical policy capacity is exhausted; any correction needs explicit named budget treatment before implementation.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "candidate_files_sha256": {
+    "lib/boat-pet-catalog.ts": "e70f1ea039f6f4537ca829d4b025711d82469e895fa250feac5c167fca079c37",
+    "lib/document-fact-normalization.ts": "eda53d2ef5fe703a406697475f422e397432a2e13cebf2ac9ef10750eb3a02bc",
+    "lib/insurance-normalization.ts": "d7c98f41df8ebe78a1cb64125439a0ec5a3b6241926dea41db1886f56884e418",
+    "tests/coverage-status.test.mjs": "a8187517e133dbb8678d15768cbac751e49ba74602baf24137e66a3cf307d4f9"
+  },
+  "candidate_diff_sha256": "3451e555a5e72fb82bd635d93d46d72b2520ae484b91e061535fde25c9b0b5ef",
+  "additional_diagnostic": "Historical documentation-repair verifier was rerun after B/C and rejects the intentionally extended coverage-status test inventory because it requires exact repair-baseline test bytes. This is a point-in-time repair verifier, not a B/C closure gate. It passed before documentation publication; unchanged shared production bytes, original logs, 13 receipt hashes and both recovery checksum manifests have been independently reverified on current candidate. No historical verifier edited."
+}

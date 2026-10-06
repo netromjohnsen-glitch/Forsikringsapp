@@ -1,0 +1,39 @@
+{
+  "root": "D04_HISTORICAL_REVERSE_AUDIT_DIAGNOSTIC_SET",
+  "classification": "MECHANICAL_TEST_CONTRACT",
+  "evidence": [
+    "blocker.json",
+    "baseline-reproduction.json",
+    "source-reverse-audit.json",
+    "before-new-assertions-remediation-b-050.log.gz"
+  ],
+  "common_cause": "Both snapshots compare the same complete Behandling component while permitting only their own historical row deltas; only the same two new approved diagnostics rows account for mismatches.",
+  "preserved": [
+    "insurance meaning",
+    "values and qualifications",
+    "scope",
+    "selection",
+    "document priority",
+    "full provenance"
+  ],
+  "production_files_sha256": {
+    "lib/boat-pet-catalog.ts": "e70f1ea039f6f4537ca829d4b025711d82469e895fa250feac5c167fca079c37",
+    "lib/document-fact-normalization.ts": "eda53d2ef5fe703a406697475f422e397432a2e13cebf2ac9ef10750eb3a02bc",
+    "lib/insurance-normalization.ts": "d7c98f41df8ebe78a1cb64125439a0ec5a3b6241926dea41db1886f56884e418",
+    "tests/coverage-status.test.mjs": "a8187517e133dbb8678d15768cbac751e49ba74602baf24137e66a3cf307d4f9"
+  },
+  "campaign_before": 12,
+  "campaign_after_after_verification": 13,
+  "ordinary_campaign_limit": 12,
+  "semantic_used": 2,
+  "semantic_limit": 2,
+  "future_capacity": 0,
+  "status": "VERIFIED",
+  "targeted_command": [
+    "node",
+    "--test-reporter=tap",
+    "tests/remediation-b-050.test.mjs"
+  ],
+  "targeted_result": "78/78 PASS before new permanent diagnostic assertions",
+  "production_hashes_preserved": true
+}

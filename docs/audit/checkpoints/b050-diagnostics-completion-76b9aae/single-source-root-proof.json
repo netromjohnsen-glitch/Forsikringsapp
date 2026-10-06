@@ -1,0 +1,17 @@
+{
+  "root": "D10_POSITIVE_SINGLE_SOURCE_RAW_SOURCES_EXPECTATION",
+  "classification": "MECHANICAL_HARNESS",
+  "before": "new positive fixture with only source expects raw sources singleton",
+  "after": "exact raw source retained; sources absent; canonical detail.sources exact singleton; value/key and unknown protected",
+  "baseline_evidence": "compatibility-source-sources-baseline.json",
+  "candidate_evidence": "compatibility-source-sources-candidate.json",
+  "gate": "single-source-recovery-provenance 16/16 PASS",
+  "campaign_before": 18,
+  "campaign_after": 19,
+  "ordinary_limit": 12,
+  "semantic_scope": "2/2",
+  "historical_counters": "unchanged",
+  "production_change": false,
+  "fixture_source_not_changed": true,
+  "status": "VERIFIED_PASS"
+}

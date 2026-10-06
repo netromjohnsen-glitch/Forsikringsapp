@@ -1,0 +1,39 @@
+{
+  "roots": [
+    {
+      "id": "D06_HTML_ENTITY_SOURCE_ASSERTION",
+      "before": "tag stripping without decoding HTML &nbsp;",
+      "after": "decode &nbsp; -> NBSP, explicitly normalize NBSP -> space, compare complete unchanged source sentence",
+      "source_evidence": "source-html-entity-probe.json"
+    },
+    {
+      "id": "D07_GENERAL_TERMS_SUPPORTING_EVIDENCE_FIXTURE",
+      "before": "assumes general_terms-only creates insurance",
+      "after": "assert no customer, exact supporting details/provenance and separate unknown/customer/selection contracts",
+      "baseline_evidence": "baseline-diagnostic-document-roles.log.gz",
+      "code": [
+        "lib/supporting-terms.ts:isCustomerObject",
+        "lib/supporting-terms.ts:supportingEvidence",
+        "lib/analysis-merge.ts:mergeBatchResults"
+      ]
+    }
+  ],
+  "equivalence": {
+    "insurance_meaning": "UNCHANGED",
+    "values": "UNCHANGED",
+    "scope": "UNCHANGED",
+    "selection": "UNCHANGED",
+    "document_priority": "UNCHANGED",
+    "provenance": "UNCHANGED; now strictly asserted for supporting evidence"
+  },
+  "only_changed_test": "tests/remediation-b-050.test.mjs",
+  "status": "VERIFIED_TARGETED_PASS",
+  "campaign_before": 14,
+  "campaign_after": 16,
+  "ordinary_limit": 12,
+  "semantic_scope": "2/2",
+  "gate": "source-role-recovery-b050: 85/85 PASS",
+  "unchanged_production_and_other_tests_verified": true,
+  "prior_receipts_unchanged": 13,
+  "source_bytes_unchanged": "all frozen source hash assertions PASS"
+}

@@ -480,6 +480,10 @@ export function normalizeTermName(value: string | null, context: TermContext = {
   const deductibleBand = maskinskadeDeductibleBandKey(value, context, type);
   if (deductibleBand) return deductibleBand;
   const name = normalizeWords(value).replace(/\bpr\b/gu, "per");
+  // These whole labels do not distinguish MR/CT from joint/back examination.
+  // Keep them unbound, including comparison after document normalization.
+  if (["hund", "katt"].includes(type) &&
+      ["diagnostikk grense", "diagnostikk begrensninger"].includes(name)) return name;
   // This whole label can name distinct coverage/bonus identities. MC retains
   // the same conservative resolution as Bobil, without selecting coverage.
   // A validated explicit key or an exact effective-product row resolves it.

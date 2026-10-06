@@ -1,0 +1,69 @@
+{
+  "status": "READONLY_CONTRACT_REVIEW_COMPLETE",
+  "production_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da plus preserved B/C candidate",
+  "assertion_groups": [
+    {
+      "group": "source and exact two catalog rows",
+      "contracts": "frozen hashes on bytes; whole MR/CT sentence after explicit NBSP decoding; PDF1/PDF3 qualifications; exact labels/values/reference fields, product_page/full_terms metadata",
+      "evidence": [
+        "R-050-SOURCE",
+        "R-050-DIAGNOSTICS-SOURCE",
+        "R-050-TREATMENT-REVERSE-AUDIT",
+        "R-050-PUBLIC-REVERSE"
+      ]
+    },
+    {
+      "group": "document override and both directions",
+      "contracts": "actual documentPipeline fixtures with company/product/scope; source arrays added by batch document references; both branches individually/together; opposite side grouping sources swapped exactly",
+      "evidence": [
+        "R-050-DIAGNOSTICS-PIPELINE existing",
+        "R-050-DIAGNOSTICS-PIPELINE offer"
+      ]
+    },
+    {
+      "group": "selection states",
+      "contracts": "explicit parent controls selected/not_selected/conflict; nonassertive diagnostic limit; generic terms and restrictive detail do not choose coverage",
+      "evidence": [
+        "R-050-DIAGNOSTICS-SELECTION",
+        "coverage-status B050 guard controls"
+      ]
+    },
+    {
+      "group": "generic label boundary",
+      "contracts": "generic label cannot establish branch despite raw diagnostic identity; unrelated valid canonical keys not remapped; cross provider/type/product/scope",
+      "evidence": [
+        "R-050-DIAGNOSTICS-GENERIC",
+        "new insurance-normalization cases"
+      ]
+    },
+    {
+      "group": "document roles",
+      "contracts": "general_terms excluded from customer objects, retained exact supporting records; matching real customer attachment; unknown-role customer and explicit states separately",
+      "baseline_functions": [
+        "lib/supporting-terms.ts:isCustomerObject",
+        "lib/supporting-terms.ts:supportingEvidence",
+        "lib/supporting-terms.ts:attachSupportingTerms"
+      ]
+    },
+    {
+      "group": "manual modes",
+      "contracts": "known catalog uses catalog conditions, custom mode preserves unbound user labels; no document pipeline override assumed in manual known mode",
+      "evidence": [
+        "R-050-DIAGNOSTICS-MANUAL"
+      ]
+    },
+    {
+      "group": "held-out and positive provenance",
+      "contracts": "silent customer exclusion retained; selected parent imports two exact catalog rows; source-only raw fixture retains source and lacks sources; canonical details synthesize exact source singleton; documented branches independently override",
+      "baseline_evidence": "compatibility-source-sources-baseline.json",
+      "current_proof": "single-source-recovery-provenance.log.gz"
+    }
+  ],
+  "baseline_differences_authorized": [
+    "exact diagnostic detail nonassertive classification in prior shared commit",
+    "conservative product-scoped document branch mapping and generic Hund/Katt unbound labels",
+    "two new source-backed catalog rows"
+  ],
+  "no_other_corrections_applied": true,
+  "runtime_test_results": "See fresh gate-results records, not historical PASS reports."
+}

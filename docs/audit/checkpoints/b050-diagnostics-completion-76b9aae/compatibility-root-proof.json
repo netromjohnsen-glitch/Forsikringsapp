@@ -1,0 +1,39 @@
+{
+  "status": "ORIGINAL_TWO_CONTRACT_ROOTS_CORRECTED_NEW_POSITIVE_ASSERTION_BLOCKED",
+  "roots": [
+    {
+      "id": "D08_DIAGNOSTIC_QUALIFIED_DETAIL_ELIGIBILITY",
+      "classification": "MECHANICAL_TEST_COMPATIBILITY",
+      "before": "every base qualified fact must be present in silent customer enrichment",
+      "after": "exact Gjensidige diagnostics silent absence/unknown maintained; separate explicit parent and independent branch tests added",
+      "baseline_evidence": "diagnose-baseline-provenance.log.gz",
+      "production_evidence": "provenance-eligibility-probe.json",
+      "gate_evidence": "all 15 existing provenance tests PASS; new positive test fails only raw source/sources assumption"
+    },
+    {
+      "id": "D09_EXACT_DIAGNOSTIC_SOURCE_ALLOWLIST",
+      "classification": "MECHANICAL_TEST_COMPATIBILITY",
+      "before": "both new diagnostic rows fall through to IPID requirement",
+      "after": "exact base component and two canonical keys bound to registered product/full terms with exact label/value/page/section/qualification; IPID remainder unchanged",
+      "baseline_evidence": "diagnose-baseline-boat-pet.log.gz",
+      "source_evidence": "source-reverse-audit.json; compatibility-targeted-remediation-b-050.log.gz",
+      "gate_evidence": "boat-pet 37/37 PASS"
+    }
+  ],
+  "equivalence": {
+    "production_and_sources": "UNCHANGED",
+    "insurance_meaning": "UNCHANGED",
+    "selection": "UNCHANGED",
+    "document_priority": "UNCHANGED",
+    "provenance": "UNCHANGED; exact references asserted"
+  },
+  "campaign_before": 16,
+  "campaign_after": 18,
+  "ordinary_limit": 12,
+  "semantic_scope": "2/2",
+  "only_test_files_changed": [
+    "tests/catalog-enrichment-provenance.test.mjs",
+    "tests/boat-pet-catalog.test.mjs"
+  ],
+  "new_root_not_corrected": "NEW_POSITIVE_DIAGNOSTIC_SINGLE_SOURCE_FIXTURE_EXPECTS_SOURCES"
+}
