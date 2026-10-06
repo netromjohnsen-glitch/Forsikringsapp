@@ -173,3 +173,43 @@ test("selected mot not_selected blir en viktig statusforskjell", () => {
   assert.match(difference?.text ?? "", /Eksisterende: ❌ Ikke valgt/);
   assert.match(difference?.text ?? "", /Nytt tilbud: ✓ Valgt/);
 });
+
+test("B-050: diagnostic limit is non-assertive and preserves its complete provenance", () => {
+  const source = { documentId: "customer-diagnostics", filename: "customer.pdf", company: "Gjensidige", page: 4, section: "Diagnostikk" };
+  const value = "MR/CT inntil 5 000 kr per år eller skadetilfelle, innen valgt forsikringssum";
+  const detail = { key: "dyr.diagnostikk.grense", name: "Diagnostikk – grense", value, source, coverageOrigin: "document" };
+  for (const [statuses, expected, conflict] of [
+    [[], "unknown", false], [["Valgt"], "selected", false],
+    [["Ikke valgt"], "not_selected", false], [["Valgt", "Ikke valgt"], "unknown", true],
+  ]) {
+    const terms = [detail, ...statuses.map(value => ({ key: "dyr.diagnostikk.dekning", name: "Diagnostikk", value, coverageOrigin: "document" }))];
+    const result = canonicalCoverage(policy("Hund", terms), "Hund", "dyr.diagnostikk.dekning");
+    assert.equal(result.status, expected); assert.equal(result.conflict, conflict);
+    assert.deepEqual(result.details, [{ key: detail.key, label: detail.name, value, sources: [source] }]);
+    assert.equal(result.evidence[0].kind, "restriction");
+  }
+});
+
+test("B-050: exact diagnostic guard preserves the existing provider components and explicit parents", async () => {
+  const { productCatalog } = await import("../lib/product-catalog.ts");
+  const inventory = Object.entries(productCatalog.facts).filter(([, facts]) => facts.some(f => f.key === "dyr.diagnostikk.grense"));
+  assert.deepEqual(inventory.map(([id]) => id), ["sparebank1-fremtind-hund-veterin-r", "sparebank1-fremtind-katt-veterin-r", "sparebank1-fremtind-hund-topp"]);
+  for (const [id, facts] of inventory) {
+    const type = id.includes("-katt-") ? "Katt" : "Hund";
+    const terms = facts.map(f => ({ key: f.key, name: f.label, value: f.value, source: f.source, coverageOrigin: "catalog" }));
+    const result = canonicalCoverage(policy(type, terms, [], { catalogSelectionConfirmed: true }), type, "dyr.diagnostikk.dekning");
+    assert.equal(result.status, type === "Katt" ? "unknown" : "selected", id);
+    const original = facts.find(f => f.key === "dyr.diagnostikk.grense");
+    const detail = result.details.find(f => f.key === original.key);
+    assert.equal(detail.value, original.value); assert.deepEqual(detail.sources, [original.source]);
+  }
+});
+
+test("B-050: other positive detail identities remain assertive", () => {
+  for (const [type, key, parent, value] of [
+    ["Hund", "dyr.liv.sum.valgbar", "dyr.liv.dekning", "50 000 kr"],
+    ["Bil", "maskinskade.alder", "maskinskade.dekning", "8 år"],
+    ["Bil", "leiebil.dager", "leiebil.dekning", "30 dager"],
+    ["Hund", "dyr.allergi.grense", "dyr.allergi.dekning", "5 000 kr"],
+  ]) assert.equal(canonicalCoverage(policy(type, [{ key, name: key, value, coverageOrigin: "document" }]), type, parent).status, "selected", key);
+});

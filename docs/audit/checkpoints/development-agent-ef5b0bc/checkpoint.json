@@ -194,8 +194,10 @@
     "Diagnostic distinct-dimension representation needs explicit decision",
     "Rehabilitation selection/SC-035 needs explicit decision"
   ],
-  "authorized_packets": [],
-  "next_proposed_packet": "DIAGNOSTIC_DISTINCT_RULES",
+  "authorized_packets": [
+    "B050_DIAGNOSTICS_MAPPING_AND_TWO_CATALOG_RULES"
+  ],
+  "next_proposed_packet": "AUTHORIZED_DEPENDENT_DIAGNOSTICS",
   "plan": "docs/development-agent/next-b050-plan.md",
   "remaining_inventory": "docs/audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json",
   "evidence_sha256": {
@@ -243,5 +245,17 @@
   "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
   "application_revision_role": "TESTED_BASE_PLUS_EXACT_CANDIDATE_IDENTITY; publication commit is discoverable from Git history",
   "application_commit_lookup": "git log -1 --format=%H -- lib/boat-pet-catalog.ts",
-  "next_proposal": "docs/development-agent/next-b050-plan.md"
+  "next_proposal": "docs/development-agent/next-b050-plan.md",
+  "diagnostics_shared_selection": {
+    "status": "PASS",
+    "receipt": "docs/audit/checkpoints/b050-diagnostics-shared-df3041e/receipt.json",
+    "tested_base_revision": "df3041ee8488e2ef1e0aff59cfba0d6dc888afd6",
+    "candidate_identity": "b9a8417b4cd6b916730f914f159b62e6724ff1bc054bcbbbece95cba9dc9f7fd",
+    "semantic_root": "D01_EXACT_DIAGNOSTIC_LIMIT",
+    "semantic_used": 1,
+    "semantic_limit": 2,
+    "mechanical_used": 11,
+    "mechanical_limit": 12,
+    "signature_credit": []
+  }
 }

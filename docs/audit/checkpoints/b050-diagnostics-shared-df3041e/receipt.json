@@ -1,0 +1,167 @@
+{
+  "status": "PASS",
+  "tested_base_revision": "df3041ee8488e2ef1e0aff59cfba0d6dc888afd6",
+  "candidate_identity": "b9a8417b4cd6b916730f914f159b62e6724ff1bc054bcbbbece95cba9dc9f7fd",
+  "fullsuite_files": 145,
+  "fullsuite_tests": 3932,
+  "remediation_tests": 1700,
+  "eslint_errors": 0,
+  "eslint_warnings": 22,
+  "production_build": "PASS outside sandbox subprocess restriction",
+  "http_pdf_runtime": {
+    "result": "PASS",
+    "checks": [
+      "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+      "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+      "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+      "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+      "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+      "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+      "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+      "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+      "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+      "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+      "unauthorized",
+      "manual/catalog",
+      "synthetic PDF to mocked AI to response",
+      "two-side concurrency",
+      "N documents to M products",
+      "capacity limit",
+      "invalid PDF before AI",
+      "strict form fields",
+      "429/no retries/sibling abort",
+      "admission released",
+      "private logging",
+      "semantic fallback telemetry/no unnecessary AI"
+    ],
+    "syntheticMetrics": {
+      "event": "analysis.metrics",
+      "requestId": "cf39f60d-1095-43c4-9809-bf34c12f1a72",
+      "status": 200,
+      "totalMs": 1153.067992,
+      "timings": {
+        "uploadValidation": 1.858914000000027,
+        "pdfWorker": 958.0019630000002,
+        "pdfParsing": 107.65814499999988,
+        "textExtraction": 28.96115400000008,
+        "inputPreparation": 0.864133000000038,
+        "aiExtraction": 354.27216899999985,
+        "structuredOutput": 0.643340999999964,
+        "catalogLookup": 0.01277799999979834,
+        "documentNormalization": 3.849595999999792,
+        "catalogEnrichment": 5.324991000000409,
+        "semanticMatching": 0.4212150000000747,
+        "response": 0.22689199999990706
+      },
+      "semanticMatcher": {
+        "audit": {
+          "candidates": [],
+          "decisions": [],
+          "omitted": 0,
+          "outcome": "NO_DECISION"
+        },
+        "invoked": false,
+        "deterministicMatches": 4,
+        "unresolvedCandidates": 0,
+        "semanticCandidatesSent": 0,
+        "semanticMatchesAccepted": 0,
+        "durationMs": 0.4068839999999909,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "existingDocumentCount": 1,
+      "offerDocumentCount": 1,
+      "successfulDocuments": 2,
+      "failedDocuments": 0,
+      "identifiedProducts": 8,
+      "partialSuccess": false,
+      "progressTransport": "json",
+      "batchCount": 2,
+      "batches": [
+        {
+          "documentsPerBatch": 1,
+          "pagesPerBatch": 1,
+          "estimatedInputSize": 16118
+        },
+        {
+          "documentsPerBatch": 1,
+          "pagesPerBatch": 1,
+          "estimatedInputSize": 16118
+        }
+      ],
+      "extractionCalls": 2,
+      "maxConcurrentExtractions": 2,
+      "totalPages": 2,
+      "totalBytes": 1780,
+      "tokenTotals": {
+        "inputTokens": 246,
+        "outputTokens": 90,
+        "totalTokens": 336,
+        "cachedInputTokens": 24
+      },
+      "uploadBytes": 1780,
+      "documentCount": 2,
+      "parsedDocumentCount": 2,
+      "products": 8,
+      "documents": [
+        {
+          "index": 0,
+          "bytes": 614,
+          "pages": 1,
+          "characters": 56,
+          "durationMs": 766.926893
+        },
+        {
+          "index": 1,
+          "bytes": 614,
+          "pages": 1,
+          "characters": 56,
+          "durationMs": 191.11124599999994
+        }
+      ],
+      "calls": [
+        {
+          "kind": "extraction",
+          "model": "gpt-5.6-luna",
+          "durationMs": 173.54092100000003,
+          "success": true,
+          "usage": {
+            "inputTokens": 123,
+            "outputTokens": 45,
+            "totalTokens": 168,
+            "cachedInputTokens": 12
+          }
+        },
+        {
+          "kind": "extraction",
+          "model": "gpt-5.6-luna",
+          "durationMs": 180.745318,
+          "success": true,
+          "usage": {
+            "inputTokens": 123,
+            "outputTokens": 45,
+            "totalTokens": 168,
+            "cachedInputTokens": 12
+          }
+        }
+      ]
+    },
+    "mcBobilSyntheticDurationMs": 1561
+  },
+  "signature_credit": [],
+  "mechanical_campaign_used": 11,
+  "mechanical_campaign_limit": 12,
+  "new_semantic_scope_used": 1,
+  "new_semantic_scope_limit": 2,
+  "global_resolved_open": "UNKNOWN",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "scope": "B050_DIAGNOSTICS_SHARED_SELECTION",
+  "contract": "Only dyr.diagnostikk.grense is newly nonassertive. Fremtind Katt status unknown; Hund explicit parents preserved. Raw catalog unchanged.",
+  "gates": "gate-results.json",
+  "audit": "source-reverse-audit.json",
+  "production_file_sha256": {
+    "lib/coverage-fact-semantics.ts": "1340b789d522425750fe2b65432d7fc4cd70c0ded5c04cd9890cfacc0f4185f5",
+    "tests/coverage-status.test.mjs": "29f130d61f022425b0891d1c604386910da519be0da9d1496253893eb5d2007d"
+  },
+  "new_mechanical_roots": []
+}
