@@ -628,7 +628,7 @@ test('R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source ch
   const sources = { ...after.sources }; delete sources[treatmentId]; assert.deepEqual(sources, before.sources);
   assert.equal(Object.hasOwn(before.sources, treatmentId), false);
   for (const [component, rows] of Object.entries(before.facts)) {
-    if (component !== id) assert.deepEqual(after.facts[component], rows, component);
+    if (component !== id) assertB050OutsideComponent(component, after.facts[component], rows);
     else {
       assert.deepEqual(after.facts[component].filter(f => ![...treatmentKeys, ...publicDeductibleKeys, ...diagnosticKeys, rehabilitationKey].includes(f.key)), rows.filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)));
       assert.equal(after.facts[component].length, rows.length + 9);
@@ -735,7 +735,7 @@ test('R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata
   for (const k of Object.keys(before).filter(k => k !== 'facts')) assert.deepEqual(after[k], before[k], k);
   assert.deepEqual(Object.keys(after.facts), Object.keys(before.facts));
   for (const [component, rows] of Object.entries(before.facts)) {
-    if (component !== id) assert.deepEqual(after.facts[component], rows, component);
+    if (component !== id) assertB050OutsideComponent(component, after.facts[component], rows);
     else {
       assert.deepEqual(after.facts[component].filter(f => ![...publicDeductibleKeys, ...diagnosticKeys, rehabilitationKey].includes(f.key)), rows.filter(f => !publicDeductibleKeys.includes(f.key)));
       assert.equal(after.facts[component].length, rows.length + 5);
@@ -948,6 +948,26 @@ test('R-050-DIAGNOSTICS-MANUAL: known catalog and custom input retain their sepa
 });
 
 
+// B-051 explicitly authorized six existing Hus rows. The independent oracle
+// predates implementation; this compatibility comparison preserves every other
+// row/field/metadata in the historical B-050 baselines (not candidate output).
+const approvedB051Oracle = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b051-rental-loss-use-5718a5f/source-oracle.json', import.meta.url)));
+function assertB050OutsideComponent(component, actual, previous) {
+  const approved = Object.entries(approvedB051Oracle).filter(([, o]) => o.owner === component);
+  const expected = previous.map(f => {
+    const match = approved.find(([key]) => key === f.key);
+    if (!match) return f;
+    const [, o] = match;
+    assert.equal(f.label, o.label);
+    assert.deepEqual([f.source.page, f.source.section], o.primary);
+    return { ...f, value: o.value, ...(o.qualification ? {
+      qualificationSource: { ...f.source, page: o.qualification[0], section: o.qualification[1] },
+    } : {}) };
+  });
+  assert.equal(previous.filter(f => approved.some(([key]) => key === f.key)).length, approved.length);
+  assert.deepEqual(actual, expected, component);
+}
+
 const rehabilitationBefore = () => JSON.parse(gunzipSync(readFileSync(new URL('../docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/catalog-before.json.gz', import.meta.url))));
 const rehabilitationState = out => canonicalCoverage(out, 'Hund', rehabilitationParent);
 const rehabilitationTerm = (k, v) => ({ ...term(k, v), name: k === rehabilitationParent ? 'Rehabilitering' : k === rehabilitationKey ? approvedRehabilitationRow.label : 'Rehabilitering – grense' });
@@ -972,7 +992,7 @@ test('R-050-REHAB-REVERSE: one exact source-bound condition; original13 and othe
   assert.deepEqual(Object.keys(after.facts), Object.keys(before.facts));
   assert.equal(Object.keys(before.facts).filter(c => c !== id).length, 317);
   for (const [component, rows] of Object.entries(before.facts)) {
-    if (component !== id) assert.deepEqual(after.facts[component], rows, component);
+    if (component !== id) assertB050OutsideComponent(component, after.facts[component], rows);
     else {
       assert.equal(rows.length, 13); assert.equal(after.facts[component].length, 14);
       assert.deepEqual(after.facts[component].filter(f => f.key !== rehabilitationKey), rows);

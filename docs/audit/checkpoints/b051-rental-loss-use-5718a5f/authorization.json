@@ -1,0 +1,811 @@
+{
+  "classification": "EXPLICIT_USER_AUTHORIZATION",
+  "baseline": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+  "signatures": [
+    {
+      "signature": "08203cfa28493e63",
+      "original_binding": {
+        "signature_id": "08203cfa28493e63",
+        "representative_finding_id": "GAP-2089",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2089\", \"GAP-2144\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-2994\", \"SF-3078\"]",
+        "proposed_existing_keys": "[\"hus.utleie.vilkar\", \"hus.utleie.mislighold\", \"hus.utleie.utkastelse\", \"hus.utleie.skadeverk\", \"hus.leietap.skade\"]",
+        "semantic_concept": "Utleie",
+        "semantic_dimension": "valg/hendelser",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2089",
+        "GAP-2144"
+      ],
+      "source_fact_ids": [
+        "SF-2994",
+        "SF-3078"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2089",
+          "finding_ids": [
+            "GAP-2089"
+          ],
+          "source_fact_id": "SF-2994",
+          "source_fact_ids": [
+            "SF-2994"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "gjensidige-hus-utleie",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Måståibevis:leietakersvilletskadeverk,6mndmislighold én gangperleietaker,20kutkastelse,husleietapgodkjentvarigoppholdsrom etterdekketskade.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.utleie.vilkar",
+            "hus.utleie.mislighold",
+            "hus.utleie.utkastelse",
+            "hus.utleie.skadeverk",
+            "hus.leietap.skade"
+          ],
+          "advisor_impact": "6m/20k/valgfri skadeverk korrekt; godkjent varigoppholdsrom som vilkår for følgeskade-leietap ikke angitt.",
+          "audit_scope_notes": "6m/20k/valgfri skadeverk korrekt; godkjent varigoppholdsrom som vilkår for følgeskade-leietap ikke angitt.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2144",
+          "finding_ids": [
+            "GAP-2144"
+          ],
+          "source_fact_id": "SF-3078",
+          "source_fact_ids": [
+            "SF-3078"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "gjensidige-hus-utleie",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Måståibevis:leietakersvilletskadeverk,6mndmislighold én gangperleietaker,20kutkastelse,husleietapgodkjentvarigoppholdsrom etterdekketskade.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.utleie.vilkar",
+            "hus.utleie.mislighold",
+            "hus.utleie.utkastelse",
+            "hus.utleie.skadeverk",
+            "hus.leietap.skade"
+          ],
+          "advisor_impact": "6m/20k/valgfri skadeverk korrekt; godkjent varigoppholdsrom som vilkår for følgeskade-leietap ikke angitt.",
+          "audit_scope_notes": "6m/20k/valgfri skadeverk korrekt; godkjent varigoppholdsrom som vilkår for følgeskade-leietap ikke angitt.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Registered rental must be in certificate. Intentional tenant vandalism per §351, arrears≤6months once per tenant, eviction costs≤20000 on vandalism OR arrears, rental-income loss in rooms approved for permanent habitation beyond sum after covered damage. Current rows omit approved-room/beyond-sum qualifications and the two grounds for eviction.",
+      "existing_representation_keys": [
+        "hus.utleie.vilkar",
+        "hus.utleie.mislighold",
+        "hus.utleie.utkastelse",
+        "hus.utleie.skadeverk",
+        "hus.leietap.skade"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.leietap.skade",
+            "label": "Tapt leieinntekt etter bygningsskade",
+            "value": "Registrert leieinntekt etter leiekontrakt i normal reparasjonstid; korttidsutleie bare for inngåtte kontrakter. Dette er skilt fra betalingsmislighold.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Husleietap og brukstap",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusRental",
+          "fact": {
+            "key": "hus.utleie.vilkar",
+            "label": "Utleie – avtalevilkår",
+            "value": "Valgfri utvidelse som må være registrert i forsikringsbeviset. Skriftlig leieavtale med angitte parts-, leie-, sikkerhets- og utkastelsespunkter kreves.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus / Erstatningsregler – Leiekontrakten",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusRental",
+          "fact": {
+            "key": "hus.utleie.mislighold",
+            "label": "Utleie – betalingsmislighold",
+            "value": "Misligholdt husleie i inntil seks måneder, én gang per leietaker. Varsel må sendes innen 14 dager; ved fortsatt mislighold må utkastelse begjæres innen seks uker etter første mislighold.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Utleie",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusRental",
+          "fact": {
+            "key": "hus.utleie.utkastelse",
+            "label": "Utleie – utkastelse",
+            "value": "Nødvendige utgifter til utkastelse inntil 20 000 kroner.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Utleie",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusRental",
+          "fact": {
+            "key": "hus.utleie.skadeverk",
+            "label": "Utleie – skadeverk",
+            "value": "Skadeverk på bygningen fra registrert leietaker.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Utleie",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "8e8d82878deb95b5",
+      "original_binding": {
+        "signature_id": "8e8d82878deb95b5",
+        "representative_finding_id": "GAP-2090",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2090\", \"GAP-2145\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-2996\", \"SF-3080\"]",
+        "proposed_existing_keys": "[\"hus.utleie.vilkar\"]",
+        "semantic_concept": "Utleie",
+        "semantic_dimension": "begrensninger",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2090",
+        "GAP-2145"
+      ],
+      "source_fact_ids": [
+        "SF-2996",
+        "SF-3080"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2090",
+          "finding_ids": [
+            "GAP-2090"
+          ],
+          "source_fact_id": "SF-2996",
+          "source_fact_ids": [
+            "SF-2996"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "gjensidige-hus-utleie",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 3–4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke rettmessig tilbakeholdtleie,merenn6mndvedhus+innbo,utgifterutovermislighold,vask/rydding/hardbruk.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.utleie.vilkar"
+          ],
+          "advisor_impact": "Seks måneder skal ikke dobles forhus+innbo; rettmessig tilbakeholdt leie og hardbruk/ryddingunntak mangler.",
+          "audit_scope_notes": "Seks måneder skal ikke dobles forhus+innbo; rettmessig tilbakeholdt leie og hardbruk/ryddingunntak mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2145",
+          "finding_ids": [
+            "GAP-2145"
+          ],
+          "source_fact_id": "SF-3080",
+          "source_fact_ids": [
+            "SF-3080"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "gjensidige-hus-utleie",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 3–4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke rettmessig tilbakeholdtleie,merenn6mndvedhus+innbo,utgifterutovermislighold,vask/rydding/hardbruk.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.utleie.vilkar"
+          ],
+          "advisor_impact": "Seks måneder skal ikke dobles forhus+innbo; rettmessig tilbakeholdt leie og hardbruk/ryddingunntak mangler.",
+          "audit_scope_notes": "Seks måneder skal ikke dobles forhus+innbo; rettmessig tilbakeholdt leie og hardbruk/ryddingunntak mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Rental: no arrears beyond6months even house+contents together, expenses beyond arrears, legally withheld rent because housing faults, faulty/careless/hard use, cleaning/tidying belongings or waste. Coordinate general exceptions; preserve no rental registration=no rental extension.",
+      "existing_representation_keys": [
+        "hus.utleie.vilkar"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusRental",
+          "fact": {
+            "key": "hus.utleie.vilkar",
+            "label": "Utleie – avtalevilkår",
+            "value": "Valgfri utvidelse som må være registrert i forsikringsbeviset. Skriftlig leieavtale med angitte parts-, leie-, sikkerhets- og utkastelsespunkter kreves.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus / Erstatningsregler – Leiekontrakten",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "b5b211cad16d32c6",
+      "original_binding": {
+        "signature_id": "b5b211cad16d32c6",
+        "representative_finding_id": "GAP-2091",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2091\", \"GAP-2146\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-2997\", \"SF-3081\"]",
+        "proposed_existing_keys": "[\"hus.utleie.vilkar\", \"hus.utleie.mislighold\"]",
+        "semantic_concept": "Utleie",
+        "semantic_dimension": "kontrakt/tid",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2091",
+        "GAP-2146"
+      ],
+      "source_fact_ids": [
+        "SF-2997",
+        "SF-3081"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2091",
+          "finding_ids": [
+            "GAP-2091"
+          ],
+          "source_fact_id": "SF-2997",
+          "source_fact_ids": [
+            "SF-2997"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "gjensidige-hus-utleie",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 1,17",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Skriftligleiekontrakt meddepositum/bankgaranti,tvangsgrunnlag;varselinnen14d,14dbetalingsfrist,begjæringinnen6uker.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.utleie.vilkar",
+            "hus.utleie.mislighold"
+          ],
+          "advisor_impact": "14dvarsel/6uker riktig;14dnyfrist og konkretdepositum/tvangsgrunnlag skjules i angittepunkter.",
+          "audit_scope_notes": "14dvarsel/6uker riktig;14dnyfrist og konkretdepositum/tvangsgrunnlag skjules i angittepunkter.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2146",
+          "finding_ids": [
+            "GAP-2146"
+          ],
+          "source_fact_id": "SF-3081",
+          "source_fact_ids": [
+            "SF-3081"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "gjensidige-hus-utleie",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 1,18",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Skriftligleiekontrakt meddepositum/bankgaranti,tvangsgrunnlag;varselinnen14d,14dbetalingsfrist,begjæringinnen6uker.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.utleie.vilkar",
+            "hus.utleie.mislighold"
+          ],
+          "advisor_impact": "14dvarsel/6uker riktig;14dnyfrist og konkretdepositum/tvangsgrunnlag skjules i angittepunkter.",
+          "audit_scope_notes": "14dvarsel/6uker riktig;14dnyfrist og konkretdepositum/tvangsgrunnlag skjules i angittepunkter.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Written lease exactparties/contact/id, rent/regulation/prepay, depositORbankguarantee, handback/movingout/form/duration/enforceableevictiongrounds; copies supplied afterloss. Tenant accepts eviction ifrentunpaid14days afterwrittennotice. Separate noticewithin14days offirstnonpayment and requestwithin6weeks ifstillunpaid (both fulltermPDFs page1, Important information / Safety provisions). Preserve insurer subrogationafterpayment.",
+      "existing_representation_keys": [
+        "hus.utleie.vilkar",
+        "hus.utleie.mislighold"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusRental",
+          "fact": {
+            "key": "hus.utleie.vilkar",
+            "label": "Utleie – avtalevilkår",
+            "value": "Valgfri utvidelse som må være registrert i forsikringsbeviset. Skriftlig leieavtale med angitte parts-, leie-, sikkerhets- og utkastelsespunkter kreves.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus / Erstatningsregler – Leiekontrakten",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusRental",
+          "fact": {
+            "key": "hus.utleie.mislighold",
+            "label": "Utleie – betalingsmislighold",
+            "value": "Misligholdt husleie i inntil seks måneder, én gang per leietaker. Varsel må sendes innen 14 dager; ved fortsatt mislighold må utkastelse begjæres innen seks uker etter første mislighold.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Utleie",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "4a844bae3be9dea8",
+      "original_binding": {
+        "signature_id": "4a844bae3be9dea8",
+        "representative_finding_id": "GAP-2100",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2100\", \"GAP-2159\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3009\", \"SF-3096\"]",
+        "proposed_existing_keys": "[\"hus.brukstap.dekning\"]",
+        "semantic_concept": "Brukstap",
+        "semantic_dimension": "egen bolig",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2100",
+        "GAP-2159"
+      ],
+      "source_fact_ids": [
+        "SF-3009",
+        "SF-3096"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2100",
+          "finding_ids": [
+            "GAP-2100"
+          ],
+          "source_fact_id": "SF-3009",
+          "source_fact_ids": [
+            "SF-3009"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Markedsleie for egenbebodd bolig veddekketskade/redning/blokkertadkomst;10millionmaksavtaltsum fornaturskade/blokkertadkomst.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.brukstap.dekning"
+          ],
+          "advisor_impact": "Normal markedsleie korrekt; blokkertadkomst/redning og10mill særgrense mangler.",
+          "audit_scope_notes": "Normal markedsleie korrekt; blokkertadkomst/redning og10mill særgrense mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2159",
+          "finding_ids": [
+            "GAP-2159"
+          ],
+          "source_fact_id": "SF-3096",
+          "source_fact_ids": [
+            "SF-3096"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 6",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Markedsleie for egenbebodd bolig veddekketskade/redning/blokkertadkomst;10millionmaksavtaltsum fornaturskade/blokkertadkomst.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.brukstap.dekning"
+          ],
+          "advisor_impact": "Normal markedsleie korrekt; blokkertadkomst/redning og10mill særgrense mangler.",
+          "audit_scope_notes": "Normal markedsleie korrekt; blokkertadkomst/redning og10mill særgrense mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Market rent for insured own home unusable after covered event on/immediately near site; agreed rescue underFAL6-4; all access blocked/nature capped certificate sum and10million per customer. Keep distinct from tenant arrears and rented income.",
+      "existing_representation_keys": [
+        "hus.brukstap.dekning"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.brukstap.dekning",
+            "label": "Ubeboelig bolig etter skade",
+            "value": "Tap tilsvarende markedsleie i normal reparasjons-/gjenoppføringstid; uten dokumenterte boutgifter begrenses erstatningen til 50 % av gjeldende leiepris.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Husleietap og brukstap",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "8d28f56b17a9bae2",
+      "original_binding": {
+        "signature_id": "8d28f56b17a9bae2",
+        "representative_finding_id": "GAP-2116",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2116\", \"GAP-2175\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3034\", \"SF-3121\"]",
+        "proposed_existing_keys": "[\"hus.brukstap.dekning\", \"hus.leietap.skade\"]",
+        "semantic_concept": "Brukstap",
+        "semantic_dimension": "varighet",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2116",
+        "GAP-2175"
+      ],
+      "source_fact_ids": [
+        "SF-3034",
+        "SF-3121"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2116",
+          "finding_ids": [
+            "GAP-2116"
+          ],
+          "source_fact_id": "SF-3034",
+          "source_fact_ids": [
+            "SF-3034"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 17",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Normalbygginginklmyndighetsbehandling;ingenbygging3mnd;egenmarkedsleie/leidkontrakt,shortstaybareinngåttekontrakter;innspart/renteavkortes.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.brukstap.dekning",
+            "hus.leietap.skade"
+          ],
+          "advisor_impact": "Normalperiode/shortstay riktig;offentligtid/3mutenbygging/innsparingavkortning mangler.",
+          "audit_scope_notes": "Normalperiode/shortstay riktig;offentligtid/3mutenbygging/innsparingavkortning mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2175",
+          "finding_ids": [
+            "GAP-2175"
+          ],
+          "source_fact_id": "SF-3121",
+          "source_fact_ids": [
+            "SF-3121"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 18",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Normalbygginginklmyndighetsbehandling;ingenbygging3mnd;egenmarkedsleie/leidkontrakt,shortstaybareinngåttekontrakter;innspart/renteavkortes.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.brukstap.dekning",
+            "hus.leietap.skade"
+          ],
+          "advisor_impact": "Normalperiode/shortstay riktig;offentligtid/3mutenbygging/innsparingavkortning mangler.",
+          "audit_scope_notes": "Normalperiode/shortstay riktig;offentligtid/3mutenbygging/innsparingavkortning mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Normal repair/rebuild period includes public processing from lossdate to finish; own home uses unfurnished market rent, leased income actual contract, only booked short-term contracts. Unrepaired3months, savings/interest deducted,50percent only time without documented alternative living costs. Current rows preserve some but omit public processing/3months/savings/interest/unfurnished qualifiers.",
+      "existing_representation_keys": [
+        "hus.brukstap.dekning",
+        "hus.leietap.skade"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.brukstap.dekning",
+            "label": "Ubeboelig bolig etter skade",
+            "value": "Tap tilsvarende markedsleie i normal reparasjons-/gjenoppføringstid; uten dokumenterte boutgifter begrenses erstatningen til 50 % av gjeldende leiepris.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Husleietap og brukstap",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.leietap.skade",
+            "label": "Tapt leieinntekt etter bygningsskade",
+            "value": "Registrert leieinntekt etter leiekontrakt i normal reparasjonstid; korttidsutleie bare for inngåtte kontrakter. Dette er skilt fra betalingsmislighold.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Husleietap og brukstap",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    }
+  ],
+  "allowed_project_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "docs/development-agent/current-project-status.md",
+    "docs/development-agent/start.md",
+    "tests/remediation-b-050.test.mjs"
+  ],
+  "allowed_audit_directory": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f",
+  "allowed_catalog_owners": {
+    "gjensidigeHusStandard": [
+      "hus.brukstap.dekning",
+      "hus.leietap.skade"
+    ],
+    "gjensidigeHusRental": [
+      "hus.utleie.vilkar",
+      "hus.utleie.mislighold",
+      "hus.utleie.utkastelse",
+      "hus.utleie.skadeverk"
+    ]
+  },
+  "permitted_fields": [
+    "value",
+    "source",
+    "qualificationSource"
+  ],
+  "prohibited": [
+    "engine",
+    "canonical",
+    "mapping",
+    "schema",
+    "source admission",
+    "later scope",
+    "deployment"
+  ],
+  "fingerprint_authorization": "R02006 only after exact authorized delta proof and explicit independent source contracts",
+  "HARNESS_AUTONOMY_V1": {
+    "prior_used": 5,
+    "limit": 12,
+    "scope_limit": 6,
+    "scope_used": 0
+  },
+  "global_resolved_open": "UNKNOWN",
+  "holds": [
+    "157c7afed18eb0fe",
+    "25004bc4d7dd2c03",
+    "SC-019/SR-033",
+    "SC-020/SR-032",
+    "SC-035/SR-031",
+    "5f31ff4946a666b5"
+  ],
+  "publication": "secured publish.py, HEAD:main only after complete PASS",
+  "mechanical_compatibility_extension": {
+    "authority": "Explicit user HARNESS_AUTONOMY_V1 permission within this otherwise authorized scope",
+    "file": "tests/remediation-b-050.test.mjs",
+    "root": "Three historical whole-catalog reverse audits prohibit the same six already-approved B051 row updates",
+    "constraints": "Compare complete expected row set from immutable pre-B050 baseline plus independent source-oracle; no removed protected assertions/metadata/provider/component controls"
+  }
+}

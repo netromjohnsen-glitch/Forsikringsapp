@@ -1,0 +1,6 @@
+{
+  "classification": "NEW_AUDIT_HARNESS_PATH_ASSUMPTION",
+  "initial_failure": "verify.py line18 AssertionError README.md: package-relative file was incorrectly resolved as repo README.md",
+  "actual_integrity_status": "All exact original checksum entries independently PASS using their documented package/repository namespaces; no bytes or old manifest changed",
+  "resolution": "Respect explicit docs/ repository paths; basename package paths are resolved at exact old receipt directory. Forbid absolute/traversal paths; strict SHA256 equality remains."
+}

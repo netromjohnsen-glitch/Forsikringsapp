@@ -90,10 +90,13 @@ test('R-020-06: 53 archived positive controls and all unrelated facts remain unc
   for (let pc = 821; pc <= 873; pc++) assert.ok(registry.includes(`PC-${String(pc).padStart(4, '0')}`));
   // Fingerprints captured before B-020 from 00483c9, excluding only the
   // deliberately split pest identities and narrowed rot coverage.
+  // B-051 advances only source-qualified brukstap/leietap texts; exact delta
+  // and all protected facts: b051-rental-loss-use-5718a5f/catalog-delta.json.
+  // Permanent source contracts: remediation-b-051.test.mjs.
   for (const [id, addons, expected] of [
-    [base, [], '3d260a791bf81f3b90ed82f2dbb5bdeaeb4566dd924b95ca5e1a93501034ff0e'],
-    [base, [addon], '1da2d35abf53b63e88a6455d96dfe2e0c9b715a9757059ccad934e5089f329c6'],
-    [plus, [], '1d2485559ec23fea417d600ce1b21b344a00ab301230b154da2fb9c27829873b'],
+    [base, [], '207dbed6e91f5db8ee0488bea88490671c25756928c291c43855e2bc208a4279'],
+    [base, [addon], 'a5e91e8e815b1cfc645539e1829b875c55cc5aaaec3e3fc76fadee29504a5b6e'],
+    [plus, [], '0b9309fff31d53f2c98ca2c0a5c15554b8f56ebc7b6e64c5401709351c963fa2'],
   ]) assert.equal(digest(facts(id, addons).filter(f => !f.key.startsWith('hus.skadedyr.') && f.key !== 'hus.rate.dekning')), expected);
   assert.match(fact(base, 'hus.rate.dekning').value, /unntatt/u);
   assert.match(fact(base, 'hus.skadedyr.grunnunntak').value, /Insekter|insekter/u);

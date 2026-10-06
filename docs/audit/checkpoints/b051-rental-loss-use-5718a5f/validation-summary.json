@@ -1,0 +1,289 @@
+{
+  "tested_baseline": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+  "candidate_identity_sha256": "725e4db3ad2593a6fa60ba769519858d072824cc69ea8ae055f5b2b3a20185a8",
+  "fullsuite": {
+    "files": 146,
+    "tests": 3970,
+    "pass": 3970
+  },
+  "remediation": {
+    "files": 48,
+    "tests": 1819,
+    "pass": 1819
+  },
+  "targeted_B051": {
+    "tests": 15,
+    "pass": 15,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "targeted_regression_commands": [
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/remediation-b-051.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/nito-remediation-wave1.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/remediation-b-071.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/nito-remediation-b018.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/nito-remediation-b022.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/nito-remediation-b020.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/remediation-b-050.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/remediation-b-072.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/liv-reduction-selection-evidence.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/supporting-terms.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/catalog-enrichment-provenance.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/coverage-status.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/insurance-normalization.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/catalog-comparison.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/product-comparison-hardening.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/product-comparison.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/manual-agreement.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/boat-pet-catalog.test.mjs"
+    ],
+    [
+      "node",
+      "--test-reporter=tap",
+      "tests/gjensidige-hus-catalog.test.mjs"
+    ]
+  ],
+  "quality": {
+    "typegen": {
+      "label": "typegen",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "typegen"
+      ],
+      "tested_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "exit_code": 0,
+      "duration_seconds": 0.489,
+      "tap": {},
+      "log": "typegen.log.gz",
+      "log_sha256": "f09b7a88bdf0e01472645c87312b0b93979869e726d2059e974820a6862d19f7",
+      "output_sha256": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    "typescript": {
+      "label": "typescript",
+      "command": [
+        "npx",
+        "--no-install",
+        "tsc",
+        "--noEmit",
+        "--incremental",
+        "false"
+      ],
+      "tested_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "exit_code": 0,
+      "duration_seconds": 3.737,
+      "tap": {},
+      "log": "typescript.log.gz",
+      "log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    "eslint": {
+      "label": "eslint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "tested_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "exit_code": 0,
+      "duration_seconds": 9.116,
+      "tap": {},
+      "log": "eslint.log.gz",
+      "log_sha256": "873a5d32d9635d32523bf39eaad3b62269e8b150eb40077932937bcad5b75bb6",
+      "output_sha256": "aecff9e0a4b8f91ab0331d38d85c13520ce132003b81719e7afe01307fcb3df7",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "errors": 0,
+      "warnings": 26,
+      "status": "PASS"
+    },
+    "production-build": {
+      "label": "production-build",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "build",
+        "--webpack"
+      ],
+      "tested_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "exit_code": 0,
+      "duration_seconds": 19.222,
+      "tap": {},
+      "log": "production-build.log.gz",
+      "log_sha256": "c429dc627224318053fae38f7e2765d8ef8d130e577c58d7d9f9e9e5dedd023a",
+      "output_sha256": "5a80e35e49a8889aa6d8e33d0321830e61de1b5d66b8af819ccc8e8ec46acf1a",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    "http-pdf-runtime": {
+      "label": "http-pdf-runtime",
+      "command": [
+        "node",
+        "scripts/verify-analysis-http.mjs"
+      ],
+      "tested_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "exit_code": 0,
+      "duration_seconds": 21.497,
+      "tap": {},
+      "log": "http-pdf-runtime.log.gz",
+      "log_sha256": "8d84769c67cbb634ecfbd444ec599dca529f70160eeb87cc4df6127c35d4902b",
+      "output_sha256": "8b89dfa0ed164e76656109ec1decd02664a31a661ff4fb1db0f0c0b26025a897",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    "diff-check": {
+      "label": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "tested_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "exit_code": 0,
+      "duration_seconds": 0.006,
+      "tap": {},
+      "log": "diff-check.log.gz",
+      "log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    }
+  },
+  "runtime_checks": 22,
+  "build_exception_used": false,
+  "earlier_attempts": [
+    {
+      "label": "targeted-recovered-remediation-b-051",
+      "status": "FAIL",
+      "tap": {
+        "tests": 15,
+        "pass": 4,
+        "fail": 11,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "retained_log": "targeted-recovered-remediation-b-051.log.gz",
+      "diagnosis": "Recorded narrow mechanical roots / sandbox subprocess EPERM; not closure evidence"
+    },
+    {
+      "label": "targeted-final-remediation-b-051",
+      "status": "FAIL",
+      "tap": {
+        "tests": 15,
+        "pass": 13,
+        "fail": 2,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "retained_log": "targeted-final-remediation-b-051.log.gz",
+      "diagnosis": "Recorded narrow mechanical roots / sandbox subprocess EPERM; not closure evidence"
+    },
+    {
+      "label": "targeted-verified-remediation-b-050",
+      "status": "FAIL",
+      "tap": {
+        "tests": 97,
+        "pass": 94,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "retained_log": "targeted-verified-remediation-b-050.log.gz",
+      "diagnosis": "Recorded narrow mechanical roots / sandbox subprocess EPERM; not closure evidence"
+    }
+  ],
+  "fullsuite_manifest": "test-manifest.json",
+  "remediation_manifest": "remediation-manifest.json",
+  "latest_complete_closure_status": "PASS"
+}

@@ -1,0 +1,106 @@
+{
+  "classification": "SOURCE_BACKED_COMPLETION",
+  "status": "PASS",
+  "signature": "4a844bae3be9dea8",
+  "GAP_SF_bindings": [
+    {
+      "GAP": "GAP-2100",
+      "SF": "SF-3009",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+    },
+    {
+      "GAP": "GAP-2159",
+      "SF": "SF-3096",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+    }
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "Hus",
+  "agreement_scope": "ordinary",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "version": "Alminnelige vilkår",
+  "effective_from": "UNKNOWN",
+  "component_scope": "gjensidigeHusStandard base loss-use/lost rent; gjensidigeHusRental optional rental only",
+  "canonical_keys": [
+    "hus.brukstap.dekning"
+  ],
+  "tested_baseline": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+  "candidate_identity_sha256": "725e4db3ad2593a6fa60ba769519858d072824cc69ea8ae055f5b2b3a20185a8",
+  "application_identity": "application-identity.json",
+  "source_contracts": [
+    {
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 5",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "finding_id": "GAP-2100",
+      "source_fact_id": "SF-3009",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ]
+    },
+    {
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 6",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "finding_id": "GAP-2159",
+      "source_fact_id": "SF-3096",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ]
+    }
+  ],
+  "complete_material_contract": "Market rent for insured own home unusable after covered event on/immediately near site; agreed rescue underFAL6-4; all access blocked/nature capped certificate sum and10million per customer. Keep distinct from tenant arrears and rented income.",
+  "exact_source_reviewed_values_and_primary_supplementary_references": {
+    "hus.brukstap.dekning": {
+      "owner": "gjensidigeHusStandard",
+      "label": "Ubeboelig bolig etter skade",
+      "value": "Utover forsikringssummen: tap tilsvarende markedsleie for egen bolig som bebos av sikrede og ikke kan benyttes i reparasjons-/gjenoppføringsperioden etter en erstatningsmessig skadehendelse på eller i umiddelbar nærhet av forsikringsstedet, som følge av redningstiltak etter FAL § 6-4 etter avtale med Gjensidige, eller når all adkomst til forsikringsstedet er blokkert. Tap ved blokkert all adkomst eller naturskade erstattes inntil forsikringssummen, maksimalt 10 millioner kroner per kunde. Egen bolig beregnes etter markedspris for umøblerte rom. Normal reparasjons-/gjenoppføringstid regnes fra skadedagen til bygningen skal være ferdig reparert/gjenoppført, inkludert behandling i offentlige instanser. For bygning som ikke repareres eller gjenoppføres gis erstatning i tre måneder. Innsparte utgifter og opptjente renter av bygningserstatningen trekkes fra. Uten dokumenterte boutgifter annet sted begrenses erstatningen til 50 % av gjeldende leiepris for den perioden slike boutgifter ikke kan dokumenteres.",
+      "primary": [
+        17,
+        "Erstatningsregler – Husleietap og brukstap"
+      ],
+      "qualification": [
+        5,
+        "Hus – Tilleggsutgifter / Brukstap"
+      ]
+    }
+  },
+  "original_source_extractions": "b051-Standard-{1,3,4,5,17}.txt.gz; b051-Pluss-{1,3,4,6,18}.txt.gz",
+  "source_role": "Frozen original full terms; original legacy registry optional sourceType is absent, and materialization preserves explicit sourceType:undefined. No source admission/metadata change. Exact contract tested.",
+  "source_gate": "tests/remediation-b-051.test.mjs:R-051-SOURCES",
+  "test_contracts": [
+    "R-051-BINDINGS",
+    "R-051-FACT exact keys",
+    "R-051-REVERSE",
+    "R-051-AVAILABLE",
+    "R-051-DOCUMENT bothlevels",
+    "R-051-COMPARISON",
+    "R-051-CUSTOMER-COMPARISON",
+    "R-051-SCOPE"
+  ],
+  "source_to_catalog_and_reverse_audit": "source-oracle.json and catalog-delta.json / catalog-audit.mjs",
+  "gate_results": "gate-results.json",
+  "complete_closure_summary": "validation-summary.json",
+  "test_manifest": "test-manifest.json",
+  "remediation_manifest": "remediation-manifest.json",
+  "prior_receipt_integrity": "prior-receipts.json",
+  "HARNESS_AUTONOMY_V1": {
+    "prior_used": 5,
+    "scope_used": 6,
+    "scope_limit": 6,
+    "used": 11,
+    "limit": 12,
+    "roots": "harness-roots.json"
+  },
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_closure_reconstructed": false,
+  "publication_revision": "Recorded by atomic Git commit; receipt certifies baseline plus exact candidate file hashes, not an untested other revision",
+  "holds": "checkpoint.json holds_unchanged",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}
