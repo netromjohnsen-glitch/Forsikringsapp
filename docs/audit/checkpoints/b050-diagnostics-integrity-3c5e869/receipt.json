@@ -1,0 +1,26 @@
+{
+  "scope": "B050_DOCUMENTATION_INTEGRITY_RECOVERY",
+  "status": "PASS",
+  "base_revision": "3c5e869e247291703934fedaac766d431e96dfc0",
+  "changed_authorization": "docs/audit/checkpoints/b050-diagnostics-shared-df3041e/authorization.md",
+  "before_sha256": "088be117859647a2c08819217b9ba0d53e9863e19632443607be2e38adb80692",
+  "after_sha256": "4a8b88095bf108374c69a55954c2d0b4be9b3b036a9c0c1eb10823ff59a63616",
+  "equivalence": "before.replace(CRLF, LF) == after; splitlines identical; no other byte differences",
+  "historical_publication_blocker": "docs/audit/checkpoints/b050-diagnostics-shared-df3041e/publication-blocker.json",
+  "historical_gate_results_sha256": "304a14013a0e248085cb86b2bd8574fb29b8986d793097f4df43282b82f9a93a",
+  "prior_receipts_preserved": 13,
+  "mechanical_root": "D03_AUTHORIZATION_CRLF_SERIALIZATION",
+  "mechanical_campaign_before": 11,
+  "mechanical_campaign_after": 12,
+  "mechanical_campaign_limit": 12,
+  "new_semantic_used": 1,
+  "new_semantic_limit": 2,
+  "historical_reported": {
+    "mechanical": "19/16",
+    "semantic": "10/8",
+    "fully_reconstructed": false
+  },
+  "global_resolved_open": "UNKNOWN",
+  "signature_credit": [],
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

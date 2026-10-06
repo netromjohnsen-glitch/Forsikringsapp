@@ -1,0 +1,18 @@
+{
+  "status": "BLOCKED_DOCUMENTATION_INTEGRITY",
+  "head": "3c5e869e247291703934fedaac766d431e96dfc0",
+  "published_shared_selection_tests": "PASS",
+  "publication_diff_check_exit_code": 2,
+  "publication_diff_check_findings": 115,
+  "root": "Uploaded authorization copied byte-for-byte with CRLF; staged diff check failed but shell command sequence continued to commit and push. Agent error, not production regression.",
+  "affected_file": "docs/audit/checkpoints/b050-diagnostics-shared-df3041e/authorization.md",
+  "dependent_mapping_catalog": "NOT_STARTED",
+  "signature_credit": [],
+  "campaign_mechanical_used": 11,
+  "campaign_mechanical_limit": 12,
+  "semantic_used": 1,
+  "semantic_limit": 2,
+  "global_resolved_open": "UNKNOWN",
+  "next_required_decision": "Authorize LF-only normalization of the new authorization copy, regenerate its SHA256SUMS entry, rerun complete staged integrity checks and publish a documentation-only correction before continuing B/C. Preserve existing validation logs and code.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}
