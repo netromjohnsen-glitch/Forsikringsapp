@@ -1,0 +1,848 @@
+{
+  "status": "CURRENT_SOURCE_TO_CATALOG_AND_REVERSE_AUDIT_PASS",
+  "original_register": "docs/audit/legacy-local/source-catalog-remediation-triage/triage.json",
+  "tested_revision": "f829dd3dba2ad8a5dbb0d0d9eb584be83f428f2e",
+  "exact_ten_bindings": [
+    {
+      "signature": "2b078b058bc63967",
+      "gap": "GAP-5581",
+      "sf": "SF-7924",
+      "owner": "sparebank1-fremtind-hund-veterin-r",
+      "keys": [
+        "dyr.veterinar.dekning",
+        "dyr.medisin.dekning"
+      ]
+    },
+    {
+      "signature": "1ee41770b0470c78",
+      "gap": "GAP-5592",
+      "sf": "SF-7935",
+      "owner": "sparebank1-fremtind-hund-veterin-r",
+      "keys": [
+        "dyr.veterinar.egenandel.fast",
+        "dyr.veterinar.egenandel.prosent",
+        "dyr.veterinar.egenandel.periode"
+      ]
+    },
+    {
+      "signature": "dc3e04a5fcce2317",
+      "gap": "GAP-5595",
+      "sf": "SF-7938",
+      "owner": "sparebank1-fremtind-hund-topp",
+      "keys": [
+        "dyr.allergi.dekning",
+        "dyr.allergi.grense"
+      ]
+    },
+    {
+      "signature": "0da02a8dae8fd373",
+      "gap": "GAP-5596",
+      "sf": "SF-7939",
+      "owner": "sparebank1-fremtind-hund-topp",
+      "keys": [
+        "dyr.diagnostikk.dekning",
+        "dyr.diagnostikk.grense"
+      ]
+    },
+    {
+      "signature": "688cc5923342804d",
+      "gap": "GAP-5597",
+      "sf": "SF-7940",
+      "owner": "sparebank1-fremtind-hund-topp",
+      "keys": [
+        "dyr.tannsykdom.dekning"
+      ]
+    },
+    {
+      "signature": "6e5f3830ca4701d4",
+      "gap": "GAP-5598",
+      "sf": "SF-7941",
+      "owner": "sparebank1-fremtind-hund-topp",
+      "keys": [
+        "dyr.rehabilitering.dekning"
+      ]
+    },
+    {
+      "signature": "6f0ac8fe783a963d",
+      "gap": "GAP-5599",
+      "sf": "SF-7942",
+      "owner": "sparebank1-fremtind-hund-liv",
+      "keys": [
+        "dyr.liv.dekning"
+      ]
+    },
+    {
+      "signature": "1982ee310e18279c",
+      "gap": "GAP-5602",
+      "sf": "SF-7945",
+      "owner": "sparebank1-fremtind-hund-liv",
+      "keys": [
+        "dyr.liv.forsvinning",
+        "dyr.liv.tyveri"
+      ]
+    },
+    {
+      "signature": "0f51d1c0374f1f1f",
+      "gap": "GAP-5603",
+      "sf": "SF-7946",
+      "owner": "sparebank1-fremtind-hund-bruk",
+      "keys": [
+        "hund.bruksverdi.dekning"
+      ]
+    },
+    {
+      "signature": "03cff9fe5cfbf518",
+      "gap": "GAP-5604",
+      "sf": "SF-7947",
+      "owner": "sparebank1-fremtind-hund-bruk",
+      "keys": [
+        "hund.bruksverdi.begrensning"
+      ]
+    }
+  ],
+  "source_registry_contracts": {
+    "boat-pet:sparebank1-fremtind:hund": {
+      "id": "boat-pet:sparebank1-fremtind:hund",
+      "filename": "fremtind-dog-vet-terms.pdf",
+      "providerId": "sparebank1-fremtind",
+      "company": "Fremtind",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "sourceType": "full_terms",
+      "termsNumber": "PBK-231.200-004",
+      "effectiveFrom": "2025-08-07",
+      "version": "2025-08-07",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "sha256": "5897fd60318410bdc5481e12d4cd6454e7fe4741682a13e5289991f211b7d9f7",
+      "documentName": "PBK-231.200-004"
+    },
+    "boat-pet:sparebank1-fremtind:hund:use": {
+      "id": "boat-pet:sparebank1-fremtind:hund:use",
+      "filename": "fremtind-dog-use-terms.pdf",
+      "providerId": "sparebank1-fremtind",
+      "company": "Fremtind",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "sourceType": "full_terms",
+      "termsNumber": "PBK-231.220-002",
+      "effectiveFrom": "2025-08-07",
+      "version": "2025-08-07",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "sha256": "456a1c4f38b4c3934bf0b4c9ed1167e805d5238fb1960115d9cb1e2e65aafcc2",
+      "documentName": "PBK-231.220-002"
+    },
+    "boat-pet:sparebank1-fremtind:hund:life": {
+      "id": "boat-pet:sparebank1-fremtind:hund:life",
+      "filename": "fremtind-dog-life-terms.pdf",
+      "providerId": "sparebank1-fremtind",
+      "company": "Fremtind",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "sourceType": "full_terms",
+      "termsNumber": "PBK-231.210-002",
+      "effectiveFrom": "2025-08-07",
+      "version": "2025-08-07",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "sha256": "8445f2c6faede5cfe1c6054e58cc880fc4cea1bbc31321ddc76fdbd035dcf43d",
+      "documentName": "PBK-231.210-002"
+    }
+  },
+  "independent_existing_test_oracle": "tests/remediation-b-071.test.mjs: R-071-IDENTITY and signature-specific source-page quotes/exact tuples",
+  "reviewed_originals": "Full frozen Veterinær PDF pages1–3, Liv page1, Bruk page1; official product HTML controls. No historical receipt inference.",
+  "reviewed_full_meaning": [
+    "Necessary veterinary treatment for covered illness/accident, vaccination/castration/sterilisation complications; prescribed medication within chosen annual certificate sum. Other full-term exclusions retained.",
+    "Only one chosen fixed deductible 1300/2000/3500 during135days from first expense; then20percent of remainder.",
+    "Topp is optional veterinary extension within chosen annual sum/deductible, replaces lifetime allergy and annual MR/CT caps; dental event/medical necessity/insured before4months and clean7weeks–4months certificate qualifiers; rehab within6months of treating-vet order.",
+    "Separate Liv, named animal, covered illness/accident/death/euthanasia; corresponding replacement cost capped chosen sum; theft/disappearance police and advertisements, wait3months from BOTH insurer/police notice.",
+    "Separate optional Bruk; covered illness/accident, permanent loss, veterinarian proof after investigation/treatment/adequate rest, documented work or official competition last12months, trained regular working dogs≥50percent; breeding100percent, prior2years normal litter and NKK registration; excluded exhibition/other uses and vet-uncovered illness."
+  ],
+  "rows": [
+    {
+      "owner": "sparebank1-fremtind-hund-veterin-r",
+      "key": "dyr.veterinar.dekning",
+      "value": "Inkludert: nødvendige veterinærutgifter som følge av sykdom eller ulykkesskade, og komplikasjoner som følge av vaksinasjon eller kastrering/sterilisering, innenfor valgt forsikringssum per forsikringsår.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 1,
+      "section": "7 Veterinærutgifter",
+      "quotes": [
+        [
+          1,
+          "nødvendige veterinærutgifter som følge av sykdom eller ulykkesskade"
+        ],
+        [
+          1,
+          "komplikasjoner som følge av vaksinasjon eller kastrering/sterilisering"
+        ]
+      ],
+      "actual_catalog_fact": {
+        "key": "dyr.veterinar.dekning",
+        "label": "Veterinærbehandling",
+        "value": "Inkludert: nødvendige veterinærutgifter som følge av sykdom eller ulykkesskade, og komplikasjoner som følge av vaksinasjon eller kastrering/sterilisering, innenfor valgt forsikringssum per forsikringsår.",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-veterin-r",
+      "key": "dyr.medisin.dekning",
+      "value": "Inkludert: utgifter til reseptbelagte medisiner innenfor valgt forsikringssum per forsikringsår.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 1,
+      "section": "7 Veterinærutgifter – reseptbelagte medisiner",
+      "quotes": [
+        [
+          1,
+          "utgifter til reseptbelagte medisiner"
+        ]
+      ],
+      "actual_catalog_fact": {
+        "key": "dyr.medisin.dekning",
+        "label": "Medisiner",
+        "value": "Inkludert: utgifter til reseptbelagte medisiner innenfor valgt forsikringssum per forsikringsår.",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "7 Veterinærutgifter – reseptbelagte medisiner",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-veterin-r",
+      "key": "dyr.veterinar.egenandel.fast",
+      "value": "Valg mellom 1 300, 2 000 eller 3 500 kr: kun én valgt fast egenandel i en egenandelsperiode på 135 dager regnet fra og med første veterinærutgift.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 2,
+      "section": "8 Erstatningsregler – egenandel",
+      "quotes": [
+        [
+          2,
+          "I denne perioden trekker vi kun én egenandel på 1 300, 2 000 eller 3 500 kroner avhengig av hva du har valgt."
+        ]
+      ],
+      "deductibleClassification": "reference",
+      "actual_catalog_fact": {
+        "key": "dyr.veterinar.egenandel.fast",
+        "label": "Veterinærbehandling – fast egenandel",
+        "value": "Valg mellom 1 300, 2 000 eller 3 500 kr: kun én valgt fast egenandel i en egenandelsperiode på 135 dager regnet fra og med første veterinærutgift.",
+        "deductibleClassification": "reference",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 2,
+          "section": "8 Erstatningsregler – egenandel",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-veterin-r",
+      "key": "dyr.veterinar.egenandel.prosent",
+      "value": "20 % av resterende veterinærutgifter etter den valgte faste egenandelen.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 2,
+      "section": "8 Erstatningsregler – egenandel",
+      "quotes": [
+        [
+          2,
+          "I tillegg betaler du 20% av resterende veterinærutgifter."
+        ]
+      ],
+      "deductibleClassification": "coverage",
+      "actual_catalog_fact": {
+        "key": "dyr.veterinar.egenandel.prosent",
+        "label": "Veterinærbehandling – prosentandel",
+        "value": "20 % av resterende veterinærutgifter etter den valgte faste egenandelen.",
+        "deductibleClassification": "coverage",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 2,
+          "section": "8 Erstatningsregler – egenandel",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-veterin-r",
+      "key": "dyr.veterinar.egenandel.periode",
+      "value": "135 dager regnet fra og med første veterinærutgift; kun én valgt fast egenandel i perioden.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 2,
+      "section": "8 Erstatningsregler – egenandel",
+      "quotes": [
+        [
+          2,
+          "Ved skade eller sykdom er det en egenandelsperiode på 135 dager som regnes fra og med første veterinærutgift."
+        ]
+      ],
+      "deductibleClassification": "coverage",
+      "actual_catalog_fact": {
+        "key": "dyr.veterinar.egenandel.periode",
+        "label": "Veterinærbehandling – egenandelsperiode",
+        "value": "135 dager regnet fra og med første veterinærutgift; kun én valgt fast egenandel i perioden.",
+        "deductibleClassification": "coverage",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 2,
+          "section": "8 Erstatningsregler – egenandel",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.allergi.dekning",
+      "value": "Valgfri utvidelse: utredning, behandling og medisiner til atopi/allergi innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 3,
+      "section": "Topp veterinærutgifter – atopi/allergi",
+      "quotes": [
+        [
+          3,
+          "utredning, behandling og medisiner til atopi/allergi"
+        ]
+      ],
+      "qualificationSource": {
+        "source": "boat-pet:sparebank1-fremtind:hund",
+        "page": 1,
+        "section": "6 Forsikringssum og egenandel"
+      },
+      "replacesBase": true,
+      "actual_catalog_fact": {
+        "key": "dyr.allergi.dekning",
+        "label": "Allergi og atopi",
+        "value": "Valgfri utvidelse: utredning, behandling og medisiner til atopi/allergi innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+        "qualificationSource": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "6 Forsikringssum og egenandel"
+        },
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter – atopi/allergi",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.allergi.grense",
+      "value": "Innenfor valgt forsikringssum per forsikringsår og med valgt egenandel; ingen egen livstidsgrense på 15 000 kr når Topp er valgt.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 3,
+      "section": "Topp veterinærutgifter – atopi/allergi",
+      "quotes": [
+        [
+          3,
+          "Utvidelsen gjelder innenfor forsikringssummen i forsikringsbeviset med valgt egenandel."
+        ],
+        [
+          3,
+          "utredning, behandling og medisiner til atopi/allergi"
+        ]
+      ],
+      "qualificationSource": {
+        "source": "boat-pet:sparebank1-fremtind:hund",
+        "page": 1,
+        "section": "6 Forsikringssum og egenandel"
+      },
+      "replacesBase": true,
+      "actual_catalog_fact": {
+        "key": "dyr.allergi.grense",
+        "label": "Allergi og atopi – grense",
+        "value": "Innenfor valgt forsikringssum per forsikringsår og med valgt egenandel; ingen egen livstidsgrense på 15 000 kr når Topp er valgt.",
+        "qualificationSource": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "6 Forsikringssum og egenandel"
+        },
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter – atopi/allergi",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.diagnostikk.dekning",
+      "value": "Valgfri utvidelse: MR/CT innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 3,
+      "section": "Topp veterinærutgifter – MR/CT",
+      "quotes": [
+        [
+          3,
+          "MR/ CT"
+        ]
+      ],
+      "qualificationSource": {
+        "source": "boat-pet:sparebank1-fremtind:hund",
+        "page": 1,
+        "section": "6 Forsikringssum og egenandel"
+      },
+      "replacesBase": true,
+      "actual_catalog_fact": {
+        "key": "dyr.diagnostikk.dekning",
+        "label": "Diagnostikk",
+        "value": "Valgfri utvidelse: MR/CT innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+        "qualificationSource": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "6 Forsikringssum og egenandel"
+        },
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter – MR/CT",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.diagnostikk.grense",
+      "value": "MR/CT innenfor valgt forsikringssum per forsikringsår og med valgt egenandel; ingen egen årsgrense på 15 000 kr når Topp er valgt.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 3,
+      "section": "Topp veterinærutgifter – MR/CT",
+      "quotes": [
+        [
+          3,
+          "MR/ CT"
+        ],
+        [
+          3,
+          "Utvidelsen gjelder innenfor forsikringssummen i forsikringsbeviset med valgt egenandel."
+        ]
+      ],
+      "qualificationSource": {
+        "source": "boat-pet:sparebank1-fremtind:hund",
+        "page": 1,
+        "section": "6 Forsikringssum og egenandel"
+      },
+      "replacesBase": true,
+      "actual_catalog_fact": {
+        "key": "dyr.diagnostikk.grense",
+        "label": "Diagnostikk – grense",
+        "value": "MR/CT innenfor valgt forsikringssum per forsikringsår og med valgt egenandel; ingen egen årsgrense på 15 000 kr når Topp er valgt.",
+        "qualificationSource": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "6 Forsikringssum og egenandel"
+        },
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter – MR/CT",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        },
+        "replacesBase": true
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.tannsykdom.dekning",
+      "value": "Valgfri utvidelse: tannbehandling for karies, emaljedefekt og tannresorpsjon. Tilbakeholdte melketenner, tanncyster, tannstilling- og bittfeil dekkes dersom det er medisinsk nødvendig og hunden er forsikret før fire måneders alder. Ved korrigering av tannstilling- og bittfeil kreves veterinærattest fra hunden er mellom syv uker og fire måneders alder, uten anmerking på tenner/bitt. Innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 3,
+      "section": "Topp veterinærutgifter – tannbehandling",
+      "quotes": [
+        [
+          3,
+          "tannbehandling for karies, emaljedefekt og tannresorpsjon"
+        ],
+        [
+          3,
+          "tilbakeholdte melketenner, tanncyster, tannstilling- og bittfeil dersom det er medisinsk nødvendig og hunden er forsikret før fire måneders alder."
+        ],
+        [
+          3,
+          "Ved korrigering av tannstilling- og bittfeil må det finnes en veterinærattest fra hunden er mellom syv uker og fire måneders alder som er uten anmerking på tenner/bitt"
+        ]
+      ],
+      "qualificationSource": {
+        "source": "boat-pet:sparebank1-fremtind:hund",
+        "page": 1,
+        "section": "6 Forsikringssum og egenandel"
+      },
+      "actual_catalog_fact": {
+        "key": "dyr.tannsykdom.dekning",
+        "label": "Tannsykdom",
+        "value": "Valgfri utvidelse: tannbehandling for karies, emaljedefekt og tannresorpsjon. Tilbakeholdte melketenner, tanncyster, tannstilling- og bittfeil dekkes dersom det er medisinsk nødvendig og hunden er forsikret før fire måneders alder. Ved korrigering av tannstilling- og bittfeil kreves veterinærattest fra hunden er mellom syv uker og fire måneders alder, uten anmerking på tenner/bitt. Innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+        "qualificationSource": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "6 Forsikringssum og egenandel"
+        },
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter – tannbehandling",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-topp",
+      "key": "dyr.rehabilitering.dekning",
+      "value": "Valgfri utvidelse. Fysioterapi, rehabilitering og kiropraktikk utført i løpet av 6 måneder etter bestilling fra behandlende veterinær, innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+      "source": "boat-pet:sparebank1-fremtind:hund",
+      "page": 3,
+      "section": "Topp veterinærutgifter",
+      "quotes": [
+        [
+          3,
+          "fysioterapi/rehabilitering og kiropraktikk utført i løpet av 6 måneder etter det ble bestilt av behandlende veterinær"
+        ]
+      ],
+      "qualificationSource": {
+        "source": "boat-pet:sparebank1-fremtind:hund",
+        "page": 1,
+        "section": "6 Forsikringssum og egenandel"
+      },
+      "actual_catalog_fact": {
+        "key": "dyr.rehabilitering.dekning",
+        "label": "Rehabilitering",
+        "value": "Valgfri utvidelse. Fysioterapi, rehabilitering og kiropraktikk utført i løpet av 6 måneder etter bestilling fra behandlende veterinær, innenfor valgt forsikringssum per forsikringsår og med valgt egenandel.",
+        "qualificationSource": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "6 Forsikringssum og egenandel"
+        },
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund",
+          "filename": "fremtind-dog-vet-terms.pdf",
+          "termsNumber": "PBK-231.200-004",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 3,
+          "section": "Topp veterinærutgifter",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-liv",
+      "key": "dyr.liv.dekning",
+      "value": "Valgfri separat dekning for hunden i forsikringsbeviset inntil valgt forsikringssum: hundens verdi hvis hunden dør eller må avlives i forsikringstiden som følge av ulykke eller sykdom som er dekket av veterinærforsikringen, samt forsvinning og tyveri. Sykdommer, lidelser og kostnader som ikke er dekket av veterinærforsikringen er unntatt. Erstatningen er gjenanskaffelseskostnad for tilsvarende hund på skadedagen, begrenset til valgt forsikringssum.",
+      "source": "boat-pet:sparebank1-fremtind:hund:life",
+      "page": 1,
+      "section": "Død/tap hund – dekning og erstatningsregler",
+      "quotes": [
+        [
+          1,
+          "Forsikringen gjelder for hunden som er navngitt i forsikringsbeviset inntil valgt forsikringssum."
+        ],
+        [
+          1,
+          "hundens verdi hvis hunden dør eller må avlives i forsikringstiden som følge av ulykke eller sykdom som er dekket i forsikringen for veterinærutgifter."
+        ],
+        [
+          1,
+          "sykdommer/lidelser og kostnader som ikke er dekket i forsikringen for veterinærutgifter."
+        ],
+        [
+          1,
+          "Vi beregner erstatningen ved død/forsvunnet hund til hva det på skadedagen koster å kjøpe en tilsvarende hund, begrenset til forsikringssummen som kommer frem av forsikringsbeviset."
+        ]
+      ],
+      "actual_catalog_fact": {
+        "key": "dyr.liv.dekning",
+        "label": "Liv, død og tap",
+        "value": "Valgfri separat dekning for hunden i forsikringsbeviset inntil valgt forsikringssum: hundens verdi hvis hunden dør eller må avlives i forsikringstiden som følge av ulykke eller sykdom som er dekket av veterinærforsikringen, samt forsvinning og tyveri. Sykdommer, lidelser og kostnader som ikke er dekket av veterinærforsikringen er unntatt. Erstatningen er gjenanskaffelseskostnad for tilsvarende hund på skadedagen, begrenset til valgt forsikringssum.",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund:life",
+          "filename": "fremtind-dog-life-terms.pdf",
+          "termsNumber": "PBK-231.210-002",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "Død/tap hund – dekning og erstatningsregler",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-liv",
+      "key": "dyr.liv.forsvinning",
+      "value": "Inkludert når livsdekningen er valgt: stjålet/forsvunnet hund skal meldes til politiet og etterlyses ved annonsering. Erstatningen utbetales tidligst 3 måneder etter at hendelsen er meldt til selskapet og politiet.",
+      "source": "boat-pet:sparebank1-fremtind:hund:life",
+      "page": 1,
+      "section": "Død/tap hund – stjålet/forsvunnet hund",
+      "quotes": [
+        [
+          1,
+          "Stjålet/forsvunnet hund skal meldes til politiet og etterlyses ved annonsering. Erstatningen utbetales tidligst 3 måneder etter at hendelsen er meldt til oss og politiet."
+        ]
+      ],
+      "actual_catalog_fact": {
+        "key": "dyr.liv.forsvinning",
+        "label": "Liv, død og tap – forsvinning",
+        "value": "Inkludert når livsdekningen er valgt: stjålet/forsvunnet hund skal meldes til politiet og etterlyses ved annonsering. Erstatningen utbetales tidligst 3 måneder etter at hendelsen er meldt til selskapet og politiet.",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund:life",
+          "filename": "fremtind-dog-life-terms.pdf",
+          "termsNumber": "PBK-231.210-002",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "Død/tap hund – stjålet/forsvunnet hund",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-liv",
+      "key": "dyr.liv.tyveri",
+      "value": "Inkludert når livsdekningen er valgt: stjålet/forsvunnet hund skal meldes til politiet og etterlyses ved annonsering. Erstatningen utbetales tidligst 3 måneder etter at hendelsen er meldt til selskapet og politiet.",
+      "source": "boat-pet:sparebank1-fremtind:hund:life",
+      "page": 1,
+      "section": "Død/tap hund – stjålet/forsvunnet hund",
+      "quotes": [
+        [
+          1,
+          "Stjålet/forsvunnet hund skal meldes til politiet og etterlyses ved annonsering. Erstatningen utbetales tidligst 3 måneder etter at hendelsen er meldt til oss og politiet."
+        ]
+      ],
+      "actual_catalog_fact": {
+        "key": "dyr.liv.tyveri",
+        "label": "Liv, død og tap – tyveri",
+        "value": "Inkludert når livsdekningen er valgt: stjålet/forsvunnet hund skal meldes til politiet og etterlyses ved annonsering. Erstatningen utbetales tidligst 3 måneder etter at hendelsen er meldt til selskapet og politiet.",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund:life",
+          "filename": "fremtind-dog-life-terms.pdf",
+          "termsNumber": "PBK-231.210-002",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "Død/tap hund – stjålet/forsvunnet hund",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-bruk",
+      "key": "hund.bruksverdi.dekning",
+      "value": "Valgfri separat dekning: varig tap av bruksverdi som følge av ulykke eller sykdom som er dekket av veterinærforsikringen, inntil valgt forsikringssum. Tapet må dokumenteres av veterinær etter utredning, behandling og tilstrekkelig lang hvileperiode. Dokumentert praktisk arbeid eller offisiell konkurransevirksomhet de siste 12 månedene før sykdom eller skade oppsto er påkrevd.",
+      "source": "boat-pet:sparebank1-fremtind:hund:use",
+      "page": 1,
+      "section": "Tap av bruksverdi hund – dekning og dokumentasjon",
+      "quotes": [
+        [
+          1,
+          "varig tap av bruksverdi som følge av ulykke eller sykdom som er dekket i forsikringen for veterinærutgifter."
+        ],
+        [
+          1,
+          "Tapet av bruksverdi må være dokumentert av veterinær og hunden må være utredet, behandlet og fått tilstrekkelig lang hvileperiode."
+        ],
+        [
+          1,
+          "Det må dokumenteres at hunden har vært brukt i praktisk arbeid eller offisiell konkurransevirksomhet de siste 12 månedene før sykdom eller skade oppstod."
+        ]
+      ],
+      "actual_catalog_fact": {
+        "key": "hund.bruksverdi.dekning",
+        "label": "Bruksverdi",
+        "value": "Valgfri separat dekning: varig tap av bruksverdi som følge av ulykke eller sykdom som er dekket av veterinærforsikringen, inntil valgt forsikringssum. Tapet må dokumenteres av veterinær etter utredning, behandling og tilstrekkelig lang hvileperiode. Dokumentert praktisk arbeid eller offisiell konkurransevirksomhet de siste 12 månedene før sykdom eller skade oppsto er påkrevd.",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund:use",
+          "filename": "fremtind-dog-use-terms.pdf",
+          "termsNumber": "PBK-231.220-002",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "Tap av bruksverdi hund – dekning og dokumentasjon",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    },
+    {
+      "owner": "sparebank1-fremtind-hund-bruk",
+      "key": "hund.bruksverdi.begrensning",
+      "value": "Jakthund, gjeterhund og tjenestehund må være trent for og regelmessig brukt til formålet, med minst 50 % redusert bruksegenskap. Avlshund må ha mistet avlsevnen 100 %: hannhund må være far til minst ett kull siste to år, og tispe må ha født minst ett kull på normal måte siste to år før sykdom/skade; parringen/kullene må være registrert i Norsk Kennel Klubb. Tap av utstillingsevner og andre bruksområder enn avl, jakt, gjeting og tjeneste er unntatt, samt sykdommer, lidelser og kostnader som ikke dekkes av veterinærforsikringen.",
+      "source": "boat-pet:sparebank1-fremtind:hund:use",
+      "page": 1,
+      "section": "Tap av bruksverdi hund – forutsetninger og unntak",
+      "quotes": [
+        [
+          1,
+          "jakthund, gjeterhund og tjenestehund som er trent for og regelmessig brukt til formålet, og hvor bruksegenskapen er minst 50 prosent redusert."
+        ],
+        [
+          1,
+          "avlshund som har mistet avlsevnen 100 prosent."
+        ],
+        [
+          1,
+          "Hannhund må være far til minst 1 kull siste 2 år, og tispe må ha født minst 1 kull på normal måte siste 2 år, før sykdommen/skaden oppsto."
+        ],
+        [
+          1,
+          "Parringen/kullene må være registrert i Norsk Kennel Klubb."
+        ]
+      ],
+      "actual_catalog_fact": {
+        "key": "hund.bruksverdi.begrensning",
+        "label": "Bruksverdi – begrensninger",
+        "value": "Jakthund, gjeterhund og tjenestehund må være trent for og regelmessig brukt til formålet, med minst 50 % redusert bruksegenskap. Avlshund må ha mistet avlsevnen 100 %: hannhund må være far til minst ett kull siste to år, og tispe må ha født minst ett kull på normal måte siste to år før sykdom/skade; parringen/kullene må være registrert i Norsk Kennel Klubb. Tap av utstillingsevner og andre bruksområder enn avl, jakt, gjeting og tjeneste er unntatt, samt sykdommer, lidelser og kostnader som ikke dekkes av veterinærforsikringen.",
+        "source": {
+          "documentId": "boat-pet:sparebank1-fremtind:hund:use",
+          "filename": "fremtind-dog-use-terms.pdf",
+          "termsNumber": "PBK-231.220-002",
+          "effectiveFrom": "2025-08-07",
+          "version": "2025-08-07",
+          "agreementScope": "ordinary",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+          "company": "Fremtind",
+          "page": 1,
+          "section": "Tap av bruksverdi hund – forutsetninger og unntak",
+          "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+        }
+      }
+    }
+  ],
+  "selection_and_provenance_evidence": "R-071-CUSTOMER27 states, CONFLICT/UNKNOWN, MANUAL8 options, DOCUMENT priority, AGE nonassertive guard, FRENDE/GJENSIDIGE/STOREBRAND and positive Maskinskade/Leiebil/Liv-sum controls; current97/97 PASS",
+  "held_exclusion": {
+    "signature": "5f31ff4946a666b5",
+    "gap": "GAP-5590",
+    "sf": "SF-7933",
+    "status": "HELD_UNCHANGED_NOT_REVALIDATED"
+  }
+}

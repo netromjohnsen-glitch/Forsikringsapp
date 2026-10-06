@@ -1,0 +1,54 @@
+{
+  "classification": "CURRENT_REVALIDATION",
+  "status": "PASS",
+  "signature": "688cc5923342804d",
+  "gap": "GAP-5597",
+  "sf": "SF-7940",
+  "tested_revision": "f829dd3dba2ad8a5dbb0d0d9eb584be83f428f2e",
+  "provider": "sparebank1-fremtind",
+  "company": "Fremtind",
+  "insurance_type": "Hund",
+  "scope": "ordinary",
+  "version": "2025-08-07",
+  "component_owner": "sparebank1-fremtind-hund-topp",
+  "canonical_keys": [
+    "dyr.tannsykdom.dekning"
+  ],
+  "source_contracts": [
+    {
+      "id": "boat-pet:sparebank1-fremtind:hund",
+      "filename": "fremtind-dog-vet-terms.pdf",
+      "providerId": "sparebank1-fremtind",
+      "company": "Fremtind",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "sourceType": "full_terms",
+      "termsNumber": "PBK-231.200-004",
+      "effectiveFrom": "2025-08-07",
+      "version": "2025-08-07",
+      "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/hundeforsikring.html",
+      "sha256": "5897fd60318410bdc5481e12d4cd6454e7fe4741682a13e5289991f211b7d9f7",
+      "documentName": "PBK-231.200-004"
+    }
+  ],
+  "source_pages_sections_quotes_and_exact_facts": "b071-source-contracts.json",
+  "test_contract": "tests/remediation-b-071.test.mjs: R-071-688cc5923342804d",
+  "current_gate_results": "gate-results.json",
+  "full_gate_summary": "validation-summary.json",
+  "test_manifest": "test-manifest.json",
+  "remediation_manifest": "remediation-manifest.json",
+  "application_identity": "application-identity.json",
+  "harness_roots": "harness-roots.json",
+  "HARNESS_AUTONOMY_V1": {
+    "scope_used": 1,
+    "scope_limit": 6,
+    "campaign_before": 4,
+    "campaign_after": 5,
+    "campaign_limit": 12
+  },
+  "historical_closure_reconstructed": false,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "publication_revision": "Documentation commit recorded by Git; not asserted to be the tested revision",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

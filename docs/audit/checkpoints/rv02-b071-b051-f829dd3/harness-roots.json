@@ -1,0 +1,22 @@
+[
+  {
+    "id": "RV02-H01-ACTUAL_TEST_FILE_SELECTION",
+    "classification": "MECHANICAL_HARNESS_ONLY",
+    "before_sha256": "cbed58df84e9ac6f064e212b5609b480438139b614b4b3a4757ff1bd06077bcc",
+    "after_sha256": "c7df955093ddf4635f320e4170eb05454d2fe078fc1d4e7870280f4d0e3b0289",
+    "cause": "New audit runner assumed nonexistent document-fact-normalization.test.mjs and catalog-product-comparison.test.mjs names. Production HEAD does not contain those files.",
+    "baseline_proof": {
+      "document-fact-normalization.test.mjs": 128,
+      "catalog-product-comparison.test.mjs": 128
+    },
+    "correction": "Use actual catalog-comparison and product-comparison-hardening tests; existing insurance-normalization and Liv-guard cover actual normalization. Fullsuite manifest executes every test, without omission. Preserve failed initial log and rerun targeted gate.",
+    "equivalence": "No insurance assertions, data, source bytes, values, scope, selection, mapping, document priority or provenance changed. Only command file selection corrected. No test is weakened or skipped from fullsuite.",
+    "policy": "HARNESS_AUTONOMY_V1",
+    "scope_used": 1,
+    "scope_limit": 6,
+    "campaign_before": 4,
+    "campaign_after": 5,
+    "campaign_limit": 12,
+    "historical_counters_changed": false
+  }
+]

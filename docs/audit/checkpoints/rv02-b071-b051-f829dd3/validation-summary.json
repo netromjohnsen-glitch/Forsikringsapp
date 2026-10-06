@@ -1,0 +1,46 @@
+{
+  "tested_revision": "f829dd3dba2ad8a5dbb0d0d9eb584be83f428f2e",
+  "fullsuite": {
+    "files": 145,
+    "tests": 3955,
+    "pass": 3955
+  },
+  "remediation": {
+    "files": 47,
+    "tests": 1804,
+    "pass": 1804
+  },
+  "targeted_B071": 97,
+  "quality": {
+    "typegen": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "typescript": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "eslint": {
+      "status": "PASS",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 22
+    },
+    "production-build": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "http-pdf-runtime": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "diff-check": {
+      "status": "PASS",
+      "exit_code": 0
+    }
+  },
+  "synthetic_runtime_checks": 22,
+  "source_of_counts": "Actual TAP summaries of every manifest entry, not prior receipts",
+  "initial_harness_failure": "Retained in gate-results.json; addressed as RV02-H01 and all replacement/full manifests PASS",
+  "build_exception_used": false
+}
