@@ -1,26 +1,22 @@
 {
   "status": "DURABLE_DEVELOPMENT_AGENT_CHECKPOINT_NOT_GLOBAL_EXECUTION_LEDGER",
   "repository": "netromjohnsen-glitch/Forsikringsapp",
-  "application_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da plus B/C exact candidate",
+  "application_revision": "25fabe1ba0d4c872a6884f15d56be64b7cc67c72 plus exact rehabilitation candidate",
   "initial_head_origin_remote_main_equal": true,
   "initial_working_tree": "CLEAN",
   "documentation_revision": "git log -1 --format=%H -- docs/audit/checkpoints/development-agent-ef5b0bc/checkpoint.json",
   "validation_identity": {
-    "summary": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/summary.json",
-    "tested_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
-    "tested_candidate_identity": "78420e98db1823f644c4f785ce739e0c159b3588ad2d6b00425a205f15a05b85",
+    "summary": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/summary.json",
+    "receipt": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/receipt-c1440948744bfa17.json",
+    "tested_base_revision": "25fabe1ba0d4c872a6884f15d56be64b7cc67c72",
+    "tested_candidate_identity": "bec95ce7888d853a8d28eb587e6196917b48a5e00d8dcb5c77eb9bb5c1d902eb",
     "candidate_files_sha256": {
-      "lib/document-fact-normalization.ts": "eda53d2ef5fe703a406697475f422e397432a2e13cebf2ac9ef10750eb3a02bc",
-      "lib/insurance-normalization.ts": "d7c98f41df8ebe78a1cb64125439a0ec5a3b6241926dea41db1886f56884e418",
-      "lib/boat-pet-catalog.ts": "e70f1ea039f6f4537ca829d4b025711d82469e895fa250feac5c167fca079c37",
-      "tests/coverage-status.test.mjs": "a8187517e133dbb8678d15768cbac751e49ba74602baf24137e66a3cf307d4f9",
-      "tests/insurance-normalization.test.mjs": "7b5b2916b93acf9ab033a7eecd78de1077f267e1ca24f31623ffdf5d4ceb87a2",
-      "tests/catalog-enrichment-provenance.test.mjs": "0f664977a52c413302429a8fa1425508e8581a9caee2e66bdeb9a498583ad4e5",
-      "tests/boat-pet-catalog.test.mjs": "dd68a7bcd14ad065a4b08d09613a079305106882d8fec0dbcfd175636e04aa50",
-      "tests/remediation-b-050.test.mjs": "69aa8fdf4073c9251964a3383e6e0331cad1d36d4a4bbbbde4bcefee6fe53a6c"
+      "lib/boat-pet-catalog.ts": "9c57fcf478977cd732a79c5c15c4a4284aa087114bf210aae0eb9d4ef36e26a0",
+      "tests/boat-pet-catalog.test.mjs": "aeb09097d696a39edc45d2b24a7d7abd92f3d9b6e07633b84b4fdb745d463af7",
+      "tests/remediation-b-050.test.mjs": "e63778ea3256663d8382eaaa8848c31500208613054ac377bec2ef5bd8f5cb8d"
     },
-    "prior_thirteen_receipts_preserved": true,
-    "publication_revision": "Resolve git log -1 --format=%H -- docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-7b2587a3bbc0c772.json"
+    "prior_fifteen_receipts_preserved": true,
+    "publication_revision": "Resolve git log -1 --format=%H -- docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/receipt-c1440948744bfa17.json"
   },
   "campaign_members": [
     {
@@ -146,9 +142,17 @@
       "receipt_sha256": "4c7eb6fa77843631341d3732e8292e67fb9a7cec38f49282c726182ee95be5f2",
       "tested_base_revision": "76b9aae7c49a924ec1fc7edd1d9b49eb43b485da",
       "tested_candidate_identity": "78420e98db1823f644c4f785ce739e0c159b3588ad2d6b00425a205f15a05b85"
+    },
+    {
+      "signature": "c1440948744bfa17",
+      "classification": "NEW_REHABILITATION_DEADLINE_PLACE_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/receipt-c1440948744bfa17.json",
+      "receipt_sha256": "cc0b076e58a8c3b8cc8cc226f4079a1da7b64e028f463c03d0235ab215a1c3f8",
+      "tested_base_revision": "25fabe1ba0d4c872a6884f15d56be64b7cc67c72",
+      "tested_candidate_identity": "bec95ce7888d853a8d28eb587e6196917b48a5e00d8dcb5c77eb9bb5c1d902eb"
     }
   ],
-  "documented_unique_count": 15,
+  "documented_unique_count": 16,
   "global_current_resolved": "UNKNOWN",
   "global_current_open": "UNKNOWN",
   "partial_recovery": "docs/audit/checkpoints/g2-recovery-36d7694/checkpoint.json",
@@ -217,10 +221,10 @@
   },
   "current_blockers": [
     "Global exact historical closure chain remains incomplete",
-    "Remaining B050 rehabilitation c1440948744bfa17 / SC-035 held; no later scope authorized"
+    "SC-035/SR-031 treatment-modality and existing rehabilitation selection question remains separately held; no change authorized"
   ],
   "authorized_packets": [],
-  "next_proposed_packet": "READONLY_REHABILITATION_SC035_DECISION_REQUIRES_EXPLICIT_SCOPE",
+  "next_proposed_packet": "READ_ONLY_SC035_SR031_DECISION_REQUIRES_EXPLICIT_SCOPE",
   "plan": "docs/development-agent/next-b050-plan.md",
   "remaining_inventory": "docs/audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json",
   "evidence_sha256": {
@@ -258,14 +262,21 @@
     "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/campaign-policy.json": "ef04d5891eb9491dc808d150db0606480d6a04a046f236e06ae47cde4e595596",
     "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/prospective-root-ledger.csv": "5610fbedb8ff7133576c78785b373fe8c56a3b0c76510d7cf8fa83d48609e661",
     "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-7b2587a3bbc0c772.json": "c6dff7195c852c00b8bd5e1ecd651d271d0e96a08d385dc6049e9f9a5e4ca748",
-    "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-b5792662cc2fa9f8.json": "4c7eb6fa77843631341d3732e8292e67fb9a7cec38f49282c726182ee95be5f2"
+    "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/receipt-b5792662cc2fa9f8.json": "4c7eb6fa77843631341d3732e8292e67fb9a7cec38f49282c726182ee95be5f2",
+    "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/receipt-c1440948744bfa17.json": "cc0b076e58a8c3b8cc8cc226f4079a1da7b64e028f463c03d0235ab215a1c3f8",
+    "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/summary.json": "1a74051012ee33a89e1b8df0acec2442f317cceed3ae33e17e964837ce116aed",
+    "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/policy.json": "4a70c777bb04b06c192c9ba08bc7bc5c7004ec31b2e84406411c20801a6aaf6e",
+    "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/harness-roots.csv": "8fe3c8308d8a7d45ac76334dee9867f5909bb7963f4a84d8735faba4bf6cb0df",
+    "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/campaign-signatures.json": "ca7244d25f882e9d896ba9e77123d18c7093b1d477ad1d1003cf71c82714ea16",
+    "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/source-reverse-audit.json": "6be46b723306345b8b7602866f76fafdf4fd1bb0b70ebb52c2e09528f1d7e9f9",
+    "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/gate-results.json": "995c493e58d823b3f6d7ae9b7ece64696149e024f7ff01fb90c5805809af4c2a"
   },
   "implementation_files_sha256": {
-    "lib/boat-pet-catalog.ts": "f66ecc987bb69f157727ef0d1996197ba996a0e5c9860fd1c1167c89b4e162c5",
-    "tests/remediation-b-050.test.mjs": "bae6d41670f964d7ac7093806ca8e5781154a42c3b1ab7c463c49218fb9194f2",
+    "lib/boat-pet-catalog.ts": "9c57fcf478977cd732a79c5c15c4a4284aa087114bf210aae0eb9d4ef36e26a0",
+    "tests/remediation-b-050.test.mjs": "e63778ea3256663d8382eaaa8848c31500208613054ac377bec2ef5bd8f5cb8d",
     "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943",
     "lib/coverage-fact-semantics.ts": "88eabccf64d2503cc7e55f32dd729d31d4a6d710c919d175f73e155f72b21dba",
-    "tests/boat-pet-catalog.test.mjs": "cd725222735968f70f0e797812e1f06de8bb304326ad38c0ab739f7e6a890bf0"
+    "tests/boat-pet-catalog.test.mjs": "aeb09097d696a39edc45d2b24a7d7abd92f3d9b6e07633b84b4fdb745d463af7"
   },
   "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
   "application_revision_role": "TESTED_BASE_PLUS_EXACT_CANDIDATE_IDENTITY; publication commit is discoverable from Git history",
@@ -304,5 +315,23 @@
     "mechanical_limit": 12,
     "signature_credit": [],
     "current_gates": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/summary.json"
-  }
+  },
+  "harness_autonomy_v1": {
+    "policy": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/policy.json",
+    "root_ledger": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/harness-roots.csv",
+    "used": 4,
+    "limit": 12,
+    "last_scope_used": 4,
+    "last_scope_limit": 6,
+    "historical_counters_unchanged": true,
+    "last_completed_scope": "B050_REHABILITATION_DEADLINE_PLACE_ONLY"
+  },
+  "b050_campaign": {
+    "original_signatures": 16,
+    "documented_signatures": 16,
+    "remaining_original_signature_set": [],
+    "status": "DOCUMENTED_CAMPAIGN_COMPLETE_SC035_HELD",
+    "signature_set": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/campaign-signatures.json"
+  },
+  "integrity_verifier": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/verify-completion.py"
 }

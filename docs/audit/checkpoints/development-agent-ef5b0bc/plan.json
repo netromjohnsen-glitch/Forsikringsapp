@@ -55,24 +55,31 @@
         "7b2587a3bbc0c772",
         "b5792662cc2fa9f8"
       ],
-      "status": "NOT_AUTHORIZED",
+      "status": "COMPLETED_PASS",
       "expected_correction_roots": 0,
       "mechanical_harness_limit_if_explicitly_authorized": 3,
       "campaign_preexisting_used": 11,
       "campaign_limit": 12,
-      "new_semantic_correction_roots_authorized": false
+      "new_semantic_correction_roots_authorized": false,
+      "completion_evidence": "docs/audit/checkpoints/b050-diagnostics-completion-76b9aae/summary.json",
+      "later_scope_authorized": false
     },
     {
       "id": "REHABILITATION_SC035",
       "signatures": [
         "c1440948744bfa17"
       ],
-      "status": "NOT_AUTHORIZED",
+      "status": "DEADLINE_PLACE_COMPLETED_PASS_SC035_HELD",
       "expected_correction_roots": 0,
       "mechanical_harness_limit_if_explicitly_authorized": 3,
       "campaign_preexisting_used": 11,
       "campaign_limit": 12,
-      "new_semantic_correction_roots_authorized": false
+      "new_semantic_correction_roots_authorized": false,
+      "receipt": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/receipt-c1440948744bfa17.json",
+      "implementation_scope": "Only c1440948744bfa17 deadline/place condition; no selection or treatment-modality change",
+      "SC035_SR031": "NOT_AUTHORIZED_HELD_UNCHANGED",
+      "harness_policy": "HARNESS_AUTONOMY_V1",
+      "actual_mechanical_roots": 4
     }
   ]
 }

@@ -254,6 +254,7 @@ for (const [providerId, company] of packages) {
         });
         const bindings = [
           ['dyr.veterinar.dekning', 2, 'Hvilke skader/hendelser – Veterinærutgifter (trykt side 6)'],
+          ['dyr.rehabilitering.begrensning', 8, 'Erstatningsregler – Rehabilitering (trykt side 13)'],
           ['dyr.veterinar.begrensning', 3, 'Definisjoner (trykt side 7)'],
           ['dyr.medisin.dekning', 2, 'For veterinærutgifter gjelder i tillegg (trykt side 6)'],
           ['dyr.tannsykdom.dekning', 2, 'Forutsetninger og tannbehandling (trykt side 6)'],

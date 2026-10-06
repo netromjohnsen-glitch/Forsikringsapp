@@ -1,0 +1,43 @@
+{
+  "root_id": "H04_ROOT_LEDGER_CSV_CRLF",
+  "command": [
+    "git",
+    "diff",
+    "--cached",
+    "--check"
+  ],
+  "exit_code": 2,
+  "output": "docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/harness-roots.csv:1: trailing whitespace.\n+root_id,policy,scope_used,campaign_used,scope_limit,campaign_limit\r\ndocs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/harness-roots.csv:2: trailing whitespace.\n+H01_REHAB_REVERSE_ROWSET,HARNESS_AUTONOMY_V1,1,1,6,12\r\ndocs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/harness-roots.csv:3: trailing whitespace.\n+H02_REHAB_SOURCE_ALLOWLIST,HARNESS_AUTONOMY_V1,2,2,6,12\r\ndocs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/harness-roots.csv:4: trailing whitespace.\n+H03_MANUAL_TERM_ORIGIN_LOCATION,HARNESS_AUTONOMY_V1,3,3,6,12\r\n",
+  "head_at_block": "25fabe1ba0d4c872a6884f15d56be64b7cc67c72",
+  "commit_push_performed": false,
+  "before_sha256": "79b204467e40f7939b08ca1148dd15b8a0df19b7479dfadfff714ba69ff14e72",
+  "normalized_before_new_root_sha256": "93306cc95d67a2df32af78e2df19047c8548bb5a8e803f1cd1e03881d9f28997",
+  "equivalence": "Replacing CRLF with LF and restoring CRLF reproduces original bytes; csv.DictReader records identical before adding the separate fourth root",
+  "original_rows": [
+    {
+      "root_id": "H01_REHAB_REVERSE_ROWSET",
+      "policy": "HARNESS_AUTONOMY_V1",
+      "scope_used": "1",
+      "campaign_used": "1",
+      "scope_limit": "6",
+      "campaign_limit": "12"
+    },
+    {
+      "root_id": "H02_REHAB_SOURCE_ALLOWLIST",
+      "policy": "HARNESS_AUTONOMY_V1",
+      "scope_used": "2",
+      "campaign_used": "2",
+      "scope_limit": "6",
+      "campaign_limit": "12"
+    },
+    {
+      "root_id": "H03_MANUAL_TERM_ORIGIN_LOCATION",
+      "policy": "HARNESS_AUTONOMY_V1",
+      "scope_used": "3",
+      "campaign_used": "3",
+      "scope_limit": "6",
+      "campaign_limit": "12"
+    }
+  ],
+  "insurance_meaning_values_scope_selection_mapping_document_priority_provenance_unchanged": true
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "READ_ONLY_PREFLIGHT_BEFORE_IMPLEMENTATION",
+  "base": "25fabe1ba0d4c872a6884f15d56be64b7cc67c72",
+  "tests": 138,
+  "pass": 135,
+  "fail": 3,
+  "expected_failures": [
+    "R-050-TREATMENT-REVERSE-AUDIT",
+    "R-050-PUBLIC-REVERSE",
+    "Gjensidige Hund har source-backed produktpakke"
+  ],
+  "meaning": "Memory-only one-row proposal, preflight retained as evidence of exact authorized compatibility roots; does not substitute final gates",
+  "log": "preflight-memory-contract-probe.log.gz",
+  "log_sha256": "7330bb3b821d40f26dd57a56d6534fa3ad2a17cb50ad9ac00344925f2135fff9"
+}

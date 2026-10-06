@@ -630,8 +630,8 @@ test('R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source ch
   for (const [component, rows] of Object.entries(before.facts)) {
     if (component !== id) assert.deepEqual(after.facts[component], rows, component);
     else {
-      assert.deepEqual(after.facts[component].filter(f => ![...treatmentKeys, ...publicDeductibleKeys, ...diagnosticKeys].includes(f.key)), rows.filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)));
-      assert.equal(after.facts[component].length, rows.length + 8);
+      assert.deepEqual(after.facts[component].filter(f => ![...treatmentKeys, ...publicDeductibleKeys, ...diagnosticKeys, rehabilitationKey].includes(f.key)), rows.filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)));
+      assert.equal(after.facts[component].length, rows.length + 9);
       assertApprovedDiagnosticRows(after);
     }
   }
@@ -737,8 +737,8 @@ test('R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata
   for (const [component, rows] of Object.entries(before.facts)) {
     if (component !== id) assert.deepEqual(after.facts[component], rows, component);
     else {
-      assert.deepEqual(after.facts[component].filter(f => ![...publicDeductibleKeys, ...diagnosticKeys].includes(f.key)), rows.filter(f => !publicDeductibleKeys.includes(f.key)));
-      assert.equal(after.facts[component].length, rows.length + 4);
+      assert.deepEqual(after.facts[component].filter(f => ![...publicDeductibleKeys, ...diagnosticKeys, rehabilitationKey].includes(f.key)), rows.filter(f => !publicDeductibleKeys.includes(f.key)));
+      assert.equal(after.facts[component].length, rows.length + 5);
       assertApprovedDiagnosticRows(after);
       for (const k of publicDeductibleKeys) assert.equal(after.facts[component].filter(f => f.key === k).length, 1);
       const old = rows.find(f => f.key === publicDeductibleKeys[0]), current = after.facts[component].find(f => f.key === old.key);
@@ -772,13 +772,24 @@ const approvedDiagnosticRows = [
     source: diagnosticReference('treatment', 1, 'Forsikringen dekker – Behandling (trykt side 5)', true),
     qualificationSource: diagnosticReference('treatment', 3, 'Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)') },
 ];
+// c1440948744bfa17 / GAP-2893 / SF-4045: one deadline/place condition,
+// independent of the held SC-035 treatment-modality/selection decision.
+const rehabilitationKey = 'dyr.rehabilitering.begrensning';
+const rehabilitationParent = 'dyr.rehabilitering.dekning';
+const rehabilitationLimit = 'dyr.rehabilitering.grense';
+const rehabilitationText = 'Rehabiliteringen må være gjennomført innen 3 måneder etter at behandlende veterinær har foreskrevet den og skje på veterinærklinikk eller et behandlingssted som behandlende veterinær henviser til.';
+const approvedRehabilitationRow = {
+  key: rehabilitationKey, label: 'Rehabilitering – begrensninger', value: rehabilitationText,
+  source: diagnosticReference('treatment', 8, 'Erstatningsregler – Rehabilitering (trykt side 13)', true),
+};
 function assertApprovedDiagnosticRows(after) {
   const committed = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b050-diagnostics-shared-df3041e/catalog-before.json', import.meta.url)));
   assert.equal(committed.facts[id].length, 11);
-  assert.equal(after.facts[id].length, 13);
-  assert.deepEqual(after.facts[id].filter(f => !diagnosticKeys.includes(f.key)), committed.facts[id]);
+  assert.equal(after.facts[id].length, 14);
+  assert.deepEqual(after.facts[id].filter(f => ![...diagnosticKeys, rehabilitationKey].includes(f.key)), committed.facts[id]);
   assert.deepEqual(after.facts[id].filter(f => diagnosticKeys.includes(f.key)), approvedDiagnosticRows);
-  for (const expected of approvedDiagnosticRows) {
+  assert.deepEqual(after.facts[id].filter(f => f.key === rehabilitationKey), [approvedRehabilitationRow]);
+  for (const expected of [...approvedDiagnosticRows, approvedRehabilitationRow]) {
     assert.equal(after.facts[id].filter(f => f.key === expected.key).length, 1);
     const row = materializeCatalogProduct(product).facts.find(f => f.key === expected.key);
     assert.equal(row.value, expected.value);
@@ -934,4 +945,126 @@ test('R-050-DIAGNOSTICS-MANUAL: known catalog and custom input retain their sepa
   assert.deepEqual(custom.importantTerms.map(t => [t.name, t.value, t.key, t.coverageOrigin]), [
     ['MR/CT – grense', '4 200 kr', undefined, undefined], ['Undersøkelse ledd/rygg frem til diagnose', '2 700 kr', undefined, undefined],
   ]);
+});
+
+
+const rehabilitationBefore = () => JSON.parse(gunzipSync(readFileSync(new URL('../docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/catalog-before.json.gz', import.meta.url))));
+const rehabilitationState = out => canonicalCoverage(out, 'Hund', rehabilitationParent);
+const rehabilitationTerm = (k, v) => ({ ...term(k, v), name: k === rehabilitationParent ? 'Rehabilitering' : k === rehabilitationKey ? approvedRehabilitationRow.label : 'Rehabilitering – grense' });
+
+test('R-050-REHAB-SOURCE: complete PDF8/printed13 deadline and both locations', async () => {
+  PDFParse.setWorker(getPath());
+  const parser = new PDFParse({ data: readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf', import.meta.url)) });
+  try {
+    const page = (await parser.getText()).pages[7].text.replace(/\s+/gu, ' ').trim();
+    assert.ok(page.includes('Rehabilitering ' + rehabilitationText + ' Avlivning'));
+    assert.match(rehabilitationText, /må være gjennomført innen 3 måneder etter at behandlende veterinær har foreskrevet den/u);
+    assert.match(rehabilitationText, /på veterinærklinikk eller et behandlingssted som behandlende veterinær henviser til/u);
+  } finally { await parser.destroy(); }
+  const s = productCatalog.sources[treatmentId];
+  assert.equal(s.sourceType, 'full_terms'); assert.equal(s.termsNumber, '');
+  assert.equal(s.version, ''); assert.equal(s.effectiveFrom, '');
+});
+
+test('R-050-REHAB-REVERSE: one exact source-bound condition; original13 and other317 components unchanged', () => {
+  const before = rehabilitationBefore(), after = JSON.parse(JSON.stringify(productCatalog));
+  for (const field of Object.keys(before).filter(f => f !== 'facts')) assert.deepEqual(after[field], before[field], field);
+  assert.deepEqual(Object.keys(after.facts), Object.keys(before.facts));
+  assert.equal(Object.keys(before.facts).filter(c => c !== id).length, 317);
+  for (const [component, rows] of Object.entries(before.facts)) {
+    if (component !== id) assert.deepEqual(after.facts[component], rows, component);
+    else {
+      assert.equal(rows.length, 13); assert.equal(after.facts[component].length, 14);
+      assert.deepEqual(after.facts[component].filter(f => f.key !== rehabilitationKey), rows);
+      assert.deepEqual(after.facts[component].filter(f => f.key === rehabilitationKey), [approvedRehabilitationRow]);
+    }
+  }
+  const oldLimit = before.facts[id].find(f => f.key === rehabilitationLimit);
+  assert.equal(oldLimit.value, 'Inntil 5 000 kr');
+  assert.equal(oldLimit.source.documentId, 'boat-pet:gjensidige:hund');
+  assert.deepEqual(after.facts[id].find(f => f.key === rehabilitationLimit), oldLimit);
+  assert.equal(isNonAssertingCoverageDetail(rehabilitationKey), true);
+  const row = materializeCatalogProduct(product).facts.find(f => f.key === rehabilitationKey);
+  assert.equal(row.role, 'term'); assert.equal(row.value, rehabilitationText);
+  assert.deepEqual(row.sources, [{ ...approvedRehabilitationRow.source, sourceType: 'full_terms' }]);
+  assert.equal(canonicalCoverage({ importantTerms: [rehabilitationTerm(rehabilitationKey, rehabilitationText)], addOns: [] }, 'Hund', rehabilitationParent).status, 'unknown');
+});
+
+for (const [name, terms, status, conflict, importsLimit] of [
+  ['silence', [], 'unknown', false, false],
+  // This indirect positive-limit behavior already exists on committed HEAD.
+  // Preserve it without approving or fixing SC-035 in this source-only scope.
+  ['restriction alone: existing indirect selection', [rehabilitationTerm(rehabilitationKey, rehabilitationText)], 'selected', false, true],
+  ['limit alone: existing detail evidence', [rehabilitationTerm(rehabilitationLimit, '4 200 kr')], 'selected', false, true],
+  ['explicit selection', [rehabilitationTerm(rehabilitationParent, 'Valgt')], 'selected', false, true],
+  ['explicit rejection', [rehabilitationTerm(rehabilitationParent, 'Ikke valgt'), rehabilitationTerm(rehabilitationKey, rehabilitationText)], 'not_selected', false, false],
+  ['conflicting choices', [rehabilitationTerm(rehabilitationParent, 'Valgt'), rehabilitationTerm(rehabilitationParent, 'Ikke valgt'), rehabilitationTerm(rehabilitationKey, rehabilitationText)], 'unknown', true, false],
+  ['customer overrides', [rehabilitationTerm(rehabilitationParent, 'Valgt'), rehabilitationTerm(rehabilitationKey, 'Fullført innen 2 måneder på avtalt klinikk'), rehabilitationTerm(rehabilitationLimit, '4 200 kr')], 'selected', false, true],
+]) test('R-050-REHAB-STATE: ' + name, () => {
+  const input = { company: 'Gjensidige', totalAnnualPremium: null, insurances: [{ type: 'Hund', productName: 'Behandling', agreementScope: 'ordinary', annualPremium: null, deductible: null, coverageSummary: null, importantTerms: terms, addOns: [] }] };
+  const before = enrichExtractedAgreementWithCatalog(input, date, undefined, undefined, rehabilitationBefore()).insurances[0];
+  const after = enrich(terms);
+  const allStates = out => deriveCanonicalCoverages(out, 'Hund').map(c => [c.id, c.status, c.conflict]);
+  assert.deepEqual(allStates(after), allStates(before)); assert.deepEqual(after.addOnIds, before.addOnIds);
+  assert.equal(rehabilitationState(after).status, status); assert.equal(rehabilitationState(after).conflict, conflict);
+  assert.equal(after.importantTerms.some(t => t.key === rehabilitationLimit), importsLimit);
+  for (const customer of terms.filter(t => [rehabilitationKey, rehabilitationLimit].includes(t.canonicalKey))) {
+    const actual = after.importantTerms.find(t => t.key === customer.canonicalKey);
+    assert.equal(actual.value, customer.value); assert.deepEqual(actual.source, customer.source);
+    assert.equal(Object.hasOwn(actual, 'sources'), false);
+    const detail = rehabilitationState(after).details.find(d => d.key === customer.canonicalKey);
+    assert.equal(detail.value, customer.value); assert.deepEqual(detail.sources, [customer.source]);
+  }
+  if (importsLimit && !terms.some(t => t.canonicalKey === rehabilitationKey)) {
+    const actual = after.importantTerms.find(t => t.key === rehabilitationKey);
+    assert.equal(actual.value, rehabilitationText); assert.deepEqual(actual.source, approvedRehabilitationRow.source);
+  }
+});
+
+for (const side of ['existing', 'offer']) test('R-050-REHAB-PIPELINE: roles and customer priority ' + side, () => {
+  const source = diagnosticCustomerSources(side);
+  const terms = [rawTerm(approvedRehabilitationRow.label, 'Fullført innen 2 måneder på avtalt klinikk', rehabilitationKey),
+    rawTerm('Rehabilitering – grense', '4 200 kr', rehabilitationLimit)];
+  for (const role of ['individual_agreement', 'unknown']) {
+    const out = documentPipeline([[record(terms, role)]], side).insuranceData.insurances[0];
+    assert.equal(rehabilitationState(out).status, 'selected'); // unchanged positive-limit contract
+    for (const [k, value] of [[rehabilitationKey, terms[0].value], [rehabilitationLimit, terms[1].value]]) {
+      const t = out.importantTerms.find(t => t.key === k); assert.equal(t.value, value);
+      assert.deepEqual(t.sources, diagnosticCustomerSources(side, role));
+      assert.deepEqual(rehabilitationState(out).details.find(d => d.key === k).sources, diagnosticCustomerSources(side, role));
+    }
+  }
+  const general = documentPipeline([[record([terms[0]], 'general_terms')]], side).insuranceData;
+  assert.deepEqual(general.insurances, []); assert.equal(general.supportingEvidence.length, 1);
+  const support = general.supportingEvidence[0];
+  assert.equal(support.documentRole, 'general_terms'); assert.equal(support.company, 'Gjensidige');
+  assert.equal(support.type, 'Hund'); assert.equal(support.agreementScope, 'ordinary');
+  assert.equal(rehabilitationState(support).status, 'unknown');
+  assert.deepEqual(support.importantTerms, [{ name: approvedRehabilitationRow.label, value: terms[0].value,
+    key: rehabilitationKey, coverageOrigin: 'catalog', sources: diagnosticCustomerSources(side, 'general_terms') }]);
+  const paired = documentPipeline([[record([rawTerm('Rehabilitering', 'Valgt', rehabilitationParent)])],
+    [record([rawTerm(approvedRehabilitationRow.label, rehabilitationText, rehabilitationKey)], 'general_terms')]], side).insuranceData;
+  assert.equal(paired.insurances.length, 1); assert.equal(rehabilitationState(paired.insurances[0]).status, 'selected');
+  assert.ok(paired.insurances[0].recordEvidence.some(e => e.documentRole === 'general_terms' && e.importantTerms.some(t => t.key === rehabilitationKey && t.value === rehabilitationText)));
+  assert.deepEqual(source, diagnosticCustomerSources(side));
+});
+
+test('R-050-REHAB-MANUAL-COMPARISON: known catalog mode and both directions keep the source-only contract', () => {
+  const input = { company: 'Gjensidige', products: [{ type: 'Hund', productName: 'Behandling', importantTerms: [{ name: approvedRehabilitationRow.label, value: '2 måneder' }], addOnIds: [] }] };
+  const before = normalizeManualAgreement(input, rehabilitationBefore()).insuranceData.insurances[0];
+  const after = normalizeManualAgreement(input).insuranceData.insurances[0];
+  assert.equal(Object.hasOwn(before, 'coverageOrigin'), false);
+  assert.equal(Object.hasOwn(after, 'coverageOrigin'), false);
+  assert.equal(rehabilitationState(after).status, rehabilitationState(before).status);
+  const detail = after.importantTerms.find(t => t.key === rehabilitationKey);
+  assert.equal(detail.coverageOrigin, 'catalog');
+  assert.equal(detail.value, rehabilitationText); assert.deepEqual(detail.source, approvedRehabilitationRow.source);
+  assert.deepEqual(detail.sources, [approvedRehabilitationRow.source]);
+  assert.equal(compareCatalogProducts(product, product).differenceCount, 0);
+  const other = productCatalog.products.find(p => p.productId === 'frende-hund-veterin-r'); assert.ok(other);
+  const forward = compareCatalogProducts(product, other).sections.flatMap(s => s.rows);
+  const reverse = compareCatalogProducts(other, product).sections.flatMap(s => s.rows);
+  for (const row of forward) { const swapped = reverse.find(r => r.key === row.key); assert.ok(swapped); assert.deepEqual(row.first, swapped.second); assert.deepEqual(row.second, swapped.first); }
+  for (const [component, rows] of Object.entries(productCatalog.facts))
+    assert.equal(rows.some(f => f.key === rehabilitationKey && f.source.documentId === treatmentId), component === id, component);
 });

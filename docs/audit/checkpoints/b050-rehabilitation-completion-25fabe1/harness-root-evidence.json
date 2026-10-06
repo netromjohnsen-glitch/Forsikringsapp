@@ -1,0 +1,42 @@
+[
+  {
+    "root_id": "H01_REHAB_REVERSE_ROWSET",
+    "category": "MECHANICAL_COMPATIBILITY",
+    "before": "R-050-TREATMENT-REVERSE-AUDIT and R-050-PUBLIC-REVERSE omit the explicitly approved extra row; helper locks13",
+    "after": "Exact approved row14, all13 old rows and317 components remain deep-equal; historical differences9/5",
+    "evidence": "Previous read-only memory probe:135/138; two reverse failures. Fresh baseline B05085/85 retained. FrozenPDF8 complete clause; no semantic/selection/provenance change to existing facts.",
+    "source_meaning_preserved": true,
+    "values_scope_selection_mapping_document_priority_provenance_preserved": true,
+    "production_change_for_root": false
+  },
+  {
+    "root_id": "H02_REHAB_SOURCE_ALLOWLIST",
+    "category": "MECHANICAL_COMPATIBILITY",
+    "before": "Gjensidige Hund source contract expects IPID for any non-allowlisted fact",
+    "after": "One exact binding: rehabilitering.begrensning, Treatment full_terms, PDF8, printed13; IPID limit unchanged",
+    "evidence": "Previous read-only memory probe: third failure at boat-pet-catalog.test.mjs:291; source identity already admitted and exact frozen hash verified. Only this approved key/component is added.",
+    "source_meaning_preserved": true,
+    "values_scope_selection_mapping_document_priority_provenance_preserved": true,
+    "production_change_for_root": false
+  },
+  {
+    "root_id": "H03_MANUAL_TERM_ORIGIN_LOCATION",
+    "category": "MECHANICAL_FIXTURE_ASSERTION",
+    "before": "New assertion expects record.coverageOrigin=catalog",
+    "after": "Assert record has no coverageOrigin and exact new term.coverageOrigin=catalog; all source/value assertions remain",
+    "evidence": "manual-origin-baseline-proof.json; lib/manual-agreement.ts:193–210 constructs catalog origin on terms, not object; same representation on baseline and candidate. Failed targeted B05096/97 retained.",
+    "source_meaning_preserved": true,
+    "values_scope_selection_mapping_document_priority_provenance_preserved": true,
+    "production_change_for_root": false
+  },
+  {
+    "root_id": "H04_ROOT_LEDGER_CSV_CRLF",
+    "category": "MECHANICAL_DOCUMENTATION_SERIALIZATION",
+    "before": "Python CSV default writer emitted CRLF; staged diff --check stopped publication before commit/push",
+    "after": "LF ledger with identical prior fields/rows and separately appended fourth root",
+    "evidence": "staged-serialization-proof.json; byte-for-byte reversible newline normalization and identical parsed fields",
+    "source_meaning_preserved": true,
+    "values_scope_selection_mapping_document_priority_provenance_preserved": true,
+    "production_change_for_root": false
+  }
+]
