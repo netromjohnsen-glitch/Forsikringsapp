@@ -7,3 +7,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Forsikringstolken: utviklingsagent
+
+Les [arbeidsflyten](docs/development-agent/workflow.md),
+[aktuelt checkpoint](docs/audit/checkpoints/development-agent-ef5b0bc/checkpoint.json)
+og bolkens eksplisitte fullmakt før arbeid. Foreslåtte bolker merket NOT_AUTHORIZED
+gir ingen implementeringsfullmakt. Bevar eksisterende Next-instrukser ovenfor.
+Bruk [startkommandoen](docs/development-agent/start.md) for videreføring.

@@ -1,0 +1,733 @@
+{
+  "registry": "docs/audit/legacy-local/source-catalog-remediation-triage/p1-triage.csv",
+  "registry_sha256": "fcb52bd19dcdfc9b0549df3e5a5ee40412f63620dc4bc563972a5b5e6f021c6d",
+  "original_batch": "B-050",
+  "original_count": 16,
+  "documented_campaign_count": 4,
+  "remaining_original_scope_count": 12,
+  "global_current_status": "UNKNOWN",
+  "rows": [
+    {
+      "signature": "373413bc13517ff4",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "373413bc13517ff4",
+        "representative_finding_id": "GAP-2896",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2896\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4048\"]",
+        "proposed_existing_keys": "[\"dyr.liv.begrensning\"]",
+        "semantic_concept": "Liv",
+        "semantic_dimension": "karens/tilstand",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2896",
+        "finding_ids": [
+          "GAP-2896"
+        ],
+        "source_fact_id": "SF-4048",
+        "source_fact_ids": [
+          "SF-4048"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "gjensidige-hund-liv",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+        "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+        "location": "2",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Sykdomførstart/første20dogsumøkning/utvidelse;medfødtdogeligibilityfør4mndmv,catmedfødtunntatt;dyrevelferdattest.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.liv.begrensning"
+        ],
+        "advisor_impact": "Lifeknowncondition/waiting/eligibility missing.",
+        "audit_scope_notes": "Lifeknowncondition/waiting/eligibility missing.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "independent_contract": "Liv kvalifikasjoner og 20-dagers unntak",
+      "proposed_packet": "LIV_QUALIFICATIONS_EXPIRY",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "4165f79344a7d572",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "4165f79344a7d572",
+        "representative_finding_id": "GAP-2868",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2868\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4017\"]",
+        "proposed_existing_keys": "[\"dyr.veterinar.dekning\", \"dyr.veterinar.sum.valgbar\"]",
+        "semantic_concept": "Veterinær",
+        "semantic_dimension": "omfang/periodetak",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2868",
+        "finding_ids": [
+          "GAP-2868"
+        ],
+        "source_fact_id": "SF-4017",
+        "source_fact_ids": [
+          "SF-4017"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+        "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+        "location": "2",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Sykdom/ulykke,bevisvalgtmaksperforsikringsårOGsammeskadetilfelle;nyårsresetikkegjenåpnercasegrense.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.veterinar.dekning",
+          "dyr.veterinar.sum.valgbar"
+        ],
+        "advisor_impact": "Vetincluded andchoicecorrect; peryearANDpercase ceiling missing.",
+        "audit_scope_notes": "Vetincluded andchoicecorrect; peryearANDpercase ceiling missing.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "independent_contract": "Veterinær: tak per år OG skadetilfelle",
+      "proposed_packet": "TREATMENT_PERIOD_MEDICINE_DENTAL_DEFINITIONS",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "48393aac0a200fe5",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "48393aac0a200fe5",
+        "representative_finding_id": "GAP-2880",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2880\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4031\"]",
+        "proposed_existing_keys": "[\"dyr.tannsykdom.dekning\"]",
+        "semantic_concept": "Tann",
+        "semantic_dimension": "karies/emalje",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2880",
+        "finding_ids": [
+          "GAP-2880"
+        ],
+        "source_fact_id": "SF-4031",
+        "source_fact_ids": [
+          "SF-4031"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+        "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+        "location": "1–2",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Karies/emaljedefekteromfattet;årligtannhelsekontroll+rensvedbehov. Tannabscessavskalling/frakturcarveout.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.tannsykdom.dekning"
+        ],
+        "advisor_impact": "Caries/enamelpositiveanddentalcare/abscesscarveout absent.",
+        "audit_scope_notes": "Caries/enamelpositiveanddentalcare/abscesscarveout absent.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "independent_contract": "Tann: karies/emalje og presise unntak",
+      "proposed_packet": "TREATMENT_PERIOD_MEDICINE_DENTAL_DEFINITIONS",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "5839d2c13e186676",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "5839d2c13e186676",
+        "representative_finding_id": "GAP-2894",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2894\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4046\"]",
+        "proposed_existing_keys": "[\"dyr.liv.dekning\"]",
+        "semantic_concept": "Liv",
+        "semantic_dimension": "død/tyveri",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2894",
+        "finding_ids": [
+          "GAP-2894"
+        ],
+        "source_fact_id": "SF-4046",
+        "source_fact_ids": [
+          "SF-4046"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "gjensidige-hund-liv",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+        "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+        "location": "2",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Død/avlivningdyrevelferdvedulykke/sykdom;dogtyveri/bortkomst;catbaretyveriinnbruddbygning,bortkomstunntatt.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.liv.dekning"
+        ],
+        "advisor_impact": "OptionalLivknown; death/stealing/disappearancecat-vsdog condition omitted.",
+        "audit_scope_notes": "OptionalLivknown; death/stealing/disappearancecat-vsdog condition omitted.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "independent_contract": "Liv dekningshendelser og dokumentasjonskrav",
+      "proposed_packet": "LIV_QUALIFICATIONS_EXPIRY",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "72170f7dfe5c91b6",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "72170f7dfe5c91b6",
+        "representative_finding_id": "GAP-2897",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2897\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4049\"]",
+        "proposed_existing_keys": "[\"dyr.liv.opphor\"]",
+        "semantic_concept": "Liv",
+        "semantic_dimension": "opphør/raser",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2897",
+        "finding_ids": [
+          "GAP-2897"
+        ],
+        "source_fact_id": "SF-4049",
+        "source_fact_ids": [
+          "SF-4049"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "gjensidige-hund-liv",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+        "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+        "location": "2–3",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Hovedforfallåret8storeliste/12småliste/10øvrige;eksakteraserogblandinghøydeitilknyttettabell.Kundensrasemåavklares.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.liv.opphor"
+        ],
+        "advisor_impact": "Dogbreed-specific8/10/12 expiryabsent.",
+        "audit_scope_notes": "Dogbreed-specific8/10/12 expiryabsent.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "independent_contract": "Liv raselister og opphør 8/10/12",
+      "proposed_packet": "LIV_QUALIFICATIONS_EXPIRY",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "7b2587a3bbc0c772",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "7b2587a3bbc0c772",
+        "representative_finding_id": "GAP-2876",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2876\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4027\"]",
+        "proposed_existing_keys": "[\"dyr.diagnostikk.grense\"]",
+        "semantic_concept": "MR/CT",
+        "semantic_dimension": "sum/periodetak",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2876",
+        "finding_ids": [
+          "GAP-2876"
+        ],
+        "source_fact_id": "SF-4027",
+        "source_fact_ids": [
+          "SF-4027"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-product.html",
+        "sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+        "location": "MRogCT",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: 5kperårELLERskadetilfelleinngårivalgtforsikringssum.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.diagnostikk.grense"
+        ],
+        "advisor_impact": "MRCT5kyear/percasenotrepresented.",
+        "audit_scope_notes": "MRCT5kyear/percasenotrepresented.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+      "independent_contract": "MR/CT: 5000 per år eller skadetilfelle",
+      "proposed_packet": "DIAGNOSTIC_DISTINCT_RULES",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "8c14a1328e5080cf",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "8c14a1328e5080cf",
+        "representative_finding_id": "GAP-2899",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2899\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4051\"]",
+        "proposed_existing_keys": "[\"dyr.liv.begrensning\"]",
+        "semantic_concept": "Tyveri/bortkomst",
+        "semantic_dimension": "venteperiode",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2899",
+        "finding_ids": [
+          "GAP-2899"
+        ],
+        "source_fact_id": "SF-4051",
+        "source_fact_ids": [
+          "SF-4051"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "gjensidige-hund-liv",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+        "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+        "location": "PDF8",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Politimelding/etterlysning;minimum3mndetterregistrertkrav.Vedgjenfinnbetalingtilbakecatuttrykkelig.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.liv.begrensning"
+        ],
+        "advisor_impact": "Three-monthmissing/theftwaitingandpolice/advertisingconditions missing.",
+        "audit_scope_notes": "Three-monthmissing/theftwaitingandpolice/advertisingconditions missing.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "independent_contract": "Bortkomst: anmeldelse/etterlysning og utbetalingsventetid",
+      "proposed_packet": "LIV_QUALIFICATIONS_EXPIRY",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "b5792662cc2fa9f8",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "b5792662cc2fa9f8",
+        "representative_finding_id": "GAP-2884",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2884\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4036\"]",
+        "proposed_existing_keys": "[\"dyr.diagnostikk.grense\"]",
+        "semantic_concept": "Diagnostikk ledd/rygg",
+        "semantic_dimension": "sum/selvskadenunntatt",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2884",
+        "finding_ids": [
+          "GAP-2884"
+        ],
+        "source_fact_id": "SF-4036",
+        "source_fact_ids": [
+          "SF-4036"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+        "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+        "location": "1,3",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Undersøkelsefremtildiagnose3kselvdiagnoseikkeerdekket.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.diagnostikk.grense"
+        ],
+        "advisor_impact": "3kdiagnosticjoints/backevennoncoveredconditionmissing.",
+        "audit_scope_notes": "3kdiagnosticjoints/backevennoncoveredconditionmissing.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "independent_contract": "Ledd/ryggundersøkelse: 3000 frem til diagnose også ved ikke-dekket skade",
+      "proposed_packet": "DIAGNOSTIC_DISTINCT_RULES",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "c1440948744bfa17",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "c1440948744bfa17",
+        "representative_finding_id": "GAP-2893",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2893\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4045\"]",
+        "proposed_existing_keys": "[\"dyr.rehabilitering.begrensning\"]",
+        "semantic_concept": "Rehabilitering",
+        "semantic_dimension": "frist/sted",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2893",
+        "finding_ids": [
+          "GAP-2893"
+        ],
+        "source_fact_id": "SF-4045",
+        "source_fact_ids": [
+          "SF-4045"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+        "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+        "location": "8",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Måfullføres3mndettervetforeskrivelsepåklinikkellervethenviststed.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.rehabilitering.begrensning"
+        ],
+        "advisor_impact": "Rehabmustcomplete3monthsafterprescriptionatreferredfacility;missing.",
+        "audit_scope_notes": "Rehabmustcomplete3monthsafterprescriptionatreferredfacility;missing.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "independent_contract": "Rehabilitering: fullført innen tre måneder på anvist sted",
+      "proposed_packet": "REHABILITATION_SC035",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "c5ccc4f26fd475ae",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "c5ccc4f26fd475ae",
+        "representative_finding_id": "GAP-2907",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2907\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4060\"]",
+        "proposed_existing_keys": "[\"dyr.veterinar.sum.valgbar\"]",
+        "semantic_concept": "Definisjoner",
+        "semantic_dimension": "skadetid/sammesykdom",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2907",
+        "finding_ids": [
+          "GAP-2907"
+        ],
+        "source_fact_id": "SF-4060",
+        "source_fact_ids": [
+          "SF-4060"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+        "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+        "location": "3",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Discoverytime,alleutgifterforsammesykdomsammesak;frisktikkekroniskvet12mndellerdiagnoseuten symptomer.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.veterinar.sum.valgbar"
+        ],
+        "advisor_impact": "Oneillnessallinvoices anddiscoverydate/healthypriorconditiondefinition missing.",
+        "audit_scope_notes": "Oneillnessallinvoices anddiscoverydate/healthypriorconditiondefinition missing.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "independent_contract": "Definisjon: samme sykdom, oppdagelsestid og friskt dyr",
+      "proposed_packet": "TREATMENT_PERIOD_MEDICINE_DENTAL_DEFINITIONS",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "f8bd15c89bc0dbd6",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "f8bd15c89bc0dbd6",
+        "representative_finding_id": "GAP-2872",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2872\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4021\"]",
+        "proposed_existing_keys": "[\"dyr.veterinar.egenandel.fast\", \"dyr.veterinar.egenandel.prosent\"]",
+        "semantic_concept": "Egenandel",
+        "semantic_dimension": "formel/periode",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2872",
+        "finding_ids": [
+          "GAP-2872"
+        ],
+        "source_fact_id": "SF-4021",
+        "source_fact_ids": [
+          "SF-4021"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-product.html",
+        "sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+        "location": "Egenandel",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Standardfast1300+20%restenperulykke/sykdom,ikkemedhverregning;beviskanrenprosent.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.veterinar.egenandel.fast",
+          "dyr.veterinar.egenandel.prosent"
+        ],
+        "advisor_impact": "Unknownownbeviscorrect; publicstandard1300+20%remainderpercase and purepercentchoice omitted.",
+        "audit_scope_notes": "Unknownownbeviscorrect; publicstandard1300+20%remainderpercase and purepercentchoice omitted.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+      "independent_contract": "Egenandelformel, valg og skadetilfelle",
+      "proposed_packet": "PUBLIC_DEDUCTIBLE",
+      "authorization": "NOT_AUTHORIZED"
+    },
+    {
+      "signature": "fbe23495ae09afb3",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_FOUR_RECEIPTS",
+      "global_current_status": "UNKNOWN",
+      "original_binding": {
+        "signature_id": "fbe23495ae09afb3",
+        "representative_finding_id": "GAP-2875",
+        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-026\"]",
+        "final_batch_id": "B-050",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2875\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+        "source_fact_ids": "[\"SF-4025\"]",
+        "proposed_existing_keys": "[\"dyr.medisin.dekning\"]",
+        "semantic_concept": "Medisiner",
+        "semantic_dimension": "omfang",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "original_evidence": {
+        "finding_id": "GAP-2875",
+        "finding_ids": [
+          "GAP-2875"
+        ],
+        "source_fact_id": "SF-4025",
+        "source_fact_ids": [
+          "SF-4025"
+        ],
+        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+        "product_identities": [
+          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+        ],
+        "component": "",
+        "artifact": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+        "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+        "location": "2",
+        "urls": [
+          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+        ],
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Veterinærrekvirertmedisin/preparat/bandasje/beskyttelseveddekketskade/dokumentertjournal.",
+        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+        "proposed_existing_keys": [
+          "dyr.medisin.dekning"
+        ],
+        "advisor_impact": "Prescribedmedicines/bandageseligibility omitted.",
+        "audit_scope_notes": "Prescribedmedicines/bandageseligibility omitted.",
+        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+      },
+      "source_hash_verified": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "independent_contract": "Rekvirerte medisiner og materiell",
+      "proposed_packet": "TREATMENT_PERIOD_MEDICINE_DENTAL_DEFINITIONS",
+      "authorization": "NOT_AUTHORIZED"
+    }
+  ]
+}

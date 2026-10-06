@@ -1,0 +1,146 @@
+{
+  "status": "DURABLE_DEVELOPMENT_AGENT_CHECKPOINT_NOT_GLOBAL_EXECUTION_LEDGER",
+  "repository": "netromjohnsen-glitch/Forsikringsapp",
+  "application_revision": "ef5b0bca3b55a4883f1b74a012233a7d0082b4c9",
+  "initial_head_origin_remote_main_equal": true,
+  "initial_working_tree": "CLEAN",
+  "documentation_revision": "Resolve with git log -1 -- docs/audit/checkpoints/development-agent-ef5b0bc/checkpoint.json; no self-referential SHA claim",
+  "validation_identity": {
+    "receipt": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/receipt-3f4b9eff50404590.json",
+    "tested_base_revision": "5ffa5c5bb18b4325c057c7393f84a0411d5c78ae",
+    "tested_candidate_identity": "1a76eb473c443c04db2a03db63323d4105989c67d406d41337e373935cc839d9",
+    "latest_implementation_files_match_tested_candidate": true,
+    "prior_three_tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
+    "no_new_application_suite_run_for_documentation": true
+  },
+  "campaign_members": [
+    {
+      "signature": "0a6b5f6f535df685",
+      "classification": "PRIOR_CURRENT_REVALIDATION",
+      "receipt": "docs/audit/checkpoints/current-revalidation-rv01-af9a335/receipt-0a6b5f6f535df685.json",
+      "receipt_sha256": "cc5eabfaa7536d5e7fea6a9db40f5e8b540d9b8926fb8b3af3c6e3bc9d9f09b6",
+      "tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
+      "existing_receipt_unchanged": true,
+      "regression_on_new_candidate": "B-050 32/32 and complete closure gates PASS"
+    },
+    {
+      "signature": "1f56c194d413f97d",
+      "classification": "PRIOR_CURRENT_REVALIDATION",
+      "receipt": "docs/audit/checkpoints/current-revalidation-rv01-af9a335/receipt-1f56c194d413f97d.json",
+      "receipt_sha256": "0b5a54e10f2abb787abbf8694ee6a8dae5c036ea39c73c5dae3c6f3b9c575be4",
+      "tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
+      "existing_receipt_unchanged": true,
+      "regression_on_new_candidate": "B-050 32/32 and complete closure gates PASS"
+    },
+    {
+      "signature": "8e9d297cb0d1bd0e",
+      "classification": "PRIOR_CURRENT_REVALIDATION",
+      "receipt": "docs/audit/checkpoints/current-revalidation-rv01-af9a335/receipt-8e9d297cb0d1bd0e.json",
+      "receipt_sha256": "3cfdd907e4f2cbc0f6779da5419de9c2889af4227ce231f2612d26dda5b8689f",
+      "tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
+      "existing_receipt_unchanged": true,
+      "regression_on_new_candidate": "B-050 32/32 and complete closure gates PASS"
+    },
+    {
+      "signature": "3f4b9eff50404590",
+      "classification": "NEW_IMPLEMENTATION_CURRENT_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/receipt-3f4b9eff50404590.json",
+      "tested_base_revision": "5ffa5c5bb18b4325c057c7393f84a0411d5c78ae",
+      "tested_candidate_identity": "1a76eb473c443c04db2a03db63323d4105989c67d406d41337e373935cc839d9"
+    }
+  ],
+  "documented_unique_count": 4,
+  "global_current_resolved": "UNKNOWN",
+  "global_current_open": "UNKNOWN",
+  "partial_recovery": "docs/audit/checkpoints/g2-recovery-36d7694/checkpoint.json",
+  "historical_reported": {
+    "resolved": 414,
+    "total": 1589,
+    "open": 1175,
+    "active_open": 1154,
+    "historical_excluded": 21,
+    "mechanical": "19/16",
+    "semantic": "10/8",
+    "fully_reconstructed": false,
+    "not_fresh_global_counts": true
+  },
+  "future_campaign": {
+    "campaign_id": "CURRENT_REVALIDATION_RV01",
+    "used": 4,
+    "limit": 12,
+    "last_completed_scope": "B050_SUM_CHOICE",
+    "last_scope_used": 3,
+    "last_scope_limit": 3,
+    "root_ledger": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/prospective-root-ledger.csv",
+    "typegen_root_reuse_not_recharged": true,
+    "historical_20_exception_used": false,
+    "policy": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/campaign-policy.json",
+    "next_scope_requires_explicit_authorization": true
+  },
+  "historical_holds": {
+    "protected_signatures": [
+      "7767772472433807",
+      "26668a6c81e5b5d9",
+      "e2f70dda0093e9e4"
+    ],
+    "status": "DO_NOT_CLOSE_WITHOUT_EXACT_AUTHORIZATION_AND_RECEIPT; historical protected OPEN, global current state unreconstructed",
+    "defer_safe_signatures": [
+      "0177d006e35081bf",
+      "01c571aed2922601",
+      "081897ea9890dd48",
+      "19e07ca100e66430",
+      "30fc68fdaa903cfb",
+      "4298f951ca3c66c3",
+      "42c2a36bff254c04",
+      "48f198515fc0f302",
+      "4b74844f6e3299d6",
+      "5451f3cd4d1439f3",
+      "57772b5d65c12f6e",
+      "614e6706ae2502ce",
+      "6a8fa7667b6b4f31",
+      "6aef26441eb0791f",
+      "765fd5db190904d0",
+      "891c9fac3031a8ee",
+      "b2dfb452aaacba84",
+      "b62a64284e4abbe1",
+      "c05c0db230591fe9",
+      "cb3e9dc1ef2d6684",
+      "cc9b15fa0f3121c0"
+    ],
+    "defer_safe_current_status": "UNKNOWN; original DEFER_SAFE is historical disposition, not current closure",
+    "other_decision_boundaries": [
+      "B-034 disputed age operator",
+      "B-035 SC-014/SR-021 150000 kr",
+      "B-050 SC-035 rehabilitation"
+    ]
+  },
+  "current_blockers": [
+    "No next implementation packet authorized",
+    "Global exact closure chain remains incomplete",
+    "Treatment frozen PDF not production-admitted",
+    "Diagnostic distinct-dimension representation needs decision",
+    "Rehabilitation selection/SC-035 needs decision"
+  ],
+  "authorized_packets": [],
+  "next_proposed_packet": "LIV_QUALIFICATIONS_EXPIRY",
+  "plan": "docs/development-agent/next-b050-plan.md",
+  "remaining_inventory": "docs/audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json",
+  "evidence_sha256": {
+    "docs/audit/checkpoints/current-revalidation-rv01-af9a335/receipt-0a6b5f6f535df685.json": "cc5eabfaa7536d5e7fea6a9db40f5e8b540d9b8926fb8b3af3c6e3bc9d9f09b6",
+    "docs/audit/checkpoints/current-revalidation-rv01-af9a335/receipt-1f56c194d413f97d.json": "0b5a54e10f2abb787abbf8694ee6a8dae5c036ea39c73c5dae3c6f3b9c575be4",
+    "docs/audit/checkpoints/current-revalidation-rv01-af9a335/receipt-8e9d297cb0d1bd0e.json": "3cfdd907e4f2cbc0f6779da5419de9c2889af4227ce231f2612d26dda5b8689f",
+    "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/receipt-3f4b9eff50404590.json": "b75219aa66c84910482fa2aaebfbfacd66cd5082a4d5db0235861849e0d9d3e0",
+    "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/campaign-policy.json": "e6f717bfaa5cff6b3ca7643faf22910f89becdd48890cc199e46a396ffb90d34",
+    "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/summary.json": "e130145feadb314068601d46b18df984477069c73a6506fad3d204c9b742863b",
+    "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/prospective-root-ledger.csv": "1ccafe72d62a446de48fd4d9afc3bc8cc5ab4feb0649eea150e80bd0921d56aa",
+    "docs/audit/checkpoints/g2-recovery-36d7694/checkpoint.json": "2889176fb3bd9d60e68219ac642b261e66b214aedfa607141ff8fd237c371d19",
+    "docs/audit/checkpoints/g2-recovery-36d7694/partial-ledger.csv": "0045ec325dd1f35e297ee53c32286834e2cd27f4276a3addee4db5f29b3190d7"
+  },
+  "implementation_files_sha256": {
+    "lib/boat-pet-catalog.ts": "6fba4d9fef6a64b2e2f53752678bea22760860548ac29fa7c779cae9c8bab57d",
+    "lib/coverage-fact-semantics.ts": "88eabccf64d2503cc7e55f32dd729d31d4a6d710c919d175f73e155f72b21dba",
+    "tests/remediation-b-050.test.mjs": "6195178297bf48136a90bc1758585786ba43f93275645d14f1aefa031ae532e3",
+    "tests/boat-pet-catalog.test.mjs": "3d8421fe8ca378bfb81703fe8958e5b61acc7fbe53de868b66bc3f6b0f41096a"
+  },
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}
