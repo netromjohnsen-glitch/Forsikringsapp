@@ -1,0 +1,37 @@
+{
+  "root_id": "M05_LIV_DEPENDENCY_SOURCE_FIXTURE",
+  "category": "MECHANICAL_HARNESS",
+  "scope": "B050_LIV_QUALIFICATIONS_EXPIRY",
+  "files": [
+    "tests/nito-remediation-b022.test.mjs"
+  ],
+  "assertions": [
+    "R-022-08 source productVersion",
+    "R-022-08 source effectiveFrom",
+    "R-022-08 source validTo"
+  ],
+  "one_root_basis": "All three mutate obsolete hardcoded IPID instead of current dependency primary source; identical stale target selection",
+  "equivalence_evidence": {
+    "baseline": "Each original mutation rejects when Liv source is IPID",
+    "candidate": "Same original IPID mutations do not affect dependency; each actual Liv full_terms source mutation rejects",
+    "production_code": "resolveAddOnPackage checks each dependency fact source and qualificationSource for exact type/provider/scope/version/date",
+    "preserved": [
+      "insurance clause content",
+      "values",
+      "provider/type/product scope",
+      "selection",
+      "document priority",
+      "source reference identity",
+      "invalid-version/future/expired-source rejection"
+    ]
+  },
+  "authorized_under": "User active campaign mechanical-harness policy <=3 roots/scope, <=12 campaign",
+  "before": {
+    "scope": 0,
+    "campaign": 4
+  },
+  "after": {
+    "scope": 1,
+    "campaign": 5
+  }
+}

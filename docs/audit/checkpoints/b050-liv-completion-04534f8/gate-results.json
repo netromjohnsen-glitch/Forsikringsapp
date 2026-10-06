@@ -1,0 +1,4656 @@
+{
+  "tested_base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+  "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+  "candidate_files_sha256": {
+    "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+    "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+    "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+  },
+  "candidate_diff_sha256": "2820f5a984b1c38baa72cce4607197b36ec4a2cbc6fd6f265969f8881f234156",
+  "results": [
+    {
+      "label": "remediation-b-050.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-050.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.509,
+      "log": "remediation-b-050.test.log.gz",
+      "log_sha256": "aefd58aa25adc2abc3a7a3db3d5c02eb47c0bf25bde8e40ea7c4e9d25a2f9698",
+      "stdout_sha256": "80bc9462d9a02eb17b442f33592d77384409d53402d418c35c1f2b7c2004b552",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 49,
+        "pass": 49,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b022.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b022.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.734,
+      "log": "nito-remediation-b022.test.log.gz",
+      "log_sha256": "633662dac3bd8c24e127a2f282a30c3e78aee2f414d74dda8720eb8a0953fa65",
+      "stdout_sha256": "0a82f2cbe8a89c07456cbd0c443a0242b10b0a990080da17a24a5877cb501ae9",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b018.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b018.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.476,
+      "log": "nito-remediation-b018.test.log.gz",
+      "log_sha256": "c1b2a9d343dc0fb652e27d772cc7f485d9ab6ed8bb7318e3688a7c2b978cc489",
+      "stdout_sha256": "6faa8d72abb1855882ea0e03b841f77444b7c1da8333bec5dc0781302d796cf2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-071.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-071.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.826,
+      "log": "remediation-b-071.test.log.gz",
+      "log_sha256": "d361bb3c9278515bd9965a6eb665149b5ed870028f5c67fc08f651488ba6d011",
+      "stdout_sha256": "d848bc83d87da07514ff239dc534bf339c5aa8f0e27a55c3a00ee80489ac8533",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 97,
+        "pass": 97,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "liv-reduction-selection-evidence.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/liv-reduction-selection-evidence.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 3.577,
+      "log": "liv-reduction-selection-evidence.test.log.gz",
+      "log_sha256": "7cd389e36d07a62261c3f2c1f1298875f8ebc653e0c1fdcf0fec41ea510b71b0",
+      "stdout_sha256": "c4a4a55e59a8d48a0b2aded45c7d7d638ba8cdac6289c3fe9481bb7cc74e3f4a",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 103,
+        "pass": 103,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "agreement-pricing.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/agreement-pricing.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.079,
+      "log": "agreement-pricing.test.log.gz",
+      "log_sha256": "e8db33b5016496805d45332cdfa02e2f8ad7a1a515ec12392f11aceefb4b393e",
+      "stdout_sha256": "f0da63fcfd6398dbf8fad2b1f2e7eaa676859f3fa62ce086e1acbe51698d63bc",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "agreement-scope.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/agreement-scope.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.585,
+      "log": "agreement-scope.test.log.gz",
+      "log_sha256": "3462ffe011c58b8852a5b878ee82495b342e5869455ca346e7187dde416b0302",
+      "stdout_sha256": "38213af2996abcf56e81f919281f017b0ace77e331a26154bd8cc28c707f76e4",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 55,
+        "pass": 55,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "analysis-performance.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/analysis-performance.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 2.464,
+      "log": "analysis-performance.test.log.gz",
+      "log_sha256": "1840150a98baa0d74cb4df9e1cb711753c22288b28ae644a163c9a35e86cfd77",
+      "stdout_sha256": "d9a9f5426a7750438f732dad1487af375f9346be9ed921499eb89e033f7e8376",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 25,
+        "pass": 25,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "b043-status-parser.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/b043-status-parser.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.452,
+      "log": "b043-status-parser.test.log.gz",
+      "log_sha256": "9b6190b468da7c8f44cde9b11a534eb6762808532f98847253296dc2eb4b412f",
+      "stdout_sha256": "6f6cf144376d5cf2d65018e0565d8decc7cad5ea2cb3b6903f3101255740171a",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 85,
+        "pass": 85,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "boat-pet-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/boat-pet-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.73,
+      "log": "boat-pet-catalog.test.log.gz",
+      "log_sha256": "90604f9112e5a6b077707f72f864f726ba0f7e8d44b7d11c1909c065481aa476",
+      "stdout_sha256": "113e75ae0617910150cbd4df7cbbd1f82eee0c79e7f877d1d590422ca2fb6dc4",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "bruk-limit-selection-evidence.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/bruk-limit-selection-evidence.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.507,
+      "log": "bruk-limit-selection-evidence.test.log.gz",
+      "log_sha256": "33883030c158b40823dbec6145d2240b25a10f179083b9aae635863addf6ae84",
+      "stdout_sha256": "c476ab3760e4b1c579d6d90e386c5ac765794b7a7c056440afe15c8129b8e50c",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 30,
+        "pass": 30,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "canonical-comparison-audit.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/canonical-comparison-audit.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.449,
+      "log": "canonical-comparison-audit.test.log.gz",
+      "log_sha256": "d6aca807038ea217b989cd6d4364305769f916a9e647313245d7691b9f25e3e9",
+      "stdout_sha256": "6841dc447ec6fa41687902be74ff9fedce04a17a9cea3833be62d86643fe953a",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "catalog-comparison.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-comparison.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.376,
+      "log": "catalog-comparison.test.log.gz",
+      "log_sha256": "5e29066ad12b83db797a87c803662eadd9cc820fdc37acdb5b8d64be8d8f9327",
+      "stdout_sha256": "97d4541391c84e0675902b118d290b04a6c62611856b48811f4dc026632ffaaf",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "catalog-effective-facts.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-effective-facts.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.683,
+      "log": "catalog-effective-facts.test.log.gz",
+      "log_sha256": "c5789999569ec60c458395a7eead5cefbeb43b3412b17b4c442e6be0d3d3b534",
+      "stdout_sha256": "941d9c12f8ea633ba6c8215a40f23c19c3265e5a08fa01a91ef4a6bcec913c62",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 34,
+        "pass": 34,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "catalog-enrichment-provenance.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-enrichment-provenance.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.385,
+      "log": "catalog-enrichment-provenance.test.log.gz",
+      "log_sha256": "3fdec3b8f7f6a9f5b8c4293a0511e62ee0a956a923ff39736881dba378275646",
+      "stdout_sha256": "7ae0f7c431e35123757b5222f273b67002ca9f9cc55c83fa1e8247363860c323",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "catalog-matching.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-matching.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.304,
+      "log": "catalog-matching.test.log.gz",
+      "log_sha256": "887afb888c13fdb5e3eefa68a1a11c94e52a6acadec239ef2ff6db0a9266f752",
+      "stdout_sha256": "1948a299906a9012c5d615fb08d1a12f4d017df6d18ae986a2b01de9aceb8ec5",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "catalog-source-resolution.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-source-resolution.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.252,
+      "log": "catalog-source-resolution.test.log.gz",
+      "log_sha256": "45d4d3865e4e268f9d25e35efb64f86a3bc9ebdcf9ca0bc4771ab546fc941721",
+      "stdout_sha256": "ef41e8d8be0ee006269beb8566760487c51b1ab7ed23d59204e5cf952132eb54",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "comparison-presentation.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/comparison-presentation.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.41,
+      "log": "comparison-presentation.test.log.gz",
+      "log_sha256": "a05ca30b4764e2c88eeb839c9b09befe2dfc8a8640be9a70c2a51fd0f2699111",
+      "stdout_sha256": "0762e3e21aff0b65d12ae15920087e4a37f36d8ddf9e4e440f4ee20b8ad8ca78",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "coverage-status.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/coverage-status.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.142,
+      "log": "coverage-status.test.log.gz",
+      "log_sha256": "be3b92a9471a368dd4ed232ee166e539b7d83c6e8c9b4e2613364d15bdf9b133",
+      "stdout_sha256": "9fa44a555519145c7c371e0ec44ce29c8ffe5bfcba26bfe6035dff80ab09b461",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "customer-price-preservation.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/customer-price-preservation.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.657,
+      "log": "customer-price-preservation.test.log.gz",
+      "log_sha256": "1ff7ca4902c855a96d5c75f30124cf59aaa1352b438241696b4ef0afe2361fea",
+      "stdout_sha256": "bb5e8c39b8e05fe47e3d4ac47d2a441c7b4ce8400767c3458d2913f0e8f50ea2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "customer-price-trace.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/customer-price-trace.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.741,
+      "log": "customer-price-trace.test.log.gz",
+      "log_sha256": "8b8de803e770cb915ae8aee91795e9257bb9bdeed0c7635a4244bb7c5d8c4170",
+      "stdout_sha256": "3e8b9eee3e9ba1407381f58b2e6a34a47124eabbd9eb214ae101974779191859",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "deductible-comparison.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/deductible-comparison.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.4,
+      "log": "deductible-comparison.test.log.gz",
+      "log_sha256": "440b358241cb475d9e2acdaed5b0d04fed301790259234dc213510b6100f42fa",
+      "stdout_sha256": "ab1a3a915c06f017d9ce0570daa2732c38967787d7ad13501bff546b518c9df8",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "detail-correctness.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/detail-correctness.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.164,
+      "log": "detail-correctness.test.log.gz",
+      "log_sha256": "c493b22934f0da85bf2b8d39298e5eff6bc44430b3534742175fa9d42845aea8",
+      "stdout_sha256": "84bd7778184a1c430f8fd8053324b961eb4b8fcb240574af73d30b5395e91a85",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "dnb-fremtind-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/dnb-fremtind-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.389,
+      "log": "dnb-fremtind-catalog.test.log.gz",
+      "log_sha256": "0e85e56e073c7ee3cdff2b3e2426ab7ae1c2e8fc0f597545abbf03e76b21a1a3",
+      "stdout_sha256": "49f45164eba20e9b29c7dfa35dae5355d6275321af52ceed316d6beb1827a0ef",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "document-catalog-precedence.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/document-catalog-precedence.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.37,
+      "log": "document-catalog-precedence.test.log.gz",
+      "log_sha256": "a973458ea3c014996809118d4c76fda9b2305ed4d2f5519ee8542064b25a7055",
+      "stdout_sha256": "4acb1c10c80100129fcf0a8bd84236a6273c822fe6c9d2add7cb470d1fbdb934",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 23,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "document-totalskade-survival.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/document-totalskade-survival.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.582,
+      "log": "document-totalskade-survival.test.log.gz",
+      "log_sha256": "269d238a5aeadc66dc54ccaee92b16b9daecbfb8cac280eb4a2517d23448332a",
+      "stdout_sha256": "51dec693093082528f8d77fd4b60fcd8cd0b2014ca5254a4a1b7009d88ad0fba",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "effective-fact-resolution.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/effective-fact-resolution.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.49,
+      "log": "effective-fact-resolution.test.log.gz",
+      "log_sha256": "6c1d1c320da4d586de12d297a0cbec706cabdc4e02cdad2f0283376a725280f6",
+      "stdout_sha256": "b29069ef8263d11b29f09ce25591b6e8703ea852c500cbddf71d9c459cb9a780",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 42,
+        "pass": 42,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "eika-fremtind-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/eika-fremtind-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.255,
+      "log": "eika-fremtind-catalog.test.log.gz",
+      "log_sha256": "776268cdcac7cf76421476827f8cb1cb4ff1bd90af1b081171ed89533a804198",
+      "stdout_sha256": "ea0481035f174806a8d06f55270b36ab59bcd15c177efd37c08548bd6d41e11f",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "fremtind-canonical-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/fremtind-canonical-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.318,
+      "log": "fremtind-canonical-catalog.test.log.gz",
+      "log_sha256": "45767be22d88e089590043494fe8654ef8582806fcdef9553f9e3cbd2d665a75",
+      "stdout_sha256": "54362c7bd5c97a0a897334f7ac1e52e7e439f8f806f0f997d49932f9d82df76e",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "fremtind-hus-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/fremtind-hus-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.204,
+      "log": "fremtind-hus-catalog.test.log.gz",
+      "log_sha256": "edc6390a0ed140d964f06461dd2a407c0dfa6be2debcd0d094a390a01dce24cf",
+      "stdout_sha256": "d0e2af6fbd398029df0af8c6d170ea35c473e4b2ca192e926c05c2987c3fe8e2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "fremtind-innbo-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/fremtind-innbo-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.409,
+      "log": "fremtind-innbo-catalog.test.log.gz",
+      "log_sha256": "d7c1d9b5dbe2aeabc17519004e5112685b59c75405fb9c72175742cd6b88f475",
+      "stdout_sha256": "2949df9a7b55abdd9c78e3c1d6c75286482b71f1dfdbf0d891f6bbdd729fb696",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "fremtind-reise-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/fremtind-reise-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.343,
+      "log": "fremtind-reise-catalog.test.log.gz",
+      "log_sha256": "16680ce410da57825d3c6599cfb987968cf74090fd9f79cd369bc5bfb8da4c12",
+      "stdout_sha256": "1ae83a72cf2e9d4f76928f8c1e5cbd5065dd10b21605cecc49d63235db217828",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "frende-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/frende-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.159,
+      "log": "frende-catalog.test.log.gz",
+      "log_sha256": "f3272d29332d6037f88f7a9d5f4ef43cead3bf96129b66ab1893b60013417ced",
+      "stdout_sha256": "ae2a1af0440f92b285a818fb92439c5ba2837c061caf7a7c707350fa88c8ce6e",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "frende-hus-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/frende-hus-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.301,
+      "log": "frende-hus-catalog.test.log.gz",
+      "log_sha256": "90174467a1f3fcc4e84686b538ff3ad2105d4385a1d165a7f88298a556d04f51",
+      "stdout_sha256": "5c6938718c26a25a2e78ae95571678d8d4d9c931959baf3319d87ef45ba6b7e3",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "frende-innbo-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/frende-innbo-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.314,
+      "log": "frende-innbo-catalog.test.log.gz",
+      "log_sha256": "a4fbcad69c5f050c960105a5f37824e4ec784553364d9268f88670777f3b166b",
+      "stdout_sha256": "6e0bacb193d4b9a1babc500de11c6ee15be8547378cb4ec3cfdc2a20ea23c1da",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "frende-reise-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/frende-reise-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.375,
+      "log": "frende-reise-catalog.test.log.gz",
+      "log_sha256": "e91b5e27eeb0edeb1c26560f5eb84ce7de36d257f683d1f0ddd081cecee847d3",
+      "stdout_sha256": "06decaa35ec27a60913f4595035582a581b4a8ec919b8b3b2e8f1dbc7a7f6831",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "gjensidige-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/gjensidige-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.643,
+      "log": "gjensidige-catalog.test.log.gz",
+      "log_sha256": "09b4e025133c50554afeecca121afcaa167567daa941995d19ad91bf5cc7a188",
+      "stdout_sha256": "12c23460b481fe20273c40290834ff2d22a05ed6fb1e60fd529b93430af5d47c",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "gjensidige-hus-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/gjensidige-hus-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.045,
+      "log": "gjensidige-hus-catalog.test.log.gz",
+      "log_sha256": "8ce3a2efaecf7d9667cc50ee13acccea11580de29b1befb8291ed8a58e7cc339",
+      "stdout_sha256": "6cd7afdf90d501d77c8a6d2e6dc1e29e76698028d6780e83de0decd9526ad9e6",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "gjensidige-innbo-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/gjensidige-innbo-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.325,
+      "log": "gjensidige-innbo-catalog.test.log.gz",
+      "log_sha256": "dfbe8530d40b62dc0d18c31b248162b3dadcdfabab5c010905a0269b3a8de8f7",
+      "stdout_sha256": "346141bbbdb34a8498cf49628cd2229a230210857243d143680faa368418404c",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "gjensidige-reise-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/gjensidige-reise-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.275,
+      "log": "gjensidige-reise-catalog.test.log.gz",
+      "log_sha256": "5ebab6c99790c541d64e02a1f68d1f8288594f1d20d3830027c2e18509557d21",
+      "stdout_sha256": "5132602e69f191e6fec644d0a64e7b33e89c94d989bccccd86a0a8125b75e2ba",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "hybrid-matching.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/hybrid-matching.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.258,
+      "log": "hybrid-matching.test.log.gz",
+      "log_sha256": "6b31cd2a9fdf3839c3f4fda10a8d51f350adc127fa69e5e61e6c20826129f130",
+      "stdout_sha256": "3b4634cb744468e7e1a1121e462f812d55eb6324bcded40d38810b086298c3ce",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "if-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/if-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.149,
+      "log": "if-catalog.test.log.gz",
+      "log_sha256": "c184a65384f7421bcd209a036b031b3855698e326a0360c6dc78ef93f0b93a03",
+      "stdout_sha256": "a9956ca9945652d978e5325bd799722a6476ed56f0198e774a509c13c99dae2e",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "if-hus-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/if-hus-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.218,
+      "log": "if-hus-catalog.test.log.gz",
+      "log_sha256": "fa5347ec59944fddff9194077d68718a8d5e4ab6125b063291ecabe61557c2e8",
+      "stdout_sha256": "cdf1b6aa7df53cf3b5d985c45acdb89a420316a2c09bbb092f458c03cbeaa734",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "if-innbo-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/if-innbo-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.209,
+      "log": "if-innbo-catalog.test.log.gz",
+      "log_sha256": "e2530e6a8d47f8852240af328d832d69d1fd4fdaf8212c340e5ec6b8c538064c",
+      "stdout_sha256": "d653f16b1c622ea1bd6279aaa0fbd3e78b8fb5bd5f350f00a89ccbb01780c232",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "if-reise-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/if-reise-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.352,
+      "log": "if-reise-catalog.test.log.gz",
+      "log_sha256": "9088e281901b8d466eeec4cfa0ae441936343fb437dbe5f4dee8a68861495b87",
+      "stdout_sha256": "f769978dca33233bf9557c8d69810f6119c60eeec04f4c71cfc0c1ccd5361dbe",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "insurance-normalization.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/insurance-normalization.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.274,
+      "log": "insurance-normalization.test.log.gz",
+      "log_sha256": "b3d33fd4abf05cce1eb1a2d4050ee98b57ea02839ee9be2462fcc4a54c1c2784",
+      "stdout_sha256": "5876828a1f7df0ac456f1b949e8fbbd0c2c56c9d16a65a14fc21744d7aeab545",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "manual-agreement.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/manual-agreement.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.302,
+      "log": "manual-agreement.test.log.gz",
+      "log_sha256": "4164596fbcc5133ae56bfd7248bbb9f69abf16040e1a2b2937f83731ae1a7de9",
+      "stdout_sha256": "96794b8bd4a3bac6c962dac9cc2dfc886bc1ff9b9909f9ac1b75e295ad731a40",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "manual-entry-ux.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/manual-entry-ux.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.304,
+      "log": "manual-entry-ux.test.log.gz",
+      "log_sha256": "332c89b3741ffbfeacc899e427835aa03eed2a5d737b0036d830c2531632e367",
+      "stdout_sha256": "080b1a86e0e78ae3a4f6c0d5518f1cfedf3226f8ce57cb768af63139de2aa852",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "manual-runtime-flow.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/manual-runtime-flow.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.359,
+      "log": "manual-runtime-flow.test.log.gz",
+      "log_sha256": "dc1ea101970049e892ca0f4c0c34f197e8494818a1156ee7cdbd6f21f89b4b92",
+      "stdout_sha256": "87005ba38ed158b904f0b5f7ed38986f015bac5a059b6fe0fc29f2f56ec44a13",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-addon-selection.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-addon-selection.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.361,
+      "log": "mc-bobil-addon-selection.test.log.gz",
+      "log_sha256": "7058712d22aa2e05bfacfb7d493589a3bfdda38153670c7b7b9401557c900664",
+      "stdout_sha256": "eb892622cab79bfd414e4c66d5e2973e7aa8658664580246fa788fcb3b0c24f5",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 29,
+        "pass": 29,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-fremtind-frende.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-fremtind-frende.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.325,
+      "log": "mc-bobil-fremtind-frende.test.log.gz",
+      "log_sha256": "2cba9e4beb0faca7884923c559078a5d793247782ac2f266a5ee244c26df9ba8",
+      "stdout_sha256": "303d4ad4f3c59b0fb4a5e403773738a14382abdcdf906178318e2d37507fdd90",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-gjensidige-storebrand.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-gjensidige-storebrand.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.289,
+      "log": "mc-bobil-gjensidige-storebrand.test.log.gz",
+      "log_sha256": "3e5200c942e3e25dc89fe54c82ed99ac17107d9fc66f1b4939d13c8b1bed3112",
+      "stdout_sha256": "afd08d872ee1ae07c421acbfa14dca02242e1c17b7599122355a28ab70e8adbc",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 33,
+        "pass": 33,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-manual.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-manual.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.37,
+      "log": "mc-bobil-manual.test.log.gz",
+      "log_sha256": "d2f0687a8dd91bc0bdec7e74e85d1424afdea4611bf1c54c80b3a3803804abf9",
+      "stdout_sha256": "003a41c2de8fd0e049ef68113c7ecf4f328ed0debf7ed2baacec79043e6b39d9",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-normalization.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-normalization.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.354,
+      "log": "mc-bobil-normalization.test.log.gz",
+      "log_sha256": "57d07570f9802878f364f7d06fc29b1842d9cfa08c3cdeeafcebdb4de8fc5a86",
+      "stdout_sha256": "b55d0aff0f6cbe66c786cdd1357c9dca734876bb60d0808f8580294d9204902a",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 53,
+        "pass": 53,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-pipeline.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-pipeline.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.819,
+      "log": "mc-bobil-pipeline.test.log.gz",
+      "log_sha256": "1b8e656a6d1fc99c513aa50fc9122c1a34ed95b33077771becdfd247edada989",
+      "stdout_sha256": "26d39c949f399eceaf0ada60c1baf86eac2230aed5ede9271e15d0bf7e0c9378",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-presentation.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-presentation.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.357,
+      "log": "mc-bobil-presentation.test.log.gz",
+      "log_sha256": "5932a9591bcf002153087a5b25d67f75cb61cf82aa26231e46c68f1a62d8daf5",
+      "stdout_sha256": "05eca572f770b7ec384b3743c63b09fe341bf0a7d8747e1d9e34ffb257ae06c7",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "mc-bobil-tryg-if.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/mc-bobil-tryg-if.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.345,
+      "log": "mc-bobil-tryg-if.test.log.gz",
+      "log_sha256": "5dab0e06d1dcb938d37ba94b4149d7961c25273a7c813fce04057d3380af1010",
+      "stdout_sha256": "8b30a7f1b859cd60915e18c6201a17e0f5e27228fe698e99fb22ead3c053c18d",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b015.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b015.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.467,
+      "log": "nito-remediation-b015.test.log.gz",
+      "log_sha256": "f9ddecd0c509b1fcbe9137fffcde4a36b10d3aae5462f3c558e6babfb29f4cb6",
+      "stdout_sha256": "923c320ac0e8dccc3b4ab96cc75fd1f8529da685aa09828203facab6cedb2d44",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b020.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b020.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.927,
+      "log": "nito-remediation-b020.test.log.gz",
+      "log_sha256": "e174aad54fd477e1cc824fc5f30ea1570c5778449d2226060df5b6fcaf154bef",
+      "stdout_sha256": "fdee4b1ee2c0805e4047614f65a64643ed77280e46b1583624ed973640decd9a",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b021.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b021.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.692,
+      "log": "nito-remediation-b021.test.log.gz",
+      "log_sha256": "4716d6d1a23aee07c8cc63639b736655be4839491b38c5937be682dd66afa180",
+      "stdout_sha256": "bf2cd68cf9e2b71b82c3731b083c2428d80006c04e69a2beacef9bfe9986ba62",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b023.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b023.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.365,
+      "log": "nito-remediation-b023.test.log.gz",
+      "log_sha256": "c8075588c9d15ba566b7493809cff301f0d308c9b94594947a315ed391fe71f9",
+      "stdout_sha256": "2b36589537d08e3bba2b4efc3fb3b66a0f37aadb77a56587ccfce7d3cdc226a4",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b024.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b024.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.308,
+      "log": "nito-remediation-b024.test.log.gz",
+      "log_sha256": "651c668ebb30e8d3d2db7c3d9553ce3dfce0cb0b7b41fc248351f4a8433729f3",
+      "stdout_sha256": "09bfc7c130b3bf88fb9551bb88ed0b39fb1aba8fa9e6a90a1af24c9e71928533",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b025.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b025.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.375,
+      "log": "nito-remediation-b025.test.log.gz",
+      "log_sha256": "5093002028354ec1628e133ac7bc3151b87dab7f594af867bb7ce7b573dac46d",
+      "stdout_sha256": "fa63d1978b23365dc9c1051fb57cc2b644743fa2f9fc373d131bdc9b664117f2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b026.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b026.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.403,
+      "log": "nito-remediation-b026.test.log.gz",
+      "log_sha256": "dc9199649a92cbd4c1e2985d03e77f283a3da4cdcaa75273939bb03123173638",
+      "stdout_sha256": "80c471895e37ec972794065561bac504cc059ac2cd5df842684f6d4d5b046b28",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b027.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b027.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.311,
+      "log": "nito-remediation-b027.test.log.gz",
+      "log_sha256": "4c37ed42db0f1a138794369197b13499d29f19679319526a57aa15818ae10a72",
+      "stdout_sha256": "df8f82779e6bc6861d83255b84883b59c71209b676a67da7432465215ef8cd84",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b028.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b028.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.939,
+      "log": "nito-remediation-b028.test.log.gz",
+      "log_sha256": "16c18a04c4ebbdb87e44c6e06f2ca7406eff92dc3921555c585dea36b08ff2f2",
+      "stdout_sha256": "436522bdde04faa9f428bc33a80feb48f3a6be619cb000e11c29995363fc05c2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b029.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b029.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.049,
+      "log": "nito-remediation-b029.test.log.gz",
+      "log_sha256": "25c8df65a55680d42e12a3229c56c1276ebf3b6839f5277ed69e4f81a89fb0e1",
+      "stdout_sha256": "76df6811b467137f8b4f97507841ab6ceff145608a53cbd951246ae5fe9088eb",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b030.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b030.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.243,
+      "log": "nito-remediation-b030.test.log.gz",
+      "log_sha256": "801163910f88ca9dcab9230c7df5ffa7944725c3fe21781b7e704460728a8d15",
+      "stdout_sha256": "71e9b6b123f6cdc804944c841b90785bc8d95d2fdd41ed1eb7aba5d48d5eff55",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b031.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b031.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.511,
+      "log": "nito-remediation-b031.test.log.gz",
+      "log_sha256": "e5480b869b3a45086dd71283729d9a953752ca723e8d94bc8bdea905f4568ac2",
+      "stdout_sha256": "8a0febb90616eabe8e808b034b5fe28e36bca86e72450cdff6e805359529c3c0",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b032.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b032.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.717,
+      "log": "nito-remediation-b032.test.log.gz",
+      "log_sha256": "748af358dd4757cfe87f1e61097fa5793d87f3a19e7e745f3c30ce6b68e44ce7",
+      "stdout_sha256": "8015e072ebe903ba4038a127b33d633e5f0e8e8401f3231b02420b93544aac51",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b033.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b033.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 2.064,
+      "log": "nito-remediation-b033.test.log.gz",
+      "log_sha256": "e5f0b75f377bf1915c028defb5c5c1f95238e6bae515ba3ffbcc5f8bb1e36f10",
+      "stdout_sha256": "3c9964ac9594076588d7335ed8f79266f47720a8b11bcf6d01fce0cd6471a214",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 141,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b034.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b034.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.731,
+      "log": "nito-remediation-b034.test.log.gz",
+      "log_sha256": "e5b3c534af506af7fd1787cc347ccbfd3cd8baeb1654a420801598369df1fa39",
+      "stdout_sha256": "3d4c67a3d6dcb90d4e4a167eca839ecb3388d80fd7eadffeb6074e161d69e285",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 59,
+        "pass": 59,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b035c.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b035c.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.65,
+      "log": "nito-remediation-b035c.test.log.gz",
+      "log_sha256": "c77d1d9d721e66aeb83574c9da910d14c239c6406efd5086b438da746be4eb86",
+      "stdout_sha256": "15b46609aa585f4333744da03f43e1bd7064653d4f812e629a45a54b69ffe55c",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 77,
+        "pass": 77,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b036.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b036.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.914,
+      "log": "nito-remediation-b036.test.log.gz",
+      "log_sha256": "e87d4da7ea0c6358cfd9b2f4d21754f94524e01dd15f9ef5c8b627963ab70cb1",
+      "stdout_sha256": "3f602674e66c794d600ccbbedf857abff8fa4dfbd5e68c4d2911307213a02da0",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 34,
+        "pass": 34,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b037.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b037.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.74,
+      "log": "nito-remediation-b037.test.log.gz",
+      "log_sha256": "e324e85af3c4c1a35aaf206a629b5d9c96c2b4dda7dab1af5fecebefeb263839",
+      "stdout_sha256": "137f5b442878006ed357844cf7212cf8151fccc17f16e8d6eb0140fb150d6887",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b038.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b038.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.462,
+      "log": "nito-remediation-b038.test.log.gz",
+      "log_sha256": "f2eaf4be883e7d90e8a4c50afe19ef52b37f1bfd1864d3df38bae45e2b52f2f5",
+      "stdout_sha256": "64bad24a4108df5e648cf1fad04c7c5cc055244d68a84cc0ccfd7642a36ffa91",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b039.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b039.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.549,
+      "log": "nito-remediation-b039.test.log.gz",
+      "log_sha256": "ac88df7df3f95099264a3d7ba83f4f65a53ff0150885b7e26351bc679c8370e9",
+      "stdout_sha256": "a74fae3024d3d44afb24e31eca2e125f9094bbdcc16b7a56b3b1ec2acbbf159d",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b040.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b040.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.402,
+      "log": "nito-remediation-b040.test.log.gz",
+      "log_sha256": "0729376967e6477e4d9d6632a3e20c91e1512f9a1920b486b83eb8cc9966bf00",
+      "stdout_sha256": "7e32b52626402b3aafb13e2f688d3d9e57a0f93ce36ddfd56ce04c4352a6e650",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b041.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b041.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.062,
+      "log": "nito-remediation-b041.test.log.gz",
+      "log_sha256": "cd1cf3685d5ff7cec4d95af083b76981d35eb2fa34308e1716d251421b45ca28",
+      "stdout_sha256": "67d8e20ddd2e0758593503d23ac381304ecf6520dd99e6b24b22ccdacbd471c2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b042.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b042.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.411,
+      "log": "nito-remediation-b042.test.log.gz",
+      "log_sha256": "a43c3822127f57614cf057315b69899917d028e86ea76c14e712eb0c85d0cdee",
+      "stdout_sha256": "c3fe4dcd699ca500dbcc2f7c31b4356972a7caeacc4b7bcbd888d3348512cdf0",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 72,
+        "pass": 72,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-b043.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b043.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.472,
+      "log": "nito-remediation-b043.test.log.gz",
+      "log_sha256": "fc5702f68855bda80d70df728eae5ff2cc0041bd7368779693a2eac0046c881b",
+      "stdout_sha256": "93192dbb739db688e223ce79e15f9f1e3ed01d85582a416b13108c9d6e44a3fa",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 53,
+        "pass": 53,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-wave1.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-wave1.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.492,
+      "log": "nito-remediation-wave1.test.log.gz",
+      "log_sha256": "bb9c4246bd6bcb86934bcb5de6f39b423285773e0b33f46d0521d989bc46783b",
+      "stdout_sha256": "3536e7e36cb4d5d1789dcfff84292e1385e15596462debc3a16ec06853a9e903",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "nito-remediation-wave2.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-wave2.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.782,
+      "log": "nito-remediation-wave2.test.log.gz",
+      "log_sha256": "0fa2a6d48bfbfd31675b40cc4c50b5c84bc4aa7269e8a6e2a2f782e202f6b6a7",
+      "stdout_sha256": "aefdc607f724abe44f44d8fea5906a97af3b31c5aca5871e4411859e41557307",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 34,
+        "pass": 34,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "object-aware-comparison.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/object-aware-comparison.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.058,
+      "log": "object-aware-comparison.test.log.gz",
+      "log_sha256": "66201b5a401588142981157851bbb4abe59bd07b2b29fcf8626bafb3cd225ef7",
+      "stdout_sha256": "d2256e7e8d492e0bcb174bf079c3a0b3a3e7385c3612a28e535c2bfce0c75566",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 60,
+        "pass": 60,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pdf-addon-selection.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pdf-addon-selection.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.357,
+      "log": "pdf-addon-selection.test.log.gz",
+      "log_sha256": "43cdcc59874059a3ae3d9b5f35711fec521fff8834b40bfbc48a02906ed19a9c",
+      "stdout_sha256": "2e0c3b2b84d38e2a09f87a46710e8fc31fb05f871faa4e7af67991878f960748",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pdf-addons.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pdf-addons.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.082,
+      "log": "pdf-addons.test.log.gz",
+      "log_sha256": "695962b9c498e57f38ff3df5a7e5c62256ef89ae43279ea4e54347aeb19e69b6",
+      "stdout_sha256": "cfcd939df668d4fc7d199a3c0260d79c36f9548a5e923a36b80e7451dd8d0ef9",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pdf-upload-security.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pdf-upload-security.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.092,
+      "log": "pdf-upload-security.test.log.gz",
+      "log_sha256": "3f0d7f7e0f471a806cad65ff021defebae4811e3ed1ba8f69e7da7cc0b0e52a5",
+      "stdout_sha256": "318412eecd967dbd17c653090dcc9df179cdb34efec7bc3872e143a6ea0076bf",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "phase2-analysis.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/phase2-analysis.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.676,
+      "log": "phase2-analysis.test.log.gz",
+      "log_sha256": "d638349a6a6470a3ead9d227ae5d94f5c4f33309b5daca84a6f730b35765ed86",
+      "stdout_sha256": "10bc60ce5b4c31507571bb710dc876796f10970c691d40f6eba30ebeb67e3374",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 48,
+        "pass": 48,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pilot-determinism-ui.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pilot-determinism-ui.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.535,
+      "log": "pilot-determinism-ui.test.log.gz",
+      "log_sha256": "a9bb3659ca3efd9dc1ecaf999da02fef274d60249b128de4c7d1862b132bcca5",
+      "stdout_sha256": "a87a46e5e96500600f7d174dff49339acd319c94417b3171f894bb6cde2f4852",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pilot-determinism.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pilot-determinism.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.072,
+      "log": "pilot-determinism.test.log.gz",
+      "log_sha256": "bd164398fe9a4355f8684c4201dc5a8bf3af69ade294ea2464b4369aa2d0e938",
+      "stdout_sha256": "ab405a269dbbed1e87ed4619a3db2ef3505dc2e3b0095b422f05600e814df17e",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pilot-quality-presentation.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pilot-quality-presentation.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.505,
+      "log": "pilot-quality-presentation.test.log.gz",
+      "log_sha256": "ba1b8b04281d0974c00dd8d3ecfd232f67824da966fa4428eec8578d79592612",
+      "stdout_sha256": "714ea6fbafc88d18eb7928f7fb92acc1adfb010968fd10ac680d411d31d350cb",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pilot-quality.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pilot-quality.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.608,
+      "log": "pilot-quality.test.log.gz",
+      "log_sha256": "328e3f5869cffcf5d2a1723df117dadad4fcaa4f3736b903a038641fb2143da8",
+      "stdout_sha256": "7c95130603f85730eae1d58c6087c3c8d022e81df8d261c33e818bc847877d13",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "pilot-semantic-regressions.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/pilot-semantic-regressions.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.419,
+      "log": "pilot-semantic-regressions.test.log.gz",
+      "log_sha256": "c96d8188ade36e5e562f79f6041a4589a21c522570484bbf7eab83230ed829d7",
+      "stdout_sha256": "11422fb79464b21927ffca2f68d79bc50a4ce24706c2a77aa8fa872ba11ab804",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 27,
+        "pass": 27,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "portfolio-price-punctuation.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/portfolio-price-punctuation.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.478,
+      "log": "portfolio-price-punctuation.test.log.gz",
+      "log_sha256": "4c8c56ac9b78c3eb223739fef313420d545decd3b8f394054967179f79896846",
+      "stdout_sha256": "b8d6155f8fe97d471d8811b279a9156bea612cb434332d7b62b2003cf0afb628",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "premium-mileage-regression.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/premium-mileage-regression.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.438,
+      "log": "premium-mileage-regression.test.log.gz",
+      "log_sha256": "b94deab05ebc009063d432c32d3ab13e5450419550cf79100f019cd7c069fb4a",
+      "stdout_sha256": "35744fe5676d29dd99d6452a79ff9290773b2386e6069141e9ea70cdb08673d7",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 21,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "presentation-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/presentation-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.255,
+      "log": "presentation-catalog.test.log.gz",
+      "log_sha256": "0a88b1068b75b2868002ae8befecb752eb0ff5c74f70106905ec0eeae2a382f3",
+      "stdout_sha256": "c79ee51ad6efea4713a6f9a15b12e841d3c38b3f21d6ad9562f80644b726e325",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "presentation-integrity.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/presentation-integrity.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.474,
+      "log": "presentation-integrity.test.log.gz",
+      "log_sha256": "d66be8283ad6a0fda56ab0aff26e2a48c1933f3289550a11a1a763f3428a596f",
+      "stdout_sha256": "1b7ab19f38e9501b08ef784d318139f58f17de6bc9c731755006d23d1c463b84",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "presentation-price.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/presentation-price.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.773,
+      "log": "presentation-price.test.log.gz",
+      "log_sha256": "fade760e9e2177f488c714487a4ba04b704adc1ea6a0640e5769f1864443447a",
+      "stdout_sha256": "dd0364d8a8631be9d2730bd6e8fccceaa6ee6bedb4074be157af7225abbc7455",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 66,
+        "pass": 66,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "product-catalog-evidence-hardening.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-catalog-evidence-hardening.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.093,
+      "log": "product-catalog-evidence-hardening.test.log.gz",
+      "log_sha256": "9b0793b27a5f6b850e649d87883bd683106077a09f5de0bed3ad0dab1578e0e9",
+      "stdout_sha256": "e90de7fe53b871ed9510471d5295dafa47f5078a049350af7b996e2e492156b4",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 23,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "product-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.246,
+      "log": "product-catalog.test.log.gz",
+      "log_sha256": "21bb69b21e98674c744f0b2b7faa6a6c7a3de26e68696f901daf30a8c4d8d3a0",
+      "stdout_sha256": "0cc4030b05bf1535c55d7eaebb2f26ddff87391a5fb9a954f9d7745fbb8cafc2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "product-comparison-hardening.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-comparison-hardening.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.33,
+      "log": "product-comparison-hardening.test.log.gz",
+      "log_sha256": "b4197a545cfe15a06bd708751dd9418a2133deccd78a427df8c20897e2ee8ee1",
+      "stdout_sha256": "48e287843aede52e0dd8beb6cf78b4398af484effbdb4c91ca0d59b3cbbba9fa",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 27,
+        "pass": 27,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "product-comparison-semantic.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-comparison-semantic.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.215,
+      "log": "product-comparison-semantic.test.log.gz",
+      "log_sha256": "a5c4b5080c6dc2091f17f7de740237e5e543887a64367419ac26145718b261ea",
+      "stdout_sha256": "dff81699bfcc6e3270bbc6ef6f246653ae6220e8d9f1db364a8102294fde0cb5",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 73,
+        "pass": 73,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "product-comparison.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-comparison.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.564,
+      "log": "product-comparison.test.log.gz",
+      "log_sha256": "89dc1509cca2d03c0912908f3c22503ac05cadad2cf389e778e48b1c51d85399",
+      "stdout_sha256": "7e06affffaeaa535b7d70cbfeb90d317688b2214513b649347832fa07fc5b111",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "product-coverage-evidence.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-coverage-evidence.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.275,
+      "log": "product-coverage-evidence.test.log.gz",
+      "log_sha256": "7c173b49555201e6e0e381e4865c61c820e22c83dffc1f44f66f83f8e8764045",
+      "stdout_sha256": "609083cd7a5ea59bc94a6ffb1121a6056d17f873b377360460e8b2e5ac9fd4c5",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "production-trace-hooks.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/production-trace-hooks.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.343,
+      "log": "production-trace-hooks.test.log.gz",
+      "log_sha256": "aec0e7fb34f0d7773351e4006ed13cee23935a9b484f594156d2e9001f4f5b1e",
+      "stdout_sha256": "74419befaa8278699d7038b113287f6effbc1f498648e0005efd8d51ab81e618",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "production-trace-pipeline.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/production-trace-pipeline.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.044,
+      "log": "production-trace-pipeline.test.log.gz",
+      "log_sha256": "3fe199174cbef818d7de07231e2a445de8ebbd29746b8de073adc01fe1730838",
+      "stdout_sha256": "c8dc0e58891d06c6616051600a5df4093e6a02982ccd8cec4da2c77a8fd326af",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "production-trace-price.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/production-trace-price.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.111,
+      "log": "production-trace-price.test.log.gz",
+      "log_sha256": "cdf9b300acdbe10d2a249c8a96f924d9460793fdd7106013c74d9e26f8b5b107",
+      "stdout_sha256": "61979d0ccd8913c6eb3fbac37d67389dd4abac95ab0252dc3d98fa93b28bbaf8",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "production-trace-transport.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/production-trace-transport.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.755,
+      "log": "production-trace-transport.test.log.gz",
+      "log_sha256": "d8882dab9a9cb09e7b6971157437a305cd96e94d874d40c28f138d92e53ba028",
+      "stdout_sha256": "db72ec879249f2d288d79be304f32f0a7a2b7a04203652a7c7c4f2c48862aaf8",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "production-trace.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/production-trace.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.486,
+      "log": "production-trace.test.log.gz",
+      "log_sha256": "f206974242b415991dfbf9a40126ef5ae8653b5911dc8c9517b3f15c3f0884c3",
+      "stdout_sha256": "1967341ef1adc6bab9ea5dbcc07409a219a20730f042195a44eb3cc1669b7710",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "progress-price-ui.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/progress-price-ui.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.48,
+      "log": "progress-price-ui.test.log.gz",
+      "log_sha256": "406f98057e4eb2f6571a5fd09579a4600bccf2f7bcc6a6d5bb74d3e2ac4e0a02",
+      "stdout_sha256": "029560be368084efa77f18d973b778e4458bf5c4830c5166a158d09167b70636",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 41,
+        "pass": 41,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-044.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-044.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.436,
+      "log": "remediation-b-044.test.log.gz",
+      "log_sha256": "8b4e1786dd30afc6a5e0922eb9859b38d6b9e034f4240fbbc3d0f21a6b8eb7c9",
+      "stdout_sha256": "dedae69c4a6c72e8e85b212e06c347320705ed80e7970a46581a13d52a50bebd",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-045.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-045.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.297,
+      "log": "remediation-b-045.test.log.gz",
+      "log_sha256": "b0663bf6e98ae326e5e919bbac357ffac6e47eb731a92ef7f1c54afb19454068",
+      "stdout_sha256": "6e94fcc5dbc755c29cc74a76cd315876137559c32527dd3f702dd57714806e35",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 46,
+        "pass": 46,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-049.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-049.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.422,
+      "log": "remediation-b-049.test.log.gz",
+      "log_sha256": "f82e5f9bfc1736c1386df6cf0187957b103e27ffa99d1d3d2bb3fe0f5ea652ad",
+      "stdout_sha256": "2ef5640c57fe7fb1e410412c1d30de71989fd9e4fbb7d0bfe742eb438496ace9",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 45,
+        "pass": 45,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-056.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-056.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.559,
+      "log": "remediation-b-056.test.log.gz",
+      "log_sha256": "539386694a5551a052b69554862ee7b50888c0941945b5b2a3098315ad9e8260",
+      "stdout_sha256": "e39762e359fc12f8fab05068f1412f0bcbc1ddecb09824e6cd3423600f3d84ec",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 59,
+        "pass": 59,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-057.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-057.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.267,
+      "log": "remediation-b-057.test.log.gz",
+      "log_sha256": "d71bc48764ca970c79798cc58b88462ec4cfa9d3e4de81a2ef08bb8ca4d34084",
+      "stdout_sha256": "a8ba650dab4f7360b99274c3c118dd8c3585e319f3def9cffa0dd9bbe87c7625",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 23,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-062.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-062.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.473,
+      "log": "remediation-b-062.test.log.gz",
+      "log_sha256": "6178a4b4d5eece836d316e68544a2d448a898c7d5ac284a8cdbfb3c07d663a52",
+      "stdout_sha256": "d36156b70ee36feee8207c34f0ed5784f777887fcc976c0dae82ee5aa1ee2eff",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 46,
+        "pass": 46,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-065.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-065.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.314,
+      "log": "remediation-b-065.test.log.gz",
+      "log_sha256": "4ef3d0813f1fbe346ebae1837a90645dc1a86180a11a3ecdda0068e9cdd5a76e",
+      "stdout_sha256": "968a871337f7489ac26bb86a1deec4366095fb0875964e47494196f87d75b959",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 36,
+        "pass": 36,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-068.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-068.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.561,
+      "log": "remediation-b-068.test.log.gz",
+      "log_sha256": "c4ddf620ec9a4d7f0dd9367100383cff16eb0720fb611f9f797e7df6cec174af",
+      "stdout_sha256": "89496e37104edf06ecfd33d4c5f0e37d310e35a87a7f8cf8940c1ff60ffe44d7",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 41,
+        "pass": 41,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-069.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-069.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.364,
+      "log": "remediation-b-069.test.log.gz",
+      "log_sha256": "cf183fec98206e3b8d8dc102848b19d0aed6b8df992eafabf10b200e37778feb",
+      "stdout_sha256": "3c2933a8b9fb211a8806e1a96d3e4d12e097b884bbfca37f7f48c8459cd70b22",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-072.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-072.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.154,
+      "log": "remediation-b-072.test.log.gz",
+      "log_sha256": "224fc2d9d664eced6f457ce4c485f842d5eb9f3aeb5a7a1e33cbb5e19ed650b2",
+      "stdout_sha256": "9dd6251b31eda6b1f9a5d1326db4ba242d23b15b0ccedaf92f88e06df13bb506",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-076.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-076.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.381,
+      "log": "remediation-b-076.test.log.gz",
+      "log_sha256": "fca74695fe58755c7787c8c4b62d2dea8702183a6c6ab18239e78569dcb0517c",
+      "stdout_sha256": "066a31cd5e626608247d220eb803d00d51d718c9c4ddd48b4eeb931663a82431",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 59,
+        "pass": 59,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-084.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-084.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.511,
+      "log": "remediation-b-084.test.log.gz",
+      "log_sha256": "16861a64340484732dab5d938b86d6f2d761065576d54ed5592ab13a6fad0342",
+      "stdout_sha256": "51f973db4d8b3e76cfcec3db6ad24b6efa07f705bacae000ad1a892e84b7c25d",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 28,
+        "pass": 28,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-088.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-088.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.933,
+      "log": "remediation-b-088.test.log.gz",
+      "log_sha256": "73655bb24a76c53a9f4426edcb67ee481e70ac28fd04cd9b7d80e3d1e575c6cc",
+      "stdout_sha256": "49bc700199aa327c18a062177e1582e197b51dc39b7d3bce21a0778237ebcc5b",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 126,
+        "pass": 126,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-089.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-089.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.251,
+      "log": "remediation-b-089.test.log.gz",
+      "log_sha256": "bff196680bca4a1810f124cd5a62ad15452e2eff3adfd9e502ab6994736fc703",
+      "stdout_sha256": "2886c6cfe17de434df555d1c0bb84d121e05d1f9b5e8fda5a90c99ab30fea325",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 67,
+        "pass": 67,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-091.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-091.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.283,
+      "log": "remediation-b-091.test.log.gz",
+      "log_sha256": "c8b5bfb10492280168769bba6bf14d63365d19af034ccd584686c89ae2df312b",
+      "stdout_sha256": "53795a0a3ceebb07e10ebba8694afac4473cb45cb8a14dfa8d7f1b65556c766c",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 65,
+        "pass": 65,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "remediation-b-095.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-095.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.232,
+      "log": "remediation-b-095.test.log.gz",
+      "log_sha256": "bbd7abb5a909bba0757a6a624a4a91157ba9bd197a697308f23ab21aea4917cc",
+      "stdout_sha256": "d86d3797df7a6df1a7b28e256478c3617e01ff15e0748075046e41fa0d907a25",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 41,
+        "pass": 41,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "same-object-consolidation.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/same-object-consolidation.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.258,
+      "log": "same-object-consolidation.test.log.gz",
+      "log_sha256": "7b9b28e3b6fbb2aa47725bf3328e7457f3232302c513074179f7d3741a881dc2",
+      "stdout_sha256": "7e079ce6e92c5467a3bdb1d39d54342bd5c552388513a327e5e8a5293ceb3ef4",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 82,
+        "pass": 82,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "security-hardening.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/security-hardening.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.316,
+      "log": "security-hardening.test.log.gz",
+      "log_sha256": "ac9c023bf5e9f8f42ad30deee3ed42e241e0ad3f7c1ec4c4193ca0a3fa4662ff",
+      "stdout_sha256": "45e27d7e35293208d2c809d0973d42e77a4ecde8e1295f97e4b8a9df3eb0e3b2",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "semantic-audit.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/semantic-audit.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.336,
+      "log": "semantic-audit.test.log.gz",
+      "log_sha256": "4e1cbada8cb887a9957b25158429b3e4a1dda97ff21b4dc342e34a10ad58b7ff",
+      "stdout_sha256": "60bbeab4af575a25db9ca2a6aef0173d5c03324e90897feee83305eb91e8c20f",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 29,
+        "pass": 29,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "sparebank1-fremtind-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/sparebank1-fremtind-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.388,
+      "log": "sparebank1-fremtind-catalog.test.log.gz",
+      "log_sha256": "1a9fcb05014bdf9d16c8c60df1085e4121a5c6ea54e484ae4334bb9155edd085",
+      "stdout_sha256": "777ac337700e69cbc7bf595732b189432d9432f9e22df12c0a8ba516fd0cf6a3",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "storebrand-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/storebrand-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.741,
+      "log": "storebrand-catalog.test.log.gz",
+      "log_sha256": "adceb9ce3ca6c9e1e46db116fac56a2ff879fa9f5fe2a8d1aa7a5a512d3de0fc",
+      "stdout_sha256": "9bda6b79eb4988714a500adefeccb935d5157f4235e4f5c2402fed267d4b0613",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "storebrand-hus-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/storebrand-hus-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.356,
+      "log": "storebrand-hus-catalog.test.log.gz",
+      "log_sha256": "7005b962cca3208cffe681af9d2488ea3b2b8c3c73ae45bca57327ef5cdc2fdf",
+      "stdout_sha256": "531195a89e95ea046904b9fffa00bef6359041c6d9c86df89a57ccbda2cb84e0",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "storebrand-innbo-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/storebrand-innbo-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.726,
+      "log": "storebrand-innbo-catalog.test.log.gz",
+      "log_sha256": "682b3f8ec74f9689df9204495c3bb873efb4522571d4cf661a01207280a75074",
+      "stdout_sha256": "21f88f3627f5e44fd6caae4ea526ae31232ee1e5aaf7fba9ad143ef1f9ae979b",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "storebrand-reise-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/storebrand-reise-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.357,
+      "log": "storebrand-reise-catalog.test.log.gz",
+      "log_sha256": "54b30fd76759d2e19e8cd6d10fef8a94dcbbe27cbeb48a2835d7a84bc61b4f7a",
+      "stdout_sha256": "b7bb212443b9ba552e9336e71296fbbdad357724a89ce10d4e329dd334178660",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "supporting-terms-ui.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/supporting-terms-ui.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.008,
+      "log": "supporting-terms-ui.test.log.gz",
+      "log_sha256": "3e430fd05df31313d534011893eed1837a05dbcfdb628e76aef6d9be9cbfeffe",
+      "stdout_sha256": "2e72a28f63fe4141fcc4c1c2c7bcf8171bf06e0880ca4d86a77ecbb94875b394",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "supporting-terms.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/supporting-terms.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.992,
+      "log": "supporting-terms.test.log.gz",
+      "log_sha256": "8e1bb3356ab82a5aeae2b621909bd088edb72e613f8eaa94dbe3cca879e22aca",
+      "stdout_sha256": "32977a8c2a84f956f4a687046be842593c3f36af8347c3e2260876524ff536dd",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 43,
+        "pass": 43,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "totalskade-extraction.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/totalskade-extraction.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.5,
+      "log": "totalskade-extraction.test.log.gz",
+      "log_sha256": "7108a593e2d9c9a66a4cb9add2577343b234d5549b69aeed83efe982f48364a1",
+      "stdout_sha256": "1bbe4bc4324fe33147ee346630dd6b3c831db9ffbe2f792876707634bcd85dcd",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 71,
+        "pass": 71,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "totalskade-presentation.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/totalskade-presentation.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.73,
+      "log": "totalskade-presentation.test.log.gz",
+      "log_sha256": "175cccdb30d2abcca089fbe8ca4e1be68a3a1703a9500d356ed6b1db8247c866",
+      "stdout_sha256": "a3100cd8c49c1250d3fc2cfb2b65a3dbd4d5b6ff44d8b64054b5ac0c3fef34fd",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "tryg-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/tryg-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.134,
+      "log": "tryg-catalog.test.log.gz",
+      "log_sha256": "5833f98d6e67494db8ed23e65be506ccb66b5b95ab2e58b2a93b7e88ab391fe1",
+      "stdout_sha256": "60492765bc027c40c17c7581c76f4c385cb15c9f771e3d4374a3076d730fc7ff",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "tryg-hus-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/tryg-hus-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.153,
+      "log": "tryg-hus-catalog.test.log.gz",
+      "log_sha256": "ba5b957e56bcfaba5a029df4d4002620c568a6a4cab2695405e84ebffc089d71",
+      "stdout_sha256": "6b40c23fb09e7cf6935f170e29d26744b0aab2bbeff1eabc7b6c4ebe307ac312",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "tryg-innbo-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/tryg-innbo-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.07,
+      "log": "tryg-innbo-catalog.test.log.gz",
+      "log_sha256": "49fdb6a858361dd4ab65f01c1c2975294f81a2dd6d948dd6706e92189db50f70",
+      "stdout_sha256": "06730b0fffbc24f156352a6d1d3b7ef68573ca706887e6f067e5df82d2c393f1",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "tryg-reise-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/tryg-reise-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 1.153,
+      "log": "tryg-reise-catalog.test.log.gz",
+      "log_sha256": "e033b0002f13551e9a4ef76861c4692ad0a314471fe8cccc76ebd9d8a4c545f3",
+      "stdout_sha256": "73eaca87e8053e1d346aaa9d4e858d073a1717d7907358ed73d33a4d610dd803",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "value-equivalence.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/value-equivalence.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.342,
+      "log": "value-equivalence.test.log.gz",
+      "log_sha256": "8e00539fd4286d4e5f39d8d3b7f370e23daac521a0e13cac90898dbd70094542",
+      "stdout_sha256": "148ebfca47324019f21f510a1d463a11cf99c78b1134a5d83862d14e682f3045",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "vehicle-object-catalog.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/vehicle-object-catalog.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.403,
+      "log": "vehicle-object-catalog.test.log.gz",
+      "log_sha256": "71744a008852675bef43f0bc38b468686a1dcd2fd5e9a92a7277d994adf25395",
+      "stdout_sha256": "b7264274888cf7682a1b48c0c84ec881d5912e5ae8c3b15aed0f33ad1d1c49a8",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 40,
+        "pass": 40,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "vehicle-object-pipeline.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/vehicle-object-pipeline.test.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.845,
+      "log": "vehicle-object-pipeline.test.log.gz",
+      "log_sha256": "a5556061922460253433c5c299e6b4793b7ad96b2ba33b4ecb59510565d31e3c",
+      "stdout_sha256": "91f0f07705fe937095f3b28d33370cd1d78906b66cb9dc51e6560074e75b7405",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    {
+      "label": "next-typegen",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "typegen"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.528,
+      "log": "next-typegen.log.gz",
+      "log_sha256": "f09b7a88bdf0e01472645c87312b0b93979869e726d2059e974820a6862d19f7",
+      "stdout_sha256": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      }
+    },
+    {
+      "label": "typescript",
+      "command": [
+        "npx",
+        "--no-install",
+        "tsc",
+        "--noEmit",
+        "--incremental",
+        "false"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 4.071,
+      "log": "typescript.log.gz",
+      "log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      }
+    },
+    {
+      "label": "eslint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 8.894,
+      "log": "eslint.log.gz",
+      "log_sha256": "c2992c7724d517ef9187eaec51827dfc498be4578279726bba66973cd5a8800d",
+      "stdout_sha256": "8ba58e01669afe41cb9a26ab1f2c846890834e558efadadb0670408b0d0be02f",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "errors": 0,
+      "warnings": 22
+    },
+    {
+      "label": "production-build",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "build",
+        "--webpack"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 15.789,
+      "log": "production-build.log.gz",
+      "log_sha256": "9a0042a64fc615a1e503a0ffd6824abb79cc67d99c72608fb93f677d6b7cd211",
+      "stdout_sha256": "03ce50d3fcf17b0bc2c5e2b8ca015edeb6d380713fbdbe5c4256591fe5eb5cce",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      }
+    },
+    {
+      "label": "http-pdf-runtime",
+      "command": [
+        "node",
+        "scripts/verify-analysis-http.mjs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 20.11,
+      "log": "http-pdf-runtime.log.gz",
+      "log_sha256": "5af7175a09fd8d43233b4cbeb19dedb91d2f7495e3dfdc5b301c09bf2fb81e84",
+      "stdout_sha256": "28d676deda3c7fb618156b4d7faada30e804a84d50319da52a3f2f2329929bdf",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      },
+      "runtime_checks": 22,
+      "runtime_validation_method": "Decoded the actual runtime JSON report result=PASS and exact checks array; raw command output hash preserved"
+    },
+    {
+      "label": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "duration_seconds": 0.005,
+      "log": "diff-check.log.gz",
+      "log_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+      "candidate_files_sha256": {
+        "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+        "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+        "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+      },
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/b050-liv-build-config"
+      }
+    }
+  ]
+}

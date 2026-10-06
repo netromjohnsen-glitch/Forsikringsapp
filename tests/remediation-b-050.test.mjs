@@ -347,3 +347,153 @@ test('R-050-SUM-MANUAL: known catalog product preserves catalog choices, not fre
     assert.deepEqual(out.addOnIds, []);
   }
 });
+
+// Authorized Liv packet: four exact B-050 signatures; no treatment admission.
+const lifeLimit = 'dyr.liv.begrensning', lifeExpiry = 'dyr.liv.opphor';
+const ownLife = k => {
+  const rows = productCatalog.facts[liv].filter(f => f.key === k);
+  assert.equal(rows.length, 1);
+  assert.deepEqual(facts([liv]).filter(f => f.key === k), rows);
+  return rows[0];
+};
+const lifeDetail = (k, v) => ({ ...term(k, v), name: ownLife(k).label });
+const breeds8 = ['Berner sennenhund', 'Blandingsrase Stor', 'Grand Danois', 'Irsk Ulvehund', 'Leonberger', 'Newfoundlandshund', 'Pyrenéerhund', 'Napolitansk Mastiff', 'St. Bernhardshund'];
+const breeds12 = ['Bichon Havanais', 'Blandingsrase Liten', 'Border Terrier', 'Cairn Terrier', 'Chihuahua', 'Chinese Crested', 'Dvergschnauzer', 'Finsk Lapphund', 'Finsk Spets', 'Foxterrier', 'Islandsk Fårehund', 'Jack Russel Terrier', 'Lhasa Apso', 'Toy-, Dverg- og Mellompuddel', 'Kleiner og Grosser Münsterländer', 'Norrbottenspets', 'Norsk Buhund', 'Papillon', 'Phalène', 'Schnauzer', 'Shih Tzu', 'Softcoated Wheaten Terrier', 'Tibetansk Spaniel', 'Tibetansk Terrier', 'Västgötaspets', 'Welsh Springer Spaniel', 'West Highland White Terrier', 'Whippet'];
+const lifeQualifications = [
+  /første 20 dager.*forhøyelse av forsikringssum og dekningsutvidelse/u,
+  /hofteleddsdysplasi \(HD\), albueleddsdysplasi \(AD\), albueleddsartrose \(AA\), osteochondrose \(OCD\), patellaluksasjon, short ulna, Calvé-Legg-Perthes og annen medfødt lidelse/u,
+  /sammenhengende forsikret.*Gjensidige eller annet selskap fra før 4 måneders alder/u,
+  /begge foreldrene.*røntgenfotografert.*HD-frie av NKK.*hundens egne bilder.*avlest av NKK/u,
+  /korsbåndskade.*fra før 4 måneders alder eller minimum ett år før skaden oppsto/u,
+  /tilbakeholdte melketenner, bittfeil eller feilstilte tenner.*medisinske problemer.*fra før 4 måneders alder/u,
+  /bittfeil\/feilstilte tenner.*veterinærattest.*mellom 7 uker og 4 måneders alder uten anmerkninger på tannstilling\/bitt/u,
+  /Mattilsynets godkjennelse.*toll-\/avgiftsregler på importtidspunktet/u,
+  /forebyggende undersøkelse\/behandling.*aggressivitet\/øvrige avvik fra normal atferd/u,
+  /erstattes av andre, reduseres erstatningen forholdsmessig/u,
+];
+const lifeDocumentation = [
+  /plutselig død.*besiktiges av veterinær og vurderes obdusert/u,
+  /Avlivning og håndtering.*dyrevelferdsmessig forsvarlig.*relevant veterinærbehandling må være gjennomført/u,
+  /undersøkelse med tilgjengelige diagnostiske hjelpemidler og eventuell behandling ikke fører frem.*begrunnet veterinærattest/u,
+  /Uten sikker diagnose på grunnlag av kliniske funn.*obduksjon.*ellers kan erstatning falle bort/u,
+  /Nødvendig obduksjon erstattes med inntil 1 500 kr/u,
+  /Skaden skal dokumenteres med veterinærattest/u,
+  /kontrollere ID-merking, besiktige hunden og innhente opplysninger.*tidligere veterinær eller annen sakkyndig.*behandlende veterinær skal kontrollere ID-merkingen/u,
+];
+test('R-050-LIV-SOURCE: PDF2/3/8 original clauses, full breed groups and website-specific mixed-breed heights', async () => {
+  PDFParse.setWorker(getPath());
+  const parser = new PDFParse({ data: readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf', import.meta.url)) });
+  try {
+    const pages = (await parser.getText()).pages.map(p => p.text.replace(/\s+/gu, ' ').trim());
+    assert.match(pages[1], /Død eller avlivning av dyrevelferdsmessig hensyn, som følge av ulykke eller sykdom/u);
+    assert.match(pages[1], /Tyveri og bortkomst/u);
+    for (const phrase of ['innen de første 20 dager', 'forhøyelse av forsikringssum og dekningsutvidelse', 'Hofteleddsdysplasi (HD)', 'Albueleddsdysplasi (AD)', 'Albueleddsartrose (AA)', 'Osteochondrose (OCD)', 'patellaluksasjon', 'short ulna', 'Calvé-Legg-Perthes', 'Begge foreldrene', 'NKK', 'minimum ett år før skaden oppsto', 'mellom 7 uker og 4 måneders alder', 'Mattilsynets godkjennelse', 'forholdsmessig']) assert.ok(pages[1].includes(phrase), phrase);
+    const expirySource = pages[1] + ' ' + pages[2];
+    for (const breed of [...breeds8, ...breeds12]) assert.ok(expirySource.includes(breed), breed);
+    assert.match(expirySource, /Liv opphører automatisk ved hovedforfall det året/u);
+    assert.match(expirySource, /10 år: Øvrige raser/u);
+    assert.match(pages[7], /Stjålet \/ bortkommet hund må meldes til politiet og etterlyses ved annonsering/u);
+    assert.match(pages[7], /Erstatning for bortkommen hund utbetales tidligst 3 måneder etter at bortkomst er meldt Gjensidige og politiet, og hunden er etterlyst ved annonsering/u);
+    for (const phrase of ['vurderes obdusert', 'Relevant veterinærbehandling må være gjennomført', 'en begrunnet attest fra veterinær', 'kliniske funn', 'Utgifter til nødvendig obduksjon', 'kr 1 500', 'Skaden skal dokumenteres med veterinærattest', 'identitetsmerking']) assert.ok(pages[7].includes(phrase), phrase);
+    const html = readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-product.html', import.meta.url), 'utf8').replace(/&nbsp;|\u00a0/gu, ' ');
+    for (const phrase of ['mankehøyde over 55 cm', 'mankehøyde mellom 45 og 55 cm', 'mankehøyde under 45 cm']) assert.ok(html.includes(phrase), phrase);
+  } finally { await parser.destroy(); }
+});
+test('R-050-5839d2c13e186676: GAP-2894/SF-4046 complete optional Liv and veterinary documentation', () => {
+  assert.equal(ownLife(life).value, 'Valgfri modul. Død eller avlivning av dyrevelferdsmessig hensyn som følge av ulykke eller sykdom. Tyveri og bortkomst.');
+  for (const clause of lifeDocumentation) assert.match(ownLife(lifeLimit).value, clause);
+  const presented = materializeCatalogProduct(product).facts.find(f => f.key === life);
+  assert.equal(presented.state, 'optional'); assert.deepEqual(presented.addOnNames, ['Liv']);
+  assert.equal(coverage(enrich([]), life).status, 'unknown');
+});
+test('R-050-373413bc13517ff4: GAP-2896/SF-4048 all qualifications retain different continuity alternatives', () => {
+  for (const clause of lifeQualifications) assert.match(ownLife(lifeLimit).value, clause);
+  assert.equal(isNonAssertingCoverageDetail(lifeLimit), true);
+  assert.doesNotMatch(ownLife(lifeLimit).value, /katten|rasekatt|innbrudd i bygning/u);
+});
+test('R-050-72170f7dfe5c91b6: GAP-2897/SF-4049 exact breed groups, main renewal, mixed-breed heights; no automatic assignment', () => {
+  const v = ownLife(lifeExpiry).value;
+  const eight = v.split('8 år: ')[1].split('12 år: ')[0], twelve = v.split('12 år: ')[1].split('10 år: ')[0];
+  assert.equal(eight.trim(), breeds8.slice(0,-1).join(', ') + ' og ' + breeds8.at(-1) + '.');
+  assert.equal(twelve.trim(), breeds12.slice(0,-1).join(', ') + ' og ' + breeds12.at(-1) + '.');
+  assert.match(v, /automatisk ved hovedforfall det året hunden oppnår aldersgrensen for rasen/u);
+  assert.match(v, /10 år: Øvrige raser/u); assert.match(v, /opphører ved eierskifte/u);
+  for (const phrase of ['stor med mankehøyde over 55 cm', 'mellomstor med mankehøyde mellom 45 og 55 cm', 'liten med mankehøyde under 45 cm']) assert.ok(v.includes(phrase));
+  assert.match(v, /Kundens rase\/mankehøyde må være dokumentert for å fastslå gruppe/u);
+  assert.doesNotMatch(v, /20 %|5, 7 eller 9|Bruk opphører/u);
+  assert.equal(isNonAssertingCoverageDetail(lifeExpiry), true);
+  const silent = enrich([]); assert.equal(coverage(silent, life).status, 'unknown');
+  assert.equal(silent.importantTerms.some(t => t.key === lifeExpiry), false);
+});
+test('R-050-8c14a1328e5080cf: GAP-2899/SF-4051 exact stolen/missing reporting and missing-dog waiting rule', () => {
+  const v = ownLife(lifeLimit).value;
+  assert.match(v, /Stjålet\/bortkommet hund må meldes til politiet og etterlyses ved annonsering/u);
+  assert.match(v, /Erstatning for bortkommen hund utbetales tidligst 3 måneder etter at bortkomst er meldt Gjensidige og politiet, og hunden er etterlyst ved annonsering\.$/u);
+  assert.doesNotMatch(v, /3 måneders karens|stjålet hund utbetales tidligst/u);
+});
+for (const k of [life, lifeLimit, lifeExpiry]) test(`R-050-LIV-PROVENANCE: ${k} exact raw and presented identity, sourceType and secondary reference`, () => {
+  const f = ownLife(k), refs = catalogFactSources(f);
+  assert.equal(f.source.documentId, 'boat-pet:gjensidige:hund:life-use');
+  assert.equal(f.source.page, 2); assert.equal(f.source.company, 'Gjensidige');
+  assert.equal(f.source.termsNumber, 'Hund Liv og Bruk'); assert.equal(f.source.agreementScope, 'ordinary');
+  assert.equal(f.source.version, ''); assert.equal(f.source.effectiveFrom, '');
+  assert.deepEqual(refs, [f.source, f.qualificationSource]);
+  if (k === lifeExpiry) {
+    assert.equal(f.source.section, 'Opphør – Liv (fortsatt PDF-side 3, trykt side 7)');
+    assert.equal(f.qualificationSource.documentId, 'boat-pet:gjensidige:hund:product');
+    assert.equal(f.qualificationSource.page, 1); assert.equal(f.qualificationSource.section, 'Hvor lenge gjelder forsikringen? – Liv og blandingsraser');
+  } else {
+    assert.equal(f.source.section, k === life ? 'Hvilke skader/hendelser – Liv' : 'Forutsetninger og Dekkes ikke – Liv');
+    assert.equal(f.qualificationSource.documentId, f.source.documentId);
+    assert.equal(f.qualificationSource.page, 8);
+    assert.equal(f.qualificationSource.section, 'Død / bortkomst, Avlivning og Besiktigelse og dokumentasjon');
+  }
+  const presented = materializeCatalogProduct(product).facts.filter(row => row.key === k); assert.equal(presented.length, 1);
+  assert.equal(presented[0].state, 'optional'); assert.deepEqual(presented[0].addOnNames, ['Liv']);
+  assert.deepEqual(presented[0].sources, refs.map(source => ({ ...source, sourceType: productCatalog.sources[source.documentId].sourceType })));
+  assert.deepEqual(presented[0].sources.map(s => s.sourceType), k === lifeExpiry ? ['full_terms','product_page'] : ['full_terms','full_terms']);
+});
+for (const [choices, expected, conflict] of [[[], 'unknown', false], [[term(life, 'Valgt')], 'selected', false], [[term(life, 'Ikke valgt')], 'not_selected', false], [[term(life, 'Valgt'), term(life, 'Ikke valgt')], 'unknown', true]]) {
+  test(`R-050-LIV-SELECTION: details plus ${expected}/${conflict} preserve explicit states without choosing Bruk`, () => {
+    const out = enrich([...choices, lifeDetail(lifeLimit, ownLife(lifeLimit).value), lifeDetail(lifeExpiry, ownLife(lifeExpiry).value)]);
+    assert.equal(coverage(out, life).status, expected); assert.equal(coverage(out, life).conflict, conflict);
+    assert.equal(out.addOnIds.includes(liv), expected === 'selected');
+    assert.equal(out.addOnIds.includes(bruk), false); assert.equal(coverage(out).status, 'unknown');
+    for (const k of [lifeLimit, lifeExpiry]) assert.equal(coverage(out, life).details.find(d => d.key === k).value, ownLife(k).value);
+  });
+}
+test('R-050-LIV-DOCUMENT: customer qualifications and expiry beat catalog with exact source; Bruk refusal preserves Liv', () => {
+  const inputs=[lifeDetail(lifeLimit,'Kundens dokumenterte Liv-særvilkår'),lifeDetail(lifeExpiry,'Kundens dokumenterte opphør ved 11 år')];
+  const out=enrich([term(life,'Valgt'),term(parent,'Ikke valgt'),...inputs]);
+  assert.equal(coverage(out,life).status,'selected'); assert.equal(coverage(out).status,'not_selected');
+  assert.equal(out.addOnIds.includes(liv),true); assert.equal(out.addOnIds.includes(bruk),false);
+  for(const input of inputs){const actual=out.importantTerms.find(t=>t.key===input.canonicalKey);assert.equal(actual.value,input.value);assert.equal(actual.coverageOrigin,'document');assert.deepEqual(actual.source,input.source);}
+});
+for(const side of ['existing','offer']) test(`R-050-LIV-PIPELINE: ${side} explicit customer expiry overrides supporting full terms`,()=>{
+  const explicit=lifeDetail(lifeExpiry,'Kundens dokumenterte opphør ved 11 år');
+  const general=lifeDetail(lifeExpiry,ownLife(lifeExpiry).value);
+  const out=documentPipeline([[record([term(life,'Valgt'),explicit])],[record([general],'general_terms')]],side).insuranceData.insurances[0];
+  assert.equal(coverage(out,life).status,'selected'); assert.equal(out.importantTerms.find(t=>t.key===lifeExpiry).value,explicit.value);
+  assert.ok(out.recordEvidence.some(e=>e.documentRole==='general_terms'&&e.importantTerms.some(t=>t.key===lifeExpiry&&t.value===general.value)));
+  const silent=documentPipeline([[record([], 'unknown')],[record([general],'general_terms')]],side).insuranceData.insurances[0];
+  assert.equal(coverage(silent,life).status,'unknown'); assert.equal(silent.addOnIds.includes(liv),false);
+});
+test('R-050-LIV-MANUAL: known product uses catalog package without inventing customer breed/group',()=>{
+  for(const ids of [[],[liv],[liv,bruk]]){
+    const out=normalizeManualAgreement({company:'Gjensidige',products:[{type:'Hund',productName:'Behandling',importantTerms:[],addOnIds:ids}]}).insuranceData.insurances[0];
+    assert.equal(coverage(out,life).status,ids.includes(liv)?'selected':'unknown');
+    assert.equal(coverage(out).status,ids.includes(bruk)?'selected':'unknown');
+    if(ids.includes(liv)){const f=out.importantTerms.find(t=>t.key===lifeExpiry);assert.equal(f.value,ownLife(lifeExpiry).value);assert.equal(f.coverageOrigin,'catalog');}
+  }
+});
+test('R-050-LIV-ISOLATION: same product/both directions, no base/Katt/provider or Bruk leakage',()=>{
+  assert.equal(compareCatalogProducts(product,product).differenceCount,0);
+  const other=productCatalog.products.find(p=>p.productId==='frende-hund-veterin-r');assert.ok(other);
+  const forward=compareCatalogProducts(product,other).sections.flatMap(s=>s.rows),reverse=compareCatalogProducts(other,product).sections.flatMap(s=>s.rows);
+  for(const row of forward){const swapped=reverse.find(r=>r.key===row.key);assert.ok(swapped);assert.deepEqual(row.first,swapped.second);assert.deepEqual(row.second,swapped.first);}
+  for(const k of [lifeLimit,lifeExpiry]) assert.equal(facts([]).some(f=>f.key===k),false);
+  for(const [component,rows] of Object.entries(productCatalog.facts)) for(const k of [life,lifeLimit,lifeExpiry])
+    assert.equal(rows.some(f=>f.key===k&&f.value===ownLife(k).value),component===liv,component);
+  assert.deepEqual(productCatalog.addOns.find(a=>a.id===bruk).requiresAddOnIds,[liv]);
+  assert.deepEqual(productCatalog.addOns.find(a=>a.id===bruk).selectionEvidenceKeys,[parent]);
+});

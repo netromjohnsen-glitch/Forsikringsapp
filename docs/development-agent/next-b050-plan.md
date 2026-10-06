@@ -1,10 +1,10 @@
-# Neste B-050-bolker — NOT_AUTHORIZED
+# B-050-plan — Liv FULLFØRT, øvrige bolker NOT_AUTHORIZED
 
-Read-only plan på implementasjonsrevision ef5b0bca3b55a4883f1b74a012233a7d0082b4c9.
-Ingen av bolkene nedenfor er autorisert. Dette er ikke en gjenåpning av fire dokumenterte
+Opprinnelig read-only plan på ef5b0bc; oppdatert etter Liv-completion.
+Liv-bolk A er eksplisitt autorisert og fullført PASS; øvrige bolker er ikke autorisert. Dette er ikke en gjenåpning av åtte dokumenterte
 kampanjekontrakter eller en påstand om globalt OPEN-sett.
 [Inventaret](../audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json) inneholder
-alle 12 eksakte originalbindinger, RC-026, produktidentitet, kildehash og arkivets forslag.
+de åtte gjenværende eksakte originalbindinger, RC-026, produktidentitet, kildehash og arkivets forslag.
 [Originalplanen](../audit/legacy-local/source-catalog-remediation-triage/remediation-batches.md)
 og [triage.json](../audit/legacy-local/source-catalog-remediation-triage/triage.json) definerer
 B-050; source-clear i historisk plan betyr verken runtime-admission eller fullmakt i dag.
@@ -33,7 +33,7 @@ Produktets relevante seksjoner er gjennomgått samlet. Ingen kilderefresh eller 
 
 ## A — Liv-kvalifikasjoner og opphør (anbefalt neste større bolk)
 
-Status NOT_AUTHORIZED; source-clear for eksplisitte Hund-regler i allerede registrert kilde.
+Status COMPLETED_PASS etter eksplisitt brukerfullmakt. Se [completion-receipts](../audit/checkpoints/b050-liv-completion-04534f8/README.md).
 Fire selvstendige kontrakter; felles RC-026 er ikke bevis på én korreksjonsrot.
 
 | Signatur | Binding | Nødvendig representasjon / bevis |
@@ -77,7 +77,7 @@ hovedforfall vs alder, karens vs erstatningsventetid, eksplisitt valg/avslag/kon
 begrensning/opphør alene uten Liv-valg, dokumentprioritet, samme produkt og begge retninger,
 Bruk-avslag uten fjerning av Liv, provider-/Katt-isolasjon. Felles sluttgate nedenfor.
 Risiko MEDIUM: lange negative vilkår må ikke endre hoveddekningens status.
-Nødvendig beslutning: autoriser eksakt fire-signaturbolk med disse filer/kontrakter/gater,
+Historisk beslutningskrav (nå oppfylt): autoriser eksakt fire-signaturbolk med disse filer/kontrakter/gater,
 mekanisk grense 3 i nytt scope, gjenværende kampanjegrense 12 (brukt 4), receipt og atomisk
 commit/push etter PASS. Ingen ny semantisk korreksjonsfullmakt eller kildeadmission.
 
@@ -166,7 +166,7 @@ For hver fremtidig autorisert bolk: nye korrekte assertions er validering, kilde
 forhåndsgodkjent katalogarbeid er ikke automatisk correction-budgetforbruk. Planlagt
 korreksjonsforbruk 0; faktisk hver uavhengig feilaktig harnessrot føres etter bevis.
 Ny bolk kan bruke maks 3 mekaniske røtter hvis fullmakten aktiverer samme kampanjepolicy,
-med samlet brukt 4/12 før start. Kapasitet 8 er ikke forhåndsgodkjenning. Ingen semantisk
+med samlet brukt 6/12 før neste start. Kapasitet 6 er ikke forhåndsgodkjenning. Ingen semantisk
 korreksjonsfullmakt, økning eller reset av historiske 19/16 og 10/8 foreslås.
 Budsjett-/kontraktsuklarhet stopper den avhengige delen.
 
@@ -179,8 +179,10 @@ diff/integritet. Bruk aktuelle kommandoer fra gate-results, ikke historiske PASS
 Bevar closed-campaign gjenverdi/minimum 5 000/Død-sum, Bruk/Liv og eksakt shared-fix.
 Nye receipts gjelder testet aktuell kandidat; globalt regnskap forblir UKJENT.
 
-Anbefalt rekkefølge: A (Liv fire kontrakter) først; B uavhengig etter egen presis fullmakt;
-C etter admission/representasjonsbeslutning; D etter mapping + admission; E etter SC-035,
-selection og admission. Ingen blind numerisk videreføring eller senere batch i denne planen.
-Den minste beslutningen nå er å autorisere A med eksakt fire-signatursett, filer, fullgate,
-mekanisk 3/scope innen 12/kampanje og commit/push. Øvrige bolker forblir NOT_AUTHORIZED.
+Aktuell rekkefølge: A er fullført PASS. Neste større forslag er C etter eksplisitt admission/
+representasjonsbeslutning; B kan autoriseres uavhengig etter egen presis fullmakt. D krever
+mapping + admission; E krever SC-035, selection og admission. Ingen videre bolk er autorisert.
+Minste aktuelle beslutning er det konkrete fire-signaturforslaget i next-treatment-proposal.md.
+
+Aktuelt neste større forslag: [Behandling-bolk](next-treatment-proposal.md), NOT_AUTHORIZED.
+Livs opprinnelige beslutningskrav over er historisk planlegging og er oppfylt av brukerfullmakten; det gir ikke fullmakt til noen øvrig bolk.

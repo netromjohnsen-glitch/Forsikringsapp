@@ -153,9 +153,19 @@ test('R-022-08: dependencies reject self/cycle/dangling/provider/type/scope/vers
   invalid((c, child, parent) => { parent.requiresLevel = ['other-product']; });
   invalid((c, child, parent) => { parent.distributionChannels = ['excluded']; });
   invalid((c, child, parent) => { parent.excludeDistributionChannels = ['ordinary']; parent.distributionChannels = ['ordinary']; });
-  invalid(c => { c.sources['boat-pet:gjensidige:hund'].productVersion = 'other-version'; });
-  invalid(c => { c.sources['boat-pet:gjensidige:hund'].effectiveFrom = '2099-01-01'; });
-  invalid(c => { c.sources['boat-pet:gjensidige:hund'].validTo = '2020-01-01'; });
+  // Mutate the dependency's actual primary source; Liv's source can legitimately
+  // move from IPID to full terms without weakening scope/version/date rejection.
+  const parentSource = c => {
+    const parent = c.addOns.find(a => a.id === liv('hund'));
+    const row = c.facts[parent.componentId].find(f => f.key === 'dyr.liv.dekning');
+    const source = c.sources[row.source.documentId];
+    assert.equal(source.providerId, 'gjensidige'); assert.equal(source.insuranceType, 'Hund');
+    assert.equal(source.agreementScope, 'ordinary');
+    return source;
+  };
+  invalid(c => { parentSource(c).productVersion = 'other-version'; });
+  invalid(c => { parentSource(c).effectiveFrom = '2099-01-01'; });
+  invalid(c => { parentSource(c).validTo = '2020-01-01'; });
   invalid(c => { c.sources['boat-pet:gjensidige:hund:product'].agreementScope = 'nito'; });
   invalid((c, child, parent) => { child.exclusiveGroup = 'alternatives'; parent.exclusiveGroup = 'alternatives'; });
 });

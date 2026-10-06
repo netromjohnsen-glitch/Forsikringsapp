@@ -1,17 +1,17 @@
 {
   "status": "DURABLE_DEVELOPMENT_AGENT_CHECKPOINT_NOT_GLOBAL_EXECUTION_LEDGER",
   "repository": "netromjohnsen-glitch/Forsikringsapp",
-  "application_revision": "ef5b0bca3b55a4883f1b74a012233a7d0082b4c9",
+  "application_revision": "04534f8663c910803d20b63f702388f16b35d09c",
   "initial_head_origin_remote_main_equal": true,
   "initial_working_tree": "CLEAN",
-  "documentation_revision": "Resolve with git log -1 -- docs/audit/checkpoints/development-agent-ef5b0bc/checkpoint.json; no self-referential SHA claim",
+  "documentation_revision": "git log -1 --format=%H -- docs/audit/checkpoints/development-agent-ef5b0bc/checkpoint.json",
   "validation_identity": {
-    "receipt": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/receipt-3f4b9eff50404590.json",
-    "tested_base_revision": "5ffa5c5bb18b4325c057c7393f84a0411d5c78ae",
-    "tested_candidate_identity": "1a76eb473c443c04db2a03db63323d4105989c67d406d41337e373935cc839d9",
+    "receipt": "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-5839d2c13e186676.json",
+    "tested_base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+    "tested_candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
     "latest_implementation_files_match_tested_candidate": true,
-    "prior_three_tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
-    "no_new_application_suite_run_for_documentation": true
+    "prior_receipts_preserved": true,
+    "actual_gate_summary": "docs/audit/checkpoints/b050-liv-completion-04534f8/summary.json"
   },
   "campaign_members": [
     {
@@ -21,7 +21,7 @@
       "receipt_sha256": "cc5eabfaa7536d5e7fea6a9db40f5e8b540d9b8926fb8b3af3c6e3bc9d9f09b6",
       "tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
       "existing_receipt_unchanged": true,
-      "regression_on_new_candidate": "B-050 32/32 and complete closure gates PASS"
+      "regression_on_new_candidate": "B-050 49/49 plus complete 145-file closure suite PASS; prior receipt identities not relabeled"
     },
     {
       "signature": "1f56c194d413f97d",
@@ -30,7 +30,7 @@
       "receipt_sha256": "0b5a54e10f2abb787abbf8694ee6a8dae5c036ea39c73c5dae3c6f3b9c575be4",
       "tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
       "existing_receipt_unchanged": true,
-      "regression_on_new_candidate": "B-050 32/32 and complete closure gates PASS"
+      "regression_on_new_candidate": "B-050 49/49 plus complete 145-file closure suite PASS; prior receipt identities not relabeled"
     },
     {
       "signature": "8e9d297cb0d1bd0e",
@@ -39,17 +39,51 @@
       "receipt_sha256": "3cfdd907e4f2cbc0f6779da5419de9c2889af4227ce231f2612d26dda5b8689f",
       "tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
       "existing_receipt_unchanged": true,
-      "regression_on_new_candidate": "B-050 32/32 and complete closure gates PASS"
+      "regression_on_new_candidate": "B-050 49/49 plus complete 145-file closure suite PASS; prior receipt identities not relabeled"
     },
     {
       "signature": "3f4b9eff50404590",
       "classification": "NEW_IMPLEMENTATION_CURRENT_COMPLETION",
       "receipt": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/receipt-3f4b9eff50404590.json",
       "tested_base_revision": "5ffa5c5bb18b4325c057c7393f84a0411d5c78ae",
-      "tested_candidate_identity": "1a76eb473c443c04db2a03db63323d4105989c67d406d41337e373935cc839d9"
+      "tested_candidate_identity": "1a76eb473c443c04db2a03db63323d4105989c67d406d41337e373935cc839d9",
+      "receipt_sha256": "b75219aa66c84910482fa2aaebfbfacd66cd5082a4d5db0235861849e0d9d3e0",
+      "regression_on_new_candidate": "B-050 49/49 plus complete 145-file closure suite PASS; prior receipt identities not relabeled"
+    },
+    {
+      "signature": "5839d2c13e186676",
+      "classification": "NEW_LIV_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-5839d2c13e186676.json",
+      "receipt_sha256": "cf676e2978d51a2808fb4091d4a853afd9a746488f0b018cae4d91c42e7db5ab",
+      "tested_base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+      "tested_candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab"
+    },
+    {
+      "signature": "373413bc13517ff4",
+      "classification": "NEW_LIV_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-373413bc13517ff4.json",
+      "receipt_sha256": "bde014dfcb97f42e64cb424c759d23303fab54b018bd3a52a6853fbca52a909a",
+      "tested_base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+      "tested_candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab"
+    },
+    {
+      "signature": "72170f7dfe5c91b6",
+      "classification": "NEW_LIV_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-72170f7dfe5c91b6.json",
+      "receipt_sha256": "a3ed8722fdf025fd0a14988a7e54f6a2c59aad5b044290ad3569493a263b6bd7",
+      "tested_base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+      "tested_candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab"
+    },
+    {
+      "signature": "8c14a1328e5080cf",
+      "classification": "NEW_LIV_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-8c14a1328e5080cf.json",
+      "receipt_sha256": "0640915399dbe78ef8e3d8914e22cfa0194eb07dabd7fd823c16c23a6e13d8d5",
+      "tested_base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+      "tested_candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab"
     }
   ],
-  "documented_unique_count": 4,
+  "documented_unique_count": 8,
   "global_current_resolved": "UNKNOWN",
   "global_current_open": "UNKNOWN",
   "partial_recovery": "docs/audit/checkpoints/g2-recovery-36d7694/checkpoint.json",
@@ -66,15 +100,15 @@
   },
   "future_campaign": {
     "campaign_id": "CURRENT_REVALIDATION_RV01",
-    "used": 4,
+    "used": 6,
     "limit": 12,
-    "last_completed_scope": "B050_SUM_CHOICE",
-    "last_scope_used": 3,
+    "last_completed_scope": "B050_LIV_QUALIFICATIONS_EXPIRY",
+    "last_scope_used": 2,
     "last_scope_limit": 3,
-    "root_ledger": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/prospective-root-ledger.csv",
+    "root_ledger": "docs/audit/checkpoints/b050-liv-completion-04534f8/prospective-root-ledger.csv",
     "typegen_root_reuse_not_recharged": true,
     "historical_20_exception_used": false,
-    "policy": "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/campaign-policy.json",
+    "policy": "docs/audit/checkpoints/b050-liv-completion-04534f8/campaign-policy.json",
     "next_scope_requires_explicit_authorization": true
   },
   "historical_holds": {
@@ -115,14 +149,14 @@
     ]
   },
   "current_blockers": [
-    "No next implementation packet authorized",
+    "No remaining implementation packet authorized",
     "Global exact closure chain remains incomplete",
-    "Treatment frozen PDF not production-admitted",
+    "Treatment frozen PDF not production-admitted; proposed next packet needs explicit admission",
     "Diagnostic distinct-dimension representation needs decision",
     "Rehabilitation selection/SC-035 needs decision"
   ],
   "authorized_packets": [],
-  "next_proposed_packet": "LIV_QUALIFICATIONS_EXPIRY",
+  "next_proposed_packet": "TREATMENT_PERIOD_MEDICINE_DENTAL_DEFINITIONS",
   "plan": "docs/development-agent/next-b050-plan.md",
   "remaining_inventory": "docs/audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json",
   "evidence_sha256": {
@@ -134,13 +168,26 @@
     "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/summary.json": "e130145feadb314068601d46b18df984477069c73a6506fad3d204c9b742863b",
     "docs/audit/checkpoints/b050-sum-completion-5ffa5c5/prospective-root-ledger.csv": "1ccafe72d62a446de48fd4d9afc3bc8cc5ab4feb0649eea150e80bd0921d56aa",
     "docs/audit/checkpoints/g2-recovery-36d7694/checkpoint.json": "2889176fb3bd9d60e68219ac642b261e66b214aedfa607141ff8fd237c371d19",
-    "docs/audit/checkpoints/g2-recovery-36d7694/partial-ledger.csv": "0045ec325dd1f35e297ee53c32286834e2cd27f4276a3addee4db5f29b3190d7"
+    "docs/audit/checkpoints/g2-recovery-36d7694/partial-ledger.csv": "0045ec325dd1f35e297ee53c32286834e2cd27f4276a3addee4db5f29b3190d7",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-5839d2c13e186676.json": "cf676e2978d51a2808fb4091d4a853afd9a746488f0b018cae4d91c42e7db5ab",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-373413bc13517ff4.json": "bde014dfcb97f42e64cb424c759d23303fab54b018bd3a52a6853fbca52a909a",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-72170f7dfe5c91b6.json": "a3ed8722fdf025fd0a14988a7e54f6a2c59aad5b044290ad3569493a263b6bd7",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/receipt-8c14a1328e5080cf.json": "0640915399dbe78ef8e3d8914e22cfa0194eb07dabd7fd823c16c23a6e13d8d5",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/campaign-policy.json": "aa32481d3ab0e41190d8d92b927b7e8e03a73b19adf6a147484cef9dafc6ee44",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/summary.json": "b62616277723c01057adf4f8491fad8104a7a290a658f3bae79782bbaa04def4",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/prospective-root-ledger.csv": "bc85f6ca92f73fb321d78f4ffb37e7353fe560d87db52bde0c02af38549964fa",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/source-reverse-audit.json": "53fc6799c99fe4188b2c7c17934660c4eda05b610e3774ab92abe57565c2d9c4",
+    "docs/audit/checkpoints/b050-liv-completion-04534f8/gate-results.json": "bac7e67e67fedd834eee4b6f9457835de87885929fae6a73fad145fd3f3b14ba"
   },
   "implementation_files_sha256": {
-    "lib/boat-pet-catalog.ts": "6fba4d9fef6a64b2e2f53752678bea22760860548ac29fa7c779cae9c8bab57d",
+    "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+    "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+    "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943",
     "lib/coverage-fact-semantics.ts": "88eabccf64d2503cc7e55f32dd729d31d4a6d710c919d175f73e155f72b21dba",
-    "tests/remediation-b-050.test.mjs": "6195178297bf48136a90bc1758585786ba43f93275645d14f1aefa031ae532e3",
     "tests/boat-pet-catalog.test.mjs": "3d8421fe8ca378bfb81703fe8958e5b61acc7fbe53de868b66bc3f6b0f41096a"
   },
-  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "application_revision_role": "TESTED_BASE_PLUS_EXACT_CANDIDATE_IDENTITY; not a claim that base commit contains the uncommitted Liv change",
+  "application_commit_lookup": "git log -1 --format=%H -- lib/boat-pet-catalog.ts",
+  "next_proposal": "docs/development-agent/next-treatment-proposal.md"
 }

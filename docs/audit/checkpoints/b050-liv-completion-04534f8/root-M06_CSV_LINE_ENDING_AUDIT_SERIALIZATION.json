@@ -1,0 +1,20 @@
+{
+  "root_id": "M06_CSV_LINE_ENDING_AUDIT_SERIALIZATION",
+  "scope": "B050_LIV_QUALIFICATIONS_EXPIRY",
+  "category": "MECHANICAL_AUDIT_SERIALIZATION",
+  "diagnosis": "Python csv writer default CRLF triggers staged git diff --check trailing whitespace; working-tree check did not include newly untracked audit files",
+  "equivalence_proof": "csv.DictReader old CRLF vs normalized LF gives exact equal rows/fields; source/catalog/customer-selection/provenance and validated candidate file hashes unchanged",
+  "mechanical_change": "New current prospective ledger serialized with LF; immutable historic ledgers untouched",
+  "failed_gate": "git diff --cached --check before first local commit; independently reproduced with git diff --check baseline -- new ledger",
+  "process_error": "Shell lacked fail-fast and created local unpublished commit after staged gate failed; replace that own commit before any push",
+  "before": {
+    "scope": 1,
+    "campaign": 5
+  },
+  "after": {
+    "scope": 2,
+    "campaign": 6
+  },
+  "authorization": "Explicit active mechanical correction policy <=3 scope, <=12 campaign",
+  "application_revalidation": "No application file change after complete closure; repeat documentation/integrity gates only"
+}

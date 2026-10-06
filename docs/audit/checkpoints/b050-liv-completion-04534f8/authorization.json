@@ -1,0 +1,39 @@
+{
+  "status": "AUTHORIZED_BY_USER",
+  "scope": "B050_LIV_QUALIFICATIONS_EXPIRY",
+  "base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+  "signatures": [
+    "5839d2c13e186676",
+    "373413bc13517ff4",
+    "72170f7dfe5c91b6",
+    "8c14a1328e5080cf"
+  ],
+  "allowed_production_files": [
+    "lib/boat-pet-catalog.ts"
+  ],
+  "allowed_test_files": [
+    "tests/remediation-b-050.test.mjs",
+    "tests/nito-remediation-b022.test.mjs (only M05 dependency-source fixture)"
+  ],
+  "allowed_documentation": "completion receipts, checkpoint, policy and read-only next plan",
+  "scope_mechanical_limit": 3,
+  "campaign_limit": 12,
+  "campaign_used_before": 4,
+  "semantic_correction_authorized": false,
+  "commit_push": "atomic commit to established main after complete PASS",
+  "other_packets_authorized": false,
+  "preserve": [
+    "document priority",
+    "optional availability != selection",
+    "Bruk requires Liv",
+    "previous four receipts and exact shared fixes"
+  ],
+  "forbidden": [
+    "source admission",
+    "diagnostic mapping",
+    "rehabilitation SC-035",
+    "new product areas",
+    "deploy"
+  ],
+  "authorization_evidence": "User message authorizing this exact Liv packet; source-backed breeds and mixed-breed heights, no inferred customer group"
+}

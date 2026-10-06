@@ -1,0 +1,112 @@
+{
+  "classification": "CURRENT_IMPLEMENTATION_COMPLETION_NOT_HISTORICAL_RECOVERY",
+  "status": "PASS",
+  "signature": "72170f7dfe5c91b6",
+  "gap_ids": [
+    "GAP-2897"
+  ],
+  "sf_ids": [
+    "SF-4049"
+  ],
+  "original_binding": {
+    "signature_id": "72170f7dfe5c91b6",
+    "representative_finding_id": "GAP-2897",
+    "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-026\"]",
+    "final_batch_id": "B-050",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "1",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2897\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+    "source_fact_ids": "[\"SF-4049\"]",
+    "proposed_existing_keys": "[\"dyr.liv.opphor\"]",
+    "semantic_concept": "Liv",
+    "semantic_dimension": "opphør/raser",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "original_evidence": {
+    "finding_id": "GAP-2897",
+    "finding_ids": [
+      "GAP-2897"
+    ],
+    "source_fact_id": "SF-4049",
+    "source_fact_ids": [
+      "SF-4049"
+    ],
+    "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
+    "product_identities": [
+      "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
+    ],
+    "component": "gjensidige-hund-liv",
+    "artifact": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+    "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+    "location": "2–3",
+    "urls": [
+      "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
+    ],
+    "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Hovedforfallåret8storeliste/12småliste/10øvrige;eksakteraserogblandinghøydeitilknyttettabell.Kundensrasemåavklares.",
+    "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+    "proposed_existing_keys": [
+      "dyr.liv.opphor"
+    ],
+    "advisor_impact": "Dogbreed-specific8/10/12 expiryabsent.",
+    "audit_scope_notes": "Dogbreed-specific8/10/12 expiryabsent.",
+    "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+  },
+  "tested_base_revision": "04534f8663c910803d20b63f702388f16b35d09c",
+  "tested_candidate_identity": "8a5e11edd382638ad63768dc829faca885f5525a25d4a8189fff2f84e3befdab",
+  "candidate_files_sha256": {
+    "lib/boat-pet-catalog.ts": "fecf9e08bc4a73a71bb914fc1911b1a964e4e4007489dca2a6dee5816bd927ef",
+    "tests/remediation-b-050.test.mjs": "3695fc2b04286f7e3d026c32fa47bdfa1378754837b9e8bafc6f28555e344f00",
+    "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943"
+  },
+  "candidate_diff_sha256": "2820f5a984b1c38baa72cce4607197b36ec4a2cbc6fd6f265969f8881f234156",
+  "source_proof": {
+    "pdf_pages": [
+      2,
+      3
+    ],
+    "printed_pages": [
+      6,
+      7
+    ],
+    "sections": [
+      "Opphør",
+      "Produktnettside: Hvor lenge gjelder forsikringen?"
+    ],
+    "keys": [
+      "dyr.liv.opphor"
+    ],
+    "tests": [
+      "R-050-72170f7dfe5c91b6",
+      "R-050-LIV-SOURCE"
+    ]
+  },
+  "sources": {
+    "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+    "catalog/sources/boat-pet/gjensidige-dog-product.html": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58"
+  },
+  "source_review": "docs/audit/checkpoints/development-agent-ef5b0bc/source-review.json",
+  "component": "gjensidige-hund-liv",
+  "provider": "gjensidige",
+  "insurance_type": "Hund",
+  "scope": "ordinary",
+  "version": "UNKNOWN; source version empty; retrieval not version",
+  "gate_results": "docs/audit/checkpoints/b050-liv-completion-04534f8/gate-results.json",
+  "gate_results_sha256": "bac7e67e67fedd834eee4b6f9457835de87885929fae6a73fad145fd3f3b14ba",
+  "source_reverse_audit": "docs/audit/checkpoints/b050-liv-completion-04534f8/source-reverse-audit.json",
+  "all_other_components_metadata_unchanged": true,
+  "selection_contract": "Optional availability not selection; explicit choices/rejection/conflict and document priority preserved; no breed inference",
+  "global_arithmetic_change": false,
+  "historical_closure_chain_reconstructed": false,
+  "P2_credit": 0,
+  "documentation_integrity_correction": "root-M06_CSV_LINE_ENDING_AUDIT_SERIALIZATION.json",
+  "scope_mechanical": "2/3",
+  "campaign_mechanical": "6/12"
+}
