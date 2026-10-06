@@ -1,0 +1,86 @@
+{
+  "status": "BLOCKED_HARNESS_BUDGET_PENDING_EXPLICIT_AUTHORIZATION",
+  "baseline": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+  "scope_signatures": [
+    "403c9b3f0e9aa19f",
+    "6ceaaaf84f1dc597",
+    "a7561c0d03ede572"
+  ],
+  "targeted": {
+    "tests": 23,
+    "pass": 9,
+    "fail": 14
+  },
+  "production_audit": "PASS: exact authorized two-row transform;317components/4156facts/metadata/old six/pests unchanged",
+  "new_independent_roots": [
+    {
+      "id": "GARDEN-PDF-COLUMN-INTERLEAVING",
+      "tests": [
+        "R-051-GARDEN-SOURCE Standard",
+        "R-051-GARDEN-SOURCE Pluss"
+      ],
+      "failures": 2,
+      "cause": "PDF extraction interleaves adjacent right-column Hobbyveksthus between pier amount and fire/nature qualifier; assertion wrongly requires contiguous sentence",
+      "baseline_proof": "Identical frozen PDF bytes and original extraction on committed baseline; sourceOutputs plain and layout in baseline-contract-probes.json",
+      "minimum_correction": "Read the covered left-column object paragraph in coordinate/column order, retaining entire original clause and exact qualifiers; no source byte or catalog edits"
+    },
+    {
+      "id": "GARDEN-REENRICHMENT-FULL-TERM-IDEMPOTENCE",
+      "tests": [
+        "R-051-GARDEN-DOCUMENT bothproducts/bothkeys"
+      ],
+      "failures": 4,
+      "cause": "Assertion assumes second enrichment preserves catalogOrigin and all catalog-only raw fields; baseline treats provided terms as document terms, keeping value/provenance but changing origin/metadata",
+      "baseline_proof": "Both rounds in baseline-contract-probes.json; lib/catalog-enrichment.ts and document-fact-normalization.ts unchanged",
+      "minimum_correction": "Assert complete expected second-step term using established input contract; independently compare unchanged baseline/candidate behavior and preserve full values/provenance. Do not change engine or infer new idempotence contract"
+    },
+    {
+      "id": "GARDEN-EXTRACTION-PIPELINE-SOURCES",
+      "tests": [
+        "R-051-GARDEN-PIPELINE bothproducts/individual_agreement,unknown,general_terms"
+      ],
+      "failures": 6,
+      "cause": "Valid name/value extraction receives sources array from enrichBatch, not a raw source field; assertion incorrectly dereferences source.documentId",
+      "baseline_proof": "All three roles reproduced on committed baseline and candidate; lib/analysis-merge.ts attach maps documentIndices to sources; exact terms stored with all fields",
+      "minimum_correction": "Strictly compare complete sources array with exact documentIndex/side/documentRole identity; assert raw source absence. Keep roles/fixtures, no new schema fields"
+    },
+    {
+      "id": "GARDEN-MANUAL-NOTE-UNDEFINED",
+      "tests": [
+        "R-051-GARDEN-MANUAL bothproducts"
+      ],
+      "failures": 2,
+      "cause": "Expected primary manual source omits note; existing manual converter sets note:undefined on primary and exact qualification note on supplemental",
+      "baseline_proof": "note own-property/undefined reproduced in committed baseline and candidate; lib/manual-agreement.ts source mapping unchanged",
+      "minimum_correction": "Add explicit note:undefined to full-field expected primary manual reference; keep exact supplemental note and every other field"
+    },
+    {
+      "id": "GARDEN-CUSTOM-MANUAL-NULL-REFERENCE",
+      "tests": [
+        "R-051-GARDEN-MANUAL bothproducts latent assertion line169"
+      ],
+      "failures": 0,
+      "latent_affected_assertions": 2,
+      "cause": "Custom manual mode has catalogReference:null and catalogSelectionConfirmed:false; new assertion incorrectly expects undefined",
+      "baseline_proof": "Actual normalizeManualAgreement output identical on committed baseline and candidate; lib/manual-agreement.ts returns catalogReference initialized null. Permanent read-only custom-manual-proof.json records complete outputs",
+      "minimum_correction": "Expect exact null sentinel and retain false/no-catalog/custom-value checks; no inputmode or engine change"
+    }
+  ],
+  "root_count": 5,
+  "roots_corrected": 0,
+  "HARNESS_AUTONOMY_V1": {
+    "used": 11,
+    "limit": 12,
+    "scope_used": 0,
+    "remaining": 1
+  },
+  "planned_contract_updates_charged": 0,
+  "minimum_decision": "Authorize exactly five documented test-contract corrections. One fits remaining HARNESS_AUTONOMY_V1 capacity, four need an explicit bounded exception if all are performed:11/12→16/12. No fixes or charges have occurred. Existing standard limit remains12; no general future capacity.",
+  "receipts_created": 0,
+  "signatures_closed": 0,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "commit_push": "NOT_PERFORMED",
+  "holds": "All baseline holds unchanged",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

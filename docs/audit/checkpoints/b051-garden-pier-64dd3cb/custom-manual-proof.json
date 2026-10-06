@@ -1,0 +1,55 @@
+{
+  "baseline": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+  "command": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import{productCatalog}from'./lib/product-catalog.ts';import{normalizeManualAgreement}from'./lib/manual-agreement.ts';import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';const before=JSON.parse(gunzipSync(readFileSync('docs/audit/checkpoints/b051-garden-pier-64dd3cb/baseline-catalog.json.gz')));console.log(JSON.stringify(['baseline','candidate'].map((mode,i)=>({mode,output:normalizeManualAgreement({company:'Gjensidige',totalAnnualPremium:'',products:[{type:'Hus',productName:'Syntetisk spesialprodukt',annualPremium:'',deductible:'',coverageSummary:'',addOnIds:[],importantTerms:[{name:'Hage og uteområde',value:'Kundevilkår 73 000 kr'}]}]},i?productCatalog:before).insuranceData.insurances[0]}))));"
+  ],
+  "results": [
+    {
+      "mode": "baseline",
+      "output": {
+        "type": "Hus",
+        "productName": "Syntetisk spesialprodukt",
+        "annualPremium": null,
+        "deductible": null,
+        "deductibleOrigin": "customer",
+        "coverageSummary": null,
+        "importantTerms": [
+          {
+            "name": "Hage og uteområde",
+            "value": "Kundevilkår 73 000 kr"
+          }
+        ],
+        "catalogReference": null,
+        "catalogSelectionConfirmed": false,
+        "catalogFacts": null,
+        "addOnIds": [],
+        "addOns": []
+      }
+    },
+    {
+      "mode": "candidate",
+      "output": {
+        "type": "Hus",
+        "productName": "Syntetisk spesialprodukt",
+        "annualPremium": null,
+        "deductible": null,
+        "deductibleOrigin": "customer",
+        "coverageSummary": null,
+        "importantTerms": [
+          {
+            "name": "Hage og uteområde",
+            "value": "Kundevilkår 73 000 kr"
+          }
+        ],
+        "catalogReference": null,
+        "catalogSelectionConfirmed": false,
+        "catalogFacts": null,
+        "addOnIds": [],
+        "addOns": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": [
+    "All required final application gates PASS on hash-bound candidate",
+    "31 prior receipts, all tracked historical audit files and stopped garden package unchanged",
+    "Independent two-row reverse audit:317othercomponents/4156otherfacts and allmetadata unchanged",
+    "Source SHA256/6bindings/39partition/34unique receipt set",
+    "Relative documentation links and registered provenance references",
+    "Exact authorized changed/untracked file set;initial staged0",
+    "Working and staged diff --check PASS",
+    "Secured publish.py --self-test PASS;every required exit failure aborts commit/push"
+  ],
+  "publication_gate": "docs/audit/checkpoints/b050-diagnostics-integrity-3c5e869/publish.py",
+  "post_stage_required": "verify.py checksums/identity,exact staged set,both diffchecks,remote baseline before checked commit/push",
+  "no_deploy_or_later_scope": true
+}

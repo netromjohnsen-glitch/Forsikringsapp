@@ -1,28 +1,17 @@
 # Aktuell dokumentert prosjektstatus
 
-Siste operative bevispakke: [B-051 Utleie og brukstap](../audit/checkpoints/b051-rental-loss-use-5718a5f/README.md).
-[Checkpoint](../audit/checkpoints/b051-rental-loss-use-5718a5f/checkpoint.json) og
-[eksakt kandidatidentitet](../audit/checkpoints/b051-rental-loss-use-5718a5f/application-identity.json).
-Testet baseline `5718a5fdcfe669d6afd11d4c27fe3a45ed24c175` med de hash-identifiserte autoriserte kandidatendringene;
-atomisk publiseringsrevision fremgår av Git.
+Siste operative bevispakke: [B-051 Hage/badekilde/basseng/brygge](../audit/checkpoints/b051-garden-completion-64dd3cb/README.md).
+[Checkpoint](../audit/checkpoints/b051-garden-completion-64dd3cb/checkpoint.json), [kandidatidentitet](../audit/checkpoints/b051-garden-completion-64dd3cb/application-identity.json) og [ferske gater](../audit/checkpoints/b051-garden-completion-64dd3cb/validation-summary.json).
+Testet baseline `64dd3cb12116c725b600e53af7da1f13fa9cf3bf` med autoriserte hash-identifiserte katalog-/testendringer. Publiseringsrevision fremgår av Git.
 
-B-050s 16 og B-071s ti tidligere receipts er uendret. B-051: fem individuelle source-backed completion-receipts
-for Utleie/brukstap. Eksakt dokumentert kampanjesett: **31 unike signaturer**, ingen global historisk closure-rekonstruksjon.
-Globalt resolved/open = **UKJENT**. Historisk rapporterte 414/1589 er ikke aktuelle verifiserte tall.
+**34 unike dokumenterte signaturer:** B05016, B071 ti CURRENT_REVALIDATION, B051 åtte individuelle completions. De31 tidligere receipts er uendret. Globalt resolved/open **UKJENT**; historisk rapporterte414/1589 er ikke aktuelle verifiserte tall.
+[B051s eksakte39-partisjon](../audit/checkpoints/b051-garden-completion-64dd3cb/b051-partition.json):8 fullført,27 kildeklare preflightkandidater uten nye receipts,2 revalideringskandidater,2 holds. Manglende receipt betyr ikke automatisk produksjonsfeil.
 
-Fersk sluttgate: B051 15/15, B00720/20, B02011/11, B05097/97, B07197/97;
-fullsuite3970/3970 i146filer, komplett remediering1819/1819 i48filer;
-typegen/TypeScript, ESLint0feil, webpack production build og HTTP/PDF-runtime22/22 PASS.
-HARNESS_AUTONOMY_V1: **11/12 brukt**, siste scope **6/6**. Alle seks røtter har uavhengig bevis;
-ordinære grenser og historiske tellere er uendret.
+Fersk Hage23/23; fullsuite3993/3993 i147filer; komplett remediering1842/1842 i49filer; typegen/TypeScript PASS; ESLint0feil/26uendrede warnings; webpack build PASS; HTTP/PDF-runtime22/22 PASS.317 øvrige komponenter og4156 øvrige råfakta/metadata uendret.
+HARNESS_AUTONOMY_V1 **16/12**, siste scope **5/6**, med fem navngitte røtter:én ordinær +fire eksplisitte unntak. Ordinær totalgrense12 beholdes; ingen fremtidig kapasitet. Planlagte fingerprint-/reverse-oppdateringer belastes0; historiske tellere uendret.
 
-[Den opprinnelige 39-signaturpreflighten](../audit/checkpoints/rv02-b071-b051-f829dd3/b051-preflight.md)
-er fortsatt historisk og uendret. Denne bolken dekker bare fem; øvrige34 får ingen ny status.
-Ingen videre produksjonsbolk er autorisert. Neste nødvendige fullmakt er et eksakt nytt source-clear B051-scope.
-Kildekonflikt SC-019/SR-033, vannmapping25004bc4d7dd2c03, SC-020/SR-032,
-SC-035/SR-031 og B-0715f31ff4946a666b5 krever fortsatt egne beslutninger og beholdes.
-
-[Historisk pre-pilot-avstemming](../audit/checkpoints/project-status-8fc4324/README.md)
-og delvis recovery beholdes. Manglende global ledger blir ikke reparert av nye receipts.
+[Stoppet Hage-pakke](../audit/checkpoints/b051-garden-pier-64dd3cb/README.md), [historisk prosjektavstemming](../audit/checkpoints/project-status-8fc4324/README.md) og delvis recovery er uendret.
+Ingen videre produksjonsbolk er autorisert. Neste konkrete beslutning er eksakt nytt B051-scope etter preflight og eventuell separat fremtidig harnessramme.
+Bevar SC019/SR033/157c7afed18eb0fe, vannmapping25004bc4d7dd2c03, SC020/SR032, SC035/SR031, B0715f31ff4946a666b5 og øvrige checkpoint-holds.
 
 `CATALOG_PILOT_GATE = REMEDIATION_REQUIRED`

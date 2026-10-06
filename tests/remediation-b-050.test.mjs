@@ -952,9 +952,21 @@ test('R-050-DIAGNOSTICS-MANUAL: known catalog and custom input retain their sepa
 // predates implementation; this compatibility comparison preserves every other
 // row/field/metadata in the historical B-050 baselines (not candidate output).
 const approvedB051Oracle = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b051-rental-loss-use-5718a5f/source-oracle.json', import.meta.url)));
+const approvedB051GardenOracle = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b051-garden-pier-64dd3cb/source-oracle.json', import.meta.url)));
 function assertB050OutsideComponent(component, actual, previous) {
   const approved = Object.entries(approvedB051Oracle).filter(([, o]) => o.owner === component);
+  // Exactly two independent source-verified transformations; keep every other full field.
+  const garden = Object.entries(approvedB051GardenOracle).filter(([, o]) => o.owner === component);
   const expected = previous.map(f => {
+    const gardenMatch = garden.find(([key]) => key === f.key);
+    if (gardenMatch) {
+      const [, o] = gardenMatch;
+      assert.equal(f.label, o.label);
+      assert.deepEqual([f.source.page, f.source.section], o.previous_primary);
+      assert.equal(Object.hasOwn(f, 'qualificationSource'), false);
+      return { ...f, value: o.value, source: { ...f.source, page: o.primary[0] },
+        qualificationSource: { ...f.source, page: o.qualification[0], section: o.qualification[1] } };
+    }
     const match = approved.find(([key]) => key === f.key);
     if (!match) return f;
     const [, o] = match;
@@ -965,6 +977,7 @@ function assertB050OutsideComponent(component, actual, previous) {
     } : {}) };
   });
   assert.equal(previous.filter(f => approved.some(([key]) => key === f.key)).length, approved.length);
+  assert.equal(previous.filter(f => garden.some(([key]) => key === f.key)).length, garden.length);
   assert.deepEqual(actual, expected, component);
 }
 

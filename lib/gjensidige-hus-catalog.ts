@@ -32,8 +32,8 @@ const standard = facts("gjensidigeHusStandard", [
   ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr og tilbehør som er vanlig for bygningens formål inngår.", "Hus – Hva forsikringen omfatter", 2],
   ["teknisk.solceller", "Solcelleanlegg", "Solcelleanlegg til privat strømforbruk inngår.", "Hus – Hva forsikringen omfatter", 2],
   ["ror.utvendig", "Utvendige rør og ledninger", "Tilknyttede utvendige ledninger frem til offentlig ledning eller spredeledning. Brønn og borehull er unntatt.", "Hus – Hva forsikringen omfatter", 2],
-  ["hage.objekter", "Hage og uteområde", "Hageanlegg på inntil fem dekar, inkludert fast utendørs svømmebasseng.", "Hus – Hva forsikringen omfatter", 2],
-  ["hage.brygge", "Fast brygge", "Fast brygge inntil 100 000 kroner ved brann og naturskade. Flytebrygge og molo er unntatt; utvidet sum kan avtales.", "Hus – Hva forsikringen omfatter", 2],
+  ["hage.objekter", "Hage og uteområde", "Hageanlegg inntil fem dekar, inkludert utvendig badekilde/-basseng. Skade på hageanlegg, utvendig badekilde/-basseng og brygge forårsaket av dyr, insekter, frost, sjøgang eller andre klimatiske forhold er unntatt. Likevel dekkes skader som skyldes en flomlignende situasjon.", "Hus – Hva forsikringen omfatter", 3],
+  ["hage.brygge", "Fast brygge", "Fast brygge tilhørende forsikret bygning inntil 100 000 kroner, begrenset til brann og naturskade. Molo/bølgebryter er unntatt, også når dette fungerer som fundament for brygge. Flytebrygge og landgang er unntatt. Skade på hageanlegg, utvendig badekilde/-basseng og brygge forårsaket av dyr, insekter, frost, sjøgang eller andre klimatiske forhold er unntatt. Likevel dekkes skader som skyldes en flomlignende situasjon.", "Hus – Hva forsikringen omfatter", 3],
   ["byggunderoppforing", "Bygg under oppføring", "Bygningsmaterialer, brakker og containere til byggearbeid på forsikringsstedet inngår etter vilkårets regler.", "Hus – Hva forsikringen omfatter", 2],
   ["brann.dekning", "Brann", "Brann, lynnedslag, eksplosjon, elektrisk fenomen og plutselig nedsoting.", "Hus – Dekkes", 3],
   ["elektrisk.dekning", "Lyn og elektrisk fenomen", "Lynnedslag, kortslutning, lysbue, overslag og annet elektrisk fenomen etter vilkårets regler.", "Hus – Dekkes", 3],
@@ -104,6 +104,12 @@ const rental = facts("gjensidigeHusStandard", [
   ["utleie.skadeverk", "Utleie – skadeverk", "Når utleie er angitt i forsikringsbeviset: skadeverk på bygningen med vilje påført av leietaker, jf. straffeloven § 351.", "Hus – Utleie", 3],
   ["utleie.egenandel", "Utleie – egenandel", "10 000 kroner ved misligholdt husleie og skadeverk av leietaker.", "Forsikringsoversikt", 1, "override"],
 ]);
+
+// Separate page references for the insured objects and their source-qualified exclusions.
+standard.find((fact) => fact.key === "hus.hage.objekter")!.qualificationSource =
+  facts("gjensidigeHusStandard", [["hage.objekter", "Hage og uteområde", "", "Hus – Dekkes ikke / Hageanlegg, utvendig badekilde/-basseng og brygge", 4]])[0].source;
+standard.find((fact) => fact.key === "hus.hage.brygge")!.qualificationSource =
+  facts("gjensidigeHusStandard", [["hage.brygge", "Fast brygge", "", "Hus – Dekkes ikke / Hageanlegg, utvendig badekilde/-basseng og brygge", 4]])[0].source;
 
 // Independent references for the source-qualified rental and loss-use clauses.
 standard.find((fact) => fact.key === "hus.brukstap.dekning")!.qualificationSource =

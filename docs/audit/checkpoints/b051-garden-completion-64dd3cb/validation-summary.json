@@ -1,0 +1,598 @@
+{
+  "status": "PASS",
+  "tested_baseline": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+  "candidate_identity_sha256": "4f95d9a037cc23802504c1f7c0f24360ad896264e8bf58a9c68bebf0baee9fd3",
+  "fullsuite": {
+    "files": 147,
+    "tests": 3993,
+    "pass": 3993
+  },
+  "remediation": {
+    "files": 49,
+    "tests": 1842,
+    "pass": 1842
+  },
+  "targeted": [
+    {
+      "label": "targeted-closure-remediation-b-051-garden",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-garden.test.mjs"
+      ],
+      "tap": {
+        "tests": 23,
+        "pass": 23,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-remediation-b-051",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051.test.mjs"
+      ],
+      "tap": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-wave1",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-wave1.test.mjs"
+      ],
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-remediation-b-071",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-071.test.mjs"
+      ],
+      "tap": {
+        "tests": 97,
+        "pass": 97,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-b018",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b018.test.mjs"
+      ],
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-b022",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b022.test.mjs"
+      ],
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-b020",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b020.test.mjs"
+      ],
+      "tap": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-remediation-b-050",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-050.test.mjs"
+      ],
+      "tap": {
+        "tests": 97,
+        "pass": 97,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-remediation-b-072",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-072.test.mjs"
+      ],
+      "tap": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-liv-reduction-selection-evidence",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/liv-reduction-selection-evidence.test.mjs"
+      ],
+      "tap": {
+        "tests": 103,
+        "pass": 103,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-supporting-terms",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/supporting-terms.test.mjs"
+      ],
+      "tap": {
+        "tests": 43,
+        "pass": 43,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-catalog-enrichment-provenance",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-enrichment-provenance.test.mjs"
+      ],
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-coverage-status",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/coverage-status.test.mjs"
+      ],
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-insurance-normalization",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/insurance-normalization.test.mjs"
+      ],
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-catalog-comparison",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-comparison.test.mjs"
+      ],
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-product-comparison-hardening",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-comparison-hardening.test.mjs"
+      ],
+      "tap": {
+        "tests": 27,
+        "pass": 27,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-product-comparison",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-comparison.test.mjs"
+      ],
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-manual-agreement",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/manual-agreement.test.mjs"
+      ],
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-boat-pet-catalog",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/boat-pet-catalog.test.mjs"
+      ],
+      "tap": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-gjensidige-hus-catalog",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/gjensidige-hus-catalog.test.mjs"
+      ],
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "status": "PASS"
+    }
+  ],
+  "quality": [
+    {
+      "label": "typegen",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "typegen"
+      ],
+      "tested_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "exit_code": 0,
+      "duration_seconds": 0.606,
+      "tap": {},
+      "log": "typegen.log.gz",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "typescript",
+      "command": [
+        "npx",
+        "--no-install",
+        "tsc",
+        "--noEmit",
+        "--incremental",
+        "false"
+      ],
+      "tested_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "exit_code": 0,
+      "duration_seconds": 4.032,
+      "tap": {},
+      "log": "typescript.log.gz",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "eslint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "tested_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "exit_code": 0,
+      "duration_seconds": 8.634,
+      "tap": {},
+      "log": "eslint.log.gz",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "errors": 0,
+      "warnings": 26,
+      "status": "PASS"
+    },
+    {
+      "label": "production-build",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "build",
+        "--webpack"
+      ],
+      "tested_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "exit_code": 0,
+      "duration_seconds": 16.097,
+      "tap": {},
+      "log": "production-build.log.gz",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "http-pdf-runtime",
+      "command": [
+        "node",
+        "scripts/verify-analysis-http.mjs"
+      ],
+      "tested_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "exit_code": 0,
+      "duration_seconds": 20.05,
+      "tap": {},
+      "log": "http-pdf-runtime.log.gz",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "runtime": {
+        "result": "PASS",
+        "checks": [
+          "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+          "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+          "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+          "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+          "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+          "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+          "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+          "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+          "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+          "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+          "unauthorized",
+          "manual/catalog",
+          "synthetic PDF to mocked AI to response",
+          "two-side concurrency",
+          "N documents to M products",
+          "capacity limit",
+          "invalid PDF before AI",
+          "strict form fields",
+          "429/no retries/sibling abort",
+          "admission released",
+          "private logging",
+          "semantic fallback telemetry/no unnecessary AI"
+        ],
+        "syntheticMetrics": {
+          "event": "analysis.metrics",
+          "requestId": "ebb985d2-1d33-41f7-92df-1eb4e8e1a1c6",
+          "status": 200,
+          "totalMs": 1206.965935,
+          "timings": {
+            "uploadValidation": 1.688066000000049,
+            "pdfWorker": 1004.122934,
+            "pdfParsing": 112.417056,
+            "textExtraction": 27.567522999999937,
+            "inputPreparation": 0.9731380000000627,
+            "aiExtraction": 356.0569009999997,
+            "structuredOutput": 0.6086279999999533,
+            "catalogLookup": 0.015393000000130996,
+            "documentNormalization": 5.044920000000047,
+            "catalogEnrichment": 7.343635999999833,
+            "semanticMatching": 0.40139499999986583,
+            "response": 0.2805829999999787
+          },
+          "semanticMatcher": {
+            "audit": {
+              "candidates": [],
+              "decisions": [],
+              "omitted": 0,
+              "outcome": "NO_DECISION"
+            },
+            "invoked": false,
+            "deterministicMatches": 4,
+            "unresolvedCandidates": 0,
+            "semanticCandidatesSent": 0,
+            "semanticMatchesAccepted": 0,
+            "durationMs": 0.38160599999991973,
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "existingDocumentCount": 1,
+          "offerDocumentCount": 1,
+          "successfulDocuments": 2,
+          "failedDocuments": 0,
+          "identifiedProducts": 8,
+          "partialSuccess": false,
+          "progressTransport": "json",
+          "batchCount": 2,
+          "batches": [
+            {
+              "documentsPerBatch": 1,
+              "pagesPerBatch": 1,
+              "estimatedInputSize": 16118
+            },
+            {
+              "documentsPerBatch": 1,
+              "pagesPerBatch": 1,
+              "estimatedInputSize": 16118
+            }
+          ],
+          "extractionCalls": 2,
+          "maxConcurrentExtractions": 2,
+          "totalPages": 2,
+          "totalBytes": 1780,
+          "tokenTotals": {
+            "inputTokens": 246,
+            "outputTokens": 90,
+            "totalTokens": 336,
+            "cachedInputTokens": 24
+          },
+          "uploadBytes": 1780,
+          "documentCount": 2,
+          "parsedDocumentCount": 2,
+          "products": 8,
+          "documents": [
+            {
+              "index": 0,
+              "bytes": 614,
+              "pages": 1,
+              "characters": 56,
+              "durationMs": 824.2489760000001
+            },
+            {
+              "index": 1,
+              "bytes": 614,
+              "pages": 1,
+              "characters": 56,
+              "durationMs": 179.91725399999996
+            }
+          ],
+          "calls": [
+            {
+              "kind": "extraction",
+              "model": "gpt-5.6-luna",
+              "durationMs": 173.155029,
+              "success": true,
+              "usage": {
+                "inputTokens": 123,
+                "outputTokens": 45,
+                "totalTokens": 168,
+                "cachedInputTokens": 12
+              }
+            },
+            {
+              "kind": "extraction",
+              "model": "gpt-5.6-luna",
+              "durationMs": 182.917956,
+              "success": true,
+              "usage": {
+                "inputTokens": 123,
+                "outputTokens": 45,
+                "totalTokens": 168,
+                "cachedInputTokens": 12
+              }
+            }
+          ]
+        },
+        "mcBobilSyntheticDurationMs": 1544
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "tested_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "exit_code": 0,
+      "duration_seconds": 0.006,
+      "tap": {},
+      "log": "diff-check.log.gz",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    }
+  ],
+  "lint_difference": "lint-difference.json",
+  "source_catalog_reverse_audit": "catalog-audit.mjs",
+  "isolation": {
+    "unchanged_components": 317,
+    "unchanged_other_raw_facts": 4156,
+    "metadata_unchanged": true
+  },
+  "historical_closure_reconstructed": false
+}

@@ -1,0 +1,147 @@
+{
+  "classification": "SOURCE_BACKED_COMPLETION",
+  "status": "PASS",
+  "signature": "a7561c0d03ede572",
+  "GAP_SF_bindings": [
+    {
+      "GAP": "GAP-2083",
+      "SF": "SF-2986",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+    },
+    {
+      "GAP": "GAP-2137",
+      "SF": "SF-3070",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+    }
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "Hus",
+  "agreement_scope": "ordinary",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "version": "Alminnelige vilkår",
+  "effective_from": "UNKNOWN",
+  "component_scope": "Two existing gjensidigeHusStandard base detail rows; Pluss inherited unchanged structure",
+  "canonical_keys": [
+    "hus.hage.brygge"
+  ],
+  "tested_baseline": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+  "candidate_identity_sha256": "4f95d9a037cc23802504c1f7c0f24360ad896264e8bf58a9c68bebf0baee9fd3",
+  "application_identity": "application-identity.json",
+  "source_contracts": [
+    {
+      "finding_id": "GAP-2083",
+      "finding_ids": [
+        "GAP-2083"
+      ],
+      "source_fact_id": "SF-2986",
+      "source_fact_ids": [
+        "SF-2986"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 3",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Fast brygge tilhørende bygning100k kun brann/natur; ikke flytebrygge/landgang/molo også som fundament.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.hage.brygge"
+      ],
+      "advisor_impact": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+      "audit_scope_notes": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2137",
+      "finding_ids": [
+        "GAP-2137"
+      ],
+      "source_fact_id": "SF-3070",
+      "source_fact_ids": [
+        "SF-3070"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 3",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Fast brygge tilhørende bygning100k kun brann/natur; ikke flytebrygge/landgang/molo også som fundament.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.hage.brygge"
+      ],
+      "advisor_impact": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+      "audit_scope_notes": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "exact_source_reviewed_values_and_primary_supplementary_references": {
+    "hus.hage.brygge": {
+      "owner": "gjensidigeHusStandard",
+      "label": "Fast brygge",
+      "value": "Fast brygge tilhørende forsikret bygning inntil 100 000 kroner, begrenset til brann og naturskade. Molo/bølgebryter er unntatt, også når dette fungerer som fundament for brygge. Flytebrygge og landgang er unntatt. Skade på hageanlegg, utvendig badekilde/-basseng og brygge forårsaket av dyr, insekter, frost, sjøgang eller andre klimatiske forhold er unntatt. Likevel dekkes skader som skyldes en flomlignende situasjon.",
+      "previous_primary": [
+        2,
+        "Hus – Hva forsikringen omfatter"
+      ],
+      "primary": [
+        3,
+        "Hus – Hva forsikringen omfatter"
+      ],
+      "qualification": [
+        4,
+        "Hus – Dekkes ikke / Hageanlegg, utvendig badekilde/-basseng og brygge"
+      ],
+      "independent_evidence": "user exact approved wording and frozen Standard/Pluss PDF3–4, reviewed before implementation"
+    }
+  },
+  "complete_material_contract": "5 dekar including outdoor badekilde/-basseng; fixed pier belonging to insured building ≤100000 limited to fire/natural damage; molo/breakwater including foundation, floating pier and gangway excluded; animals/insects/frost/seaway/other climatic causes excluded with floodlike situation exception. No negotiated increased sum asserted. Both original Standard/Pluss PDF3–4 reviewed.",
+  "source_role": "Existing registered legacy Standard source primaryPDF3/qualificationPDF4; inherited by Pluss. Optional registry sourceType is absent and remains absent/undefined downstream; no source admission or added metadata.",
+  "source_original_reading_order": "../b051-garden-pier-64dd3cb/source-reading-order-proof.json",
+  "test_contracts": [
+    "R-051-GARDEN-SOURCE",
+    "R-051-GARDEN-BINDINGS",
+    "R-051-GARDEN-FACT",
+    "R-051-GARDEN-DOCUMENT",
+    "R-051-GARDEN-PIPELINE",
+    "R-051-GARDEN-MANUAL",
+    "R-051-GARDEN-COMPARISON",
+    "R-051-GARDEN-REVERSE"
+  ],
+  "complete_closure_summary": "validation-summary.json",
+  "gate_results": "gate-results.json",
+  "source_to_catalog_and_reverse_audit": "catalog-audit.mjs / catalog-delta.json",
+  "prior_receipt_integrity": "prior-receipts.json",
+  "HARNESS_AUTONOMY_V1": {
+    "prior_used": 11,
+    "used": 16,
+    "limit": 12,
+    "scope_used": 5,
+    "scope_limit": 6,
+    "ordinary_capacity_used": 1,
+    "explicit_exception_roots": 4,
+    "ledger": "harness-roots.json"
+  },
+  "planned_test_contract_updates": "planned-contract-updates.json; budget0",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_closure_reconstructed": false,
+  "publication_revision": "Atomic Git commit records publication; validation certifies tested baseline plus exact application file hashes, not arbitrary later revisions",
+  "holds": "checkpoint.json holds_unchanged",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

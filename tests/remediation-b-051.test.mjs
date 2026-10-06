@@ -58,8 +58,8 @@ for(const key of keys)test('R-051-FACT '+key+': exact value, label, primary and 
  }
 });
 
-test('R-051-REVERSE: only six approved existing rows change; every other fact and all metadata survive',()=>{
- execFileSync('node',[new URL('catalog-audit.mjs',audit).pathname],{stdio:'pipe'});
+test('R-051-REVERSE: historical six rows remain intact; only two newly authorized garden rows differ from their committed baseline',()=>{
+ execFileSync('node',[new URL('../docs/audit/checkpoints/b051-garden-pier-64dd3cb/catalog-audit.mjs',import.meta.url).pathname],{stdio:'pipe'});
  for(const id of ids){assert.equal(facts(id,[rental]).filter(f=>keys.includes(f.key)).length,6);assert.equal(facts(id,[rental]).filter(f=>f.key.startsWith('hus.utleie.')).length,5);assert.equal(facts(id,[rental]).find(f=>f.key==='hus.utleie.egenandel').value,'10 000 kroner ved misligholdt husleie og skadeverk av leietaker.');}
 });
 

@@ -1,0 +1,48 @@
+{
+  "status": "BLOCKED_NO_CLOSURE",
+  "baseline": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+  "fullsuite": {
+    "files": 147,
+    "tests": 3993,
+    "pass": 3979,
+    "fail": 14,
+    "failed_files": [
+      "tests/remediation-b-051-garden.test.mjs"
+    ]
+  },
+  "remediation": {
+    "files": 49,
+    "tests": 1842,
+    "pass": 1828,
+    "fail": 14,
+    "failed_files": [
+      "tests/remediation-b-051-garden.test.mjs"
+    ]
+  },
+  "existing_files_only": {
+    "files": 146,
+    "tests": 3970,
+    "pass": 3970,
+    "fail": 0,
+    "failed_files": []
+  },
+  "source_and_reverse_audit": "PASS exact two rows; source SHA2/2; six authoritative bindings",
+  "targeted_new_gate": {
+    "tests": 23,
+    "pass": 9,
+    "fail": 14
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "ESLint": {
+    "errors": 0,
+    "warnings": 26,
+    "baseline_warnings": 26,
+    "new_warnings": 0
+  },
+  "build": "NOT_RUN_AFTER_GATE_BLOCK",
+  "HTTP_PDF_runtime": "NOT_RUN_AFTER_GATE_BLOCK",
+  "harness_corrections_performed": 0,
+  "HARNESS_AUTONOMY_V1_used": 11,
+  "global_resolved_open": "UNKNOWN"
+}

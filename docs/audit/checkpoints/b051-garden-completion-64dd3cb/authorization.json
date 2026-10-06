@@ -1,0 +1,466 @@
+{
+  "classification": "EXPLICIT_BOUNDED_HARNESS_EXCEPTION_AND_PREVIOUSLY_AUTHORIZED_COMPLETION",
+  "baseline": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+  "signatures": [
+    {
+      "signature": "403c9b3f0e9aa19f",
+      "original_binding": {
+        "signature_id": "403c9b3f0e9aa19f",
+        "representative_finding_id": "GAP-2082",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2082\", \"GAP-2136\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-2985\", \"SF-3069\"]",
+        "proposed_existing_keys": "[\"hus.hage.objekter\"]",
+        "semantic_concept": "Hage",
+        "semantic_dimension": "omfang",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2082",
+        "GAP-2136"
+      ],
+      "source_fact_ids": [
+        "SF-2985",
+        "SF-3069"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2082",
+          "finding_ids": [
+            "GAP-2082"
+          ],
+          "source_fact_id": "SF-2985",
+          "source_fact_ids": [
+            "SF-2985"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Inntil5dekar inkludert utvendig badekilde/basseng.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.hage.objekter"
+          ],
+          "advisor_impact": "Badekilde er ikke svømmebasseng; separat utendørs objektgren mangler.",
+          "audit_scope_notes": "Badekilde er ikke svømmebasseng; separat utendørs objektgren mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2136",
+          "finding_ids": [
+            "GAP-2136"
+          ],
+          "source_fact_id": "SF-3069",
+          "source_fact_ids": [
+            "SF-3069"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Inntil5dekar inkludert utvendig badekilde/basseng.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.hage.objekter"
+          ],
+          "advisor_impact": "Badekilde er ikke svømmebasseng; separat utendørs objektgren mangler.",
+          "audit_scope_notes": "Badekilde er ikke svømmebasseng; separat utendørs objektgren mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Retain5dekar; replace narrower svømmebasseng-only description with source utvendig badekilde/-basseng under existing hus.hage.objekter. Correct provenance actualPDF3.",
+      "existing_representation_keys": [
+        "hus.hage.objekter"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.hage.objekter",
+            "label": "Hage og uteområde",
+            "value": "Hageanlegg på inntil fem dekar, inkludert fast utendørs svømmebasseng.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Hva forsikringen omfatter",
+              "page": 2,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "6ceaaaf84f1dc597",
+      "original_binding": {
+        "signature_id": "6ceaaaf84f1dc597",
+        "representative_finding_id": "GAP-2095",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2095\", \"GAP-2150\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3004\", \"SF-3087\"]",
+        "proposed_existing_keys": "[\"hus.hage.objekter\"]",
+        "semantic_concept": "Hage/basseng/brygge",
+        "semantic_dimension": "vær/dyr",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2095",
+        "GAP-2150"
+      ],
+      "source_fact_ids": [
+        "SF-3004",
+        "SF-3087"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2095",
+          "finding_ids": [
+            "GAP-2095"
+          ],
+          "source_fact_id": "SF-3004",
+          "source_fact_ids": [
+            "SF-3004"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke dyr/insekt/frost/sjøgang/annetklima; flomlignendesituasjonlikeveldekket.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.hage.objekter"
+          ],
+          "advisor_impact": "Hageallrisiko kan ikke forstås som frost/sjøgang inkludert; flomlignende særregel mangler.",
+          "audit_scope_notes": "Hageallrisiko kan ikke forstås som frost/sjøgang inkludert; flomlignende særregel mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2150",
+          "finding_ids": [
+            "GAP-2150"
+          ],
+          "source_fact_id": "SF-3087",
+          "source_fact_ids": [
+            "SF-3087"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke dyr/insekt/frost/sjøgang/annetklima; flomlignendesituasjonlikeveldekket.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.hage.objekter"
+          ],
+          "advisor_impact": "Hageallrisiko kan ikke forstås som frost/sjøgang inkludert; flomlignende særregel mangler.",
+          "audit_scope_notes": "Hageallrisiko kan ikke forstås som frost/sjøgang inkludert; flomlignende særregel mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Garden/badekilde/basseng/pier exclude animals/insects/frost/seaway/other climatic causes BUT retain flood-like situation exception. Do not move exception into statutory natural-damage coverage.",
+      "existing_representation_keys": [
+        "hus.hage.objekter"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.hage.objekter",
+            "label": "Hage og uteområde",
+            "value": "Hageanlegg på inntil fem dekar, inkludert fast utendørs svømmebasseng.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Hva forsikringen omfatter",
+              "page": 2,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "a7561c0d03ede572",
+      "original_binding": {
+        "signature_id": "a7561c0d03ede572",
+        "representative_finding_id": "GAP-2083",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2083\", \"GAP-2137\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-2986\", \"SF-3070\"]",
+        "proposed_existing_keys": "[\"hus.hage.brygge\"]",
+        "semantic_concept": "Brygge",
+        "semantic_dimension": "sum/årsaker",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2083",
+        "GAP-2137"
+      ],
+      "source_fact_ids": [
+        "SF-2986",
+        "SF-3070"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2083",
+          "finding_ids": [
+            "GAP-2083"
+          ],
+          "source_fact_id": "SF-2986",
+          "source_fact_ids": [
+            "SF-2986"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Fast brygge tilhørende bygning100k kun brann/natur; ikke flytebrygge/landgang/molo også som fundament.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.hage.brygge"
+          ],
+          "advisor_impact": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+          "audit_scope_notes": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2137",
+          "finding_ids": [
+            "GAP-2137"
+          ],
+          "source_fact_id": "SF-3070",
+          "source_fact_ids": [
+            "SF-3070"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Fast brygge tilhørende bygning100k kun brann/natur; ikke flytebrygge/landgang/molo også som fundament.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.hage.brygge"
+          ],
+          "advisor_impact": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+          "audit_scope_notes": "100k/brann/natur riktig; landgang og molo somfundament ikke uttrykt.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Fixed pier belonging to insured building100000 onlyfire/nature; exclude floatingpier AND gangway, molo/breakwater even asfoundation. Current utvidet sum kan avtales lacks support in reviewed clause: remove unsupported promise only under later authority. Keep sourcePDF3 and no general pier all-risk.",
+      "existing_representation_keys": [
+        "hus.hage.brygge"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.hage.brygge",
+            "label": "Fast brygge",
+            "value": "Fast brygge inntil 100 000 kroner ved brann og naturskade. Flytebrygge og molo er unntatt; utvidet sum kan avtales.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Hva forsikringen omfatter",
+              "page": 2,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    }
+  ],
+  "allowed_project_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "docs/development-agent/current-project-status.md",
+    "docs/development-agent/start.md"
+  ],
+  "five_authorized_roots": [
+    {
+      "id": "GARDEN-PDF-COLUMN-INTERLEAVING",
+      "tests": [
+        "R-051-GARDEN-SOURCE Standard",
+        "R-051-GARDEN-SOURCE Pluss"
+      ],
+      "failures": 2,
+      "cause": "PDF extraction interleaves adjacent right-column Hobbyveksthus between pier amount and fire/nature qualifier; assertion wrongly requires contiguous sentence",
+      "baseline_proof": "Identical frozen PDF bytes and original extraction on committed baseline; sourceOutputs plain and layout in baseline-contract-probes.json",
+      "minimum_correction": "Read the covered left-column object paragraph in coordinate/column order, retaining entire original clause and exact qualifiers; no source byte or catalog edits"
+    },
+    {
+      "id": "GARDEN-REENRICHMENT-FULL-TERM-IDEMPOTENCE",
+      "tests": [
+        "R-051-GARDEN-DOCUMENT bothproducts/bothkeys"
+      ],
+      "failures": 4,
+      "cause": "Assertion assumes second enrichment preserves catalogOrigin and all catalog-only raw fields; baseline treats provided terms as document terms, keeping value/provenance but changing origin/metadata",
+      "baseline_proof": "Both rounds in baseline-contract-probes.json; lib/catalog-enrichment.ts and document-fact-normalization.ts unchanged",
+      "minimum_correction": "Assert complete expected second-step term using established input contract; independently compare unchanged baseline/candidate behavior and preserve full values/provenance. Do not change engine or infer new idempotence contract"
+    },
+    {
+      "id": "GARDEN-EXTRACTION-PIPELINE-SOURCES",
+      "tests": [
+        "R-051-GARDEN-PIPELINE bothproducts/individual_agreement,unknown,general_terms"
+      ],
+      "failures": 6,
+      "cause": "Valid name/value extraction receives sources array from enrichBatch, not a raw source field; assertion incorrectly dereferences source.documentId",
+      "baseline_proof": "All three roles reproduced on committed baseline and candidate; lib/analysis-merge.ts attach maps documentIndices to sources; exact terms stored with all fields",
+      "minimum_correction": "Strictly compare complete sources array with exact documentIndex/side/documentRole identity; assert raw source absence. Keep roles/fixtures, no new schema fields"
+    },
+    {
+      "id": "GARDEN-MANUAL-NOTE-UNDEFINED",
+      "tests": [
+        "R-051-GARDEN-MANUAL bothproducts"
+      ],
+      "failures": 2,
+      "cause": "Expected primary manual source omits note; existing manual converter sets note:undefined on primary and exact qualification note on supplemental",
+      "baseline_proof": "note own-property/undefined reproduced in committed baseline and candidate; lib/manual-agreement.ts source mapping unchanged",
+      "minimum_correction": "Add explicit note:undefined to full-field expected primary manual reference; keep exact supplemental note and every other field"
+    },
+    {
+      "id": "GARDEN-CUSTOM-MANUAL-NULL-REFERENCE",
+      "tests": [
+        "R-051-GARDEN-MANUAL bothproducts latent assertion line169"
+      ],
+      "failures": 0,
+      "latent_affected_assertions": 2,
+      "cause": "Custom manual mode has catalogReference:null and catalogSelectionConfirmed:false; new assertion incorrectly expects undefined",
+      "baseline_proof": "Actual normalizeManualAgreement output identical on committed baseline and candidate; lib/manual-agreement.ts returns catalogReference initialized null. Permanent read-only custom-manual-proof.json records complete outputs",
+      "minimum_correction": "Expect exact null sentinel and retain false/no-catalog/custom-value checks; no inputmode or engine change"
+    }
+  ],
+  "production_changes_for_resume": [],
+  "previously_authorized_catalog_change": "Preserve exactly two existing gjensidigeHusStandard rows with sourcePDF3 and qualificationPDF4; Pluss inheritance",
+  "HARNESS_AUTONOMY_V1": {
+    "before": 11,
+    "ordinary_limit": 12,
+    "scope_limit": 6,
+    "authorized_exact_roots": 5,
+    "after_if_all_performed": 16,
+    "ordinary_capacity_used": 1,
+    "named_exception_roots": 4,
+    "no_new_capacity": true
+  },
+  "planned_test_contract_work_charged": 0,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "holds": [
+    "157c7afed18eb0fe",
+    "25004bc4d7dd2c03",
+    "26668a6c81e5b5d9",
+    "5f31ff4946a666b5",
+    "7767772472433807",
+    "SC-019/SR-033",
+    "SC-020/SR-032",
+    "SC-035/SR-031",
+    "e2f70dda0093e9e4"
+  ],
+  "complete_gates_required": true,
+  "commit_push": "secured publish.py after fullPASS;origin HEAD:main;no force/deploy/later scope"
+}
