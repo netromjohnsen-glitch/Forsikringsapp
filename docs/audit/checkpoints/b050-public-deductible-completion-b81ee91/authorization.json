@@ -1,0 +1,28 @@
+{
+  "status": "AUTHORIZED",
+  "recorded_before_production": "authorization.md and preflight.md were persisted before any production write",
+  "repository": "netromjohnsen-glitch/Forsikringsapp",
+  "baseline": "b81ee91e8693dc7962040219768283a2270cfea6",
+  "scope": {
+    "f8bd15c89bc0dbd6": [
+      "GAP-2872",
+      "SF-4021"
+    ]
+  },
+  "provider": "gjensidige",
+  "insurance_type": "Hund",
+  "scope_name": "ordinary",
+  "component": "gjensidige-hund-behandling",
+  "production_files": [
+    "lib/boat-pet-catalog.ts"
+  ],
+  "test_files": [
+    "tests/remediation-b-050.test.mjs",
+    "tests/boat-pet-catalog.test.mjs"
+  ],
+  "scope_limit": 3,
+  "campaign_limit": 12,
+  "initial_campaign_used": 9,
+  "later_scope_authorized": false,
+  "global_resolved_open": "UNKNOWN"
+}

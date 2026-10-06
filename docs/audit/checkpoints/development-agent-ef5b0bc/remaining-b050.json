@@ -3,13 +3,13 @@
   "registry_sha256": "fcb52bd19dcdfc9b0549df3e5a5ee40412f63620dc4bc563972a5b5e6f021c6d",
   "original_batch": "B-050",
   "original_count": 16,
-  "documented_campaign_count": 12,
-  "remaining_original_scope_count": 4,
+  "documented_campaign_count": 13,
+  "remaining_original_scope_count": 3,
   "global_current_status": "UNKNOWN",
   "rows": [
     {
       "signature": "7b2587a3bbc0c772",
-      "campaign_status": "NOT_DOCUMENTED_BY_THE_TWELVE_CURRENT_RECEIPTS",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_THIRTEEN_CURRENT_RECEIPTS",
       "global_current_status": "UNKNOWN",
       "original_binding": {
         "signature_id": "7b2587a3bbc0c772",
@@ -69,7 +69,7 @@
     },
     {
       "signature": "b5792662cc2fa9f8",
-      "campaign_status": "NOT_DOCUMENTED_BY_THE_TWELVE_CURRENT_RECEIPTS",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_THIRTEEN_CURRENT_RECEIPTS",
       "global_current_status": "UNKNOWN",
       "original_binding": {
         "signature_id": "b5792662cc2fa9f8",
@@ -129,7 +129,7 @@
     },
     {
       "signature": "c1440948744bfa17",
-      "campaign_status": "NOT_DOCUMENTED_BY_THE_TWELVE_CURRENT_RECEIPTS",
+      "campaign_status": "NOT_DOCUMENTED_BY_THE_THIRTEEN_CURRENT_RECEIPTS",
       "global_current_status": "UNKNOWN",
       "original_binding": {
         "signature_id": "c1440948744bfa17",
@@ -185,67 +185,6 @@
       "source_hash_verified": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
       "independent_contract": "Rehabilitering: fullført innen tre måneder på anvist sted",
       "proposed_packet": "REHABILITATION_SC035",
-      "authorization": "NOT_AUTHORIZED"
-    },
-    {
-      "signature": "f8bd15c89bc0dbd6",
-      "campaign_status": "NOT_DOCUMENTED_BY_THE_TWELVE_CURRENT_RECEIPTS",
-      "global_current_status": "UNKNOWN",
-      "original_binding": {
-        "signature_id": "f8bd15c89bc0dbd6",
-        "representative_finding_id": "GAP-2872",
-        "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
-        "root_cause_id": "[\"RC-026\"]",
-        "final_batch_id": "B-050",
-        "disposition": "FIX_BEFORE_NITO",
-        "pilot_priority": "MUST_BEFORE_NITO",
-        "source_status": "IMPLEMENTATION_READY",
-        "P1_occurrences": "1",
-        "P2_occurrences": "0",
-        "finding_ids": "[\"GAP-2872\"]",
-        "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
-        "source_fact_ids": "[\"SF-4021\"]",
-        "proposed_existing_keys": "[\"dyr.veterinar.egenandel.fast\", \"dyr.veterinar.egenandel.prosent\"]",
-        "semantic_concept": "Egenandel",
-        "semantic_dimension": "formel/periode",
-        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
-        "covered_by_signature": "",
-        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
-        "remediation_authorized": "False"
-      },
-      "original_evidence": {
-        "finding_id": "GAP-2872",
-        "finding_ids": [
-          "GAP-2872"
-        ],
-        "source_fact_id": "SF-4021",
-        "source_fact_ids": [
-          "SF-4021"
-        ],
-        "product_identity": "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]",
-        "product_identities": [
-          "[\"gjensidige\",\"hund\",\"ordinary\",\"gjensidige-hund-behandling\",null]"
-        ],
-        "component": "",
-        "artifact": "catalog/sources/boat-pet/gjensidige-dog-product.html",
-        "sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
-        "location": "Egenandel",
-        "urls": [
-          "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"
-        ],
-        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Standardfast1300+20%restenperulykke/sykdom,ikkemedhverregning;beviskanrenprosent.",
-        "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
-        "proposed_existing_keys": [
-          "dyr.veterinar.egenandel.fast",
-          "dyr.veterinar.egenandel.prosent"
-        ],
-        "advisor_impact": "Unknownownbeviscorrect; publicstandard1300+20%remainderpercase and purepercentchoice omitted.",
-        "audit_scope_notes": "Unknownownbeviscorrect; publicstandard1300+20%remainderpercase and purepercentchoice omitted.",
-        "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
-      },
-      "source_hash_verified": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
-      "independent_contract": "Egenandelformel, valg og skadetilfelle",
-      "proposed_packet": "PUBLIC_DEDUCTIBLE",
       "authorization": "NOT_AUTHORIZED"
     }
   ]

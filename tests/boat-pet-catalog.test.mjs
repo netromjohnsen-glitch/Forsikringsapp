@@ -263,10 +263,17 @@ for (const [providerId, company] of packages) {
           const matches = packageFacts.filter(f => f.key === key); assert.equal(matches.length, 1);
           assert.deepEqual(matches[0].source, { ...reference(treatment, page, section), note: fact.source.note });
         }
-        for (const other of packageFacts.filter(f => f !== fact && !bindings.some(([key]) => key === f.key)))
+        const deductibleKeys = ['dyr.veterinar.egenandel.fast', 'dyr.veterinar.egenandel.prosent', 'dyr.veterinar.egenandel.periode'];
+        for (const key of deductibleKeys) {
+          const matches = packageFacts.filter(f => f.key === key); assert.equal(matches.length, 1);
+          assert.deepEqual(matches[0].source, { ...reference(website, 1, 'Hva er egenandelen? – Behandling'), note: fact.source.note });
+          assert.deepEqual(matches[0].qualificationSource, reference(treatment, 8,
+            'Egenandel ved veterinærutgifter og medisiner (trykt side 13)' + (key.endsWith('.periode') ? '; skadetilfelle definert PDF-side 3 (trykt side 7)' : '')));
+        }
+        for (const other of packageFacts.filter(f => f !== fact && !bindings.some(([key]) => key === f.key) && !deductibleKeys.includes(f.key)))
           assert.equal(other.source.documentId, source.id);
         assert.deepEqual(packageFacts.filter(f => f.source.documentId === source.id).map(f => f.key).sort(),
-          ['dyr.allergi.grense', 'dyr.rehabilitering.grense', 'dyr.veterinar.egenandel.fast']);
+          ['dyr.allergi.grense', 'dyr.rehabilitering.grense']);
         const limit = packageFacts.find(f => f.key === 'dyr.veterinar.begrensning');
         assert.deepEqual(limit.qualificationSource, reference(treatment, 2, 'Forutsetninger og Dekkes ikke – Veterinærutgifter (trykt side 6)'));
         const dental = packageFacts.find(f => f.key === 'dyr.tannsykdom.begrensning');

@@ -629,8 +629,8 @@ test('R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source ch
   for (const [component, rows] of Object.entries(before.facts)) {
     if (component !== id) assert.deepEqual(after.facts[component], rows, component);
     else {
-      assert.deepEqual(after.facts[component].filter(f => !treatmentKeys.includes(f.key)), rows.filter(f => !treatmentKeys.includes(f.key)));
-      assert.equal(after.facts[component].length, rows.length + 4);
+      assert.deepEqual(after.facts[component].filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)), rows.filter(f => ![...treatmentKeys, ...publicDeductibleKeys].includes(f.key)));
+      assert.equal(after.facts[component].length, rows.length + 6);
     }
   }
   assert.equal(compareCatalogProducts(product, product).differenceCount, 0);
@@ -639,4 +639,111 @@ test('R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source ch
   for (const row of forward) { const swapped = reverse.find(r => r.key === row.key); assert.ok(swapped); assert.deepEqual(row.first, swapped.second); assert.deepEqual(row.second, swapped.first); }
   for (const [component, rows] of Object.entries(productCatalog.facts)) for (const f of rows)
     if (f.source.documentId === treatmentId || f.qualificationSource?.documentId === treatmentId) assert.equal(component, id);
+});
+
+// PUBLIC_DEDUCTIBLE: f8bd15c89bc0dbd6 / GAP-2872 / SF-4021 only.
+const publicDeductibleKeys = ['dyr.veterinar.egenandel.fast', 'dyr.veterinar.egenandel.prosent', 'dyr.veterinar.egenandel.periode'];
+const deductibleBaseline = () => JSON.parse(gunzipSync(readFileSync(new URL('../docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/catalog-before.json.gz', import.meta.url))));
+const deductibleTerm = (k, v) => ({ ...term(k, v), name: treatmentFact(k).label });
+test('R-050-PUBLIC-SOURCE: complete website case example and PDF8 alternative variants', async () => {
+  const html = readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-product.html', import.meta.url), 'utf8');
+  const faq = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gu)]
+    .map(m => JSON.parse(m[1])).flatMap(x => x.mainEntity ?? []).find(x => x.name?.trim() === 'Hva er egenandelen?');
+  assert.ok(faq);
+  const text = faq.acceptedAnswer.text.replace(/&nbsp;/gu, ' ').replace(/\s+/gu, ' ');
+  assertPhrases(text, ['Ved hvert skadetilfelle/sykdomstilfelle', '1 300 kroner', '20 % av resten av regningen',
+    'veterinær tre ganger', 'De to neste gangene betaler du bare 20 % av regningen', '2 000 eller 3 500 kroner']);
+  PDFParse.setWorker(getPath());
+  const parser = new PDFParse({ data: readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf', import.meta.url)) });
+  try {
+    const result = await parser.getText(), page = result.pages[7].text.replace(/\s+/gu, ' ').trim();
+    assertPhrases(page, ['Egenandel ved veterinærutgifter og medisiner', 'Det er to varianter av egenandel',
+      'Hvilken som gjelder for avtalen er angitt i forsikringsbeviset', '1. Prosentvis egenandel',
+      'i prosent av skadebeløpet', '2. Fast og prosentvis egenandel', 'ved hvert skadetilfelle',
+      'Av det overskytende erstatningsbeløpet fratrekkes den prosentvise egenandelen',
+      'Den faste og prosentvise egenandelen er oppgitt i forsikringsbeviset']);
+    assertPhrases(result.pages[2].text.replace(/\s+/gu, ' '), ['Alle utgifter som relateres til samme ulykke eller sykdom']);
+  } finally { await parser.destroy(); }
+});
+test('R-050-f8bd15c89bc0dbd6: standard, fixed alternatives and distinct percentage-only variant', () => {
+  const fixed = treatmentFact(publicDeductibleKeys[0]), percentage = treatmentFact(publicDeductibleKeys[1]), period = treatmentFact(publicDeductibleKeys[2]);
+  assertPhrases(fixed.value, ['Offentlig standard', '1 300 kr', 'per skadetilfelle/sykdomstilfelle', '2 000 eller 3 500 kr', 'forsikringsbeviset', 'ren prosentvis egenandel']);
+  assertPhrases(percentage.value, ['20 % av resten etter fastdelen', '1 300 kr', '2 000 eller 3 500 kr',
+    'Ved ren prosentvis egenandel trekkes avtalt prosent av skadebeløpet, uten fastdel', 'hvilken variant', 'Forsikringsbeviset']);
+  assertPhrases(period.value, ['én gang per skadetilfelle/sykdomstilfelle', 'tre veterinærbesøk for samme brukne bein',
+    '1 300 kr pluss 20 % av resten første gang', 'de to neste gangene betales bare 20 % av regningen', 'samme ulykke eller sykdom']);
+  for (const f of [fixed, percentage, period]) assert.doesNotMatch(f.value, /135 dager|årlig reset|nullstilles|20 % av hele/iu);
+  assert.equal(fixed.deductibleClassification, 'standard'); assert.equal(percentage.deductibleClassification, 'standard'); assert.equal(period.deductibleClassification, 'reference');
+});
+for (const k of publicDeductibleKeys) test(`R-050-PUBLIC-PROVENANCE: ${k} exact raw, presentation and enrichment references`, () => {
+  const f = treatmentFact(k), site = productCatalog.sources['boat-pet:gjensidige:hund:product'], pdf = productCatalog.sources[treatmentId];
+  const reference = (s, page, section) => ({ documentId: s.id, filename: s.filename, termsNumber: s.termsNumber,
+    effectiveFrom: s.effectiveFrom, version: s.version, agreementScope: s.agreementScope, url: s.url, company: s.company, page, section });
+  assert.deepEqual(f.source, { ...reference(site, 1, 'Hva er egenandelen? – Behandling'), note: sumFact().source.note });
+  assert.deepEqual(f.qualificationSource, reference(pdf, 8, 'Egenandel ved veterinærutgifter og medisiner (trykt side 13)' +
+    (k.endsWith('.periode') ? '; skadetilfelle definert PDF-side 3 (trykt side 7)' : '')));
+  const row = materializeCatalogProduct(product).facts.find(r => r.key === k); assert.equal(row.value, f.value);
+  assert.deepEqual(row.sources, catalogFactSources(f).map(s => ({ ...s, sourceType: productCatalog.sources[s.documentId].sourceType })));
+  assert.deepEqual(row.sources.map(s => s.sourceType), ['product_page', 'full_terms']); assert.equal(row.sources.length, 2);
+  const detail = enrich([]).importantTerms.find(t => t.key === k);
+  assert.equal(detail.coverageOrigin, 'catalog'); assert.deepEqual(detail.sources, catalogFactSources(f));
+});
+test('R-050-PUBLIC-SELECTION: states and dependencies equal committed baseline for all explicit choices', () => {
+  const baseline = deductibleBaseline();
+  const veterinary = v => ({ ...term('dyr.veterinar.dekning', v), name: 'Veterinærbehandling' });
+  for (const terms of [[], [veterinary('Valgt')], [veterinary('Ikke valgt')], [veterinary('Valgt'), veterinary('Ikke valgt')],
+    [term(life, 'Valgt'), term(parent, 'Valgt')], [term(life, 'Valgt'), term(parent, 'Ikke valgt')],
+    [deductibleTerm(publicDeductibleKeys[0], '2 000 kr')], [deductibleTerm(publicDeductibleKeys[1], '25 % uten fastdel')]]) {
+    const input = { company: 'Gjensidige', totalAnnualPremium: null, insurances: [{ type: 'Hund', productName: 'Behandling', agreementScope: 'ordinary', annualPremium: null, deductible: null, coverageSummary: null, importantTerms: terms, addOns: [] }] };
+    const before = enrichExtractedAgreementWithCatalog(input, date, undefined, undefined, baseline).insurances[0], after = enrich(terms);
+    const states = o => deriveCanonicalCoverages(o, 'Hund').map(c => [c.id, c.status, c.conflict]);
+    assert.deepEqual(states(after), states(before)); assert.deepEqual(after.addOnIds, before.addOnIds); assert.equal(after.deductible, null);
+  }
+});
+for (const side of ['existing', 'offer']) test(`R-050-PUBLIC-DOCUMENT: ${side} customer variant and case details override public standard`, () => {
+  const customer = publicDeductibleKeys.map((k, i) => deductibleTerm(k, ['0 kr fastdel – avtalt ren prosentvariant', '25 % av skadebeløpet', 'Kundens dokumenterte egenandelsvilkår'][i]));
+  const general = publicDeductibleKeys.map(k => deductibleTerm(k, treatmentFact(k).value));
+  const out = documentPipeline([[record(customer)], [record(general, 'general_terms')]], side).insuranceData.insurances[0];
+  for (const input of customer) {
+    const t = out.importantTerms.find(t => t.key === input.canonicalKey); assert.ok(t);
+    const expected = [{ documentId: `pdf:${side}:0`, filename: 'Dokument 1', termsNumber: 'Ikke oppgitt',
+      effectiveFrom: '', page: 0, section: 'Dokumentopplysninger; side/punkt ikke identifisert', documentRole: 'individual_agreement' }];
+    assert.equal(t.value, input.value); assert.equal(t.coverageOrigin, 'document'); assert.deepEqual(t.sources, expected);
+    const d = canonicalCoverage(out, 'Hund', 'dyr.veterinar.dekning').details.find(d => d.key === input.canonicalKey);
+    assert.equal(d.value, input.value); assert.deepEqual(d.sources, expected);
+  }
+  assert.ok(out.recordEvidence.some(e => e.documentRole === 'general_terms' && e.importantTerms.some(t => t.key === publicDeductibleKeys[0] && t.value === treatmentFact(publicDeductibleKeys[0]).value)));
+  assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown');
+});
+test('R-050-PUBLIC-MANUAL: known product ignores free-text agreement and preserves exact catalog references', () => {
+  const out = normalizeManualAgreement({ company: 'Gjensidige', products: [{ type: 'Hund', productName: 'Behandling', importantTerms: [deductibleTerm(publicDeductibleKeys[0], '9 000 kr')], addOnIds: [] }] }).insuranceData.insurances[0];
+  assert.equal(out.deductible, null);
+  for (const k of publicDeductibleKeys) {
+    const f = treatmentFact(k), t = out.importantTerms.find(t => t.key === k); assert.equal(t.value, f.value); assert.equal(t.coverageOrigin, 'catalog'); assert.deepEqual(t.source, f.source);
+    const standard = f.deductibleClassification === 'standard';
+    assert.deepEqual(t.sources, [
+      { ...f.source, note: [f.source.note, standard ? 'Standardegenandel; kan avvike fra avtalt verdi' : 'Beløpet må kontrolleres i forsikringsbeviset'].filter(Boolean).join(' · ') || undefined },
+      { ...f.qualificationSource, note: standard ? 'Forbehold for standardegenandel' : 'Supplerende kilde for faktumets anvendelse' },
+    ]);
+  }
+  assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown');
+});
+test('R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata and other components unchanged', () => {
+  const before = deductibleBaseline(), after = JSON.parse(JSON.stringify(productCatalog));
+  for (const k of Object.keys(before).filter(k => k !== 'facts')) assert.deepEqual(after[k], before[k], k);
+  assert.deepEqual(Object.keys(after.facts), Object.keys(before.facts));
+  for (const [component, rows] of Object.entries(before.facts)) {
+    if (component !== id) assert.deepEqual(after.facts[component], rows, component);
+    else {
+      assert.deepEqual(after.facts[component].filter(f => !publicDeductibleKeys.includes(f.key)), rows.filter(f => !publicDeductibleKeys.includes(f.key)));
+      assert.equal(after.facts[component].length, rows.length + 2);
+      for (const k of publicDeductibleKeys) assert.equal(after.facts[component].filter(f => f.key === k).length, 1);
+      const old = rows.find(f => f.key === publicDeductibleKeys[0]), current = after.facts[component].find(f => f.key === old.key);
+      for (const field of Object.keys(old).filter(k => !['value', 'source', 'deductibleClassification'].includes(k))) assert.deepEqual(current[field], old[field]);
+    }
+  }
+  assert.equal(compareCatalogProducts(product, product).differenceCount, 0);
+  const other = productCatalog.products.find(p => p.productId === 'frende-hund-veterin-r'); assert.ok(other);
+  const forward = compareCatalogProducts(product, other).sections.flatMap(s => s.rows), reverse = compareCatalogProducts(other, product).sections.flatMap(s => s.rows);
+  for (const row of forward) { const swapped = reverse.find(r => r.key === row.key); assert.ok(swapped); assert.deepEqual(row.first, swapped.second); assert.deepEqual(row.second, swapped.first); }
 });

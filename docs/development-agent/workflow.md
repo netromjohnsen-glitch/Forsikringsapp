@@ -9,8 +9,8 @@ Startpunkt: [aktuelt checkpoint](../audit/checkpoints/development-agent-ef5b0bc/
 Brukerens eksplisitte fullmakt gjelder foran lokale retningslinjer. Bevar Next-blokken i
 AGENTS.md og les relevante installerte Next-guider ved kodearbeid. Les deretter checkpoint,
 kildereceipts og den eksakte autoriserte bolken. Siste operative kampanjesnapshot er
-[Behandling-policyen](../audit/checkpoints/b050-treatment-completion-16bfc4b/campaign-policy.json).
-Den gjelder det fullførte navngitte Behandling-scopet; den autoriserer ikke de foreslåtte bolkene.
+[PUBLIC_DEDUCTIBLE-policyen](../audit/checkpoints/b050-public-deductible-completion-b81ee91/campaign-policy.json).
+Den gjelder det fullførte navngitte PUBLIC_DEDUCTIBLE-scopet; den autoriserer ikke de foreslåtte bolkene.
 Historisk [styringsforslag](../audit/checkpoints/g2-recovery-36d7694/future-governance-proposal.md)
 er ikke en ekstra aktiv fullmakt. Planstatus NOT_AUTHORIZED betyr ingen implementering.
 
@@ -50,7 +50,7 @@ dokumenter uavhengig baseline-/kilde-/kodebevis for uendret forsikringsbetydning
 scope, selection, dokumentprioritet og provenance. Før hver uavhengig rot én gang med
 før/etter, bevis og policy. Samme dokumenterte typegen-rot belastes ikke på nytt.
 Aktiv navngitt kampanje har grense 3 mekaniske røtter per eksplisitt autorisert scope og
-12 samlet. Dokumentert brukt: 9/12; fullført Behandling 3/3 og tidligere Liv 2/3. Historisk fullført sumvalg var 3/3. Nye scopes trenger eksplisitt
+12 samlet. Dokumentert brukt: 11/12; fullført PUBLIC_DEDUCTIBLE 2/3, Behandling 3/3 og tidligere Liv 2/3. Historisk fullført sumvalg var 3/3. Nye scopes trenger eksplisitt
 scopeautorisasjon. Historiske 19/16 og 10/8 er ikke fullt rekonstruert og endres ikke.
 Historisk betinget 20/16-unntak ble ikke brukt; ikke dobbelttell det.
 
@@ -82,7 +82,7 @@ rootregnskap og checkpoint i Git. /tmp er kun reproducerbare mellomfiler.
 Receipt må skille testet SHA fra kandidatfil-/diff-identitet og senere dokumentasjonscommit.
 Ikke hev at andre revisjoner er testet. Globalt resolved/open forblir UKJENT til et komplett
 aktuelt sett er bevist; ikke legg nye receipts til historisk rapporterte 414.
-Bevar de tolv dokumenterte kampanjereceipts, historiske DEFER_SAFE og beskyttede holds.
+Bevar de tretten dokumenterte kampanjereceipts, historiske DEFER_SAFE og beskyttede holds.
 
 Stage bare navngitte autoriserte filer etter gater og diff-review. Én autorisert atomisk
 bolk = én commit; aldri bland blokkert arbeid. Bruk etablert main-workflow uten force,

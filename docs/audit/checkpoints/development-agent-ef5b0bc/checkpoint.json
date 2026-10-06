@@ -1,17 +1,17 @@
 {
   "status": "DURABLE_DEVELOPMENT_AGENT_CHECKPOINT_NOT_GLOBAL_EXECUTION_LEDGER",
   "repository": "netromjohnsen-glitch/Forsikringsapp",
-  "application_revision": "16bfc4bd5db0b9dbfa9b8646f4aae902ba5d8d90",
+  "application_revision": "b81ee91e8693dc7962040219768283a2270cfea6",
   "initial_head_origin_remote_main_equal": true,
   "initial_working_tree": "CLEAN",
   "documentation_revision": "git log -1 --format=%H -- docs/audit/checkpoints/development-agent-ef5b0bc/checkpoint.json",
   "validation_identity": {
-    "receipt": "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/receipt-4165f79344a7d572.json",
-    "tested_base_revision": "16bfc4bd5db0b9dbfa9b8646f4aae902ba5d8d90",
-    "tested_candidate_identity": "59b0eef171ae8f576bca9114d5421b0393f6d214a2376abed53b442bc102f81c",
+    "receipt": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/receipt-f8bd15c89bc0dbd6.json",
+    "tested_base_revision": "b81ee91e8693dc7962040219768283a2270cfea6",
+    "tested_candidate_identity": "b064582f373f3e7b11bbc9230d64bfbbdf1ffc5851d65b49f65f6e13aae4b30d",
     "latest_implementation_files_match_tested_candidate": true,
     "prior_receipts_preserved": true,
-    "actual_gate_summary": "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/summary.json"
+    "actual_gate_summary": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/summary.json"
   },
   "campaign_members": [
     {
@@ -113,9 +113,17 @@
       "receipt_sha256": "56db49aedc5433569723ec84093ab5e1a7325d82c9c3522e9fb00328770ed1a5",
       "tested_base_revision": "16bfc4bd5db0b9dbfa9b8646f4aae902ba5d8d90",
       "tested_candidate_identity": "59b0eef171ae8f576bca9114d5421b0393f6d214a2376abed53b442bc102f81c"
+    },
+    {
+      "signature": "f8bd15c89bc0dbd6",
+      "classification": "NEW_PUBLIC_DEDUCTIBLE_COMPLETION",
+      "receipt": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/receipt-f8bd15c89bc0dbd6.json",
+      "receipt_sha256": "dda5f5f2b137be2113cd414033b6265ef2a9215f5477c104abd5b47beca26029",
+      "tested_base_revision": "b81ee91e8693dc7962040219768283a2270cfea6",
+      "tested_candidate_identity": "b064582f373f3e7b11bbc9230d64bfbbdf1ffc5851d65b49f65f6e13aae4b30d"
     }
   ],
-  "documented_unique_count": 12,
+  "documented_unique_count": 13,
   "global_current_resolved": "UNKNOWN",
   "global_current_open": "UNKNOWN",
   "partial_recovery": "docs/audit/checkpoints/g2-recovery-36d7694/checkpoint.json",
@@ -132,15 +140,15 @@
   },
   "future_campaign": {
     "campaign_id": "CURRENT_REVALIDATION_RV01",
-    "used": 9,
+    "used": 11,
     "limit": 12,
-    "last_completed_scope": "B050_LIV_QUALIFICATIONS_EXPIRY",
-    "last_scope_used": 3,
+    "last_completed_scope": "B050_PUBLIC_DEDUCTIBLE",
+    "last_scope_used": 2,
     "last_scope_limit": 3,
-    "root_ledger": "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/prospective-root-ledger.csv",
+    "root_ledger": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/prospective-root-ledger.csv",
     "typegen_root_reuse_not_recharged": true,
     "historical_20_exception_used": false,
-    "policy": "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/campaign-policy.json",
+    "policy": "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/campaign-policy.json",
     "next_scope_requires_explicit_authorization": true
   },
   "historical_holds": {
@@ -187,7 +195,7 @@
     "Rehabilitation selection/SC-035 needs explicit decision"
   ],
   "authorized_packets": [],
-  "next_proposed_packet": "PUBLIC_DEDUCTIBLE",
+  "next_proposed_packet": "DIAGNOSTIC_DISTINCT_RULES",
   "plan": "docs/development-agent/next-b050-plan.md",
   "remaining_inventory": "docs/audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json",
   "evidence_sha256": {
@@ -217,17 +225,23 @@
     "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/prospective-root-ledger.csv": "8b7a539741e352c8952a699c36db16ff8ee7884e3b7830cedbcd51d190e20a90",
     "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/source-reverse-audit.json": "9b5a5a9bc748e0ec232eb943baacf0c6cca8dee7986d159688a41bf7a695114f",
     "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/gate-results.json": "a34fc44cbd1a50c585624a29badaabd99d33cfa38bde872dbce6959d07c62bde",
-    "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/summary.json": "1ab069001f1363f1062e8f21024b14d88221c19223958eb4967a3a13d03b8aba"
+    "docs/audit/checkpoints/b050-treatment-completion-16bfc4b/summary.json": "1ab069001f1363f1062e8f21024b14d88221c19223958eb4967a3a13d03b8aba",
+    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/receipt-f8bd15c89bc0dbd6.json": "dda5f5f2b137be2113cd414033b6265ef2a9215f5477c104abd5b47beca26029",
+    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/summary.json": "8f7ec87b413b1f4473278d3ac4f9884c3e2d64b3c718afb538c7beb1c1a82d4c",
+    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/gate-results.json": "d35fc6ceffed509fa69894f0f348a9607c6884ce1166052a30d0052356a16baa",
+    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/source-reverse-audit.json": "f7f7b75556fd28e4a250db01a6472b17cf5be2dd9400f7ed7fa6aca2238a76e8",
+    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/campaign-policy.json": "ef04d5891eb9491dc808d150db0606480d6a04a046f236e06ae47cde4e595596",
+    "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/prospective-root-ledger.csv": "5610fbedb8ff7133576c78785b373fe8c56a3b0c76510d7cf8fa83d48609e661"
   },
   "implementation_files_sha256": {
-    "lib/boat-pet-catalog.ts": "9394e09891e4911248f9cfb9f5984d31c3724c0722e51347e3d8d16a9e552d9b",
-    "tests/remediation-b-050.test.mjs": "c55969bcf843ab871b3d851ae4afd81e199b7e77ef46c82794a6fa13c1334684",
+    "lib/boat-pet-catalog.ts": "f66ecc987bb69f157727ef0d1996197ba996a0e5c9860fd1c1167c89b4e162c5",
+    "tests/remediation-b-050.test.mjs": "bae6d41670f964d7ac7093806ca8e5781154a42c3b1ab7c463c49218fb9194f2",
     "tests/nito-remediation-b022.test.mjs": "2f445747149ddf41f6e47a5f41f778ecda3c96ac87f84fb165e5ef1b88efb943",
     "lib/coverage-fact-semantics.ts": "88eabccf64d2503cc7e55f32dd729d31d4a6d710c919d175f73e155f72b21dba",
-    "tests/boat-pet-catalog.test.mjs": "f933492a61fcac789b91913c46e23aa7f52ca6cc81402767aecddc88ee463741"
+    "tests/boat-pet-catalog.test.mjs": "cd725222735968f70f0e797812e1f06de8bb304326ad38c0ab739f7e6a890bf0"
   },
   "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
-  "application_revision_role": "TESTED_BASE_PLUS_EXACT_CANDIDATE_IDENTITY; no claim that base contains this Treatment implementation",
+  "application_revision_role": "TESTED_BASE_PLUS_EXACT_CANDIDATE_IDENTITY; publication commit is discoverable from Git history",
   "application_commit_lookup": "git log -1 --format=%H -- lib/boat-pet-catalog.ts",
   "next_proposal": "docs/development-agent/next-b050-plan.md"
 }

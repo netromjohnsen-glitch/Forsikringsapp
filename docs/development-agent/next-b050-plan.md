@@ -1,7 +1,7 @@
-# B-050-plan — Liv og Behandling FULLFØRT; resterende bolker NOT_AUTHORIZED
+# B-050-plan — Liv, Behandling og offentlig egenandel FULLFØRT; øvrige bolker NOT_AUTHORIZED
 
 Opprinnelig read-only plan på ef5b0bc; oppdatert etter Liv-completion.
-Liv-bolk A og Behandling-bolk C er eksplisitt autorisert og fullført PASS; øvrige bolker er ikke autorisert. Dette er ikke en gjenåpning av tolv dokumenterte
+Liv-bolk A, PUBLIC_DEDUCTIBLE-bolk B og Behandling-bolk C er eksplisitt autorisert og fullført PASS; øvrige bolker er ikke autorisert. Dette er ikke en gjenåpning av tretten dokumenterte
 kampanjekontrakter eller en påstand om globalt OPEN-sett.
 [Inventaret](../audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json) inneholder
 de fire gjenværende eksakte originalbindinger, RC-026, produktidentitet, kildehash og arkivets forslag.
@@ -83,18 +83,18 @@ commit/push etter PASS. Ingen ny semantisk korreksjonsfullmakt eller kildeadmiss
 
 ## B — Offentlig egenandelskontrakt
 
-NOT_AUTHORIZED. f8bd15c89bc0dbd6 — GAP-2872/SF-4021.
-Produktseksjon «Hva er egenandelen?» dokumenterer Behandling: 1 300 kr fast per sykdom/
-skadetilfelle + 20 % av resten; senere regninger i samme tilfelle bare 20 %. Mulige høyere
-faste valg 2 000/3 500 kr, uten antatt kundens valg. Behandling-PDF 8 beskriver også ren
-prosentvariant etter bevis, men denne auditkilden kan ikke brukes som runtime-provenance
-før separat admission. Ikke hev at nettsiden selv dokumenterer ren prosentvariant.
-Eksisterende dyr.veterinar.egenandel.fast/prosent kan beskrive offentlig valg og bevare
-«Fremgår av forsikringsbeviset»; avklar downstream-format/standard vs kundesum før kode.
-Krever eksplisitt katalogfullmakt og avgrensning av PDF-kvalifikasjonen; ingen automatisk
-kundeegenandel. Filer katalog/B-050-gate/receipt. Tester dokumentert kundeegenandel vinner,
-per tilfelle != per regning, produkt-/kundemodus, Liv/Bruk ingen egenandel, isolasjon.
-Selvstendig formelrot; ikke legg under en Liv-rot for å spare budsjett.
+COMPLETED_PASS. f8bd15c89bc0dbd6 — GAP-2872/SF-4021.
+[Completion-receipt](../audit/checkpoints/b050-public-deductible-completion-b81ee91/receipt-f8bd15c89bc0dbd6.json)
+beviser offentlig standard 1 300 kr + 20 % av resten, faste alternativer 2 000/3 500 kr,
+fastdel én gang per samme sykdom/ulykke og separat ren prosentvariant etter forsikringsbeviset.
+PDF-side 8 (trykt 13) fra allerede registrert Treatment-kilde kvalifiserer nettsidens variant;
+PDF-side 3 definerer skadetilfellet. Ingen ny kildeadmission.
+Tre eksisterende egenandelsnøkler beskriver fast/prosent/periode. Standardklassifisering
+betyr offentlig produktgrunnlag, ikke kundens avtalte egenandel. Dokumentert kundeverdi
+har forrang; kjent manuelt katalogprodukt bruker katalogvilkår uten fritekstoverstyring.
+Selection, Liv/Bruk, Katt/provider-isolasjon, sumvalg og de tolv tidligere receipts er bevart.
+To uavhengige mekaniske harnessrøtter er ført; scope 2/3, kampanje 11/12.
+Dette autoriserer ingen senere bolk.
 
 ## C — Behandling: periodetak, medisin, tann og definisjoner
 
@@ -157,7 +157,7 @@ For hver fremtidig autorisert bolk: nye korrekte assertions er validering, kilde
 forhåndsgodkjent katalogarbeid er ikke automatisk correction-budgetforbruk. Planlagt
 korreksjonsforbruk 0; faktisk hver uavhengig feilaktig harnessrot føres etter bevis.
 Ny bolk kan bruke maks 3 mekaniske røtter hvis fullmakten aktiverer samme kampanjepolicy,
-med samlet brukt 9/12 før neste start. Kapasitet 3 er ikke forhåndsgodkjenning. Ingen semantisk
+med samlet brukt 11/12 før neste start. Gjenværende kampanjekapasitet 1 er ikke forhåndsgodkjenning. Ingen semantisk
 korreksjonsfullmakt, økning eller reset av historiske 19/16 og 10/8 foreslås.
 Budsjett-/kontraktsuklarhet stopper den avhengige delen.
 
@@ -170,11 +170,10 @@ diff/integritet. Bruk aktuelle kommandoer fra gate-results, ikke historiske PASS
 Bevar closed-campaign gjenverdi/minimum 5 000/Død-sum, Bruk/Liv og eksakt shared-fix.
 Nye receipts gjelder testet aktuell kandidat; globalt regnskap forblir UKJENT.
 
-Aktuell rekkefølge: A og C er fullført PASS. Neste minste katalogscope er B,
-PUBLIC_DEDUCTIBLE, kun f8bd15c89bc0dbd6 — GAP-2872/SF-4021, etter eksplisitt
-fullmakt for den presise kildebeviste egenandelskontrakten og fullgate. Ikke endre
-kundens egenandel ut fra offentlig tilgjengelige alternativer. Planlagt korrigerings-
-forbruk er 0; ny bolk krever sin egen maks 3-røtters scopeautorisasjon innen 9/12.
+Aktuell rekkefølge: A, B og C er fullført PASS. PUBLIC_DEDUCTIBLE lukker kun
+f8bd15c89bc0dbd6 — GAP-2872/SF-4021 med offentlig standard, alternativer og
+kundebevisets forrang. Kampanjen står på 11/12; bolken brukte 2/3 mekaniske røtter.
+Neste sikre steg er en eksplisitt autorisert read-only mappingavklaring for D.
 D krever fortsatt selvstendig read-only mappingavklaring for de to forskjellige
 MR/CT- og ledd/rygg-reglene. E krever selvstendig SC-035-/selectionbeslutning.
 Den gjennomførte PDF-admissionen opphever ingen av disse grensene.

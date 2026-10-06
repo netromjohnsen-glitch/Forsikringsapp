@@ -1,0 +1,18 @@
+{
+  "root_id": "M10_DOCUMENT_PIPELINE_REFERENCE_FIXTURE",
+  "classification": "MECHANICAL_HARNESS",
+  "before_fix_proof": "Two directions expected a synthetic single source that record() discards via rawTerm. Existing analysis-merge enrichBatch constructs exact sources from documentIndices. Require all fields of pdf:<side>:0, including individual_agreement role, and exact one-reference array in term/detail.",
+  "unchanged_baseline_files": "lib/analysis-merge.ts;tests/helpers/pilot-quality.mjs;tests/helpers/supporting-terms.mjs",
+  "baseline": "b81ee91e8693dc7962040219768283a2270cfea6",
+  "invariants_preserved": [
+    "source meaning",
+    "values",
+    "provider/product/scope",
+    "selection",
+    "document priority",
+    "complete provenance including note and document identity"
+  ],
+  "production_change_for_correction": false,
+  "scope_used": 1,
+  "campaign_used": 10
+}

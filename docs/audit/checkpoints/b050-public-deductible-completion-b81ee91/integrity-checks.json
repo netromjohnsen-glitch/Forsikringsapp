@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "docs/audit/checkpoints/development-agent-ef5b0bc/verify.py"
+      ],
+      "exit_code": 0,
+      "output": "PASS: doc links, 1589 unique registry rows, exact 13+3 B-050 partition, source/receipt hashes, policy 11/12 and 2/3, 21 historical holds, exact PUBLIC_DEDUCTIBLE candidate and unchanged shared fixes; global status UNKNOWN\n",
+      "candidate_identity": "b064582f373f3e7b11bbc9230d64bfbbdf1ffc5851d65b49f65f6e13aae4b30d"
+    },
+    {
+      "command": [
+        "python",
+        "docs/audit/checkpoints/b050-public-deductible-completion-b81ee91/verify.py"
+      ],
+      "exit_code": 0,
+      "output": "PASS: current final 145/47 file manifests, actual closure gate logs and candidate identity, exact one completion, 12 preserved receipts, source excerpts/hashes, policy 2/3 and 11/12, global UNKNOWN\n",
+      "candidate_identity": "b064582f373f3e7b11bbc9230d64bfbbdf1ffc5851d65b49f65f6e13aae4b30d"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "",
+      "candidate_identity": "b064582f373f3e7b11bbc9230d64bfbbdf1ffc5851d65b49f65f6e13aae4b30d"
+    }
+  ],
+  "role": "Actual successful integrity commands prior to addition of this record; SHA256SUMS refreshed and final verifiers run again before publication."
+}
