@@ -1,0 +1,109 @@
+{
+  "source_status": "PASS_FROZEN_BYTES_AND_TARGET_SOURCE_CONTRACTS",
+  "sources": [
+    {
+      "path": "catalog/sources/boat-pet/gjensidige-dog-life-use-terms.pdf",
+      "expected_sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "location": "PDF2/printed6 Tap av bruksverdi; PDF8/printed13 Erstatningsgrunnlag",
+      "actual_sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "status": "PASS"
+    },
+    {
+      "path": "catalog/sources/boat-pet/gjensidige-dog-product.html",
+      "expected_sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+      "location": "Bruk addition to Liv",
+      "actual_sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+      "status": "PASS"
+    },
+    {
+      "path": "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
+      "expected_sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "role": "Frozen audit-only control; do not register in production",
+      "actual_sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+      "status": "PASS"
+    },
+    {
+      "path": "catalog/sources/boat-pet/gjensidige-dog-ipid.pdf",
+      "expected_sha256": "aa39107d5777e4f0a342918ef9e4ceba8828793665a3dc2eb41172107d1404ba",
+      "actual_sha256": "aa39107d5777e4f0a342918ef9e4ceba8828793665a3dc2eb41172107d1404ba",
+      "role": "Existing registered product control, not target primary source",
+      "status": "PASS"
+    }
+  ],
+  "target_component": "gjensidige-hund-bruk",
+  "parent_addon_dependency": {
+    "id": "gjensidige-hund-bruk",
+    "name": "Bruk",
+    "providerId": "gjensidige",
+    "agreementScope": "ordinary",
+    "insuranceTypes": [
+      "Hund"
+    ],
+    "requiresLevel": [
+      "gjensidige-hund-behandling"
+    ],
+    "componentId": "gjensidige-hund-bruk",
+    "requiresAddOnIds": [
+      "gjensidige-hund-liv"
+    ],
+    "selectionEvidenceKeys": [
+      "hund.bruksverdi.dekning"
+    ]
+  },
+  "source_to_fact_evidence": [
+    "R-050-SF-4056",
+    "R-050-SF-4053/SF-4054",
+    "R-050-GAP-2904",
+    "R-050-1f56c194d413f97d",
+    "R-050-8e9d297cb0d1bd0e"
+  ],
+  "registered_target_sources": {
+    "boat-pet:gjensidige:hund": {
+      "id": "boat-pet:gjensidige:hund",
+      "filename": "gjensidige-dog-ipid.pdf",
+      "providerId": "gjensidige",
+      "company": "Gjensidige",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "sourceType": "ipid",
+      "termsNumber": "EAP32",
+      "effectiveFrom": "",
+      "version": "",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "sha256": "aa39107d5777e4f0a342918ef9e4ceba8828793665a3dc2eb41172107d1404ba",
+      "documentName": "EAP32"
+    },
+    "boat-pet:gjensidige:hund:life-use": {
+      "id": "boat-pet:gjensidige:hund:life-use",
+      "filename": "gjensidige-dog-life-use-terms.pdf",
+      "providerId": "gjensidige",
+      "company": "Gjensidige",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "sourceType": "full_terms",
+      "termsNumber": "Hund Liv og Bruk",
+      "effectiveFrom": "",
+      "version": "",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "sha256": "90536e3520ee46f476f480be9760bc92bd40162e29fd53e914df44b70ea150ea",
+      "documentName": "Hund Liv og Bruk"
+    },
+    "boat-pet:gjensidige:hund:product": {
+      "id": "boat-pet:gjensidige:hund:product",
+      "filename": "gjensidige-dog-product.html",
+      "providerId": "gjensidige",
+      "company": "Gjensidige",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "sourceType": "product_page",
+      "termsNumber": "Hundeforsikring – produktoversikt",
+      "effectiveFrom": "",
+      "version": "",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+      "documentName": "Hundeforsikring – produktoversikt"
+    }
+  },
+  "product_retrieval_date_is_not_terms_version": true,
+  "treatment_source_remains_audit_only": true
+}

@@ -1,0 +1,31 @@
+{
+  "id": "M01_NEXT_TYPEGEN_PRECONDITION",
+  "category": "MECHANICAL_GATE_HARNESS",
+  "failure": "Clean committed worktree lacks generated LayoutProps; TS2304 at app/layout.tsx:20",
+  "baseline_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
+  "evidence": [
+    "app/layout.tsx and tsconfig.json equal committed baseline; no next-env.d.ts at fresh checkout",
+    "tsconfig includes .next/types/**/*.ts and .next/dev/types/**/*.ts",
+    "Main workspace already has generated LayoutProps in ignored .next/types and .next/dev/types",
+    "Next 16.3.5 installed docs explicitly prescribe next typegen before tsc and generate ignored next-env.d.ts"
+  ],
+  "authoritative_installed_doc": "node_modules/next/dist/docs/01-app/03-api-reference/06-cli/next.md",
+  "doc_sha256": "efd16b277fe0d1a54de0df45fcb77dff3c14b85a0e38e8c1ce45317d79b0eb46",
+  "repair": [
+    "npx --no-install next typegen",
+    "npx --no-install tsc --noEmit --incremental false"
+  ],
+  "equivalence": {
+    "source_meaning": "unchanged; generator concerns route types only",
+    "insurance_values": "unchanged",
+    "scope": "unchanged",
+    "selection": "unchanged",
+    "document_priority": "unchanged",
+    "provenance": "unchanged",
+    "production_diff": "No tracked application/test/configuration change; generated next-env.d.ts is gitignored"
+  },
+  "scope_charge": 1,
+  "campaign_charge": 1,
+  "historical_budget_charge": 0,
+  "pending_manual_exception_used": false
+}

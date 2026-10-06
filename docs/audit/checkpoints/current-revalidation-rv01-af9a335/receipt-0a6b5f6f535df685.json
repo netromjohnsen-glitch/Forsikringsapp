@@ -1,0 +1,112 @@
+{
+  "classification": "CURRENT_REVALIDATION",
+  "status": "PASS",
+  "signature": "0a6b5f6f535df685",
+  "gap_ids": [
+    "GAP-2904"
+  ],
+  "sf_ids": [
+    "SF-4056"
+  ],
+  "original_registry_binding": {
+    "signature_id": "0a6b5f6f535df685",
+    "representative_finding_id": "GAP-2904",
+    "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-026\"]",
+    "final_batch_id": "B-050",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "1",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2904\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+    "source_fact_ids": "[\"SF-4056\"]",
+    "proposed_existing_keys": "[\"hund.bruksverdi.grense\"]",
+    "semantic_concept": "Bruk",
+    "semantic_dimension": "gjenverdi",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "tested_revision": "af9a3354f483d2a60775c043b8c6497e16605161",
+  "tested_git_tree": "5498f0f203c81ecdf816345be28077f5858466af",
+  "timestamp_utc": "2026-10-06T07:04:24.009830+00:00",
+  "not_recovered_historical_closure": true,
+  "global_accounting_change": false,
+  "provider": "gjensidige",
+  "product": "gjensidige-hund-behandling",
+  "component": "gjensidige-hund-bruk",
+  "scope": "ordinary",
+  "terms_version": "Source version/effectiveFrom remain unknown; retrieval date is not substituted",
+  "source_proof": {
+    "canonical_keys": [
+      "hund.bruksverdi.grense"
+    ],
+    "location": "PDF8, printed13, Erstatningsgrunnlag",
+    "clauses": [
+      "Erstatningsgrunnlaget er forsikringssummen",
+      "Fradrag for gjenverdi minimum kr 5 000",
+      "Forsikringssummen for Død endres i samsvar med gjenverdien etter utbetalt tap av bruksverdi",
+      "Gjenverdi er ikke egenandel, fast utbetaling eller maksimal sum"
+    ],
+    "target_tests": [
+      "R-050-SF-4056",
+      "R-050-GAP-2904",
+      "R-050-SELECTION: rule alone",
+      "R-050-DOCUMENT",
+      "R-050-PIPELINE: existing",
+      "R-050-PIPELINE: offer"
+    ]
+  },
+  "effective_target_facts": [
+    {
+      "key": "hund.bruksverdi.grense",
+      "label": "Bruksverdi – grense",
+      "value": "Ved tap av bruksverdi er erstatningsgrunnlaget forsikringssummen. Det gjøres fradrag for gjenverdi minimum kr 5 000. Ved utbetalt erstatning for tap av bruksverdi blir forsikringssummen for Død endret i samsvar med gjenverdien.",
+      "qualificationSource": {
+        "documentId": "boat-pet:gjensidige:hund:product",
+        "filename": "gjensidige-dog-product.html",
+        "termsNumber": "Hundeforsikring – produktoversikt",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+        "company": "Gjensidige",
+        "page": 1,
+        "section": "Bruk – tillegg til Liv"
+      },
+      "source": {
+        "documentId": "boat-pet:gjensidige:hund:life-use",
+        "filename": "gjensidige-dog-life-use-terms.pdf",
+        "termsNumber": "Hund Liv og Bruk",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+        "company": "Gjensidige",
+        "page": 8,
+        "section": "Erstatningsgrunnlag – tap av bruksverdi",
+        "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+      }
+    }
+  ],
+  "source_audit": "source-audit.json",
+  "reverse_audit": "reverse-audit.json",
+  "gate_results": "gate-results.json",
+  "contract_test_blob_sha256": "42240163ee7f1bc8804a2a3564fe174d3c2bc6f31500b9ad43593ee59082c9b4",
+  "shared_guards": [
+    "exact hund.bruksverdi.grense non-assertive",
+    "Liv/Bruk requires Liv and selectionEvidenceKeys main Bruk only",
+    "explicit choice/refusal/conflict",
+    "document priority and customer 17000 kr",
+    "Hund/Katt/provider isolation",
+    "same product and both comparison directions"
+  ],
+  "mechanical_roots": [
+    "M01_NEXT_TYPEGEN_PRECONDITION"
+  ],
+  "scope_mechanical_used": 1,
+  "campaign_mechanical_used": 1
+}
