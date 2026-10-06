@@ -91,3 +91,49 @@ undersøk først; integrer uten overskriving, og revalider dersom testet innhold
 Commit/push er autorisert bare der brukerfullmakten sier det. Ingen egen deployhandling.
 Oppdater checkpoint til neste konkrete steg, med tillatelser og blockers; ikke etabler
 scheduler eller påstå automatisk ChatGPT–Codex-overlevering.
+
+
+## Aktiv fullmakt: selvstendige mekaniske harnessrettinger
+
+Denne seksjonen er aktivert av Morten 2026-10-06 og går foran eldre stoppregler
+for mekaniske harnessbudsjetter i denne arbeidsflyten. Den autoriserer ingen ny
+produksjonsbolk, rehabiliteringsimplementering eller endring av SC-035.
+
+Innen et ellers eksplisitt autorisert scope kan agenten selv rette beviselig
+mekaniske test-, fixture-, serialiserings- og dokumentasjonsfeil uten ny forespørsel.
+Fullmakten omfatter eksempelvis source/sources-representasjon, key: undefined,
+HTML-entities, LF-linjeskift og foreldede eksakte radsett/kildeallowlister når nye
+rader og kildeidentiteter allerede er uttrykkelig godkjent.
+
+Før retting skal agenten dokumentere uavhengig baseline-, kilde- og kodebevis:
+rettingen må bevare den allerede godkjente forsikringsbetydningen, verdiene,
+produkt-/variantscope, selection, mapping, dokumentprioritet og komplett provenance.
+En baseline-forskjell alene beviser ikke at en test er feil. Ingen produksjonsendring
+er tillatt under denne harnessfullmakten. Bevar negative kontroller, streng
+sammenligning og eksplisitte forventninger; ikke svekk tester, fjern assertions,
+hopp over testfiler eller utled forventningene fra kandidaten.
+
+Nytt separat fremtidig regnskap: HARNESS_AUTONOMY_V1.
+Startforbruk 0/12; maks 6 uavhengige røtter per autorisert scope og 12 totalt
+under denne fullmakten. Tell faktisk utførte røtter én gang med før/etter-bevis.
+Historisk rapporterte tellere og diagnostikkampanjens 19/12 beholdes uendret;
+dette er ingen nullstilling eller retroaktiv omføring. Kontroller ferske
+receipts/checkpoint før du oppgir øvrige historiske tall som verifisert.
+
+Ved oppbrukt ny ramme: samle alle trygt diagnostiserbare funn i én rapport og
+be om én konkret avgrenset beslutning. Nye semantiske, selection-, mapping-,
+canonical-, engine- eller source-admission-røtter, kildekonflikter og uforklarte
+integritetsavvik krever fortsatt stopp før retting. Et checksumavvik må forklares
+før en checksum oppdateres; ikke regenerer bevis for å skjule ukjent endring.
+
+Etter tillatt retting: kjør målrettede tester og fortsett automatisk gjennom
+allerede autoriserte gater. Samle resterende testfeil med fullsuite og komplett
+remedieringsutvalg der dette er teknisk forsvarlig, uten å rette uautoriserte røtter.
+Publisering krever fortsatt alle gjeldende gater, kontrollert exit-status,
+checksums, eksakt staged-sett og arbeidsdiff/staged diff --check. Bruk etablert
+sikret publish.py der scopet krever det. Ingen gatefeil kan passeres til commit/push.
+
+Denne fullmakten utvider ikke eksisterende commit/push- eller deploymyndighet.
+Fortsett bare allerede autoriserte scopes; et read-only scope forblir read-only.
+Agenten skal lese denne seksjonen ved neste oppstart eller videreføring og føre
+nye HARNESS_AUTONOMY_V1-røtter varig i Git sammen med scopets auditbevis.
