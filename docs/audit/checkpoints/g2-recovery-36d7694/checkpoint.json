@@ -1,0 +1,103 @@
+{
+  "status": "PARTIAL_RECOVERY — NOT_AUTHORITATIVE_EXECUTION_LEDGER",
+  "recorded_utc_date": "2026-10-06",
+  "revision": "36d7694f214ee7f36156f96b42385c21b1c97151",
+  "branch": "work",
+  "repository": "netromjohnsen-glitch/Forsikringsapp",
+  "registry": "docs/audit/legacy-local/source-catalog-remediation-triage/p1-triage.csv",
+  "fresh_current_resolved_set": null,
+  "current_ledger_unknown_rows": 1589,
+  "historical_baseline": {
+    "evidence": "docs/audit/legacy-local/insurance-catalog-wave2-completion/p1-accounting.json",
+    "archive_commit": "b231c20c87d2f5bc64c175b3a413aed87c01b854",
+    "historical_state": "B-019 PASS; B-017 BLOCKED snapshot, not current main",
+    "resolved_signatures": [
+      "006717c0ed25b662",
+      "063f2fff5bf4ea6e",
+      "07dbd5f80afdf0cd",
+      "084efe78ee699c73",
+      "0def48b35239d8dc",
+      "0eb8ba09123305ee",
+      "1a60a06962435907",
+      "23495713f8dfa933",
+      "26c05b62a27b04aa",
+      "3c5d03c25d19fbb5",
+      "764ee65f51c3d731",
+      "8249889091145082",
+      "891bffa82bebd3a0",
+      "ab868c6b64912871",
+      "b9a4784069bf37d9",
+      "bc895acebf091f9d",
+      "be5630dead0c3b23",
+      "c74c647eb0c3573a",
+      "d07e9ae8a55beeaf",
+      "d67df16cac74ac1a",
+      "e0a4907dd08e7a74",
+      "f01b778d102c1d15"
+    ],
+    "resolved_count": 22,
+    "remaining_count": 1567,
+    "historical_exclusion_status": "21 registry DEFER_SAFE entries; archived accounting does not mark them resolved or excluded"
+  },
+  "conversation_checkpoint": {
+    "evidence": "User messages in this chat, restated explicitly in the recovery authorization on 2026-10-06",
+    "fresh_ledger_verified": false,
+    "resolved": 414,
+    "open": 1175,
+    "active_open": 1154,
+    "historical_excluded": 21,
+    "b050_resolved": [
+      "0a6b5f6f535df685",
+      "1f56c194d413f97d",
+      "8e9d297cb0d1bd0e"
+    ],
+    "b050_open": [
+      "3f4b9eff50404590"
+    ],
+    "other_protected_open": [
+      "7767772472433807",
+      "26668a6c81e5b5d9",
+      "e2f70dda0093e9e4"
+    ],
+    "arithmetic_consistent": true,
+    "does_not_establish_full_signature_set": true
+  },
+  "reported_budget": {
+    "evidence_status": "CONVERSATION_ATTESTED_NOT_FRESH_LEDGER_VERIFIED",
+    "mechanical_used": 19,
+    "mechanical_ordinary_limit": 16,
+    "semantic_used": 10,
+    "semantic_ordinary_limit": 8,
+    "manual_exception": {
+      "root": "R-050-SUM-MANUAL known catalog mode versus free-text override expectation",
+      "authorized": true,
+      "conditional": "Fresh ledger baseline and independent-root/equivalence verification required",
+      "used": false,
+      "booked": false,
+      "proposed_after_if_used": 20
+    },
+    "independent_root_history_complete": false
+  },
+  "preserved_candidate": {
+    "sha256": {
+      "lib/boat-pet-catalog.ts": "6fba4d9fef6a64b2e2f53752678bea22760860548ac29fa7c779cae9c8bab57d",
+      "tests/remediation-b-050.test.mjs": "ddca1cd9935c93f1b1ad65561ce0954514883fb0f454210009bd865e496e972e"
+    },
+    "diff_sha256": "6b9fad6182c4b8c371270a8e82a768ce6e259eda05a095216829aef016202fea",
+    "staged": 0,
+    "scope_signature": "3f4b9eff50404590",
+    "scope_binding": "GAP-2869/SF-4018",
+    "candidate_status": "UNCOMMITTED_NOT_CLOSED",
+    "manual_harness_correction": "NOT_PERFORMED"
+  },
+  "gaps": [
+    "Complete current unique resolved/open/excluded sets and post-B-019 closure receipts missing",
+    "Full G2 V2 coordinator policy, gate and budget ledger missing",
+    "Independent root accounting for prior 15 mechanical and all 10 semantic roots missing",
+    "Historical hold identities are recovered, but current excluded-state receipts missing",
+    "Original /tmp closure/build/runtime receipts are unavailable; commit claims are not fresh validation"
+  ],
+  "next_allowed_step": "Restore exact current signature ledger/closure chain and coordinator policy/root ledger, or obtain an explicit new reconciliation decision for missing evidence; do not continue B-050 closure from this partial checkpoint",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "publication_authorization": "User explicitly authorizes documentation-only commit/push of partial recovery in the next recovery task; no execution/closure authority granted"
+}
