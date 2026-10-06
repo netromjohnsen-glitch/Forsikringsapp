@@ -1,0 +1,17 @@
+{
+  "root_id": "M08_AUTHORITATIVE_REGISTRY_COLUMN",
+  "classification": "MECHANICAL_AUDIT_HARNESS",
+  "scope": "B050_TREATMENT",
+  "before": "New verify-audits.py expected signature; existing authoritative CSV column is signature_id, yielding KeyError before binding comparison.",
+  "after": "Read signature_id and compare exact finding_ids/source_fact_ids arrays and final_batch_id, retaining strict unique 1589-set check.",
+  "independent_equivalence_evidence": [
+    "Unchanged frozen CSV header is signature_id; committed development-agent verify.py uses signature_id.",
+    "The four original register bindings are unchanged and were read before implementation.",
+    "Only audit field lookup corrected; no production/source/test fact values or scope/selection/provenance change.",
+    "Exact GAP/SF array comparison strengthens the intended binding proof rather than copying candidate output."
+  ],
+  "scope_used_after": 2,
+  "scope_limit": 3,
+  "campaign_used_after": 8,
+  "campaign_limit": 12
+}

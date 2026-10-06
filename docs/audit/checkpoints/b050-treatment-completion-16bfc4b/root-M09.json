@@ -1,0 +1,17 @@
+{
+  "root_id": "M09_COMPLETE_REMEDIATION_MANIFEST",
+  "classification": "MECHANICAL_AUDIT_HARNESS",
+  "scope": "B050_TREATMENT",
+  "before": "New manifest prefix filter selected 46 remediation-named files but omitted b043-status-parser.test.mjs from remediation classification, although fullsuite ran it successfully.",
+  "after": "Explicitly include that exact shared B-043 status-parser regression in 47-file remediation manifest. All 145 fullsuite files remain required.",
+  "independent_equivalence_evidence": [
+    "Previous committed gate actual results: named remediation sum 1671 plus B-043 parser 85 equals reported 1756.",
+    "Current fullsuite logs: named remediation 1690 plus same B-043 parser 85 equals 1775.",
+    "This is test-manifest classification only; actual commands executed every file including B-043 and pass values are retained.",
+    "No test expectation, insurance meaning, value, scope, selection, source or provenance changed."
+  ],
+  "scope_used_after": 3,
+  "scope_limit": 3,
+  "campaign_used_after": 9,
+  "campaign_limit": 12
+}

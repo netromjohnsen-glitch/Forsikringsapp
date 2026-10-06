@@ -1,10 +1,10 @@
-# B-050-plan — Liv FULLFØRT, øvrige bolker NOT_AUTHORIZED
+# B-050-plan — Liv og Behandling FULLFØRT; resterende bolker NOT_AUTHORIZED
 
 Opprinnelig read-only plan på ef5b0bc; oppdatert etter Liv-completion.
-Liv-bolk A er eksplisitt autorisert og fullført PASS; øvrige bolker er ikke autorisert. Dette er ikke en gjenåpning av åtte dokumenterte
+Liv-bolk A og Behandling-bolk C er eksplisitt autorisert og fullført PASS; øvrige bolker er ikke autorisert. Dette er ikke en gjenåpning av tolv dokumenterte
 kampanjekontrakter eller en påstand om globalt OPEN-sett.
 [Inventaret](../audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json) inneholder
-de åtte gjenværende eksakte originalbindinger, RC-026, produktidentitet, kildehash og arkivets forslag.
+de fire gjenværende eksakte originalbindinger, RC-026, produktidentitet, kildehash og arkivets forslag.
 [Originalplanen](../audit/legacy-local/source-catalog-remediation-triage/remediation-batches.md)
 og [triage.json](../audit/legacy-local/source-catalog-remediation-triage/triage.json) definerer
 B-050; source-clear i historisk plan betyr verken runtime-admission eller fullmakt i dag.
@@ -25,13 +25,13 @@ Originalbytes er kontrollert mot alle tre forventede SHA-256 i B-050-evidence:
   Registrert full_terms: boat-pet:gjensidige:hund:life-use.
 - Behandling: catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf,
   8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6.
-  Frossen auditkilde, IKKE produksjonsregistrert. Manifest alene gir ikke admission.
+  Eksplisitt produksjonsregistrert som boat-pet:gjensidige:hund:treatment, full_terms. Vilkårsnummer/versjon/ikrafttredelse ukjent. Bare den autoriserte fire-signaturbolken er implementert.
 
 [Lesebeviset](../audit/checkpoints/development-agent-ef5b0bc/source-review.json) lagrer
 reproduserbar PDF-side/trykt-side-kobling og originalavsnitt: PDF 1/2/3/8 = trykt 5/6/7/13.
 Produktets relevante seksjoner er gjennomgått samlet. Ingen kilderefresh eller filendring.
 
-## A — Liv-kvalifikasjoner og opphør (anbefalt neste større bolk)
+## A — Liv-kvalifikasjoner og opphør (fullført)
 
 Status COMPLETED_PASS etter eksplisitt brukerfullmakt. Se [completion-receipts](../audit/checkpoints/b050-liv-completion-04534f8/README.md).
 Fire selvstendige kontrakter; felles RC-026 er ikke bevis på én korreksjonsrot.
@@ -98,31 +98,22 @@ Selvstendig formelrot; ikke legg under en Liv-rot for å spare budsjett.
 
 ## C — Behandling: periodetak, medisin, tann og definisjoner
 
-NOT_AUTHORIZED; kildeklart innhold, men avhengig av separat Behandling-admissionbeslutning.
+COMPLETED_PASS etter eksplisitt fullmakt og separat kildeadmission.
+[Fire nye completion-receipts](../audit/checkpoints/b050-treatment-completion-16bfc4b/README.md)
+beviser kun 4165f79344a7d572/GAP-2868/SF-4017,
+fbe23495ae09afb3/GAP-2875/SF-4025, 48393aac0a200fe5/GAP-2880/SF-4031 og
+c5ccc4f26fd475ae/GAP-2907/SF-4060. Kilde: PDF 1–3/trykt 5–7 og tann-FAQ.
 
-| Signatur | Binding | Kilde og selvstendig kontrakt |
-| --- | --- | --- |
-| 4165f79344a7d572 | GAP-2868/SF-4017 | Behandling PDF 2/6: forsikringssum per år er OGSÅ maksimalt per samme skadetilfelle. Årsreset gjenåpner ikke samme sykdoms tak. |
-| fbe23495ae09afb3 | GAP-2875/SF-4025 | PDF 2/6: bandasjer/beskyttelse og veterinærforeskrevne medisiner/preparater ved sykdom/ulykke, dokumentert journal/attest og innen valgt sum. |
-| 48393aac0a200fe5 | GAP-2880/SF-4031 | PDF 1–2/5–6 + nettsidens tann-FAQ: karies/emaljedefekter, årlig kontroll/rens ved behov; abscess unntatt med carveout ved avskalling/fraktur. Bevar øvrige tannunntak/ulykkesfraktur. |
-| c5ccc4f26fd475ae | GAP-2907/SF-4060 | PDF 3/7: samme ulykke/sykdom = samme tilfelle/alle utgifter; oppdagelsestid; friskt dyr omfatter kronisk behandling siste 12 måneder og diagnostisert sykdom også uten symptomer. |
+Veterinærdekning beskriver sykdom/ulykke, valgt årssum og tak per skadetilfelle.
+Veterinærbegrensning bærer samme sykdom/ulykke, oppdagelsestid, friskt dyr og
+materielle sykdomskvalifikasjoner. Medisin og Tann bruker eksisterende separate
+canonical familier. Tannbegrensning bevarer unntak, sikkerhetsforskrifter og
+kildebundet dokumentasjonskrav. Sumvalgidentitet, kundesum, egenandel, Katt og
+Liv/Bruk er bevart. Ingen ny canonical nøkkel, engine eller shared-selectionendring.
 
-Admission er egen beslutning, ikke en mekanisk testretting: kilde finnes i frossent manifest,
-men ikke produksjonsregister. Eventuell eksplisitt fullmakt må navngi source-ID, full_terms,
-Hund/ordinary, ukjent versjon, hash, URL, kildetittel og snever testadmission. Ingen innhenting.
-Filer etter slik beslutning: lib/boat-pet-catalog.ts, tests/remediation-b-050.test.mjs,
-berørte provenance-/kildekontrakttester og receipts; ingen schema/engine som utgangspunkt.
-Register er i katalogfilen. Gjeldende B-050-test beskytter at PDF ikke er registrert og må
-endres bare som del av eksplisitt godkjent admission, ikke for å passere en kataloggate.
-
-Representasjon: periodetak i veterinærdekning/begrensning; medisin/tann egne eksisterende
-dekningsfamilier. Definisjoner skal ikke blindt legges i sum.valgbar som arkivet foreslår:
-bevar fire tilgjengelige sumvalg og bruk eksisterende veterinær.begrensning eller en
-kildebundet detailrad hvis downstream-kontrakt beviser at den kvalifiserer riktig familie.
-Dette krever en konkret representasjonsbekreftelse før kode, ingen ny canonical nøkkel nå.
-Tester: egen kilde per rad, beløp/enhet/periode, alle kvalifikasjoner, status/prioritet,
-sumvalg uendret, same-case på tvers av år og uavhengige sykdommer, parent selection,
-Katt/provider-isolasjon. Fire uavhengige kontrakter, ingen budsjettsammenslåing.
+Admission gjelder boat-pet:gjensidige:hund:treatment, full_terms, med ukjent
+vilkårsnummer/versjon/ikrafttredelse. Root-ID boat-pet:gjensidige:hund er fortsatt
+IPID. Admission autoriserer ikke andre avsnitt eller gjenværende signaturer.
 
 ## D — To forskjellige diagnostikkregler
 
@@ -137,7 +128,7 @@ Bevar ulikt objekt/formål, beløp, periode og unntak. Anbefalt neste steg er re
 representasjonsbeslutning: bevis om én strukturert, kildebundet eksisterende detalj kan
 vise begge vilkår uten at dokumentets spesifikke grense overstyrer feil gren. Hvis ikke,
 kreves ny eksplisitt canonical/mappingbeslutning. Ingen slik beslutning tas i dette oppsettet.
-Behandling-admission er også nødvendig. Mulige senere filer katalog/register/presentasjon/
+Behandling-admission er nå utført; dette gir ikke fullmakt til diagnostikk. Mulige senere filer katalog/register/presentasjon/
 normalisering avhenger av beslutningen; ingen av dem autoriseres nå.
 Tester må bevise begge fakta samtidig, grenvis dokumentprioritet, begge retninger, ingen
 samme-key-tap og ingen selection fra støttevilkår. To uavhengige kilderegler + eventuell
@@ -153,7 +144,7 @@ de eksakte ikke-assertive nøklene; positiv detail-evidence kan derfor påvirke 
 Ikke klassifiser dette automatisk som feil eller gjør shared-fix under katalogfullmakt.
 SC-035/SR-031 må avklare nettsidens inkluderte kiro/fysio/akupunktur vs valgfrie svømming/
 vanntredemølle og PDF-ens fysikalsk/rehabilitering. Kildeprioritet alene løser ikke modalitet/
-komponentvalg. PDF-admission og egen selection-kontrakt er separate grenser.
+komponentvalg. PDF-admission er nå utført; egen selection-/SC-035-kontrakt og implementeringsfullmakt gjenstår.
 Foreslått eksisterende dyr.rehabilitering.begrensning kan bære frist/sted, men først etter
 komponentscopebeslutning. Senere filer: katalog og B-050-gate; eventuell selectionretting
 må autoriseres separat etter read-only analyse. Tester basis/tillegg/modaliteter, frist,
@@ -166,7 +157,7 @@ For hver fremtidig autorisert bolk: nye korrekte assertions er validering, kilde
 forhåndsgodkjent katalogarbeid er ikke automatisk correction-budgetforbruk. Planlagt
 korreksjonsforbruk 0; faktisk hver uavhengig feilaktig harnessrot føres etter bevis.
 Ny bolk kan bruke maks 3 mekaniske røtter hvis fullmakten aktiverer samme kampanjepolicy,
-med samlet brukt 6/12 før neste start. Kapasitet 6 er ikke forhåndsgodkjenning. Ingen semantisk
+med samlet brukt 9/12 før neste start. Kapasitet 3 er ikke forhåndsgodkjenning. Ingen semantisk
 korreksjonsfullmakt, økning eller reset av historiske 19/16 og 10/8 foreslås.
 Budsjett-/kontraktsuklarhet stopper den avhengige delen.
 
@@ -179,10 +170,14 @@ diff/integritet. Bruk aktuelle kommandoer fra gate-results, ikke historiske PASS
 Bevar closed-campaign gjenverdi/minimum 5 000/Død-sum, Bruk/Liv og eksakt shared-fix.
 Nye receipts gjelder testet aktuell kandidat; globalt regnskap forblir UKJENT.
 
-Aktuell rekkefølge: A er fullført PASS. Neste større forslag er C etter eksplisitt admission/
-representasjonsbeslutning; B kan autoriseres uavhengig etter egen presis fullmakt. D krever
-mapping + admission; E krever SC-035, selection og admission. Ingen videre bolk er autorisert.
-Minste aktuelle beslutning er det konkrete fire-signaturforslaget i next-treatment-proposal.md.
+Aktuell rekkefølge: A og C er fullført PASS. Neste minste katalogscope er B,
+PUBLIC_DEDUCTIBLE, kun f8bd15c89bc0dbd6 — GAP-2872/SF-4021, etter eksplisitt
+fullmakt for den presise kildebeviste egenandelskontrakten og fullgate. Ikke endre
+kundens egenandel ut fra offentlig tilgjengelige alternativer. Planlagt korrigerings-
+forbruk er 0; ny bolk krever sin egen maks 3-røtters scopeautorisasjon innen 9/12.
+D krever fortsatt selvstendig read-only mappingavklaring for de to forskjellige
+MR/CT- og ledd/rygg-reglene. E krever selvstendig SC-035-/selectionbeslutning.
+Den gjennomførte PDF-admissionen opphever ingen av disse grensene.
 
-Aktuelt neste større forslag: [Behandling-bolk](next-treatment-proposal.md), NOT_AUTHORIZED.
-Livs opprinnelige beslutningskrav over er historisk planlegging og er oppfylt av brukerfullmakten; det gir ikke fullmakt til noen øvrig bolk.
+[Behandling-completion](next-treatment-proposal.md) er historisk oppfylt fullmakt;
+den gir ikke fullmakt til resterende bolker. Globalt resolved/open forblir UKJENT.

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { gunzipSync } from 'node:zlib';
 import { PDFParse } from 'pdf-parse';
 import { getPath } from 'pdf-parse/worker';
 import { productCatalog, resolveCatalogFacts, availableAddOns, findCatalogProduct } from '../lib/product-catalog.ts';
@@ -44,7 +45,14 @@ for (const [filename, hash] of [
   if (filename === 'gjensidige-dog-treatment-terms.pdf') {
     const audit = JSON.parse(readFileSync(new URL('../docs/audit/legacy-local/source-catalog-remediation-triage/baseline.json', import.meta.url), 'utf8'));
     assert.equal(audit.repo_files['catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf'], hash);
-    assert.equal(source, undefined, 'This frozen audit source is not a production source for the partial Bruk scope');
+    assert.deepEqual(source, {
+      id: 'boat-pet:gjensidige:hund:treatment', filename, providerId: 'gjensidige', company: 'Gjensidige',
+      insuranceType: 'Hund', agreementScope: 'ordinary', sourceType: 'full_terms', termsNumber: '',
+      version: '', effectiveFrom: '', documentName: '',
+      url: 'https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring', sha256: hash,
+    });
+    assert.equal(productCatalog.sources['boat-pet:gjensidige:hund'].filename, 'gjensidige-dog-ipid.pdf');
+    assert.equal(productCatalog.sources['boat-pet:gjensidige:hund'].sourceType, 'ipid');
   } else {
     assert.ok(source);
     assert.equal(source.sha256, hash); assert.equal(source.company, 'Gjensidige'); assert.equal(source.agreementScope, 'ordinary');
@@ -496,4 +504,139 @@ test('R-050-LIV-ISOLATION: same product/both directions, no base/Katt/provider o
     assert.equal(rows.some(f=>f.key===k&&f.value===ownLife(k).value),component===liv,component);
   assert.deepEqual(productCatalog.addOns.find(a=>a.id===bruk).requiresAddOnIds,[liv]);
   assert.deepEqual(productCatalog.addOns.find(a=>a.id===bruk).selectionEvidenceKeys,[parent]);
+});
+
+// New, source-verified Behandling packet. Admission never migrates the IPID.
+const treatmentId = 'boat-pet:gjensidige:hund:treatment';
+const treatmentKeys = ['dyr.veterinar.dekning', 'dyr.veterinar.begrensning', 'dyr.medisin.dekning', 'dyr.tannsykdom.dekning', 'dyr.tannsykdom.begrensning'];
+const treatmentFact = k => {
+  const rows = facts([]).filter(f => f.key === k); assert.equal(rows.length, 1);
+  return rows[0];
+};
+const treatmentTerm = (k, v) => ({ ...term(k, v), name: treatmentFact(k).label });
+const assertPhrases = (text, phrases) => { for (const phrase of phrases) assert.ok(text.includes(phrase), phrase); };
+test('R-050-TREATMENT-SOURCE: original PDF1–3 and frozen dental FAQ bind the full contracts', async () => {
+  PDFParse.setWorker(getPath());
+  const parser = new PDFParse({ data: readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf', import.meta.url)) });
+  try {
+    const result = await parser.getText(); const pages = result.pages.slice(0, 3).map(p => p.text.replace(/\s+/gu, ' ').trim());
+    assertPhrases(pages[0], ['årlig tann-/helsekontroll', 'forebyggende behandling og rens av tenner', 'Veterinær skal kontaktes straks', 'forsikringsavtaleloven § 4-8']);
+    assertPhrases(pages[1], ['Veterinærutgifter som følge av sykdom eller ulykke', 'Forsikringssummer pr år', 'maksimal erstatning pr. skadetilfelle',
+      'Bandasje- og beskyttelsesmateriell', 'Medisiner og preparater', 'journal / attest', 'karies og emaljedefekter',
+      'stomatitt, gingivitt og periodontitt', 'avskalling/fraktur', 'tannbrudd forårsaket av en ulykke',
+      '7 uker og 4 måneders alder', 'før 4 måneders alder', 'eller sammenhengende forsikret']);
+    assertPhrases(pages[2], ['Alle utgifter som relateres til samme ulykke eller sykdom', 'Fødselskomplikasjoner inngår i sykdomsbegrepet',
+      'kronisk sykdom i løpet av de siste 12 måneder', 'diagnosen ennå ikke viser symptomer', 'HD påvist ved røntgen', 'Skadetidspunktet settes til oppdagelsestidspunktet']);
+  } finally { await parser.destroy(); }
+  const html = readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-product.html', import.meta.url), 'utf8');
+  const faq = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gu)]
+    .map(m => JSON.parse(m[1])).flatMap(x => x.mainEntity ?? []).find(x => x.name?.trim() === 'Dekkes periodontitt?');
+  assert.ok(faq); assertPhrases(faq.acceptedAnswer.text, ['Dette dekkes ikke.', 'Hvis du kan dokumentere', 'årlige tann/helsekontroller hos veterinær', 'tannrens hvis dette har vært nødvendig', 'karies og emaljedefekter']);
+});
+test('R-050-4165f79344a7d572: GAP-2868/SF-4017 selected annual sum also caps each illness/accident case', () => {
+  const f = treatmentFact('dyr.veterinar.dekning');
+  assertPhrases(f.value, ['Inkludert:', 'veterinærutgifter som følge av sykdom eller ulykke', 'Forsikringssummer per år er angitt i forsikringsbeviset', 'også maksimal erstatning per skadetilfelle']);
+  assert.equal(f.source.page, 2); assert.equal(f.source.documentId, treatmentId);
+  assertPhrases(treatmentFact('dyr.veterinar.begrensning').value, ['Alle utgifter som relateres til samme ulykke eller sykdom']);
+  assert.equal(sumFact().value, sumChoices); assert.equal(sumFact().source.documentId, 'boat-pet:gjensidige:hund:product');
+  assert.equal(sumFact().qualificationSource.documentId, 'boat-pet:gjensidige:hund');
+  assert.doesNotMatch(f.value, /50 000|nytt tak|nullstilles/u);
+});
+test('R-050-fbe23495ae09afb3: GAP-2875/SF-4025 prescribed medicines and protective supplies within chosen sum', () => {
+  const f = treatmentFact('dyr.medisin.dekning');
+  assertPhrases(f.value, ['Innenfor forsikringssummen', 'bandasje- og beskyttelsesmateriell', 'medisiner og preparater',
+    'veterinæren foreskriver', 'som ledd i behandlingen av en sykdom eller ulykkesskade', 'fremkommer av journal/attest']);
+  assert.equal(f.source.page, 2); assert.equal(f.source.documentId, treatmentId);
+  assert.equal(f.deductibleClassification, undefined); assert.doesNotMatch(f.value, /medisinfôr|sjampo|all behandling/u);
+});
+test('R-050-48393aac0a200fe5: GAP-2880/SF-4031 exact positive dental events and continuity/attestation alternatives', () => {
+  const f = treatmentFact('dyr.tannsykdom.dekning');
+  assertPhrases(f.value, ['Innenfor forsikringssummen', 'karies og emaljedefekter', 'tannbyll/abscess forårsaket av avskalling/fraktur',
+    'tannfraktur/tannbrudd forårsaket av en ulykke', 'Trekking av tilbakeholdte melketenner, bittfeil eller feilstilte tenner',
+    'medisinske problemer', 'sammenhengende forsikret', 'Gjensidige eller annet selskap', 'før 4 måneders alder',
+    'For bittfeil/feilstilte tenner kreves i tillegg veterinærattest', 'mellom 7 uker og 4 måneders alder', 'uten anmerkninger på tannstilling/bitt']);
+  assert.equal(f.source.page, 2); assert.equal(f.source.documentId, treatmentId);
+});
+test('R-050-DENTAL-SAFETY: exclusions remain restrictions; original PDF1 and product FAQ qualify covered dental events', () => {
+  const f = treatmentFact('dyr.tannsykdom.begrensning');
+  assertPhrases(f.value, ['stomatitt, gingivitt og periodontitt', 'tannbyll/abscess med unntak for avskalling/fraktur',
+    'fjerning av tannstein og følger av tannstein', 'annen tannsykdom/tannskade med unntak for tannfraktur/tannbrudd forårsaket av en ulykke',
+    'Hunden skal vaksineres', 'årlig tann-/helsekontroll etter veterinærfaglige anbefalinger', 'Ved behov for forebyggende behandling og rens',
+    'Veterinær skal kontaktes straks', 'sløvhet eller avmagring', 'Veterinærens anvisning skal følges',
+    'midler som er til rådighet', 'bortfalle helt eller delvis', '§4-8', 'må kunne dokumenteres']);
+  assert.equal(isNonAssertingCoverageDetail(f.key), true);
+  assert.equal(f.source.section, 'Dekkes ikke – tannbehandling; sikkerhetsforskrifter PDF-side 1 (trykt side 5–6)');
+  assert.equal(f.qualificationSource.documentId, 'boat-pet:gjensidige:hund:product');
+  assert.equal(f.qualificationSource.section, 'Dekkes periodontitt? – dokumentert tannkontroll og nødvendig tannrens');
+});
+test('R-050-c5ccc4f26fd475ae: GAP-2907/SF-4060 complete case/discovery/healthy-animal definitions remain veterinary restrictions', () => {
+  const f = treatmentFact('dyr.veterinar.begrensning');
+  assertPhrases(f.value, ['Alle utgifter som relateres til samme ulykke eller sykdom', 'Skadetidspunktet settes til oppdagelsestidspunktet',
+    'Fysisk skade oppstått ved en plutselig og uforutsett ytre begivenhet', 'mistrivsel, dysfunksjon eller andre plager',
+    'Fødselskomplikasjoner inngår i sykdomsbegrepet', 'ikke skadet eller viser tegn til sykdom/andre plager',
+    'på annen måte har behov for veterinærmedisinsk behandling', 'kronisk sykdom i løpet av de siste 12 måneder',
+    'eller fått påvist en diagnose', 'diagnosen ennå ikke viser symptomer', 'HD påvist ved røntgen']);
+  assert.equal(f.source.page, 3); assert.equal(f.source.documentId, treatmentId);
+  assert.equal(f.qualificationSource.page, 2); assert.equal(isNonAssertingCoverageDetail(f.key), true);
+  assert.doesNotMatch(sumFact().value, /Skadetilfelle|Friskt dyr|oppdagelsestidspunkt/u);
+});
+test('R-050-TREATMENT-QUALIFICATIONS: conditional disease eligibility is precise and not a universal parent', () => {
+  const f = treatmentFact('dyr.veterinar.begrensning');
+  assertPhrases(f.value, ['første 20 dager', 'forhøyelse av forsikringssum og dekningsutvidelse',
+    'hofteleddsdysplasi (HD), albueleddsdysplasi (AD), albueleddsartrose (AA), osteochondrose (OCD), patellaluksasjon, short ulna, Calvé-Legg-Perthes og annen medfødt lidelse',
+    'sammenhengende forsikret', 'Gjensidige eller annet selskap', 'før 4 måneders alder', 'begge foreldrene', 'HD-frie av NKK', 'hundens egne bilder må være avlest av NKK',
+    'eller minimum ett år før skaden oppsto', 'Mattilsynets godkjennelse', 'importtidspunktet', 'forebyggende undersøkelse/behandling',
+    'aggressivitet/øvrige avvik fra normal atferd', 'helt eller delvis erstattes av andre', 'forholdsmessig']);
+  const out = enrich([treatmentTerm(f.key, f.value)]);
+  assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown'); assert.deepEqual(out.addOnIds, []);
+});
+for (const k of treatmentKeys) test(`R-050-TREATMENT-PROVENANCE: ${k} raw and presentation preserve complete references and source types`, () => {
+  const f = treatmentFact(k), row = materializeCatalogProduct(product).facts.find(r => r.key === k);
+  assert.equal(row.value, f.value);
+  assert.deepEqual(row.sources, catalogFactSources(f).map(source => ({ ...source, sourceType: productCatalog.sources[source.documentId].sourceType })));
+  assert.equal(row.sources[0].sourceType, 'full_terms'); assert.equal(row.sources[0].documentId, treatmentId);
+  assert.equal(row.sources[0].termsNumber, ''); assert.equal(row.sources[0].version, ''); assert.equal(row.sources[0].effectiveFrom, '');
+  assert.equal(row.sources.length, f.qualificationSource ? 2 : 1);
+  assert.equal(f.source.company, 'Gjensidige'); assert.equal(f.source.agreementScope, 'ordinary');
+});
+for (const [choices, expected, conflict] of [[[], 'unknown', false], [[term(life, 'Valgt'), term(parent, 'Valgt')], 'selected', false], [[term(life, 'Valgt'), term(parent, 'Ikke valgt')], 'not_selected', false], [[term(life, 'Valgt'), term(parent, 'Valgt'), term(parent, 'Ikke valgt')], 'unknown', true]]) {
+  test(`R-050-TREATMENT-SELECTION: qualifications preserve Bruk ${expected}/${conflict} and Liv dependency`, () => {
+    const out = enrich([...choices, treatmentTerm('dyr.veterinar.begrensning', treatmentFact('dyr.veterinar.begrensning').value), treatmentTerm('dyr.tannsykdom.begrensning', treatmentFact('dyr.tannsykdom.begrensning').value)]);
+    assert.equal(coverage(out).status, expected); assert.equal(coverage(out).conflict, conflict);
+    assert.equal(out.addOnIds.includes(bruk), expected === 'selected');
+    assert.equal(coverage(out, life).status, choices.length ? 'selected' : 'unknown');
+    assert.equal(out.importantTerms.find(t => t.key === sumKey).value, sumChoices);
+  });
+}
+for (const side of ['existing', 'offer']) test(`R-050-TREATMENT-DOCUMENT: ${side} customer 27000 sum and restrictions beat general terms`, () => {
+  const k = 'dyr.veterinar.begrensning';
+  const customer = [sumTerm('27 000 kr'), treatmentTerm(k, 'Kundens dokumenterte veterinærsærvilkår')];
+  const general = [treatmentTerm(k, treatmentFact(k).value)];
+  const out = documentPipeline([[record(customer)], [record(general, 'general_terms')]], side).insuranceData.insurances[0];
+  assert.equal(out.importantTerms.find(t => t.key === sumKey).value, '27 000 kr');
+  assert.equal(out.importantTerms.find(t => t.key === k).value, customer[1].value);
+  assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown');
+  assert.ok(out.recordEvidence.some(e => e.documentRole === 'general_terms' && e.importantTerms.some(t => t.key === k && t.value === general[0].value)));
+});
+test('R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source change; 317 components and metadata preserved', () => {
+  const before = JSON.parse(gunzipSync(readFileSync(new URL('../docs/audit/checkpoints/b050-treatment-completion-16bfc4b/catalog-before.json.gz', import.meta.url))));
+  // Frozen inventory is JSON. Preserve every defined field, including sourceType;
+  // absent JSON properties and native undefined carry the same serialized contract.
+  const after = JSON.parse(JSON.stringify(productCatalog));
+  assert.deepEqual(after.products, before.products); assert.deepEqual(after.addOns, before.addOns); assert.deepEqual(after.agreementScopes, before.agreementScopes);
+  const sources = { ...after.sources }; delete sources[treatmentId]; assert.deepEqual(sources, before.sources);
+  assert.equal(Object.hasOwn(before.sources, treatmentId), false);
+  for (const [component, rows] of Object.entries(before.facts)) {
+    if (component !== id) assert.deepEqual(after.facts[component], rows, component);
+    else {
+      assert.deepEqual(after.facts[component].filter(f => !treatmentKeys.includes(f.key)), rows.filter(f => !treatmentKeys.includes(f.key)));
+      assert.equal(after.facts[component].length, rows.length + 4);
+    }
+  }
+  assert.equal(compareCatalogProducts(product, product).differenceCount, 0);
+  const other = productCatalog.products.find(p => p.productId === 'frende-hund-veterin-r'); assert.ok(other);
+  const forward = compareCatalogProducts(product, other).sections.flatMap(s => s.rows), reverse = compareCatalogProducts(other, product).sections.flatMap(s => s.rows);
+  for (const row of forward) { const swapped = reverse.find(r => r.key === row.key); assert.ok(swapped); assert.deepEqual(row.first, swapped.second); assert.deepEqual(row.second, swapped.first); }
+  for (const [component, rows] of Object.entries(productCatalog.facts)) for (const f of rows)
+    if (f.source.documentId === treatmentId || f.qualificationSource?.documentId === treatmentId) assert.equal(component, id);
 });

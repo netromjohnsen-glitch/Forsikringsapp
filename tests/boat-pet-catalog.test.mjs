@@ -226,8 +226,8 @@ for (const [providerId, company] of packages) {
           assertB089Provenance(matches[0], binding);
         }
       } else if (providerId === "gjensidige" && type === "Hund") {
-        // Only B-050's exact sum-choice fact uses the verified product page;
-        // every other base fact retains its existing IPID primary source.
+        // Explicit B-050 admission: only these five source-bound treatment
+        // rows use full terms; unrelated base facts retain their IPID source.
         assert.equal(packageProducts.length, 1);
         assert.equal(packageProducts[0].productId, "gjensidige-hund-behandling");
         const sums = packageFacts.filter(fact => fact.key === "dyr.veterinar.sum.valgbar");
@@ -245,7 +245,32 @@ for (const [providerId, company] of packages) {
           note: "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg." });
         assert.deepEqual(fact.qualificationSource, reference(source, 1, "Veterinærbehandling"));
         assert.equal(fact.value, "Valg mellom 20 000, 30 000, 40 000 eller 50 000 kr. Valgt forsikringssum fremgår av forsikringsbeviset.");
-        assert.equal(packageFacts.filter(other => other !== fact).every(other => other.source.documentId === source.id), true);
+        const treatment = productCatalog.sources['boat-pet:gjensidige:hund:treatment'];
+        assert.deepEqual(treatment, {
+          id: 'boat-pet:gjensidige:hund:treatment', filename: 'gjensidige-dog-treatment-terms.pdf',
+          providerId: 'gjensidige', company: 'Gjensidige', insuranceType: 'Hund', agreementScope: 'ordinary',
+          sourceType: 'full_terms', termsNumber: '', version: '', effectiveFrom: '', documentName: '',
+          url: website.url, sha256: '8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6',
+        });
+        const bindings = [
+          ['dyr.veterinar.dekning', 2, 'Hvilke skader/hendelser – Veterinærutgifter (trykt side 6)'],
+          ['dyr.veterinar.begrensning', 3, 'Definisjoner (trykt side 7)'],
+          ['dyr.medisin.dekning', 2, 'For veterinærutgifter gjelder i tillegg (trykt side 6)'],
+          ['dyr.tannsykdom.dekning', 2, 'Forutsetninger og tannbehandling (trykt side 6)'],
+          ['dyr.tannsykdom.begrensning', 2, 'Dekkes ikke – tannbehandling; sikkerhetsforskrifter PDF-side 1 (trykt side 5–6)'],
+        ];
+        for (const [key, page, section] of bindings) {
+          const matches = packageFacts.filter(f => f.key === key); assert.equal(matches.length, 1);
+          assert.deepEqual(matches[0].source, { ...reference(treatment, page, section), note: fact.source.note });
+        }
+        for (const other of packageFacts.filter(f => f !== fact && !bindings.some(([key]) => key === f.key)))
+          assert.equal(other.source.documentId, source.id);
+        assert.deepEqual(packageFacts.filter(f => f.source.documentId === source.id).map(f => f.key).sort(),
+          ['dyr.allergi.grense', 'dyr.rehabilitering.grense', 'dyr.veterinar.egenandel.fast']);
+        const limit = packageFacts.find(f => f.key === 'dyr.veterinar.begrensning');
+        assert.deepEqual(limit.qualificationSource, reference(treatment, 2, 'Forutsetninger og Dekkes ikke – Veterinærutgifter (trykt side 6)'));
+        const dental = packageFacts.find(f => f.key === 'dyr.tannsykdom.begrensning');
+        assert.deepEqual(dental.qualificationSource, reference(website, 1, 'Dekkes periodontitt? – dokumentert tannkontroll og nødvendig tannrens'));
       } else {
         assert.equal(packageFacts.every((fact) => fact.source.documentId === source.id), true);
       }

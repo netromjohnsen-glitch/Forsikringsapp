@@ -1,0 +1,20 @@
+{
+  "root_id": "M07_JSON_NATIVE_REVERSE_AUDIT",
+  "classification": "MECHANICAL_HARNESS",
+  "scope": "B050_TREATMENT",
+  "before": "New R-050-TREATMENT-REVERSE-AUDIT compares native objects to JSON baseline; undefined version on untouched if-mc-delkasko causes deepStrictEqual failure.",
+  "after": "Compare full JSON-serialized candidate with full JSON baseline; no sourceType or defined field removed, no partial assertions.",
+  "independent_equivalence_evidence": [
+    "Frozen before catalog is JSON; JSON.stringify omits undefined properties by ECMAScript contract.",
+    "First mismatch is untouched if-mc-delkasko mc.kjoreutstyr.grense source.version undefined versus absent JSON version.",
+    "Native source for that MC fact is in unchanged imported modules, also on baseline HEAD.",
+    "JSON-normalized before/after changes only gjensidige-hund-behandling; all 317 other components exactly equal.",
+    "All source identities, types, defined references, values, scope, selection and priority remain unchanged by this harness correction."
+  ],
+  "scope_used_after": 1,
+  "scope_limit": 3,
+  "campaign_used_after": 7,
+  "campaign_limit": 12,
+  "production_files_changed_by_correction": [],
+  "diagnostic_log": "initial-targeted-failure.log.gz"
+}

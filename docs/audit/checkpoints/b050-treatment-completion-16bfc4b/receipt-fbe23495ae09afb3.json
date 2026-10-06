@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "kind": "CURRENT_COMPLETION_NEW_SOURCE_VERIFIED_IMPLEMENTATION",
+  "signature": "fbe23495ae09afb3",
+  "gap_ids": [
+    "GAP-2875"
+  ],
+  "sf_ids": [
+    "SF-4025"
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "Hund",
+  "agreement_scope": "ordinary",
+  "product_id": "gjensidige-hund-behandling",
+  "component_id": "gjensidige-hund-behandling",
+  "version": "UNKNOWN",
+  "source": {
+    "document_id": "boat-pet:gjensidige:hund:treatment",
+    "filename": "gjensidige-dog-treatment-terms.pdf",
+    "sha256": "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6",
+    "source_type": "full_terms",
+    "terms_number": "UNKNOWN",
+    "pdf_pages": [
+      2
+    ],
+    "printed_pages": [
+      6
+    ],
+    "original_excerpts": "source-review.json"
+  },
+  "canonical_keys": [
+    "dyr.medisin.dekning"
+  ],
+  "test_contracts": [
+    "R-050-fbe23495ae09afb3",
+    "R-050-TREATMENT-SOURCE",
+    "R-050-TREATMENT-PROVENANCE"
+  ],
+  "candidate_files_sha256": {
+    "lib/boat-pet-catalog.ts": "9394e09891e4911248f9cfb9f5984d31c3724c0722e51347e3d8d16a9e552d9b",
+    "tests/remediation-b-050.test.mjs": "c55969bcf843ab871b3d851ae4afd81e199b7e77ef46c82794a6fa13c1334684",
+    "tests/boat-pet-catalog.test.mjs": "f933492a61fcac789b91913c46e23aa7f52ca6cc81402767aecddc88ee463741"
+  },
+  "candidate_diff_sha256": "551b6138c550fc9f58bb26103acd645465a78f0c0b03710c0438cd45facac6e6",
+  "tested_base_revision": "16bfc4bd5db0b9dbfa9b8646f4aae902ba5d8d90",
+  "tested_candidate_identity": "59b0eef171ae8f576bca9114d5421b0393f6d214a2376abed53b442bc102f81c",
+  "tested_revision_role": "Committed base plus exact candidate files/diff; publication commit identified by Git history, not falsely treated as tested base.",
+  "gate_results": "gate-results.json",
+  "gate_results_sha256": "a34fc44cbd1a50c585624a29badaabd99d33cfa38bde872dbce6959d07c62bde",
+  "gate_summary": {
+    "status": "PASS",
+    "scope": "B050_TREATMENT_PERIOD_MEDICINE_DENTAL_DEFINITIONS",
+    "signatures": [
+      "4165f79344a7d572",
+      "fbe23495ae09afb3",
+      "48393aac0a200fe5",
+      "c5ccc4f26fd475ae"
+    ],
+    "targeted_tests": 68,
+    "fullsuite_files": 145,
+    "fullsuite_tests": 3919,
+    "remediation_files": 47,
+    "remediation_tests": 1775,
+    "typescript": "PASS_WITH_TYPEGEN",
+    "eslint_errors": 0,
+    "eslint_warnings": 22,
+    "webpack_production_build": "PASS",
+    "http_pdf_runtime_checks": 22,
+    "build_exception_used": false,
+    "scope_mechanical": "3/3",
+    "campaign_mechanical": "9/12",
+    "historical_reported": "19/16 mechanical; 10/8 semantic; not fully reconstructed and unchanged",
+    "documented_campaign_unique_signatures": 12,
+    "global_current_resolved": "UNKNOWN",
+    "global_current_open": "UNKNOWN",
+    "P2_credit": 0,
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+  },
+  "source_reverse_audit": "source-reverse-audit.json",
+  "source_reverse_audit_sha256": "9b5a5a9bc748e0ec232eb943baacf0c6cca8dee7986d159688a41bf7a695114f",
+  "scope_mechanical": "3/3",
+  "campaign_mechanical": "9/12",
+  "new_semantic_correction_roots": 0,
+  "prior_eight_receipts_preserved": true,
+  "global_resolved_open": "UNKNOWN",
+  "historical_closure_chain_reconstructed": false,
+  "unavailable_candidate_receipts_used": false,
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}
