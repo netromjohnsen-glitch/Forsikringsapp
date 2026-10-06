@@ -1,0 +1,125 @@
+{
+  "classification": "CURRENT_REVALIDATION_AND_NEW_IMPLEMENTATION_COMPLETION",
+  "status": "PASS",
+  "signature": "3f4b9eff50404590",
+  "gap_ids": [
+    "GAP-2869"
+  ],
+  "sf_ids": [
+    "SF-4018"
+  ],
+  "original_binding": {
+    "signature_id": "3f4b9eff50404590",
+    "representative_finding_id": "GAP-2869",
+    "provider_family_scope": "[[\"gjensidige\", \"Hund\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-026\"]",
+    "final_batch_id": "B-050",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "1",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2869\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"hund\\\",\\\"ordinary\\\",\\\"gjensidige-hund-behandling\\\",null]\"]",
+    "source_fact_ids": "[\"SF-4018\"]",
+    "proposed_existing_keys": "[\"dyr.veterinar.sum.valgbar\"]",
+    "semantic_concept": "Veterinær",
+    "semantic_dimension": "sumvalg",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "tested_base_revision": "5ffa5c5bb18b4325c057c7393f84a0411d5c78ae",
+  "tested_candidate_identity": "1a76eb473c443c04db2a03db63323d4105989c67d406d41337e373935cc839d9",
+  "candidate_files_sha256": {
+    "lib/boat-pet-catalog.ts": "6fba4d9fef6a64b2e2f53752678bea22760860548ac29fa7c779cae9c8bab57d",
+    "tests/remediation-b-050.test.mjs": "6195178297bf48136a90bc1758585786ba43f93275645d14f1aefa031ae532e3",
+    "tests/boat-pet-catalog.test.mjs": "3d8421fe8ca378bfb81703fe8958e5b61acc7fbe53de868b66bc3f6b0f41096a"
+  },
+  "candidate_diff_sha256": "ca140e9707dbd7649e941975b5dad6a81877f624476f8b2009b9092422469491",
+  "recorded_utc": "2026-10-06T07:33:13.565859+00:00",
+  "source": {
+    "path": "catalog/sources/boat-pet/gjensidige-dog-product.html",
+    "sha256": "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58",
+    "registered_source_type": "product_page",
+    "registered_source_id": "boat-pet:gjensidige:hund:product",
+    "location": "Behandling – valgbar forsikringssum",
+    "full_clause": "Du kan velge å få erstattet veterinærutgifter opptil 20 000, 30 000, 40 000 eller 50 000 kroner.",
+    "complete_source_context": "emer. Du må forsikre hunden før den fyller 4 måneder for at denne dekningen skal gjelde. Når hunden er mellom 7 uker og 4 måneder, må du få en veterinærattest uten anmerkninger på tannstilling&#x2F;bitt.&lt;&#x2F;li&gt;\\n&lt;&#x2F;ul&gt;\\n\\n&lt;p&gt;Du kan velge å få erstattet veterinærutgifter opptil 20 000, 30 000, 40 000 eller 50 000 kroner. Forsikringssummen er den maksimale summen du kan få erstattet hvert år, eller for det samme skadetilfelle&#x2F;sykdomstilfelle.&lt;&#x2F;p&gt;\\n\\n&lt;p&gt;&lt;br aria-hidden=\\&quot;true\\&quot; &#x2F;&gt;\\nDu får ikke dekket utgifter til&lt;&#x2F;p&gt;\\n\\n&lt;ul&gt;\\n\\t&lt;li&gt;sykdom som hunden hadde da forsikringen startet &lt;&#x2F;li&gt;\\n\\t&lt;li&gt;sykdom som oppstår i løpet av de 20 første dagene av forsikringsperioden&lt;&#x2F;li&gt;\\n\\t&lt;li&gt;allergi som oppstår i løpet av de 60 første dagene av forsikringsperioden&lt;&#x2F;li&gt;\\n&lt;&#x2F;ul&gt;\\n\\n&lt;p&gt; &lt;&#x2F;p&gt;\\n&quot;},{&quot;name&quot;:&quot;Medisiner og bandasjer&quot;,&quot;uvp&quot;:&quot;&lt;p&gt;Hvis hunden får en skade eller sykdom som dekkes av forsikringen",
+    "retrieval_date_not_terms_version": true
+  },
+  "canonical_key": "dyr.veterinar.sum.valgbar",
+  "product": "gjensidige-hund-behandling",
+  "provider": "gjensidige",
+  "type": "Hund",
+  "scope": "ordinary",
+  "component": "gjensidige-hund-behandling",
+  "primary_and_supplemental_provenance": {
+    "primary": {
+      "documentId": "boat-pet:gjensidige:hund:product",
+      "filename": "gjensidige-dog-product.html",
+      "termsNumber": "Hundeforsikring – produktoversikt",
+      "effectiveFrom": "",
+      "version": "",
+      "agreementScope": "ordinary",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "company": "Gjensidige",
+      "page": 1,
+      "section": "Behandling – valgbar forsikringssum",
+      "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+    },
+    "supplemental": {
+      "documentId": "boat-pet:gjensidige:hund",
+      "filename": "gjensidige-dog-ipid.pdf",
+      "termsNumber": "EAP32",
+      "effectiveFrom": "",
+      "version": "",
+      "agreementScope": "ordinary",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "company": "Gjensidige",
+      "page": 1,
+      "section": "Veterinærbehandling"
+    }
+  },
+  "contracts_proven": [
+    "20 000 / 30 000 / 40 000 / 50 000 kr choices and insurance certificate reference",
+    "available choices do not select a customer sum or optional coverage",
+    "known catalog manual product ignores arbitrary 27000 free text; catalog origin and exact provenance",
+    "documented individual 27000 sum overrides catalog in both pipeline directions",
+    "product term semantics and customer selection unchanged",
+    "prior Bruk/Liv residual-value/breeding/working-dog contracts and exact shared guard unchanged",
+    "same product, both directions, Hund/Katt/provider/scope isolation",
+    "all other native facts and metadata unchanged"
+  ],
+  "target_tests": [
+    "R-050-3f4b9eff50404590: SF-4018 frozen Behandling sum choices and exact provenance",
+    "R-050-SUM-PRODUCT: choices remain a term; same product and both directions retain complete sources",
+    "R-050-SUM-CUSTOMER: silence keeps choices as catalog definition; customer sum wins",
+    "R-050-SUM-SELECTION: only sum text/provenance changes; all existing selection states preserved",
+    "R-050-SUM-ISOLATION: no Katt, Liv, Bruk or other product choices changed",
+    "R-050-SUM-PIPELINE: existing individual sum beats general available choices",
+    "R-050-SUM-PIPELINE: offer individual sum beats general available choices",
+    "R-050-SUM-MANUAL: known catalog product preserves catalog choices, not free-text customer sum"
+  ],
+  "gate_results": "gate-results.json",
+  "reverse_audit": "source-reverse-audit.json",
+  "root_accounting": [
+    "M02_MANUAL_KNOWN_PRODUCT",
+    "M03_QUALIFICATION_REFERENCE_AUDIT",
+    "M04_EXACT_PRODUCT_PAGE_ALLOWLIST"
+  ],
+  "reused_root_no_charge": "M01_NEXT_TYPEGEN_PRECONDITION",
+  "scope_used": 3,
+  "scope_limit": 3,
+  "campaign_used": 4,
+  "campaign_limit": 12,
+  "historical_reported_budgets_unchanged": {
+    "mechanical": "19/16",
+    "semantic": "10/8",
+    "old_20_exception_used": false
+  },
+  "global_resolved_open": "UNKNOWN",
+  "global_arithmetic_change": false,
+  "not_recovered_historical_closure": true
+}

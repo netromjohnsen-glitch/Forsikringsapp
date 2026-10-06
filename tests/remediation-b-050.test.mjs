@@ -7,7 +7,7 @@ import { getPath } from 'pdf-parse/worker';
 import { productCatalog, resolveCatalogFacts, availableAddOns, findCatalogProduct } from '../lib/product-catalog.ts';
 import { materializeCatalogProduct, compareCatalogProducts } from '../lib/catalog-product-comparison.ts';
 import { catalogFactSources, enrichExtractedAgreementWithCatalog } from '../lib/catalog-enrichment.ts';
-import { canonicalCoverage } from '../lib/coverage-status.ts';
+import { canonicalCoverage, deriveCanonicalCoverages } from '../lib/coverage-status.ts';
 import { normalizeManualAgreement } from '../lib/manual-agreement.ts';
 import { isNonAssertingCoverageDetail } from '../lib/coverage-fact-semantics.ts';
 import { documentPipeline } from './helpers/supporting-terms.mjs';
@@ -237,4 +237,113 @@ test('R-050-BRUK-DOCUMENT: explicit customer restriction wins with exact provena
   assert.equal(detail.value, document.value); assert.deepEqual(detail.sources, [document.source]);
   assert.equal(coverage(out).status, 'selected');
   assert.equal(out.importantTerms.filter(t => t.key === brukRestriction).length, 1);
+});
+
+// 3f4b9eff50404590 / GAP-2869 / SF-4018: available choices, never customer selection.
+const sumKey = 'dyr.veterinar.sum.valgbar';
+const sumChoices = 'Valg mellom 20 000, 30 000, 40 000 eller 50 000 kr. Valgt forsikringssum fremgår av forsikringsbeviset.';
+const sumFact = () => {
+  const rows = facts([]).filter(f => f.key === sumKey);
+  assert.equal(rows.length, 1);
+  return rows[0];
+};
+const sumTerm = v => ({ ...term(sumKey, v), name: 'Veterinærbehandling – valgbar forsikringssum' });
+test('R-050-3f4b9eff50404590: SF-4018 frozen Behandling sum choices and exact provenance', () => {
+  const html = readFileSync(new URL('../catalog/sources/boat-pet/gjensidige-dog-product.html', import.meta.url), 'utf8')
+    .replace(/&amp;nbsp;|&nbsp;|\u00a0/gu, ' ').replace(/\s+/gu, ' ');
+  assert.ok(html.includes('Du kan velge å få erstattet veterinærutgifter opptil 20 000, 30 000, 40 000 eller 50 000 kroner.'));
+  const f = sumFact(); assert.equal(f.value, sumChoices);
+  assert.equal(f.label, 'Veterinærbehandling – valgbar forsikringssum');
+  assert.equal(f.source.documentId, 'boat-pet:gjensidige:hund:product');
+  assert.equal(f.source.filename, 'gjensidige-dog-product.html');
+  assert.equal(f.source.company, 'Gjensidige'); assert.equal(f.source.agreementScope, 'ordinary');
+  assert.equal(f.source.page, 1); assert.equal(f.source.section, 'Behandling – valgbar forsikringssum');
+  assert.equal(f.source.termsNumber, 'Hundeforsikring – produktoversikt');
+  assert.equal(f.source.version, ''); assert.equal(f.source.effectiveFrom, '');
+  const source = productCatalog.sources[f.source.documentId];
+  assert.equal(source.sourceType, 'product_page'); assert.equal(source.insuranceType, 'Hund');
+  assert.equal(source.sha256, 'fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58');
+  assert.equal(f.qualificationSource.documentId, 'boat-pet:gjensidige:hund');
+  assert.equal(f.qualificationSource.page, 1); assert.equal(f.qualificationSource.section, 'Veterinærbehandling');
+  assert.equal(f.deductibleClassification, undefined); assert.equal(f.coverageAvailability, undefined);
+});
+test('R-050-SUM-PRODUCT: choices remain a term; same product and both directions retain complete sources', () => {
+  const f = sumFact(), row = materializeCatalogProduct(product).facts.find(r => r.key === sumKey);
+  assert.equal(row.value, sumChoices); assert.equal(row.role, 'term'); assert.equal(row.state, 'included');
+  assert.deepEqual(row.addOnNames, []);
+  assert.deepEqual(row.sources, catalogFactSources(f).map(source => ({ ...source, sourceType: productCatalog.sources[source.documentId].sourceType })));
+  assert.deepEqual(row.sources.map(s => s.sourceType), ['product_page', 'ipid']);
+  assert.equal(compareCatalogProducts(product, product).differenceCount, 0);
+  const other = productCatalog.products.find(p => p.productId === 'frende-hund-veterin-r'); assert.ok(other);
+  const forward = compareCatalogProducts(product, other).sections.flatMap(s => s.rows).find(r => r.key === sumKey);
+  const reverse = compareCatalogProducts(other, product).sections.flatMap(s => s.rows).find(r => r.key === sumKey);
+  assert.deepEqual(forward.first, reverse.second); assert.deepEqual(forward.second, reverse.first);
+  assert.deepEqual(JSON.parse(JSON.stringify(forward.first.facts[0].sources)), row.sources);
+});
+test('R-050-SUM-CUSTOMER: silence keeps choices as catalog definition; customer sum wins', () => {
+  const silent = enrich([]), definition = silent.importantTerms.find(t => t.key === sumKey);
+  assert.equal(definition.value, sumChoices); assert.equal(definition.coverageOrigin, 'catalog');
+  assert.deepEqual(definition.sources, catalogFactSources(sumFact()));
+  assert.equal(coverage(silent, life).status, 'unknown'); assert.equal(coverage(silent).status, 'unknown');
+  assert.deepEqual(silent.addOnIds, []);
+  for (const v of ['20 000 kr', '27 000 kr', '40 000 kr', '50 000 kr']) {
+    const input = sumTerm(v), out = enrich([input]);
+    const actual = out.importantTerms.find(t => t.key === sumKey);
+    assert.equal(actual.value, v); assert.equal(actual.coverageOrigin, 'document');
+    assert.deepEqual(actual.source, input.source);
+    const detail = canonicalCoverage(out, 'Hund', 'dyr.veterinar.dekning').details.find(d => d.key === sumKey);
+    assert.equal(detail.value, v); assert.deepEqual(detail.sources, [input.source]);
+    assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown');
+    assert.deepEqual(out.addOnIds, []);
+  }
+});
+test('R-050-SUM-SELECTION: only sum text/provenance changes; all existing selection states preserved', () => {
+  const baseline = structuredClone(productCatalog);
+  const f = baseline.facts[id].find(f => f.key === sumKey);
+  f.value = 'Valgt forsikringssum fremgår av forsikringsbeviset';
+  f.source = { ...f.qualificationSource, note: f.source.note }; delete f.qualificationSource;
+  const veterinary = v => ({ ...term('dyr.veterinar.dekning', v), name: 'Veterinærbehandling' });
+  for (const terms of [[], [sumTerm('27 000 kr')], [veterinary('Valgt')], [veterinary('Ikke valgt')], [veterinary('Valgt'), veterinary('Ikke valgt')], [term(life, 'Valgt'), term(parent, 'Valgt')]]) {
+    const input = { company: 'Gjensidige', totalAnnualPremium: null, insurances: [{ type: 'Hund', productName: 'Behandling', agreementScope: 'ordinary', annualPremium: null, deductible: null, coverageSummary: null, importantTerms: terms, addOns: [] }] };
+    const before = enrichExtractedAgreementWithCatalog(input, date, undefined, undefined, baseline).insurances[0];
+    const after = enrich(terms);
+    const states = out => deriveCanonicalCoverages(out, 'Hund').map(c => [c.id, c.status, c.conflict]);
+    assert.deepEqual(states(after), states(before)); assert.deepEqual(after.addOnIds, before.addOnIds);
+  }
+});
+test('R-050-SUM-ISOLATION: no Katt, Liv, Bruk or other product choices changed', () => {
+  const katt = productCatalog.products.find(p => p.productId === 'gjensidige-katt-behandling'); assert.ok(katt);
+  assert.equal(resolveCatalogFacts(katt, [], date).find(f => f.key === sumKey).value, 'Valgt forsikringssum fremgår av forsikringsbeviset');
+  for (const component of [liv, bruk, 'gjensidige-katt-liv', 'gjensidige-katt-bruk'])
+    assert.equal(productCatalog.facts[component].some(f => f.key === sumKey), false);
+  for (const [component, rows] of Object.entries(productCatalog.facts))
+    assert.equal(rows.some(f => f.key === sumKey && f.value === sumChoices), component === id, component);
+  for (const scope of [{ insuranceType: 'Katt', agreementScope: 'ordinary' }, { insuranceType: 'Hund', agreementScope: 'nito' }])
+    assert.equal(findCatalogProduct('gjensidige', id, null, scope), null);
+});
+for (const side of ['existing', 'offer']) test(`R-050-SUM-PIPELINE: ${side} individual sum beats general available choices`, () => {
+  const out = documentPipeline([[record([sumTerm('27 000 kr')])], [record([sumTerm(sumChoices)], 'general_terms')]], side).insuranceData.insurances[0];
+  assert.equal(out.importantTerms.find(t => t.key === sumKey).value, '27 000 kr');
+  assert.ok(out.recordEvidence.some(r => r.documentRole === 'general_terms' && r.importantTerms.some(t => t.key === sumKey && t.value === sumChoices)));
+  assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown');
+});
+test('R-050-SUM-MANUAL: known catalog product preserves catalog choices, not free-text customer sum', () => {
+  const manual = terms => normalizeManualAgreement({ company: 'Gjensidige', products: [{ type: 'Hund', productName: 'Behandling', importantTerms: terms, addOnIds: [] }] }).insuranceData.insurances[0];
+  const silent = manual([]), explicit = manual([sumTerm('27 000 kr')]), f = sumFact();
+  // Baseline known-product branch uses effective catalog facts; its secondary
+  // presentation reference adds this exact qualification note, without sourceType.
+  const expectedSources = [
+    { ...f.source, note: f.source.note || undefined },
+    { ...f.qualificationSource, note: [f.qualificationSource.note, 'Supplerende kilde for faktumets anvendelse'].filter(Boolean).join(' · ') },
+  ];
+  for (const out of [silent, explicit]) {
+    const rows = out.importantTerms.filter(t => t.key === sumKey); assert.equal(rows.length, 1);
+    const t = rows[0]; assert.equal(t.value, sumChoices); assert.notEqual(t.value, '27 000 kr');
+    assert.equal(t.name, f.label); assert.equal(t.coverageOrigin, 'catalog');
+    assert.deepEqual(t.source, f.source); assert.deepEqual(t.sources, expectedSources);
+    assert.deepEqual(t.sources.map(s => s.documentId), ['boat-pet:gjensidige:hund:product', 'boat-pet:gjensidige:hund']);
+    assert.equal(out.catalogSelectionConfirmed, true);
+    assert.equal(coverage(out, life).status, 'unknown'); assert.equal(coverage(out).status, 'unknown');
+    assert.deepEqual(out.addOnIds, []);
+  }
 });

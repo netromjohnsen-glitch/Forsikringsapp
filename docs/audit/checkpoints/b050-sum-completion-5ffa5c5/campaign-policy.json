@@ -1,0 +1,39 @@
+{
+  "status": "ACTIVE_FOR_EXPLICIT_SUM_CHOICE_SCOPE",
+  "campaign_id": "CURRENT_REVALIDATION_RV01",
+  "authorization": "Latest user prompt: B-050 sum-choice completion, only 3f4b9eff50404590/GAP-2869/SF-4018",
+  "previous_policy_snapshot": "docs/audit/checkpoints/current-revalidation-rv01-af9a335/campaign-policy.json",
+  "previous_campaign_used": 1,
+  "current_scope": "B050_SUM_CHOICE",
+  "scope_signatures": [
+    "3f4b9eff50404590"
+  ],
+  "scope_limit": 3,
+  "campaign_limit": 12,
+  "scope_used": 3,
+  "campaign_used": 4,
+  "prior_scope_signatures": [
+    "0a6b5f6f535df685",
+    "1f56c194d413f97d",
+    "8e9d297cb0d1bd0e"
+  ],
+  "historical_mechanical_reported": "19/16",
+  "historical_semantic_reported": "10/8",
+  "historical_fully_reconstructed": false,
+  "historic_20_exception": {
+    "used": false,
+    "booked": false,
+    "status": "SUPERSEDED_FOR_STILL_UNPERFORMED_MANUAL_ROOT_BY_NEW_CAMPAIGN_AUTHORIZATION"
+  },
+  "allowed_production_change": "Only gjensidige-hund-behandling dyr.veterinar.sum.valgbar value and precise primary product-page/supplemental IPID reference",
+  "later_scope_authorized": false,
+  "stop_on": [
+    "new independent correction root beyond 3/3",
+    "changed insurance/customer-choice/selection semantics outside approved sum-choice fact",
+    "mapping/canonical/type/schema/shared-engine/source-admission need",
+    "source/hash/provenance or integrity conflict"
+  ],
+  "routine_source_fact_implementation": "Explicitly approved catalog change, not an automatic correction-budget root",
+  "reused_typegen_root": "M01 reused without repeat charge",
+  "global_resolved_open": "UNKNOWN"
+}

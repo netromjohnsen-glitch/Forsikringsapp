@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "baselineApplicationEquivalentRevision": "af9a3354f483d2a60775c043b8c6497e16605161 (baseline worktree application unchanged at 5ffa5c5 documentation commit)",
+  "candidateBaseRevision": "5ffa5c5bb18b4325c057c7393f84a0411d5c78ae",
+  "baseline_catalog_sha256": "3477a963004fed3bc082ac40b0247f1968a06e4605a571fd820d88529d610859",
+  "candidate_catalog_sha256": "911b8fbdb8a5445c9d44ba716c24a7df7ed53216b902e027b60fe780e257bc91",
+  "restored_catalog_sha256": "3477a963004fed3bc082ac40b0247f1968a06e4605a571fd820d88529d610859",
+  "products": 204,
+  "facts": 4147,
+  "changedComponents": [
+    "gjensidige-hund-behandling"
+  ],
+  "changedKeys": [
+    "dyr.veterinar.sum.valgbar"
+  ],
+  "allowedChangedFields": [
+    "value",
+    "source",
+    "new qualificationSource preserving original source"
+  ],
+  "before": {
+    "key": "dyr.veterinar.sum.valgbar",
+    "label": "Veterinærbehandling – valgbar forsikringssum",
+    "value": "Valgt forsikringssum fremgår av forsikringsbeviset",
+    "source": {
+      "documentId": "boat-pet:gjensidige:hund",
+      "filename": "gjensidige-dog-ipid.pdf",
+      "termsNumber": "EAP32",
+      "effectiveFrom": "",
+      "version": "",
+      "agreementScope": "ordinary",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "company": "Gjensidige",
+      "page": 1,
+      "section": "Veterinærbehandling",
+      "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+    }
+  },
+  "after": {
+    "key": "dyr.veterinar.sum.valgbar",
+    "label": "Veterinærbehandling – valgbar forsikringssum",
+    "value": "Valg mellom 20 000, 30 000, 40 000 eller 50 000 kr. Valgt forsikringssum fremgår av forsikringsbeviset.",
+    "qualificationSource": {
+      "documentId": "boat-pet:gjensidige:hund",
+      "filename": "gjensidige-dog-ipid.pdf",
+      "termsNumber": "EAP32",
+      "effectiveFrom": "",
+      "version": "",
+      "agreementScope": "ordinary",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "company": "Gjensidige",
+      "page": 1,
+      "section": "Veterinærbehandling"
+    },
+    "source": {
+      "documentId": "boat-pet:gjensidige:hund:product",
+      "filename": "gjensidige-dog-product.html",
+      "termsNumber": "Hundeforsikring – produktoversikt",
+      "effectiveFrom": "",
+      "version": "",
+      "agreementScope": "ordinary",
+      "url": "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring",
+      "company": "Gjensidige",
+      "page": 1,
+      "section": "Behandling – valgbar forsikringssum",
+      "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+    }
+  },
+  "allOtherFactsAndCatalogMetadataUnchanged": true,
+  "source_clause": "Du kan velge å få erstattet veterinærutgifter opptil 20 000, 30 000, 40 000 eller 50 000 kroner.",
+  "source_context": "emer. Du må forsikre hunden før den fyller 4 måneder for at denne dekningen skal gjelde. Når hunden er mellom 7 uker og 4 måneder, må du få en veterinærattest uten anmerkninger på tannstilling&#x2F;bitt.&lt;&#x2F;li&gt;\\n&lt;&#x2F;ul&gt;\\n\\n&lt;p&gt;Du kan velge å få erstattet veterinærutgifter opptil 20 000, 30 000, 40 000 eller 50 000 kroner. Forsikringssummen er den maksimale summen du kan få erstattet hvert år, eller for det samme skadetilfelle&#x2F;sykdomstilfelle.&lt;&#x2F;p&gt;\\n\\n&lt;p&gt;&lt;br aria-hidden=\\&quot;true\\&quot; &#x2F;&gt;\\nDu får ikke dekket utgifter til&lt;&#x2F;p&gt;\\n\\n&lt;ul&gt;\\n\\t&lt;li&gt;sykdom som hunden hadde da forsikringen startet &lt;&#x2F;li&gt;\\n\\t&lt;li&gt;sykdom som oppstår i løpet av de 20 første dagene av forsikringsperioden&lt;&#x2F;li&gt;\\n\\t&lt;li&gt;allergi som oppstår i løpet av de 60 første dagene av forsikringsperioden&lt;&#x2F;li&gt;\\n&lt;&#x2F;ul&gt;\\n\\n&lt;p&gt; &lt;&#x2F;p&gt;\\n&quot;},{&quot;name&quot;:&quot;Medisiner og bandasjer&quot;,&quot;uvp&quot;:&quot;&lt;p&gt;Hvis hunden får en skade eller sykdom som dekkes av forsikringen",
+  "source_registry_unchanged": true,
+  "no_new_selection_or_dependencies": true
+}

@@ -225,6 +225,27 @@ for (const [providerId, company] of packages) {
           assert.equal(matches.length, 1);
           assertB089Provenance(matches[0], binding);
         }
+      } else if (providerId === "gjensidige" && type === "Hund") {
+        // Only B-050's exact sum-choice fact uses the verified product page;
+        // every other base fact retains its existing IPID primary source.
+        assert.equal(packageProducts.length, 1);
+        assert.equal(packageProducts[0].productId, "gjensidige-hund-behandling");
+        const sums = packageFacts.filter(fact => fact.key === "dyr.veterinar.sum.valgbar");
+        assert.equal(sums.length, 1);
+        const fact = sums[0], website = productCatalog.sources["boat-pet:gjensidige:hund:product"];
+        assert.equal(website.sourceType, "product_page"); assert.equal(website.providerId, "gjensidige");
+        assert.equal(website.insuranceType, "Hund"); assert.equal(website.agreementScope, "ordinary");
+        assert.equal(website.filename, "gjensidige-dog-product.html");
+        assert.equal(website.url, "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring");
+        assert.equal(website.sha256, "fd3fcb6e6b69803bcf7fdaeec80802fab764f74a0f465e5fd5c063c2eed8db58");
+        const reference = (entry, page, section) => ({ documentId: entry.id, filename: entry.filename,
+          termsNumber: entry.termsNumber, effectiveFrom: entry.effectiveFrom, version: entry.version,
+          agreementScope: entry.agreementScope, url: entry.url, company: entry.company, page, section });
+        assert.deepEqual(fact.source, { ...reference(website, 1, "Behandling – valgbar forsikringssum"),
+          note: "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg." });
+        assert.deepEqual(fact.qualificationSource, reference(source, 1, "Veterinærbehandling"));
+        assert.equal(fact.value, "Valg mellom 20 000, 30 000, 40 000 eller 50 000 kr. Valgt forsikringssum fremgår av forsikringsbeviset.");
+        assert.equal(packageFacts.filter(other => other !== fact).every(other => other.source.documentId === source.id), true);
       } else {
         assert.equal(packageFacts.every((fact) => fact.source.documentId === source.id), true);
       }

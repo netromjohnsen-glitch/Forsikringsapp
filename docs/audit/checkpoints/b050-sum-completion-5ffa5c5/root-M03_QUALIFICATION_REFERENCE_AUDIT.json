@@ -1,0 +1,20 @@
+{
+  "root_id": "M03_QUALIFICATION_REFERENCE_AUDIT",
+  "category": "MECHANICAL_HARNESS",
+  "scope": "B050_SUM_CHOICE",
+  "cause": "New reverse-audit expected primary-only note on supplemental source ref",
+  "independent_equivalence_proof": "Baseline boat-pet-catalog-builder.ts reference(row) emits source identity/page/section but no note; primary builder adds one fixed note",
+  "repair": "Audit now checks exact constructor fields and separately proves the primary note remains identical; production unchanged",
+  "unchanged": [
+    "source meaning",
+    "insurance amounts and qualifications",
+    "product/provider/channel scope",
+    "selection-state",
+    "document priority",
+    "source identity/provenance under existing constructor contract"
+  ],
+  "production_fix_performed": false,
+  "scope_charge": 1,
+  "campaign_charge": 1,
+  "historical_charge": 0
+}

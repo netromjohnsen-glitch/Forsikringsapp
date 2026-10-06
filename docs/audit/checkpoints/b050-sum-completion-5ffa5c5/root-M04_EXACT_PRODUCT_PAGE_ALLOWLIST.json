@@ -1,0 +1,20 @@
+{
+  "root_id": "M04_EXACT_PRODUCT_PAGE_ALLOWLIST",
+  "category": "MECHANICAL_HARNESS",
+  "scope": "B050_SUM_CHOICE",
+  "cause": "Legacy boat-pet catalog test requires IPID as primary for every Gjensidige Hund base fact",
+  "independent_equivalence_proof": "Baseline boat-pet-catalog.test.mjs passes 37/37; authorized target now requires verified product page. Exact source/key/provider/type scope proven",
+  "repair": "Only Gjensidige Hund sum-choice fact accepts exact registered product page; every other base fact still requires original IPID, and supplemental IPID reference remains exact",
+  "unchanged": [
+    "source meaning",
+    "insurance amounts and qualifications",
+    "product/provider/channel scope",
+    "selection-state",
+    "document priority",
+    "source identity/provenance under existing constructor contract"
+  ],
+  "production_fix_performed": false,
+  "scope_charge": 1,
+  "campaign_charge": 1,
+  "historical_charge": 0
+}
