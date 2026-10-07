@@ -120,8 +120,8 @@ check('prior-53-immutable-receipts',()=>{
 check('isolation-counts',()=>{assert.equal(protectedRaw,4158);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-deltas',()=>{
  assert.deepEqual(fps.map(f=>f.after),[
- '4dbde0cf9f9f467f2138bb70edf8df3e51addbb158f8330d89e40a58bf7dc752',
- 'e2dde9decd0cc64db060cc2ce57421741ff51239de95107264e84cf7388ce489',
- '924f9f29873c4356ad3787e755efeb6ffb13dd5300af42352bb3958ab6bc67bd']);
+ 'd5c72d2f6ab94d0b3e4fd96343d5117ec357f775c5090515f534d4a9b18baa2e',
+ '385845464c7ec23331a28d1634f89c92d7bf693c27eab3084347a276487906ee',
+ '29cdf599445370bc905a23455a4ad2ffbf3ed7dd6647ed6948692d1c85483525']);
  for(const f of fps){const p=prod(expectedCatalog,f.id);const rows=resolveCatalogFacts(p,f.addons,date,null,expectedCatalog).filter(x=>!x.key.startsWith('hus.skadedyr.')&&x.key!=='hus.rate.dekning');assert.equal(digest(rows),f.after);}
 });

@@ -1,0 +1,57 @@
+{
+  "status": "BLOCKED_UNCORRECTED_ADDITIONAL_HARNESS_ROOTS",
+  "baseline": "732b4cc64e22f699f099e6a5095a03693ad73e89",
+  "authorized_identifier_root": "CORRECTED; syntax and exact fixture-control PASS",
+  "draft_load": {
+    "tests": 199,
+    "pass": 181,
+    "fail": 18
+  },
+  "permanent_new_gate_saved": false,
+  "production_application_candidate": "Byte-identical to preserved-candidate-identity.json throughout this correction round",
+  "roots": [
+    {
+      "name": "HEALTH_HELP_EXTRACTION_EXPECTED_FACT_SHADOWED",
+      "failures": 16,
+      "location": "repaired-test-draft.mjs.gz:125/136",
+      "cause": "The extraction callback binds after to InsuranceData and then passes that shadowed variable to catalogFactSources. The intended argument is the independently source-derived CatalogFact. InsuranceData has no source; TypeError occurs in the assertion, after actual pipeline produced and retained the correct sources.",
+      "baseline_and_candidate_proof": "read-only-root-diagnostic.json: both Hus levels, same TypeError when wrong InsuranceData supplied; actual full term sources match CatalogFact on unchanged baseline and candidate",
+      "minimum_fix": "Refer explicitly to the independent expected health CatalogFact in this source expectation, avoiding callback variable shadowing; preserve full source-array equality and all 16 fixture cases."
+    },
+    {
+      "name": "HEALTH_HELP_METADATA_DIFF_IGNORES_UNDEFINED_FIELD_PRESENCE",
+      "failures": 2,
+      "location": "repaired-test-draft.mjs.gz:152/154",
+      "cause": "The outer !Object.is predicate excludes fields whose values are both undefined even when property presence differs. It therefore drops structuredValue/deductibleClassification from the expected metadata transition inventory.",
+      "baseline_and_candidate_proof": "read-only-root-diagnostic.json: both have exactly coverageOrigin, structuredValue, deductibleClassification, overriddenBase transitions; first two undefined fields present on initial term and absent after repeated enrichment",
+      "minimum_fix": "Check own-property presence independently of value identity, retaining explicit checks for each baseline metadata transition and unchanged value/status/full provenance."
+    }
+  ],
+  "new_roots_corrected": 0,
+  "HARNESS_AUTONOMY_V1": {
+    "before": 30,
+    "used": 31,
+    "ordinary_limit": 12,
+    "scope_before": 0,
+    "scope_used": 1,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0
+  },
+  "prior_receipts_unchanged": 54,
+  "frozen_hashes_and_four_original_bindings": "PASS; original authorization/source-proof intact",
+  "baseline_gates_only": {
+    "tests": 876,
+    "files": 11,
+    "candidate_validation": false
+  },
+  "new_fullsuite_typegen_lint_build_runtime": "NOT_RUN: new gate draft load failed; no claim of complete candidate validation",
+  "completion_receipts_created": 0,
+  "signatures_completed": [],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "staged": 0,
+  "commit_push": "NOT_PERFORMED",
+  "holds": "All checkpoint holds preserved; no production/selection/mapping change during correction",
+  "next_minimum_decision": "Authorize exactly the two independent test-draft assertion roots described here; then complete original target and full closure gates. No further production change is supported or required by these findings.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

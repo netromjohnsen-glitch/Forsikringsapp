@@ -1,0 +1,46 @@
+{
+  "classification": "UNEXPECTED_IMPLEMENTATION_DRAFT_GENERATION_BLOCKER_NO_CORRECTION_PERFORMED",
+  "status": "BLOCKED_BEFORE_NEW_TEST_FILE_CREATION",
+  "baseline": "732b4cc64e22f699f099e6a5095a03693ad73e89",
+  "script": "/tmp/health-implement.py",
+  "script_sha256": "60bebcb2ce81d285f79b075c12e1469a9562ea566223db80ed5e3c4843b27a22",
+  "failed_assertion": "assert e_old in s",
+  "cause": "The temporary new-test draft assembly applied a broad d)→date) string replacement, unintentionally changing id)→idate). The strict expected-fixture self-check rejected the draft before writing the new gate. This is an authoring/tooling error, not a demonstrated insurance or production regression.",
+  "invalid_draft_excerpt": [
+    "const extractionRecord=(id,role,values)=>({...input(baseline,id,[]).insurances[0],canonicalProductName:prod(baseline,idate).name,documentRole:role,agreementPeriod:null,objectIdentifiers:[],documentIndices:[1],importantTerms:values.map(value=>({name:healthOracle.label,value,documentIndices:[1]}))});",
+    "  observed.push({id,role,side,values,keys:terms.map(t=>t.key),parsed_statuses:terms.map(t=>coverageStatusFromText(t.value,{subject:healthOracle.label,productName:prod(candidate,idate).name})),raw_values:terms.map(t=>t.value===value?'proposal':t.value),canonical_service:false,comparison:compare?{first:compare.first,second:compare.second,firstCoverage:compare.firstCoverage,secondCoverage:compare.secondCoverage}:null});"
+  ],
+  "expected_fixture_excerpt": "canonicalProductName:prod(baseline,id).name,documentRole:role,agreementPeriod:null,objectIdentifiers:[],documentIndices:[1],importantTerms:values.map(value=>({name:healthOracle.label,value,documentIndices:[1]}))",
+  "source_fixtures": "/tmp/b051-health-probes.mjs and /tmp/b051-health-extra.mjs baseline-memory fixtures; not a persisted application test",
+  "production_candidate": "One approved health value/page change already written and preserved",
+  "existing_compatibility_changes": "Authorized independent one-row transformation and exact historical fingerprint/full-field expectation updates written and preserved; no post-change gates run",
+  "baseline_gates": {
+    "status": "PASS",
+    "files": 11,
+    "tests": 876,
+    "logs": "gate-results.json; every command executed before implementation"
+  },
+  "new_targeted_fullsuite_typegen_lint_build_runtime": "NOT_RUN: required new permanent gate was not created",
+  "immutable_prior_receipts": {
+    "status": "PASS",
+    "count": 54
+  },
+  "HARNESS_AUTONOMY_V1": {
+    "used": 30,
+    "ordinary_limit": 12,
+    "scope_roots_performed": 0,
+    "capacity_for_other_roots": 0,
+    "no_exception_used_or_self_authorized": true
+  },
+  "signatures": [
+    "0eda923b4090cf6c",
+    "8a1beb3695ddb2fd"
+  ],
+  "completion_receipts_created": 0,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "staged": 0,
+  "commit_push": "NOT_PERFORMED",
+  "next_minimum_decision": "Authorize completion of the unfinished permanent test draft with exact fixture-variable names and no broad string substitution; then run all originally required gates. No new production change is required by this diagnosis.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

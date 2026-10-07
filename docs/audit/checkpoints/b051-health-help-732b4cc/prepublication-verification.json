@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "pre_staging_verifier_result": {
+    "status": "PASS",
+    "checksummed_scope": 264,
+    "campaign_signatures": 56,
+    "B051_partition": [
+      30,
+      5,
+      2,
+      2
+    ],
+    "staged": 0,
+    "application_identity_sha256": "5929fffed15d405f8ee0f3cfeccd3317b84c8ac223a216fee98a74f9364a0298"
+  },
+  "checked_exit_code": 0,
+  "command": [
+    "python",
+    "/tmp/health-verify.py"
+  ],
+  "reproducible_recipe": "verification-parameters.json: hash original verifier, apply exact single-occurrence substitutions, add declared import paths, execute original program with virtual __file__ in current audit directory; historical tool remains immutable",
+  "no_new_generator_or_permanent_verifier": true,
+  "scope_note": "This result precedes adding this proof file to the exact staged manifest; the same verifier must PASS again on the final manifest and after staging before publish.py",
+  "original_sources_receipts_holds_and_application_unchanged": true
+}

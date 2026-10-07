@@ -1,0 +1,152 @@
+{
+  "classification": "CURRENT_COMPLETION_RECEIPT_NOT_RECONSTRUCTED_HISTORICAL_CLOSURE",
+  "signature": "8a1beb3695ddb2fd",
+  "status": "PASS",
+  "original_binding": {
+    "signature_id": "8a1beb3695ddb2fd",
+    "representative_finding_id": "GAP-2109",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2109\", \"GAP-2168\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3023\", \"SF-3110\"]",
+    "proposed_existing_keys": "[\"hus.service.helsehjelp\"]",
+    "semantic_concept": "Helsehjelp",
+    "semantic_dimension": "unntak",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "tested_revision": "732b4cc64e22f699f099e6a5095a03693ad73e89",
+  "candidate_identity_sha256": "5929fffed15d405f8ee0f3cfeccd3317b84c8ac223a216fee98a74f9364a0298",
+  "publication": "Effective published completion only after secure publish.py verifies containing commit on remote main; no future SHA claimed as tested",
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2109",
+      "finding_ids": [
+        "GAP-2109"
+      ],
+      "source_fact_id": "SF-3023",
+      "source_fact_ids": [
+        "SF-3023"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 11",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Akutt/øyeblikkelighjelpogbehandlingsutgiftersykehus/klinikkikkeomfattet.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.service.helsehjelp"
+      ],
+      "advisor_impact": "Helsehjelp må ikke forveksles med akuttbehandling/sykehusutgifter.",
+      "audit_scope_notes": "Helsehjelp må ikke forveksles med akuttbehandling/sykehusutgifter.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2168",
+      "finding_ids": [
+        "GAP-2168"
+      ],
+      "source_fact_id": "SF-3110",
+      "source_fact_ids": [
+        "SF-3110"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 12",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Akutt/øyeblikkelighjelpogbehandlingsutgiftersykehus/klinikkikkeomfattet.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.service.helsehjelp"
+      ],
+      "advisor_impact": "Helsehjelp må ikke forveksles med akuttbehandling/sykehusutgifter.",
+      "audit_scope_notes": "Helsehjelp må ikke forveksles med akuttbehandling/sykehusutgifter.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "page": 11,
+      "identity": "gjensidigeHusStandard"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "page": 12,
+      "identity": "gjensidigeHusPluss"
+    }
+  ],
+  "canonical_contracts": [
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.service.helsehjelp",
+      "label": "Helsehjelp 24/7",
+      "previous_value": "Tjeneste for husstanden i hele verden: ubegrenset videolege, én videokonsultasjon med psykolog og fysioterapeut per husstandsmedlem per 12 måneder, selvhjelpsprogrammer, rabatter og digital veiledning.",
+      "value": "Helsehjelp 24/7 er knyttet til Hus-forsikringen og gjelder i hele verden. I tillegg til forsikringstaker omfattes ektefelle eller samboer med felles adresse i Folkeregisteret; barn som bor hjemme eller som bor borte på grunn av utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret; og barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse på grunn av delt foreldreansvar. Alle i husstanden har fri bruk av videokonsultasjon med allmenlege hos Dr.Dropin hele døgnet – alle dager. Kostnadsfri videokonsultasjon med psykolog hos Dr.Dropin for å forebygge hverdagsutfordringer: én konsultasjon per husstandsmedlem per 12 måneder. Fri bruk av digitale selvhjelpsprogrammer som tilbys gjennom Dr.Dropin. Kostnadsfri videokonsultasjon med fysioterapeut hos Dr.Dropin for å forebygge muskel- og skjelettplager: én konsultasjon per husstandsmedlem per 12 måneder. Rabatt på utvalgte tjenester hos Dr.Dropin, både digitalt og fysisk der Dr.Dropin har lokasjoner; hvilke tjenester dette gjelder, fremgår av Gjensidiges nettsider. Digital Veiviser på Din side/gjensidige.no ved behov for behandling på sykehus eller klinikk i det offentlige helsevesen gir oversikt over tilgjengelige behandlingssteder, beliggenhet og ventetid. Akutt og øyeblikkelig hjelp samt behandlingsutgifter på sykehus og klinikker er ikke omfattet.",
+      "previous_primary": [
+        12,
+        "Helsehjelp 24/7"
+      ],
+      "primary": [
+        11,
+        "Helsehjelp 24/7"
+      ],
+      "plus_contract_page": 12,
+      "provenance_change": "Only primary page 12→11; all other raw fields preserved; no sourceType added",
+      "source_basis": [
+        {
+          "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "page": 11,
+          "identity": "gjensidigeHusStandard"
+        },
+        {
+          "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "page": 12,
+          "identity": "gjensidigeHusPluss"
+        }
+      ],
+      "derivation": "Independent original PDF11/PDF12 column/paragraph interpretation and exact authorized preflight value; not learned from candidate"
+    }
+  ],
+  "provenance_full_field_evidence": "catalog-delta.json and R-051-HEALTH full-field raw-source/materialized inheritance controls",
+  "permanent_test": "tests/remediation-b-051-health-help.test.mjs",
+  "selection_document_priority_proof": "199/199 matrix tests: silence/explicit choice/refusal/conflict/unknown, repeated enrichment, individual_agreement/unknown/general_terms, catalog/custom manual modes, additions, both comparison directions. Before/after status and complete provenance assertions.",
+  "closure_gates": "validation-summary.json",
+  "command_log_manifest": "gate-results.json",
+  "reverse_and_isolation": "catalog-delta.json",
+  "prior_54_receipts": "prior-receipts.json",
+  "mechanical_roots": "draft-identifier-authorization-and-ledger.json; two-root-authorization-and-ledger.json; historical33/12 scope3/6 preserved; any subsequent mechanical fixes in autonomous-mechanical-corrections.json",
+  "separate_rot_status_finding": "Preserved unresolved baseline finding; no closure credit or status change in this scope",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "contract_dimension": "Separate psychologist and physiotherapist purpose/limits; conditional services and acute/immediate/treatment-cost exclusions",
+  "health_service_not_person_coverage": "No new canonical person parent; established raw service/document conflict and status transitions retained; no customer selection inferred"
+}

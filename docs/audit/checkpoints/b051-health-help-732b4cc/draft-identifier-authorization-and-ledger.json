@@ -1,0 +1,65 @@
+{
+  "root": "HEALTH_HELP_TEST_DRAFT_IDENTIFIER_SUBSTITUTION",
+  "authorization": "B-051 HELSEHJELP — TESTUTKAST OG VIDEREFØRING",
+  "baseline": "732b4cc64e22f699f099e6a5095a03693ad73e89",
+  "changes": [
+    {
+      "before": "prod(baseline,idate)",
+      "after": "prod(baseline,id)",
+      "occurrences": 1
+    },
+    {
+      "before": "prod(candidate,idate)",
+      "after": "prod(candidate,id)",
+      "occurrences": 1
+    }
+  ],
+  "full_substitution_inventory": "Exactly two identifier tokens affected by d)→date); all other source bytes identical",
+  "full_byte_diff": [
+    [
+      "delete",
+      "ate",
+      ""
+    ],
+    [
+      "delete",
+      "ate",
+      ""
+    ]
+  ],
+  "original_draft_sha256": "ebb37293d3f9f923dde4288147b25d4b44bff5b73a186c7f35d362dd89298131",
+  "repaired_draft_sha256": "4442220f790ecf8ee6b9808b0db427f92086c64ce5fbcaccb722aff62ec4b606",
+  "syntax_load": {
+    "syntax": "PASS: node --check /tmp/health-repaired-draft.mjs",
+    "fixture_control": "PASS",
+    "load_command": [
+      "node",
+      "--test-reporter=tap",
+      "/tmp/health-repaired-load.mjs"
+    ],
+    "load_status": "FAIL_TWO_SEPARATE_UNAUTHORIZED_ROOTS",
+    "tap": {
+      "tests": 199,
+      "pass": 181,
+      "fail": 18
+    },
+    "log": "draft-load-failure.log.gz",
+    "load_locator_adaptation": "Temporary load copy resolves relative module and new URL paths to exact absolute /workspace/Forsikringsapp locations; assertion/fixture source otherwise unchanged"
+  },
+  "draft_control_assertion": "PASS: exact expected_fixture_excerpt appears after both precise repairs",
+  "application_and_production_files_unchanged_from_preserved_candidate": true,
+  "prior_receipts_unchanged": 54,
+  "mechanical_equivalence": "Only invalid identifier references return to baseline fixture id variable. Assertions, fixture inputs, insurance values, source/provenance, selection, scope and document priority are byte-identical otherwise.",
+  "HARNESS_AUTONOMY_V1": {
+    "before": 30,
+    "used": 31,
+    "ordinary_limit": 12,
+    "scope_before": 0,
+    "scope_used": 1,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0
+  },
+  "historical_counters": "UNCHANGED",
+  "no_other_correction_authorized": true,
+  "identifier_root_status": "CORRECTED: exactly two idate→id changes; no other draft byte delta"
+}

@@ -1,0 +1,32 @@
+{
+  "existing_proof_recipe": "B-051 one-row liability proof retained in /tmp/liability-proof.mjs; no historical audit tool edited",
+  "source_recipe_sha256": "dcf013162461c7b5fc3704bf4a91805511860c39a725b1ac09162b9c43a1d9f1",
+  "explicit_changes": [
+    [
+      "import {baselineCatalog,expectedCatalog,sourceOracle,assertLiabilityCatalog} from '/workspace/Forsikringsapp/tests/helpers/b051-liability.mjs';",
+      "import {expectedCatalog,applyLiability,assertLiabilityCatalog} from '/workspace/Forsikringsapp/tests/helpers/b051-liability.mjs';\nimport {expectedCatalog as previousCatalog} from '/workspace/Forsikringsapp/docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';\nimport {healthOracle as sourceOracle} from '/workspace/Forsikringsapp/tests/helpers/b051-health-help.mjs';\nconst baselineCatalog=applyLiability(previousCatalog);"
+    ],
+    [
+      "b051-liability-3947e4e/",
+      "b051-health-help-732b4cc/"
+    ],
+    [
+      "3947e4e90b9ab09ea46dda659a2271d956ae1dd3",
+      "732b4cc64e22f699f099e6a5095a03693ad73e89"
+    ],
+    [
+      "[\"ansvar.dekning\",",
+      "[\"service.helsehjelp\","
+    ],
+    [
+      "changes:['value','source.page','source.section']",
+      "changes:['value','source.page']"
+    ],
+    [
+      "permanent R-051-LIABILITY gate",
+      "permanent R-051-HEALTH gate"
+    ]
+  ],
+  "baseline": "732b4cc64e22f699f099e6a5095a03693ad73e89",
+  "independent_expected": "Immutable physical catalog oracle, existing liability transformation, explicit health source-oracle transformation; actual catalog used only as verification input"
+}

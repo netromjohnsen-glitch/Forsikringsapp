@@ -97,9 +97,9 @@ test('R-020-06: 53 archived positive controls and all unrelated facts remain unc
   // delta: b051-craftsmanship-0cedd98/catalog-delta.json. Standard hashes stay fixed.
   // Physical-exclusions source oracle and exact four-row delta: b051-physical-exclusions-0be8fad/catalog-delta.json.
   for (const [id, addons, expected] of [
-    [base, [], '4dbde0cf9f9f467f2138bb70edf8df3e51addbb158f8330d89e40a58bf7dc752'],
-    [base, [addon], 'e2dde9decd0cc64db060cc2ce57421741ff51239de95107264e84cf7388ce489'],
-    [plus, [], '924f9f29873c4356ad3787e755efeb6ffb13dd5300af42352bb3958ab6bc67bd'],
+    [base, [], 'd5c72d2f6ab94d0b3e4fd96343d5117ec357f775c5090515f534d4a9b18baa2e'],
+    [base, [addon], '385845464c7ec23331a28d1634f89c92d7bf693c27eab3084347a276487906ee'],
+    [plus, [], '29cdf599445370bc905a23455a4ad2ffbf3ed7dd6647ed6948692d1c85483525'],
   ]) assert.equal(digest(facts(id, addons).filter(f => !f.key.startsWith('hus.skadedyr.') && f.key !== 'hus.rate.dekning')), expected);
   assert.match(fact(base, 'hus.rate.dekning').value, /unntatt/u);
   assert.match(fact(base, 'hus.skadedyr.grunnunntak').value, /Insekter|insekter/u);

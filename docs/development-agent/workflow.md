@@ -1,14 +1,14 @@
 # Forsikringstolken: repo-basert utviklingsagent
 
 Dette er arbeidsinstrukser for en aktiv Codex-økt, ikke en bakgrunnstjeneste.
-Startpunkt: [aktuelt checkpoint](../audit/checkpoints/development-agent-ef5b0bc/checkpoint.json),
+Startpunkt: [aktuelt checkpoint](../audit/checkpoints/b051-health-help-732b4cc/checkpoint.json),
 [foreslått plan](next-b050-plan.md) og [maskinlesbare bindinger](../audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json).
 
 ## Autorisasjon og prioritet
 
 Brukerens eksplisitte fullmakt gjelder foran lokale retningslinjer. Bevar Next-blokken i
 AGENTS.md og les relevante installerte Next-guider ved kodearbeid. Les deretter checkpoint,
-kildereceipts og den eksakte autoriserte bolken. Siste operative kampanjesnapshot er
+kildereceipts og den eksakte autoriserte bolken. Historisk kampanjesnapshot er
 [PUBLIC_DEDUCTIBLE-policyen](../audit/checkpoints/b050-public-deductible-completion-b81ee91/campaign-policy.json).
 Den gjelder det fullførte navngitte PUBLIC_DEDUCTIBLE-scopet; den autoriserer ikke de foreslåtte bolkene.
 Historisk [styringsforslag](../audit/checkpoints/g2-recovery-36d7694/future-governance-proposal.md)
@@ -49,14 +49,14 @@ harnessrot, ikke automatisk mekanisk fordi filen er en test. Før mekanisk autor
 dokumenter uavhengig baseline-/kilde-/kodebevis for uendret forsikringsbetydning, verdi,
 scope, selection, dokumentprioritet og provenance. Før hver uavhengig rot én gang med
 før/etter, bevis og policy. Samme dokumenterte typegen-rot belastes ikke på nytt.
-Aktiv navngitt kampanje har grense 3 mekaniske røtter per eksplisitt autorisert scope og
-12 samlet. Dokumentert brukt: 11/12; fullført PUBLIC_DEDUCTIBLE 2/3, Behandling 3/3 og tidligere Liv 2/3. Historisk fullført sumvalg var 3/3. Nye scopes trenger eksplisitt
+Historisk navngitt kampanje hadde grense 3 mekaniske røtter per eksplisitt autorisert scope og
+12 samlet. Disse grensene er erstattet som operativ stoppgrunn av den aktive fullmakten nedenfor. Dokumentert brukt: 11/12; fullført PUBLIC_DEDUCTIBLE 2/3, Behandling 3/3 og tidligere Liv 2/3. Historisk fullført sumvalg var 3/3. Nye scopes trenger eksplisitt
 scopeautorisasjon. Historiske 19/16 og 10/8 er ikke fullt rekonstruert og endres ikke.
 Historisk betinget 20/16-unntak ble ikke brukt; ikke dobbelttell det.
 
 Stopp avhengig arbeid ved kildekonflikt, uautorisert forsikrings-/selection-/mapping-/
-canonical-/admissionendring, ny enginefeil, uforklart regresjon, integritetsavvik eller
-oppbrukt gjeldende budsjett. Diagnostiser uten ny semantisk retting. Bevar arbeid og skriv
+canonical-/admissionendring, ny enginefeil eller regresjon uten bevis for uendret godkjent kontrakt, integritetsavvik. Oppbrukt historisk mekanisk budsjett er ikke lenger en stoppgrunn
+for beviste mekaniske rettinger innen autorisert scope. Diagnostiser uten ny semantisk retting. Bevar arbeid og skriv
 blocker med filer, tester, baseline-reproduksjon og minste nødvendige beslutning.
 Samle uavhengige beslutningsspørsmål i én konkret eskalering med anbefaling og konsekvenser.
 Fortsett en annen del bare når den er uttrykkelig autorisert, uavhengighet er bevist,
@@ -93,7 +93,12 @@ Oppdater checkpoint til neste konkrete steg, med tillatelser og blockers; ikke e
 scheduler eller påstå automatisk ChatGPT–Codex-overlevering.
 
 
-## Aktiv fullmakt: selvstendige mekaniske harnessrettinger
+## Historisk fullmakt: HARNESS_AUTONOMY_V1
+
+Denne seksjonen bevarer den tidligere policyen som historisk dokumentasjon.
+Den numeriske stoppkvoten og krav om ny godkjenning for mekaniske feil er erstattet
+av «Aktiv fullmakt: autonom gjennomføring» nedenfor. Tidligere forbruk og unntak
+skal ikke nullstilles, omskrives eller flyttes til det nye rettingsregisteret.
 
 Denne seksjonen er aktivert av Morten 2026-10-06 og går foran eldre stoppregler
 for mekaniske harnessbudsjetter i denne arbeidsflyten. Den autoriserer ingen ny
@@ -137,3 +142,46 @@ Denne fullmakten utvider ikke eksisterende commit/push- eller deploymyndighet.
 Fortsett bare allerede autoriserte scopes; et read-only scope forblir read-only.
 Agenten skal lese denne seksjonen ved neste oppstart eller videreføring og føre
 nye HARNESS_AUTONOMY_V1-røtter varig i Git sammen med scopets auditbevis.
+
+## Aktiv fullmakt: autonom gjennomføring
+
+Eksplisitt aktivert av brukeren under B-051 Helsehjelp, etter de tre navngitte
+harnessrettingene og historisk HARNESS_AUTONOMY_V1 33/12 (Helsehjelp3/6).
+[Fullmakt og separat logg](../audit/checkpoints/b051-health-help-732b4cc/autonomous-workflow-authorization.json).
+Denne stående fullmakten erstatter krav om stopp ved hver ny mekanisk test-, skript-
+eller auditfeil og oppbrukt mekanisk kvote som stoppgrunn. Historiske policyversjoner,
+tellere og unntak bevares i Git og tidligere auditpakker; de gir ingen ny produksjonsfullmakt.
+
+Innen en ellers eksplisitt autorisert bolk håndterer agenten rutineavgjørelser og
+beviste mekaniske rettinger selvstendig: egne kode-/test-/fixture-/skript-/generatorfeil,
+syntaks, variabelbindinger, serialisering, felttilstedeværelse, linjeskift, lenkekontekst
+og tilsvarende representasjonsfeil. Foreldede snapshots/fingerprints kan oppdateres bare
+når den eksakte differansen følger av godkjent produksjonsendring. Eksisterende
+valideringsverktøy kan tilpasses aktuell revisjon. Dette utvider ikke godkjent
+forsikringsbetydning, kundevalg, produkt-/signatursett eller fil-/produksjonsscope.
+
+Før retting: dokumenter uavhengig kontraktbevis fra originalkilder, baseline, etablert
+representasjon eller tidligere eksplisitt beslutning. Kandidaten alene er ikke fasit.
+Bevar kildebetydning, dokumentprioritet, selection, full provenance, isolasjon og
+immutable historiske receipts/auditpakker. Ikke svekk assertions, hopp over tester eller
+fjern negative kontroller. Gjenbruk etablerte helpers/verktøy; unngå nye generatorer og
+kopiering av gamle auditpakker der eksisterende verktøy dekker behovet.
+
+Nye mekaniske rettinger føres én gang per uavhengig rot i en separat varig logg uten
+numerisk stoppkvote, med før/etter, begrunnelse, bevis og relevante nye kontroller.
+Ikke belast, nullstill eller omskriv historiske budsjetter. Diagnostiser, rett,
+revalider berørte kontrakter og fortsett automatisk gjennom allerede autoriserte
+sluttgater uten rutinespørsmål. Eksisterende fullgate-, receipt- og publish.py-krav gjelder.
+
+Stopp berørt arbeid ved ny/usikker forsikringsbetydning, motstridende kilder,
+ny canonical-/mapping-/selection-kontrakt, scopeutvidelse, endring i sikkerhet/personvern/
+tilgang/kundedatahåndtering, omskriving av historiske bevis eller uavklart integritetsavvik.
+En feil uten mekanisk bevis må ikke behandles som mekanisk. Ved gjentatt feil uten ny
+fremdrift: samle diagnosen og rapporter konkret manglende beslutning eller tilgang;
+ingen ubegrenset rettingssløyfe. Uavhengig, allerede autorisert arbeid kan fortsette når
+isolasjon er dokumentert. Samle nødvendige beslutninger i én konkret rapport.
+
+Denne fullmakten gjelder også fremtidige eksplisitt autoriserte bolker. En foreslått
+eller NOT_AUTHORIZED-bolk er fortsatt ikke godkjent. Commit/push krever eksplisitt
+publiseringsfullmakt og komplett PASS, checksums, eksakt staged-sett, kontrollert
+exit-status og begge diffkontroller. Ingen deployfullmakt eller bakgrunnsorkestrering.

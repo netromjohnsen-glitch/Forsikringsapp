@@ -1,0 +1,54 @@
+{
+  "authorization": "B-051 HELSEHJELP — TO AVGRENSEDE HARNESSRETTINGER",
+  "baseline": "732b4cc64e22f699f099e6a5095a03693ad73e89",
+  "roots": [
+    {
+      "name": "HEALTH_HELP_SOURCE_ASSERTION_VARIABLE_SHADOWING",
+      "before_used": 31,
+      "after_used": 32,
+      "correction": "Independent source-oracle CatalogFact named expectedHealthFact; extraction results named candidateDocument; all three fact-source references point only to independent expectedHealthFact, complete arrays/fields retained",
+      "equivalence": "Only wrong argument/variable reference corrected; source hash/identity/qualification/provenance/value/status/fixtures unchanged; original source and read-only-root-diagnostic.json prove contract"
+    },
+    {
+      "name": "HEALTH_HELP_METADATA_FIELD_PRESENCE",
+      "before_used": 32,
+      "after_used": 33,
+      "correction": "Own-property presence tested independently from value identity; both undefined fields explicitly present then absent with undefined values, every remaining field checked by strict deep equality",
+      "equivalence": "Baseline and candidate both have the same four documented metadata transitions; no cleaning or mutation of actual terms; no lost provenance or altered coverage status"
+    }
+  ],
+  "old_draft_sha256": "4442220f790ecf8ee6b9808b0db427f92086c64ce5fbcaccb722aff62ec4b606",
+  "new_draft_sha256": "23d654ee57212243455a5de2729cef88556e2f8c4771e178d75affd36f253911",
+  "exact_diff": "two-root-correction.diff.gz",
+  "preserved_original_failure": "draft-load-failure.log.gz; draft-load-blocker.json; read-only-root-diagnostic.json",
+  "production_and_existing_application_candidate": "UNCHANGED",
+  "syntax_load_controls": {
+    "status": "PASS",
+    "tap": {
+      "tests": 199,
+      "pass": 199,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "command": [
+      "node",
+      "--test-reporter=tap",
+      "/tmp/health-final-load.mjs"
+    ],
+    "log": "corrected-draft-load-pass.log.gz",
+    "permanent_gate_written_only_after_pass": "tests/remediation-b-051-health-help.test.mjs",
+    "gate_sha256": "23d654ee57212243455a5de2729cef88556e2f8c4771e178d75affd36f253911"
+  },
+  "HARNESS_AUTONOMY_V1": {
+    "before": 31,
+    "used": 33,
+    "ordinary_limit": 12,
+    "scope_before": 1,
+    "scope_used": 3,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0
+  },
+  "historical_counters": "UNCHANGED",
+  "no_other_root_authorized": true
+}

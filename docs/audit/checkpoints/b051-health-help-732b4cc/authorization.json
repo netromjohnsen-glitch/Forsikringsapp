@@ -1,0 +1,167 @@
+{
+  "classification": "EXPLICIT_IMPLEMENTATION_AUTHORIZATION",
+  "baseline": "732b4cc64e22f699f099e6a5095a03693ad73e89",
+  "signatures": [
+    {
+      "signature_id": "0eda923b4090cf6c",
+      "representative_finding_id": "GAP-2108",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2108\", \"GAP-2167\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3021\", \"SF-3108\"]",
+      "proposed_existing_keys": "[\"hus.service.helsehjelp\"]",
+      "semantic_concept": "Helsehjelp",
+      "semantic_dimension": "hvem/hvor",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "8a1beb3695ddb2fd",
+      "representative_finding_id": "GAP-2109",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2109\", \"GAP-2168\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3023\", \"SF-3110\"]",
+      "proposed_existing_keys": "[\"hus.service.helsehjelp\"]",
+      "semantic_concept": "Helsehjelp",
+      "semantic_dimension": "unntak",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    }
+  ],
+  "original_bindings": [
+    {
+      "signature": "0eda923b4090cf6c",
+      "GAP": "GAP-2108",
+      "SF": "SF-3021",
+      "product": [
+        "gjensidige",
+        "bolig",
+        "ordinary",
+        "gjensidige-hus",
+        "Alminnelige vilkår"
+      ],
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "page": "PDF 11"
+    },
+    {
+      "signature": "0eda923b4090cf6c",
+      "GAP": "GAP-2167",
+      "SF": "SF-3108",
+      "product": [
+        "gjensidige",
+        "bolig",
+        "ordinary",
+        "gjensidige-hus-pluss",
+        "Alminnelige vilkår"
+      ],
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "page": "PDF 12"
+    },
+    {
+      "signature": "8a1beb3695ddb2fd",
+      "GAP": "GAP-2109",
+      "SF": "SF-3023",
+      "product": [
+        "gjensidige",
+        "bolig",
+        "ordinary",
+        "gjensidige-hus",
+        "Alminnelige vilkår"
+      ],
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "page": "PDF 11"
+    },
+    {
+      "signature": "8a1beb3695ddb2fd",
+      "GAP": "GAP-2168",
+      "SF": "SF-3110",
+      "product": [
+        "gjensidige",
+        "bolig",
+        "ordinary",
+        "gjensidige-hus-pluss",
+        "Alminnelige vilkår"
+      ],
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "page": "PDF 12"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "page": 11,
+      "identity": "gjensidigeHusStandard"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "page": 12,
+      "identity": "gjensidigeHusPluss"
+    }
+  ],
+  "application_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/helpers/b051-health-help.mjs",
+    "tests/helpers/b051-liability.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/gjensidige-hus-catalog.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs"
+  ],
+  "audit_directory": "docs/audit/checkpoints/b051-health-help-732b4cc",
+  "checkpoint_file": "docs/development-agent/current-project-status.md",
+  "production": "Only Standard hus.service.helsehjelp value and primary page; inherited Plus unchanged",
+  "planned_test_changes": "Independent one-row health transform, three B020 and three liability hashes, shared B050 reverse and active B051 expectations composed with all existing source transforms; precise allmenlege video wording; new permanent full matrix",
+  "no_correction_capacity": true,
+  "HARNESS_AUTONOMY_V1": {
+    "used": 30,
+    "ordinary_limit": 12,
+    "scope_used": 0,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0
+  },
+  "gates": [
+    "sources/original bindings/prior54 receipts",
+    "baseline affected tests",
+    "new full health matrix/targeted regressions",
+    "whole source/reverse catalog audit/isolation",
+    "all remediation/full tests individually with manifests",
+    "next typegen/tsc/ESLint exact occurrences/webpack build/HTTP PDF",
+    "checksums/receipts/links/identity/all-new-whitespace/staged manifest/work and staged diff --check",
+    "secured publish.py origin HEAD:main after complete PASS"
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "no_later_scope_or_deploy": true
+}

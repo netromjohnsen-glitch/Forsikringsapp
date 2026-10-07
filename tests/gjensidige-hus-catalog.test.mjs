@@ -79,7 +79,7 @@ test("Hus har sentrale objekter, skader, ansvar, rettshjelp og tjenester", () =>
   assert.match(fact(items, "hus.ansvar.grense").value, /5 000 000/);
   assert.match(fact(items, "hus.rettshjelp.grense").value, /100 000.*250 000/);
   assert.match(fact(items, "hus.rettshjelp.egenandel").value, /4 000.*20 %.*Mekle.no/);
-  assert.match(fact(items, "hus.service.helsehjelp").value, /videolege/);
+  assert.match(fact(items, "hus.service.helsehjelp").value, /fri bruk av videokonsultasjon med allmenlege hos Dr\.Dropin hele døgnet – alle dager/i);
   const limitation = fact(items, "hus.plutselig.begrensning");
   assert.match(limitation.value, /vedlikehold.*slitasje/s);
   assert.equal(limitation.source.page, 3);
