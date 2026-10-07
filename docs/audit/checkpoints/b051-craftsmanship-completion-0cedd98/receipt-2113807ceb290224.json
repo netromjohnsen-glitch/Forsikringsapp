@@ -1,0 +1,132 @@
+{
+  "classification": "SOURCE_BACKED_COMPLETION",
+  "status": "PASS",
+  "signature": "2113807ceb290224",
+  "original_binding": {
+    "signature_id": "2113807ceb290224",
+    "representative_finding_id": "GAP-2154",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "1",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2154\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3091\"]",
+    "proposed_existing_keys": "[\"hus.vatrom.selverommet\"]",
+    "semantic_concept": "Håndverkerfeil våtrom",
+    "semantic_dimension": "begrensninger",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "GAP_SF_bindings": [
+    {
+      "GAP": "GAP-2154",
+      "SF": "SF-3091",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+    }
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "Hus",
+  "agreement_scope": "ordinary",
+  "products": [
+    "gjensidige-hus-pluss"
+  ],
+  "version": "Alminnelige vilkår",
+  "effective_from": "UNKNOWN",
+  "canonical_keys": [
+    "hus.vatrom.selverommet"
+  ],
+  "component_scope": "Exactly two existing gjensidigeHusPluss rows; replacesBase retained; Standard unchanged; no engine/schema/mapping/selection/admission changes.",
+  "tested_baseline": "0cedd98cc3ae1e885902aba585ef65054985c5e5",
+  "candidate_identity_sha256": "8aa20974b6d66fa4446de599e0e4c249ecb0761870a5ce198b432754349d2e5c",
+  "application_identity": "application-identity.json",
+  "source_contracts": [
+    {
+      "finding_id": "GAP-2154",
+      "finding_ids": [
+        "GAP-2154"
+      ],
+      "source_fact_id": "SF-3091",
+      "source_fact_ids": [
+        "SF-3091"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 5",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke eget/ufaglærtarbeid,bakterier/heksesot,kosmetikk,betalingsdyktiggarantiansvarlig.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.vatrom.selverommet"
+      ],
+      "advisor_impact": "Selvbygger/ufaglært/garanti og våtromspesifikke unntak mangler.",
+      "audit_scope_notes": "Selvbygger/ufaglært/garanti og våtromspesifikke unntak mangler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "exact_source_reviewed_values_and_primary_supplementary_references": {
+    "hus.vatrom.selverommet": {
+      "owner": "gjensidigeHusPluss",
+      "primary": [
+        5,
+        "Håndverks- og entreprenørfeil – våtrom / Dekkes og dekkes ikke"
+      ],
+      "value": "Skade på våtrom som følge av materialfeil, konstruksjonsfeil, prosjekteringsfeil eller uriktig montasje utført av faglært håndverker eller godkjent/registrert entreprenør. Skaden må ha oppstått i forsikringstiden og blitt konstatert innen ti år fra arbeidet ble utført. Unntatt er arbeider utført av sikrede eller ufaglærte, skade som skyldes bakterier og heksesot, kosmetiske feil og skader som kun består av flekker, riper, svinnsprekker, avskallinger, knirk i gulv samt mindre hakk og merker, og skade som andre enn sikrede er pliktig til og har økonomisk evne til å erstatte i henhold til garanti eller annen avtale.",
+      "label": "Våtrom – selve rommet",
+      "previous_value": "Skade på våtrom etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år.",
+      "previous_primary": [
+        4,
+        "Håndverks- og entreprenørfeil – våtrom"
+      ]
+    }
+  },
+  "complete_material_contract": "Våtrom: insured/unskilled work excluded; bacteria/heksesot; all listed cosmetic-only defects; others obliged AND financially able under guarantee/other agreement. No other-building exclusions imported into wetroom.",
+  "source_original_reading_order": [
+    "../b051-craftsmanship-0cedd98/source-Pluss-PDF5.txt",
+    "../../../../catalog/sources/gjensidige/hus/Husforsikring-produktside.html"
+  ],
+  "source_role": "Existing registered Plus fullterms primary PDF5; website supplementary forhandverker. No registered sourceType, unknown effective date retained. Raw ownundefined productCode versus JSON omitted field explicitly verified.",
+  "test_contracts": [
+    "R-051-CRAFT-BINDINGS",
+    "R-051-CRAFT-SOURCE-FULL-PDF5",
+    "R-051-CRAFT-SOURCE-WEBSITE-COMPLAINT",
+    "R-051-CRAFT-FULL-FACT",
+    "R-051-CRAFT-REVERSE",
+    "R-051-CRAFT-DOCUMENT/PIPELINE/SUPPORT/MANUAL/COMPARISON"
+  ],
+  "complete_closure_summary": "validation-summary.json",
+  "gate_results": "gate-results.json",
+  "source_to_catalog_and_reverse_audit": "../b051-craftsmanship-0cedd98/catalog-audit.mjs / catalog-delta.json",
+  "prior_receipt_integrity": "prior-receipts.json",
+  "HARNESS_AUTONOMY_V1": {
+    "prior_committed_used": 18,
+    "preserved_privacy_root_after": 19,
+    "used": 20,
+    "limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6,
+    "explicit_exception_roots": 2,
+    "ledger": "harness-roots.json",
+    "no_future_correction_capacity": true
+  },
+  "planned_test_contract_updates": "../b051-craftsmanship-0cedd98/planned-contract-updates.json; charge0",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_closure_reconstructed": false,
+  "publication_revision": "Atomic Git commit records publication; gates apply to tested baseline plus exact candidate identity. No later revision automatically certified.",
+  "holds": "checkpoint.json holds_unchanged",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

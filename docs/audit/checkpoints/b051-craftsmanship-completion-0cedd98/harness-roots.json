@@ -1,0 +1,40 @@
+[
+  {
+    "id": "PRIVACY_MARKER_SUBSTRING_IN_NUMERIC_TIMING",
+    "classification": "EXPLICIT_MECHANICAL_TEST_ONLY_EXCEPTION",
+    "name": "Personvernregex matcher privatmark\u00f8r inne i legitim timing",
+    "corrected": true,
+    "campaign_before": 18,
+    "campaign_after": 19,
+    "ordinary_limit": 12,
+    "scope_used": 1,
+    "scope_limit": 6,
+    "production_unchanged_for_this_root": true,
+    "values_scope_selection_mapping_document_priority_provenance_unchanged": true,
+    "before_file": "before-supporting-terms.test.mjs.gz",
+    "after_file": "tests/supporting-terms.test.mjs",
+    "independent_code_evidence": [
+      "lib/analysis-telemetry.ts: AnalysisStage, numeric duration paths and snapshot allowlist",
+      "lib/analysis-progress.ts: safeProgress reconstructed event contracts"
+    ],
+    "baseline_evidence": "preflight-privacy-baseline.log.gz",
+    "equivalence": "Original private markers remain checked on all keys, strings and non-duration numeric fields. Only exact registered numeric duration paths accept coincidental digits; invalid types, private fields and actual string marker leaks fail. Events retain the original full serialization assertion. No logging/runtime production change."
+  },
+  {
+    "id": "JSON_SNAPSHOT_EXPECTED_QUALIFICATION_HAS_RAW_OWN_UNDEFINED_PRODUCTCODE",
+    "name": "Delt forventningsbygger tilf\u00f8rer productCode: undefined i JSON-snapshotreferanse",
+    "classification": "EXPLICIT_MECHANICAL_TEST_ONLY_EXCEPTION",
+    "corrected": true,
+    "campaign_before": 19,
+    "campaign_after": 20,
+    "ordinary_limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6,
+    "before_file": "before-expected-catalog.mjs.gz",
+    "after_file": "../b051-craftsmanship-0cedd98/expected-catalog.mjs",
+    "proof": "representation-correction-proof.json",
+    "independent_before_proof": "../b051-craftsmanship-0cedd98/representation-blocker-proof.json",
+    "production_unchanged_for_this_root": true,
+    "values_scope_selection_mapping_document_priority_provenance_unchanged": true
+  }
+]

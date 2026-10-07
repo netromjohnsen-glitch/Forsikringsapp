@@ -1,0 +1,112 @@
+{
+  "status": "STOPPED_BEFORE_UNAUTHORIZED_CORRECTION",
+  "batch": "B-051 craftsmanship/wetroom",
+  "baseline": "0cedd98cc3ae1e885902aba585ef65054985c5e5",
+  "signatures": [
+    "2113807ceb290224",
+    "239b00779349f2fd",
+    "46e94bcf464af845",
+    "57c775ac935fb504",
+    "af150eab853a1648"
+  ],
+  "independent_root": "JSON_SNAPSHOT_EXPECTED_QUALIFICATION_HAS_RAW_OWN_UNDEFINED_PRODUCTCODE",
+  "root_description": "The newly shared expected-reference builder introduces own productCode:undefined into a supplementary website reference consumed by JSON-snapshot comparisons. Those snapshots correctly omit the field. One events reverse and three B050 reverse assertions fail; raw fact/provenance tests remain correct.",
+  "diagnosis_proof": "representation-blocker-proof.json",
+  "affected_files": [
+    "docs/audit/checkpoints/b051-craftsmanship-0cedd98/expected-catalog.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-050.test.mjs"
+  ],
+  "fresh_original_baseline": "B05097/97 before candidate; own-undefined vs serialized absence established from independent captured HEAD. New website qualification was absent from original craft row, so new compatibility failure is candidate harness only.",
+  "failed_gates": [
+    {
+      "label": "targeted-closure-remediation-b-051-events-buildings",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-events-buildings.test.mjs"
+      ],
+      "counts": {
+        "tests": 30,
+        "pass": 29,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "test_names": [
+        "R-051-EVENTS-REVERSE: six authorized rows only, 316 components/4152 facts/202 products and old eight protected"
+      ],
+      "log": "targeted-closure-remediation-b-051-events-buildings.log.gz"
+    },
+    {
+      "label": "targeted-closure-remediation-b-050",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-050.test.mjs"
+      ],
+      "counts": {
+        "tests": 97,
+        "pass": 94,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "test_names": [
+        "R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source change; 317 components and metadata preserved",
+        "R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata and other components unchanged",
+        "R-050-REHAB-REVERSE: one exact source-bound condition; original13 and other317 components unchanged"
+      ],
+      "log": "targeted-closure-remediation-b-050.log.gz"
+    },
+    {
+      "label": "full-remediation-b-050.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-050.test.mjs"
+      ],
+      "counts": {
+        "tests": 97,
+        "pass": 94,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "test_names": [
+        "R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source change; 317 components and metadata preserved",
+        "R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata and other components unchanged",
+        "R-050-REHAB-REVERSE: one exact source-bound condition; original13 and other317 components unchanged"
+      ],
+      "log": "full-remediation-b-050.test.log.gz"
+    },
+    {
+      "label": "full-remediation-b-051-events-buildings.test",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-events-buildings.test.mjs"
+      ],
+      "counts": {
+        "tests": 30,
+        "pass": 29,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "test_names": [
+        "R-051-EVENTS-REVERSE: six authorized rows only, 316 components/4152 facts/202 products and old eight protected"
+      ],
+      "log": "full-remediation-b-051-events-buildings.test.log.gz"
+    }
+  ],
+  "production_defect_demonstrated": false,
+  "correction_performed": false,
+  "closure_receipts_created": 0,
+  "signatures_closed": [],
+  "commit_push": false,
+  "staged": 0,
+  "minimum_next_authorization": "Authorize only the expected JSON-snapshot reference representation in the two compatibility consumers/shared builder; retain exact full-field JSON assertions and independent raw own-undefined checks. No production change. One additional named mechanical root would consume19/12→20/12, ordinary limit12 unchanged. Then re-run complete gates.",
+  "global_resolved_open": "UNKNOWN",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

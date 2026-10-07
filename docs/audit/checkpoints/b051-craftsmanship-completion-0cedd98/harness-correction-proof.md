@@ -1,0 +1,11 @@
+# Exact JSON reference compatibility correction
+
+The retained [field proof](../b051-craftsmanship-0cedd98/representation-blocker-proof.json) identifies exactly one extra own property in each independent JSON expectation: qualificationSource.productCode with undefined value. The raw factory and raw full-field assertions are correct. JSON snapshot serialization omits this own undefined property.
+
+The shared builder now determines the representation from the independent baseline input reference, never from candidate output. For a JSON baseline reference without productCode, it builds the new qualification reference using all nine defined fields when the registered productCode is undefined. Raw input references retain the tenth own field productCode: undefined. A defined productCode is never omitted. No compared snapshot is serialized, filtered or otherwise normalized by the correction.
+
+[Fresh strict proof](representation-correction-proof.json) compares the complete raw reference and complete JSON reference independently and checks the entire transformed row set. The new gate retains both raw FULL-FACT assertions. The four formerly blocked reverse assertions now pass in the full targeted gate. Raw catalogue audit verifies the exact two-row transform, all metadata,317 components,4156 raw facts and203 other products.
+
+Before-version bytes are retained in before-expected-catalog.mjs.gz. All other files in the stopped package, all candidate application files,39 prior receipts and historical audit packages are byteidentical. Its original SHA256SUMS is immutable historical evidence; the old helper entry is verified against the retained before-version. The current completion checksum manifest binds the corrected helper and all final authorized files. Old failed gate reports are retained as failures, never relabeled.
+
+The insurance values, scope, identity, selection, mapping, document priority and complete defined provenance do not change. This is the single explicitly authorized mechanical serialization root:19/12 to20/12, scope1/6 to2/6. The completed privacy root18/12 to19/12 is retained once. Ordinary limit12 and historical counters remain unchanged; no future correction capacity is granted.

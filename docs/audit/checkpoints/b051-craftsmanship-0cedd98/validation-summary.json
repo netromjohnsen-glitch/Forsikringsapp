@@ -1,0 +1,55 @@
+{
+  "status": "BLOCKED_NOT_COMPLETE",
+  "tested_baseline": "0cedd98cc3ae1e885902aba585ef65054985c5e5",
+  "targeted": {
+    "files": 1,
+    "tests": 93,
+    "pass": 93,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "targeted_closure": {
+    "files": 22,
+    "tests": 777,
+    "pass": 773,
+    "fail": 4,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "fullsuite": {
+    "files": 149,
+    "tests": 4118,
+    "pass": 4114,
+    "fail": 4,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "remediation": {
+    "files": 51,
+    "tests": 1965,
+    "pass": 1961,
+    "fail": 4,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "source_hashes": "PASS 3/3",
+  "source_and_reverse_audit": "catalog-delta.json PASS: two exact rows,317 components,4156 rawfacts,203 products unchanged",
+  "privacy": "supporting-terms45/45 incl both new positive/negative privacy tests",
+  "quality_gates": {
+    "typegen": "NOT_RUN_AFTER_BLOCKER",
+    "typescript": "NOT_RUN_AFTER_BLOCKER",
+    "eslint": "NOT_RUN_AFTER_BLOCKER",
+    "production-build": "NOT_RUN_AFTER_BLOCKER",
+    "http-pdf-runtime": "NOT_RUN_AFTER_BLOCKER"
+  },
+  "HARNESS_AUTONOMY_V1": {
+    "used": 19,
+    "ordinary_limit": 12,
+    "scope_used": 1,
+    "scope_limit": 6,
+    "new_root_not_corrected": true
+  },
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0
+}

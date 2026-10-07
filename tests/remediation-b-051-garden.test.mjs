@@ -104,7 +104,7 @@ for (const key of keys) test('R-051-GARDEN-FACT ' + key + ': exact full fields, 
 });
 
 test('R-051-GARDEN-REVERSE: revision-bound six-row events transform; approved garden/rental/pests unchanged', () => {
-  execFileSync('node', [new URL('../docs/audit/checkpoints/b051-events-buildings-19ce85d/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
+  execFileSync('node', [new URL('../docs/audit/checkpoints/b051-craftsmanship-0cedd98/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
 });
 
 for (const id of ids) for (const key of keys) test('R-051-GARDEN-DOCUMENT ' + id + ' ' + key + ': values/refusal/conflicts/Ukjent preserved without a new parent', () => {

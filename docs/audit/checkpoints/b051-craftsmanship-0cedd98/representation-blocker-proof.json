@@ -1,0 +1,53 @@
+{
+  "classification": "READ_ONLY_DIAGNOSIS_NOT_CORRECTION",
+  "tested_HEAD": "0cedd98cc3ae1e885902aba585ef65054985c5e5",
+  "productId": "gjensidige-hus-pluss",
+  "events_effective_json_differences": [
+    {
+      "path": "25.qualificationSource.productCode",
+      "actual_has": false,
+      "expected_has": true,
+      "actual_value": null,
+      "expected_value": null,
+      "expected_is_undefined": true
+    }
+  ],
+  "B050_json_row_differences": [
+    {
+      "path": "2.qualificationSource.productCode",
+      "actual_has": false,
+      "expected_has": true,
+      "actual_value": null,
+      "expected_value": null,
+      "expected_is_undefined": true
+    }
+  ],
+  "raw_reference_correct": true,
+  "all_value_and_serialized_provenance_fields_equal": true,
+  "exact_raw_provenance_fields": [
+    "documentId",
+    "filename",
+    "termsNumber",
+    "effectiveFrom",
+    "company",
+    "url",
+    "section",
+    "page",
+    "version",
+    "productCode"
+  ],
+  "exact_JSON_snapshot_provenance_fields": [
+    "documentId",
+    "filename",
+    "termsNumber",
+    "effectiveFrom",
+    "company",
+    "url",
+    "section",
+    "page",
+    "version"
+  ],
+  "new_independent_root": "JSON_SNAPSHOT_EXPECTED_QUALIFICATION_HAS_RAW_OWN_UNDEFINED_PRODUCTCODE",
+  "correction_performed": false,
+  "diagnostic_note": "Initial read-only probe selected wrong product due to shadowed parameter. Corrected diagnostic uses explicit productId and validates identity before comparison. No application/test change."
+}

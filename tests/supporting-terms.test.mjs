@@ -22,6 +22,52 @@ const terms = (product = 'Kasko') => ({
 });
 const objects = d => d.insuranceData.insurances;
 
+const privateRuntimeMarkers = /ZZ1000|Synthetic-|Produktbeskrivelse|15 000|60 000|8641/;
+const timingStages = new Set(['uploadValidation', 'pdfWorker', 'pdfParsing', 'textExtraction',
+  'inputPreparation', 'aiExtraction', 'structuredOutput', 'normalization', 'documentNormalization',
+  'catalogLookup', 'catalogEnrichment', 'semanticMatching', 'semanticApi', 'response']);
+// Only the telemetry contract's numeric duration fields may contain coincidental
+// digits. Every key, text value and all other numeric output remain inspected.
+function assertPrivateRuntimeMarkersAbsent(value, path = []) {
+  const numericTiming = (path.length === 1 && path[0] === 'totalMs')
+    || (path.length === 2 && path[0] === 'timings' && timingStages.has(path[1]))
+    || (path.length === 3 && ['documents', 'calls'].includes(path[0]) && /^\d+$/u.test(path[1]) && path[2] === 'durationMs')
+    || (path.length === 2 && path[0] === 'semanticMatcher' && path[1] === 'durationMs');
+  if (numericTiming) {
+    assert.equal(typeof value, 'number', path.join('.'));
+    assert.ok(Number.isFinite(value) && value >= 0, path.join('.'));
+  } else if (value && typeof value === 'object') {
+    for (const [key, child] of Object.entries(value)) {
+      assert.doesNotMatch(key, privateRuntimeMarkers);
+      assert.doesNotMatch(key, /^(?:objectId|objectIdentifiers|customerId|customerName|filename|registrationNumber|vin)$/iu);
+      assertPrivateRuntimeMarkersAbsent(child, [...path, key]);
+    }
+  } else if (value !== undefined && value !== null) {
+    assert.doesNotMatch(String(value), privateRuntimeMarkers, path.join('.'));
+  }
+}
+
+test('supporting terms: privacy checks accept coincidental timing digits only in registered numeric duration fields', () => {
+  const duration = 12.338641999999936;
+  assert.match(JSON.stringify(duration), privateRuntimeMarkers); // Reproduce the baseline false positive.
+  assert.doesNotThrow(() => assertPrivateRuntimeMarkersAbsent({ event: 'analysis.metrics', totalMs: duration,
+    timings: { catalogEnrichment: duration }, documents: [{ index: 0, durationMs: duration }],
+    calls: [{ kind: 'extraction', durationMs: duration }], semanticMatcher: { durationMs: duration } }));
+});
+test('supporting terms: privacy checks reject actual marker leaks, private fields and malformed timing output', () => {
+  for (const marker of ['ZZ1000', 'Synthetic-', 'Produktbeskrivelse', '15 000', '60 000', '8641']) {
+    assert.throws(() => assertPrivateRuntimeMarkersAbsent({ nested: [{ message: `prefix ${marker} suffix` }] }));
+    assert.throws(() => assertPrivateRuntimeMarkersAbsent({ timings: { catalogEnrichment: marker } }));
+    assert.throws(() => assertPrivateRuntimeMarkersAbsent({ [marker]: 'otherwise public' }));
+  }
+  assert.throws(() => assertPrivateRuntimeMarkersAbsent({ customerId: 8641 }));
+  assert.throws(() => assertPrivateRuntimeMarkersAbsent({ filename: 'otherwise public' }));
+  assert.throws(() => assertPrivateRuntimeMarkersAbsent({ nested: { value: 8641 } }));
+  assert.throws(() => assertPrivateRuntimeMarkersAbsent({ timings: { unexpectedStage: 12.338641999999936 } }));
+  assert.throws(() => assertPrivateRuntimeMarkersAbsent({ timings: { catalogEnrichment: { value: 8641 } } }));
+  assert.throws(() => assertPrivateRuntimeMarkersAbsent({ totalMs: Number.NaN }));
+});
+
 test('supporting terms: explicit general-terms record is not a standalone customer object', () => {
   assert.equal(objects(pipeline([car(), terms()])).length, 1);
 });
@@ -247,5 +293,5 @@ for(const fail of [false,true])test(`supporting terms: asynchronous PDF pipeline
   assert.equal(calls,fail?3:4);assert.equal(events.filter(e=>e.type==='product_status'&&e.status==='identified').length,fail?3:4);
   assert.deepEqual(['existing','offer'].map(side=>objects(mergeBatchResults(result.results,side,result.partialSuccess)).length),fail?[2,1]:[2,2]);
   assert.doesNotMatch(JSON.stringify(events),/ZZ1000|Synthetic-|Produktbeskrivelse|15 000|60 000|8641/);
-  assert.doesNotMatch(JSON.stringify(telemetry.snapshot(200)),/ZZ1000|Synthetic-|Produktbeskrivelse|15 000|60 000|8641/);
+  assertPrivateRuntimeMarkersAbsent(telemetry.snapshot(200));
 });

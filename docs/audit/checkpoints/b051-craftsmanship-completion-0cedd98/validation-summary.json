@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "tested_baseline": "0cedd98cc3ae1e885902aba585ef65054985c5e5",
+  "candidate_identity_sha256": "8aa20974b6d66fa4446de599e0e4c249ecb0761870a5ce198b432754349d2e5c",
+  "targeted": {
+    "tests": 93,
+    "pass": 93,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "targeted_closure": {
+    "files": 22,
+    "tests": 777,
+    "pass": 777,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "files": 149,
+    "tests": 4118,
+    "pass": 4118,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "remediation": {
+    "files": 51,
+    "tests": 1965,
+    "pass": 1965,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "remediation_manifest": "remediation-manifest.json",
+  "full_manifest": "test-manifest.json",
+  "complete_remediation_selection": "All files containing remediation plus b043-status-parser.test.mjs; all51 executed individually in fullsuite; actual commands and TAP totals recorded. No narrower replacement.",
+  "quality": {
+    "typegen": {
+      "exit_code": 0,
+      "log": "typegen.log.gz",
+      "status": "PASS"
+    },
+    "typescript": {
+      "exit_code": 0,
+      "log": "typescript.log.gz",
+      "status": "PASS"
+    },
+    "eslint": {
+      "exit_code": 0,
+      "log": "eslint.log.gz",
+      "errors": 0,
+      "warnings": 26,
+      "status": "PASS"
+    },
+    "production-build": {
+      "exit_code": 0,
+      "log": "production-build.log.gz",
+      "status": "PASS"
+    },
+    "http-pdf-runtime": {
+      "exit_code": 0,
+      "log": "http-pdf-runtime.log.gz",
+      "status": "PASS"
+    },
+    "diff-check": {
+      "exit_code": 0,
+      "log": "diff-check.log.gz",
+      "status": "PASS"
+    }
+  },
+  "runtime_checks": 22,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0
+}

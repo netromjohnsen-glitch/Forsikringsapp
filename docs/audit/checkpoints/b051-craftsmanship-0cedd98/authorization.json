@@ -1,0 +1,591 @@
+{
+  "classification": "EXPLICIT_USER_AUTHORIZATION",
+  "baseline_revision": "0cedd98cc3ae1e885902aba585ef65054985c5e5",
+  "signatures": [
+    {
+      "signature": "2113807ceb290224",
+      "original_binding": {
+        "signature_id": "2113807ceb290224",
+        "representative_finding_id": "GAP-2154",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2154\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3091\"]",
+        "proposed_existing_keys": "[\"hus.vatrom.selverommet\"]",
+        "semantic_concept": "Håndverkerfeil våtrom",
+        "semantic_dimension": "begrensninger",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2154"
+      ],
+      "source_fact_ids": [
+        "SF-3091"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2154",
+          "finding_ids": [
+            "GAP-2154"
+          ],
+          "source_fact_id": "SF-3091",
+          "source_fact_ids": [
+            "SF-3091"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke eget/ufaglærtarbeid,bakterier/heksesot,kosmetikk,betalingsdyktiggarantiansvarlig.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.vatrom.selverommet"
+          ],
+          "advisor_impact": "Selvbygger/ufaglært/garanti og våtromspesifikke unntak mangler.",
+          "audit_scope_notes": "Selvbygger/ufaglært/garanti og våtromspesifikke unntak mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Våtrom: exclude insured/unspecialised work, bacteria/heksesot, cosmetic-only listed defects and payable third-party guarantee/contract; keep medically unrelated concepts out. Requires explicit Pluss row; do not replace Standard noncoverage.",
+      "existing_representation_keys": [
+        "hus.vatrom.selverommet"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.vatrom.selverommet",
+            "label": "Våtrom – selve rommet",
+            "value": "Skaden innenfor våtrommets bjelkelag er unntatt på Hus.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes ikke",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.vatrom.selverommet",
+            "label": "Våtrom – selve rommet",
+            "value": "Skade på våtrom etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Håndverks- og entreprenørfeil – våtrom",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "239b00779349f2fd",
+      "original_binding": {
+        "signature_id": "239b00779349f2fd",
+        "representative_finding_id": "GAP-2156",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2156\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3093\"]",
+        "proposed_existing_keys": "[\"hus.handverker.folgeskade\"]",
+        "semantic_concept": "Håndverkerfeil øvrig",
+        "semantic_dimension": "begrensninger",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2156"
+      ],
+      "source_fact_ids": [
+        "SF-3093"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2156",
+          "finding_ids": [
+            "GAP-2156"
+          ],
+          "source_fact_id": "SF-3093",
+          "source_fact_ids": [
+            "SF-3093"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke selvefeil,tilkomstutoverfølgeskadereparasjon,drensledning,eget/ufaglærtarbeid,søl/bakterier/heksesot,kosmetikk,betalingsdyktiggaranti.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.handverker.folgeskade"
+          ],
+          "advisor_impact": "Selvefeilunntak riktig; tilkomst/drensledning/garanti/egetarbeid mangler.",
+          "audit_scope_notes": "Selvefeilunntak riktig; tilkomst/drensledning/garanti/egetarbeid mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Other craft: retain exclusion of actual fault; add insured/unspecialised work, excess access costs beyond consequential repair, søl/bacteria/heksesot, cosmetic-only defects, drain consequences, economically payable guarantee/contract. Keep separate from wetroom rule.",
+      "existing_representation_keys": [
+        "hus.handverker.folgeskade"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.handverker.folgeskade",
+            "label": "Håndverkerfeil",
+            "value": "Følgeskade etter material-, konstruksjons-, prosjekterings- eller montasjefeil er ikke særskilt omfattet på Hus.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes ikke",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.handverker.folgeskade",
+            "label": "Håndverkerfeil",
+            "value": "Følgeskade på bygning etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år. Selve feilen er unntatt utenfor våtrom.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Håndverks- og entreprenørfeil",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "46e94bcf464af845",
+      "original_binding": {
+        "signature_id": "46e94bcf464af845",
+        "representative_finding_id": "GAP-2153",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2153\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3090\"]",
+        "proposed_existing_keys": "[\"hus.vatrom.selverommet\"]",
+        "semantic_concept": "Håndverkerfeil våtrom",
+        "semantic_dimension": "utløser/tid",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2153"
+      ],
+      "source_fact_ids": [
+        "SF-3090"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2153",
+          "finding_ids": [
+            "GAP-2153"
+          ],
+          "source_fact_id": "SF-3090",
+          "source_fact_ids": [
+            "SF-3090"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Skadepåvåtrom etter material/konstruksjon/prosjektering/montasjefeil avfaglært/godkjent;oppståttforsikringstid ogkonstatertinnen10åretterarbeid.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.vatrom.selverommet"
+          ],
+          "advisor_impact": "10år korrekt, men start ved utførtarbeid og skade oppstått i forsikringstid må fremgå.",
+          "audit_scope_notes": "10år korrekt, men start ved utførtarbeid og skade oppstått i forsikringstid må fremgå.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Pluss wetroom: source specified material/construction/design/montage flaw by skilled or approved/registered contractor; DAMAGE ARISES IN INSURANCE PERIOD AND is established within10years FROM WORK. Current ten-year text omits event period/start. Existing row, replacesBase retained.",
+      "existing_representation_keys": [
+        "hus.vatrom.selverommet"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.vatrom.selverommet",
+            "label": "Våtrom – selve rommet",
+            "value": "Skaden innenfor våtrommets bjelkelag er unntatt på Hus.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes ikke",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.vatrom.selverommet",
+            "label": "Våtrom – selve rommet",
+            "value": "Skade på våtrom etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Håndverks- og entreprenørfeil – våtrom",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "57c775ac935fb504",
+      "original_binding": {
+        "signature_id": "57c775ac935fb504",
+        "representative_finding_id": "GAP-2183",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2183\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3140\"]",
+        "proposed_existing_keys": "[\"hus.handverker.folgeskade\"]",
+        "semantic_concept": "Håndverker",
+        "semantic_dimension": "klageforutsetning",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2183"
+      ],
+      "source_fact_ids": [
+        "SF-3140"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2183",
+          "finding_ids": [
+            "GAP-2183"
+          ],
+          "source_fact_id": "SF-3140",
+          "source_fact_ids": [
+            "SF-3140"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Husforsikring-produktside.html",
+          "sha256": "32d491a3f2648199545134ff68994615f45b25f48d169bd3ff43ea61b9bad534",
+          "location": "HTML Skade på våtrom/Følgeskader håndverksfeil",
+          "urls": [
+            "https://www.gjensidige.no/forsikring/boligforsikring/husforsikring"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Produktsideklagetilhåndverkerførstinnen5år;følgeskadehvisikkereparerer/konkursinnen10år.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.handverker.folgeskade"
+          ],
+          "advisor_impact": "Produktsidens klagetilhåndverker innen5år er ikke oppgitt.",
+          "audit_scope_notes": "Produktsidens klagetilhåndverker innen5år er ikke oppgitt.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Website: craft financially responsible5years; if less5years first complain, covered consequential damage if not fixed/bankruptcy within10years. Fullterms10year-work/event qualifiers are not replaced by5year universal cap. Use website as explicit supplementary clause/provenance beside Pluss fullterms, same existing craft family.",
+      "existing_representation_keys": [
+        "hus.handverker.folgeskade"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.handverker.folgeskade",
+            "label": "Håndverkerfeil",
+            "value": "Følgeskade etter material-, konstruksjons-, prosjekterings- eller montasjefeil er ikke særskilt omfattet på Hus.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes ikke",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.handverker.folgeskade",
+            "label": "Håndverkerfeil",
+            "value": "Følgeskade på bygning etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år. Selve feilen er unntatt utenfor våtrom.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Håndverks- og entreprenørfeil",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "af150eab853a1648",
+      "original_binding": {
+        "signature_id": "af150eab853a1648",
+        "representative_finding_id": "GAP-2155",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2155\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3092\"]",
+        "proposed_existing_keys": "[\"hus.handverker.folgeskade\"]",
+        "semantic_concept": "Håndverkerfeil øvrig",
+        "semantic_dimension": "utløser/tid",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2155"
+      ],
+      "source_fact_ids": [
+        "SF-3092"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2155",
+          "finding_ids": [
+            "GAP-2155"
+          ],
+          "source_fact_id": "SF-3092",
+          "source_fact_ids": [
+            "SF-3092"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Følgeskaderpåbygning avfaglært/godkjent feil;oppståttitid ogkonstatertinnen10år.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.handverker.folgeskade"
+          ],
+          "advisor_impact": "10år korrekt, men start ved utførtarbeid og hendelsestid mangler.",
+          "audit_scope_notes": "10år korrekt, men start ved utførtarbeid og hendelsestid mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Pluss OTHER BUILDING CONSEQUENTIAL craft defects by skilled/approved contractor, occurred inperiod and establishedwithin10years fromwork. Keep wetroom actualdamage separate and base noncoverage/Pluss replacesBase.",
+      "existing_representation_keys": [
+        "hus.handverker.folgeskade"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.handverker.folgeskade",
+            "label": "Håndverkerfeil",
+            "value": "Følgeskade etter material-, konstruksjons-, prosjekterings- eller montasjefeil er ikke særskilt omfattet på Hus.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes ikke",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.handverker.folgeskade",
+            "label": "Håndverkerfeil",
+            "value": "Følgeskade på bygning etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år. Selve feilen er unntatt utenfor våtrom.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Håndverks- og entreprenørfeil",
+              "page": 4,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    }
+  ],
+  "approved_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/supporting-terms.test.mjs",
+    "docs/development-agent/current-project-status.md",
+    "docs/development-agent/start.md"
+  ],
+  "audit_directory": "docs/audit/checkpoints/b051-craftsmanship-0cedd98",
+  "source_hashes": {
+    "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+    "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+    "catalog/sources/gjensidige/hus/Husforsikring-produktside.html": "32d491a3f2648199545134ff68994615f45b25f48d169bd3ff43ea61b9bad534"
+  },
+  "planned_compatibility_charge": 0,
+  "authorized_harness_root": "PRIVACY_MARKER_SUBSTRING_IN_NUMERIC_TIMING",
+  "HARNESS_AUTONOMY_V1_before": 18,
+  "HARNESS_AUTONOMY_V1_limit": 12,
+  "no_other_correction_capacity": true,
+  "global_resolved_open": "UNKNOWN",
+  "no_later_scope": true
+}

@@ -10,7 +10,10 @@ import { deriveCanonicalCoverages } from '../lib/coverage-status.ts';
 import { normalizeManualAgreement } from '../lib/manual-agreement.ts';
 import { groupInsurances, groupTerms } from '../lib/comparison.ts';
 import { documentPipeline } from './helpers/supporting-terms.mjs';
-import { baselineCatalog, expectedCatalog, sourceOracle } from '../docs/audit/checkpoints/b051-events-buildings-19ce85d/expected-catalog.mjs';
+import { baselineCatalog, expectedCatalog as previousExpectedCatalog, sourceOracle } from '../docs/audit/checkpoints/b051-events-buildings-19ce85d/expected-catalog.mjs';
+
+import { applyCraftsmanship } from '../docs/audit/checkpoints/b051-craftsmanship-0cedd98/expected-catalog.mjs';
+const expectedCatalog = applyCraftsmanship(previousExpectedCatalog);
 
 const audit = new URL('../docs/audit/checkpoints/b051-events-buildings-19ce85d/', import.meta.url);
 const authorization = JSON.parse(readFileSync(new URL('authorization.json', audit)));
@@ -129,7 +132,7 @@ for (const key of keys) test('R-051-EVENTS-FACT ' + key + ': exact complete row,
 });
 
 test('R-051-EVENTS-REVERSE: six authorized rows only, 316 components/4152 facts/202 products and old eight protected', () => {
-  execFileSync('node', [new URL('catalog-audit.mjs', audit).pathname], { stdio: 'pipe' });
+  execFileSync('node', [new URL('../docs/audit/checkpoints/b051-craftsmanship-0cedd98/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
   const combinations = [[], ['gjensidige-hus-utleie'], ['gjensidige-hus-smart'], ['gjensidige-hus-utleie', 'gjensidige-hus-smart']];
   for (const id of ids) for (const addons of [...combinations, ...(id === ids[0] ? [['gjensidige-hus-rate-insekter']] : [])]) {
     const actual = resolveCatalogFacts(product(id), addons, date);

@@ -93,10 +93,12 @@ test('R-020-06: 53 archived positive controls and all unrelated facts remain unc
   // B-051 advances only source-qualified brukstap/leietap texts; exact delta
   // and all protected facts: b051-rental-loss-use-5718a5f/catalog-delta.json.
   // Permanent source contracts: remediation-b-051.test.mjs.
+  // Only Plus advances for two source-approved craft rows; exact full-field
+  // delta: b051-craftsmanship-0cedd98/catalog-delta.json. Standard hashes stay fixed.
   for (const [id, addons, expected] of [
     [base, [], 'a6beb34048ce6eff8fa5c8854a8a1c96a948d29ac7f9ea83fffe1b5dd91ca297'],
     [base, [addon], 'd4de62d7ef73580dfb281b181c5d27b31d57979296136b7447711542158600b7'],
-    [plus, [], 'cc9902721c5b5a649fb52d4e70bfb49e71269d1b99404bc5646f83454a44346d'],
+    [plus, [], 'db8dab8f453deea98d17797cc9577d6f3debcaa6b281c8bb41f5ca81447abaf9'],
   ]) assert.equal(digest(facts(id, addons).filter(f => !f.key.startsWith('hus.skadedyr.') && f.key !== 'hus.rate.dekning')), expected);
   assert.match(fact(base, 'hus.rate.dekning').value, /unntatt/u);
   assert.match(fact(base, 'hus.skadedyr.grunnunntak').value, /Insekter|insekter/u);
