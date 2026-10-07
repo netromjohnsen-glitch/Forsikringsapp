@@ -1,0 +1,89 @@
+{
+  "classification": "EXPLICIT_REVISION_AND_SCOPE_PARAMETER_ADAPTATION_OF_EXISTING_VERIFIER",
+  "origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/verify.py",
+  "origin_sha256": "b39d8c52389d4d71b3b85669d4700ec2e6fef477db5861f50681eaa846b4741a",
+  "replacement_operations": [
+    {
+      "before": "BASE = '0be8fadb7e90fc527cd81c5ae5c89accabb2deb0'",
+      "after": "BASE = '3947e4e90b9ab09ea46dda659a2271d956ae1dd3'"
+    },
+    {
+      "before": "EXACT = {'a4e5c76df5cbf2af', 'af3a3ee673fedc83'}",
+      "after": "EXACT = {'275365b3ec2971df'}"
+    },
+    {
+      "before": "    auth = read('authorization.json')",
+      "after": "    auth = read('authorization.json')\n    auth = {**auth, 'signatures': [auth['original_binding']], 'sources': auth['frozen_sources'], 'application_files': auth['application_files'] + [str((OUT / 'source-oracle.json').relative_to(ROOT))]}"
+    },
+    {
+      "before": "    assert sha((ROOT / 'lib/gjensidige-hus-catalog.ts').read_bytes()) == read('three-correction-proof.json')['production_sha256_before']\n    generator = read('harness-roots.json')\n    for name, field in generator['preserved_checkpoint_hold_fields'].items():\n        raw = (ROOT / field['origin_path']).read_bytes()\n        assert sha(raw) == field['origin_sha256']\n        assert json.loads(raw)[field['origin_field']] == field['value']\n        assert field['origin_field'] == name\n        assert raw == subprocess.check_output(['git', 'show', BASE + ':' + field['origin_path']], cwd=ROOT)\n    ledger = read('three-correction-authorization-and-ledger.json')\n    assert ledger['HARNESS_AUTONOMY_V1'] == {'before': 25, 'used': 28, 'ordinary_limit': 12, 'scope_before': 1, 'scope_used': 4, 'scope_limit': 6, 'capacity_for_other_roots': 0}\n    assert len(set(ledger['named_roots'])) == 3\n    assert generator['HARNESS_AUTONOMY_V1']['used'] == 25\n    current_ledger = read('lint-matching-authorization-and-ledger.json')\n    assert current_ledger['performed'] is True\n    assert current_ledger['root'] == 'COMPLETION_LINT_DUPLICATE_ONE_TO_ONE_MATCH'\n    assert current_ledger['HARNESS_AUTONOMY_V1'] == {'before': 28, 'used': 29, 'ordinary_limit': 12, 'scope_before': 4, 'scope_used': 5, 'scope_limit': 6, 'capacity_for_other_roots': 0}\n    lint_test = read('lint-matching-test-results.json')\n    assert lint_test['status'] == 'PASS' and lint_test['exit_code'] == 0 and lint_test['tests'] == 8\n    assert sha((OUT / 'lint_matching.py').read_bytes()) == lint_test['matcher_sha256']\n    assert sha((OUT / 'lint_matching_test.py').read_bytes()) == lint_test['test_sha256']\n    assert sha(gzip.decompress((OUT / lint_test['log']).read_bytes())) == lint_test['original_output_sha256']\n    stopped_generator = read('completion-generator-blocker.json')['generator']\n    assert sha(gzip.decompress((OUT / stopped_generator['path']).read_bytes())) == stopped_generator['decoded_sha256']\n    original = read('blocker.json')['generator_evidence']\n    assert sha(gzip.decompress((OUT / original['file']).read_bytes())) == original['decoded_sha256']\n",
+      "after": "    import sys\n    sys.path.insert(0,str(OUT))\n    from receipt_formats import verify_all\n    assert verify_all()['status'] == 'PASS'\n    ledger = read('receipt-format-authorization-and-ledger.json')\n    assert ledger['root'] == 'LIABILITY_PREFLIGHT_EXISTING_RECEIPT_FORMATS'\n    assert ledger['performed'] is True\n    assert ledger['HARNESS_AUTONOMY_V1'] == {'before':29,'used':30,'ordinary_limit':12,'scope_before':0,'scope_used':1,'scope_limit':6,'capacity_for_other_roots':0}\n"
+    },
+    {
+      "before": "== 51",
+      "after": "== 53"
+    },
+    {
+      "before": "cp['HARNESS_AUTONOMY_V1']['used'] == 29 and cp['HARNESS_AUTONOMY_V1']['scope_used'] == 5",
+      "after": "cp['HARNESS_AUTONOMY_V1']['used'] == 30 and cp['HARNESS_AUTONOMY_V1']['scope_used'] == 1"
+    },
+    {
+      "before": "== 53\n    assert cp",
+      "after": "== 54\n    assert cp"
+    },
+    {
+      "before": "== [27, 8, 2, 2]",
+      "after": "== [28, 7, 2, 2]"
+    },
+    {
+      "before": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/completion-b051-partition.json",
+      "after": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/completion-b051-partition.json"
+    },
+    {
+      "before": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-completion-checkpoint.json",
+      "after": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/checkpoint.json"
+    },
+    {
+      "before": "x['label'].startswith('final-targeted-')",
+      "after": "x['label'].startswith('targeted-')"
+    },
+    {
+      "before": "len(targeted) == 25",
+      "after": "len(targeted) == 26"
+    },
+    {
+      "before": "old = warnings(reports(OUT.parent / 'b051-recovery-benefits-69c71dc/final-eslint.log.gz'))",
+      "after": "old = warnings(reports(OUT.parent / 'b051-physical-exclusions-0be8fad/eslint.log.gz'))"
+    },
+    {
+      "before": "move['before']['line'] == move['before']['endLine'] == 54",
+      "after": "move['before']['line'] == move['before']['endLine'] == 55"
+    },
+    {
+      "before": "move['after'] == {**move['before'], 'line': 55, 'endLine': 55}",
+      "after": "move['after'] == {**move['before'], 'line': 56, 'endLine': 56}"
+    },
+    {
+      "before": "decode().splitlines()[53]",
+      "after": "decode().splitlines()[54]"
+    },
+    {
+      "before": "read_text().splitlines()[54]",
+      "after": "read_text().splitlines()[55]"
+    },
+    {
+      "before": "delta['protected_raw_facts'] == 4155 and delta['entirely_unchanged_components'] == 316",
+      "after": "delta['protected_raw_facts'] == 4158 and delta['entirely_unchanged_components'] == 317"
+    },
+    {
+      "before": "'campaign_signatures': 53, 'B051_partition': [27, 8, 2, 2]",
+      "after": "'campaign_signatures': 54, 'B051_partition': [28, 7, 2, 2]"
+    }
+  ],
+  "existing_contracts_preserved": "Full-field immutable receipts, explicit ledger, original binding registry, source hashes, candidate identity, logs, partition, holds, lint multiplicity, complete manifests, links, checksums, allowed file set and whitespace/diff gates",
+  "no_historical_file_changed": true,
+  "import_paths": [
+    "docs/audit/checkpoints/b051-liability-3947e4e",
+    "docs/audit/checkpoints/b051-physical-exclusions-0be8fad"
+  ]
+}

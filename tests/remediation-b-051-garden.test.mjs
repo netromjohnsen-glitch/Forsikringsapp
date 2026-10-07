@@ -1,3 +1,4 @@
+import { applyLiability } from './helpers/b051-liability.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -16,7 +17,7 @@ import { expectedCatalog as previousEventsCatalog } from '../docs/audit/checkpoi
 import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const approvedEventsCatalog = applyPhysical(applyRecovery(applySettlement(previousEventsCatalog)), {jsonSnapshot:true});
+const approvedEventsCatalog = applyLiability(applyPhysical(applyRecovery(applySettlement(previousEventsCatalog)), {jsonSnapshot:true}));
 const audit = new URL('../docs/audit/checkpoints/b051-garden-pier-64dd3cb/', import.meta.url);
 const oracle = JSON.parse(readFileSync(new URL('source-oracle.json', audit)));
 const authorization = JSON.parse(readFileSync(new URL('authorization.json', audit)));
@@ -108,7 +109,7 @@ for (const key of keys) test('R-051-GARDEN-FACT ' + key + ': exact full fields, 
 });
 
 test('R-051-GARDEN-REVERSE: revision-bound six-row events transform; approved garden/rental/pests unchanged', () => {
-  execFileSync('node', [new URL('../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
+  execFileSync('node', [new URL('./helpers/b051-liability.mjs', import.meta.url).pathname,'--audit'], { stdio: 'pipe' });
 });
 
 for (const id of ids) for (const key of keys) test('R-051-GARDEN-DOCUMENT ' + id + ' ' + key + ': values/refusal/conflicts/Ukjent preserved without a new parent', () => {

@@ -59,7 +59,7 @@ for(const key of keys)test('R-051-FACT '+key+': exact value, label, primary and 
 });
 
 test('R-051-REVERSE: historical rental/garden rows remain intact; exact six source-approved events/building transforms',()=>{
- execFileSync('node',[new URL('../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/catalog-audit.mjs',import.meta.url).pathname],{stdio:'pipe'});
+ execFileSync('node',[new URL('./helpers/b051-liability.mjs',import.meta.url).pathname,'--audit'],{stdio:'pipe'});
  for(const id of ids){assert.equal(facts(id,[rental]).filter(f=>keys.includes(f.key)).length,6);assert.equal(facts(id,[rental]).filter(f=>f.key.startsWith('hus.utleie.')).length,5);assert.equal(facts(id,[rental]).find(f=>f.key==='hus.utleie.egenandel').value,'10 000 kroner ved misligholdt husleie og skadeverk av leietaker.');}
 });
 

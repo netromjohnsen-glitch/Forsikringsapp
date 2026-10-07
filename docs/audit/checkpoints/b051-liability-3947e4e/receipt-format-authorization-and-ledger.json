@@ -1,0 +1,25 @@
+{
+  "authorization": "B-051 ANSVAR — RECEIPT-FORMATKONTROLL OG VIDEREFØRING",
+  "root": "LIABILITY_PREFLIGHT_EXISTING_RECEIPT_FORMATS",
+  "performed": true,
+  "status": "PASS",
+  "immutable_receipts_checked": 53,
+  "explicit_formats": 15,
+  "negative_controls": "receipt_formats_test.py checks every required field, wrong types, signature/GAP/SF/product/scope/version, redundant representations, unknown formats and ambiguous recognition for every historical receipt",
+  "mechanical_equivalence": "Only preflight verification uses established explicit receipt fields; no insurance values, scope, customer selection, document priority, provenance or historical receipt bytes change",
+  "initial_error": "blocker.json and failed-preflight.py.gz remain unchanged",
+  "format_controls_initial_result": "format-controls-initial-failure.log.gz; removing a required field could match a different known format; exact immutable signature-to-format association now rejects that downgrade under the same authorized format-recognition root",
+  "format_controls_final_result": "format-controls-pass.log.gz",
+  "HARNESS_AUTONOMY_V1": {
+    "before": 29,
+    "used": 30,
+    "ordinary_limit": 12,
+    "scope_before": 0,
+    "scope_used": 1,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0
+  },
+  "historical_counters": "UNCHANGED",
+  "global_resolved_open": "UNKNOWN",
+  "no_other_root_authorized": true
+}

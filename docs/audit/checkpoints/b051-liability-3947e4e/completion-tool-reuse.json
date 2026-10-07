@@ -1,0 +1,89 @@
+{
+  "origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/completion_generator.py",
+  "origin_sha256": "f07f5843a087c8cf7827f4ef03cb9960ea45d92ae42dc9deb47665088be5b741",
+  "execution": "Existing summary, partition/checkpoint and per-receipt construction statements executed in memory; historical tool/output unchanged",
+  "explicit_parameter_changes": {
+    "baseline": "3947e4e90b9ab09ea46dda659a2271d956ae1dd3",
+    "output": "docs/audit/checkpoints/b051-liability-3947e4e",
+    "previous_checkpoint": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/checkpoint.json",
+    "signature_set": [
+      "275365b3ec2971df"
+    ],
+    "summary_replacements": [
+      [
+        "'tests': 164, 'pass': 164, 'log': 'final-targeted-remediation-b-051-physical-exclusions.log.gz'",
+        "'tests':119,'pass':119,'log':'targeted-remediation-b-051-liability.log.gz'"
+      ],
+      [
+        "'prior_tests': 2275, 'prior_files': 53, 'current_tests': 2439, 'current_files': 54, 'added_file': 'tests/remediation-b-051-physical-exclusions.test.mjs', 'added_tests': 164",
+        "'prior_tests':2439,'prior_files':54,'current_tests':2558,'current_files':55,'added_file':'tests/remediation-b-051-liability.test.mjs','added_tests':119"
+      ],
+      [
+        "three frozen sources, four exact GAP/SF bindings, 316 components, 4155 raw facts",
+        "two frozen sources, two exact GAP/SF bindings, 317 components, 4158 raw facts"
+      ],
+      [
+        "summary['fullsuite']['tests'] == 4592 and summary['targeted']['tests'] == 1251",
+        "summary['fullsuite']['tests'] == 4711 and summary['targeted']['tests'] == 1370"
+      ]
+    ],
+    "checkpoint_replacements": [
+      [
+        "publication-completion-checkpoint.json",
+        "checkpoint.json"
+      ],
+      [
+        "'documented_campaign_count': 53",
+        "'documented_campaign_count': 54"
+      ],
+      [
+        "'used': 29, 'ordinary_limit': 12, 'scope_used': 5",
+        "'used': 30, 'ordinary_limit': 12, 'scope_used': 1"
+      ],
+      [
+        "'ledger': 'lint-matching-authorization-and-ledger.json', 'previous_generator_root': 'harness-roots.json'",
+        "'ledger':'receipt-format-authorization-and-ledger.json','historical_ledger':'../b051-physical-exclusions-0be8fad/lint-matching-authorization-and-ledger.json'"
+      ],
+      [
+        "../b051-recovery-benefits-69c71dc/checkpoint.json",
+        "../b051-physical-exclusions-0be8fad/checkpoint.json"
+      ],
+      [
+        "'separate_unresolved_baseline_finding': 'separate-rot-baseline-finding.json'",
+        "'separate_unresolved_baseline_finding':'../b051-physical-exclusions-0be8fad/separate-rot-baseline-finding.json'"
+      ],
+      [
+        "== 53",
+        "== 54"
+      ]
+    ],
+    "receipt_replacements": [
+      [
+        "[oracle['standard'][2]] if sig == 'a4e5c76df5cbf2af' else oracle['standard'][:2] + [oracle['plus']]",
+        "[oracle]"
+      ],
+      [
+        "R-051-PHYSICAL strict-source-fields-and-Pluss-inheritance",
+        "R-051-LIABILITY full-field raw-source/materialized inheritance controls"
+      ],
+      [
+        "tests/remediation-b-051-physical-exclusions.test.mjs",
+        "tests/remediation-b-051-liability.test.mjs"
+      ],
+      [
+        "164/164 matrix tests",
+        "119/119 matrix tests"
+      ],
+      [
+        "'prior_51_receipts'",
+        "'prior_53_receipts'"
+      ],
+      [
+        "lint-matching-authorization-and-ledger.json; three earlier expectation roots in three-correction-authorization-and-ledger.json; initial generator root in harness-roots.json",
+        "receipt-format-authorization-and-ledger.json; one specifically authorized existing receipt format root, no other corrections"
+      ]
+    ]
+  },
+  "no_new_generator": true,
+  "lint_matcher": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/lint_matching.py"
+}

@@ -1,0 +1,42 @@
+{
+  "status": "BLOCKED_BEFORE_PRODUCTION_IMPLEMENTATION",
+  "classification": "NEW_UNAUTHORIZED_HARNESS_ROOT",
+  "root": "PREFLIGHT_PRIOR_RECEIPT_BINDING_FIELD_ASSUMPTION",
+  "signature_scope": [
+    "275365b3ec2971df"
+  ],
+  "expected_and_actual_baseline": "3947e4e90b9ab09ea46dda659a2271d956ae1dd3",
+  "failed_command": [
+    "python",
+    "/tmp/b051-liability-prepare.py"
+  ],
+  "exit_code": 1,
+  "error": "KeyError: original_binding",
+  "cause": "New preflight script assumes all historical receipts contain original_binding; 31 of 53 legitimately use other explicit binding representations. First failure is public-deductible receipt f8bd15c89bc0dbd6.",
+  "failed_script": "failed-preflight.py.gz",
+  "failed_script_original_sha256": "5a264b4724f2af24e6245065720a8040ae53206de479ed2aa2e5489af70ac505",
+  "error_evidence": "preflight-error.txt",
+  "error_evidence_note": "Compact rendering of observed traceback; failed script preserved byte-for-byte separately.",
+  "diagnostic": "receipt-schema-diagnostic.json",
+  "frozen_source_sha256_checks": {
+    "Standard": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+    "Pluss": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+  },
+  "prior_53_receipts_sha_and_status": "PASS",
+  "production_or_application_test_changes": false,
+  "new_completion_receipts": 0,
+  "HARNESS_AUTONOMY_V1": {
+    "used": 29,
+    "ordinary_limit": 12,
+    "scope_used": 0,
+    "remaining_capacity": 0,
+    "new_root_diagnosed_not_corrected_or_charged": true
+  },
+  "minimum_decision": "Authorize one bounded preflight receipt-schema compatibility correction using explicit per-format original binding fields, strict original-register checks and required-field/type rejection, without rewriting receipts or admitting empty fallback. No production semantics change needed for this root.",
+  "all_holds_unchanged": true,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "fullsuite_build_runtime": "NOT_RUN",
+  "publication": "NOT_ATTEMPTED",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

@@ -1,3 +1,4 @@
+import { applyLiability } from './helpers/b051-liability.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
@@ -10,7 +11,8 @@ import {normalizeManualAgreement} from '../lib/manual-agreement.ts';
 import {deriveCanonicalCoverages} from '../lib/coverage-status.ts';
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
-import {baselineCatalog as baseline,expectedCatalog,keys as changedKeys,sourceOracle} from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
+import {baselineCatalog as previousBaseline,expectedCatalog as previousExpectedCatalog,keys as changedKeys,sourceOracle} from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
+const baseline=applyLiability(previousBaseline),expectedCatalog=applyLiability(previousExpectedCatalog);
 const candidate=productCatalog,d=new Date('2026-10-07T12:00:00Z');
 const ids=['gjensidige-hus','gjensidige-hus-pluss'],addon='gjensidige-hus-rate-insekter';
 const keys=[...changedKeys,'hus.rate.dekning'];
@@ -102,4 +104,4 @@ check('rot-baseline-finding-isolated-not-remediated',()=>{
   assert.deepEqual(pick(b,'hus.rate.dekning'),pick(a,'hus.rate.dekning'));
  }
 });
-check('full-field-reverse-audit',()=>execFileSync('node',[new URL('../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/catalog-audit.mjs',import.meta.url).pathname],{stdio:'pipe'}));
+check('full-field-reverse-audit',()=>execFileSync('node',[new URL('./helpers/b051-liability.mjs',import.meta.url).pathname,'--audit'],{stdio:'pipe'}));

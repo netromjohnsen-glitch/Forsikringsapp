@@ -1,0 +1,158 @@
+{
+  "classification": "EXPLICIT_IMPLEMENTATION_AUTHORIZATION",
+  "baseline": "3947e4e90b9ab09ea46dda659a2271d956ae1dd3",
+  "signature": "275365b3ec2971df",
+  "original_binding": {
+    "signature_id": "275365b3ec2971df",
+    "representative_finding_id": "GAP-2104",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2104\", \"GAP-2163\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3017\", \"SF-3104\"]",
+    "proposed_existing_keys": "[\"hus.ansvar.dekning\"]",
+    "semantic_concept": "Ansvar",
+    "semantic_dimension": "unntak",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2104",
+      "finding_ids": [
+        "GAP-2104"
+      ],
+      "source_fact_id": "SF-3017",
+      "source_fact_ids": [
+        "SF-3017"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 6",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Yrke/familie/lånte/leieting/kontrakt,gradvisforurensning/fukt,sopp/råte,styreverv,navngittekjøretøy ogdroneunntak.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.ansvar.dekning"
+      ],
+      "advisor_impact": "Materielle familie/yrke/gradvisforurensning/låntting-unntak mangler.",
+      "audit_scope_notes": "Materielle familie/yrke/gradvisforurensning/låntting-unntak mangler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2163",
+      "finding_ids": [
+        "GAP-2163"
+      ],
+      "source_fact_id": "SF-3104",
+      "source_fact_ids": [
+        "SF-3104"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 7",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Yrke/familie/lånte/leieting/kontrakt,gradvisforurensning/fukt,sopp/råte,styreverv,navngittekjøretøy ogdroneunntak.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.ansvar.dekning"
+      ],
+      "advisor_impact": "Materielle familie/yrke/gradvisforurensning/låntting-unntak mangler.",
+      "audit_scope_notes": "Materielle familie/yrke/gradvisforurensning/låntting-unntak mangler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "page": 6,
+      "command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "6",
+        "-l",
+        "6",
+        "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "-"
+      ],
+      "layout": "source-standard-layout.txt.gz",
+      "original_output_sha256": "1141131171f686962d348acb2ce2851070eb39e3f07d2bd9f9194e1128579af4"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "page": 7,
+      "command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "7",
+        "-l",
+        "7",
+        "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "-"
+      ],
+      "layout": "source-plus-layout.txt.gz",
+      "original_output_sha256": "1141131171f686962d348acb2ce2851070eb39e3f07d2bd9f9194e1128579af4"
+    }
+  ],
+  "application_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051-liability.test.mjs",
+    "tests/helpers/b051-liability.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs"
+  ],
+  "audit_directory": "docs/audit/checkpoints/b051-liability-3947e4e",
+  "status_file": "docs/development-agent/current-project-status.md",
+  "permitted_production_delta": "Only existing gjensidigeHusStandard/hus.ansvar.dekning value and primary page/section; Pluss inherits",
+  "planned_test_changes": "One independent literal source transform, three B020 fingerprints, named B050/B051 full-field/reverse compatibility contracts, new permanent liability matrix",
+  "HARNESS_AUTONOMY_V1": {
+    "used": 30,
+    "ordinary_limit": 12,
+    "scope_used": 1,
+    "capacity_for_other_roots": 0
+  },
+  "historical_counters": "UNCHANGED",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "holds_origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/checkpoint.json",
+  "publication": "Atomic commit/push only after complete PASS using existing secured publish.py; no deploy or later scope",
+  "original_prompt_sha256": "5a499e4ee788bdf308aeca4771ffcc04865bc51e12bcc492a2605ba54a3f841b",
+  "original_prompt_bytes": 5671,
+  "stored_prompt_newlines": "LF; original upload CRLF, content unchanged",
+  "existing_runner": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/run-final-gates.py",
+  "runner_parameter_adaptation": "Reuse original run function, override BASE/OUT/APP in memory; do not mutate historic runner/output",
+  "new_generators": false
+}

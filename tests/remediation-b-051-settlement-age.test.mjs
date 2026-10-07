@@ -1,3 +1,4 @@
+import { applyLiability } from './helpers/b051-liability.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
@@ -13,7 +14,7 @@ import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {baselineCatalog as previousBaseline, expectedCatalog as previousExpectedCatalog, sourceOracle as oracle, commonExceptions, keys} from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const baseline=applyPhysical(applyRecovery(previousBaseline)),expectedCatalog=applyPhysical(applyRecovery(previousExpectedCatalog));
+const baseline=applyLiability(applyPhysical(applyRecovery(previousBaseline))),expectedCatalog=applyLiability(applyPhysical(applyRecovery(previousExpectedCatalog)));
 const candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
 const ids=['gjensidige-hus','gjensidige-hus-pluss'];
 const product=(c,id)=>c.products.find(p=>p.productId===id),fact=(c,key)=>c.facts.gjensidigeHusStandard.find(f=>f.key===key);
@@ -96,4 +97,4 @@ for(const [level,pages,hash]of [['Standard',[16,17],'d237795bdfd0223a9e078bf308d
  const age=text.slice(text.indexOf('I følgende tilfeller trekkes aldersfradrag:'),text.indexOf('Det trekkes ikke egenandel ved:'));
  for(const x of ['plast eller glassfiber','5 %','20 år','den eldste delen','elektrisk utstyr gjelder punkt 2','10 %','5 år','7 år','10 år','maksimalt 80 %','tilhørende rør gjøres ikke fradrag','Ved reparasjon','Ved punktreparasjon','kun av den skadede gjenstand','totalskade av fullverdiforsikret bygning','brann (ild)','lov om naturskadeforsikring § 1'])assert.ok(age.includes(x),x);
 });
-check('reverse-audit',()=>execFileSync('node',[new URL('../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/catalog-audit.mjs',import.meta.url).pathname],{stdio:'pipe'}));
+check('reverse-audit',()=>execFileSync('node',[new URL('./helpers/b051-liability.mjs',import.meta.url).pathname,'--audit'],{stdio:'pipe'}));

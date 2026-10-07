@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "checks": [
+    "exact original registry and bindings",
+    "53 immutable receipts and strict known formats",
+    "54 unique documented set and 28/7/2/2 B051 partition",
+    "all historical holds and counters unchanged",
+    "current candidate and every fresh log identity",
+    "complete full/remediation manifests",
+    "source bytes and source oracle",
+    "full-field multiplicity-aware lint reconciliation",
+    "all relative document links in own original context",
+    "all new/untracked bytes LF and no trailing whitespace",
+    "exact permitted changed/untracked and staged set",
+    "checksums and both diff checks"
+  ],
+  "verifier_origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/verify.py",
+  "verifier_parameters": "verification-parameters.json",
+  "no_published_completion_claim_before_secured_publish": true,
+  "executed_verifier_result": {
+    "status": "PASS",
+    "checksummed_scope": 247,
+    "campaign_signatures": 54,
+    "B051_partition": [
+      28,
+      7,
+      2,
+      2
+    ],
+    "staged": 0,
+    "application_identity_sha256": "87526ca43a1858f60599c08c2f806934beddf24fbfb156f13125620dbbba5f80"
+  },
+  "phase": "Fresh pre-staging verifier execution; same verifier must PASS again with exact staged set before publisher"
+}
