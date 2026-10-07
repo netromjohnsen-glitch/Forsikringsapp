@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "previous_warnings": 27,
+  "current_warnings": 27,
+  "new_warnings": [],
+  "new_errors": 0,
+  "location_only_changes": [
+    {
+      "before": {
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "filePath": "/workspace/Forsikringsapp/tests/remediation-b-051-settlement-age.test.mjs",
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "message": "'protectedCount' is assigned a value but never used.",
+        "line": 57,
+        "column": 5,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 57,
+        "endColumn": 19
+      },
+      "after": {
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "filePath": "/workspace/Forsikringsapp/tests/remediation-b-051-settlement-age.test.mjs",
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "message": "'protectedCount' is assigned a value but never used.",
+        "line": 58,
+        "column": 5,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 58,
+        "endColumn": 19
+      },
+      "evidence": {
+        "baseline_revision": "e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3",
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "before_line": 57,
+        "after_line": 58,
+        "same_declaration_bytes": true,
+        "cause": "One authorized applySmart import before unchanged declaration; all other lint fields exact"
+      }
+    }
+  ],
+  "baseline_log": "docs/audit/checkpoints/b051-health-help-732b4cc/eslint.log.gz",
+  "current_log": "eslint.log.gz",
+  "historical_warning_cleanup": "NOT_AUTHORIZED_NOT_PERFORMED"
+}

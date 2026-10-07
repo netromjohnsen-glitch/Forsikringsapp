@@ -1,0 +1,44 @@
+{
+  "classification": "PREAUTHORIZED_SCOPE_WORK_NOT_MECHANICAL_CORRECTION_ROOTS",
+  "expectation_origin": "Approved proposal.json and original source sections, composed with historical independent expectations",
+  "transform": "tests/helpers/b051-smart.mjs",
+  "owner_only": "gjensidigeHusSmart",
+  "exact_keys": [
+    "hus.service.smart",
+    "hus.service.smart.avtale"
+  ],
+  "files": [
+    "tests/remediation-b-051-smart.test.mjs",
+    "tests/helpers/b051-smart.mjs",
+    "tests/helpers/b051-liability.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs"
+  ],
+  "actual_changed_expected_catalog_files": [
+    "tests/helpers/b051-liability.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs"
+  ],
+  "unchanged_files_with_transitive_coverage": [
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs"
+  ],
+  "no_B020_or_liability_fingerprint_change": true,
+  "raw_contract": "Complete raw source fields including own productCode:undefined remain checked; qualification appended after source",
+  "historical_JSON_contract": "Undefined omitted only for explicit JSON oracle layer; no general sanitization",
+  "historical_audit_packages_changed": false
+}

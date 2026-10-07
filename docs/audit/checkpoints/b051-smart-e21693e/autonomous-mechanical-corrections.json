@@ -1,0 +1,22 @@
+{
+  "policy": "ACTIVE_AUTONOMOUS_EXECUTION",
+  "numeric_stop_quota": null,
+  "historical_33_12_unchanged": true,
+  "roots": [
+    {
+      "id": "SMART_SOURCE_ORACLE_SECTION_FIELD",
+      "before": "Preparation script compared a text string with proposal.source_sections[n], an object",
+      "after": "Compare with the explicit text field",
+      "independent_evidence": "Exact approved proposal schema has title and text; frozen HTML section text matches text exactly, values are original prefix plus this text",
+      "scope": "Audit preparation only; no application or meaning changed"
+    },
+    {
+      "id": "SMART_UNUSED_PREFLIGHT_IMPORT",
+      "before": "Copied probe imported unused availableAddOns; one new lint warning",
+      "after": "Remove only the unused named import before final validation",
+      "independent_evidence": "No invocation or reference in test body; source-derived assertions and all222 controls unchanged; original test/log preserved compressed",
+      "preserved_original_sha256": "8a5d3016af163772e1fb98a0a82125d9f4af36bcba4abd285f95df4d9e701147",
+      "meaning_selection_priority_provenance_unchanged": true
+    }
+  ]
+}

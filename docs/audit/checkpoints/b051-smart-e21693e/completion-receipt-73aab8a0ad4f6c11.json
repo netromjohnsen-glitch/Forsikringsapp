@@ -1,0 +1,105 @@
+{
+  "classification": "CURRENT_COMPLETION_RECEIPT_NOT_RECONSTRUCTED_HISTORICAL_CLOSURE",
+  "signature": "73aab8a0ad4f6c11",
+  "status": "PASS",
+  "original_binding": {
+    "signature_id": "73aab8a0ad4f6c11",
+    "representative_finding_id": "GAP-2128",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2128\", \"GAP-2188\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3058\", \"SF-3145\"]",
+    "proposed_existing_keys": "[\"hus.service.smart.avtale\"]",
+    "semantic_concept": "Smart",
+    "semantic_dimension": "ansvarsgrense",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "tested_revision": "e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3",
+  "candidate_identity_sha256": "131b66951397e1a57615954fb484ba708fda79771815bd581bd699ff27365872",
+  "publication": "Effective published completion only after secure publish.py verifies containing commit on remote main; no future SHA claimed as tested",
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2128",
+      "finding_ids": [
+        "GAP-2128",
+        "GAP-2188"
+      ],
+      "source_fact_id": "SF-3058",
+      "source_fact_ids": [
+        "SF-3058",
+        "SF-3145"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "gjensidige-hus-smart",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Smart-alarmvilkar.html",
+      "sha256": "ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414",
+      "location": "HTML 9",
+      "urls": [
+        "https://www.gjensidige.no/forsikring/boligforsikring/smart/kundeavtale"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tjenestefeildirektetap maks100k,samsvarvilkår9;ingenhendelsesgaranti,indirekte/næring/nett-strømfeilunntatt.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.service.smart.avtale"
+      ],
+      "advisor_impact": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "audit_scope_notes": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "identity": "gjensidigeHusSmartTerms",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-alarmvilkar.html",
+      "sha256": "ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414"
+    },
+    {
+      "identity": "gjensidigeHusSmart",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-produktside.html",
+      "sha256": "a9fcfb36a45ff72352913882955d26fe119b57427532562be1634f274855c530"
+    }
+  ],
+  "canonical_contracts": [
+    {
+      "key": "hus.service.smart.avtale",
+      "label": "Alarmtjenestens avtalevilkår",
+      "previous_value": "Alarmutstyret leies, tjenesten har egne betalings-, installasjons-, bruk- og oppsigelsesvilkår. Forsikringsdekningen og alarmabonnementet må vurderes separat.",
+      "value": "Alarmutstyret leies, tjenesten har egne betalings-, installasjons-, bruk- og oppsigelsesvilkår. Forsikringsdekningen og alarmabonnementet må vurderes separat. Utstyret og Tjenestene er tiltak for å bedre sikkerheten og redusere konsekvensene av uønskede hendelser, og innebærer ingen garanti eller lignende forsikring mot slike hendelser eller ansvar for påfølgende tap. Kunden er innforstått med at det kan forekomme funksjonsfeil på Utstyr. Selskapet er bare ansvarlig for å dekke Kundens direkte økonomiske tap som skyldes: (a) manglende utløsning av alarm eller at nødetatene ikke ble kontaktet når det skulle ha skjedd i henhold til vilkårene i denne avtalen, forutsatt at Kunden har en egnet innboforsikring, eller (b) andre mangler ved Tjenestene, dersom dette ikke skyldes forhold Kunden er ansvarlig for, eller hindringer som er utenfor Selskapets kontroll. Hindringer utenfor Selskapets kontroll omfatter hendelser Selskapet ikke med rimelighet kunne forventes å ha tatt i betraktning på avtaletidspunktet eller unngå eller overvunnet følgende av, som for eksempel feil på tele- eller datanett, linjefeil/skader eller manglende mobil-, wifi-, radio- eller internettdekning, strømbrudd, ustabile temperaturer og temperaturer under null grader på Installasjonsadressen, manglende veiforbindelse eller andre hindringer som skyldes manglende oppfyllelse av krav til Utstyr og Tjenester, eller sikkerhet og arbeidsmiljø for ansatte. Selskapet er ikke ansvarlig for tap som helt eller delvis skyldes brukerfeil eller feil bruk, at Kunden eller brukerne ikke har oppbevart koder og/eller passord på forsvarlig måte eller at Utstyret er koblet fra som følge av betalingsmislighold eller opphør av kontrakten. Selskapet er ikke ansvarlig for tap knyttet til Kundens næringsvirksomhet eller tap som skyldes sikkerhetsmangler ved Utstyr og Tjenester, herunder uteblitt virkning. Selskapet er ikke ansvarlig for tap som oppstår i forbindelse med feil og mangler ved tilknyttede tredjepartstjenester og produkter som Kunden velger å koble Tjenestene og Utstyret opp mot, også når disse tilknyttede Tjenestene eller produktene er levert av Selskapet. Hvis Kunden ikke begrenser tapet ved å treffe rimelige tiltak, er Kunden fullt ut ansvarlig for tapet. På skriftlig forespørsel fra Kunden skal Selskapet utstede gjeldende tekniske samsvarsdokumenter som forsikringsselskaper kan be om. I den utstrekning loven tillater det, er Kunden ansvarlig for skader eller tap som påføres Selskapet som følge av eller i forbindelse med Kundens handlinger eller unnlatelser (inkludert manglende skadebegrensning), herunder brudd på disse vilkårene. Selskapet skal under ingen omstendigheter holdes ansvarlig for Kundens bruk av Tjenestene som ikke er i samsvar med gjeldende lov. Selskapet er ikke ansvarlig, verken i henhold til kontrakt, utenfor kontrakt eller på annen måte, for indirekte tap eller følgeskader som påføres Kunden eller tredjepart, uansett årsak. Selskapets totale erstatningsansvar er i henhold til denne avtalen, Utstyret eller Tjenester, i alle tilfeller begrenset til kr 100 000, samlet eller for en hendelse eller en serie av beslektede hendelser. Ansvarsbegrensningen i henhold til dette punkt har virkning både for ansvar som er uttrykkelig fastsatt i denne avtalen og ansvar som oppstår på grunn av at vilkår i denne avtalen er ugyldige og uten rettsvirkning. Vilkårene i denne kontrakten erstatter alle andre vilkår, garantier og betingelser vedrørende levering eller påstått levering eller manglende levering eller forsinket levering av varer og/eller Tjenester (bortsett fra de som følger av gjeldende forbrukerlovgivning eller –forskrifter) som, hvis ikke det var for dette punktet, ville ha hatt virkning for Selskapet og Kunden. Selskapet er ikke ansvarlig for tap eller kostnader Kunden pådrar seg som følge av eller i forbindelse med handlinger eller unnlatelser av en person som Selskapet har overført sine plikter i henhold til denne avtalen til, forutsatt at Selskapet utviste rimelig aktsomhet ved overføringen. Ingen av partene er ansvarlig overfor den andre for manglende eller forsinket gjennomføring av forpliktelser i henhold til avtalen som skyldes hendelser eller forhold utenfor partens rimelige kontroll, herunder, uten begrensning, arbeidskonflikter eller streik/lockout mellom en part og dens ansatte, naturkatastrofer, avbrudd eller svikt i levering av offentlige tjenester, herunder, men ikke begrenset til, strøm, gass, vann, telefontjenester eller forholdene angitt i annet avsnitt ovenfor, utbrudd av sykdom, herunder, men ikke begrenset til, epidemier eller pandemier eller andre hendelser eller forhold utenfor partens kontroll. Til tross for det forannevnte kan ikke Selskapet kreve oppreisning hvis den aktuelle hendelsen er en hendelse en profesjonell tjenesteyter i bransjen burde har forutsett og tatt sine forholdsregler mot. Ingenting i disse vilkårene skal utelukke eller begrense Selskapets ansvar i den grad det under gjeldende lov ikke kan utelukkes eller begrenses.",
+      "primary": {
+        "documentId": "gjensidigeHusSmartTerms",
+        "page": 1,
+        "section": "9. Selskapets ansvar"
+      }
+    }
+  ],
+  "provenance_full_field_evidence": "catalog-delta.json and R-051-SMART full-field raw/canonical/JSON provenance controls",
+  "permanent_test": "tests/remediation-b-051-smart.test.mjs",
+  "selection_document_priority_proof": "222/222 source/catalog/isolation plus separate baseline/customer characterization tests. Product rows remain optional; known manual catalog only imports Smart when addon explicitly selected. Raw documented values/provenance preserved; no claim of automatic document mapping, Smart canonical status, denial/conflict or repeated addon identity retention.",
+  "closure_gates": "validation-summary.json",
+  "command_log_manifest": "gate-results.json",
+  "reverse_and_isolation": "catalog-delta.json",
+  "prior_56_receipts": "prior-receipts.json",
+  "mechanical_roots": "autonomous-mechanical-corrections.json; historical33/12 unchanged",
+  "separate_rot_status_finding": "Preserved unresolved baseline finding; no closure credit or status change in this scope",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "scope": "BOUNDED_CATALOG_COMPLETION_ONLY",
+  "original_scope_decision": "original-binding-closure-scope.json",
+  "open_customer_findings": "open-smart-customer-findings.json",
+  "not_complete_smart_customer_mode_or_pilot_readiness": true
+}

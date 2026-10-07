@@ -1,0 +1,26 @@
+{
+  "historical": "33/12 unchanged",
+  "numeric_budget_consumption": false,
+  "roots": [
+    {
+      "root": "wrong probe export import",
+      "proof": "canonicalDocumentFactKeys exported only by lib/analysis-output.ts; corrected temporary import, no application change"
+    },
+    {
+      "root": "invalid custom manual fixture with catalog addon",
+      "proof": "lib/manual-agreement.ts rejects addonIds without a secure catalog product on baseline; added exact negative assertions for baseline and memory candidate"
+    },
+    {
+      "root": "oversize extracted support fixture",
+      "proof": "lib/analysis-output.ts term(value) has3000char limit; legitimate bounded supporting snippet used, no catalog-value or source changes"
+    },
+    {
+      "root": "invalid product materialization fixture",
+      "proof": "unsupported products rejected on baseline; eligibility checked via productComparisonProducts and identical rejection asserted on both"
+    },
+    {
+      "root": "temporary test runner reporter parsing",
+      "proof": "node --test default nonTTY spec uses ℹ totals, all ten raw logs exit0; fixed summary-only parser, preserved original logs and unparsed result, no tests removed/repeated"
+    }
+  ]
+}

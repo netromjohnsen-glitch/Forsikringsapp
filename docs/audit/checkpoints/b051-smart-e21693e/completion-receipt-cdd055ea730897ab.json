@@ -1,0 +1,106 @@
+{
+  "classification": "CURRENT_COMPLETION_RECEIPT_NOT_RECONSTRUCTED_HISTORICAL_CLOSURE",
+  "signature": "cdd055ea730897ab",
+  "status": "PASS",
+  "original_binding": {
+    "signature_id": "cdd055ea730897ab",
+    "representative_finding_id": "GAP-2126",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2126\", \"GAP-2186\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3056\", \"SF-3143\"]",
+    "proposed_existing_keys": "[\"hus.service.smart\"]",
+    "semantic_concept": "Smart",
+    "semantic_dimension": "utrykning",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "tested_revision": "e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3",
+  "candidate_identity_sha256": "131b66951397e1a57615954fb484ba708fda79771815bd581bd699ff27365872",
+  "publication": "Effective published completion only after secure publish.py verifies containing commit on remote main; no future SHA claimed as tested",
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2126",
+      "finding_ids": [
+        "GAP-2126",
+        "GAP-2186"
+      ],
+      "source_fact_id": "SF-3056",
+      "source_fact_ids": [
+        "SF-3056",
+        "SF-3143"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "gjensidige-hus-smart",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Smart-alarmvilkar.html",
+      "sha256": "ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414",
+      "location": "HTML 6",
+      "urls": [
+        "https://www.gjensidige.no/forsikring/boligforsikring/smart/kundeavtale"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: 24/7stasjon,vektervedtilgjengelighet/adkomst;ikkegaranti ihel eNorgeellereksakttid;misbrukkanfaktureres.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.service.smart"
+      ],
+      "advisor_impact": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "audit_scope_notes": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "identity": "gjensidigeHusSmartTerms",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-alarmvilkar.html",
+      "sha256": "ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414"
+    },
+    {
+      "identity": "gjensidigeHusSmart",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-produktside.html",
+      "sha256": "a9fcfb36a45ff72352913882955d26fe119b57427532562be1634f274855c530"
+    }
+  ],
+  "canonical_contracts": [
+    {
+      "key": "hus.service.smart",
+      "label": "Hus Smart – alarmtjeneste",
+      "previous_value": "Valgfri alarmtjeneste til Hus eller Hus Pluss, med sensorer koblet til døgnbemannet alarmstasjon for vann og brann; innbruddsalarm kan velges. Alarmprisen er en separat løpende tjenestepris.",
+      "value": "Valgfri alarmtjeneste til Hus eller Hus Pluss, med sensorer koblet til døgnbemannet alarmstasjon for vann og brann; innbruddsalarm kan velges. Alarmprisen er en separat løpende tjenestepris. Hensikten med Alarmtjeneste er å overvåke signaler fra alarmsystem, verifisere signalene og aksjonere i henhold til tjenestebeskrivelsen i punkt 1.8. Leveranse av denne tjenesten utelukker ikke at skader eller hendelser kan oppstå. Selskapets ansvar for slike hendelser er begrenset som beskrevet i punkt 9. Alle alarmsignaler blir fulgt opp av Selskapet eller dets autoriserte partnere, med mindre annet er angitt i disse vilkårene. Det gis ingen garanti, uttrykkelig eller underforstått, for at utrykning vil bli utført av Selskapet eller dets autoriserte partnere. Utrykning kan ikke gjennomføres dersom én eller flere av følgende forutsetninger ikke er oppfylt: Selskapet eller dets autoriserte partnere har ikke vekterdekning i det aktuelle geografiske området. Utrykningsobjektet er ikke tilgjengelig via kjørbar vei, eller adkomst til utrykningsobjektet ikke er mulig til enhver tid, herunder som følge av bom, manglende vintervedlikehold, stengte eller ufremkommelige veier. Når en alarm utløses, tar Selskapet kontakt med Kunden eller kontaktpersonene som er avtalt i Kontaktprosedyren per telefon. Hvis alarmen korrekt avbrytes enten ved kode, stikkord eller annen korrekt avbrytelse, er Selskapets prosedyre å kontakte Kunden ved å sende en SMS for å informere om at alarmen ble utløst og avbrutt på korrekt vis, og at Selskapet innstiller alle videre aksjoner. Ved dialog med Selskapet vedrørende utløst alarm, må Kunden angi stikkordet sitt i samsvar med Kontaktprosedyren. Hvis det tilbys utrykning i området der Installasjonsadressen ligger, foretas utrykninger ved verifiserte alarmer av Selskapets ansatte eller partnere, eller eventuelt brannvesenet og/eller politiet eller andre nødetater, avhengig av geografisk posisjon samt gjeldende lover og forskrifter. Kunden må uansett til enhver tid vurdere behovet for å varsle nødetater utover Selskapets varsling. Ved mistanke om innbrudd, brann eller andre alvorlige hendelser, kan Selskapet, eller deres representanter ta seg inn på Kundens eiendom. Dersom det ikke oppnås kontakt med Kunden eller andre kontaktpersoner ved utrykning, kan Selskapet, for Kundens regning og risiko, iverksette de tiltak Selskapet finner nødvendig for å sikre eiendommen, f.eks. vakthold eller andre fysiske sikringstiltak. Kunden gir Selskapet fullmakt til å kontakte nødetater som brann, politi eller ambulanse dersom Selskapet finner det nødvendig. Selskapet kan fakturere Kunden for rimelige kostnader til utrykning som skyldes misbruk av alarmen. Dersom det fremgår av avtalen at Selskapet skal inspisere eiendommen innvending, skal Kunden til enhver tid sørge for at Selskapet har tilgang til boligen på en enkel måte. Er ikke dette tilgjengelig eller avtalt, vil det kun bli foretatt en utvendig inspeksjon og eventuell utvendig sikring av eiendommen. Hvis Kunden ikke mottar oppringning på telefon eller SMS og det ikke er gjort forsøk på å komme i kontakt med kunden eller varslingslisten, eller ingen uttrykning foretas av Selskapet, dets partnere eller offentlige myndigheter (brann og/eller politi) etter en utløst, verifisert og ikke avbrutt alarm, skal dette håndteres som om det foreligger en feil ved Utstyret eller Tjenestene som Kunden skal melde til Selskapet, se punkt 9 nedenfor. Hvis mobilnettet kobles ut, er ikke Selskapet ansvarlig for å opprettholde Alarmtjenesten eller tilby et erstatningsprodukt. Kunden kan ikke bruke Utstyrets mobilnettilkobling til andre formål enn Alarmtjenestene. Hvis Utstyrets omgivelser endres, kan ikke Selskapet garantere driften av Utstyret. Hvis slike endringer forårsaker gjentatte feil eller falske alarmer, forbeholder Selskapet seg retten til å redusere eller omorganisere Utstyret for Kundens regning.",
+      "primary": {
+        "documentId": "gjensidigeHusSmartTerms",
+        "page": 1,
+        "section": "6. Alarmtjeneste"
+      },
+      "qualification": "preserve full original product-page reference"
+    }
+  ],
+  "provenance_full_field_evidence": "catalog-delta.json and R-051-SMART full-field raw/canonical/JSON provenance controls",
+  "permanent_test": "tests/remediation-b-051-smart.test.mjs",
+  "selection_document_priority_proof": "222/222 source/catalog/isolation plus separate baseline/customer characterization tests. Product rows remain optional; known manual catalog only imports Smart when addon explicitly selected. Raw documented values/provenance preserved; no claim of automatic document mapping, Smart canonical status, denial/conflict or repeated addon identity retention.",
+  "closure_gates": "validation-summary.json",
+  "command_log_manifest": "gate-results.json",
+  "reverse_and_isolation": "catalog-delta.json",
+  "prior_56_receipts": "prior-receipts.json",
+  "mechanical_roots": "autonomous-mechanical-corrections.json; historical33/12 unchanged",
+  "separate_rot_status_finding": "Preserved unresolved baseline finding; no closure credit or status change in this scope",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "scope": "BOUNDED_CATALOG_COMPLETION_ONLY",
+  "original_scope_decision": "original-binding-closure-scope.json",
+  "open_customer_findings": "open-smart-customer-findings.json",
+  "not_complete_smart_customer_mode_or_pilot_readiness": true
+}

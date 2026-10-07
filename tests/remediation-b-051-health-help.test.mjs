@@ -1,3 +1,4 @@
+import {applySmart} from './helpers/b051-smart.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {execFileSync} from 'node:child_process';
@@ -13,7 +14,7 @@ import {deriveCanonicalCoverages,coverageStatusFromText} from '../lib/coverage-s
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {expectedCatalog as previousCatalog} from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const oldOracle=applyLiability(previousCatalog);
+const oldOracle=applySmart(applyLiability(previousCatalog));
 const expectedCatalog=applyHealthHelp(oldOracle);
 
 const key='hus.service.helsehjelp', ids=['gjensidige-hus','gjensidige-hus-pluss'];

@@ -1,0 +1,141 @@
+{
+  "classification": "EXPLICIT_BOUNDED_CATALOG_IMPLEMENTATION",
+  "baseline": "e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3",
+  "signatures": [
+    {
+      "signature_id": "73aab8a0ad4f6c11",
+      "representative_finding_id": "GAP-2128",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2128\", \"GAP-2188\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3058\", \"SF-3145\"]",
+      "proposed_existing_keys": "[\"hus.service.smart.avtale\"]",
+      "semantic_concept": "Smart",
+      "semantic_dimension": "ansvarsgrense",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "cdd055ea730897ab",
+      "representative_finding_id": "GAP-2126",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2126\", \"GAP-2186\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3056\", \"SF-3143\"]",
+      "proposed_existing_keys": "[\"hus.service.smart\"]",
+      "semantic_concept": "Smart",
+      "semantic_dimension": "utrykning",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    }
+  ],
+  "original_bindings": [
+    {
+      "signature": "73aab8a0ad4f6c11",
+      "key": "hus.service.smart.avtale",
+      "pairs": [
+        {
+          "product": "gjensidige-hus",
+          "GAP": "GAP-2128",
+          "SF": "SF-3058"
+        },
+        {
+          "product": "gjensidige-hus-pluss",
+          "GAP": "GAP-2188",
+          "SF": "SF-3145"
+        }
+      ]
+    },
+    {
+      "signature": "cdd055ea730897ab",
+      "key": "hus.service.smart",
+      "pairs": [
+        {
+          "product": "gjensidige-hus",
+          "GAP": "GAP-2126",
+          "SF": "SF-3056"
+        },
+        {
+          "product": "gjensidige-hus-pluss",
+          "GAP": "GAP-2186",
+          "SF": "SF-3143"
+        }
+      ]
+    }
+  ],
+  "frozen_sources": [
+    {
+      "identity": "gjensidigeHusSmartTerms",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-alarmvilkar.html",
+      "sha256": "ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414"
+    },
+    {
+      "identity": "gjensidigeHusSmart",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-produktside.html",
+      "sha256": "a9fcfb36a45ff72352913882955d26fe119b57427532562be1634f274855c530"
+    }
+  ],
+  "application_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051-smart.test.mjs",
+    "tests/helpers/b051-smart.mjs",
+    "tests/helpers/b051-liability.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs"
+  ],
+  "proposal_sha256": "b879440f242e65c29634411c4c6c18e2246f689b8e77711644de1f8193105c81",
+  "catalog_only_completion": true,
+  "open_customer_boundaries": [
+    {
+      "kind": "document_addon_activation",
+      "file": "lib/catalog-enrichment.ts:113",
+      "evidence": "selectedScopedAddOns returns [] for Hus; identical on baseline and memory candidate even named Smart addOns. No new canonical Smart parent exists."
+    },
+    {
+      "kind": "actual_document_mapping",
+      "file": "lib/analysis-output.ts:16",
+      "evidence": "Smart keys not in extraction enum; no existing exact name alias; valid document pipeline uses canonicalKey:null and preserves raw label keys. Comparing against manual selected catalog exposes separate document and hus.service.smart rows. Internally canonical-identified API comparison is not proof of actual extraction mapping."
+    },
+    {
+      "kind": "raw_addon_display",
+      "file": "lib/comparison.ts:195",
+      "evidence": "An explicitly present Smart addOn is displayed when no canonical coverage exists, even when its terms say Ikke valgt or conflicting Valgt/Ikke valgt. Reproduced baseline and candidate. This is a separate preexisting selection/display boundary."
+    },
+    {
+      "kind": "manual_repeat",
+      "evidence": "Repeated extraction enrichment of manually selected Smart drops addOnIds and canonical Smart row identities on both baseline and candidate; values remain. Must preserve/control this known layer transition, not assert full idempotence or silently fix it."
+    }
+  ],
+  "historical_HARNESS_AUTONOMY_V1": "33/12 unchanged",
+  "active_mechanical_policy": "docs/development-agent/workflow.md#aktiv-fullmakt-autonom-gjennomføring",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "publish": "secured publish.py origin HEAD:main only after complete PASS",
+  "no_later_scope_or_deploy": true
+}

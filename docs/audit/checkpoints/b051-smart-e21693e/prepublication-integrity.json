@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "verification_command": [
+    "python",
+    "docs/audit/checkpoints/b051-smart-e21693e/verify.py"
+  ],
+  "prior_pre_stage_result": {
+    "status": "PASS",
+    "checksummed_scope": 272,
+    "campaign_signatures": 58,
+    "B051_partition": [
+      32,
+      3,
+      2,
+      2
+    ],
+    "staged": 0,
+    "application_identity_sha256": "131b66951397e1a57615954fb484ba708fda79771815bd581bd699ff27365872"
+  },
+  "candidate_application_files_unchanged_since_full_gates": true,
+  "current56_prior_receipts_and_historical_checksums_verified_at_original_revision": true,
+  "new_source_hash_and4bindings_pass": true,
+  "links_LF_trailing_whitespace_all_new_files_pass": true,
+  "sensitive_file_scan": "No private keys/live secrets detected; raw baseline is public product catalog, logs use synthetic fixtures",
+  "staged_status_when_checked": 0,
+  "final_required_publication_checks": "Re-run strict verifier with exact staged manifest; checksums/workdiff/stageddiff checked by publish.py before commit/push",
+  "final_staged_integrity_result": {
+    "status": "PASS",
+    "checksummed_scope": 273,
+    "campaign_signatures": 58,
+    "B051_partition": [
+      32,
+      3,
+      2,
+      2
+    ],
+    "staged": 273,
+    "application_identity_sha256": "131b66951397e1a57615954fb484ba708fda79771815bd581bd699ff27365872"
+  }
+}

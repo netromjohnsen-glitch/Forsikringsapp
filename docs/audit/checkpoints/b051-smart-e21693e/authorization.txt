@@ -1,0 +1,163 @@
+B-051 SMART — AUTORISERT AVGRENSET KATALOGIMPLEMENTERING
+
+Les AGENTS.md, gjeldende autonom workflow, checkpoint og
+Smart-preflighten.
+
+Forventet baseline:
+e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3
+
+Verifiser faktisk HEAD, origin/main og remote main.
+Avstem nyere endringer uten å overskrive arbeid.
+
+AUTORISERT SIGNATURSETT
+
+73aab8a0ad4f6c11:
+- Hus: GAP-2128/SF-3058.
+- Hus Pluss: GAP-2188/SF-3145.
+
+cdd055ea730897ab:
+- Hus: GAP-2126/SF-3056.
+- Hus Pluss: GAP-2186/SF-3143.
+
+Scope: ordinary.
+Komponent: gjensidigeHusSmart.
+Tillegg: gjensidige-hus-smart.
+
+1. KATALOGENDRING
+
+Bruk de eksakte fulltekstverdiene og referanseendringene i:
+/tmp/b051-smart-proposal.json
+
+Kontroller forslaget mot originalkildene og bevar det som et
+revisjonsbundet artefakt i den nye bevispakken før implementering.
+Ikke rekonstruer fullteksten fra rapportens sammendrag dersom
+forslaget mangler.
+
+Endre kun to eksisterende rader i lib/gjensidige-hus-catalog.ts:
+
+hus.service.smart:
+- Behold eksisterende gyldig tekst.
+- Tilføy komplett kildebetydning fra punkt 6, Alarmtjeneste.
+- Primærkilde: gjensidigeHusSmartTerms.
+- Section: «6. Alarmtjeneste».
+- Bevar hele tidligere produktnettsidereferansen som supplerende kilde.
+
+hus.service.smart.avtale:
+- Behold eksisterende gyldig tekst.
+- Tilføy komplett kildebetydning fra punkt 9.
+- Bevar kildeidentitet.
+- Section: «9. Selskapets ansvar».
+
+Bevar spesielt:
+- Utrykningens betingelser og at den ikke er garantert.
+- Kundens ansvar for vurdering av varsling av nødetater.
+- Kontakt-, alarm-, adkomst-, sikrings- og kostnadsregler.
+- Ansvarsgrunnlag, kvalifikasjoner og samtlige ansvarsforbehold.
+- Grensen på 100 000 kr med dens eksakte hendelses-/serie-/
+  samlede anvendelse og forbehold for ufravikelig lov.
+
+Tjenestens ansvarsgrense skal ikke fremstilles som Hus-forsikringens
+forsikringssum.
+
+Bevar etiketter, øvrige felt, HTML page: 1 og tredje Smart-rad,
+inkludert egenandelsreduksjonen på inntil 8 000 kr.
+Ingen udokumentert sourceType, versjon eller ikrafttredelsesdato.
+
+Verifiser:
+Alarmvilkår:
+ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414
+Produktnettside:
+a9fcfb36a45ff72352913882955d26fe119b57427532562be1634f274855c530
+
+2. EKSPLISITTE BESLUTNINGSGRENSER
+
+Dette autoriserer katalogfakta og eksisterende produkt-/manuell
+katalogpresentasjon, ikke utvidet kundemodus.
+
+Ingen endring i:
+- Automatisk dokumentaktivering av Hus-tillegg.
+- Ekstraksjonens canonical enum eller dokumentmapping.
+- Canonical Smart-status, avslag eller konflikt.
+- Tilleggsvisningens selection-logikk.
+- Bevaring av addOnIds/Smart-identitet ved gjentatt enrichment.
+
+Bevar baselineoppførselen i dette scopet, men dokumenter de
+påviste begrensningene som åpne funn med reproduksjonsbevis.
+Ikke fremstill dem som godkjent eller korrekt kundeoppførsel.
+
+Ikke bruk interne canonical-fixtures som bevis på faktisk
+dokumentmapping. Test den reelle dokumentpipen separat.
+
+3. TESTER
+
+Opprett:
+tests/remediation-b-051-smart.test.mjs
+
+Implementer én uavhengig, kildebasert Smart-transformasjon.
+Komponer den i de aktive B-051-forventningskatalogene og
+B-050s assertB050OutsideComponent, etter preflightens filinventar.
+
+B-020s og Ansvar-gatens tre fingerprints skal ikke endres.
+Historiske snapshots, receipts og auditpakker er immutable.
+Kandidaten skal ikke være dynamisk fasit.
+
+Test hele kildekontrakten, fire bindinger, provenance,
+optional-produktrolle, manuelt valgt Smart, kunde uten Smart-bevis,
+kundeverdiprioritet, dokumentroller, supportingEvidence,
+begge manuelle modi, tilleggskombinasjoner, gjentatt enrichment,
+samme produkt og begge sammenligningsretninger.
+
+Skill kilde-/katalogassertions fra karakterisering av de
+eksisterende mapping-/selection-begrensningene.
+
+4. AUTONOM GJENNOMFØRING
+
+Bruk den aktiverte autonome workflowen.
+Beviste mekaniske test-/skript-/auditfeil kan rettes selvstendig,
+med samlet rettingslogg og uten numerisk stoppkvote.
+
+Historiske 33/12 bevares uendret.
+Ingen svekkede assertions eller skjulte semantiske rettinger.
+
+Stopp berørt arbeid ved ny kildekonflikt, usikker betydning,
+integritetsavvik eller behov for utvidet mapping/selection/scope.
+
+5. SLUTTGATER OG ISOLASJON
+
+Kjør:
+- Ny gate, kilde-/bindings-/reverse-audit og Smart-matrisen.
+- Relevante tidligere regresjoner.
+- Komplett faktisk remedieringsmanifest og fullsuite.
+- Next typegen, TypeScript og ESLint med lintavstemming.
+- Webpack production build og HTTP/PDF-runtime.
+- Receipt-, checksum-, lenke-, kandidat- og staged-integritet.
+- Arbeidsdiff og staged diff --check, inkludert nye filer.
+
+Verifiser 317 øvrige komponenter, 4157 øvrige råfakta,
+metadata og 202 andre produkters effektive fakta uendret.
+Alle 204 produkters effektive fakta uten Smart skal være uendret.
+
+Bevar alle 56 tidligere receipts, B-020s skadedyrfakta og holds.
+Lag én kompakt bevispakke; referer til gamle pakker fremfor å kopiere.
+
+6. COMPLETION OG PUBLISERING
+
+Før closure: kontroller at begge originalsignaturenes krav faktisk
+dekkes av denne katalogrettingen. Hvis en originalbinding krever
+den uavklarte kundemodusen, behold den åpen og rapporter avgrensningen.
+
+Hvis begge signaturer oppfyller closure-kravene og alle gater består:
+- Opprett to individuelle receipts med tydelig katalogavgrensning.
+- Dokumentert kampanjesett: 58 unike signaturer.
+- B-051: 32 fullført / 3 kandidater /
+  2 revalideringskandidater / 2 holds.
+
+De separate Smart-funnene forblir åpne uansett katalogcompletion.
+Globalt resolved/open forblir UKJENT. Ingen P2-kreditt.
+
+Oppdater checkpoint/prosjektstatus og publiser atomisk med publish.py
+etter PASS og fersk remote-avstemming.
+Verifiser remote SHA, clean working tree og staged = 0.
+
+Ingen force-push, deploy eller senere bolk.
+Full Smart-kundemodus og pilotberedskap skal ikke hevdes.

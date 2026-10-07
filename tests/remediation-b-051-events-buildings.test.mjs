@@ -1,3 +1,4 @@
+import {applySmart} from './helpers/b051-smart.mjs';
 import {applyHealthHelp} from './helpers/b051-health-help.mjs';
 import { applyLiability } from './helpers/b051-liability.mjs';
 import assert from 'node:assert/strict';
@@ -18,8 +19,8 @@ import { applyCraftsmanship } from '../docs/audit/checkpoints/b051-craftsmanship
 import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const baselineCatalog = applyHealthHelp(applyLiability(previousBaselineCatalog));
-const expectedCatalog = applyHealthHelp(applyLiability(applyPhysical(applyRecovery(applySettlement(applyCraftsmanship(previousExpectedCatalog))), {jsonSnapshot:true})));
+const baselineCatalog = applySmart(applyHealthHelp(applyLiability(previousBaselineCatalog)));
+const expectedCatalog = applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(applySettlement(applyCraftsmanship(previousExpectedCatalog))), {jsonSnapshot:true}))));
 
 const audit = new URL('../docs/audit/checkpoints/b051-events-buildings-19ce85d/', import.meta.url);
 const authorization = JSON.parse(readFileSync(new URL('authorization.json', audit)));

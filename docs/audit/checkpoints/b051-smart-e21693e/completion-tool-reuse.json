@@ -1,0 +1,98 @@
+{
+  "origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/completion_generator.py",
+  "origin_sha256": "f07f5843a087c8cf7827f4ef03cb9960ea45d92ae42dc9deb47665088be5b741",
+  "execution": "Existing summary, partition/checkpoint and individual receipt statements executed in memory; no copied/new permanent generator",
+  "explicit_parameter_changes": {
+    "baseline": "e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3",
+    "output": "docs/audit/checkpoints/b051-smart-e21693e",
+    "previous_checkpoint": "docs/audit/checkpoints/b051-health-help-732b4cc/checkpoint.json",
+    "signature_set": [
+      "73aab8a0ad4f6c11",
+      "cdd055ea730897ab"
+    ],
+    "summary_replacements": [
+      [
+        "'tests': 164, 'pass': 164, 'log': 'final-targeted-remediation-b-051-physical-exclusions.log.gz'",
+        "'tests':222,'pass':222,'log':'final-targeted-remediation-b-051-smart.log.gz'"
+      ],
+      [
+        "'prior_tests': 2275, 'prior_files': 53, 'current_tests': 2439, 'current_files': 54, 'added_file': 'tests/remediation-b-051-physical-exclusions.test.mjs', 'added_tests': 164",
+        "'prior_tests':2757,'prior_files':56,'current_tests':2979,'current_files':57,'added_file':'tests/remediation-b-051-smart.test.mjs','added_tests':222"
+      ],
+      [
+        "three frozen sources, four exact GAP/SF bindings, 316 components, 4155 raw facts",
+        "two frozen sources, four exact GAP/SF bindings, 317 components, 4157 raw facts, all204 products without Smart"
+      ],
+      [
+        "summary['fullsuite']['tests'] == 4592 and summary['targeted']['tests'] == 1251",
+        "summary['fullsuite']['tests'] == 5132 and summary['targeted']['tests'] == 1791"
+      ],
+      [
+        "Original blocker and initial targeted records preserved; they are not final validation results",
+        "Initial222-test candidate and targeted records preserved; final records include removed unused import and final identity"
+      ]
+    ],
+    "checkpoint_replacements": [
+      [
+        "publication-completion-checkpoint.json",
+        "checkpoint.json"
+      ],
+      [
+        "'documented_campaign_count': 53",
+        "'documented_campaign_count': 58"
+      ],
+      [
+        "'used': 29, 'ordinary_limit': 12, 'scope_used': 5",
+        "'used': 33, 'ordinary_limit': 12, 'scope_used': 3"
+      ],
+      [
+        "'ledger': 'lint-matching-authorization-and-ledger.json', 'previous_generator_root': 'harness-roots.json'",
+        "'ledger':'../b051-health-help-732b4cc/two-root-authorization-and-ledger.json','previous_root':'../b051-health-help-732b4cc/draft-identifier-authorization-and-ledger.json','status':'HISTORICAL_FROZEN_NO_LONGER_OPERATIONAL_STOP_QUOTA'"
+      ],
+      [
+        "../b051-recovery-benefits-69c71dc/checkpoint.json",
+        "../b051-health-help-732b4cc/checkpoint.json"
+      ],
+      [
+        "'separate_unresolved_baseline_finding': 'separate-rot-baseline-finding.json'",
+        "'separate_unresolved_baseline_finding':'../b051-physical-exclusions-0be8fad/separate-rot-baseline-finding.json'"
+      ],
+      [
+        "== 53",
+        "== 58"
+      ]
+    ],
+    "receipt_replacements": [
+      [
+        "read(OUT / 'source-oracle.json')",
+        "read(OUT / 'proposal.json')"
+      ],
+      [
+        "[oracle['standard'][2]] if sig == 'a4e5c76df5cbf2af' else oracle['standard'][:2] + [oracle['plus']]",
+        "[r for r in oracle['rows']if r['key']==next(b['key']for b in oracle['bindings']if b['signature']==sig)]"
+      ],
+      [
+        "R-051-PHYSICAL strict-source-fields-and-Pluss-inheritance",
+        "R-051-SMART full-field raw/canonical/JSON provenance controls"
+      ],
+      [
+        "tests/remediation-b-051-physical-exclusions.test.mjs",
+        "tests/remediation-b-051-smart.test.mjs"
+      ],
+      [
+        "164/164 matrix tests",
+        "222/222 bounded matrix tests; customer-mode cases are OPEN characterization, not approval"
+      ],
+      [
+        "'prior_51_receipts'",
+        "'prior_56_receipts'"
+      ],
+      [
+        "lint-matching-authorization-and-ledger.json; three earlier expectation roots in three-correction-authorization-and-ledger.json; initial generator root in harness-roots.json",
+        "autonomous-mechanical-corrections.json; historical33/12 unchanged"
+      ]
+    ]
+  },
+  "no_historical_file_changed": true,
+  "lint_matcher": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/lint_matching.py"
+}

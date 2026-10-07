@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "tested_baseline": "e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3",
+  "exact_changed_keys": [
+    "hus.service.smart",
+    "hus.service.smart.avtale"
+  ],
+  "component": "gjensidigeHusSmart",
+  "only_production_file": "lib/gjensidige-hus-catalog.ts",
+  "entirely_unchanged_components": 317,
+  "protected_raw_facts": 4157,
+  "other_products_unchanged": 202,
+  "all_products_without_smart_unchanged": 204,
+  "metadata_unchanged": true,
+  "third_smart_8000_fact_unchanged": true,
+  "B020_and_liability_three_non_smart_fingerprints_unchanged": [
+    {
+      "id": "gjensidige-hus",
+      "addons": [],
+      "before": "d5c72d2f6ab94d0b3e4fd96343d5117ec357f775c5090515f534d4a9b18baa2e",
+      "after": "d5c72d2f6ab94d0b3e4fd96343d5117ec357f775c5090515f534d4a9b18baa2e"
+    },
+    {
+      "id": "gjensidige-hus",
+      "addons": [
+        "gjensidige-hus-rate-insekter"
+      ],
+      "before": "385845464c7ec23331a28d1634f89c92d7bf693c27eab3084347a276487906ee",
+      "after": "385845464c7ec23331a28d1634f89c92d7bf693c27eab3084347a276487906ee"
+    },
+    {
+      "id": "gjensidige-hus",
+      "addons": [
+        "gjensidige-hus-smart"
+      ],
+      "before": "f7a88aa1419a41504f037bedd3b973d5aca40a4ed7fd575b3d691581e85e50c6",
+      "after": "afee03f9d37e4103ffbff3f7888c1df89907d7924d00b91f47767fba2dc413a7"
+    },
+    {
+      "id": "gjensidige-hus-pluss",
+      "addons": [],
+      "before": "29cdf599445370bc905a23455a4ad2ffbf3ed7dd6647ed6948692d1c85483525",
+      "after": "29cdf599445370bc905a23455a4ad2ffbf3ed7dd6647ed6948692d1c85483525"
+    },
+    {
+      "id": "gjensidige-hus-pluss",
+      "addons": [
+        "gjensidige-hus-smart"
+      ],
+      "before": "96b6524d170342bf7832a145f3263a7679573f210c6b00d77f238b713810d3e6",
+      "after": "ab78d6a71a55c4b558ab695682d80e4ed56cbb90fd7616652bcbe1d110f735e0"
+    }
+  ],
+  "source_expectation": "proposal.json exact approved bytes; independent complete original sections6/9; raw preimplementation baseline plus explicit source-derived transformations",
+  "independent_baseline_snapshot": "baseline-snapshot.json",
+  "probes": "pipeline-probes.json.gz"
+}

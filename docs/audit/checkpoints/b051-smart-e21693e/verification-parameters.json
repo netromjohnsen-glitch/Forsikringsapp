@@ -1,0 +1,93 @@
+{
+  "classification": "EXPLICIT_SCOPE_ADAPTATION_OF_EXISTING_VERIFIER",
+  "origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/verify.py",
+  "origin_sha256": "b39d8c52389d4d71b3b85669d4700ec2e6fef477db5861f50681eaa846b4741a",
+  "replacement_operations": [
+    {
+      "before": "BASE = '0be8fadb7e90fc527cd81c5ae5c89accabb2deb0'",
+      "after": "BASE = 'e21693eb4e95fa6ca9bbb5ee8ae55155093b7fb3'"
+    },
+    {
+      "before": "EXACT = {'a4e5c76df5cbf2af', 'af3a3ee673fedc83'}",
+      "after": "EXACT = {'73aab8a0ad4f6c11', 'cdd055ea730897ab'}"
+    },
+    {
+      "before": "    auth = read('authorization.json')",
+      "after": "    auth = read('authorization.json')\n    auth = {**auth, 'sources': auth['frozen_sources'], 'application_files': auth['application_files'] + [str((OUT / 'proposal.json').relative_to(ROOT))]}"
+    },
+    {
+      "before": "    assert sha((ROOT / 'lib/gjensidige-hus-catalog.ts').read_bytes()) == read('three-correction-proof.json')['production_sha256_before']\n    generator = read('harness-roots.json')\n    for name, field in generator['preserved_checkpoint_hold_fields'].items():\n        raw = (ROOT / field['origin_path']).read_bytes()\n        assert sha(raw) == field['origin_sha256']\n        assert json.loads(raw)[field['origin_field']] == field['value']\n        assert field['origin_field'] == name\n        assert raw == subprocess.check_output(['git', 'show', BASE + ':' + field['origin_path']], cwd=ROOT)\n    ledger = read('three-correction-authorization-and-ledger.json')\n    assert ledger['HARNESS_AUTONOMY_V1'] == {'before': 25, 'used': 28, 'ordinary_limit': 12, 'scope_before': 1, 'scope_used': 4, 'scope_limit': 6, 'capacity_for_other_roots': 0}\n    assert len(set(ledger['named_roots'])) == 3\n    assert generator['HARNESS_AUTONOMY_V1']['used'] == 25\n    current_ledger = read('lint-matching-authorization-and-ledger.json')\n    assert current_ledger['performed'] is True\n    assert current_ledger['root'] == 'COMPLETION_LINT_DUPLICATE_ONE_TO_ONE_MATCH'\n    assert current_ledger['HARNESS_AUTONOMY_V1'] == {'before': 28, 'used': 29, 'ordinary_limit': 12, 'scope_before': 4, 'scope_used': 5, 'scope_limit': 6, 'capacity_for_other_roots': 0}\n    lint_test = read('lint-matching-test-results.json')\n    assert lint_test['status'] == 'PASS' and lint_test['exit_code'] == 0 and lint_test['tests'] == 8\n    assert sha((OUT / 'lint_matching.py').read_bytes()) == lint_test['matcher_sha256']\n    assert sha((OUT / 'lint_matching_test.py').read_bytes()) == lint_test['test_sha256']\n    assert sha(gzip.decompress((OUT / lint_test['log']).read_bytes())) == lint_test['original_output_sha256']\n    stopped_generator = read('completion-generator-blocker.json')['generator']\n    assert sha(gzip.decompress((OUT / stopped_generator['path']).read_bytes())) == stopped_generator['decoded_sha256']\n    original = read('blocker.json')['generator_evidence']\n    assert sha(gzip.decompress((OUT / original['file']).read_bytes())) == original['decoded_sha256']\n",
+      "after": "    import sys\n    sys.dont_write_bytecode = True\n    sys.path.insert(0,str(OUT.parent / 'b051-liability-3947e4e'))\n    from receipt_formats import verify_all\n    assert verify_all()['status'] == 'PASS'\n    prior_checkpoint = json.loads((OUT.parent / 'b051-health-help-732b4cc/checkpoint.json').read_text())\n    assert prior_checkpoint['documented_campaign_count'] == 56\n    assert set(prior_checkpoint['documented_campaign_signatures']) == {r['signature']for r in read('prior-receipts.json')}\n    for member in read('prior-receipts.json'):\n        receipt = json.loads((ROOT / member['path']).read_bytes())\n        if 'original_binding' in receipt:\n            assert receipt['original_binding'] == registry[member['signature']]\n    for line in (OUT.parent / 'b051-health-help-732b4cc/SHA256SUMS').read_text().splitlines():\n        digest,path=line.split('  ',1)\n        assert sha(subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT))==digest,path\n    for path,digest in read('baseline-snapshot.json')['lib_files'].items():\n        assert sha(subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT))==digest,path\n        if path!='lib/gjensidige-hus-catalog.ts':assert sha((ROOT/path).read_bytes())==digest,path\n    assert read('autonomous-mechanical-corrections.json')['numeric_stop_quota'] is None\n    assert read('autonomous-mechanical-corrections.json')['historical_33_12_unchanged'] is True\n    assert read('original-binding-closure-scope.json')['status']=='CATALOG_SCOPE_SUPPORTED'\n    assert read('open-smart-customer-findings.json')['all_findings_remain_open'] is True\n    for entry in read('reused-tool-controls.json'):\n        assert entry['status']=='PASS' and entry['exit_code']==0\n        assert sha((ROOT/entry['tool']).read_bytes())==entry['tool_sha256']\n        assert sha(gzip.decompress((OUT/entry['log']).read_bytes()))==entry['original_output_sha256']\n"
+    },
+    {
+      "before": "== 51",
+      "after": "== 56"
+    },
+    {
+      "before": "cp['HARNESS_AUTONOMY_V1']['used'] == 29 and cp['HARNESS_AUTONOMY_V1']['scope_used'] == 5",
+      "after": "cp['HARNESS_AUTONOMY_V1']['used'] == 33 and cp['HARNESS_AUTONOMY_V1']['scope_used'] == 3"
+    },
+    {
+      "before": "== 53\n    assert cp",
+      "after": "== 58\n    assert cp"
+    },
+    {
+      "before": "== [27, 8, 2, 2]",
+      "after": "== [32, 3, 2, 2]"
+    },
+    {
+      "before": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/completion-b051-partition.json",
+      "after": "docs/audit/checkpoints/b051-health-help-732b4cc/completion-b051-partition.json"
+    },
+    {
+      "before": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-completion-checkpoint.json",
+      "after": "docs/audit/checkpoints/b051-health-help-732b4cc/checkpoint.json"
+    },
+    {
+      "before": "len(targeted) == 25",
+      "after": "len(targeted) == 28"
+    },
+    {
+      "before": "old = warnings(reports(OUT.parent / 'b051-recovery-benefits-69c71dc/final-eslint.log.gz'))",
+      "after": "old = warnings(reports(OUT.parent / 'b051-health-help-732b4cc/eslint.log.gz'))"
+    },
+    {
+      "before": "move['before']['line'] == move['before']['endLine'] == 54",
+      "after": "move['before']['line'] == move['before']['endLine'] == 57"
+    },
+    {
+      "before": "move['after'] == {**move['before'], 'line': 55, 'endLine': 55}",
+      "after": "move['after'] == {**move['before'], 'line': 58, 'endLine': 58}"
+    },
+    {
+      "before": "decode().splitlines()[53]",
+      "after": "decode().splitlines()[56]"
+    },
+    {
+      "before": "read_text().splitlines()[54]",
+      "after": "read_text().splitlines()[57]"
+    },
+    {
+      "before": "delta['protected_raw_facts'] == 4155 and delta['entirely_unchanged_components'] == 316",
+      "after": "delta['protected_raw_facts'] == 4157 and delta['entirely_unchanged_components'] == 317"
+    },
+    {
+      "before": "path == str(status.relative_to(ROOT)) or path.startswith",
+      "after": "path in {str(status.relative_to(ROOT)), 'docs/development-agent/workflow.md', 'AGENTS.md'} or path.startswith"
+    },
+    {
+      "before": "[OUT / 'README.md', status]",
+      "after": "[OUT / 'README.md', status, ROOT / 'docs/development-agent/workflow.md', ROOT / 'AGENTS.md']"
+    },
+    {
+      "before": "'campaign_signatures': 53, 'B051_partition': [27, 8, 2, 2]",
+      "after": "'campaign_signatures': 58, 'B051_partition': [32, 3, 2, 2]"
+    }
+  ],
+  "import_paths": [
+    "docs/audit/checkpoints/b051-physical-exclusions-0be8fad"
+  ],
+  "contracts_preserved": "Strict original56 receipts, two bounded catalog receipts, all sources and full candidate/hash/log/manifest/hold/partition/lint/staged/whitespace/link controls. Historical checksum manifests checked at actual prior published baseline e21693e; legitimate source/test scope deltas checked independently.",
+  "no_historical_file_changed": true,
+  "new_workflow_authorized_by": "authorization.txt"
+}

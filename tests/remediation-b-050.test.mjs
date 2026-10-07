@@ -1,3 +1,4 @@
+import {transformSmartRows} from './helpers/b051-smart.mjs';
 import {transformHealthHelpRows} from './helpers/b051-health-help.mjs';
 import { transformLiabilityRows } from './helpers/b051-liability.mjs';
 import test from 'node:test';
@@ -997,7 +998,7 @@ function assertB050OutsideComponent(component, actual, previous) {
   assert.equal(previous.filter(f => approved.some(([key]) => key === f.key)).length, approved.length);
   assert.equal(previous.filter(f => garden.some(([key]) => key === f.key)).length, garden.length);
   assert.equal(previous.filter(f => events.some(([key]) => key === f.key)).length, events.length);
-  assert.deepEqual(actual, transformHealthHelpRows(transformLiabilityRows(transformPhysicalRows(transformRecoveryRows(transformSettlementRows(transformCraftRows(expected, component), component), component), component, {jsonSnapshot:true}), component), component), component);
+  assert.deepEqual(actual, transformSmartRows(transformHealthHelpRows(transformLiabilityRows(transformPhysicalRows(transformRecoveryRows(transformSettlementRows(transformCraftRows(expected, component), component), component), component, {jsonSnapshot:true}), component), component), component, {jsonSnapshot:true}), component);
 }
 
 const rehabilitationBefore = () => JSON.parse(gunzipSync(readFileSync(new URL('../docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/catalog-before.json.gz', import.meta.url))));
