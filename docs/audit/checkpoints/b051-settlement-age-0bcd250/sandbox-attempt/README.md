@@ -1,0 +1,1 @@
+Initial unchanged test invocation blocked by sandbox child-process EPERM (pdftotext/node). Logs are retained; the same commands are rerun with process permission. No assertion or production correction is attributed to this environment limitation.

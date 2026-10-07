@@ -1,0 +1,33 @@
+{
+  "classification": "EXPLICITLY_PREAUTHORIZED_SCOPE_WORK_NOT_CORRECTION_ROOTS",
+  "source": "authorization.md",
+  "files": [
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/gjensidige-hus-catalog.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs"
+  ],
+  "baseline_hashes": {
+    "lib/gjensidige-hus-catalog.ts": "00fd0f3f7659cafd8aa7b520152d1be97e4e4e079149e690fd487581b0cdf6fb",
+    "tests/nito-remediation-b020.test.mjs": "3fd39042390c1e16399a068354b080e2255f1de6890759d4cecd7f9e322d77f9",
+    "tests/gjensidige-hus-catalog.test.mjs": "bc900c825bf86a71ff32f283f80b38f7b6a647dd726113059659ed0d20c0fb5b",
+    "tests/remediation-b-050.test.mjs": "f3589a379a6231307672ad3cbb520dc11f080086f4d914408abcd2a80f54fde8",
+    "tests/remediation-b-051.test.mjs": "cb7901282c21b797d54a5a8d14eceb5eb7c4a76783336fba42c63612a3605c53",
+    "tests/remediation-b-051-garden.test.mjs": "4b3296ff26b9901a06478d4ee885b1fc95cabb29397ca0cb659cb0fbbbe75796",
+    "tests/remediation-b-051-events-buildings.test.mjs": "60af74a2c886a1c2830495981e8fd5877819b00220d738a70356cb35c21f8927",
+    "tests/remediation-b-051-craftsmanship.test.mjs": "a419ab3f678f18bceae15d3f8ae809d8532cf6806b9f3ced05e0ddc904cbadb4"
+  },
+  "fingerprint_evidence": "catalog-delta.json",
+  "independent_expectation_builder": "expected-catalog.mjs",
+  "unchanged_HARNESS_AUTONOMY_V1": {
+    "used": 20,
+    "limit": 12,
+    "scope_used": 0,
+    "new_capacity": 0
+  },
+  "historical_snapshots_immutable": true
+}

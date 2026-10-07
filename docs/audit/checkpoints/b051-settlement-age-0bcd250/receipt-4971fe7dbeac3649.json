@@ -1,0 +1,118 @@
+{
+  "classification": "CURRENT_SOURCE_BACKED_COMPLETION_NOT_HISTORICAL_CLOSURE_RECONSTRUCTION",
+  "status": "PASS",
+  "signature": "4971fe7dbeac3649",
+  "tested_baseline": "0bcd250944853607a01066c2c9566bed0c7118af",
+  "candidate_identity_sha256": "43aec523a7f3fa2d07401d4b9da4b9dbc859f0319e7fefaf8d388a2c069369e4",
+  "original_binding": {
+    "signature_id": "4971fe7dbeac3649",
+    "representative_finding_id": "GAP-2112",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2112\", \"GAP-2171\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3030\", \"SF-3117\"]",
+    "proposed_existing_keys": "[\"hus.gjenoppforing.annetsted\"]",
+    "semantic_concept": "Manglende gjenoppføring",
+    "semantic_dimension": "oppgjør",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "GAP_SF_bindings": [
+    [
+      "GAP-2112",
+      "SF-3030"
+    ],
+    [
+      "GAP-2171",
+      "SF-3117"
+    ]
+  ],
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2112",
+      "finding_ids": [
+        "GAP-2112"
+      ],
+      "source_fact_id": "SF-3030",
+      "source_fact_ids": [
+        "SF-3030"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 16–17",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter5år lavesteavnormaltberegnetoppgjør/verdifall;byggsomskullerivesbarebrukbarematerialer.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.gjenoppforing.annetsted"
+      ],
+      "advisor_impact": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+      "audit_scope_notes": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2171",
+      "finding_ids": [
+        "GAP-2171"
+      ],
+      "source_fact_id": "SF-3117",
+      "source_fact_ids": [
+        "SF-3117"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 17–18",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter5år lavesteavnormaltberegnetoppgjør/verdifall;byggsomskullerivesbarebrukbarematerialer.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.gjenoppforing.annetsted"
+      ],
+      "advisor_impact": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+      "audit_scope_notes": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "authorized_keys": [
+    "hus.gjenoppforing.annetsted"
+  ],
+  "catalog_value_and_provenance_oracle": "source-oracle.json",
+  "full_gate_evidence": "gate-results.json",
+  "current_validation_summary": "validation-summary.json",
+  "isolation_evidence": "catalog-delta.json",
+  "planned_compatibility_work": "planned-test-updates.json",
+  "HARNESS_AUTONOMY_V1": {
+    "before": 20,
+    "after": 20,
+    "ordinary_limit": 12,
+    "scope_corrections": 0,
+    "new_capacity": 0
+  },
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_receipts_preserved": "prior-receipts.json",
+  "publication_revision": "Atomic commit identity is recorded by Git; tested baseline and candidate identity are stated separately."
+}

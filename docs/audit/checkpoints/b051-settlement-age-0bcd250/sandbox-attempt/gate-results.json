@@ -1,0 +1,579 @@
+{
+  "results": [
+    {
+      "label": "targeted-closure-remediation-b-051-settlement-age",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-settlement-age.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 1,
+      "duration_seconds": 7.518,
+      "tap": {
+        "tests": 195,
+        "pass": 192,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-051-settlement-age.log.gz",
+      "log_sha256": "92cf95c05e8e384e939977d9177d28eebb3fd6fc9a37beac9adb61067a366261",
+      "output_sha256": "860aba18698ea702dae994f17b5435a54623975284986c0ee6921791cea8d872",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "FAIL"
+    },
+    {
+      "label": "targeted-closure-remediation-b-051-craftsmanship",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-craftsmanship.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 1,
+      "duration_seconds": 3.169,
+      "tap": {
+        "tests": 93,
+        "pass": 91,
+        "fail": 2,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-051-craftsmanship.log.gz",
+      "log_sha256": "0ca166e92077fa70ee73b1f3fc63564a623d6922c5d83349d86b94a1ab43a61f",
+      "output_sha256": "00d3f41b183cd1212cd5c0ab2995bd286f1d6693f5963a937fd75979efc313b7",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "FAIL"
+    },
+    {
+      "label": "targeted-closure-remediation-b-051-events-buildings",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-events-buildings.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 1,
+      "duration_seconds": 5.414,
+      "tap": {
+        "tests": 30,
+        "pass": 27,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-051-events-buildings.log.gz",
+      "log_sha256": "69c28547f5a08bd9337c54d73e72345aee1712740120331245aee48acfc906a7",
+      "output_sha256": "fd14fb7a1c2ce92aefc5761377d11d3e8e2b19070837f9f30936156abedd16e4",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "FAIL"
+    },
+    {
+      "label": "targeted-closure-remediation-b-051-garden",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-garden.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 1,
+      "duration_seconds": 2.194,
+      "tap": {
+        "tests": 23,
+        "pass": 20,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-051-garden.log.gz",
+      "log_sha256": "a82726d25cd35bdfe130304d229196bc600c140cba0fdcade0242b02d7853dfa",
+      "output_sha256": "fdf3eeaae2d995f0381951ba1fd9451837b452764949d04fd59cbc0b8c811145",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "FAIL"
+    },
+    {
+      "label": "targeted-closure-remediation-b-051",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-051.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 1,
+      "duration_seconds": 2.24,
+      "tap": {
+        "tests": 15,
+        "pass": 13,
+        "fail": 2,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-051.log.gz",
+      "log_sha256": "f004c2b105e78aa6bc26ea551fc41f0db5a05a2c8bbda76b3d3f7102e9f3e264",
+      "output_sha256": "a27b796b79b8d5b4fbe57c0ef492a97f8cae2f39b9ed4a47f5e95c1e6e5a67c8",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "FAIL"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-wave1",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-wave1.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.498,
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-nito-remediation-wave1.log.gz",
+      "log_sha256": "34107c7ade5e34f8983ead09879f251d6fb73b3850f1c417928c7a02b883d6ea",
+      "output_sha256": "0b4a632a430cef61e25cf8dab68cf95f4dffdea40e7b288f9f2a45ef0e39beeb",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-remediation-b-071",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-071.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 1.668,
+      "tap": {
+        "tests": 97,
+        "pass": 97,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-071.log.gz",
+      "log_sha256": "f9f016d143a0fb10e443ea3a9e6147567e5b186de300b1c16c8ba4d6a1198722",
+      "output_sha256": "32549526a5d4140a215f2a09c25b636140d4280849f695a10c62e8d4566715b8",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-b018",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b018.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.467,
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-nito-remediation-b018.log.gz",
+      "log_sha256": "1db57f31e2b2159de5e5557ac7b5d983eec7c51a0e6394b3f9867ea6695d310d",
+      "output_sha256": "8ec2ec82e64a38596ec884538cc6ae4f6339796f0755baeb0a85385baa6164db",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-b022",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b022.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.62,
+      "tap": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-nito-remediation-b022.log.gz",
+      "log_sha256": "026408a5d9f074a7f3f04139ca28a6d4915056d10264fb3740320bb563c4c90f",
+      "output_sha256": "3929ad45d54d96b9be0cf6b6e10c4ddf87135fcfa45030effdbf2d1b30ec8ffe",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-nito-remediation-b020",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/nito-remediation-b020.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 2.171,
+      "tap": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-nito-remediation-b020.log.gz",
+      "log_sha256": "30eaafc934f756fdbe8d4b10d343cab45b77ab1b568af74874bdaf60e627b6e4",
+      "output_sha256": "b6b83ba5e90f50e8bf5b43990b69a4dcb9acc7117222e38731fb77011d3363af",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-remediation-b-050",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-050.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 2.634,
+      "tap": {
+        "tests": 97,
+        "pass": 97,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-050.log.gz",
+      "log_sha256": "b58054852c8f5ea5d87747092407d6236dbc5bbdf7796b66359c576e134e8cb3",
+      "output_sha256": "5d6cb02cfb7b6ef821d6903d6208d3db599b7f09b1c3ac44896423651fed9568",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-remediation-b-072",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/remediation-b-072.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 1.158,
+      "tap": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-remediation-b-072.log.gz",
+      "log_sha256": "4a9330bd894b42db708474a46c4466b1f56fa35238c8be8dd97c651269e873bc",
+      "output_sha256": "442267bb43227c53bc52ca89f90d2c8ebaed0fc7913f55799e62dfacb58d7ce3",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-liv-reduction-selection-evidence",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/liv-reduction-selection-evidence.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 3.632,
+      "tap": {
+        "tests": 103,
+        "pass": 103,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-liv-reduction-selection-evidence.log.gz",
+      "log_sha256": "981393ef35160783a4dddfdb3a4a956bc62d4fab07cce01151bc122c91dcc063",
+      "output_sha256": "cb5caee558f63712c1375a59a1ee0c4478662336ae3f997ba1d799932ee7a91b",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-supporting-terms",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/supporting-terms.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 1.0,
+      "tap": {
+        "tests": 45,
+        "pass": 45,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-supporting-terms.log.gz",
+      "log_sha256": "1483c3e25a576fbe8e3d7eae378dd0ff063422c160de25c0df065e6e58dacbcc",
+      "output_sha256": "f1e7a3c212a68d9f6a24fde8234d14ca859739e0238ecdfbf5f42321aab47fe5",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-catalog-enrichment-provenance",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-enrichment-provenance.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.404,
+      "tap": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-catalog-enrichment-provenance.log.gz",
+      "log_sha256": "11e518ff32eefeee5a31d8f27ce5724b9a5c84339d0f787b82aaad5e7a58f41d",
+      "output_sha256": "818a700e5ed52dbaab9c045134fa2753365cd0f3dbef5282d8a1f504e6c24dd2",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-coverage-status",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/coverage-status.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.267,
+      "tap": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-coverage-status.log.gz",
+      "log_sha256": "f95428b1f46f177c0d146ed26e536afc6f722bcc42eeb5b9408b95c577e4d861",
+      "output_sha256": "dd0d6bf452f1547eade0807b009cdd0aa970a259e58b4098340599b1df131866",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-insurance-normalization",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/insurance-normalization.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.289,
+      "tap": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-insurance-normalization.log.gz",
+      "log_sha256": "544ca70b0c7f21bcf0a486f3ad94ad0060dbf83e89ea976fe0107037dbad5d4f",
+      "output_sha256": "b9f3263a582c30817bf42b364a4f085f01b3edb619ea9860890d1ea2bbb8feba",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-catalog-comparison",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/catalog-comparison.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.371,
+      "tap": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-catalog-comparison.log.gz",
+      "log_sha256": "261a2d4ab2e21958cf6ce92c1bbb1fd64ae3fe2b26241fc51b249c2b63b0baad",
+      "output_sha256": "0114327db232ba2c7a8f76f7baeee27931d98b82f824e6b86bc09e089f7d5fef",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-product-comparison-hardening",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-comparison-hardening.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 1.251,
+      "tap": {
+        "tests": 27,
+        "pass": 27,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-product-comparison-hardening.log.gz",
+      "log_sha256": "398eda660db41513db24d08ef436ed396fdaa901f55583b8c22fedae58d3e597",
+      "output_sha256": "072d9b3a818b32b6a5133dc58870fc8b9d26f9444768cf3ffb9abc969044bc56",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-product-comparison",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/product-comparison.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.563,
+      "tap": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-product-comparison.log.gz",
+      "log_sha256": "1b1b0bde3f4a39f9f72330186cbcceb476ee6bc3541de1fe5ef9e3a02a32f399",
+      "output_sha256": "0bed4fe3fbb5f0c95a12da71b34343cbf5d2d2165157d9a2b6345f26c4592e31",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-manual-agreement",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/manual-agreement.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.27,
+      "tap": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-manual-agreement.log.gz",
+      "log_sha256": "e4bef4b0e99e7bbf7af902d25c18353e2861248a5af06e8e0fef137ef9088889",
+      "output_sha256": "79c4175df459037a151383818effc35d1fc04a4208c13b7703e470544dfabd10",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-boat-pet-catalog",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/boat-pet-catalog.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 0.798,
+      "tap": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-boat-pet-catalog.log.gz",
+      "log_sha256": "3916aa9b2cbb81a25449a7231b7b0c6f1ebd30a5f2eb13cda3c57259dded689d",
+      "output_sha256": "f2c5f33bda6420589e424aff2882a766f1c786a94c297f3b05166a95da4f3640",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "targeted-closure-gjensidige-hus-catalog",
+      "command": [
+        "node",
+        "--test-reporter=tap",
+        "tests/gjensidige-hus-catalog.test.mjs"
+      ],
+      "tested_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+      "exit_code": 0,
+      "duration_seconds": 1.149,
+      "tap": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "targeted-closure-gjensidige-hus-catalog.log.gz",
+      "log_sha256": "5ac75529e1fa73581ec9334cb1475b480bdb2144c7855f251287347efa452007",
+      "output_sha256": "17f0e9e471df12528e1fd2919b191e23bf18ed4dfa46027598085c0bd237d73b",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    }
+  ]
+}

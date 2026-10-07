@@ -134,7 +134,8 @@ test("aldersfradrag er strukturert og unntak er bevart", () => {
     maximumPercent: pipes.maximumPercent, yearBasis: pipes.yearBasis },
   { freeYears: 20, annualPercent: 5, maximumPercent: 80, yearBasis: "started_year" });
   assert.deepEqual(fact(items, "hus.aldersfradrag.integrerte_hvitevarer").structuredValue.exceptions,
-    ["Ingen fradrag ved reparasjon"]);
+    ["Ingen fradrag ved reparasjon", "Ingen aldersfradrag ved totalskade av fullverdiforsikret bygning",
+      "Ingen aldersfradrag ved brann (ild)", "Ingen aldersfradrag ved naturskade jf. lov om naturskadeforsikring § 1"]);
 });
 
 test("Gjensidige Hus sammenlignes med Tryg, If og Storebrand uten kildelekkasje", () => {

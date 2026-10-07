@@ -1,0 +1,678 @@
+{
+  "classification": "EXPLICIT_USER_AUTHORIZATION",
+  "baseline_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+  "attachment_sha256": "6d834575a1fe626833077d13f67e71acbc7a059527e313bd6ec72c9052e1cac3",
+  "signatures": [
+    {
+      "signature_id": "0f7980d6139daa2e",
+      "representative_finding_id": "GAP-2111",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2111\", \"GAP-2170\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3029\", \"SF-3116\"]",
+      "proposed_existing_keys": "[\"hus.forsikringsform\"]",
+      "semantic_concept": "Førsterisiko",
+      "semantic_dimension": "oppgjør",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "4971fe7dbeac3649",
+      "representative_finding_id": "GAP-2112",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2112\", \"GAP-2171\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3030\", \"SF-3117\"]",
+      "proposed_existing_keys": "[\"hus.gjenoppforing.annetsted\"]",
+      "semantic_concept": "Manglende gjenoppføring",
+      "semantic_dimension": "oppgjør",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "6080e5e5a6bb3c63",
+      "representative_finding_id": "GAP-2118",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2118\", \"GAP-2177\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3042\", \"SF-3129\"]",
+      "proposed_existing_keys": "[\"hus.aldersfradrag.utvendige_ledninger\", \"hus.aldersfradrag.oppvarming_vvs\"]",
+      "semantic_concept": "Aldersfradrag",
+      "semantic_dimension": "fritak/beregningsbasis",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "ce381a27b7435bec",
+      "representative_finding_id": "GAP-2117",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2117\", \"GAP-2176\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3036\", \"SF-3123\"]",
+      "proposed_existing_keys": "[\"hus.aldersfradrag.utvendige_ledninger\"]",
+      "semantic_concept": "Aldersfradrag",
+      "semantic_dimension": "utvendigerør",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    }
+  ],
+  "production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "approved_test_files": [
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/gjensidige-hus-catalog.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs"
+  ],
+  "HARNESS_AUTONOMY_V1": {
+    "used_before": 20,
+    "used_after": 20,
+    "limit": 12,
+    "new_correction_capacity": 0
+  },
+  "global_resolved_open": "UNKNOWN",
+  "preflight_entries": [
+    {
+      "signature": "0f7980d6139daa2e",
+      "original_binding": {
+        "signature_id": "0f7980d6139daa2e",
+        "representative_finding_id": "GAP-2111",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2111\", \"GAP-2170\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3029\", \"SF-3116\"]",
+        "proposed_existing_keys": "[\"hus.forsikringsform\"]",
+        "semantic_concept": "Førsterisiko",
+        "semantic_dimension": "oppgjør",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2111",
+        "GAP-2170"
+      ],
+      "source_fact_ids": [
+        "SF-3029",
+        "SF-3116"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2111",
+          "finding_ids": [
+            "GAP-2111"
+          ],
+          "source_fact_id": "SF-3029",
+          "source_fact_ids": [
+            "SF-3029"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 16",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Avtaltsuminnen5år;verdiøkningover40%markedsverdifradrag;nyplass/formålallverdiøkning.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.forsikringsform"
+          ],
+          "advisor_impact": "Førsterisikosum representert;40%verdiøkningsterskel/samme-annetformål mangler.",
+          "audit_scope_notes": "Førsterisikosum representert;40%verdiøkningsterskel/samme-annetformål mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2170",
+          "finding_ids": [
+            "GAP-2170"
+          ],
+          "source_fact_id": "SF-3116",
+          "source_fact_ids": [
+            "SF-3116"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 17",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Avtaltsuminnen5år;verdiøkningover40%markedsverdifradrag;nyplass/formålallverdiøkning.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.forsikringsform"
+          ],
+          "advisor_impact": "Førsterisikosum representert;40%verdiøkningsterskel/samme-annetformål mangler.",
+          "audit_scope_notes": "Førsterisikosum representert;40%verdiøkningsterskel/samme-annetformål mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Keep structured full_value/first_loss forms, default/policy authority and certificate sum. Add first-loss repair/rebuild within5years, deduction only increase over40percent prior market/regulated-farm yield value; elsewhere/new purpose deduct ALL increase. Do not apply first-loss rule to full-value.",
+      "existing_representation_keys": [
+        "hus.forsikringsform"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.forsikringsform",
+            "label": "Forsikringsform",
+            "value": "Fullverdi gir gjenoppføring etter vilkårsreglene uten fast sum. Førsterisiko er begrenset til avtalt forsikringssum. Forsikringsbeviset avgjør formen.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Hus",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            },
+            "structuredValue": {
+              "kind": "insurance_form",
+              "forms": [
+                "full_value",
+                "first_loss"
+              ],
+              "defaultForm": "full_value",
+              "authority": "policy"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "4971fe7dbeac3649",
+      "original_binding": {
+        "signature_id": "4971fe7dbeac3649",
+        "representative_finding_id": "GAP-2112",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2112\", \"GAP-2171\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3030\", \"SF-3117\"]",
+        "proposed_existing_keys": "[\"hus.gjenoppforing.annetsted\"]",
+        "semantic_concept": "Manglende gjenoppføring",
+        "semantic_dimension": "oppgjør",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2112",
+        "GAP-2171"
+      ],
+      "source_fact_ids": [
+        "SF-3030",
+        "SF-3117"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2112",
+          "finding_ids": [
+            "GAP-2112"
+          ],
+          "source_fact_id": "SF-3030",
+          "source_fact_ids": [
+            "SF-3030"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 16–17",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter5år lavesteavnormaltberegnetoppgjør/verdifall;byggsomskullerivesbarebrukbarematerialer.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.gjenoppforing.annetsted"
+          ],
+          "advisor_impact": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+          "audit_scope_notes": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2171",
+          "finding_ids": [
+            "GAP-2171"
+          ],
+          "source_fact_id": "SF-3117",
+          "source_fact_ids": [
+            "SF-3117"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 17–18",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter5år lavesteavnormaltberegnetoppgjør/verdifall;byggsomskullerivesbarebrukbarematerialer.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.gjenoppforing.annetsted"
+          ],
+          "advisor_impact": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+          "audit_scope_notes": "5år utenbygging riktig;bygningbestemtrevets brukbarematerialoppgjør mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Keep5year unrepaired cap=min calculated repair and market/yield decline, add intended-demolition/replacement salvage materials before event and no demolition expense inevitable absent loss. Preserve full-value/first-loss distinctions.",
+      "existing_representation_keys": [
+        "hus.gjenoppforing.annetsted"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.gjenoppforing.annetsted",
+            "label": "Gjenoppføring annet sted eller formål",
+            "value": "Ved annet sted eller annet formål trekkes verdiøkning beregnet som forskjellen i markedsverdi før og etter skade. Manglende reparasjon/gjenoppføring innen fem år begrenses til det laveste av beregnet skade og markedsverdifall.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Hus",
+              "page": 17,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "6080e5e5a6bb3c63",
+      "original_binding": {
+        "signature_id": "6080e5e5a6bb3c63",
+        "representative_finding_id": "GAP-2118",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2118\", \"GAP-2177\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3042\", \"SF-3129\"]",
+        "proposed_existing_keys": "[\"hus.aldersfradrag.utvendige_ledninger\", \"hus.aldersfradrag.oppvarming_vvs\"]",
+        "semantic_concept": "Aldersfradrag",
+        "semantic_dimension": "fritak/beregningsbasis",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2118",
+        "GAP-2177"
+      ],
+      "source_fact_ids": [
+        "SF-3042",
+        "SF-3129"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2118",
+          "finding_ids": [
+            "GAP-2118"
+          ],
+          "source_fact_id": "SF-3042",
+          "source_fact_ids": [
+            "SF-3042"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 17",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Kundenfradragpåskadetobjekt+nødvendigarbeid;ingenfradragfullverditotalskade/brann/natur.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.aldersfradrag.utvendige_ledninger",
+            "hus.aldersfradrag.oppvarming_vvs"
+          ],
+          "advisor_impact": "Beregningsbasis er representert structuredValue;0fradrag totalskade/brann/natur mangler.",
+          "audit_scope_notes": "Beregningsbasis er representert structuredValue;0fradrag totalskade/brann/natur mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2177",
+          "finding_ids": [
+            "GAP-2177"
+          ],
+          "source_fact_id": "SF-3129",
+          "source_fact_ids": [
+            "SF-3129"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 18",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Kundenfradragpåskadetobjekt+nødvendigarbeid;ingenfradragfullverditotalskade/brann/natur.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.aldersfradrag.utvendige_ledninger",
+            "hus.aldersfradrag.oppvarming_vvs"
+          ],
+          "advisor_impact": "Beregningsbasis er representert structuredValue;0fradrag totalskade/brann/natur mangler.",
+          "audit_scope_notes": "Beregningsbasis er representert structuredValue;0fradrag totalskade/brann/natur mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Age deduction calculation already limits damaged object/necessary repair costs. Missing no age deduction for full-value total loss, FIRE and NATURAL DAMAGE. Apply exact exception metadata/text to applicable age rows; do not erase20/5/80 or installation exceptions.",
+      "existing_representation_keys": [
+        "hus.aldersfradrag.utvendige_ledninger",
+        "hus.aldersfradrag.oppvarming_vvs"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.aldersfradrag.utvendige_ledninger",
+            "label": "Aldersfradrag – utvendige ledninger og tanker (ikke plast/glassfiber)",
+            "value": "20 år uten fradrag; deretter 5 % for hvert påbegynte år, maksimalt 80 %.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+              "page": 18,
+              "version": "Alminnelige vilkår"
+            },
+            "structuredValue": {
+              "kind": "age_deduction",
+              "component": "utvendige_ledninger",
+              "scope": "building",
+              "freeYears": 20,
+              "annualPercent": 5,
+              "maximumPercent": 80,
+              "minimumCompensationPercent": 20,
+              "yearBasis": "started_year",
+              "exceptions": [],
+              "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.aldersfradrag.oppvarming_vvs",
+            "label": "Aldersfradrag – andre oppvarmings-, kjøle-, ventilasjons- og VVS-installasjoner",
+            "value": "7 år uten fradrag; deretter 10 % for hvert påbegynte år, maksimalt 80 %.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+              "page": 18,
+              "version": "Alminnelige vilkår"
+            },
+            "structuredValue": {
+              "kind": "age_deduction",
+              "component": "oppvarming_vvs",
+              "scope": "building",
+              "freeYears": 7,
+              "annualPercent": 10,
+              "maximumPercent": 80,
+              "minimumCompensationPercent": 20,
+              "yearBasis": "started_year",
+              "exceptions": [
+                "Tilhørende rør"
+              ],
+              "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "ce381a27b7435bec",
+      "original_binding": {
+        "signature_id": "ce381a27b7435bec",
+        "representative_finding_id": "GAP-2117",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2117\", \"GAP-2176\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3036\", \"SF-3123\"]",
+        "proposed_existing_keys": "[\"hus.aldersfradrag.utvendige_ledninger\"]",
+        "semantic_concept": "Aldersfradrag",
+        "semantic_dimension": "utvendigerør",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2117",
+        "GAP-2176"
+      ],
+      "source_fact_ids": [
+        "SF-3036",
+        "SF-3123"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2117",
+          "finding_ids": [
+            "GAP-2117"
+          ],
+          "source_fact_id": "SF-3036",
+          "source_fact_ids": [
+            "SF-3036"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 17",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikkeplast/glassfiber5%perpåbegyntårfra20,max80,eldstedelbestemmer;elektriskutstyregentabell.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.aldersfradrag.utvendige_ledninger"
+          ],
+          "advisor_impact": "Materialbegrensning ligger faktisk i LABEL og er derfor representert; eldste rørdel ved ulik alder mangler.",
+          "audit_scope_notes": "Materialbegrensning ligger faktisk i LABEL og er derfor representert; eldste rørdel ved ulik alder mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2176",
+          "finding_ids": [
+            "GAP-2176"
+          ],
+          "source_fact_id": "SF-3123",
+          "source_fact_ids": [
+            "SF-3123"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 18",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikkeplast/glassfiber5%perpåbegyntårfra20,max80,eldstedelbestemmer;elektriskutstyregentabell.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.aldersfradrag.utvendige_ledninger"
+          ],
+          "advisor_impact": "Materialbegrensning ligger faktisk i LABEL og er derfor representert; eldste rørdel ved ulik alder mangler.",
+          "audit_scope_notes": "Materialbegrensning ligger faktisk i LABEL og er derfor representert; eldste rørdel ved ulik alder mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Keep nonplastic/glassfiber exteriorpipes/tanks20years then5percent eachSTARTEDyear max80; oldestpiece determines mixed-agebreak, attached electricalequipment different tablepoint2. Existing row missing oldestpiece rule and sourceactualStandard17.",
+      "existing_representation_keys": [
+        "hus.aldersfradrag.utvendige_ledninger"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.aldersfradrag.utvendige_ledninger",
+            "label": "Aldersfradrag – utvendige ledninger og tanker (ikke plast/glassfiber)",
+            "value": "20 år uten fradrag; deretter 5 % for hvert påbegynte år, maksimalt 80 %.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+              "page": 18,
+              "version": "Alminnelige vilkår"
+            },
+            "structuredValue": {
+              "kind": "age_deduction",
+              "component": "utvendige_ledninger",
+              "scope": "building",
+              "freeYears": 20,
+              "annualPercent": 5,
+              "maximumPercent": 80,
+              "minimumCompensationPercent": 20,
+              "yearBasis": "started_year",
+              "exceptions": [],
+              "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    }
+  ]
+}

@@ -1,0 +1,528 @@
+{
+  "status": "PASS",
+  "baseline_revision": "0bcd250944853607a01066c2c9566bed0c7118af",
+  "catalog_components": 318,
+  "entirely_unchanged_components": 317,
+  "protected_raw_facts": 4150,
+  "other_products_unchanged": 202,
+  "all_metadata_unchanged": true,
+  "previous_18_B051_and_B020_pests_unchanged": true,
+  "changes": [
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.forsikringsform",
+      "before": {
+        "key": "hus.forsikringsform",
+        "label": "Forsikringsform",
+        "value": "Fullverdi gir gjenoppføring etter vilkårsreglene uten fast sum. Førsterisiko er begrenset til avtalt forsikringssum. Forsikringsbeviset avgjør formen.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Hus",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "insurance_form",
+          "forms": [
+            "full_value",
+            "first_loss"
+          ],
+          "defaultForm": "full_value",
+          "authority": "policy"
+        }
+      },
+      "after": {
+        "key": "hus.forsikringsform",
+        "label": "Forsikringsform",
+        "value": "Fullverdi gir gjenoppføring etter vilkårsreglene uten fast sum. Førsterisiko er begrenset til avtalt forsikringssum når bygningen repareres eller gjenoppbygges innen fem år. Dersom ny bygning setter sikrede i en vesentlig bedre økonomisk situasjon enn før skaden, gjøres fradrag for den delen av verdiøkningen som overstiger 40 % av bygningens markedsverdi før skaden, eller avkastningsverdien dersom det gjelder konsesjonspliktig landbrukseiendom. Ved gjenoppføring på annet sted eller til annet formål, eksempelvis økning i antall boenheter, gjøres fradrag for enhver verdiøkning når dette innebærer en verdiøkning. Verdiøkningen beregnes som differansen mellom markedsverdien av bygningen før skaden og bygningen som oppføres etter skaden. Forsikringsbeviset avgjør formen.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Hus / Førsterisikoforsikret bygning",
+          "page": 16,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "insurance_form",
+          "forms": [
+            "full_value",
+            "first_loss"
+          ],
+          "defaultForm": "full_value",
+          "authority": "policy"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.gjenoppforing.annetsted",
+      "before": {
+        "key": "hus.gjenoppforing.annetsted",
+        "label": "Gjenoppføring annet sted eller formål",
+        "value": "Ved annet sted eller annet formål trekkes verdiøkning beregnet som forskjellen i markedsverdi før og etter skade. Manglende reparasjon/gjenoppføring innen fem år begrenses til det laveste av beregnet skade og markedsverdifall.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Hus",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        }
+      },
+      "after": {
+        "key": "hus.gjenoppforing.annetsted",
+        "label": "Gjenoppføring annet sted eller formål",
+        "value": "Ved gjenoppføring på annet sted eller til annet formål, eksempelvis økning i antall boenheter, gjøres fradrag for enhver verdiøkning når dette innebærer en verdiøkning. Verdiøkningen beregnes som differansen mellom markedsverdien av bygningen før skaden og bygningen som oppføres etter skaden. For bygning som ikke repareres eller gjenoppføres innen fem år settes erstatningen til det laveste av erstatning etter reglene om hvordan erstatningen blir beregnet og nedgang i bygningens markedsverdi som følge av skaden, eller avkastningsverdien dersom det gjelder konsesjonspliktig landbrukseiendom. For bygning eller bygningsdel som er bestemt revet eller utskiftet beregnes erstatningen til bygningens brukbare materialer før skaden. Rivingsutgifter som ville påløpt uavhengig av skaden erstattes ikke.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Hus / Annet sted eller formål; manglende gjenoppføring; bestemt revet/utskiftet",
+          "page": 16,
+          "version": "Alminnelige vilkår"
+        },
+        "qualificationSource": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Hus / Bygning/bygningsdel som er bestemt revet/utskiftet (fortsettelse)",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.aldersfradrag.utvendige_ledninger",
+      "before": {
+        "key": "hus.aldersfradrag.utvendige_ledninger",
+        "label": "Aldersfradrag – utvendige ledninger og tanker (ikke plast/glassfiber)",
+        "value": "20 år uten fradrag; deretter 5 % for hvert påbegynte år, maksimalt 80 %.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+          "page": 18,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ledninger",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendige_ledninger",
+        "label": "Aldersfradrag – utvendige ledninger og tanker (ikke plast/glassfiber)",
+        "value": "Ved bruddskade på utvendige ledninger eller tanker med tilknyttet utstyr av annet materiale enn plast eller glassfiber gjøres fradrag med 5 % for hvert påbegynte år fra gjenstanden er 20 år, maksimalt 80 %. Ved ulik alder på deler i et brudd legges den eldste delen til grunn. For tilknyttet elektrisk utstyr gjelder aldersfradragsreglene i punkt 2. Aldersfradraget beregnes kun av den skadede gjenstanden og nødvendige kostnader til reparasjon eller utskiftning. Det trekkes ikke aldersfradrag ved totalskade av fullverdiforsikret bygning, brann (ild) eller naturskade jf. lov om naturskadeforsikring § 1.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag / Punkt 1; punkt 2 for elektrisk utstyr; beregningsbasis og fritak",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendige_ledninger",
+          "scope": "building",
+          "freeYears": 20,
+          "annualPercent": 5,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Ingen aldersfradrag ved totalskade av fullverdiforsikret bygning",
+            "Ingen aldersfradrag ved brann (ild)",
+            "Ingen aldersfradrag ved naturskade jf. lov om naturskadeforsikring § 1"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.aldersfradrag.varmepumpe_luft_luft",
+      "before": {
+        "key": "hus.aldersfradrag.varmepumpe_luft_luft",
+        "label": "Aldersfradrag – luft-til-luft-varmepumpe",
+        "value": "5 år uten fradrag; deretter 10 % for hvert påbegynte år, maksimalt 80 %.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+          "page": 18,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "varmepumpe_luft_luft",
+          "scope": "building",
+          "freeYears": 5,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.varmepumpe_luft_luft",
+        "label": "Aldersfradrag – luft-til-luft-varmepumpe",
+        "value": "Ved skade på luft-til-luft-varmepumpe gjøres fradrag med 10 % for hvert påbegynte år fra gjenstanden er fem år, maksimalt 80 %. Aldersfradraget beregnes kun av den skadede gjenstanden og nødvendige kostnader til reparasjon eller utskiftning. Det trekkes ikke aldersfradrag ved totalskade av fullverdiforsikret bygning, brann (ild) eller naturskade jf. lov om naturskadeforsikring § 1.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag / Punkt 2; beregningsbasis og fritak",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "varmepumpe_luft_luft",
+          "scope": "building",
+          "freeYears": 5,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Ingen aldersfradrag ved totalskade av fullverdiforsikret bygning",
+            "Ingen aldersfradrag ved brann (ild)",
+            "Ingen aldersfradrag ved naturskade jf. lov om naturskadeforsikring § 1"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.aldersfradrag.oppvarming_vvs",
+      "before": {
+        "key": "hus.aldersfradrag.oppvarming_vvs",
+        "label": "Aldersfradrag – andre oppvarmings-, kjøle-, ventilasjons- og VVS-installasjoner",
+        "value": "7 år uten fradrag; deretter 10 % for hvert påbegynte år, maksimalt 80 %.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+          "page": 18,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "oppvarming_vvs",
+          "scope": "building",
+          "freeYears": 7,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Tilhørende rør"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.oppvarming_vvs",
+        "label": "Aldersfradrag – andre oppvarmings-, kjøle-, ventilasjons- og VVS-installasjoner",
+        "value": "Ved skade på andre oppvarmingsinstallasjoner, kjøleinstallasjoner, ventilasjon og VVS gjøres fradrag med 10 % for hvert påbegynte år fra gjenstanden er syv år, maksimalt 80 %. For tilhørende rør gjøres ikke fradrag. Aldersfradraget beregnes kun av den skadede gjenstanden og nødvendige kostnader til reparasjon eller utskiftning. Det trekkes ikke aldersfradrag ved totalskade av fullverdiforsikret bygning, brann (ild) eller naturskade jf. lov om naturskadeforsikring § 1.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag / Punkt 2; beregningsbasis og fritak",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "oppvarming_vvs",
+          "scope": "building",
+          "freeYears": 7,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Tilhørende rør",
+            "Ingen aldersfradrag ved totalskade av fullverdiforsikret bygning",
+            "Ingen aldersfradrag ved brann (ild)",
+            "Ingen aldersfradrag ved naturskade jf. lov om naturskadeforsikring § 1"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.aldersfradrag.integrerte_hvitevarer",
+      "before": {
+        "key": "hus.aldersfradrag.integrerte_hvitevarer",
+        "label": "Aldersfradrag – integrerte hvitevarer",
+        "value": "5 år uten fradrag; deretter 10 % for hvert påbegynte år, maksimalt 80 %.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+          "page": 18,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "integrerte_hvitevarer",
+          "scope": "building",
+          "freeYears": 5,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Ingen fradrag ved reparasjon"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.integrerte_hvitevarer",
+        "label": "Aldersfradrag – integrerte hvitevarer",
+        "value": "Ved skade på integrerte hvitevarer gjøres fradrag med 10 % for hvert påbegynte år fra gjenstanden er fem år, maksimalt 80 %. Ved reparasjon gjøres det ikke aldersfradrag. Aldersfradraget beregnes kun av den skadede gjenstanden og nødvendige kostnader til reparasjon eller utskiftning. Det trekkes ikke aldersfradrag ved totalskade av fullverdiforsikret bygning, brann (ild) eller naturskade jf. lov om naturskadeforsikring § 1.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag / Punkt 2; beregningsbasis og fritak",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "integrerte_hvitevarer",
+          "scope": "building",
+          "freeYears": 5,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Ingen fradrag ved reparasjon",
+            "Ingen aldersfradrag ved totalskade av fullverdiforsikret bygning",
+            "Ingen aldersfradrag ved brann (ild)",
+            "Ingen aldersfradrag ved naturskade jf. lov om naturskadeforsikring § 1"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.aldersfradrag.varmekabler_bereder",
+      "before": {
+        "key": "hus.aldersfradrag.varmekabler_bereder",
+        "label": "Aldersfradrag – varmekabler og varmtvannsbereder",
+        "value": "10 år uten fradrag; deretter 10 % for hvert påbegynte år, maksimalt 80 %.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+          "page": 18,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "varmekabler_bereder",
+          "scope": "building",
+          "freeYears": 10,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Ingen fradrag ved punktreparasjon"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.varmekabler_bereder",
+        "label": "Aldersfradrag – varmekabler og varmtvannsbereder",
+        "value": "Ved skade på varmekabler og varmtvannsbereder gjøres fradrag med 10 % for hvert påbegynte år fra gjenstanden er ti år, maksimalt 80 %. Ved punktreparasjon trekkes ikke aldersfradrag. Aldersfradraget beregnes kun av den skadede gjenstanden og nødvendige kostnader til reparasjon eller utskiftning. Det trekkes ikke aldersfradrag ved totalskade av fullverdiforsikret bygning, brann (ild) eller naturskade jf. lov om naturskadeforsikring § 1.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag / Punkt 2; beregningsbasis og fritak",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "varmekabler_bereder",
+          "scope": "building",
+          "freeYears": 10,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Ingen fradrag ved punktreparasjon",
+            "Ingen aldersfradrag ved totalskade av fullverdiforsikret bygning",
+            "Ingen aldersfradrag ved brann (ild)",
+            "Ingen aldersfradrag ved naturskade jf. lov om naturskadeforsikring § 1"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.aldersfradrag.utvendig_badekilde",
+      "before": {
+        "key": "hus.aldersfradrag.utvendig_badekilde",
+        "label": "Aldersfradrag – utvendig badekilde med utstyr",
+        "value": "5 år uten fradrag; deretter 10 % for hvert påbegynte år, maksimalt 80 %.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+          "page": 18,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendig_badekilde",
+          "scope": "building",
+          "freeYears": 5,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      },
+      "after": {
+        "key": "hus.aldersfradrag.utvendig_badekilde",
+        "label": "Aldersfradrag – utvendig badekilde med utstyr",
+        "value": "Ved skade på utvendig badekilde med tilhørende utstyr gjøres fradrag med 10 % for hvert påbegynte år fra gjenstanden er fem år, maksimalt 80 %. Aldersfradraget beregnes kun av den skadede gjenstanden og nødvendige kostnader til reparasjon eller utskiftning. Det trekkes ikke aldersfradrag ved totalskade av fullverdiforsikret bygning, brann (ild) eller naturskade jf. lov om naturskadeforsikring § 1.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Egenandel / Aldersfradrag / Punkt 2; beregningsbasis og fritak",
+          "page": 17,
+          "version": "Alminnelige vilkår"
+        },
+        "structuredValue": {
+          "kind": "age_deduction",
+          "component": "utvendig_badekilde",
+          "scope": "building",
+          "freeYears": 5,
+          "annualPercent": 10,
+          "maximumPercent": 80,
+          "minimumCompensationPercent": 20,
+          "yearBasis": "started_year",
+          "exceptions": [
+            "Ingen aldersfradrag ved totalskade av fullverdiforsikret bygning",
+            "Ingen aldersfradrag ved brann (ild)",
+            "Ingen aldersfradrag ved naturskade jf. lov om naturskadeforsikring § 1"
+          ],
+          "calculationBasis": "Skadet gjenstand og nødvendige reparasjons- eller utskiftningskostnader"
+        }
+      }
+    }
+  ],
+  "fingerprints": [
+    {
+      "product": "gjensidige-hus",
+      "addons": [],
+      "before": "a6beb34048ce6eff8fa5c8854a8a1c96a948d29ac7f9ea83fffe1b5dd91ca297",
+      "after": "6e405017d63a4598ffb52d8d72688287cf99dc16225a4e654d6fc3b4969f6374"
+    },
+    {
+      "product": "gjensidige-hus",
+      "addons": [
+        "gjensidige-hus-rate-insekter"
+      ],
+      "before": "d4de62d7ef73580dfb281b181c5d27b31d57979296136b7447711542158600b7",
+      "after": "a2f7daa7e4c30dd214e15c4d23988a39a3ca370b4247e079538c36d9d2835025"
+    },
+    {
+      "product": "gjensidige-hus-pluss",
+      "addons": [],
+      "before": "db8dab8f453deea98d17797cc9577d6f3debcaa6b281c8bb41f5ca81447abaf9",
+      "after": "815a69a75b9d140e3c0984c9afefebf2292f8d8435e31954fc29076bde240ee9"
+    }
+  ]
+}

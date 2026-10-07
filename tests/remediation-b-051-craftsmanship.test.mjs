@@ -11,7 +11,9 @@ import {normalizeManualAgreement} from '../lib/manual-agreement.ts';
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {relatedCoveragesForInsuranceType} from '../lib/insurance-normalization.ts';
-import {baselineCatalog as baseline, sourceOracle as oracle} from '../docs/audit/checkpoints/b051-craftsmanship-0cedd98/expected-catalog.mjs';
+import {baselineCatalog as previousBaseline, sourceOracle as oracle} from '../docs/audit/checkpoints/b051-craftsmanship-0cedd98/expected-catalog.mjs';
+import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
+const baseline=applySettlement(previousBaseline);
 const candidate=productCatalog;
 const audit=new URL('../docs/audit/checkpoints/b051-craftsmanship-0cedd98/',import.meta.url);
 const keys=Object.keys(oracle),ids=['gjensidige-hus','gjensidige-hus-pluss'];
@@ -208,5 +210,5 @@ for (const key of keys) check('FULL-FACT-' + key, () => {
 });
 
 check('REVERSE', () => {
- execFileSync('node', [new URL('catalog-audit.mjs', audit).pathname], { stdio: 'pipe' });
+ execFileSync('node', [new URL('../docs/audit/checkpoints/b051-settlement-age-0bcd250/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
 });

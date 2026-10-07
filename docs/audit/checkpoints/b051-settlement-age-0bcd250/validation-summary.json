@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "tested_baseline": "0bcd250944853607a01066c2c9566bed0c7118af",
+  "candidate_identity_sha256": "43aec523a7f3fa2d07401d4b9da4b9dbc859f0319e7fefaf8d388a2c069369e4",
+  "targeted": {
+    "files": 23,
+    "tests": 972,
+    "pass": 972,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "files": 150,
+    "tests": 4313,
+    "pass": 4313,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "remediation": {
+    "files": 52,
+    "tests": 2160,
+    "pass": 2160,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "new_gate": {
+    "tests": 195,
+    "pass": 195,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "quality": {
+    "typegen": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "typegen"
+      ],
+      "exit_code": 0
+    },
+    "typescript": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "tsc",
+        "--noEmit",
+        "--incremental",
+        "false"
+      ],
+      "exit_code": 0
+    },
+    "eslint": {
+      "status": "PASS",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    "production-build": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "build",
+        "--webpack"
+      ],
+      "exit_code": 0
+    },
+    "http-pdf-runtime": {
+      "status": "PASS",
+      "command": [
+        "node",
+        "scripts/verify-analysis-http.mjs"
+      ],
+      "exit_code": 0
+    },
+    "diff-check": {
+      "status": "PASS",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  },
+  "eslint": {
+    "errors": 0,
+    "previous_warnings": 26,
+    "current_warnings": 27,
+    "new_warnings": [
+      [
+        "tests/remediation-b-051-settlement-age.test.mjs",
+        "@typescript-eslint/no-unused-vars",
+        "'protectedCount' is assigned a value but never used."
+      ]
+    ],
+    "removed_warnings": [],
+    "disposition": "Non-blocking ESLint warning; preserved and reported. No unauthorized correction or budget consumption. Existing reverse audit asserts exact 4150 protected facts.",
+    "corrections_performed": 0
+  },
+  "HTTP_PDF_runtime_checks": 22,
+  "sandbox_attempt": "sandbox-attempt/README.md",
+  "global_resolved_open": "UNKNOWN"
+}

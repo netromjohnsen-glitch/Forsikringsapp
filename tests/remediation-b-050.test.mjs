@@ -955,6 +955,7 @@ import { transformCraftRows } from '../docs/audit/checkpoints/b051-craftsmanship
 const approvedB051Oracle = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b051-rental-loss-use-5718a5f/source-oracle.json', import.meta.url)));
 const approvedB051GardenOracle = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b051-garden-pier-64dd3cb/source-oracle.json', import.meta.url)));
 const approvedB051EventsOracle = JSON.parse(readFileSync(new URL('../docs/audit/checkpoints/b051-events-buildings-19ce85d/source-oracle.json', import.meta.url)));
+import { transformSettlementRows } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 function assertB050OutsideComponent(component, actual, previous) {
   const events = Object.entries(approvedB051EventsOracle).filter(([, o]) => o.owner === component);
   const approved = Object.entries(approvedB051Oracle).filter(([, o]) => o.owner === component);
@@ -992,7 +993,7 @@ function assertB050OutsideComponent(component, actual, previous) {
   assert.equal(previous.filter(f => approved.some(([key]) => key === f.key)).length, approved.length);
   assert.equal(previous.filter(f => garden.some(([key]) => key === f.key)).length, garden.length);
   assert.equal(previous.filter(f => events.some(([key]) => key === f.key)).length, events.length);
-  assert.deepEqual(actual, transformCraftRows(expected, component), component);
+  assert.deepEqual(actual, transformSettlementRows(transformCraftRows(expected, component), component), component);
 }
 
 const rehabilitationBefore = () => JSON.parse(gunzipSync(readFileSync(new URL('../docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/catalog-before.json.gz', import.meta.url))));
