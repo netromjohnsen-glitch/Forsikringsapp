@@ -1,0 +1,140 @@
+{
+  "status": "BLOCKED_VALIDATION_NEW_UNAUTHORIZED_HARNESS_ROOTS",
+  "baseline_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+  "exact_signatures": [
+    "a4e5c76df5cbf2af",
+    "af3a3ee673fedc83"
+  ],
+  "authorized_generator_correction": "harness-roots.json",
+  "preserved_original_KeyError": "blocker.json",
+  "roots": [
+    {
+      "name": "PLUS_CRAFTSMANSHIP_PDF5_HEADING_EXPECTATION",
+      "test": "R-051-PHYSICAL-159 frozen-source-Pluss",
+      "file": "tests/remediation-b-051-physical-exclusions.test.mjs",
+      "line": 73,
+      "expected": "Håndverks-/entreprenørfeil",
+      "actual_original_heading": "Håndverks- og entreprenørfeil - våtrom",
+      "baseline_source_identical": true,
+      "minimum_correction": "Use the exact PDF5 heading and retain full PDF4 cross-references and PDF6 rot source controls. No production change."
+    },
+    {
+      "name": "IPID_OPTIONAL_EXTENSION_LITERAL_EXPECTATION",
+      "test": "R-051-PHYSICAL-160 ipid-original-bytes-and-optional-extension",
+      "file": "tests/remediation-b-051-physical-exclusions.test.mjs",
+      "line": 80,
+      "expected": "Råte og skadeinsekter",
+      "actual_original_sentence": "Hus standard kan utvides med dekning for sopp, råte og skadeinsekter",
+      "baseline_source_identical": true,
+      "minimum_correction": "Require the complete actual IPID2 optional-extension sentence, preserving frozen hash. No source/admission/production change."
+    },
+    {
+      "name": "PLUS_ORACLE_JSON_PROPERTY_ORDER_FINGERPRINT",
+      "test": "R-020-06",
+      "file": "tests/nito-remediation-b020.test.mjs",
+      "line": 103,
+      "helper": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs: transformPhysicalRows",
+      "actual_keys": [
+        "key",
+        "label",
+        "value",
+        "replacesBase",
+        "source"
+      ],
+      "expected_keys": [
+        "key",
+        "label",
+        "value",
+        "source",
+        "replacesBase"
+      ],
+      "actual_sha256": "70ebaf31a46d4bdd4930973b9b7f89e977128dd6b74edeaaba1386bcf705592a",
+      "expected_sha256": "1a0f476576f6c47eb921ca65cc2b50bfad8d0e2c06bb53e28f18f2a7b8dcf57f",
+      "full_field_deep_equal": true,
+      "minimum_correction": "Make independent oracle insertion order follow the unchanged baseline facts() builder, then verify exact approved delta before updating only affected fingerprint. Do not change hashing globally or use candidate as oracle."
+    }
+  ],
+  "source_and_baseline_proof": {
+    "plus-pdf5": {
+      "original_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+      "same_bytes_on_HEAD": true,
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "pdf_page": 5,
+      "extraction_command": [
+        "pdftotext",
+        "-raw",
+        "-f",
+        "5",
+        "-l",
+        "5",
+        "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "-"
+      ],
+      "log": "plus-pdf5-blocker-source.txt.gz",
+      "original_output_sha256": "2ea8470307ff59ed5df60cb6153b70a23d866ec5366f5d9e3e2cc9c99ee03010"
+    },
+    "ipid-pdf2": {
+      "original_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+      "same_bytes_on_HEAD": true,
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9",
+      "pdf_page": 2,
+      "extraction_command": [
+        "pdftotext",
+        "-raw",
+        "-f",
+        "2",
+        "-l",
+        "2",
+        "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+        "-"
+      ],
+      "log": "ipid-pdf2-blocker-source.txt.gz",
+      "original_output_sha256": "d6d72ca92dce66ca5e833528f39007e5269bebfab1a173eabf4118e777eb0226"
+    },
+    "baseline_fact_builder": {
+      "path": "lib/gjensidige-hus-catalog.ts",
+      "revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+      "function": "facts",
+      "replacesBase_inserted_before_source": true,
+      "raw_field_semantics_equal": true,
+      "fingerprint_is_JSON_order_sensitive": true
+    }
+  },
+  "current_targeted_totals": {
+    "files": 25,
+    "tests": 1251,
+    "pass": 1248,
+    "fail": 3
+  },
+  "fresh_baseline_totals": {
+    "files": 9,
+    "tests": 593,
+    "pass": 593,
+    "fail": 0
+  },
+  "failed_gate_labels": [
+    "targeted-remediation-b-051-physical-exclusions",
+    "targeted-nito-remediation-b020"
+  ],
+  "source_reverse_isolation": "catalog-delta.json",
+  "prior51_receipts_verified_unchanged": true,
+  "raw_status_finding": "Isolated and unchanged; not remediated. Permanent negative isolation check passed.",
+  "quality_fullsuite_runtime": "NOT_RUN_AFTER_TARGETED_FAILURE",
+  "HARNESS_AUTONOMY_V1": {
+    "used": 25,
+    "ordinary_limit": 12,
+    "scope_used": 1,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0,
+    "new_roots_corrected": false
+  },
+  "global_resolved_open": "UNKNOWN",
+  "B051_partition": "25/10/2/2 unchanged; no new receipts",
+  "completion_receipts": [],
+  "P2_credit": 0,
+  "commit_push_deploy": false,
+  "minimum_next_decision": "Explicit bounded authorization and budget treatment for these diagnosed independent new harness roots; existing four-row production scope unchanged.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

@@ -1,0 +1,180 @@
+{
+  "classification": "CURRENT_COMPLETION_RECEIPT_NOT_RECONSTRUCTED_HISTORICAL_CLOSURE",
+  "signature": "a4e5c76df5cbf2af",
+  "status": "PASS",
+  "original_binding": {
+    "signature_id": "a4e5c76df5cbf2af",
+    "representative_finding_id": "GAP-2093",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2093\", \"GAP-2148\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-2999\", \"SF-3083\"]",
+    "proposed_existing_keys": "[\"hus.skadedyr.bekjempelse\", \"hus.skadedyr.bygningsskade\"]",
+    "semantic_concept": "Skadedyr",
+    "semantic_dimension": "avgrensninger",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "tested_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+  "candidate_identity_sha256": "a09cb9bae46735aeb124b259ffe6c5a4fcff00e05a78d219c9dd59ad1503c5ae",
+  "publication": "Effective published completion only after secure publish.py verifies containing commit on remote main; no future SHA claimed as tested",
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2093",
+      "finding_ids": [
+        "GAP-2093"
+      ],
+      "source_fact_id": "SF-2999",
+      "source_fact_ids": [
+        "SF-2999"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 4",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke fredededyr/kjæledyr,forebygging,utrevetutenavtale,isolasjonutenpåvistsvekkelse eller rester/ekskrementerutenbygningsskade.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.skadedyr.bekjempelse",
+        "hus.skadedyr.bygningsskade"
+      ],
+      "advisor_impact": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+      "audit_scope_notes": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2148",
+      "finding_ids": [
+        "GAP-2148"
+      ],
+      "source_fact_id": "SF-3083",
+      "source_fact_ids": [
+        "SF-3083"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 4",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke fredededyr/kjæledyr,forebygging,utrevetutenavtale,isolasjonutenpåvistsvekkelse eller rester/ekskrementerutenbygningsskade.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.skadedyr.bekjempelse",
+        "hus.skadedyr.bygningsskade"
+      ],
+      "advisor_impact": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+      "audit_scope_notes": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "pages": [
+        3,
+        4
+      ],
+      "extraction_command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "3",
+        "-l",
+        "4",
+        "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "layout": "source-standard-layout.txt.gz",
+      "layout_original_sha256": "6783bc88372864469e7e835b6338a64e6bb16e8fa0d6a4a3e88a101d6869aec4"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "pages": [
+        3,
+        6
+      ],
+      "extraction_command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "3",
+        "-l",
+        "6",
+        "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "layout": "source-plus-layout.txt.gz",
+      "layout_original_sha256": "f5acf61f76adbd45e74735c77b658d9f7c7e10a4023b5f0deaa9999af9d3efee"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9",
+      "pages": [
+        2,
+        2
+      ],
+      "extraction_command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "2",
+        "-l",
+        "2",
+        "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf"
+      ],
+      "layout": "source-ipid-layout.txt.gz",
+      "layout_original_sha256": "ffdb92f6779601354ad84fdec2ea69c0fcc69cb0522b7bc425f63060bcafdec3"
+    }
+  ],
+  "canonical_contracts": [
+    {
+      "key": "hus.skadedyr.dyr.bygningsskade",
+      "label": "Bygningsskade fra mus, rotter og andre dyr",
+      "previous_value": "Skade forårsaket av mus, rotter og andre dyr: fysisk skade på bygning/bygningsdel, svekket isolasjonsevne og lukt. Insekter og kjæledyr er unntatt. Isolasjonsskade uten påvist redusert isolasjonsevne, og fjerning av rester/ekskrementer uten bygningsskade er unntatt.",
+      "primary": [
+        3,
+        "Hus – Dekkes / Dekkes ikke"
+      ],
+      "qualification": [
+        4,
+        "Hus – Dekkes ikke / Bygning/bygningsdeler revet uten godkjenning"
+      ],
+      "value": "Skade forårsaket av mus, rotter og andre dyr: fysisk skade på bygning/bygningsdel, svekket isolasjonsevne og lukt. Insekter og kjæledyr er unntatt. Isolasjonsskade uten påvist redusert isolasjonsevne, og fjerning av rester/ekskrementer uten bygningsskade er unntatt. Bygning/bygningsdeler som er revet uten godkjenning av Gjensidige er unntatt."
+    }
+  ],
+  "provenance_full_field_evidence": "catalog-delta.json and R-051-PHYSICAL strict-source-fields-and-Pluss-inheritance",
+  "permanent_test": "tests/remediation-b-051-physical-exclusions.test.mjs",
+  "selection_document_priority_proof": "164/164 matrix tests: silence/explicit choice/refusal/conflict/unknown, repeated enrichment, individual_agreement/unknown/general_terms, catalog/custom manual modes, additions, both comparison directions. Before/after status and complete provenance assertions.",
+  "closure_gates": "validation-summary.json",
+  "command_log_manifest": "gate-results.json",
+  "reverse_and_isolation": "catalog-delta.json",
+  "prior_51_receipts": "prior-receipts.json",
+  "mechanical_roots": "lint-matching-authorization-and-ledger.json; three earlier expectation roots in three-correction-authorization-and-ledger.json; initial generator root in harness-roots.json",
+  "separate_rot_status_finding": "Preserved unresolved baseline finding; no closure credit or status change in this scope",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "current_generator_recovery_and_validation_reuse": "gate-reuse-proof.json"
+}

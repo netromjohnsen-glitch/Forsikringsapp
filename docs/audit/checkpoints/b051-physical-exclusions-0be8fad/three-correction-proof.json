@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "tested_HEAD": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+  "original_files_sha256": {
+    "helper": "77322b3e7631394aa96525b6ca28f0a2eac71ce82e92a6e717327d0397fefad4",
+    "new_gate": "b38ced672fee3dc15fad645fc72f038452410a88181736008b842072c3efb3e1",
+    "fingerprint_test": "1ec6d7da2c64c3f41ac80abb8118ac772b8935bd4783dc596f1f948bb003318b"
+  },
+  "corrected_files_sha256": {
+    "helper": "22fc6d316b2129450dd474c33ba0b40f593f2baa1ebba3c9d1529ce58b40be25",
+    "new_gate": "09ce714044b54adffdcfa2fddb270d858af8c9722eada0cb8314f5be7f84607f"
+  },
+  "production_sha256_before": "6ca80916b788c47f1537f6d917f70694bc61bd5234bedd99355085e3305de295",
+  "production_sha256_after": "6ca80916b788c47f1537f6d917f70694bc61bd5234bedd99355085e3305de295",
+  "production_unchanged": true,
+  "complete_fact_field_values_and_provenance_identical": true,
+  "only_expected_property_order_changed": {
+    "owner": "gjensidigeHusPluss",
+    "key": "hus.plutselig.begrensning_ovrig",
+    "before": [
+      "key",
+      "label",
+      "value",
+      "source",
+      "replacesBase"
+    ],
+    "after": [
+      "key",
+      "label",
+      "value",
+      "replacesBase",
+      "source"
+    ]
+  },
+  "baseline_factory_contract": "replacesBase precedes source; original facts() unchanged",
+  "hash_contract": "Existing SHA256(JSON.stringify(facts)) unchanged; regenerated expectation from independent source/baseline oracle only",
+  "source_proof": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9"
+    }
+  ],
+  "named_roots": [
+    "PHYSICAL_SOURCE_CRAFTSMANSHIP_HEADING",
+    "PHYSICAL_SOURCE_IPID_EXTENSION_WORDING",
+    "PHYSICAL_FINGERPRINT_PROPERTY_ORDER"
+  ],
+  "insurance_scope_selection_mapping_document_priority_provenance": "UNCHANGED",
+  "original_blocker": "validation-blocker.json"
+}

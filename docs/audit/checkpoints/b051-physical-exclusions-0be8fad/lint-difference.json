@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "previous_errors": 0,
+  "current_errors": 0,
+  "previous_warnings": 27,
+  "current_warnings": 27,
+  "new_errors": 0,
+  "new_warnings": [],
+  "location_only_changes": [
+    {
+      "before": {
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "filePath": "/workspace/Forsikringsapp/tests/remediation-b-051-settlement-age.test.mjs",
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "message": "'protectedCount' is assigned a value but never used.",
+        "line": 54,
+        "column": 5,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 54,
+        "endColumn": 19
+      },
+      "after": {
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "filePath": "/workspace/Forsikringsapp/tests/remediation-b-051-settlement-age.test.mjs",
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "message": "'protectedCount' is assigned a value but never used.",
+        "line": 55,
+        "column": 5,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 55,
+        "endColumn": 19
+      },
+      "evidence": {
+        "baseline_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "before_line": 54,
+        "after_line": 55,
+        "same_declaration_bytes": true,
+        "cause": "One authorized applyPhysical import; all warning fields other than line/endLine identical"
+      }
+    }
+  ],
+  "historical_warning_cleanup": "NOT_AUTHORIZED_NOT_PERFORMED",
+  "baseline_log": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/final-eslint.log.gz",
+  "current_log": "eslint.log.gz"
+}

@@ -84,7 +84,7 @@ test("Hus har sentrale objekter, skader, ansvar, rettshjelp og tjenester", () =>
   assert.match(limitation.value, /vedlikehold.*slitasje/s);
   assert.equal(limitation.source.page, 3);
   const otherLimitations = fact(items, "hus.plutselig.begrensning_ovrig");
-  assert.match(otherLimitations.value, /hard bruk.*fukt.*fundamentering.*konstruksjons.*montasje/s);
+  assert.match(otherLimitations.value, /hard bruk.*kondens.*fundamentering.*konstruksjons.*montasje/s);
   assert.equal(otherLimitations.source.page, 4);
   assert.equal(fact(items, "hus.plutselig.dekning").source.page, 4);
 });

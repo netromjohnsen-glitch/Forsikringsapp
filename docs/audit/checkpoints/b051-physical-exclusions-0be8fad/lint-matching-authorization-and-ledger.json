@@ -1,0 +1,29 @@
+{
+  "authorization": "B-051 PHYSICAL EXCLUSIONS — DUPLIKATBEVISST LINTAVSTEMMING",
+  "root": "COMPLETION_LINT_DUPLICATE_ONE_TO_ONE_MATCH",
+  "baseline": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+  "completion_scope": [
+    "a4e5c76df5cbf2af",
+    "af3a3ee673fedc83"
+  ],
+  "allowed_change": "Only completion-generator lint matching; full-field exact one-to-one occurrence comparison, separately proven position change, positive/negative tests; receipts, checkpoint and authorized publication",
+  "application_identity_sha256": "a09cb9bae46735aeb124b259ffe6c5a4fcff00e05a78d219c9dd59ad1503c5ae",
+  "old_generator": "blocked-completion-generator.py.gz",
+  "old_generator_sha256": "fe7b796e045d28f1a6d36f5eb1c53d04ff2515e6c58d0ab12f58442359c53796",
+  "historical_counters": "UNCHANGED",
+  "HARNESS_AUTONOMY_V1": {
+    "before": 28,
+    "used": 29,
+    "ordinary_limit": 12,
+    "scope_before": 4,
+    "scope_used": 5,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0
+  },
+  "performed": true,
+  "no_application_or_lint_rules_change": true,
+  "gate_reuse": "Only with exact unchanged tested application file identity and source/oracle identities; no claim of fresh rerun",
+  "test_proof": "lint-matching-test-results.json",
+  "prior_ledger": "three-correction-authorization-and-ledger.json",
+  "original_blocker": "completion-generator-blocker.json"
+}

@@ -95,10 +95,11 @@ test('R-020-06: 53 archived positive controls and all unrelated facts remain unc
   // Permanent source contracts: remediation-b-051.test.mjs.
   // Only Plus advances for two source-approved craft rows; exact full-field
   // delta: b051-craftsmanship-0cedd98/catalog-delta.json. Standard hashes stay fixed.
+  // Physical-exclusions source oracle and exact four-row delta: b051-physical-exclusions-0be8fad/catalog-delta.json.
   for (const [id, addons, expected] of [
-    [base, [], '4ea33412716b580f55e4ed4640f62b910cd4eea074e3ba0fa41a762120de16bd'],
-    [base, [addon], '8e76d7d1cddfc62d281bae24352b15af087c4aed4d00a741c324f0c64e911177'],
-    [plus, [], '149f6c852a451dd9b282e8cdf402459c6d489b267583672514e4afac85aacfd6'],
+    [base, [], 'f59a92c6c233e70d0f9347f29af00802ea781551364ea1598a3f2a0780bd2b83'],
+    [base, [addon], 'ac2ea4b9f141fcc428eab11d7771eee4e027475415116ca5290ce18a4baea6f9'],
+    [plus, [], '70ebaf31a46d4bdd4930973b9b7f89e977128dd6b74edeaaba1386bcf705592a'],
   ]) assert.equal(digest(facts(id, addons).filter(f => !f.key.startsWith('hus.skadedyr.') && f.key !== 'hus.rate.dekning')), expected);
   assert.match(fact(base, 'hus.rate.dekning').value, /unntatt/u);
   assert.match(fact(base, 'hus.skadedyr.grunnunntak').value, /Insekter|insekter/u);

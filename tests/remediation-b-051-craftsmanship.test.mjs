@@ -14,7 +14,8 @@ import {relatedCoveragesForInsuranceType} from '../lib/insurance-normalization.t
 import {baselineCatalog as previousBaseline, sourceOracle as oracle} from '../docs/audit/checkpoints/b051-craftsmanship-0cedd98/expected-catalog.mjs';
 import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
-const baseline=applyRecovery(applySettlement(previousBaseline));
+import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
+const baseline=applyPhysical(applyRecovery(applySettlement(previousBaseline)));
 const candidate=productCatalog;
 const audit=new URL('../docs/audit/checkpoints/b051-craftsmanship-0cedd98/',import.meta.url);
 const keys=Object.keys(oracle),ids=['gjensidige-hus','gjensidige-hus-pluss'];
@@ -211,5 +212,5 @@ for (const key of keys) check('FULL-FACT-' + key, () => {
 });
 
 check('REVERSE', () => {
- execFileSync('node', [new URL('../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
+ execFileSync('node', [new URL('../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
 });

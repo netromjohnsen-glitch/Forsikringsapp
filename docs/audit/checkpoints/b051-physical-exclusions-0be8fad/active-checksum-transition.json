@@ -1,0 +1,19 @@
+{
+  "status": "EXPLAINED_AUTHORIZED_CHANGES",
+  "original_checksums": "checksums-before-lint-recovery.txt.gz",
+  "changed_prior_entries": [
+    {
+      "path": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/README.md",
+      "before_sha256": "d8310beaa1c0b34180f030409501b13bb5ff95f42853966f6ca827608dcb5d26",
+      "after_sha256": "43da1c86c8fa6002b4557def1825883fb2455184876b1400b5e9b72305e8cb16",
+      "cause": "Authorized active completion generation, current status and lint-root integrity verification; original blocked states remain in their own artifacts"
+    },
+    {
+      "path": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/verify.py",
+      "before_sha256": "4422b2c08aa7d4eee5d29abc797d646268866eaae261d3d0b4cfb5187d5bb32c",
+      "after_sha256": "b39d8c52389d4d71b3b85669d4700ec2e6fef477db5861f50681eaa846b4741a",
+      "cause": "Authorized active completion generation, current status and lint-root integrity verification; original blocked states remain in their own artifacts"
+    }
+  ],
+  "new_entries": "Explicit scope files added for authorized lint recovery and completion. No committed historical checksums or evidence changed."
+}

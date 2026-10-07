@@ -10,7 +10,9 @@ import {normalizeManualAgreement} from '../lib/manual-agreement.ts';
 import {deriveCanonicalCoverages} from '../lib/coverage-status.ts';
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
-import {baselineCatalog as baseline,expectedCatalog,sourceOracle as oracle,keys} from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
+import {baselineCatalog as previousBaseline,expectedCatalog as previousExpectedCatalog,sourceOracle as oracle,keys} from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
+import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
+const baseline=applyPhysical(previousBaseline),expectedCatalog=applyPhysical(previousExpectedCatalog);
 const candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
 const ids=['gjensidige-hus','gjensidige-hus-pluss'];
 const product=(c,id)=>c.products.find(p=>p.productId===id),fact=(c,key)=>c.facts.gjensidigeHusStandard.find(f=>f.key===key);
@@ -96,4 +98,4 @@ for(const id of ids)for(const key of keys)check('strict-raw-repeat-fields',()=>{
  const rf=resolveCatalogFacts(product(candidate,id),[],date,null,candidate).find(f=>f.key===key);
  assert.equal(Object.hasOwn(rf,'replacesBase'),false);assert.equal(Object.hasOwn(rf,'overriddenBase'),false);assert.equal(Object.hasOwn(rf.source,'productCode'),true);assert.equal(rf.source.productCode,undefined);assert.equal(Object.hasOwn(rf.source,'sourceType'),false);
 });
-check('reverse-audit',()=>execFileSync('node',[new URL('../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/catalog-audit.mjs',import.meta.url).pathname],{stdio:'pipe'}));
+check('reverse-audit',()=>execFileSync('node',[new URL('../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/catalog-audit.mjs',import.meta.url).pathname],{stdio:'pipe'}));

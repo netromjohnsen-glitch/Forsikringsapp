@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "command": [
+    "python",
+    "-B",
+    "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/lint_matching_test.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "tests": 8,
+  "log": "lint-matching-tests.log.gz",
+  "original_output_sha256": "b258863f9c3ea02000334ca53609049f4e7230019b7cc4edce66b6f89e1871e4",
+  "matcher_sha256": "1fd715b1345b6fc1eda3ca15b69885b2b05c7fe31dd6b52ab0695b7e0e13c2af",
+  "test_sha256": "89766d5685cf999d3cb08aa39f78584dcc731b4855880efd0d6d78576cfdeb06",
+  "covered": "Historical self comparison; messages on different lines; permutation; extra/missing/changed field rejection; identical duplicate multiplicity; positions require explicit independent evidence; non-position fields cannot change in a documented move"
+}

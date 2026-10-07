@@ -1,0 +1,66 @@
+{
+  "status": "BLOCKED_BEFORE_CATALOG_IMPLEMENTATION",
+  "baseline_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+  "exact_signatures": [
+    "a4e5c76df5cbf2af",
+    "af3a3ee673fedc83"
+  ],
+  "root": "PREPARATION_CHECKPOINT_HOLDS_FIELD_ASSUMPTION",
+  "classification": "NEW_AUDIT_GENERATOR_CONTRACT_ERROR_NOT_PRODUCTION_REGRESSION",
+  "command": [
+    "python",
+    "/tmp/prepare-physical.py"
+  ],
+  "exit_code": 1,
+  "error": "KeyError: 'holds'",
+  "failed_operation": "Construct authorization.json using cp['holds']; checkpoint instead exposes holds_unchanged and additional_B051_holds_unchanged",
+  "baseline_proof": {
+    "checkpoint": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-completion-checkpoint.json",
+    "sha256": "bae40ae310c9daf4806ff3a7e58888f5bb717dbdd182dcb706e699931289b331",
+    "same_content_on_HEAD": true,
+    "actual_fields": {
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "25004bc4d7dd2c03",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ]
+    },
+    "no_checkpoint_corruption": true
+  },
+  "generator_evidence": {
+    "file": "failed-preparation-generator.py.gz",
+    "decoded_sha256": "fa43288cd1fb38c732eb2e3f2303d8096ac1751d7697d3a82e928bf98811146a",
+    "decoded_byte_length": 8900
+  },
+  "preflight_pass": [
+    "HEAD/origin/main/remote match expected baseline",
+    "Clean worktree and staged0 before preparation",
+    "All51 current receipt signatures;48 prior receipt hashes unchanged",
+    "B051 original39-set and25/10/2/2 partition",
+    "Standard/Plus/IPID frozen SHA256 checks"
+  ],
+  "HARNESS_AUTONOMY_V1": {
+    "used": 24,
+    "ordinary_limit": 12,
+    "new_scope_used": 0,
+    "new_root_corrected": false,
+    "capacity": 0
+  },
+  "production_test_changes": [],
+  "completion_receipts_created": [],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "no_commit_push_deploy": true,
+  "required_decision": "Authorize exactly one audit-generator compatibility correction to read both documented hold fields and preserve their exact contents; explicit budget treatment required before correction. Existing implementation authorization is otherwise unchanged.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

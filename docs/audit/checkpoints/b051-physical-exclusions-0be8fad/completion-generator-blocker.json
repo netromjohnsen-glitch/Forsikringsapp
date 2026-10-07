@@ -1,0 +1,125 @@
+{
+  "status": "BLOCKED_NEW_UNAUTHORIZED_COMPLETION_HARNESS_ROOT",
+  "root": "COMPLETION_LINT_DUPLICATE_WARNING_FIRST_MATCH",
+  "baseline_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+  "application_identity_sha256": "a09cb9bae46735aeb124b259ffe6c5a4fcff00e05a78d219c9dd59ad1503c5ae",
+  "failed_command": [
+    "python",
+    "/tmp/finish-physical-docs.py"
+  ],
+  "exit_code": 1,
+  "failure": "AssertionError at line46: first matching historical warning incorrectly treated as location-only settlement change",
+  "generator": {
+    "path": "blocked-completion-generator.py.gz",
+    "original_path": "/tmp/finish-physical-docs.py",
+    "original_bytes": 15829,
+    "decoded_sha256": "fe7b796e045d28f1a6d36f5eb1c53d04ff2515e6c58d0ab12f58442359c53796"
+  },
+  "diagnosis": {
+    "path": "tests/catalog-enrichment-provenance.test.mjs",
+    "rule": "@typescript-eslint/no-unused-vars",
+    "message": "'_sourceType' is defined but never used.",
+    "historical_lines": [
+      44,
+      103
+    ],
+    "current_lines": [
+      44,
+      103
+    ],
+    "incorrect_pair": [
+      44,
+      103
+    ],
+    "cause": "next(first match) uses path/rule/message/severity without unique location or occurrence identity. Second unchanged occurrence matches the first historical occurrence.",
+    "same_logic_reproduces_on_unchanged_historical_lint_report": true,
+    "production_defect": false,
+    "source_selection_provenance_contract_change": false
+  },
+  "actual_lint": {
+    "previous_warnings": 27,
+    "current_warnings": 27,
+    "errors": 0,
+    "only_actual_location_delta": {
+      "added_locations": [
+        {
+          "path": "tests/remediation-b-051-settlement-age.test.mjs",
+          "ruleId": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "message": "'protectedCount' is assigned a value but never used.",
+          "line": 55,
+          "column": 5,
+          "nodeType": "Identifier",
+          "messageId": "unusedVar",
+          "endLine": 55,
+          "endColumn": 19
+        }
+      ],
+      "removed_locations": [
+        {
+          "path": "tests/remediation-b-051-settlement-age.test.mjs",
+          "ruleId": "@typescript-eslint/no-unused-vars",
+          "severity": 1,
+          "message": "'protectedCount' is assigned a value but never used.",
+          "line": 54,
+          "column": 5,
+          "nodeType": "Identifier",
+          "messageId": "unusedVar",
+          "endLine": 54,
+          "endColumn": 19
+        }
+      ]
+    },
+    "new_warning_semantics": false
+  },
+  "fresh_gates": {
+    "new_gate": "164/164 PASS",
+    "targeted": {
+      "files": 25,
+      "tests": 1251
+    },
+    "fullsuite": {
+      "files": 152,
+      "tests": 4592
+    },
+    "remediation": {
+      "files": 54,
+      "tests": 2439
+    },
+    "quality": {
+      "typegen": "PASS",
+      "typescript": "PASS",
+      "eslint": "PASS",
+      "production-build": "PASS",
+      "http-pdf-runtime": "PASS",
+      "diff-check": "PASS"
+    },
+    "HTTP_PDF_checks": 22,
+    "commands_and_candidate_bound_logs": "gate-results.json"
+  },
+  "budget": {
+    "HARNESS_AUTONOMY_V1": 28,
+    "ordinary_limit": 12,
+    "scope_used": 4,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0,
+    "new_root_corrected": false,
+    "new_root_charged": false
+  },
+  "closure": {
+    "new_receipts_created": 0,
+    "prior_receipts_preserved": 51,
+    "campaign_count_unchanged": 51,
+    "B051_partition_unchanged": [
+      25,
+      10,
+      2,
+      2
+    ],
+    "global_resolved_open": "UNKNOWN",
+    "P2_credit": 0
+  },
+  "no_commit_no_push_no_deploy": true,
+  "minimum_next_authorization": "Authorize only duplicate-aware one-to-one lint warning matching in the new completion generator; preserve strict full-field/location comparisons and negative controls. No application change needed. Then complete receipts/integrity/publication under existing scope. A named mechanical exception is required if counted under current correction policy.",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

@@ -1,0 +1,394 @@
+{
+  "classification": "EXPLICIT_TWO_SIGNATURE_CATALOG_SCOPE",
+  "baseline_revision": "0be8fadb7e90fc527cd81c5ae5c89accabb2deb0",
+  "signatures": [
+    {
+      "signature_id": "a4e5c76df5cbf2af",
+      "representative_finding_id": "GAP-2093",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2093\", \"GAP-2148\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-2999\", \"SF-3083\"]",
+      "proposed_existing_keys": "[\"hus.skadedyr.bekjempelse\", \"hus.skadedyr.bygningsskade\"]",
+      "semantic_concept": "Skadedyr",
+      "semantic_dimension": "avgrensninger",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "af3a3ee673fedc83",
+      "representative_finding_id": "GAP-2094",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2094\", \"GAP-2149\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3003\", \"SF-3086\"]",
+      "proposed_existing_keys": "[\"hus.plutselig.begrensning\", \"hus.plutselig.begrensning_ovrig\"]",
+      "semantic_concept": "Andreunntak",
+      "semantic_dimension": "årsaker",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    }
+  ],
+  "source_evidence": [
+    {
+      "signature": "a4e5c76df5cbf2af",
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2093",
+          "finding_ids": [
+            "GAP-2093"
+          ],
+          "source_fact_id": "SF-2999",
+          "source_fact_ids": [
+            "SF-2999"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke fredededyr/kjæledyr,forebygging,utrevetutenavtale,isolasjonutenpåvistsvekkelse eller rester/ekskrementerutenbygningsskade.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.skadedyr.bekjempelse",
+            "hus.skadedyr.bygningsskade"
+          ],
+          "advisor_impact": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+          "audit_scope_notes": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2148",
+          "finding_ids": [
+            "GAP-2148"
+          ],
+          "source_fact_id": "SF-3083",
+          "source_fact_ids": [
+            "SF-3083"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ikke fredededyr/kjæledyr,forebygging,utrevetutenavtale,isolasjonutenpåvistsvekkelse eller rester/ekskrementerutenbygningsskade.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.skadedyr.bekjempelse",
+            "hus.skadedyr.bygningsskade"
+          ],
+          "advisor_impact": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+          "audit_scope_notes": "Forebygging,fredededyr/utrevet utenavtale ogpåvistsvekketisolasjon mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "review_and_minimum_supported_change": "B020 already distinguishes insects/pets/protected animals/prevention and insulation/excrement exclusions. Add building/components DEMOLISHED WITHOUT GJENSIDIGE APPROVAL and verify exact applicable scope/qualification; no generic pest remapping."
+    },
+    {
+      "signature": "af3a3ee673fedc83",
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2094",
+          "finding_ids": [
+            "GAP-2094"
+          ],
+          "source_fact_id": "SF-3003",
+          "source_fact_ids": [
+            "SF-3003"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 3–4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Vedlikehold/slitasje,garantibetaler,fukt/sopp,bakterier,heksesot,kosmetikk/punktertglass,tele/setning/fundamentering,materialfeil/montasje inklfølgeskade unntatt medPlussuttrykkeligeutvidelser.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.plutselig.begrensning",
+            "hus.plutselig.begrensning_ovrig"
+          ],
+          "advisor_impact": "Flere viktige unntak representert; kosmetikk/punktertglass,betalingsdyktiggaranti m.fl. mangler. Pluss generisk feil/råteunntak henviser ikke til egne unntaksutvidelser.",
+          "audit_scope_notes": "Flere viktige unntak representert; kosmetikk/punktertglass,betalingsdyktiggaranti m.fl. mangler. Pluss generisk feil/råteunntak henviser ikke til egne unntaksutvidelser.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2149",
+          "finding_ids": [
+            "GAP-2149"
+          ],
+          "source_fact_id": "SF-3086",
+          "source_fact_ids": [
+            "SF-3086"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 3–4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Vedlikehold/slitasje,garantibetaler,fukt/sopp,bakterier,heksesot,kosmetikk/punktertglass,tele/setning/fundamentering,materialfeil/montasje inklfølgeskade unntatt medPlussuttrykkeligeutvidelser.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.plutselig.begrensning",
+            "hus.plutselig.begrensning_ovrig"
+          ],
+          "advisor_impact": "Flere viktige unntak representert; kosmetikk/punktertglass,betalingsdyktiggaranti m.fl. mangler. Pluss generisk feil/råteunntak henviser ikke til egne unntaksutvidelser.",
+          "audit_scope_notes": "Flere viktige unntak representert; kosmetikk/punktertglass,betalingsdyktiggaranti m.fl. mangler. Pluss generisk feil/råteunntak henviser ikke til egne unntaksutvidelser.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "review_and_minimum_supported_change": "Complete general maintenance/wear, economically payable guarantee, careless/harduse, accumulatedspillage/condensation/fungus/rot/bacteria/heksesot/pets/insects, cosmetic/glasspuncture, frostheave/settlement/earthpressure/foundation, material/construction/montage/consequences; qualify Pluss explicit craft/rot exceptions rather than blanket deny its extension."
+    }
+  ],
+  "sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "pages": [
+        3,
+        4
+      ],
+      "extraction_command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "3",
+        "-l",
+        "4",
+        "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "layout": "source-standard-layout.txt.gz",
+      "layout_original_sha256": "6783bc88372864469e7e835b6338a64e6bb16e8fa0d6a4a3e88a101d6869aec4"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "pages": [
+        3,
+        6
+      ],
+      "extraction_command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "3",
+        "-l",
+        "6",
+        "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "layout": "source-plus-layout.txt.gz",
+      "layout_original_sha256": "f5acf61f76adbd45e74735c77b658d9f7c7e10a4023b5f0deaa9999af9d3efee"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9",
+      "pages": [
+        2,
+        2
+      ],
+      "extraction_command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "2",
+        "-l",
+        "2",
+        "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf"
+      ],
+      "layout": "source-ipid-layout.txt.gz",
+      "layout_original_sha256": "ffdb92f6779601354ad84fdec2ea69c0fcc69cb0522b7bc425f63060bcafdec3"
+    }
+  ],
+  "application_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/gjensidige-hus-catalog.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs"
+  ],
+  "documentation_scope": [
+    "docs/audit/checkpoints/b051-physical-exclusions-0be8fad",
+    "docs/development-agent/current-project-status.md"
+  ],
+  "HARNESS_AUTONOMY_V1": {
+    "used": 25,
+    "ordinary_limit": 12,
+    "scope_used": 1,
+    "capacity": 0,
+    "planned_updates_are_scope_work": true
+  },
+  "global_resolved_open": "UNKNOWN",
+  "no_P2_credit": true,
+  "preserved_checkpoint_hold_fields": {
+    "holds_unchanged": {
+      "origin_path": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-completion-checkpoint.json",
+      "origin_sha256": "bae40ae310c9daf4806ff3a7e58888f5bb717dbdd182dcb706e699931289b331",
+      "origin_field": "holds_unchanged",
+      "value": [
+        "157c7afed18eb0fe",
+        "25004bc4d7dd2c03",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "status": "UNCHANGED_FROM_REFERENCED_CHECKPOINT"
+    },
+    "additional_B051_holds_unchanged": {
+      "origin_path": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-completion-checkpoint.json",
+      "origin_sha256": "bae40ae310c9daf4806ff3a7e58888f5bb717dbdd182dcb706e699931289b331",
+      "origin_field": "additional_B051_holds_unchanged",
+      "value": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "status": "UNCHANGED_FROM_REFERENCED_CHECKPOINT"
+    }
+  },
+  "publication": "Only after every required gate PASS, secured existing publish.py, exact staged manifest, no deploy",
+  "original_partition": {
+    "classification": "CURRENT_RECEIPTS_VS_HISTORICAL_PREFLIGHT_NOT_GLOBAL_LEDGER",
+    "original_batch": "B-051",
+    "exact_original_signatures": [
+      "08203cfa28493e63",
+      "0eda923b4090cf6c",
+      "0f7980d6139daa2e",
+      "157c7afed18eb0fe",
+      "2113807ceb290224",
+      "239b00779349f2fd",
+      "25004bc4d7dd2c03",
+      "275365b3ec2971df",
+      "292dacd4533926fd",
+      "35c58fbc06cf6e7d",
+      "403c9b3f0e9aa19f",
+      "41206e12c93c0058",
+      "416dfaab0492ce1b",
+      "46e94bcf464af845",
+      "4971fe7dbeac3649",
+      "49adf65854171146",
+      "4a844bae3be9dea8",
+      "57c775ac935fb504",
+      "6080e5e5a6bb3c63",
+      "6af32d21acb9584c",
+      "6ceaaaf84f1dc597",
+      "73aab8a0ad4f6c11",
+      "7ba0298883905c58",
+      "86992ec620da2894",
+      "8a1beb3695ddb2fd",
+      "8a89196fecd29ddb",
+      "8d28f56b17a9bae2",
+      "8e8d82878deb95b5",
+      "90d49006ef7999d3",
+      "a4e5c76df5cbf2af",
+      "a7561c0d03ede572",
+      "af150eab853a1648",
+      "af3a3ee673fedc83",
+      "b3b964a9c6105360",
+      "b5b211cad16d32c6",
+      "bb47646cd8b17f20",
+      "cdd055ea730897ab",
+      "ce381a27b7435bec",
+      "ed99577218e2302b"
+    ],
+    "completed_current_receipts": [
+      "08203cfa28493e63",
+      "0f7980d6139daa2e",
+      "2113807ceb290224",
+      "239b00779349f2fd",
+      "292dacd4533926fd",
+      "403c9b3f0e9aa19f",
+      "416dfaab0492ce1b",
+      "46e94bcf464af845",
+      "4971fe7dbeac3649",
+      "49adf65854171146",
+      "4a844bae3be9dea8",
+      "57c775ac935fb504",
+      "6080e5e5a6bb3c63",
+      "6ceaaaf84f1dc597",
+      "7ba0298883905c58",
+      "86992ec620da2894",
+      "8d28f56b17a9bae2",
+      "8e8d82878deb95b5",
+      "a7561c0d03ede572",
+      "af150eab853a1648",
+      "b3b964a9c6105360",
+      "b5b211cad16d32c6",
+      "bb47646cd8b17f20",
+      "ce381a27b7435bec",
+      "ed99577218e2302b"
+    ],
+    "source_clear_no_current_receipt": [
+      "0eda923b4090cf6c",
+      "275365b3ec2971df",
+      "35c58fbc06cf6e7d",
+      "6af32d21acb9584c",
+      "73aab8a0ad4f6c11",
+      "8a1beb3695ddb2fd",
+      "90d49006ef7999d3",
+      "a4e5c76df5cbf2af",
+      "af3a3ee673fedc83",
+      "cdd055ea730897ab"
+    ],
+    "revalidation_candidates": [
+      "41206e12c93c0058",
+      "8a89196fecd29ddb"
+    ],
+    "holds": [
+      "157c7afed18eb0fe",
+      "25004bc4d7dd2c03"
+    ],
+    "remaining_no_receipt_does_not_imply_production_defect": true,
+    "implementation_authorized_for_remaining": false,
+    "global_resolved_open": "UNKNOWN"
+  }
+}

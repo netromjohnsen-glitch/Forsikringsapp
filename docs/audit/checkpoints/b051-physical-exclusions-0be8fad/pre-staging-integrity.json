@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-B",
+        "/workspace/Forsikringsapp/docs/audit/checkpoints/b051-physical-exclusions-0be8fad/verify.py"
+      ],
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"checksummed_scope\": 291, \"campaign_signatures\": 53, \"B051_partition\": [27, 8, 2, 2], \"staged\": 0, \"application_identity_sha256\": \"a09cb9bae46735aeb124b259ffe6c5a4fcff00e05a78d219c9dd59ad1503c5ae\"}\n"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "/workspace/Forsikringsapp/docs/audit/checkpoints/b051-physical-exclusions-0be8fad/checkpoint-holds-test.py"
+      ],
+      "exit_code": 0,
+      "output": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python",
+        "-B",
+        "docs/audit/checkpoints/b050-diagnostics-integrity-3c5e869/publish.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "output": "Publication failure/success exit-status controls PASS\n"
+    }
+  ],
+  "tested_application_identity_sha256": "a09cb9bae46735aeb124b259ffe6c5a4fcff00e05a78d219c9dd59ad1503c5ae",
+  "note": "Checks ran before adding this report. Final checksum/exact manifest verifier reruns after staging before secure publication. No application or test changed."
+}
