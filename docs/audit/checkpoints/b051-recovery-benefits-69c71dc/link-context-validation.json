@@ -1,0 +1,17 @@
+{
+  "status": "LINK_AND_PRE_PUBLICATION_INTEGRITY_PASS_PUBLICATION_BLOCKED",
+  "command": [
+    "python3",
+    "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/verify-publication.py"
+  ],
+  "candidate": "f6c064cdeca3f5ded41db9ef35f2a215d79faf7f230a7222c474d2d6d0be2740",
+  "five_positive_original_context_links": "PASS",
+  "wrong_context_negative": "PASS_REJECTED",
+  "missing_target_negative": "PASS_REJECTED",
+  "all_integrity_checks_before_required_diff": "PASS",
+  "required_staged_diff": "FAIL",
+  "blocker": "link-context-publication-blocker.json",
+  "HARNESS_AUTONOMY_V1": 23,
+  "scope": 3,
+  "no_additional_root_consumed": true
+}

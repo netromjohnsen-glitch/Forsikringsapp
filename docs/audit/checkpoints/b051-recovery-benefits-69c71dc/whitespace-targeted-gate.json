@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "--test-reporter=tap",
+    "tests/remediation-b-051-recovery-benefits.test.mjs"
+  ],
+  "tested_baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "candidate_identity_sha256": "f6c064cdeca3f5ded41db9ef35f2a215d79faf7f230a7222c474d2d6d0be2740",
+  "exit_code": 0,
+  "duration_seconds": 3.835,
+  "tap": {
+    "tests": 115,
+    "pass": 115,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "log": "whitespace-targeted-gate.log.gz",
+  "log_sha256": "eee06ff713592d125579b1ebdf413d47f06f0aba860258a60b91d72e4a88c875",
+  "output_sha256": "34c69c7e4860134b13eaa582a225b2f1160c77651f1e81bd70f0f98705b2e504",
+  "status": "PASS"
+}

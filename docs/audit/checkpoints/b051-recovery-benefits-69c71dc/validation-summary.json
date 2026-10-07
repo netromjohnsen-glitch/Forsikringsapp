@@ -1,0 +1,61 @@
+{
+  "status": "BLOCKED_NEW_HARNESS_ROOT_NOT_CORRECTED",
+  "tested_baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "candidate_identity_sha256": "72378d81b764a250fed0fd24f2a01b19ade6abf767fbfa297455811b6c3c4abb",
+  "baseline": {
+    "files": 9,
+    "tests": 336,
+    "pass": 336,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "targeted": {
+    "files": 24,
+    "tests": 1087,
+    "pass": 1086,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "new_gate": {
+    "tests": 115,
+    "pass": 114,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "files": 151,
+    "tests": 4428,
+    "pass": 4427,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "remediation": {
+    "files": 53,
+    "tests": 2275,
+    "pass": 2274,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "quality_gates": {
+    "next_typegen": "NOT_RUN_AFTER_TARGETED_FAILURE",
+    "TypeScript": "NOT_RUN_AFTER_TARGETED_FAILURE",
+    "ESLint": "NOT_RUN_AFTER_TARGETED_FAILURE",
+    "webpack_build": "NOT_RUN_AFTER_TARGETED_FAILURE",
+    "HTTP_PDF_runtime": "NOT_RUN_AFTER_TARGETED_FAILURE"
+  },
+  "prior_receipts_verified": 48,
+  "new_receipts": 0,
+  "global_resolved_open": "UNKNOWN",
+  "HARNESS_AUTONOMY_V1": {
+    "used": 20,
+    "ordinary_limit": 12,
+    "scope_corrections": 0,
+    "new_capacity": 0
+  },
+  "P2_credit": 0
+}

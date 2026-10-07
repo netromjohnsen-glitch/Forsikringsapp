@@ -1,0 +1,467 @@
+{
+  "baseline_revision": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "signatures": [
+    {
+      "signature_id": "292dacd4533926fd",
+      "representative_finding_id": "GAP-2119",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2119\", \"GAP-2178\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3045\", \"SF-3132\"]",
+      "proposed_existing_keys": "[\"hus.naturskade.dekning\"]",
+      "semantic_concept": "Naturskade",
+      "semantic_dimension": "nytomt",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "b3b964a9c6105360",
+      "representative_finding_id": "GAP-2098",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2098\", \"GAP-2157\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3007\", \"SF-3094\"]",
+      "proposed_existing_keys": "[\"hus.tilpasning.grense\"]",
+      "semantic_concept": "Rullestol",
+      "semantic_dimension": "sum/frister",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "ed99577218e2302b",
+      "representative_finding_id": "GAP-2120",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2120\", \"GAP-2179\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3046\", \"SF-3133\"]",
+      "proposed_existing_keys": "[\"hus.pabud.dekning\"]",
+      "semantic_concept": "Offentlig påbud",
+      "semantic_dimension": "vilkår",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    }
+  ],
+  "preflight_entries": [
+    {
+      "signature": "292dacd4533926fd",
+      "original_binding": {
+        "signature_id": "292dacd4533926fd",
+        "representative_finding_id": "GAP-2119",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2119\", \"GAP-2178\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3045\", \"SF-3132\"]",
+        "proposed_existing_keys": "[\"hus.naturskade.dekning\"]",
+        "semantic_concept": "Naturskade",
+        "semantic_dimension": "nytomt",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2119",
+        "GAP-2178"
+      ],
+      "source_fact_ids": [
+        "SF-3045",
+        "SF-3132"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2119",
+          "finding_ids": [
+            "GAP-2119"
+          ],
+          "source_fact_id": "SF-3045",
+          "source_fact_ids": [
+            "SF-3045"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 18",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Nektetgjenoppføringetterfare,ellerustabiltomt,hus/uthussomtotalskadeogtomtmarkedsverdimaks5dekar;avtalt sikringalternativ.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.naturskade.dekning"
+          ],
+          "advisor_impact": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+          "audit_scope_notes": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2178",
+          "finding_ids": [
+            "GAP-2178"
+          ],
+          "source_fact_id": "SF-3132",
+          "source_fact_ids": [
+            "SF-3132"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 19",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Nektetgjenoppføringetterfare,ellerustabiltomt,hus/uthussomtotalskadeogtomtmarkedsverdimaks5dekar;avtalt sikringalternativ.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.naturskade.dekning"
+          ],
+          "advisor_impact": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+          "audit_scope_notes": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Natural damage: unsafe land/rebuild prohibition total-loss with associated outbuildings, replacement land value before event capped5dekar and written-approved land securing alternative/maintenance. Preserve statutory nature coverage; no general weather reinterpretation.",
+      "existing_representation_keys": [
+        "hus.naturskade.dekning"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.naturskade.dekning",
+            "label": "Naturskade",
+            "value": "Naturskade på brannforsikret bygning etter naturskadeforsikringsloven.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Naturskade",
+              "page": 18,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "b3b964a9c6105360",
+      "original_binding": {
+        "signature_id": "b3b964a9c6105360",
+        "representative_finding_id": "GAP-2098",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2098\", \"GAP-2157\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3007\", \"SF-3094\"]",
+        "proposed_existing_keys": "[\"hus.tilpasning.grense\"]",
+        "semantic_concept": "Rullestol",
+        "semantic_dimension": "sum/frister",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2098",
+        "GAP-2157"
+      ],
+      "source_fact_ids": [
+        "SF-3007",
+        "SF-3094"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2098",
+          "finding_ids": [
+            "GAP-2098"
+          ],
+          "source_fact_id": "SF-3007",
+          "source_fact_ids": [
+            "SF-3007"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: 250k ombygging;10åretterulykke/10årettermedfødt rullestoltildeling senest20årfødsel;ikke dobbelthusinnbo eller medisinskkomplikasjon.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.tilpasning.grense"
+          ],
+          "advisor_impact": "250k/20år riktig; egne tiårsfrister skiller ikke de to startpunktene og dobbel-forsikringsbegrensningen.",
+          "audit_scope_notes": "250k/20år riktig; egne tiårsfrister skiller ikke de to startpunktene og dobbel-forsikringsbegrensningen.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2157",
+          "finding_ids": [
+            "GAP-2157"
+          ],
+          "source_fact_id": "SF-3094",
+          "source_fact_ids": [
+            "SF-3094"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: 250k ombygging;10åretterulykke/10årettermedfødt rullestoltildeling senest20årfødsel;ikke dobbelthusinnbo eller medisinskkomplikasjon.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.tilpasning.grense"
+          ],
+          "advisor_impact": "250k/20år riktig; egne tiårsfrister skiller ikke de to startpunktene og dobbel-forsikringsbegrensningen.",
+          "audit_scope_notes": "250k/20år riktig; egne tiårsfrister skiller ikke de to startpunktene og dobbel-forsikringsbegrensningen.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Keep250000 permanent wheelchair. Accident expenditurewithin10years FROM ACCIDENT vs congenitalwithin10years FROM WHEELCHAIR ALLOWANCE and latest20years FROM BIRTH. Inperiod/physicalaccident,medical-complication exclusions, no duplicate house+contents cap. No customer inference.",
+      "existing_representation_keys": [
+        "hus.tilpasning.grense"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.tilpasning.grense",
+            "label": "Ombygging for rullestolbruker",
+            "value": "Inntil 250 000 kroner ved varig rullestolbruk etter plutselig ytre ulykke eller medfødt funksjonsnedsettelse. Egne tiårsfrister og senest 20 år fra fødsel gjelder.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Ombygging for rullestolbruker",
+              "page": 5,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "ed99577218e2302b",
+      "original_binding": {
+        "signature_id": "ed99577218e2302b",
+        "representative_finding_id": "GAP-2120",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2120\", \"GAP-2179\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3046\", \"SF-3133\"]",
+        "proposed_existing_keys": "[\"hus.pabud.dekning\"]",
+        "semantic_concept": "Offentlig påbud",
+        "semantic_dimension": "vilkår",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2120",
+        "GAP-2179"
+      ],
+      "source_fact_ids": [
+        "SF-3046",
+        "SF-3133"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2120",
+          "finding_ids": [
+            "GAP-2120"
+          ],
+          "source_fact_id": "SF-3046",
+          "source_fact_ids": [
+            "SF-3046"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 18",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Nødvendigedekketbygningspåbud/undersøkelse/fundamentering;ikkenyttearealtap,tidligerehjemmel,antikvarisk/urasjonell/midlertidigellerplanlagtrehabilitering;arealforhold.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.pabud.dekning"
+          ],
+          "advisor_impact": "Påbudhenvisning mangler tidligerepåbud/antikvarisk/n ytteareal/arealforhold.",
+          "audit_scope_notes": "Påbudhenvisning mangler tidligerepåbud/antikvarisk/n ytteareal/arealforhold.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2179",
+          "finding_ids": [
+            "GAP-2179"
+          ],
+          "source_fact_id": "SF-3133",
+          "source_fact_ids": [
+            "SF-3133"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 19",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Nødvendigedekketbygningspåbud/undersøkelse/fundamentering;ikkenyttearealtap,tidligerehjemmel,antikvarisk/urasjonell/midlertidigellerplanlagtrehabilitering;arealforhold.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.pabud.dekning"
+          ],
+          "advisor_impact": "Påbudhenvisning mangler tidligerepåbud/antikvarisk/n ytteareal/arealforhold.",
+          "audit_scope_notes": "Påbudhenvisning mangler tidligerepåbud/antikvarisk/n ytteareal/arealforhold.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Mandatory order aftercovered damage; exclude pre-existing demand/enforceableindependentofloss, lostusablearea, conservation/heritage irrationalexpense and temporaryexpense; rebuilding larger usesdamage ratio, excludedexternalwater/sewer treatmentorder dueleak. No blanket coverage of all public compliance costs.",
+      "existing_representation_keys": [
+        "hus.pabud.dekning"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.pabud.dekning",
+            "label": "Offentlige påbud",
+            "value": "Merutgifter på grunn av offentlig påbud etter dekningsmessig skade omfattes etter vilkårets regler. Omlegging av utvendige vann-/kloakkledninger eller renseanlegg bare som følge av lekkasje er unntatt.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Tilleggsutgifter",
+              "page": 5,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    }
+  ],
+  "authorized_application_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs"
+  ],
+  "authorized_documentation": [
+    "docs/development-agent/current-project-status.md",
+    "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/"
+  ],
+  "production_scope": "Three existing gjensidigeHusStandard rows only; Plus inherits",
+  "HARNESS_AUTONOMY_V1": {
+    "used": 20,
+    "limit": 12,
+    "scope_used": 0,
+    "new_correction_capacity": 0
+  },
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "publication": "One atomic commit; origin HEAD:main after complete PASS; no deploy"
+}

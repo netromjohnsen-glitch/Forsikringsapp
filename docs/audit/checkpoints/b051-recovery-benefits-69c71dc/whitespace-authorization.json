@@ -1,0 +1,16 @@
+{
+  "source": "Explicit latest user instruction: B-051 RECOVERY BENEFITS — EKSAKT WHITESPACE-RETTING OG PUBLISERING",
+  "baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "root": "RECOVERY_TEST_BLANK_LINE_WHITESPACE",
+  "file": "tests/remediation-b-051-recovery-benefits.test.mjs",
+  "line": 35,
+  "allowed_delta": "Remove exactly one ASCII space from otherwise blank line; no other application content change",
+  "before_used": 21,
+  "after_performed": 22,
+  "ordinary_limit": 12,
+  "scope_before": 1,
+  "scope_after": 2,
+  "scope_limit": 6,
+  "other_capacity": 0,
+  "full_gate_reuse": "Explicitly authorized for verified semantically identical one-byte delta, with rerun of affected test and integrity/diff gates; preserve exact prior tested identity/logs."
+}

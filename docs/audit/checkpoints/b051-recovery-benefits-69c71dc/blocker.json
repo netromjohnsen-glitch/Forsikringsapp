@@ -1,0 +1,28 @@
+{
+  "status": "STOPPED_BEFORE_UNAUTHORIZED_CORRECTION",
+  "baseline_revision": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "candidate_identity_sha256": "72378d81b764a250fed0fd24f2a01b19ade6abf767fbfa297455811b6c3c4abb",
+  "affected_signatures": [
+    "292dacd4533926fd",
+    "b3b964a9c6105360",
+    "ed99577218e2302b"
+  ],
+  "affected_test_file": "tests/remediation-b-051-recovery-benefits.test.mjs",
+  "affected_assertion": "R-051-RECOVERY-source-Pluss-108",
+  "line": 81,
+  "root": "New source assertion reads only Pluss PDF6 for the complete additional-coverage heading/continuation, although the heading ends on PDF5.",
+  "actual_failure": "assert.ok(additional.includes(\"utover forsikringssummen\")) is false for text(6).",
+  "baseline_reproduction": "Source bytes are identical to committed HEAD. Pluss PDF5 contains the heading; PDF6 contains its public-order clause and leakage exclusion. The same page-six-only assertion fails on those unchanged HEAD bytes.",
+  "proof": "source-continuation-blocker-proof.json",
+  "insurance_meaning_change_required": false,
+  "production_defect_demonstrated": false,
+  "candidate_preserved": true,
+  "budget_consumed_by_correction": 0,
+  "minimum_requested_authorization": "Authorize one named mechanical source-page-continuation harness root, preserving all clauses and source hash: verify the additional-coverage heading on Pluss PDF5 and its public-order/leakage continuation on PDF6 (Standard PDF5 remains intact). If corrected, HARNESS_AUTONOMY_V1 would become21/12 under a precise exception; no other root authorized.",
+  "proposed_test_change_only": "Read the source section across Pluss PDF5–6, or assert the heading on PDF5 and the continuation on PDF6 separately, with section association retained. No production or provenance changes.",
+  "other_new_roots": [],
+  "fresh_gates": "validation-summary.json",
+  "completion_receipts_created": 0,
+  "commit_push": "NOT_PERFORMED",
+  "next_production_packet": "NOT_AUTHORIZED"
+}

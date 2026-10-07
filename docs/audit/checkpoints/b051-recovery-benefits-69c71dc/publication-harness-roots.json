@@ -1,0 +1,119 @@
+[
+  {
+    "root": "PLUS_PUBLIC_ORDER_PAGE_CONTINUATION",
+    "classification": "MECHANICAL_SOURCE_ASSERTION_PAGE_CONTINUATION",
+    "status": "PERFORMED",
+    "before": "Pluss text(6) lacks the section heading on PDF5.",
+    "after": "Explicit end-of-PDF5 heading, start-of-PDF6 continuation and end before Råte og skadeinsekter; all old qualification/exclusion assertions retained.",
+    "evidence": "source-continuation-blocker-proof.json",
+    "authorization": "resume-authorization.json",
+    "affected_file": "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "baseline_and_candidate_frozen_bytes_identical": true,
+    "unchanged": [
+      "insurance_meaning",
+      "catalog_values",
+      "product_and_variant_scope",
+      "selection",
+      "mapping",
+      "document_priority",
+      "all_production_provenance"
+    ],
+    "before_after_test_file_sha256": [
+      "eba535684fdb9b038baaecb603a3669b0ab6b8c4dad881d6b8b183ebd9e596e0",
+      "eaa82bfe6ee9ead5a44c4a19953759f82b5d89f087b4fd028e13d473a3a18eb0"
+    ],
+    "HARNESS_AUTONOMY_V1": {
+      "before": 20,
+      "after": 21,
+      "ordinary_limit": 12,
+      "scope_before": 0,
+      "scope_after": 1,
+      "scope_limit": 6,
+      "explicit_named_exception": true,
+      "other_capacity": 0
+    }
+  },
+  {
+    "root": "RECOVERY_TEST_BLANK_LINE_WHITESPACE",
+    "status": "PERFORMED",
+    "classification": "MECHANICAL_BLANK_LINE_SERIALIZATION",
+    "authorization": "whitespace-authorization.json",
+    "evidence": "whitespace-delta.json",
+    "HARNESS_AUTONOMY_V1": {
+      "before": 21,
+      "after": 22,
+      "ordinary_limit": 12,
+      "scope_before": 1,
+      "scope_after": 2,
+      "scope_limit": 6,
+      "explicit_named_exception": true,
+      "other_capacity": 0
+    },
+    "unchanged": [
+      "insurance_meaning",
+      "values",
+      "scope",
+      "assertions",
+      "selection",
+      "mapping",
+      "document_priority",
+      "provenance"
+    ]
+  },
+  {
+    "root": "ARCHIVED_STATUS_ORIGINAL_LINK_CONTEXT",
+    "status": "PERFORMED",
+    "classification": "MECHANICAL_ARCHIVED_DOCUMENT_LINK_CONTEXT",
+    "authorization": "link-context-authorization.json",
+    "evidence": "link-context-proof.json",
+    "unchanged": [
+      "all_application_files",
+      "archive_bytes",
+      "all_other_document_contexts",
+      "insurance_meaning",
+      "values",
+      "selection",
+      "mapping",
+      "document_priority",
+      "provenance"
+    ],
+    "HARNESS_AUTONOMY_V1": {
+      "before": 22,
+      "after": 23,
+      "ordinary_limit": 12,
+      "scope_before": 2,
+      "scope_after": 3,
+      "scope_limit": 6,
+      "explicit_named_exception": true,
+      "other_capacity": 0
+    }
+  },
+  {
+    "root": "LOSSLESS_PUBLICATION_ERROR_LOG_ENCODING",
+    "status": "PERFORMED",
+    "classification": "MECHANICAL_LOSSLESS_AUDIT_STORAGE",
+    "authorization": "log-encoding-authorization.json",
+    "evidence": "log-encoding-proof.json",
+    "unchanged": [
+      "original_logbytes",
+      "all_application_files",
+      "insurance_meaning",
+      "scope",
+      "selection",
+      "mapping",
+      "document_priority",
+      "all_provenance",
+      "historical_committed_audit_files"
+    ],
+    "HARNESS_AUTONOMY_V1": {
+      "before": 23,
+      "after": 24,
+      "ordinary_limit": 12,
+      "scope_before": 3,
+      "scope_after": 4,
+      "scope_limit": 6,
+      "explicit_named_exception": true,
+      "other_capacity": 0
+    }
+  }
+]

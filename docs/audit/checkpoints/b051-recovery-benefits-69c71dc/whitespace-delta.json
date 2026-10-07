@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "root": "RECOVERY_TEST_BLANK_LINE_WHITESPACE",
+  "file": "tests/remediation-b-051-recovery-benefits.test.mjs",
+  "line": 35,
+  "offset": 4525,
+  "removed_bytes_hex": "20",
+  "before_sha256": "eaa82bfe6ee9ead5a44c4a19953759f82b5d89f087b4fd028e13d473a3a18eb0",
+  "after_sha256": "54afa19975f1a1dd2acb0b94101b1f01569155d8934d838940448747dacf3bbf",
+  "before_size": 16539,
+  "after_size": 16538,
+  "reverse_exact_proof": "Inserting ASCII 0x20 at offset reconstructs full-validated original SHA-256",
+  "all_other_application_files_unchanged": true,
+  "production_diff_unchanged": true,
+  "assertions_and_semantics_unchanged": true
+}

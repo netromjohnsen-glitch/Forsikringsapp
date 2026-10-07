@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "full_validated_baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "full_validated_candidate_identity": "5c7dc046dc53bfdfb05c8c7604b7397cce4e75e13ab8fe6ebc61f4242d561572",
+  "full_validated_candidate_manifest": "final-application-identity.json",
+  "full_gate_logs": "final-gate-results.json",
+  "full_gate_summary": "completion-validation-summary.json",
+  "publication_candidate_identity": "f6c064cdeca3f5ded41db9ef35f2a215d79faf7f230a7222c474d2d6d0be2740",
+  "publication_candidate_manifest": "publication-application-identity.json",
+  "exact_code_delta": "whitespace-delta.json",
+  "affected_test_rerun": "whitespace-targeted-gate.json",
+  "application_gate_reuse_basis": "Latest explicit user proportional-validation authorization; workflow requires meaningful candidate identity and all integrity/publication gates. The only delta removes a blank-line ASCII space; application meaning and all assertions are identical. No claim that fullsuite/build/runtime were rerun after this byte removal.",
+  "fullsuite_rerun_after_whitespace": "NOT_RUN_NOT_REQUIRED_FOR_PROVEN_ONE_BYTE_DELTA",
+  "build_runtime_rerun_after_whitespace": "NOT_RUN_NOT_REQUIRED_FOR_PROVEN_ONE_BYTE_DELTA",
+  "HARNESS_AUTONOMY_V1": {
+    "used": 24,
+    "ordinary_limit": 12,
+    "scope_used": 4,
+    "scope_limit": 6,
+    "ledger": "publication-harness-roots.json",
+    "explicit_exception_roots": 4,
+    "capacity_for_other_roots": 0
+  },
+  "publication": "Not yet published. Completion receipts become durable after secure commit/push succeeds; prior drafts and failure snapshots stay immutable.",
+  "link_context_verification": "link-context-proof.json",
+  "lossless_publication_error_log": "log-encoding-metadata.json",
+  "publication_integrity_gate": "publication-final-integrity.json",
+  "publication_acceptance_rule": "Secure publisher must rerun required final exact-set/diff gates and verify actual HEAD/origin/main/remote and cleanworktree; containing Gitcommit identifies publication. Historical drafts/stops remain priorstates."
+}

@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "archive_path": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-status-before-whitespace.md",
+  "original_path": "docs/development-agent/current-project-status.md",
+  "original_revision": {
+    "classification": "DOCUMENTED_UNCOMMITTED_STATUS_SNAPSHOT_NOT_BASELINE_COMMITTED_STATUS",
+    "baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+    "original_status_sha256": "f5437b8bc25e8e1a0e4514baa05620f5a0a9433cc8a8a5abbb110cf38afef2e7",
+    "independent_before_copy_hash_record": "publication-original-staged-reconciliation.json CHECKPOINT_STATUS working_sha256",
+    "application_revision_at_snapshot": "final-application-identity.json",
+    "publication_stop": "publication-checkpoint.json"
+  },
+  "archive_sha256": "f5437b8bc25e8e1a0e4514baa05620f5a0a9433cc8a8a5abbb110cf38afef2e7",
+  "byte_identity_proof": "Complete archive SHA equals independent recorded SHA of original working status before the copy; no normalization or link rewriting.",
+  "baseline_committed_original_sha256": "996fc7369455ca6a625c55e58f51cf6f17fa81a8e6716c1e19214d9131ec0161",
+  "baseline_committed_original_is_the_archive": false,
+  "targets": [
+    {
+      "relative_link": "../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-blocker.json",
+      "resolved_repo_path": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-blocker.json",
+      "revision": {
+        "type": "IMMUTABLE_UNCOMMITTED_CANDIDATE_ARTIFACT",
+        "baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+        "proof": "STOP_SHA256SUMS",
+        "sha256": "545b206ebc98083f5c000ab5082c6c2c6fd7c0901dd2148fe336915f21018324"
+      }
+    },
+    {
+      "relative_link": "../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-checkpoint.json",
+      "resolved_repo_path": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-checkpoint.json",
+      "revision": {
+        "type": "IMMUTABLE_UNCOMMITTED_CANDIDATE_ARTIFACT",
+        "baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+        "proof": "STOP_SHA256SUMS",
+        "sha256": "18f1aad1492254a39515b6e4c42ca7e8cc391858d23d8e33ebe8950ae9546ce9"
+      }
+    },
+    {
+      "relative_link": "../audit/checkpoints/b051-recovery-benefits-69c71dc/receipt-publication-status.json",
+      "resolved_repo_path": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/receipt-publication-status.json",
+      "revision": {
+        "type": "IMMUTABLE_UNCOMMITTED_CANDIDATE_ARTIFACT",
+        "baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+        "proof": "STOP_SHA256SUMS",
+        "sha256": "f41e749a6d79e40b83473cf492c122477e36726fa207b49e3c4fbf0ce365c799"
+      }
+    },
+    {
+      "relative_link": "../audit/checkpoints/b051-recovery-benefits-69c71dc/completion-validation-summary.json",
+      "resolved_repo_path": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/completion-validation-summary.json",
+      "revision": {
+        "type": "IMMUTABLE_UNCOMMITTED_CANDIDATE_ARTIFACT",
+        "baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+        "proof": "STOP_SHA256SUMS",
+        "sha256": "7d8313c158f7d954a630ba0a0c82246daecc6c37d9bb094949af86670611c9b3"
+      }
+    },
+    {
+      "relative_link": "../audit/checkpoints/b051-settlement-age-0bcd250/b051-partition.json",
+      "resolved_repo_path": "docs/audit/checkpoints/b051-settlement-age-0bcd250/b051-partition.json",
+      "revision": {
+        "type": "COMMITTED_BASELINE",
+        "commit": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+        "sha256": "8977445b79d7ca1186ae64a1546de03e2a96dad8c3b80fd56e7ea5f3820b0212"
+      }
+    }
+  ],
+  "all_targets_exist_on_indicated_revision": true,
+  "archive_unchanged": true,
+  "no_general_fallback": true
+}

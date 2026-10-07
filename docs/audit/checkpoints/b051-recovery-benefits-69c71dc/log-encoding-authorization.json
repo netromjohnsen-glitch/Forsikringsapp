@@ -1,0 +1,34 @@
+{
+  "source": "Explicit latest B-051 — TAPSFri LAGRING AV EKSAKT FEILLOGG OG PUBLISERING",
+  "baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "root": "LOSSLESS_PUBLICATION_ERROR_LOG_ENCODING",
+  "exact_original": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-staged-diff-check.txt",
+  "exact_encoded": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-staged-diff-check.txt.base64",
+  "authorized_action": "Deterministic Base64 with LF; retain exact rawbytes locally outside repository; remove raw from staged inventory; change only direct active verifier/manifest/checksum references. Preserve historical original hash references and resolve exactly this original through strict decoding. No generic file fallback or diff exception.",
+  "HARNESS_AUTONOMY_V1": {
+    "before": 23,
+    "after_performed": 24,
+    "ordinary_limit": 12,
+    "scope_before": 3,
+    "scope_after": 4,
+    "scope_limit": 6,
+    "capacity_for_other_roots": 0
+  },
+  "mutable_direct_dependents": [
+    "PUBLICATION.md",
+    "PUBLICATION_SHA256SUMS",
+    "completion-receipt-292dacd4533926fd.json",
+    "completion-receipt-b3b964a9c6105360.json",
+    "completion-receipt-ed99577218e2302b.json",
+    "publication-completion-checkpoint.json",
+    "publication-current-inputs.json",
+    "publication-files.json",
+    "publication-final-staged-manifest.json",
+    "publication-harness-roots.json",
+    "publication-ready-receipts.json",
+    "publication-validation-bridge.json",
+    "verify-publication.py"
+  ],
+  "application_changes": false,
+  "publication": "Exact three current completion receipts,51 signatures,B05125/10/2/2;atomic secure publish.py after gates;no deploy or later scope"
+}

@@ -1,0 +1,113 @@
+{
+  "status": "BLOCKED_BEFORE_STAGING_OR_PUBLICATION",
+  "root": "ARCHIVED_STATUS_RELATIVE_LINK_VERIFIER_CONTEXT",
+  "classification": "NEW_UNAUTHORIZED_INTEGRITY_HARNESS_EXPECTATION",
+  "affected_file": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/verify-publication.py",
+  "affected_snapshot": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-status-before-whitespace.md",
+  "source_context": "docs/development-agent/current-project-status.md",
+  "cause": "New global Markdown link loop assumes archived snapshot links are relative to archive directory. Snapshot intentionally preserves original status bytes and relative links from development-agent context. All original-context targets exist; no missing source/receipt or production defect.",
+  "introduced_by_current_publication_harness": true,
+  "baseline_verifier_absent": true,
+  "link_proof": [
+    {
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-blocker.json",
+      "original_context_exists": true,
+      "archive_context_exists": false
+    },
+    {
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-checkpoint.json",
+      "original_context_exists": true,
+      "archive_context_exists": false
+    },
+    {
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/receipt-publication-status.json",
+      "original_context_exists": true,
+      "archive_context_exists": false
+    },
+    {
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/completion-validation-summary.json",
+      "original_context_exists": true,
+      "archive_context_exists": false
+    },
+    {
+      "target": "../audit/checkpoints/b051-settlement-age-0bcd250/b051-partition.json",
+      "original_context_exists": true,
+      "archive_context_exists": false
+    }
+  ],
+  "all_diagnosed_failed_links": [
+    {
+      "file": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-status-before-whitespace.md",
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-blocker.json"
+    },
+    {
+      "file": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-status-before-whitespace.md",
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-checkpoint.json"
+    },
+    {
+      "file": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-status-before-whitespace.md",
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/receipt-publication-status.json"
+    },
+    {
+      "file": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-status-before-whitespace.md",
+      "target": "../audit/checkpoints/b051-recovery-benefits-69c71dc/completion-validation-summary.json"
+    },
+    {
+      "file": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-status-before-whitespace.md",
+      "target": "../audit/checkpoints/b051-settlement-age-0bcd250/b051-partition.json"
+    }
+  ],
+  "no_correction_performed_for_this_root": true,
+  "minimum_authorization": "Authorize only explicit original-context link validation for this exact byteidentical archived status snapshot; keep all other live Markdown link assertions and all snapshot bytes unchanged. Account one independent mechanical harness root22/12→23/12 scope2/6→3/6, or provide a different explicit policy decision. No broader link exclusions.",
+  "whitespace_correction": "whitespace-delta.json",
+  "fresh_affected_test": "whitespace-targeted-gate.json",
+  "whitespace_affected_test_pass": 115,
+  "application_candidate": "f6c064cdeca3f5ded41db9ef35f2a215d79faf7f230a7222c474d2d6d0be2740",
+  "full_validated_candidate": "5c7dc046dc53bfdfb05c8c7604b7397cce4e75e13ab8fe6ebc61f4242d561572",
+  "full_gate_evidence_unchanged": "final-gate-results.json",
+  "staged_count": 428,
+  "original428_reconciled": true,
+  "proposed_final_count_before_blocker": 454,
+  "additional26_reconciled": "publication-final-staged-manifest.json",
+  "new_staging_attempt": "Rejected by auto-review before mutation; reason:26 additions lacked per-file authorization proof.26-file proof subsequently completed, then read-only link preflight failed; no staging retry.",
+  "both_diff_checks": {
+    "git diff --check": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "git diff --cached --check": {
+      "exit_code": 2,
+      "output": "tests/remediation-b-051-recovery-benefits.test.mjs:35: trailing whitespace.\n+ \n"
+    }
+  },
+  "staged_diff_failure_still_old_space": "Corrected working test has not been restaged because publication preflight is blocked. Original staged test remains unchanged.",
+  "budget": {
+    "HARNESS_AUTONOMY_V1": 22,
+    "ordinary_limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6,
+    "new_root_consumed": 0,
+    "future_capacity": 0
+  },
+  "accepted_campaign_count": 48,
+  "pending_candidate_count": 51,
+  "new_receipts_unpublished": true,
+  "accepted_B051_partition": [
+    22,
+    13,
+    2,
+    2
+  ],
+  "pending_B051_partition": [
+    25,
+    10,
+    2,
+    2
+  ],
+  "all_prior_receipts_and_historical_artifacts_unchanged": true,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "commit_created": false,
+  "push_attempted": false,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

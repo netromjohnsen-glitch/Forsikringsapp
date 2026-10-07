@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""Verify exact whitespace bridge, preserved full gate evidence and publication scope."""
+import csv
+import gzip
+import hashlib
+import json
+import re
+import subprocess
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[4]
+OUT = Path(__file__).resolve().parent
+BASE = '69c71dcc48258ba52f33a77a54126f1f065d7d7c'
+EXACT = {'292dacd4533926fd', 'b3b964a9c6105360', 'ed99577218e2302b'}
+sha = lambda b: hashlib.sha256(b).hexdigest()
+read = lambda n: json.loads((OUT/n).read_text())
+registry = {r['signature_id']: r for r in csv.DictReader((ROOT/'docs/audit/legacy-local/source-catalog-remediation-triage/p1-triage.csv').open())}
+assert len(registry) == 1589
+auth = read('authorization.json')
+assert auth['baseline_revision'] == BASE
+assert {r['signature_id'] for r in auth['signatures']} == EXACT
+for row in auth['signatures']:
+    assert row == registry[row['signature_id']]
+for entry in auth['preflight_entries']:
+    assert entry['original_binding'] == registry[entry['signature']]
+    assert len(entry['original_source_evidence']) == 2
+    for source in entry['original_source_evidence']:
+        assert source['finding_id'] in json.loads(entry['original_binding']['finding_ids'])
+        assert source['source_fact_id'] in json.loads(entry['original_binding']['source_fact_ids'])
+        assert sha((ROOT/source['artifact']).read_bytes()) == source['sha256']
+for name in ['historical-artifact-hashes.json', 'initial-candidate-artifact-hashes.json']:
+    for path, digest in read(name).items():
+        assert sha((ROOT/path).read_bytes()) == digest, path
+prior = read('prior-receipts.json')
+assert len(prior) == len({r['signature'] for r in prior}) == 48
+for row in prior:
+    assert sha((ROOT/row['path']).read_bytes()) == row['sha256']
+    receipt = json.loads((ROOT/row['path']).read_text())
+    assert receipt['signature'] == row['signature'] and receipt['status'] == 'PASS'
+old = read('final-application-identity.json')
+current = read('publication-application-identity.json')
+assert set(current['application_files']) == set(old['application_files']) == set(auth['authorized_application_files'])
+assert sha(json.dumps(current['application_files'], sort_keys=True, separators=(',', ':')).encode()) == current['identity_sha256']
+for path, digest in current['application_files'].items():
+    assert sha((ROOT/path).read_bytes()) == digest, path
+changed = [p for p, h in current['application_files'].items() if h != old['application_files'][p]]
+assert changed == ['tests/remediation-b-051-recovery-benefits.test.mjs']
+delta = read('whitespace-delta.json')
+b = (ROOT/delta['file']).read_bytes()
+assert b.splitlines(keepends=True)[34] == b'\n'
+original = b[:delta['offset']] + b' ' + b[delta['offset']:]
+assert original.splitlines(keepends=True)[34] == b' \n'
+assert sha(original) == delta['before_sha256'] == old['application_files'][delta['file']]
+assert sha(b) == delta['after_sha256'] == current['application_files'][delta['file']]
+assert len(original) == len(b) + 1 == delta['before_size']
+assert sha(subprocess.check_output(['git', 'diff', BASE, '--', 'lib/gjensidige-hus-catalog.ts'], cwd=ROOT)) == old['production_diff_sha256'] == current['production_diff_sha256']
+roots = read('publication-harness-roots.json')
+assert roots[0] == read('final-harness-roots.json')[0]
+assert len(roots) == 2 and roots[1]['root'] == 'RECOVERY_TEST_BLANK_LINE_WHITESPACE'
+assert roots[1]['HARNESS_AUTONOMY_V1'] == {'before':21, 'after':22, 'ordinary_limit':12, 'scope_before':1, 'scope_after':2, 'scope_limit':6, 'explicit_named_exception':True, 'other_capacity':0}
+assert read('harness-roots.json') == []
+results = read('final-gate-results.json')['results']
+assert len(results) == len({r['label'] for r in results}) == 181
+for row in results:
+    assert row['status'] == 'PASS' and row['exit_code'] == 0 and row['tested_revision'] == BASE
+    assert row['candidate_identity_sha256'] == old['identity_sha256']
+    log = (OUT/row['log']).read_bytes()
+    assert sha(log) == row['log_sha256'] and sha(gzip.decompress(log)) == row['output_sha256']
+manifest = read('final-test-manifest.json')
+assert manifest == sorted(str(p.relative_to(ROOT)) for p in (ROOT/'tests').glob('*.test.mjs'))
+full = [r for r in results if r['label'].startswith('full-')]
+assert len(full) == len(manifest) == 151
+assert sorted(r['command'][-1] for r in full) == manifest
+rem = read('final-remediation-manifest.json')
+assert rem == [p for p in manifest if 'remediation' in Path(p).name or Path(p).name == 'b043-status-parser.test.mjs']
+assert len(rem) == 53
+summary = read('completion-validation-summary.json')
+assert summary['status'] == 'PASS' and summary['candidate_identity_sha256'] == old['identity_sha256']
+for name, rows in [('fullsuite', full), ('remediation', [r for r in full if r['command'][-1] in rem]), ('targeted', [r for r in results if r['label'].startswith('targeted-closure-')])]:
+    assert summary[name]['files'] == len(rows)
+    for key in ['tests', 'pass', 'fail', 'cancelled', 'skipped']:
+        assert summary[name][key] == sum(r['tap'][key] for r in rows)
+assert summary['fullsuite']['pass'] == 4428 and summary['remediation']['pass'] == 2275
+for name in ['typegen', 'typescript', 'eslint', 'production-build', 'http-pdf-runtime', 'diff-check']:
+    assert len([r for r in results if r['label'] == name]) == 1
+assert summary['HTTP_PDF_runtime_checks'] == 22 and summary['eslint']['errors'] == 0
+fresh = read('whitespace-targeted-gate.json')
+assert fresh['status'] == 'PASS' and fresh['exit_code'] == 0
+assert fresh['candidate_identity_sha256'] == current['identity_sha256'] and fresh['tested_baseline'] == BASE
+assert fresh['tap'] == {'tests':115, 'pass':115, 'fail':0, 'cancelled':0, 'skipped':0}
+log = (OUT/fresh['log']).read_bytes()
+assert sha(log) == fresh['log_sha256'] and sha(gzip.decompress(log)) == fresh['output_sha256']
+bridge = read('publication-validation-bridge.json')
+assert bridge['status'] == 'PASS' and bridge['full_validated_candidate_identity'] == old['identity_sha256']
+assert bridge['publication_candidate_identity'] == current['identity_sha256']
+# Fresh reverse audit; all production content remains the exact full-validated candidate.
+subprocess.run(['node', str(OUT/'catalog-audit.mjs')], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
+isolation = read('catalog-delta.json')
+assert isolation['entirely_unchanged_components'] == 317 and isolation['protected_raw_facts'] == 4155 and isolation['other_products_unchanged'] == 202
+assert len(isolation['changes']) == 3 and all(x['owner'] == 'gjensidigeHusStandard' for x in isolation['changes'])
+receipt_files = read('publication-ready-receipts.json')['new_receipts']
+receipts = [read(n) for n in receipt_files]
+assert len(receipts) == 3 and {r['signature'] for r in receipts} == EXACT
+for row in receipts:
+    assert row['status'] == 'PASS' and row['tested_baseline'] == BASE
+    assert row['original_binding'] == registry[row['signature']]
+    assert row['candidate_identity_sha256'] == current['identity_sha256']
+    assert row['full_validated_candidate_identity_sha256'] == old['identity_sha256']
+    assert row['global_resolved_open'] == 'UNKNOWN' and row['P2_credit'] == 0
+cp = read('publication-completion-checkpoint.json')
+previous = json.loads((OUT.parent/'b051-settlement-age-0bcd250/checkpoint.json').read_text())
+assert cp['documented_campaign_count'] == len(set(cp['documented_campaign_signatures'])) == 51
+assert set(cp['documented_campaign_signatures']) == EXACT | {r['signature'] for r in prior}
+for name in ['historical_only', 'holds_unchanged', 'historical_DEFER_SAFE_signatures']:
+    assert cp[name] == previous[name]
+assert cp['HARNESS_AUTONOMY_V1']['used'] == 22 and cp['HARNESS_AUTONOMY_V1']['scope_used'] == 2
+assert cp['current_completion_receipts'] == receipt_files and cp['global_resolved_open'] == 'UNKNOWN'
+partition = read('completion-b051-partition.json')
+sets = [set(partition[k]) for k in ['completed_current_receipts', 'source_clear_no_current_receipt', 'revalidation_candidates', 'holds']]
+assert list(map(len, sets)) == [25, 10, 2, 2]
+assert sum(map(len, sets)) == len(set.union(*sets)) == 39
+assert set.union(*sets) == {s for s, r in registry.items() if r['final_batch_id'] == 'B-051'}
+assert sets[0] == set(previous['current_B051_completed_signatures']) | EXACT
+prior_partition = json.loads((OUT.parent/'b051-settlement-age-0bcd250/b051-partition.json').read_text())
+assert sets[2:] == [set(prior_partition[k]) for k in ['revalidation_candidates', 'holds']]
+for inventory in ['SHA256SUMS', 'FINAL_SHA256SUMS', 'STOP_SHA256SUMS', 'PUBLICATION_SHA256SUMS']:
+    entries = []
+    for line in (OUT/inventory).read_text().splitlines():
+        digest, path = line.split('  ', 1)
+        assert not Path(path).is_absolute() and '..' not in Path(path).parts
+        assert sha((ROOT/path).read_bytes()) == digest, path
+        entries.append(path)
+    assert len(entries) == len(set(entries))
+    if inventory == 'PUBLICATION_SHA256SUMS':
+        assert set(entries) == {str(p.relative_to(ROOT)) for p in OUT.rglob('*') if p.is_file() and p.name != inventory}
+inputs = read('publication-current-inputs.json')['current_project_status']
+assert sha((ROOT/inputs['path']).read_bytes()) == inputs['sha256']
+original_staged = read('publication-original-staged-reconciliation.json')
+assert original_staged['count'] == len(original_staged['entries']) == 428
+assert original_staged['counts'] == {'NEW_AUDIT_RECEIPT_LOG':418, 'CHECKPOINT_STATUS':1, 'AUTHORIZED_PRODUCTION':1, 'AUTHORIZED_TEST':8}
+assert {r['path'] for r in original_staged['entries']} == set(read('expected-files.json'))
+assert next(r for r in original_staged['entries'] if r['category'] == 'CHECKPOINT_STATUS')['staged_sha256'] == read('publication-inputs.json')['current_project_status']['sha256']
+expected = read('publication-files.json')
+assert len(expected) == len(set(expected))
+assert set(expected) == set(current['application_files']) | {inputs['path']} | {str(p.relative_to(ROOT)) for p in OUT.rglob('*') if p.is_file()}
+file_audit = read('publication-final-staged-manifest.json')
+assert {r['path'] for r in file_audit['entries']} == set(expected)
+for path in [*OUT.glob('*.md'), ROOT/inputs['path']]:
+    assert b'\r' not in path.read_bytes()
+    for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
+        if not target.startswith(('http:', 'https:', '#')):
+            assert (path.parent/target.split('#')[0]).exists(), (path, target)
+staged = subprocess.check_output(['git', 'diff', '--cached', '--name-only', '-z'], cwd=ROOT).decode().split('\0')[:-1]
+if staged:
+    assert len(staged) == len(expected) and set(staged) == set(expected)
+    for path in staged:
+        assert subprocess.check_output(['git', 'show', ':'+path], cwd=ROOT) == (ROOT/path).read_bytes(), path
+subprocess.run(['git', 'diff', '--check'], cwd=ROOT, check=True)
+subprocess.run(['git', 'diff', '--cached', '--check'], cwd=ROOT, check=True)
+print('Publication integrity PASS: exact one-byte delta; retained complete gates + fresh115/115;48 immutable prior receipts;51 unique signatures;B05125/10/2/2;budget22/12 scope2/6;strict staged-set and both diff checks.')

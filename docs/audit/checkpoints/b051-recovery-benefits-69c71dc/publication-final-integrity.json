@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "command": [
+    "python3",
+    "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/verify-publication.py"
+  ],
+  "tested_baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "application_candidate_identity": "f6c064cdeca3f5ded41db9ef35f2a215d79faf7f230a7222c474d2d6d0be2740",
+  "tested_staged_count": 469,
+  "test_result": "All originalreceipt/source/checksum/link/negative/Base64/kandidat/staged assertions and bothdiffchecks PASS",
+  "fullgate_reuse": "Only same tested app content after previous one-space test adjustment;old completegateidentity preserved,115/115 affectedtest rerun captured earlier;no newfullsuite/build/runtime claim",
+  "publish_selftest": {
+    "command": [
+      "python3",
+      "docs/audit/checkpoints/b050-diagnostics-integrity-3c5e869/publish.py",
+      "--self-test"
+    ],
+    "exit_code": 0,
+    "output": "Publication failure/success exit-status controls PASS\n"
+  },
+  "log": "publication-final-integrity.log.gz",
+  "log_sha256": "9bdfffdeff3b947af604b1d859b1ffe52b14244e966a84acec84ace8a6ab1d90",
+  "output_sha256": "aceb8fb8a66b32d60fd08d7f9197f9defe93800bb9e52ac82b700e74f01edaf7",
+  "final_exact_set_recheck": "Adding only these two authorized gateevidencefiles and direct receipt/manifest references requires verify-publication.py again before secure publishing. Previous469 PASS does not itself prove final471-file staged set.",
+  "HARNESS_AUTONOMY_V1": 24,
+  "scope_used": 4,
+  "no_new_correction_roots": true
+}

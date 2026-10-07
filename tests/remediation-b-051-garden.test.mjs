@@ -14,7 +14,8 @@ import { documentPipeline } from './helpers/supporting-terms.mjs';
 import { expectedCatalog as previousEventsCatalog } from '../docs/audit/checkpoints/b051-events-buildings-19ce85d/expected-catalog.mjs';
 
 import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
-const approvedEventsCatalog = applySettlement(previousEventsCatalog);
+import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
+const approvedEventsCatalog = applyRecovery(applySettlement(previousEventsCatalog));
 const audit = new URL('../docs/audit/checkpoints/b051-garden-pier-64dd3cb/', import.meta.url);
 const oracle = JSON.parse(readFileSync(new URL('source-oracle.json', audit)));
 const authorization = JSON.parse(readFileSync(new URL('authorization.json', audit)));
@@ -106,7 +107,7 @@ for (const key of keys) test('R-051-GARDEN-FACT ' + key + ': exact full fields, 
 });
 
 test('R-051-GARDEN-REVERSE: revision-bound six-row events transform; approved garden/rental/pests unchanged', () => {
-  execFileSync('node', [new URL('../docs/audit/checkpoints/b051-settlement-age-0bcd250/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
+  execFileSync('node', [new URL('../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
 });
 
 for (const id of ids) for (const key of keys) test('R-051-GARDEN-DOCUMENT ' + id + ' ' + key + ': values/refusal/conflicts/Ukjent preserved without a new parent', () => {

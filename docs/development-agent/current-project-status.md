@@ -1,20 +1,35 @@
 # Aktuell dokumentert prosjektstatus
 
-Siste operative bevispakke: [B-051 Oppgjør og aldersfradrag](../audit/checkpoints/b051-settlement-age-0bcd250/README.md).
-[Checkpoint](../audit/checkpoints/b051-settlement-age-0bcd250/checkpoint.json), [kandidatidentitet](../audit/checkpoints/b051-settlement-age-0bcd250/application-identity.json) og [sluttgater](../audit/checkpoints/b051-settlement-age-0bcd250/validation-summary.json).
-Testet baseline `0bcd250944853607a01066c2c9566bed0c7118af` med autoriserte hash-identifiserte katalog-/testendringer. Publiseringsrevisjonen fremgår av Git.
+B-051 Naturskade/påbud/rullestol: komplett applikasjonsvalidering PASS, klart for avsluttende
+integritetskontroll og autorisert atomisk publisering. Git-committen som inneholder dette
+checkpointet registrerer faktisk publiseringsrevisjon. Sikret publish.py kontrollerer faktisk
+push, HEAD/origin/main/remote main og ren arbeidskopi før publisering rapporteres.
+[Aktuelt checkpoint](../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-completion-checkpoint.json),
+[tre individuelle receipts](../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-ready-receipts.json),
+[bevisoversikt](../audit/checkpoints/b051-recovery-benefits-69c71dc/PUBLICATION.md).
 
-**48 unike dokumenterte signaturer:** B05016, B071 ti CURRENT_REVALIDATION, B05122 individuelle completions. Alle44 tidligere receipts er byteidentiske. Globalt resolved/open **UKJENT**; historisk rapporterte414/1589 er ikke aktuelle verifiserte tall.
-[B051s eksakte39-partisjon](../audit/checkpoints/b051-settlement-age-0bcd250/b051-partition.json):22fullført,13kildeklare historiske preflightkandidater uten aktuelle receipts,2revalideringskandidater,2holds. Manglende receipt betyr ikke automatisk produksjonsfeil.
+51 unike dokumenterte kampanjesignaturer etter komplett publiseringsgate:48 tidligere uendrede
+receipts og tre nye. B05125 fullført/10 kildeklare kandidater uten aktuelle receipts/
+2 revalideringskandidater/2 holds. Før verifisert publisering er tre nye receipts upubliserte.
+Globalt resolved/open UKJENT. Historiske414/1589 er ikke et aktuelt globalt regnskap.
+Historiske tellere og DEFER_SAFE er uendret; ingen P2-kreditt.
 
-Fersk målrettet gate195/195; målrettede regresjoner972/972; fullsuite4313/4313 i150filer; komplett remediering2160/2160 i52filer; typegen/TypeScript PASS; webpack build PASS; HTTP/PDF-runtime22/22 PASS.
-ESLint0feil/27warnings:26 eksisterende og én ny ubrukt-teller-warning i den nye testen, [dokumentert uten retting](../audit/checkpoints/b051-settlement-age-0bcd250/lint-difference.json).
-317 øvrige komponenter,4150 øvrige råfakta, metadata og202 øvrige produkters effektive fakta er uendret. Pluss-arv, B020-skadedyr og tidligere B051-rader er bevart.
+Fullgate på eksakt dokumentert kandidat: fullsuite4428/4428, remediering2275/2275 i53 filer,
+målrettet1087/1087, typegen/TypeScript PASS, ESLint0feil/27uendrede warnings, webpackbuild PASS,
+HTTP/PDF22/22 PASS. Senere eneste applikasjonsdelta er ett fjernet blanklinjemellomrom,
+med ny berørt gate115/115 PASS. Lenkekontekst- og loggkodingsrettinger endrer ingen applikasjon.
+Fullsuite/build/runtime er ikke kjørt på nytt for disse dokumentasjonsrettingene.
+[Valideringsbro](../audit/checkpoints/b051-recovery-benefits-69c71dc/publication-validation-bridge.json)
+bevarer de eksakte opprinnelige gate-loggene og kandidatidentitetene.
 
-HARNESS_AUTONOMY_V1 **20/12**, nytt scope **0/6**. Ingen nye korreksjonsrøtter er rettet; ordinær grense12 og historiske tellere er uendret. Planlagte fingerprint-/reverse-/forventningsoppdateringer var uttrykkelig godkjent scopearbeid og belastes0. Ingen fremtidig korreksjonskapasitet.
-[Forrige fullføring](../audit/checkpoints/b051-craftsmanship-completion-0cedd98/README.md), historiske auditpakker, orakler, receipts og logger er bevart.
+HARNESS_AUTONOMY_V124/12, scope4/6, under fire navngitte unntak. Ordinær grense12;
+ingen fremtidig kapasitet. Arkivstatusen tilhører dokumentert ukommittert kandidatversjon,
+ikke statusfilen i baseline-committen. Feilloggens originalbytes er tapsfritt Base64-lagret;
+råkopien bevares lokalt utenfor Git. Begge diffkontroller beholdes uten unntak.
+Bevar SC019/SR033/157c7afed18eb0fe, vannmapping25004bc4d7dd2c03, SC020/SR032,
+SC035/SR031, B0715f31ff4946a666b5 og alle øvrige checkpoint-holds. protectedCount-opprydding er urørt.
 
-Ingen videre produksjonsbolk er autorisert. Neste sikre steg er read-only preflight av en sammenhengende kildeklar B051-bolk eller et eksplisitt revalideringsscope. Eventuell retting av den nye lintwarningen trenger navngitt fullmakt; ingen budsjettføring er utført.
-Bevar SC019/SR033/157c7afed18eb0fe, vannmapping25004bc4d7dd2c03, SC020/SR032, SC035/SR031, B0715f31ff4946a666b5 og øvrige checkpoint-holds. Ingen P2-kreditt eller deploy.
+Neste sikre steg etter verifisert publisering: eksplisitt autorisert read-only preflight
+av neste B051-bolk. Ingen senere produksjonsbolk eller egen deployhandling er autorisert.
 
 CATALOG_PILOT_GATE = REMEDIATION_REQUIRED

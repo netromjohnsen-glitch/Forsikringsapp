@@ -1,0 +1,146 @@
+{
+  "classification": "CURRENT_SOURCE_BACKED_COMPLETION_NOT_HISTORICAL_CLOSURE_RECONSTRUCTION",
+  "status": "PASS",
+  "signature": "292dacd4533926fd",
+  "tested_baseline": "69c71dcc48258ba52f33a77a54126f1f065d7d7c",
+  "candidate_identity_sha256": "f6c064cdeca3f5ded41db9ef35f2a215d79faf7f230a7222c474d2d6d0be2740",
+  "candidate_identity": "publication-application-identity.json",
+  "original_binding": {
+    "signature_id": "292dacd4533926fd",
+    "representative_finding_id": "GAP-2119",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2119\", \"GAP-2178\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3045\", \"SF-3132\"]",
+    "proposed_existing_keys": "[\"hus.naturskade.dekning\"]",
+    "semantic_concept": "Naturskade",
+    "semantic_dimension": "nytomt",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "GAP_SF_bindings": [
+    [
+      "GAP-2119",
+      "SF-3045"
+    ],
+    [
+      "GAP-2178",
+      "SF-3132"
+    ]
+  ],
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2119",
+      "finding_ids": [
+        "GAP-2119"
+      ],
+      "source_fact_id": "SF-3045",
+      "source_fact_ids": [
+        "SF-3045"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 18",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Nektetgjenoppføringetterfare,ellerustabiltomt,hus/uthussomtotalskadeogtomtmarkedsverdimaks5dekar;avtalt sikringalternativ.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.naturskade.dekning"
+      ],
+      "advisor_impact": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+      "audit_scope_notes": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2178",
+      "finding_ids": [
+        "GAP-2178"
+      ],
+      "source_fact_id": "SF-3132",
+      "source_fact_ids": [
+        "SF-3132"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 19",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Nektetgjenoppføringetterfare,ellerustabiltomt,hus/uthussomtotalskadeogtomtmarkedsverdimaks5dekar;avtalt sikringalternativ.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.naturskade.dekning"
+      ],
+      "advisor_impact": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+      "audit_scope_notes": "Naturskadegenerelt er ikke nytomt5dekar/ustabiltomt/gjenoppføringsnekt-regler.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "source_pages_verified": {
+    "Standard": [
+      18
+    ],
+    "Pluss": [
+      19
+    ]
+  },
+  "authorized_key": "hus.naturskade.dekning",
+  "contract_and_provenance": {
+    "value": "Naturskade på brannforsikret bygning etter naturskadeforsikringsloven. Er en brannforsikret bygning skadet i en naturulykke og det ikke gis tillatelse til å reparere eller gjenoppbygge på skadestedet på grunn av fare for ny naturskade, erstattes bygningen som totalskadet. For bolighus og fritidshus gjelder naturskadeforsikringsloven § 1 tredje ledd: Tomtens markedsverdi før skaden erstattes, oppad begrenset til fem dekar, og det skadede huset og eventuelle forsikrede uthus erstattes som totalskadet. Reglene gjelder tilsvarende når grunnen under et brannforsikret bolighus eller fritidshus er blitt ustabil som følge av naturulykke, selv om huset ikke er skadet. Forsikringsselskapet har ikke klagerett over avslag på søknad om reparasjon eller gjenoppbygging. I stedet for å erstatte tomt og bygninger etter tredje ledd kan selskapet velge å sikre eiendommen dersom sikrede samtykker skriftlig. Sikringstiltakene må gi så god beskyttelse at eieren kan få tillatelse til reparasjon eller gjenoppbygging på skadestedet. Selskapet dekker sikringstiltakene og sørger for ettersyn og vedlikehold.",
+    "page": 18,
+    "section": "Erstatningsregler – Naturskade / Gjenoppføringsnekt, ustabil grunn og sikring",
+    "label": "Naturskade",
+    "previous_value": "Naturskade på brannforsikret bygning etter naturskadeforsikringsloven.",
+    "previous_primary": [
+      18,
+      "Erstatningsregler – Naturskade"
+    ]
+  },
+  "full_gate_evidence": "final-gate-results.json",
+  "validation_summary": "completion-validation-summary.json",
+  "isolation_evidence": "catalog-delta.json",
+  "planned_compatibility_work": "planned-test-updates.json",
+  "mechanical_root_ledger": "publication-harness-roots.json",
+  "HARNESS_AUTONOMY_V1": {
+    "used": 24,
+    "ordinary_limit": 12,
+    "scope_used": 4,
+    "scope_limit": 6,
+    "ledger": "publication-harness-roots.json",
+    "explicit_exception_roots": 4,
+    "capacity_for_other_roots": 0
+  },
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "prior_receipts": "prior-receipts.json",
+  "publication_revision": "Git records the atomic commit; the tested baseline plus final candidate identity are stated separately.",
+  "full_validated_candidate_identity_sha256": "5c7dc046dc53bfdfb05c8c7604b7397cce4e75e13ab8fe6ebc61f4242d561572",
+  "full_validated_draft": "receipt-292dacd4533926fd.json",
+  "proportional_validation": "publication-validation-bridge.json",
+  "publication_state": "ALL_VALIDATION_PASS_READY_FOR_ATOMIC_COMMIT_AND_PUSH; Git commit containing this receipt records publication. No completion accepted from former blocked drafts.",
+  "link_context_verification": "link-context-proof.json",
+  "lossless_publication_error_log": "log-encoding-metadata.json",
+  "publication_integrity_gate": "publication-final-integrity.json",
+  "publication_acceptance_rule": "Secure publisher must rerun required final exact-set/diff gates and verify actual HEAD/origin/main/remote and cleanworktree; containing Gitcommit identifies publication. Historical drafts/stops remain priorstates."
+}
