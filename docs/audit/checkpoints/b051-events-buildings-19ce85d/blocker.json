@@ -1,0 +1,70 @@
+{
+  "status": "STOPPED_HARNESS_BUDGET_EXHAUSTED",
+  "baseline_revision": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "affected_file": "tests/remediation-b-051-events-buildings.test.mjs",
+  "roots": [
+    {
+      "id": "RAW_RESOLVED_VS_ENRICHED_INHERITANCE_METADATA",
+      "affected_assertions": [
+        "R-051-EVENTS-FACT hus.takvegg.folgeskade at108",
+        "R-051-EVENTS-DOCUMENT Pluss takvegg at145/148"
+      ],
+      "baseline_has_raw_overriddenBase": false,
+      "baseline_enriched_fallback_overriddenBase": [
+        {
+          "value": "Vann gjennom utett bygning er ikke særskilt omfattet på Hus utover ordinære dekningshendelser.",
+          "source": {
+            "documentId": "gjensidigeHusStandard",
+            "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Standard",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+            "section": "Hus – Dekkes ikke",
+            "page": 3,
+            "version": "Alminnelige vilkår"
+          }
+        }
+      ],
+      "classification": "NEW_HARNESS_CONTRACT_ASSUMPTION",
+      "corrected": false,
+      "budget_consumed": 0,
+      "authorization_required": true,
+      "production_fix_not_recommended": true,
+      "recommended_bounded_test_correction": "Assert replacesBase on raw/resolved facts without assuming overriddenBase there. Independently derive the complete overriddenBase expectation from unchanged Standard baseline row and verify it on enriched/manual representations; retain full fields and provenance. Never derive expected inherited data from candidate output."
+    },
+    {
+      "id": "REPEATED_ENRICHMENT_GLOBAL_CANONICAL_SET_IDEMPOTENCE_ASSUMPTION",
+      "affected_line": 152,
+      "baseline_extra": [
+        {
+          "id": "rettshjelp.dekning",
+          "status": "selected",
+          "conflict": false
+        }
+      ],
+      "candidate_extra": [
+        {
+          "id": "rettshjelp.dekning",
+          "status": "selected",
+          "conflict": false
+        }
+      ],
+      "all_66_cases_same_baseline_and_candidate": true,
+      "classification": "NEW_HARNESS_CONTRACT_ASSUMPTION",
+      "corrected": false,
+      "budget_consumed": 0,
+      "authorization_required": true,
+      "production_fix_not_recommended": true,
+      "recommended_bounded_test_correction": "Compare first-pass candidate to first-pass baseline and second-pass candidate to second-pass baseline, plus explicit affected-key status/provenance invariants. Preserve the pre-existing generic legal-help alias separately; do not modify normalization/selection engine."
+    }
+  ],
+  "failed_assertions": 12,
+  "observed_on_unchanged_HEAD_catalog": true,
+  "unchanged_production_code_sha_proof": "candidate-identity.json",
+  "diagnostic_reproduction": "baseline-diagnosis.mjs / baseline-diagnosis.json",
+  "all_remaining_147_test_files_PASS": true,
+  "no_B051_production_regression_demonstrated": true,
+  "publication_allowed": false,
+  "next_minimum_decision": "Explicitly authorize the two named bounded test-only roots and precise budget treatment before correction. Then rerun complete closure gates before five receipts/commit/push. No production change or later scope required."
+}

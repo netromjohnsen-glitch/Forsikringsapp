@@ -31,14 +31,14 @@ const standard = facts("gjensidigeHusStandard", [
   ["bygninger.dekning", "Forsikrede bygninger", "Bygningen i forsikringsbeviset med fastmontert utstyr, samt frittliggende bygg på forsikringsstedet inntil 10 m² BTA. Større sidebygg må fremgå av beviset.", "Hus – Hva forsikringen omfatter", 2],
   ["bygninger.tilbehor", "Fast inventar og installasjoner", "Fastmontert utstyr og tilbehør som er vanlig for bygningens formål inngår.", "Hus – Hva forsikringen omfatter", 2],
   ["teknisk.solceller", "Solcelleanlegg", "Solcelleanlegg til privat strømforbruk inngår.", "Hus – Hva forsikringen omfatter", 2],
-  ["ror.utvendig", "Utvendige rør og ledninger", "Tilknyttede utvendige ledninger frem til offentlig ledning eller spredeledning. Brønn og borehull er unntatt.", "Hus – Hva forsikringen omfatter", 2],
+  ["ror.utvendig", "Utvendige rør og ledninger", "Tilknyttede utvendige ledninger frem til offentlig ledning eller spredeledning. Brønn og borehull er unntatt. For drensledning er annen skade enn brann- og naturskade unntatt.", "Hus – Hva forsikringen omfatter", 3],
   ["hage.objekter", "Hage og uteområde", "Hageanlegg inntil fem dekar, inkludert utvendig badekilde/-basseng. Skade på hageanlegg, utvendig badekilde/-basseng og brygge forårsaket av dyr, insekter, frost, sjøgang eller andre klimatiske forhold er unntatt. Likevel dekkes skader som skyldes en flomlignende situasjon.", "Hus – Hva forsikringen omfatter", 3],
   ["hage.brygge", "Fast brygge", "Fast brygge tilhørende forsikret bygning inntil 100 000 kroner, begrenset til brann og naturskade. Molo/bølgebryter er unntatt, også når dette fungerer som fundament for brygge. Flytebrygge og landgang er unntatt. Skade på hageanlegg, utvendig badekilde/-basseng og brygge forårsaket av dyr, insekter, frost, sjøgang eller andre klimatiske forhold er unntatt. Likevel dekkes skader som skyldes en flomlignende situasjon.", "Hus – Hva forsikringen omfatter", 3],
-  ["byggunderoppforing", "Bygg under oppføring", "Bygningsmaterialer, brakker og containere til byggearbeid på forsikringsstedet inngår etter vilkårets regler.", "Hus – Hva forsikringen omfatter", 2],
-  ["brann.dekning", "Brann", "Brann, lynnedslag, eksplosjon, elektrisk fenomen og plutselig nedsoting.", "Hus – Dekkes", 3],
+  ["byggunderoppforing", "Bygg under oppføring", "For bygg under oppføring, rehabilitering, tilbygg og påbygg inngår materialer til bygget, brakker, lagerskur og containere på forsikringsstedet. Tyveri av materialer ute er unntatt. Skade som skyldes snøtyngde eller vind svakere enn storm er unntatt når utvendige byggearbeider ikke er ferdige.", "Hus – Hva forsikringen omfatter / Bygg under oppføring, rehabilitering, tilbygg og påbygg", 3],
+  ["brann.dekning", "Brann", "Brann, lynnedslag, eksplosjon, elektrisk fenomen og plutselig nedsoting. Svimerker og gnistskader som ikke skyldes brann er unntatt.", "Hus – Dekkes / Dekkes ikke / Brann", 3],
   ["elektrisk.dekning", "Lyn og elektrisk fenomen", "Lynnedslag, kortslutning, lysbue, overslag og annet elektrisk fenomen etter vilkårets regler.", "Hus – Dekkes", 3],
   ["vann.utstromming", "Vann og annen væske", "Plutselig utstrømming fra rør, tilknyttet utstyr, akvarium eller slokkeanlegg.", "Hus – Dekkes", 3],
-  ["ror.brudd", "Rørbrudd", "Brudd på bygningens og tilknyttede utvendige væskeledninger med tilhørende utstyr.", "Hus – Dekkes", 3],
+  ["ror.brudd", "Rørbrudd", "Brudd på bygningens og tilknyttede utvendige væskeledninger med tilhørende utstyr. For drensledning er annen skade enn brann- og naturskade unntatt.", "Hus – Dekkes", 3],
   ["vann.terreng", "Vann fra terreng", "Vann fra terreng når det dannes vannspeil over laveste gulv.", "Hus – Dekkes", 3],
   ["vatrom.folgeskade", "Utett våtrom – følgeskade", "Vannskade på tilstøtende rom som følge av utett våtrom omfattes.", "Hus – Dekkes", 3],
   ["vatrom.selverommet", "Våtrom – selve rommet", "Skaden innenfor våtrommets bjelkelag er unntatt på Hus.", "Hus – Dekkes ikke", 3],
@@ -48,7 +48,7 @@ const standard = facts("gjensidigeHusStandard", [
   ["plutselig.begrensning", "Annen plutselig skade – vedlikehold og slitasje", "Skade som skyldes manglende vedlikehold eller slitasje på bygning og tilknyttet utstyr er unntatt.", "Hus – Dekkes ikke", 3],
   ["plutselig.begrensning_ovrig", "Annen plutselig skade – øvrige sentrale begrensninger", "Feil eller hard bruk, fukt, sopp og råte, fundamentering, setninger og jordtrykk samt material-, konstruksjons- og montasjefeil er unntatt.", "Hus – Dekkes ikke", 4],
   ["glass.dekning", "Bygningsglass og sanitærporselen", "Bruddskade på bygningsglass og sanitærporselen omfattes; egenandel 3 000 kroner.", "Forsikringsoversikt / Hus", 1, "override"],
-  ["vaer.dekning", "Snø, is og vær", "Plutselig bygningsskade kan omfattes, mens vedlikehold, svak konstruksjon og særskilte begrensninger for uferdige utvendige arbeider gjelder.", "Hus – Dekkes / Dekkes ikke", 3],
+  ["vaer.dekning", "Snø, is og vær", "Plutselig bygningsskade kan omfattes, mens vedlikehold, svak konstruksjon og særskilte begrensninger for uferdige utvendige arbeider gjelder. Skade som skyldes snø- og istyngde på hagestue og andre utestuer av glass er unntatt. For bygg under oppføring, rehabilitering, tilbygg og påbygg er skade som skyldes snøtyngde eller vind svakere enn storm unntatt når utvendige byggearbeider ikke er ferdige.", "Hus – Dekkes / Dekkes ikke / Snø- og istyngde; bygg under oppføring", 4],
   ["handverker.folgeskade", "Håndverkerfeil", "Følgeskade etter material-, konstruksjons-, prosjekterings- eller montasjefeil er ikke særskilt omfattet på Hus.", "Hus – Dekkes ikke", 4],
   ["rate.dekning", "Råte og sopp", "Sopp og råte er unntatt på Hus uten valgfri utvidelse.", "Hus – Dekkes ikke", 3],
   ["skadedyr.dyr.bekjempelse", "Bekjempelse av mus, rotter og andre dyr", "Bekjempelse av levende mus, rotter og andre skadedyr i bygning. Insekter, fredede dyr og bekjempelse av forebyggende karakter er unntatt.", "Hus – Dekkes / Dekkes ikke", 3],
@@ -87,7 +87,7 @@ standard.push(
 );
 
 const pluss = facts("gjensidigeHusPluss", [
-  ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Følgeskade ved vanninntrengning gjennom utett bygning over bakkenivå. Selve feilen/utettheten og tak eldre enn 50 år er unntatt; bygningen må være fullverdiforsikret.", "Hus – Dekkes / Dekkes ikke", 3, undefined, true],
+  ["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "Vannskade som følge av vanninntrengning gjennom utett bygning over bakkeplan, men ikke utbedring av selve feilen/mangelen. Skade på selve taket/veggen er unntatt; med dette menes alle sjikt utenfor takstol/-sperre eller stenderverk/bærende konstruksjoner. Vann som trenger inn gjennom utett tak som er eldre enn 50 år er unntatt. Bygningen må være fullverdiforsikret. For bygg under oppføring, rehabilitering, tilbygg og påbygg er skade som skyldes utett bygning unntatt når utvendige byggearbeider ikke er ferdige.", "Hus – Dekkes / Dekkes ikke / Vann gjennom utett bygning", 3, undefined, true],
   ["vatrom.selverommet", "Våtrom – selve rommet", "Skade på våtrom etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år.", "Håndverks- og entreprenørfeil – våtrom", 4, undefined, true],
   ["handverker.folgeskade", "Håndverkerfeil", "Følgeskade på bygning etter material-, konstruksjons-, prosjekterings- eller montasjefeil utført av faglært håndverker eller godkjent/registrert entreprenør, konstatert innen ti år. Selve feilen er unntatt utenfor våtrom.", "Håndverks- og entreprenørfeil", 4, undefined, true],
   ["rate.dekning", "Råte og sopp", "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Mugg, blåved, svertesopp og utvendig treverk er blant unntakene.", "Råte og skadeinsekter", 6, undefined, true],
@@ -104,6 +104,16 @@ const rental = facts("gjensidigeHusStandard", [
   ["utleie.skadeverk", "Utleie – skadeverk", "Når utleie er angitt i forsikringsbeviset: skadeverk på bygningen med vilje påført av leietaker, jf. straffeloven § 351.", "Hus – Utleie", 3],
   ["utleie.egenandel", "Utleie – egenandel", "10 000 kroner ved misligholdt husleie og skadeverk av leietaker.", "Forsikringsoversikt", 1, "override"],
 ]);
+
+// Separate references for the source-qualified drainage and incomplete-building exclusions.
+standard.find((fact) => fact.key === "hus.ror.utvendig")!.qualificationSource =
+  facts("gjensidigeHusStandard", [["ror.utvendig", "Utvendige rør og ledninger", "", "Hus – Dekkes ikke / Drensledning", 4]])[0].source;
+standard.find((fact) => fact.key === "hus.ror.brudd")!.qualificationSource =
+  facts("gjensidigeHusStandard", [["ror.brudd", "Rørbrudd", "", "Hus – Dekkes ikke / Drensledning", 4]])[0].source;
+standard.find((fact) => fact.key === "hus.byggunderoppforing")!.qualificationSource =
+  facts("gjensidigeHusStandard", [["byggunderoppforing", "Bygg under oppføring", "", "Hus – Dekkes ikke / Bygg under oppføring, rehabilitering, tilbygg og påbygg", 4]])[0].source;
+pluss.find((fact) => fact.key === "hus.takvegg.folgeskade")!.qualificationSource =
+  facts("gjensidigeHusPluss", [["takvegg.folgeskade", "Vann gjennom tak og yttervegg", "", "Hus – Dekkes ikke / Bygg under oppføring, rehabilitering, tilbygg og påbygg", 5]])[0].source;
 
 // Separate page references for the insured objects and their source-qualified exclusions.
 standard.find((fact) => fact.key === "hus.hage.objekter")!.qualificationSource =

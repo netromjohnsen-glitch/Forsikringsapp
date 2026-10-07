@@ -1,0 +1,38 @@
+[
+  {
+    "id": "RAW_RESOLVED_VS_ENRICHED_INHERITANCE_METADATA",
+    "classification": "EXPLICIT_MECHANICAL_TEST_ONLY_EXCEPTION",
+    "corrected": true,
+    "campaign_before": 16,
+    "campaign_after": 17,
+    "ordinary_limit": 12,
+    "scope_used": 1,
+    "scope_limit": 6,
+    "independent_baseline_evidence": "../b051-events-buildings-19ce85d/baseline-diagnosis.json",
+    "before_assertion_snapshot": "before-test-corrections.test.mjs.gz",
+    "after_file": "tests/remediation-b-051-events-buildings.test.mjs",
+    "production_unchanged": true,
+    "values_scope_selection_document_priority_provenance_unchanged": true,
+    "exact_fix": "Assert replacesBase on raw/resolved facts without assuming overriddenBase there. Independently derive the complete overriddenBase expectation from unchanged Standard baseline row and verify it on enriched/manual representations; retain full fields and provenance. Never derive expected inherited data from candidate output.",
+    "authorized_by": "current explicit two-root resume instruction",
+    "validation": "targeted-closure-remediation-b-051-events-buildings30/30 PASS"
+  },
+  {
+    "id": "REPEATED_ENRICHMENT_GLOBAL_CANONICAL_SET_IDEMPOTENCE_ASSUMPTION",
+    "classification": "EXPLICIT_MECHANICAL_TEST_ONLY_EXCEPTION",
+    "corrected": true,
+    "campaign_before": 17,
+    "campaign_after": 18,
+    "ordinary_limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6,
+    "independent_baseline_evidence": "../b051-events-buildings-19ce85d/baseline-diagnosis.json",
+    "before_assertion_snapshot": "before-test-corrections.test.mjs.gz",
+    "after_file": "tests/remediation-b-051-events-buildings.test.mjs",
+    "production_unchanged": true,
+    "values_scope_selection_document_priority_provenance_unchanged": true,
+    "exact_fix": "Compare first-pass candidate to first-pass baseline and second-pass candidate to second-pass baseline, plus explicit affected-key status/provenance invariants. Preserve the pre-existing generic legal-help alias separately; do not modify normalization/selection engine.",
+    "authorized_by": "current explicit two-root resume instruction",
+    "validation": "targeted-closure-remediation-b-051-events-buildings30/30 PASS"
+  }
+]

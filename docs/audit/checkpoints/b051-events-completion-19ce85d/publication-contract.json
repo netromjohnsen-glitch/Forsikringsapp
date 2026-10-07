@@ -1,0 +1,32 @@
+{
+  "status": "PUBLICATION_REQUIRES_FRESH_INTEGRITY_AND_STAGED_CHECKS",
+  "expected_head": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "expected_target": "origin HEAD:main",
+  "required_verified_results": "gate-results.json + validation-summary.json",
+  "integrity_command": [
+    "python",
+    "docs/audit/checkpoints/b051-events-completion-19ce85d/verify.py"
+  ],
+  "secured_publisher": "docs/audit/checkpoints/b050-diagnostics-integrity-3c5e869/publish.py",
+  "publisher_self_test_required": true,
+  "exact_staged_manifest": "publish-files.json",
+  "checksum_manifest": "SHA256SUMS",
+  "checks": [
+    "All current required gates PASS",
+    "Immutable prior34 and all historical snapshots verified",
+    "Exact application identity unchanged",
+    "Exact staged file set; no unrelated files",
+    "git diff --check",
+    "git diff --cached --check",
+    "Integrity verify.py PASS after staging",
+    "HEAD equals actual remote main before publish",
+    "subprocess check=True for every stage/gate/publish operation"
+  ],
+  "failed_required_gate_behavior": "raise and abort before commit/push",
+  "postconditions": [
+    "HEAD = origin/main = actual remote main",
+    "working tree clean",
+    "staged0"
+  ],
+  "no_deploy": true
+}

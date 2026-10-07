@@ -1,0 +1,722 @@
+{
+  "classification": "EXPLICIT_USER_AUTHORIZATION",
+  "baseline_revision": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "signatures": [
+    {
+      "signature": "49adf65854171146",
+      "original_binding": {
+        "signature_id": "49adf65854171146",
+        "representative_finding_id": "GAP-2087",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2087\", \"GAP-2141\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-2990\", \"SF-3074\"]",
+        "proposed_existing_keys": "[\"hus.brann.dekning\", \"hus.elektrisk.dekning\"]",
+        "semantic_concept": "Brann",
+        "semantic_dimension": "hendelser",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2087",
+        "GAP-2141"
+      ],
+      "source_fact_ids": [
+        "SF-2990",
+        "SF-3074"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2087",
+          "finding_ids": [
+            "GAP-2087"
+          ],
+          "source_fact_id": "SF-2990",
+          "source_fact_ids": [
+            "SF-2990"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Brann/lyn/eksplosjon/nedsoting/elektrisk; ikke svimerke/gnist utenbrann.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.brann.dekning",
+            "hus.elektrisk.dekning"
+          ],
+          "advisor_impact": "Brannmekanismer korrekt; svimerke/gnistavgrensning mangler.",
+          "audit_scope_notes": "Brannmekanismer korrekt; svimerke/gnistavgrensning mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2141",
+          "finding_ids": [
+            "GAP-2141"
+          ],
+          "source_fact_id": "SF-3074",
+          "source_fact_ids": [
+            "SF-3074"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Brann/lyn/eksplosjon/nedsoting/elektrisk; ikke svimerke/gnist utenbrann.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.brann.dekning",
+            "hus.elektrisk.dekning"
+          ],
+          "advisor_impact": "Brannmekanismer korrekt; svimerke/gnistavgrensning mangler.",
+          "audit_scope_notes": "Brannmekanismer korrekt; svimerke/gnistavgrensning mangler.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Keep fire/lightning/explosion/soot/electrical causes; add scorch/spark marks not caused by fire exclusion. Avoid negative clause changing positive parent availability.",
+      "existing_representation_keys": [
+        "hus.brann.dekning",
+        "hus.elektrisk.dekning"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.brann.dekning",
+            "label": "Brann",
+            "value": "Brann, lynnedslag, eksplosjon, elektrisk fenomen og plutselig nedsoting.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.elektrisk.dekning",
+            "label": "Lyn og elektrisk fenomen",
+            "value": "Lynnedslag, kortslutning, lysbue, overslag og annet elektrisk fenomen etter vilkårets regler.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "416dfaab0492ce1b",
+      "original_binding": {
+        "signature_id": "416dfaab0492ce1b",
+        "representative_finding_id": "GAP-2097",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2097\", \"GAP-2152\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3006\", \"SF-3089\"]",
+        "proposed_existing_keys": "[\"hus.ror.utvendig\", \"hus.ror.brudd\"]",
+        "semantic_concept": "Drensledning",
+        "semantic_dimension": "årsaker",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2097",
+        "GAP-2152"
+      ],
+      "source_fact_ids": [
+        "SF-3006",
+        "SF-3089"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2097",
+          "finding_ids": [
+            "GAP-2097"
+          ],
+          "source_fact_id": "SF-3006",
+          "source_fact_ids": [
+            "SF-3006"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Barebrann/natur; andreårsakerunntatt.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.ror.utvendig",
+            "hus.ror.brudd"
+          ],
+          "advisor_impact": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+          "audit_scope_notes": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2152",
+          "finding_ids": [
+            "GAP-2152"
+          ],
+          "source_fact_id": "SF-3089",
+          "source_fact_ids": [
+            "SF-3089"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Barebrann/natur; andreårsakerunntatt.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.ror.utvendig",
+            "hus.ror.brudd"
+          ],
+          "advisor_impact": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+          "audit_scope_notes": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Retain coverage of ordinary external liquid pipes. Qualify only drensledning: no other damage than fire/nature (Standard4/Plus4). Do not deny all exterior pipe leaks/breakage.",
+      "existing_representation_keys": [
+        "hus.ror.utvendig",
+        "hus.ror.brudd"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.ror.utvendig",
+            "label": "Utvendige rør og ledninger",
+            "value": "Tilknyttede utvendige ledninger frem til offentlig ledning eller spredeledning. Brønn og borehull er unntatt.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Hva forsikringen omfatter",
+              "page": 2,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.ror.brudd",
+            "label": "Rørbrudd",
+            "value": "Brudd på bygningens og tilknyttede utvendige væskeledninger med tilhørende utstyr.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "bb47646cd8b17f20",
+      "original_binding": {
+        "signature_id": "bb47646cd8b17f20",
+        "representative_finding_id": "GAP-2096",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2096\", \"GAP-2151\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3005\", \"SF-3088\"]",
+        "proposed_existing_keys": "[\"hus.vaer.dekning\"]",
+        "semantic_concept": "Snø",
+        "semantic_dimension": "glasshagestue",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2096",
+        "GAP-2151"
+      ],
+      "source_fact_ids": [
+        "SF-3005",
+        "SF-3088"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2096",
+          "finding_ids": [
+            "GAP-2096"
+          ],
+          "source_fact_id": "SF-3005",
+          "source_fact_ids": [
+            "SF-3005"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Snø/istyngde påhagestueogandreutestueravglassunntatt.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.vaer.dekning"
+          ],
+          "advisor_impact": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+          "audit_scope_notes": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2151",
+          "finding_ids": [
+            "GAP-2151"
+          ],
+          "source_fact_id": "SF-3088",
+          "source_fact_ids": [
+            "SF-3088"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Snø/istyngde påhagestueogandreutestueravglassunntatt.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.vaer.dekning"
+          ],
+          "advisor_impact": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+          "audit_scope_notes": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Exclude snow/iceload specifically glass conservatories/otherglassoutbuildings; current vague weather text does not state object-specific exclusion. Keep ordinary covered sudden building damage and incomplete-work exclusions distinct.",
+      "existing_representation_keys": [
+        "hus.vaer.dekning"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.vaer.dekning",
+            "label": "Snø, is og vær",
+            "value": "Plutselig bygningsskade kan omfattes, mens vedlikehold, svak konstruksjon og særskilte begrensninger for uferdige utvendige arbeider gjelder.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes / Dekkes ikke",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "86992ec620da2894",
+      "original_binding": {
+        "signature_id": "86992ec620da2894",
+        "representative_finding_id": "GAP-2086",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "2",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2086\", \"GAP-2140\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-2989\", \"SF-3073\"]",
+        "proposed_existing_keys": "[\"hus.byggunderoppforing\", \"hus.vaer.dekning\"]",
+        "semantic_concept": "Bygging",
+        "semantic_dimension": "begrensninger",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2086",
+        "GAP-2140"
+      ],
+      "source_fact_ids": [
+        "SF-2989",
+        "SF-3073"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2086",
+          "finding_ids": [
+            "GAP-2086"
+          ],
+          "source_fact_id": "SF-2989",
+          "source_fact_ids": [
+            "SF-2989"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+          "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+          "location": "PDF 4",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tyveri materialer ute ikke dekket; snø/vindunderstorm ikke ved uferdig utvendigarbeid; Plussutelukker da også utettbygning.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.byggunderoppforing",
+            "hus.vaer.dekning"
+          ],
+          "advisor_impact": "Vilkårets regler angir ikke materialtyveri ute og snø/vind ved uferdige arbeider.",
+          "audit_scope_notes": "Vilkårets regler angir ikke materialtyveri ute og snø/vind ved uferdige arbeider.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        },
+        {
+          "finding_id": "GAP-2140",
+          "finding_ids": [
+            "GAP-2140"
+          ],
+          "source_fact_id": "SF-3073",
+          "source_fact_ids": [
+            "SF-3073"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 4–5",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tyveri materialer ute ikke dekket; snø/vindunderstorm ikke ved uferdig utvendigarbeid; Plussutelukker da også utettbygning.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.byggunderoppforing",
+            "hus.vaer.dekning"
+          ],
+          "advisor_impact": "Vilkårets regler angir ikke materialtyveri ute og snø/vind ved uferdige arbeider.",
+          "audit_scope_notes": "Vilkårets regler angir ikke materialtyveri ute og snø/vind ved uferdige arbeider.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Buildings under construction/rehab/additions: materials/brakkes/store sheds/containers onsite included, outdoor material theft excluded; snow or wind weaker-than-storm while exterior works unfinished; Pluss additionally leaky building while unfinished. Keep scope flags, no general exclusion for completed buildings.",
+      "existing_representation_keys": [
+        "hus.byggunderoppforing",
+        "hus.vaer.dekning"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.byggunderoppforing",
+            "label": "Bygg under oppføring",
+            "value": "Bygningsmaterialer, brakker og containere til byggearbeid på forsikringsstedet inngår etter vilkårets regler.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Hva forsikringen omfatter",
+              "page": 2,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.vaer.dekning",
+            "label": "Snø, is og vær",
+            "value": "Plutselig bygningsskade kan omfattes, mens vedlikehold, svak konstruksjon og særskilte begrensninger for uferdige utvendige arbeider gjelder.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes / Dekkes ikke",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    },
+    {
+      "signature": "7ba0298883905c58",
+      "original_binding": {
+        "signature_id": "7ba0298883905c58",
+        "representative_finding_id": "GAP-2143",
+        "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+        "root_cause_id": "[\"RC-027\"]",
+        "final_batch_id": "B-051",
+        "disposition": "FIX_BEFORE_NITO",
+        "pilot_priority": "MUST_BEFORE_NITO",
+        "source_status": "IMPLEMENTATION_READY",
+        "P1_occurrences": "1",
+        "P2_occurrences": "0",
+        "finding_ids": "[\"GAP-2143\"]",
+        "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+        "source_fact_ids": "[\"SF-3076\"]",
+        "proposed_existing_keys": "[\"hus.takvegg.folgeskade\"]",
+        "semantic_concept": "Vann",
+        "semantic_dimension": "utett bygning",
+        "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+        "covered_by_signature": "",
+        "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+        "remediation_authorized": "False"
+      },
+      "finding_ids": [
+        "GAP-2143"
+      ],
+      "source_fact_ids": [
+        "SF-3076"
+      ],
+      "original_source_evidence": [
+        {
+          "finding_id": "GAP-2143",
+          "finding_ids": [
+            "GAP-2143"
+          ],
+          "source_fact_id": "SF-3076",
+          "source_fact_ids": [
+            "SF-3076"
+          ],
+          "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+          "product_identities": [
+            "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+          ],
+          "component": "",
+          "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+          "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+          "location": "PDF 3",
+          "urls": [
+            "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+          ],
+          "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Innvendig følgeskadevedutettbygning overbakkeplan; ikke feil/mangel/tak-veggselv; fullverdi kreves ogutett tak eldreenn50år unntatt.",
+          "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+          "proposed_existing_keys": [
+            "hus.takvegg.folgeskade"
+          ],
+          "advisor_impact": "Fullverdi/overbakke/50år korrekt; alle sjikt utenfor konstruksjon er utelatt, ikke bare selve feilen.",
+          "audit_scope_notes": "Fullverdi/overbakke/50år korrekt; alle sjikt utenfor konstruksjon er utelatt, ikke bare selve feilen.",
+          "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+        }
+      ],
+      "scope": "Gjensidige Hus ordinary; exact Standard/Pluss and named addon boundaries in original identities",
+      "classification": "SOURCE_CLEAR_CATALOG_COMPLETION",
+      "review_and_minimum_supported_change": "Pluss leaky building above ground existing row covers; exact source excludes only repair of the leak/fault, roof>50years and requires full value. Current core appears present but add original unfinished-outside-work exclusion in proper scope; coordinate 86992.. without silently giving Standard same Pluss scope.",
+      "existing_representation_keys": [
+        "hus.takvegg.folgeskade"
+      ],
+      "current_raw_catalog_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.takvegg.folgeskade",
+            "label": "Vann gjennom tak og yttervegg",
+            "value": "Vann gjennom utett bygning er ikke særskilt omfattet på Hus utover ordinære dekningshendelser.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes ikke",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.takvegg.folgeskade",
+            "label": "Vann gjennom tak og yttervegg",
+            "value": "Følgeskade ved vanninntrengning gjennom utett bygning over bakkenivå. Selve feilen/utettheten og tak eldre enn 50 år er unntatt; bygningen må være fullverdiforsikret.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes / Dekkes ikke",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        }
+      ],
+      "current_status": "NO_CURRENT_CLOSURE_STATUS_ASSIGNED_BY_THIS_PREFLIGHT",
+      "provenance_review": "Verify actual PDF ordinal page for each touched row; snapshot includes raw and registered/presented sources. Some Standard/Pluss inherited references are offset (e.g. objects2 vsPDF3, wetroom4 vsPDF5, services12 vsStandard11, age18 vsStandard17). Correct only explicitly authorized touched references, never blanket replace pages. Existing current page references remain unchanged in this read-only task.",
+      "implementation_authorized": false
+    }
+  ],
+  "approved_row_oracle": "source-oracle.json",
+  "allowed_project_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "docs/development-agent/current-project-status.md",
+    "docs/development-agent/start.md"
+  ],
+  "allowed_new_audit_directory": "docs/audit/checkpoints/b051-events-buildings-19ce85d",
+  "planned_contract_updates": [
+    "three B020 fingerprints after exact six-row proof",
+    "B050 six explicit source-oracle transformations preserving prior eight",
+    "B051 and Garden revision-bound reverse audit",
+    "Garden DOCUMENT/MANUAL independent baseline + six source-oracle transforms"
+  ],
+  "gates": [
+    "original sources and nine bindings",
+    "targeted source/catalog/reverse/selection/provenance/mode/comparison/isolation",
+    "B007 B020 B050 B051 B071 Garden",
+    "complete remediation manifest + fullsuite",
+    "next typegen + TypeScript + ESLint",
+    "webpack build + HTTP/PDF runtime",
+    "checksums receipts historical integrity work/staged diff exact staged publish.py"
+  ],
+  "HARNESS_AUTONOMY_V1": {
+    "used": 16,
+    "limit": 12,
+    "new_capacity": 0,
+    "planned_scope_work_charge": 0
+  },
+  "prohibited": [
+    "engine",
+    "canonical",
+    "mapping",
+    "schema",
+    "selection",
+    "source admission",
+    "historical artifact edits",
+    "later production scope",
+    "deploy"
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "publication_target": "origin HEAD:main"
+}

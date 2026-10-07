@@ -1,0 +1,120 @@
+{
+  "classification": "SOURCE_BACKED_COMPLETION",
+  "status": "PASS",
+  "signature": "7ba0298883905c58",
+  "GAP_SF_bindings": [
+    {
+      "GAP": "GAP-2143",
+      "SF": "SF-3076",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+    }
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "Hus",
+  "agreement_scope": "ordinary",
+  "products": [
+    "gjensidige-hus-pluss"
+  ],
+  "version": "Alminnelige vilkår",
+  "effective_from": "UNKNOWN",
+  "canonical_keys": [
+    "hus.takvegg.folgeskade"
+  ],
+  "component_scope": "Five existing Standard rows inherited by Plus; one existing Plus override. No new parent/schema/selection/mapping/source admission.",
+  "tested_baseline": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "candidate_identity_sha256": "dffda41028ce8eee8ac6616ff827f83105380303fa7642c935827edcead49e61",
+  "application_identity": "application-identity.json",
+  "source_contracts": [
+    {
+      "finding_id": "GAP-2143",
+      "finding_ids": [
+        "GAP-2143"
+      ],
+      "source_fact_id": "SF-3076",
+      "source_fact_ids": [
+        "SF-3076"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 3",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Innvendig følgeskadevedutettbygning overbakkeplan; ikke feil/mangel/tak-veggselv; fullverdi kreves ogutett tak eldreenn50år unntatt.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.takvegg.folgeskade"
+      ],
+      "advisor_impact": "Fullverdi/overbakke/50år korrekt; alle sjikt utenfor konstruksjon er utelatt, ikke bare selve feilen.",
+      "audit_scope_notes": "Fullverdi/overbakke/50år korrekt; alle sjikt utenfor konstruksjon er utelatt, ikke bare selve feilen.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "exact_source_reviewed_values_and_primary_supplementary_references": {
+    "hus.takvegg.folgeskade": {
+      "owner": "gjensidigeHusPluss",
+      "label": "Vann gjennom tak og yttervegg",
+      "value": "Vannskade som følge av vanninntrengning gjennom utett bygning over bakkeplan, men ikke utbedring av selve feilen/mangelen. Skade på selve taket/veggen er unntatt; med dette menes alle sjikt utenfor takstol/-sperre eller stenderverk/bærende konstruksjoner. Vann som trenger inn gjennom utett tak som er eldre enn 50 år er unntatt. Bygningen må være fullverdiforsikret. For bygg under oppføring, rehabilitering, tilbygg og påbygg er skade som skyldes utett bygning unntatt når utvendige byggearbeider ikke er ferdige.",
+      "previous_value": "Følgeskade ved vanninntrengning gjennom utett bygning over bakkenivå. Selve feilen/utettheten og tak eldre enn 50 år er unntatt; bygningen må være fullverdiforsikret.",
+      "previous_primary": [
+        3,
+        "Hus – Dekkes / Dekkes ikke"
+      ],
+      "primary": [
+        3,
+        "Hus – Dekkes / Dekkes ikke / Vann gjennom utett bygning"
+      ],
+      "qualification": [
+        5,
+        "Hus – Dekkes ikke / Bygg under oppføring, rehabilitering, tilbygg og påbygg"
+      ],
+      "evidence": "Explicitly approved complete preflight wording; original frozen PDF3–5 inspected before edits"
+    }
+  },
+  "complete_material_contract": "Plus covers consequential water damage through leaking building above ground; not correction of the defect or damage to roof/wall layers outside roof truss/rafter or stud/load-bearing structure. Roof older than50years excluded. Building must be full-value insured. Unfinished exterior construction/rehabilitation/extension/addition leak exclusion retained. replacesBase true; Standard roof rule unchanged.",
+  "source_role": "Existing registered legacy Standard/Plus full terms; primary and qualification references exactly source-oracle.json. Registry sourceType absent, remains absent/undefined; effective date unknown.",
+  "source_original_reading_order": [
+    "../b051-events-buildings-19ce85d/source-Standard-PDF3.txt",
+    "../b051-events-buildings-19ce85d/source-Standard-PDF4.txt",
+    "../b051-events-buildings-19ce85d/source-Standard-PDF5.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF3.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF4.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF5.txt"
+  ],
+  "test_contracts": [
+    "R-051-EVENTS-BINDINGS",
+    "R-051-EVENTS-SOURCE",
+    "R-051-EVENTS-FACT",
+    "R-051-EVENTS-REVERSE",
+    "R-051-EVENTS-DOCUMENT",
+    "R-051-EVENTS-PIPELINE",
+    "R-051-EVENTS-SUPPORT/MANUAL",
+    "R-051-EVENTS-COMPARISON"
+  ],
+  "complete_closure_summary": "validation-summary.json",
+  "gate_results": "gate-results.json",
+  "source_to_catalog_and_reverse_audit": "catalog-audit.mjs / catalog-delta.json",
+  "prior_receipt_integrity": "prior-receipts.json",
+  "HARNESS_AUTONOMY_V1": {
+    "prior_used": 16,
+    "used": 18,
+    "limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6,
+    "explicit_exception_roots": 2,
+    "ledger": "harness-roots.json",
+    "no_future_correction_capacity": true
+  },
+  "planned_test_contract_updates": "../b051-events-buildings-19ce85d/planned-contract-updates.json; charge0",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_closure_reconstructed": false,
+  "publication_revision": "Atomic Git commit records publication; gate proof applies to tested baseline plus exact candidate application hashes. No later revision automatically certified.",
+  "holds": "checkpoint.json holds_unchanged",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

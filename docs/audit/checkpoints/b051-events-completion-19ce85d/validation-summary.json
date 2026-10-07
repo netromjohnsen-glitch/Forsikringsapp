@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "tested_baseline": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "candidate_identity_sha256": "dffda41028ce8eee8ac6616ff827f83105380303fa7642c935827edcead49e61",
+  "targeted": {
+    "status": "PASS",
+    "files": 1,
+    "tests": 30,
+    "pass": 30,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "targeted_closure": {
+    "status": "PASS",
+    "files": 21,
+    "tests": 682,
+    "pass": 682,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "fullsuite": {
+    "status": "PASS",
+    "files": 148,
+    "tests": 4023,
+    "pass": 4023,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "remediation": {
+    "status": "PASS",
+    "files": 50,
+    "tests": 1872,
+    "pass": 1872,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "test_manifest": "test-manifest.json",
+  "remediation_manifest": "remediation-manifest.json",
+  "execution_contract": "Every manifest file executed through node individually; no failed/cancelled/skipped test; all logs/commands/hash evidence gate-results.json",
+  "quality": {
+    "typegen": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "typegen"
+      ],
+      "log": "typegen.log.gz",
+      "exit_code": 0
+    },
+    "typescript": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "tsc",
+        "--noEmit",
+        "--incremental",
+        "false"
+      ],
+      "log": "typescript.log.gz",
+      "exit_code": 0
+    },
+    "eslint": {
+      "status": "PASS",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "log": "eslint.log.gz",
+      "exit_code": 0
+    },
+    "production-build": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "build",
+        "--webpack"
+      ],
+      "log": "production-build.log.gz",
+      "exit_code": 0
+    },
+    "http-pdf-runtime": {
+      "status": "PASS",
+      "command": [
+        "node",
+        "scripts/verify-analysis-http.mjs"
+      ],
+      "log": "http-pdf-runtime.log.gz",
+      "exit_code": 0
+    },
+    "diff-check": {
+      "status": "PASS",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "log": "diff-check.log.gz",
+      "exit_code": 0
+    }
+  },
+  "eslint": {
+    "errors": 0,
+    "warnings": 26,
+    "new_warnings": 0,
+    "evidence": "lint-difference.json"
+  },
+  "HTTP_PDF_runtime": {
+    "status": "PASS",
+    "checks": 22,
+    "actual_checks": [
+      "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+      "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+      "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+      "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+      "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+      "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+      "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+      "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+      "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+      "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+      "unauthorized",
+      "manual/catalog",
+      "synthetic PDF to mocked AI to response",
+      "two-side concurrency",
+      "N documents to M products",
+      "capacity limit",
+      "invalid PDF before AI",
+      "strict form fields",
+      "429/no retries/sibling abort",
+      "admission released",
+      "private logging",
+      "semantic fallback telemetry/no unnecessary AI"
+    ]
+  },
+  "source_and_reverse_audit": "catalog-delta.json: six exact changed rows,316 protected components,4152 protected raw facts,202 other products effective facts unchanged",
+  "prior_34_receipts": "prior-receipts.json",
+  "historical_integrity": "historical-checksum-proof.json + historical-artifact-hashes.json",
+  "HARNESS_AUTONOMY_V1": {
+    "used": 18,
+    "limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6
+  },
+  "P2_credit": 0,
+  "global_resolved_open": "UNKNOWN",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

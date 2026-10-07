@@ -1,0 +1,56 @@
+{
+  "status": "STOPPED_NEW_HARNESS_ROOTS_NO_CORRECTION",
+  "tested_baseline": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "candidate_identity": "candidate-identity.json",
+  "initial_targeted": {
+    "command": [
+      "node",
+      "--test-reporter=tap",
+      "tests/remediation-b-051-events-buildings.test.mjs"
+    ],
+    "exit_code": 1,
+    "tests": 30,
+    "pass": 18,
+    "fail": 12,
+    "log": "first-targeted.log.gz"
+  },
+  "unchanged_baseline_regressions": {
+    "files": 8,
+    "tests": 291,
+    "pass": 291,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "fullsuite": {
+    "files": 148,
+    "tests": 4023,
+    "pass": 4011,
+    "fail": 12,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "remediation": {
+    "files": 50,
+    "tests": 1872,
+    "pass": 1860,
+    "fail": 12,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "other_existing_test_files": {
+    "files": 147,
+    "tests": 3993,
+    "pass": 3993,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "source_hashes": "2/2 PASS",
+  "bindings": "9/9 PASS in targeted binding assertion",
+  "six_row_reverse_audit": "PASS catalog-delta.json",
+  "remaining_quality_gates": "NOT_RUN after targeted FAIL: typegen/TypeScript/ESLint/build/runtime",
+  "completion_receipts_created": 0,
+  "signatures_closed": [],
+  "global_resolved_open": "UNKNOWN"
+}

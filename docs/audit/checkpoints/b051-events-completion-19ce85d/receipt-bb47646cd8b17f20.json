@@ -1,0 +1,151 @@
+{
+  "classification": "SOURCE_BACKED_COMPLETION",
+  "status": "PASS",
+  "signature": "bb47646cd8b17f20",
+  "GAP_SF_bindings": [
+    {
+      "GAP": "GAP-2096",
+      "SF": "SF-3005",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+    },
+    {
+      "GAP": "GAP-2151",
+      "SF": "SF-3088",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+    }
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "Hus",
+  "agreement_scope": "ordinary",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "version": "Alminnelige vilkår",
+  "effective_from": "UNKNOWN",
+  "canonical_keys": [
+    "hus.vaer.dekning"
+  ],
+  "component_scope": "Five existing Standard rows inherited by Plus; one existing Plus override. No new parent/schema/selection/mapping/source admission.",
+  "tested_baseline": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "candidate_identity_sha256": "dffda41028ce8eee8ac6616ff827f83105380303fa7642c935827edcead49e61",
+  "application_identity": "application-identity.json",
+  "source_contracts": [
+    {
+      "finding_id": "GAP-2096",
+      "finding_ids": [
+        "GAP-2096"
+      ],
+      "source_fact_id": "SF-3005",
+      "source_fact_ids": [
+        "SF-3005"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 4",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Snø/istyngde påhagestueogandreutestueravglassunntatt.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.vaer.dekning"
+      ],
+      "advisor_impact": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+      "audit_scope_notes": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2151",
+      "finding_ids": [
+        "GAP-2151"
+      ],
+      "source_fact_id": "SF-3088",
+      "source_fact_ids": [
+        "SF-3088"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 4",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Snø/istyngde påhagestueogandreutestueravglassunntatt.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.vaer.dekning"
+      ],
+      "advisor_impact": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+      "audit_scope_notes": "Glasshagestue med snø/is er et vesentlig konkret unntak, ikke generell svak-konstruksjonstekst.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "exact_source_reviewed_values_and_primary_supplementary_references": {
+    "hus.vaer.dekning": {
+      "owner": "gjensidigeHusStandard",
+      "label": "Snø, is og vær",
+      "value": "Plutselig bygningsskade kan omfattes, mens vedlikehold, svak konstruksjon og særskilte begrensninger for uferdige utvendige arbeider gjelder. Skade som skyldes snø- og istyngde på hagestue og andre utestuer av glass er unntatt. For bygg under oppføring, rehabilitering, tilbygg og påbygg er skade som skyldes snøtyngde eller vind svakere enn storm unntatt når utvendige byggearbeider ikke er ferdige.",
+      "previous_value": "Plutselig bygningsskade kan omfattes, mens vedlikehold, svak konstruksjon og særskilte begrensninger for uferdige utvendige arbeider gjelder.",
+      "previous_primary": [
+        3,
+        "Hus – Dekkes / Dekkes ikke"
+      ],
+      "primary": [
+        4,
+        "Hus – Dekkes / Dekkes ikke / Snø- og istyngde; bygg under oppføring"
+      ],
+      "evidence": "Explicitly approved complete preflight wording; original frozen PDF3–5 inspected before edits"
+    }
+  },
+  "complete_material_contract": "Snow/ice weight on garden rooms and other glass conservatories excluded. Existing weather qualifications retained; no general all-risk/weather coverage inferred. Original Plus continuation PDF4–5 reviewed.",
+  "source_role": "Existing registered legacy Standard/Plus full terms; primary and qualification references exactly source-oracle.json. Registry sourceType absent, remains absent/undefined; effective date unknown.",
+  "source_original_reading_order": [
+    "../b051-events-buildings-19ce85d/source-Standard-PDF3.txt",
+    "../b051-events-buildings-19ce85d/source-Standard-PDF4.txt",
+    "../b051-events-buildings-19ce85d/source-Standard-PDF5.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF3.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF4.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF5.txt"
+  ],
+  "test_contracts": [
+    "R-051-EVENTS-BINDINGS",
+    "R-051-EVENTS-SOURCE",
+    "R-051-EVENTS-FACT",
+    "R-051-EVENTS-REVERSE",
+    "R-051-EVENTS-DOCUMENT",
+    "R-051-EVENTS-PIPELINE",
+    "R-051-EVENTS-SUPPORT/MANUAL",
+    "R-051-EVENTS-COMPARISON"
+  ],
+  "complete_closure_summary": "validation-summary.json",
+  "gate_results": "gate-results.json",
+  "source_to_catalog_and_reverse_audit": "catalog-audit.mjs / catalog-delta.json",
+  "prior_receipt_integrity": "prior-receipts.json",
+  "HARNESS_AUTONOMY_V1": {
+    "prior_used": 16,
+    "used": 18,
+    "limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6,
+    "explicit_exception_roots": 2,
+    "ledger": "harness-roots.json",
+    "no_future_correction_capacity": true
+  },
+  "planned_test_contract_updates": "../b051-events-buildings-19ce85d/planned-contract-updates.json; charge0",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_closure_reconstructed": false,
+  "publication_revision": "Atomic Git commit records publication; gate proof applies to tested baseline plus exact candidate application hashes. No later revision automatically certified.",
+  "holds": "checkpoint.json holds_unchanged",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

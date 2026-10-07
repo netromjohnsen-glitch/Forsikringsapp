@@ -94,9 +94,9 @@ test('R-020-06: 53 archived positive controls and all unrelated facts remain unc
   // and all protected facts: b051-rental-loss-use-5718a5f/catalog-delta.json.
   // Permanent source contracts: remediation-b-051.test.mjs.
   for (const [id, addons, expected] of [
-    [base, [], '1ed3b1e25a9b631bf5c0c9f18875a1340c8eee462ab507ed79ef59b55329797e'],
-    [base, [addon], '69e574d556234f53cb7648c7347ce04e749a71c17fc41b31f6d5868feb097914'],
-    [plus, [], '4aaa116760a60843c0ac085de23ce339fdf4abd8321077d5b8056f19d9a587e5'],
+    [base, [], 'a6beb34048ce6eff8fa5c8854a8a1c96a948d29ac7f9ea83fffe1b5dd91ca297'],
+    [base, [addon], 'd4de62d7ef73580dfb281b181c5d27b31d57979296136b7447711542158600b7'],
+    [plus, [], 'cc9902721c5b5a649fb52d4e70bfb49e71269d1b99404bc5646f83454a44346d'],
   ]) assert.equal(digest(facts(id, addons).filter(f => !f.key.startsWith('hus.skadedyr.') && f.key !== 'hus.rate.dekning')), expected);
   assert.match(fact(base, 'hus.rate.dekning').value, /unntatt/u);
   assert.match(fact(base, 'hus.skadedyr.grunnunntak').value, /Insekter|insekter/u);

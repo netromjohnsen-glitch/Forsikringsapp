@@ -11,6 +11,7 @@ import { deriveCanonicalCoverages } from '../lib/coverage-status.ts';
 import { normalizeManualAgreement } from '../lib/manual-agreement.ts';
 import { groupInsurances, groupTerms } from '../lib/comparison.ts';
 import { documentPipeline } from './helpers/supporting-terms.mjs';
+import { expectedCatalog as approvedEventsCatalog } from '../docs/audit/checkpoints/b051-events-buildings-19ce85d/expected-catalog.mjs';
 
 const audit = new URL('../docs/audit/checkpoints/b051-garden-pier-64dd3cb/', import.meta.url);
 const oracle = JSON.parse(readFileSync(new URL('source-oracle.json', audit)));
@@ -102,13 +103,13 @@ for (const key of keys) test('R-051-GARDEN-FACT ' + key + ': exact full fields, 
   if (key === 'hus.hage.brygge') assert.match(o.value, /100 000 kroner, begrenset til brann og naturskade/u);
 });
 
-test('R-051-GARDEN-REVERSE: exact two-row transform; 317 other components, 4156 facts, metadata/pests/old six unchanged', () => {
-  execFileSync('node', [new URL('catalog-audit.mjs', audit).pathname], { stdio: 'pipe' });
+test('R-051-GARDEN-REVERSE: revision-bound six-row events transform; approved garden/rental/pests unchanged', () => {
+  execFileSync('node', [new URL('../docs/audit/checkpoints/b051-events-buildings-19ce85d/catalog-audit.mjs', import.meta.url).pathname], { stdio: 'pipe' });
 });
 
 for (const id of ids) for (const key of keys) test('R-051-GARDEN-DOCUMENT ' + id + ' ' + key + ': values/refusal/conflicts/Ukjent preserved without a new parent', () => {
   for (const values of [[], ['Valgt'], ['Ikke valgt'], ['Ukjent'], ['Valgt', 'Ikke valgt'], ['Kundevilkår 73 000 kr']]) {
-    const ts = values.map(v => term(key, v)), actual = enrich(id, ts), old = enrich(id, ts, baseline);
+    const ts = values.map(v => term(key, v)), actual = enrich(id, ts), old = enrich(id, ts, approvedEventsCatalog);
     assert.deepEqual(actual.addOnIds, []);
     assert.deepEqual(json(deriveCanonicalCoverages(actual, 'Hus')), json(deriveCanonicalCoverages(old, 'Hus')));
     assert.equal(deriveCanonicalCoverages(actual, 'Hus').some(c => c.id.startsWith('hus.hage.')), false);
@@ -140,7 +141,7 @@ for (const id of ids) for (const key of keys) test('R-051-GARDEN-DOCUMENT ' + id
     // No provenance/value is dropped, nor does another catalog rule regain priority.
     assert.deepEqual(pick(again, key).map(t => [t.name, t.key, t.value, t.source, t.sources]),
       pick(actual, key).map(t => [t.name, t.key, t.value, t.source, t.sources]));
-    const oldAgain = enrichExtractedAgreementWithCatalog({ company: 'Gjensidige', totalAnnualPremium: null, insurances: [old] }, date, undefined, undefined, baseline).insurances[0];
+    const oldAgain = enrichExtractedAgreementWithCatalog({ company: 'Gjensidige', totalAnnualPremium: null, insurances: [old] }, date, undefined, undefined, approvedEventsCatalog).insurances[0];
     assert.deepEqual(json(deriveCanonicalCoverages(again, 'Hus')), json(deriveCanonicalCoverages(oldAgain, 'Hus')));
     for (const first of deriveCanonicalCoverages(actual, 'Hus')) {
       const second = deriveCanonicalCoverages(again, 'Hus').find(c => c.id === first.id);
@@ -193,7 +194,7 @@ for (const id of ids) test('R-051-GARDEN-SUPPORT ' + id + ': actual customer and
 });
 
 for (const id of ids) test('R-051-GARDEN-MANUAL ' + id + ': known catalog mode, custom mode and provenance', () => {
-  const known = manual(id), old = manual(id, false, baseline);
+  const known = manual(id), old = manual(id, false, approvedEventsCatalog);
   assert.deepEqual(known.addOnIds, []);
   assert.deepEqual(json(deriveCanonicalCoverages(known, 'Hus')), json(deriveCanonicalCoverages(old, 'Hus')));
   for (const key of keys) {

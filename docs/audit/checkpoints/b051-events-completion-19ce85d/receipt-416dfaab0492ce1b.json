@@ -1,0 +1,177 @@
+{
+  "classification": "SOURCE_BACKED_COMPLETION",
+  "status": "PASS",
+  "signature": "416dfaab0492ce1b",
+  "GAP_SF_bindings": [
+    {
+      "GAP": "GAP-2097",
+      "SF": "SF-3006",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+    },
+    {
+      "GAP": "GAP-2152",
+      "SF": "SF-3089",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+    }
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "Hus",
+  "agreement_scope": "ordinary",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "version": "Alminnelige vilkår",
+  "effective_from": "UNKNOWN",
+  "canonical_keys": [
+    "hus.ror.utvendig",
+    "hus.ror.brudd"
+  ],
+  "component_scope": "Five existing Standard rows inherited by Plus; one existing Plus override. No new parent/schema/selection/mapping/source admission.",
+  "tested_baseline": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+  "candidate_identity_sha256": "dffda41028ce8eee8ac6616ff827f83105380303fa7642c935827edcead49e61",
+  "application_identity": "application-identity.json",
+  "source_contracts": [
+    {
+      "finding_id": "GAP-2097",
+      "finding_ids": [
+        "GAP-2097"
+      ],
+      "source_fact_id": "SF-3006",
+      "source_fact_ids": [
+        "SF-3006"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 4",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Barebrann/natur; andreårsakerunntatt.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.ror.utvendig",
+        "hus.ror.brudd"
+      ],
+      "advisor_impact": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+      "audit_scope_notes": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2152",
+      "finding_ids": [
+        "GAP-2152"
+      ],
+      "source_fact_id": "SF-3089",
+      "source_fact_ids": [
+        "SF-3089"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 4",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Barebrann/natur; andreårsakerunntatt.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.ror.utvendig",
+        "hus.ror.brudd"
+      ],
+      "advisor_impact": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+      "audit_scope_notes": "Utvidet rørfact viser ikke at drensledning er avgrenset til brann/natur.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "exact_source_reviewed_values_and_primary_supplementary_references": {
+    "hus.ror.utvendig": {
+      "owner": "gjensidigeHusStandard",
+      "label": "Utvendige rør og ledninger",
+      "value": "Tilknyttede utvendige ledninger frem til offentlig ledning eller spredeledning. Brønn og borehull er unntatt. For drensledning er annen skade enn brann- og naturskade unntatt.",
+      "previous_value": "Tilknyttede utvendige ledninger frem til offentlig ledning eller spredeledning. Brønn og borehull er unntatt.",
+      "previous_primary": [
+        2,
+        "Hus – Hva forsikringen omfatter"
+      ],
+      "primary": [
+        3,
+        "Hus – Hva forsikringen omfatter"
+      ],
+      "qualification": [
+        4,
+        "Hus – Dekkes ikke / Drensledning"
+      ],
+      "evidence": "Explicitly approved complete preflight wording; original frozen PDF3–5 inspected before edits"
+    },
+    "hus.ror.brudd": {
+      "owner": "gjensidigeHusStandard",
+      "label": "Rørbrudd",
+      "value": "Brudd på bygningens og tilknyttede utvendige væskeledninger med tilhørende utstyr. For drensledning er annen skade enn brann- og naturskade unntatt.",
+      "previous_value": "Brudd på bygningens og tilknyttede utvendige væskeledninger med tilhørende utstyr.",
+      "previous_primary": [
+        3,
+        "Hus – Dekkes"
+      ],
+      "primary": [
+        3,
+        "Hus – Dekkes"
+      ],
+      "qualification": [
+        4,
+        "Hus – Dekkes ikke / Drensledning"
+      ],
+      "evidence": "Explicitly approved complete preflight wording; original frozen PDF3–5 inspected before edits"
+    }
+  },
+  "complete_material_contract": "External connected liquid pipes and equipment retain existing coverage, public/spread-line boundary and well/borehole exclusions. Only drainage lines restricted to fire/natural damage; no generic restriction of all pipes.",
+  "source_role": "Existing registered legacy Standard/Plus full terms; primary and qualification references exactly source-oracle.json. Registry sourceType absent, remains absent/undefined; effective date unknown.",
+  "source_original_reading_order": [
+    "../b051-events-buildings-19ce85d/source-Standard-PDF3.txt",
+    "../b051-events-buildings-19ce85d/source-Standard-PDF4.txt",
+    "../b051-events-buildings-19ce85d/source-Standard-PDF5.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF3.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF4.txt",
+    "../b051-events-buildings-19ce85d/source-Pluss-PDF5.txt"
+  ],
+  "test_contracts": [
+    "R-051-EVENTS-BINDINGS",
+    "R-051-EVENTS-SOURCE",
+    "R-051-EVENTS-FACT",
+    "R-051-EVENTS-REVERSE",
+    "R-051-EVENTS-DOCUMENT",
+    "R-051-EVENTS-PIPELINE",
+    "R-051-EVENTS-SUPPORT/MANUAL",
+    "R-051-EVENTS-COMPARISON"
+  ],
+  "complete_closure_summary": "validation-summary.json",
+  "gate_results": "gate-results.json",
+  "source_to_catalog_and_reverse_audit": "catalog-audit.mjs / catalog-delta.json",
+  "prior_receipt_integrity": "prior-receipts.json",
+  "HARNESS_AUTONOMY_V1": {
+    "prior_used": 16,
+    "used": 18,
+    "limit": 12,
+    "scope_used": 2,
+    "scope_limit": 6,
+    "explicit_exception_roots": 2,
+    "ledger": "harness-roots.json",
+    "no_future_correction_capacity": true
+  },
+  "planned_test_contract_updates": "../b051-events-buildings-19ce85d/planned-contract-updates.json; charge0",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_closure_reconstructed": false,
+  "publication_revision": "Atomic Git commit records publication; gate proof applies to tested baseline plus exact candidate application hashes. No later revision automatically certified.",
+  "holds": "checkpoint.json holds_unchanged",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+}

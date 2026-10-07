@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "prior_receipt_count": 34,
+  "historical_manifests_unchanged": true,
+  "historical_mutable_file_verifications": [
+    {
+      "package": "docs/audit/checkpoints/b051-events-buildings-19ce85d",
+      "file": "tests/remediation-b-051-events-buildings.test.mjs",
+      "manifest_sha256": "a0837ad9f1760f9d63082c0a424e7efeb2c86c250755cd0ca6fcfe88e5b53b23",
+      "verified_original_candidate_snapshot": "docs/audit/checkpoints/b051-events-completion-19ce85d/before-test-corrections.test.mjs.gz",
+      "basis": "Exact stopped candidate verified before the two authorized corrections; not a fabricated historical Git revision"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-garden-completion-64dd3cb",
+      "file": "lib/gjensidige-hus-catalog.ts",
+      "manifest_sha256": "f5def428dc8138214e1c7bd42fb91c032840c03a5f22f3a230b8b110669fdeeb",
+      "verified_historical_revision": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-garden-completion-64dd3cb",
+      "file": "tests/nito-remediation-b020.test.mjs",
+      "manifest_sha256": "c622577ad81bc93d670c6715f8d465b9e848fe0edf40190923af036bfde289eb",
+      "verified_historical_revision": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-garden-completion-64dd3cb",
+      "file": "tests/remediation-b-050.test.mjs",
+      "manifest_sha256": "7496c2cc54e519e0f42d18f98da936e1151dbc70380415d22e50a4be1bfa0b63",
+      "verified_historical_revision": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-garden-completion-64dd3cb",
+      "file": "tests/remediation-b-051-garden.test.mjs",
+      "manifest_sha256": "af9b4c2bc99c67912fa2ed6808b70aae46b53ef4d7521b530c739af745fb1ba3",
+      "verified_historical_revision": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-garden-completion-64dd3cb",
+      "file": "tests/remediation-b-051.test.mjs",
+      "manifest_sha256": "5a984ff52458998f73ff97d6cc48538a40a8612f5b548a31ce8842fff94197b7",
+      "verified_historical_revision": "19ce85d5b762612e6ecfeb972b4b82c7832f69b7",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f",
+      "file": "docs/development-agent/current-project-status.md",
+      "manifest_sha256": "11b755575af3240f4c97628fc009153cddad3a7188eeee4cdced9a291da7503b",
+      "verified_historical_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f",
+      "file": "docs/development-agent/start.md",
+      "manifest_sha256": "98be081524c53f8337081ded7ae5977a91f2cc8dca93bc48a727a61ccf998928",
+      "verified_historical_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f",
+      "file": "lib/gjensidige-hus-catalog.ts",
+      "manifest_sha256": "98ee41eb85ba8761198a30ee11a7421252f243c0f1273e0b801862795db9cb38",
+      "verified_historical_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f",
+      "file": "tests/nito-remediation-b020.test.mjs",
+      "manifest_sha256": "bd285a0a8329a5d430f45971efa27ad58b1789a24ab1021f1120b37e70cedbcb",
+      "verified_historical_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f",
+      "file": "tests/remediation-b-050.test.mjs",
+      "manifest_sha256": "531749d550f56ef327b82b00277e2d24115cc81e6b98a31ce0422d83ab3d8a10",
+      "verified_historical_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f",
+      "file": "tests/remediation-b-051.test.mjs",
+      "manifest_sha256": "49c36e352b0d09553b9cb9ab5afb63a0068b47ca20419ad5ba295be1d7f2edbc",
+      "verified_historical_revision": "64dd3cb12116c725b600e53af7da1f13fa9cf3bf",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/rv02-b071-b051-f829dd3",
+      "file": "docs/development-agent/current-project-status.md",
+      "manifest_sha256": "c95520e61f3adab3aad648d365b6b853b96966bbcb1049141aa18bbcdc30e34d",
+      "verified_historical_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    },
+    {
+      "package": "docs/audit/checkpoints/rv02-b071-b051-f829dd3",
+      "file": "docs/development-agent/start.md",
+      "manifest_sha256": "c25665d5332af525be6a8094bf1a5e06de734c2b16252998d8e868008b480f58",
+      "verified_historical_revision": "5718a5fdcfe669d6afd11d4c27fe3a45ed24c175",
+      "basis": "Exact Git blob; does not claim gates validate other revisions"
+    }
+  ]
+}
