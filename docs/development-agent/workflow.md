@@ -1,7 +1,7 @@
 # Forsikringstolken: repo-basert utviklingsagent
 
 Dette er arbeidsinstrukser for en aktiv Codex-økt, ikke en bakgrunnstjeneste.
-Startpunkt: [aktuelt checkpoint](../audit/checkpoints/b051-rot-status-469b485/checkpoint.json),
+Startpunkt: [aktuelt checkpoint](../audit/checkpoints/b051-manual-rot-choice-2a2d0fc/checkpoint.json),
 [foreslått plan](next-b050-plan.md) og [maskinlesbare bindinger](../audit/checkpoints/development-agent-ef5b0bc/remaining-b050.json).
 
 ## Autorisasjon og prioritet

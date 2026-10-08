@@ -2,7 +2,7 @@
 
 Les AGENTS.md, docs/development-agent/workflow.md,
 [aktuell status](current-project-status.md) og
-[aktuelt checkpoint](../audit/checkpoints/b051-rot-status-469b485/checkpoint.json).
+[aktuelt checkpoint](../audit/checkpoints/b051-manual-rot-choice-2a2d0fc/checkpoint.json).
 Gjennomfør neste eksplisitt autoriserte bolk, valider, commit/push og oppdater checkpointet.
 Hvis ingen bolk er autorisert, rapporter den minste konkrete beslutningen som trengs.
 

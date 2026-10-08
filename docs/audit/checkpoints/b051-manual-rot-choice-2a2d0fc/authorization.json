@@ -1,0 +1,93 @@
+{
+  "classification": "EXPLICIT_USER_AUTHORIZATION",
+  "baseline": "2a2d0fc2b38897037f1f12d5b7627a2ffbaf0382",
+  "signature": "6af32d21acb9584c",
+  "original_binding": {
+    "signature_id": "6af32d21acb9584c",
+    "representative_finding_id": "GAP-2101",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2101\", \"GAP-2160\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3012\", \"SF-3099\"]",
+    "proposed_existing_keys": "[\"hus.rate.dekning\"]",
+    "semantic_concept": "Råte",
+    "semantic_dimension": "unntak",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "bindings": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base"
+    }
+  ],
+  "sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9"
+    }
+  ],
+  "production_files": [
+    "lib/manual-agreement.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts"
+  ],
+  "planned_test_files": [
+    "tests/remediation-b-051-rot-status.test.mjs",
+    "tests/manual-runtime-flow.test.mjs"
+  ],
+  "planned_documentation_files": [
+    "AGENTS.md",
+    "docs/development-agent/workflow.md",
+    "docs/development-agent/current-project-status.md",
+    "docs/development-agent/start.md"
+  ],
+  "audit_directory": "docs/audit/checkpoints/b051-manual-rot-choice-2a2d0fc",
+  "preflight_sha256": {
+    "decision-report.md": "8dd26f86f031e52651b7d0cc5733b37d51a441068ad7d850374b0d7aeb0b70fd",
+    "matrix.json": "4f3bd6be610fbeeb5a94e7af6c2d7bbac3f33b279c2a28dad03b8f036adc3315",
+    "simulated-production.diff": "541a1d6024ab7cd295900a4e9abfeb45dc13b5ea5e591c1e6c4b39046ad6cc27"
+  },
+  "authorization_original_bytes_sha256": "bc4217578a4be72a2e86ac84322e5eb56096d48298127b59a6ccb262156004c2",
+  "authorization_storage": "CRLF converted to LF; identical decoded text apart from newline representation",
+  "historical_harness_used": 33,
+  "historical_harness_limit": 12,
+  "new_mechanical_policy": "Separate evidence log without numeric stop quota",
+  "no_other_addons_or_signatures": true,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "publication_target": "origin HEAD:main; secured publish.py after complete PASS",
+  "application_baseline_sha256": {
+    "lib/manual-agreement.ts": "db09e8432c4cefbfe47110575562e61246e7155ab9c52531adf8a6ac639541b3",
+    "lib/catalog-enrichment.ts": "823df14c1543b1f58ad04e150aedd9c36753b5be3b553b392bf16d73e6d29394",
+    "lib/comparison.ts": "388a23b1bfc9fca1e6377f5db8f229b2aec0be54615ffa3c21d7fb5d65aaa95d",
+    "tests/remediation-b-051-rot-status.test.mjs": "3d6fcfb89b64521ef028e39b8ac39481b2b33a3a348c7e0a1c026426d265d4d3",
+    "tests/manual-runtime-flow.test.mjs": "888574af264c0c092beb5badba94c22325c0da363db31481db29236acfd8346b"
+  }
+}

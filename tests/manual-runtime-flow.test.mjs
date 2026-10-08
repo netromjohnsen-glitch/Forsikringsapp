@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { createDifferences, groupInsurances } from "../lib/comparison.ts";
+import { createDifferences, groupInsurances, groupTerms, groupAddOnNames } from "../lib/comparison.ts";
 import { presentImportantDifferences } from "../lib/comparison-presentation.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
+import { enrichExtractedAgreementWithCatalog } from "../lib/catalog-enrichment.ts";
+import { deriveCanonicalCoverages } from "../lib/coverage-status.ts";
 
 function uiAgreement(company, productId, version, addOnIds, deductible, annualPremium) {
   return {
@@ -65,4 +67,46 @@ test("UI-formet If–Storebrand-request beholder alle tillegg til toppsekslisten
     .some((item) => item.termKey === "leiebil.dager"));
   assert.equal(topFive.at(-1).presentationType, "conditional-benefit");
   assert.match(topFive.at(-1).text, /Bruk Ifs app.*Skade under øvelseskjøring gir ikke bonustap/s);
+});
+
+test("UI-formet råtevalg bevares ved repeat og fjernes bare fra nytt manuelt input", () => {
+  const addon = "gjensidige-hus-rate-insekter", key = "hus.rate.dekning";
+  const raw = { company: "Gjensidige", products: [{ type: "Hus", productName: "Hus", importantTerms: [], addOnIds: [addon] }] };
+  const submit = input => {
+    const form = new FormData(); form.set("existingMode", "manual"); form.set("existingManual", JSON.stringify(input));
+    return normalizeManualAgreement(JSON.parse(form.get("existingManual"))).insuranceData.insurances[0];
+  };
+  const repeat = insurance => enrichExtractedAgreementWithCatalog({ company: "Gjensidige", totalAnnualPremium: null, insurances: [insurance] }).insurances[0];
+  const state = insurance => deriveCanonicalCoverages(insurance, "Hus").find(coverage => coverage.id === key);
+  const selected = submit(raw), quiet = submit({ ...raw, products: [{ ...raw.products[0], addOnIds: [] }] });
+  let current = selected;
+  for (let n = 0; n < 4; n++) {
+    assert.equal(state(current).status, "selected"); assert.deepEqual(current.addOnIds, [addon]);
+    assert.deepEqual(current.addOns[0].manualSelection, { origin: "manual", catalogReference: {
+      providerId: "gjensidige", productId: "gjensidige-hus", version: "Alminnelige vilkår",
+    } });
+    for (const [first, second, side] of [[current, quiet, "first"], [quiet, current, "second"], [current, current, "first"]]) {
+      const row = groupTerms(groupInsurances([first], [second], null)[0], null).find(row => row.key === key);
+      assert.equal(row[side + "Coverage"].status, "selected");
+      assert.deepEqual(row[side + "Sources"], selected.importantTerms.find(term => term.key === key).sources);
+    }
+    current = repeat(current);
+  }
+  // This is the actual checkbox contract: remove the ID from raw input and
+  // resubmit the whole agreement; never mutate an old enriched result as input.
+  raw.products[0].addOnIds = raw.products[0].addOnIds.filter(id => id !== addon);
+  let removed = submit(raw);
+  for (let n = 0; n < 4; n++) {
+    assert.equal(state(removed).status, "unknown"); assert.deepEqual(removed.addOnIds, []);
+    assert.deepEqual(removed.addOns, []); assert.equal(groupAddOnNames([removed], "Hus"), null);
+    removed = repeat(removed);
+  }
+  let custom = submit({ ...raw, products: [{ ...raw.products[0], customProduct: true, productName: "Syntetisk eget produkt",
+    importantTerms: [{ name: "Råte og sopp", value: "Manuell særtekst" }] }] });
+  for (let n = 0; n < 4; n++) {
+    assert.equal(custom.catalogReference, null); assert.deepEqual(custom.addOnIds, []); assert.deepEqual(custom.addOns, []);
+    assert.equal(custom.importantTerms[0].value, "Manuell særtekst");
+    assert.equal(custom.importantTerms.some(term => term.coverageOrigin === "catalog"), false);
+    custom = repeat(custom);
+  }
 });

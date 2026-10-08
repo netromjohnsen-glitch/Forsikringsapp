@@ -180,6 +180,9 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
         deductible: null,
         source: catalog.sources?.[addOn.componentId] ?? null,
         coverageOrigin: "catalog" as const,
+        ...(addOn.id === "gjensidige-hus-rate-insekter" && normalizeInsuranceType(type) === "bolig" &&
+          addOn.selectionEvidenceKeys?.length === 1 && addOn.selectionEvidenceKeys[0] === "hus.rate.dekning"
+          ? { manualSelection: { origin: "manual" as const, catalogReference: { ...catalogReference! } } } : {}),
         importantTerms: (catalogFacts ?? []).filter(item => (catalog.facts?.[addOn.componentId] ?? []).includes(item)).map((item) => ({
           name: item.label, value: item.value, key: item.key, source: item.source,
           ...(item.qualificationSource ? { sources: catalogFactSources(item) } : {}),

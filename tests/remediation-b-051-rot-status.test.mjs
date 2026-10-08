@@ -6,10 +6,12 @@ import { deserialize } from 'node:v8';
 import { gunzipSync } from 'node:zlib';
 import { productCatalog, resolveCatalogFacts, availableAddOns } from '../lib/product-catalog.ts';
 import { deriveCanonicalCoverages } from '../lib/coverage-status.ts';
-import { enrichExtractedAgreementWithCatalog, catalogFactSources } from '../lib/catalog-enrichment.ts';
+import { enrichExtractedAgreementWithCatalog, catalogFactSources, validatedManualSelectionAddOn } from '../lib/catalog-enrichment.ts';
 import { materializeCatalogProduct, compareCatalogProducts, productComparisonProducts } from '../lib/catalog-product-comparison.ts';
 import { normalizeManualAgreement } from '../lib/manual-agreement.ts';
-import { groupInsurances, groupTerms } from '../lib/comparison.ts';
+import { groupInsurances, groupTerms, groupAddOnNames } from '../lib/comparison.ts';
+import { coverageDetailPresentation } from '../lib/coverage-detail-presentation.ts';
+import { validateAnalysisOutput } from '../lib/analysis-output.ts';
 import { documentPipeline } from './helpers/supporting-terms.mjs';
 import { applyRotStatus, transformRotStatusRows, transformRotStatusAddOns } from './helpers/b051-rot.mjs';
 import { expectedCatalog } from './helpers/b051-liability.mjs';
@@ -241,4 +243,165 @@ test('R-051-ROT-STATUS explicit term assertion override preserves document prior
   }
   const main = { ...insurance, importantTerms: [{ ...term, catalogSelectionConfirmed: true }] };
   assert.equal(state(main).status, 'not_selected');
+});
+
+const manualReference = { providerId: 'gjensidige', productId: standard, version: 'Alminnelige vilkår' };
+const manualMarker = { origin: 'manual', catalogReference: manualReference };
+const manualRot = (id = standard, additions = [addon], custom = false) => normalizeManualAgreement({
+  company: 'Gjensidige', products: [{ type: 'Hus', productName: custom ? 'Syntetisk eget produkt' : product(id).name,
+    customProduct: custom, importantTerms: custom ? [{ name: 'Råte og sopp', value: 'Egen særtekst' }] : [], addOnIds: additions }],
+}).insuranceData.insurances[0];
+const fourStages = insurance => {
+  const stages = [insurance];
+  for (let n = 0; n < 3; n++) stages.push(repeat(stages.at(-1)));
+  return stages;
+};
+const documentedOverlay = (insurance, values) => {
+  const customer = pipe([[record(standard, values)]]).insurances[0];
+  return { ...insurance, importantTerms: [...insurance.importantTerms,
+    ...terms(customer).filter(term => term.coverageOrigin === 'document')] };
+};
+
+test('R-051-ROT-MANUAL explicit choice, component and full provenance survive four stages', () => {
+  const insurance = manualRot(), fact = raw('gjensidigeHusRotOption');
+  const expectedSources = [
+    { ...fact.source, note: 'Effektiv verdi fra dokumentert utvidelse eller tillegg' },
+    { ...fact.qualificationSource, note: 'Supplerende kilde for faktumets anvendelse' },
+  ];
+  assert.deepEqual(insurance.addOns.find(entry => entry.id === addon).manualSelection, manualMarker);
+  for (const current of fourStages(insurance)) {
+    assert.equal(state(current).id, key); assert.equal(state(current).status, 'selected'); assert.equal(state(current).conflict, false);
+    assert.deepEqual(current.addOnIds, [addon]); assert.deepEqual(current.catalogReference, manualReference);
+    const entry = current.addOns.find(entry => entry.id === addon);
+    assert.deepEqual(entry.manualSelection, manualMarker); assert.equal(entry.coverageOrigin, 'catalog');
+    assert.equal(Object.hasOwn(entry, 'source'), true); assert.equal(entry.source, null);
+    assert.equal(current.catalogFacts.some(row => row.key === key && row.source.documentId === 'gjensidigeHusPluss'), true);
+    const term = terms(current)[0]; assert.equal(term.value, fact.value); assert.deepEqual(term.source, fact.source);
+    assert.deepEqual(term.sources, expectedSources); assert.equal(term.coverageOrigin, 'catalog');
+    assert.equal(Object.hasOwn(term.sources[0], 'productCode'), true); assert.equal(term.sources[0].productCode, undefined);
+    assert.equal(groupAddOnNames([current], 'Hus'), 'Sopp, råte og skadeinsekter');
+  }
+});
+for (const [id, expected] of [[standard, 'unknown'], [plus, 'selected']]) {
+  test(`R-051-ROT-MANUAL silence/included/${id}`, () => {
+    for (const current of fourStages(manualRot(id, []))) {
+      assert.equal(state(current).status, expected); assert.deepEqual(current.addOnIds, []);
+      assert.deepEqual(current.addOns, []); assert.equal(groupAddOnNames([current], 'Hus'), null);
+    }
+  });
+}
+for (const [values, expected, conflict] of [[['Ikke valgt'], 'not_selected', false], [['Valgt', 'Ikke valgt'], 'unknown', true]]) {
+  test(`R-051-ROT-MANUAL document priority and names/${values}`, () => {
+    const overlaid = documentedOverlay(manualRot(), values);
+    assert.equal(state(overlaid).status, expected); assert.equal(state(overlaid).conflict, conflict);
+    for (const current of fourStages(repeat(overlaid))) {
+      assert.equal(state(current).status, expected); assert.equal(state(current).conflict, conflict);
+      assert.deepEqual(current.addOns.find(entry => entry.id === addon).manualSelection, manualMarker);
+      assert.equal(groupAddOnNames([current], 'Hus'), null);
+      const documented = terms(current).filter(term => term.coverageOrigin === 'document');
+      assert.deepEqual(documented.map(term => term.value), values);
+      for (const term of documented) assert.deepEqual(term.sources, [docSource('existing', 'individual_agreement')]);
+      const row = groupTerms(groupInsurances([current], [current], null)[0], null).find(row => row.key === key);
+      assert.equal(row.firstCoverage.status, expected); assert.equal(row.firstCoverage.conflict, conflict);
+      assert.deepEqual(row.firstCoverage.sources, [docSource('existing', 'individual_agreement')]);
+      assert.deepEqual(row.firstSources, [docSource('existing', 'individual_agreement')]);
+      assert.ok(values.every(value => row.first.includes(value)));
+      const details = coverageDetailPresentation([row]);
+      assert.equal(details.compact[0].first, expected === 'not_selected' ? '❌ Ikke valgt' : '— Ikke dokumentert');
+      if (!conflict) assert.deepEqual(details.sources.map(entry => entry.source), [docSource('existing', 'individual_agreement'), docSource('existing', 'individual_agreement')]);
+    }
+    for (const current of fourStages(repeat(overlaid))) assert.deepEqual(current.addOnIds, []);
+  });
+}
+test('R-051-ROT-MANUAL customer value retains complete provenance in both directions', () => {
+  const values = ['Kundens råtevillkår 17 000 kr'];
+  const quiet = manualRot(standard, []);
+  const overlay = documentedOverlay(manualRot(), values);
+  assert.equal(state(overlay).status, 'selected');
+  assert.deepEqual(terms(overlay).find(term => term.coverageOrigin === 'document').sources,
+    [docSource('existing', 'individual_agreement')]);
+  for (const current of fourStages(repeat(overlay))) {
+    assert.equal(state(current).status, 'selected'); assert.deepEqual(current.addOnIds, [addon]);
+    const documented = terms(current).find(term => term.coverageOrigin === 'document');
+    assert.equal(documented.value, values[0]); assert.deepEqual(documented.sources, [docSource('existing', 'individual_agreement')]);
+    for (const [first, second, side] of [[current, quiet, 'first'], [quiet, current, 'second'], [current, current, 'first']]) {
+      const row = groupTerms(groupInsurances([first], [second], null)[0], null).find(row => row.key === key);
+      assert.equal(row[side], values[0]); assert.deepEqual(row[side + 'Sources'], documented.sources);
+      assert.equal(row[side + 'Coverage'].status, 'selected');
+    }
+  }
+});
+test('R-051-ROT-MANUAL supporting roles and deductible never create a manual choice', () => {
+  const general = record(standard, ['Valgt'], 'general_terms');
+  const only = pipe([[general]]); assert.deepEqual(only.insurances, []); assert.equal(only.supportingEvidence.length, 1);
+  const supported = pipe([[record(standard)], [general]]), supporting = supported.insurances[0].importantTerms.find(term =>
+    term.sources?.some(source => source.documentRole === 'general_terms'));
+  assert.ok(supporting);
+  for (const current of fourStages(supported.insurances[0])) {
+    assert.equal(state(current).status, 'unknown'); assert.deepEqual(current.addOnIds, []);
+    const retained = current.importantTerms.find(term => term.sources?.some(source => source.documentRole === 'general_terms'));
+    assert.deepEqual(retained.sources, supporting.sources); assert.equal(retained.coverageOrigin, 'catalog');
+  }
+  const selected = manualRot(); selected.importantTerms.push(supporting);
+  for (const current of fourStages(selected)) {
+    assert.equal(state(current).status, 'selected'); assert.deepEqual(current.addOnIds, [addon]);
+    assert.deepEqual(current.importantTerms.find(term => term.sources?.some(source => source.documentRole === 'general_terms')).sources, supporting.sources);
+  }
+  for (const current of fourStages(pipe([[record(standard, ['6 000 kr'], 'individual_agreement', 'Råte og sopp – egenandel')]]).insurances[0])) {
+    assert.equal(state(current).status, 'unknown'); assert.deepEqual(current.addOnIds, []);
+  }
+});
+for (const other of ['gjensidige-hus-utleie', 'gjensidige-hus-smart']) {
+  test(`R-051-ROT-MANUAL combination isolates existing unrelated continuation/${other}`, () => {
+    const stages = fourStages(manualRot(standard, [addon, other]));
+    assert.deepEqual(stages[0].addOnIds, [addon, other]);
+    for (const current of stages.slice(1)) {
+      assert.equal(state(current).status, 'selected'); assert.deepEqual(current.addOnIds, [addon]);
+      assert.equal(Object.hasOwn(current.addOns.find(entry => entry.id === other), 'manualSelection'), false);
+    }
+  });
+}
+test('R-051-ROT-MANUAL invalid and incomplete markers are rejected without text inference', () => {
+  const insurance = manualRot(), valid = insurance.addOns.find(entry => entry.id === addon);
+  const invalid = [null, undefined, [], 1, 'manual', {}, { origin: 'manual' },
+    { ...manualMarker, extra: true }, { ...manualMarker, origin: 'document' },
+    { ...manualMarker, catalogReference: null }, { ...manualMarker, catalogReference: [] },
+    ...Object.keys(manualReference).map(field => {
+      const reference = { ...manualReference }; delete reference[field]; return { origin: 'manual', catalogReference: reference };
+    }),
+    ...Object.keys(manualReference).map(field => ({ origin: 'manual', catalogReference: { ...manualReference, [field]: 'Wrong' } })),
+    { origin: 'manual', catalogReference: { ...manualReference, extra: true } },
+  ];
+  for (const marker of invalid) {
+    const entry = { ...valid, manualSelection: marker }, input = { ...insurance, addOns: [entry] };
+    assert.equal(validatedManualSelectionAddOn(product(standard), entry, date), null);
+    for (const current of fourStages(repeat(input))) {
+      assert.equal(state(current).status, 'unknown'); assert.deepEqual(current.addOnIds, []);
+      assert.equal(groupAddOnNames([current], 'Hus'), null);
+    }
+  }
+  for (const entry of [{ ...valid, id: 'Unknown-addon' }, { ...valid, id: 'gjensidige-hus-smart' },
+    { ...valid, coverageOrigin: 'document' }]) {
+    assert.equal(validatedManualSelectionAddOn(product(standard), entry, date), null);
+    const current = repeat({ ...insurance, addOns: [entry] });
+    assert.equal(state(current).status, 'unknown'); assert.deepEqual(current.addOnIds, []);
+    assert.equal(groupAddOnNames([current], 'Hus'), null);
+  }
+  const noMarker = { ...valid }; delete noMarker.manualSelection;
+  assert.equal(state(repeat({ ...insurance, addOns: [noMarker] })).status, 'unknown');
+  assert.equal(groupAddOnNames([repeat({ ...insurance, addOns: [noMarker] })], 'Hus'), null);
+  const quiet = manualRot(standard, []); quiet.addOnIds = [addon];
+  assert.deepEqual(repeat(quiet).addOnIds, []); assert.equal(state(repeat(quiet)).status, 'unknown');
+});
+test('R-051-ROT-MANUAL validated ID is independent of positive text and cannot enter extraction', () => {
+  const insurance = manualRot(), entry = insurance.addOns.find(entry => entry.id === addon);
+  const renamed = { ...insurance, addOns: [{ ...entry, name: 'Irrelevant tekst' }] };
+  assert.deepEqual(repeat(renamed).addOnIds, [addon]); assert.equal(state(repeat(renamed)).status, 'selected');
+  const extracted = { company: 'Gjensidige', totalAnnualPremium: null, totalAnnualPremiumScope: 'entire_agreement', insurances: [record(standard)] };
+  assert.equal(validateAnalysisOutput(extracted).insurances.length, 1);
+  const forged = structuredClone(extracted);
+  forged.insurances[0].addOns = [{ name: entry.name, annualPremium: null, deductible: null, importantTerms: [], manualSelection: manualMarker }];
+  assert.throws(() => validateAnalysisOutput(forged));
+  const rawInput = { company: 'Gjensidige', products: [{ type: 'Hus', productName: 'Hus', importantTerms: [], addOnIds: [], manualSelection: manualMarker }] };
+  assert.deepEqual(normalizeManualAgreement(rawInput).insuranceData.insurances[0].addOnIds, []);
 });

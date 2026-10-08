@@ -11,7 +11,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Forsikringstolken: utviklingsagent
 
 Les [arbeidsflyten](docs/development-agent/workflow.md),
-[aktuelt checkpoint](docs/audit/checkpoints/b051-rot-status-469b485/checkpoint.json)
+[aktuelt checkpoint](docs/audit/checkpoints/b051-manual-rot-choice-2a2d0fc/checkpoint.json)
 og bolkens eksplisitte fullmakt før arbeid. Foreslåtte bolker merket NOT_AUTHORIZED
 gir ingen implementeringsfullmakt. Bevar eksisterende Next-instrukser ovenfor.
 Bruk [startkommandoen](docs/development-agent/start.md) for videreføring.

@@ -1,0 +1,55 @@
+{
+  "historical_harness_used": 33,
+  "historical_harness_limit": 12,
+  "numeric_stop_quota": null,
+  "corrections": [
+    {
+      "id": "MANUAL_ROT_TEST_CATALOG_REFERENCE_FIELDS",
+      "classification": "MECHANICAL_FIXTURE",
+      "before": "Fixture incorrectly added insuranceType and agreementScope to ordinary product reference",
+      "independent_evidence": "Baseline product-catalog.ts catalogReferenceForProduct adds these fields only for an explicitly scoped catalog product; the ordinary Hus product has no explicit agreementScope",
+      "after": "Strict full-field expectation uses providerId/productId/version; missing and wrong field negative tests remain",
+      "production_delta": "none"
+    },
+    {
+      "id": "MANUAL_ROT_COMPOSITE_FIXTURE_PROCESSING_BOUNDARY",
+      "classification": "MECHANICAL_FIXTURE",
+      "before": "Concatenated raw manual and pipeline document terms were compared before the required enrichment processing boundary",
+      "independent_evidence": "Preflight additional.mjs performs repeat(mixed) before customer-value comparison in every round; existing comparison groups raw terms whereas enrichment applies document priority",
+      "after": "Customer overlay is enriched before four-stage presentation comparison; initial raw status/provenance continue to be tested separately",
+      "production_delta": "none"
+    },
+    {
+      "id": "MANUAL_ROT_TEST_ADDON_SOURCE_NULL",
+      "classification": "MECHANICAL_FIXTURE",
+      "before": "Expected nonexistent registry source for the addon component",
+      "independent_evidence": "manual-agreement.ts on baseline assigns catalog.sources[componentId] ?? null; this component has no source record, and references live on its terms",
+      "after": "Explicit presence and null assertion on addon source; complete term provenance remains strictly asserted",
+      "production_delta": "none"
+    },
+    {
+      "id": "MANUAL_ROT_RUNNER_EXISTING_TEST_FILENAME",
+      "classification": "MECHANICAL_SCRIPT",
+      "before": "Supplemental targeted manifest guessed mc-bobil-manual-agreement.test.mjs",
+      "independent_evidence": "rg --files and preflight targeted.py identify the existing mc-bobil-manual.test.mjs",
+      "after": "Use exact existing filename; retain failed invocation as evidence; no test file removed or skipped",
+      "production_delta": "none"
+    },
+    {
+      "id": "MANUAL_ROT_ISOLATION_AGREEMENT_COMPANY",
+      "classification": "MECHANICAL_PROBE",
+      "before": "Probe supplied insurance.company instead of the agreement-level product.company during repeat",
+      "independent_evidence": "normalizeManualAgreement returns agreement-level company; permanent repeat helper passes Gjensidige explicitly, and preflight probe uses fallback agreement company",
+      "after": "Each inventory chain now uses the exact catalog product company, including baseline and candidate equally",
+      "production_delta": "none"
+    },
+    {
+      "id": "MANUAL_ROT_UNIFIED_DIFF_CONTEXT_WHITESPACE",
+      "classification": "MECHANICAL_AUDIT_SERIALIZATION",
+      "before": "New plaintext unified-diff artifacts retain a space on blank context lines and fail the all-file whitespace gate",
+      "independent_evidence": "git diff unified format uses a leading context space; exact original bytes and SHA-256 are recorded in lossless-diff-artifacts.json",
+      "after": "Deterministic gzip with strict byte-identical decode and original hash, raw diagnostic files retained only in /tmp; no diff-check exception",
+      "production_delta": "none"
+    }
+  ]
+}

@@ -20,10 +20,51 @@ import {
   type CatalogFact,
   type CatalogProduct,
   type CatalogProductReference,
+  type CatalogAddOn,
   type ProductCatalog,
   productCatalog,
   catalogReferenceForProduct,
 } from "./product-catalog.ts";
+
+// Internal choice metadata from the validated manual-input boundary. The
+// catalog origin of the terms remains distinct from the origin of the choice.
+export type ManualAddOnSelection = {
+  origin: "manual";
+  catalogReference: CatalogProductReference;
+};
+
+type ManualSelectionAddOn = {
+  id?: string;
+  coverageOrigin?: "document" | "catalog";
+  manualSelection?: ManualAddOnSelection;
+};
+
+export function validatedManualSelectionAddOn(
+  product: CatalogProduct,
+  input: unknown,
+  asOf = new Date(),
+  catalog: ProductCatalog = productCatalog,
+): CatalogAddOn | null {
+  if (normalizeInsuranceType(product.insuranceType) !== "bolig" || !input ||
+    typeof input !== "object" || Array.isArray(input)) return null;
+  const entry = input as Record<string, unknown>;
+  if (entry.id !== "gjensidige-hus-rate-insekter" || entry.coverageOrigin !== "catalog") return null;
+  const marker = entry.manualSelection;
+  if (!marker || typeof marker !== "object" || Array.isArray(marker)) return null;
+  const selection = marker as Record<string, unknown>;
+  if (Object.keys(selection).length !== 2 || selection.origin !== "manual" ||
+    !Object.hasOwn(selection, "catalogReference")) return null;
+  const reference = selection.catalogReference;
+  if (!reference || typeof reference !== "object" || Array.isArray(reference)) return null;
+  const actual = reference as Record<string, unknown>;
+  const expected = catalogReferenceForProduct(product);
+  const fields = Object.keys(expected) as (keyof CatalogProductReference)[];
+  if (Object.keys(actual).length !== fields.length || !fields.every(field =>
+    Object.hasOwn(actual, field) && actual[field] === expected[field])) return null;
+  return availableAddOns(product, asOf, null, catalog).find(addOn =>
+    addOn.id === entry.id && addOn.selectionEvidenceKeys?.length === 1 &&
+    addOn.selectionEvidenceKeys[0] === "hus.rate.dekning") ?? null;
+}
 
 type EnrichedTerm = ExtractedTerm & {
   key?: string;
@@ -39,7 +80,7 @@ type EnrichedTerm = ExtractedTerm & {
 
 export type CatalogEnrichedInsurance = Omit<ExtractedInsurance, "importantTerms"> & {
   importantTerms: EnrichedTerm[];
-  addOns: (ExtractedInsurance["addOns"][number] & { classification?: "standard" | "add_on" })[];
+  addOns: (ExtractedInsurance["addOns"][number] & ManualSelectionAddOn & { classification?: "standard" | "add_on" })[];
   catalogReference?: CatalogProductReference | null;
   catalogSelectionConfirmed?: boolean;
   catalogProductName?: string;
@@ -125,8 +166,14 @@ function selectedScopedAddOns(
   });
   const isSpecificName = (name: string) => allowed.some(candidate => candidate.specific &&
     normalizeLabel(candidate.addOn.name) === normalizeLabel(name));
+  const manualIds = new Set(insurance.addOns.flatMap(entry => {
+    const addOn = validatedManualSelectionAddOn(product, entry, asOf, catalog);
+    return addOn ? [addOn.id] : [];
+  }));
   const documentAddOns = insurance.addOns.filter(addOn => {
     const evidence = addOn as typeof addOn & { id?: string; source?: unknown; coverageOrigin?: string };
+    // A copied internal marker never becomes new document choice evidence.
+    if (Object.hasOwn(evidence, "manualSelection")) return false;
     return evidence.coverageOrigin === "document" || (!evidence.coverageOrigin && !evidence.id && !evidence.source);
   });
   // A named variant is evidence for that variant, not every alternative in
@@ -160,7 +207,7 @@ function selectedScopedAddOns(
       const standards = alternatives.filter(other => other.namedKey === parent);
       return alternatives.length === 1 || (standards.length === 1 && standards[0].addOn.id === addOn.id);
     });
-    return { ...candidate, conflict: statuses.size > 1, selected: !blocked && (namedSelection || genericSelection),
+    return { ...candidate, conflict: statuses.size > 1, selected: !blocked && (manualIds.has(addOn.id) || namedSelection || genericSelection),
       namedSpecificSelection: !blocked && candidate.specific && namedSelection };
   });
   const selectedIds = new Set(candidates.filter(candidate => {
@@ -260,6 +307,10 @@ function enrichInsurance(
     return matches.size === 1 ? { ...term, key: [...matches][0] } : term;
   });
   const selectedAddOnIds = selectedScopedAddOns(product, insurance, documentTerms, asOf, catalog);
+  const manualParents = new Set(insurance.addOns.flatMap(entry => {
+    const addOn = validatedManualSelectionAddOn(product, entry, asOf, catalog);
+    return addOn && selectedAddOnIds.includes(addOn.id) ? addOn.selectionEvidenceKeys ?? [] : [];
+  }));
   const effectiveFacts = resolveCatalogFacts(product, selectedAddOnIds, asOf, null, catalog);
   const catalogFacts = resolveCatalogEvidence(product, selectedAddOnIds, asOf, null, catalog);
   // An exact, unambiguous label from this identified product can establish a
@@ -336,6 +387,15 @@ function enrichInsurance(
       return included;
     })
     .map((fact) => ({ ...catalogTerm(fact, catalogFacts),
+      // Retain the established manual presentation references, including their
+      // generated notes, only for this validated and effective manual choice.
+      ...(manualParents.has(fact.key) ? {
+        sources: catalogFactSources(fact).map((source, index) => index === 0
+          ? { ...source, note: [fact.source.note,
+            fact.replacesBase ? "Effektiv verdi fra dokumentert utvidelse eller tillegg" : undefined,
+          ].filter(Boolean).join(" · ") || undefined }
+          : { ...source, note: [source.note, "Supplerende kilde for faktumets anvendelse"].filter(Boolean).join(" · ") }),
+      } : {}),
       ...(fact.coverageAvailability === "unavailable" && optedParents.has(fact.key)
         ? { catalogSelectionConfirmed: false } : {}),
     }));

@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "bindings": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base"
+    }
+  ],
+  "pages": [
+    {
+      "source": {
+        "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+      },
+      "pdf_page": 6,
+      "log": "Hus-Pluss-alminnelige-vilkar-pdf6.txt.gz",
+      "extracted_sha256": "3c863bc12615af6e035571d4103c11be5054cc4df4686c63e557c7d19b3640b5",
+      "command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "6",
+        "-l",
+        "6",
+        "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "-"
+      ]
+    },
+    {
+      "source": {
+        "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+      },
+      "pdf_page": 3,
+      "log": "Hus-Standard-alminnelige-vilkar-pdf3.txt.gz",
+      "extracted_sha256": "cd20c5e0709aaa2137f2749c7a016f845f5434af374b4b4780f22f1676bb1e2a",
+      "command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "3",
+        "-l",
+        "3",
+        "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "-"
+      ]
+    },
+    {
+      "source": {
+        "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+      },
+      "pdf_page": 4,
+      "log": "Hus-Standard-alminnelige-vilkar-pdf4.txt.gz",
+      "extracted_sha256": "3fb21396c1dddcee841c82eb21ddba81f541625350609b2664d7e84bdc7271ae",
+      "command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "4",
+        "-l",
+        "4",
+        "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "-"
+      ]
+    },
+    {
+      "source": {
+        "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+        "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9"
+      },
+      "pdf_page": 2,
+      "log": "IPID-Husforsikring-EAP01-pdf2.txt.gz",
+      "extracted_sha256": "ffdb92f6779601354ad84fdec2ea69c0fcc69cb0522b7bc425f63060bcafdec3",
+      "command": [
+        "pdftotext",
+        "-layout",
+        "-f",
+        "2",
+        "-l",
+        "2",
+        "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+        "-"
+      ]
+    }
+  ],
+  "source_meaning": "Full unchanged published rot qualifications and sources revalidated by 140/140 remediation-b-051-rot tests; Standard optional and Pluss included checked by rot-status tests"
+}

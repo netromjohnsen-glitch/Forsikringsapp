@@ -21,6 +21,8 @@ import type { MatchingPlan } from "./hybrid-matching.ts";
 import { materiallyEquivalentValues } from "./value-equivalence.ts";
 import type { BuildingFactData } from "./building-facts.ts";
 import type { CatalogProductReference } from "./product-catalog.ts";
+import { findCatalogProduct, availableAddOns } from "./product-catalog.ts";
+import { validatedManualSelectionAddOn, type ManualAddOnSelection } from "./catalog-enrichment.ts";
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
 
 export type FactSource = {
@@ -76,6 +78,7 @@ export type ComparedInsurance = {
     source?: { id: string } | null;
     coverageOrigin?: "document" | "catalog";
     classification?: "standard" | "add_on";
+    manualSelection?: ManualAddOnSelection;
   }[];
 };
 export type ComparedDocument = {
@@ -190,6 +193,19 @@ function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
     .map((coverage) => [coverage.id, coverage]));
   return (insurance.addOns ?? []).filter((addOn) => {
     if (addOn.classification === "standard") return false;
+    const reference = insurance.catalogReference;
+    const product = normalizeInsuranceType(insuranceType) === "bolig" && reference
+      ? findCatalogProduct(reference.providerId, reference.productId, reference.version, reference) : null;
+    const scoped = product && availableAddOns(product).some(candidate =>
+      candidate.id === addOn.id && candidate.id === "gjensidige-hus-rate-insekter" &&
+      candidate.selectionEvidenceKeys?.includes("hus.rate.dekning"));
+    if (Object.hasOwn(addOn, "manualSelection") || scoped) {
+      const selected = product && validatedManualSelectionAddOn(product, addOn);
+      return Boolean(selected?.selectionEvidenceKeys?.every(key => {
+        const coverage = coverages.get(key);
+        return coverage?.status === "selected" && !coverage.conflict;
+      }));
+    }
     const key = normalizeTermName(addOn.name, { insuranceType });
     const coverage = coverages.get(key);
     return !coverage || coverage.status === "selected";

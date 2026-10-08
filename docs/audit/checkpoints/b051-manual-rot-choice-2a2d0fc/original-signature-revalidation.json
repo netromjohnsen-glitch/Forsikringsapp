@@ -1,0 +1,54 @@
+{
+  "classification": "CURRENT_ORIGINAL_SIGNATURE_REVALIDATION",
+  "signature": "6af32d21acb9584c",
+  "tested_revision": "2a2d0fc2b38897037f1f12d5b7627a2ffbaf0382",
+  "candidate_identity_sha256": "6f88b5e7de4c2ac81cf0c81384324c6672b41d4124d7eea928aa26344c91181f",
+  "bindings": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base"
+    }
+  ],
+  "source_evidence": "source-evidence.json",
+  "source_gate": {
+    "file": "tests/remediation-b-051-rot.test.mjs",
+    "tests": 140,
+    "status": "PASS"
+  },
+  "document_and_manual_gate": {
+    "file": "tests/remediation-b-051-rot-status.test.mjs",
+    "tests": 83,
+    "status": "PASS"
+  },
+  "ui_gate": {
+    "file": "tests/manual-runtime-flow.test.mjs",
+    "tests": 2,
+    "status": "PASS"
+  },
+  "requirements": {
+    "Standard_without_choice": "unknown",
+    "Standard_explicit_manual_choice_four_stages": "selected; exact addon ID and marker preserved",
+    "Standard_document_choice_four_stages": "selected",
+    "document_negative_priority": "not_selected; choice name hidden; facts and full provenance retained",
+    "document_conflict_priority": "unknown/conflict; choice name hidden; evidence retained",
+    "Pluss_included_four_stages": "selected; no optional addon ID",
+    "customer_value_priority": "Document 17000 value and complete provenance in both directions",
+    "raw_uncheck_resubmission": "No old ID/marker restored",
+    "general_terms_and_deductible": "Do not establish customer choice",
+    "source_meaning": "Complete unchanged full-value rot qualifications, exclusions and separate optional/included source contracts",
+    "cross_product": "203 products/157 valid other addons/202 materializations unchanged"
+  },
+  "status": "PASS",
+  "scope_signature_credit": 1,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0
+}

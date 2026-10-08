@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "tested_revision": "2a2d0fc2b38897037f1f12d5b7627a2ffbaf0382",
+  "candidate_identity_sha256": "6f88b5e7de4c2ac81cf0c81384324c6672b41d4124d7eea928aa26344c91181f",
+  "fullsuite": {
+    "files": 158,
+    "tests": 5493,
+    "pass": 5493
+  },
+  "remediation": {
+    "files": 60,
+    "tests": 3339,
+    "pass": 3339
+  },
+  "targeted": {
+    "files": 36,
+    "tests": 2295,
+    "pass": 2295
+  },
+  "rot_status": 83,
+  "manual_runtime": 2,
+  "rot_catalog": 140,
+  "quality": {
+    "typegen": "PASS",
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "production-build": "PASS",
+    "http-pdf-runtime": "PASS",
+    "diff-check": "PASS",
+    "eslint-audit-final": "PASS"
+  },
+  "lint_errors": 0,
+  "lint_warnings": 27,
+  "lint_exact_unchanged": 27,
+  "runtime_checks": 22,
+  "failed_attempts_preserved": [
+    {
+      "label": "final-targeted-mc-bobil-manual-agreement",
+      "log": "final-targeted-mc-bobil-manual-agreement.log.gz",
+      "resolution": "Exact existing mc-bobil-manual test executed in fullsuite and targeted recovery"
+    }
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0
+}

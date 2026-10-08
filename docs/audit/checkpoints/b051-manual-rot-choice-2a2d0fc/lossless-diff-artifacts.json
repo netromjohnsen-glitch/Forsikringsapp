@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "artifacts": [
+    {
+      "original_filename": "application.diff",
+      "original_bytes": 26986,
+      "original_sha256": "984e0174161fe338e733bba378574445046c33053f929b76b1f4cc5a9e1e9180",
+      "stored_filename": "application.diff.gz",
+      "stored_sha256": "f1ca62d4bae2bf8bd5af8a59fb89209b431458266da5c1e6cc32b10db8ccc069",
+      "encoding": "gzip deterministic mtime=0",
+      "round_trip": "PASS_BYTE_IDENTICAL",
+      "negative_control": "A changed decoded byte has a different SHA-256"
+    },
+    {
+      "original_filename": "preflight-simulated-production.diff",
+      "original_bytes": 5076,
+      "original_sha256": "541a1d6024ab7cd295900a4e9abfeb45dc13b5ea5e591c1e6c4b39046ad6cc27",
+      "stored_filename": "preflight-simulated-production.diff.gz",
+      "stored_sha256": "147db11521c978d827b571c4495061131ba685808fe14d3d331e118d30ff01cd",
+      "encoding": "gzip deterministic mtime=0",
+      "round_trip": "PASS_BYTE_IDENTICAL",
+      "negative_control": "A changed decoded byte has a different SHA-256"
+    }
+  ]
+}
