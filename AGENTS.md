@@ -15,3 +15,13 @@ Les [arbeidsflyten](docs/development-agent/workflow.md),
 og bolkens eksplisitte fullmakt før arbeid. Foreslåtte bolker merket NOT_AUTHORIZED
 gir ingen implementeringsfullmakt. Bevar eksisterende Next-instrukser ovenfor.
 Bruk [startkommandoen](docs/development-agent/start.md) for videreføring.
+
+## Forsikringstolken: eksplisitt prosjektagentrolle
+
+Ved eksplisitt valg av prosjektagentrollen gjelder
+[prosjektmandatet](docs/project-agent/workflow.md): READ-ONLY.
+Utviklingsinstruksjonene ovenfor og utviklingsfullmakter leses da bare som bevis;
+de gir prosjektagenten ingen implementerings-, commit-, push- eller deploymyndighet.
+Rollen krever faktisk håndhevet skrivebeskyttet tilgang; instruksjoner alene er
+ikke en teknisk sikkerhetsgrense. Uten eksplisitt prosjektrolle gjelder eksisterende
+utviklingsinstruksjoner uendret.
