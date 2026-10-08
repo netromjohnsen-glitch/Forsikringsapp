@@ -2,7 +2,7 @@ import {execFileSync} from 'node:child_process';
 import test from 'node:test';
 import {deserialize} from 'node:v8';
 import {gunzipSync} from 'node:zlib';
-import {applyRot} from './helpers/b051-rot.mjs';
+import {applyRot, applyRotStatus} from './helpers/b051-rot.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -14,7 +14,7 @@ import {normalizeManualAgreement} from '../lib/manual-agreement.ts';
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {expectedCatalog as activeExpected} from './helpers/b051-liability.mjs';
-const path=new URL('../docs/audit/checkpoints/b051-rot-77db841/',import.meta.url),p=JSON.parse(readFileSync(new URL('proposal.json',path))),snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',path))),bytes=readFileSync(new URL(snapshot.snapshot,path)),baseline=deserialize(gunzipSync(bytes)),candidate=productCatalog,key=p.key,ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-08T12:00:00Z');
+const path=new URL('../docs/audit/checkpoints/b051-rot-77db841/',import.meta.url),p=JSON.parse(readFileSync(new URL('proposal.json',path))),snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',path))),bytes=readFileSync(new URL(snapshot.snapshot,path)),baseline=applyRotStatus(deserialize(gunzipSync(bytes))),candidate=productCatalog,key=p.key,ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-08T12:00:00Z');
 assert.equal(createHash('sha256').update(bytes).digest('hex'),snapshot.sha256);
 
 const product=(c,id)=>c.products.find(x=>x.productId===id),terms=i=>i.importantTerms.filter(t=>t.key===key||t.name===p.label),state=i=>deriveCanonicalCoverages(i,'Hus').map(x=>({id:x.id,status:x.status,conflict:x.conflict})),rot=i=>state(i).filter(x=>/rate|råte/u.test(x.id)),source={documentId:'synthetic:rot:customer',filename:'Kundebevis.pdf',termsNumber:'Syntetisk kundebevis',effectiveFrom:'',company:'Gjensidige',page:2,section:'Råte',note:'Minneprobe'};
@@ -34,7 +34,7 @@ for(const id of ids)for(const addons of [[],['gjensidige-hus-utleie'],['gjensidi
 for(const id of ids)for(const other of [...ids,'if-hus-basis','storebrand-hus-standard'])check('product-comparison',{id,other},()=>{const a=compareCatalogProducts(product(candidate,id),product(candidate,other),candidate),b=compareCatalogProducts(product(candidate,other),product(candidate,id),candidate);if(id===other)assert.equal(a.differenceCount,0);for(const row of a.sections.flatMap(x=>x.rows)){const inverse=b.sections.flatMap(x=>x.rows).find(x=>x.key===row.key);assert.deepEqual(row.first,inverse.second);assert.deepEqual(row.second,inverse.first);}return{differences:a.differenceCount};});
 for(const id of ids)for(const side of ['existing','offer'])check('customer-comparison',{id,side},()=>{const customer=pipe(candidate,[[record(id,'individual_agreement',['Kundens særvilkår for råte'])]],side).insurances[0],general=enrich(candidate,id),results=[];for(const[a,b,s]of[[customer,general,'first'],[general,customer,'second']]){const row=groupTerms(groupInsurances([a],[b],null)[0],null).find(r=>r.key===key);assert.equal(row[s],'Kundens særvilkår for råte');assert.deepEqual(row[s+'Sources'],terms(customer).find(t=>t.coverageOrigin==='document').sources);results.push(row);}return results;});
 check('isolation',{},()=>{let components=0,raw=0,products=0,totalRaw=0;for(const k of ['products','sources','addOns','insuranceTypes'])assert.deepEqual(candidate[k],baseline[k]);for(const[o,fs]of Object.entries(baseline.facts)){totalRaw+=fs.length;const filter=xs=>xs.filter(f=>!p.owners.includes(o)||f.key!==key);assert.deepEqual(filter(candidate.facts[o]),filter(fs));raw+=filter(fs).length;if(!p.owners.includes(o))components++;for(const f of fs.filter(f=>f.key.startsWith('hus.skadedyr.')||f.key==='hus.rate.egenandel'))assert.deepEqual(candidate.facts[o].find(x=>x.key===f.key),f);}for(const pr of baseline.products.filter(x=>!ids.includes(x.productId))){assert.deepEqual(resolveCatalogFacts(pr,[],date,null,candidate),resolveCatalogFacts(pr,[],date,null,baseline));products++;}return{components,raw,products,totalRaw,totalComponents:Object.keys(baseline.facts).length,totalProducts:baseline.products.length};});
-check('active-reverse-oracle-collision',{},()=>{assert.deepEqual(JSON.parse(JSON.stringify(applyRot(baseline))),JSON.parse(JSON.stringify(activeExpected)));assert.deepEqual(JSON.parse(JSON.stringify(candidate)),JSON.parse(JSON.stringify(activeExpected)));const independent=structuredClone(baseline);for(const o of p.owners){const f=independent.facts[o].find(f=>f.key===key);assert.equal(f.value,p.previous_value);assert.equal(f.label,p.label);assert.equal(f.source.documentId,p.primary.documentId);assert.equal(f.source.page,6);assert.equal(f.source.section,p.primary.section);f.value=p.value;}assert.deepEqual(JSON.parse(JSON.stringify(candidate)),JSON.parse(JSON.stringify(independent)));return{changed:p.owners.map(o=>[o,key]),independent_transform:'PASS'};});
+check('active-reverse-oracle-collision',{},()=>{assert.deepEqual(JSON.parse(JSON.stringify(applyRot(deserialize(gunzipSync(bytes))))),JSON.parse(JSON.stringify(activeExpected)));assert.deepEqual(JSON.parse(JSON.stringify(candidate)),JSON.parse(JSON.stringify(activeExpected)));const independent=structuredClone(baseline);for(const o of p.owners){const f=independent.facts[o].find(f=>f.key===key);assert.equal(f.value,p.previous_value);assert.equal(f.label,p.label);assert.equal(f.source.documentId,p.primary.documentId);assert.equal(f.source.page,6);assert.equal(f.source.section,p.primary.section);f.value=p.value;}assert.deepEqual(JSON.parse(JSON.stringify(candidate)),JSON.parse(JSON.stringify(independent)));return{changed:p.owners.map(o=>[o,key]),independent_transform:'PASS'};});
 check('B020-three-protected-fingerprints',{},()=>{const digest=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');return ids.flatMap(id=>(id===ids[0]?[[],['gjensidige-hus-rate-insekter']]:[[]]).map(addons=>{const rows=c=>resolveCatalogFacts(product(c,id),addons,date,null,c).filter(f=>!f.key.startsWith('hus.skadedyr.')&&f.key!==key),before=digest(rows(baseline)),after=digest(rows(candidate));assert.equal(after,before);return{id,addons,before,after};}));});
 
 for(const values of vs)check('explicit-addon',{id:ids[0],values},()=>{const addon=['gjensidige-hus-rate-insekter'],a=enrich(baseline,ids[0],values,addon),b=enrich(candidate,ids[0],values,addon);assert.deepEqual(state(b),state(a));assert.deepEqual(b.addOnIds,a.addOnIds);return{before:rot(a),after:rot(b),addons:b.addOnIds,terms:terms(b)};});
@@ -85,7 +85,7 @@ for(const [index,binding]of p.bindings.entries())check('exact-original-binding',
  assert.equal(original.P2_occurrences,'0');
 });
 check('full-fields-and-independent-provenance',{},()=>{
- assert.deepEqual(candidate,applyRot(baseline));
+ assert.deepEqual(candidate,applyRot(deserialize(gunzipSync(bytes))));
  for(const owner of p.owners){const before=baseline.facts[owner].find(f=>f.key===key),after=candidate.facts[owner].find(f=>f.key===key);
   assert.deepEqual(after,{...before,value:p.value});assert.equal(after.replacesBase,true);
   assert.equal(after.source.documentId,'gjensidigeHusPluss');assert.equal(after.source.filename,frozen[0][0]);assert.equal(after.source.page,6);assert.equal(after.source.section,'Råte og skadeinsekter');
@@ -99,9 +99,9 @@ check('transform-negative-controls',{},()=>{
  for(const owner of p.owners)for(const field of ['page','section','documentId']){const invalid=structuredClone(baseline);invalid.facts[owner].find(f=>f.key===key).source[field]='INVALID';assert.throws(()=>applyRot(invalid));}
  for(const owner of p.owners){const invalid=structuredClone(baseline);invalid.facts[owner].push(structuredClone(invalid.facts[owner].find(f=>f.key===key)));assert.throws(()=>applyRot(invalid));const missing=structuredClone(baseline);missing.facts[owner]=missing.facts[owner].filter(f=>f.key!==key);assert.throws(()=>applyRot(missing));}
 });
-check('explicit-open-status-characterization',{},()=>{
- for(const c of [baseline,candidate]){const customer=pipe(c,[[record(ids[0],'individual_agreement',[])]],'existing').insurances[0];assert.equal(rot(customer)[0].status,'selected');assert.deepEqual(customer.addOnIds,[]);
-  const rows=materializeCatalogProduct(product(c,ids[0]),c).facts.filter(f=>f.key===key);assert.equal(rows.find(f=>f.value===baseline.facts.gjensidigeHusStandard.find(f=>f.key===key).value).state,'included');assert.equal(rows.filter(f=>f.state==='optional').length,1);
+check('authorized-optional-status-contract',{},()=>{
+ for(const c of [baseline,candidate]){const customer=pipe(c,[[record(ids[0],'individual_agreement',[])]],'existing').insurances[0];assert.equal(rot(customer)[0].status,'unknown');assert.deepEqual(customer.addOnIds,[]);
+  const rows=materializeCatalogProduct(product(c,ids[0]),c).facts.filter(f=>f.key===key);assert.equal(rows.find(f=>f.value===baseline.facts.gjensidigeHusStandard.find(f=>f.key===key).value).state,'unavailable');assert.equal(rows.filter(f=>f.state==='optional').length,1);
  }
 });
 check('sixty-immutable-receipts',{},()=>{

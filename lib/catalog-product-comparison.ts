@@ -226,13 +226,13 @@ export function materializeCatalogProduct(
   return { product, facts };
 }
 
-function valueForKey(facts: ProductComparisonFact[]): ProductComparisonValue {
+function valueForKey(facts: ProductComparisonFact[], preferOptional = false): ProductComparisonValue {
   if (!facts.length) return { state: "unknown", text: productCoverageStateLabel("unknown"), facts: [], sources: [] };
   const included = facts.filter((fact) => fact.state === "included");
   const unavailable = facts.filter((fact) => fact.state === "unavailable");
   const optional = facts.filter((fact) => fact.state === "optional");
-  const selected = included.length ? included : unavailable.length ? unavailable : optional;
-  const state: ProductCoverageState = included.length ? "included" : unavailable.length ? "unavailable" : "optional";
+  const selected = included.length ? included : preferOptional && optional.length ? [...optional, ...unavailable] : unavailable.length ? unavailable : optional;
+  const state: ProductCoverageState = included.length ? "included" : preferOptional && optional.length ? "optional" : unavailable.length ? "unavailable" : "optional";
   const values = [...new Set(selected.map((fact) => fact.value.trim()).filter(Boolean))];
   const addOns = [...new Set(selected.flatMap((fact) => fact.addOnNames))];
   const suffix = values.length ? ` – ${values.join(" · ")}` : "";
@@ -266,8 +266,10 @@ export function compareCatalogProducts(
   const rows = keys.map((key): ProductComparisonRow => {
     const leftFacts = first.facts.filter((fact) => fact.key === key);
     const rightFacts = second.facts.filter((fact) => fact.key === key);
-    const left = valueForKey(leftFacts);
-    const right = valueForKey(rightFacts);
+    const left = valueForKey(leftFacts, availableAddOns(firstProduct, new Date(), null, catalog)
+        .some(addOn => addOn.selectionEvidenceKeys?.includes(key)));
+    const right = valueForKey(rightFacts, availableAddOns(secondProduct, new Date(), null, catalog)
+        .some(addOn => addOn.selectionEvidenceKeys?.includes(key)));
     const concept = conceptForFactKey(firstType, key);
     return {
       key,

@@ -1,0 +1,73 @@
+{
+  "classification": "BOUNDED_SHARED_SELECTION_MAPPING_IMPLEMENTATION_EVIDENCE_NOT_SIGNATURE_COMPLETION",
+  "status": "IMPLEMENTATION_VALIDATED_ORIGINAL_SIGNATURE_OPEN",
+  "implementation_status": "PASS",
+  "signature": "6af32d21acb9584c",
+  "original_binding": {
+    "signature_id": "6af32d21acb9584c",
+    "representative_finding_id": "GAP-2101",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2101\", \"GAP-2160\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3012\", \"SF-3099\"]",
+    "proposed_existing_keys": "[\"hus.rate.dekning\"]",
+    "semantic_concept": "Råte",
+    "semantic_dimension": "unntak",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "bindings": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base"
+    }
+  ],
+  "tested_revision": "469b4851a3a65066431fa4d3d31f3419680d63d5",
+  "candidate_identity_sha256": "587aeda92a1fb239a93eda13329a05671aa38d094d92adee54c60cded3ee7be6",
+  "publication_revision": "Containing Git commit; secured publisher verifies actual HEAD/origin/main/remote after push",
+  "sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9"
+    }
+  ],
+  "prior_catalog_implementation": "../b051-rot-77db841/implementation-proof-6af32d21acb9584c.json",
+  "validation": "validation-summary.json",
+  "contract_evidence": "source-and-contract-evidence.json",
+  "permanent_gate": "tests/remediation-b-051-rot-status.test.mjs",
+  "selection_matrix": "72 permanent assertions:actual document pipeline, roles, support+repeat, main/deductible distinction, manual modes, optional/included presentation,13products/sixproviders and201othercomparableproducts",
+  "original_signature_status": "OPEN",
+  "closure_decision": "original-signature-closure-decision.json",
+  "new_completion_receipt": false,
+  "signature_credit": 0,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "historical_33_12_unchanged": true,
+  "original_signature_revalidation": "original-signature-revalidation.json"
+}

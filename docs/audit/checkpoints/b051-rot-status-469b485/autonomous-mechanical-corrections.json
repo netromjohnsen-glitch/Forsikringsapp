@@ -1,0 +1,40 @@
+{
+  "policy": "docs/development-agent/workflow.md#aktiv-fullmakt-autonom-gjennomføring",
+  "numeric_stop_quota": null,
+  "historical_33_12_unchanged": true,
+  "roots": [
+    {
+      "name": "ROT_STATUS_REPEAT_PROVENANCE_REPRESENTATION",
+      "before": "New repeat assertion expected a customer-document source for every repeated document-origin parent, including Pluss catalog parents normalized on repeat.",
+      "after": "Every repeated term retains the full source of its independently matched first-pass term; actual customer terms additionally match the exact fixture source, while Pluss catalog terms match the full registered Pluss reference.",
+      "independent_basis": "Baseline main/enrichment normalization and immutable old rot test repeated-metadata-full-field; no production semantics changed for this correction.",
+      "preserved": [
+        "insurance meaning",
+        "values",
+        "scope",
+        "selection",
+        "document priority",
+        "full provenance",
+        "negative controls"
+      ]
+    },
+    {
+      "name": "REUSED_GATE_RUNNER_QUALITY_LABEL_PREFIX",
+      "before": "Prefixing every label prevented the reused runner special cases for eslint/runtime from recording parsed payloads. Actual commands and exit status were successful.",
+      "after": "Quality labels retain the original dispatch names on future runs. Existing immutable output logs and gate records retained; quality-report.json strictly verifies0errors/27warnings and22PASS runtime checks from actual raw logs.",
+      "independent_basis": "Committed run-final-gates.py dispatches metadata parsing on exact label names; unchanged application hashes across every final gate; full actual JSON payloads validated.",
+      "application_changes": 0,
+      "rerun_application_suite_required": false
+    }
+  ],
+  "planned_scope_work_not_corrections": [
+    "Two exact independently checked catalog metadata transforms and active full-catalog composition",
+    "B050 reverse addon metadata expectations and Garden scope expectation",
+    "Events repeated canonical transition: exact scoped unknown parent may move after document terms; all remaining identities/status/conflict and order remain exact",
+    "Old rot selected/included bug characterization replaced by authorized unknown/unavailable contract"
+  ],
+  "environment_and_preflight_notes": [
+    "Historical AGENTS checksum verified at its original43a7ae5 revision, after reviewed documentation-only main advancement",
+    "PDF subprocess checks require the approved execution context; first sandbox failures remain in targeted logs"
+  ]
+}

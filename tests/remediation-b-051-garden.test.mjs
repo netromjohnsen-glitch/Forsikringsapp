@@ -1,4 +1,4 @@
-import {applyRot} from './helpers/b051-rot.mjs';
+import {applyRot, transformRotStatusAddOns} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
 import {applyHealthHelp} from './helpers/b051-health-help.mjs';
@@ -253,5 +253,5 @@ test('R-051-GARDEN-SCOPE: no new type/channel/version/parent/addon or source adm
   }
   assert.deepEqual(json(productCatalog.sources), baseline.sources);
   assert.deepEqual(json(productCatalog.products), baseline.products);
-  assert.deepEqual(json(productCatalog.addOns), baseline.addOns);
+  assert.deepEqual(json(productCatalog.addOns), transformRotStatusAddOns(baseline.addOns));
 });

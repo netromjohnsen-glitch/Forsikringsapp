@@ -1,4 +1,4 @@
-import {transformRotRows} from './helpers/b051-rot.mjs';
+import {transformRotRows, transformRotStatusAddOns} from './helpers/b051-rot.mjs';
 import {transformLegalRows} from './helpers/b051-legal.mjs';
 import {transformSmartRows} from './helpers/b051-smart.mjs';
 import {transformHealthHelpRows} from './helpers/b051-health-help.mjs';
@@ -629,7 +629,7 @@ test('R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source ch
   // Frozen inventory is JSON. Preserve every defined field, including sourceType;
   // absent JSON properties and native undefined carry the same serialized contract.
   const after = JSON.parse(JSON.stringify(productCatalog));
-  assert.deepEqual(after.products, before.products); assert.deepEqual(after.addOns, before.addOns); assert.deepEqual(after.agreementScopes, before.agreementScopes);
+  assert.deepEqual(after.products, before.products); assert.deepEqual(after.addOns, transformRotStatusAddOns(before.addOns)); assert.deepEqual(after.agreementScopes, before.agreementScopes);
   const sources = { ...after.sources }; delete sources[treatmentId]; assert.deepEqual(sources, before.sources);
   assert.equal(Object.hasOwn(before.sources, treatmentId), false);
   for (const [component, rows] of Object.entries(before.facts)) {
@@ -737,7 +737,7 @@ test('R-050-PUBLIC-MANUAL: known product ignores free-text agreement and preserv
 });
 test('R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata and other components unchanged', () => {
   const before = deductibleBaseline(), after = JSON.parse(JSON.stringify(productCatalog));
-  for (const k of Object.keys(before).filter(k => k !== 'facts')) assert.deepEqual(after[k], before[k], k);
+  for (const k of Object.keys(before).filter(k => k !== 'facts')) assert.deepEqual(after[k], k === 'addOns' ? transformRotStatusAddOns(before[k]) : before[k], k);
   assert.deepEqual(Object.keys(after.facts), Object.keys(before.facts));
   for (const [component, rows] of Object.entries(before.facts)) {
     if (component !== id) assertB050OutsideComponent(component, after.facts[component], rows);
@@ -1023,7 +1023,7 @@ test('R-050-REHAB-SOURCE: complete PDF8/printed13 deadline and both locations', 
 
 test('R-050-REHAB-REVERSE: one exact source-bound condition; original13 and other317 components unchanged', () => {
   const before = rehabilitationBefore(), after = JSON.parse(JSON.stringify(productCatalog));
-  for (const field of Object.keys(before).filter(f => f !== 'facts')) assert.deepEqual(after[field], before[field], field);
+  for (const field of Object.keys(before).filter(f => f !== 'facts')) assert.deepEqual(after[field], field === 'addOns' ? transformRotStatusAddOns(before[field]) : before[field], field);
   assert.deepEqual(Object.keys(after.facts), Object.keys(before.facts));
   assert.equal(Object.keys(before.facts).filter(c => c !== id).length, 317);
   for (const [component, rows] of Object.entries(before.facts)) {

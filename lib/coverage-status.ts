@@ -28,6 +28,8 @@ export type CoverageTerm = {
   key?: string;
   coverageOrigin?: "document" | "catalog";
   coverageAvailability?: "included" | "unavailable";
+  // Internal catalog-term assertion override; extraction cannot supply it.
+  catalogSelectionConfirmed?: boolean;
   source?: CoverageSource;
   sources?: CoverageSource[];
 };
@@ -212,7 +214,7 @@ function mainEvidence(term: CoverageTerm, insurance: CoverageInsurance, definiti
   const origin = evidenceOrigin(term);
   const context = statusContext(term, insurance, definition);
   const parsed = coverageStatusFromText(term.value, context);
-  const catalogCanAssert = origin === "document" || insurance.catalogSelectionConfirmed === true;
+  const catalogCanAssert = origin === "document" || (term.catalogSelectionConfirmed ?? insurance.catalogSelectionConfirmed) === true;
   // Availability describes this catalog subject only after product selection
   // is confirmed. Customer evidence keeps its existing higher priority.
   const availability = origin === "catalog" && catalogCanAssert ? term.coverageAvailability : undefined;

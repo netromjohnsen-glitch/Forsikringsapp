@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9"
+    }
+  ],
+  "bindings": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base"
+    }
+  ],
+  "catalog_value_changes": 0,
+  "metadata_changes": [
+    {
+      "owner": "gjensidigeHusStandard",
+      "key": "hus.rate.dekning",
+      "field": "coverageAvailability",
+      "before": "ABSENT",
+      "after": "unavailable"
+    },
+    {
+      "addon": "gjensidige-hus-rate-insekter",
+      "field": "selectionEvidenceKeys",
+      "before": "ABSENT",
+      "after": [
+        "hus.rate.dekning"
+      ]
+    }
+  ],
+  "source_contracts": {
+    "Standard": "Table beginsPDF3; exception for damage from time-progressive spills, condensation, fungi, rot, bacteria, ghost-soot and pets is onPDF4. Existing referencePDF3 retained.",
+    "IPID": "PDF2 Utvidelser: Hus standard kan utvides med dekning for sopp, råte og skadeinsekter;availability is not customer selection.",
+    "Pluss": "PDF6 Råte og skadeinsekter;full replacement text and all full-value/exclusion qualifications unchanged;verified by140-test rot catalog gate."
+  },
+  "prior_catalog_proof": "../b051-rot-77db841/implementation-proof-6af32d21acb9584c.json",
+  "independent_expectation": "tests/helpers/b051-rot.mjs;transformRotStatusRows+transformRotStatusAddOns;only literal authorized metadata additions",
+  "isolation": {
+    "unchanged_components": 317,
+    "unchanged_raw_facts": 4158,
+    "unchanged_comparable_products": 201,
+    "exact_key_products": 13,
+    "providers": 6,
+    "global_priority_combinations_unchanged": 4
+  }
+}

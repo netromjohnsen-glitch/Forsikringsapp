@@ -1,0 +1,99 @@
+{
+  "classification": "CURRENT_ORIGINAL_SIGNATURE_REVALIDATION_NOT_COMPLETION",
+  "signature": "6af32d21acb9584c",
+  "tested_revision": "469b4851a3a65066431fa4d3d31f3419680d63d5",
+  "results": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter",
+      "source_meaning": "PASS_UNCHANGED_SOURCE_VERIFIED_FULL_ROT_TEXT",
+      "scenarios": [
+        {
+          "values": [],
+          "status": "unknown",
+          "conflict": false,
+          "addOnIds": []
+        },
+        {
+          "values": [
+            "Valgt"
+          ],
+          "status": "selected",
+          "conflict": false,
+          "addOnIds": [
+            "gjensidige-hus-rate-insekter"
+          ]
+        },
+        {
+          "values": [
+            "Ikke valgt"
+          ],
+          "status": "not_selected",
+          "conflict": false,
+          "addOnIds": []
+        },
+        {
+          "values": [
+            "Valgt",
+            "Ikke valgt"
+          ],
+          "status": "unknown",
+          "conflict": true,
+          "addOnIds": []
+        }
+      ],
+      "document_selection_requirements": "PASS"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base",
+      "source_meaning": "PASS_UNCHANGED_SOURCE_VERIFIED_FULL_ROT_TEXT",
+      "scenarios": [
+        {
+          "values": [],
+          "status": "selected",
+          "conflict": false,
+          "addOnIds": []
+        },
+        {
+          "values": [
+            "Valgt"
+          ],
+          "status": "selected",
+          "conflict": false,
+          "addOnIds": []
+        },
+        {
+          "values": [
+            "Ikke valgt"
+          ],
+          "status": "not_selected",
+          "conflict": false,
+          "addOnIds": []
+        },
+        {
+          "values": [
+            "Valgt",
+            "Ikke valgt"
+          ],
+          "status": "unknown",
+          "conflict": true,
+          "addOnIds": []
+        }
+      ],
+      "document_selection_requirements": "PASS"
+    }
+  ],
+  "documented_choice_and_silent_optional": "PASS",
+  "manual_choice_continuation": "FAIL_SEPARATE_BASELINE_FINDING",
+  "original_signature_status": "OPEN",
+  "completion_receipt_created": false,
+  "signature_credit": 0,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0
+}

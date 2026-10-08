@@ -191,7 +191,15 @@ for (const id of ids) for (const key of actualKeys(id)) test('R-051-EVENTS-DOCUM
       const a = status(before), b = status(after);
       assert.equal(new Set(a.map(c => c.id)).size, a.length);
       assert.equal(new Set(b.map(c => c.id)).size, b.length);
-      assert.deepEqual(b.filter(c => a.some(d => d.id === c.id)), a);
+      const common = b.filter(c => a.some(d => d.id === c.id));
+      if (id === 'gjensidige-hus') {
+        // Scoped non-assertive catalog parent is re-resolved after document terms.
+        // Only its position may change; every identity, status and conflict stays exact.
+        const scoped = 'hus.rate.dekning';
+        assert.deepEqual(a.filter(c => c.id === scoped), [{ id: scoped, status: 'unknown', conflict: false }]);
+        assert.deepEqual(common.filter(c => c.id === scoped), a.filter(c => c.id === scoped));
+        assert.deepEqual(common.filter(c => c.id !== scoped), a.filter(c => c.id !== scoped));
+      } else assert.deepEqual(common, a);
       assert.deepEqual(a.filter(c => !b.some(d => d.id === c.id)), []);
       return b.filter(c => !a.some(d => d.id === c.id));
     };

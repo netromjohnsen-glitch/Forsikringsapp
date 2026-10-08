@@ -33,6 +33,7 @@ type EnrichedTerm = ExtractedTerm & {
   deductibleClassification?: CatalogFact["deductibleClassification"];
   structuredValue?: CatalogFact["structuredValue"];
   coverageAvailability?: CatalogFact["coverageAvailability"];
+  catalogSelectionConfirmed?: boolean;
   overriddenBase?: { value: string; source: CatalogFact["source"] }[];
 };
 
@@ -110,9 +111,12 @@ function selectedScopedAddOns(
   asOf: Date,
   catalog: ProductCatalog,
 ): string[] {
-  if (![...mcBobilTypes, ...boatPetTypes].some(type => type === normalizeInsuranceType(insurance.type))) return [];
+  const type = normalizeInsuranceType(insurance.type);
+  if (![...mcBobilTypes, ...boatPetTypes].some(known => known === type) &&
+    !(type === "bolig" && availableAddOns(product, asOf, null, catalog).some(addOn => addOn.selectionEvidenceKeys?.length))) return [];
   const definitions = relatedCoveragesForInsuranceType(insurance.type);
-  const allowed = availableAddOns(product, asOf, null, catalog).map(addOn => {
+  const allowed = availableAddOns(product, asOf, null, catalog)
+    .filter(addOn => type !== "bolig" || addOn.selectionEvidenceKeys?.length).map(addOn => {
     const namedKey = normalizeTermName(addOn.name, { insuranceType: insurance.type });
     const parents = addOn.selectionEvidenceKeys ?? definitions.filter(definition =>
       (catalog.facts?.[addOn.componentId] ?? []).some(fact =>
@@ -204,8 +208,28 @@ function enrichInsurance(
     ? findCatalogProductBySelection(company, insurance.type, productIdentity, insurance.agreementScope, catalog)
     : null);
   trace?.product(insurance, product);
+  // Only explicitly configured Hus parents participate in this opt-in. Other
+  // product families, details and aliases retain their existing contracts.
+  const optedAddOns = product && normalizeInsuranceType(insurance.type) === "bolig"
+    ? availableAddOns(product, asOf, null, catalog).filter(addOn => addOn.selectionEvidenceKeys?.length)
+    : [];
+  const optedParents = new Set(optedAddOns.flatMap(addOn => addOn.selectionEvidenceKeys ?? []));
+  const anchors = product && optedParents.size
+    ? resolveCatalogFacts(product, [], asOf, null, catalog).filter(fact => optedParents.has(fact.key))
+    : [];
+  const originalTerms = insurance.importantTerms as EnrichedTerm[];
+  const scopedSupportingTerms = originalTerms.filter(term => term.coverageOrigin === "catalog" &&
+    term.sources?.length && term.sources.every(source =>
+      (source as CatalogFact["source"] & { documentRole?: string }).documentRole === "general_terms") &&
+    (optedParents.has(term.key ?? "") ||
+      optedAddOns.some(addOn => normalizeLabel(addOn.name) === normalizeLabel(term.name)) ||
+      anchors.some(fact => normalizeLabel(fact.label) === normalizeLabel(term.name))));
   let documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => {
-    const normalized = normalizeDocumentFacts(insurance);
+    // Re-resolve scoped catalog parents instead of converting them into document
+    // choice. Retain general-terms values/provenance separately as supporting terms.
+    const normalized = normalizeDocumentFacts({ ...insurance, importantTerms: originalTerms.filter(term =>
+      !scopedSupportingTerms.includes(term) &&
+      !(term.coverageOrigin === "catalog" && optedParents.has(term.key ?? ""))) });
     trace?.normalization(insurance, normalized);
     return normalized;
   });
@@ -224,6 +248,17 @@ function enrichInsurance(
   // MC/Bobil optional components remain separate from the base. Only an
   // explicit document-backed coverage selection can activate an applicable
   // component; catalog availability and document silence cannot select it.
+  // An exact, unique label of this identified product/addon may establish its
+  // parent identity before selection. Never replace a different canonical key.
+  documentTerms = documentTerms.map(term => {
+    if (term.key?.includes(".")) return term;
+    const matches = new Set([
+      ...anchors.filter(fact => normalizeLabel(fact.label) === normalizeLabel(term.name)).map(fact => fact.key),
+      ...optedAddOns.filter(addOn => normalizeLabel(addOn.name) === normalizeLabel(term.name) &&
+        addOn.selectionEvidenceKeys?.length === 1).map(addOn => addOn.selectionEvidenceKeys![0]),
+    ]);
+    return matches.size === 1 ? { ...term, key: [...matches][0] } : term;
+  });
   const selectedAddOnIds = selectedScopedAddOns(product, insurance, documentTerms, asOf, catalog);
   const effectiveFacts = resolveCatalogFacts(product, selectedAddOnIds, asOf, null, catalog);
   const catalogFacts = resolveCatalogEvidence(product, selectedAddOnIds, asOf, null, catalog);
@@ -300,10 +335,14 @@ function enrichInsurance(
       if (trace) traceDecisions.push({ key: normalizeCatalogTermKey(fact.key), decision: included ? "CATALOG_APPLIED" : "DOCUMENT_PRESENT_SKIP_CATALOG" });
       return included;
     })
-    .map((fact) => catalogTerm(fact, catalogFacts));
+    .map((fact) => ({ ...catalogTerm(fact, catalogFacts),
+      ...(fact.coverageAvailability === "unavailable" && optedParents.has(fact.key)
+        ? { catalogSelectionConfirmed: false } : {}),
+    }));
 
   const effectiveTerms = [...documentTerms.filter(term => !isUndocumentedTermValue(term.value) ||
-    !supplementalTerms.some(fact => fact.key === term.key)), ...supplementalTerms].filter((term, index, terms) => {
+    !supplementalTerms.some(fact => fact.key === term.key)), ...supplementalTerms,
+    ...scopedSupportingTerms.map(term => ({ ...term, catalogSelectionConfirmed: false }))].filter((term, index, terms) => {
     const key = normalizeCatalogTermKey(
       term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type, termValue: term.value }),
     );

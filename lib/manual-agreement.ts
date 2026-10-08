@@ -1,4 +1,4 @@
-import { agreementScopeAllowed, catalogReferenceForProduct, type CatalogProductReference, type ProductCatalog, catalogProductMatchesSelection, findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
+import { availableAddOns, agreementScopeAllowed, catalogReferenceForProduct, type CatalogProductReference, type ProductCatalog, catalogProductMatchesSelection, findCatalogProduct, findCatalogProductBySelection, productCatalog, resolveCatalogEvidence, resolveCatalogFacts } from "./product-catalog.ts";
 import type { AgreementScopeId } from "./agreement-scope.ts";
 import { summarizeManualAnnualPremium } from "./agreement-pricing.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
@@ -196,6 +196,9 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
           key: item.key,
           coverageOrigin: "catalog" as const,
           ...(item.coverageAvailability ? { coverageAvailability: item.coverageAvailability } : {}),
+          ...(item.coverageAvailability === "unavailable" && catalogProduct &&
+            availableAddOns(catalogProduct, new Date(), null, catalog).some(addOn => addOn.selectionEvidenceKeys?.includes(item.key))
+            ? { catalogSelectionConfirmed: false } : {}),
           structuredValue: item.structuredValue,
           deductibleClassification: item.deductibleClassification,
           source: item.source,

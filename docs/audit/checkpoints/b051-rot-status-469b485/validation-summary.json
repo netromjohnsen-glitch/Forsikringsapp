@@ -1,0 +1,47 @@
+{
+  "status": "PASS_CURRENT_APPLICATION_CANDIDATE",
+  "tested_revision": "469b4851a3a65066431fa4d3d31f3419680d63d5",
+  "candidate_identity_sha256": "587aeda92a1fb239a93eda13329a05671aa38d094d92adee54c60cded3ee7be6",
+  "rot_status": {
+    "tests": 72,
+    "pass": 72
+  },
+  "rot_catalog": {
+    "tests": 140,
+    "pass": 140
+  },
+  "targeted": {
+    "files": 33,
+    "tests": 2242,
+    "pass": 2242
+  },
+  "remediation": {
+    "files": 60,
+    "tests": 3328,
+    "pass": 3328,
+    "manifest": "remediation-manifest.json",
+    "rule": "All test files containing remediation plus b043-status-parser.test.mjs; each file run individually"
+  },
+  "fullsuite": {
+    "files": 158,
+    "tests": 5481,
+    "pass": 5481,
+    "manifest": "test-manifest.json"
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "identical_historical_occurrences": 27
+  },
+  "webpack_production_build": "PASS",
+  "http_pdf_runtime": {
+    "status": "PASS",
+    "checks": 22
+  },
+  "historical_PASS_reused": false,
+  "individual_signature_completion": "OPEN_SEPARATE_MANUAL_CHOICE_CONTINUATION_REQUIREMENT",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0
+}

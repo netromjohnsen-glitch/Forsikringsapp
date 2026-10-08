@@ -1,0 +1,295 @@
+{
+  "mode": "baseline",
+  "baseline": "469b4851a3a65066431fa4d3d31f3419680d63d5",
+  "production_hashes": {
+    "lib/gjensidige-hus-catalog.ts": "a9d882874189e984ff4b50efcd6c86cdf31d10f669495a8388a3e7dc36ce480c",
+    "lib/coverage-status.ts": "8f2732bc738c423dad4352a837f8779cffe8a1223b4fe54e4ea2c73fc4457fe6",
+    "lib/catalog-enrichment.ts": "2da22e1f9bdfc04ea91ad4209c2fd8e49480b29484bcd74e22c4650fa4400ce4",
+    "lib/manual-agreement.ts": "18c40e05e38d8b7b11a3a18c30d7f88520ab3e0c9520d5cbe31ce02af4dbf44d",
+    "lib/catalog-product-comparison.ts": "3374ef64d16fe8ece5fe1ba61180e1c2bfbac3b87f63550042cb29b38552b002"
+  },
+  "input": {
+    "company": "Gjensidige",
+    "products": [
+      {
+        "type": "Hus",
+        "productName": "Hus",
+        "importantTerms": [],
+        "addOnIds": [
+          "gjensidige-hus-rate-insekter"
+        ]
+      }
+    ]
+  },
+  "first": {
+    "addOnIds": [
+      "gjensidige-hus-rate-insekter"
+    ],
+    "catalogReference": {
+      "providerId": "gjensidige",
+      "productId": "gjensidige-hus",
+      "version": "Alminnelige vilkår"
+    },
+    "coverage": {
+      "id": "hus.rate.dekning",
+      "label": "Råte og sopp",
+      "status": "selected",
+      "summary": "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Unntatt er den delen av skade på bygning som utviklet seg før avtalen begynte å løpe, samt skadeutvikling etter at forsikringen har opphørt. Kostnader til kontroll, vedlikehold, forbedringer og behandling av forebyggende karakter er unntatt. Skader på bygninger innen landbruks- og næringsvirksomhet er unntatt, selv om bygningene er oppført i forsikringsbeviset. Råteskader på dører, vinduer og lekter på yttervegg/tak, laft og alt utvendig treverk er unntatt. Utvikling av blåved, svertesopp og muggsopp, samt annet som er skjemmende for utseendet, er unntatt.",
+      "details": [],
+      "sources": [
+        {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Råte og skadeinsekter",
+          "page": 6,
+          "version": "Alminnelige vilkår",
+          "note": "Effektiv verdi fra dokumentert utvidelse eller tillegg"
+        },
+        {
+          "documentId": "gjensidigeHusIpid",
+          "filename": "IPID-Husforsikring-EAP01.pdf",
+          "termsNumber": "EAP01",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+          "section": "Utvidelser",
+          "page": 2,
+          "version": "EAP01",
+          "productCode": "EAP01",
+          "note": "Supplerende kilde for faktumets anvendelse"
+        }
+      ],
+      "evidence": [
+        {
+          "status": "selected",
+          "kind": "main_value",
+          "origin": "catalog",
+          "priority": 200,
+          "label": "Råte og sopp",
+          "value": "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Unntatt er den delen av skade på bygning som utviklet seg før avtalen begynte å løpe, samt skadeutvikling etter at forsikringen har opphørt. Kostnader til kontroll, vedlikehold, forbedringer og behandling av forebyggende karakter er unntatt. Skader på bygninger innen landbruks- og næringsvirksomhet er unntatt, selv om bygningene er oppført i forsikringsbeviset. Råteskader på dører, vinduer og lekter på yttervegg/tak, laft og alt utvendig treverk er unntatt. Utvikling av blåved, svertesopp og muggsopp, samt annet som er skjemmende for utseendet, er unntatt.",
+          "sources": [
+            {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Råte og skadeinsekter",
+              "page": 6,
+              "version": "Alminnelige vilkår",
+              "note": "Effektiv verdi fra dokumentert utvidelse eller tillegg"
+            },
+            {
+              "documentId": "gjensidigeHusIpid",
+              "filename": "IPID-Husforsikring-EAP01.pdf",
+              "termsNumber": "EAP01",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+              "section": "Utvidelser",
+              "page": 2,
+              "version": "EAP01",
+              "productCode": "EAP01",
+              "note": "Supplerende kilde for faktumets anvendelse"
+            }
+          ]
+        }
+      ],
+      "conflict": false
+    },
+    "terms": [
+      {
+        "name": "Råte og sopp",
+        "value": "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Unntatt er den delen av skade på bygning som utviklet seg før avtalen begynte å løpe, samt skadeutvikling etter at forsikringen har opphørt. Kostnader til kontroll, vedlikehold, forbedringer og behandling av forebyggende karakter er unntatt. Skader på bygninger innen landbruks- og næringsvirksomhet er unntatt, selv om bygningene er oppført i forsikringsbeviset. Råteskader på dører, vinduer og lekter på yttervegg/tak, laft og alt utvendig treverk er unntatt. Utvikling av blåved, svertesopp og muggsopp, samt annet som er skjemmende for utseendet, er unntatt.",
+        "key": "hus.rate.dekning",
+        "coverageOrigin": "catalog",
+        "source": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Råte og skadeinsekter",
+          "page": 6,
+          "version": "Alminnelige vilkår"
+        },
+        "sources": [
+          {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Råte og skadeinsekter",
+            "page": 6,
+            "version": "Alminnelige vilkår",
+            "note": "Effektiv verdi fra dokumentert utvidelse eller tillegg"
+          },
+          {
+            "documentId": "gjensidigeHusIpid",
+            "filename": "IPID-Husforsikring-EAP01.pdf",
+            "termsNumber": "EAP01",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+            "section": "Utvidelser",
+            "page": 2,
+            "version": "EAP01",
+            "productCode": "EAP01",
+            "note": "Supplerende kilde for faktumets anvendelse"
+          }
+        ],
+        "overriddenBase": [
+          {
+            "value": "Sopp og råte er unntatt på Hus uten valgfri utvidelse.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Dekkes ikke",
+              "page": 3,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "repeated": {
+    "addOnIds": [],
+    "catalogReference": {
+      "providerId": "gjensidige",
+      "productId": "gjensidige-hus",
+      "version": "Alminnelige vilkår"
+    },
+    "coverage": {
+      "id": "hus.rate.dekning",
+      "label": "Råte og sopp",
+      "status": "selected",
+      "summary": "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Unntatt er den delen av skade på bygning som utviklet seg før avtalen begynte å løpe, samt skadeutvikling etter at forsikringen har opphørt. Kostnader til kontroll, vedlikehold, forbedringer og behandling av forebyggende karakter er unntatt. Skader på bygninger innen landbruks- og næringsvirksomhet er unntatt, selv om bygningene er oppført i forsikringsbeviset. Råteskader på dører, vinduer og lekter på yttervegg/tak, laft og alt utvendig treverk er unntatt. Utvikling av blåved, svertesopp og muggsopp, samt annet som er skjemmende for utseendet, er unntatt.",
+      "details": [],
+      "sources": [
+        {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Råte og skadeinsekter",
+          "page": 6,
+          "version": "Alminnelige vilkår",
+          "note": "Effektiv verdi fra dokumentert utvidelse eller tillegg"
+        },
+        {
+          "documentId": "gjensidigeHusIpid",
+          "filename": "IPID-Husforsikring-EAP01.pdf",
+          "termsNumber": "EAP01",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+          "section": "Utvidelser",
+          "page": 2,
+          "version": "EAP01",
+          "productCode": "EAP01",
+          "note": "Supplerende kilde for faktumets anvendelse"
+        }
+      ],
+      "evidence": [
+        {
+          "status": "selected",
+          "kind": "main_value",
+          "origin": "document",
+          "priority": 280,
+          "label": "Råte og sopp",
+          "value": "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Unntatt er den delen av skade på bygning som utviklet seg før avtalen begynte å løpe, samt skadeutvikling etter at forsikringen har opphørt. Kostnader til kontroll, vedlikehold, forbedringer og behandling av forebyggende karakter er unntatt. Skader på bygninger innen landbruks- og næringsvirksomhet er unntatt, selv om bygningene er oppført i forsikringsbeviset. Råteskader på dører, vinduer og lekter på yttervegg/tak, laft og alt utvendig treverk er unntatt. Utvikling av blåved, svertesopp og muggsopp, samt annet som er skjemmende for utseendet, er unntatt.",
+          "sources": [
+            {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Råte og skadeinsekter",
+              "page": 6,
+              "version": "Alminnelige vilkår",
+              "note": "Effektiv verdi fra dokumentert utvidelse eller tillegg"
+            },
+            {
+              "documentId": "gjensidigeHusIpid",
+              "filename": "IPID-Husforsikring-EAP01.pdf",
+              "termsNumber": "EAP01",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+              "section": "Utvidelser",
+              "page": 2,
+              "version": "EAP01",
+              "productCode": "EAP01",
+              "note": "Supplerende kilde for faktumets anvendelse"
+            }
+          ]
+        }
+      ],
+      "conflict": false
+    },
+    "terms": [
+      {
+        "name": "Råte og sopp",
+        "value": "På fullverdiforsikret bygning: materialnedbrytning fra råtesopper. Unntatt er den delen av skade på bygning som utviklet seg før avtalen begynte å løpe, samt skadeutvikling etter at forsikringen har opphørt. Kostnader til kontroll, vedlikehold, forbedringer og behandling av forebyggende karakter er unntatt. Skader på bygninger innen landbruks- og næringsvirksomhet er unntatt, selv om bygningene er oppført i forsikringsbeviset. Råteskader på dører, vinduer og lekter på yttervegg/tak, laft og alt utvendig treverk er unntatt. Utvikling av blåved, svertesopp og muggsopp, samt annet som er skjemmende for utseendet, er unntatt.",
+        "key": "hus.rate.dekning",
+        "coverageOrigin": "document",
+        "source": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Råte og skadeinsekter",
+          "page": 6,
+          "version": "Alminnelige vilkår"
+        },
+        "sources": [
+          {
+            "documentId": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "termsNumber": "Hus Pluss",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "section": "Råte og skadeinsekter",
+            "page": 6,
+            "version": "Alminnelige vilkår",
+            "note": "Effektiv verdi fra dokumentert utvidelse eller tillegg"
+          },
+          {
+            "documentId": "gjensidigeHusIpid",
+            "filename": "IPID-Husforsikring-EAP01.pdf",
+            "termsNumber": "EAP01",
+            "effectiveFrom": "",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/ipid/gfno/EAP01",
+            "section": "Utvidelser",
+            "page": 2,
+            "version": "EAP01",
+            "productCode": "EAP01",
+            "note": "Supplerende kilde for faktumets anvendelse"
+          }
+        ]
+      }
+    ]
+  },
+  "classification": "SEPARATE_UNRESOLVED_MANUAL_CONTINUATION_FINDING_NOT_COMPLETION"
+}

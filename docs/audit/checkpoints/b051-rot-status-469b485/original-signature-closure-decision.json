@@ -1,0 +1,47 @@
+{
+  "classification": "SEPARATE_BASELINE_MANUAL_SELECTION_CONTINUATION_FINDING",
+  "signature": "6af32d21acb9584c",
+  "status": "OPEN",
+  "baseline": "469b4851a3a65066431fa4d3d31f3419680d63d5",
+  "baseline_proof": "repeat-choice-baseline.json",
+  "candidate_proof": "repeat-choice-candidate.json",
+  "exact_input": {
+    "company": "Gjensidige",
+    "products": [
+      {
+        "type": "Hus",
+        "productName": "Hus",
+        "importantTerms": [],
+        "addOnIds": [
+          "gjensidige-hus-rate-insekter"
+        ]
+      }
+    ]
+  },
+  "baseline_status_transition": [
+    "selected",
+    "selected"
+  ],
+  "candidate_status_transition": [
+    "selected",
+    "unknown"
+  ],
+  "baseline_addon_transition": [
+    [
+      "gjensidige-hus-rate-insekter"
+    ],
+    []
+  ],
+  "candidate_addon_transition": [
+    [
+      "gjensidige-hus-rate-insekter"
+    ],
+    []
+  ],
+  "product_identity_preserved": true,
+  "cause": "selectedScopedAddOns consumes document-backed evidence; manual addon object is catalog-origin and identified; it is not document evidence. Original HEAD already drops its ID. New scoped parent guard prevents the former base fallback from concealing that lost choice.",
+  "scope_boundary": "Do not promote all catalog terms or IDs into new customer choices. The authorized preflight candidate does not retain this separate manual continuation decision. Explicit user requirement asks to document the closure consequence when addon IDs cannot be preserved.",
+  "closure_decision": "No completion receipt or signature credit until correct already-explicit manual choice persistence is separately decided and revalidated. Publication of fully validated authorized fix is explicitly permitted with original signature still OPEN.",
+  "new_production_fix_for_this_finding": false,
+  "next_minimum_decision": "Authorize bounded preservation of an already explicitly selected known-manual scoped addon across repeated enrichment, with strict product/id/evidence boundaries; no general Hus/addon activation."
+}

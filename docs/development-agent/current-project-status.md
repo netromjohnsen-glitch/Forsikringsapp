@@ -1,37 +1,38 @@
 # Aktuell dokumentert prosjektstatus
 
-B-051 Råte-katalogretting er fullvalidert på baseline 77db841 og eksakt
-kandidatidentitet. [Checkpoint](../audit/checkpoints/b051-rot-77db841/checkpoint.json),
-[bevispakke](../audit/checkpoints/b051-rot-77db841/README.md),
-[implementeringsbevis](../audit/checkpoints/b051-rot-77db841/implementation-proof-6af32d21acb9584c.json).
-Pluss-verdien og den eksisterende Standard-tilleggsclonen inneholder komplett kildebetydning.
-Provenance, metadata, selection-motor og Standard-grunnrad er uendret.
+Den avgrensede B-051 råtestatus-/mappingrettingen er fullvalidert på baseline469b485
+og eksakt kandidatidentitet. [Checkpoint](../audit/checkpoints/b051-rot-status-469b485/checkpoint.json),
+[bevispakke](../audit/checkpoints/b051-rot-status-469b485/README.md),
+[implementeringsreceipt](../audit/checkpoints/b051-rot-status-469b485/implementation-receipt-6af32d21acb9584c.json).
+Standard uten valg er unknown; eksplisitt dokumentvalg aktiverer riktig råtetillegg.
+Dokumentavslag/konflikt og Pluss inkludert bevares. Produktmodus viser optional med
+bevart baseunntak og separate kilder. Scoped katalog-/støttetermer blir ikke valg ved repeat.
+Bare to katalogmetadatafelt er endret; fullvalidert råtetekst/provenance er uendret.
 
-Originalsignatur 6af32d21acb9584c forblir OPEN: originalbatchen krever unknown ved
-udokumentert valgfritt tillegg. [Baseline/kandidat](../audit/checkpoints/b051-rot-77db841/open-rot-status-findings.json)
-har fortsatt selected uten tillegg og included for produktets grunnunntak.
-Ingen ny completion-receipt eller signaturkreditt; 60 tidligere dokumenterte signaturer
-B05016/B07110/B05134 bevares byteidentisk. B05139-partisjon:34 fullført/1 uten completion/
-2 revalideringskandidater/2 holds. Den siste katalogdimensjonen er implementert,
-men originalsignaturen har separat uløst selectionkrav.
+6af32d21acb9584c forblir OPEN uten completion/kreditt:
+[egen closurebeslutning](../audit/checkpoints/b051-rot-status-469b485/original-signature-closure-decision.json).
+Et manuelt valgt råtetillegg mister addon-ID ved gjentatt enrichment også på uendret HEAD.
+Kandidaten beholder dokumenterte valg/identitet, men løser ikke dette separate manuelle
+videreføringsfunnet. Ingen ny selectionregel er innført for å skjule det.
+60 tidligere dokumenterte signaturer (B05016/B07110/B05134) og receipts er uendret.
+B05139-partisjon er fortsatt34 fullført/1 uten completion/2 revalideringskandidater/2 holds.
 
-[Ferske sluttgater](../audit/checkpoints/b051-rot-77db841/validation-summary.json):
-140/140 råte,2068/2068 målrettet i30 filer,3256/3256 remediering i59 filer,
-5409/5409 fullsuite i157 filer. Typegen/TypeScript, ESLint 0 feil/27 eksisterende warnings,
-webpack og HTTP/PDF 22/22 PASS.316 øvrige komponenter,4157 øvrige råfakta,
-metadata og202 øvrige produkter er bevist uendret; B-020-fingerprints/skadedyr bevares.
-Publisering kontrolleres av sikret publisher; dokumenterte gater gjelder den eksakte applikasjonskandidaten.
+[Ferske gater](../audit/checkpoints/b051-rot-status-469b485/validation-summary.json):
+72/72 råtestatus;140/140 råtekatalog;2242/2242 målrettet i33 filer;
+3328/3328 remediering i60 filer;5481/5481 fullsuite i158 filer.
+Typegen/TypeScript, webpack og HTTP/PDF22/22 PASS. ESLint0feil og27 eksakt uendrede warnings.
+317 øvrige komponenter,4158 øvrige råfakta og201 øvrige sammenlignbare produkter er uendret.
+13 Hus-produkter/seks providers og de fire ikke-optede prioritetskombinasjonene er kontrollert.
+B-020-fingerprints/skadedyr, historiske auditpakker og samtlige holds er bevart.
 
-[Rettshjelp-aliasfunn](../audit/checkpoints/b051-legal-b457a8d/open-legal-alias-findings.json),
-[Smart-kundefunn](../audit/checkpoints/b051-smart-e21693e/open-smart-customer-findings.json),
-HTU157c7afed18eb0fe/SC019/SR033,vannmapping25004bc4d7dd2c03,SC020/SR032,
-SC035/SR031,B0715f31ff4946a666b5,protectedCount og alle øvrige holds forblir uløst.
-
-Globalt resolved/open UKJENT; historiske 414/1589,19/16,10/8,diagnostikk19/12 og
-DEFER_SAFE omskrives ikke. Historisk HARNESS_AUTONOMY_V1 33/12/Helsehjelp3/6 bevares.
-[Nye mekaniske rettinger](../audit/checkpoints/b051-rot-77db841/autonomous-mechanical-corrections.json)
-føres separat uten numerisk stoppkvote etter stående fullmakt.
-Neste minste beslutning: autoriser en avgrenset read-only råtestatus-/selectionavklaring
-eller et eksakt separat revalideringsscope. Ingen senere produksjon eller deploy autorisert.
+Smart-kundemodus, Rettshjelp-alias, HTU/vannmapping, SC020/SR032,
+SC035/SR031, B0715f31ff4946a666b5 og øvrige holds er fortsatt uløst.
+Globalt resolved/open UKJENT. Historiske414/1589,19/16,10/8,diagnostikk19/12,
+HARNESS_AUTONOMY_V1 33/12 og DEFER_SAFE omskrives ikke.
+[Nye mekaniske rettinger](../audit/checkpoints/b051-rot-status-469b485/autonomous-mechanical-corrections.json)
+føres separat uten numerisk stoppkvote. Ingen P2-kreditt.
+Neste minste beslutning er avgrenset fullmakt for å bevare et allerede eksplisitt valgt
+manuelt råtetillegg gjennom repeat, deretter separat originalsignaturrevalidering.
+Ingen senere produksjon eller deploy er autorisert.
 
 CATALOG_PILOT_GATE = REMEDIATION_REQUIRED
