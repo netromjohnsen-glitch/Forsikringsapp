@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "tested_HEAD": "77db8411345d6841d22b741145432c2d6ecf3a17",
+  "candidate_identity_sha256": "4d85a2fc6e0c264097f5588c9f29b2c67c7f25ecf3b0706581a71f76a82f9b6e",
+  "new_gate": {
+    "tests": 140,
+    "pass": 140,
+    "log": "final-targeted-remediation-b-051-rot.log.gz"
+  },
+  "targeted": {
+    "files": 30,
+    "tests": 2068,
+    "pass": 2068
+  },
+  "fullsuite": {
+    "files": 157,
+    "tests": 5409,
+    "pass": 5409,
+    "manifest": "test-manifest.json"
+  },
+  "remediation": {
+    "files": 59,
+    "tests": 3256,
+    "pass": 3256,
+    "manifest": "remediation-manifest.json",
+    "selection": "All tests/*.test.mjs whose filename contains remediation, plus b043-status-parser.test.mjs. Each file executed individually."
+  },
+  "manifest_reconciliation": {
+    "prior_tests": 3116,
+    "prior_files": 58,
+    "current_tests": 3256,
+    "current_files": 59,
+    "added_file": "tests/remediation-b-051-rot.test.mjs",
+    "added_tests": 140,
+    "removed_files": []
+  },
+  "quality": {
+    "typegen": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "typegen"
+      ],
+      "log": "typegen.log.gz"
+    },
+    "typescript": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "tsc",
+        "--noEmit",
+        "--incremental",
+        "false"
+      ],
+      "log": "typescript.log.gz"
+    },
+    "eslint": {
+      "status": "PASS",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "log": "eslint.log.gz"
+    },
+    "production-build": {
+      "status": "PASS",
+      "command": [
+        "npx",
+        "--no-install",
+        "next",
+        "build",
+        "--webpack"
+      ],
+      "log": "production-build.log.gz"
+    },
+    "http-pdf-runtime": {
+      "status": "PASS",
+      "command": [
+        "node",
+        "scripts/verify-analysis-http.mjs"
+      ],
+      "log": "http-pdf-runtime.log.gz"
+    },
+    "diff-check": {
+      "status": "PASS",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "log": "diff-check.log.gz"
+    }
+  },
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "new_warnings": 0,
+    "evidence": "lint-difference.json"
+  },
+  "HTTP_PDF_runtime": {
+    "status": "PASS",
+    "checks": 22,
+    "log": "http-pdf-runtime.log.gz"
+  },
+  "source_binding_reverse_isolation": "PASS: targeted source tests and catalog-delta.json; three frozen sources, two exact GAP/SF bindings, 316 components, 4157 raw facts, 202 other products and metadata preserved",
+  "actual_commands_results_logs": "gate-results.json",
+  "historical_failed_runs": "Original preflight logs preserved losslessly encoded; reference manifest records initial baseline and memory-candidate failures; they are not final validation"
+}

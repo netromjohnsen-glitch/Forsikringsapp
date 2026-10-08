@@ -1,0 +1,9 @@
+{
+  "kind": "DIAGNOSTIC_RECORD_NOT_RAW_OUTPUT",
+  "result": "AssertionError",
+  "original_condition": "assert sha((ROOT/path).read_bytes())==h for every prior legal SHA256SUMS entry",
+  "cause": "Prior revision checksum includes authorized current application/status edits",
+  "original_output_location": "Current task tool transcript; raw output was not saved as a file",
+  "reproduction": "Apply original condition to prior legal manifest; current catalog/status files differ while git show 77db841:path matches original hash",
+  "correct_contract": "All immutable pack files current-byte identical; all prior manifest entries verified at their revision; current scoped artifacts separately checksummed"
+}

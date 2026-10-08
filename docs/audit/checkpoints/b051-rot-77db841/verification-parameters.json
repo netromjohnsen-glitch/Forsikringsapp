@@ -1,0 +1,107 @@
+{
+  "origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/verify.py",
+  "origin_sha256": "b39d8c52389d4d71b3b85669d4700ec2e6fef477db5861f50681eaa846b4741a",
+  "replacement_operations": [
+    {
+      "before": "BASE = '0be8fadb7e90fc527cd81c5ae5c89accabb2deb0'",
+      "after": "BASE = '77db8411345d6841d22b741145432c2d6ecf3a17'"
+    },
+    {
+      "before": "EXACT = {'a4e5c76df5cbf2af', 'af3a3ee673fedc83'}",
+      "after": "EXACT = {'6af32d21acb9584c'}"
+    },
+    {
+      "before": "assert set(identity['application_files']) == set(auth['application_files'])",
+      "after": "assert set(identity['application_files']) == set(auth['application_files']) | {str((OUT/'proposal.json').relative_to(ROOT))}"
+    },
+    {
+      "before": "    assert sha((ROOT / 'lib/gjensidige-hus-catalog.ts').read_bytes()) == read('three-correction-proof.json')['production_sha256_before']\n    generator = read('harness-roots.json')\n    for name, field in generator['preserved_checkpoint_hold_fields'].items():\n        raw = (ROOT / field['origin_path']).read_bytes()\n        assert sha(raw) == field['origin_sha256']\n        assert json.loads(raw)[field['origin_field']] == field['value']\n        assert field['origin_field'] == name\n        assert raw == subprocess.check_output(['git', 'show', BASE + ':' + field['origin_path']], cwd=ROOT)\n    ledger = read('three-correction-authorization-and-ledger.json')\n    assert ledger['HARNESS_AUTONOMY_V1'] == {'before': 25, 'used': 28, 'ordinary_limit': 12, 'scope_before': 1, 'scope_used': 4, 'scope_limit': 6, 'capacity_for_other_roots': 0}\n    assert len(set(ledger['named_roots'])) == 3\n    assert generator['HARNESS_AUTONOMY_V1']['used'] == 25\n    current_ledger = read('lint-matching-authorization-and-ledger.json')\n    assert current_ledger['performed'] is True\n    assert current_ledger['root'] == 'COMPLETION_LINT_DUPLICATE_ONE_TO_ONE_MATCH'\n    assert current_ledger['HARNESS_AUTONOMY_V1'] == {'before': 28, 'used': 29, 'ordinary_limit': 12, 'scope_before': 4, 'scope_used': 5, 'scope_limit': 6, 'capacity_for_other_roots': 0}\n    lint_test = read('lint-matching-test-results.json')\n    assert lint_test['status'] == 'PASS' and lint_test['exit_code'] == 0 and lint_test['tests'] == 8\n    assert sha((OUT / 'lint_matching.py').read_bytes()) == lint_test['matcher_sha256']\n    assert sha((OUT / 'lint_matching_test.py').read_bytes()) == lint_test['test_sha256']\n    assert sha(gzip.decompress((OUT / lint_test['log']).read_bytes())) == lint_test['original_output_sha256']\n    stopped_generator = read('completion-generator-blocker.json')['generator']\n    assert sha(gzip.decompress((OUT / stopped_generator['path']).read_bytes())) == stopped_generator['decoded_sha256']\n    original = read('blocker.json')['generator_evidence']\n    assert sha(gzip.decompress((OUT / original['file']).read_bytes())) == original['decoded_sha256']\n",
+      "after": "    snapshot=read('baseline-snapshot.json')\n    assert snapshot['revision']==BASE\n    assert sha((OUT/snapshot['snapshot']).read_bytes())==snapshot['sha256']\n    assert read('source-verification.json')['status']=='PASS'\n    decision=read('original-binding-closure-scope.json')\n    assert decision['status']=='CATALOG_IMPLEMENTATION_VALIDATED_SIGNATURE_MUST_REMAIN_OPEN'\n    assert decision['original_binding']==registry['6af32d21acb9584c']\n    assert decision['new_completion_receipt'] is False and decision['signature_credit']==0\n    contract=decision['closure_source']\n    original=subprocess.check_output(['git','show',BASE+':'+contract['path']],cwd=ROOT)\n    assert sha(original)==contract['file_sha256']\n    assert contract['required_verbatim'] in original.decode()\n    bindings=read('original-bindings.json')\n    for n,idkey in [('gap-findings','finding_id'),('source-fact-inventory','source_fact_id')]:\n        with gzip.open(ROOT/f'docs/audit/legacy-local/source-catalog-completeness-audit/{n}.csv.gz','rt') as stream:\n            registered={r[idkey]:r for r in csv.DictReader(stream)}\n        assert len(bindings[n])==2\n        for row in bindings[n]:assert row==registered[row[idkey]]\n    mechanical=read('autonomous-mechanical-corrections.json')\n    assert mechanical['numeric_stop_quota'] is None and mechanical['historical_33_12_unchanged'] is True\n    for tool in read('reused-tool-controls.json'):\n        assert tool['status']=='PASS' and tool['exit_code']==0\n        assert sha((ROOT/tool['tool']).read_bytes())==tool['tool_sha256']\n        assert sha(gzip.decompress((OUT/tool['log']).read_bytes()))==tool['original_output_sha256']\n    import base64\n    encoded=read('preflight-original-log-manifest.json')\n    assert sha((OUT/encoded['encoded_file']).read_bytes())==encoded['encoded_sha256']\n    import io,tarfile\n    with tarfile.open(fileobj=io.BytesIO(gzip.decompress(base64.b64decode((OUT/encoded['encoded_file']).read_bytes(),validate=False))),mode='r:')as archive:\n        members=archive.getmembers()\n        assert all(m.isfile()and m.mtime==0 and '/'not in m.name for m in members)\n        assert len(members)==len({m.name for m in members})\n        decoded={m.name:archive.extractfile(m).read()for m in members}\n    assert set(decoded)=={x['original_filename']for x in encoded['original_logs']}\n    for entry in encoded['original_logs']:\n        b=decoded[entry['original_filename']]\n        assert len(b)==entry['bytes'] and sha(b)==entry['sha256']\n        assert sha(b+b'changed')!=entry['sha256']\n    assert not subprocess.check_output(['git','diff',BASE,'--','docs/audit/checkpoints/b051-legal-b457a8d'],cwd=ROOT)\n    for line in (OUT.parent/'b051-legal-b457a8d/SHA256SUMS').read_text().splitlines():\n        h,path=line.split('  ',1)\n        if path.startswith('docs/audit/checkpoints/b051-legal-b457a8d/'):\n            assert sha((ROOT/path).read_bytes())==h\n        assert sha(subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT))==h\n"
+    },
+    {
+      "before": "== 51",
+      "after": "== 60"
+    },
+    {
+      "before": "    receipts = [read('completion-receipt-' + signature + '.json') for signature in sorted(EXACT)]\n    for receipt in receipts:\n        assert receipt['status'] == 'PASS'\n        assert receipt['original_binding'] == registry[receipt['signature']]\n        assert receipt['candidate_identity_sha256'] == identity['application_identity_sha256']\n        assert receipt['global_resolved_open'] == 'UNKNOWN'\n        assert receipt['P2_credit'] == 0\n",
+      "after": "    assert not list(OUT.glob('completion-receipt-*.json'))\n    formats,registered,members=receipt_formats.load_context()\n    for row in members:receipt_formats.verify_receipt(json.loads((ROOT/row['path']).read_text()),row['signature'],formats,registry)\n    for row in prior:\n        receipt=json.loads((ROOT/row['path']).read_text())\n        for field in ['original_binding','original_registry_binding']:\n            if field in receipt:assert receipt[field]==registry[row['signature']]\n"
+    },
+    {
+      "before": "cp['HARNESS_AUTONOMY_V1']['used'] == 29 and cp['HARNESS_AUTONOMY_V1']['scope_used'] == 5",
+      "after": "cp['HARNESS_AUTONOMY_V1']['used'] == 33 and cp['HARNESS_AUTONOMY_V1']['scope_used'] == 3"
+    },
+    {
+      "before": "{r['signature'] for r in prior} | EXACT",
+      "after": "{r['signature'] for r in prior}"
+    },
+    {
+      "before": "== 53\n    assert cp",
+      "after": "== 60\n    assert cp"
+    },
+    {
+      "before": "== [27, 8, 2, 2]",
+      "after": "== [34, 1, 2, 2]"
+    },
+    {
+      "before": "set(previous[names[0]]) | EXACT",
+      "after": "set(previous[names[0]])"
+    },
+    {
+      "before": "set(previous[names[1]]) - EXACT",
+      "after": "set(previous[names[1]])"
+    },
+    {
+      "before": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/completion-b051-partition.json",
+      "after": "docs/audit/checkpoints/b051-legal-b457a8d/completion-b051-partition.json"
+    },
+    {
+      "before": "docs/audit/checkpoints/b051-recovery-benefits-69c71dc/publication-completion-checkpoint.json",
+      "after": "docs/audit/checkpoints/b051-legal-b457a8d/checkpoint.json"
+    },
+    {
+      "before": "len(targeted) == 25",
+      "after": "len(targeted) == 30"
+    },
+    {
+      "before": "OUT.parent / 'b051-recovery-benefits-69c71dc/final-eslint.log.gz'",
+      "after": "OUT.parent / 'b051-legal-b457a8d/eslint.log.gz'"
+    },
+    {
+      "before": "move['before']['line'] == move['before']['endLine'] == 54",
+      "after": "move['before']['line'] == move['before']['endLine'] == 59"
+    },
+    {
+      "before": "move['after'] == {**move['before'], 'line': 55, 'endLine': 55}",
+      "after": "move['after'] == {**move['before'], 'line': 60, 'endLine': 60}"
+    },
+    {
+      "before": "decode().splitlines()[53]",
+      "after": "decode().splitlines()[58]"
+    },
+    {
+      "before": "read_text().splitlines()[54]",
+      "after": "read_text().splitlines()[59]"
+    },
+    {
+      "before": "delta['protected_raw_facts'] == 4155",
+      "after": "delta['protected_raw_facts'] == 4157"
+    },
+    {
+      "before": "path == str(status.relative_to(ROOT))",
+      "after": "path in {str(status.relative_to(ROOT)), 'AGENTS.md', 'docs/development-agent/workflow.md'}"
+    },
+    {
+      "before": "for markdown in [OUT / 'README.md', status]:",
+      "after": "for markdown in [OUT / 'README.md', status, ROOT/'AGENTS.md', ROOT/'docs/development-agent/workflow.md']:"
+    },
+    {
+      "before": "'campaign_signatures': 53, 'B051_partition': [27, 8, 2, 2]",
+      "after": "'campaign_signatures': 60, 'B051_partition': [34, 1, 2, 2]"
+    }
+  ],
+  "import_paths": [
+    "docs/audit/checkpoints/b051-physical-exclusions-0be8fad",
+    "docs/audit/checkpoints/b051-liability-3947e4e"
+  ],
+  "contracts_preserved": "Existing strict gate/log/checksum/staging/link/fullfield controls;60 immutable receipts, unchanged39partition/holds, no closure credit;53 established strictformats and7 exact originalbindings;lossless preflight roundtrip"
+}

@@ -1,0 +1,432 @@
+{
+  "status": "PASS",
+  "historical_count": 27,
+  "current_count": 27,
+  "exact_match_count": 26,
+  "unchanged_occurrences": [
+    {
+      "column": 10,
+      "endColumn": 24,
+      "endLine": 4,
+      "filePath": "/workspace/Forsikringsapp/tests/remediation-b-044.test.mjs",
+      "line": 4,
+      "message": "'productCatalog' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/remediation-b-044.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1,
+      "suggestions": [
+        {
+          "data": {
+            "varName": "productCatalog"
+          },
+          "desc": "Remove unused variable \"productCatalog\".",
+          "fix": {
+            "range": [
+              120,
+              135
+            ],
+            "text": ""
+          },
+          "messageId": "removeUnusedVar"
+        }
+      ]
+    },
+    {
+      "column": 16,
+      "endColumn": 21,
+      "endLine": 16,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/checkpoints/b051-rental-loss-use-5718a5f/catalog-audit.mjs",
+      "line": 16,
+      "message": "'value' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f/catalog-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 18,
+      "endColumn": 22,
+      "endLine": 11,
+      "filePath": "/workspace/Forsikringsapp/tests/nito-remediation-b040.test.mjs",
+      "line": 11,
+      "message": "'fact' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/nito-remediation-b040.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1,
+      "suggestions": [
+        {
+          "data": {
+            "varName": "fact"
+          },
+          "desc": "Remove unused variable \"fact\".",
+          "fix": {
+            "range": [
+              594,
+              600
+            ],
+            "text": ""
+          },
+          "messageId": "removeUnusedVar"
+        }
+      ]
+    },
+    {
+      "column": 201,
+      "endColumn": 205,
+      "endLine": 68,
+      "filePath": "/workspace/Forsikringsapp/tests/remediation-b-051.test.mjs",
+      "line": 68,
+      "message": "'note' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/remediation-b-051.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 22,
+      "endColumn": 28,
+      "endLine": 16,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/checkpoints/b051-rental-loss-use-5718a5f/catalog-audit.mjs",
+      "line": 16,
+      "message": "'source' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f/catalog-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 224,
+      "endColumn": 229,
+      "endLine": 81,
+      "filePath": "/workspace/Forsikringsapp/tests/remediation-b-049.test.mjs",
+      "line": 81,
+      "message": "'_type' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/remediation-b-049.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 29,
+      "endColumn": 48,
+      "endLine": 16,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/checkpoints/b051-rental-loss-use-5718a5f/catalog-audit.mjs",
+      "line": 16,
+      "message": "'qualificationSource' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/checkpoints/b051-rental-loss-use-5718a5f/catalog-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 31,
+      "endColumn": 55,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/forsikringsassistent-product-audit/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonOptions' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/forsikringsassistent-product-audit/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 31,
+      "endColumn": 55,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-after-visible/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonOptions' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-after-visible/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 31,
+      "endColumn": 55,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-after/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonOptions' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-after/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 31,
+      "endColumn": 55,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonOptions' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 49,
+      "endColumn": 60,
+      "endLine": 103,
+      "filePath": "/workspace/Forsikringsapp/tests/catalog-enrichment-provenance.test.mjs",
+      "line": 103,
+      "message": "'_sourceType' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/catalog-enrichment-provenance.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 54,
+      "endColumn": 59,
+      "endLine": 44,
+      "filePath": "/workspace/Forsikringsapp/tests/catalog-enrichment-provenance.test.mjs",
+      "line": 44,
+      "message": "'_note' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/catalog-enrichment-provenance.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 57,
+      "endColumn": 80,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/forsikringsassistent-product-audit/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonScopes' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/forsikringsassistent-product-audit/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 57,
+      "endColumn": 80,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-after-visible/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonScopes' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-after-visible/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 57,
+      "endColumn": 80,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-after/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonScopes' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-after/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 57,
+      "endColumn": 80,
+      "endLine": 14,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "line": 14,
+      "message": "'productComparisonScopes' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 7,
+      "endColumn": 13,
+      "endLine": 33,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/forsikringsassistent-product-audit/run-audit.mjs",
+      "line": 33,
+      "message": "'stable' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/forsikringsassistent-product-audit/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 7,
+      "endColumn": 13,
+      "endLine": 33,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-after-visible/run-audit.mjs",
+      "line": 33,
+      "message": "'stable' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-after-visible/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 7,
+      "endColumn": 13,
+      "endLine": 33,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-after/run-audit.mjs",
+      "line": 33,
+      "message": "'stable' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-after/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 7,
+      "endColumn": 13,
+      "endLine": 33,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "line": 33,
+      "message": "'stable' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 7,
+      "endColumn": 9,
+      "endLine": 28,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "line": 28,
+      "message": "'sh' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/product-hardening-audit-before-visible/run-audit.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 73,
+      "endColumn": 84,
+      "endLine": 44,
+      "filePath": "/workspace/Forsikringsapp/tests/catalog-enrichment-provenance.test.mjs",
+      "line": 44,
+      "message": "'_sourceType' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/catalog-enrichment-provenance.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 8,
+      "endColumn": 22,
+      "endLine": 4,
+      "filePath": "/workspace/Forsikringsapp/docs/audit/legacy-local/insurance-catalog-wave2-completion/compare.mjs",
+      "line": 4,
+      "message": "'productCatalog' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "docs/audit/legacy-local/insurance-catalog-wave2-completion/compare.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 8,
+      "endColumn": 9,
+      "endLine": 204,
+      "filePath": "/workspace/Forsikringsapp/tests/nito-remediation-b042.test.mjs",
+      "line": 204,
+      "message": "'p' is assigned a value but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/nito-remediation-b042.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1
+    },
+    {
+      "column": 9,
+      "endColumn": 19,
+      "endLine": 4,
+      "filePath": "/workspace/Forsikringsapp/tests/remediation-b-088.test.mjs",
+      "line": 4,
+      "message": "'createHash' is defined but never used.",
+      "messageId": "unusedVar",
+      "nodeType": "Identifier",
+      "path": "tests/remediation-b-088.test.mjs",
+      "ruleId": "@typescript-eslint/no-unused-vars",
+      "severity": 1,
+      "suggestions": [
+        {
+          "data": {
+            "varName": "createHash"
+          },
+          "desc": "Remove unused import declaration.",
+          "fix": {
+            "range": [
+              109,
+              149
+            ],
+            "text": ""
+          },
+          "messageId": "removeUnusedImportDeclaration"
+        }
+      ]
+    }
+  ],
+  "documented_moves": [
+    {
+      "before": {
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "filePath": "/workspace/Forsikringsapp/tests/remediation-b-051-settlement-age.test.mjs",
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "message": "'protectedCount' is assigned a value but never used.",
+        "line": 59,
+        "column": 5,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 59,
+        "endColumn": 19
+      },
+      "after": {
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "filePath": "/workspace/Forsikringsapp/tests/remediation-b-051-settlement-age.test.mjs",
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 1,
+        "message": "'protectedCount' is assigned a value but never used.",
+        "line": 60,
+        "column": 5,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 60,
+        "endColumn": 19
+      },
+      "evidence": {
+        "baseline_revision": "77db8411345d6841d22b741145432c2d6ecf3a17",
+        "path": "tests/remediation-b-051-settlement-age.test.mjs",
+        "before_line": 59,
+        "after_line": 60,
+        "same_declaration_bytes": true,
+        "cause": "One authorized applyRot import; all other full lint fields identical"
+      }
+    }
+  ]
+}

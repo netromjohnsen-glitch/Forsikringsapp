@@ -1,3 +1,4 @@
+import {applyRot} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
 import {applyHealthHelp} from './helpers/b051-health-help.mjs';
@@ -15,7 +16,7 @@ import {deriveCanonicalCoverages} from '../lib/coverage-status.ts';
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {baselineCatalog as previousBaseline,expectedCatalog as previousExpectedCatalog,keys as changedKeys,sourceOracle} from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const baseline=applyLegal(applySmart(applyHealthHelp(applyLiability(previousBaseline)))),expectedCatalog=applyLegal(applySmart(applyHealthHelp(applyLiability(previousExpectedCatalog))));
+const baseline=applyRot(applyLegal(applySmart(applyHealthHelp(applyLiability(previousBaseline))))),expectedCatalog=applyRot(applyLegal(applySmart(applyHealthHelp(applyLiability(previousExpectedCatalog)))));
 const candidate=productCatalog,d=new Date('2026-10-07T12:00:00Z');
 const ids=['gjensidige-hus','gjensidige-hus-pluss'],addon='gjensidige-hus-rate-insekter';
 const keys=[...changedKeys,'hus.rate.dekning'];

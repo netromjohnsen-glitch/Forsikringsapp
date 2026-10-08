@@ -1,0 +1,135 @@
+{
+  "status": "AUTHORIZED_CATALOG_ONLY_IMPLEMENTATION",
+  "baseline": "77db8411345d6841d22b741145432c2d6ecf3a17",
+  "signature": "6af32d21acb9584c",
+  "original_binding": {
+    "signature_id": "6af32d21acb9584c",
+    "representative_finding_id": "GAP-2101",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2101\", \"GAP-2160\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3012\", \"SF-3099\"]",
+    "proposed_existing_keys": "[\"hus.rate.dekning\"]",
+    "semantic_concept": "Råte",
+    "semantic_dimension": "unntak",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "bindings": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base"
+    }
+  ],
+  "production": "Only Pluss tuple value; addon clone retained",
+  "allowed_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/helpers/b051-rot.mjs",
+    "tests/helpers/b051-liability.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051-rot.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/remediation-b-051-smart.test.mjs",
+    "tests/remediation-b-051-legal.test.mjs",
+    "AGENTS.md",
+    "docs/development-agent/workflow.md",
+    "docs/development-agent/current-project-status.md"
+  ],
+  "audit_directory": "docs/audit/checkpoints/b051-rot-77db841",
+  "full_validation_required": true,
+  "commit_push_authorized": true,
+  "global_resolved_open": "UNKNOWN",
+  "historic_HARNESS_AUTONOMY_V1": "33/12_UNCHANGED",
+  "closures_conditional_on_original_contract": true,
+  "holds_unchanged": [
+    "157c7afed18eb0fe",
+    "25004bc4d7dd2c03",
+    "26668a6c81e5b5d9",
+    "5f31ff4946a666b5",
+    "7767772472433807",
+    "SC-019/SR-033",
+    "SC-020/SR-032",
+    "SC-035/SR-031",
+    "e2f70dda0093e9e4"
+  ],
+  "application_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/helpers/b051-rot.mjs",
+    "tests/helpers/b051-liability.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051-rot.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/remediation-b-051-smart.test.mjs",
+    "tests/remediation-b-051-legal.test.mjs"
+  ],
+  "signatures": [
+    {
+      "signature_id": "6af32d21acb9584c",
+      "representative_finding_id": "GAP-2101",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2101\", \"GAP-2160\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3012\", \"SF-3099\"]",
+      "proposed_existing_keys": "[\"hus.rate.dekning\"]",
+      "semantic_concept": "Råte",
+      "semantic_dimension": "unntak",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    }
+  ],
+  "sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9"
+    }
+  ]
+}

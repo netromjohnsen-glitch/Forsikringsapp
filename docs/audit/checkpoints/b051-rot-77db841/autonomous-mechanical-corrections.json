@@ -1,0 +1,22 @@
+{
+  "policy": "docs/development-agent/workflow.md",
+  "numeric_stop_quota": null,
+  "historical_33_12_unchanged": true,
+  "corrections": [
+    {
+      "root": "ROT_HELPER_COMPOSITION_ARGUMENT_BOUNDARY",
+      "category": "Own test-tool edit before first execution",
+      "evidence": "Initial B050 wrapper draft placed component argument inside prior transform; baseline helper accepts rows,component. Corrected exact parenthesis boundary before test execution; source-derived rows and existing assertions unchanged. All three reverse assertions pass.",
+      "insurance_value_scope_selection_document_priority_provenance": "UNCHANGED"
+    },
+    {
+      "root": "ROT_VERIFIER_HISTORICAL_MANIFEST_CONTEXT",
+      "evidence": "Original verifier attempt compared current application bytes against prior legal SHA256SUMS. That historical manifest also binds app/status files explicitly authorized to change. Verify all historical hashes at git show 77db841:path; verify immutable old pack current bytes identically; current application and docs bound separately by candidate identity/current checksum. Prior committed verifier likewise used revision-bound git show for historical app hashes.",
+      "insurance_value_scope_selection_document_priority_provenance": "UNCHANGED",
+      "historical_failure": "verification-initial-diagnosis.json",
+      "change": "Restrict current-byte equality to immutable historical pack paths; retain historical revision validation of every entry and current candidate full checksums."
+    }
+  ],
+  "planned_compatibility_work": "Exact authorized two-owner transform composition in both baseline/expected layers, not correction credit",
+  "encoding_work": "Original preflight logs lossless encoded per explicit authorization; no historical log bytes edited"
+}

@@ -1,0 +1,179 @@
+B-051 RÅTE — AUTORISERT KATALOGAVGRENSET IMPLEMENTERING
+
+Les AGENTS.md, gjeldende autonom workflow, checkpoint,
+prosjektstatus og hele preflightpakken:
+
+/workspace/preflight/b051-rot-77db841/
+
+Forventet baseline:
+77db8411345d6841d22b741145432c2d6ecf3a17
+
+Verifiser faktisk HEAD, origin/main og remote main.
+Avstem nyere endringer uten å overskrive arbeid.
+
+AUTORISERT SIGNATUR
+
+6af32d21acb9584c:
+- Hus: GAP-2101 / SF-3012.
+  Valgfritt tillegg gjensidige-hus-rate-insekter.
+- Hus Pluss: GAP-2160 / SF-3099.
+  Inkludert Pluss-komponent.
+- Provider: Gjensidige.
+- Scope: ordinary.
+- Eksisterende nøkkel: hus.rate.dekning.
+
+1. EKSAKT PRODUKSJONSFULLMAKT
+
+Endre bare verdien i Pluss-raden hus.rate.dekning.
+Standard-tillegget beholder eksisterende kloning.
+
+Bruk eksakt fulltekst fra proposal.json / proposed-value.txt.
+Verifiser samsvar mellom artefaktene og originalkilden.
+Bevar forslaget revisjonsbundet i den nye bevispakken.
+Ikke bruk rapportens sammendrag som erstatning for kildegrunnlaget.
+
+Bevar komplett kildebetydning:
+- Fullverdikrav og materialnedbrytning fra råtesopper.
+- Skadeutvikling før avtalen og etter forsikringens opphør.
+- Kontroll, vedlikehold, forbedringer og forebyggende behandling.
+- Landbruks-/næringsbygninger, også når oppført i forsikringsbeviset.
+- Dører, vinduer, lekter på yttervegg/tak, laft og utvendig treverk.
+- Blåved, svertesopp, muggsopp og øvrige utseendemessige forhold.
+
+Bevar:
+- Primær Pluss-kilde, PDF6, «Råte og skadeinsekter».
+- Tilleggets supplerende IPID-kilde, PDF2, «Utvidelser».
+- Alle øvrige referansefelter og replacesBase: true.
+- Standard-grunnraden, skadedyrfakta og egenandel 6 000 kr.
+
+Ingen nye rader, nøkler, sourceType eller øvrige metadata.
+
+Verifiser frosne kildehasher:
+Pluss:
+79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792
+Standard:
+d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc
+IPID:
+5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9
+
+2. BEVAR BESLUTNINGSGRENSEN
+
+Ingen endring i selection, mapping, canonical, enrichment,
+materialisering eller engine.
+
+Dokumenter råtestatusfunnet separat med faktisk pipelinebevis:
+- Standard uten råtetillegg gir selected på baseline.
+- Produktmodus viser grunnradens unntak som included.
+
+Karakteriser før/etter uten å fremstille dette som korrekt
+kunde- eller produktoppførsel.
+Katalogrettingen skal ikke hevdes å løse statusfunnet.
+
+Alle øvrige åpne funn og holds bevares, inkludert
+Rettshjelp-aliasen, HTU-konflikten og Smart-kundemodus.
+De to revalideringskandidatene behandles ikke i denne bolken.
+
+3. TESTFULLMAKT
+
+Opprett tests/remediation-b-051-rot.test.mjs.
+
+Implementer én streng, uavhengig, kildebasert transformasjon
+for de to råfact-eierne etter preflightens eksakte inventar.
+
+Autoriser nødvendige kompatibilitetsoppdateringer i:
+- Aktiv b051-liability-helper.
+- B-050s reverse-helper.
+- Aktive B-051-forventninger for garden, events,
+  craftsmanship, settlement, recovery, physical, liability,
+  health, smart og legal.
+
+Bruk compatibility-inventory.json.
+Bevar historiske snapshots, receipts, orakler og auditpakker.
+Kandidaten skal ikke være dynamisk fasit.
+Bevar full-field-kontroller og negative assertions.
+
+Anvend transformasjonen i begge forventningsgrunnlag der dette
+kreves for å bevare tidligere scopes opprinnelige isolasjonskrav.
+Verifiser at reverse-underprosesser bruker samme autoriserte
+forventningsgrunnlag.
+
+B-020s tre beskyttede fingerprints skal ikke endres.
+
+Test:
+- Komplett kildekontrakt og begge originalbindinger.
+- Pluss inkludert og Standard valgfritt tillegg.
+- Provenance, fullverdikrav og alle unntak.
+- Dokumentverdiprioritet, avslag og konflikt.
+- Faktisk dokumentpipeline og supportingEvidence.
+- Begge manuelle modi, arv og relevante tillegg.
+- Gjentatt enrichment, samme produkt og begge retninger.
+- Separat karakterisering av råtestatusfunnet.
+
+4. AUTONOMI OG INTEGRITET
+
+Bruk gjeldende stående fullmakt for beviste mekaniske
+test-/skript-/auditrettinger.
+Før rettingene samlet i separat logg.
+Historisk 33/12 bevares uendret.
+
+Ingen svekkede assertions eller skjulte semantiske rettinger.
+Stopp berørt arbeid ved kildekonflikt, usikker betydning,
+integritetsavvik eller behov for utvidet kontrakt.
+
+Bevar preflightloggenes originalbytes.
+Logger med trailing whitespace skal lagres tapsfritt kodet
+ved publisering, med opprinnelig hash og kontrollert dekoding.
+Ikke trim eller omskriv originalbevis for å få diff --check til å passe.
+
+5. KOMPLETTE SLUTTGATER
+
+Kjør gjeldende prosjektgater:
+- Ny råtegate og relevante tidligere regresjoner.
+- Kilde-/bindings-/reverse-audit.
+- Komplett faktisk remedieringsmanifest og fullsuite.
+- Next typegen, TypeScript og ESLint med lintavstemming.
+- Webpack production build og HTTP/PDF-runtime.
+- Receipt-, checksum-, lenke-, kandidat- og staged-integritet.
+- Arbeidsdiff og staged diff --check, inkludert nye filer.
+
+Verifiser:
+- 316 øvrige komponenter uendret.
+- 4157 øvrige råfakta uendret.
+- Metadata og 202 øvrige produkters effektive fakta uendret.
+- B-020s skadedyrfakta og tre fingerprints uendret.
+- Alle 60 tidligere receipts og samtlige holds bevart.
+
+Avstem denominatorer mot faktisk fersk baseline.
+Lag én kompakt bevispakke med henvisninger til historiske pakker.
+
+6. CLOSURE OG PUBLISERING
+
+Kontroller originalsignaturens og begge bindingenes closure-krav.
+
+Katalogavgrenset receipt er autorisert bare dersom kravene
+tillater separat completion av kildedimensjonene.
+Hvis originalkravene også krever korrekt kunde-selection,
+behold signaturen åpen og rapporter:
+katalogretting fullført, originalsignatur fortsatt åpen.
+
+Ikke omskriv originalkrav for å muliggjøre closure.
+
+Hvis katalogavgrenset closure er gyldig og alle gater består:
+- Opprett én individuell receipt med tydelig avgrensning.
+- Verifiser 61 unike dokumenterte kampanjesignaturer.
+- B-051: 35 fullført / 0 katalogkandidater /
+  2 revalideringskandidater / 2 holds.
+
+Råtestatusfunnet forblir åpent uansett katalogcompletion.
+Globalt resolved/open = UKJENT. Ingen P2-kreditt.
+
+Oppdater checkpoint og prosjektstatus.
+Publiser atomisk med publish.py etter komplett PASS
+og fersk remote-avstemming.
+Commit/push av den autoriserte katalogbolken er tillatt også
+dersom originalsignaturen må forbli åpen; statusen må være presis.
+
+Verifiser remote SHA, clean working tree og staged = 0.
+Ingen force-push, deploy eller senere bolk.
+
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED.

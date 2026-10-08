@@ -1,0 +1,231 @@
+{
+  "tests/remediation-b-050.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-050-TREATMENT-REVERSE-AUDIT: only authorized base rows and new source change; 317 components and metadata preserved",
+      "R-050-PUBLIC-REVERSE: one fixed row and two new details only; all metadata and other components unchanged",
+      "R-050-REHAB-REVERSE: one exact source-bound condition; original13 and other317 components unchanged"
+    ]
+  },
+  "tests/remediation-b-051-craftsmanship.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.vatrom.selverommet:",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.vatrom.selverommet:Valgt",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.vatrom.selverommet:Ikke valgt",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.vatrom.selverommet:Ukjent",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.vatrom.selverommet:Valgt|Ikke valgt",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.vatrom.selverommet:Kundevilkår 73 000 kr",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.handverker.folgeskade:",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.handverker.folgeskade:Valgt",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.handverker.folgeskade:Ikke valgt",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.handverker.folgeskade:Ukjent",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.handverker.folgeskade:Valgt|Ikke valgt",
+      "R-051-CRAFT-enrich:gjensidige-hus-pluss:hus.handverker.folgeskade:Kundevilkår 73 000 kr",
+      "R-051-CRAFT-exact-two-row-delta+isolation"
+    ]
+  },
+  "tests/remediation-b-051-events-buildings.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-EVENTS-REVERSE: six authorized rows only, 316 components/4152 facts/202 products and old eight protected",
+      "R-051-EVENTS-DOCUMENT gjensidige-hus-pluss hus.brann.dekning: priority, explicit states, conflicts and repeated full fields",
+      "R-051-EVENTS-DOCUMENT gjensidige-hus-pluss hus.ror.utvendig: priority, explicit states, conflicts and repeated full fields",
+      "R-051-EVENTS-DOCUMENT gjensidige-hus-pluss hus.ror.brudd: priority, explicit states, conflicts and repeated full fields",
+      "R-051-EVENTS-DOCUMENT gjensidige-hus-pluss hus.byggunderoppforing: priority, explicit states, conflicts and repeated full fields",
+      "R-051-EVENTS-DOCUMENT gjensidige-hus-pluss hus.vaer.dekning: priority, explicit states, conflicts and repeated full fields",
+      "R-051-EVENTS-DOCUMENT gjensidige-hus-pluss hus.takvegg.folgeskade: priority, explicit states, conflicts and repeated full fields",
+      "R-051-EVENTS-SUPPORT/MANUAL gjensidige-hus-pluss: supporting role, known mode and custom null reference"
+    ]
+  },
+  "tests/remediation-b-051-garden.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-GARDEN-DOCUMENT gjensidige-hus-pluss hus.hage.objekter: values/refusal/conflicts/Ukjent preserved without a new parent",
+      "R-051-GARDEN-DOCUMENT gjensidige-hus-pluss hus.hage.brygge: values/refusal/conflicts/Ukjent preserved without a new parent",
+      "R-051-GARDEN-MANUAL gjensidige-hus-pluss: known catalog mode, custom mode and provenance"
+    ]
+  },
+  "tests/remediation-b-051-health-help.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-HEALTH-106:addons",
+      "R-051-HEALTH-107:addons",
+      "R-051-HEALTH-108:addons",
+      "R-051-HEALTH-109:addons",
+      "R-051-HEALTH-110:isolation",
+      "R-051-HEALTH-112:full-canonical-expected-collision",
+      "R-051-HEALTH-113:independent-full-field-reverse",
+      "R-051-HEALTH-120:exact-isolation-counts",
+      "R-051-HEALTH-extraction-37",
+      "R-051-HEALTH-extraction-38",
+      "R-051-HEALTH-extraction-39",
+      "R-051-HEALTH-extraction-40",
+      "R-051-HEALTH-extraction-41",
+      "R-051-HEALTH-extraction-42",
+      "R-051-HEALTH-extraction-43",
+      "R-051-HEALTH-extraction-44",
+      "R-051-HEALTH-extraction-45",
+      "R-051-HEALTH-extraction-46",
+      "R-051-HEALTH-extraction-47",
+      "R-051-HEALTH-extraction-48",
+      "R-051-HEALTH-extraction-49",
+      "R-051-HEALTH-extraction-50",
+      "R-051-HEALTH-extraction-51",
+      "R-051-HEALTH-extraction-52",
+      "R-051-HEALTH-extraction-53",
+      "R-051-HEALTH-extraction-54",
+      "R-051-HEALTH-extraction-55",
+      "R-051-HEALTH-extraction-56",
+      "R-051-HEALTH-extraction-57",
+      "R-051-HEALTH-extraction-58",
+      "R-051-HEALTH-extraction-59",
+      "R-051-HEALTH-extraction-60"
+    ]
+  },
+  "tests/remediation-b-051-legal.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-LEGAL inheritance-addons {\"id\":\"gjensidige-hus\",\"addons\":[\"gjensidige-hus-rate-insekter\"]}",
+      "R-051-LEGAL inheritance-addons {\"id\":\"gjensidige-hus-pluss\",\"addons\":[]}",
+      "R-051-LEGAL inheritance-addons {\"id\":\"gjensidige-hus-pluss\",\"addons\":[\"gjensidige-hus-utleie\"]}",
+      "R-051-LEGAL inheritance-addons {\"id\":\"gjensidige-hus-pluss\",\"addons\":[\"gjensidige-hus-smart\"]}",
+      "R-051-LEGAL isolation {}",
+      "R-051-LEGAL independent-three-row-transform {}"
+    ]
+  },
+  "tests/remediation-b-051-liability.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-LIABILITY-106:addons",
+      "R-051-LIABILITY-107:addons",
+      "R-051-LIABILITY-108:addons",
+      "R-051-LIABILITY-109:addons",
+      "R-051-LIABILITY-110:isolation",
+      "R-051-LIABILITY-112:full-canonical-expected-collision",
+      "R-051-LIABILITY-113:independent-full-field-reverse",
+      "R-051-LIABILITY-118:isolation-counts"
+    ]
+  },
+  "tests/remediation-b-051-physical-exclusions.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-PHYSICAL-155 isolation",
+      "R-051-PHYSICAL-156 complete-independent-source-oracle",
+      "R-051-PHYSICAL-163 rot-baseline-finding-isolated-not-remediated"
+    ]
+  },
+  "tests/remediation-b-051-recovery-benefits.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-RECOVERY-isolation-95",
+      "R-051-RECOVERY-addon-isolation-100",
+      "R-051-RECOVERY-addon-isolation-101",
+      "R-051-RECOVERY-addon-isolation-102",
+      "R-051-RECOVERY-addon-isolation-103",
+      "R-051-RECOVERY-addon-isolation-104",
+      "R-051-RECOVERY-complete-independent-three-row-oracle-105"
+    ]
+  },
+  "tests/remediation-b-051-settlement-age.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-SETTLEMENT-isolation-165",
+      "R-051-SETTLEMENT-addon-isolation-170",
+      "R-051-SETTLEMENT-addon-isolation-171",
+      "R-051-SETTLEMENT-addon-isolation-172",
+      "R-051-SETTLEMENT-addon-isolation-173",
+      "R-051-SETTLEMENT-addon-isolation-174",
+      "R-051-SETTLEMENT-complete-independent-eight-row-oracle-191"
+    ]
+  },
+  "tests/remediation-b-051-smart.test.mjs": {
+    "change": "Compose a strict two-owner, one-key source-based rot transformation onto active baseline/expected catalogs. Preserve prior independent changes and all full-field assertions. No historical artifact changes.",
+    "failed_assertions": [
+      "R-051-SMART matrix 2",
+      "R-051-SMART matrix 9",
+      "R-051-SMART matrix 104",
+      "R-051-SMART matrix 105",
+      "R-051-SMART matrix 106",
+      "R-051-SMART matrix 107",
+      "R-051-SMART matrix 115",
+      "R-051-SMART matrix 116",
+      "R-051-SMART matrix 117",
+      "R-051-SMART matrix 118",
+      "R-051-SMART matrix 119",
+      "R-051-SMART matrix 120",
+      "R-051-SMART matrix 121",
+      "R-051-SMART matrix 122",
+      "R-051-SMART matrix 123",
+      "R-051-SMART matrix 124",
+      "R-051-SMART matrix 125",
+      "R-051-SMART matrix 126",
+      "R-051-SMART matrix 127",
+      "R-051-SMART matrix 128",
+      "R-051-SMART matrix 129",
+      "R-051-SMART matrix 130",
+      "R-051-SMART matrix 131",
+      "R-051-SMART matrix 132",
+      "R-051-SMART matrix 133",
+      "R-051-SMART matrix 134",
+      "R-051-SMART matrix 135",
+      "R-051-SMART matrix 136",
+      "R-051-SMART matrix 137",
+      "R-051-SMART matrix 138",
+      "R-051-SMART matrix 139",
+      "R-051-SMART matrix 140",
+      "R-051-SMART matrix 141",
+      "R-051-SMART matrix 142",
+      "R-051-SMART matrix 143",
+      "R-051-SMART matrix 144",
+      "R-051-SMART matrix 145",
+      "R-051-SMART matrix 146",
+      "R-051-SMART matrix 147",
+      "R-051-SMART matrix 148",
+      "R-051-SMART matrix 149",
+      "R-051-SMART matrix 150",
+      "R-051-SMART matrix 151",
+      "R-051-SMART matrix 152",
+      "R-051-SMART matrix 153",
+      "R-051-SMART matrix 154",
+      "R-051-SMART matrix 155",
+      "R-051-SMART matrix 156",
+      "R-051-SMART matrix 157",
+      "R-051-SMART matrix 158",
+      "R-051-SMART matrix 159",
+      "R-051-SMART matrix 160",
+      "R-051-SMART matrix 161",
+      "R-051-SMART matrix 162",
+      "R-051-SMART matrix 163",
+      "R-051-SMART matrix 164",
+      "R-051-SMART matrix 165",
+      "R-051-SMART matrix 166",
+      "R-051-SMART matrix 167",
+      "R-051-SMART matrix 168",
+      "R-051-SMART matrix 193",
+      "R-051-SMART matrix 212",
+      "R-051-SMART matrix 213"
+    ]
+  },
+  "tests/helpers/b051-liability.mjs": {
+    "change": "Apply proposed independent applyRot after the existing Legal/Smart/Health/Physical source transforms in both baselineCatalog and expectedCatalog. Keep raw vs JSON field contracts unchanged."
+  },
+  "tests/helpers/b051-rot.mjs": {
+    "change": "Proposed NEW helper (NOT AUTHORIZED): exact owners gjensidigeHusPluss/gjensidigeHusRotOption, key hus.rate.dekning, literal old/new source-derived values; assert one row, label, existing Pluss PDF6 primary, addon IPID PDF2 supplement, replacesBase:true and all full fields. Only value changes; preserve property order."
+  },
+  "tests/remediation-b-051-rot.test.mjs": {
+    "change": "Proposed NEW permanent gate (NOT AUTHORIZED): two original bindings, complete source clauses, raw full fields, provenance/inheritance/addons, document/manual/product/customer probes, exact isolation, before/after open status characterization, 60 immutable receipts."
+  },
+  "tests/nito-remediation-b020.test.mjs": {
+    "change": "NO fingerprint change: all3 R02006 fingerprints exclude hus.rate.dekning and were independently proved identical. Existing rot/pest/deductible checks pass in baseline and candidate."
+  },
+  "tests/remediation-b-051.test.mjs": {
+    "change": "NO row/provenance change required by this candidate:15/15 baseline and memory pass. Child reverse oracle context must use active proposed helper; keep historical snapshots immutable."
+  },
+  "tests/gjensidige-hus-catalog.test.mjs": {
+    "change": "Existing14/14 pass both; can keep unchanged; new precise clause assertions belong proposed new rot gate."
+  },
+  "lib/gjensidige-hus-catalog.ts": {
+    "change": "Only Pluss tuple hus.rate.dekning.value; rotOption clone automatically follows. Standard row and all other production fields unchanged."
+  }
+}

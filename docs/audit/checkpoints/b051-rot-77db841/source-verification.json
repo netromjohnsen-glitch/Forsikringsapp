@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "sources": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+      "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9"
+    }
+  ],
+  "primary": {
+    "documentId": "gjensidigeHusPluss",
+    "page": 6,
+    "section": "Råte og skadeinsekter"
+  },
+  "addon_supplement": {
+    "documentId": "gjensidigeHusIpid",
+    "page": 2,
+    "section": "Utvidelser"
+  },
+  "registered_source_metadata_unchanged": true,
+  "sourceType_added": false,
+  "source_clause_evidence": "final-targeted-remediation-b-051-rot.log.gz",
+  "source_extracts": [
+    {
+      "encoded_file": "source-IPID-PDF2.txt.gz",
+      "original_bytes": 1657,
+      "original_sha256": "ffdb92f6779601354ad84fdec2ea69c0fcc69cb0522b7bc425f63060bcafdec3",
+      "source_hash_checks": "Exact immutable PDF bytes checked separately"
+    },
+    {
+      "encoded_file": "source-Pluss-PDF1.txt.gz",
+      "original_bytes": 4313,
+      "original_sha256": "aeee194a2e73dca61068b52b60314d28b859bb0c6931321da38daf0b1a5ab491",
+      "source_hash_checks": "Exact immutable PDF bytes checked separately"
+    },
+    {
+      "encoded_file": "source-Pluss-PDF6.txt.gz",
+      "original_bytes": 4810,
+      "original_sha256": "3c863bc12615af6e035571d4103c11be5054cc4df4686c63e557c7d19b3640b5",
+      "source_hash_checks": "Exact immutable PDF bytes checked separately"
+    }
+  ]
+}

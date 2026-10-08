@@ -1,0 +1,29 @@
+{
+  "origin": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/completion_generator.py",
+  "origin_sha256": "f07f5843a087c8cf7827f4ef03cb9960ea45d92ae42dc9deb47665088be5b741",
+  "execution": "Existing generic gate summary block reused with explicit source/scope/count replacements. Receipt generation intentionally not invoked because original contract is unmet. Checkpoint preserves exact original sets and holds.",
+  "summary_replacements": [
+    [
+      "'tests': 164, 'pass': 164, 'log': 'final-targeted-remediation-b-051-physical-exclusions.log.gz'",
+      "'tests':140,'pass':140,'log':'final-targeted-remediation-b-051-rot.log.gz'"
+    ],
+    [
+      "'prior_tests': 2275, 'prior_files': 53, 'current_tests': 2439, 'current_files': 54, 'added_file': 'tests/remediation-b-051-physical-exclusions.test.mjs', 'added_tests': 164",
+      "'prior_tests':3116,'prior_files':58,'current_tests':3256,'current_files':59,'added_file':'tests/remediation-b-051-rot.test.mjs','added_tests':140"
+    ],
+    [
+      "three frozen sources, four exact GAP/SF bindings, 316 components, 4155 raw facts",
+      "three frozen sources, two exact GAP/SF bindings, 316 components, 4157 raw facts"
+    ],
+    [
+      "summary['fullsuite']['tests'] == 4592 and summary['targeted']['tests'] == 1251",
+      "summary['fullsuite']['tests'] == 5409 and summary['targeted']['tests'] == 2068"
+    ],
+    [
+      "Original blocker and initial targeted records preserved; they are not final validation results",
+      "Original preflight logs preserved losslessly encoded; reference manifest records initial baseline and memory-candidate failures; they are not final validation"
+    ]
+  ],
+  "lint_matcher": "docs/audit/checkpoints/b051-physical-exclusions-0be8fad/lint_matching.py",
+  "historical_files_changed": false
+}

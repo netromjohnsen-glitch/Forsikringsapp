@@ -1,0 +1,54 @@
+{
+  "status": "CATALOG_IMPLEMENTATION_PASS_ORIGINAL_SIGNATURE_OPEN",
+  "not_a_completion_receipt": true,
+  "signature": "6af32d21acb9584c",
+  "original_binding": {
+    "signature_id": "6af32d21acb9584c",
+    "representative_finding_id": "GAP-2101",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2101\", \"GAP-2160\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3012\", \"SF-3099\"]",
+    "proposed_existing_keys": "[\"hus.rate.dekning\"]",
+    "semantic_concept": "Råte",
+    "semantic_dimension": "unntak",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "bindings": [
+    {
+      "gap": "GAP-2101",
+      "sf": "SF-3012",
+      "product": "gjensidige-hus",
+      "component": "addon",
+      "addon": "gjensidige-hus-rate-insekter"
+    },
+    {
+      "gap": "GAP-2160",
+      "sf": "SF-3099",
+      "product": "gjensidige-hus-pluss",
+      "component": "base"
+    }
+  ],
+  "tested_revision": "77db8411345d6841d22b741145432c2d6ecf3a17",
+  "candidate_identity_sha256": "4d85a2fc6e0c264097f5588c9f29b2c67c7f25ecf3b0706581a71f76a82f9b6e",
+  "source_verification": "source-verification.json",
+  "catalog_oracle": "proposal.json",
+  "value": "proposed-value.txt",
+  "source_binding_reverse_isolation": "catalog-delta.json",
+  "current_gates": "validation-summary.json",
+  "closure_decision": "original-binding-closure-scope.json",
+  "open_selection_finding": "open-rot-status-findings.json",
+  "completion_credit": 0,
+  "P2_credit": 0,
+  "global_resolved_open": "UNKNOWN"
+}
