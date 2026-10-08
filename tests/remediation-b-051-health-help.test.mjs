@@ -1,3 +1,4 @@
+import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
@@ -14,7 +15,7 @@ import {deriveCanonicalCoverages,coverageStatusFromText} from '../lib/coverage-s
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {expectedCatalog as previousCatalog} from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const oldOracle=applySmart(applyLiability(previousCatalog));
+const oldOracle=applyLegal(applySmart(applyLiability(previousCatalog)));
 const expectedCatalog=applyHealthHelp(oldOracle);
 
 const key='hus.service.helsehjelp', ids=['gjensidige-hus','gjensidige-hus-pluss'];
@@ -112,8 +113,8 @@ check('all-54-immutable-receipts',()=>{
 });
 check('exact-isolation-counts',()=>{assert.equal(protectedRaw,4158);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-differences',()=>{
- assert.deepEqual(fps.map(x=>x.before),['4dbde0cf9f9f467f2138bb70edf8df3e51addbb158f8330d89e40a58bf7dc752','e2dde9decd0cc64db060cc2ce57421741ff51239de95107264e84cf7388ce489','924f9f29873c4356ad3787e755efeb6ffb13dd5300af42352bb3958ab6bc67bd']);
- assert.deepEqual(fps.map(x=>x.after),['d5c72d2f6ab94d0b3e4fd96343d5117ec357f775c5090515f534d4a9b18baa2e','385845464c7ec23331a28d1634f89c92d7bf693c27eab3084347a276487906ee','29cdf599445370bc905a23455a4ad2ffbf3ed7dd6647ed6948692d1c85483525']);
+ assert.deepEqual(fps.map(x=>x.before),['6b6cd034652ebea56cf3450b29699df0e75409c38cc682046e5f5517595b925a','26f3e2aaf802d5b4de0d73321fcdc18df0af41c3684ed03d9d5d9407c4c40022','ec256ccb96b30d4175ccf896edce3ea05f3ab8045a07234f28236be0231a8072']);
+ assert.deepEqual(fps.map(x=>x.after),['250f5ac9807ac84576dae88e4fbc0521a793e601ec7f0c58e33303f427cff20c','b49d74919a120094da90f915aa491d0e8086a03b0bf2d57da122a252041c8f4e','7eb6a84291e695fab0e1cc42e0b29ecc0b0ad8bdec4e860760454413b2f56cc7']);
  for(const f of fps){const p=prod(expectedCatalog,f.id);assert.equal(digest(resolveCatalogFacts(p,f.addons,date,null,expectedCatalog).filter(x=>!x.key.startsWith('hus.skadedyr.')&&x.key!=='hus.rate.dekning')),f.after);}
 });
 function digestBytes(bytes){return createHash('sha256').update(bytes).digest('hex');}

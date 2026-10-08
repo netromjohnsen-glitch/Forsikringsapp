@@ -1,0 +1,104 @@
+{
+  "classification": "EXPLICIT_BOUNDED_CATALOG_IMPLEMENTATION",
+  "baseline": "b457a8d8368e6bc0b78fe8ec6747e978063aab15",
+  "signatures": [
+    {
+      "signature_id": "35c58fbc06cf6e7d",
+      "representative_finding_id": "GAP-2106",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2106\", \"GAP-2165\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3019\", \"SF-3106\"]",
+      "proposed_existing_keys": "[\"hus.rettshjelp.dekning\"]",
+      "semantic_concept": "Rettshjelp",
+      "semantic_dimension": "tvistgrener",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    {
+      "signature_id": "90d49006ef7999d3",
+      "representative_finding_id": "GAP-2105",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-051",
+      "disposition": "FIX_BEFORE_NITO",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "IMPLEMENTATION_READY",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2105\", \"GAP-2164\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3018\", \"SF-3105\"]",
+      "proposed_existing_keys": "[\"hus.rettshjelp.dekning\", \"hus.rettshjelp.grense\", \"hus.rettshjelp.egenandel\"]",
+      "semantic_concept": "Rettshjelp",
+      "semantic_dimension": "grunndimensjoner",
+      "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "identity": "gjensidigeHusStandard",
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "identity": "gjensidigeHusPluss",
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "pages": [
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "application_files": [
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/helpers/b051-legal.mjs",
+    "tests/helpers/b051-liability.mjs",
+    "tests/nito-remediation-b020.test.mjs",
+    "tests/remediation-b-050.test.mjs",
+    "tests/remediation-b-051-legal.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-physical-exclusions.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/remediation-b-051-smart.test.mjs"
+  ],
+  "production_rows": [
+    "hus.rettshjelp.dekning",
+    "hus.rettshjelp.grense",
+    "hus.rettshjelp.egenandel"
+  ],
+  "proposal_sha256": "76e143f1bd354dcdcb437628befefc75e0667be19475de0ccc717af5d464cfef",
+  "authorization_original_bytes_sha256": "ae9ac3c0caf675f1109c2c4dbfcaa0bea9cabe369d077a95ed43496f0cb850f2",
+  "authorization_LF_sha256": "45917d1a475fd51fd6e027adec6030a246d642a82a853e97afea2eaae21c6506",
+  "catalog_only_completion": true,
+  "historical_HARNESS_AUTONOMY_V1": "33/12 unchanged",
+  "publish": "secured publish.py after complete PASS; origin HEAD:main",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "immutable_prior_receipts": 58,
+  "no_later_scope_or_deploy": true
+}

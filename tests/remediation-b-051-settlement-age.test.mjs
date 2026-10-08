@@ -1,3 +1,4 @@
+import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
 import {applyHealthHelp} from './helpers/b051-health-help.mjs';
 import { applyLiability } from './helpers/b051-liability.mjs';
@@ -16,7 +17,7 @@ import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {baselineCatalog as previousBaseline, expectedCatalog as previousExpectedCatalog, sourceOracle as oracle, commonExceptions, keys} from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const baseline=applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(previousBaseline))))),expectedCatalog=applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(previousExpectedCatalog)))));
+const baseline=applyLegal(applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(previousBaseline)))))),expectedCatalog=applyLegal(applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(previousExpectedCatalog))))));
 const candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
 const ids=['gjensidige-hus','gjensidige-hus-pluss'];
 const product=(c,id)=>c.products.find(p=>p.productId===id),fact=(c,key)=>c.facts.gjensidigeHusStandard.find(f=>f.key===key);

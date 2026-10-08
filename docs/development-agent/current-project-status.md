@@ -1,41 +1,35 @@
 # Aktuell dokumentert prosjektstatus
 
-B-051 Smart: komplette sluttgater PASS for **73aab8a0ad4f6c11** og **cdd055ea730897ab**,
-kun avgrenset katalogcompletion (fire Hus/Pluss-bindinger).
-[Checkpoint](../audit/checkpoints/b051-smart-e21693e/checkpoint.json),
-[bevispakke](../audit/checkpoints/b051-smart-e21693e/README.md),
-[ansvar-receipt](../audit/checkpoints/b051-smart-e21693e/completion-receipt-73aab8a0ad4f6c11.json),
-[utrykning-receipt](../audit/checkpoints/b051-smart-e21693e/completion-receipt-cdd055ea730897ab.json).
-Publisering gjelder etter sikret publish.py og faktisk remote-verifikasjon; committen som
-inneholder pakken identifiserer publisering. Testet e21693e med eksakt kandidatidentitet.
+B-051 Rettshjelp katalogcompletion PASS for35c58fbc06cf6e7d og90d49006ef7999d3,
+fire originale Hus/Pluss-bindinger. [Checkpoint](../audit/checkpoints/b051-legal-b457a8d/checkpoint.json),
+[bevispakke](../audit/checkpoints/b051-legal-b457a8d/README.md),
+[tvistgrener](../audit/checkpoints/b051-legal-b457a8d/completion-receipt-35c58fbc06cf6e7d.json),
+[grunnvilkår](../audit/checkpoints/b051-legal-b457a8d/completion-receipt-90d49006ef7999d3.json).
+Publisering verifiseres av sikret publisher; testet b457a8d med eksakt kandidatidentitet.
 
-58 unike dokumenterte kampanjesignaturer etter verifisert publisering: B05016/B07110/B05132.
-Alle56 tidligere receipts byteidentiske. Eksakt B051-partisjon:32fullført/3kandidater/
-2revalideringskandidater/2holds av39. Manglende receipt betyr ikke automatisk produksjonsfeil.
-Globalt resolved/open UKJENT; ingen P2-kreditt. Historiske414/1589,19/16,10/8,
-diagnostikk19/12 og DEFER_SAFE uendret, ikke en rekonstruert aktuell global ledger.
+60 unike dokumenterte signaturer etter verifisert publisering:B05016/B07110/B05134.
+Alle58 tidligere receipts byteidentiske. Eksakt B05139-partisjon:34fullført/1kandidat/
+2revalideringskandidater/2holds. Globalt resolved/open UKJENT; ingen P2-kreditt.
+Historiske414/1589,19/16,10/8,diagnostikk19/12 og DEFER_SAFE bevares; ikke aktuell global ledger.
 
-[Ferske sluttgater](../audit/checkpoints/b051-smart-e21693e/validation-summary.json):
-222/222 ny gate;1791/1791 målrettet i28filer;2979/2979 remediering i57filer;
-5132/5132 fullsuite i155filer. Typegen/TypeScript, webpack-build, HTTP/PDF22/22 PASS.
-ESLint0feil/27eksisterende warnings:26eksakte og én dokumentert protectedCount-linjeflytting.
-317øvrige komponenter,4157råfakta,metadata og202øvrige produkter uendret;
-alle204 produkter uten Smart og B020/Ansvars tre ikke-Smart-fingerprints uendret.
+[Ferske sluttgater](../audit/checkpoints/b051-legal-b457a8d/validation-summary.json):
+137/137 ny gate,1928/1928 målrettet i29filer,3116/3116 remediering i58filer,
+5269/5269 fullsuite i156filer. Typegen/TypeScript, webpack-build og HTTP/PDF22/22 PASS.
+ESLint0feil/27warnings:26eksakte og én importlinjeflytting.317øvrige komponenter,
+4156øvrige råfakta,metadata og202andre produkter uendret.
 
-[Separate Smart-kundefunn](../audit/checkpoints/b051-smart-e21693e/open-smart-customer-findings.json)
-forblir OPEN. Ingen endring i automatisk dokumentaktivering, ekstraksjon/mapping,
-canonical Smart-status/avslag/konflikt, tilleggsvisning eller gjentatt addonidentitet.
-Disse eksisterende begrensningene er ikke godkjent kundeoppførsel eller pilotberedskap.
+[Åpent Rettshjelp-aliasfunn](../audit/checkpoints/b051-legal-b457a8d/open-legal-alias-findings.json)
+er karakterisert, ikke løst eller godkjent kundemodus: faktisk dokumentavslag/konflikt på
+rettshjelp.dekning sammen med katalog-selected på hus.rettshjelp.dekning, lik baseline/kandidat.
+[Smart-kundefunn](../audit/checkpoints/b051-smart-e21693e/open-smart-customer-findings.json)
+forblir OPEN. Råtestatus og protectedCount-opprydding forblir egne uløste saker.
+HTU157c7afed18eb0fe/SC019/SR033, vannmapping25004bc4d7dd2c03,SC020/SR032,
+SC035/SR031,B0715f31ff4946a666b5 og alle øvrige holds bevares.
 
-Historisk HARNESS_AUTONOMY_V1 33/12 og Helsehjelp3/6 bevares uendret.
-[Autonom rettingslogg](../audit/checkpoints/b051-smart-e21693e/autonomous-mechanical-corrections.json)
-fører nye mekaniske rettinger separat uten stoppkvote; original-/baseline-/kontraktbevis kreves.
-HTU SC019/SR033/157c7afed18eb0fe, vannmapping25004bc4d7dd2c03, SC020/SR032,
-SC035/SR031, B0715f31ff4946a666b5 og alle øvrige holds bevares.
-Råtestatusfunnet og protectedCount-opprydding er fortsatt separate uløste saker.
-
-Neste forslag NOT_AUTHORIZED: kildeavgrenset read-only Rettshjelp-preflight
-35c58fbc06cf6e7d/90d49006ef7999d3, med HTU-konflikten utenfor, eller separat beslutningspreflight
-for Smart-kundemodus. Ingen senere produksjonsbolk eller egen deployhandling er autorisert.
+Historisk HARNESS_AUTONOMY_V1 33/12 og Helsehjelp3/6 uendret; nye mekaniske rettinger
+føres i [separat autonom logg](../audit/checkpoints/b051-legal-b457a8d/autonomous-mechanical-corrections.json)
+uten numerisk stoppkvote. Neste forslag NOT_AUTHORIZED: kildeavgrenset Råte-preflight
+6af32d21acb9584c, eller separat beslutningspreflight av Rettshjelp-/Smart-kundemodus.
+Ingen senere produksjonsbolk eller deploy autorisert.
 
 CATALOG_PILOT_GATE = REMEDIATION_REQUIRED

@@ -1,3 +1,4 @@
+import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
 import {applyHealthHelp} from './helpers/b051-health-help.mjs';
 import { applyLiability } from './helpers/b051-liability.mjs';
@@ -19,7 +20,7 @@ import { expectedCatalog as previousEventsCatalog } from '../docs/audit/checkpoi
 import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const approvedEventsCatalog = applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(applySettlement(previousEventsCatalog)), {jsonSnapshot:true}))));
+const approvedEventsCatalog = applyLegal(applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(applySettlement(previousEventsCatalog)), {jsonSnapshot:true})))));
 const audit = new URL('../docs/audit/checkpoints/b051-garden-pier-64dd3cb/', import.meta.url);
 const oracle = JSON.parse(readFileSync(new URL('source-oracle.json', audit)));
 const authorization = JSON.parse(readFileSync(new URL('authorization.json', audit)));

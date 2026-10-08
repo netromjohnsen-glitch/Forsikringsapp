@@ -1,0 +1,156 @@
+{
+  "classification": "CURRENT_COMPLETION_RECEIPT_NOT_RECONSTRUCTED_HISTORICAL_CLOSURE",
+  "signature": "35c58fbc06cf6e7d",
+  "status": "PASS",
+  "original_binding": {
+    "signature_id": "35c58fbc06cf6e7d",
+    "representative_finding_id": "GAP-2106",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2106\", \"GAP-2165\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3019\", \"SF-3106\"]",
+    "proposed_existing_keys": "[\"hus.rettshjelp.dekning\"]",
+    "semantic_concept": "Rettshjelp",
+    "semantic_dimension": "tvistgrener",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "tested_revision": "b457a8d8368e6bc0b78fe8ec6747e978063aab15",
+  "candidate_identity_sha256": "c8580c74caec7ff8b581a0218a71e981034383b5b928fb3661e7ee1bf16f2026",
+  "publication": "Effective published completion only after secure publish.py verifies containing commit on remote main; no future SHA claimed as tested",
+  "source_evidence": [
+    {
+      "finding_id": "GAP-2106",
+      "finding_ids": [
+        "GAP-2106"
+      ],
+      "source_fact_id": "SF-3019",
+      "source_fact_ids": [
+        "SF-3019"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 8–10",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ettersalg/førovertakelse/visse100klandbruk;husprioritetforaninnbo;gruppesøksmål20kavvist/500kfremmet,40%sakkyndig.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.rettshjelp.dekning"
+      ],
+      "advisor_impact": "Gruppesøksmål/sakkyndig/nyeiere/andrepolicy-prioritet ikke strukturert.",
+      "audit_scope_notes": "Gruppesøksmål/sakkyndig/nyeiere/andrepolicy-prioritet ikke strukturert.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2165",
+      "finding_ids": [
+        "GAP-2165"
+      ],
+      "source_fact_id": "SF-3106",
+      "source_fact_ids": [
+        "SF-3106"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 9–11",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Ettersalg/førovertakelse/visse100klandbruk;husprioritetforaninnbo;gruppesøksmål20kavvist/500kfremmet,40%sakkyndig.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.rettshjelp.dekning"
+      ],
+      "advisor_impact": "Gruppesøksmål/sakkyndig/nyeiere/andrepolicy-prioritet ikke strukturert.",
+      "audit_scope_notes": "Gruppesøksmål/sakkyndig/nyeiere/andrepolicy-prioritet ikke strukturert.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "frozen_sources": [
+    {
+      "identity": "gjensidigeHusStandard",
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "identity": "gjensidigeHusPluss",
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "pages": [
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "canonical_contracts": [
+    {
+      "key": "hus.rettshjelp.dekning",
+      "label": "Rettshjelp",
+      "value": "Rimelige og nødvendige utgifter ved tvist i egenskap av personlig eier av forsikret eiendom i Norden, innenfor vilkårets domstols- og tvistkrav. Når sikrede er part i en dekningsmessig tvist, omfattes advokat, rettsgebyr, rettsoppnevnte sakkyndige og vitner ved hovedforhandling og bevisopptak. Rimelige og nødvendige utgifter til sakkyndige som ikke er oppnevnt av retten, er begrenset til 40 % av forsikringssummen eller den økonomiske interessen. I jordskiftesaker omfattes kostnader etter jordskifteloven § 7-1, unntatt bokstav c og d. Tvister som er oppstått mens forsikringen er i kraft, omfattes med de unntakene vilkåret angir. Tvist om ervervsrelatert drift på landbrukseiendom omfattes når årlig omsetning ikke overstiger 100 000 kroner. Ved tvist etter salg av bolig/hytte omfattes sikrede som tidligere eier dersom forsikringen i Gjensidige opphørte i forbindelse med salget. Tvist med selger ved kjøp av ny bolig/hytte som sikrede ennå ikke har overtatt og tegnet egen forsikring på, omfattes dersom tidligere tilsvarende eiendom var forsikret i Gjensidige på kjøpstidspunktet. Ved både bygnings- og innboforsikring på den omtvistede eiendommen kan bare rettshjelpen under bygningsforsikringen dekke utgiftene. For en dekningsmessig tvist anlagt som gruppesøksmål etter tvisteloven kapittel 35 som blir avvist, dekkes kostnader knyttet til saksanlegg med inntil 20 000 kroner for hver sikrede i Gjensidige, begrenset til den antatte økonomiske verdien av sikredes interesser i saken. Utbetalingen kommer til fradrag dersom ny rettshjelpdekning innvilges.",
+      "primary": [
+        8,
+        "Rettshjelp"
+      ],
+      "qualification": [
+        10,
+        "Rettshjelp – Hva er en tvist / Hvilke domstoler tvisten må høre inn under"
+      ]
+    },
+    {
+      "key": "hus.rettshjelp.grense",
+      "label": "Rettshjelp – forsikringssum",
+      "value": "100 000 kroner per tvist for 1–2 parter; den samlede erstatningen ved hver tvist er begrenset til forsikringssummen i forsikringsbeviset og under enhver omstendighet til den økonomiske verdien av sikredes interesse i saken. For flere parter forsikret i Gjensidige på sikredes side gjelder én forsikringssum per tvist: 3–10 parter 250 000, 11–25 parter 500 000, 26–49 parter 750 000 og 50+ parter 1 000 000 kroner. Gjensidige dekker bare parter forsikret i Gjensidige. Dersom gruppesøksmål fremmes, er samlet erstatning for alle tvistene begrenset til 500 000 kroner, og til den antatte økonomiske verdien av sikredes interesser i saken. For dekningsmessige tvister mellom sameiere er summen 100 000 kroner; sameiere under samme forsikring deler 100 000 kroner likt. Ved tvist knyttet til horisontal tomannsbolig har hver part sin forsikringssum på 100 000 kroner.",
+      "primary": [
+        10,
+        "Rettshjelp – Forsikringssum og egenandel"
+      ],
+      "qualification": [
+        9,
+        "Rettshjelp – Hvilke tvister / Gruppesøksmål og flerpart"
+      ]
+    }
+  ],
+  "provenance_full_field_evidence": "catalog-delta.json and R-051-LEGAL strict raw/canonical/JSON, original source and inheritance controls",
+  "permanent_test": "tests/remediation-b-051-legal.test.mjs",
+  "selection_document_priority_proof": "Explicit canonical state fixtures and actual schema-valid document pipeline separately characterized; customer limit/deductible preserve full provenance and override catalog; actual main-key alias denial/conflict problem stays OPEN, same baseline and candidate",
+  "closure_gates": "validation-summary.json",
+  "command_log_manifest": "gate-results.json",
+  "reverse_and_isolation": "catalog-delta.json",
+  "prior_58_receipts": "prior-receipts.json",
+  "mechanical_roots": "autonomous-mechanical-corrections.json; historical33/12 unchanged",
+  "separate_rot_status_finding": "Preserved unresolved baseline finding; no closure credit or status change in this scope",
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "scope": "BOUNDED_CATALOG_COMPLETION_ONLY",
+  "original_scope_decision": "original-binding-closure-scope.json",
+  "open_customer_findings": "open-legal-alias-findings.json",
+  "not_complete_legal_customer_mode_or_pilot_readiness": true
+}

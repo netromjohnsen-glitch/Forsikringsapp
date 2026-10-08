@@ -1,0 +1,537 @@
+{
+  "status": "OPEN_UNCHANGED_BASELINE_FINDINGS",
+  "baseline": "b457a8d8368e6bc0b78fe8ec6747e978063aab15",
+  "claim": "Baseline characterization only, not approved customer behavior",
+  "scope_not_fixed": "Actual extracted Rettshjelp maps to generic rettshjelp.dekning, separate from catalog hus.rettshjelp.dekning; customer denial/conflict does not remove catalog selected",
+  "actual_pipeline_proof": [
+    {
+      "mode": "document-pipeline",
+      "id": "gjensidige-hus",
+      "role": "individual_agreement",
+      "side": "existing",
+      "vs": [
+        [
+          "hus.rettshjelp.dekning",
+          "Ikke valgt"
+        ]
+      ],
+      "result": {
+        "before": [
+          [
+            {
+              "id": "rettshjelp.dekning",
+              "status": "not_selected",
+              "conflict": false
+            },
+            {
+              "id": "hus.rettshjelp.dekning",
+              "status": "selected",
+              "conflict": false
+            }
+          ]
+        ],
+        "after": [
+          [
+            {
+              "id": "rettshjelp.dekning",
+              "status": "not_selected",
+              "conflict": false
+            },
+            {
+              "id": "hus.rettshjelp.dekning",
+              "status": "selected",
+              "conflict": false
+            }
+          ]
+        ],
+        "supporting": 0,
+        "terms": [
+          [
+            {
+              "name": "Rettshjelp",
+              "value": "Ikke valgt",
+              "key": "rettshjelp.dekning",
+              "coverageOrigin": "document",
+              "sources": [
+                {
+                  "documentId": "pdf:existing:0",
+                  "filename": "Dokument 1",
+                  "termsNumber": "Ikke oppgitt",
+                  "effectiveFrom": "",
+                  "page": 0,
+                  "section": "Dokumentopplysninger; side/punkt ikke identifisert",
+                  "documentRole": "individual_agreement"
+                }
+              ]
+            },
+            {
+              "name": "Rettshjelp",
+              "value": "Rimelige og nødvendige utgifter ved tvist i egenskap av personlig eier av forsikret eiendom i Norden, innenfor vilkårets domstols- og tvistkrav. Når sikrede er part i en dekningsmessig tvist, omfattes advokat, rettsgebyr, rettsoppnevnte sakkyndige og vitner ved hovedforhandling og bevisopptak. Rimelige og nødvendige utgifter til sakkyndige som ikke er oppnevnt av retten, er begrenset til 40 % av forsikringssummen eller den økonomiske interessen. I jordskiftesaker omfattes kostnader etter jordskifteloven § 7-1, unntatt bokstav c og d. Tvister som er oppstått mens forsikringen er i kraft, omfattes med de unntakene vilkåret angir. Tvist om ervervsrelatert drift på landbrukseiendom omfattes når årlig omsetning ikke overstiger 100 000 kroner. Ved tvist etter salg av bolig/hytte omfattes sikrede som tidligere eier dersom forsikringen i Gjensidige opphørte i forbindelse med salget. Tvist med selger ved kjøp av ny bolig/hytte som sikrede ennå ikke har overtatt og tegnet egen forsikring på, omfattes dersom tidligere tilsvarende eiendom var forsikret i Gjensidige på kjøpstidspunktet. Ved både bygnings- og innboforsikring på den omtvistede eiendommen kan bare rettshjelpen under bygningsforsikringen dekke utgiftene. For en dekningsmessig tvist anlagt som gruppesøksmål etter tvisteloven kapittel 35 som blir avvist, dekkes kostnader knyttet til saksanlegg med inntil 20 000 kroner for hver sikrede i Gjensidige, begrenset til den antatte økonomiske verdien av sikredes interesser i saken. Utbetalingen kommer til fradrag dersom ny rettshjelpdekning innvilges.",
+              "key": "hus.rettshjelp.dekning",
+              "coverageOrigin": "catalog",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Rettshjelp",
+                "page": 8,
+                "version": "Alminnelige vilkår"
+              },
+              "sources": [
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp",
+                  "page": 8,
+                  "version": "Alminnelige vilkår"
+                },
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Hva er en tvist / Hvilke domstoler tvisten må høre inn under",
+                  "page": 10,
+                  "version": "Alminnelige vilkår"
+                }
+              ],
+              "overriddenBase": []
+            },
+            {
+              "name": "Rettshjelp – forsikringssum",
+              "value": "100 000 kroner per tvist for 1–2 parter; den samlede erstatningen ved hver tvist er begrenset til forsikringssummen i forsikringsbeviset og under enhver omstendighet til den økonomiske verdien av sikredes interesse i saken. For flere parter forsikret i Gjensidige på sikredes side gjelder én forsikringssum per tvist: 3–10 parter 250 000, 11–25 parter 500 000, 26–49 parter 750 000 og 50+ parter 1 000 000 kroner. Gjensidige dekker bare parter forsikret i Gjensidige. Dersom gruppesøksmål fremmes, er samlet erstatning for alle tvistene begrenset til 500 000 kroner, og til den antatte økonomiske verdien av sikredes interesser i saken. For dekningsmessige tvister mellom sameiere er summen 100 000 kroner; sameiere under samme forsikring deler 100 000 kroner likt. Ved tvist knyttet til horisontal tomannsbolig har hver part sin forsikringssum på 100 000 kroner.",
+              "key": "hus.rettshjelp.grense",
+              "coverageOrigin": "catalog",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Rettshjelp – Forsikringssum og egenandel",
+                "page": 10,
+                "version": "Alminnelige vilkår"
+              },
+              "sources": [
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Forsikringssum og egenandel",
+                  "page": 10,
+                  "version": "Alminnelige vilkår"
+                },
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Hvilke tvister / Gruppesøksmål og flerpart",
+                  "page": 9,
+                  "version": "Alminnelige vilkår"
+                }
+              ],
+              "overriddenBase": []
+            },
+            {
+              "name": "Rettshjelp – egenandel",
+              "value": "4 000 kroner pluss 20 % av de dekkede utgiftene. Det trekkes bare én egenandel per tvist, også når flere parter er på samme side. Ved utenrettslig mekling via Mekle.no er egenandelen 0 kroner; den økonomiske interessen må overstige den faste egenandelen. Mekle.no er et alternativ til dekning av advokat, retten, sakkyndige og vitner etter tvisteloven § 5-4, med sertifiserte, upartiske og uavhengige meklere med særskilt kompetanse innen rettsområdet. Sikredes egen advokat i meklingsprosessen dekkes ikke. Sikrede kan når som helst avslutte meklingen og beholder da rettshjelpdekningen.",
+              "key": "hus.rettshjelp.egenandel",
+              "coverageOrigin": "catalog",
+              "deductibleClassification": "override",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Rettshjelp – Forsikringssum og egenandel",
+                "page": 10,
+                "version": "Alminnelige vilkår"
+              },
+              "sources": [
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Forsikringssum og egenandel",
+                  "page": 10,
+                  "version": "Alminnelige vilkår"
+                },
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Hvilke utgifter / Mekle.no",
+                  "page": 8,
+                  "version": "Alminnelige vilkår"
+                }
+              ],
+              "overriddenBase": []
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "mode": "document-pipeline",
+      "id": "gjensidige-hus",
+      "role": "individual_agreement",
+      "side": "existing",
+      "vs": [
+        [
+          "hus.rettshjelp.dekning",
+          "Valgt"
+        ],
+        [
+          "hus.rettshjelp.dekning",
+          "Ikke valgt"
+        ]
+      ],
+      "result": {
+        "before": [
+          [
+            {
+              "id": "rettshjelp.dekning",
+              "status": "unknown",
+              "conflict": true
+            },
+            {
+              "id": "hus.rettshjelp.dekning",
+              "status": "selected",
+              "conflict": false
+            }
+          ]
+        ],
+        "after": [
+          [
+            {
+              "id": "rettshjelp.dekning",
+              "status": "unknown",
+              "conflict": true
+            },
+            {
+              "id": "hus.rettshjelp.dekning",
+              "status": "selected",
+              "conflict": false
+            }
+          ]
+        ],
+        "supporting": 0,
+        "terms": [
+          [
+            {
+              "name": "Rettshjelp",
+              "value": "Valgt",
+              "key": "rettshjelp.dekning",
+              "coverageOrigin": "document",
+              "sources": [
+                {
+                  "documentId": "pdf:existing:0",
+                  "filename": "Dokument 1",
+                  "termsNumber": "Ikke oppgitt",
+                  "effectiveFrom": "",
+                  "page": 0,
+                  "section": "Dokumentopplysninger; side/punkt ikke identifisert",
+                  "documentRole": "individual_agreement"
+                }
+              ]
+            },
+            {
+              "name": "Rettshjelp",
+              "value": "Ikke valgt",
+              "key": "rettshjelp.dekning",
+              "coverageOrigin": "document",
+              "sources": [
+                {
+                  "documentId": "pdf:existing:0",
+                  "filename": "Dokument 1",
+                  "termsNumber": "Ikke oppgitt",
+                  "effectiveFrom": "",
+                  "page": 0,
+                  "section": "Dokumentopplysninger; side/punkt ikke identifisert",
+                  "documentRole": "individual_agreement"
+                }
+              ]
+            },
+            {
+              "name": "Rettshjelp",
+              "value": "Rimelige og nødvendige utgifter ved tvist i egenskap av personlig eier av forsikret eiendom i Norden, innenfor vilkårets domstols- og tvistkrav. Når sikrede er part i en dekningsmessig tvist, omfattes advokat, rettsgebyr, rettsoppnevnte sakkyndige og vitner ved hovedforhandling og bevisopptak. Rimelige og nødvendige utgifter til sakkyndige som ikke er oppnevnt av retten, er begrenset til 40 % av forsikringssummen eller den økonomiske interessen. I jordskiftesaker omfattes kostnader etter jordskifteloven § 7-1, unntatt bokstav c og d. Tvister som er oppstått mens forsikringen er i kraft, omfattes med de unntakene vilkåret angir. Tvist om ervervsrelatert drift på landbrukseiendom omfattes når årlig omsetning ikke overstiger 100 000 kroner. Ved tvist etter salg av bolig/hytte omfattes sikrede som tidligere eier dersom forsikringen i Gjensidige opphørte i forbindelse med salget. Tvist med selger ved kjøp av ny bolig/hytte som sikrede ennå ikke har overtatt og tegnet egen forsikring på, omfattes dersom tidligere tilsvarende eiendom var forsikret i Gjensidige på kjøpstidspunktet. Ved både bygnings- og innboforsikring på den omtvistede eiendommen kan bare rettshjelpen under bygningsforsikringen dekke utgiftene. For en dekningsmessig tvist anlagt som gruppesøksmål etter tvisteloven kapittel 35 som blir avvist, dekkes kostnader knyttet til saksanlegg med inntil 20 000 kroner for hver sikrede i Gjensidige, begrenset til den antatte økonomiske verdien av sikredes interesser i saken. Utbetalingen kommer til fradrag dersom ny rettshjelpdekning innvilges.",
+              "key": "hus.rettshjelp.dekning",
+              "coverageOrigin": "catalog",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Rettshjelp",
+                "page": 8,
+                "version": "Alminnelige vilkår"
+              },
+              "sources": [
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp",
+                  "page": 8,
+                  "version": "Alminnelige vilkår"
+                },
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Hva er en tvist / Hvilke domstoler tvisten må høre inn under",
+                  "page": 10,
+                  "version": "Alminnelige vilkår"
+                }
+              ],
+              "overriddenBase": []
+            },
+            {
+              "name": "Rettshjelp – forsikringssum",
+              "value": "100 000 kroner per tvist for 1–2 parter; den samlede erstatningen ved hver tvist er begrenset til forsikringssummen i forsikringsbeviset og under enhver omstendighet til den økonomiske verdien av sikredes interesse i saken. For flere parter forsikret i Gjensidige på sikredes side gjelder én forsikringssum per tvist: 3–10 parter 250 000, 11–25 parter 500 000, 26–49 parter 750 000 og 50+ parter 1 000 000 kroner. Gjensidige dekker bare parter forsikret i Gjensidige. Dersom gruppesøksmål fremmes, er samlet erstatning for alle tvistene begrenset til 500 000 kroner, og til den antatte økonomiske verdien av sikredes interesser i saken. For dekningsmessige tvister mellom sameiere er summen 100 000 kroner; sameiere under samme forsikring deler 100 000 kroner likt. Ved tvist knyttet til horisontal tomannsbolig har hver part sin forsikringssum på 100 000 kroner.",
+              "key": "hus.rettshjelp.grense",
+              "coverageOrigin": "catalog",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Rettshjelp – Forsikringssum og egenandel",
+                "page": 10,
+                "version": "Alminnelige vilkår"
+              },
+              "sources": [
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Forsikringssum og egenandel",
+                  "page": 10,
+                  "version": "Alminnelige vilkår"
+                },
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Hvilke tvister / Gruppesøksmål og flerpart",
+                  "page": 9,
+                  "version": "Alminnelige vilkår"
+                }
+              ],
+              "overriddenBase": []
+            },
+            {
+              "name": "Rettshjelp – egenandel",
+              "value": "4 000 kroner pluss 20 % av de dekkede utgiftene. Det trekkes bare én egenandel per tvist, også når flere parter er på samme side. Ved utenrettslig mekling via Mekle.no er egenandelen 0 kroner; den økonomiske interessen må overstige den faste egenandelen. Mekle.no er et alternativ til dekning av advokat, retten, sakkyndige og vitner etter tvisteloven § 5-4, med sertifiserte, upartiske og uavhengige meklere med særskilt kompetanse innen rettsområdet. Sikredes egen advokat i meklingsprosessen dekkes ikke. Sikrede kan når som helst avslutte meklingen og beholder da rettshjelpdekningen.",
+              "key": "hus.rettshjelp.egenandel",
+              "coverageOrigin": "catalog",
+              "deductibleClassification": "override",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Rettshjelp – Forsikringssum og egenandel",
+                "page": 10,
+                "version": "Alminnelige vilkår"
+              },
+              "sources": [
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Forsikringssum og egenandel",
+                  "page": 10,
+                  "version": "Alminnelige vilkår"
+                },
+                {
+                  "documentId": "gjensidigeHusStandard",
+                  "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                  "termsNumber": "Hus Standard",
+                  "effectiveFrom": "",
+                  "company": "Gjensidige",
+                  "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                  "section": "Rettshjelp – Hvilke utgifter / Mekle.no",
+                  "page": 8,
+                  "version": "Alminnelige vilkår"
+                }
+              ],
+              "overriddenBase": []
+            }
+          ]
+        ]
+      }
+    }
+  ],
+  "repeat_alias_metadata_transitions": [
+    {
+      "id": "gjensidige-hus",
+      "before": [
+        {
+          "key": "hus.rettshjelp.dekning",
+          "nextKey": "hus.rettshjelp.dekning",
+          "changedFields": []
+        },
+        {
+          "key": "hus.rettshjelp.grense",
+          "nextKey": "hus.rettshjelp.grense",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        },
+        {
+          "key": "hus.rettshjelp.egenandel",
+          "nextKey": "hus.rettshjelp.egenandel",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "key": "hus.rettshjelp.dekning",
+          "nextKey": "hus.rettshjelp.dekning",
+          "changedFields": []
+        },
+        {
+          "key": "hus.rettshjelp.grense",
+          "nextKey": "hus.rettshjelp.grense",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        },
+        {
+          "key": "hus.rettshjelp.egenandel",
+          "nextKey": "hus.rettshjelp.egenandel",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gjensidige-hus-pluss",
+      "before": [
+        {
+          "key": "hus.rettshjelp.dekning",
+          "nextKey": "hus.rettshjelp.dekning",
+          "changedFields": []
+        },
+        {
+          "key": "hus.rettshjelp.grense",
+          "nextKey": "hus.rettshjelp.grense",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        },
+        {
+          "key": "hus.rettshjelp.egenandel",
+          "nextKey": "hus.rettshjelp.egenandel",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        }
+      ],
+      "after": [
+        {
+          "key": "hus.rettshjelp.dekning",
+          "nextKey": "hus.rettshjelp.dekning",
+          "changedFields": []
+        },
+        {
+          "key": "hus.rettshjelp.grense",
+          "nextKey": "hus.rettshjelp.grense",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        },
+        {
+          "key": "hus.rettshjelp.egenandel",
+          "nextKey": "hus.rettshjelp.egenandel",
+          "changedFields": [
+            "coverageOrigin",
+            "structuredValue",
+            "deductibleClassification",
+            "overriddenBase"
+          ]
+        }
+      ]
+    }
+  ],
+  "functions": [
+    "lib/document-fact-normalization.ts",
+    "lib/insurance-normalization.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/coverage-status.ts"
+  ],
+  "permanent_test": "tests/remediation-b-051-legal.test.mjs explicit-open-alias-characterization and actual schema-valid document fixtures",
+  "no_internal_fixture_claim_of_document_mapping": true,
+  "HTU_hold": "157c7afed18eb0fe / SC-019/SR-033 unchanged",
+  "next_minimum_decision": "Separate read-only mapping/selection decision preflight; no fix authorized"
+}

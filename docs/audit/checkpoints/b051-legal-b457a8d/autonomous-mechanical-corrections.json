@@ -1,0 +1,24 @@
+{
+  "policy": "ACTIVE_AUTONOMOUS_EXECUTION",
+  "numeric_stop_quota": null,
+  "historical_33_12_unchanged": true,
+  "roots": [
+    {
+      "name": "LEGAL_SOURCE_ROW_HEADING_INTERRUPT",
+      "classification": "MECHANICAL_SOURCE_ASSERTION",
+      "before": "Single extracted phrase interrupted by the actual tvister? row heading in next PDF line",
+      "after": "Page-specific left-column widths:65 on StandardPDF8/PlussPDF9 and58 on StandardPDF9/PlussPDF10; exact bounded clauses preserved, including row-heading split",
+      "independent_evidence": "Both frozen byte/hash verified original StandardPDF8/PlussPDF9; no production or insurance meaning changed",
+      "original_failure_log": "initial-source-column-failure.log.gz",
+      "column_cut_proof": {
+        "before63": "kraft, med mindre tvisten er unntatt i kolonnen t",
+        "after65": "kraft, med mindre tvisten er unntatt i kolonnen til",
+        "right_column_starts_at": 66,
+        "original_bytes_unchanged": true
+      },
+      "preliminary_run_history": "preliminary-targeted-history.json.gz",
+      "second_page_boundary_proof": "Right-column bullet begins59 (0-based), covered text ends within58; previously65 imported Rettshjelp before de parter",
+      "second_page_failure_log": "source-column-second-page-history.log.gz"
+    }
+  ]
+}

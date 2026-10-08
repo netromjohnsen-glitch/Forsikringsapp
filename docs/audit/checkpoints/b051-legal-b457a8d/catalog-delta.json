@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "tested_baseline": "b457a8d8368e6bc0b78fe8ec6747e978063aab15",
+  "component": "gjensidigeHusStandard",
+  "exact_changed_keys": [
+    "hus.rettshjelp.dekning",
+    "hus.rettshjelp.grense",
+    "hus.rettshjelp.egenandel"
+  ],
+  "only_production_file": "lib/gjensidige-hus-catalog.ts",
+  "entirely_unchanged_components": 317,
+  "protected_raw_facts": 4156,
+  "other_products_unchanged": 202,
+  "metadata_unchanged": true,
+  "B020_pests_and_all_prior_B051_rows_unchanged": true,
+  "source_expectation": "source-oracle.json exact source-derived approved3-row transformation",
+  "baseline_snapshot": "baseline-snapshot.json",
+  "probes": "pipeline-probes.json.gz",
+  "independent_fingerprints": "independent-fingerprint-expectations.json"
+}

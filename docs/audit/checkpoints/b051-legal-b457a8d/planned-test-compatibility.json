@@ -1,0 +1,16 @@
+{
+  "classification": "PREAUTHORIZED_SCOPE_WORK_NOT_MECHANICAL_ROOTS",
+  "transform": "tests/helpers/b051-legal.mjs",
+  "source_oracle": "source-oracle.json complete approved strings and row-specific source references",
+  "exact_keys": [
+    "hus.rettshjelp.dekning",
+    "hus.rettshjelp.grense",
+    "hus.rettshjelp.egenandel"
+  ],
+  "both_prior_expectation_contexts": true,
+  "immutable_Smart_snapshot": "../b051-smart-e21693e/baseline-snapshot.json; applyLegal in memory only",
+  "fingerprint_expectations": "independent-fingerprint-expectations.json source-transformed independent historical oracle, not production candidate",
+  "full_field_guarantees": "Raw own undefined retained; JSON omission retained; no broad comparison normalization added",
+  "collision_inventory": "preflight-compatibility-collisions.json",
+  "historical_artifact_edits": false
+}

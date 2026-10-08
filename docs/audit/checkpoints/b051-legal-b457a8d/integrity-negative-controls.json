@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "mechanism": "Existing strict verifier executed against isolated in-memory mutated reads; no project bytes changed",
+  "controls": [
+    {
+      "case": "candidate hash mismatch",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "missing prior receipt",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "mismatched original binding",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "hold status changed",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "extra manifest file",
+      "result": "PASS_REJECTED"
+    }
+  ]
+}

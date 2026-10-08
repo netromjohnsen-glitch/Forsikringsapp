@@ -1,3 +1,4 @@
+import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
 import {applyHealthHelp} from './helpers/b051-health-help.mjs';
 import { applyLiability } from './helpers/b051-liability.mjs';
@@ -18,7 +19,7 @@ import {baselineCatalog as previousBaseline, sourceOracle as oracle} from '../do
 import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0bcd250/expected-catalog.mjs';
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
-const baseline=applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(applySettlement(previousBaseline))))));
+const baseline=applyLegal(applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(applySettlement(previousBaseline)))))));
 const candidate=productCatalog;
 const audit=new URL('../docs/audit/checkpoints/b051-craftsmanship-0cedd98/',import.meta.url);
 const keys=Object.keys(oracle),ids=['gjensidige-hus','gjensidige-hus-pluss'];

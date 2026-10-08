@@ -1,0 +1,147 @@
+B-051 RETTSHJELP — AUTORISERT KATALOGIMPLEMENTERING
+
+Gjennomfør den katalogavgrensede preflight-planen for:
+35c58fbc06cf6e7d
+90d49006ef7999d3
+
+Bindinger:
+- Hus: GAP-2106/SF-3019 og GAP-2105/SF-3018.
+- Hus Pluss: GAP-2165/SF-3106 og GAP-2164/SF-3105.
+
+Les AGENTS.md, gjeldende autonom workflow, checkpoint og preflight.
+
+Forventet baseline:
+b457a8d8368e6bc0b78fe8ec6747e978063aab15
+
+Verifiser faktisk HEAD, origin/main og remote main.
+Avstem nyere endringer uten å overskrive arbeid.
+
+1. EKSAKT PRODUKSJONSFULLMAKT
+
+Endre bare tre eksisterende rader i gjensidigeHusStandard
+i lib/gjensidige-hus-catalog.ts:
+- hus.rettshjelp.dekning
+- hus.rettshjelp.grense
+- hus.rettshjelp.egenandel
+
+Pluss beholder eksisterende arv.
+
+Bruk de eksakte komplette verdiene og avsnittshenvisningene i:
+/tmp/b051-legal-proposal.json
+
+Verifiser dem mot originalkildene før implementering.
+Bevar forslaget i den nye revisjonsbundne bevispakken.
+Hvis filen mangler, gjenetabler fulltekstgrunnlaget fra originalkildene
+og dokumenter ekvivalens før implementering; ikke bruk sammendraget
+som fulltekstfasit.
+
+Bevar alle kildebestemte kvalifikasjoner, herunder:
+- Norden og dekkede kostnadstyper.
+- Sakkyndiggrensen på 40 %.
+- Landbruksomsetning og tidligere-/fremtidig eierskap.
+- Bygningsforsikringens prioritet foran innbo.
+- Gruppespørsmål, interessetak, flerpartssummer og sameierfordeling.
+- 4 000 kr + 20 %, Mekle.no 0 kr og én egenandel per tvist.
+- Vilkårene om økonomisk interesse, egen advokat og avsluttet mekling.
+
+Bevar etiketter, øvrige kildefelter og egenandelsklassifisering.
+Bruk radspesifikke primær-/supplerende henvisninger som foreslått.
+Ingen nye rader, nøkler, kilder eller sourceType-metadata.
+
+Kildehasher:
+Standard:
+d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc
+Pluss:
+79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792
+
+2. BESKYTT BESLUTNINGSGRENSENE
+
+Ingen av de motstridende HTU-utsagnene skal innføres eller avgjøres.
+157c7afed18eb0fe — SC-019/SR-033 forblir holdt.
+
+Ingen endring i normalisering, ekstraksjonens canonical-enum,
+mapping, enrichment eller selection.
+
+Dokumenter aliasfeilen separat med faktisk pipelinebevis:
+rettshjelp.dekning versus hus.rettshjelp.dekning,
+inkludert dokumentavslag og konflikt sammen med katalog-selected.
+
+Karakteriser baselineoppførselen uten å fremstille den som
+korrekt kundemodus. Interne canonical-fixtures er ikke bevis
+på faktisk dokumentmapping.
+
+3. TESTFULLMAKT
+
+Opprett tests/remediation-b-051-legal.test.mjs.
+
+Autoriser preflightens presise kompatibilitetsoppdateringer:
+- Én uavhengig, kildebasert tre-radstransformasjon.
+- B-020s tre R-020-06-fingerprints med differansebevis.
+- B-050s delte reverse-forventninger.
+- Aktive B-051-forventninger i garden, events-buildings,
+  craftsmanship, settlement-age, recovery-benefits,
+  physical-exclusions, liability, health-help og smart.
+- Berørte Liability/Health-help-fingerprints og komplette
+  canonical-forventninger.
+
+Bruk kollisjonsinventaret:
+/tmp/b051-legal-compatibility-collisions.json
+
+Bevar historiske snapshots, orakler, receipts og auditpakker.
+Smart-snapshotet bevares; transformasjonen anvendes i minnet.
+Tidligere scopes får den godkjente transformasjonen i begge
+forventningsgrunnlag der det kreves for å bevare deres isolasjon.
+
+Kandidaten skal ikke være dynamisk fasit.
+Bevar streng full-field-kontroll og negative assertions.
+
+Test komplette kilderegler, fire bindinger, provenance,
+kundeverdiprioritet, interne statusvarianter, faktisk dokumentpipeline,
+supporting terms, manuelle modi, arv/tillegg, gjentatt enrichment,
+samme produkt og begge retninger.
+
+4. AUTONOMI OG SLUTTGATER
+
+Bruk gjeldende stående fullmakt til beviste mekaniske rettinger.
+Før dem samlet i separat logg; historisk 33/12 bevares uendret.
+Ingen nye bekreftelser for rutinearbeid innen denne fullmakten.
+
+Stopp berørt arbeid ved kildekonflikt, usikker betydning,
+integritetsavvik eller behov for ny mapping-/selection-kontrakt.
+
+Kjør:
+- Ny målrettet gate og relevante tidligere regresjoner.
+- Kilde-/bindings-/reverse-audit og isolasjon.
+- Komplett faktisk remedieringsmanifest og fullsuite.
+- Next typegen, TypeScript og ESLint med lintavstemming.
+- Webpack production build og HTTP/PDF-runtime.
+- Receipt-, checksum-, lenke-, kandidat- og staged-integritet.
+- Arbeidsdiff og staged diff --check, inkludert nye filer.
+
+Verifiser 317 øvrige komponenter, 4156 øvrige råfakta,
+metadata og 202 andre produkters effektive fakta uendret.
+Bevar alle 58 tidigare receipts, B-020s skadedyrfakta og alle holds.
+
+Lag én kompakt bevispakke med henvisninger til historiske pakker.
+
+5. COMPLETION OG PUBLISERING
+
+Kontroller originalbindingenes closure-krav før signaturlukking.
+Hvis de krever løsning av aliasfeilen eller HTU-konflikten,
+behold berørte signaturer åpne og rapporter delresultatet.
+
+Hvis begge katalogkontraktene tilfredsstiller closure og alle
+sluttgater består:
+- Opprett to individuelle katalogavgrensede receipts.
+- Verifiser 60 unike dokumenterte kampanjesignaturer.
+- B-051: 34 fullført / 1 kandidat /
+  2 revalideringskandidater / 2 holds.
+
+Aliasfunnet og øvrige holds forblir åpne.
+Globalt resolved/open forblir UKJENT. Ingen P2-kreditt.
+
+Oppdater checkpoint/status og publiser atomisk med publish.py
+etter fersk remote-avstemming og komplett PASS.
+Verifiser remote SHA, clean working tree og staged = 0.
+
+Ingen force-push, deploy eller senere bolk.

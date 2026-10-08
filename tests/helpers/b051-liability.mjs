@@ -1,3 +1,4 @@
+import {applyLegal} from './b051-legal.mjs';
 import {applySmart} from './b051-smart.mjs';
 import {applyHealthHelp} from './b051-health-help.mjs';
 import assert from 'node:assert/strict';
@@ -5,7 +6,7 @@ import {readFileSync} from 'node:fs';
 import {productCatalog} from '../../lib/product-catalog.ts';
 import {expectedCatalog as previousCatalog} from '../../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
 export const sourceOracle=JSON.parse(readFileSync(new URL('../../docs/audit/checkpoints/b051-liability-3947e4e/source-oracle.json',import.meta.url)));
-export const baselineCatalog=applySmart(applyHealthHelp(previousCatalog));
+export const baselineCatalog=applyLegal(applySmart(applyHealthHelp(previousCatalog)));
 export function transformLiabilityRows(rows,owner){
  if(owner!==sourceOracle.owner)return rows;
  assert.equal(rows.filter(f=>f.key===sourceOracle.key).length,1);
