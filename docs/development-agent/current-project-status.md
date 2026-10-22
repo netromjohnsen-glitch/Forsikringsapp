@@ -1,5 +1,35 @@
 # Aktuell dokumentert prosjektstatus
 
+## Rettshjelp – validert dokumentprioritet 22. oktober 2026
+
+Rettingen er validert på fersk main 2b198f9ebf52aa283056b3a052edf0fa0cdd311f og retter
+Rettshjelp på Gjensidige Hus Standard og Hus Pluss, ordinary / Alminnelige vilkår.
+Faktisk uttrekk bruker nå samme produktbundne dekning som katalogen.
+«Ikke valgt» gir én not_selected; motstridende kundeopplysninger gir én
+unknown/conflict. Katalogens rettshjelpspåstand og detaljer overstyrer ikke disse.
+Kundeverdier, komplette kilder og supporting evidence beholdes; gjentatt beriking
+lager ingen ekstra generisk valgt dekning. Dokumentert Rettshjelp vises som
+basisdekning og ikke som et valgt tillegg; rå tilleggsopplysninger beholdes.
+
+72/72 nye målrettede kontroller og 5592/5592 tester i 160 filer PASS, uten skip.
+Typegen/TypeScript, webpack-bygg og lokal syntetisk HTTP/PDF-runtime 22/22 PASS.
+ESLint 0 feil / 27 identiske warnings. Katalog og kildefiler er uendret;
+202 øvrige produkters kontrollerte berikingsresultater er eksakt baseline-identiske.
+[Receipt](../audit/checkpoints/b051-legal-priority-2b198f9/completion-receipt-legal-document-priority.json),
+[gjeldende checkpoint](../audit/checkpoints/b051-legal-priority-2b198f9/checkpoint.json),
+[validering](../audit/checkpoints/b051-legal-priority-2b198f9/validation-summary.json)
+og [bevispakke](../audit/checkpoints/b051-legal-priority-2b198f9/README.md).
+
+Publisering med commit og push er eksplisitt autorisert. Rettingen, receipt og
+prosjektstatus er publisert når denne committen er verifisert på remote main;
+[publiseringsfullmakt og kontroller](../audit/checkpoints/b051-legal-priority-2b198f9/publication-authorization.md).
+Ingen deployhandling. Testet basis-SHA og kandidatens filidentitet er ført separat
+i receipt. Dette lukker bare den dokumenterte kundemapping-/prioritetsfeilen;
+det gir ingen ny originalsignatur- eller P2-kreditt. HTU-konflikten
+157c7afed18eb0fe / SC-019/SR-033 og alle øvrige HOLD er uendret.
+B-051-partisjonen er fortsatt 37/0/1/1 og kampanjetallet er fortsatt 63.
+NITO og Sentralbord venter. Ingen neste produksjonsbolk er startet.
+
 ## Vann etter dekket bygningsskade – validert fullføring
 
 25004bc4d7dd2c03 er implementert for Hus Standard GAP-2088/SF-2991 og
@@ -16,8 +46,9 @@ ESLint 0 feil / 27 uendrede warnings. Full identitet og bevis:
 [gjeldende checkpoint](../audit/checkpoints/b051-water-25004-cd6e03d/checkpoint.json),
 [validering](../audit/checkpoints/b051-water-25004-cd6e03d/validation-summary.json).
 
-Fullføringen er publisert når denne committen er verifisert på remote main.
-Bare vannsignaturen flyttes til fullført i denne bolken. Ingen deployhandling.
+Vannfullføringen er publisert på remote main i 2b198f9ebf52aa283056b3a052edf0fa0cdd311f,
+verifisert ved starten og avslutningen av den lokale Rettshjelp-bolken.
+Bare vannsignaturen ble flyttet til fullført i denne bolken. Ingen deployhandling.
 
 ## Tidligere publisert revalidering av dyredekning
 
@@ -33,7 +64,7 @@ kildepunkt er kontrollert på nytt; fullsuite, bygg og runtime er ikke kjørt p�
 [gjeldende checkpoint](../audit/checkpoints/b051-revalidation-41206-f7b4007/checkpoint.json) og
 [validering](../audit/checkpoints/b051-revalidation-41206-f7b4007/validation-summary.json).
 
-Lukkingen er publisert når denne dokumentasjonscommitten er verifisert på remote main.
+Lukkingen er publisert i cd6e03de824d46a514413d2d86fbcae9c39e12c4, som inngår i fersk main.
 Testet applikasjonsrevisjon er f7b4007; publiseringscommitten inneholder bare dokumentasjon.
 Historiske receipts og øvrige HOLD er uendret. Ingen deploy.
 
@@ -71,10 +102,14 @@ diagnostikk 19/12, HARNESS_AUTONOMY_V1 33/12 og DEFER_SAFE omskrives ikke.
 [Nye mekaniske rettinger](../audit/checkpoints/b051-manual-rot-choice-2a2d0fc/autonomous-mechanical-corrections.json)
 føres separat uten numerisk stoppkvote. Ingen P2-kreditt.
 
-Smart-kundemodus, Rettshjelp-alias, HTU-konflikt,
-SC-020/SR-032, SC-035/SR-031, B-071-holdet og øvrige holds er bevart.
+Smart-kundemodus, HTU-konflikt, SC-020/SR-032, SC-035/SR-031, B-071-holdet
+og øvrige holds er bevart. Rettshjelps kundemapping/prioritet er validert rettet
+i rettelsen ovenfor; historiske receipts og øvrige metadataoverganger er bevart.
 8a89196fecd29ddb beholdes åpen og på HOLD: landbruks-/næringsunntakets
 anvendelse på bekjempelse krever autoritativ avklaring. Ingen lukking av denne kandidaten.
-Ingen senere produksjonsbolk eller deploy er autorisert. NITO og Sentralbord venter.
+Ingen ny produksjonsbolk eller deploy er autorisert. NITO og Sentralbord venter.
+Øvrig pre-pilot: personforsikring/pilotscope, sikkerhet/GDPR (inkludert fortsatt
+uavklart P3-A05-identitet/mergestatus), kritisk UX, feedback og operativ rådgiveraksept
+forblir synlige og er ikke startet som nye arbeidsstrømmer.
 
 CATALOG_PILOT_GATE = REMEDIATION_REQUIRED

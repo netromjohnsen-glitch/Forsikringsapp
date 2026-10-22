@@ -1,0 +1,26 @@
+{
+  "historical_logs_retained": true,
+  "attempts": [
+    {
+      "log": "first-targeted.tap.gz",
+      "reason": "Four new tests assumed unproved house-object merging; LP-M01 corrected fixture contract"
+    },
+    {
+      "log": "fullsuite-initial.log.gz",
+      "reason": "180 historical assertions expected duplicate generic selected coverage; requested mapping fix requires explicit active expected-behavior updates"
+    },
+    {
+      "log": "targeted-acceptance.log.gz",
+      "reason": "Six new addon fixtures omitted required schema fields; LP-M02"
+    },
+    {
+      "log": "targeted-completion.log.gz",
+      "reason": "Six new display tests found raw addon normalization returns rettshjelp, so scoped canonical comparison was incomplete; corrected with existing normalizeCatalogTermKey inside exact product scope"
+    },
+    {
+      "log": "fullsuite-publishable.log.gz",
+      "reason": "Not a fullsuite execution: missing --test; invalidated, no suite credit, superseded by fullsuite-verified"
+    }
+  ],
+  "final_evidence": "validation-summary.json"
+}

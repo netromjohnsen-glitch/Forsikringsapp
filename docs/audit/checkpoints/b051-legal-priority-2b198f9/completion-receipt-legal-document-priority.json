@@ -1,0 +1,61 @@
+{
+  "classification": "CUSTOMER_DOCUMENT_PRIORITY_IMPLEMENTATION_NOT_ORIGINAL_SIGNATURE_COMPLETION",
+  "finding": "LEGAL_DOCUMENT_PRIORITY",
+  "status": "PASS_VALIDATED",
+  "base_revision": "2b198f9ebf52aa283056b3a052edf0fa0cdd311f",
+  "tested_candidate_identity_sha256": "06751b3b8e1f150d9a7226aee56876475884e33a8cd53656a234afd820340329",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "provider": "gjensidige",
+  "insurance_type": "bolig",
+  "agreement_scope": "ordinary",
+  "version": "Alminnelige vilkår",
+  "production_scope": [
+    "lib/catalog-enrichment.ts"
+  ],
+  "contract": {
+    "identity": "rettshjelp.dekning -> hus.rettshjelp.dekning after exact supported product resolution; explicit other/detail keys untouched",
+    "refusal": "one house coverage not_selected; catalog parent and related legal details suppressed",
+    "conflict": "one house coverage unknown/conflict; both customer values and sources retained; catalog legal details suppressed",
+    "positive_and_silence": "established included-base behavior retained; no optional addon ID fabricated",
+    "display": "same identity classifies Rettshjelp as standard base; raw addOn terms retained",
+    "supporting": "supporting terms stay separate and cannot create customer selection",
+    "repeat": "no phantom generic selected coverage on repeat"
+  },
+  "baseline_evidence": "baseline-reproduction.json",
+  "permanent_test": "tests/remediation-b-051-legal-priority.test.mjs",
+  "pipeline_observations": "pipeline-observations-publishable.json",
+  "validation": "validation-summary.json",
+  "gate_manifest": "gate-results.json",
+  "candidate_identity": "candidate-identity.json",
+  "source_catalog_and_reverse_audit": {
+    "catalog_bytes_and_sources_modified": false,
+    "catalog_v8_identity_unchanged": "ac7af25e72e98a61d682c2d830d3e5e2c798fe687d8d7f8b983f3e22cc9ceb24",
+    "other_product_exact_output_baselines": 202,
+    "source_meaning_changes": false,
+    "global_alias_change": false,
+    "proof": "permanent test plus git changed-file inventory; baseline-identity.json"
+  },
+  "HTU_hold": "157c7afed18eb0fe / SC-019/SR-033 UNCHANGED",
+  "other_holds_unchanged": true,
+  "original_signature_closure_credit": 0,
+  "documented_campaign_count": 63,
+  "B051_partition_counts": [
+    37,
+    0,
+    1,
+    1
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

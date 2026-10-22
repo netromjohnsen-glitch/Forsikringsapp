@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "base_revision": "2b198f9ebf52aa283056b3a052edf0fa0cdd311f",
+  "tested_candidate_identity_sha256": "06751b3b8e1f150d9a7226aee56876475884e33a8cd53656a234afd820340329",
+  "checksummed_packet_files": 45,
+  "prior_packet_files_verified": 35,
+  "protected_checkpoint_fields_identical": [
+    "holds_unchanged",
+    "additional_B051_holds_unchanged",
+    "current_B051_completed_signatures",
+    "current_B071_revalidated_signatures",
+    "current_B071_not_revalidated",
+    "documented_campaign_signatures",
+    "B051_partition_counts",
+    "documented_campaign_count",
+    "historical_only",
+    "historical_DEFER_SAFE_signatures",
+    "HARNESS_AUTONOMY_V1"
+  ],
+  "test_manifest_files": 160,
+  "json_and_markdown_links": "PASS",
+  "candidate_and_gate_source_hashes": "PASS",
+  "compressed_logs_readable": "PASS",
+  "diff_check": "PASS",
+  "staged_files": 0,
+  "tracked_changes": [
+    "docs/development-agent/current-project-status.md",
+    "lib/catalog-enrichment.ts",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/remediation-b-051-legal.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs"
+  ],
+  "untracked_scope": "new packet and one permanent test only",
+  "checksum_file_sha256": "aea8284efd6a4bb4aa947d0e48323f55b242bdcf10b1c0b6453a423523e2388d",
+  "no_commit_push_deploy": true
+}

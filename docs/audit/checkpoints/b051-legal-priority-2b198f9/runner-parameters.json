@@ -1,0 +1,28 @@
+{
+  "runner": "../b051-physical-exclusions-0be8fad/run-final-gates.py",
+  "reuse": "run() definition reused with current ROOT/OUT/BASE/APP; command arrays and hashes are in gate-results.json",
+  "BASE": "2b198f9ebf52aa283056b3a052edf0fa0cdd311f",
+  "APP": [
+    "lib/catalog-enrichment.ts",
+    "tests/remediation-b-051-legal-priority.test.mjs",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/remediation-b-051-legal.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs"
+  ],
+  "PATH_prepend": "/Users/morten/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin",
+  "final_gate_labels": [
+    "targeted-publishable",
+    "fullsuite-verified",
+    "typegen-publishable",
+    "typescript-publishable",
+    "eslint-publishable",
+    "production-build-publishable",
+    "http-pdf-runtime-publishable"
+  ],
+  "test_manifest": "test-manifest.json",
+  "final_suite_requires_flag": "node --test --test-reporter=tap <all 160 manifest files>",
+  "invalidated_non_suite_label": "fullsuite-publishable (missing --test, executed first file only; no fullsuite credit)"
+}

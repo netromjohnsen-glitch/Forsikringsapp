@@ -203,7 +203,8 @@ for (const id of ids) for (const key of actualKeys(id)) test('R-051-EVENTS-DOCUM
       assert.deepEqual(a.filter(c => !b.some(d => d.id === c.id)), []);
       return b.filter(c => !a.some(d => d.id === c.id));
     };
-    const approvedAlias = [{ id: 'rettshjelp.dekning', status: 'selected', conflict: false }];
+    // Scoped document priority now preserves one house legal identity on repeat.
+    const approvedAlias = [];
     assert.deepEqual(transition(baselineFirst, baselineAgain), approvedAlias);
     assert.deepEqual(transition(actual, again), approvedAlias);
     assert.deepEqual(again.addOnIds, []);

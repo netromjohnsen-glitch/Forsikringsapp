@@ -38,7 +38,7 @@ for(const id of ids)for(const key of keys)for(const values of [[],['Valgt'],['Ik
  const fallback=!values.length||values[0]==='Ukjent';assert.deepEqual(pick(cur,key).map(t=>t.value),fallback?[oracle[key].value]:values);
  for(const t of pick(cur,key)){assert.equal(t.coverageOrigin,fallback?'catalog':'document');assert.deepEqual(t.source,fallback?fact(candidate,key).source:source);if(fallback)assert.deepEqual(t.sources,catalogFactSources(fact(candidate,key)));else assert.equal(Object.hasOwn(t,'sources'),false);}
  assert.deepEqual(pick(b,key).map(t=>[t.name,t.key,t.value,t.source,t.sources]),pick(cur,key).map(t=>[t.name,t.key,t.value,t.source,t.sources]));
- const added=(x,y)=>status(y).filter(v=>!status(x).some(w=>w.id===v.id));assert.deepEqual(added(cur,b),added(old,a));assert.deepEqual(added(cur,b),[{id:'rettshjelp.dekning',status:'selected',conflict:false}]);
+ const added=(x,y)=>status(y).filter(v=>!status(x).some(w=>w.id===v.id));assert.deepEqual(added(cur,b),added(old,a));assert.deepEqual(added(cur,b),[]);
 
 });
 for(const id of ids)for(const role of ['individual_agreement','unknown','general_terms'])for(const values of [[],['Valgt'],['Ikke valgt'],['Ukjent'],['Valgt','Ikke valgt'],['Kundevilkår 73 000 kr']])check('pipeline',()=>{

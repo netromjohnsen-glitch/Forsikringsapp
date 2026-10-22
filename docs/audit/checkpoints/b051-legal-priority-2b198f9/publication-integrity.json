@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "base_revision": "2b198f9ebf52aa283056b3a052edf0fa0cdd311f",
+  "tested_candidate_identity_sha256": "06751b3b8e1f150d9a7226aee56876475884e33a8cd53656a234afd820340329",
+  "production_and_test_files_unchanged": true,
+  "metadata_changes_only": {
+    "README.md": {
+      "before_sha256": "1877a6fb7ff547b519cc0831625edd6bb9d71e2b63a58e73a2e7f46d584b103a",
+      "after_sha256": "95f5573f4a6ebe94a19b208f47fae590574a5a3bbf551e8e5d15071df7691a1a"
+    },
+    "authorization.md": {
+      "before_sha256": "d753b85e6cbef4cc27a95224eb6d21726d24a23720c24760147aaedf59fb027f",
+      "after_sha256": "10d69b86c141cbe5fd09f8a98304d70e6142a9a19cba5cb39929ad928a661f7d"
+    },
+    "checkpoint.json": {
+      "before_sha256": "648c70d7b6b337bd99b0e899671827b6428488d34337c54f192eae0621d72e0f",
+      "after_sha256": "17fc88bf32e9e5c5f7d83b83618699e3b3539b8fabc2a4b3cd8f7885b6ee73cc"
+    },
+    "completion-receipt-legal-document-priority.json": {
+      "before_sha256": "fdff6afbdc81f1921a085ef48be0c829cee0d264821b4feda4b62224cabbf18c",
+      "after_sha256": "9a3db020a0add3482615ad3f80501640618a51c7549730172696a1c8d2a596b2"
+    },
+    "legal-customer-findings.json": {
+      "before_sha256": "575872ab2f930773128a01686b3edb09c0470df2f6f9d376f29f750114838fd7",
+      "after_sha256": "6c45d082bb276c1437d5e1245a05fab4c4541c2bd98e77078089176a79981fdc"
+    }
+  },
+  "project_status_before_sha256": "ac81022e29d362ee328d4ecc81b4e06125697f5b42a509bde096d0c3eb489dde",
+  "project_status_after_sha256": "2fd887aa6a04c56803dd3457954d4f18b9c7d2a554b2a7e10d86f2bfb665d6bf",
+  "original_packet_files_verified": 45,
+  "checksummed_packet_files": 48,
+  "checksum_file_sha256": "63461f079f768d9f5428378b631cc785998d3b8bee5acce3d08efe49d1f7b587",
+  "expected_commit_files": 60,
+  "protected_checkpoint_sets_unchanged": true,
+  "fullsuite_not_repeated": "Production/test identity unchanged; all seven existing final gates validated against candidate identity.",
+  "new_publication_documents": [
+    "publication-authorization.md",
+    "publication-preflight.json",
+    "publish-files.json",
+    "publication-integrity.json"
+  ],
+  "diff_check": "PASS",
+  "links": "PASS",
+  "no_deploy": true
+}

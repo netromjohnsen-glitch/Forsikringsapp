@@ -1,0 +1,76 @@
+{
+  "status": "PASS_LOCAL_CANDIDATE",
+  "base_revision": "2b198f9ebf52aa283056b3a052edf0fa0cdd311f",
+  "tested_candidate_identity_sha256": "06751b3b8e1f150d9a7226aee56876475884e33a8cd53656a234afd820340329",
+  "final_gate_labels": [
+    "targeted-publishable",
+    "fullsuite-verified",
+    "typegen-publishable",
+    "typescript-publishable",
+    "eslint-publishable",
+    "production-build-publishable",
+    "http-pdf-runtime-publishable"
+  ],
+  "targeted": {
+    "tests": 72,
+    "pass": 72,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "tests": 5592,
+    "pass": 5592,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "files": 160
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "warning_inventory_identical_to_pre_display_fix": true
+  },
+  "webpack_build": "PASS",
+  "local_synthetic_http_pdf": {
+    "result": "PASS",
+    "checks": 22,
+    "coverage": [
+      "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+      "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+      "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+      "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+      "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+      "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+      "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+      "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+      "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+      "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+      "unauthorized",
+      "manual/catalog",
+      "synthetic PDF to mocked AI to response",
+      "two-side concurrency",
+      "N documents to M products",
+      "capacity limit",
+      "invalid PDF before AI",
+      "strict form fields",
+      "429/no retries/sibling abort",
+      "admission released",
+      "private logging",
+      "semantic fallback telemetry/no unnecessary AI"
+    ],
+    "uses_synthetic_data_and_mocked_AI": true
+  },
+  "catalog_identity_unchanged": true,
+  "other_product_exact_baseline_outputs": 202,
+  "prior_packet_hashes_verified": 35,
+  "historical_receipts_unchanged": true,
+  "excluded_from_final_gates": [
+    "fullsuite-publishable"
+  ],
+  "no_skips": true,
+  "publication_status": "LOCAL_VALIDATED_NOT_COMMITTED_OR_PUSHED",
+  "deploy": "NOT_PERFORMED"
+}

@@ -1,12 +1,14 @@
 import type { MeasureSync } from "./analysis-telemetry.ts";
 import type { TraceObjectObserver } from "./production-trace.ts";
 import type { ExtractedAgreement, ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
+import { catalogAgreementScope } from "./agreement-scope.ts";
 import {
   normalizeCatalogTermKey,
   normalizeTermName,
   relatedCoveragesForInsuranceType,
   isUndocumentedTermValue,
   normalizeInsuranceType,
+  type RelatedCoverage,
 } from "./insurance-normalization.ts";
 import { mcBobilTypes } from "./mc-bobil-registry.ts";
 import { boatPetTypes } from "./boat-pet-registry.ts";
@@ -292,6 +294,19 @@ function enrichInsurance(
     return { ...insurance, importantTerms: documentTerms, catalogReference: null };
   }
 
+  // In these two verified ordinary products the document's generic legal-cover
+  // identity denotes the existing house legal cover. Keep values and provenance;
+  // do not widen aliases for other providers, products, versions or details.
+  const houseLegalKey = "hus.rettshjelp.dekning";
+  const scopedHouseLegal = product.providerId === "gjensidige" &&
+    ["gjensidige-hus", "gjensidige-hus-pluss"].includes(product.productId) &&
+    normalizeInsuranceType(product.insuranceType) === "bolig" &&
+    catalogAgreementScope(product) === "ordinary" && product.version === "Alminnelige vilkår";
+  if (scopedHouseLegal) {
+    documentTerms = documentTerms.map(term => term.key === "rettshjelp.dekning"
+      ? { ...term, key: houseLegalKey } : term);
+  }
+
   // MC/Bobil optional components remain separate from the base. Only an
   // explicit document-backed coverage selection can activate an applicable
   // component; catalog availability and document silence cannot select it.
@@ -334,7 +349,10 @@ function enrichInsurance(
     term.coverageOrigin === "document" && term.value.trim() && !isUndocumentedTermValue(term.value)
       ? overlapRules[normalizeCatalogTermKey(term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type }))] ?? []
       : []));
-  const coverageDefinitions = relatedCoveragesForInsuranceType(insurance.type);
+  const coverageDefinitions: readonly RelatedCoverage[] = [
+    ...relatedCoveragesForInsuranceType(insurance.type),
+    ...(scopedHouseLegal ? [{ parentKey: houseLegalKey, label: "Rettshjelp", details: [] }] : []),
+  ];
   // Resolve the document's coverage set once, rather than re-deriving the
   // entire set once for every individual coverage definition.
   const documentCoverageStatuses = new Map(deriveCanonicalCoverages(
@@ -438,7 +456,9 @@ function enrichInsurance(
     // Model addOns are evidence of coverage, not sufficient proof of product
     // role. Preserve every term, but separate documented base from additions.
     addOns: insurance.addOns.map((addOn) => {
-      const key = normalizeTermName(addOn.name, { insuranceType: insurance.type });
+      const documentKey = normalizeTermName(addOn.name, { insuranceType: insurance.type });
+      const key = scopedHouseLegal && normalizeCatalogTermKey(documentKey) === "rettshjelp.dekning"
+        ? houseLegalKey : documentKey;
       const definition = coverageDefinitions.find((entry) => entry.parentKey === key);
       const knownAddOn = availableAddOns(product, asOf, null, catalog).some((entry) =>
         normalizeTermName(entry.name, { insuranceType: insurance.type }) === key);

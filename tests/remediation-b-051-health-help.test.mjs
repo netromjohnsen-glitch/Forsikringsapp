@@ -37,7 +37,7 @@ const pick=i=>i.importantTerms.filter(t=>t.key===key);
 const sample=[];let n=0;const check=(name,fn)=>test('R-051-HEALTH-'+(++n)+':'+name,fn);
 for(const id of ids)for(const vs of [[],['Valgt'],['Ikke valgt'],['Ukjent'],['Valgt','Ikke valgt'],['Kundevilkår 73 000 kr']])check('enrichment',()=>{
  const a=enrich(baseline,id,vs),b=enrich(candidate,id,vs),aa=repeat(baseline,a),bb=repeat(candidate,b);
- assert.deepEqual(state(b),state(a));assert.deepEqual(state(bb),state(aa));assert.deepEqual(b.addOnIds,a.addOnIds);assert.deepEqual(state(bb).filter(x=>!state(b).some(y=>x.id===y.id)),[{id:'rettshjelp.dekning',status:'selected',conflict:false}]);
+ assert.deepEqual(state(b),state(a));assert.deepEqual(state(bb),state(aa));assert.deepEqual(b.addOnIds,a.addOnIds);assert.deepEqual(state(bb).filter(x=>!state(b).some(y=>x.id===y.id)),[]);
  for(const t of pick(b))if(t.coverageOrigin==='document'){assert.deepEqual(t.source,source);assert.equal(Object.hasOwn(t,'sources'),false);assert.ok(vs.includes(t.value));}
  assert.deepEqual(pick(bb).map(t=>[t.name,t.key,t.value,t.source,t.sources]),pick(b).map(t=>[t.name,t.key,t.value,t.source,t.sources]));
  if(vs[0]==='Kundevilkår 73 000 kr')assert.equal(pick(b)[0].value,vs[0]);

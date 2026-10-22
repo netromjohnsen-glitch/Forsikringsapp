@@ -91,10 +91,10 @@ for(const row of bindings.registry)for(const [i,gap]of JSON.parse(row.finding_id
  const sf=JSON.parse(row.source_fact_ids)[i],productId=JSON.parse(row.products)[i],g=bindings.gaps.find(x=>x.finding_id===gap),f=bindings.source_facts.find(x=>x.source_fact_id===sf);
  assert.equal(g.signature,row.signature_id);assert.equal(g.source_fact_id,sf);assert.equal(g.product_identity,productId);assert.equal(f.product_identity,productId);assert.equal(row.final_batch_id,'B-051');assert.equal(JSON.parse(productId)[0],'gjensidige');assert.equal(JSON.parse(productId)[2],'ordinary');
 });
-check('explicit-open-alias-characterization',{},()=>{
+check('scoped-document-priority-regression',{},()=>{
  for(const id of ids)for(const vs of [[[keys[0],'Ikke valgt']],[[keys[0],'Valgt'],[keys[0],'Ikke valgt']]]){
   const a=pipe(baseline,[[record(id,'individual_agreement',vs)]],'existing').insurances[0],b=pipe(candidate,[[record(id,'individual_agreement',vs)]],'existing').insurances[0];assert.deepEqual(legalStates(b),legalStates(a));
-  assert.equal(legalStates(b).find(s=>s.id===keys[0]).status,'selected');assert.equal(legalStates(b).find(s=>s.id==='rettshjelp.dekning').status,vs.length===1?'not_selected':'unknown');assert.equal(legalStates(b).find(s=>s.id==='rettshjelp.dekning').conflict,vs.length!==1);
+  assert.equal(legalStates(b).length,1);assert.equal(legalStates(b).some(s=>s.id==='rettshjelp.dekning'),false);assert.equal(legalStates(b).find(s=>s.id===keys[0]).status,vs.length===1?'not_selected':'unknown');assert.equal(legalStates(b).find(s=>s.id===keys[0]).conflict,vs.length!==1);
  }
 });
 check('isolation-counts',{},()=>{let raw=0,components=0;for(const[o,fs]of Object.entries(baseline.facts)){raw+=fs.filter(f=>o!==proposal.owner||!keys.includes(f.key)).length;if(o!==proposal.owner)components++;}assert.equal(raw,4158);assert.equal(components,317);assert.equal(baseline.products.length-ids.length,202);});

@@ -53,7 +53,7 @@ for(const id of ids)for(const key of keys){
    const ts=values.map(v=>term(key,v)),old=enrich(baseline,id,ts),cur=enrich(candidate,id,ts),a=repeat(baseline,old),b=repeat(candidate,cur);
    assert.deepEqual(statuses(cur),statuses(old));assert.deepEqual(statuses(b),statuses(a));assert.deepEqual(deriveCanonicalCoverages(cur,'Hus'),deriveCanonicalCoverages(old,'Hus'));assert.deepEqual(deriveCanonicalCoverages(b,'Hus'),deriveCanonicalCoverages(a,'Hus'));assert.deepEqual(cur.addOnIds,[]);assert.deepEqual(b.addOnIds,[]);
    const added=(x,y)=>statuses(y).filter(c=>!statuses(x).some(d=>d.id===c.id));
-   assert.deepEqual(added(cur,b),[{id:'rettshjelp.dekning',status:'selected',conflict:false}]);assert.deepEqual(added(cur,b),added(old,a));
+   assert.deepEqual(added(cur,b),[]);assert.deepEqual(added(cur,b),added(old,a));
    for(const i of [cur,b])assert.equal(new Set(statuses(i).map(c=>c.id)).size,statuses(i).length);
    const fallback=!values.length||values[0]==='Ukjent';
    assert.deepEqual(pick(cur,key).map(t=>t.value),fallback?[id===ids[0]?baseline.facts.gjensidigeHusStandard.find(f=>f.key===key).value:oracle[key].value]:values);

@@ -1,0 +1,46 @@
+{
+  "policy": "Existing active autonomous workflow; historical counters unchanged",
+  "approved_behavior_expectation_updates": {
+    "reason": "Old tests explicitly characterized the duplicate generic selected coverage on repeat and catalog-selected state despite document refusal. The requested fix changes those contracts.",
+    "evidence": "baseline-reproduction.json; fullsuite-initial.log.gz; new permanent legal-priority matrix",
+    "changes": [
+      "Six old harness files retain strict before/after state comparisons; expected duplicate generic identity becomes an empty list",
+      "Old explicit-open-alias-characterization becomes a scoped-document-priority regression with one house identity and exact refusal/conflict state"
+    ],
+    "production_catalog_and_HTU_text_changed": false
+  },
+  "mechanical_roots": [
+    {
+      "id": "LP-M01",
+      "kind": "New cross-document fixture incorrectly assumed house records without object ID would merge",
+      "evidence": "first-targeted.tap.gz",
+      "correction": "Assert records remain separate; independently test already-resolved same-object conflict through established consolidated-enrichment entrypoint. Do not invent object matching."
+    },
+    {
+      "id": "LP-M02",
+      "kind": "New addon fixture omitted required annualPremium/deductible fields",
+      "evidence": "targeted-acceptance.log.gz; lib/analysis-output.ts addOn schema",
+      "correction": "Use schema-valid null premium/deductible. Raw customer addon evidence remains tested; no production parser change."
+    },
+    {
+      "id": "LP-M03",
+      "kind": "Fullsuite invocation omitted --test and ran only first file",
+      "evidence": "fullsuite-publishable.log.gz contains 4 tests, not 160 files; runner-parameters.json records invalidation",
+      "correction": "Keep original log; grant no suite credit; run all 160 manifest files using node --test and verify 5592 tests in fullsuite-verified.log.gz"
+    },
+    {
+      "id": "LP-M04",
+      "kind": "Custom gate labels do not activate runner lint/runtime parsers",
+      "evidence": "Historical runner parses detailed counters only for exact labels eslint/http-pdf-runtime",
+      "correction": "Independently parse final raw JSON logs, assert 0 errors/27 identical warnings and runtime result PASS/22 checks; retain raw gate records"
+    },
+    {
+      "id": "LP-M05",
+      "kind": "Final local link check preceded creation of SHA256SUMS",
+      "evidence": "Initial integrity readback stopped on README -> SHA256SUMS before any packet seal was written",
+      "correction": "Create packet checksum manifest before checking all final links; rerun complete integrity readback. No production/test change."
+    }
+  ],
+  "historical_receipts_and_counter_logs": "UNCHANGED",
+  "additional_scoped_display_contract": "The same verified generic-to-house identity classifies documented Rettshjelp as base cover for these two products. Raw addon evidence is retained; it cannot be shown as a selected optional addon."
+}
