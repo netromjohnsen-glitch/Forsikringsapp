@@ -1,0 +1,110 @@
+{
+  "classification": "CURRENT_IMPLEMENTATION_COMPLETION",
+  "signature": "25004bc4d7dd2c03",
+  "status": "PASS",
+  "closure": "RESOLVED_CURRENT_COMPLETION",
+  "base_revision": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+  "tested_candidate_identity_sha256": "3c1c40e7b04e09fe3a256eb6b9fc4c033c22a0a199bca9ab6a85aeae51e803ce",
+  "original_binding": {
+    "signature_id": "25004bc4d7dd2c03",
+    "representative_finding_id": "GAP-2088",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2088\", \"GAP-2142\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-2991\", \"SF-3075\"]",
+    "proposed_existing_keys": "[\"hus.vann.utstromming\", \"hus.vann.terreng\", \"hus.vatrom.folgeskade\"]",
+    "semantic_concept": "Vann",
+    "semantic_dimension": "hendelser",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "original_source_evidence": [
+    {
+      "finding_id": "GAP-2088",
+      "finding_ids": [
+        "GAP-2088"
+      ],
+      "source_fact_id": "SF-2991",
+      "source_fact_ids": [
+        "SF-2991"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "location": "PDF 3",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Rør/installasjon/akvarium; grunn/terrengvann mådanne vannspeil; åpning etter dekketbygning; utettvåtrom følgeskadepåtilstøtenderom.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.vann.utstromming",
+        "hus.vann.terreng",
+        "hus.vatrom.folgeskade"
+      ],
+      "advisor_impact": "Våtrom/lekkasje/vannspeil ellers representert; vann via åpning etter dekket bygningsskade mangler som selvstendig gren.",
+      "audit_scope_notes": "Våtrom/lekkasje/vannspeil ellers representert; vann via åpning etter dekket bygningsskade mangler som selvstendig gren.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    },
+    {
+      "finding_id": "GAP-2142",
+      "finding_ids": [
+        "GAP-2142"
+      ],
+      "source_fact_id": "SF-3075",
+      "source_fact_ids": [
+        "SF-3075"
+      ],
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "product_identities": [
+        "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]"
+      ],
+      "component": "",
+      "artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "location": "PDF 3",
+      "urls": [
+        "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf"
+      ],
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Rør/installasjon/akvarium; grunn/terrengvann mådanne vannspeil; åpning etter dekketbygning; utettvåtrom følgeskadepåtilstøtenderom.",
+      "catalog_evidence_ref": "gap-findings.csv / finding_ids / catalog_evidence; frozen catalog.json",
+      "proposed_existing_keys": [
+        "hus.vann.utstromming",
+        "hus.vann.terreng",
+        "hus.vatrom.folgeskade"
+      ],
+      "advisor_impact": "Våtrom/lekkasje/vannspeil ellers representert; vann via åpning etter dekket bygningsskade mangler som selvstendig gren.",
+      "audit_scope_notes": "Våtrom/lekkasje/vannspeil ellers representert; vann via åpning etter dekket bygningsskade mangler som selvstendig gren.",
+      "source_metadata_ref": "source-fact-inventory.csv / source_fact_ids / source_metadata"
+    }
+  ],
+  "key": "hus.vann.inntrengning_etter_bygningsskade",
+  "production_scope": [
+    "lib/gjensidige-hus-catalog.ts",
+    "lib/insurance-normalization.ts"
+  ],
+  "source_and_reverse_audit": "catalog-delta.json",
+  "validation": "validation-summary.json",
+  "gate_manifest": "gate-results.json",
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "P2_credit": 0,
+  "global_resolved_open": "UNKNOWN",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "other_holds_unchanged": true,
+  "deploy": "NOT_PERFORMED",
+  "publication_revision": "Containing Git commit; base revision and tested candidate content identity remain separately recorded"
+}

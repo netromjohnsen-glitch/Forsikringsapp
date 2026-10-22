@@ -97,6 +97,6 @@ check('explicit-open-alias-characterization',{},()=>{
   assert.equal(legalStates(b).find(s=>s.id===keys[0]).status,'selected');assert.equal(legalStates(b).find(s=>s.id==='rettshjelp.dekning').status,vs.length===1?'not_selected':'unknown');assert.equal(legalStates(b).find(s=>s.id==='rettshjelp.dekning').conflict,vs.length!==1);
  }
 });
-check('isolation-counts',{},()=>{let raw=0,components=0;for(const[o,fs]of Object.entries(baseline.facts)){raw+=fs.filter(f=>o!==proposal.owner||!keys.includes(f.key)).length;if(o!==proposal.owner)components++;}assert.equal(raw,4156);assert.equal(components,317);assert.equal(baseline.products.length-ids.length,202);});
+check('isolation-counts',{},()=>{let raw=0,components=0;for(const[o,fs]of Object.entries(baseline.facts)){raw+=fs.filter(f=>o!==proposal.owner||!keys.includes(f.key)).length;if(o!==proposal.owner)components++;}assert.equal(raw,4158);assert.equal(components,317);assert.equal(baseline.products.length-ids.length,202);});
 check('no-HTU-decision',{},()=>{for(const r of proposal.rows)assert.doesNotMatch(r.value,/husleietvist|HTU|15[ .]?000/iu);});
 process.on('exit',()=>{if(process.env.LEGAL_PROBE_RESULT_FILE)writeFileSync(process.env.LEGAL_PROBE_RESULT_FILE,gzipSync(JSON.stringify({checks,canonicalChanges,metadataTransitions,fingerprints,observations,failures}),{mtime:0}));});

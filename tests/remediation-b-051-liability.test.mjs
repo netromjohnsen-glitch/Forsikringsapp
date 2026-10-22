@@ -117,11 +117,11 @@ check('prior-53-immutable-receipts',()=>{
  assert.equal(prior.length,53);assert.equal(new Set(prior.map(x=>x.signature)).size,53);
  for(const entry of prior)assert.equal(createHash('sha256').update(readFileSync(new URL('../'+entry.path,import.meta.url))).digest('hex'),entry.sha256);
 });
-check('isolation-counts',()=>{assert.equal(protectedRaw,4158);assert.equal(untouched,317);assert.equal(otherProducts,202);});
+check('isolation-counts',()=>{assert.equal(protectedRaw,4160);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-deltas',()=>{
  assert.deepEqual(fps.map(f=>f.after),[
- '250f5ac9807ac84576dae88e4fbc0521a793e601ec7f0c58e33303f427cff20c',
- 'b49d74919a120094da90f915aa491d0e8086a03b0bf2d57da122a252041c8f4e',
- '7eb6a84291e695fab0e1cc42e0b29ecc0b0ad8bdec4e860760454413b2f56cc7']);
+ '484a1a5784ec806384cd6ceb215839b8f7a3f9baa777557fd9ef783756e76b8d',
+ 'b7e8f00c1ef1d517953cd28aad9944d35a7a145a6d19967e6a18a83afa803f0a',
+ 'e683ba473c626ef37526a3fdd19d08745fd6a2f027bb7a45c05ff36ac053e099']);
  for(const f of fps){const p=prod(expectedCatalog,f.id);const rows=resolveCatalogFacts(p,f.addons,date,null,expectedCatalog).filter(x=>!x.key.startsWith('hus.skadedyr.')&&x.key!=='hus.rate.dekning');assert.equal(digest(rows),f.after);}
 });

@@ -1,0 +1,574 @@
+{
+  "results": [
+    {
+      "label": "typegen",
+      "command": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "typegen"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90"
+      },
+      "application_identity_sha256": "2c0bf604e821d2eb6b010b29baa87ea1f1574b24796adc50f57060010f89ae53",
+      "exit_code": 0,
+      "seconds": 1.125,
+      "tap": {},
+      "log": "typegen.log.gz",
+      "log_sha256": "87417460f6b68343dfe6dfe0973432d06facd8a828a251502a6c11eab1da05bd",
+      "original_output_sha256": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "typescript",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--incremental",
+        "false"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90"
+      },
+      "application_identity_sha256": "2c0bf604e821d2eb6b010b29baa87ea1f1574b24796adc50f57060010f89ae53",
+      "exit_code": 0,
+      "seconds": 2.216,
+      "tap": {},
+      "log": "typescript.log.gz",
+      "log_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "eslint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90"
+      },
+      "application_identity_sha256": "2c0bf604e821d2eb6b010b29baa87ea1f1574b24796adc50f57060010f89ae53",
+      "exit_code": 0,
+      "seconds": 6.464,
+      "tap": {},
+      "log": "eslint.log.gz",
+      "log_sha256": "8ff024a17b1e4ef367f38b7de7ca93e021459ef67ba877c7c7748b2b8227ffac",
+      "original_output_sha256": "48f798499782447d18b602081a1eb15d0bac6f6fa939f5804094306088e9715d",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "errors": 0,
+      "warnings": 27,
+      "status": "PASS"
+    },
+    {
+      "label": "production-build",
+      "command": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build",
+        "--webpack"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90"
+      },
+      "application_identity_sha256": "2c0bf604e821d2eb6b010b29baa87ea1f1574b24796adc50f57060010f89ae53",
+      "exit_code": 1,
+      "seconds": 3.983,
+      "tap": {},
+      "log": "production-build.log.gz",
+      "log_sha256": "3c5bd322b0ece3c002b2ea274b8e5d889493b7cd9d2e2932295ac8eca696bda6",
+      "original_output_sha256": "b3ce0edce2ec7c98b334e4840f2903f6e953a9713d8714a8812cfa278bc8193f",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "FAIL"
+    },
+    {
+      "label": "production-build-network",
+      "command": [
+        "node",
+        "node_modules/next/dist/bin/next",
+        "build",
+        "--webpack"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90"
+      },
+      "application_identity_sha256": "2c0bf604e821d2eb6b010b29baa87ea1f1574b24796adc50f57060010f89ae53",
+      "exit_code": 0,
+      "seconds": 15.805,
+      "tap": {},
+      "log": "production-build-network.log.gz",
+      "log_sha256": "918cc6e651e866e3dee63eece59f7af3e4d94431452545f6f1dd6ad3897bd0c6",
+      "original_output_sha256": "9a51016ff7a997f9ae24178af3ba771b71664ff65138851f8c401748b322adb6",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "http-pdf-runtime",
+      "command": [
+        "node",
+        "scripts/verify-analysis-http.mjs"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90"
+      },
+      "application_identity_sha256": "2c0bf604e821d2eb6b010b29baa87ea1f1574b24796adc50f57060010f89ae53",
+      "exit_code": 0,
+      "seconds": 16.104,
+      "tap": {},
+      "log": "http-pdf-runtime.log.gz",
+      "log_sha256": "0739fc8cf5df4a4f208aee9aecb740e00481c34bb1d673e2072657b5207b07ae",
+      "original_output_sha256": "723b187c861505c6c8915145f219f58fe5e2d299ad3b9e3d33ed2dcc9e9267ee",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "runtime": {
+        "result": "PASS",
+        "checks": [
+          "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+          "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+          "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+          "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+          "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+          "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+          "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+          "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+          "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+          "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+          "unauthorized",
+          "manual/catalog",
+          "synthetic PDF to mocked AI to response",
+          "two-side concurrency",
+          "N documents to M products",
+          "capacity limit",
+          "invalid PDF before AI",
+          "strict form fields",
+          "429/no retries/sibling abort",
+          "admission released",
+          "private logging",
+          "semantic fallback telemetry/no unnecessary AI"
+        ],
+        "syntheticMetrics": {
+          "event": "analysis.metrics",
+          "requestId": "86cccd41-a370-4414-a753-33c6aef742d7",
+          "status": 200,
+          "totalMs": 673.2284999999999,
+          "timings": {
+            "uploadValidation": 1.0065420000000813,
+            "pdfWorker": 484.71033299999976,
+            "pdfParsing": 84.35354099999995,
+            "textExtraction": 19.468625999999972,
+            "inputPreparation": 1.7332079999998768,
+            "aiExtraction": 348.785251,
+            "structuredOutput": 0.40170800000009876,
+            "catalogLookup": 0.008874999999761712,
+            "documentNormalization": 3.428623000000016,
+            "catalogEnrichment": 4.396957999999813,
+            "semanticMatching": 0.2744159999999738,
+            "response": 0.1366250000000946
+          },
+          "semanticMatcher": {
+            "audit": {
+              "candidates": [],
+              "decisions": [],
+              "omitted": 0,
+              "outcome": "NO_DECISION"
+            },
+            "invoked": false,
+            "deterministicMatches": 4,
+            "unresolvedCandidates": 0,
+            "semanticCandidatesSent": 0,
+            "semanticMatchesAccepted": 0,
+            "durationMs": 0.2652499999999236,
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "existingDocumentCount": 1,
+          "offerDocumentCount": 1,
+          "successfulDocuments": 2,
+          "failedDocuments": 0,
+          "identifiedProducts": 8,
+          "partialSuccess": false,
+          "progressTransport": "json",
+          "batchCount": 2,
+          "batches": [
+            {
+              "documentsPerBatch": 1,
+              "pagesPerBatch": 1,
+              "estimatedInputSize": 16118
+            },
+            {
+              "documentsPerBatch": 1,
+              "pagesPerBatch": 1,
+              "estimatedInputSize": 16118
+            }
+          ],
+          "extractionCalls": 2,
+          "maxConcurrentExtractions": 2,
+          "totalPages": 2,
+          "totalBytes": 1780,
+          "tokenTotals": {
+            "inputTokens": 246,
+            "outputTokens": 90,
+            "totalTokens": 336,
+            "cachedInputTokens": 24
+          },
+          "uploadBytes": 1780,
+          "documentCount": 2,
+          "parsedDocumentCount": 2,
+          "products": 8,
+          "documents": [
+            {
+              "index": 0,
+              "bytes": 614,
+              "pages": 1,
+              "characters": 56,
+              "durationMs": 348.396792
+            },
+            {
+              "index": 1,
+              "bytes": 614,
+              "pages": 1,
+              "characters": 56,
+              "durationMs": 136.34787499999993
+            }
+          ],
+          "calls": [
+            {
+              "kind": "extraction",
+              "model": "gpt-5.6-luna",
+              "durationMs": 172.06158299999993,
+              "success": true,
+              "usage": {
+                "inputTokens": 123,
+                "outputTokens": 45,
+                "totalTokens": 168,
+                "cachedInputTokens": 12
+              }
+            },
+            {
+              "kind": "extraction",
+              "model": "gpt-5.6-luna",
+              "durationMs": 176.73295800000005,
+              "success": true,
+              "usage": {
+                "inputTokens": 123,
+                "outputTokens": 45,
+                "totalTokens": 168,
+                "cachedInputTokens": 12
+              }
+            }
+          ]
+        },
+        "mcBobilSyntheticDurationMs": 1006
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "water-final",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-reporter=tap",
+        "tests/remediation-b-051-water.test.mjs"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90",
+        "tests/helpers/b051-rot.mjs": "acaa1f2ff30c5f3c0bd5995b6c2c91f81a05eaa25c0c80a7fe12c5171f4377f2",
+        "tests/nito-remediation-b020.test.mjs": "417c95e5e383845b7b09ab943f0f5c095f15b473c8171daf2d915d467768cd34",
+        "tests/remediation-b-050.test.mjs": "5729baabc7e8538fbf9b5a58c45eb74c5a997dfdaca8b7e54765ac33d0fb76d7",
+        "tests/remediation-b-051-health-help.test.mjs": "2d72b8f4d38144cef2edd6ced0acf6770a8a04e11b1382ad34b8dcd1278d9aba",
+        "tests/remediation-b-051-legal.test.mjs": "a790d63fb88bec4354ad4e2094cbd11e83a26a96710836bcf93d2bbe327649d3",
+        "tests/remediation-b-051-liability.test.mjs": "38763c1b3ceeff65c8fb32f6c8afcaa61a6f6f0e575074c7a8bd35b1e16940a9",
+        "tests/remediation-b-051-rot-status.test.mjs": "5140f9a0186a8fac97c2fcb5f508a08f53fdd84dc1ceb8cd46294238f35126b3",
+        "tests/remediation-b-051-smart.test.mjs": "1c9da24893b0fd7b52852fcf32bb1453c06cd1e1f4048b164b3ff8f527ab9223",
+        "tests/helpers/b051-water.mjs": "5255d9d6818fe8452b23fee1c97755ff465c5fc10c4d576436ecdd59821d101d",
+        "tests/remediation-b-051-water.test.mjs": "d16925af8b9a7aa768b53c3e93c228b67ed0fd006d238ca9f7ce68d71e3d4e78"
+      },
+      "application_identity_sha256": "2016d10e50399de1ad46b8242fe6be79467b554e540c91f6455a26d5db410982",
+      "exit_code": 0,
+      "seconds": 0.663,
+      "tap": {
+        "tests": 27,
+        "pass": 27,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "water-final.log.gz",
+      "log_sha256": "ac2e3c27da7bb444a6d6e4835fdc2debf87944635cd22f5d1a16c236ce01b863",
+      "original_output_sha256": "d8df0b65e36089fa291b97df88a1a6a9060c6a303d5da37a7d755c96a1e42d94",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "fullsuite-final",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-concurrency=4",
+        "--test-reporter=tap",
+        "tests/agreement-pricing.test.mjs",
+        "tests/agreement-scope.test.mjs",
+        "tests/analysis-performance.test.mjs",
+        "tests/b043-status-parser.test.mjs",
+        "tests/boat-pet-catalog.test.mjs",
+        "tests/bruk-limit-selection-evidence.test.mjs",
+        "tests/canonical-comparison-audit.test.mjs",
+        "tests/catalog-comparison.test.mjs",
+        "tests/catalog-effective-facts.test.mjs",
+        "tests/catalog-enrichment-provenance.test.mjs",
+        "tests/catalog-matching.test.mjs",
+        "tests/catalog-source-resolution.test.mjs",
+        "tests/comparison-presentation.test.mjs",
+        "tests/coverage-status.test.mjs",
+        "tests/customer-price-preservation.test.mjs",
+        "tests/customer-price-trace.test.mjs",
+        "tests/deductible-comparison.test.mjs",
+        "tests/detail-correctness.test.mjs",
+        "tests/dnb-fremtind-catalog.test.mjs",
+        "tests/document-catalog-precedence.test.mjs",
+        "tests/document-totalskade-survival.test.mjs",
+        "tests/effective-fact-resolution.test.mjs",
+        "tests/eika-fremtind-catalog.test.mjs",
+        "tests/fremtind-canonical-catalog.test.mjs",
+        "tests/fremtind-hus-catalog.test.mjs",
+        "tests/fremtind-innbo-catalog.test.mjs",
+        "tests/fremtind-reise-catalog.test.mjs",
+        "tests/frende-catalog.test.mjs",
+        "tests/frende-hus-catalog.test.mjs",
+        "tests/frende-innbo-catalog.test.mjs",
+        "tests/frende-reise-catalog.test.mjs",
+        "tests/gjensidige-catalog.test.mjs",
+        "tests/gjensidige-hus-catalog.test.mjs",
+        "tests/gjensidige-innbo-catalog.test.mjs",
+        "tests/gjensidige-reise-catalog.test.mjs",
+        "tests/hybrid-matching.test.mjs",
+        "tests/if-catalog.test.mjs",
+        "tests/if-hus-catalog.test.mjs",
+        "tests/if-innbo-catalog.test.mjs",
+        "tests/if-reise-catalog.test.mjs",
+        "tests/insurance-normalization.test.mjs",
+        "tests/liv-reduction-selection-evidence.test.mjs",
+        "tests/manual-agreement.test.mjs",
+        "tests/manual-entry-ux.test.mjs",
+        "tests/manual-runtime-flow.test.mjs",
+        "tests/mc-bobil-addon-selection.test.mjs",
+        "tests/mc-bobil-fremtind-frende.test.mjs",
+        "tests/mc-bobil-gjensidige-storebrand.test.mjs",
+        "tests/mc-bobil-manual.test.mjs",
+        "tests/mc-bobil-normalization.test.mjs",
+        "tests/mc-bobil-pipeline.test.mjs",
+        "tests/mc-bobil-presentation.test.mjs",
+        "tests/mc-bobil-tryg-if.test.mjs",
+        "tests/nito-remediation-b015.test.mjs",
+        "tests/nito-remediation-b018.test.mjs",
+        "tests/nito-remediation-b020.test.mjs",
+        "tests/nito-remediation-b021.test.mjs",
+        "tests/nito-remediation-b022.test.mjs",
+        "tests/nito-remediation-b023.test.mjs",
+        "tests/nito-remediation-b024.test.mjs",
+        "tests/nito-remediation-b025.test.mjs",
+        "tests/nito-remediation-b026.test.mjs",
+        "tests/nito-remediation-b027.test.mjs",
+        "tests/nito-remediation-b028.test.mjs",
+        "tests/nito-remediation-b029.test.mjs",
+        "tests/nito-remediation-b030.test.mjs",
+        "tests/nito-remediation-b031.test.mjs",
+        "tests/nito-remediation-b032.test.mjs",
+        "tests/nito-remediation-b033.test.mjs",
+        "tests/nito-remediation-b034.test.mjs",
+        "tests/nito-remediation-b035c.test.mjs",
+        "tests/nito-remediation-b036.test.mjs",
+        "tests/nito-remediation-b037.test.mjs",
+        "tests/nito-remediation-b038.test.mjs",
+        "tests/nito-remediation-b039.test.mjs",
+        "tests/nito-remediation-b040.test.mjs",
+        "tests/nito-remediation-b041.test.mjs",
+        "tests/nito-remediation-b042.test.mjs",
+        "tests/nito-remediation-b043.test.mjs",
+        "tests/nito-remediation-wave1.test.mjs",
+        "tests/nito-remediation-wave2.test.mjs",
+        "tests/object-aware-comparison.test.mjs",
+        "tests/pdf-addon-selection.test.mjs",
+        "tests/pdf-addons.test.mjs",
+        "tests/pdf-upload-security.test.mjs",
+        "tests/phase2-analysis.test.mjs",
+        "tests/pilot-determinism-ui.test.mjs",
+        "tests/pilot-determinism.test.mjs",
+        "tests/pilot-quality-presentation.test.mjs",
+        "tests/pilot-quality.test.mjs",
+        "tests/pilot-semantic-regressions.test.mjs",
+        "tests/portfolio-price-punctuation.test.mjs",
+        "tests/premium-mileage-regression.test.mjs",
+        "tests/presentation-catalog.test.mjs",
+        "tests/presentation-integrity.test.mjs",
+        "tests/presentation-price.test.mjs",
+        "tests/product-catalog-evidence-hardening.test.mjs",
+        "tests/product-catalog.test.mjs",
+        "tests/product-comparison-hardening.test.mjs",
+        "tests/product-comparison-semantic.test.mjs",
+        "tests/product-comparison.test.mjs",
+        "tests/product-coverage-evidence.test.mjs",
+        "tests/production-trace-hooks.test.mjs",
+        "tests/production-trace-pipeline.test.mjs",
+        "tests/production-trace-price.test.mjs",
+        "tests/production-trace-transport.test.mjs",
+        "tests/production-trace.test.mjs",
+        "tests/progress-price-ui.test.mjs",
+        "tests/remediation-b-044.test.mjs",
+        "tests/remediation-b-045.test.mjs",
+        "tests/remediation-b-049.test.mjs",
+        "tests/remediation-b-050.test.mjs",
+        "tests/remediation-b-051-craftsmanship.test.mjs",
+        "tests/remediation-b-051-events-buildings.test.mjs",
+        "tests/remediation-b-051-garden.test.mjs",
+        "tests/remediation-b-051-health-help.test.mjs",
+        "tests/remediation-b-051-legal.test.mjs",
+        "tests/remediation-b-051-liability.test.mjs",
+        "tests/remediation-b-051-physical-exclusions.test.mjs",
+        "tests/remediation-b-051-recovery-benefits.test.mjs",
+        "tests/remediation-b-051-rot-status.test.mjs",
+        "tests/remediation-b-051-rot.test.mjs",
+        "tests/remediation-b-051-settlement-age.test.mjs",
+        "tests/remediation-b-051-smart.test.mjs",
+        "tests/remediation-b-051-water.test.mjs",
+        "tests/remediation-b-051.test.mjs",
+        "tests/remediation-b-056.test.mjs",
+        "tests/remediation-b-057.test.mjs",
+        "tests/remediation-b-062.test.mjs",
+        "tests/remediation-b-065.test.mjs",
+        "tests/remediation-b-068.test.mjs",
+        "tests/remediation-b-069.test.mjs",
+        "tests/remediation-b-071.test.mjs",
+        "tests/remediation-b-072.test.mjs",
+        "tests/remediation-b-076.test.mjs",
+        "tests/remediation-b-084.test.mjs",
+        "tests/remediation-b-088.test.mjs",
+        "tests/remediation-b-089.test.mjs",
+        "tests/remediation-b-091.test.mjs",
+        "tests/remediation-b-095.test.mjs",
+        "tests/same-object-consolidation.test.mjs",
+        "tests/security-hardening.test.mjs",
+        "tests/semantic-audit.test.mjs",
+        "tests/sparebank1-fremtind-catalog.test.mjs",
+        "tests/storebrand-catalog.test.mjs",
+        "tests/storebrand-hus-catalog.test.mjs",
+        "tests/storebrand-innbo-catalog.test.mjs",
+        "tests/storebrand-reise-catalog.test.mjs",
+        "tests/supporting-terms-ui.test.mjs",
+        "tests/supporting-terms.test.mjs",
+        "tests/totalskade-extraction.test.mjs",
+        "tests/totalskade-presentation.test.mjs",
+        "tests/tryg-catalog.test.mjs",
+        "tests/tryg-hus-catalog.test.mjs",
+        "tests/tryg-innbo-catalog.test.mjs",
+        "tests/tryg-reise-catalog.test.mjs",
+        "tests/value-equivalence.test.mjs",
+        "tests/vehicle-object-catalog.test.mjs",
+        "tests/vehicle-object-pipeline.test.mjs"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90",
+        "tests/helpers/b051-rot.mjs": "acaa1f2ff30c5f3c0bd5995b6c2c91f81a05eaa25c0c80a7fe12c5171f4377f2",
+        "tests/nito-remediation-b020.test.mjs": "417c95e5e383845b7b09ab943f0f5c095f15b473c8171daf2d915d467768cd34",
+        "tests/remediation-b-050.test.mjs": "5729baabc7e8538fbf9b5a58c45eb74c5a997dfdaca8b7e54765ac33d0fb76d7",
+        "tests/remediation-b-051-health-help.test.mjs": "2d72b8f4d38144cef2edd6ced0acf6770a8a04e11b1382ad34b8dcd1278d9aba",
+        "tests/remediation-b-051-legal.test.mjs": "a790d63fb88bec4354ad4e2094cbd11e83a26a96710836bcf93d2bbe327649d3",
+        "tests/remediation-b-051-liability.test.mjs": "38763c1b3ceeff65c8fb32f6c8afcaa61a6f6f0e575074c7a8bd35b1e16940a9",
+        "tests/remediation-b-051-rot-status.test.mjs": "5140f9a0186a8fac97c2fcb5f508a08f53fdd84dc1ceb8cd46294238f35126b3",
+        "tests/remediation-b-051-smart.test.mjs": "1c9da24893b0fd7b52852fcf32bb1453c06cd1e1f4048b164b3ff8f527ab9223",
+        "tests/helpers/b051-water.mjs": "5255d9d6818fe8452b23fee1c97755ff465c5fc10c4d576436ecdd59821d101d",
+        "tests/remediation-b-051-water.test.mjs": "d16925af8b9a7aa768b53c3e93c228b67ed0fd006d238ca9f7ce68d71e3d4e78"
+      },
+      "application_identity_sha256": "2016d10e50399de1ad46b8242fe6be79467b554e540c91f6455a26d5db410982",
+      "exit_code": 0,
+      "seconds": 40.383,
+      "tap": {
+        "tests": 5520,
+        "pass": 5520,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "fullsuite-final.log.gz",
+      "log_sha256": "dc323788cb59e70bcab2717e8a6aa57d00aef83ef71732d740c08a7691a3b2d0",
+      "original_output_sha256": "4c84e5da10192165a3f57af19ce2c4580eeb614ed70582a729feeba81245ddb6",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    },
+    {
+      "label": "eslint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ],
+      "tested_HEAD": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+      "application_files": {
+        "lib/gjensidige-hus-catalog.ts": "7f77f0214180b7b7298c75ba2e85c4d30ae060723a2a9e878734936fe208a1b3",
+        "lib/insurance-normalization.ts": "5c9d2dd2b546aec7f8bed01a76ba2afe396e7ffa26b1d83210c88c999b2b3a90",
+        "tests/helpers/b051-rot.mjs": "acaa1f2ff30c5f3c0bd5995b6c2c91f81a05eaa25c0c80a7fe12c5171f4377f2",
+        "tests/nito-remediation-b020.test.mjs": "417c95e5e383845b7b09ab943f0f5c095f15b473c8171daf2d915d467768cd34",
+        "tests/remediation-b-050.test.mjs": "5729baabc7e8538fbf9b5a58c45eb74c5a997dfdaca8b7e54765ac33d0fb76d7",
+        "tests/remediation-b-051-health-help.test.mjs": "2d72b8f4d38144cef2edd6ced0acf6770a8a04e11b1382ad34b8dcd1278d9aba",
+        "tests/remediation-b-051-legal.test.mjs": "a790d63fb88bec4354ad4e2094cbd11e83a26a96710836bcf93d2bbe327649d3",
+        "tests/remediation-b-051-liability.test.mjs": "38763c1b3ceeff65c8fb32f6c8afcaa61a6f6f0e575074c7a8bd35b1e16940a9",
+        "tests/remediation-b-051-rot-status.test.mjs": "5140f9a0186a8fac97c2fcb5f508a08f53fdd84dc1ceb8cd46294238f35126b3",
+        "tests/remediation-b-051-smart.test.mjs": "1c9da24893b0fd7b52852fcf32bb1453c06cd1e1f4048b164b3ff8f527ab9223",
+        "tests/helpers/b051-water.mjs": "5255d9d6818fe8452b23fee1c97755ff465c5fc10c4d576436ecdd59821d101d",
+        "tests/remediation-b-051-water.test.mjs": "d16925af8b9a7aa768b53c3e93c228b67ed0fd006d238ca9f7ce68d71e3d4e78"
+      },
+      "application_identity_sha256": "2016d10e50399de1ad46b8242fe6be79467b554e540c91f6455a26d5db410982",
+      "exit_code": 0,
+      "seconds": 6.05,
+      "tap": {},
+      "log": "eslint-final.log.gz",
+      "log_sha256": "8ff024a17b1e4ef367f38b7de7ca93e021459ef67ba877c7c7748b2b8227ffac",
+      "original_output_sha256": "48f798499782447d18b602081a1eb15d0bac6f6fa939f5804094306088e9715d",
+      "environment_overrides": {
+        "XDG_CONFIG_HOME": "/tmp/rv02-b071-build-config"
+      },
+      "status": "PASS"
+    }
+  ]
+}

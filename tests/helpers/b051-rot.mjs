@@ -1,3 +1,4 @@
+import {applyWater} from './b051-water.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {deserialize} from 'node:v8';
@@ -33,7 +34,7 @@ export function applyRot(catalog){
  for(const owner of rotOracle.owners)result.facts[owner]=transformRotRows(result.facts[owner],owner);
  result.facts.gjensidigeHusStandard=transformRotStatusRows(result.facts.gjensidigeHusStandard,'gjensidigeHusStandard');
  result.addOns=transformRotStatusAddOns(result.addOns);
- return result;
+ return applyWater(result);
 }
 
 // Authorized selection metadata only. Values and source references remain the
@@ -68,5 +69,5 @@ export function applyRotStatus(catalog) {
   const result = structuredClone(catalog);
   result.facts.gjensidigeHusStandard = transformRotStatusRows(result.facts.gjensidigeHusStandard, 'gjensidigeHusStandard');
   result.addOns = transformRotStatusAddOns(result.addOns);
-  return result;
+  return applyWater(result);
 }

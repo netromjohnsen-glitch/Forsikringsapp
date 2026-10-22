@@ -180,6 +180,11 @@ standard.find((fact) => fact.key === "hus.rettshjelp.egenandel")!.qualificationS
   { ...standard.find((fact) => fact.key === "hus.rettshjelp.egenandel")!.source, page: 8, section: "Rettshjelp – Hvilke utgifter / Mekle.no" };
 
 
+// Separate insured event on both levels; the broader Pluss roof/wall extension
+// must not replace this event or supply its distinct limitations.
+standard.push(...facts("gjensidigeHusStandard", [["vann.inntrengning_etter_bygningsskade", "Vanninntrengning etter dekket bygningsskade", "Vann som trenger inn gjennom åpning eller utetthet oppstått ved erstatningsmessig bygningsskade.", "Hus – Dekkes / Vannskader / Åpning eller utetthet oppstått ved erstatningsmessig bygningsskade", 3]]));
+pluss.push(...facts("gjensidigeHusPluss", [["vann.inntrengning_etter_bygningsskade", "Vanninntrengning etter dekket bygningsskade", "Vann som trenger inn gjennom åpning eller utetthet oppstått ved erstatningsmessig bygningsskade.", "Hus – Dekkes / Vannskader / Åpning eller utetthet oppstått ved erstatningsmessig bygningsskade", 3, undefined, true]]));
+
 export const gjensidigeHusFacts: Record<string, CatalogFact[]> = {
   gjensidigeHusStandard: standard,
   gjensidigeHusPluss: pluss,

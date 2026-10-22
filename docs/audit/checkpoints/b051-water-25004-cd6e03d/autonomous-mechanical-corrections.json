@@ -1,0 +1,53 @@
+{
+  "policy": "Active autonomous mechanical corrections; historical counters unchanged",
+  "roots": [
+    {
+      "id": "W-M01",
+      "kind": "new test overly strict repeat representation",
+      "evidence": "initial-water.tap; baseline-contract-and-fingerprint-proof.json shows catalog-to-document origin transition also for untouched base facts",
+      "correction": "Compare exact name/key/value/source/sources on repeat and assert the established origin transition explicitly",
+      "production_change": false
+    },
+    {
+      "id": "W-M02",
+      "kind": "active historical whole-catalog expectations omit two approved rows",
+      "evidence": "first-fullsuite.tap; source-oracle.json; full raw baseline snapshot; new permanent full-field oracle",
+      "correction": "Independent applyWater/transformWaterRows adds exactly the two source-bound rows to active expected catalogs; all existing fields and negative controls retained",
+      "files": [
+        "tests/helpers/b051-water.mjs",
+        "tests/helpers/b051-rot.mjs",
+        "tests/remediation-b-050.test.mjs",
+        "tests/remediation-b-051-rot-status.test.mjs"
+      ],
+      "production_change": false
+    },
+    {
+      "id": "W-M03",
+      "kind": "three active B-020/liability fingerprints advance by approved water addition",
+      "evidence": "baseline-contract-and-fingerprint-proof.json verifies old fingerprints, independent after and actual after equality",
+      "correction": "Update three exact hashes in B-020/liability; health-only historical fingerprint explicitly excludes the independently tested new key while full-field comparisons include it",
+      "production_change": false
+    },
+    {
+      "id": "W-M04",
+      "kind": "active protected-row counters include two new independently verified rows",
+      "evidence": "second-remediation.tap; whole-catalog delta exactly two facts",
+      "correction": "Advance exact raw counts by two in health/legal/liability/rot-status/smart; component/product counts unchanged",
+      "production_change": false
+    },
+    {
+      "id": "W-M05",
+      "kind": "audit report reads optional lint counters under custom label",
+      "evidence": "Checked runner parses eslint counters automatically only for label eslint; final raw JSON log independently parsed",
+      "correction": "Use final raw ESLint JSON and assert byte-equivalent parsed warning inventory to preceding successful quality run",
+      "production_change": false
+    }
+  ],
+  "failed_attempts_preserved": [
+    "initial-water.tap",
+    "first-fullsuite.tap",
+    "second-remediation.tap",
+    "third-fullsuite.tap"
+  ],
+  "historical_receipts_modified": false
+}

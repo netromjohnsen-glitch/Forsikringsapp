@@ -1,0 +1,171 @@
+{
+  "status": "PASS",
+  "base_revision": "cd6e03de824d46a514413d2d86fbcae9c39e12c4",
+  "candidate_identity_sha256": "3c1c40e7b04e09fe3a256eb6b9fc4c033c22a0a199bca9ab6a85aeae51e803ce",
+  "fullsuite": {
+    "tests": 5520,
+    "pass": 5520,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite_files": 159,
+  "water": {
+    "tests": 27,
+    "pass": 27,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint_errors": 0,
+  "eslint_warnings": 27,
+  "warnings_identical_to_prior_quality_run": true,
+  "webpack_build": "PASS",
+  "http_pdf_runtime": {
+    "result": "PASS",
+    "checks": [
+      "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+      "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+      "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+      "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+      "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+      "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+      "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+      "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+      "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+      "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+      "unauthorized",
+      "manual/catalog",
+      "synthetic PDF to mocked AI to response",
+      "two-side concurrency",
+      "N documents to M products",
+      "capacity limit",
+      "invalid PDF before AI",
+      "strict form fields",
+      "429/no retries/sibling abort",
+      "admission released",
+      "private logging",
+      "semantic fallback telemetry/no unnecessary AI"
+    ],
+    "syntheticMetrics": {
+      "event": "analysis.metrics",
+      "requestId": "86cccd41-a370-4414-a753-33c6aef742d7",
+      "status": 200,
+      "totalMs": 673.2284999999999,
+      "timings": {
+        "uploadValidation": 1.0065420000000813,
+        "pdfWorker": 484.71033299999976,
+        "pdfParsing": 84.35354099999995,
+        "textExtraction": 19.468625999999972,
+        "inputPreparation": 1.7332079999998768,
+        "aiExtraction": 348.785251,
+        "structuredOutput": 0.40170800000009876,
+        "catalogLookup": 0.008874999999761712,
+        "documentNormalization": 3.428623000000016,
+        "catalogEnrichment": 4.396957999999813,
+        "semanticMatching": 0.2744159999999738,
+        "response": 0.1366250000000946
+      },
+      "semanticMatcher": {
+        "audit": {
+          "candidates": [],
+          "decisions": [],
+          "omitted": 0,
+          "outcome": "NO_DECISION"
+        },
+        "invoked": false,
+        "deterministicMatches": 4,
+        "unresolvedCandidates": 0,
+        "semanticCandidatesSent": 0,
+        "semanticMatchesAccepted": 0,
+        "durationMs": 0.2652499999999236,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "existingDocumentCount": 1,
+      "offerDocumentCount": 1,
+      "successfulDocuments": 2,
+      "failedDocuments": 0,
+      "identifiedProducts": 8,
+      "partialSuccess": false,
+      "progressTransport": "json",
+      "batchCount": 2,
+      "batches": [
+        {
+          "documentsPerBatch": 1,
+          "pagesPerBatch": 1,
+          "estimatedInputSize": 16118
+        },
+        {
+          "documentsPerBatch": 1,
+          "pagesPerBatch": 1,
+          "estimatedInputSize": 16118
+        }
+      ],
+      "extractionCalls": 2,
+      "maxConcurrentExtractions": 2,
+      "totalPages": 2,
+      "totalBytes": 1780,
+      "tokenTotals": {
+        "inputTokens": 246,
+        "outputTokens": 90,
+        "totalTokens": 336,
+        "cachedInputTokens": 24
+      },
+      "uploadBytes": 1780,
+      "documentCount": 2,
+      "parsedDocumentCount": 2,
+      "products": 8,
+      "documents": [
+        {
+          "index": 0,
+          "bytes": 614,
+          "pages": 1,
+          "characters": 56,
+          "durationMs": 348.396792
+        },
+        {
+          "index": 1,
+          "bytes": 614,
+          "pages": 1,
+          "characters": 56,
+          "durationMs": 136.34787499999993
+        }
+      ],
+      "calls": [
+        {
+          "kind": "extraction",
+          "model": "gpt-5.6-luna",
+          "durationMs": 172.06158299999993,
+          "success": true,
+          "usage": {
+            "inputTokens": 123,
+            "outputTokens": 45,
+            "totalTokens": 168,
+            "cachedInputTokens": 12
+          }
+        },
+        {
+          "kind": "extraction",
+          "model": "gpt-5.6-luna",
+          "durationMs": 176.73295800000005,
+          "success": true,
+          "usage": {
+            "inputTokens": 123,
+            "outputTokens": 45,
+            "totalTokens": 168,
+            "cachedInputTokens": 12
+          }
+        }
+      ]
+    },
+    "mcBobilSyntheticDurationMs": 1006
+  },
+  "gate_results": "gate-results.json",
+  "source_reverse_audit": "catalog-delta.json",
+  "all_historical_receipts_unchanged": true,
+  "known_attempts": "failed-attempts.json; failed network-only build retained in gate-results.json",
+  "deployment": "NOT_PERFORMED"
+}

@@ -1,3 +1,4 @@
+import {applyWater} from './helpers/b051-water.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -20,7 +21,7 @@ const audit = new URL('../docs/audit/checkpoints/b051-rot-status-469b485/', impo
 const metadata = JSON.parse(readFileSync(new URL('baseline-snapshot.json', audit)));
 const bytes = readFileSync(new URL(metadata.snapshot, audit));
 assert.equal(createHash('sha256').update(bytes).digest('hex'), metadata.sha256);
-const baseline = deserialize(gunzipSync(bytes));
+const baseline = applyWater(deserialize(gunzipSync(bytes)));
 const key = 'hus.rate.dekning', addon = 'gjensidige-hus-rate-insekter';
 const standard = 'gjensidige-hus', plus = 'gjensidige-hus-pluss';
 const date = new Date('2026-10-08T12:00:00Z');
@@ -184,7 +185,7 @@ test('R-051-ROT-STATUS only two independently authorized catalog metadata change
     assert.deepEqual(productCatalog.facts[owner].filter(f => owner !== 'gjensidigeHusStandard' || f.key !== key), rows);
     protectedFacts += rows.length; if (owner !== 'gjensidigeHusStandard') protectedComponents++;
   }
-  assert.equal(protectedFacts, 4158); assert.equal(protectedComponents, 317);
+  assert.equal(protectedFacts, 4160); assert.equal(protectedComponents, 317);
 });
 test('R-051-ROT-STATUS 13 products/six providers and 201 other comparable products isolated', () => {
   const inventory = baseline.products.filter(p => resolveCatalogFacts(p, [], date, null, baseline).some(f => f.key === key) ||
