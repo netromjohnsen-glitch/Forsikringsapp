@@ -1,0 +1,48 @@
+{
+  "classification": "CURRENT_REVALIDATION_RECEIPT_EXISTING_IMPLEMENTATION_NO_PRODUCTION_CHANGE",
+  "signature": "41206e12c93c0058",
+  "status": "PASS",
+  "closure": "RESOLVED_CURRENT_REVALIDATION",
+  "tested_revision": "f7b4007181507b0746c720f55182bee5bc426933",
+  "original_binding": {
+    "signature_id": "41206e12c93c0058",
+    "representative_finding_id": "GAP-2092",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-051",
+    "disposition": "FIX_BEFORE_NITO",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "IMPLEMENTATION_READY",
+    "P1_occurrences": "1",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2092\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-2998\"]",
+    "proposed_existing_keys": "[\"hus.skadedyr.bekjempelse\", \"hus.skadedyr.bygningsskade\"]",
+    "semantic_concept": "Skadedyr",
+    "semantic_dimension": "skade og bekjempelse",
+    "notes": "Utfør bare de kildebundne dimensjonsendringene listet i evidence. Gjenbruk eksisterende nøkler og behold kvalifikasjoner; del eventuell lang tekst etter faktisk semantisk dimensjon, aldri heuristisk UI-tolkning.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "original_finding_ids": [
+    "GAP-2092"
+  ],
+  "original_source_fact_ids": [
+    "SF-2998"
+  ],
+  "original_binding_count": 1,
+  "implementation_basis": "B-020 already represents both positive dimensions; subsequent a4e5c76df5cbf2af preserves complete exclusions",
+  "source_evidence": "source-evidence.json",
+  "validation": "validation-summary.json",
+  "test_run": "test-run.json",
+  "scope_limit": "Standard original finding; Pluss and selected extension are regression controls, not new closure credit",
+  "production_files_changed": [],
+  "P2_credit": 0,
+  "global_resolved_open": "UNKNOWN",
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "publication_status": "EFFECTIVE_ONLY_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "no_production_or_deploy_authority": true,
+  "publication_revision": "Containing Git commit; tested_revision remains the separately identified application revision"
+}

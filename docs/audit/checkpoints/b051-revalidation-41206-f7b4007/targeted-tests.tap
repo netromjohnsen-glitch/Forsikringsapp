@@ -1,0 +1,1520 @@
+TAP version 13
+# (node:48397) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/lib/catalog-enrichment.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: multi-source distinct: customer, product and manual preserve exact ordered references and semantics
+ok 1 - multi-source distinct: customer, product and manual preserve exact ordered references and semantics
+  ---
+  duration_ms: 13.164833
+  type: 'test'
+  ...
+# Subtest: multi-source single: customer, product and manual preserve exact ordered references and semantics
+ok 2 - multi-source single: customer, product and manual preserve exact ordered references and semantics
+  ---
+  duration_ms: 3.227875
+  type: 'test'
+  ...
+# Subtest: multi-source identical: customer, product and manual preserve exact ordered references and semantics
+ok 3 - multi-source identical: customer, product and manual preserve exact ordered references and semantics
+  ---
+  duration_ms: 4.441583
+  type: 'test'
+  ...
+# Subtest: multi-source location: customer, product and manual preserve exact ordered references and semantics
+ok 4 - multi-source location: customer, product and manual preserve exact ordered references and semantics
+  ---
+  duration_ms: 4.455083
+  type: 'test'
+  ...
+# Subtest: multi-source metadata: customer, product and manual preserve exact ordered references and semantics
+ok 5 - multi-source metadata: customer, product and manual preserve exact ordered references and semantics
+  ---
+  duration_ms: 2.575834
+  type: 'test'
+  ...
+# Subtest: qualification provenance does not select an available add-on, but explicit selection preserves both manual lists and customer sources
+ok 6 - qualification provenance does not select an available add-on, but explicit selection preserves both manual lists and customer sources
+  ---
+  duration_ms: 46.945083
+  type: 'test'
+  ...
+# Subtest: explicit customer rejection stays authoritative over primary and qualification sources
+ok 7 - explicit customer rejection stays authoritative over primary and qualification sources
+  ---
+  duration_ms: 4.493875
+  type: 'test'
+  ...
+# Subtest: optional merges retain both qualification locations without changing names, values or optional state
+ok 8 - optional merges retain both qualification locations without changing names, values or optional state
+  ---
+  duration_ms: 0.327541
+  type: 'test'
+  ...
+# Subtest: same-product and both directions keep source union without creating differences
+ok 9 - same-product and both directions keep source union without creating differences
+  ---
+  duration_ms: 1.447084
+  type: 'test'
+  ...
+# Subtest: held-out if-bil-kasko: every effective qualified fact survives product/manual and eligible customer conversion
+ok 10 - held-out if-bil-kasko: every effective qualified fact survives product/manual and eligible customer conversion
+  ---
+  duration_ms: 30.679042
+  type: 'test'
+  ...
+# Subtest: held-out fremtind-hus-standard: every effective qualified fact survives product/manual and eligible customer conversion
+ok 11 - held-out fremtind-hus-standard: every effective qualified fact survives product/manual and eligible customer conversion
+  ---
+  duration_ms: 13.244833
+  type: 'test'
+  ...
+# Subtest: held-out frende-snoscooter-kasko: every effective qualified fact survives product/manual and eligible customer conversion
+ok 12 - held-out frende-snoscooter-kasko: every effective qualified fact survives product/manual and eligible customer conversion
+  ---
+  duration_ms: 2.386917
+  type: 'test'
+  ...
+# Subtest: held-out gjensidige-hund-behandling: every effective qualified fact survives product/manual and eligible customer conversion
+ok 13 - held-out gjensidige-hund-behandling: every effective qualified fact survives product/manual and eligible customer conversion
+  ---
+  duration_ms: 17.917625
+  type: 'test'
+  ...
+# Subtest: held-out frende-hund-veterin-r: every effective qualified fact survives product/manual and eligible customer conversion
+ok 14 - held-out frende-hund-veterin-r: every effective qualified fact survives product/manual and eligible customer conversion
+  ---
+  duration_ms: 6.95425
+  type: 'test'
+  ...
+# Subtest: held-out tryg-innbo-ekstra: every effective qualified fact survives product/manual and eligible customer conversion
+ok 15 - held-out tryg-innbo-ekstra: every effective qualified fact survives product/manual and eligible customer conversion
+  ---
+  duration_ms: 5.641041
+  type: 'test'
+  ...
+# Subtest: Gjensidige Hund diagnostics: silent customer stays unknown; explicit parent and independent document branches preserve exact provenance
+ok 16 - Gjensidige Hund diagnostics: silent customer stays unknown; explicit parent and independent document branches preserve exact provenance
+  ---
+  duration_ms: 22.253875
+  type: 'test'
+  ...
+# (node:48398) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/lib/catalog-source-resolution.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: full terms outrank product page without numeric matching: 15 000 km
+ok 17 - full terms outrank product page without numeric matching: 15 000 km
+  ---
+  duration_ms: 26.505291
+  type: 'test'
+  ...
+# Subtest: full terms outrank product page without numeric matching: 12 000 km
+ok 18 - full terms outrank product page without numeric matching: 12 000 km
+  ---
+  duration_ms: 0.145041
+  type: 'test'
+  ...
+# Subtest: expired full terms cannot outrank currently applicable version
+ok 19 - expired full terms cannot outrank currently applicable version
+  ---
+  duration_ms: 0.096333
+  type: 'test'
+  ...
+# Subtest: same authority unresolved validity is conflict {}
+ok 20 - same authority unresolved validity is conflict {}
+  ---
+  duration_ms: 0.13475
+  type: 'test'
+  ...
+# Subtest: same authority unresolved validity is conflict {"effectiveFrom":"2026-01-01","validTo":"2027-01-01"}
+ok 21 - same authority unresolved validity is conflict {"effectiveFrom":"2026-01-01","validTo":"2027-01-01"}
+  ---
+  duration_ms: 0.084917
+  type: 'test'
+  ...
+# Subtest: inapplicable higher authority cannot win {"providerId":"other"}
+ok 22 - inapplicable higher authority cannot win {"providerId":"other"}
+  ---
+  duration_ms: 0.075125
+  type: 'test'
+  ...
+# Subtest: inapplicable higher authority cannot win {"insuranceType":"Snøscooter"}
+ok 23 - inapplicable higher authority cannot win {"insuranceType":"Snøscooter"}
+  ---
+  duration_ms: 0.256708
+  type: 'test'
+  ...
+# Subtest: inapplicable higher authority cannot win {"productIds":["pluss"]}
+ok 24 - inapplicable higher authority cannot win {"productIds":["pluss"]}
+  ---
+  duration_ms: 0.068791
+  type: 'test'
+  ...
+# Subtest: inapplicable higher authority cannot win {"productVersion":"v1"}
+ok 25 - inapplicable higher authority cannot win {"productVersion":"v1"}
+  ---
+  duration_ms: 0.061625
+  type: 'test'
+  ...
+# Subtest: inapplicable higher authority cannot win {"effectiveFrom":"2027-01-01"}
+ok 26 - inapplicable higher authority cannot win {"effectiveFrom":"2027-01-01"}
+  ---
+  duration_ms: 0.109833
+  type: 'test'
+  ...
+# Subtest: exact product specificity refines same authority
+ok 27 - exact product specificity refines same authority
+  ---
+  duration_ms: 0.082666
+  type: 'test'
+  ...
+# Subtest: distinct canonical mileage identities never compete
+ok 28 - distinct canonical mileage identities never compete
+  ---
+  duration_ms: 0.095542
+  type: 'test'
+  ...
+# Subtest: legacy unspecified source types retain explicit component behavior
+ok 29 - legacy unspecified source types retain explicit component behavior
+  ---
+  duration_ms: 0.068125
+  type: 'test'
+  ...
+# Subtest: production resolver applies source policy and preserves rejected evidence
+ok 30 - production resolver applies source policy and preserves rejected evidence
+  ---
+  duration_ms: 0.534291
+  type: 'test'
+  ...
+# (node:48399) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/lib/coverage-status.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: eksplisitt inkludert dekning blir selected og får korrekt UI-tekst
+ok 31 - eksplisitt inkludert dekning blir selected og får korrekt UI-tekst
+  ---
+  duration_ms: 2.069875
+  type: 'test'
+  ...
+# Subtest: eksplisitt ikke valgt dekning blir not_selected og får korrekt UI-tekst
+ok 32 - eksplisitt ikke valgt dekning blir not_selected og får korrekt UI-tekst
+  ---
+  duration_ms: 0.398958
+  type: 'test'
+  ...
+# Subtest: manglende dekning blir unknown og aldri not_selected
+ok 33 - manglende dekning blir unknown og aldri not_selected
+  ---
+  duration_ms: 0.089417
+  type: 'test'
+  ...
+# Subtest: ikke dokumentert og kan ikke avgjøres blir unknown
+ok 34 - ikke dokumentert og kan ikke avgjøres blir unknown
+  ---
+  duration_ms: 0.448458
+  type: 'test'
+  ...
+# Subtest: eksplisitt leiebildetalj kan dokumentere hoveddekningen
+ok 35 - eksplisitt leiebildetalj kan dokumentere hoveddekningen
+  ---
+  duration_ms: 0.806583
+  type: 'test'
+  ...
+# Subtest: eksplisitt ikke valgt slår generisk tilleggsopplisting
+ok 36 - eksplisitt ikke valgt slår generisk tilleggsopplisting
+  ---
+  duration_ms: 1.282083
+  type: 'test'
+  ...
+# Subtest: maskinskadedetaljer kan dokumentere hoveddekningen
+ok 37 - maskinskadedetaljer kan dokumentere hoveddekningen
+  ---
+  duration_ms: 0.243292
+  type: 'test'
+  ...
+# Subtest: manglende maskinskadeinformasjon blir unknown
+ok 38 - manglende maskinskadeinformasjon blir unknown
+  ---
+  duration_ms: 0.072708
+  type: 'test'
+  ...
+# Subtest: statusmodellen virker også for Innbo
+ok 39 - statusmodellen virker også for Innbo
+  ---
+  duration_ms: 0.143833
+  type: 'test'
+  ...
+# Subtest: personbilvariantene beholder samme kanoniske forsikringstype
+ok 40 - personbilvariantene beholder samme kanoniske forsikringstype
+  ---
+  duration_ms: 0.114333
+  type: 'test'
+  ...
+# Subtest: detaljrader beholdes etter at hovedstatus er utledet
+ok 41 - detaljrader beholdes etter at hovedstatus er utledet
+  ---
+  duration_ms: 6.661291
+  type: 'test'
+  ...
+# Subtest: ubekreftet katalogdata alene velger ikke kundedekning
+ok 42 - ubekreftet katalogdata alene velger ikke kundedekning
+  ---
+  duration_ms: 0.329
+  type: 'test'
+  ...
+# Subtest: eksplisitt dokumentstatus overstyrer bekreftet katalogdata
+ok 43 - eksplisitt dokumentstatus overstyrer bekreftet katalogdata
+  ---
+  duration_ms: 0.308125
+  type: 'test'
+  ...
+# Subtest: uløst konflikt på samme evidensnivå blir unknown
+ok 44 - uløst konflikt på samme evidensnivå blir unknown
+  ---
+  duration_ms: 0.545167
+  type: 'test'
+  ...
+# Subtest: unknown mot unknown blir ikke en viktig forskjell
+ok 45 - unknown mot unknown blir ikke en viktig forskjell
+  ---
+  duration_ms: 3.76
+  type: 'test'
+  ...
+# Subtest: selected mot not_selected blir en viktig statusforskjell
+ok 46 - selected mot not_selected blir en viktig statusforskjell
+  ---
+  duration_ms: 3.802875
+  type: 'test'
+  ...
+# Subtest: B-050: diagnostic limit is non-assertive and preserves its complete provenance
+ok 47 - B-050: diagnostic limit is non-assertive and preserves its complete provenance
+  ---
+  duration_ms: 6.762791
+  type: 'test'
+  ...
+# Subtest: B-050: exact diagnostic guard preserves the existing provider components and explicit parents
+ok 48 - B-050: exact diagnostic guard preserves the existing provider components and explicit parents
+  ---
+  duration_ms: 2.02075
+  type: 'test'
+  ...
+# Subtest: B-050: other positive detail identities remain assertive
+ok 49 - B-050: other positive detail identities remain assertive
+  ---
+  duration_ms: 0.2645
+  type: 'test'
+  ...
+# (node:48400) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/lib/comparison.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: seks offisielle Gjensidige Hus-kilder er lokale, uendrede og registrert
+ok 50 - seks offisielle Gjensidige Hus-kilder er lokale, uendrede og registrert
+  ---
+  duration_ms: 5.866584
+  type: 'test'
+  ...
+# Subtest: originaldokumentene bekrefter nivåer, arv og valgfrie utvidelser
+ok 51 - originaldokumentene bekrefter nivåer, arv og valgfrie utvidelser
+  ---
+  duration_ms: 32.185583
+  type: 'test'
+  ...
+# Subtest: Gjensidige viser Hus og Hus Pluss med dokumentert arv
+ok 52 - Gjensidige viser Hus og Hus Pluss med dokumentert arv
+  ---
+  duration_ms: 1.221791
+  type: 'test'
+  ...
+# Subtest: nivå- og tilleggsmatrisen håndheves
+ok 53 - nivå- og tilleggsmatrisen håndheves
+  ---
+  duration_ms: 0.648375
+  type: 'test'
+  ...
+# Subtest: Hus har sentrale objekter, skader, ansvar, rettshjelp og tjenester
+ok 54 - Hus har sentrale objekter, skader, ansvar, rettshjelp og tjenester
+  ---
+  duration_ms: 0.538542
+  type: 'test'
+  ...
+# Subtest: Hus Pluss erstatter grunnverdier for tak, våtrom, håndverkerfeil og råte
+ok 55 - Hus Pluss erstatter grunnverdier for tak, våtrom, håndverkerfeil og råte
+  ---
+  duration_ms: 1.716333
+  type: 'test'
+  ...
+# Subtest: råteutvidelsen på Hus har presis kvalifikasjonskilde og samme effektive dekning
+ok 56 - råteutvidelsen på Hus har presis kvalifikasjonskilde og samme effektive dekning
+  ---
+  duration_ms: 0.222666
+  type: 'test'
+  ...
+# Subtest: utleie skiller betalingsmislighold fra leietap etter bygningsskade
+ok 57 - utleie skiller betalingsmislighold fra leietap etter bygningsskade
+  ---
+  duration_ms: 0.178541
+  type: 'test'
+  ...
+# Subtest: Hus Smart er tilleggstjeneste med egen abonnementslogikk
+ok 58 - Hus Smart er tilleggstjeneste med egen abonnementslogikk
+  ---
+  duration_ms: 2.090042
+  type: 'test'
+  ...
+# Subtest: aldersfradrag er strukturert og unntak er bevart
+ok 59 - aldersfradrag er strukturert og unntak er bevart
+  ---
+  duration_ms: 0.301584
+  type: 'test'
+  ...
+# Subtest: Gjensidige Hus sammenlignes med Tryg, If og Storebrand uten kildelekkasje
+ok 60 - Gjensidige Hus sammenlignes med Tryg, If og Storebrand uten kildelekkasje
+  ---
+  duration_ms: 47.417875
+  type: 'test'
+  ...
+# Subtest: ingen fremtidige kilder er aktivert og Pluss dupliserer ikke råtetillegget
+ok 61 - ingen fremtidige kilder er aktivert og Pluss dupliserer ikke råtetillegget
+  ---
+  duration_ms: 0.258375
+  type: 'test'
+  ...
+# Subtest: runtime-kjeden beholder katalogreferanse, effective/base og provenance
+ok 62 - runtime-kjeden beholder katalogreferanse, effective/base og provenance
+  ---
+  duration_ms: 19.2025
+  type: 'test'
+  ...
+# Subtest: Bil, Innbo og Hus sameksisterer for Gjensidige
+ok 63 - Bil, Innbo og Hus sameksisterer for Gjensidige
+  ---
+  duration_ms: 2.206833
+  type: 'test'
+  ...
+# (node:48401) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/lib/manual-agreement.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: to manuelle avtaler uten pris beholder vilkår og kan matches
+ok 64 - to manuelle avtaler uten pris beholder vilkår og kan matches
+  ---
+  duration_ms: 9.473083
+  type: 'test'
+  ...
+# Subtest: én manuell forsikring med pris får riktig total
+ok 65 - én manuell forsikring med pris får riktig total
+  ---
+  duration_ms: 44.282625
+  type: 'test'
+  ...
+# Subtest: flere manuelle produkter med pris summeres til en komplett total
+ok 66 - flere manuelle produkter med pris summeres til en komplett total
+  ---
+  duration_ms: 0.654792
+  type: 'test'
+  ...
+# Subtest: manglende produktpris gir bare merket kjent delsum
+ok 67 - manglende produktpris gir bare merket kjent delsum
+  ---
+  duration_ms: 0.448916
+  type: 'test'
+  ...
+# Subtest: begge manuelle sider bruker produktprisene til total og prisforskjell
+ok 68 - begge manuelle sider bruker produktprisene til total og prisforskjell
+  ---
+  duration_ms: 2.646875
+  type: 'test'
+  ...
+# Subtest: eksplisitt nullpris teller som oppgitt pris
+ok 69 - eksplisitt nullpris teller som oppgitt pris
+  ---
+  duration_ms: 0.22275
+  type: 'test'
+  ...
+# Subtest: ufullstendig total brukes ikke til prisforskjell
+ok 70 - ufullstendig total brukes ikke til prisforskjell
+  ---
+  duration_ms: 0.7205
+  type: 'test'
+  ...
+# Subtest: manglende selskap, type og ufullstendige vilkår avvises
+ok 71 - manglende selskap, type og ufullstendige vilkår avvises
+  ---
+  duration_ms: 0.23675
+  type: 'test'
+  ...
+# Subtest: ukjent katalogreferanse brukes ikke som dekning
+ok 72 - ukjent katalogreferanse brukes ikke som dekning
+  ---
+  duration_ms: 0.542167
+  type: 'test'
+  ...
+# (node:48402) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: R-020-01: all frozen hashes and fact/qualification provenance
+ok 73 - R-020-01: all frozen hashes and fact/qualification provenance
+  ---
+  duration_ms: 25.586083
+  type: 'test'
+  ...
+# Subtest: R-020-02: exact provider/type/scope/version boundaries
+ok 74 - R-020-02: exact provider/type/scope/version boundaries
+  ---
+  duration_ms: 88.621417
+  type: 'test'
+  ...
+# Subtest: R-020-03: same products have no false difference
+ok 75 - R-020-03: same products have no false difference
+  ---
+  duration_ms: 56.659458
+  type: 'test'
+  ...
+# Subtest: R-020-04: every affected row preserves source and state on side swap
+ok 76 - R-020-04: every affected row preserves source and state on side swap
+  ---
+  duration_ms: 1157.059417
+  type: 'test'
+  ...
+# Subtest: R-020-05: precise document wins; broad facts conservatively block only matching children
+ok 77 - R-020-05: precise document wins; broad facts conservatively block only matching children
+  ---
+  duration_ms: 127.70275
+  type: 'test'
+  ...
+# Subtest: R-020-06: 53 archived positive controls and all unrelated facts remain unchanged
+ok 78 - R-020-06: 53 archived positive controls and all unrelated facts remain unchanged
+  ---
+  duration_ms: 22.108042
+  type: 'test'
+  ...
+# Subtest: R-020-07: animals survive Standard, selected extension and Plus inheritance
+ok 79 - R-020-07: animals survive Standard, selected extension and Plus inheritance
+  ---
+  duration_ms: 0.846792
+  type: 'test'
+  ...
+# Subtest: R-020-08: optional insect availability never selects customer cover or removes animals
+ok 80 - R-020-08: optional insect availability never selects customer cover or removes animals
+  ---
+  duration_ms: 12.069459
+  type: 'test'
+  ...
+# Subtest: R-020-09: full value and action-specific deductibles stay qualified
+ok 81 - R-020-09: full value and action-specific deductibles stay qualified
+  ---
+  duration_ms: 0.532667
+  type: 'test'
+  ...
+# Subtest: R-020-10: broad counterparts stay unknown instead of being guessed
+ok 82 - R-020-10: broad counterparts stay unknown instead of being guessed
+  ---
+  duration_ms: 732.981708
+  type: 'test'
+  ...
+# Subtest: R-020-11: only explicit Hus aliases choose children; broad text never does
+ok 83 - R-020-11: only explicit Hus aliases choose children; broad text never does
+  ---
+  duration_ms: 3.582667
+  type: 'test'
+  ...
+# (node:48403) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/lib/product-catalog.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: R-051-PHYSICAL-1 enrich/gjensidige-hus/hus.plutselig.begrensning/
+ok 84 - R-051-PHYSICAL-1 enrich/gjensidige-hus/hus.plutselig.begrensning/
+  ---
+  duration_ms: 60.685625
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-2 enrich/gjensidige-hus/hus.plutselig.begrensning/Valgt
+ok 85 - R-051-PHYSICAL-2 enrich/gjensidige-hus/hus.plutselig.begrensning/Valgt
+  ---
+  duration_ms: 53.772
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-3 enrich/gjensidige-hus/hus.plutselig.begrensning/Ikke valgt
+ok 86 - R-051-PHYSICAL-3 enrich/gjensidige-hus/hus.plutselig.begrensning/Ikke valgt
+  ---
+  duration_ms: 42.199542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-4 enrich/gjensidige-hus/hus.plutselig.begrensning/Ukjent
+ok 87 - R-051-PHYSICAL-4 enrich/gjensidige-hus/hus.plutselig.begrensning/Ukjent
+  ---
+  duration_ms: 42.369375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-5 enrich/gjensidige-hus/hus.plutselig.begrensning/Valgt+Ikke valgt
+ok 88 - R-051-PHYSICAL-5 enrich/gjensidige-hus/hus.plutselig.begrensning/Valgt+Ikke valgt
+  ---
+  duration_ms: 42.823458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-6 enrich/gjensidige-hus/hus.plutselig.begrensning/Kundevilkår 73 000 kr
+ok 89 - R-051-PHYSICAL-6 enrich/gjensidige-hus/hus.plutselig.begrensning/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 41.080958
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-7 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/
+ok 90 - R-051-PHYSICAL-7 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/
+  ---
+  duration_ms: 41.536125
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-8 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Valgt
+ok 91 - R-051-PHYSICAL-8 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Valgt
+  ---
+  duration_ms: 41.010917
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-9 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Ikke valgt
+ok 92 - R-051-PHYSICAL-9 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Ikke valgt
+  ---
+  duration_ms: 41.12225
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-10 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Ukjent
+ok 93 - R-051-PHYSICAL-10 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Ukjent
+  ---
+  duration_ms: 41.096542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-11 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Valgt+Ikke valgt
+ok 94 - R-051-PHYSICAL-11 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Valgt+Ikke valgt
+  ---
+  duration_ms: 41.728041
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-12 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Kundevilkår 73 000 kr
+ok 95 - R-051-PHYSICAL-12 enrich/gjensidige-hus/hus.plutselig.begrensning_ovrig/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 40.585833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-13 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/
+ok 96 - R-051-PHYSICAL-13 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/
+  ---
+  duration_ms: 40.231958
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-14 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Valgt
+ok 97 - R-051-PHYSICAL-14 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Valgt
+  ---
+  duration_ms: 40.567833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-15 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Ikke valgt
+ok 98 - R-051-PHYSICAL-15 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Ikke valgt
+  ---
+  duration_ms: 40.635125
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-16 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Ukjent
+ok 99 - R-051-PHYSICAL-16 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Ukjent
+  ---
+  duration_ms: 41.34925
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-17 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Valgt+Ikke valgt
+ok 100 - R-051-PHYSICAL-17 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Valgt+Ikke valgt
+  ---
+  duration_ms: 40.387542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-18 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Kundevilkår 73 000 kr
+ok 101 - R-051-PHYSICAL-18 enrich/gjensidige-hus/hus.skadedyr.dyr.bygningsskade/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 41.248
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-19 enrich/gjensidige-hus/hus.rate.dekning/
+ok 102 - R-051-PHYSICAL-19 enrich/gjensidige-hus/hus.rate.dekning/
+  ---
+  duration_ms: 41.410417
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-20 enrich/gjensidige-hus/hus.rate.dekning/Valgt
+ok 103 - R-051-PHYSICAL-20 enrich/gjensidige-hus/hus.rate.dekning/Valgt
+  ---
+  duration_ms: 46.621
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-21 enrich/gjensidige-hus/hus.rate.dekning/Ikke valgt
+ok 104 - R-051-PHYSICAL-21 enrich/gjensidige-hus/hus.rate.dekning/Ikke valgt
+  ---
+  duration_ms: 42.891834
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-22 enrich/gjensidige-hus/hus.rate.dekning/Ukjent
+ok 105 - R-051-PHYSICAL-22 enrich/gjensidige-hus/hus.rate.dekning/Ukjent
+  ---
+  duration_ms: 42.766375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-23 enrich/gjensidige-hus/hus.rate.dekning/Valgt+Ikke valgt
+ok 106 - R-051-PHYSICAL-23 enrich/gjensidige-hus/hus.rate.dekning/Valgt+Ikke valgt
+  ---
+  duration_ms: 43.632833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-24 enrich/gjensidige-hus/hus.rate.dekning/Kundevilkår 73 000 kr
+ok 107 - R-051-PHYSICAL-24 enrich/gjensidige-hus/hus.rate.dekning/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 43.804875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-25 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/
+ok 108 - R-051-PHYSICAL-25 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/
+  ---
+  duration_ms: 39.740417
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-26 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Valgt
+ok 109 - R-051-PHYSICAL-26 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Valgt
+  ---
+  duration_ms: 39.142875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-27 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Ikke valgt
+ok 110 - R-051-PHYSICAL-27 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Ikke valgt
+  ---
+  duration_ms: 39.917041
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-28 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Ukjent
+ok 111 - R-051-PHYSICAL-28 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Ukjent
+  ---
+  duration_ms: 39.383041
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-29 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Valgt+Ikke valgt
+ok 112 - R-051-PHYSICAL-29 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Valgt+Ikke valgt
+  ---
+  duration_ms: 38.891541
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-30 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Kundevilkår 73 000 kr
+ok 113 - R-051-PHYSICAL-30 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 38.534625
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-31 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/
+ok 114 - R-051-PHYSICAL-31 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/
+  ---
+  duration_ms: 39.071417
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-32 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Valgt
+ok 115 - R-051-PHYSICAL-32 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Valgt
+  ---
+  duration_ms: 39.049833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-33 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Ikke valgt
+ok 116 - R-051-PHYSICAL-33 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Ikke valgt
+  ---
+  duration_ms: 38.818125
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-34 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Ukjent
+ok 117 - R-051-PHYSICAL-34 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Ukjent
+  ---
+  duration_ms: 39.226
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-35 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Valgt+Ikke valgt
+ok 118 - R-051-PHYSICAL-35 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Valgt+Ikke valgt
+  ---
+  duration_ms: 38.686958
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-36 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Kundevilkår 73 000 kr
+ok 119 - R-051-PHYSICAL-36 enrich/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 39.463625
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-37 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/
+ok 120 - R-051-PHYSICAL-37 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/
+  ---
+  duration_ms: 39.6945
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-38 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Valgt
+ok 121 - R-051-PHYSICAL-38 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Valgt
+  ---
+  duration_ms: 39.560542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-39 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Ikke valgt
+ok 122 - R-051-PHYSICAL-39 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Ikke valgt
+  ---
+  duration_ms: 41.107875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-40 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Ukjent
+ok 123 - R-051-PHYSICAL-40 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Ukjent
+  ---
+  duration_ms: 39.491166
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-41 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Valgt+Ikke valgt
+ok 124 - R-051-PHYSICAL-41 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Valgt+Ikke valgt
+  ---
+  duration_ms: 39.490375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-42 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Kundevilkår 73 000 kr
+ok 125 - R-051-PHYSICAL-42 enrich/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 39.45175
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-43 enrich/gjensidige-hus-pluss/hus.rate.dekning/
+ok 126 - R-051-PHYSICAL-43 enrich/gjensidige-hus-pluss/hus.rate.dekning/
+  ---
+  duration_ms: 40.841541
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-44 enrich/gjensidige-hus-pluss/hus.rate.dekning/Valgt
+ok 127 - R-051-PHYSICAL-44 enrich/gjensidige-hus-pluss/hus.rate.dekning/Valgt
+  ---
+  duration_ms: 39.317458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-45 enrich/gjensidige-hus-pluss/hus.rate.dekning/Ikke valgt
+ok 128 - R-051-PHYSICAL-45 enrich/gjensidige-hus-pluss/hus.rate.dekning/Ikke valgt
+  ---
+  duration_ms: 40.802
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-46 enrich/gjensidige-hus-pluss/hus.rate.dekning/Ukjent
+ok 129 - R-051-PHYSICAL-46 enrich/gjensidige-hus-pluss/hus.rate.dekning/Ukjent
+  ---
+  duration_ms: 40.466458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-47 enrich/gjensidige-hus-pluss/hus.rate.dekning/Valgt+Ikke valgt
+ok 130 - R-051-PHYSICAL-47 enrich/gjensidige-hus-pluss/hus.rate.dekning/Valgt+Ikke valgt
+  ---
+  duration_ms: 38.893
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-48 enrich/gjensidige-hus-pluss/hus.rate.dekning/Kundevilkår 73 000 kr
+ok 131 - R-051-PHYSICAL-48 enrich/gjensidige-hus-pluss/hus.rate.dekning/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 38.167459
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-49 pipeline/gjensidige-hus/individual_agreement/existing/
+ok 132 - R-051-PHYSICAL-49 pipeline/gjensidige-hus/individual_agreement/existing/
+  ---
+  duration_ms: 6.855458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-50 pipeline/gjensidige-hus/individual_agreement/offer/
+ok 133 - R-051-PHYSICAL-50 pipeline/gjensidige-hus/individual_agreement/offer/
+  ---
+  duration_ms: 4.375458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-51 pipeline/gjensidige-hus/individual_agreement/existing/Valgt
+ok 134 - R-051-PHYSICAL-51 pipeline/gjensidige-hus/individual_agreement/existing/Valgt
+  ---
+  duration_ms: 6.943208
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-52 pipeline/gjensidige-hus/individual_agreement/offer/Valgt
+ok 135 - R-051-PHYSICAL-52 pipeline/gjensidige-hus/individual_agreement/offer/Valgt
+  ---
+  duration_ms: 6.457791
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-53 pipeline/gjensidige-hus/individual_agreement/existing/Ikke valgt
+ok 136 - R-051-PHYSICAL-53 pipeline/gjensidige-hus/individual_agreement/existing/Ikke valgt
+  ---
+  duration_ms: 6.044833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-54 pipeline/gjensidige-hus/individual_agreement/offer/Ikke valgt
+ok 137 - R-051-PHYSICAL-54 pipeline/gjensidige-hus/individual_agreement/offer/Ikke valgt
+  ---
+  duration_ms: 6.126125
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-55 pipeline/gjensidige-hus/individual_agreement/existing/Ukjent
+ok 138 - R-051-PHYSICAL-55 pipeline/gjensidige-hus/individual_agreement/existing/Ukjent
+  ---
+  duration_ms: 5.96175
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-56 pipeline/gjensidige-hus/individual_agreement/offer/Ukjent
+ok 139 - R-051-PHYSICAL-56 pipeline/gjensidige-hus/individual_agreement/offer/Ukjent
+  ---
+  duration_ms: 5.782084
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-57 pipeline/gjensidige-hus/individual_agreement/existing/Valgt+Ikke valgt
+ok 140 - R-051-PHYSICAL-57 pipeline/gjensidige-hus/individual_agreement/existing/Valgt+Ikke valgt
+  ---
+  duration_ms: 7.9465
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-58 pipeline/gjensidige-hus/individual_agreement/offer/Valgt+Ikke valgt
+ok 141 - R-051-PHYSICAL-58 pipeline/gjensidige-hus/individual_agreement/offer/Valgt+Ikke valgt
+  ---
+  duration_ms: 8.092708
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-59 pipeline/gjensidige-hus/individual_agreement/existing/Kundevilkår 73 000 kr
+ok 142 - R-051-PHYSICAL-59 pipeline/gjensidige-hus/individual_agreement/existing/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 5.826791
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-60 pipeline/gjensidige-hus/individual_agreement/offer/Kundevilkår 73 000 kr
+ok 143 - R-051-PHYSICAL-60 pipeline/gjensidige-hus/individual_agreement/offer/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 5.7605
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-61 pipeline/gjensidige-hus/unknown/existing/
+ok 144 - R-051-PHYSICAL-61 pipeline/gjensidige-hus/unknown/existing/
+  ---
+  duration_ms: 3.821417
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-62 pipeline/gjensidige-hus/unknown/offer/
+ok 145 - R-051-PHYSICAL-62 pipeline/gjensidige-hus/unknown/offer/
+  ---
+  duration_ms: 3.758875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-63 pipeline/gjensidige-hus/unknown/existing/Valgt
+ok 146 - R-051-PHYSICAL-63 pipeline/gjensidige-hus/unknown/existing/Valgt
+  ---
+  duration_ms: 6.083667
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-64 pipeline/gjensidige-hus/unknown/offer/Valgt
+ok 147 - R-051-PHYSICAL-64 pipeline/gjensidige-hus/unknown/offer/Valgt
+  ---
+  duration_ms: 5.917834
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-65 pipeline/gjensidige-hus/unknown/existing/Ikke valgt
+ok 148 - R-051-PHYSICAL-65 pipeline/gjensidige-hus/unknown/existing/Ikke valgt
+  ---
+  duration_ms: 5.665667
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-66 pipeline/gjensidige-hus/unknown/offer/Ikke valgt
+ok 149 - R-051-PHYSICAL-66 pipeline/gjensidige-hus/unknown/offer/Ikke valgt
+  ---
+  duration_ms: 5.772833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-67 pipeline/gjensidige-hus/unknown/existing/Ukjent
+ok 150 - R-051-PHYSICAL-67 pipeline/gjensidige-hus/unknown/existing/Ukjent
+  ---
+  duration_ms: 6.187333
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-68 pipeline/gjensidige-hus/unknown/offer/Ukjent
+ok 151 - R-051-PHYSICAL-68 pipeline/gjensidige-hus/unknown/offer/Ukjent
+  ---
+  duration_ms: 5.868542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-69 pipeline/gjensidige-hus/unknown/existing/Valgt+Ikke valgt
+ok 152 - R-051-PHYSICAL-69 pipeline/gjensidige-hus/unknown/existing/Valgt+Ikke valgt
+  ---
+  duration_ms: 7.725875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-70 pipeline/gjensidige-hus/unknown/offer/Valgt+Ikke valgt
+ok 153 - R-051-PHYSICAL-70 pipeline/gjensidige-hus/unknown/offer/Valgt+Ikke valgt
+  ---
+  duration_ms: 7.683292
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-71 pipeline/gjensidige-hus/unknown/existing/Kundevilkår 73 000 kr
+ok 154 - R-051-PHYSICAL-71 pipeline/gjensidige-hus/unknown/existing/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 5.735042
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-72 pipeline/gjensidige-hus/unknown/offer/Kundevilkår 73 000 kr
+ok 155 - R-051-PHYSICAL-72 pipeline/gjensidige-hus/unknown/offer/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 5.692375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-73 pipeline/gjensidige-hus/general_terms/existing/
+ok 156 - R-051-PHYSICAL-73 pipeline/gjensidige-hus/general_terms/existing/
+  ---
+  duration_ms: 0.204917
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-74 pipeline/gjensidige-hus/general_terms/offer/
+ok 157 - R-051-PHYSICAL-74 pipeline/gjensidige-hus/general_terms/offer/
+  ---
+  duration_ms: 0.072416
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-75 pipeline/gjensidige-hus/general_terms/existing/Valgt
+ok 158 - R-051-PHYSICAL-75 pipeline/gjensidige-hus/general_terms/existing/Valgt
+  ---
+  duration_ms: 0.762208
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-76 pipeline/gjensidige-hus/general_terms/offer/Valgt
+ok 159 - R-051-PHYSICAL-76 pipeline/gjensidige-hus/general_terms/offer/Valgt
+  ---
+  duration_ms: 0.705333
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-77 pipeline/gjensidige-hus/general_terms/existing/Ikke valgt
+ok 160 - R-051-PHYSICAL-77 pipeline/gjensidige-hus/general_terms/existing/Ikke valgt
+  ---
+  duration_ms: 0.666084
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-78 pipeline/gjensidige-hus/general_terms/offer/Ikke valgt
+ok 161 - R-051-PHYSICAL-78 pipeline/gjensidige-hus/general_terms/offer/Ikke valgt
+  ---
+  duration_ms: 0.656708
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-79 pipeline/gjensidige-hus/general_terms/existing/Ukjent
+ok 162 - R-051-PHYSICAL-79 pipeline/gjensidige-hus/general_terms/existing/Ukjent
+  ---
+  duration_ms: 0.661459
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-80 pipeline/gjensidige-hus/general_terms/offer/Ukjent
+ok 163 - R-051-PHYSICAL-80 pipeline/gjensidige-hus/general_terms/offer/Ukjent
+  ---
+  duration_ms: 0.676625
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-81 pipeline/gjensidige-hus/general_terms/existing/Valgt+Ikke valgt
+ok 164 - R-051-PHYSICAL-81 pipeline/gjensidige-hus/general_terms/existing/Valgt+Ikke valgt
+  ---
+  duration_ms: 1.336667
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-82 pipeline/gjensidige-hus/general_terms/offer/Valgt+Ikke valgt
+ok 165 - R-051-PHYSICAL-82 pipeline/gjensidige-hus/general_terms/offer/Valgt+Ikke valgt
+  ---
+  duration_ms: 1.519
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-83 pipeline/gjensidige-hus/general_terms/existing/Kundevilkår 73 000 kr
+ok 166 - R-051-PHYSICAL-83 pipeline/gjensidige-hus/general_terms/existing/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 0.72975
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-84 pipeline/gjensidige-hus/general_terms/offer/Kundevilkår 73 000 kr
+ok 167 - R-051-PHYSICAL-84 pipeline/gjensidige-hus/general_terms/offer/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 0.665625
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-85 pipeline/gjensidige-hus-pluss/individual_agreement/existing/
+ok 168 - R-051-PHYSICAL-85 pipeline/gjensidige-hus-pluss/individual_agreement/existing/
+  ---
+  duration_ms: 4.137375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-86 pipeline/gjensidige-hus-pluss/individual_agreement/offer/
+ok 169 - R-051-PHYSICAL-86 pipeline/gjensidige-hus-pluss/individual_agreement/offer/
+  ---
+  duration_ms: 4.325625
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-87 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Valgt
+ok 170 - R-051-PHYSICAL-87 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Valgt
+  ---
+  duration_ms: 5.992084
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-88 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Valgt
+ok 171 - R-051-PHYSICAL-88 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Valgt
+  ---
+  duration_ms: 6.067
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-89 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Ikke valgt
+ok 172 - R-051-PHYSICAL-89 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Ikke valgt
+  ---
+  duration_ms: 5.886584
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-90 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Ikke valgt
+ok 173 - R-051-PHYSICAL-90 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Ikke valgt
+  ---
+  duration_ms: 5.96575
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-91 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Ukjent
+ok 174 - R-051-PHYSICAL-91 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Ukjent
+  ---
+  duration_ms: 6.115291
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-92 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Ukjent
+ok 175 - R-051-PHYSICAL-92 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Ukjent
+  ---
+  duration_ms: 6.311666
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-93 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Valgt+Ikke valgt
+ok 176 - R-051-PHYSICAL-93 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Valgt+Ikke valgt
+  ---
+  duration_ms: 8.340042
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-94 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Valgt+Ikke valgt
+ok 177 - R-051-PHYSICAL-94 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Valgt+Ikke valgt
+  ---
+  duration_ms: 8.270375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-95 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Kundevilkår 73 000 kr
+ok 178 - R-051-PHYSICAL-95 pipeline/gjensidige-hus-pluss/individual_agreement/existing/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 6.03175
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-96 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Kundevilkår 73 000 kr
+ok 179 - R-051-PHYSICAL-96 pipeline/gjensidige-hus-pluss/individual_agreement/offer/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 5.879916
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-97 pipeline/gjensidige-hus-pluss/unknown/existing/
+ok 180 - R-051-PHYSICAL-97 pipeline/gjensidige-hus-pluss/unknown/existing/
+  ---
+  duration_ms: 4.000208
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-98 pipeline/gjensidige-hus-pluss/unknown/offer/
+ok 181 - R-051-PHYSICAL-98 pipeline/gjensidige-hus-pluss/unknown/offer/
+  ---
+  duration_ms: 3.998083
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-99 pipeline/gjensidige-hus-pluss/unknown/existing/Valgt
+ok 182 - R-051-PHYSICAL-99 pipeline/gjensidige-hus-pluss/unknown/existing/Valgt
+  ---
+  duration_ms: 5.854375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-100 pipeline/gjensidige-hus-pluss/unknown/offer/Valgt
+ok 183 - R-051-PHYSICAL-100 pipeline/gjensidige-hus-pluss/unknown/offer/Valgt
+  ---
+  duration_ms: 5.820042
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-101 pipeline/gjensidige-hus-pluss/unknown/existing/Ikke valgt
+ok 184 - R-051-PHYSICAL-101 pipeline/gjensidige-hus-pluss/unknown/existing/Ikke valgt
+  ---
+  duration_ms: 6.14925
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-102 pipeline/gjensidige-hus-pluss/unknown/offer/Ikke valgt
+ok 185 - R-051-PHYSICAL-102 pipeline/gjensidige-hus-pluss/unknown/offer/Ikke valgt
+  ---
+  duration_ms: 6.200417
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-103 pipeline/gjensidige-hus-pluss/unknown/existing/Ukjent
+ok 186 - R-051-PHYSICAL-103 pipeline/gjensidige-hus-pluss/unknown/existing/Ukjent
+  ---
+  duration_ms: 6.017042
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-104 pipeline/gjensidige-hus-pluss/unknown/offer/Ukjent
+ok 187 - R-051-PHYSICAL-104 pipeline/gjensidige-hus-pluss/unknown/offer/Ukjent
+  ---
+  duration_ms: 6.098083
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-105 pipeline/gjensidige-hus-pluss/unknown/existing/Valgt+Ikke valgt
+ok 188 - R-051-PHYSICAL-105 pipeline/gjensidige-hus-pluss/unknown/existing/Valgt+Ikke valgt
+  ---
+  duration_ms: 7.968875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-106 pipeline/gjensidige-hus-pluss/unknown/offer/Valgt+Ikke valgt
+ok 189 - R-051-PHYSICAL-106 pipeline/gjensidige-hus-pluss/unknown/offer/Valgt+Ikke valgt
+  ---
+  duration_ms: 8.135625
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-107 pipeline/gjensidige-hus-pluss/unknown/existing/Kundevilkår 73 000 kr
+ok 190 - R-051-PHYSICAL-107 pipeline/gjensidige-hus-pluss/unknown/existing/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 5.909875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-108 pipeline/gjensidige-hus-pluss/unknown/offer/Kundevilkår 73 000 kr
+ok 191 - R-051-PHYSICAL-108 pipeline/gjensidige-hus-pluss/unknown/offer/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 5.927208
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-109 pipeline/gjensidige-hus-pluss/general_terms/existing/
+ok 192 - R-051-PHYSICAL-109 pipeline/gjensidige-hus-pluss/general_terms/existing/
+  ---
+  duration_ms: 0.087708
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-110 pipeline/gjensidige-hus-pluss/general_terms/offer/
+ok 193 - R-051-PHYSICAL-110 pipeline/gjensidige-hus-pluss/general_terms/offer/
+  ---
+  duration_ms: 0.064958
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-111 pipeline/gjensidige-hus-pluss/general_terms/existing/Valgt
+ok 194 - R-051-PHYSICAL-111 pipeline/gjensidige-hus-pluss/general_terms/existing/Valgt
+  ---
+  duration_ms: 0.663708
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-112 pipeline/gjensidige-hus-pluss/general_terms/offer/Valgt
+ok 195 - R-051-PHYSICAL-112 pipeline/gjensidige-hus-pluss/general_terms/offer/Valgt
+  ---
+  duration_ms: 0.66025
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-113 pipeline/gjensidige-hus-pluss/general_terms/existing/Ikke valgt
+ok 196 - R-051-PHYSICAL-113 pipeline/gjensidige-hus-pluss/general_terms/existing/Ikke valgt
+  ---
+  duration_ms: 0.759959
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-114 pipeline/gjensidige-hus-pluss/general_terms/offer/Ikke valgt
+ok 197 - R-051-PHYSICAL-114 pipeline/gjensidige-hus-pluss/general_terms/offer/Ikke valgt
+  ---
+  duration_ms: 0.797542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-115 pipeline/gjensidige-hus-pluss/general_terms/existing/Ukjent
+ok 198 - R-051-PHYSICAL-115 pipeline/gjensidige-hus-pluss/general_terms/existing/Ukjent
+  ---
+  duration_ms: 0.63825
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-116 pipeline/gjensidige-hus-pluss/general_terms/offer/Ukjent
+ok 199 - R-051-PHYSICAL-116 pipeline/gjensidige-hus-pluss/general_terms/offer/Ukjent
+  ---
+  duration_ms: 0.630542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-117 pipeline/gjensidige-hus-pluss/general_terms/existing/Valgt+Ikke valgt
+ok 200 - R-051-PHYSICAL-117 pipeline/gjensidige-hus-pluss/general_terms/existing/Valgt+Ikke valgt
+  ---
+  duration_ms: 1.316458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-118 pipeline/gjensidige-hus-pluss/general_terms/offer/Valgt+Ikke valgt
+ok 201 - R-051-PHYSICAL-118 pipeline/gjensidige-hus-pluss/general_terms/offer/Valgt+Ikke valgt
+  ---
+  duration_ms: 1.302417
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-119 pipeline/gjensidige-hus-pluss/general_terms/existing/Kundevilkår 73 000 kr
+ok 202 - R-051-PHYSICAL-119 pipeline/gjensidige-hus-pluss/general_terms/existing/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 0.6435
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-120 pipeline/gjensidige-hus-pluss/general_terms/offer/Kundevilkår 73 000 kr
+ok 203 - R-051-PHYSICAL-120 pipeline/gjensidige-hus-pluss/general_terms/offer/Kundevilkår 73 000 kr
+  ---
+  duration_ms: 0.643084
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-121 supporting/gjensidige-hus
+ok 204 - R-051-PHYSICAL-121 supporting/gjensidige-hus
+  ---
+  duration_ms: 10.143666
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-122 supporting/gjensidige-hus-pluss
+ok 205 - R-051-PHYSICAL-122 supporting/gjensidige-hus-pluss
+  ---
+  duration_ms: 9.562875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-123 manual/gjensidige-hus/false/
+ok 206 - R-051-PHYSICAL-123 manual/gjensidige-hus/false/
+  ---
+  duration_ms: 3.07975
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-124 manual/gjensidige-hus/false/gjensidige-hus-utleie
+ok 207 - R-051-PHYSICAL-124 manual/gjensidige-hus/false/gjensidige-hus-utleie
+  ---
+  duration_ms: 2.829834
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-125 manual/gjensidige-hus/false/gjensidige-hus-smart
+ok 208 - R-051-PHYSICAL-125 manual/gjensidige-hus/false/gjensidige-hus-smart
+  ---
+  duration_ms: 2.760084
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-126 manual/gjensidige-hus/false/gjensidige-hus-rate-insekter
+ok 209 - R-051-PHYSICAL-126 manual/gjensidige-hus/false/gjensidige-hus-rate-insekter
+  ---
+  duration_ms: 2.703
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-127 manual/gjensidige-hus/true/
+ok 210 - R-051-PHYSICAL-127 manual/gjensidige-hus/true/
+  ---
+  duration_ms: 0.827291
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-128 manual/gjensidige-hus/true/gjensidige-hus-utleie
+ok 211 - R-051-PHYSICAL-128 manual/gjensidige-hus/true/gjensidige-hus-utleie
+  ---
+  duration_ms: 0.752292
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-129 manual/gjensidige-hus/true/gjensidige-hus-smart
+ok 212 - R-051-PHYSICAL-129 manual/gjensidige-hus/true/gjensidige-hus-smart
+  ---
+  duration_ms: 0.559209
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-130 manual/gjensidige-hus/true/gjensidige-hus-rate-insekter
+ok 213 - R-051-PHYSICAL-130 manual/gjensidige-hus/true/gjensidige-hus-rate-insekter
+  ---
+  duration_ms: 0.545875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-131 manual/gjensidige-hus-pluss/false/
+ok 214 - R-051-PHYSICAL-131 manual/gjensidige-hus-pluss/false/
+  ---
+  duration_ms: 2.450458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-132 manual/gjensidige-hus-pluss/false/gjensidige-hus-utleie
+ok 215 - R-051-PHYSICAL-132 manual/gjensidige-hus-pluss/false/gjensidige-hus-utleie
+  ---
+  duration_ms: 2.784791
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-133 manual/gjensidige-hus-pluss/false/gjensidige-hus-smart
+ok 216 - R-051-PHYSICAL-133 manual/gjensidige-hus-pluss/false/gjensidige-hus-smart
+  ---
+  duration_ms: 2.6735
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-134 manual/gjensidige-hus-pluss/true/
+ok 217 - R-051-PHYSICAL-134 manual/gjensidige-hus-pluss/true/
+  ---
+  duration_ms: 0.765875
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-135 manual/gjensidige-hus-pluss/true/gjensidige-hus-utleie
+ok 218 - R-051-PHYSICAL-135 manual/gjensidige-hus-pluss/true/gjensidige-hus-utleie
+  ---
+  duration_ms: 0.897709
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-136 manual/gjensidige-hus-pluss/true/gjensidige-hus-smart
+ok 219 - R-051-PHYSICAL-136 manual/gjensidige-hus-pluss/true/gjensidige-hus-smart
+  ---
+  duration_ms: 0.595916
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-137 materialization/gjensidige-hus
+ok 220 - R-051-PHYSICAL-137 materialization/gjensidige-hus
+  ---
+  duration_ms: 7.350125
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-138 materialization/gjensidige-hus-pluss
+ok 221 - R-051-PHYSICAL-138 materialization/gjensidige-hus-pluss
+  ---
+  duration_ms: 6.350042
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-139 compare/gjensidige-hus/gjensidige-hus
+ok 222 - R-051-PHYSICAL-139 compare/gjensidige-hus/gjensidige-hus
+  ---
+  duration_ms: 17.657042
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-140 compare/gjensidige-hus/gjensidige-hus-pluss
+ok 223 - R-051-PHYSICAL-140 compare/gjensidige-hus/gjensidige-hus-pluss
+  ---
+  duration_ms: 15.979833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-141 compare/gjensidige-hus/if-hus-basis
+ok 224 - R-051-PHYSICAL-141 compare/gjensidige-hus/if-hus-basis
+  ---
+  duration_ms: 13.090708
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-142 compare/gjensidige-hus/storebrand-hus-standard
+ok 225 - R-051-PHYSICAL-142 compare/gjensidige-hus/storebrand-hus-standard
+  ---
+  duration_ms: 13.361208
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-143 compare/gjensidige-hus-pluss/gjensidige-hus
+ok 226 - R-051-PHYSICAL-143 compare/gjensidige-hus-pluss/gjensidige-hus
+  ---
+  duration_ms: 15.654583
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-144 compare/gjensidige-hus-pluss/gjensidige-hus-pluss
+ok 227 - R-051-PHYSICAL-144 compare/gjensidige-hus-pluss/gjensidige-hus-pluss
+  ---
+  duration_ms: 16.030458
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-145 compare/gjensidige-hus-pluss/if-hus-basis
+ok 228 - R-051-PHYSICAL-145 compare/gjensidige-hus-pluss/if-hus-basis
+  ---
+  duration_ms: 12.209833
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-146 compare/gjensidige-hus-pluss/storebrand-hus-standard
+ok 229 - R-051-PHYSICAL-146 compare/gjensidige-hus-pluss/storebrand-hus-standard
+  ---
+  duration_ms: 12.284166
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-147 customer-compare/gjensidige-hus/hus.plutselig.begrensning
+ok 230 - R-051-PHYSICAL-147 customer-compare/gjensidige-hus/hus.plutselig.begrensning
+  ---
+  duration_ms: 8.109708
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-148 customer-compare/gjensidige-hus/hus.plutselig.begrensning_ovrig
+ok 231 - R-051-PHYSICAL-148 customer-compare/gjensidige-hus/hus.plutselig.begrensning_ovrig
+  ---
+  duration_ms: 6.874667
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-149 customer-compare/gjensidige-hus/hus.skadedyr.dyr.bygningsskade
+ok 232 - R-051-PHYSICAL-149 customer-compare/gjensidige-hus/hus.skadedyr.dyr.bygningsskade
+  ---
+  duration_ms: 6.660917
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-150 customer-compare/gjensidige-hus/hus.rate.dekning
+ok 233 - R-051-PHYSICAL-150 customer-compare/gjensidige-hus/hus.rate.dekning
+  ---
+  duration_ms: 6.408667
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-151 customer-compare/gjensidige-hus-pluss/hus.plutselig.begrensning
+ok 234 - R-051-PHYSICAL-151 customer-compare/gjensidige-hus-pluss/hus.plutselig.begrensning
+  ---
+  duration_ms: 6.896542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-152 customer-compare/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig
+ok 235 - R-051-PHYSICAL-152 customer-compare/gjensidige-hus-pluss/hus.plutselig.begrensning_ovrig
+  ---
+  duration_ms: 7.068167
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-153 customer-compare/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade
+ok 236 - R-051-PHYSICAL-153 customer-compare/gjensidige-hus-pluss/hus.skadedyr.dyr.bygningsskade
+  ---
+  duration_ms: 6.900209
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-154 customer-compare/gjensidige-hus-pluss/hus.rate.dekning
+ok 237 - R-051-PHYSICAL-154 customer-compare/gjensidige-hus-pluss/hus.rate.dekning
+  ---
+  duration_ms: 7.112375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-155 isolation
+ok 238 - R-051-PHYSICAL-155 isolation
+  ---
+  duration_ms: 44.619209
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-156 complete-independent-source-oracle
+ok 239 - R-051-PHYSICAL-156 complete-independent-source-oracle
+  ---
+  duration_ms: 3.682792
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-157 four-original-bindings
+ok 240 - R-051-PHYSICAL-157 four-original-bindings
+  ---
+  duration_ms: 1.283166
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-158 frozen-source-Standard
+ok 241 - R-051-PHYSICAL-158 frozen-source-Standard
+  ---
+  duration_ms: 410.176375
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-159 frozen-source-Pluss
+ok 242 - R-051-PHYSICAL-159 frozen-source-Pluss
+  ---
+  duration_ms: 66.844583
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-160 ipid-original-bytes-and-optional-extension
+ok 243 - R-051-PHYSICAL-160 ipid-original-bytes-and-optional-extension
+  ---
+  duration_ms: 15.852542
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-161 strict-source-fields-and-Pluss-inheritance
+ok 244 - R-051-PHYSICAL-161 strict-source-fields-and-Pluss-inheritance
+  ---
+  duration_ms: 18.391959
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-162 prior-receipts-immutable
+ok 245 - R-051-PHYSICAL-162 prior-receipts-immutable
+  ---
+  duration_ms: 12.523459
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-163 rot-baseline-finding-isolated-not-remediated
+ok 246 - R-051-PHYSICAL-163 rot-baseline-finding-isolated-not-remediated
+  ---
+  duration_ms: 32.442917
+  type: 'test'
+  ...
+# Subtest: R-051-PHYSICAL-164 full-field-reverse-audit
+ok 247 - R-051-PHYSICAL-164 full-field-reverse-audit
+  ---
+  duration_ms: 286.803667
+  type: 'test'
+  ...
+1..247
+# tests 247
+# suites 0
+# pass 247
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4257.470292
