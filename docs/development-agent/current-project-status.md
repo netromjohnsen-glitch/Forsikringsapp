@@ -1,6 +1,57 @@
 # Aktuell dokumentert prosjektstatus
 
 
+## Frost og bygningsvern – validert B-130-bolk 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`8422e39214aadff2dd31292e84ee4ca9cf818b30`. Fraflyttingsrettelsen er publisert på
+denne basisen. Frost/bygningsvern er validert på samme basis. Publiseringsrevisjonen
+er committen som inneholder rettelsen, receipt og denne prosjektstatusen.
+Publisert status gjelder etter bekreftelse på remote main.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b130-frost-8422e39/publication-authorization.md).
+Ingen installasjon eller deploy.
+
+B-130 / CR-229 / `ce90710821e28a97` er avgrenset implementert for Hus Standard
+GAP-2121/SF-3048 og Hus Pluss GAP-2180/SF-3135, ordinary / Alminnelige vilkår.
+`hus.sikkerhet.begrensning` bevarer alle ni generelle sikkerhetsplikter,
+ektefelle-/samboerhenvisningen og mulig helt/delvis bortfall av erstatningsrett.
+Begge nivåer har egen original-PDF, side 1; Pluss erstatter bare den arvede raden
+med samme nøkkel og beholder komplett baseevidens.
+
+Oppvarmingsplikten står selvstendig. Stoppekran og åpning av vannkran for å tømme
+rørene gjelder bygning som ikke er fast bebodd og er ubebodd i mer enn tre døgn.
+Regelen er en vilkårsdetalj; kundens bosituasjon, etterlevelse eller dekningsavslag
+utledes ikke. Tolvmåneders fraflytting, Trygs énmånedsregel, hendelsesdekninger,
+Utleies betalingsplikter, egenandelsfordeler og Smart/Utleie/råte-valg er uendret.
+Kundens konkrete dokumentregel og komplette kilder beholder forrang, også ved
+senere verdier, gjentatt beriking og JSON. General_terms forblir evidens/katalog.
+Ingen endring i global normalizer, engine, schema, alias eller presentasjon.
+
+[Receipt](../audit/checkpoints/b130-frost-8422e39/completion-receipt-ce90710821e28a97.json),
+[validering](../audit/checkpoints/b130-frost-8422e39/validation-summary.json),
+[checkpoint](../audit/checkpoints/b130-frost-8422e39/checkpoint.json) og
+[bevispakke](../audit/checkpoints/b130-frost-8422e39/README.md).
+63 nye kontrakttester; 2389/2389 målrettede og 6081/6081 tester i 167 filer består,
+uten skip. Typegen/TypeScript, webpack-bygg og lokal syntetisk HTTP/PDF-runtime
+22/22 PASS. ESLint 0 feil og de samme 27 warnings. Åtte sluttgater deler samme
+kode-/testidentitet. 214 manuelle input og 144 dokumentforløp bevarer alle tidligere
+felt; bare to nye rå katalogfakta er lagt til. Historiske bevis/kilder er uendret.
+
+Denne bolken fullfører bare denne ene originalsignaturen med begge bindinger.
+Basis-main har 64 publiserte kampanjesignaturer; 65 inklusive denne signaturen
+gjelder etter bekreftelse av den inneholdende committen på remote main.
+Dette gir ingen komplett katalog-/pilotklarering.
+B-051 37/0/1/1, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes.
+
+Alle HOLD beholdes, inkl. HTU `157c7afed18eb0fe` / SC-019/SR-033,
+`8a89196fecd29ddb`, fysisk insektegenandel SC-020/SR-032 og øvrige beskyttede holds.
+Øvrige B-130-reviews `15f5b4a3e9f79fd2` (fullverdi) og `d58bff0e6b2d46eb`
+(personkrets) står åpne. Sikkerhet/GDPR/P3-A05 med uavklart identitet/mergestatus,
+person/pilotscope, kritisk UX, feedback og operativ rådgiveraksept beholdes synlige.
+NITO og Sentralbord venter. Ingen ny arbeidsstrøm. Commit/push er eksplisitt autorisert.
+
+
 ## Fraflyttet bolig – validert B-130-bolk 23. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

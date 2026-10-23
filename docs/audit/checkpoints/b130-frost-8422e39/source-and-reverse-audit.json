@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "source_oracle": "source-oracle.json",
+  "base_revision": "8422e39214aadff2dd31292e84ee4ca9cf818b30",
+  "tested_candidate_identity_sha256": "2976c40a0d65b65b3341fa88dde1399c36748e9ba4427cb0dcc8248d7275367c",
+  "only_production_file": "lib/gjensidige-hus-catalog.ts",
+  "raw_catalog_delta": [
+    {
+      "owner": "gjensidigeHusStandard",
+      "operation": "ADD_ONE_FACT",
+      "key": "hus.sikkerhet.begrensning",
+      "page": 1,
+      "source": "gjensidigeHusStandard"
+    },
+    {
+      "owner": "gjensidigeHusPluss",
+      "operation": "ADD_ONE_FACT",
+      "key": "hus.sikkerhet.begrensning",
+      "page": 1,
+      "source": "gjensidigeHusPluss",
+      "replacesBase": true
+    }
+  ],
+  "exact_full_catalog_proof": "FROST complete catalog equals independent before catalog plus exactly two raw facts; every old field strictly equal",
+  "effective_delta": "One new nonasserting term per target product in all 12 valid addon combinations, own page1 primary source, complete Pluss inherited source evidence retained",
+  "complete_material_rule": "Nine general duties plus spouse/cohabitant context and conditional total/partial loss of entitlement; no temperature/day calculation or customer compliance assertion",
+  "three_day_contract": "Both non-permanently inhabited building AND uninhabited for MORE than three days; heating duty remains standalone",
+  "separate_contracts": "Existing twelve-month vacancy, Tryg one-month duty, coverage events, thawing service, selected-rental nonpayment duties and deductible/alarm benefits remain unchanged",
+  "original_bindings": [
+    {
+      "source_fact_id": "SF-3048",
+      "finding_id": "GAP-2121",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 1",
+      "semantic_subject": "Sikkerhet",
+      "semantic_dimension": "frost/bygningsvern",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Låsing,nøkler,varme;ikke-fast-beboddover3døgnstoppkran+tømming;snø/isfjernes,slukvårhøst,synligfeilutbedres;godkjenthåndverker.",
+      "source_hash": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "source_fact_id": "SF-3135",
+      "finding_id": "GAP-2180",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 1",
+      "semantic_subject": "Sikkerhet",
+      "semantic_dimension": "frost/bygningsvern",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Låsing,nøkler,varme;ikke-fast-beboddover3døgnstoppkran+tømming;snø/isfjernes,slukvårhøst,synligfeilutbedres;godkjenthåndverker.",
+      "source_hash": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    }
+  ],
+  "registered_source_bytes_unchanged": true,
+  "unrelated_product_base_and_all_valid_addon_packages": "Exactly equal to frozen before catalog; no new key leaks",
+  "manual_controls": 214,
+  "document_pipeline_controls": 144,
+  "prior_packet_integrity": "prior-packets-integrity.json",
+  "canonical_schema_alias_engine_presentation_changes": []
+}

@@ -1,3 +1,4 @@
+import {withoutFrostAndVacancy,withoutFrost} from './helpers/b130-frost.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -15,7 +16,7 @@ import {normalizeTermName} from '../lib/insurance-normalization.ts';
 import {isNonAssertingCoverageDetail} from '../lib/coverage-fact-semantics.ts';
 import {canonicalDocumentFactKeys} from '../lib/analysis-output.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
-import {vacancyOracle as o,vacancyFact,applyVacancy,withoutVacancy} from './helpers/b130-vacancy.mjs';
+import {vacancyOracle as o,vacancyFact,applyVacancy} from './helpers/b130-vacancy.mjs';
 
 const dir=new URL('../docs/audit/checkpoints/b130-vacancy-f5f88cc/',import.meta.url);
 const meta=JSON.parse(readFileSync(new URL('baseline-identity.json',dir))),bytes=readFileSync(new URL('baseline.v8.gz',dir));
@@ -37,10 +38,10 @@ test('VACANCY original CR-224 signature has exactly both source bindings',()=>{
  const queue=readFileSync(new URL('../docs/audit/legacy-local/source-catalog-remediation-triage/canonical-review-queue.csv',import.meta.url),'utf8');assert.ok(queue.includes('CR-224'));assert.ok(queue.includes(o.signature));
 });
 test('VACANCY complete catalog equals independent before catalog plus exactly two raw facts',()=>{
- assert.deepEqual(productCatalog,applyVacancy(baseline.catalog));
- assert.deepEqual(withoutVacancy(productCatalog),baseline.catalog);
+ assert.deepEqual(withoutFrost(productCatalog),applyVacancy(baseline.catalog));
+ assert.deepEqual(withoutFrostAndVacancy(productCatalog),baseline.catalog);
  for(const owner of owners)assert.deepEqual(productCatalog.facts[owner].filter(f=>f.key===o.key),[vacancyFact(owner)]);
- for(const owner of owners){const bad=applyVacancy(baseline.catalog);bad.facts[owner].find(f=>f.key===o.key).source.page=99;assert.throws(()=>applyVacancy(bad));assert.throws(()=>withoutVacancy(bad));}
+ for(const owner of owners){const bad=applyVacancy(baseline.catalog);bad.facts[owner].find(f=>f.key===o.key).source.page=99;assert.throws(()=>applyVacancy(bad));assert.throws(()=>withoutFrostAndVacancy(bad));}
 });
 for(const [n,id]of ids.entries()){
  test('VACANCY original registered PDF source and complete page-2 restriction '+id,()=>{
@@ -57,7 +58,7 @@ for(const [n,id]of ids.entries()){
   assert.equal(normalizeTermName(o.label,{insuranceType:'Hus'}),'fraflyttet bolig dekningsbegrensning');
  });
  for(const c of baseline.configurations.filter(c=>c.id===id))test('VACANCY all valid manual choices exact prior outputs plus new term '+id+'/'+c.selected.join('+'),()=>{
-  const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutVacancy(first),c.first);
+  const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutFrostAndVacancy(first),c.first);
   const term=pick(first);assert.equal(term.length,1);assert.equal(term[0].value,o.value);assert.equal(term[0].coverageOrigin,'catalog');assert.equal(term[0].source.documentId,owners[n]);assert.equal(term[0].source.page,2);
   const expectedFact=vacancyFact(owners[n]);
   assert.deepEqual(term,[{name:o.label,value:o.value,key:o.key,coverageOrigin:'catalog',structuredValue:undefined,deductibleClassification:undefined,source:expectedFact.source,sources:[{...expectedFact.source,note:n?'Effektiv verdi fra dokumentert utvidelse eller tillegg':undefined}],overriddenBase:n?[{value:o.value,source:vacancyFact(owners[0]).source}]:[]}]);
@@ -96,8 +97,8 @@ for(const [n,id]of ids.entries()){
  });
 }
 test('VACANCY all 214 before manual inputs and 144 actual document outputs preserve every old field',()=>{
- for(const c of baseline.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutVacancy(first),c.first,c.id);const next=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutVacancy(next),c.repeated,c.id);}
- for(const c of baseline.documents)assert.deepEqual(withoutVacancy(documentPipeline([[c.record]],c.side).insuranceData),c.output,c.id);
+ for(const c of baseline.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutFrostAndVacancy(first),c.first,c.id);const next=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutFrostAndVacancy(next),c.repeated,c.id);}
+ for(const c of baseline.documents)assert.deepEqual(withoutFrostAndVacancy(documentPipeline([[c.record]],c.side).insuranceData),c.output,c.id);
  assert.equal(baseline.controls.length,214);assert.equal(baseline.documents.length,144);assert.equal(baseline.configurations.length,12);
 });
 test('VACANCY same product and side reversal; peer unknown is not lack of coverage',()=>{

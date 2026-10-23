@@ -1,0 +1,107 @@
+{
+  "user_instruction": "Implementer den avklarte regelen for ce90710821e28a97 på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "base_revision": "8422e39214aadff2dd31292e84ee4ca9cf818b30",
+  "signature": "ce90710821e28a97",
+  "review_id": "CR-229",
+  "decision": "docs/audit/checkpoints/b130-frost-review-8422e39/decision-ce90710821e28a97.json",
+  "decision_sha256": "29843fa4193e78991561ee46e90510be2fde2d1d4a5d15d5e87b12e0f6021878",
+  "scope": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ]
+  },
+  "one_production_file": "lib/gjensidige-hus-catalog.ts",
+  "contract": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "key": "hus.sikkerhet.begrensning",
+    "label": "Sikkerhetsforskrifter – frost og bygningsvern",
+    "value": "Sikkerhetsforskriftene gjelder også ektefelle/samboer (FAL § 4-11). Dører og vinduer skal være lukket og låst, ikke i luftestilling, for å hindre tyveri og skadeverk; nøkler skal oppbevares utilgjengelig for uvedkommende. Bygningen/leiligheten skal holdes tilstrekkelig oppvarmet for å hindre vannskade ved frostsprengning. I bygning som ikke er fast bebodd, skal hovedstoppekran stenges og en vannkran åpnes for å tømme rørene dersom bygningen ikke er bebodd på mer enn tre døgn. Snø og is skal fjernes fra tak, verandaer, terrasser, balkonger, solceller og andre installasjoner før bæreevnen overskrides og ved fare for ras; snø skal også fjernes fra varmepumpe. Utvendige sluk skal renses hver vår og høst. Manglende takstein, løse beslag og andre synlige feil og mangler som kan føre til lekkasje fra tak eller vegg, skal utbedres snarest. Bygningen skal oppfylle brann- og byggeforskriftene. Rør- og elektroarbeid skal utføres av godkjent/autorisert håndverker. Ellers kan retten til erstatning bortfalle helt eller delvis (FAL § 4-8).",
+    "source_section": "Forsikringsbevis – Hva du må gjøre for å forebygge skader / Sikkerhetsforskrifter / Generelt bygningsvern; ektefelle/samboer og konsekvens ved brudd",
+    "source_page": 1,
+    "standard": {
+      "owner": "gjensidigeHusStandard",
+      "source_document_id": "gjensidigeHusStandard",
+      "replacesBase": "absent"
+    },
+    "pluss": {
+      "owner": "gjensidigeHusPluss",
+      "source_document_id": "gjensidigeHusPluss",
+      "replacesBase": true,
+      "reason": "Replace the inherited same-key Standard row only; own Pluss page-1 source primary, existing complete overriddenBase retained"
+    },
+    "facts_added": 2,
+    "effective_rows_per_product_and_configuration": 1,
+    "semantics": "Source rule only, not evidence of customer compliance, occupancy, agreed deviations or a coverage selection/denial",
+    "no_new_fields": [
+      "coverageAvailability",
+      "catalogSelectionConfirmed",
+      "deductibleClassification",
+      "structuredValue",
+      "selectionEvidenceKeys"
+    ],
+    "document_priority": "Existing exact and unique identified-product label match; real first/late customer term and complete own sources win. Generic safety/occupancy headings remain independent. Preserve current undocumented/unknown fallback policy; do not infer status. Supporting general_terms remains evidence/catalog, not a customer compliance or choice assertion.",
+    "presentation": {
+      "concept": "hus.ovrig",
+      "label": "Andre husvilkår",
+      "tier": "detail",
+      "role": "term",
+      "new_UI_or_ranking": false
+    },
+    "source_normalization": "Only obvious original typo varmpeumpe rendered varmepumpe and whitespace/punctuation normalized; source bytes and complete obligations unchanged"
+  },
+  "original_bindings": [
+    {
+      "source_fact_id": "SF-3048",
+      "finding_id": "GAP-2121",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 1",
+      "semantic_subject": "Sikkerhet",
+      "semantic_dimension": "frost/bygningsvern",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Låsing,nøkler,varme;ikke-fast-beboddover3døgnstoppkran+tømming;snø/isfjernes,slukvårhøst,synligfeilutbedres;godkjenthåndverker."
+    },
+    {
+      "source_fact_id": "SF-3135",
+      "finding_id": "GAP-2180",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 1",
+      "semantic_subject": "Sikkerhet",
+      "semantic_dimension": "frost/bygningsvern",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Låsing,nøkler,varme;ikke-fast-beboddover3døgnstoppkran+tømming;snø/isfjernes,slukvårhøst,synligfeilutbedres;godkjenthåndverker."
+    }
+  ],
+  "permitted_tests": "New frost contract suite/oracle helper and narrow two-source-fact expectation maintenance in affected current B020/B050/B051/vacancy test suites; preserve all tests/negative assertions and historical bytes",
+  "required_gates": [
+    "Own-source forward/reverse audit",
+    "Targeted relevant suites on final candidate",
+    "Complete actual test manifest/fullsuite without skips",
+    "Typegen then TypeScript",
+    "ESLint with unchanged warning inventory and zero errors",
+    "Webpack production build",
+    "Local synthetic HTTP/PDF runtime",
+    "Candidate identity/log hashes, integrity, links and git diff --check"
+  ],
+  "mechanical_policy": "docs/development-agent/workflow.md active autonomous completion; independent before/source proof before any mechanical adjustment; historical budgets frozen",
+  "commit_push": false,
+  "install": false,
+  "deploy": false,
+  "HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "created_at_utc": "2026-10-23T10:46:37.685369+00:00"
+}

@@ -1,0 +1,143 @@
+{
+  "status": "PASS",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "tested_candidate_identity_sha256": "2976c40a0d65b65b3341fa88dde1399c36748e9ba4427cb0dcc8248d7275367c",
+  "application_files_byte_identical": 19,
+  "final_same_identity_gates_verified": 8,
+  "fullsuite_tests": 6081,
+  "targeted_tests": 2389,
+  "all_gate_logs_integrity_verified": 10,
+  "original_PDFs_byte_identical": 2,
+  "prior_packet_files_byte_identical": 51,
+  "unchanged_initial_packet_files": [
+    "authorization.json",
+    "autonomous-mechanical-corrections.json",
+    "baseline-identity.json",
+    "baseline.v8.gz",
+    "before-integrity.json.gz",
+    "candidate-identity.json",
+    "diagnostic-failures.json.gz",
+    "diff-check-final.log.gz",
+    "eslint-final.log.gz",
+    "eslint-warning-inventory.json",
+    "frost-v1.log.gz",
+    "fullsuite-diagnostic-v1.log.gz",
+    "fullsuite-final.log.gz",
+    "gate-results.json",
+    "http-pdf-runtime-final.log.gz",
+    "integrity-verification.json",
+    "main-verification.json",
+    "prior-packets-integrity.json",
+    "production-build-final.log.gz",
+    "protected-status-verification.json",
+    "run-final-gates.py",
+    "source-and-reverse-audit.json",
+    "source-oracle.json",
+    "targeted-final.log.gz",
+    "test-manifest.json",
+    "typegen-final.log.gz",
+    "typescript-final.log.gz"
+  ],
+  "metadata_updates": [
+    {
+      "file": "README.md",
+      "before_sha256": "6e26703c55a7983cb37b4f46c3b4b05ca443cdc6c74322644856b8c124f9ce3d",
+      "after_sha256": "b6d807677cb6327cf6e86e57863cf56b1af0dfa14bd9bcf295b7ac1e421b21d5",
+      "reason": "Explicitly authorized publication metadata; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "SHA256SUMS",
+      "before_sha256": "7e7a08783fa05629a353c64576fee953d8cd8d59ba79216f3db8fa3027aff7f8",
+      "after_sha256": "842aa8fd292c445a274aaa9b4eb73c13b8dbff195ba4dd7a0a3040360942e374",
+      "reason": "Explicitly authorized publication metadata; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "checkpoint.json",
+      "before_sha256": "547474f6726a6c7eaef6d0f25ed4293d4d4bc88c38661045a8ab4ddc6ed3a8fd",
+      "after_sha256": "a09651b316d58d7b3b61229af4f16559acf1e90a9be9846601a2832949ec96e1",
+      "reason": "Explicitly authorized publication metadata; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "completion-receipt-ce90710821e28a97.json",
+      "before_sha256": "85f93c35e7605ccffe95d40a809fd638acf84702748481357c57e6ea80b710ca",
+      "after_sha256": "e0f4d260e31c51d82c0d86047ce3715342087110b1066ae7f4147aa06ba0b655",
+      "reason": "Explicitly authorized publication metadata; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "validation-summary.json",
+      "before_sha256": "ddb8a3e297d53fbf071844ecc885c6b7a8acdcfd070a32a43642ecefd5a45efb",
+      "after_sha256": "b5e7931ba17e58caecb4c9284a42b9a079b5a419519932915b6266f694014da5",
+      "reason": "Explicitly authorized publication metadata; original hash retained in publication-preflight.json"
+    }
+  ],
+  "new_publication_files": [
+    "publication-authorization.md",
+    "publication-preflight.json",
+    "publish-files.json",
+    "publication-integrity.json"
+  ],
+  "project_status_history_byte_identical": true,
+  "project_status_before_sha256": "d76b0078d456497f30f23a59fe2ae80b71e8dcd0be542227c61e5de978403cd7",
+  "project_status_after_sha256": "d5324b342ea620b020ca9bc8e65c4c6d88266acee423da167712fb73340f8d58",
+  "all_HOLD_and_protected_fields": "UNCHANGED",
+  "campaign_base": 64,
+  "campaign_after_remote_verified": 65,
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "publisher_self_test": "PASS",
+  "diff_check": "PASS",
+  "markdown_links_verified": 73,
+  "expected_staged_files": 59,
+  "publish_files_manifest_sha256": "c59435c0f4ffb2386560ae7023012a97b9ae471062c65e2e11732598b8082e57",
+  "sealed_packet_files": 34,
+  "SHA256SUMS_sha256": "842aa8fd292c445a274aaa9b4eb73c13b8dbff195ba4dd7a0a3040360942e374",
+  "checksum_policy": "All current packet files except SHA256SUMS and this report are sealed; this report checks seal and is bound by containing Git commit and index verification",
+  "public_disclosure_review": {
+    "status": "PASS",
+    "exact_initial_payload_files": 55,
+    "decoded_UTF8_bytes_scanned": 66795848,
+    "all_gzip_payloads_expanded": true,
+    "binary_V8_baseline_decoded_as_JSON": true,
+    "credential_pattern_matches": 0,
+    "other_matches": [
+      {
+        "file": "docs/audit/checkpoints/b130-frost-8422e39/fullsuite-diagnostic-v1.log.gz",
+        "class": "Synthetic example.invalid test email only",
+        "unique_matches": 1,
+        "value_sha256s": [
+          "51a24665ea0d4738bf0d94287a8b0faf73626ab4356f775f49f836a4a94f9eb7"
+        ]
+      },
+      {
+        "file": "docs/audit/checkpoints/b130-frost-8422e39/fullsuite-final.log.gz",
+        "class": "Synthetic example.invalid test email only",
+        "unique_matches": 1,
+        "value_sha256s": [
+          "51a24665ea0d4738bf0d94287a8b0faf73626ab4356f775f49f836a4a94f9eb7"
+        ]
+      }
+    ],
+    "synthetic_inputs_match_already_published_fixture": {
+      "controls": 214,
+      "documents": 144,
+      "configurations": 12,
+      "allControlInputsIdenticalToPublishedFixture": true,
+      "allDocumentRecordsIdenticalToPublishedFixture": true,
+      "allConfigurationInputsIdenticalToPublishedFixture": true
+    },
+    "content_classes": [
+      "public registered insurance policy/catalog data",
+      "synthetic existing test fixtures and results",
+      "authorized code and test changes",
+      "source and validation audit metadata"
+    ],
+    "new_publication_metadata": "Only this review, user publication instruction and hashes/status/manifests will be added",
+    "customer_uploads_or_environment_files_or_private_keys_in_manifest": false,
+    "authorized_scope": "Same validated ce90710821e28a97 packet, its receipt and project status; antecedent three-file read-only decision is unchanged dependency of source oracle and receipt"
+  },
+  "install": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED_OR_AUTHORIZED"
+}

@@ -1,4 +1,4 @@
-import {withoutVacancy} from './helpers/b130-vacancy.mjs';
+import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
@@ -70,7 +70,7 @@ for(const id of ids)check('customer-comparison',()=>{const customer=enrich(candi
 for(const id of ids)for(const addons of [[],['gjensidige-hus-utleie'],['gjensidige-hus-smart'],...(id===ids[0]?[['gjensidige-hus-rate-insekter']]:[])])check('addons',()=>{const a=resolveCatalogFacts(prod(baseline,id),addons,date,null,baseline),b=resolveCatalogFacts(prod(candidate,id),addons,date,null,candidate);assert.deepEqual(b.filter(f=>f.key!==key),a.filter(f=>f.key!==key));assert.equal(b.filter(f=>f.key===key).length,1);assert.equal(b.find(f=>f.key===key).source.documentId,'gjensidigeHusStandard');});
 let protectedRaw=0,untouched=0,otherProducts=0;
 check('isolation',()=>{for(const m of ['sources','products','addOns','insuranceTypes'])assert.deepEqual(candidate[m],baseline[m]);for(const[o,rows]of Object.entries(baseline.facts)){const filter=fs=>fs.filter(f=>o!=='gjensidigeHusStandard'||f.key!==key);assert.deepEqual(filter(candidate.facts[o]),filter(rows));protectedRaw+=filter(rows).length;if(o!=='gjensidigeHusStandard')untouched++;}for(const p of candidate.products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(p,[],date,null,candidate),resolveCatalogFacts(prod(baseline,p.productId),[],date,null,baseline));otherProducts++;}});
-const digest=x=>createHash('sha256').update(JSON.stringify(withoutVacancy(x))).digest('hex');
+const digest=x=>createHash('sha256').update(JSON.stringify(withoutFrostAndVacancy(x))).digest('hex');
 const fps=ids.flatMap(id=>(id===ids[0]?[[],['gjensidige-hus-rate-insekter']]:[[]]).map(addons=>{// Retain the historical health-only fingerprint; the new water row is checked by the active full-field oracle.
 const filter=x=>x.filter(f=>!f.key.startsWith('hus.skadedyr.')&&f.key!=='hus.rate.dekning'&&f.key!=='hus.vann.inntrengning_etter_bygningsskade');return{id,addons,before:digest(filter(resolveCatalogFacts(prod(baseline,id),addons,date,null,baseline))),after:digest(filter(resolveCatalogFacts(prod(candidate,id),addons,date,null,candidate)))};}));
 let reverseCollision=false;try{assert.deepEqual(candidate,oldOracle);}catch{reverseCollision=true;}
@@ -114,7 +114,7 @@ check('all-54-immutable-receipts',()=>{
  const prior=JSON.parse(readFileSync(new URL('prior-receipts.json',audit)));assert.equal(prior.length,54);assert.equal(new Set(prior.map(x=>x.signature)).size,54);
  for(const entry of prior)assert.equal(digestBytes(readFileSync(new URL('../'+entry.path,import.meta.url))),entry.sha256);
 });
-check('exact-isolation-counts',()=>{assert.equal(protectedRaw,4162);assert.equal(untouched,317);assert.equal(otherProducts,202);});
+check('exact-isolation-counts',()=>{assert.equal(protectedRaw,4164);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-differences',()=>{
  assert.deepEqual(fps.map(x=>x.before),['6b6cd034652ebea56cf3450b29699df0e75409c38cc682046e5f5517595b925a','26f3e2aaf802d5b4de0d73321fcdc18df0af41c3684ed03d9d5d9407c4c40022','ec256ccb96b30d4175ccf896edce3ea05f3ab8045a07234f28236be0231a8072']);
  assert.deepEqual(fps.map(x=>x.after),['250f5ac9807ac84576dae88e4fbc0521a793e601ec7f0c58e33303f427cff20c','b49d74919a120094da90f915aa491d0e8086a03b0bf2d57da122a252041c8f4e','7eb6a84291e695fab0e1cc42e0b29ecc0b0ad8bdec4e860760454413b2f56cc7']);

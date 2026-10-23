@@ -1,4 +1,4 @@
-import {withoutVacancy} from './helpers/b130-vacancy.mjs';
+import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFileSync} from 'node:fs';
@@ -63,7 +63,7 @@ for(const id of ids)check('customer-comparison',()=>{const customer=enrich(candi
 for(const id of ids)for(const addons of [[],['gjensidige-hus-utleie'],['gjensidige-hus-smart'],...(id===ids[0]?[['gjensidige-hus-rate-insekter']]:[])])check('addons',()=>{const a=resolveCatalogFacts(prod(baseline,id),addons,date,null,baseline),b=resolveCatalogFacts(prod(candidate,id),addons,date,null,candidate);assert.deepEqual(b.filter(f=>f.key!==key),a.filter(f=>f.key!==key));assert.equal(b.filter(f=>f.key===key).length,1);assert.equal(b.find(f=>f.key===key).source.documentId,'gjensidigeHusStandard');});
 let protectedRaw=0,untouched=0,otherProducts=0;
 check('isolation',()=>{for(const m of ['sources','products','addOns','insuranceTypes'])assert.deepEqual(candidate[m],baseline[m]);for(const[o,rows]of Object.entries(baseline.facts)){const filter=fs=>fs.filter(f=>o!=='gjensidigeHusStandard'||f.key!==key);assert.deepEqual(filter(candidate.facts[o]),filter(rows));protectedRaw+=filter(rows).length;if(o!=='gjensidigeHusStandard')untouched++;}for(const p of candidate.products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(p,[],date,null,candidate),resolveCatalogFacts(prod(baseline,p.productId),[],date,null,baseline));otherProducts++;}});
-const digest=x=>createHash('sha256').update(JSON.stringify(withoutVacancy(x))).digest('hex');
+const digest=x=>createHash('sha256').update(JSON.stringify(withoutFrostAndVacancy(x))).digest('hex');
 const fps=ids.flatMap(id=>(id===ids[0]?[[],['gjensidige-hus-rate-insekter']]:[[]]).map(addons=>{const filter=x=>x.filter(f=>!f.key.startsWith('hus.skadedyr.')&&f.key!=='hus.rate.dekning');return{id,addons,before:digest(filter(resolveCatalogFacts(prod(baseline,id),addons,date,null,baseline))),after:digest(filter(resolveCatalogFacts(prod(candidate,id),addons,date,null,candidate)))};}));
 let reverseCollision=false;try{assert.deepEqual(candidate,oldOracle);}catch{reverseCollision=true;}
 assert.equal(reverseCollision,true);
@@ -118,7 +118,7 @@ check('prior-53-immutable-receipts',()=>{
  assert.equal(prior.length,53);assert.equal(new Set(prior.map(x=>x.signature)).size,53);
  for(const entry of prior)assert.equal(createHash('sha256').update(readFileSync(new URL('../'+entry.path,import.meta.url))).digest('hex'),entry.sha256);
 });
-check('isolation-counts',()=>{assert.equal(protectedRaw,4162);assert.equal(untouched,317);assert.equal(otherProducts,202);});
+check('isolation-counts',()=>{assert.equal(protectedRaw,4164);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-deltas',()=>{
  assert.deepEqual(fps.map(f=>f.after),[
  '484a1a5784ec806384cd6ceb215839b8f7a3f9baa777557fd9ef783756e76b8d',

@@ -1,0 +1,538 @@
+{
+  "classification": "CURRENT_READ_ONLY_CONTRACT_AND_MAPPING_DECISION_NOT_IMPLEMENTATION_OR_CLOSURE",
+  "status": "DECIDED_PROPOSED_SCOPED_CORRECTION",
+  "signature": "ce90710821e28a97",
+  "review_id": "CR-229",
+  "original_batch": "B-130",
+  "created_at_utc": "2026-10-23T10:45:01.501473+00:00",
+  "decision": "Add one source-bound nonasserting general safety restriction term per exact product under hus.sikkerhet.begrensning; reuse existing catalog representation and rendering, without new global canonical mapping. Entire nine-duty original source fact and shared context/consequence are retained. Do not close before authorized implementation and revalidation.",
+  "authorization": {
+    "user_instruction": "Fortsett den lesende kontrakt- og mappingavklaringen av ce90710821e28a97 for Hus Standard og Hus Pluss. Lever én beslutning og presis rettingsbolk. Ingen kodeendringer eller deploy; behold alle HOLD. NITO og Sentralbord venter.",
+    "scope": "Read-only decision and future correction specification; only this new audit packet is written",
+    "implementation": false,
+    "commit_push": false,
+    "deploy": false
+  },
+  "revision": {
+    "fresh_GitHub_main_before_and_after": "8422e39214aadff2dd31292e84ee4ca9cf818b30",
+    "HEAD": "8422e39214aadff2dd31292e84ee4ca9cf818b30",
+    "origin_main": "8422e39214aadff2dd31292e84ee4ca9cf818b30",
+    "initial_working_tree": "CLEAN",
+    "staged_files": [],
+    "source_freshness": "Fresh repository main verified. These are registered original source bytes for Alminnelige vilkår, not a live insurer website refresh or a claim of unknown effective date."
+  },
+  "source_binding": {
+    "original_registry": {
+      "signature_id": "ce90710821e28a97",
+      "representative_finding_id": "GAP-2121",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-130",
+      "disposition": "CANONICAL_REVIEW_FIRST",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "CANONICAL_REVIEW_FIRST",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2121\", \"GAP-2180\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3048\", \"SF-3135\"]",
+      "proposed_existing_keys": "[]",
+      "semantic_concept": "Sikkerhet",
+      "semantic_dimension": "frost/bygningsvern",
+      "notes": "Ta beslutning per oppført konsept/dimensjon i canonical-review-queue. Prøv eksisterende eksakt nøkkel eller tydelig provider-detalj først. Ny nøkkel bare etter dokumentert tap/falsk ekvivalens ved gjenbruk. Deretter implementeres bare godkjent scoped forfatteroperasjon. Ingen generell schema-ombygging er bevist nødvendig.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    "original_source_facts": [
+      {
+        "source_fact_id": "SF-3048",
+        "finding_id": "GAP-2121",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "source_location": "PDF 1",
+        "semantic_subject": "Sikkerhet",
+        "semantic_dimension": "frost/bygningsvern",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Låsing,nøkler,varme;ikke-fast-beboddover3døgnstoppkran+tømming;snø/isfjernes,slukvårhøst,synligfeilutbedres;godkjenthåndverker."
+      },
+      {
+        "source_fact_id": "SF-3135",
+        "finding_id": "GAP-2180",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "source_location": "PDF 1",
+        "semantic_subject": "Sikkerhet",
+        "semantic_dimension": "frost/bygningsvern",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Låsing,nøkler,varme;ikke-fast-beboddover3døgnstoppkran+tømming;snø/isfjernes,slukvårhøst,synligfeilutbedres;godkjenthåndverker."
+      }
+    ],
+    "source_heading": "FORSIKRINGSBEVIS / Hva du må gjøre for å forebygge skader – Sikkerhetsforskrifter",
+    "page": 1,
+    "identical_safety_content_on_both_levels": true,
+    "source_context": [
+      {
+        "id": "C1",
+        "rule": "Dører og vinduer lukket og låst, ikke luftestilling, for å hindre tyveri og skadeverk"
+      },
+      {
+        "id": "C2",
+        "rule": "Nøkler oppbevares utilgjengelig for uvedkommende"
+      },
+      {
+        "id": "C3",
+        "rule": "Bygning/leilighet tilstrekkelig oppvarmet for å hindre vannskade ved frostsprengning",
+        "scope": "Standalone duty; not limited to non-permanently inhabited buildings or three-day absence"
+      },
+      {
+        "id": "C4",
+        "rule": "Steng hovedstoppekran OG åpne en vannkran for å tømme rørene",
+        "all_conditions": [
+          "Bygning som ikke er fast bebodd",
+          "Bygningen ikke bebodd på mer enn tre døgn"
+        ],
+        "threshold": "Strictly more than three days; not three days or more; not every ordinary absence from a permanent residence"
+      },
+      {
+        "id": "C5",
+        "rule": "Fjern snø og is fra tak, verandaer, terrasser, balkonger, solceller og andre installasjoner før bæreevnen overskrides og ved fare for ras; fjern også snø fra varmepumpe"
+      },
+      {
+        "id": "C6",
+        "rule": "Rens utvendige sluk hver vår og høst"
+      },
+      {
+        "id": "C7",
+        "rule": "Utbedre manglende takstein, løse beslag og andre synlige feil/mangler som kan føre til lekkasje fra tak eller vegg snarest"
+      },
+      {
+        "id": "C8",
+        "rule": "Bygningen oppfyller brann- og byggeforskriftene"
+      },
+      {
+        "id": "C9",
+        "rule": "Rør- og elektroarbeid utføres av godkjent/autorisert håndverker"
+      },
+      {
+        "id": "context",
+        "rule": "Gjelder også ektefelle/samboer, FAL § 4-11; retain as scope of these duties, not closure of Personkrets signature d58bff0e6b2d46eb"
+      },
+      {
+        "id": "consequence",
+        "rule": "Retten til erstatning KAN bortfalle helt ELLER delvis, FAL § 4-8; no automatic denial, compliance verdict or independent legal calculation"
+      },
+      {
+        "id": "rental_boundary",
+        "rule": "The separate rental nonpayment bullet remains under existing hus.utleie.mislighold and rental selection contract. No duplication as general occupancy obligation and no change to fourteen-day/six-week duties."
+      }
+    ],
+    "insurer_question_required_for_this_registered_source_rule": false
+  },
+  "semantic_contract": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "key": "hus.sikkerhet.begrensning",
+    "label": "Sikkerhetsforskrifter – frost og bygningsvern",
+    "value": "Sikkerhetsforskriftene gjelder også ektefelle/samboer (FAL § 4-11). Dører og vinduer skal være lukket og låst, ikke i luftestilling, for å hindre tyveri og skadeverk; nøkler skal oppbevares utilgjengelig for uvedkommende. Bygningen/leiligheten skal holdes tilstrekkelig oppvarmet for å hindre vannskade ved frostsprengning. I bygning som ikke er fast bebodd, skal hovedstoppekran stenges og en vannkran åpnes for å tømme rørene dersom bygningen ikke er bebodd på mer enn tre døgn. Snø og is skal fjernes fra tak, verandaer, terrasser, balkonger, solceller og andre installasjoner før bæreevnen overskrides og ved fare for ras; snø skal også fjernes fra varmepumpe. Utvendige sluk skal renses hver vår og høst. Manglende takstein, løse beslag og andre synlige feil og mangler som kan føre til lekkasje fra tak eller vegg, skal utbedres snarest. Bygningen skal oppfylle brann- og byggeforskriftene. Rør- og elektroarbeid skal utføres av godkjent/autorisert håndverker. Ellers kan retten til erstatning bortfalle helt eller delvis (FAL § 4-8).",
+    "source_section": "Forsikringsbevis – Hva du må gjøre for å forebygge skader / Sikkerhetsforskrifter / Generelt bygningsvern; ektefelle/samboer og konsekvens ved brudd",
+    "source_page": 1,
+    "standard": {
+      "owner": "gjensidigeHusStandard",
+      "source_document_id": "gjensidigeHusStandard",
+      "replacesBase": "absent"
+    },
+    "pluss": {
+      "owner": "gjensidigeHusPluss",
+      "source_document_id": "gjensidigeHusPluss",
+      "replacesBase": true,
+      "reason": "Replace the inherited same-key Standard row only; own Pluss page-1 source primary, existing complete overriddenBase retained"
+    },
+    "facts_added": 2,
+    "effective_rows_per_product_and_configuration": 1,
+    "semantics": "Source rule only, not evidence of customer compliance, occupancy, agreed deviations or a coverage selection/denial",
+    "no_new_fields": [
+      "coverageAvailability",
+      "catalogSelectionConfirmed",
+      "deductibleClassification",
+      "structuredValue",
+      "selectionEvidenceKeys"
+    ],
+    "document_priority": "Existing exact and unique identified-product label match; real first/late customer term and complete own sources win. Generic safety/occupancy headings remain independent. Preserve current undocumented/unknown fallback policy; do not infer status. Supporting general_terms remains evidence/catalog, not a customer compliance or choice assertion.",
+    "presentation": {
+      "concept": "hus.ovrig",
+      "label": "Andre husvilkår",
+      "tier": "detail",
+      "role": "term",
+      "new_UI_or_ranking": false
+    },
+    "source_normalization": "Only obvious original typo varmpeumpe rendered varmepumpe and whitespace/punctuation normalized; source bytes and complete obligations unchanged"
+  },
+  "mapping_decision": {
+    "new_key_collision_on_current_catalog": false,
+    "current_target_configurations_checked": 12,
+    "standard_configurations": 8,
+    "pluss_configurations": 4,
+    "current_base_fact_counts": {
+      "Standard": 58,
+      "Pluss": 62
+    },
+    "current_materialized_fact_counts": {
+      "Standard": 71,
+      "Pluss": 70
+    },
+    "current_gap": "No equivalent complete safety rule in resolved/materialized base+optional fact sets, manual initial/repeat3-JSON or display. Generic document label is unbound on current main. This is a current scoped data omission, not a conclusion based only on archived audit or keyword absence.",
+    "representation_basis": "Existing .begrensning detail is explicitly nonasserting; normalized key unchanged; concept resolves under normalized insurance type bolig to hus.ovrig/detail; standalone proposed term yields no inferred coverages. Existing exact-product matcher at catalog-enrichment.ts handles a future source-bound label without schema extension. New label is absent from extractor enum and must continue to use canonicalKey null in extracted document facts.",
+    "existing_key_candidates": [
+      {
+        "keys": [
+          "hus.sikkerhet.egenandelsfritak",
+          "hus.sikkerhet.egenandelsreduksjon"
+        ],
+        "decision": "REJECT_REUSE",
+        "reason": "Deductible benefits for protective measures/alarm, not duties; preserve original independent benefit and conditional selection"
+      },
+      {
+        "keys": [
+          "hus.sikkerhet.vann",
+          "hus.sikkerhet.vedlikehold",
+          "hus.sikkerhet.brann",
+          "hus.sikkerhet.sno",
+          "hus.sikkerhet.tyveri"
+        ],
+        "decision": "REJECT_AS_WHOLE_FACT_MAPPING",
+        "reason": "Existing individual Tryg topic rows cover only parts and have their own conditions, including over-one-month water shutoff. Whole Gjensidige nine-duty source fact cannot be relabelled as one of these partial topics or inherit their thresholds. No cross-provider alias or imported wording."
+      },
+      {
+        "keys": [
+          "hus.vann.utstromming",
+          "hus.ror.brudd",
+          "hus.ror.frost",
+          "hus.ror.tining"
+        ],
+        "decision": "REJECT_REUSE",
+        "reason": "Covered water/pipe events and thawing service concern insured event/benefit; new contract is prevention duties with conditional consequence"
+      },
+      {
+        "keys": [
+          "hus.vaer.dekning",
+          "hus.hage.objekter",
+          "hus.hage.brygge",
+          "hus.plutselig.begrensning"
+        ],
+        "decision": "REJECT_REUSE",
+        "reason": "Event/object exclusions or maintenance loss causation do not preserve nine explicit prevention duties, threshold, spouse context or conditional consequence"
+      },
+      {
+        "keys": [
+          "hus.fraflyttet.begrensning"
+        ],
+        "decision": "REJECT_REUSE",
+        "reason": "Separate twelve-month definition and fire/natural-damage restriction; the three-day duty is specific to a non-permanently inhabited building and must remain distinct"
+      },
+      {
+        "keys": [
+          "hus.avtale.forbehold",
+          "hus.handverker.folgeskade",
+          "hus.utleie.mislighold"
+        ],
+        "decision": "KEEP_UNCHANGED",
+        "reason": "General policy authority, workmanship cover and selected-rental payment duties respectively; none substitutes for the general safety fact"
+      }
+    ],
+    "why_new_detail_is_minimal": "One original compound fact remains one coherent bounded rule; two authored rows with independent sources use existing term/provenance/inheritance machinery. Splitting or relabelling would fragment common context and consequence or mix event/benefit/trigger scopes. No global model change is needed."
+  },
+  "proposed_correction_packet": {
+    "authorization_status": "PROPOSED_ONLY_NOT_IMPLEMENTATION_AUTHORITY",
+    "one_production_file": "lib/gjensidige-hus-catalog.ts",
+    "author_operation": "Append two facts using existing facts helper and hus.sikkerhet.begrensning, with the exact semantic_contract above; Pluss same-key replacesBase only. No other production edit.",
+    "proposed_tests": [
+      "tests/remediation-b-130-frost.test.mjs",
+      "tests/helpers/b130-frost.mjs (only if a shared independent oracle helper is necessary)"
+    ],
+    "narrow_existing_test_maintenance": "Affected B-020/B-050/B-051/vacancy exact catalog assertions may account only for these independently source-approved two new raw facts; preserve all prior cases, fields, negative controls and immutable historical packets. Record each proven mechanical root under active policy.",
+    "test_contracts": [
+      "Both original binding IDs, actual registered PDF hashes, PDF1 heading and all nine duties plus spouse and conditional full/partial consequence; both trigger conditions and strictly >3 days retained",
+      "Independent frozen fresh-main baseline plus exactly two authorized raw facts; every prior key/value/metadata/source and all other products unchanged",
+      "Exactly one effective term per level in all 8 Standard and 4 Pluss valid choices; own source page1, Pluss overriddenBase, full provenance preserved",
+      "No selected/not_selected/unknown coverage, occupancy or compliance inference; no addon selection, premium or general deductible change; generic occupancy/safety labels do not acquire new meaning",
+      "Real first/late exact-label document rule with canonicalKey null wins; conflicting and unknown inputs preserve existing contract and sources; repeat three times and JSON",
+      "General_terms evidence preserves catalog origin, never compliance/selection; actual document pipeline on both comparison sides",
+      "Same product equality and side-swap symmetry; no false equivalence to Tryg one-month safety threshold, twelve-month vacancy, event coverage or deductible benefit; missing peer evidence stays unknown",
+      "Provider/type/ordinary/version boundaries; Smart/Utleie/råte, Rettshjelp and B-020 preservation; all existing HOLD unchanged"
+    ],
+    "final_validation": [
+      "Own-source forward/reverse audit",
+      "Targeted relevant suites on final candidate",
+      "Complete actual test manifest/fullsuite without skips",
+      "Typegen then TypeScript",
+      "ESLint with unchanged warning inventory and zero errors",
+      "Webpack production build",
+      "Local synthetic HTTP/PDF runtime",
+      "Candidate identity/log hashes, integrity, links and git diff --check"
+    ],
+    "documents_to_update_after_authorized_implementation": [
+      "New completion receipt/checkpoint with both original bindings and exact tested identity",
+      "docs/development-agent/current-project-status.md"
+    ],
+    "excluded": [
+      "Any other B-130 signature or HOLD resolution",
+      "Schema/global aliases/normalizer/coverage engine/presentation changes",
+      "Source originals or prior audit modification",
+      "NITO or Sentralbord implementation",
+      "Install, commit, push or deploy without separate authorization"
+    ],
+    "completion_rule": "Only future authorized implementation plus final gates can credit this one original signature with both bindings; no complete B-130/global catalog/pilot clearance implied"
+  },
+  "verification_this_turn": {
+    "type": "Read-only source/identity/representation probes; no candidate catalog injected and no source/test code edits",
+    "original_PDFs_verified": 2,
+    "complete_page_1_visual_reviews": 2,
+    "source_extraction_modes": [
+      "raw",
+      "layout"
+    ],
+    "valid_addon_configurations": 12,
+    "synthetic_document_role_probes": 16,
+    "standalone_nonasserting_term_probe": "PASS: no inferred coverage status",
+    "scope_negatives": 8,
+    "all_preexisting_tracked_files_byte_identical": 7708,
+    "whole_appsuites_build_runtime": "NOT_RUN; read-only decision, not implementation validation",
+    "diagnostic_correction": "Initial presentation probe passed display type Hus to API requiring normalized type bolig; corrected after reading function signature; final persisted proof uses bolig, no production change",
+    "current_published_validation_reference": "../b130-vacancy-f5f88cc/validation-summary.json; historical candidate validation only, not a new PASS for unimplemented frost rule",
+    "no_new_implementation_PASS_claim": true
+  },
+  "protected_status": {
+    "checkpoint": "docs/audit/checkpoints/b130-vacancy-f5f88cc/checkpoint.json",
+    "checkpoint_sha256": "a4d24035abfd9bdc7865b14a8d9fc5888d3ed97f266d5d708f51b4ab2e266098",
+    "unchanged_values": {
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "documented_campaign_count": 64,
+      "documented_campaign_signatures": [
+        "03cff9fe5cfbf518",
+        "08203cfa28493e63",
+        "0a6b5f6f535df685",
+        "0da02a8dae8fd373",
+        "0eda923b4090cf6c",
+        "0f51d1c0374f1f1f",
+        "0f7980d6139daa2e",
+        "1982ee310e18279c",
+        "1ee41770b0470c78",
+        "1f56c194d413f97d",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "2b078b058bc63967",
+        "35c58fbc06cf6e7d",
+        "373413bc13517ff4",
+        "3f4b9eff50404590",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "4165f79344a7d572",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "48393aac0a200fe5",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "5839d2c13e186676",
+        "597df4c45c6d3db9",
+        "6080e5e5a6bb3c63",
+        "688cc5923342804d",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "72170f7dfe5c91b6",
+        "73aab8a0ad4f6c11",
+        "7b2587a3bbc0c772",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8c14a1328e5080cf",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "8e9d297cb0d1bd0e",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5792662cc2fa9f8",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "c1440948744bfa17",
+        "c5ccc4f26fd475ae",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "dc3e04a5fcce2317",
+        "ed99577218e2302b",
+        "f8bd15c89bc0dbd6",
+        "fbe23495ae09afb3"
+      ],
+      "current_B051_completed_signatures": [
+        "08203cfa28493e63",
+        "0eda923b4090cf6c",
+        "0f7980d6139daa2e",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "35c58fbc06cf6e7d",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "6080e5e5a6bb3c63",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "73aab8a0ad4f6c11",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ed99577218e2302b"
+      ],
+      "B051_partition_counts": [
+        37,
+        0,
+        1,
+        1
+      ],
+      "current_B071_revalidated_signatures": [
+        "2b078b058bc63967",
+        "1ee41770b0470c78",
+        "dc3e04a5fcce2317",
+        "0da02a8dae8fd373",
+        "688cc5923342804d",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "1982ee310e18279c",
+        "0f51d1c0374f1f1f",
+        "03cff9fe5cfbf518"
+      ],
+      "current_B071_not_revalidated": [
+        "5f31ff4946a666b5"
+      ],
+      "historical_only": {
+        "conversation_reported_resolved": 414,
+        "not_current_ledger_verified": true,
+        "mechanical": "19/16",
+        "semantic": "10/8",
+        "diagnostics_campaign": "19/12"
+      },
+      "historical_DEFER_SAFE_signatures": [
+        "0177d006e35081bf",
+        "01c571aed2922601",
+        "081897ea9890dd48",
+        "19e07ca100e66430",
+        "30fc68fdaa903cfb",
+        "4298f951ca3c66c3",
+        "42c2a36bff254c04",
+        "48f198515fc0f302",
+        "4b74844f6e3299d6",
+        "5451f3cd4d1439f3",
+        "57772b5d65c12f6e",
+        "614e6706ae2502ce",
+        "6a8fa7667b6b4f31",
+        "6aef26441eb0791f",
+        "765fd5db190904d0",
+        "891c9fac3031a8ee",
+        "b2dfb452aaacba84",
+        "b62a64284e4abbe1",
+        "c05c0db230591fe9",
+        "cb3e9dc1ef2d6684",
+        "cc9b15fa0f3121c0"
+      ],
+      "HARNESS_AUTONOMY_V1": {
+        "used": 33,
+        "ordinary_limit": 12,
+        "scope_used": 3,
+        "scope_limit": 6,
+        "capacity_for_other_roots": 0,
+        "ledger": "../b051-health-help-732b4cc/two-root-authorization-and-ledger.json",
+        "previous_root": "../b051-health-help-732b4cc/draft-identifier-authorization-and-ledger.json",
+        "status": "HISTORICAL_FROZEN_NO_LONGER_OPERATIONAL_STOP_QUOTA"
+      },
+      "global_resolved_open": "UNKNOWN",
+      "P2_credit": 0,
+      "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+      "NITO": "WAIT",
+      "Sentralbord": "WAIT_SEPARATE",
+      "remaining_B130_review_signatures": [
+        "15f5b4a3e9f79fd2",
+        "ce90710821e28a97",
+        "d58bff0e6b2d46eb"
+      ]
+    },
+    "additional_HOLD": "8a89196fecd29ddb common-exclusion applicability remains HOLD",
+    "other_pre_pilot_points": [
+      "B130 vacancy 597df4c45c6d3db9 validated for both original bindings. Base main contains 63 published campaign signatures; 64 are published when the containing commit is verified on remote main. House catalog origin is published on f5f88cc. No complete catalog or pilot clearance.",
+      "Other B130 review signatures 15f5b4a3e9f79fd2 / ce90710821e28a97 / d58bff0e6b2d46eb remain open; no implementation started",
+      "HTU 157c7afed18eb0fe / SC-019/SR-033 HOLD",
+      "8a89196fecd29ddb insect common-exclusion applicability HOLD",
+      "SC-020/SR-032 physical insect damage deductible HOLD (separate from Smart)",
+      "SC-035/SR-031 and B-071 hold",
+      "P3-A05 identity/mergestatus not established here; security/GDPR",
+      "Person insurance / pilot scope",
+      "Critical UX",
+      "Feedback",
+      "Operational adviser acceptance"
+    ],
+    "signature_closure_credit": 0,
+    "global_ledger_reconstructed": false,
+    "new_workstreams_started": false
+  },
+  "evidence": {
+    "path": "source-and-representation-proof.json.gz",
+    "sha256": "3c6b94e777bb92a817ac189a0a087400fb2d5b94d2bfca8dc77ed983373dfa55",
+    "contents": "Both exact original bindings, CR-229 and batch row, original-page raw/layout text and visual checks, complete current runtime outputs/metadata for 12 configurations and 16 document probes, source/candidate-code hashes and unchanged tracked-file inventory"
+  },
+  "integrity": {
+    "historical_sources_and_audit": "UNCHANGED",
+    "production_tests_project_status": "UNCHANGED",
+    "staged_files": [],
+    "commit_push_install_deploy": "NOT_PERFORMED",
+    "written_files": "Only three files in this new local read-only audit packet; no tracked file updates",
+    "checksum_policy": "SHA256SUMS seals decision JSON and compressed evidence; checksum file excluded from its own seal"
+  }
+}

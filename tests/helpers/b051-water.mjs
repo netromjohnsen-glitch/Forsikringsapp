@@ -1,3 +1,4 @@
+import {applyFrost} from './b130-frost.mjs';
 import assert from 'node:assert/strict';
 import {applyVacancy} from './b130-vacancy.mjs';
 import {readFileSync} from 'node:fs';
@@ -22,6 +23,6 @@ export function applyWater(catalog){
   out.facts[owner]=transformWaterRows(out.facts[owner],owner);
  }
  // Later source-approved addition; historical frozen inputs stay immutable.
- // Full independent delta/old-field isolation: remediation-b-130-vacancy.test.mjs.
- return applyVacancy(out);
+ // Independent delta/old-field isolation: remediation-b-130-{vacancy,frost}.test.mjs.
+ return applyFrost(applyVacancy(out));
 }

@@ -1,0 +1,18 @@
+{
+  "base_revision": "8422e39214aadff2dd31292e84ee4ca9cf818b30",
+  "baseline_sha256": "9bed58a9065a5bd0176cb4dded41c151db6232ab3c41c05689b3c814edf8c7b4",
+  "counts": {
+    "controls": 214,
+    "documents": 144,
+    "configurations": 12
+  },
+  "captured_before_production_change": true,
+  "capture_command": [
+    "node",
+    "--input-type=module",
+    "-"
+  ],
+  "capture_stdin": "\nconst {readFileSync,writeFileSync}=await import('node:fs');const {serialize,deserialize}=await import('node:v8');const {gzipSync,gunzipSync}=await import('node:zlib');\nconst {productCatalog,availableAddOns,resolveCatalogFacts}=await import(\"file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206\"+'/lib/product-catalog.ts');\nconst {normalizeManualAgreement}=await import(\"file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206\"+'/lib/manual-agreement.ts');\nconst {enrichExtractedAgreementWithCatalog}=await import(\"file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206\"+'/lib/catalog-enrichment.ts');\nconst {groupInsurances,groupTerms,groupAddOnNames}=await import(\"file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206\"+'/lib/comparison.ts');\nconst {documentPipeline}=await import(\"file:///Users/morten/Documents/ChatGPT/Forsikringstolken/review-41206\"+'/tests/helpers/supporting-terms.mjs');\nconst old=deserialize(gunzipSync(readFileSync('docs/audit/checkpoints/b051-house-origin-257a197/baseline.v8.gz'))),date=new Date('2026-10-23T12:00:00Z');\nconst repeated=i=>enrichExtractedAgreementWithCatalog({company:i.company??'Gjensidige',totalAnnualPremium:null,insurances:[i]},date).insurances[0];\nconst controls=old.controls.map(c=>{try{const first=normalizeManualAgreement(c.input).insuranceData.insurances[0],repeatedValue=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];return{...c,first,repeated:repeatedValue,display:groupAddOnNames([repeatedValue],c.input.products[0].type)};}catch(e){return{...c,error:e.message};}});\nconst documents=old.documents.map(c=>({...c,output:documentPipeline([[c.record]],c.side).insuranceData}));\nconst configurations=[];for(const id of ['gjensidige-hus','gjensidige-hus-pluss']){const p=productCatalog.products.find(p=>p.productId===id),addons=availableAddOns(p,date);for(let mask=0;mask<2**addons.length;mask++){const selected=addons.filter((_,i)=>mask&(1<<i)).map(a=>a.id),input={company:p.company,totalAnnualPremium:'',products:[{type:'Hus',productName:p.name,annualPremium:'12345',deductible:'9000',coverageSummary:'',importantTerms:[],addOnIds:selected}]},first=normalizeManualAgreement(input).insuranceData.insurances[0],again=repeated(first);configurations.push({id,selected,input,facts:resolveCatalogFacts(p,selected,date),first,repeated:again,display:groupTerms(groupInsurances([again],[again],null)[0],null)});}}\nconst result={catalog:productCatalog,controls,documents,configurations};writeFileSync('docs/audit/checkpoints/b130-frost-8422e39/baseline.v8.gz',gzipSync(serialize(result),{mtime:0}));console.log(JSON.stringify({controls:controls.length,documents:documents.length,configurations:configurations.length}));\n",
+  "inherited_input_fixture": "docs/audit/checkpoints/b051-house-origin-257a197/baseline.v8.gz",
+  "input_fixture_sha256": "fa98cacd9747a41001366fdba9c7997aa7f992392d150a3aeadfc0249d7a1dd7"
+}
