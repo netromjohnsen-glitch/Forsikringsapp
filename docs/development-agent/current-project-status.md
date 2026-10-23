@@ -1,12 +1,57 @@
 # Aktuell dokumentert prosjektstatus
 
+## Manuelt Utleie-valg – validert 23. oktober 2026
+
+Kontrollert basis på fersk main er `d53c2a1d60c907e71ad8f626a4a788d29f5ba203`.
+Manuelt Utleie-valg er rettet og validert på denne basisen, bare for Gjensidige
+Hus Standard og Hus Pluss, ordinary / Alminnelige vilkår. Publiseringsrevisjonen
+er committen som inneholder rettelsen, receipt og denne prosjektstatusen.
+Publisert status gjelder etter bekreftelse på remote main.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b051-manual-rental-d53c2a1/publication-authorization.md).
+**Ingen deployhandling.**
+
+Et eksplisitt normalisert valg får strengt bevis bundet til Utleie-tillegget,
+provider, produkt og versjon. ID, fem eksisterende vilkårsnøkler, verdier,
+komplette kilder/noter og katalogopprinnelse beholdes gjennom gjentatt beriking
+og JSON-lagring. Egenandelsklassifiseringen override beholdes; generell egenandel
+og priser endres ikke. Valget dokumenterer manuell registrering, ikke at utleie
+er angitt i forsikringsbeviset eller at erstatningsvilkårene er oppfylt.
+
+I denne manuelle konteksten har eksplisitt dokumentavslag, konflikt og ukjent
+valg forrang. Bare valgt viser tillegget som valgt; detaljvilkår og generelle
+vilkår velger ikke Utleie. Kundeopplysninger og kilder beholdes, også uttrykkelig
+ukjent detalj uten katalogfallback. Nytt manuelt avvalg fjerner beviset;
+navn/rå-ID/tilgjengelighet og gamle katalograder gjenoppretter ikke valget.
+
+44 nye kontrakttester og 593/593 målrettede kontroller består. Fullsuite:
+5766/5766 tester i 163 filer, uten skip. Typegen/TypeScript, webpack-bygg og lokal
+syntetisk HTTP/PDF-runtime 22/22 PASS. ESLint 0 feil / 27 eksakt uendrede warnings.
+202 andre produkters manuelle initial-/repeat-resultater, seks ikke-Utleie-
+kontroller på målproduktene og 144 faktiske rene dokumentforløp med visning er
+eksakt baseline-identiske. Katalog/kildebytes og tidligere bevispakke er uendret.
+
+[Receipt](../audit/checkpoints/b051-manual-rental-d53c2a1/completion-receipt-manual-rental-choice.json),
+[checkpoint](../audit/checkpoints/b051-manual-rental-d53c2a1/checkpoint.json),
+[validering](../audit/checkpoints/b051-manual-rental-d53c2a1/validation-summary.json)
+og [bevispakke](../audit/checkpoints/b051-manual-rental-d53c2a1/README.md).
+Dette lukker bare den avgrensede manuelle Utleie-feilen. Ren dokumentbasert
+Utleie-aktivering/visning er beholdt som før og gis ingen lukking eller
+pilotklarering. Publisering med commit og push er eksplisitt autorisert.
+
+HTU `157c7afed18eb0fe` / SC-019/SR-033, `8a89196fecd29ddb`, fysisk insektegenandel
+SC-020/SR-032 og alle øvrige HOLD er uendret. B-051 37/0/1/1, kampanje 63,
+globalt resolved/open UKJENT, P2-kreditt 0 og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED.
+Sikkerhet/GDPR/P3-A05, personforsikring/pilotscope, kritisk UX, feedback og operativ
+rådgiveraksept står fortsatt synlige på vent. NITO og Sentralbord venter.
+Ingen ytterligere arbeidsstrøm er startet.
+
 ## Manuelt Hus Smart-valg – validert 23. oktober 2026
 
 På fersk remote main `24dfac79717f3efeab7302ce4fa8010de64da3d2` er dokumentvalget
 publisert. Feilen der et rent manuelt Smart-valg mistet ID og nøkler ved gjentatt
-beriking, er rettet og validert på denne basisen.
-Publiseringsrevisjonen er committen som inneholder rettelsen, receipt og denne
-prosjektstatusen. Publisert status gjelder etter bekreftelse på remote main.
+beriking, ble rettet og validert på denne basisen. Rettingen, receipt og
+prosjektstatus er publisert i d53c2a1d60c907e71ad8f626a4a788d29f5ba203,
+verifisert på remote main før og etter den lokale Utleie-bolken.
 [Publiseringsfullmakt og kontroller](../audit/checkpoints/b051-manual-smart-24dfac7/publication-authorization.md).
 **Ingen deployhandling.**
 
@@ -55,8 +100,8 @@ hendelsesvilkår for egenandelsreduksjon.
 Eksakte Smart-identiteter, kundeverdier, kildebevis og dokumentvalg beholdes på
 repeat. Støttevilkår bruker samme produktbundne nøkkel med general_terms-opprinnelse
 og separat recordEvidence. På denne publiserte revisjonen er den separate feilen ved
-gjentatt beriking av et rent manuelt Smart-valg fortsatt åpen. Den lokale rettelsen
-og valideringen er dokumentert i den nyeste bolken ovenfor.
+gjentatt beriking av et rent manuelt Smart-valg fortsatt åpen. Den senere rettelsen
+er publisert i d53c2a1d60c907e71ad8f626a4a788d29f5ba203, som dokumentert ovenfor.
 
 102 nye Smart-valgtester; 324/324 kontroller med den eksisterende Smart-gaten;
 5694/5694 tester i 161 filer PASS uten skip. Typegen/TypeScript, webpack-bygg og
@@ -181,7 +226,7 @@ diagnostikk 19/12, HARNESS_AUTONOMY_V1 33/12 og DEFER_SAFE omskrives ikke.
 føres separat uten numerisk stoppkvote. Ingen P2-kreditt.
 
 Smart-dokumentvalg er publisert; den separate manuelle Smart-repeat-feilen er
-rettet og validert i bolken ovenfor; publisert status krever remote-verifisering. HTU-konflikt, SC-020/SR-032, SC-035/SR-031, B-071-holdet og øvrige holds er bevart. Rettshjelps kundemapping/prioritet er validert rettet
+rettet, validert og publisert i d53c2a1 som dokumentert ovenfor. HTU-konflikt, SC-020/SR-032, SC-035/SR-031, B-071-holdet og øvrige holds er bevart. Rettshjelps kundemapping/prioritet er validert rettet
 i rettelsen ovenfor; historiske receipts og øvrige metadataoverganger er bevart.
 8a89196fecd29ddb beholdes åpen og på HOLD: landbruks-/næringsunntakets
 anvendelse på bekjempelse krever autoritativ avklaring. Ingen lukking av denne kandidaten.

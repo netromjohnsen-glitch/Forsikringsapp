@@ -1,0 +1,52 @@
+{
+  "base_revision": "d53c2a1d60c907e71ad8f626a4a788d29f5ba203",
+  "sources_verified": [
+    {
+      "id": "gjensidigeHusStandard",
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "reviewed_pages": [
+        1,
+        3,
+        4,
+        17
+      ]
+    },
+    {
+      "id": "gjensidigeHusPluss",
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "reviewed_pages": [
+        1,
+        3,
+        4,
+        18
+      ]
+    }
+  ],
+  "independent_source_oracle": "../b051-rental-loss-use-5718a5f/source-oracle.json",
+  "prior_source_receipts": "../b051-rental-loss-use-5718a5f/README.md",
+  "read_only_contract_review": "Previous user-authorized read-only review on d53c2a1 verified both hashes, visually inspected both page-3 tables and inspected contract pages Standard17/Pluss18; existing R-051-SOURCES test rereads source pages in this targeted gate.",
+  "source_meaning": "Utleie must be specified in insurance certificate; retaining manual choice is not proof of certificate registration or entitlement. Existing conditions, exclusions, amounts, sources and product inheritance unchanged.",
+  "component": "gjensidige-hus-utleie / gjensidigeHusRental",
+  "existing_keys": [
+    "hus.utleie.vilkar",
+    "hus.utleie.mislighold",
+    "hus.utleie.utkastelse",
+    "hus.utleie.skadeverk",
+    "hus.utleie.egenandel"
+  ],
+  "identity": "No new canonical parent, enum or global alias. Exact labels/status headings only within manual context.",
+  "priority": "Explicit selected/refused; selected+refused unknown/conflict; explicit unknown without selected status blocks manual fallback; descriptions and detail statuses do not choose parent.",
+  "strict_marker": {
+    "origin": "manual",
+    "addOnId": "gjensidige-hus-utleie",
+    "catalogReference": "Exact own-field providerId/productId/version; current product scope ordinary and known version; applicable component required. Missing/extra/inherited/cross-addon fields rejected."
+  },
+  "pure_document_contract": "Untouched; all144 actual pipelines compare exactly to before-baseline. Document-origin addon source references alone do not enter manual context.",
+  "preserved_metadata": "Five keyed catalog rows incl. complete primary/qualification sources, generated notes, override classification, values and origin. Explicit customer unknown detail retained without catalog fallback.",
+  "HTU": "hus.rettshjelp.dekning / 157c7afed18eb0fe / SC-019/SR-033 HOLD_UNCHANGED",
+  "excluded_base_key": "hus.leietap.skade",
+  "prior_packet_files_verified": 36,
+  "new_signature_credit": 0
+}

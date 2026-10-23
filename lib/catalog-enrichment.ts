@@ -16,6 +16,7 @@ import { coverageStatusFromText, deriveCanonicalCoverages } from "./coverage-sta
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import { HOUSE_SMART_ADDON, HOUSE_SMART_PARENT, houseSmartDocumentAddOnTerms, houseSmartTermKey,
   isHouseSmartProduct, resolveHouseSmartSelection, validatedHouseSmartManualSelection } from "./hus-smart-selection.ts";
+import { HOUSE_RENTAL_ADDON, HOUSE_RENTAL_KEYS, houseRentalTermKey, resolveHouseRentalManualSelection } from "./hus-rental-selection.ts";
 import {
   findCatalogProductBySelection,
   availableAddOns,
@@ -272,11 +273,14 @@ function enrichInsurance(
   const smartSelection = product && isHouseSmartProduct(product) &&
     availableAddOns(product, asOf, null, catalog).some(addOn => addOn.id === HOUSE_SMART_ADDON)
     ? resolveHouseSmartSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }, asOf, catalog) : null;
+  const rentalSelection = product
+    ? resolveHouseRentalManualSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }, asOf, catalog) : null;
   const scopedSupportingTerms = originalTerms.filter(term => term.coverageOrigin === "catalog" &&
     term.sources?.length && term.sources.every(source =>
       (source as CatalogFact["source"] & { documentRole?: string }).documentRole === "general_terms") &&
     (optedParents.has(term.key ?? "") ||
       (product && isHouseSmartProduct(product) && Boolean(houseSmartTermKey(term))) ||
+      (rentalSelection && Boolean(houseRentalTermKey(term))) ||
       optedAddOns.some(addOn => normalizeLabel(addOn.name) === normalizeLabel(term.name)) ||
       anchors.some(fact => normalizeLabel(fact.label) === normalizeLabel(term.name))));
   let documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => {
@@ -286,6 +290,7 @@ function enrichInsurance(
     const normalized = normalizeDocumentFacts({ ...insurance, importantTerms: [...originalTerms, ...smartTerms].filter(term =>
       !scopedSupportingTerms.includes(term) &&
       !(smartSelection && (term as EnrichedTerm).coverageOrigin === "catalog" && houseSmartTermKey(term)) &&
+      !(rentalSelection && term.coverageOrigin === "catalog" && houseRentalTermKey(term)) &&
       !(term.coverageOrigin === "catalog" && optedParents.has(term.key ?? ""))) });
     trace?.normalization(insurance, normalized);
     return normalized;
@@ -328,6 +333,10 @@ function enrichInsurance(
       ...(smartSelection.sources.length ? { sources: smartSelection.sources } : {}),
     });
   }
+  if (rentalSelection) documentTerms = documentTerms.map(term => {
+    const key = houseRentalTermKey(term);
+    return key ? { ...term, key } : term;
+  });
 
   // MC/Bobil optional components remain separate from the base. Only an
   // explicit document-backed coverage selection can activate an applicable
@@ -345,6 +354,7 @@ function enrichInsurance(
   });
   const selectedAddOnIds = selectedScopedAddOns(product, insurance, documentTerms, asOf, catalog);
   if (smartSelection?.status === "selected") selectedAddOnIds.push(HOUSE_SMART_ADDON);
+  if (rentalSelection?.status === "selected") selectedAddOnIds.push(HOUSE_RENTAL_ADDON);
   const manualParents = new Set(insurance.addOns.flatMap(entry => {
     const addOn = validatedManualSelectionAddOn(product, entry, asOf, catalog);
     return addOn && selectedAddOnIds.includes(addOn.id) ? addOn.selectionEvidenceKeys ?? [] : [];
@@ -364,7 +374,8 @@ function enrichInsurance(
       .map(fact => normalizeCatalogTermKey(fact.key)));
     return keys.size === 1 ? { ...term, key: [...keys][0] } : term;
   });
-  const documentedKeys = new Set(documentTerms.filter(term => !isUndocumentedTermValue(term.value)).map((term) => normalizeCatalogTermKey(
+  const documentedKeys = new Set(documentTerms.filter(term => !isUndocumentedTermValue(term.value) ||
+    (rentalSelection && term.coverageOrigin === "document" && houseRentalTermKey(term))).map((term) => normalizeCatalogTermKey(
     term.key ?? normalizeTermName(term.name, { insuranceType: insurance.type, termValue: term.value }),
   )));
   for (const addOn of insurance.addOns) {
@@ -432,6 +443,14 @@ function enrichInsurance(
       return included;
     })
     .map((fact) => ({ ...catalogTerm(fact, catalogFacts),
+      // Preserve the exact established manual notes/classification too; the
+      // rental deductible's override note differs from the Smart presentation.
+      ...(rentalSelection?.status === "selected" && HOUSE_RENTAL_KEYS.some(key => key === fact.key) ? {
+        sources: catalogFactSources(fact).map((source, index) => ({ ...source, note: index === 0
+          ? [fact.source.note, fact.deductibleClassification === "override"
+            ? "Uttrykkelig særskilt egenandel som erstatter generell verdi" : undefined].filter(Boolean).join(" · ") || undefined
+          : [source.note, "Supplerende kilde for faktumets anvendelse"].filter(Boolean).join(" · ") })),
+      } : {}),
       // Retain the established manual presentation references, including their
       // generated notes, only for this validated and effective manual choice.
       ...(manualParents.has(fact.key) ? {

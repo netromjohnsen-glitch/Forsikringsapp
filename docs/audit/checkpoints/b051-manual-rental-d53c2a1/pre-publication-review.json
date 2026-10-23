@@ -1,0 +1,58 @@
+{
+  "status": "PASS_LOCAL_READY_FOR_SEPARATE_PUBLICATION_DECISION",
+  "base_revision": "d53c2a1d60c907e71ad8f626a4a788d29f5ba203",
+  "application_identity_sha256": "62f34b58b8105d23b640411184d78d3d67c75bfd5152debbad451f42d37b0b5f",
+  "production_files_reviewed": [
+    "lib/hus-rental-selection.ts",
+    "lib/manual-agreement.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts"
+  ],
+  "reviewed_contract": "Only known manual Utleie context; strict addon/product/version proof, document priority, five existing catalog identities/full sources/override and fresh deselection. Pure document pipelines unchanged. No new global parent/enum/alias, source meaning or price change.",
+  "final_gates_same_candidate": [
+    "targeted-final",
+    "fullsuite",
+    "typegen",
+    "typescript",
+    "eslint",
+    "production-build",
+    "diff-check",
+    "http-pdf-runtime"
+  ],
+  "earlier_gate": "targeted; older identity retained, not used as final gate",
+  "all_log_hashes_verified": true,
+  "test_manifest_files": 163,
+  "protected_status_exact_fields": [
+    "holds_unchanged",
+    "additional_B051_holds_unchanged",
+    "documented_campaign_signatures",
+    "current_B051_completed_signatures",
+    "current_B071_revalidated_signatures",
+    "current_B071_not_revalidated",
+    "historical_DEFER_SAFE_signatures",
+    "historical_only",
+    "HARNESS_AUTONOMY_V1",
+    "original_signature_status",
+    "CATALOG_PILOT_GATE",
+    "P2_credit",
+    "global_resolved_open",
+    "B051_partition_counts",
+    "documented_campaign_count",
+    "NITO",
+    "Sentralbord"
+  ],
+  "prior_packet_files_verified": 36,
+  "markdown_file_links_verified": 43,
+  "staged_files": 0,
+  "tracked_changed_files": [
+    "docs/development-agent/current-project-status.md",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts",
+    "lib/manual-agreement.ts",
+    "tests/remediation-b-051-manual-smart-choice.test.mjs",
+    "tests/remediation-b-051-rot-status.test.mjs",
+    "tests/remediation-b-051-smart-selection.test.mjs"
+  ],
+  "publication": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED"
+}

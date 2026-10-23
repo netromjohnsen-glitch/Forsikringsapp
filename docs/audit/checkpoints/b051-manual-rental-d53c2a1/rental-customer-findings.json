@@ -1,0 +1,27 @@
+{
+  "status": "MANUAL_RENTAL_CONTINUATION_RESOLVED_CURRENT_IMPLEMENTATION",
+  "scope": {
+    "provider": "gjensidige",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår"
+  },
+  "finding": "manual_rental_repeat_and_manual_context_display",
+  "resolution": "Addon-bound manual proof retains selected ID and five exact catalog rows with full provenance/notes/override across repeated enrichment and JSON; explicit document status overrides in this manual context; fresh deselection removes proof.",
+  "finding_status": "RESOLVED_CURRENT_IMPLEMENTATION_EFFECTIVE_AFTER_REMOTE_VERIFICATION",
+  "still_open_in_authorized_manual_scope": [],
+  "outside_scope": [
+    "Pure document-only Utleie selection/component activation and addon display keep existing baseline behavior; this packet does not claim to resolve them.",
+    "Certificate registration or actual entitlement is not proved by manual choice.",
+    "HTU and all existing HOLD remain unchanged."
+  ],
+  "no_full_rental_customer_mode_or_pilot_readiness_claim": true,
+  "receipt": "completion-receipt-manual-rental-choice.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

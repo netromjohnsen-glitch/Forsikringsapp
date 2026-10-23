@@ -1,0 +1,32 @@
+{
+  "policy": "docs/development-agent/workflow.md active autonomous authority; historical budgets unchanged",
+  "roots": [
+    {
+      "id": "M1",
+      "kind": "Authorized contract expectation update",
+      "files": [
+        "tests/remediation-b-051-smart-selection.test.mjs",
+        "tests/remediation-b-051-manual-smart-choice.test.mjs",
+        "tests/remediation-b-051-rot-status.test.mjs"
+      ],
+      "before": "Frozen active manual Smart/rot combination expectations require Utleie to lack a marker, lose its selected ID, keys and catalog origin on repeat. These are explicitly retained old defects, not desired behavior.",
+      "after": "Permit only strict addon-bound Utleie marker on initial output; on repeat add rental ID and its five exact original catalog facts/rows including notes/override. Preserve all other fields, raw snapshots, source values, document pipeline, Smart and rot behavior.",
+      "independent_evidence": [
+        "authorization.md",
+        "baseline.v8.gz",
+        "baseline-identity.json",
+        "../b051-manual-smart-24dfac7/baseline.v8.gz",
+        "../b051-smart-selection-85be811/baseline.v8.gz",
+        "../b051-rental-loss-use-5718a5f/source-oracle.json"
+      ],
+      "assertions": "No skips or discarded cases: update exact expected objects for affected rental cases; all unmodified fields remain deeply equal."
+    }
+  ],
+  "new_validation": "Initial 40/40 new tests PASS; first targeted 591/591 PASS before final document-source isolation guard and two added boundary tests. Final gates use current file hashes.",
+  "implementation_notes": [
+    "No global canonical parent/alias/enum change. Five existing detail identities used only in manual context.",
+    "Explicit unknown customer detail is retained with its source, rather than filled from the newly selected component.",
+    "The rental override source note is preserved exactly, separately from the Smart notes.",
+    "Final isolation review: document-origin addon source references alone must not enter manual context; two permanent negative boundary tests added. Pure document behavior stays unchanged."
+  ]
+}

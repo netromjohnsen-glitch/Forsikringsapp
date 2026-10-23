@@ -25,6 +25,7 @@ import { findCatalogProduct, availableAddOns } from "./product-catalog.ts";
 import { validatedManualSelectionAddOn, type ManualAddOnSelection } from "./catalog-enrichment.ts";
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
 import { HOUSE_SMART_ADDON, isHouseSmartAddOn, resolveHouseSmartSelection } from "./hus-smart-selection.ts";
+import { isHouseRentalAddOn, resolveHouseRentalManualSelection } from "./hus-rental-selection.ts";
 
 export type FactSource = {
   agreementScope?: AgreementScopeId;
@@ -199,10 +200,15 @@ function smartSelectionForComparison(insurance: ComparedInsurance, insuranceType
 
 function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
   const smart = smartSelectionForComparison(insurance, insuranceType);
+  const reference = insurance.catalogReference;
+  const rentalProduct = normalizeInsuranceType(insuranceType) === "bolig" && reference
+    ? findCatalogProduct(reference.providerId, reference.productId, reference.version, reference) : null;
+  const rental = rentalProduct ? resolveHouseRentalManualSelection(rentalProduct, insurance) : null;
   const coverages = new Map(deriveCanonicalCoverages(insurance, insuranceType)
     .map((coverage) => [coverage.id, coverage]));
   return (insurance.addOns ?? []).filter((addOn) => {
     if (smart && isHouseSmartAddOn(addOn)) return smart.status === "selected";
+    if (rental && isHouseRentalAddOn(addOn)) return rental.status === "selected";
     if (addOn.classification === "standard") return false;
     const reference = insurance.catalogReference;
     const product = normalizeInsuranceType(insuranceType) === "bolig" && reference

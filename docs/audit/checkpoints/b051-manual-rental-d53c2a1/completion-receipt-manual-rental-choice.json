@@ -1,0 +1,69 @@
+{
+  "classification": "CUSTOMER_MANUAL_SELECTION_CONTINUATION_NOT_ORIGINAL_SIGNATURE_COMPLETION",
+  "finding": "HOUSE_RENTAL_MANUAL_REPEAT",
+  "status": "PASS_VALIDATED",
+  "base_revision": "d53c2a1d60c907e71ad8f626a4a788d29f5ba203",
+  "tested_candidate_identity_sha256": "62f34b58b8105d23b640411184d78d3d67c75bfd5152debbad451f42d37b0b5f",
+  "provider": "gjensidige",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "insurance_type": "bolig",
+  "agreement_scope": "ordinary",
+  "version": "Alminnelige vilkår",
+  "production_scope": [
+    "lib/hus-rental-selection.ts",
+    "lib/manual-agreement.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts"
+  ],
+  "component": "gjensidige-hus-utleie",
+  "existing_keys": [
+    "hus.utleie.vilkar",
+    "hus.utleie.mislighold",
+    "hus.utleie.utkastelse",
+    "hus.utleie.skadeverk",
+    "hus.utleie.egenandel"
+  ],
+  "contract": {
+    "choice_proof": "Only normalized explicit manual input emits strict own-field marker: origin manual, addOnId rental and exact resolved product catalogReference. Applicable known product/component required; missing/extra/inherited/cross-addon/reference fields rejected.",
+    "repeat": "Three repeats plus JSON persistence retain ID, five keyed catalog rows, values, complete primary/qualification sources and generated notes, catalog origin and deductibleClassification override.",
+    "document_priority": "Within manual/catalog context, exact Utleie choice heading or local Valg/Valgstatus/Status/Dekning inside documented Utleie addon may assert selected/refused/unknown; selected+refused yields unknown/conflict. Explicit unknown without selected blocks manual fallback. Description/detail/supporting evidence never chooses parent. Invalid manual proof cannot be rescued into new component activation by a document heading.",
+    "customer_details": "Customer values and sources override exact existing detail keys; explicit unknown detail is retained without catalog fallback. No new global canonical parent/enum/alias.",
+    "deselection": "Fresh checkbox removal removes proof and five addon rows; stale IDs/catalog rows cannot resurrect choice.",
+    "display": "Same scoped resolver controls component activation and selected addon display in manual context; raw evidence retained.",
+    "source_scope": "Pure document flows without internal catalog/manual context, including document-origin addon source references, retain previous behavior; 144 full pipeline snapshots remain exact.",
+    "combinations": "Smart/rot choices and facts retain their own strict proofs. All 202 other manual products and six non-rental target controls are baseline-identical.",
+    "meaning": "Manual choice is registration, not certificate proof or entitlement; terms still require rental registered in certificate. Premiums/general deductible, house rental-loss base, HTU and source meaning untouched."
+  },
+  "validation": "validation-summary.json",
+  "gate_manifest": "gate-results.json",
+  "candidate_identity": "candidate-identity.json",
+  "baseline_evidence": "baseline-identity.json",
+  "source_contract_evidence": "source-and-contract-preflight.json",
+  "test_contract_updates": "test-contract-updates.json",
+  "permanent_test": "tests/remediation-b-051-manual-rental-choice.test.mjs",
+  "current_customer_findings": "rental-customer-findings.json",
+  "original_signature_closure_credit": 0,
+  "documented_campaign_count": 63,
+  "B051_partition_counts": [
+    37,
+    0,
+    1,
+    1
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "HTU_and_other_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "no_full_rental_customer_mode_or_pilot_readiness_claim": true,
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

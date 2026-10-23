@@ -98,8 +98,8 @@ for(const id of ids)test(`SMART-SELECTION exact aliases preserve other identitie
 test('SMART-SELECTION 202 other products and catalog identity preserve baseline; manual Smart follows explicit-choice contract',()=>{
  const meta=JSON.parse(readFileSync(new URL('baseline-identity.json',audit)));const bytes=readFileSync(new URL('baseline.v8.gz',audit));assert.equal(createHash('sha256').update(bytes).digest('hex'),meta.baseline_sha256);const baseline=deserialize(gunzipSync(bytes));assert.equal(baseline.others.length,202);
  for(const c of baseline.others){if(c.error)assert.throws(()=>enrichExtractedAgreementWithCatalog(c.input,date),{message:c.error},c.id);else assert.deepEqual(enrichExtractedAgreementWithCatalog(c.input,date),c.output,c.id);}
- // Only the newly authorized manual Smart marker, continuation ID and its three
- // keyed catalog rows may differ from this frozen document-choice baseline.
+ // Only the authorized Smart and Utleie manual proofs/continuation and their
+ // exact original catalog rows may differ from this frozen document-choice baseline.
  for(const c of baseline.manual){
   const first=normalizeManualAgreement(c.input).insuranceData.insurances[0],expectedFirst=structuredClone(c.first),expectedRepeat=structuredClone(c.repeated);
   if(c.first.addOnIds.includes(addonId)){
@@ -107,6 +107,13 @@ test('SMART-SELECTION 202 other products and catalog identity preserve baseline;
    expectedRepeat.addOnIds=[...expectedRepeat.addOnIds,addonId];
    expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!houseSmartTermKey(t)),...structuredClone(c.first.importantTerms.filter(houseSmartTermKey))];
    expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>keys.includes(f.key))));
+  }
+  if(c.first.addOnIds.includes('gjensidige-hus-utleie')){
+   const rental='gjensidige-hus-utleie',rentalRows=c.first.importantTerms.filter(t=>t.key?.startsWith('hus.utleie.')),names=new Set(rentalRows.map(t=>t.name));
+   for(const i of [expectedFirst,expectedRepeat])i.addOns.find(a=>a.id===rental).manualSelection={origin:'manual',addOnId:rental,catalogReference:{...c.first.catalogReference}};
+   expectedRepeat.addOnIds.push(rental);
+   expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rentalRows)];
+   expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
   }
   assert.deepEqual(first,expectedFirst);assert.deepEqual(repeat(first),expectedRepeat);
   const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first)],'Hus'),expected);
