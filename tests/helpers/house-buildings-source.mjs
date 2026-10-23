@@ -1,3 +1,4 @@
+import {withRebuildingSourcePage,withOriginalRebuildingSourcePage} from './house-rebuilding-source.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
@@ -27,5 +28,5 @@ function project(value,page){
 // Keep immutable snapshots unchanged. Both directions preserve every other field.
 // Dedicated source/delta tests require current production page3; projection is
 // only for exact equality with older page2 fixtures, never source admission.
-export const withBuildingsSourcePage = value => project(value,3);
-export const withOriginalBuildingsSourcePage = value => project(value,2);
+export const withBuildingsSourcePage = value => project(withRebuildingSourcePage(value),3);
+export const withOriginalBuildingsSourcePage = value => project(withOriginalRebuildingSourcePage(value),2);

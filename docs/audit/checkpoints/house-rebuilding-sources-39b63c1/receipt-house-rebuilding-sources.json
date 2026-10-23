@@ -1,0 +1,106 @@
+{
+  "classification": "CURRENT_VALIDATED_THREE_SHARED_REBUILDING_SOURCE_PAGE_CORRECTIONS",
+  "status": "PASS_VALIDATED",
+  "authorization": "authorization.json",
+  "base_revision": "39b63c1b9c50e77ba1777072f348854735840678",
+  "tested_HEAD_is_base_not_candidate_commit": true,
+  "application_identity_sha256": "147e7c8b804bb5b4503e5c8b23788b34bc647942768e475772376ab32ce1126c",
+  "candidate_identity": "candidate-identity.json",
+  "decision": "Primary source pages for full-value guarantee,total-loss threshold and Swan-labelled rebuilding corrected from Standard17 to16 in three shared raw rows. Both Hus levels verified. Exactly three production digits changed.",
+  "scope": {
+    "keys": [
+      "hus.gjenoppforing.hovedregel",
+      "hus.gjenoppforing.totalskade",
+      "hus.gjenoppforing.svanemerket"
+    ],
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "provider": "gjensidige",
+    "insurance_type": "Hus",
+    "agreement_scope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "primary_source_owner": "gjensidigeHusStandard",
+    "before_page": 17,
+    "after_page": 16,
+    "raw_rows_changed": 3,
+    "all_other_production_bytes_unchanged": true,
+    "inheritance_wording_value_selection_other_provenance": "UNCHANGED"
+  },
+  "source_oracle": "source-oracle.json",
+  "prior_read_only_receipt": "../house-foundation-revalidation-39b63c1/receipt-house-foundation.json",
+  "prior_remainder": "HOUSE_SHARED_REBUILDING_PRIMARY_SOURCE_PAGES",
+  "prior_read_only_packet": "Retained byte-identical as historical before evidence",
+  "source_and_reverse_audit": "source-and-reverse-audit.json",
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2555,
+      "pass": 2555,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 41,
+    "fullsuite": {
+      "tests": 6247,
+      "pass": 6247,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 170,
+    "scoped_eslint": "0 errors,0 warnings",
+    "source_contract_tests": 22,
+    "new_tests": 3,
+    "new_test_files": 0,
+    "all12_configurations": "Full resolver/evidence/manual/threeJSON-reenrichment/materialization/display outputs equal independent before plus authorized source-page changes only",
+    "20_document_role_probes": "Whole runtime snapshot equals independent before plus approved source pages",
+    "other_regression_controls": "214 manual inputs,144 document flows,52 catalog comparisons in both directions; document priority,selection and scope isolation preserved",
+    "original_pages": "Exact registered SHA and complete raw Standard16/Pluss17 paragraphs checked",
+    "negative_guards": "Reject page99/wrong source section/filename; preserve customer sources,annetsted qualifier and underinsurance refs",
+    "runtime_proof": "runtime-source-proof.json.gz"
+  },
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "historical_evidence": "Old source originals,audits and frozen whole-state baselines unchanged. New exact-key/Standard-source page projection composed with existing adapter; full equality and negative controls retained. Actual current source fields required page16.",
+  "unchanged_status": {
+    "documented_campaign_published_at_base": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "project_status": "../../../development-agent/current-project-status.md",
+  "checkpoint": "checkpoint.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "commit_push": "AUTHORIZED_BY_PUBLICATION_AUTHORIZATION",
+  "install": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_bounded_step": "Combined ordinary-house foundation revalidation on containing fresh main remains separate. All HOLD and pilot gate unchanged.",
+  "publication_revision": "Containing Git commit; verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

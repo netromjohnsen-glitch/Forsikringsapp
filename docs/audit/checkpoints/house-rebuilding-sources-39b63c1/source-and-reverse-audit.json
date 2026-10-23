@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "base_revision": "39b63c1b9c50e77ba1777072f348854735840678",
+  "application_identity_sha256": "147e7c8b804bb5b4503e5c8b23788b34bc647942768e475772376ab32ce1126c",
+  "production_delta": {
+    "path": "lib/gjensidige-hus-catalog.ts",
+    "base_revision": "39b63c1b9c50e77ba1777072f348854735840678",
+    "byte_offsets": [
+      16593,
+      16852,
+      18127
+    ],
+    "before": [
+      "7",
+      "7",
+      "7"
+    ],
+    "after": [
+      "6",
+      "6",
+      "6"
+    ],
+    "field_change": "source.page17-to16 on three named shared rows",
+    "all_other_production_bytes_unchanged": true
+  },
+  "source_oracle": "source-oracle.json",
+  "keys": [
+    "hus.gjenoppforing.hovedregel",
+    "hus.gjenoppforing.totalskade",
+    "hus.gjenoppforing.svanemerket"
+  ],
+  "affected_products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "shared_source_owner": "gjensidigeHusStandard",
+  "raw_rows_changed": 3,
+  "source_page_before": 17,
+  "source_page_after": 16,
+  "Pluss_own_original_page": 17,
+  "inheritance": "Shared Standard raw rows retained; no new Pluss override or source owner change",
+  "meaning_wording_values_keys_labels_other_provenance_selection_scope_coverage_mapping_priority": "UNCHANGED",
+  "other_rules": "Object rows stay page3. gjenoppforing.annetsted qualification page17 and underinsurance sources unchanged. No blanket page17 renumbering.",
+  "source_originals_and_historical_audits": "UNCHANGED",
+  "runtime_proof": "runtime-source-proof.json.gz",
+  "historical_SF_context": [
+    "SF-3063",
+    "SF-3150"
+  ],
+  "entire_historical_source_page_findings_closed": false,
+  "new_signature_closure_credit": 0,
+  "P2_credit": 0
+}

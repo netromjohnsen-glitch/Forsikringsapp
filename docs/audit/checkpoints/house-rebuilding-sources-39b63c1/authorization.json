@@ -1,0 +1,34 @@
+{
+  "user_authorization": "Rett de tre kildehenvisningene for gjenoppføring fra Standard side 17 til 16 på fersk main. Kontroller begge husnivåer og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "base_revision": "39b63c1b9c50e77ba1777072f348854735840678",
+  "keys": [
+    "hus.gjenoppforing.hovedregel",
+    "hus.gjenoppforing.totalskade",
+    "hus.gjenoppforing.svanemerket"
+  ],
+  "production_file": "lib/gjensidige-hus-catalog.ts",
+  "production_scope": "Only source.page17-to16 on three named shared Standard raw rows; Pluss inherits. Preserve all other production bytes.",
+  "allowed_support_files": [
+    "tests/helpers/house-rebuilding-source.mjs",
+    "tests/helpers/house-buildings-source.mjs",
+    "tests/remediation-house-buildings-source.test.mjs",
+    "docs/development-agent/current-project-status.md",
+    "docs/audit/checkpoints/house-rebuilding-sources-39b63c1/*"
+  ],
+  "source_decision": "../house-foundation-revalidation-39b63c1/receipt-house-foundation.json",
+  "independent_production_roots": 1,
+  "preserve": "All wording,values,keys,other source metadata,inheritance,selection,mapping,coverage,document priority,other facts,all source originals/old audits/HOLD. In particular leave annetsted qualification page17 and underinsurance sources unchanged.",
+  "gates": [
+    "Independent fresh-main before hashes and original source contract",
+    "Exact three-byte production delta",
+    "Both products/all12 addon configurations,214 manual and144 document controls,threeJSON reenrichments,materialization/display and52 bidirectional comparisons",
+    "Targeted41-file suite and fullsuite170 files for shared snapshot adapter changes",
+    "Scoped lint,source/reverse audit,links,protected status and diff"
+  ],
+  "mechanical_policy": "Guarded exact-key source-page projection for new contract composed with existing test adapter. No old snapshot rewrite; preserve negative/full equality assertions.",
+  "commit_push": "NOT_AUTHORIZED_THIS_TURN",
+  "deploy": "NOT_AUTHORIZED",
+  "install": "NOT_AUTHORIZED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE"
+}
