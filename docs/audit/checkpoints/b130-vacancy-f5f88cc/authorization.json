@@ -1,0 +1,129 @@
+{
+  "user_instruction": "Implementer den avgrensede fraflyttingsregelen for 597df4c45c6d3db9 på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "base_revision": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+  "decision": "docs/audit/checkpoints/b130-vacancy-review-f5f88cc/decision-597df4c45c6d3db9.json",
+  "decision_sha256": "54c1b3f8eb99f3d51512bc157829edbbdc137b8fd67783105b25a246266d2c5c",
+  "scope": {
+    "provider": "gjensidige",
+    "insurance_type": "bolig",
+    "agreement_scope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ]
+  },
+  "signature": "597df4c45c6d3db9",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2122",
+      "source_fact_id": "SF-3049",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_hash": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 2",
+      "semantic_concept": "Fraflyttet",
+      "semantic_dimension": "dekning",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+    },
+    {
+      "finding_id": "GAP-2181",
+      "source_fact_id": "SF-3136",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_hash": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 2",
+      "semantic_concept": "Fraflyttet",
+      "semantic_dimension": "dekning",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+    }
+  ],
+  "one_production_file": "lib/gjensidige-hus-catalog.ts",
+  "contract": {
+    "key": "hus.fraflyttet.begrensning",
+    "label": "Fraflyttet bolig – dekningsbegrensning",
+    "value": "For fraflyttet bolig dekkes kun brann- og naturskade dersom annet ikke er avtalt. En bolig regnes som fraflyttet når den ikke har vært bebodd de siste 12 måneder.",
+    "classification": "NON_ASSERTING_RESTRICTION_TERM",
+    "source_section": "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder / Fraflyttet bolig",
+    "page": 2,
+    "standard": {
+      "owner": "gjensidigeHusStandard",
+      "source_document_id": "gjensidigeHusStandard",
+      "replacesBase": "absent"
+    },
+    "pluss": {
+      "owner": "gjensidigeHusPluss",
+      "source_document_id": "gjensidigeHusPluss",
+      "replacesBase": true,
+      "reason": "Replace inherited Standard row for this same key only; retain identical material rule with own Pluss primary PDF page 2 and existing inherited base evidence. Effective result must contain one row, no duplicate."
+    },
+    "unchanged_fields": "No coverageAvailability, catalogSelectionConfirmed, deductibleClassification, structuredValue, component/addon or selectionEvidenceKeys introduced by this row",
+    "current_key_collision": false,
+    "presentation": {
+      "concept": "hus.ovrig",
+      "label": "Andre husvilkår",
+      "tier": "detail",
+      "behavior": "Use existing full terms/detail presentation. Plain rule text with complete sources; no independent green selected/included coverage assertion; no UI or importance ranking change."
+    },
+    "normalization": {
+      "new_global_alias": false,
+      "new_type_alias": false,
+      "new_extraction_enum_or_prompt": false,
+      "reason": "Current product-bound exact/unambiguous label matching in catalog-enrichment.ts binds a genuine document fact after exact product resolution. Probe confirms this novel label is initially unbound on current main. Once that exact fact exists, use existing match, never arbitrary free-text heuristics. Extractor canonicalKey remains null for this label; no request for a schema-unsupported raw canonicalKey.",
+      "exact_customer_label": "Fraflyttet bolig – dekningsbegrensning",
+      "other_customer_headings": "Generic Fraflyttet/Ubebodd/Ansvarsbegrensninger, factual occupancy values, and different labels remain independent unless already bound by approved rules; no new inference or synonym mapping.",
+      "unknown_values": "Preserve current undocumented/unknown fallback policy; do not silently strengthen it or convert unknown to selected/not-selected."
+    },
+    "reuse_candidates_evaluated": [
+      "hus.avtale.forbehold",
+      "hus.avtale.ipid",
+      "hus.forsikringsform",
+      "hus.brukstap.dekning",
+      "hus.utleie.vilkar",
+      "hus.sikkerhet.risiko",
+      "hus.sikkerhet.vann"
+    ],
+    "rejected_reuse": [
+      {
+        "key": "hus.avtale.forbehold",
+        "reason": "General policy precedence does not identify the vacancy subject/12-month trigger/fire-natural-damage limit. Reusing the row hides an independent material dimension and its page-2 source."
+      },
+      {
+        "key": "hus.avtale.ipid",
+        "reason": "Fremtind uses an IPID overview bundle. That provider/source/package and its multiple dimensions are not an approved exact Gjensidige vacancy identity; 12-month definition and unless-otherwise-agreed reservation must remain explicit."
+      },
+      {
+        "key": "hus.forsikringsform",
+        "reason": "Full value/first loss and settlement form do not have the vacancy trigger; this restriction is stated for building insurance without a full-value-only qualifier."
+      },
+      {
+        "key": "hus.brukstap.dekning",
+        "reason": "Post-loss inability to use a dwelling differs from not having inhabited it during the previous 12 months; reusing would conflate trigger, purpose and compensation."
+      },
+      {
+        "key": "hus.utleie.vilkar",
+        "reason": "Rental optionality and contractual move-out obligations do not express a base-building vacancy restriction. Rule applies independently of rental choice."
+      },
+      {
+        "key": "hus.sikkerhet.risiko",
+        "reason": "Tryg bundles rebuilding/rental notification with a causation-dependent vacancy exclusion; no Gjensidige 12-month definition and no identical only-fire/natural-damage limit. Reuse would create false cross-provider equivalence."
+      },
+      {
+        "key": "hus.sikkerhet.vann",
+        "reason": "Tryg frost precautions after a month unoccupied, and B130 ce90710821e28a97 frost/protection review, have different time, action and legal effect; retain separately."
+      },
+      {
+        "key": "hus.fraflyttet.dekning",
+        "reason": "Not an existing reusable identity. Synthetic representation probe shows .dekning infers a new selected coverage. Selected detail ends .begrensning and infers no new coverage."
+      }
+    ]
+  },
+  "test_scope": "New source-bound targeted test/helper; exact justified active snapshot extensions only; all previous tests/source oracles preserved",
+  "docs_scope": "New implementation audit packet/checkpoint/receipt and current-project-status; prior packets immutable",
+  "gates": "New targeted contract plus existing B051/B020/B007 and catalog/normalization/document/supporting/manual/comparison/provenance/source controls. Full test manifest, typegen then TypeScript, ESLint, webpack build, synthetic local HTTP/PDF runtime and source/reverse/integrity/diff checks on final candidate using installed tools. Record exact candidate identity and fresh main; no install or deploy.",
+  "HOLD": "ALL_UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "install_commit_push_deploy": "NOT_AUTHORIZED",
+  "new_workstreams": false
+}

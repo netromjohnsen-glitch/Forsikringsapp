@@ -1,3 +1,4 @@
+import {withoutVacancy} from './helpers/b130-vacancy.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -88,7 +89,7 @@ test('WATER full-field source oracle; only the two authorized rows added',()=>{
  assert.deepEqual(productCatalog,expected);
  for(const id of ids){
   const before=resolveCatalogFacts(product(id,baseline),[],date,null,baseline);
-  const after=resolveCatalogFacts(product(id),[],date).filter(f=>f.key!==key);assert.deepEqual(after,before);
+  const after=resolveCatalogFacts(product(id),[],date).filter(f=>f.key!==key);assert.deepEqual(withoutVacancy(after),before);
  }
  for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.equal(resolveCatalogFacts(p,[],date).some(f=>f.key===key),false,p.productId);
 });

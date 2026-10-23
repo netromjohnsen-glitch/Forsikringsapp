@@ -185,6 +185,11 @@ standard.find((fact) => fact.key === "hus.rettshjelp.egenandel")!.qualificationS
 standard.push(...facts("gjensidigeHusStandard", [["vann.inntrengning_etter_bygningsskade", "Vanninntrengning etter dekket bygningsskade", "Vann som trenger inn gjennom åpning eller utetthet oppstått ved erstatningsmessig bygningsskade.", "Hus – Dekkes / Vannskader / Åpning eller utetthet oppstått ved erstatningsmessig bygningsskade", 3]]));
 pluss.push(...facts("gjensidigeHusPluss", [["vann.inntrengning_etter_bygningsskade", "Vanninntrengning etter dekket bygningsskade", "Vann som trenger inn gjennom åpning eller utetthet oppstått ved erstatningsmessig bygningsskade.", "Hus – Dekkes / Vannskader / Åpning eller utetthet oppstått ved erstatningsmessig bygningsskade", 3, undefined, true]]));
 
+// A conditional policy restriction, not evidence of the customer's occupancy.
+// Each level retains its own original policy reference for the same rule.
+standard.push(...facts("gjensidigeHusStandard", [["fraflyttet.begrensning", "Fraflyttet bolig – dekningsbegrensning", "For fraflyttet bolig dekkes kun brann- og naturskade dersom annet ikke er avtalt. En bolig regnes som fraflyttet når den ikke har vært bebodd de siste 12 måneder.", "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder / Fraflyttet bolig", 2]]));
+pluss.push(...facts("gjensidigeHusPluss", [["fraflyttet.begrensning", "Fraflyttet bolig – dekningsbegrensning", "For fraflyttet bolig dekkes kun brann- og naturskade dersom annet ikke er avtalt. En bolig regnes som fraflyttet når den ikke har vært bebodd de siste 12 måneder.", "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder / Fraflyttet bolig", 2, undefined, true]]));
+
 export const gjensidigeHusFacts: Record<string, CatalogFact[]> = {
   gjensidigeHusStandard: standard,
   gjensidigeHusPluss: pluss,

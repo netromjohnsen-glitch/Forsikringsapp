@@ -1,0 +1,64 @@
+{
+  "signature": "597df4c45c6d3db9",
+  "original_registry": {
+    "signature_id": "597df4c45c6d3db9",
+    "representative_finding_id": "GAP-2122",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-130",
+    "disposition": "CANONICAL_REVIEW_FIRST",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "CANONICAL_REVIEW_FIRST",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2122\", \"GAP-2181\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-3049\", \"SF-3136\"]",
+    "proposed_existing_keys": "[]",
+    "semantic_concept": "Fraflyttet",
+    "semantic_dimension": "dekning",
+    "notes": "Ta beslutning per oppført konsept/dimensjon i canonical-review-queue. Prøv eksisterende eksakt nøkkel eller tydelig provider-detalj først. Ny nøkkel bare etter dokumentert tap/falsk ekvivalens ved gjenbruk. Deretter implementeres bare godkjent scoped forfatteroperasjon. Ingen generell schema-ombygging er bevist nødvendig.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2122",
+      "source_fact_id": "SF-3049",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_hash": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 2",
+      "semantic_concept": "Fraflyttet",
+      "semantic_dimension": "dekning",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+    },
+    {
+      "finding_id": "GAP-2181",
+      "source_fact_id": "SF-3136",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_hash": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 2",
+      "semantic_concept": "Fraflyttet",
+      "semantic_dimension": "dekning",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+    }
+  ],
+  "key": "hus.fraflyttet.begrensning",
+  "label": "Fraflyttet bolig – dekningsbegrensning",
+  "value": "For fraflyttet bolig dekkes kun brann- og naturskade dersom annet ikke er avtalt. En bolig regnes som fraflyttet når den ikke har vært bebodd de siste 12 måneder.",
+  "section": "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder / Fraflyttet bolig",
+  "page": 2,
+  "scope": {
+    "provider": "gjensidige",
+    "insurance_type": "bolig",
+    "agreement_scope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ]
+  }
+}

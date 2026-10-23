@@ -1,0 +1,410 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_FOUNDATION_REVALIDATION_WITH_ONE_PRECISE_REMAINDER",
+  "status": "COMPLETED_WITH_PRECISE_REMAINDER",
+  "decision": "Katalogfundamentet kan ikke samlet bekreftes ferdig. Én konkret restmangel fremmes: fraflyttingsregelen i B-130-signatur 597df4c45c6d3db9 er kildebekreftet, men mangler i begge produktenes kataloggrunnlag og presentasjon.",
+  "created_at_utc": "2026-10-23T09:31:56.029717+00:00",
+  "authorization": {
+    "user_instruction": "Gjør samlet revalidering av ordinært katalogfundament for Hus Standard og Hus Pluss på fersk main. Lever én receipt med bekreftet grunnlag eller én presis restmangel. Ingen kodeendringer eller deploy; behold alle HOLD. NITO og Sentralbord venter.",
+    "allowed": "Read existing repository/source evidence, run existing targeted tests and read-only observations, write this one receipt and supporting evidence only",
+    "not_authorized": [
+      "application/test/catalog/source edits",
+      "new mapping/canonical decisions or implementation",
+      "install",
+      "commit",
+      "push",
+      "deploy",
+      "closing or changing any HOLD",
+      "NITO implementation",
+      "Sentralbord work"
+    ]
+  },
+  "revision": {
+    "tested_revision": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+    "fresh_GitHub_main_at_start": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+    "fresh_GitHub_main_after_tests": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+    "HEAD": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+    "origin_main": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+    "branch": "fix/house-catalog-origin",
+    "initial_worktree": "CLEAN",
+    "initial_staged": 0,
+    "fresh_main_method": "Connected GitHub branch API checked before and after; local HEAD and origin/main identical",
+    "new_receipt_publication": "LOCAL_UNCOMMITTED_UNPUSHED"
+  },
+  "scope": {
+    "provider": "gjensidige",
+    "insurance_type": "bolig",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "source_scope": "Six registered local original artifacts with exact registered SHA-256; no new insurer terms/version fetched or inferred from collection date",
+    "inventory": {
+      "original_P1_registry_signatures": 46,
+      "original_GAP_SF_links": 83,
+      "batch_counts": {
+        "B-051": 39,
+        "B-130": 4,
+        "B-007": 1,
+        "B-020": 2
+      },
+      "historical_target_source_inventory_rows": 170,
+      "historical_P2_rows": 30,
+      "P2_closure_credit": 0,
+      "boundary": "No all-product/global ledger reconstruction or pilot clearance; one sufficient blocker is enough to withhold foundation confirmation"
+    }
+  },
+  "confirmed_basis": {
+    "registered_sources": [
+      {
+        "id": "gjensidigeHusStandard",
+        "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "version": "Alminnelige vilkår",
+        "effective_from": "",
+        "sourceType": null,
+        "note": "Unknown effective date retained; local registered source snapshot, no new insurer version inferred"
+      },
+      {
+        "id": "gjensidigeHusPluss",
+        "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "version": "Alminnelige vilkår",
+        "effective_from": "",
+        "sourceType": null,
+        "note": "Unknown effective date retained; local registered source snapshot, no new insurer version inferred"
+      },
+      {
+        "id": "gjensidigeHusIpid",
+        "path": "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+        "sha256": "5550cd9753fe374a8d4e54e147ecca30e5be09b8c85fb34a52f04c18f3de14b9",
+        "version": "EAP01",
+        "effective_from": "",
+        "sourceType": null,
+        "note": "Unknown effective date retained; local registered source snapshot, no new insurer version inferred"
+      },
+      {
+        "id": "gjensidigeHusProduct",
+        "path": "catalog/sources/gjensidige/hus/Husforsikring-produktside.html",
+        "sha256": "32d491a3f2648199545134ff68994615f45b25f48d169bd3ff43ea61b9bad534",
+        "version": "Kontrollert 2026-09-20",
+        "effective_from": "",
+        "sourceType": null,
+        "note": "Unknown effective date retained; local registered source snapshot, no new insurer version inferred"
+      },
+      {
+        "id": "gjensidigeHusSmart",
+        "path": "catalog/sources/gjensidige/hus/Hus-Smart-produktside.html",
+        "sha256": "a9fcfb36a45ff72352913882955d26fe119b57427532562be1634f274855c530",
+        "version": "Kontrollert 2026-09-20",
+        "effective_from": "",
+        "sourceType": null,
+        "note": "Unknown effective date retained; local registered source snapshot, no new insurer version inferred"
+      },
+      {
+        "id": "gjensidigeHusSmartTerms",
+        "path": "catalog/sources/gjensidige/hus/Hus-Smart-alarmvilkar.html",
+        "sha256": "ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414",
+        "version": "Kontrollert 2026-09-20",
+        "effective_from": "",
+        "sourceType": null,
+        "note": "Unknown effective date retained; local registered source snapshot, no new insurer version inferred"
+      }
+    ],
+    "published_B051_receipts": {
+      "count": 37,
+      "original_GAP_SF_links": 67,
+      "status": "PASS_RECEIPT_BYTES_AND_BINDINGS_VERIFIED_AT_TESTED_MAIN",
+      "note": "Every current B051 completion receipt matched to original registry row or exact GAP/SF tuple set and read with git show at fresh main; PASS alone is not merge evidence. Current 36-file test set reruns source and runtime contracts. 41206e12c93c0058 has one original registry binding (Standard); Pluss is its regression control, not additional closure credit.",
+      "evidence_section": "published_receipt_and_source_verification.B051_original_completion_receipts"
+    },
+    "additional_original_contracts": {
+      "B020": "Both ordinary pest mapping signatures covered by existing tests/nito-remediation-b020.test.mjs, no NITO implementation",
+      "B007": "Supported thawing without flushing assertion and both-direction document priority covered by existing tests/nito-remediation-wave1.test.mjs"
+    },
+    "published_customer_repairs": "Rettshjelp document priority, manual/document Smart and Utleie, rot choice and repeated catalog origin/metadata are covered by the rerun existing suite; no independent pilot-ready inference",
+    "published_house_origin_packet": {
+      "sealed_files_verified": 40,
+      "application_file_hashes_verified": 14,
+      "candidate_identity_sha256": "c8c6776ab4552bc5fb8a1182ab3596877137277c8f22c3ee194d8af329912631",
+      "receipt": "docs/audit/checkpoints/b051-house-origin-257a197/completion-receipt-house-catalog-origin.json"
+    },
+    "runtime_observations": {
+      "valid_addon_configurations": 12,
+      "Standard_configurations": 8,
+      "Pluss_configurations": 4,
+      "stages_per_configuration": [
+        "resolved facts",
+        "manual normalization",
+        "three re-enrichments including JSON",
+        "comparison presentation"
+      ],
+      "base_fact_counts": [
+        57,
+        61
+      ],
+      "materialized_base_and_optional_fact_counts": [
+        70,
+        69
+      ],
+      "note": "Observation inventories are separate from the 2272 existing test cases"
+    }
+  },
+  "precise_remainder": {
+    "signature": "597df4c45c6d3db9",
+    "original_batch": "B-130",
+    "original_disposition": "CANONICAL_REVIEW_FIRST",
+    "severity": "P1",
+    "concept": "Fraflyttet",
+    "dimension": "dekning",
+    "original_bindings": [
+      {
+        "finding_id": "GAP-2122",
+        "source_fact_id": "SF-3049",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_hash": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "source_location": "PDF 2",
+        "semantic_concept": "Fraflyttet",
+        "semantic_dimension": "dekning",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+      },
+      {
+        "finding_id": "GAP-2181",
+        "source_fact_id": "SF-3136",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_hash": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "source_location": "PDF 2",
+        "semantic_concept": "Fraflyttet",
+        "semantic_dimension": "dekning",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+      }
+    ],
+    "source_rule": "Begge registrerte originalvilkår, PDF-side 2 under FORSIKRINGSBEVIS / Ansvarsbegrensninger / For bygningsforsikring gjelder: bolig som ikke har vært bebodd de siste 12 månedene regnes som fraflyttet; da dekkes bare brann- og naturskade dersom annet ikke er avtalt.",
+    "catalog_observation": "Ingen tilsvarende eksplisitt regel finnes i de to eksakte produktenes fullstendige materialiserte base-/tilleggsfakta, eller i løste fakta, manuell normalisering, gjentatt beriking med JSON og sammenligningspresentasjon for noen av de 12 gyldige tilleggskombinasjonene.",
+    "meaning_review": [
+      "hus.avtale.forbehold = general customer policy precedence, no explicit vacancy restriction",
+      "hus.brukstap.dekning = post-loss loss of use, distinct trigger",
+      "hus.utleie.vilkar = contractual move-out duties, distinct scope",
+      "hus.hage.brygge/hus.ror.utvendig = fire/natural-damage limitations for different objects"
+    ],
+    "customer_impact": "Katalogbasert rådgivning mangler en materiell begrensning for fraflyttet bolig. Det er ikke bevis for at en bestemt kundes bolig er fraflyttet; kundens dokumenter og eventuell annen avtale skal ha forrang. Ingen automatisk avvisning eller endring av kundestatus er utført eller besluttet.",
+    "minimum_next_task": "Avgrenset lesende kontrakt- og mappingavklaring for 597df4c45c6d3db9 med begge originalbindinger: eksisterende eksakt nøkkel eller egen leverandørspesifikk detalj. Bevar 12-månedersdefinisjonen, bare brann/naturskade, forbehold om annen avtale og dokumentprioritet. Ingen implementeringsfullmakt i denne receipten.",
+    "source_question_to_insurer_required_for_observed_gap": false,
+    "foundation_confirmation": "WITHHELD",
+    "not_the_only_possible_remaining_work": "This is the single promoted, source- and runtime-verified remainder, not a claim that fixing it clears the other B130 queue entries, P2 inventory or existing HOLD."
+  },
+  "existing_tests": {
+    "tested_revision": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+    "test_files": [
+      "tests/canonical-comparison-audit.test.mjs",
+      "tests/catalog-comparison.test.mjs",
+      "tests/catalog-effective-facts.test.mjs",
+      "tests/catalog-enrichment-provenance.test.mjs",
+      "tests/catalog-matching.test.mjs",
+      "tests/catalog-source-resolution.test.mjs",
+      "tests/coverage-status.test.mjs",
+      "tests/document-catalog-precedence.test.mjs",
+      "tests/gjensidige-hus-catalog.test.mjs",
+      "tests/manual-runtime-flow.test.mjs",
+      "tests/nito-remediation-b020.test.mjs",
+      "tests/nito-remediation-wave1.test.mjs",
+      "tests/presentation-catalog.test.mjs",
+      "tests/product-catalog-evidence-hardening.test.mjs",
+      "tests/product-catalog.test.mjs",
+      "tests/remediation-b-051-craftsmanship.test.mjs",
+      "tests/remediation-b-051-events-buildings.test.mjs",
+      "tests/remediation-b-051-garden.test.mjs",
+      "tests/remediation-b-051-health-help.test.mjs",
+      "tests/remediation-b-051-house-origin.test.mjs",
+      "tests/remediation-b-051-legal-priority.test.mjs",
+      "tests/remediation-b-051-legal.test.mjs",
+      "tests/remediation-b-051-liability.test.mjs",
+      "tests/remediation-b-051-manual-rental-choice.test.mjs",
+      "tests/remediation-b-051-manual-smart-choice.test.mjs",
+      "tests/remediation-b-051-physical-exclusions.test.mjs",
+      "tests/remediation-b-051-recovery-benefits.test.mjs",
+      "tests/remediation-b-051-rental-selection.test.mjs",
+      "tests/remediation-b-051-rot-status.test.mjs",
+      "tests/remediation-b-051-rot.test.mjs",
+      "tests/remediation-b-051-settlement-age.test.mjs",
+      "tests/remediation-b-051-smart-selection.test.mjs",
+      "tests/remediation-b-051-smart.test.mjs",
+      "tests/remediation-b-051-water.test.mjs",
+      "tests/remediation-b-051.test.mjs",
+      "tests/supporting-terms.test.mjs"
+    ],
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "tests/canonical-comparison-audit.test.mjs",
+      "tests/catalog-comparison.test.mjs",
+      "tests/catalog-effective-facts.test.mjs",
+      "tests/catalog-enrichment-provenance.test.mjs",
+      "tests/catalog-matching.test.mjs",
+      "tests/catalog-source-resolution.test.mjs",
+      "tests/coverage-status.test.mjs",
+      "tests/document-catalog-precedence.test.mjs",
+      "tests/gjensidige-hus-catalog.test.mjs",
+      "tests/manual-runtime-flow.test.mjs",
+      "tests/nito-remediation-b020.test.mjs",
+      "tests/nito-remediation-wave1.test.mjs",
+      "tests/presentation-catalog.test.mjs",
+      "tests/product-catalog-evidence-hardening.test.mjs",
+      "tests/product-catalog.test.mjs",
+      "tests/remediation-b-051-craftsmanship.test.mjs",
+      "tests/remediation-b-051-events-buildings.test.mjs",
+      "tests/remediation-b-051-garden.test.mjs",
+      "tests/remediation-b-051-health-help.test.mjs",
+      "tests/remediation-b-051-house-origin.test.mjs",
+      "tests/remediation-b-051-legal-priority.test.mjs",
+      "tests/remediation-b-051-legal.test.mjs",
+      "tests/remediation-b-051-liability.test.mjs",
+      "tests/remediation-b-051-manual-rental-choice.test.mjs",
+      "tests/remediation-b-051-manual-smart-choice.test.mjs",
+      "tests/remediation-b-051-physical-exclusions.test.mjs",
+      "tests/remediation-b-051-recovery-benefits.test.mjs",
+      "tests/remediation-b-051-rental-selection.test.mjs",
+      "tests/remediation-b-051-rot-status.test.mjs",
+      "tests/remediation-b-051-rot.test.mjs",
+      "tests/remediation-b-051-settlement-age.test.mjs",
+      "tests/remediation-b-051-smart-selection.test.mjs",
+      "tests/remediation-b-051-smart.test.mjs",
+      "tests/remediation-b-051-water.test.mjs",
+      "tests/remediation-b-051.test.mjs",
+      "tests/supporting-terms.test.mjs"
+    ],
+    "exit_code": 0,
+    "seconds": 19.79,
+    "tap": {
+      "tests": 2272,
+      "pass": 2272,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "compressed_log_sha256": "7e105c58c00cfc80610bec6ebf98a7249457093def76ebd1c1e4b1775883758f",
+    "original_output_sha256": "081353312802deb92d179cdb61910e0018665ffc89449c0837ea77cbc3293264",
+    "status": "PASS",
+    "log": "targeted-main.log.gz",
+    "note": "Existing unmodified tests only; source/PDF, original bindings, inheritance, catalog/source resolution, customer document priority, selected/not-selected/unknown/conflict, supporting terms, repeat/JSON, manual flow, comparison and provider/type/scope/version isolation. B130 vacancy has no existing representation; PASS does not establish source completeness. No tests skipped or expected failures hidden."
+  },
+  "not_repeated": {
+    "fullsuite_typecheck_lint_build_HTTP_runtime": "Not rerun: no application/test/catalog/config bytes changed. Historical eight-gate /5964 test result remains evidence of its separately recorded candidate; this receipt newly runs only the specified 36-file/2272-test set on the published main SHA."
+  },
+  "protected_status": {
+    "checkpoint": "docs/audit/checkpoints/b051-house-origin-257a197/checkpoint.json",
+    "checkpoint_sha256": "1d0eeb58b3632dffa6ed30ea587ae56242e06da0a2b00a3f1aecd00c53ed431f",
+    "unchanged_values": {
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "documented_campaign_count": 63,
+      "global_resolved_open": "UNKNOWN",
+      "P2_credit": 0,
+      "B051_partition_counts": [
+        37,
+        0,
+        1,
+        1
+      ],
+      "original_signature_closure_credit": 0,
+      "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+      "NITO": "WAIT",
+      "Sentralbord": "WAIT_SEPARATE"
+    },
+    "additional_preserved_hold": "8a89196fecd29ddb insect common-exclusion applicability remains HOLD per checkpoint.remaining_pre_pilot_points; no closure",
+    "other_B130_queue_entries_visible_unchanged": [
+      {
+        "signature": "15f5b4a3e9f79fd2",
+        "concept": "Fullverdi",
+        "dimension": "underforsikring",
+        "original_status": "CANONICAL_REVIEW_FIRST",
+        "disposition": "UNCHANGED_NOT_CLOSED_OR_IMPLEMENTED_BY_THIS_RECEIPT"
+      },
+      {
+        "signature": "ce90710821e28a97",
+        "concept": "Sikkerhet",
+        "dimension": "frost/bygningsvern",
+        "original_status": "CANONICAL_REVIEW_FIRST",
+        "disposition": "UNCHANGED_NOT_CLOSED_OR_IMPLEMENTED_BY_THIS_RECEIPT"
+      },
+      {
+        "signature": "d58bff0e6b2d46eb",
+        "concept": "Personkrets",
+        "dimension": "sikrede",
+        "original_status": "CANONICAL_REVIEW_FIRST",
+        "disposition": "UNCHANGED_NOT_CLOSED_OR_IMPLEMENTED_BY_THIS_RECEIPT"
+      }
+    ],
+    "other_pre_pilot_points_visible_unchanged": [
+      "P3-A05 identity/mergestatus not established here; security/GDPR",
+      "Person insurance / pilot scope",
+      "Critical UX",
+      "Feedback",
+      "Operational adviser acceptance"
+    ],
+    "new_signature_closure_credit": 0,
+    "no_new_workstreams": true
+  },
+  "integrity": {
+    "all_preexisting_tracked_files_sha256_verified_unchanged": 7651,
+    "initial_tracked_manifest_sha256": "dcebe0e3c345199c83ca53ae686dd50e95c26277c45bb0ec6c169f8fba82cbdc",
+    "full_manifest_in": "evidence.json.gz -> initial_state.tracked_files",
+    "production_files_changed": [],
+    "test_files_changed": [],
+    "catalog_source_files_changed": [],
+    "existing_receipts_checkpoint_project_status_unchanged": true,
+    "staged_files": [],
+    "diff_check": "PASS",
+    "allowed_new_files": [
+      "receipt-house-foundation.json",
+      "evidence.json.gz",
+      "targeted-main.log.gz",
+      "SHA256SUMS"
+    ]
+  },
+  "evidence": {
+    "compressed_file": "evidence.json.gz",
+    "sha256": "cf00d59f95ddc9c8fb5356547a867c9f81dcb91b37205fbb1ab41bc6b56949b3",
+    "uncompressed_sha256": "a962b64d8704c3b8bedcf66d6ca89b61a973b4a821728809f924d3fe41f3c945",
+    "sections": [
+      "tested_revision",
+      "authorization",
+      "initial_state",
+      "original_binding_inventory",
+      "published_receipt_and_source_verification",
+      "runtime_snapshot",
+      "vacancy_observation",
+      "existing_test_run",
+      "source_page_evidence",
+      "diagnostic_methods"
+    ],
+    "log_sha256": "7e105c58c00cfc80610bec6ebf98a7249457093def76ebd1c1e4b1775883758f",
+    "source_review": "Both complete page-2 renderings visually inspected; raw and layout text retained; source bytes remain pinned to registered SHA-256"
+  },
+  "execution": {
+    "application_changes": "NONE",
+    "installation": "NOT_PERFORMED",
+    "commit": "NOT_PERFORMED",
+    "push": "NOT_PERFORMED",
+    "deploy": "NOT_PERFORMED",
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED"
+  }
+}

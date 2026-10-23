@@ -1,3 +1,4 @@
+import {withoutVacancy,vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -32,7 +33,7 @@ for(const id of ids){
   for(const selectedIds of [[],[addon],[addon,'gjensidige-hus-utleie'],['gjensidige-hus-utleie']]){
    const c=baseline.manual.find(c=>c.id===id&&JSON.stringify(c.input.products[0].addOnIds)===JSON.stringify(selectedIds));
    const expected=structuredClone(c.first);for(const a of expected.addOns)if(a.id===addon)a.manualSelection=marker(id);else if(a.id==='gjensidige-hus-utleie')a.manualSelection={origin:'manual',addOnId:a.id,catalogReference:catalogReferenceForProduct(p(id))};
-   assert.deepEqual(manual(id,selectedIds),expected);
+   assert.deepEqual(withoutVacancy(manual(id,selectedIds)),expected);
    for(const a of manual(id,selectedIds).addOns)if(a.id==='gjensidige-hus-utleie')assert.deepEqual(a.manualSelection,{origin:'manual',addOnId:a.id,catalogReference:catalogReferenceForProduct(p(id))});else if(a.id!==addon)assert.equal(Object.hasOwn(a,'manualSelection'),false);
   }
  });
@@ -104,9 +105,9 @@ test('SMART-MANUAL all 202 other manual results preserve baseline; non-Smart tar
   for(const i of [expectedFirst,expectedRepeat])i.addOns.find(a=>a.id===rental).manualSelection={origin:'manual',addOnId:rental,catalogReference:{...c.first.catalogReference}};
   expectedRepeat.addOnIds.push(rental);expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rows)];expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
  }
- assert.deepEqual(first,expectedFirst,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(result,withHouseCatalogOrigin(expectedRepeat,c.first),c.id);}
- assert.equal(createHash('sha256').update(serialize(productCatalog)).digest('hex'),meta.catalog_sha256);
+ assert.deepEqual(withoutVacancy(first),expectedFirst,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutVacancy(result),withHouseCatalogOrigin(expectedRepeat,c.first),c.id);}
+ assert.equal(createHash('sha256').update(serialize(withoutVacancy(productCatalog))).digest('hex'),vacancyCatalogBaselineHash);
 });
 test('SMART-MANUAL all 96 actual document pipeline outputs and displays are exact baseline',()=>{
- assert.equal(baseline.documents.length,96);for(const c of baseline.documents){const output=documentPipeline([[c.record]],c.side).insuranceData;assert.deepEqual(output,c.output,c.id);assert.equal(groupAddOnNames(output.insurances,'Hus'),c.display,c.id);}
+ assert.equal(baseline.documents.length,96);for(const c of baseline.documents){const output=documentPipeline([[c.record]],c.side).insuranceData;assert.deepEqual(withoutVacancy(output),c.output,c.id);assert.equal(groupAddOnNames(output.insurances,'Hus'),c.display,c.id);}
 });

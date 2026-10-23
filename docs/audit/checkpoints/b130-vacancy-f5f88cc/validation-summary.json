@@ -1,0 +1,64 @@
+{
+  "status": "PASS_LOCAL_VALIDATED_CANDIDATE",
+  "base_revision": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+  "tested_candidate_identity_sha256": "42f2db2300682d6e4cfb33fc80f77974f1eb28aebd5916133fbdd7ccc7d8cb0e",
+  "source_oracle_sha256": "8413f681229c2f52a3fb9d0bbfc10e8bfce2e7de581191e27098f8f6231c54ca",
+  "final_gate_labels": [
+    "typegen-reviewed-final",
+    "typescript-reviewed-final",
+    "eslint-reviewed-final",
+    "production-build-reviewed-final",
+    "diff-check-reviewed-final",
+    "fullsuite-reviewed-final",
+    "targeted-reviewed-final",
+    "http-pdf-runtime-reviewed-final"
+  ],
+  "new_contract_tests": 54,
+  "targeted": {
+    "tests": 2326,
+    "pass": 2326,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "tests": 6018,
+    "pass": 6018,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "files": 166
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "exact_inventory_unchanged": true
+  },
+  "webpack_build": "PASS",
+  "synthetic_local_HTTP_PDF": {
+    "status": "PASS",
+    "checks": 22,
+    "mocked_AI_and_synthetic_data": true,
+    "evidence": "http-pdf-runtime-reviewed-final.log.gz"
+  },
+  "isolation": {
+    "prior_manual_initial_repeat_inputs": 214,
+    "prior_actual_PDF_outputs": 144,
+    "valid_target_addon_combinations": 12,
+    "source_registered_PDFs_unchanged": 2,
+    "prior_local_and_latest_published_packet_files_unchanged": 49,
+    "global_normalizer_engine_schema_alias_presentation_unchanged": true,
+    "source_and_reverse_audit": "Exact two raw facts added; one resolved new term per target config; complete source contract and every other catalog field equality verified by permanent test"
+  },
+  "earlier_gates": "Earlier FAIL and superseded PASS runs are retained with their own candidate identities and exact logs. Only the eight reviewed-final labels validate the final reviewed candidate.",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json",
+  "initial_validation_operations": "At local validation: install/commit/push/deploy NOT_PERFORMED; initial candidate identity and integrity-verification.json retained byte-identical as historical evidence",
+  "install": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED",
+  "publication_does_not_change_application_or_tests": true
+}

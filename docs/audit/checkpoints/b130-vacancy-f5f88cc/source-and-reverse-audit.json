@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "source_oracle": "source-oracle.json",
+  "base_revision": "f5f88cc08f7cd863c9ce5d618319fa06fa9c1493",
+  "only_production_file": "lib/gjensidige-hus-catalog.ts",
+  "raw_catalog_delta": [
+    {
+      "owner": "gjensidigeHusStandard",
+      "operation": "ADD_ONE_FACT",
+      "key": "hus.fraflyttet.begrensning",
+      "page": 2,
+      "source": "gjensidigeHusStandard"
+    },
+    {
+      "owner": "gjensidigeHusPluss",
+      "operation": "ADD_ONE_FACT",
+      "key": "hus.fraflyttet.begrensning",
+      "page": 2,
+      "source": "gjensidigeHusPluss",
+      "replacesBase": true
+    }
+  ],
+  "exact_full_catalog_proof": "VACANCY complete catalog equals independent before catalog plus exactly two raw facts; all other full fields strictly equal",
+  "effective_delta": "One new term per target product in each of 12 valid addon combinations; no independent .dekning parent or selection/status changes",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2122",
+      "source_fact_id": "SF-3049",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_hash": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 2",
+      "semantic_concept": "Fraflyttet",
+      "semantic_dimension": "dekning",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+    },
+    {
+      "finding_id": "GAP-2181",
+      "source_fact_id": "SF-3136",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_hash": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 2",
+      "semantic_concept": "Fraflyttet",
+      "semantic_dimension": "dekning",
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Etter12mndubeboddkunbrann/naturmedmindreavtalt."
+    }
+  ],
+  "registered_source_bytes_unchanged": true,
+  "unrelated_product_base_and_all_valid_addon_packages": "Exactly equal to frozen before catalog; no new key leaks",
+  "manual_controls": 214,
+  "document_pipeline_controls": 144,
+  "prior_packet_integrity": "prior-packets-integrity.json",
+  "canonical_schema_alias_engine_presentation_changes": []
+}

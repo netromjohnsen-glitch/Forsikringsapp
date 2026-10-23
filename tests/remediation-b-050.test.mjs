@@ -1,3 +1,4 @@
+import {withoutVacancy} from './helpers/b130-vacancy.mjs';
 import {transformWaterRows} from './helpers/b051-water.mjs';
 import {transformRotRows, transformRotStatusAddOns} from './helpers/b051-rot.mjs';
 import {transformLegalRows} from './helpers/b051-legal.mjs';
@@ -1001,7 +1002,7 @@ function assertB050OutsideComponent(component, actual, previous) {
   assert.equal(previous.filter(f => approved.some(([key]) => key === f.key)).length, approved.length);
   assert.equal(previous.filter(f => garden.some(([key]) => key === f.key)).length, garden.length);
   assert.equal(previous.filter(f => events.some(([key]) => key === f.key)).length, events.length);
-  assert.deepEqual(actual, transformWaterRows(transformRotRows(transformLegalRows(transformSmartRows(transformHealthHelpRows(transformLiabilityRows(transformPhysicalRows(transformRecoveryRows(transformSettlementRows(transformCraftRows(expected, component), component), component), component, {jsonSnapshot:true}), component), component), component, {jsonSnapshot:true}), component), component), component), component);
+  assert.deepEqual(withoutVacancy(actual), transformWaterRows(transformRotRows(transformLegalRows(transformSmartRows(transformHealthHelpRows(transformLiabilityRows(transformPhysicalRows(transformRecoveryRows(transformSettlementRows(transformCraftRows(expected, component), component), component), component, {jsonSnapshot:true}), component), component), component, {jsonSnapshot:true}), component), component), component), component);
 }
 
 const rehabilitationBefore = () => JSON.parse(gunzipSync(readFileSync(new URL('../docs/audit/checkpoints/b050-rehabilitation-completion-25fabe1/catalog-before.json.gz', import.meta.url))));

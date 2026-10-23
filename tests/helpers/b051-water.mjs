@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {applyVacancy} from './b130-vacancy.mjs';
 import {readFileSync} from 'node:fs';
 export const waterOracle=JSON.parse(readFileSync(new URL('../../docs/audit/checkpoints/b051-water-25004-cd6e03d/source-oracle.json',import.meta.url)));
 export function waterFact(owner,jsonSnapshot=false){
@@ -20,5 +21,7 @@ export function applyWater(catalog){
  for(const owner of ['gjensidigeHusStandard','gjensidigeHusPluss']){
   out.facts[owner]=transformWaterRows(out.facts[owner],owner);
  }
- return out;
+ // Later source-approved addition; historical frozen inputs stay immutable.
+ // Full independent delta/old-field isolation: remediation-b-130-vacancy.test.mjs.
+ return applyVacancy(out);
 }

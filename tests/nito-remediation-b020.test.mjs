@@ -1,3 +1,4 @@
+import {withoutVacancy} from './helpers/b130-vacancy.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -22,7 +23,7 @@ const manual = (id, addons = [], terms = []) => normalizeManualAgreement({ compa
   products: [{ type: 'Hus', productName: product(id).name, annualPremium: '', deductible: '', coverageSummary: '', importantTerms: terms, addOnIds: addons }] });
 const enrich = terms => enrichExtractedAgreementWithCatalog({ company: 'Gjensidige', totalAnnualPremium: null,
   insurances: [{ type: 'Hus', productName: product(plus).name, annualPremium: null, deductible: null, coverageSummary: null, addOns: [], importantTerms: terms }] }, date);
-const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const digest = value => createHash('sha256').update(JSON.stringify(withoutVacancy(value))).digest('hex');
 
 test('R-020-01: all frozen hashes and fact/qualification provenance', () => {
   for (const [filename, hash] of [

@@ -1,3 +1,4 @@
+import {withoutVacancy,vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -116,10 +117,10 @@ test('SMART-SELECTION 202 other products and catalog identity preserve baseline;
    expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rentalRows)];
    expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
   }
-  assert.deepEqual(first,expectedFirst);assert.deepEqual(repeat(first),withHouseCatalogOrigin(expectedRepeat,c.first));
+  assert.deepEqual(withoutVacancy(first),expectedFirst);assert.deepEqual(withoutVacancy(repeat(first)),withHouseCatalogOrigin(expectedRepeat,c.first));
   const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first)],'Hus'),expected);
  }
- assert.equal(createHash('sha256').update(serialize(productCatalog)).digest('hex'),meta.catalog_sha256);
+ assert.equal(createHash('sha256').update(serialize(withoutVacancy(productCatalog))).digest('hex'),vacancyCatalogBaselineHash);
 });
 test('SMART-SELECTION unknown product/provider/type/scope/version and unavailable component never activate',()=>{
  const r=record(ids[0],'individual_agreement',['Valgt'],true);

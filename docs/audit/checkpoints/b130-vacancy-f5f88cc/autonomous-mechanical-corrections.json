@@ -1,0 +1,274 @@
+{
+  "policy": "docs/development-agent/workflow.md -> Aktiv fullmakt: autonom gjennomføring",
+  "production_scope_unchanged": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "roots": [
+    {
+      "id": "HARNESS-VACANCY-01",
+      "cause": "New assertion compared materialized source object to JSON-cleaned expected source, dropping explicit undefined productCode/sourceType fields",
+      "independent_evidence": "lib/catalog-product-comparison.ts sourcesForFact preserves full CatalogFact.source and appends sourceType from registry; source registration has no sourceType. Existing productCode is explicitly undefined from facts helper. vacancy-v1 FAIL output shows exactly these two field-presence differences",
+      "fix": "Compare exact independent vacancyFact source plus explicit sourceType:undefined, preserving all fields",
+      "insurance_contract_change": false
+    },
+    {
+      "id": "HARNESS-VACANCY-02",
+      "cause": "New cross-product isolation loop attempted a dependent add-on without its required base add-on",
+      "independent_evidence": "lib/product-catalog.ts selectedComponents validates requiresAddOnIds; existing resolveAddOnPackage expands the registered prerequisite set. vacancy-v1 shows required-add-on rejection, unrelated to target facts",
+      "fix": "Use existing resolveAddOnPackage for each isolated add-on; test complete valid package in candidate and before catalog",
+      "insurance_contract_change": false
+    },
+    {
+      "id": "HARNESS-VACANCY-03",
+      "cause": "Existing exact historical catalog and initial/repeat/PDF snapshots predate the two explicitly authorized source-bound vacancy facts",
+      "independent_evidence": "Pre-implementation source-oracle.json and frozen fresh-main baseline; new permanent full-catalog assertion verifies exactly two raw additions and no other changes; new 214/144 control assertion strips only strictly guarded new key and proves every pre-existing field unchanged",
+      "fix": "Only affected active exact expectations/fingerprints are extended or projected by strict withoutVacancy helper. New-key/source/full metadata assertions remain independent and mandatory. Historical baseline bytes and all test cases/negative controls retained",
+      "files": [
+        "tests/helpers/b051-water.mjs",
+        "tests/nito-remediation-b020.test.mjs",
+        "tests/remediation-b-050.test.mjs",
+        "tests/remediation-b-051-health-help.test.mjs",
+        "tests/remediation-b-051-house-origin.test.mjs",
+        "tests/remediation-b-051-legal-priority.test.mjs",
+        "tests/remediation-b-051-legal.test.mjs",
+        "tests/remediation-b-051-liability.test.mjs",
+        "tests/remediation-b-051-manual-rental-choice.test.mjs",
+        "tests/remediation-b-051-manual-smart-choice.test.mjs",
+        "tests/remediation-b-051-rental-selection.test.mjs",
+        "tests/remediation-b-051-rot-status.test.mjs",
+        "tests/remediation-b-051-smart-selection.test.mjs",
+        "tests/remediation-b-051-smart.test.mjs",
+        "tests/remediation-b-051-water.test.mjs"
+      ],
+      "status": "PASS_FINAL_REVIEWED_CANDIDATE",
+      "insurance_contract_change": false,
+      "active_exact_expectation_updates": [
+        {
+          "file": "tests/remediation-b-051-house-origin.test.mjs",
+          "before": "assert.deepEqual(first,c.first",
+          "after": "assert.deepEqual(withoutVacancy(first),c.first",
+          "occurrences": 2
+        },
+        {
+          "file": "tests/remediation-b-051-house-origin.test.mjs",
+          "before": "assert.deepEqual(next,withHouseCatalogOrigin",
+          "after": "assert.deepEqual(withoutVacancy(next),withHouseCatalogOrigin",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-house-origin.test.mjs",
+          "before": "serialize(productCatalog)",
+          "after": "serialize(withoutVacancy(productCatalog))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-house-origin.test.mjs",
+          "before": "assert.deepEqual(actual,c.output",
+          "after": "assert.deepEqual(withoutVacancy(actual),c.output",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-house-origin.test.mjs",
+          "before": "clean(i.importantTerms).sort",
+          "after": "clean(withoutVacancy(i.importantTerms)).sort",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-rental-choice.test.mjs",
+          "before": "assert.deepEqual(first,c.first",
+          "after": "assert.deepEqual(withoutVacancy(first),c.first",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-rental-choice.test.mjs",
+          "before": "assert.deepEqual(result,withHouseCatalogOrigin",
+          "after": "assert.deepEqual(withoutVacancy(result),withHouseCatalogOrigin",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-rental-choice.test.mjs",
+          "before": "serialize(productCatalog)",
+          "after": "serialize(withoutVacancy(productCatalog))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-rental-choice.test.mjs",
+          "before": "assert.deepEqual(normalizeManualAgreement(c.input).insuranceData.insurances[0],expected)",
+          "after": "assert.deepEqual(withoutVacancy(normalizeManualAgreement(c.input).insuranceData.insurances[0]),expected)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-rental-choice.test.mjs",
+          "before": "assert.deepEqual(output,expected,",
+          "after": "assert.deepEqual(withoutVacancy(output),expected,",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-smart-choice.test.mjs",
+          "before": "assert.deepEqual(result,withHouseCatalogOrigin",
+          "after": "assert.deepEqual(withoutVacancy(result),withHouseCatalogOrigin",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-smart-choice.test.mjs",
+          "before": "serialize(productCatalog)",
+          "after": "serialize(withoutVacancy(productCatalog))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-smart-choice.test.mjs",
+          "before": "assert.deepEqual(manual(id,selectedIds),expected)",
+          "after": "assert.deepEqual(withoutVacancy(manual(id,selectedIds)),expected)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-rental-selection.test.mjs",
+          "before": "assert.deepEqual(first,c.first",
+          "after": "assert.deepEqual(withoutVacancy(first),c.first",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-rental-selection.test.mjs",
+          "before": "assert.deepEqual(repeated,withHouseCatalogOrigin",
+          "after": "assert.deepEqual(withoutVacancy(repeated),withHouseCatalogOrigin",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-rental-selection.test.mjs",
+          "before": "serialize(productCatalog)",
+          "after": "serialize(withoutVacancy(productCatalog))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-smart-selection.test.mjs",
+          "before": "assert.deepEqual(first,expectedFirst);assert.deepEqual(repeat(first),",
+          "after": "assert.deepEqual(withoutVacancy(first),expectedFirst);assert.deepEqual(withoutVacancy(repeat(first)),",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-smart-selection.test.mjs",
+          "before": "serialize(productCatalog)",
+          "after": "serialize(withoutVacancy(productCatalog))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-legal-priority.test.mjs",
+          "before": "serialize(productCatalog)",
+          "after": "serialize(withoutVacancy(productCatalog))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/nito-remediation-b020.test.mjs",
+          "before": "JSON.stringify(value)",
+          "after": "JSON.stringify(withoutVacancy(value))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-health-help.test.mjs",
+          "before": "JSON.stringify(x)",
+          "after": "JSON.stringify(withoutVacancy(x))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-health-help.test.mjs",
+          "before": "assert.equal(protectedRaw,4160)",
+          "after": "assert.equal(protectedRaw,4162)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-liability.test.mjs",
+          "before": "JSON.stringify(x)",
+          "after": "JSON.stringify(withoutVacancy(x))",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-liability.test.mjs",
+          "before": "assert.equal(protectedRaw,4160)",
+          "after": "assert.equal(protectedRaw,4162)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-legal.test.mjs",
+          "before": "assert.equal(raw,4158)",
+          "after": "assert.equal(raw,4160)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-rot-status.test.mjs",
+          "before": "assert.equal(protectedFacts, 4160)",
+          "after": "assert.equal(protectedFacts, 4162)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-smart.test.mjs",
+          "before": "assert.equal(protectedRaw,4159)",
+          "after": "assert.equal(protectedRaw,4161)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-water.test.mjs",
+          "before": "assert.deepEqual(after,before);",
+          "after": "assert.deepEqual(withoutVacancy(after),before);",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-050.test.mjs",
+          "before": "assert.deepEqual(actual, transformWaterRows(",
+          "after": "assert.deepEqual(withoutVacancy(actual), transformWaterRows(",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-smart-choice.test.mjs",
+          "before": "assert.deepEqual(first,expectedFirst,c.id)",
+          "after": "assert.deepEqual(withoutVacancy(first),expectedFirst,c.id)",
+          "occurrences": 1
+        },
+        {
+          "file": "tests/remediation-b-051-manual-smart-choice.test.mjs",
+          "before": "assert.deepEqual(output,c.output,c.id)",
+          "after": "assert.deepEqual(withoutVacancy(output),c.output,c.id)",
+          "occurrences": 1
+        }
+      ],
+      "shared_active_helper": "tests/helpers/b051-water.mjs -> independent applyVacancy",
+      "proof": "Full catalog exactly frozen pre-change catalog plus two source-bound facts, 214 prior manual controls and 144 prior actual PDF outputs identical after strict guarded projection. Final 6018/6018 and targeted 2326/2326 PASS; all existing cases retained.",
+      "final_diff_review": "Removed two incidental, unnecessary projections from canonical-state comparisons; their exact original assertions remain unchanged. Only actual catalog/snapshot fingerprint sites use the guarded new-row projection."
+    },
+    {
+      "id": "HARNESS-VACANCY-04",
+      "cause": "V8 encoding fingerprint differs for equal catalog after structuredClone/deserialize, even when only the authorized rows are projected",
+      "independent_evidence": "Frozen pre-production baseline catalog reserialized sha256=0f34343c037a4b7c0fa649a0d63de8be3671925ab0c6ab962f7df79dc74adf8d; projected candidate same; full deepStrictEqual PASS and JSON SHA256 both=6b58cacfa9743e9fae7dae50f150c45b77707471f0ca06190e4937c6c2123e77. Prior live V8 encoding hash ac7af25e72e98a61d682c2d830d3e5e2c798fe687d8d7f8b983f3e22cc9ceb24 belongs to prior in-memory representation, not different insurance data. No historical bytes or hash metadata changed.",
+      "fix": "Keep exact SHA fingerprint assertion in affected active tests; expected hash computed only from SHA-verified frozen fresh-main before catalog using identical reserialization. Retain undefined fields; permanent full-field catalog equality independently verifies only two row additions.",
+      "files": [
+        "tests/remediation-b-051-manual-smart-choice.test.mjs",
+        "tests/remediation-b-051-rental-selection.test.mjs",
+        "tests/remediation-b-051-house-origin.test.mjs",
+        "tests/remediation-b-051-legal-priority.test.mjs",
+        "tests/remediation-b-051-manual-rental-choice.test.mjs",
+        "tests/remediation-b-051-smart-selection.test.mjs"
+      ],
+      "insurance_contract_change": false
+    }
+  ],
+  "environment_events": [
+    {
+      "gate": "http-pdf-runtime-final",
+      "failure": "EPERM binding 127.0.0.1 under sandbox",
+      "resolution": "Authorized local synthetic runtime rerun with normal localhost permission; no code changes, installation, live AI or deploy",
+      "verified_gate": "http-pdf-runtime-verified-final",
+      "result": "PASS",
+      "final_reviewed_gate": "http-pdf-runtime-reviewed-final"
+    }
+  ],
+  "final_candidate_identity_sha256": "42f2db2300682d6e4cfb33fc80f77974f1eb28aebd5916133fbdd7ccc7d8cb0e",
+  "all_final_gates_PASS": [
+    "typegen-reviewed-final",
+    "typescript-reviewed-final",
+    "eslint-reviewed-final",
+    "production-build-reviewed-final",
+    "diff-check-reviewed-final",
+    "fullsuite-reviewed-final",
+    "targeted-reviewed-final",
+    "http-pdf-runtime-reviewed-final"
+  ]
+}

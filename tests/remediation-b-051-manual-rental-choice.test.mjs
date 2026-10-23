@@ -1,3 +1,4 @@
+import {withoutVacancy,vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -28,7 +29,7 @@ const source=n=>({documentId:`synthetic:rental:${n}`,filename:`Kundebevis ${n}.p
 const term=(name,value,n=0,extra={})=>({name,value,coverageOrigin:'document',sources:[source(n)],...extra});
 for(const id of ids){
  test(`RENTAL-MANUAL initial contract differs only by exact addon-bound proof ${id}`,()=>{
-  for(const c of baseline.manual.filter(c=>c.id===id)){const expected=structuredClone(c.first);expected.addOns.find(a=>a.id===addon).manualSelection=marker(id);assert.deepEqual(normalizeManualAgreement(c.input).insuranceData.insurances[0],expected);}
+  for(const c of baseline.manual.filter(c=>c.id===id)){const expected=structuredClone(c.first);expected.addOns.find(a=>a.id===addon).manualSelection=marker(id);assert.deepEqual(withoutVacancy(normalizeManualAgreement(c.input).insuranceData.insurances[0]),expected);}
  });
  test(`RENTAL-MANUAL three repeats and JSON keep five full keyed catalog rows ${id}`,()=>{
   const first=manual(id),rows=rental(first);assert.equal(rows.length,5);assert.deepEqual(new Set(rows.map(t=>t.key)),new Set(keys));
@@ -93,8 +94,8 @@ for(const id of ids){
  });
 }
 test('RENTAL-MANUAL 202 other products and six non-rental manual controls preserve exact initial/repeat output',()=>{
- assert.equal(baseline.others.length,202);assert.equal(baseline.controls.length,6);for(const c of [...baseline.others,...baseline.controls]){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(first,c.first,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(result,withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([result],c.input.products[0].type),c.display);}
- assert.equal(hash(serialize(productCatalog)),meta.catalog_sha256);
+ assert.equal(baseline.others.length,202);assert.equal(baseline.controls.length,6);for(const c of [...baseline.others,...baseline.controls]){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutVacancy(first),c.first,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutVacancy(result),withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([result],c.input.products[0].type),c.display);}
+ assert.equal(hash(serialize(withoutVacancy(productCatalog))),vacancyCatalogBaselineHash);
 });
 test('RENTAL-DOCUMENT all 144 frozen before cases differ only by the authorized document choice',()=>{
  assert.equal(baseline.documents.length,144);
@@ -118,7 +119,7 @@ test('RENTAL-DOCUMENT all 144 frozen before cases differ only by the authorized 
    i.importantTerms.push(...rental(m));
   }
   const output=documentPipeline([[c.record]],c.side).insuranceData;
-  assert.deepEqual(output,expected,`${c.id}/${c.side}/${c.role}/${values}/${c.record.addOns.length}`);
+  assert.deepEqual(withoutVacancy(output),expected,`${c.id}/${c.side}/${c.role}/${values}/${c.record.addOns.length}`);
   assert.equal(groupAddOnNames(output.insurances,'Hus'),selected?'Utleie':null,c.id);
  }
 });

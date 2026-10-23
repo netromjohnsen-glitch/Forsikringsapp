@@ -1,6 +1,55 @@
 # Aktuell dokumentert prosjektstatus
 
 
+## Fraflyttet bolig – validert B-130-bolk 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`f5f88cc08f7cd863c9ce5d618319fa06fa9c1493`. Den publiserte katalogopprinnelsesrettelsen
+finnes på denne revisjonen. Fraflyttingsregelen er validert på samme basis,
+på `fix/house-vacancy`. Publiseringsrevisjonen er committen som inneholder rettelsen,
+receipt og denne prosjektstatusen. Publisert status gjelder etter bekreftelse på remote main.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b130-vacancy-f5f88cc/publication-authorization.md).
+Ingen installasjon eller deploy.
+
+B-130 / CR-224 / `597df4c45c6d3db9` er avgrenset implementert for Hus Standard
+GAP-2122/SF-3049 og Hus Pluss GAP-2181/SF-3136, ordinary / Alminnelige vilkår.
+Begge original-PDF-er, side 2, definerer fraflyttet bolig som ikke bebodd de siste
+12 måneder; da dekkes bare brann og naturskade dersom annet ikke er avtalt.
+`hus.fraflyttet.begrensning` legges til som vilkårsdetalj med egen primærkilde for
+hvert nivå. Pluss erstatter bare den arvede raden med samme nøkkel; baseevidens beholdes.
+
+Regelen fastslår ikke at kundens bolig er fraflyttet og endrer ikke automatisk
+kundens dekninger eller tilleggsvalg. Kundens særavtale beholder forrang gjennom
+eksisterende eksakt produktbundet etikettmatching, også ved senere dokumentverdier,
+gjentatt beriking og JSON. Generelle vilkår er fortsatt evidens/katalog. Ingen endring
+i dekningsmotor, global normalizer, navnemapping, uttrekksskjema eller presentasjon.
+Smart/Utleie/råte, Rettshjelp, priser og generell egenandel beholdes.
+
+[Receipt](../audit/checkpoints/b130-vacancy-f5f88cc/completion-receipt-597df4c45c6d3db9.json),
+[validering](../audit/checkpoints/b130-vacancy-f5f88cc/validation-summary.json),
+[checkpoint](../audit/checkpoints/b130-vacancy-f5f88cc/checkpoint.json) og
+[bevispakke](../audit/checkpoints/b130-vacancy-f5f88cc/README.md).
+54 nye kontrakttester; 2326/2326 målrettede og 6018/6018 tester i 166 filer består,
+uten skip. Typegen/TypeScript, webpack-bygg og lokal syntetisk HTTP/PDF-runtime
+22/22 PASS. ESLint 0 feil og de samme 27 warnings. Åtte sluttgater har samme
+kandidatidentitet. 214 tidligere manuelle input og 144 dokumentforløp bevarer
+alle tidligere felt; nøyaktig to nye rå katalogfakta er uavhengig kildekontrollert.
+Tidligere bevispakker og originalkilder er uendret.
+
+Denne bolken fullfører bare den ene B-130-signaturen med begge bindinger.
+Basis-main har 63 publiserte kampanjesignaturer; 64 inklusive denne nye signaturen
+gjelder etter bekreftelse av den inneholdende committen på remote main. Dette gir
+ingen komplett katalog-/pilotklarering. B-051 forblir 37/0/1/1; P2-kreditt 0, globalt resolved/open
+UKJENT og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED.
+
+Alle HOLD beholdes, inkl. HTU `157c7afed18eb0fe` / SC-019/SR-033,
+`8a89196fecd29ddb`, fysisk insektegenandel SC-020/SR-032 og øvrige beskyttede holds.
+Øvrige B-130-reviews `15f5b4a3e9f79fd2`, `ce90710821e28a97` og
+`d58bff0e6b2d46eb` forblir åpne. Sikkerhet/GDPR/P3-A05 med uavklart identitet/mergestatus,
+person/pilotscope, kritisk UX, feedback og operativ rådgiveraksept beholdes synlige.
+NITO og Sentralbord venter. Ingen ny arbeidsstrøm. Commit/push er eksplisitt autorisert.
+
+
 ## Katalogopprinnelse ved gjentatt beriking – validert 23. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

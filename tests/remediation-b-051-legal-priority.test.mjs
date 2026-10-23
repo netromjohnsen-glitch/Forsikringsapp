@@ -1,3 +1,4 @@
+import {withoutVacancy,vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -75,7 +76,7 @@ test('LEGAL-PRIORITY all other 202 catalog products preserve exact baseline enri
  const meta=JSON.parse(readFileSync(new URL('baseline-identity.json',dir))),bytes=readFileSync(new URL('other-product-baseline.v8.gz',dir));
  assert.equal(createHash('sha256').update(bytes).digest('hex'),meta.snapshot_sha256);const cases=deserialize(gunzipSync(bytes));assert.equal(cases.length,202);
  for(const c of cases){if(c.error)assert.throws(()=>enrichExtractedAgreementWithCatalog(c.input,date),{message:c.error},c.id);else assert.deepEqual(enrichExtractedAgreementWithCatalog(c.input,date),c.output,c.id);}
- assert.equal(createHash('sha256').update(serialize(productCatalog)).digest('hex'),meta.catalog_identity_sha256);
+ assert.equal(createHash('sha256').update(serialize(withoutVacancy(productCatalog))).digest('hex'),vacancyCatalogBaselineHash);
 });
 test('LEGAL-PRIORITY no global alias; unknown product/scope/type/version cannot gain scoped identity',()=>{
  for(const changes of [{productName:'Ukjent',canonicalProductName:'Ukjent'},{type:'Innbo'},{agreementScope:'nito'},{company:'Ukjent'}]){
