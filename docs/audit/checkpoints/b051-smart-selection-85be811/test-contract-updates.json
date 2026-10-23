@@ -1,0 +1,31 @@
+{
+  "policy": "Active autonomous workflow; historical counters/receipts immutable",
+  "roots": [
+    {
+      "id": "SS-M01",
+      "kind": "Active historical Smart gate compares source catalog before the already-published DATA_ONLY completion and characterizes no document activation",
+      "evidence": "fullsuite-initial.log.gz: all 36 failures occur in remediation-b-051-smart.test.mjs; frozen source-verification and published proposal/receipts prove the exact two source rows",
+      "correction": "Use existing independent applySmart oracle only for baseline runtime enrichment/pipeline comparisons, retaining original raw catalog/source assertions; replace hardcoded no-activation expectations with approved document-choice table and exact document/catalog provenance assertions. Preserve manual repeat and all isolation controls.",
+      "production_change": false
+    },
+    {
+      "id": "SS-M02",
+      "kind": "Scoped supporting lookup needs an explicit nullable product-name guard",
+      "evidence": "lib/product-catalog.ts:253 requires name:string; Customer canonicalProductName/productName is nullable even though applicability already filters unresolved names",
+      "correction": "Guard the resolved name before lookup, preserve null/unknown-product behavior. No selection/eligibility expansion."
+    }
+  ],
+  "intentional_contract_extension": "Exact Valg/Valgstatus/Status/Dekning headings count only inside the schema-valid documented Hus Smart addon. They do not create global aliases. Supporting-only sources cannot supply customer choice.",
+  "production_corrections_within_authorized_rule": [
+    {
+      "id": "SS-E01",
+      "evidence": "targeted-final.log.gz: two existing supporting tests independently detect generic Smart source rows beside the newly mapped customer identity",
+      "correction": "Use identical exact scoped key in supporting attachment and retain Smart supporting terms separately through repeat. No new source/selection meaning or change to general applicability."
+    },
+    {
+      "id": "SS-E02",
+      "evidence": "Final source review found keyOf fallback used || instead of the existing ?? outside the scoped Smart mapping; empty internal key could differ on another product",
+      "correction": "Retain exact preexisting nullish fallback outside the two products, inserting only the optional scoped Smart key. Rebind all final gates to the corrected source identity."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "runner": "../b051-physical-exclusions-0be8fad/run-final-gates.py",
+  "reuse": "run() reused with current ROOT/OUT/BASE/APP; commands and identity in gate-results.json",
+  "BASE": "85be811f596aa757f196f5f6f33f8fa0063b9123",
+  "APP": [
+    "lib/hus-smart-selection.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts",
+    "lib/supporting-terms.ts",
+    "tests/remediation-b-051-smart-selection.test.mjs",
+    "tests/remediation-b-051-smart.test.mjs"
+  ],
+  "PATH_prepend": "/Users/morten/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/poppler/bin",
+  "final_labels": [
+    "typegen-sealed",
+    "typescript-sealed",
+    "targeted-sealed",
+    "fullsuite-sealed",
+    "eslint-sealed",
+    "production-build-sealed",
+    "http-pdf-runtime"
+  ],
+  "all_tests_manifest": "test-manifest.json"
+}

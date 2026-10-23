@@ -1,0 +1,32 @@
+{
+  "status": "DOCUMENT_SELECTION_RESOLVED_CURRENT_IMPLEMENTATION_MANUAL_REPEAT_OPEN",
+  "historical_findings": "../b051-smart-e21693e/open-smart-customer-findings.json",
+  "scope": {
+    "provider": "gjensidige",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår"
+  },
+  "resolution": "One document-choice resolver controls exact scoped component activation and display; preserves source-bearing identity on document repeat. Supporting terms do not supply customer choice.",
+  "still_open": [
+    {
+      "kind": "manual_repeat",
+      "status": "OPEN_UNCHANGED",
+      "evidence": "baseline.v8.gz / six exact manual initial+repeat outputs; permanent test preserves all bytes/fields",
+      "behavior": "Pure manual selected Smart still loses IDs/keys in preexisting repeated extraction enrichment; not fixed or granted closure credit."
+    }
+  ],
+  "not_full_smart_customer_mode_or_pilot_readiness": true,
+  "receipt": "completion-receipt-smart-document-selection.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "other_HOLD_unchanged": true,
+  "resolved_in_implementation": [
+    "document_addon_activation",
+    "actual_document_mapping",
+    "raw_addon_display"
+  ],
+  "publication_revision": "Containing Git commit; verification performed separately on remote main"
+}

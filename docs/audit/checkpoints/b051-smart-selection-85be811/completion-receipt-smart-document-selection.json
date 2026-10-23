@@ -1,0 +1,73 @@
+{
+  "classification": "CUSTOMER_DOCUMENT_SELECTION_IMPLEMENTATION_NOT_ORIGINAL_SIGNATURE_COMPLETION",
+  "finding": "HOUSE_SMART_DOCUMENT_SELECTION",
+  "status": "PASS_VALIDATED",
+  "base_revision": "85be811f596aa757f196f5f6f33f8fa0063b9123",
+  "tested_candidate_identity_sha256": "319dcc9799ce28340f53a93a0c9b8cbcf5b1f57300329515cc151f572353cccf",
+  "provider": "gjensidige",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "insurance_type": "bolig",
+  "agreement_scope": "ordinary",
+  "version": "Alminnelige vilkår",
+  "production_scope": [
+    "lib/hus-smart-selection.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts",
+    "lib/supporting-terms.ts"
+  ],
+  "existing_identity": "hus.service.smart",
+  "component": "gjensidige-hus-smart",
+  "contract": {
+    "selected": "Explicit selected parent or structured agreed document addon without contrary/uncertain parent status",
+    "not_selected": "Explicit refusal overrides addon-list presence",
+    "conflict": "Explicit selected+refused in same customer record -> unknown/conflict; values/sources retained",
+    "unknown": "Only uncertainty, description/details, general/supporting terms or no choice evidence",
+    "activation_and_display": "Only selected activates component and displays selected Smart addon",
+    "repeat": "Document choice, product-bound identity, source references and catalog/supporting origins retained",
+    "exact_context_headings": "Valg/Valgstatus/Status/Dekning map to Smart parent only inside documented Hus Smart addon",
+    "supporting": "Same scoped identity avoids duplicate generic source rows; generic applicability/admission rules unchanged",
+    "manual_mode": "Six initial/repeated outputs remain exact baseline; existing pure manual-repeat defect remains open"
+  },
+  "unchanged": [
+    "Catalog data/source bytes and acquisition/version metadata",
+    "Prices and premium aggregation",
+    "Conditions for 8 000 kroner deductible reduction",
+    "100 000 kroner service liability meaning; not a house insurance sum",
+    "HTU and all other HOLD",
+    "Global extraction enum and aliases",
+    "Object matching"
+  ],
+  "no_operational_alarm_activation_claim": true,
+  "baseline_evidence": "baseline-identity.json",
+  "source_contract_evidence": "source-and-contract-preflight.json",
+  "permanent_test": "tests/remediation-b-051-smart-selection.test.mjs",
+  "observed_document_pipeline": "pipeline-observations-sealed.json",
+  "validation": "validation-summary.json",
+  "gate_manifest": "gate-results.json",
+  "candidate_identity": "candidate-identity.json",
+  "test_contract_updates": "test-contract-updates.json",
+  "historical_customer_findings": "../b051-smart-e21693e/open-smart-customer-findings.json",
+  "current_customer_findings": "smart-customer-findings.json",
+  "original_signature_closure_credit": 0,
+  "documented_campaign_count": 63,
+  "B051_partition_counts": [
+    37,
+    0,
+    1,
+    1
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "HTU_and_other_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

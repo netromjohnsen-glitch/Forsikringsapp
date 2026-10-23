@@ -1,5 +1,41 @@
 # Aktuell dokumentert prosjektstatus
 
+## Hus Smart – validert dokumentvalg 23. oktober 2026
+
+Rettingen er validert på fersk main 85be811f596aa757f196f5f6f33f8fa0063b9123 og retter
+dokumentvalget på Gjensidige Hus Standard og Hus Pluss, ordinary / Alminnelige vilkår.
+Én produktbundet valgregel styrer både komponentaktivering og tilleggsvisning:
+Valgt eller et dokumentert avtalt tillegg gir selected; Ikke valgt overstyrer
+navnelisten; Valgt + Ikke valgt gir unknown/conflict. Bare Ukjent, omtale,
+detaljer eller generelle vilkår oppretter ikke kundevalg. Bare selected viser
+Smart som valgt tillegg. Valgt bekrefter ikke aktiv alarm eller oppfylte
+hendelsesvilkår for egenandelsreduksjon.
+
+Eksakte Smart-identiteter, kundeverdier, kildebevis og dokumentvalg beholdes på
+repeat. Støttevilkår bruker samme produktbundne nøkkel med general_terms-opprinnelse
+og separat recordEvidence. Den separate eksisterende feilen ved gjentatt beriking
+av et rent manuelt Smart-valg står fortsatt åpen og er baseline-identisk.
+
+102 nye Smart-valgtester; 324/324 kontroller med den eksisterende Smart-gaten;
+5694/5694 tester i 161 filer PASS uten skip. Typegen/TypeScript, webpack-bygg og
+lokal syntetisk HTTP/PDF-runtime 22/22 PASS. ESLint 0 feil / 27 identiske warnings.
+Katalog- og kildebytes er uendret. 202 øvrige produkters kontrollerte
+berikingsresultater og seks manuelle initial-/repeat-output er eksakt baseline-identiske.
+12 ekstra kontroller bekrefter dokumentoverstyring av manuelt katalogvalg.
+[Receipt](../audit/checkpoints/b051-smart-selection-85be811/completion-receipt-smart-document-selection.json),
+[gjeldende checkpoint](../audit/checkpoints/b051-smart-selection-85be811/checkpoint.json),
+[validering](../audit/checkpoints/b051-smart-selection-85be811/validation-summary.json)
+og [bevispakke](../audit/checkpoints/b051-smart-selection-85be811/README.md).
+
+Publisering med commit og push er eksplisitt autorisert. Rettingen, receipt og
+prosjektstatus er publisert når denne committen er verifisert på remote main;
+[publiseringsfullmakt og kontroller](../audit/checkpoints/b051-smart-selection-85be811/publication-authorization.md).
+Ingen deployhandling. Testet basis-SHA og kandidatens filidentitet er ført separat. Katalogtekst,
+prisberegning, 8 000-kvalifikasjoner og 100 000-kroners tjenesteansvar er uendret.
+Ingen ny originalsignatur- eller P2-kreditt: B-051 fortsatt 37/0/1/1 og kampanje 63.
+HTU og alle øvrige HOLD er uendret; SC-020/SR-032 gjelder fysisk insektegenandel,
+adskilt fra Smart-valget. NITO og Sentralbord venter. Ingen ny arbeidsstrøm er startet.
+
 ## Rettshjelp – validert dokumentprioritet 22. oktober 2026
 
 Rettingen er validert på fersk main 2b198f9ebf52aa283056b3a052edf0fa0cdd311f og retter
@@ -20,8 +56,8 @@ ESLint 0 feil / 27 identiske warnings. Katalog og kildefiler er uendret;
 [validering](../audit/checkpoints/b051-legal-priority-2b198f9/validation-summary.json)
 og [bevispakke](../audit/checkpoints/b051-legal-priority-2b198f9/README.md).
 
-Publisering med commit og push er eksplisitt autorisert. Rettingen, receipt og
-prosjektstatus er publisert når denne committen er verifisert på remote main;
+Rettshjelp-rettelsen, receipt og prosjektstatus er publisert på remote main i
+85be811f596aa757f196f5f6f33f8fa0063b9123, verifisert før og etter Smart-arbeidet;
 [publiseringsfullmakt og kontroller](../audit/checkpoints/b051-legal-priority-2b198f9/publication-authorization.md).
 Ingen deployhandling. Testet basis-SHA og kandidatens filidentitet er ført separat
 i receipt. Dette lukker bare den dokumenterte kundemapping-/prioritetsfeilen;
@@ -102,8 +138,8 @@ diagnostikk 19/12, HARNESS_AUTONOMY_V1 33/12 og DEFER_SAFE omskrives ikke.
 [Nye mekaniske rettinger](../audit/checkpoints/b051-manual-rot-choice-2a2d0fc/autonomous-mechanical-corrections.json)
 føres separat uten numerisk stoppkvote. Ingen P2-kreditt.
 
-Smart-kundemodus, HTU-konflikt, SC-020/SR-032, SC-035/SR-031, B-071-holdet
-og øvrige holds er bevart. Rettshjelps kundemapping/prioritet er validert rettet
+Smart-dokumentvalg er validert ovenfor; den separate manuelle Smart-repeat-feilen
+står åpen. HTU-konflikt, SC-020/SR-032, SC-035/SR-031, B-071-holdet og øvrige holds er bevart. Rettshjelps kundemapping/prioritet er validert rettet
 i rettelsen ovenfor; historiske receipts og øvrige metadataoverganger er bevart.
 8a89196fecd29ddb beholdes åpen og på HOLD: landbruks-/næringsunntakets
 anvendelse på bekjempelse krever autoritativ avklaring. Ingen lukking av denne kandidaten.

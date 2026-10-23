@@ -14,6 +14,8 @@ import { mcBobilTypes } from "./mc-bobil-registry.ts";
 import { boatPetTypes } from "./boat-pet-registry.ts";
 import { coverageStatusFromText, deriveCanonicalCoverages } from "./coverage-status.ts";
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
+import { HOUSE_SMART_ADDON, HOUSE_SMART_PARENT, houseSmartDocumentAddOnTerms, houseSmartTermKey,
+  isHouseSmartProduct, resolveHouseSmartDocumentSelection } from "./hus-smart-selection.ts";
 import {
   findCatalogProductBySelection,
   availableAddOns,
@@ -267,17 +269,23 @@ function enrichInsurance(
     ? resolveCatalogFacts(product, [], asOf, null, catalog).filter(fact => optedParents.has(fact.key))
     : [];
   const originalTerms = insurance.importantTerms as EnrichedTerm[];
+  const smartSelection = product && isHouseSmartProduct(product) &&
+    availableAddOns(product, asOf, null, catalog).some(addOn => addOn.id === HOUSE_SMART_ADDON)
+    ? resolveHouseSmartDocumentSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }) : null;
   const scopedSupportingTerms = originalTerms.filter(term => term.coverageOrigin === "catalog" &&
     term.sources?.length && term.sources.every(source =>
       (source as CatalogFact["source"] & { documentRole?: string }).documentRole === "general_terms") &&
     (optedParents.has(term.key ?? "") ||
+      (product && isHouseSmartProduct(product) && Boolean(houseSmartTermKey(term))) ||
       optedAddOns.some(addOn => normalizeLabel(addOn.name) === normalizeLabel(term.name)) ||
       anchors.some(fact => normalizeLabel(fact.label) === normalizeLabel(term.name))));
   let documentTerms = resolvedDocumentTerms ?? measure("documentNormalization", () => {
     // Re-resolve scoped catalog parents instead of converting them into document
     // choice. Retain general-terms values/provenance separately as supporting terms.
-    const normalized = normalizeDocumentFacts({ ...insurance, importantTerms: originalTerms.filter(term =>
+    const smartTerms = smartSelection ? houseSmartDocumentAddOnTerms(insurance) : [];
+    const normalized = normalizeDocumentFacts({ ...insurance, importantTerms: [...originalTerms, ...smartTerms].filter(term =>
       !scopedSupportingTerms.includes(term) &&
+      !(smartSelection && (term as EnrichedTerm).coverageOrigin === "catalog" && houseSmartTermKey(term)) &&
       !(term.coverageOrigin === "catalog" && optedParents.has(term.key ?? ""))) });
     trace?.normalization(insurance, normalized);
     return normalized;
@@ -307,6 +315,20 @@ function enrichInsurance(
       ? { ...term, key: houseLegalKey } : term);
   }
 
+  if (smartSelection) {
+    documentTerms = documentTerms.map(term => {
+      const key = houseSmartTermKey(term);
+      return key ? { ...term, key } : term;
+    });
+    // The extraction contract lists agreed customer addons. Turn that structured
+    // choice into a document fact, so the existing source attachment and repeat
+    // normalization retain it even when the addon has no individual term.
+    if (smartSelection.viaAddOn) documentTerms.push({
+      name: "Hus Smart", value: "Valgt", key: HOUSE_SMART_PARENT, coverageOrigin: "document",
+      ...(smartSelection.sources.length ? { sources: smartSelection.sources } : {}),
+    });
+  }
+
   // MC/Bobil optional components remain separate from the base. Only an
   // explicit document-backed coverage selection can activate an applicable
   // component; catalog availability and document silence cannot select it.
@@ -322,6 +344,7 @@ function enrichInsurance(
     return matches.size === 1 ? { ...term, key: [...matches][0] } : term;
   });
   const selectedAddOnIds = selectedScopedAddOns(product, insurance, documentTerms, asOf, catalog);
+  if (smartSelection?.status === "selected") selectedAddOnIds.push(HOUSE_SMART_ADDON);
   const manualParents = new Set(insurance.addOns.flatMap(entry => {
     const addOn = validatedManualSelectionAddOn(product, entry, asOf, catalog);
     return addOn && selectedAddOnIds.includes(addOn.id) ? addOn.selectionEvidenceKeys ?? [] : [];

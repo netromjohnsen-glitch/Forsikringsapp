@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "base_revision": "85be811f596aa757f196f5f6f33f8fa0063b9123",
+  "tested_candidate_identity_sha256": "319dcc9799ce28340f53a93a0c9b8cbcf5b1f57300329515cc151f572353cccf",
+  "application_hashes": "PASS",
+  "application_patch_identity": "PASS",
+  "checksummed_packet_files": 45,
+  "packet_checksum_sha256": "36a361143712a7df06dc75399e6d7613b713d9a8dec3a2d2833bf78385b69cc9",
+  "prior_packet_files_verified": 51,
+  "exact_protected_checkpoint_sets_unchanged": [
+    "holds_unchanged",
+    "additional_B051_holds_unchanged",
+    "current_B051_completed_signatures",
+    "current_B071_revalidated_signatures",
+    "current_B071_not_revalidated",
+    "documented_campaign_signatures",
+    "B051_partition_counts",
+    "documented_campaign_count",
+    "historical_only",
+    "historical_DEFER_SAFE_signatures",
+    "HARNESS_AUTONOMY_V1",
+    "original_signature_status"
+  ],
+  "all_161_manifest_files_accounted_for": true,
+  "json_markdown_and_checkpoint_links": "PASS",
+  "logs_and_compressed_baseline_readable": "PASS",
+  "all_new_text_whitespace": "PASS",
+  "tracked_diff_check": "PASS",
+  "tracked_changes": [
+    "docs/development-agent/current-project-status.md",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts",
+    "lib/supporting-terms.ts",
+    "tests/remediation-b-051-smart.test.mjs"
+  ],
+  "untracked_scope": "new helper, permanent test and authorized checkpoint packet only",
+  "staged_files": 0,
+  "publication_status": "LOCAL_VALIDATED_NOT_COMMITTED_OR_PUSHED",
+  "deploy": "NOT_PERFORMED"
+}

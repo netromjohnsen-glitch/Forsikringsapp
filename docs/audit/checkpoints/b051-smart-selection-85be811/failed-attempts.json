@@ -1,0 +1,23 @@
+{
+  "logs_retained": true,
+  "failures": [
+    {
+      "log": "fullsuite-initial.log.gz",
+      "tests": 5692,
+      "failures": 36,
+      "diagnosis": "All in old Smart gate: pre-DATA_ONLY source oracle and no-document-activation characterization; SS-M01 updates exact approved runtime expectations, keeps raw source/delta/isolation assertions."
+    },
+    {
+      "log": "targeted-final.log.gz",
+      "tests": 322,
+      "failures": 2,
+      "diagnosis": "Supporting aliases duplicated the mapped customer identity. SS-E01 uses same scoped key at attachment; new independent supporting regression added."
+    },
+    {
+      "log": "typescript.log.gz",
+      "diagnosis": "Nullable product name passed to string lookup; SS-M02 adds explicit guard."
+    }
+  ],
+  "superseded_passes": "Earlier PASS logs have their original candidate identities; only final_gate_labels in validation-summary.json count for final candidate.",
+  "final_source_review": "SS-E02 preserves exact preexisting nullish fallback outside Smart scope; final seven gates all bind corrected identity."
+}

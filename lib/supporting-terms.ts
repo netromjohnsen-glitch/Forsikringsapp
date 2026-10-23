@@ -9,6 +9,7 @@ import { objectIdentity } from "./object-matching.ts";
 import { defaultIdentifierStrategies } from "./object-identity-strategies.ts";
 import { deriveCanonicalCoverages } from "./coverage-status.ts";
 import type { SupportingAttachmentObserver } from "./production-trace.ts";
+import { houseSmartTermKey, isHouseSmartProduct } from "./hus-smart-selection.ts";
 
 // Role is explicit extraction metadata for this record, not a filename/title
 // heuristic. Unknown records remain eligible, including unpriced/no-ID policies.
@@ -100,7 +101,12 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
     return result;
   };
   if (!applicable.length) return observed(customer);
-  const keyOf = (term: T["importantTerms"][number]) => term.key ?? normalizeTermName(term.name, { insuranceType: customer.type, termValue: term.value });
+  const productName = customer.canonicalProductName === undefined ? customer.productName : customer.canonicalProductName;
+  const product = customer.company && productName && findCatalogProductBySelection(
+    customer.company, customer.type, productName, customer.agreementScope);
+  const smart = product && isHouseSmartProduct(product);
+  const keyOf = (term: T["importantTerms"][number]) => (smart ? houseSmartTermKey(term) : null) ??
+    term.key ?? normalizeTermName(term.name, { insuranceType: customer.type, termValue: term.value });
   const existing = new Set(customer.importantTerms.filter(t => !isUndocumentedTermValue(t.value)).map(keyOf));
   const coverages = new Map(deriveCanonicalCoverages(customer, customer.type).map(c => [c.id, c]));
   const definitions = relatedCoveragesForInsuranceType(customer.type);
@@ -122,7 +128,8 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
     if (coverage && (coverages.get(coverage.parentKey)?.status !== "selected" || coverages.get(coverage.parentKey)?.conflict)) continue;
     if (!coverage && /(?:^|\.)dekning$/u.test(key)) continue;
     if (isUndocumentedTermValue(term.value)) continue;
-    candidates.set(key, [...(candidates.get(key) ?? []), term]);
+    candidates.set(key, [...(candidates.get(key) ?? []),
+      smart && houseSmartTermKey(term) ? { ...term, key } : term]);
   }
   const additions = [...candidates].sort(([a],[b]) => a.localeCompare(b)).flatMap(([, terms]) => {
     // Conflicting generic rules remain available as evidence, not an arbitrary
