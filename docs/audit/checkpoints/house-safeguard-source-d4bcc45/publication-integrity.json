@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "base_revision": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+  "application_identity_sha256": "3dc5c0acad0cae4df149fbd55d789e7961482ac0c804083c4df3add6fa811c5b",
+  "application_files_unchanged": true,
+  "old_sources_audits_and_prior_local_packet_unchanged": true,
+  "HOLD_campaign_and_global_status_unchanged": true,
+  "older_project_status_sections_unchanged": true,
+  "links_verified": [
+    "docs/audit/checkpoints/house-safeguard-source-d4bcc45/publication-authorization.md",
+    "docs/audit/checkpoints/house-safeguard-source-d4bcc45/receipt-house-safeguard-source.json",
+    "docs/audit/checkpoints/house-safeguard-source-d4bcc45/validation-summary.json",
+    "docs/audit/checkpoints/house-safeguard-source-d4bcc45/checkpoint.json",
+    "docs/audit/checkpoints/house-safeguard-source-d4bcc45/source-and-reverse-audit.json",
+    "docs/audit/checkpoints/house-foundation-revalidation-d4bcc45/receipt-house-foundation.json"
+  ],
+  "existing_changed_paths": [
+    "docs/development-agent/current-project-status.md",
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/helpers/house-buildings-source.mjs",
+    "tests/remediation-b-130-frost.test.mjs",
+    "tests/remediation-house-buildings-source.test.mjs"
+  ],
+  "diff_checks": "PASS",
+  "secure_publisher_self_test": "Publication failure/success exit-status controls PASS",
+  "appsuite_repeated": false,
+  "reason": "Only publication metadata changed since PASS candidate; same production/test identity."
+}

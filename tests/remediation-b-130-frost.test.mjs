@@ -127,6 +127,6 @@ test('FROST approved scope keeps three-day duties, twelve-month vacancy and dedu
  assert.match(row.value,/I bygning som ikke er fast bebodd, skal hovedstoppekran stenges og en vannkran åpnes for å tømme rørene dersom bygningen ikke er bebodd på mer enn tre døgn\./u);
  assert.match(row.value,/Bygningen\/leiligheten skal holdes tilstrekkelig oppvarmet for å hindre vannskade ved frostsprengning\./u);
  assert.match(row.value,/kan retten til erstatning bortfalle helt eller delvis/u);
- for(const id of ids)for(const key of ['hus.fraflyttet.begrensning','hus.sikkerhet.egenandelsfritak','hus.egenandel.generell'])assert.deepEqual(resolveCatalogFacts(p(id),[],date).find(f=>f.key===key),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===id),[],date,null,baseline.catalog).find(f=>f.key===key));
+ for(const id of ids)for(const key of ['hus.fraflyttet.begrensning','hus.sikkerhet.egenandelsfritak','hus.egenandel.generell'])assert.deepEqual(withOriginalBuildingsSourcePage(resolveCatalogFacts(p(id),[],date).find(f=>f.key===key)),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===id),[],date,null,baseline.catalog).find(f=>f.key===key));
  const trygSafety=productCatalog.facts.trygHusSafety.find(f=>f.key==='hus.sikkerhet.vann');assert.match(trygSafety.value,/over én måned/u);assert.deepEqual(trygSafety,baseline.catalog.facts.trygHusSafety.find(f=>f.key==='hus.sikkerhet.vann'));
 });

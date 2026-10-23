@@ -1,0 +1,104 @@
+{
+  "classification": "CURRENT_VALIDATED_SHARED_ORDINARY_SAFEGUARD_SOURCE_PAGE_CORRECTION",
+  "status": "PASS_VALIDATED",
+  "authorization": "authorization.json",
+  "base_revision": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+  "tested_HEAD_is_base_not_candidate_commit": true,
+  "application_identity_sha256": "3dc5c0acad0cae4df149fbd55d789e7961482ac0c804083c4df3add6fa811c5b",
+  "candidate_identity": "candidate-identity.json",
+  "decision": "hus.sikkerhet.egenandelsfritak primary Standard page18-to17 corrected in one shared raw row; inherited by Hus Pluss. Exactly one production digit changed.",
+  "scope": {
+    "key": "hus.sikkerhet.egenandelsfritak",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "provider": "gjensidige",
+    "insurance_type": "Hus",
+    "agreement_scope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "primary_source_owner": "gjensidigeHusStandard",
+    "before_page": 18,
+    "after_page": 17,
+    "raw_rows_changed": 1,
+    "all_other_production_bytes_unchanged": true,
+    "meaning_value_selection_inheritance_other_provenance": "UNCHANGED",
+    "Smart_rules": "UNCHANGED_NOT_IN_SCOPE"
+  },
+  "source_oracle": "source-oracle.json",
+  "prior_read_only_receipt": "../house-foundation-revalidation-d4bcc45/receipt-house-foundation.json",
+  "prior_remainder": "HOUSE_SHARED_ORDINARY_SAFEGUARD_EXEMPTION_SOURCE_PAGE",
+  "prior_read_only_packet": "Retained byte-identical as historical before evidence",
+  "source_and_reverse_audit": "source-and-reverse-audit.json",
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2558,
+      "pass": 2558,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 41,
+    "fullsuite": {
+      "tests": 6250,
+      "pass": 6250,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 170,
+    "scoped_eslint": "0 errors,0 warnings",
+    "source_contract_tests": 25,
+    "new_tests": 3,
+    "new_test_files": 0,
+    "all12_configurations": "Both levels complete resolver/evidence/manual/threeJSON-reenrichment/materialization/display equal independent before plus only approved source page",
+    "20_document_role_probes": "Whole runtime snapshot equals independent before plus approved source page",
+    "other_regressions": "214 manual inputs,144 document flows,52 catalog comparisons both directions; selection,document priority and provider/type/scope/version isolation preserved",
+    "original_sources": "Exact registered SHA,complete raw Standard17/Pluss18 and identical ordinary-three-bullet block before separate Smart section checked",
+    "negative_guards": "Reject page99/wrong source section/filename; preserve customer source and unrelated Standard18 references",
+    "runtime_proof": "runtime-source-proof.json.gz"
+  },
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "diagnostic_log": "targeted-diagnostic-v1.log.gz",
+  "historical_evidence": "Old original sources,audits and full-state baselines unchanged. Exact-key/source/section guarded projection composed with existing adapter; direct current page17 requirements and full equality/negative assertions retained. One older FROST expectation adapted for the same approved source-only delta.",
+  "unchanged_status": {
+    "documented_campaign_published_at_base": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "project_status": "../../../development-agent/current-project-status.md",
+  "checkpoint": "checkpoint.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "commit_push": "AUTHORIZED_BY_PUBLICATION_AUTHORIZATION",
+  "install": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_bounded_step": "Combined ordinary-house foundation revalidation on containing fresh main remains separate. All HOLD and pilot gate unchanged.",
+  "publication_revision": "Containing Git commit; verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

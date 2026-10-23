@@ -1,0 +1,31 @@
+{
+  "user_authorization": "Rett kildehenvisningen for hus.sikkerhet.egenandelsfritak fra Standard side 18 til 17 på fersk main. Kontroller begge husnivåer og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "base_revision": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+  "key": "hus.sikkerhet.egenandelsfritak",
+  "production_file": "lib/gjensidige-hus-catalog.ts",
+  "production_scope": "Only shared Standard primary source.page18-to17; Pluss inherits. Exactly one production digit.",
+  "allowed_support_files": [
+    "tests/helpers/house-safeguard-source.mjs",
+    "tests/helpers/house-buildings-source.mjs",
+    "tests/remediation-house-buildings-source.test.mjs",
+    "docs/development-agent/current-project-status.md",
+    "docs/audit/checkpoints/house-safeguard-source-d4bcc45/*",
+    "tests/remediation-b-130-frost.test.mjs"
+  ],
+  "source_decision": "../house-foundation-revalidation-d4bcc45/receipt-house-foundation.json",
+  "preserve": "All wording,values,key,other source metadata,inheritance,selection,coverage,mapping,document priority,other facts,all HOLD. No Smart-rule or other Standard18 reference change. Old sources/audits/snapshots immutable.",
+  "independent_production_roots": 1,
+  "gates": [
+    "Fresh-main/source/before hashes",
+    "Exact one-byte production delta",
+    "Both products/all12 configurations,214 manual and144 document controls,threeJSON reenrichments,materialization/display,52 bidirectional comparisons",
+    "Targeted41-file suite and170-file fullsuite for shared snapshot-adapter change",
+    "Scoped lint,original ordinary exemption paragraphs,negative guards,links,HOLD and integrity"
+  ],
+  "mechanical_policy": "Compose exact-key/Standard-source/section/17-or18 guarded source-page projection with existing adapter; no historical snapshot rewrite.",
+  "commit_push": "NOT_AUTHORIZED_THIS_TURN",
+  "install": "NOT_AUTHORIZED",
+  "deploy": "NOT_AUTHORIZED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE"
+}

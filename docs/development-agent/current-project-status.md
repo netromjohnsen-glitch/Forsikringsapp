@@ -1,5 +1,57 @@
 # Aktuell dokumentert prosjektstatus
 
+## Ordinært egenandelsfritak ved sikring – validert kildehenvisning 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b`. Gjenoppføringsrettelsen, receipt og
+prosjektstatus er publisert på denne revisjonen. Egenandelsfritaksbolken er validert
+på samme basis. Publiseringsrevisjonen er committen som inneholder rettelsen,
+receipt og denne prosjektstatusen. Publisert status gjelder etter kontroll på
+remote main. Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-safeguard-source-d4bcc45/publication-authorization.md).
+Ingen installasjon eller deploy.
+
+Bare `hus.sikkerhet.egenandelsfritak` sin primære henvisning er rettet fra
+Standard PDF-side 18 til 17. Hus Pluss arver den samme Standard-raden og kildeeieren.
+Pluss-originalens egen side 18 bekrefter de tre ordinære fritakspunktene og
+omnummereres ikke. Produksjonsdiffen er nøyaktig ett tegn. Ordlyd, verdi, nøkkel,
+øvrig provenance, arv, dekning, kundevalg, mapping og dokumentprioritet er uendret.
+Smart-reglene og andre henvisninger til Standard side 18 er uendret; objektradene
+beholdes på side 3 og gjenoppføringsradene på side 16.
+
+[Receipt](../audit/checkpoints/house-safeguard-source-d4bcc45/receipt-house-safeguard-source.json),
+[validering](../audit/checkpoints/house-safeguard-source-d4bcc45/validation-summary.json),
+[checkpoint](../audit/checkpoints/house-safeguard-source-d4bcc45/checkpoint.json) og
+[kilde-/reverse-audit](../audit/checkpoints/house-safeguard-source-d4bcc45/source-and-reverse-audit.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-d4bcc45/receipt-house-foundation.json)
+beholdes byte-identisk som før-bevis i samme publiseringsbolk. Dens presise
+restmangel er rettet i den validerte kandidaten. Historiske receipts, originalkilder og testbaseliner er bevart.
+
+2558/2558 målrettede tester i 41 filer og 6250/6250 tester i 170 filer består uten
+skip. 25 kildekontraktkontroller, hvorav tre nye; ingen nye testfiler.
+Kvalitetskontroll av de fem berørte kode-/testfilene: 0 feil og 0 warnings.
+Alle 12 tilleggskombinasjoner og hele før-snapshottens 20 syntetiske dokumentrolleprober
+bevarer alle felt bortsett fra det godkjente sidetallet. Regresjonssettet med 214
+manuelle input, 144 dokumentkontroller og 52 sammenligninger i begge retninger består.
+Eksakte originalavsnitt før den separate Smart-delen og negative kilde-/sidekontroller
+er med. Første testkjøring fant én eldre FROST-forventning om side 18; den strenge
+sammenligningen er tilpasset med samme avgrensede kildeprojeksjon. Diagnostikken
+beholdes; faktiske nåverdier må være side 17. Ingen historiske snapshots er omskrevet.
+
+Den navngitte sidetallsfeilen er rettet når inneholdende commit er bekreftet på
+remote main. Samlet katalogfundament er ikke frigitt. Ingen videre kilde-/P2-opprydding eller ny forsikringsbetydning er
+godkjent. B-051 37/0/1/1, kampanje 67, ny signaturkreditt 0, P2-kreditt 0,
+globalt resolved/open UKJENT og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes.
+Samlet revalidering av katalogfundamentet på inneholdende fersk main gjenstår
+som separat oppgave; ingen ny implementering er startet.
+
+Alle HOLD beholdes eksakt, inkludert HTU `157c7afed18eb0fe` / SC-019/SR-033,
+`8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og uavklart P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. NITO venter;
+Sentralbord venter separat. Ingen ny arbeidsstrøm er startet.
+
+
 ## Gjenoppføring – tre validerte kildehenvisninger 23. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

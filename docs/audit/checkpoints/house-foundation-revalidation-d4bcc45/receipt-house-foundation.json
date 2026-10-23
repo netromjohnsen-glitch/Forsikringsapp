@@ -1,0 +1,221 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_FOUNDATION_REVALIDATION_WITH_ONE_PRECISE_REMAINDER",
+  "status": "COMPLETED_WITH_PRECISE_REMAINDER",
+  "decision": "Ordinært Hus-katalogfundament kan ikke bekreftes samlet ferdig. Én presis restmangel: hus.sikkerhet.egenandelsfritak viser til Standard PDF18, mens de tre ordinære fritakspunktene står på PDF17. Hus Pluss arver samme Standard-henvisning.",
+  "authorization": "Gjør samlet revalidering av ordinært katalogfundament for Hus Standard og Hus Pluss på fersk main. Lever én receipt med bekreftet grunnlag eller én presis restmangel. Ingen kodeendringer/deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-23T12:31:27.018903+00:00",
+  "fresh_main_before": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+  "fresh_main_after": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+  "fresh_main_method": "Connected GitHub branch API at start/end; exact SHA equals HEAD/origin main; tracked bytes unchanged.",
+  "scope": {
+    "provider": "gjensidige",
+    "type": "Hus/bolig",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "original_signatures": 46,
+    "original_GAP_SF_links": 83,
+    "historical_source_facts": {
+      "total": 170,
+      "P1": 83,
+      "P2": 30,
+      "priority_blank": 57
+    },
+    "registered_sources_verified": 6,
+    "configurations": {
+      "Standard": 8,
+      "Pluss": 4
+    }
+  },
+  "confirmed_ground": {
+    "B051_original_receipts_on_main": 37,
+    "B051_original_binding_links": 67,
+    "B130_original_completion_receipts_on_main": [
+      {
+        "signature": "597df4c45c6d3db9",
+        "receipt": "docs/audit/checkpoints/b130-vacancy-f5f88cc/completion-receipt-597df4c45c6d3db9.json",
+        "sha256": "5e93e9ee3ac6897a87dad06e965b1eda7f1de50ad2ce89c0b0647c542d7f67ea"
+      },
+      {
+        "signature": "ce90710821e28a97",
+        "receipt": "docs/audit/checkpoints/b130-frost-8422e39/completion-receipt-ce90710821e28a97.json",
+        "sha256": "e0f4d260e31c51d82c0d86047ce3715342087110b1066ae7f4147aa06ba0b655"
+      },
+      {
+        "signature": "15f5b4a3e9f79fd2",
+        "receipt": "docs/audit/checkpoints/b130-underinsurance-0e4c09d/completion-receipt-15f5b4a3e9f79fd2.json",
+        "sha256": "e4836918eb478a6067705998acee82e56fbec465ceae8f2a94d194b54924d280"
+      },
+      {
+        "signature": "d58bff0e6b2d46eb",
+        "receipt": "docs/audit/checkpoints/b130-person-scope-cfada9a/completion-receipt-d58bff0e6b2d46eb.json",
+        "sha256": "17c4299f3daa2229cbe81e8e4cd7889b0d12989da941efdc3df8a6281c03ccb7"
+      }
+    ],
+    "B130_original_bindings": 8,
+    "B130_sealed_files_verified_on_main": 150,
+    "published_object_page_corrections": {
+      "keys": [
+        "hus.bygninger.dekning",
+        "hus.bygninger.tilbehor",
+        "hus.teknisk.solceller"
+      ],
+      "Standard_primary_page": 3,
+      "not_reopened": true
+    },
+    "published_rebuilding_page_corrections": {
+      "keys": [
+        "hus.gjenoppforing.hovedregel",
+        "hus.gjenoppforing.totalskade",
+        "hus.gjenoppforing.svanemerket"
+      ],
+      "Standard_primary_page": 16,
+      "verified_containing_main": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+      "not_reopened": true
+    },
+    "latest_application_identity_sha256": "147e7c8b804bb5b4503e5c8b23788b34bc647942768e475772376ab32ce1126c",
+    "application_files_verified_on_main": 4,
+    "publication_proof": "Exact git show current-main bytes/hash equality, not inferred from previous PASS. All three source-correction packet seals verified on current main.",
+    "existing_tests": {
+      "files": 41,
+      "tests": 2555,
+      "pass": 2555,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 25.31,
+      "log": "targeted-main.log.gz"
+    },
+    "runtime": "Resolver/evidence/materialization/manual/threeJSON reenrichments/display captured for all12 choices. Wrong provider/type/scope/version rejected. Existing suite covers214 manual controls,144 document flows,52 comparisons,selection and document priority."
+  },
+  "precise_remainder": {
+    "id": "HOUSE_SHARED_ORDINARY_SAFEGUARD_EXEMPTION_SOURCE_PAGE",
+    "classification": "One exact shared primary-source-page defect",
+    "key": "hus.sikkerhet.egenandelsfritak",
+    "label": "Egenandelsfritak ved sikring",
+    "affected_products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "raw_owner": "gjensidigeHusStandard",
+    "current_primary_page": 18,
+    "expected_primary_page": 17,
+    "current_section": "Erstatningsregler – Egenandel / Aldersfradrag",
+    "raw_location": "lib/gjensidige-hus-catalog.ts:78",
+    "fact": {
+      "key": "hus.sikkerhet.egenandelsfritak",
+      "label": "Egenandelsfritak ved sikring",
+      "value": "Ingen egenandel ved innvendig vannledningsbrudd med heldekkende vannstopp, elektrisk brann etter godkjent kontroll siste fem år, eller skade som bare rammer overspenningsvern/brann-/innbruddsalarm.",
+      "source": {
+        "documentId": "gjensidigeHusStandard",
+        "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+        "termsNumber": "Hus Standard",
+        "effectiveFrom": "",
+        "company": "Gjensidige",
+        "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+        "section": "Erstatningsregler – Egenandel / Aldersfradrag",
+        "page": 18,
+        "version": "Alminnelige vilkår"
+      }
+    },
+    "source_basis": "All three ordinary safeguard-exemption bullets are on Standard PDF17, immediately before the separate Hus Smart section. Standard PDF18 starts the Smart alarm continuation and then natural-damage/other settlement rules; it does not contain the three ordinary bullets. Pluss own PDF18 corroborates those bullets, but effective catalog rows point to Standard and therefore need its page17.",
+    "inheritance": "Single Standard raw row inherited by Pluss. Preserve shared Standard source owner; no Pluss-own override needed. Pluss own PDF18 is corroboration and not an error to renumber.",
+    "ordinary_vs_Smart": "This finding concerns only ordinary exemptions for waterstop,electrical-fire inspection and alarm/surge equipment alone. No Smart selection,Smart exemption terms or meaning change is assessed or authorized.",
+    "observed_surfaces": "Both levels/all12 addon combinations: resolver,manual registration,threeJSON reenrichments,materialization,both display sides retain Standard page18.",
+    "why_blocking": "Advisor-facing primary reference leads to a page missing the cited ordinary exemption points; combined source/provenance confirmation remains withheld despite existing tests PASS.",
+    "historical_source_inventory_context": [
+      "SF-3063",
+      "SF-3150"
+    ],
+    "previous_corrections": "All three object keys are confirmed Standard page3 and all three rebuilding keys Standard page16 on current main; none reopened.",
+    "one_sufficient_remainder_not_exhaustive_global_gap_count": true,
+    "precise_proposed_next_scope": "Correct only primary source.page18-to17 for this exact shared raw row, preserving every other field/meaning/selection/source owner and all HOLD. Verify both levels/all12 choices and strict before-delta equality. Do not renumber other Standard18 references or Smart continuation sources. No broader implementation authorized.",
+    "implemented": false
+  },
+  "source_evidence": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 17,
+      "visual_review": "Complete rendered page visually inspected this turn; general exemption bullets, approved-control qualification, Smart heading/continuation and surrounding columns reviewed with raw/layout text."
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 18,
+      "visual_review": "Complete rendered page visually inspected this turn; general exemption bullets, approved-control qualification, Smart heading/continuation and surrounding columns reviewed with raw/layout text."
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 18,
+      "visual_review": "Complete rendered page visually inspected this turn; general exemption bullets, approved-control qualification, Smart heading/continuation and surrounding columns reviewed with raw/layout text."
+    }
+  ],
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "This exact ordinary exemption source-page remainder prevents combined catalog confirmation; other source/P2 inventory not cleared",
+    "HTU and all other protected HOLD unchanged",
+    "8a89196fecd29ddb and physical insect damage deductible HOLD unchanged",
+    "Security/GDPR and P3-A05 identity/merge status not established here",
+    "Person insurance/pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "integrity": {
+    "tracked_files_unchanged": 7938,
+    "all_existing_tracked_bytes_unchanged": true,
+    "tracked_set_unchanged": true,
+    "HEAD": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+    "origin_main": "d4bcc45e27ba41fe62c2f681c7de5e0dab51bb9b",
+    "branch": "fix/house-vacancy",
+    "initial_tree": "CLEAN",
+    "staged_files": 0,
+    "new_files": "Only current read-only audit packet; no code,test,source,old receipt or project-status edit"
+  },
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "22a9bfe6db81af4ee67ee2faae83dd84cdb7288ffd25aea1cfb97d2175d50426"
+  },
+  "test_log_sha256": "40422ee64b56d941dcd929fcc447f844e15d64cd49a77f81996f9c59e749ff42",
+  "limits": [
+    "New receipt/evidence/log only. No code,test,source,old audit or project-status edit; no commit/push/install/deploy.",
+    "Targeted41-file suite rerun here. Previous fullsuite6247 belongs to identical published candidate, not a fresh fullsuite run. No typegen/lint/build/server/HTTP/PDF-generation gates rerun; source PDF extraction/rendering only.",
+    "One precise metadata remainder, not an exhaustive current global/P2 gap list. No broader source renumbering,Smart rule change or insurance-meaning/selection/mapping authorization.",
+    "No new signature/P2 closure credit and no pilot clearance."
+  ],
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_RECEIPT",
+  "new_workstreams_started": false
+}

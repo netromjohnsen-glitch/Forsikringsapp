@@ -1,3 +1,4 @@
+import {safeguardSourceOracle} from './helpers/house-safeguard-source.mjs';
 import {rebuildingSourceOracle,rebuildingSourceKeys} from './helpers/house-rebuilding-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -18,9 +19,9 @@ assert.equal(createHash('sha256').update(bytes).digest('hex'),JSON.parse(readFil
 const before=deserialize(gunzipSync(bytes)),date=new Date('2026-10-23T12:00:00Z');
 const p=id=>productCatalog.products.find(p=>p.productId===id),repeat=i=>enrichExtractedAgreementWithCatalog({company:'Gjensidige',totalAnnualPremium:null,insurances:[i]},date).insurances[0];
 const clean=x=>JSON.parse(JSON.stringify(x));
-const sourceKeys=[...buildingsSourceKeys,...rebuildingSourceKeys],expectedPage=key=>rebuildingSourceKeys.includes(key)?16:3;
+const sourceKeys=[...buildingsSourceKeys,...rebuildingSourceKeys,safeguardSourceOracle.key],expectedPage=key=>key===safeguardSourceOracle.key?17:rebuildingSourceKeys.includes(key)?16:3;
 function checkTerm(i){for(const key of sourceKeys){const rows=i.importantTerms.filter(t=>t.key===key),original=before.catalog.facts.gjensidigeHusStandard.find(f=>f.key===key);assert.equal(rows.length,1);assert.equal(rows[0].value,original.value);assert.equal(rows[0].coverageOrigin,'catalog');assert.equal(rows[0].source.page,expectedPage(key));assert.equal(rows[0].source.documentId,'gjensidigeHusStandard');assert.ok(rows[0].sources.every(s=>s.page===expectedPage(key)));}}
-test('BUILDINGS-SOURCE exact full raw catalog: only authorized object2-to3 and rebuilding17-to16 pages',()=>{
+test('BUILDINGS-SOURCE exact full raw catalog: only authorized object,rebuilding and ordinary safeguard source pages',()=>{
  const expected=structuredClone(before.catalog);const row=expected.facts.gjensidigeHusStandard.find(f=>f.key===o.key);assert.equal(row.source.page,2);assert.equal(row.value,o.value);row.source.page=3;
  assert.deepEqual(productCatalog,withBuildingsSourcePage(expected));assert.deepEqual(withOriginalBuildingsSourcePage(productCatalog),before.catalog);
  for(const key of sourceKeys)assert.equal(productCatalog.facts.gjensidigeHusPluss.some(f=>f.key===key),false);
@@ -73,4 +74,19 @@ test('REBUILDING-SOURCE exact-key guard rejects unrelated page/source changes an
   const customer={...row,source:{documentId:'pdf:existing:0',filename:'Kundebevis.pdf',page:9,documentRole:'individual_agreement'}};assert.deepEqual(withBuildingsSourcePage(customer),customer);
  }
  for(const key of ['hus.gjenoppforing.annetsted','hus.underforsikring.begrensning']){const row=before.catalog.facts.gjensidigeHusStandard.find(f=>f.key===key);assert.deepEqual(withBuildingsSourcePage(row),row);}
+});
+
+for(const block of safeguardSourceOracle.ordinary_source_blocks)test('SAFEGUARD-SOURCE exact ordinary exemption block before separate Smart section '+block.path,()=>{
+ const file=new URL('../'+block.path,import.meta.url),page=safeguardSourceOracle.source_pages.find(p=>p.path===block.path&&p.PDF_page_1_based===block.PDF_page_1_based);
+ assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),page.sha256);
+ const raw=execFileSync('pdftotext',['-raw','-f',String(block.PDF_page_1_based),'-l',String(block.PDF_page_1_based),file.pathname,'-']).toString();assert.equal(raw,page.raw_text);
+ const ordinary=raw.replace(/\s+/gu,' ').split('Det trekkes ikke egenandel ved:')[1].split('For Hus Smart med alarmtjeneste fra Gjensidige')[0].trim();assert.equal(ordinary,block.ordinary_three_bullet_block);assert.equal(ordinary.split('- ').length-1,3);
+ for(const phrase of ['vannstoppventil som sikrer rørsystem i hele bygningen','i løpet av siste 5 år','kontrollør godkjent av Gjensidige','kontrollskjema/ferdigattest skal foreligge','skade som alene rammer overspenningsvern/brannalarm/innbruddsalarm'])assert.ok(ordinary.includes(phrase),phrase);
+});
+test('SAFEGUARD-SOURCE exact-key guard preserves customer and unrelated Standard18 references',()=>{
+ const row=safeguardSourceOracle.source_before;
+ for(const change of [r=>r.source.page=99,r=>r.source.section='Other',r=>r.source.filename='Other.pdf']){const bad=structuredClone(row);change(bad);assert.throws(()=>withBuildingsSourcePage(bad));assert.throws(()=>withOriginalBuildingsSourcePage(bad));}
+ const after=withBuildingsSourcePage(row);assert.equal(after.source.page,17);assert.equal(row.source.page,18);assert.deepEqual(withOriginalBuildingsSourcePage(after),row);
+ const customer={...row,source:{documentId:'pdf:existing:0',filename:'Kundebevis.pdf',page:9,documentRole:'individual_agreement'}};assert.deepEqual(withBuildingsSourcePage(customer),customer);
+ for(const key of ['hus.naturskade.dekning','hus.pabud.dekning','hus.gjenoppforing.annetsted','hus.underforsikring.begrensning']){const other=before.catalog.facts.gjensidigeHusStandard.find(f=>f.key===key);assert.deepEqual(withBuildingsSourcePage(other),other);}
 });
