@@ -26,7 +26,7 @@ const baseline=applyRot(applyLegal(deserialize(gunzipSync(snapshotBytes)))),cand
 
 let checks=0;const samples=[];
 // The old DATA_ONLY raw oracle remains frozen. Runtime expectations now include
-// its already-published source completion and the approved document-choice rule.
+// its published source completion, document choice and approved manual continuation.
 const check=fn=>{checks++;test('R-051-SMART matrix '+checks,fn);};
 const get=(c,id)=>c.products.find(p=>p.productId===id);
 const keys=proposal.rows.map(x=>x.key),smart=i=>i.importantTerms.filter(t=>keys.includes(t.key)||/smart|alarmtjeneste/i.test(t.name)),status=i=>deriveCanonicalCoverages(i,'Hus').map(x=>({id:x.id,status:x.status,conflict:x.conflict}));
@@ -39,7 +39,7 @@ const rawExpected=baseline.facts[proposal.owner].map(f=>{
 });
 check(()=>assert.deepEqual(candidate.facts[proposal.owner],rawExpected));
 check(()=>assert.deepEqual(JSON.parse(JSON.stringify(candidate)),JSON.parse(JSON.stringify(expectedCatalog))));
-const manual=(c,id,selected=[],custom=false)=>normalizeManualAgreement({company:'Gjensidige',totalAnnualPremium:'',products:[{type:'Hus',productName:custom?'Syntetisk spesialprodukt':get(c,id).name,customProduct:custom,annualPremium:'',deductible:'',coverageSummary:'',addOnIds:selected,importantTerms:[{name:proposal.rows[0].label,value:'Manuelt Smart-vilkår 42 000 kr'}]}]},c).insuranceData.insurances[0];
+const manual=(c,id,selected=[],custom=false)=>normalizeManualAgreement({company:'Gjensidige',totalAnnualPremium:'',products:[{type:'Hus',productName:custom?'Syntetisk spesialprodukt':get(c,id).name,customProduct:custom,annualPremium:'',deductible:'',coverageSummary:'',addOnIds:selected,importantTerms:[{name:proposal.rows[0].label,value:'Manuelt Smart-vilkår 42 000 kr'}]}]},runtimeCatalog(c)).insuranceData.insurances[0];
 const agreement=(id,vs,addons=[])=>({company:'Gjensidige',totalAnnualPremium:null,insurances:[{company:'Gjensidige',type:'Hus',productName:get(baseline,id).name,annualPremium:null,deductible:null,coverageSummary:null,importantTerms:proposal.rows.flatMap(r=>vs.map(value=>({name:r.label,canonicalKey:r.key,value,source}))),addOns:addons}]});
 const runtimeCatalog=c=>c===baseline?applySmart(c,{jsonSnapshot:false}):c;
 const enrich=(c,a)=>enrichExtractedAgreementWithCatalog(a,date,undefined,undefined,runtimeCatalog(c)).insurances[0];

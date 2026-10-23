@@ -95,10 +95,22 @@ for(const id of ids)test(`SMART-SELECTION exact aliases preserve other identitie
  assert.equal(i.importantTerms.find(t=>t.key==='glass.dekning').value,'Kundeverdi 9 000 kr');
  for(const name of ['Smart','Alarm','Innbo Smart']){assert.equal(houseSmartTermKey({name,value:'Valgt'}),null);}
 });
-test('SMART-SELECTION 202 other products, catalog identity and manual mode preserve exact baseline',()=>{
+test('SMART-SELECTION 202 other products and catalog identity preserve baseline; manual Smart follows explicit-choice contract',()=>{
  const meta=JSON.parse(readFileSync(new URL('baseline-identity.json',audit)));const bytes=readFileSync(new URL('baseline.v8.gz',audit));assert.equal(createHash('sha256').update(bytes).digest('hex'),meta.baseline_sha256);const baseline=deserialize(gunzipSync(bytes));assert.equal(baseline.others.length,202);
  for(const c of baseline.others){if(c.error)assert.throws(()=>enrichExtractedAgreementWithCatalog(c.input,date),{message:c.error},c.id);else assert.deepEqual(enrichExtractedAgreementWithCatalog(c.input,date),c.output,c.id);}
- for(const c of baseline.manual){const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(first,c.first);assert.deepEqual(repeat(first),c.repeated);const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first)],'Hus'),expected);}
+ // Only the newly authorized manual Smart marker, continuation ID and its three
+ // keyed catalog rows may differ from this frozen document-choice baseline.
+ for(const c of baseline.manual){
+  const first=normalizeManualAgreement(c.input).insuranceData.insurances[0],expectedFirst=structuredClone(c.first),expectedRepeat=structuredClone(c.repeated);
+  if(c.first.addOnIds.includes(addonId)){
+   for(const i of [expectedFirst,expectedRepeat])i.addOns.find(a=>a.id===addonId).manualSelection={origin:'manual',addOnId:addonId,catalogReference:{...c.first.catalogReference}};
+   expectedRepeat.addOnIds=[...expectedRepeat.addOnIds,addonId];
+   expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!houseSmartTermKey(t)),...structuredClone(c.first.importantTerms.filter(houseSmartTermKey))];
+   expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>keys.includes(f.key))));
+  }
+  assert.deepEqual(first,expectedFirst);assert.deepEqual(repeat(first),expectedRepeat);
+  const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first)],'Hus'),expected);
+ }
  assert.equal(createHash('sha256').update(serialize(productCatalog)).digest('hex'),meta.catalog_sha256);
 });
 test('SMART-SELECTION unknown product/provider/type/scope/version and unavailable component never activate',()=>{

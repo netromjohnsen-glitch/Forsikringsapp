@@ -1,0 +1,60 @@
+{
+  "status": "PASS_LOCAL_VALIDATED_CANDIDATE",
+  "base_revision": "24dfac79717f3efeab7302ce4fa8010de64da3d2",
+  "tested_candidate_identity_sha256": "c0d109ba7e8fa868aa7d908cecb59265db4bedba6d92824babd5030a3314e8d4",
+  "final_gate_labels": [
+    "targeted",
+    "fullsuite",
+    "typegen",
+    "typescript",
+    "eslint",
+    "production-build",
+    "diff-check",
+    "http-pdf-runtime"
+  ],
+  "new_manual_smart_tests": 28,
+  "targeted_including_existing_smart_rot_legal": {
+    "tests": 507,
+    "pass": 507,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "tests": 5722,
+    "pass": 5722,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "files": 162
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "exact_warning_inventory_unchanged": true
+  },
+  "webpack_build": "PASS",
+  "synthetic_local_HTTP_PDF": {
+    "status": "PASS",
+    "checks": 22,
+    "mocked_AI_and_synthetic_data": true,
+    "evidence": "http-pdf-runtime.log.gz"
+  },
+  "isolation": {
+    "catalog_serialized_identity_unchanged": true,
+    "other_manual_product_initial_and_repeat_exact_baseline": 202,
+    "non_smart_target_manual_inputs_exact_baseline": 5,
+    "actual_document_pipeline_and_display_exact_baseline": 96,
+    "manual_smart_initial_output_change_only_exact_marker": 4,
+    "source_SHA256_verified": 2,
+    "prior_packet_files_verified": 51
+  },
+  "no_test_skips": true,
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

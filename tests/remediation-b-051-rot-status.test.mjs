@@ -357,8 +357,12 @@ for (const other of ['gjensidige-hus-utleie', 'gjensidige-hus-smart']) {
     const stages = fourStages(manualRot(standard, [addon, other]));
     assert.deepEqual(stages[0].addOnIds, [addon, other]);
     for (const current of stages.slice(1)) {
-      assert.equal(state(current).status, 'selected'); assert.deepEqual(current.addOnIds, [addon]);
-      assert.equal(Object.hasOwn(current.addOns.find(entry => entry.id === other), 'manualSelection'), false);
+      assert.equal(state(current).status, 'selected');
+      // Smart now has its own authorized product-bound manual continuation;
+      // the unrelated Utleie baseline and the rot rule remain unchanged.
+      assert.deepEqual(current.addOnIds, other === 'gjensidige-hus-smart' ? [addon, other] : [addon]);
+      if (other === 'gjensidige-hus-smart') assert.deepEqual(current.addOns.find(entry => entry.id === other).manualSelection, { ...manualMarker, addOnId: other });
+      else assert.equal(Object.hasOwn(current.addOns.find(entry => entry.id === other), 'manualSelection'), false);
     }
   });
 }

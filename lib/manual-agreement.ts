@@ -3,6 +3,7 @@ import type { AgreementScopeId } from "./agreement-scope.ts";
 import { summarizeManualAnnualPremium } from "./agreement-pricing.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { catalogFactSources } from "./catalog-enrichment.ts";
+import { HOUSE_SMART_ADDON, isHouseSmartProduct } from "./hus-smart-selection.ts";
 
 export type ManualTermInput = { name: string; value: string };
 export type ManualProductInput = {
@@ -183,6 +184,8 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
         ...(addOn.id === "gjensidige-hus-rate-insekter" && normalizeInsuranceType(type) === "bolig" &&
           addOn.selectionEvidenceKeys?.length === 1 && addOn.selectionEvidenceKeys[0] === "hus.rate.dekning"
           ? { manualSelection: { origin: "manual" as const, catalogReference: { ...catalogReference! } } } : {}),
+        ...(addOn.id === HOUSE_SMART_ADDON && isHouseSmartProduct(catalogProduct!)
+          ? { manualSelection: { origin: "manual" as const, addOnId: HOUSE_SMART_ADDON, catalogReference: { ...catalogReference! } } } : {}),
         importantTerms: (catalogFacts ?? []).filter(item => (catalog.facts?.[addOn.componentId] ?? []).includes(item)).map((item) => ({
           name: item.label, value: item.value, key: item.key, source: item.source,
           ...(item.qualificationSource ? { sources: catalogFactSources(item) } : {}),

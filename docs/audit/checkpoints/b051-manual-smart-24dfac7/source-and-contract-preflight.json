@@ -1,0 +1,38 @@
+{
+  "base_revision": "24dfac79717f3efeab7302ce4fa8010de64da3d2",
+  "sources_verified": [
+    {
+      "identity": "gjensidigeHusSmartTerms",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-alarmvilkar.html",
+      "sha256": "ac113a34392ed290b3a2cac50ebb18fae44bbecf301db0ca1ce253794b969414"
+    },
+    {
+      "identity": "gjensidigeHusSmart",
+      "path": "catalog/sources/gjensidige/hus/Hus-Smart-produktside.html",
+      "sha256": "a9fcfb36a45ff72352913882955d26fe119b57427532562be1634f274855c530"
+    }
+  ],
+  "prior_contract_evidence": "../b051-smart-selection-85be811/source-and-contract-preflight.json",
+  "original_data_only_receipts": [
+    "../b051-smart-e21693e/completion-receipt-73aab8a0ad4f6c11.json",
+    "../b051-smart-e21693e/completion-receipt-cdd055ea730897ab.json"
+  ],
+  "unchanged_catalog_keys": [
+    "hus.service.smart",
+    "hus.sikkerhet.egenandelsreduksjon",
+    "hus.service.smart.avtale"
+  ],
+  "source_meaning": "Choice is not operational alarm activation; sections 2 and 7 retain activation/contact procedure conditions. Conditional 8 000 deduction and 100 000 service liability remain byte-identical. No new source interpretation.",
+  "scope": "Explicit manual selection retention only, both existing ordinary products/version. Existing document priority preserved.",
+  "exact_marker": {
+    "origin": "manual",
+    "addOnId": "gjensidige-hus-smart",
+    "catalogReference": "Exact own-field providerId/productId/version from resolved product; no extra/missing fields"
+  },
+  "manual_values_origin": "catalog, never manufactured document choice or Valgt row",
+  "deselection": "Fresh normalized manual addOnIds=[] removes proof; stale catalog IDs/rows cannot select",
+  "cross_addon_binding": "Smart marker cannot reuse rot marker, and Smart marker rejected by unchanged rot validator",
+  "historical_packet_files_verified": 51,
+  "no_catalog_or_source_diff": true,
+  "SC-020_SR-032": "Physical insect damage deductible; separate HOLD"
+}

@@ -1,0 +1,26 @@
+{
+  "status": "DOCUMENT_SELECTION_AND_MANUAL_REPEAT_RESOLVED_CURRENT_IMPLEMENTATION",
+  "historical_findings": "../b051-smart-e21693e/open-smart-customer-findings.json",
+  "prior_document_choice_findings": "../b051-smart-selection-85be811/smart-customer-findings.json",
+  "published_document_revision": "24dfac79717f3efeab7302ce4fa8010de64da3d2",
+  "scope": {
+    "provider": "gjensidige",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår"
+  },
+  "resolution": "Explicit normalized manual Smart choice bound to addon/provider/product/version survives repeated enrichment and JSON persistence; ID, three keyed catalog rows and complete sources retained. Document choice including refusal/conflict/explicit unknown keeps precedence. Fresh manual deselection removes proof.",
+  "finding": "manual_repeat",
+  "finding_status": "RESOLVED_CURRENT_IMPLEMENTATION_EFFECTIVE_AFTER_REMOTE_VERIFICATION",
+  "still_open_in_scope": [],
+  "not_full_smart_customer_mode_or_pilot_readiness": true,
+  "receipt": "completion-receipt-manual-smart-choice.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "other_HOLD_unchanged": true,
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

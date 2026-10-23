@@ -1,7 +1,8 @@
 import { catalogAgreementScope } from "./agreement-scope.ts";
 import { coverageStatusFromText, type CoverageSource, type CoverageStatus, type CoverageTerm } from "./coverage-status.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
-import type { CatalogProduct } from "./product-catalog.ts";
+import { availableAddOns, catalogReferenceForProduct, productCatalog,
+  type CatalogAddOn, type CatalogProduct, type ProductCatalog } from "./product-catalog.ts";
 
 export const HOUSE_SMART_ADDON = "gjensidige-hus-smart";
 export const HOUSE_SMART_PARENT = "hus.service.smart";
@@ -27,6 +28,7 @@ export type HouseSmartDocumentSelection = {
   viaAddOn: boolean;
   sources: CoverageSource[];
 };
+export type HouseSmartSelection = HouseSmartDocumentSelection & { origin: "document" | "manual" | "catalog" };
 
 const words = (value: string) => value.normalize("NFKC").toLocaleLowerCase("nb-NO")
   .replace(/[^\p{L}\p{N}]+/gu, " ").trim().replace(/\s+/gu, " ");
@@ -36,6 +38,32 @@ export function isHouseSmartProduct(product: CatalogProduct): boolean {
     ["gjensidige-hus", "gjensidige-hus-pluss"].includes(product.productId) &&
     normalizeInsuranceType(product.insuranceType) === "bolig" &&
     catalogAgreementScope(product) === "ordinary" && product.version === "Alminnelige vilkår";
+}
+
+// Only the normalized manual boundary emits this marker. A catalog ID/name
+// alone is availability, not proof that this customer chose the service.
+export function validatedHouseSmartManualSelection(
+  product: CatalogProduct,
+  input: unknown,
+  asOf = new Date(),
+  catalog: ProductCatalog = productCatalog,
+): CatalogAddOn | null {
+  if (!isHouseSmartProduct(product) || !input || typeof input !== "object" || Array.isArray(input)) return null;
+  const entry = input as Record<string, unknown>;
+  if (entry.id !== HOUSE_SMART_ADDON || entry.coverageOrigin !== "catalog") return null;
+  const marker = entry.manualSelection;
+  if (!marker || typeof marker !== "object" || Array.isArray(marker)) return null;
+  const selection = marker as Record<string, unknown>;
+  if (Object.keys(selection).length !== 3 || selection.origin !== "manual" ||
+    selection.addOnId !== HOUSE_SMART_ADDON ||
+    !["origin", "addOnId", "catalogReference"].every(field => Object.hasOwn(selection, field))) return null;
+  const reference = selection.catalogReference;
+  if (!reference || typeof reference !== "object" || Array.isArray(reference)) return null;
+  const actual = reference as Record<string, unknown>, expected = catalogReferenceForProduct(product);
+  const fields = Object.keys(expected) as (keyof typeof expected)[];
+  if (Object.keys(actual).length !== fields.length || !fields.every(field =>
+    Object.hasOwn(actual, field) && actual[field] === expected[field])) return null;
+  return availableAddOns(product, asOf, null, catalog).find(addOn => addOn.id === HOUSE_SMART_ADDON) ?? null;
 }
 
 // This identity is used only after exact product resolution. It is not a global
@@ -94,7 +122,7 @@ export function resolveHouseSmartDocumentSelection(
   const uncertain = parsed.includes("unknown");
   // The existing manual normalization/re-enrichment contract is a separate
   // scope. Catalog IDs/terms do not become new document choice evidence.
-  const catalogChoice = (insurance.addOns ?? []).some(addOn => isHouseSmartAddOn(addOn) &&
+  const catalogChoice = (insurance.addOns ?? []).some(addOn => (isHouseSmartAddOn(addOn) || addOn.id === HOUSE_SMART_ADDON) &&
     (addOn.coverageOrigin === "catalog" || Boolean(addOn.id || addOn.source)));
   if (!addOns.length && !statuses.size && !uncertain && catalogChoice) return null;
   const mentioned = insurance.importantTerms.some(term => houseSmartTermKey(term)) ||
@@ -108,4 +136,22 @@ export function resolveHouseSmartDocumentSelection(
   const sources = evidence.flatMap(term => term.sources ?? (term.source ? [term.source] : []));
   return { status, conflict, viaAddOn, sources: sources.filter((source, index) =>
     sources.findIndex(other => JSON.stringify(other) === JSON.stringify(source)) === index) };
+}
+
+export function resolveHouseSmartSelection(
+  product: CatalogProduct,
+  insurance: SmartInsurance,
+  asOf = new Date(),
+  catalog: ProductCatalog = productCatalog,
+): HouseSmartSelection | null {
+  if (!isHouseSmartProduct(product) || normalizeInsuranceType(insurance.type) !== "bolig") return null;
+  const document = resolveHouseSmartDocumentSelection(product, insurance);
+  if (document) return { ...document, origin: "document" };
+  const manual = (insurance.addOns ?? []).some(addOn => validatedHouseSmartManualSelection(product, addOn, asOf, catalog));
+  if (manual) return { status: "selected", conflict: false, viaAddOn: false, sources: [], origin: "manual" };
+  if ((insurance.addOns ?? []).some(addOn => (isHouseSmartAddOn(addOn) || addOn.id === HOUSE_SMART_ADDON) &&
+      (addOn.id || addOn.source || addOn.coverageOrigin === "catalog" || Object.hasOwn(addOn, "manualSelection")))) {
+    return { status: "unknown", conflict: false, viaAddOn: false, sources: [], origin: "catalog" };
+  }
+  return null;
 }

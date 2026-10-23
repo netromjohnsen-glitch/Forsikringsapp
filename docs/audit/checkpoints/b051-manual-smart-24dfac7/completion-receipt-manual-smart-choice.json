@@ -1,0 +1,68 @@
+{
+  "classification": "CUSTOMER_MANUAL_SELECTION_CONTINUATION_NOT_ORIGINAL_SIGNATURE_COMPLETION",
+  "finding": "HOUSE_SMART_MANUAL_REPEAT",
+  "status": "PASS_VALIDATED",
+  "base_revision": "24dfac79717f3efeab7302ce4fa8010de64da3d2",
+  "tested_candidate_identity_sha256": "c0d109ba7e8fa868aa7d908cecb59265db4bedba6d92824babd5030a3314e8d4",
+  "provider": "gjensidige",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "insurance_type": "bolig",
+  "agreement_scope": "ordinary",
+  "version": "Alminnelige vilkår",
+  "production_scope": [
+    "lib/hus-smart-selection.ts",
+    "lib/manual-agreement.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts"
+  ],
+  "existing_keys": [
+    "hus.service.smart",
+    "hus.sikkerhet.egenandelsreduksjon",
+    "hus.service.smart.avtale"
+  ],
+  "component": "gjensidige-hus-smart",
+  "contract": {
+    "choice_proof": "Only normalized explicit manual choice emits strict own-field marker: origin manual, addOnId Smart, exact resolved catalogReference. No missing/extra fields; no cross-product/version/addon reuse.",
+    "repeat": "First, second, third enrichment plus JSON roundtrip retain Smart selected ID and three canonical keyed catalog rows, values, complete primary/qualification sources and catalog origin.",
+    "deselection": "Fresh manual input without Smart removes marker and Smart rows; stale addOnIds/catalog terms cannot resurrect choice.",
+    "document_priority": "Existing document selected/refused/conflict/explicit unknown takes precedence, preserving values and sources. Supporting terms do not create or override customer choice.",
+    "availability": "Catalog ID/name/availability, invalid proof, unknown product/provider/type/scope/version or unavailable component cannot activate manual Smart.",
+    "other_addons": "Only Smart continuation changes; Utleie continuation remains baseline; existing rot rule preserved with Smart+rot retaining both explicit choices.",
+    "display": "Same scoped resolver governs enrichment and selected addon display. Comparison both directions retains canonical rows and full sources.",
+    "price_and_service": "No claim of operational alarm activation, unqualified 8 000 reduction or house sum from 100 000 service liability; no premium/deductible modification."
+  },
+  "validation": "validation-summary.json",
+  "gate_manifest": "gate-results.json",
+  "candidate_identity": "candidate-identity.json",
+  "baseline_evidence": "baseline-identity.json",
+  "source_contract_evidence": "source-and-contract-preflight.json",
+  "test_contract_updates": "test-contract-updates.json",
+  "permanent_test": "tests/remediation-b-051-manual-smart-choice.test.mjs",
+  "current_customer_findings": "smart-customer-findings.json",
+  "published_document_selection_receipt": "../b051-smart-selection-85be811/completion-receipt-smart-document-selection.json",
+  "published_document_revision": "24dfac79717f3efeab7302ce4fa8010de64da3d2",
+  "original_signature_closure_credit": 0,
+  "documented_campaign_count": 63,
+  "B051_partition_counts": [
+    37,
+    0,
+    1,
+    1
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "HTU_and_other_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "no_operational_alarm_activation_claim": true,
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

@@ -1,0 +1,51 @@
+{
+  "policy": "docs/development-agent/workflow.md; active autonomous mechanical/contract update authority",
+  "historical_budgets": "UNCHANGED; no numeric stop quota",
+  "roots": [
+    {
+      "id": "M1",
+      "files": [
+        "tests/remediation-b-051-smart-selection.test.mjs",
+        "tests/remediation-b-051-smart.test.mjs",
+        "tests/remediation-b-051-rot-status.test.mjs"
+      ],
+      "before": "Frozen tests intentionally characterized loss of manual Smart IDs/keys on repeat and absence of a Smart manual marker; DATA_ONLY oracle used pre-completion source values for runtime manual input.",
+      "after": "Keep frozen bytes; active runtime assertions allow only explicitly authorized Smart marker, selected ID, resolved catalog facts and the three keyed source-complete rows. Runtime manual oracle uses independently frozen already-published source completion. Smart+rot combination now expects both explicit selections; Utleie continuation remains unchanged.",
+      "independent_evidence": [
+        "authorization.md",
+        "baseline-identity.json",
+        "baseline.v8.gz",
+        "../b051-smart-selection-85be811/baseline.v8.gz",
+        "../b051-smart-e21693e/proposal.json",
+        "tests/helpers/b051-smart.mjs"
+      ],
+      "protection": "Catalog raw oracle, 202 other product results, 96 actual document pipeline outputs, source content, negative assertions and all non-Smart row metadata remain strict. No skips."
+    },
+    {
+      "id": "M2",
+      "kind": "new validation assertion representation",
+      "before": "Legacy repeat expectation retained old Smart row order and omitted newly selected component catalogFacts.",
+      "after": "Expected repeat retains all non-Smart rows exactly in order, then the same three initial Smart rows, and adds only initial Smart catalog facts.",
+      "evidence": "manual-smart-targeted.log.gz; catalogFacts/importantTerms delta is a direct consequence of authorized component selection."
+    }
+  ],
+  "implementation_hardening": {
+    "issue": "A product-only marker had the same shape as the existing rot marker, so changing addon ID could reinterpret the wrong manual choice.",
+    "resolution": "Smart marker also requires its own exact addOnId; rot marker/validator remain unchanged. Missing/wrong addon binding is rejected.",
+    "evidence": "manual-smart-targeted.log.gz; permanent invalid marker tests; existing rot invalid-marker test preserved."
+  },
+  "exploratory_runs": [
+    {
+      "log": "manual-smart-first.log.gz",
+      "result": "28/28 new tests PASS; predates addon binding hardening"
+    },
+    {
+      "log": "manual-smart-targeted.log.gz",
+      "result": "433/435 PASS; cross-addon marker and obsolete repeat fields diagnosed"
+    },
+    {
+      "log": "manual-smart-targeted-2.log.gz",
+      "result": "435/435 PASS before final own-field hardening"
+    }
+  ]
+}

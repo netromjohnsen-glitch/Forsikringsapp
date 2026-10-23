@@ -24,7 +24,7 @@ import type { CatalogProductReference } from "./product-catalog.ts";
 import { findCatalogProduct, availableAddOns } from "./product-catalog.ts";
 import { validatedManualSelectionAddOn, type ManualAddOnSelection } from "./catalog-enrichment.ts";
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
-import { HOUSE_SMART_ADDON, isHouseSmartAddOn, resolveHouseSmartDocumentSelection } from "./hus-smart-selection.ts";
+import { HOUSE_SMART_ADDON, isHouseSmartAddOn, resolveHouseSmartSelection } from "./hus-smart-selection.ts";
 
 export type FactSource = {
   agreementScope?: AgreementScopeId;
@@ -189,16 +189,16 @@ export function groupValue(insurances: ComparedInsurance[], field: "productName"
   return [...new Set(values)].join(" · ") || null;
 }
 
-function smartDocumentSelection(insurance: ComparedInsurance, insuranceType: string) {
+function smartSelectionForComparison(insurance: ComparedInsurance, insuranceType: string) {
   const reference = insurance.catalogReference;
   const product = normalizeInsuranceType(insuranceType) === "bolig" && reference
     ? findCatalogProduct(reference.providerId, reference.productId, reference.version, reference) : null;
   return product && availableAddOns(product).some(addOn => addOn.id === HOUSE_SMART_ADDON)
-    ? resolveHouseSmartDocumentSelection(product, insurance) : null;
+    ? resolveHouseSmartSelection(product, insurance) : null;
 }
 
 function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
-  const smart = smartDocumentSelection(insurance, insuranceType);
+  const smart = smartSelectionForComparison(insurance, insuranceType);
   const coverages = new Map(deriveCanonicalCoverages(insurance, insuranceType)
     .map((coverage) => [coverage.id, coverage]));
   return (insurance.addOns ?? []).filter((addOn) => {
@@ -236,7 +236,7 @@ export function groupAddOnNames(insurances: ComparedInsurance[], insuranceType: 
       !keys.has(coverage.id) && addonDefinitions.some((definition) => definition.parentKey === coverage.id) &&
       coverage.status === "selected" && coverage.evidence.some((evidence) =>
         evidence.origin === "document" && evidence.status === "selected"));
-    const smart = smartDocumentSelection(insurance, insuranceType);
+    const smart = smartSelectionForComparison(insurance, insuranceType);
     return [...explicit.map((addon) => addon.name), ...effective.map((coverage) => coverage.label),
       ...(smart?.status === "selected" ? ["Hus Smart"] : [])];
   });

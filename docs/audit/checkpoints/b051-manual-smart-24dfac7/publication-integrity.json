@@ -1,0 +1,55 @@
+{
+  "status": "PASS_PUBLICATION_READY",
+  "base_revision": "24dfac79717f3efeab7302ce4fa8010de64da3d2",
+  "candidate_identity_sha256": "c0d109ba7e8fa868aa7d908cecb59265db4bedba6d92824babd5030a3314e8d4",
+  "application_files_verified": 8,
+  "same_candidate_across_all_eight_gates": true,
+  "sealed_packet_files": 34,
+  "SHA256SUMS_sha256": "b5c0bf91e01fba425e120b56701c5c917063feba5abc812a455b15bbecff539d",
+  "checksum_exclusions": [
+    "SHA256SUMS",
+    "publication-integrity.json"
+  ],
+  "initial_integrity_report": "integrity-verification.json",
+  "initial_integrity_note": "Immutable pre-publication report refers to original seal hash preserved in publication-preflight.json. This file verifies the new publication seal.",
+  "original_verified_files_changed_for_publication": [
+    {
+      "file": "README.md",
+      "before_sha256": "ea2fcfc166dd0c5deef41614b9158c1dd20e38bc8aef499356b3d685bf041f4c",
+      "reason": "Publication metadata only; original bytes verified before edits and hash retained in publication-preflight.json"
+    },
+    {
+      "file": "checkpoint.json",
+      "before_sha256": "1275e25581114599d3cda943d66b8d6360b39e7833664aa1ba990c8781e896cd",
+      "reason": "Publication metadata only; original bytes verified before edits and hash retained in publication-preflight.json"
+    },
+    {
+      "file": "completion-receipt-manual-smart-choice.json",
+      "before_sha256": "8425324eaae8f70748054d47c78838d73c5845ada01efc516e6c16f143bd7b48",
+      "reason": "Publication metadata only; original bytes verified before edits and hash retained in publication-preflight.json"
+    },
+    {
+      "file": "smart-customer-findings.json",
+      "before_sha256": "9ef9656b5359da10ce49ecb70fb78a3d93ae0acab88214e9acf80d45886e13a4",
+      "reason": "Publication metadata only; original bytes verified before edits and hash retained in publication-preflight.json"
+    },
+    {
+      "file": "validation-summary.json",
+      "before_sha256": "24830d4deddf89739e54cc97ea5cd62d7b4feb837d89c799080f2146ef3230fc",
+      "reason": "Publication metadata only; original bytes verified before edits and hash retained in publication-preflight.json"
+    }
+  ],
+  "original_seal_change": "SHA256SUMS regenerated only after original seal verified; covers publication metadata, original immutable validation report, new authorization and manifest.",
+  "new_publication_files": [
+    "publication-authorization.md",
+    "publication-preflight.json",
+    "publish-files.json",
+    "publication-integrity.json"
+  ],
+  "prior_packet_files_unchanged": 51,
+  "protected_HOLD_and_signature_sets_unchanged": true,
+  "publisher_self_test": "PASS",
+  "expected_staged_files": 45,
+  "publish_files_manifest_sha256": "b418dafc5036ee67b3df9f3eca19750c5f4fcf3e4e5d41ac9349b7be56962b8f",
+  "deploy": "NOT_PERFORMED_OR_AUTHORIZED"
+}

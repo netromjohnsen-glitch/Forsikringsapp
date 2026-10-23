@@ -1,9 +1,50 @@
 # Aktuell dokumentert prosjektstatus
 
+## Manuelt Hus Smart-valg – validert 23. oktober 2026
+
+På fersk remote main `24dfac79717f3efeab7302ce4fa8010de64da3d2` er dokumentvalget
+publisert. Feilen der et rent manuelt Smart-valg mistet ID og nøkler ved gjentatt
+beriking, er rettet og validert på denne basisen.
+Publiseringsrevisjonen er committen som inneholder rettelsen, receipt og denne
+prosjektstatusen. Publisert status gjelder etter bekreftelse på remote main.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b051-manual-smart-24dfac7/publication-authorization.md).
+**Ingen deployhandling.**
+
+For Gjensidige Hus Standard og Hus Pluss, ordinary / Alminnelige vilkår, bevares
+Smart-valget med et eksplisitt valgbevis bundet til tillegg, provider, produkt og
+versjon. Smart-ID, de tre eksisterende Smart-nøklene, katalogverdier og komplette
+kilder beholdes gjennom gjentatt beriking og JSON-lagring. Verdier og kilder beholder
+katalogopprinnelse. Dokumentavslag, konflikt og uttrykkelig ukjent beholder forrang;
+nytt manuelt avvalg fjerner valgbeviset. Katalog-ID/navn/tilgjengelighet eller feil
+valgbevis aktiverer ikke Smart. Øvrige manuelle tillegg følger eksisterende regler.
+
+28 nye kontrakttester og 507/507 målrettede kontroller består. Fullsuite:
+5722/5722 tester i 162 filer, uten skip. Typegen/TypeScript, webpack-bygg og lokal
+syntetisk HTTP/PDF-runtime 22/22 PASS. ESLint 0 feil / 27 eksakt uendrede warnings.
+202 øvrige produkters manuelle initial-/repeat-resultater, fem manuelle kontrollvalg
+på målproduktene og 96 faktiske dokumentforløp med tilleggsvisning er eksakt
+baseline-identiske. Katalog og kildebytes er uendret; gammel auditpakke er bevart.
+
+[Receipt](../audit/checkpoints/b051-manual-smart-24dfac7/completion-receipt-manual-smart-choice.json),
+[checkpoint](../audit/checkpoints/b051-manual-smart-24dfac7/checkpoint.json),
+[validering](../audit/checkpoints/b051-manual-smart-24dfac7/validation-summary.json)
+og [bevispakke](../audit/checkpoints/b051-manual-smart-24dfac7/README.md).
+Dette løser bare den avgrensede manuelle Smart-repeat-feilen. Publisering med
+commit og push er eksplisitt autorisert. Alarmaktivering, priser, betingelsene for
+8 000 kroner og betydningen av tjenesteansvaret på 100 000 kroner er uendret.
+
+HTU `157c7afed18eb0fe` / SC-019/SR-033 og alle øvrige HOLD beholdes,
+inkludert `8a89196fecd29ddb` og fysisk insektegenandel SC-020/SR-032.
+Ingen ny originalsignatur- eller P2-kreditt: B-051 37/0/1/1, kampanje 63,
+globalt resolved/open UKJENT og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED.
+Sikkerhet/GDPR og P3-A05-avklaring, personforsikring/pilotscope, kritisk UX,
+feedback og operativ rådgiveraksept står fortsatt som pre-pilotpunkter.
+NITO og Sentralbord venter. Ingen ytterligere arbeidsstrøm er startet.
+
 ## Hus Smart – validert dokumentvalg 23. oktober 2026
 
-Rettingen er validert på fersk main 85be811f596aa757f196f5f6f33f8fa0063b9123 og retter
-dokumentvalget på Gjensidige Hus Standard og Hus Pluss, ordinary / Alminnelige vilkår.
+Dokumentvalget er validert på basis 85be811f596aa757f196f5f6f33f8fa0063b9123 og
+publisert på remote main 24dfac79717f3efeab7302ce4fa8010de64da3d2. Det retter dokumentvalget på Gjensidige Hus Standard og Hus Pluss, ordinary / Alminnelige vilkår.
 Én produktbundet valgregel styrer både komponentaktivering og tilleggsvisning:
 Valgt eller et dokumentert avtalt tillegg gir selected; Ikke valgt overstyrer
 navnelisten; Valgt + Ikke valgt gir unknown/conflict. Bare Ukjent, omtale,
@@ -13,8 +54,9 @@ hendelsesvilkår for egenandelsreduksjon.
 
 Eksakte Smart-identiteter, kundeverdier, kildebevis og dokumentvalg beholdes på
 repeat. Støttevilkår bruker samme produktbundne nøkkel med general_terms-opprinnelse
-og separat recordEvidence. Den separate eksisterende feilen ved gjentatt beriking
-av et rent manuelt Smart-valg står fortsatt åpen og er baseline-identisk.
+og separat recordEvidence. På denne publiserte revisjonen er den separate feilen ved
+gjentatt beriking av et rent manuelt Smart-valg fortsatt åpen. Den lokale rettelsen
+og valideringen er dokumentert i den nyeste bolken ovenfor.
 
 102 nye Smart-valgtester; 324/324 kontroller med den eksisterende Smart-gaten;
 5694/5694 tester i 161 filer PASS uten skip. Typegen/TypeScript, webpack-bygg og
@@ -27,8 +69,8 @@ berikingsresultater og seks manuelle initial-/repeat-output er eksakt baseline-i
 [validering](../audit/checkpoints/b051-smart-selection-85be811/validation-summary.json)
 og [bevispakke](../audit/checkpoints/b051-smart-selection-85be811/README.md).
 
-Publisering med commit og push er eksplisitt autorisert. Rettingen, receipt og
-prosjektstatus er publisert når denne committen er verifisert på remote main;
+Dokumentrettelsen, receipt og prosjektstatus er publisert i
+24dfac79717f3efeab7302ce4fa8010de64da3d2 og verifisert på remote main;
 [publiseringsfullmakt og kontroller](../audit/checkpoints/b051-smart-selection-85be811/publication-authorization.md).
 Ingen deployhandling. Testet basis-SHA og kandidatens filidentitet er ført separat. Katalogtekst,
 prisberegning, 8 000-kvalifikasjoner og 100 000-kroners tjenesteansvar er uendret.
@@ -138,8 +180,8 @@ diagnostikk 19/12, HARNESS_AUTONOMY_V1 33/12 og DEFER_SAFE omskrives ikke.
 [Nye mekaniske rettinger](../audit/checkpoints/b051-manual-rot-choice-2a2d0fc/autonomous-mechanical-corrections.json)
 føres separat uten numerisk stoppkvote. Ingen P2-kreditt.
 
-Smart-dokumentvalg er validert ovenfor; den separate manuelle Smart-repeat-feilen
-står åpen. HTU-konflikt, SC-020/SR-032, SC-035/SR-031, B-071-holdet og øvrige holds er bevart. Rettshjelps kundemapping/prioritet er validert rettet
+Smart-dokumentvalg er publisert; den separate manuelle Smart-repeat-feilen er
+rettet og validert i bolken ovenfor; publisert status krever remote-verifisering. HTU-konflikt, SC-020/SR-032, SC-035/SR-031, B-071-holdet og øvrige holds er bevart. Rettshjelps kundemapping/prioritet er validert rettet
 i rettelsen ovenfor; historiske receipts og øvrige metadataoverganger er bevart.
 8a89196fecd29ddb beholdes åpen og på HOLD: landbruks-/næringsunntakets
 anvendelse på bekjempelse krever autoritativ avklaring. Ingen lukking av denne kandidaten.

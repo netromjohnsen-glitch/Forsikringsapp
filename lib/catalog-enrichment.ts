@@ -15,7 +15,7 @@ import { boatPetTypes } from "./boat-pet-registry.ts";
 import { coverageStatusFromText, deriveCanonicalCoverages } from "./coverage-status.ts";
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import { HOUSE_SMART_ADDON, HOUSE_SMART_PARENT, houseSmartDocumentAddOnTerms, houseSmartTermKey,
-  isHouseSmartProduct, resolveHouseSmartDocumentSelection } from "./hus-smart-selection.ts";
+  isHouseSmartProduct, resolveHouseSmartSelection, validatedHouseSmartManualSelection } from "./hus-smart-selection.ts";
 import {
   findCatalogProductBySelection,
   availableAddOns,
@@ -271,7 +271,7 @@ function enrichInsurance(
   const originalTerms = insurance.importantTerms as EnrichedTerm[];
   const smartSelection = product && isHouseSmartProduct(product) &&
     availableAddOns(product, asOf, null, catalog).some(addOn => addOn.id === HOUSE_SMART_ADDON)
-    ? resolveHouseSmartDocumentSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }) : null;
+    ? resolveHouseSmartSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }, asOf, catalog) : null;
   const scopedSupportingTerms = originalTerms.filter(term => term.coverageOrigin === "catalog" &&
     term.sources?.length && term.sources.every(source =>
       (source as CatalogFact["source"] & { documentRole?: string }).documentRole === "general_terms") &&
@@ -349,6 +349,10 @@ function enrichInsurance(
     const addOn = validatedManualSelectionAddOn(product, entry, asOf, catalog);
     return addOn && selectedAddOnIds.includes(addOn.id) ? addOn.selectionEvidenceKeys ?? [] : [];
   }));
+  if (smartSelection?.status === "selected" && insurance.addOns.some(entry =>
+      validatedHouseSmartManualSelection(product, entry, asOf, catalog))) {
+    for (const key of [HOUSE_SMART_PARENT, "hus.service.smart.avtale", "hus.sikkerhet.egenandelsreduksjon"]) manualParents.add(key);
+  }
   const effectiveFacts = resolveCatalogFacts(product, selectedAddOnIds, asOf, null, catalog);
   const catalogFacts = resolveCatalogEvidence(product, selectedAddOnIds, asOf, null, catalog);
   // An exact, unambiguous label from this identified product can establish a
