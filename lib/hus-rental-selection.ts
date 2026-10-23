@@ -61,7 +61,7 @@ function documentTerm(term: RentalTerm): boolean {
     (source as CoverageSource & { documentRole?: string }).documentRole === "general_terms"));
 }
 
-function choiceHeading(term: RentalTerm, inAddOn = false): boolean {
+export function houseRentalChoiceHeading(term: RentalTerm, inAddOn = false): boolean {
   // The five detail keys are never a parent selection, even when named Utleie.
   if (term.canonicalKey || (term.key && words(term.key) !== "utleie")) return false;
   return words(term.name) === "utleie" || (inAddOn &&
@@ -82,8 +82,8 @@ export function resolveHouseRentalManualSelection(product: CatalogProduct, insur
     !Object.hasOwn(entry, "manualSelection") && (entry.coverageOrigin === "document" ||
       (!entry.coverageOrigin && !entry.id && !entry.source)));
   const terms = insurance.documentRole === "general_terms" ? [] : [
-    ...insurance.importantTerms.filter(term => choiceHeading(term)),
-    ...documentAddOns.flatMap(entry => entry.importantTerms.filter(term => choiceHeading(term, true))),
+    ...insurance.importantTerms.filter(term => houseRentalChoiceHeading(term)),
+    ...documentAddOns.flatMap(entry => entry.importantTerms.filter(term => houseRentalChoiceHeading(term, true))),
   ].filter(documentTerm);
   const parsed = terms.map(term => coverageStatusFromText(term.value, { subject: "Utleie", productName: product.name }));
   const statuses = new Set(parsed.filter(status => status === "selected" || status === "not_selected"));
@@ -94,4 +94,49 @@ export function resolveHouseRentalManualSelection(product: CatalogProduct, insur
   const sources = terms.flatMap(term => term.sources ?? (term.source ? [term.source] : []));
   return { status, conflict, sources: sources.filter((source, index) =>
     sources.findIndex(other => JSON.stringify(other) === JSON.stringify(source)) === index) };
+}
+
+function internalRentalContext(insurance: RentalInsurance): boolean {
+  return (insurance.addOns ?? []).some(entry => isHouseRentalAddOn(entry) &&
+    (entry.coverageOrigin === "catalog" || Object.hasOwn(entry, "manualSelection") ||
+      (entry.coverageOrigin !== "document" && Boolean(entry.id || entry.source))));
+}
+
+export function resolveHouseRentalDocumentSelection(product: CatalogProduct, insurance: RentalInsurance):
+  (HouseRentalSelection & { viaAddOn: boolean }) | null {
+  if (!isHouseRentalProduct(product) || normalizeInsuranceType(insurance.type) !== "bolig" ||
+      internalRentalContext(insurance)) return null;
+  const addOns = insurance.documentRole === "general_terms" ? [] : (insurance.addOns ?? []).filter(entry =>
+    words(entry.name) === "utleie" && !Object.hasOwn(entry, "manualSelection") &&
+    (!entry.importantTerms.length || entry.importantTerms.some(documentTerm)) &&
+    (entry.coverageOrigin === "document" || (!entry.coverageOrigin && !entry.id && !entry.source)));
+  const parents = insurance.documentRole === "general_terms" ? [] : [
+    ...insurance.importantTerms.filter(term => houseRentalChoiceHeading(term)),
+    ...addOns.flatMap(entry => entry.importantTerms.filter(term => houseRentalChoiceHeading(term, true))),
+  ].filter(documentTerm);
+  const parsed = parents.map(term => coverageStatusFromText(term.value, { subject: "Utleie", productName: product.name }));
+  const statuses = new Set(parsed.filter(status => status === "selected" || status === "not_selected"));
+  const conflict = statuses.size > 1;
+  // The extractor lists agreed addons. An explicit refusal/unknown parent
+  // overrides that structured choice; detail clauses never supply a parent.
+  const viaAddOn = !statuses.size && !parsed.includes("unknown") && addOns.length > 0;
+  const status = conflict ? "unknown" : statuses.has("not_selected") ? "not_selected" :
+    statuses.has("selected") || viaAddOn ? "selected" : "unknown";
+  const sources = [...parents, ...addOns.flatMap(entry => entry.importantTerms.filter(documentTerm))]
+    .flatMap(term => term.sources ?? (term.source ? [term.source] : []));
+  return { status, conflict, viaAddOn, sources: sources.filter((source, index) =>
+    sources.findIndex(other => JSON.stringify(other) === JSON.stringify(source)) === index) };
+}
+
+export function resolveHouseRentalSelection(product: CatalogProduct, insurance: RentalInsurance,
+  asOf = new Date(), catalog: ProductCatalog = productCatalog): HouseRentalSelection | null {
+  // Preserve the strict manual contract, including rejection of malformed
+  // markers even alongside a document heading. Generated root IDs from a
+  // previous document enrichment must not turn that document into manual input.
+  if (internalRentalContext(insurance)) return resolveHouseRentalManualSelection(product, insurance, asOf, catalog);
+  const document = resolveHouseRentalDocumentSelection(product, insurance);
+  if (!document) return null;
+  if (document.status === "selected" && !availableAddOns(product, asOf, null, catalog)
+    .some(addOn => addOn.id === HOUSE_RENTAL_ADDON)) return { ...document, status: "unknown" };
+  return document;
 }

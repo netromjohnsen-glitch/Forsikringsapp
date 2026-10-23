@@ -1,5 +1,53 @@
 # Aktuell dokumentert prosjektstatus
 
+
+## Dokumentbasert Utleie-valg – validert 23. oktober 2026
+
+Fersk remote main, lokal HEAD og origin/main er kontrollert til
+`0f1086206e9aa713681d84ebe55766196e1a7609`. Den publiserte manuelle Utleie-rettelsen,
+receipt og prosjektstatus finnes på denne revisjonen. Dokumentbasert Utleie-valg
+er validert på samme basis. Publiseringsrevisjonen er committen som inneholder
+rettelsen, receipt og denne prosjektstatusen. Publisert status gjelder etter
+bekreftelse på remote main.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b051-rental-selection-0f10862/publication-authorization.md).
+Ingen deployhandling eller installasjon er utført.
+
+Gjensidige Hus Standard og Hus Pluss, bolig / ordinary / Alminnelige vilkår:
+Utleie velges ved eksplisitt dokumentvalg eller strukturert avtalt tillegg uten
+motsatt/ukjent parentstatus. Ikke valgt overstyrer oppført tillegg; valgt og avslag
+gir konflikt/ukjent. Beskrivelse, detaljstatus, katalogtilgjengelighet og generelle
+vilkår alene velger ikke. Bare valgt aktiverer komponenten og vises som valgt.
+Tilleggsvalg bindes til originaldokumentets kilder før eventuell konsolidering;
+objektmatching og opptak av dokumenter er uendret.
+
+De fem eksisterende Utleie-nøklene, dokumentprioritet, komplette kilder/noter og
+katalogopprinnelse for de fem supplerende katalogradene bevares gjennom gjentatt
+beriking og JSON. Også ukjent kundedetalj blokkerer katalog-/supporting-fallback.
+Generelle vilkår blir bevis, ikke kundevalg. Manuell Utleie/Smart/råte, Rettshjelp,
+B-020, basis leietap, premier og generell egenandel beholdes. Et valgt tillegg er
+ikke i seg selv bevis for registrering i forsikringsbeviset eller erstatningsrett.
+
+[Receipt](../audit/checkpoints/b051-rental-selection-0f10862/completion-receipt-rental-document-selection.json),
+[validering](../audit/checkpoints/b051-rental-selection-0f10862/validation-summary.json),
+[checkpoint](../audit/checkpoints/b051-rental-selection-0f10862/checkpoint.json) og
+[bevispakke](../audit/checkpoints/b051-rental-selection-0f10862/README.md).
+129 nye dokumenttester; 722/722 målrettede og 5895/5895 tester i 164 filer, uten
+skip. Typegen/TypeScript og webpack-bygg består. Lokal syntetisk HTTP/PDF-runtime
+22/22; ESLint 0 feil / 27 eksakt uendrede warnings. Sluttgater og kandidatidentitet
+er bundet sammen i receipt. 214 manuelle initial-/repeat-kontroller er eksakt
+identiske med før-baseline. Alle 144 tidligere dokumentforløp kontrolleres mot
+frosset baseline med bare de uttrykkelig godkjente forskjellene. Katalogen, begge
+original-PDF-er og forrige bevispakke er uendret.
+
+Dette lukker den avgrensede dokumentbaserte Utleie-feilen og gir ingen ny
+originalsignatur-kreditt eller pilotklarering. HTU `157c7afed18eb0fe` / SC-019/SR-033,
+`8a89196fecd29ddb`, fysisk insektegenandel SC-020/SR-032 og alle øvrige HOLD er
+uendret. B-051 37/0/1/1, kampanje 63, globalt resolved/open UKJENT, P2-kreditt 0 og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED. Sikkerhet/GDPR/P3-A05 med uavklart
+identitet/mergestatus, personforsikring/pilotscope, kritisk UX, feedback og operativ
+rådgiveraksept står synlige på vent. NITO og Sentralbord venter; ingen ny
+arbeidsstrøm er startet. Publisering med commit og push er eksplisitt autorisert.
+
 ## Manuelt Utleie-valg – validert 23. oktober 2026
 
 Kontrollert basis på fersk main er `d53c2a1d60c907e71ad8f626a4a788d29f5ba203`.

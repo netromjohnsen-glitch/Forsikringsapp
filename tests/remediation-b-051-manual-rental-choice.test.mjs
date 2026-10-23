@@ -76,7 +76,7 @@ for(const id of ids){
  });
  test(`RENTAL-MANUAL source-bearing document addons remain outside manual context ${id}`,()=>{
   const i=manual(id,[]);i.addOns=[{name:'Utleie',annualPremium:null,deductible:null,coverageOrigin:'document',source:source(0),importantTerms:[term('Valg','Ikke valgt')]}];
-  assert.equal(state(id,i),null);const output=repeat(i);assert.deepEqual(output.addOnIds,[]);assert.equal(state(id,output),null);assert.equal(groupAddOnNames([output],'Hus'),'Utleie');
+  assert.equal(state(id,i),null);const output=repeat(i);assert.deepEqual(output.addOnIds,[]);assert.equal(state(id,output),null);assert.equal(groupAddOnNames([output],'Hus'),null);
  });
  test(`RENTAL-MANUAL extraction cannot introduce internal choice proof ${id}`,()=>{
   const record=baseline.documents.find(c=>c.id===id).record,extracted={company:'Gjensidige',totalAnnualPremium:null,totalAnnualPremiumScope:'entire_agreement',insurances:[record]};assert.equal(validateAnalysisOutput(extracted).insurances.length,1);const bad=structuredClone(extracted);bad.insurances[0].addOns=[{name:'Utleie',annualPremium:null,deductible:null,importantTerms:[],manualSelection:marker(id)}];assert.throws(()=>validateAnalysisOutput(bad));const input=fixture(id,[]);input.products[0].manualSelection=marker(id);assert.deepEqual(normalizeManualAgreement(input).insuranceData.insurances[0].addOnIds,[]);
@@ -95,6 +95,29 @@ test('RENTAL-MANUAL 202 other products and six non-rental manual controls preser
  assert.equal(baseline.others.length,202);assert.equal(baseline.controls.length,6);for(const c of [...baseline.others,...baseline.controls]){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(first,c.first,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(result,c.repeated,c.id);assert.equal(groupAddOnNames([result],c.input.products[0].type),c.display);}
  assert.equal(hash(serialize(productCatalog)),meta.catalog_sha256);
 });
-test('RENTAL-MANUAL all 144 pure document pipeline results/displays preserve exact baseline',()=>{
- assert.equal(baseline.documents.length,144);for(const c of baseline.documents){const output=documentPipeline([[c.record]],c.side).insuranceData;assert.deepEqual(output,c.output,c.id);assert.equal(groupAddOnNames(output.insurances,'Hus'),c.display,c.id);}
+test('RENTAL-DOCUMENT all 144 frozen before cases differ only by the authorized document choice',()=>{
+ assert.equal(baseline.documents.length,144);
+ for(const c of baseline.documents){
+  const expected=structuredClone(c.output),i=expected.insurances[0];
+  const values=c.record.importantTerms.filter(t=>t.name==='Utleie'&&!t.canonicalKey).map(t=>t.value);
+  const yes=values.includes('Valgt'),no=values.includes('Ikke valgt'),unknown=values.includes('Ukjent');
+  const viaAddOn=!yes&&!no&&!unknown&&c.record.addOns.some(a=>a.name==='Utleie');
+  const selected=Boolean(i&&!no&&(yes||viaAddOn));
+  if(i&&selected){
+   // Independent oracle: the already published five manual catalog rows and
+   // catalog facts, not a snapshot taken from the new document implementation.
+   const m=baseline.manual.find(m=>m.id===c.id).first;
+   i.addOnIds=[addon];i.catalogFacts.push(...m.catalogFacts.filter(t=>keys.includes(t.key)));
+   if(viaAddOn){
+    const sources=structuredClone(i.documentSources);
+    const index=i.importantTerms.findIndex(t=>t.coverageOrigin==='catalog');
+    i.importantTerms.splice(index<0?i.importantTerms.length:index,0,{name:'Utleie',value:'Valgt',key:undefined,coverageOrigin:'document',sources});
+    i.recordEvidence[0].importantTerms.push({name:'Utleie',value:'Valgt',canonicalKey:null,documentIndices:[1],coverageOrigin:'document',sources});
+   }
+   i.importantTerms.push(...rental(m));
+  }
+  const output=documentPipeline([[c.record]],c.side).insuranceData;
+  assert.deepEqual(output,expected,`${c.id}/${c.side}/${c.role}/${values}/${c.record.addOns.length}`);
+  assert.equal(groupAddOnNames(output.insurances,'Hus'),selected?'Utleie':null,c.id);
+ }
 });

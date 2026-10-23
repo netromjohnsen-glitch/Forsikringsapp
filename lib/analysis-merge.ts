@@ -12,6 +12,8 @@ import type { AnalysisTelemetry } from "./analysis-telemetry.ts";
 import { PdfSecurityError } from "./pdf-upload-security.ts";
 import type { AnalysisSide } from "./analysis-progress.ts";
 import { attachSupportingTerms, isCustomerObject, supportingEvidence } from "./supporting-terms.ts";
+import { findCatalogProductBySelection } from "./product-catalog.ts";
+import { resolveHouseRentalDocumentSelection } from "./hus-rental-selection.ts";
 
 export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatch, telemetry: AnalysisTelemetry, trace?: ProductionTrace) {
   const sourceIds = (indices?: number[]) => {
@@ -39,6 +41,15 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
     insurances: agreement.insurances.flatMap((product, productIndex) => {
       const productSources = sources(product.documentIndices).map(source => ({ ...source, documentRole: product.documentRole ?? "unknown" }));
       const attached = { ...product, objectIdentifiers: product.objectIdentifiers?.map(id => ({ ...id, sources: sources(id.documentIndices) })), importantTerms: product.importantTerms.map(term => attach(term, product.documentRole)), addOns: product.addOns.map((addon) => ({ ...addon, importantTerms: addon.importantTerms.map(term => attach(term, product.documentRole)) })) };
+      const company = product.company === undefined ? agreement.company : product.company;
+      const name = product.canonicalProductName === undefined ? product.productName : product.canonicalProductName;
+      const catalogProduct = company && name ? findCatalogProductBySelection(company, product.type, name, product.agreementScope) : null;
+      // Persist the agreed-addon choice while its original record attribution is
+      // still known. Consolidation must not invent the choice's document source.
+      if (catalogProduct && resolveHouseRentalDocumentSelection(catalogProduct, attached)?.viaAddOn) {
+        attached.importantTerms.push({ name: "Utleie", value: "Valgt", canonicalKey: null,
+          documentIndices: product.documentIndices, coverageOrigin: "document", sources: productSources });
+      }
       const all = [...attached.importantTerms, ...attached.addOns.flatMap((addon) => addon.importantTerms)];
       // Keep all source references even when the established addon flattener deduplicates identical terms.
       for (const term of all) {
@@ -46,7 +57,6 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
         term.sources = [...new Map(same.flatMap((candidate) => candidate.sources).map((source) => [source.documentId, source])).values()];
       }
       const withTerms = includePdfAddOnTerms(attached);
-      const company = product.company === undefined ? agreement.company : product.company;
       const observer = trace?.extracted(product, batch, sourceIds(product.documentIndices).map(doc => doc.documentIndex), company);
       const documentRecord = { ...withTerms, company, analysisObjectId: `${batch.side}:${batch.batchIndex}:${productIndex}`,
         documentReferences: sourceIds(product.documentIndices).map(doc => ({ side: doc.side, documentIndex: doc.documentIndex })), documentSources: productSources };

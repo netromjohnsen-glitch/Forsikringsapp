@@ -1,0 +1,73 @@
+{
+  "classification": "CUSTOMER_DOCUMENT_SELECTION_NOT_ORIGINAL_SIGNATURE_COMPLETION",
+  "finding": "HOUSE_RENTAL_DOCUMENT_SELECTION",
+  "status": "PASS_VALIDATED",
+  "base_revision": "0f1086206e9aa713681d84ebe55766196e1a7609",
+  "tested_candidate_identity_sha256": "32a8af8dd817ca84f42712bfa74148748748b86160aff1a74edec1e935d7d75a",
+  "provider": "gjensidige",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "insurance_type": "bolig",
+  "agreement_scope": "ordinary",
+  "version": "Alminnelige vilkår",
+  "production_scope": [
+    "lib/hus-rental-selection.ts",
+    "lib/catalog-enrichment.ts",
+    "lib/comparison.ts",
+    "lib/analysis-merge.ts",
+    "lib/supporting-terms.ts"
+  ],
+  "component": "gjensidige-hus-utleie",
+  "existing_keys": [
+    "hus.utleie.vilkar",
+    "hus.utleie.mislighold",
+    "hus.utleie.utkastelse",
+    "hus.utleie.skadeverk",
+    "hus.utleie.egenandel"
+  ],
+  "contract": {
+    "selected": "Exact Utleie parent selected, or structured agreed document addon with no explicit refusal/unknown parent",
+    "not_selected": "Explicit refusal overrides listing; selected and refused yields unknown/conflict; explicit unknown without selected blocks listing",
+    "non_choice": "Descriptions/details/general terms/catalog availability/old IDs never select; local headings require documented Utleie context",
+    "source_binding": "Persist agreed-addon Utleie:Valgt at original record boundary before consolidation; preserve role, side, source references and existing object matching",
+    "repeat": "Five existing catalog details keep key/value/full sources/notes/catalog origin and deductible override across repeats and JSON; a document-generated root ID does not become manual proof",
+    "customer_priority": "Exact scoped detail identities preserve customer values and sources, including unknown without catalog/supporting fallback; no duplicate generic detail identities",
+    "supporting": "Generic parent cannot supply choice; detail identity deduplicates and generic evidence stays in recordEvidence/supportingEvidence",
+    "manual": "Strict manual proof and malformed/missing/cross-addon rejection unchanged, including alongside document Valgt. All 214 frozen manual outputs/displays remain exact",
+    "meaning": "Choice does not prove certificate registration or entitlement. Premium/general deductible/base rental loss/HTU/source meaning unchanged",
+    "schema": "No new global parent/enum/alias; unchanged extraction schema, source admission and house matching"
+  },
+  "validation": "validation-summary.json",
+  "gate_manifest": "gate-results.json",
+  "candidate_identity": "candidate-identity.json",
+  "baseline_evidence": "baseline-identity.json",
+  "source_contract_evidence": "source-and-contract-preflight.json",
+  "test_contract_updates": "test-contract-updates.json",
+  "permanent_test": "tests/remediation-b-051-rental-selection.test.mjs",
+  "current_customer_findings": "rental-customer-findings.json",
+  "original_signature_closure_credit": 0,
+  "documented_campaign_count": 63,
+  "B051_partition_counts": [
+    37,
+    0,
+    1,
+    1
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "HTU_and_other_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "no_full_rental_customer_mode_or_pilot_readiness_claim": true,
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "commit_push_authorized": true,
+  "install": "NOT_PERFORMED",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

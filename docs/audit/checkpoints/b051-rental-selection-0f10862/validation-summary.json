@@ -1,0 +1,61 @@
+{
+  "status": "PASS_LOCAL_VALIDATED_CANDIDATE",
+  "base_revision": "0f1086206e9aa713681d84ebe55766196e1a7609",
+  "tested_candidate_identity_sha256": "32a8af8dd817ca84f42712bfa74148748748b86160aff1a74edec1e935d7d75a",
+  "final_gate_labels": [
+    "targeted-final-v4-r3",
+    "fullsuite-r3",
+    "typegen-r3",
+    "typescript-r3",
+    "eslint-r3",
+    "production-build-r3",
+    "diff-check-r3",
+    "http-pdf-runtime-r3"
+  ],
+  "earlier_gates": "Retained with own candidate file hashes; only final r3 gates validate the final candidate",
+  "new_document_rental_tests": 129,
+  "targeted_including_manual_smart_rot_legal_B020": {
+    "tests": 722,
+    "pass": 722,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "tests": 5895,
+    "pass": 5895,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "files": 164
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "exact_warning_inventory_unchanged": true
+  },
+  "webpack_build": "PASS",
+  "synthetic_local_HTTP_PDF": {
+    "status": "PASS",
+    "checks": 22,
+    "mocked_AI_and_synthetic_data": true,
+    "evidence": "http-pdf-runtime-r3.log.gz"
+  },
+  "isolation": {
+    "catalog_serialized_identity_unchanged": true,
+    "all_manual_initial_repeat_and_display_exact_baseline": 214,
+    "other_products_within_manual_baseline": 202,
+    "document_pipeline_exact_frozen_baseline_with_only_authorized_deltas": 144,
+    "document_scenarios_both_products_sides_customer_roles": 112,
+    "source_SHA256_verified": 2,
+    "prior_packet_files_verified": 36
+  },
+  "test_skips": 0,
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

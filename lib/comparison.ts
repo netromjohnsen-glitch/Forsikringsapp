@@ -25,7 +25,7 @@ import { findCatalogProduct, availableAddOns } from "./product-catalog.ts";
 import { validatedManualSelectionAddOn, type ManualAddOnSelection } from "./catalog-enrichment.ts";
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
 import { HOUSE_SMART_ADDON, isHouseSmartAddOn, resolveHouseSmartSelection } from "./hus-smart-selection.ts";
-import { isHouseRentalAddOn, resolveHouseRentalManualSelection } from "./hus-rental-selection.ts";
+import { isHouseRentalAddOn, resolveHouseRentalSelection } from "./hus-rental-selection.ts";
 
 export type FactSource = {
   agreementScope?: AgreementScopeId;
@@ -203,7 +203,7 @@ function selectedAddOns(insurance: ComparedInsurance, insuranceType: string) {
   const reference = insurance.catalogReference;
   const rentalProduct = normalizeInsuranceType(insuranceType) === "bolig" && reference
     ? findCatalogProduct(reference.providerId, reference.productId, reference.version, reference) : null;
-  const rental = rentalProduct ? resolveHouseRentalManualSelection(rentalProduct, insurance) : null;
+  const rental = rentalProduct ? resolveHouseRentalSelection(rentalProduct, insurance) : null;
   const coverages = new Map(deriveCanonicalCoverages(insurance, insuranceType)
     .map((coverage) => [coverage.id, coverage]));
   return (insurance.addOns ?? []).filter((addOn) => {
@@ -243,8 +243,13 @@ export function groupAddOnNames(insurances: ComparedInsurance[], insuranceType: 
       coverage.status === "selected" && coverage.evidence.some((evidence) =>
         evidence.origin === "document" && evidence.status === "selected"));
     const smart = smartSelectionForComparison(insurance, insuranceType);
+    const reference = insurance.catalogReference;
+    const rentalProduct = normalizeInsuranceType(insuranceType) === "bolig" && reference
+      ? findCatalogProduct(reference.providerId, reference.productId, reference.version, reference) : null;
+    const rental = rentalProduct ? resolveHouseRentalSelection(rentalProduct, insurance) : null;
     return [...explicit.map((addon) => addon.name), ...effective.map((coverage) => coverage.label),
-      ...(smart?.status === "selected" ? ["Hus Smart"] : [])];
+      ...(smart?.status === "selected" ? ["Hus Smart"] : []),
+      ...(rental?.status === "selected" && !explicit.some(isHouseRentalAddOn) ? ["Utleie"] : [])];
   });
   return [...new Set(names)].join(" · ") || null;
 }

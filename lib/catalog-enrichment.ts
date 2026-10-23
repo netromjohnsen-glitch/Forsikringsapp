@@ -16,7 +16,8 @@ import { coverageStatusFromText, deriveCanonicalCoverages } from "./coverage-sta
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import { HOUSE_SMART_ADDON, HOUSE_SMART_PARENT, houseSmartDocumentAddOnTerms, houseSmartTermKey,
   isHouseSmartProduct, resolveHouseSmartSelection, validatedHouseSmartManualSelection } from "./hus-smart-selection.ts";
-import { HOUSE_RENTAL_ADDON, HOUSE_RENTAL_KEYS, houseRentalTermKey, resolveHouseRentalManualSelection } from "./hus-rental-selection.ts";
+import { HOUSE_RENTAL_ADDON, HOUSE_RENTAL_KEYS, houseRentalTermKey, resolveHouseRentalSelection,
+  resolveHouseRentalDocumentSelection } from "./hus-rental-selection.ts";
 import {
   findCatalogProductBySelection,
   availableAddOns,
@@ -274,7 +275,7 @@ function enrichInsurance(
     availableAddOns(product, asOf, null, catalog).some(addOn => addOn.id === HOUSE_SMART_ADDON)
     ? resolveHouseSmartSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }, asOf, catalog) : null;
   const rentalSelection = product
-    ? resolveHouseRentalManualSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }, asOf, catalog) : null;
+    ? resolveHouseRentalSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }, asOf, catalog) : null;
   const scopedSupportingTerms = originalTerms.filter(term => term.coverageOrigin === "catalog" &&
     term.sources?.length && term.sources.every(source =>
       (source as CatalogFact["source"] & { documentRole?: string }).documentRole === "general_terms") &&
@@ -336,6 +337,10 @@ function enrichInsurance(
   if (rentalSelection) documentTerms = documentTerms.map(term => {
     const key = houseRentalTermKey(term);
     return key ? { ...term, key } : term;
+  });
+  if (product && resolveHouseRentalDocumentSelection(product, insurance)?.viaAddOn) documentTerms.push({
+    name: "Utleie", value: "Valgt", coverageOrigin: "document",
+    ...(rentalSelection?.sources.length ? { sources: rentalSelection.sources } : {}),
   });
 
   // MC/Bobil optional components remain separate from the base. Only an

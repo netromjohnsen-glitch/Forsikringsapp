@@ -10,6 +10,7 @@ import { defaultIdentifierStrategies } from "./object-identity-strategies.ts";
 import { deriveCanonicalCoverages } from "./coverage-status.ts";
 import type { SupportingAttachmentObserver } from "./production-trace.ts";
 import { houseSmartTermKey, isHouseSmartProduct } from "./hus-smart-selection.ts";
+import { houseRentalChoiceHeading, houseRentalTermKey, isHouseRentalProduct, resolveHouseRentalSelection } from "./hus-rental-selection.ts";
 
 // Role is explicit extraction metadata for this record, not a filename/title
 // heuristic. Unknown records remain eligible, including unpriced/no-ID policies.
@@ -105,13 +106,21 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
   const product = customer.company && productName && findCatalogProductBySelection(
     customer.company, customer.type, productName, customer.agreementScope);
   const smart = product && isHouseSmartProduct(product);
+  const rental = product && isHouseRentalProduct(product);
+  const rentalSelection = rental ? resolveHouseRentalSelection(product, customer) : null;
   const keyOf = (term: T["importantTerms"][number]) => (smart ? houseSmartTermKey(term) : null) ??
+    (rental ? houseRentalTermKey(term) : null) ??
     term.key ?? normalizeTermName(term.name, { insuranceType: customer.type, termValue: term.value });
-  const existing = new Set(customer.importantTerms.filter(t => !isUndocumentedTermValue(t.value)).map(keyOf));
+  const existing = new Set(customer.importantTerms.filter(t => !isUndocumentedTermValue(t.value) ||
+    (rental && t.coverageOrigin === "document" && houseRentalTermKey(t))).map(keyOf));
   const coverages = new Map(deriveCanonicalCoverages(customer, customer.type).map(c => [c.id, c]));
   const definitions = relatedCoveragesForInsuranceType(customer.type);
   const candidates = new Map<string, typeof applicable[number]["importantTerms"]>();
   for (const record of applicable) for (const term of record.importantTerms) {
+    // Generic rental text stays in evidence. It cannot supply a customer choice
+    // or replace an explicit unknown customer detail with a generic value.
+    if (rental && (houseRentalChoiceHeading(term) ||
+        (houseRentalTermKey(term) && rentalSelection?.status !== "selected"))) continue;
     // Keep unresolved Bobil collisions in recordEvidence, never as an
     // effective bonus identity guessed from generic uploaded terms.
     if (!term.key && isAmbiguousBobilParkingBonusLabel(term.name, customer.type)) continue;
@@ -129,7 +138,7 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
     if (!coverage && /(?:^|\.)dekning$/u.test(key)) continue;
     if (isUndocumentedTermValue(term.value)) continue;
     candidates.set(key, [...(candidates.get(key) ?? []),
-      smart && houseSmartTermKey(term) ? { ...term, key } : term]);
+      (smart && houseSmartTermKey(term)) || (rental && houseRentalTermKey(term)) ? { ...term, key } : term]);
   }
   const additions = [...candidates].sort(([a],[b]) => a.localeCompare(b)).flatMap(([, terms]) => {
     // Conflicting generic rules remain available as evidence, not an arbitrary

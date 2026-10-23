@@ -1,0 +1,61 @@
+{
+  "status": "PASS_PUBLICATION_READY",
+  "base_revision": "0f1086206e9aa713681d84ebe55766196e1a7609",
+  "candidate_identity_sha256": "32a8af8dd817ca84f42712bfa74148748748b86160aff1a74edec1e935d7d75a",
+  "application_files_verified": 7,
+  "same_candidate_across_final_eight_gates": true,
+  "all_gate_logs_verified": 26,
+  "checksum_exclusions": [
+    "SHA256SUMS",
+    "publication-integrity.json"
+  ],
+  "initial_integrity_report": "integrity-verification.json",
+  "initial_integrity_note": "Immutable initial report/candidate identity describe local validation; original seal hashes retained in publication-preflight.json; this report verifies publication seal",
+  "original_verified_files_changed_for_publication": [
+    {
+      "file": "README.md",
+      "before_sha256": "a3b9708f6ca939fbc371e63856241597a62b6c3c04c4d2b67019903d39a4ba67",
+      "reason": "Authorized publication metadata only; verified original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "checkpoint.json",
+      "before_sha256": "27d6277b2ad5924923a2fb4a1822944f912a03bb11a12b117a34dba0136f6f46",
+      "reason": "Authorized publication metadata only; verified original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "completion-receipt-rental-document-selection.json",
+      "before_sha256": "a20aa4c7d19721af9b7597eb73125d7b0e1fa820a194a3e14970b076e4445f5b",
+      "reason": "Authorized publication metadata only; verified original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "rental-customer-findings.json",
+      "before_sha256": "cbd15a5624d28d014007ce49aafd71e483cc57241d78daeb39f9859e25922ec9",
+      "reason": "Authorized publication metadata only; verified original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "validation-summary.json",
+      "before_sha256": "64d76a22e4ca8a6f6a556304c8d1a9bc376f5d981c8828a94cc27049f5fa76c7",
+      "reason": "Authorized publication metadata only; verified original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "SHA256SUMS",
+      "before_sha256": "c74345dcf10895d075a73a9903831257906b22a341172acf4e517cc54bb5e099",
+      "reason": "Regenerated publication seal after original 47-file seal verification"
+    }
+  ],
+  "new_publication_files": [
+    "publication-authorization.md",
+    "publication-preflight.json",
+    "publish-files.json",
+    "publication-integrity.json"
+  ],
+  "prior_packet_files_unchanged": 36,
+  "protected_HOLD_and_signature_sets_unchanged": true,
+  "publisher_self_test": "PASS",
+  "expected_staged_files": 59,
+  "publish_files_manifest_sha256": "576b410aa2105c5d4314a51852b0bba67e28542610cc140c7024ba0ee4e79ba1",
+  "deploy": "NOT_PERFORMED_OR_AUTHORIZED",
+  "links_verified": 944,
+  "sealed_packet_files": 49,
+  "SHA256SUMS_sha256": "f058959984ef675ca71db38a952fa2bbd11443d5700273d1b9a809b437431150"
+}
