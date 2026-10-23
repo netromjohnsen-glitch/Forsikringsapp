@@ -1,0 +1,648 @@
+{
+  "classification": "CURRENT_READ_ONLY_CONTRACT_AND_MAPPING_DECISION_NOT_IMPLEMENTATION_OR_CLOSURE",
+  "status": "DECIDED_PROPOSED_SCOPED_CORRECTION",
+  "signature": "d58bff0e6b2d46eb",
+  "review_id": "CR-228",
+  "original_batch": "B-130",
+  "created_at_utc": "2026-10-23T11:38:24.746168+00:00",
+  "decision": "Add one own-source nonasserting general building-insurance person/registered-rights scope detail per target level under hus.personkrets.begrensning. Preserve all six source groups and conditions; existing health-service, liability, legal assistance, safety and object rules remain independent. No insurer question required for this registered-source representation.",
+  "authorization": {
+    "user_instruction": "Avklar kontrakt og mapping for d58bff0e6b2d46eb (personkrets/sikrede) på Hus Standard og Hus Pluss på fersk main. Lever én beslutning og presis rettingsbolk. Ingen kodeendringer eller deploy; behold alle HOLD. NITO og Sentralbord venter.",
+    "scope": "Read-only decision; only this new local audit packet is written",
+    "implementation": false,
+    "commit_push": false,
+    "deploy": false
+  },
+  "revision": {
+    "fresh_GitHub_main_before_and_after_probes": "cfada9a3c73de450f53b784ec2b60b41c434a10a",
+    "HEAD": "cfada9a3c73de450f53b784ec2b60b41c434a10a",
+    "origin_main": "cfada9a3c73de450f53b784ec2b60b41c434a10a",
+    "initial_working_tree": "CLEAN",
+    "staged_files": [],
+    "source_freshness": "Fresh repository main and registered local original bytes verified. No live insurer website refresh or invented effectiveFrom date."
+  },
+  "source_binding": {
+    "original_registry": {
+      "signature_id": "d58bff0e6b2d46eb",
+      "representative_finding_id": "GAP-2081",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-130",
+      "disposition": "CANONICAL_REVIEW_FIRST",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "CANONICAL_REVIEW_FIRST",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2081\", \"GAP-2135\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-2982\", \"SF-3066\"]",
+      "proposed_existing_keys": "[]",
+      "semantic_concept": "Personkrets",
+      "semantic_dimension": "sikrede",
+      "notes": "Ta beslutning per oppført konsept/dimensjon i canonical-review-queue. Prøv eksisterende eksakt nøkkel eller tydelig provider-detalj først. Ny nøkkel bare etter dokumentert tap/falsk ekvivalens ved gjenbruk. Deretter implementeres bare godkjent scoped forfatteroperasjon. Ingen generell schema-ombygging er bevist nødvendig.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    "canonical_review": {
+      "review_id": "CR-228",
+      "concept": "Personkrets / sikrede",
+      "current_keys": "[]",
+      "problem": "No exact mapping approved in the audit",
+      "disposition": "CANONICAL_REVIEW_FIRST",
+      "affected_products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "affected_families": "[\"Hus\"]",
+      "candidate_approach": "First test exact reuse or source-bound provider-specific detail within an existing parent. A new key is allowed only if subject, trigger, unit, period or optionality would otherwise be lost or falsely equated.",
+      "false_equivalence_risk": "Do not merge different event/subject/period/level merely to fill both sides. Existing type keys are candidates, not approved synonym mappings.",
+      "blocks_batches": "[\"B-130\"]",
+      "signature_ids": "[\"d58bff0e6b2d46eb\"]",
+      "representative_finding_ids": "[\"GAP-2081\"]",
+      "existing_type_key_inventory_ref": "existing-type-registries.json#Hus",
+      "required_semantic_tuple": "[\"subject\", \"trigger\", \"unit\", \"period\", \"limit_basis\", \"conditions\", \"level\", \"optionality\", \"provider/type/scope/version\", \"source\"]",
+      "source_evidence": "[{\"finding_id\": \"GAP-2081\", \"source_fact_id\": \"SF-2982\", \"artifact\": \"catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf\", \"location\": \"PDF 3\"}]",
+      "full_evidence_ref": "Listed signature IDs → p1-triage.csv → frozen gap/source-fact inventory; batch evidence in triage.json",
+      "decision": "PENDING_REVIEW",
+      "human_signoff": "REQUIRED_BEFORE_IMPLEMENTATION"
+    },
+    "original_source_facts": [
+      {
+        "provider": "gjensidige",
+        "insurance_type": "Hus",
+        "scope": "ordinary",
+        "product": "gjensidige-hus",
+        "version": "Alminnelige vilkår",
+        "component": "",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "source_location": "PDF 3",
+        "semantic_subject": "Personkrets",
+        "semantic_dimension": "sikrede",
+        "structured_value": "Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "advisor_relevance": "CORE",
+        "catalog_match": "[]",
+        "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+        "confidence": "HIGH",
+        "priority": "P1",
+        "manual_validation": true,
+        "catalog_full_fact_count_checked": 68,
+        "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+        "proposed_keys": [],
+        "source_excerpt": "",
+        "root_cause_id": "SCRC-025",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "source_fact_id": "SF-2982",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "agreement_scope": "ordinary",
+        "product_id": "gjensidige-hus",
+        "version_unknown": false,
+        "catalog_version": "Alminnelige vilkår",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "id": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "documentName": "Alminnelige vilkår Hus Standard",
+              "termsNumber": "Hus Standard",
+              "version": "Alminnelige vilkår",
+              "effectiveFrom": "",
+              "updatedAt": "2026-09-20",
+              "company": "Gjensidige",
+              "insuranceType": "Hus",
+              "appliesTo": [
+                "Hus"
+              ],
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+              ],
+              "link_status": "RESOLVED"
+            }
+          ]
+        },
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+        "full_package_review_complete": true,
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "key_support_existing_catalog": {},
+        "key_support_existing_type_registry": {},
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "finding_id": "GAP-2081",
+        "source_first_inventory_id": "GJ-HU-001",
+        "validation_state": "FINAL",
+        "unique_source_semantic_id": "398048ad3db77f352a7f",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "label_and_structuredValue_reviewed": true,
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+      },
+      {
+        "provider": "gjensidige",
+        "insurance_type": "Hus",
+        "scope": "ordinary",
+        "product": "gjensidige-hus-pluss",
+        "version": "Alminnelige vilkår",
+        "component": "",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "source_location": "PDF 3",
+        "semantic_subject": "Personkrets",
+        "semantic_dimension": "sikrede",
+        "structured_value": "Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "advisor_relevance": "CORE",
+        "catalog_match": "[]",
+        "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+        "confidence": "HIGH",
+        "priority": "P1",
+        "manual_validation": true,
+        "catalog_full_fact_count_checked": 65,
+        "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+        "proposed_keys": [],
+        "source_excerpt": "",
+        "root_cause_id": "SCRC-025",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "source_fact_id": "SF-3066",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "agreement_scope": "ordinary",
+        "product_id": "gjensidige-hus-pluss",
+        "version_unknown": false,
+        "catalog_version": "Alminnelige vilkår",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "id": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "documentName": "Alminnelige vilkår Hus Pluss",
+              "termsNumber": "Hus Pluss",
+              "version": "Alminnelige vilkår",
+              "effectiveFrom": "",
+              "updatedAt": "2026-09-20",
+              "company": "Gjensidige",
+              "insuranceType": "Hus",
+              "appliesTo": [
+                "Hus Pluss",
+                "Råte og skadeinsekter"
+              ],
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+              ],
+              "link_status": "RESOLVED"
+            }
+          ]
+        },
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+        "full_package_review_complete": true,
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "key_support_existing_catalog": {},
+        "key_support_existing_type_registry": {},
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "finding_id": "GAP-2135",
+        "source_first_inventory_id": "GJ-HU-001",
+        "validation_state": "FINAL",
+        "unique_source_semantic_id": "53b34c116b5a7eb6b66c",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "label_and_structuredValue_reviewed": true,
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+      }
+    ],
+    "source_heading": "Hus / Hvem gjelder forsikringen for (sikrede)?",
+    "source_page": 3,
+    "six_group_blocks_identical": true,
+    "source_conditions": [
+      {
+        "id": "C1",
+        "source_group": "Forsikringstaker"
+      },
+      {
+        "id": "C2",
+        "source_group": "Ektefelle eller samboer med felles adresse i Folkeregisteret",
+        "boundary": "The common-address requirement is kept attached to this group, not imposed on registered rights holders."
+      },
+      {
+        "id": "C3",
+        "source_group": "Barn som bor hjemme eller som bor borte pga utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret",
+        "boundary": "Retain the source conjunction and no-address-change condition verbatim in meaning; no invented age cap, foster-child extension or automatic membership evaluation."
+      },
+      {
+        "id": "C4",
+        "source_group": "Privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom",
+        "boundary": "Both private-person co-ownership and registered ownership in insured property retained."
+      },
+      {
+        "id": "C5",
+        "source_group": "Andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen",
+        "boundary": "Keep as separate source group from private co-owner; no restriction to household/natural person invented, no removal of registered rights."
+      },
+      {
+        "id": "C6",
+        "source_group": "Barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse pga. delt foreldreansvar",
+        "boundary": "Fixed-household membership AND other registered address due to shared parental responsibility; distinct from C3 no-address-change condition."
+      }
+    ],
+    "archived_paraphrase_boundary": "Archived husstand shorthand is not authority to include every household member. The actual six source groups and each specific condition control.",
+    "insurer_question_required": false,
+    "historical_authorization_metadata": "Frozen registry False / required signoff before implementation remains untouched; this read-only decision authorizes no implementation."
+  },
+  "semantic_contract": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "key": "hus.personkrets.begrensning",
+    "label": "Personkrets – sikrede ved bygningsforsikring",
+    "value": "Bygningsforsikringen gjelder for forsikringstaker; ektefelle eller samboer med felles adresse i Folkeregisteret; barn som bor hjemme eller som bor borte på grunn av utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret; privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom; andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen; og barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse på grunn av delt foreldreansvar.",
+    "source_section": "Hus – Hvem gjelder forsikringen for (sikrede)? / Bygningsforsikring",
+    "source_page": 3,
+    "standard": {
+      "owner": "gjensidigeHusStandard",
+      "source_document_id": "gjensidigeHusStandard",
+      "source_page": 3,
+      "replacesBase": "absent"
+    },
+    "pluss": {
+      "owner": "gjensidigeHusPluss",
+      "source_document_id": "gjensidigeHusPluss",
+      "source_page": 3,
+      "replacesBase": true
+    },
+    "raw_facts_added": 2,
+    "effective_rows_per_product_and_configuration": 1,
+    "parent": "hus.ovrig",
+    "display": "Andre husvilkår / detail",
+    "fields_absent": [
+      "structuredValue",
+      "coverageAvailability",
+      "catalogSelectionConfirmed",
+      "deductibleClassification",
+      "selectionEvidenceKeys",
+      "qualificationSource"
+    ],
+    "meaning": "Source-bound general person/rights-holder scope for building insurance, expressed as a nonasserting condition. It does not verify a named customer/person, household, address, age, registration, ownership/security interest, selected coverage or right to payment. No scope extension of Helsehjelp, liability or legal assistance."
+  },
+  "mapping_decision": {
+    "new_key_collision": false,
+    "normalized_label": "personkrets sikrede ved bygningsforsikring",
+    "normalized_key": "hus.personkrets.begrensning",
+    "is_nonasserting": true,
+    "extractor_enum_contains_key": false,
+    "extracted_counterpart": "canonicalKey null, existing exact unique normalized resolved-product label matcher; no generic source-heading, household or role-name alias. Generic labels stay distinct unless separately approved.",
+    "rejected_or_preserved_candidates": [
+      {
+        "keys": [
+          "hus.service.helsehjelp"
+        ],
+        "decision": "REJECT_REUSE_KEEP_UNCHANGED",
+        "reason": "Service-specific person group and consultation benefits include only the family subset; neither registered co-owners nor other ownership/pledge/security holders express general building-insurance person scope here. Adding them would change who receives health-service benefits."
+      },
+      {
+        "keys": [
+          "hus.sikkerhet.begrensning"
+        ],
+        "decision": "REJECT_REUSE_KEEP_UNCHANGED",
+        "reason": "Spouse/cohabitant extension of safety duties under FAL4-11 is a duty/consequence rule, not the six-group insured-person and registered-rights definition."
+      },
+      {
+        "keys": [
+          "hus.ansvar.dekning",
+          "hus.rettshjelp.dekning"
+        ],
+        "decision": "REJECT_REUSE_KEEP_UNCHANGED",
+        "reason": "Separate insured events/owner capacity, third-party family exclusions and dispute requirements. A general person-scope detail cannot prove eligibility to these particular benefits or remove their conditions."
+      },
+      {
+        "keys": [
+          "hus.bygninger.dekning",
+          "hus.avtale.forbehold"
+        ],
+        "decision": "REJECT_REUSE_KEEP_UNCHANGED",
+        "reason": "Insured objects and general policy authority respectively, neither retains who is insured and the six precise address/registered-rights conditions."
+      },
+      {
+        "keys": [
+          "innbo.forsikrede"
+        ],
+        "decision": "REJECT_CROSS_TYPE_REUSE",
+        "reason": "Contents insurance from another provider includes other fixed-household members and explicit tenancy exclusions, without the whole registered-property rights group. Different insured interest/type/scope; no approved synonym."
+      },
+      {
+        "keys": [
+          "reise.personer.omfang"
+        ],
+        "decision": "REJECT_CROSS_TYPE_REUSE",
+        "reason": "Travel/person-versus-family selection, age21, residence/social-insurance and named-person contexts differ; mortgage/security rights in insured real estate are absent. Do not import age/family/selection rules."
+      }
+    ],
+    "why_minimal": "One original compound fact remains one coherent source rule, two product-authored rows with independent primary provenance; existing detail presentation/nonasserting/inheritance machinery already represents it. No schema change or rule engine needed."
+  },
+  "proposed_correction_packet": {
+    "authorization_status": "PROPOSED_ONLY_NOT_IMPLEMENTATION_AUTHORITY",
+    "one_production_file": "lib/gjensidige-hus-catalog.ts",
+    "author_operation": "Append exactly two facts using existing facts helper, key/label/value/section/page from semantic_contract. Standard own page3 source; Pluss own page3 source replaces inherited same key only. No qualificationSource is needed because the entire six-group rule is on each own page3.",
+    "proposed_tests": [
+      "tests/remediation-b-130-person-scope.test.mjs",
+      "tests/helpers/b130-person-scope.mjs (only if an independent shared oracle helper is necessary)"
+    ],
+    "narrow_existing_test_maintenance": "Only account for the independently source-approved +2 raw-fact delta in exact catalog snapshots/fingerprints and counts; preserve all cases/negative controls and immutable prior packets; log proven mechanical changes under active policy.",
+    "test_contracts": [
+      "Exact CR228/signature and GAP2081/SF2982 plus GAP2135/SF3066; registered source SHA256, own page3/table heading, all six groups and all specific qualifications preserved.",
+      "Spouse/common Folkeregister address; child home/education/first-service and no address change; private registered co-owner; other registered ownership/pledge/security interest; fixed-household child at another address because shared parental responsibility remain distinct. No broad all-household or universal same-address substitution, no child age cap, no generic tenant/foster/partner additions.",
+      "Independent fresh-main before catalog plus exactly two fully specified raw facts; all old key/value/source/metadata fields and every other product unchanged.",
+      "Exactly one effective nonasserting term on both levels for all8 Standard and4 Pluss valid choices; complete own-source metadata, Pluss inherited Standard evidence in current {value,source} overriddenBase format, catalog origin and notes survive three enrichments and JSON.",
+      "Whole source rule materializes as hus.ovrig detail; never a coverage row, customer person/household/entity/object, selected addon, verified address/right/compliance or automatic payout. Customer declared terms remain present without membership inference.",
+      "Actual document pipeline on both comparison sides: exact unique proposed-label customer rule with canonicalKey null wins, first and late, with complete sources; unknown/conflict semantics stay as existing baseline. Generic Forsikringstaker/Husstand/Ektefelle/Barn/Tinglyst medeier/source question labels are not new synonyms.",
+      "General_terms gives supporting evidence/catalog and no customer object/person or selection. No global canonical/type/extractor enum, fuzzy alias, schema or engine change.",
+      "Helsehjelp24/7 family/service limits, safety spouse context, liability/third-party exclusions, personal-owner legal assistance and HTU HOLD all unchanged. No applying general property-rights group to every separate benefit.",
+      "Same product comparison and side-swap, peer absence unknown, all provider/type/ordinary/version and level/addon boundaries; preserve B020, Smart/Utleie/råte, Rettshjelp, fullvalue/underinsurance, vacancy and frost, premiums/sums/deductibles,214 manual and144 document baseline cases; all HOLD unchanged."
+    ],
+    "final_validation": [
+      "Own-source forward and reverse audit",
+      "Targeted relevant suites on final candidate",
+      "Complete actual test manifest/fullsuite without skips",
+      "Typegen then TypeScript",
+      "ESLint zero errors and unchanged warning inventory",
+      "Webpack production build",
+      "Local synthetic HTTP/PDF runtime",
+      "Candidate identity, complete log hashes, integrity, links and git diff --check"
+    ],
+    "documents_to_update_after_authorized_implementation": [
+      "New completion receipt/checkpoint with both original bindings and final tested identity",
+      "docs/development-agent/current-project-status.md"
+    ],
+    "excluded": [
+      "Any other signature/HOLD resolution or complete catalog/pilot clearance",
+      "Global canonical registry, normalizer/aliases, extraction schema, engine, UI/presentation or customer-data handling changes",
+      "Membership evaluation, age/address/rights inference, person-object admission or extension of separate health/liability/legal benefits",
+      "Original sources or historical audit rewrites",
+      "NITO/Sentralbord implementation",
+      "Install, commit, push or deploy without separate authorization"
+    ],
+    "completion_rule": "Only future separately authorized implementation with final passing gates credits this one original signature for both bindings. Even then no overall catalog/pilot clearance follows from closing this review alone."
+  },
+  "verification_this_turn": {
+    "type": "Read-only original source/identity and existing representation probes",
+    "original_PDFs_verified": 2,
+    "complete_page_visual_reviews": 2,
+    "source_extraction_modes": [
+      "raw",
+      "layout"
+    ],
+    "valid_addon_configurations": 12,
+    "document_role_probes": 20,
+    "generic_person_document_and_three_repeat_JSON_probes": 12,
+    "scope_negatives": 8,
+    "standalone_nonasserting_term_probe": "PASS: inferred canonical coverages []",
+    "all_preexisting_tracked_files_byte_identical": 7791,
+    "whole_appsuites_build_runtime": "NOT_RUN; no implementation candidate",
+    "published_validation_reference": "../b130-underinsurance-0e4c09d/validation-summary.json; published earlier candidate6146/6146 only, not a PASS for this absent person-scope row",
+    "no_new_implementation_PASS_claim": true
+  },
+  "protected_status": {
+    "checkpoint": "docs/audit/checkpoints/b130-underinsurance-0e4c09d/checkpoint.json",
+    "checkpoint_sha256": "2a0e5adedb5aab18ddd40b9a6cc3fd3d55298e4e3716a08e754ed327281e886d",
+    "unchanged_values": {
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "documented_campaign_count": 66,
+      "documented_campaign_signatures": [
+        "03cff9fe5cfbf518",
+        "08203cfa28493e63",
+        "0a6b5f6f535df685",
+        "0da02a8dae8fd373",
+        "0eda923b4090cf6c",
+        "0f51d1c0374f1f1f",
+        "0f7980d6139daa2e",
+        "15f5b4a3e9f79fd2",
+        "1982ee310e18279c",
+        "1ee41770b0470c78",
+        "1f56c194d413f97d",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "2b078b058bc63967",
+        "35c58fbc06cf6e7d",
+        "373413bc13517ff4",
+        "3f4b9eff50404590",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "4165f79344a7d572",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "48393aac0a200fe5",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "5839d2c13e186676",
+        "597df4c45c6d3db9",
+        "6080e5e5a6bb3c63",
+        "688cc5923342804d",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "72170f7dfe5c91b6",
+        "73aab8a0ad4f6c11",
+        "7b2587a3bbc0c772",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8c14a1328e5080cf",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "8e9d297cb0d1bd0e",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5792662cc2fa9f8",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "c1440948744bfa17",
+        "c5ccc4f26fd475ae",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ce90710821e28a97",
+        "dc3e04a5fcce2317",
+        "ed99577218e2302b",
+        "f8bd15c89bc0dbd6",
+        "fbe23495ae09afb3"
+      ],
+      "current_B051_completed_signatures": [
+        "08203cfa28493e63",
+        "0eda923b4090cf6c",
+        "0f7980d6139daa2e",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "35c58fbc06cf6e7d",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "6080e5e5a6bb3c63",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "73aab8a0ad4f6c11",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ed99577218e2302b"
+      ],
+      "B051_partition_counts": [
+        37,
+        0,
+        1,
+        1
+      ],
+      "current_B071_revalidated_signatures": [
+        "2b078b058bc63967",
+        "1ee41770b0470c78",
+        "dc3e04a5fcce2317",
+        "0da02a8dae8fd373",
+        "688cc5923342804d",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "1982ee310e18279c",
+        "0f51d1c0374f1f1f",
+        "03cff9fe5cfbf518"
+      ],
+      "current_B071_not_revalidated": [
+        "5f31ff4946a666b5"
+      ],
+      "historical_only": {
+        "conversation_reported_resolved": 414,
+        "not_current_ledger_verified": true,
+        "mechanical": "19/16",
+        "semantic": "10/8",
+        "diagnostics_campaign": "19/12"
+      },
+      "historical_DEFER_SAFE_signatures": [
+        "0177d006e35081bf",
+        "01c571aed2922601",
+        "081897ea9890dd48",
+        "19e07ca100e66430",
+        "30fc68fdaa903cfb",
+        "4298f951ca3c66c3",
+        "42c2a36bff254c04",
+        "48f198515fc0f302",
+        "4b74844f6e3299d6",
+        "5451f3cd4d1439f3",
+        "57772b5d65c12f6e",
+        "614e6706ae2502ce",
+        "6a8fa7667b6b4f31",
+        "6aef26441eb0791f",
+        "765fd5db190904d0",
+        "891c9fac3031a8ee",
+        "b2dfb452aaacba84",
+        "b62a64284e4abbe1",
+        "c05c0db230591fe9",
+        "cb3e9dc1ef2d6684",
+        "cc9b15fa0f3121c0"
+      ],
+      "HARNESS_AUTONOMY_V1": {
+        "used": 33,
+        "ordinary_limit": 12,
+        "scope_used": 3,
+        "scope_limit": 6,
+        "capacity_for_other_roots": 0,
+        "ledger": "../b051-health-help-732b4cc/two-root-authorization-and-ledger.json",
+        "previous_root": "../b051-health-help-732b4cc/draft-identifier-authorization-and-ledger.json",
+        "status": "HISTORICAL_FROZEN_NO_LONGER_OPERATIONAL_STOP_QUOTA"
+      },
+      "global_resolved_open": "UNKNOWN",
+      "P2_credit": 0,
+      "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+      "NITO": "WAIT",
+      "Sentralbord": "WAIT_SEPARATE",
+      "remaining_B130_review_signatures": [
+        "d58bff0e6b2d46eb"
+      ],
+      "remaining_pre_pilot_points": [
+        "B130 underinsurance15f5b4a3e9f79fd2 validated for both original bindings. Base main0e4c09d has65 published campaign signatures;66 published when containing commit verified on remote main. No complete catalog or pilot clearance.",
+        "B130 Personkrets d58bff0e6b2d46eb remains open; no implementation started",
+        "HTU 157c7afed18eb0fe / SC-019/SR-033 HOLD",
+        "8a89196fecd29ddb insect common-exclusion applicability HOLD",
+        "SC-020/SR-032 physical insect damage deductible HOLD (separate from Smart)",
+        "SC-035/SR-031 and B-071 hold",
+        "P3-A05 identity/mergestatus not established here; security/GDPR",
+        "Person insurance / pilot scope",
+        "Critical UX",
+        "Feedback",
+        "Operational adviser acceptance"
+      ]
+    },
+    "publication_interpretation": "Campaign count66 is published because containing cfada9a commit verified on remote main. No credit added this turn.",
+    "additional_HOLD": "8a89196fecd29ddb unchanged",
+    "signature_status": "OPEN_NOT_IMPLEMENTED_NOT_REVALIDATED",
+    "signature_closure_credit": 0,
+    "global_ledger_reconstructed": false,
+    "new_workstreams_started": false
+  },
+  "evidence": {
+    "path": "source-and-representation-proof.json.gz",
+    "sha256": "3cc6a725705a3145c1ad304cf471068e9a5fd6be8480f029630df94fda3000ab",
+    "contents": "Exact two original bindings/CR228/B130, complete own-page raw/layout and visual checks, six-group equivalence, global current key/label/meaning inventory, current12 configuration outputs,20 document role and12 person-input/repeat probes, repeatable probe sources and all7791 tracked hashes"
+  },
+  "integrity": {
+    "historical_sources_and_audit": "UNCHANGED",
+    "production_tests_project_status": "UNCHANGED",
+    "staged_files": [],
+    "install_commit_push_deploy": "NOT_PERFORMED",
+    "written_files": "Exactly three new untracked local audit files",
+    "checksum_policy": "SHA256SUMS seals decision JSON and compressed evidence; checksum file excluded from itself"
+  }
+}

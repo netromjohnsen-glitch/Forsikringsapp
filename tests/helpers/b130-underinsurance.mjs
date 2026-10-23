@@ -1,3 +1,4 @@
+import {applyPersonScope,withoutPersonScope} from './b130-person-scope.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
@@ -17,12 +18,12 @@ export function applyUnderinsurance(catalog){
   const existing=rows.filter(f=>f.key===o.key);
   if(existing.length)assert.deepEqual(existing,[fact]);else rows.push(fact);
  }
- return expected;
+ return applyPersonScope(expected);
 }
 // Project only this independently specified delta for immutable older snapshots.
 // Source/qualifier identity and value are checked before removing any row.
 export function withoutUnderinsurance(value){
- const copy=structuredClone(value);
+ const copy=withoutPersonScope(value);
  function checkSource(actual,expected){
   for(const key of Object.keys(expected))if(key!=='productCode')assert.equal(actual[key],expected[key],key);
  }

@@ -1,0 +1,236 @@
+{
+  "user_instruction": "Implementer den avklarte regelen for d58bff0e6b2d46eb på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "recorded_utc": "2026-10-23T11:40:47.237357+00:00",
+  "base_main": "cfada9a3c73de450f53b784ec2b60b41c434a10a",
+  "branch": "fix/house-vacancy",
+  "signature": "d58bff0e6b2d46eb",
+  "bindings": [
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 3",
+      "semantic_subject": "Personkrets",
+      "semantic_dimension": "sikrede",
+      "structured_value": "Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 68,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-2982",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusStandard",
+            "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Standard",
+            "termsNumber": "Hus Standard",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+            "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2081",
+      "source_first_inventory_id": "GJ-HU-001",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "398048ad3db77f352a7f",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    },
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus-pluss",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 3",
+      "semantic_subject": "Personkrets",
+      "semantic_dimension": "sikrede",
+      "structured_value": "Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 65,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-3066",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus-pluss",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Pluss",
+            "termsNumber": "Hus Pluss",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus Pluss",
+              "Råte og skadeinsekter"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2135",
+      "source_first_inventory_id": "GJ-HU-001",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "53b34c116b5a7eb6b66c",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    }
+  ],
+  "decision_path": "docs/audit/checkpoints/b130-person-scope-review-cfada9a/decision-d58bff0e6b2d46eb.json",
+  "decision_sha256": "edb57a5f366ad07d90e6bc89ad1ed9888ced4373fd3cbc1a0261da8c80c1a1ee",
+  "contract": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "key": "hus.personkrets.begrensning",
+    "label": "Personkrets – sikrede ved bygningsforsikring",
+    "value": "Bygningsforsikringen gjelder for forsikringstaker; ektefelle eller samboer med felles adresse i Folkeregisteret; barn som bor hjemme eller som bor borte på grunn av utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret; privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom; andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen; og barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse på grunn av delt foreldreansvar.",
+    "source_section": "Hus – Hvem gjelder forsikringen for (sikrede)? / Bygningsforsikring",
+    "source_page": 3,
+    "standard": {
+      "owner": "gjensidigeHusStandard",
+      "source_document_id": "gjensidigeHusStandard",
+      "source_page": 3,
+      "replacesBase": "absent"
+    },
+    "pluss": {
+      "owner": "gjensidigeHusPluss",
+      "source_document_id": "gjensidigeHusPluss",
+      "source_page": 3,
+      "replacesBase": true
+    },
+    "raw_facts_added": 2,
+    "effective_rows_per_product_and_configuration": 1,
+    "parent": "hus.ovrig",
+    "display": "Andre husvilkår / detail",
+    "fields_absent": [
+      "structuredValue",
+      "coverageAvailability",
+      "catalogSelectionConfirmed",
+      "deductibleClassification",
+      "selectionEvidenceKeys",
+      "qualificationSource"
+    ],
+    "meaning": "Source-bound general person/rights-holder scope for building insurance, expressed as a nonasserting condition. It does not verify a named customer/person, household, address, age, registration, ownership/security interest, selected coverage or right to payment. No scope extension of Helsehjelp, liability or legal assistance."
+  },
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "allowed_validation_files": [
+    "tests/remediation-b-130-person-scope.test.mjs",
+    "tests/helpers/b130-person-scope.mjs",
+    "Existing tests/helpers only exact independently approved two-fact snapshot/fingerprint/count adaptations; retain all cases and negatives"
+  ],
+  "allowed_documentation": [
+    "This new checkpoint and immutable antecedent review packet",
+    "docs/development-agent/current-project-status.md"
+  ],
+  "gates": [
+    "Own-source forward and reverse audit",
+    "Targeted relevant suites on final candidate",
+    "Complete actual test manifest/fullsuite without skips",
+    "Typegen then TypeScript",
+    "ESLint zero errors and unchanged warning inventory",
+    "Webpack production build",
+    "Local synthetic HTTP/PDF runtime",
+    "Candidate identity, complete log hashes, integrity, links and git diff --check"
+  ],
+  "independent_semantic_scopes": 1,
+  "budget": "One original source/mapping scope. Proven mechanical fixes autonomously logged, no numeric stop quota; historical quotas frozen.",
+  "commit_push": false,
+  "deploy": false,
+  "install": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE"
+}

@@ -1,0 +1,268 @@
+{
+  "signature": "d58bff0e6b2d46eb",
+  "review_id": "CR-228",
+  "original_registry": {
+    "signature_id": "d58bff0e6b2d46eb",
+    "representative_finding_id": "GAP-2081",
+    "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+    "root_cause_id": "[\"RC-027\"]",
+    "final_batch_id": "B-130",
+    "disposition": "CANONICAL_REVIEW_FIRST",
+    "pilot_priority": "MUST_BEFORE_NITO",
+    "source_status": "CANONICAL_REVIEW_FIRST",
+    "P1_occurrences": "2",
+    "P2_occurrences": "0",
+    "finding_ids": "[\"GAP-2081\", \"GAP-2135\"]",
+    "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+    "source_fact_ids": "[\"SF-2982\", \"SF-3066\"]",
+    "proposed_existing_keys": "[]",
+    "semantic_concept": "Personkrets",
+    "semantic_dimension": "sikrede",
+    "notes": "Ta beslutning per oppført konsept/dimensjon i canonical-review-queue. Prøv eksisterende eksakt nøkkel eller tydelig provider-detalj først. Ny nøkkel bare etter dokumentert tap/falsk ekvivalens ved gjenbruk. Deretter implementeres bare godkjent scoped forfatteroperasjon. Ingen generell schema-ombygging er bevist nødvendig.",
+    "covered_by_signature": "",
+    "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+    "remediation_authorized": "False"
+  },
+  "original_bindings": [
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 3",
+      "semantic_subject": "Personkrets",
+      "semantic_dimension": "sikrede",
+      "structured_value": "Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 68,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-2982",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusStandard",
+            "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Standard",
+            "termsNumber": "Hus Standard",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+            "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2081",
+      "source_first_inventory_id": "GJ-HU-001",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "398048ad3db77f352a7f",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    },
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus-pluss",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 3",
+      "semantic_subject": "Personkrets",
+      "semantic_dimension": "sikrede",
+      "structured_value": "Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 65,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-3066",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus-pluss",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Pluss",
+            "termsNumber": "Hus Pluss",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus Pluss",
+              "Råte og skadeinsekter"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringstaker/husstand/barn etter folkeregisterregler, tinglyste medeier/pante-/sikkerhetsrettshavere.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2135",
+      "source_first_inventory_id": "GJ-HU-001",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "53b34c116b5a7eb6b66c",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    }
+  ],
+  "providerId": "gjensidige",
+  "insuranceType": "bolig",
+  "agreementScope": "ordinary",
+  "version": "Alminnelige vilkår",
+  "productIds": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "key": "hus.personkrets.begrensning",
+  "label": "Personkrets – sikrede ved bygningsforsikring",
+  "value": "Bygningsforsikringen gjelder for forsikringstaker; ektefelle eller samboer med felles adresse i Folkeregisteret; barn som bor hjemme eller som bor borte på grunn av utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret; privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom; andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen; og barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse på grunn av delt foreldreansvar.",
+  "source_section": "Hus – Hvem gjelder forsikringen for (sikrede)? / Bygningsforsikring",
+  "source_page": 3,
+  "standard": {
+    "owner": "gjensidigeHusStandard",
+    "source_document_id": "gjensidigeHusStandard",
+    "source_page": 3,
+    "replacesBase": "absent"
+  },
+  "pluss": {
+    "owner": "gjensidigeHusPluss",
+    "source_document_id": "gjensidigeHusPluss",
+    "source_page": 3,
+    "replacesBase": true
+  },
+  "raw_facts_added": 2,
+  "effective_rows_per_product_and_configuration": 1,
+  "parent": "hus.ovrig",
+  "display": "Andre husvilkår / detail",
+  "fields_absent": [
+    "structuredValue",
+    "coverageAvailability",
+    "catalogSelectionConfirmed",
+    "deductibleClassification",
+    "selectionEvidenceKeys",
+    "qualificationSource"
+  ],
+  "meaning": "Source-bound general person/rights-holder scope for building insurance, expressed as a nonasserting condition. It does not verify a named customer/person, household, address, age, registration, ownership/security interest, selected coverage or right to payment. No scope extension of Helsehjelp, liability or legal assistance.",
+  "section": "Hus – Hvem gjelder forsikringen for (sikrede)? / Bygningsforsikring",
+  "page": 3,
+  "clauses": [
+    {
+      "id": "C1",
+      "source_group": "Forsikringstaker"
+    },
+    {
+      "id": "C2",
+      "source_group": "Ektefelle eller samboer med felles adresse i Folkeregisteret",
+      "boundary": "The common-address requirement is kept attached to this group, not imposed on registered rights holders."
+    },
+    {
+      "id": "C3",
+      "source_group": "Barn som bor hjemme eller som bor borte pga utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret",
+      "boundary": "Retain the source conjunction and no-address-change condition verbatim in meaning; no invented age cap, foster-child extension or automatic membership evaluation."
+    },
+    {
+      "id": "C4",
+      "source_group": "Privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom",
+      "boundary": "Both private-person co-ownership and registered ownership in insured property retained."
+    },
+    {
+      "id": "C5",
+      "source_group": "Andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen",
+      "boundary": "Keep as separate source group from private co-owner; no restriction to household/natural person invented, no removal of registered rights."
+    },
+    {
+      "id": "C6",
+      "source_group": "Barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse pga. delt foreldreansvar",
+      "boundary": "Fixed-household membership AND other registered address due to shared parental responsibility; distinct from C3 no-address-change condition."
+    }
+  ],
+  "original_six_group_blocks": {
+    "Standard": "- Forsikringstaker - Ektefelle eller samboer med felles adresse i Folkeregisteret - Barn som bor hjemme eller som bor borte pga utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret - Privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom - Andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen - Barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse pga. delt foreldreansvar",
+    "Pluss": "- Forsikringstaker - Ektefelle eller samboer med felles adresse i Folkeregisteret - Barn som bor hjemme eller som bor borte pga utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret - Privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom - Andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen - Barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse pga. delt foreldreansvar"
+  },
+  "scope": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ]
+  }
+}

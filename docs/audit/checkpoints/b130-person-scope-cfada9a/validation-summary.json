@@ -1,0 +1,194 @@
+{
+  "status": "PASS",
+  "base_revision": "cfada9a3c73de450f53b784ec2b60b41c434a10a",
+  "tested_candidate_identity_sha256": "6e24b557f60ee6b5fbe76d5b2059e68ac09fd2f62337cf82e4d9a0f2fb982e42",
+  "source_contract_sha256": "a48bbd64badb6f8470fff052550dd920eb1cc4b6285e03bd716a95aa2689faac",
+  "final_gate_labels": [
+    "fullsuite-final",
+    "targeted-final",
+    "typegen-final",
+    "typescript-final",
+    "eslint-final",
+    "production-build-final",
+    "diff-check-final",
+    "http-pdf-runtime-final-local"
+  ],
+  "all_final_gates_share_exact_application_identity": true,
+  "new_contract_tests": 79,
+  "fullsuite": {
+    "tests": 6225,
+    "pass": 6225,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "test_manifest_files": 169,
+  "targeted": {
+    "tests": 2533,
+    "pass": 2533,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "exact_previous_inventory": "UNCHANGED",
+    "evidence": "eslint-warning-inventory.json"
+  },
+  "webpack_production_build": "PASS",
+  "local_synthetic_HTTP_PDF": {
+    "result": "PASS",
+    "checks": [
+      "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
+      "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+      "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
+      "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
+      "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",
+      "2+2 PDF price portfolio: kr. versus kr, reversed objects, complete independent components, explicit totals, two extraction calls only",
+      "Supporting terms: 8 extracted records -> 4 customer objects, 4 documents, exact pairs, complete portfolio, document priority, evidence retained, safe progress",
+      "Customer price trace: extraction presence versus supporting placement versus absence, actual role/attachment decisions, linked client receipts, unchanged two-call extraction",
+      "Bil + snowmobile + caravan + trailer through HTTP, exact If catalogs, provenance and friendly progress",
+      "PDF details with empty addOns through HTTP, enrichment, sanitizer and comparison",
+      "unauthorized",
+      "manual/catalog",
+      "synthetic PDF to mocked AI to response",
+      "two-side concurrency",
+      "N documents to M products",
+      "capacity limit",
+      "invalid PDF before AI",
+      "strict form fields",
+      "429/no retries/sibling abort",
+      "admission released",
+      "private logging",
+      "semantic fallback telemetry/no unnecessary AI"
+    ],
+    "syntheticMetrics": {
+      "event": "analysis.metrics",
+      "requestId": "b3f74efc-06aa-44be-9de9-0e5016d8b758",
+      "status": 200,
+      "totalMs": 584.262875,
+      "timings": {
+        "uploadValidation": 0.8105830000000083,
+        "pdfWorker": 401.99058300000013,
+        "pdfParsing": 58.83141599999999,
+        "textExtraction": 14.911707999999976,
+        "inputPreparation": 0.7174590000000762,
+        "aiExtraction": 337.862084,
+        "structuredOutput": 0.4275829999999132,
+        "catalogLookup": 0.0104159999998501,
+        "documentNormalization": 4.004207999999949,
+        "catalogEnrichment": 5.271459999999934,
+        "semanticMatching": 0.34658300000000963,
+        "response": 0.14483300000006238
+      },
+      "semanticMatcher": {
+        "audit": {
+          "candidates": [],
+          "decisions": [],
+          "omitted": 0,
+          "outcome": "NO_DECISION"
+        },
+        "invoked": false,
+        "deterministicMatches": 4,
+        "unresolvedCandidates": 0,
+        "semanticCandidatesSent": 0,
+        "semanticMatchesAccepted": 0,
+        "durationMs": 0.33445799999992687,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "existingDocumentCount": 1,
+      "offerDocumentCount": 1,
+      "successfulDocuments": 2,
+      "failedDocuments": 0,
+      "identifiedProducts": 8,
+      "partialSuccess": false,
+      "progressTransport": "json",
+      "batchCount": 2,
+      "batches": [
+        {
+          "documentsPerBatch": 1,
+          "pagesPerBatch": 1,
+          "estimatedInputSize": 16118
+        },
+        {
+          "documentsPerBatch": 1,
+          "pagesPerBatch": 1,
+          "estimatedInputSize": 16118
+        }
+      ],
+      "extractionCalls": 2,
+      "maxConcurrentExtractions": 2,
+      "totalPages": 2,
+      "totalBytes": 1780,
+      "tokenTotals": {
+        "inputTokens": 246,
+        "outputTokens": 90,
+        "totalTokens": 336,
+        "cachedInputTokens": 24
+      },
+      "uploadBytes": 1780,
+      "documentCount": 2,
+      "parsedDocumentCount": 2,
+      "products": 8,
+      "documents": [
+        {
+          "index": 0,
+          "bytes": 614,
+          "pages": 1,
+          "characters": 56,
+          "durationMs": 305.247333
+        },
+        {
+          "index": 1,
+          "bytes": 614,
+          "pages": 1,
+          "characters": 56,
+          "durationMs": 96.75824999999998
+        }
+      ],
+      "calls": [
+        {
+          "kind": "extraction",
+          "model": "gpt-5.6-luna",
+          "durationMs": 166.18287499999997,
+          "success": true,
+          "usage": {
+            "inputTokens": 123,
+            "outputTokens": 45,
+            "totalTokens": 168,
+            "cachedInputTokens": 12
+          }
+        },
+        {
+          "kind": "extraction",
+          "model": "gpt-5.6-luna",
+          "durationMs": 171.68670800000007,
+          "success": true,
+          "usage": {
+            "inputTokens": 123,
+            "outputTokens": 45,
+            "totalTokens": 168,
+            "cachedInputTokens": 12
+          }
+        }
+      ]
+    },
+    "mcBobilSyntheticDurationMs": 1009
+  },
+  "source_forward_reverse": "source-and-reverse-audit.json",
+  "baseline_controls": {
+    "manual_inputs": 214,
+    "document_pipeline_outputs": 144,
+    "addon_configurations": 12
+  },
+  "initial_scoped_gate": "person-scope-v1 PASS77/77 before adding two further late-document side controls; final79/79 on fullsuite/targeted final identity",
+  "diagnostics": "No failed gates. Runtime executed with authorized local access because sandbox local port restriction is already established.",
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "commit_push_deploy_install": "Commit/push explicitly authorized in publication-authorization.md; install/deploy not performed",
+  "publication_authorization": "publication-authorization.md",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN"
+}

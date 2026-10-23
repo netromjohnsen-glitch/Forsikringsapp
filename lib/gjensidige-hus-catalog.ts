@@ -205,6 +205,10 @@ pluss.find((fact) => fact.key === "hus.underforsikring.begrensning")!.qualificat
   { ...pluss.find((fact) => fact.key === "hus.underforsikring.begrensning")!.source, page: 2,
     section: "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder" };
 
+// General person/registered-rights scope; no customer eligibility is inferred.
+standard.push(...facts("gjensidigeHusStandard", [["personkrets.begrensning", "Personkrets – sikrede ved bygningsforsikring", "Bygningsforsikringen gjelder for forsikringstaker; ektefelle eller samboer med felles adresse i Folkeregisteret; barn som bor hjemme eller som bor borte på grunn av utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret; privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom; andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen; og barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse på grunn av delt foreldreansvar.", "Hus – Hvem gjelder forsikringen for (sikrede)? / Bygningsforsikring", 3]]));
+pluss.push(...facts("gjensidigeHusPluss", [["personkrets.begrensning", "Personkrets – sikrede ved bygningsforsikring", "Bygningsforsikringen gjelder for forsikringstaker; ektefelle eller samboer med felles adresse i Folkeregisteret; barn som bor hjemme eller som bor borte på grunn av utdanning/førstegangstjeneste, og ikke har meldt adresseendring til Folkeregisteret; privatperson som er medeier med tinglyst eiendomsrett i forsikret eiendom; andre som har tinglyst eiendomsrett, panterett eller annen tinglyst sikkerhetsrett i eiendommen; og barn som er en del av den faste husstanden, men er folkeregistrert på annen adresse på grunn av delt foreldreansvar.", "Hus – Hvem gjelder forsikringen for (sikrede)? / Bygningsforsikring", 3, undefined, true]]));
+
 export const gjensidigeHusFacts: Record<string, CatalogFact[]> = {
   gjensidigeHusStandard: standard,
   gjensidigeHusPluss: pluss,

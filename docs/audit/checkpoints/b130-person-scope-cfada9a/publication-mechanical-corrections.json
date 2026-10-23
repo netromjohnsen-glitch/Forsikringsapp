@@ -1,0 +1,40 @@
+{
+  "active_policy": "../../../development-agent/workflow.md#aktiv-fullmakt-autonom-gjennomføring",
+  "historical_quotas_and_implementation_roots": "UNCHANGED",
+  "independent_root_count": 1,
+  "roots": [
+    {
+      "id": "PUB-P1",
+      "type": "Publication metadata adaptation retained an older short base label/count in prose",
+      "independent_evidence": [
+        "candidate-identity.json and all final gates pin cfada9a with unchanged code/test hashes",
+        "published predecessor checkpoint and current receipt prove66 published at base/67 after publication",
+        "main-verification.json and fresh publication-preflight prove actual remote base cfada9a"
+      ],
+      "before_after": [
+        {
+          "file": "publication-authorization.md",
+          "before_sha256": "c79099bd7c1c9bc5c19348450879ca465cf058c4adb382107daf881c087a2471",
+          "after_sha256": "74172d5d544badbed53416b198446a4e8065bf5bfacdfd30a8f241cebe4f9a2f"
+        },
+        {
+          "file": "completion-receipt-d58bff0e6b2d46eb.json",
+          "before_sha256": "d7d639d21d7c14d6e3f80c8c10c3d972d1915b8adbbdb67f924c0d1eb8dca5d1",
+          "after_sha256": "17c4299f3daa2229cbe81e8e4cd7889b0d12989da941efdc3df8a6281c03ccb7"
+        },
+        {
+          "file": "checkpoint.json",
+          "before_sha256": "141026b4f8f48c58dacdab6a11c2ad7f21dcacd9c3966db75469c657332378a2",
+          "after_sha256": "94afe0c296ccad4b50f5415f449825e2465f88f99bf483d0ef228af3f3430a51"
+        },
+        {
+          "file": "README.md",
+          "before_sha256": "a3c81d0de47f734b2572f84fed4bcc3d1ee7c97b1b58995bdbc15618042950ba",
+          "after_sha256": "0767d359f13faf02a794e93cd68850aa6cc935c4e79ff96cd07b934369e3ddee"
+        }
+      ],
+      "change": "Correct only newly authored publication prose to actual base cfada9a and count66. Clarify new README title. Actual tested-base and candidate identity fields were already correct.",
+      "preserved_contract": "No application/test/source, meaning, scope, selection, priority, provenance, HOLD, prior audit or test result changed. No app revalidation needed for publication prose only."
+    }
+  ]
+}

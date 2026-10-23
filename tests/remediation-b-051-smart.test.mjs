@@ -80,7 +80,7 @@ check(()=>{for(const meta of ['products','addOns','sources','insuranceTypes'])as
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const fingerprints=ids.flatMap(id=>(id===ids[0]?[[],['gjensidige-hus-rate-insekter'],[addon]]:[[],[addon]]).map(addons=>{const fs=c=>resolveCatalogFacts(get(c,id),addons,date,null,c).filter(f=>!f.key.startsWith('hus.skadedyr.')&&f.key!=='hus.rate.dekning');return {id,addons,before:hash(fs(baseline)),after:hash(fs(candidate))};}));
 
-check(()=>{assert.equal(protectedRaw,4165);assert.equal(components,317);assert.equal(otherProducts,202);assert.equal(baseline.products.length,204);});
+check(()=>{assert.equal(protectedRaw,4167);assert.equal(components,317);assert.equal(otherProducts,202);assert.equal(baseline.products.length,204);});
 check(()=>{for(const f of fingerprints.filter(f=>!f.addons.includes(addon)))assert.equal(f.before,f.after);});
 const verification=JSON.parse(readFileSync(new URL('source-verification.json',audit)));
 for(const source of verification.frozen_sources)check(()=>assert.equal(createHash('sha256').update(readFileSync(new URL('../'+source.path,import.meta.url))).digest('hex'),source.sha256));

@@ -1,5 +1,64 @@
 # Aktuell dokumentert prosjektstatus
 
+## Personkrets og sikrede – validert B-130-bolk 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`cfada9a3c73de450f53b784ec2b60b41c434a10a`. Underforsikringsrettelsen, receipt
+og prosjektstatus er publisert på denne revisjonen. Personkretsbolken er implementert
+og validert på samme basis. Publiseringsrevisjonen er committen som inneholder
+rettelsen, receipt og denne prosjektstatusen. Publisert status gjelder etter
+bekreftelse på remote main. Commit/push er eksplisitt autorisert.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b130-person-scope-cfada9a/publication-authorization.md).
+Ingen installasjon eller deploy.
+
+B-130 / CR-228 / `d58bff0e6b2d46eb` er avgrenset implementert for begge originalbindinger:
+Hus Standard GAP-2081/SF-2982 og Hus Pluss GAP-2135/SF-3066, ordinary /
+Alminnelige vilkår. `hus.personkrets.begrensning` bevarer alle seks grupper:
+forsikringstaker; ektefelle/samboer med felles folkeregistrert adresse; barn hjemme
+eller borte pga. utdanning/førstegangstjeneste uten meldt adresseendring;
+privatperson som er medeier med tinglyst eiendomsrett; andre med tinglyst
+eiendomsrett, panterett eller annen tinglyst sikkerhetsrett; og barn i fast husstand
+med annen folkeregistrert adresse pga. delt foreldreansvar. Hver gruppes vilkår
+beholdes særskilt. Ingen generell «hele husstanden», aldersgrense eller universell
+fellesadresse innføres. Begge nivåer har egen original-PDF-side 3. Pluss erstatter
+bare samme nøkkel; komplett baseevidens beholdes.
+
+Regelen vises som betinget vilkårsdetalj og fastslår ikke hvem som faktisk er sikret.
+Ingen person-/kundeobjekter, medlemskap, alder, adresse, tinglyste rettigheter,
+tilleggsvalg eller erstatningsrett utledes. Helsehjelp, ansvar og Rettshjelp beholder
+sine egne avgrensninger. Sikkerhetsforskriftenes ektefellekontekst, bygningsopptak,
+fullverdi/underforsikring, fraflytting og øvrige regler er uendret. Kundens konkrete
+dokumentregel med komplette kilder har forrang også sent, ved gjentatt beriking
+og JSON. Generelle vilkår forblir evidens/katalog. Smart/Utleie/råte, B-020, priser,
+summer og generell egenandel beholdes. Ingen schema-, alias-, global normalizer-,
+engine- eller presentasjonsendring.
+
+[Receipt](../audit/checkpoints/b130-person-scope-cfada9a/completion-receipt-d58bff0e6b2d46eb.json),
+[validering](../audit/checkpoints/b130-person-scope-cfada9a/validation-summary.json),
+[checkpoint](../audit/checkpoints/b130-person-scope-cfada9a/checkpoint.json) og
+[bevispakke](../audit/checkpoints/b130-person-scope-cfada9a/README.md).
+79 nye kontrakttester; 2533/2533 målrettede og 6225/6225 tester i 169 filer består,
+uten skip. Typegen/TypeScript, webpack-bygg og lokal syntetisk HTTP/PDF-runtime
+22/22 PASS. ESLint 0 feil og de samme 27 warnings. Åtte sluttgater deler samme
+kode-/testidentitet. 214 manuelle input, 144 dokumentforløp og alle 12 gyldige
+tilleggskombinasjoner bevarer tidligere felt; bare to nye rå katalogfakta er lagt
+til. Kildeoriginaler, historiske bevis og forutgående avklaring er uendret.
+
+Denne bolken fullfører bare denne ene originalsignaturen med begge bindinger.
+Basis-main har **66** publiserte kampanjesignaturer; **67** inklusive denne signaturen
+gjelder etter bekreftelse av den inneholdende committen på remote main. De fire navngitte B-130-reviewene er
+dermed avklart/implementert, men dette gir ingen samlet katalog-/pilotklarering.
+Samlet revalidering av ordinært Hus-katalogfundament gjenstår. B-051 37/0/1/1,
+P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes.
+
+Alle HOLD beholdes, inkludert HTU `157c7afed18eb0fe` / SC-019/SR-033,
+`8a89196fecd29ddb`, fysisk insektegenandel SC-020/SR-032 og øvrige beskyttede holds.
+Sikkerhet/GDPR/P3-A05 med uavklart identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept beholdes synlige. NITO og Sentralbord
+venter. Ingen ny arbeidsstrøm er startet.
+
+
 ## Fullverdi og underforsikring – validert B-130-bolk 23. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

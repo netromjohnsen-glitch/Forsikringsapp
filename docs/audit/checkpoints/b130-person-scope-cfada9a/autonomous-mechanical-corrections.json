@@ -1,0 +1,60 @@
+{
+  "active_policy": "docs/development-agent/workflow.md#aktiv-fullmakt-autonom-gjennomf\u00f8ring",
+  "historical_quotas": "FROZEN_UNCHANGED",
+  "independent_root_count": 1,
+  "roots": [
+    {
+      "id": "MECH-P1",
+      "type": "Exact independently authorized two-row catalog delta in immutable historical snapshots",
+      "independent_evidence": [
+        "source-oracle.json frozen before production change with both original source hashes/page3 and six groups",
+        "baseline.v8.gz captured on freshcfada9a before production edit",
+        "Immutable read-only decision/evidence validates existing source/role/inheritance representation"
+      ],
+      "preserved_contract": "Only independently specified new facts are added/projected and raw-row counts increase by2. Every old insurance meaning/value/source field, selection/document priority, case and negative control remains under strict assertions.",
+      "before_after": [
+        {
+          "file": "tests/helpers/b130-underinsurance.mjs",
+          "before_sha256": "b6c14a838ecd05524deed40769ce4496f012cbc190962a87f02eb10c76f90f79",
+          "after_sha256": "08894bc63ad6d208547aa69726f0c122e0153b79f5755c9925aeed760f7e4a1f",
+          "change": "Existing expected-catalog transform adds only the person-scope source-oracle pair; historical snapshot projection validates/removes only that pair before existing underinsurance checks."
+        },
+        {
+          "file": "tests/remediation-b-051-legal.test.mjs",
+          "before_sha256": "bac2292387f59dcad03025508dcca34035ee86f34390d255c5cd91df9605bd11",
+          "after_sha256": "994dfac6492cf1f39c5de0fb49e020a147e4a1949a2b82ef98297ac7895f9e00",
+          "change": "raw,4164 -> raw,4166",
+          "proof": "Exactly two new source-approved raw facts. Full catalog delta/old-row isolation tested independently; every old assertion/case retained."
+        },
+        {
+          "file": "tests/remediation-b-051-health-help.test.mjs",
+          "before_sha256": "f8e7568ac3ddb52c41478e65c69a20888f2399c003e40f621d8ec475f8305ebd",
+          "after_sha256": "d945dd65513d98dfbfdc9ac3189113558ad9b3b6cec4747f6f042b30871dcfb6",
+          "change": "protectedRaw,4166 -> protectedRaw,4168",
+          "proof": "Exactly two new source-approved raw facts. Full catalog delta/old-row isolation tested independently; every old assertion/case retained."
+        },
+        {
+          "file": "tests/remediation-b-051-liability.test.mjs",
+          "before_sha256": "a183092a62310dd86f8e967b82f676611ee2e4bcf6df5aa6529d30e4a8b1b35b",
+          "after_sha256": "e6674a812dfa2e065e328dacb6587deb1ba49aaa4523830a587e2849113bb187",
+          "change": "protectedRaw,4166 -> protectedRaw,4168",
+          "proof": "Exactly two new source-approved raw facts. Full catalog delta/old-row isolation tested independently; every old assertion/case retained."
+        },
+        {
+          "file": "tests/remediation-b-051-rot-status.test.mjs",
+          "before_sha256": "d896ad1cfb9a4c72bce7f3a929f70acf8aadb0e5bfc5ac4532b950149dc2ed73",
+          "after_sha256": "6f3f5bb5916c35d3d5c7c6a18418bebd1e4aa2ebf71ac6ecb3d45712ba7972fb",
+          "change": "protectedFacts, 4166 -> protectedFacts, 4168",
+          "proof": "Exactly two new source-approved raw facts. Full catalog delta/old-row isolation tested independently; every old assertion/case retained."
+        },
+        {
+          "file": "tests/remediation-b-051-smart.test.mjs",
+          "before_sha256": "3f2b49b8381bbfdcbcf89e1627cf1657c7fa6025786344e17f32fc2142b1d047",
+          "after_sha256": "a0516445f4fde784a54147b500c4160d06ed0681f796c5a90496a4bb72581a4f",
+          "change": "protectedRaw,4165 -> protectedRaw,4167",
+          "proof": "Exactly two new source-approved raw facts. Full catalog delta/old-row isolation tested independently; every old assertion/case retained."
+        }
+      ]
+    }
+  ]
+}
