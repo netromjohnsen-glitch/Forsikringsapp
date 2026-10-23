@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "base_revision": "a563c50324f62cbdcd57c162fd0d02632def982b",
+  "application_identity_sha256": "d401c6cc2442f3bc5f8fa051092268e0ea90489f0d90c6099e085065c7a751c5",
+  "production_delta": {
+    "file": "lib/gjensidige-hus-catalog.ts",
+    "byte_offsets": [
+      6757,
+      6892
+    ],
+    "before": [
+      "2",
+      "2"
+    ],
+    "after": [
+      "3",
+      "3"
+    ],
+    "all_other_production_bytes_unchanged": true,
+    "base_revision": "a563c50324f62cbdcd57c162fd0d02632def982b"
+  },
+  "before_source_oracle": "source-oracle.json",
+  "keys": [
+    "hus.bygninger.tilbehor",
+    "hus.teknisk.solceller"
+  ],
+  "both_products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "shared_raw_source": "gjensidigeHusStandard",
+  "raw_rows_changed": 2,
+  "source_page_before": 2,
+  "source_page_after": 3,
+  "inheritance": "Same Standard raw rows inherited by Pluss; no Pluss-own row added",
+  "meaning_wording_values_keys_labels_source_owner_section_version_selection_coverage_mapping_document_priority": "UNCHANGED",
+  "prior_fixed_key_hus_bygninger_dekning": "UNCHANGED_PAGE3",
+  "historical_source_fact_context": [
+    "SF-3063",
+    "SF-3150"
+  ],
+  "entire_historical_source_page_findings_closed": false,
+  "source_originals": "Hashes unchanged; original page3 source content and old full-state baseline independently verified by expanded existing tests",
+  "source_and_runtime_proof": "runtime-source-proof.json.gz",
+  "new_signature_credit": 0,
+  "P2_credit": 0,
+  "historical_audits": "UNCHANGED"
+}

@@ -1,0 +1,225 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_FOUNDATION_REVALIDATION_WITH_ONE_PRECISE_REMAINDER",
+  "status": "COMPLETED_WITH_PRECISE_REMAINDER",
+  "decision": "Ordinært Hus-katalogfundament kan ikke bekreftes samlet ferdig. Én avgrenset restmangel i felles objektblokk: hus.bygninger.tilbehor og hus.teknisk.solceller peker fortsatt til Standard PDF2, mens kildepunktene står på PDF3. Begge radene arves av Hus Pluss.",
+  "authorization": "Gjør samlet revalidering av ordinært katalogfundament for Hus Standard og Hus Pluss på fersk main. Lever én receipt med bekreftet grunnlag eller én presis restmangel. Ingen kodeendringer/deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-23T12:12:55.885222+00:00",
+  "fresh_main_before": "a563c50324f62cbdcd57c162fd0d02632def982b",
+  "fresh_main_after": "a563c50324f62cbdcd57c162fd0d02632def982b",
+  "fresh_main_method": "Connected GitHub branch API at start/end; exact SHA equals HEAD/origin main. Local tracked bytes unchanged.",
+  "scope": {
+    "provider": "gjensidige",
+    "type": "Hus/bolig",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "original_signatures": 46,
+    "original_GAP_SF_links": 83,
+    "historical_source_facts": {
+      "total": 170,
+      "P1": 83,
+      "P2": 30,
+      "priority_blank": 57
+    },
+    "registered_sources_verified": 6,
+    "configurations": {
+      "Standard": 8,
+      "Pluss": 4
+    }
+  },
+  "confirmed_ground": {
+    "B051_original_receipts_on_main": 37,
+    "B051_original_binding_links": 67,
+    "B130_original_completion_receipts_on_main": [
+      {
+        "signature": "597df4c45c6d3db9",
+        "receipt": "docs/audit/checkpoints/b130-vacancy-f5f88cc/completion-receipt-597df4c45c6d3db9.json",
+        "sha256": "5e93e9ee3ac6897a87dad06e965b1eda7f1de50ad2ce89c0b0647c542d7f67ea"
+      },
+      {
+        "signature": "ce90710821e28a97",
+        "receipt": "docs/audit/checkpoints/b130-frost-8422e39/completion-receipt-ce90710821e28a97.json",
+        "sha256": "e0f4d260e31c51d82c0d86047ce3715342087110b1066ae7f4147aa06ba0b655"
+      },
+      {
+        "signature": "15f5b4a3e9f79fd2",
+        "receipt": "docs/audit/checkpoints/b130-underinsurance-0e4c09d/completion-receipt-15f5b4a3e9f79fd2.json",
+        "sha256": "e4836918eb478a6067705998acee82e56fbec465ceae8f2a94d194b54924d280"
+      },
+      {
+        "signature": "d58bff0e6b2d46eb",
+        "receipt": "docs/audit/checkpoints/b130-person-scope-cfada9a/completion-receipt-d58bff0e6b2d46eb.json",
+        "sha256": "17c4299f3daa2229cbe81e8e4cd7889b0d12989da941efdc3df8a6281c03ccb7"
+      }
+    ],
+    "B130_original_bindings": 8,
+    "B130_sealed_files_verified_on_main": 150,
+    "published_source_correction": "hus.bygninger.dekning actual page3 in both products/all12 choices; containing commit a563c50 and both publication packets verified; not reopened",
+    "latest_application_identity_sha256": "11015a0160952cb69bbabfa07793970bdcfd03c4d8229a2e7d74063d1f6b8963",
+    "application_files_verified_on_main": 8,
+    "publication_proof": "git show at exact current main SHA and hash equality, not inferred from previous PASS",
+    "existing_tests": {
+      "files": 41,
+      "tests": 2552,
+      "pass": 2552,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 25.94,
+      "log": "targeted-main.log.gz"
+    },
+    "runtime": "Current resolver/evidence/materialization/manual/threeJSON-reenrichments/display captured for all12 choices. Scope negatives reject wrong provider/type/scope/version. Existing suite covers214 manual inputs,144 synthetic document controls,52 catalog comparisons and document priority."
+  },
+  "precise_remainder": {
+    "id": "HOUSE_SHARED_OBJECT_TABLE_REMAINING_SOURCE_PAGES",
+    "classification": "One bounded source-page defect in the shared insured-object block, two explicit raw rows",
+    "keys": [
+      "hus.bygninger.tilbehor",
+      "hus.teknisk.solceller"
+    ],
+    "affected_products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "raw_owner": "gjensidigeHusStandard",
+    "current_primary_page": 2,
+    "expected_primary_page": 3,
+    "current_section": "Hus – Hva forsikringen omfatter",
+    "raw_locations": [
+      "lib/gjensidige-hus-catalog.ts:42",
+      "lib/gjensidige-hus-catalog.ts:43"
+    ],
+    "facts": [
+      {
+        "key": "hus.bygninger.tilbehor",
+        "label": "Fast inventar og installasjoner",
+        "value": "Fastmontert utstyr og tilbehør som er vanlig for bygningens formål inngår.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Hus – Hva forsikringen omfatter",
+          "page": 2,
+          "version": "Alminnelige vilkår"
+        }
+      },
+      {
+        "key": "hus.teknisk.solceller",
+        "label": "Solcelleanlegg",
+        "value": "Solcelleanlegg til privat strømforbruk inngår.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Hus – Hva forsikringen omfatter",
+          "page": 2,
+          "version": "Alminnelige vilkår"
+        }
+      }
+    ],
+    "source_basis": "Standard PDF2 is responsibility limitations, with neither fixed equipment nor solar panels. Standard PDF3 object table contains building with fixed equipment and solar panels for private consumption. Pluss PDF3 corroborates the same object points. Do not treat this source-page finding as a fresh approval of every word in existing catalog wording.",
+    "inheritance": "Both rows are shared Standard facts inherited by Pluss; one bounded metadata source-page root, no Pluss-own replacement row needed.",
+    "runtime_impact": "Wrong primary page preserved in both levels, all12 addon combinations, manual registration, threeJSON reenrichments, materialization and both comparison display sides.",
+    "why_blocking": "Evidence links lead to a page without the cited insured-object points, so combined catalog source/provenance confirmation remains withheld despite existing tests PASS.",
+    "historical_source_inventory_context": [
+      "SF-3063",
+      "SF-3150"
+    ],
+    "no_reopening_of_fixed_key": "hus.bygninger.dekning is independently verified page3 on current main and remains corrected.",
+    "one_sufficient_remainder_not_exhaustive_global_gap_count": true,
+    "precise_proposed_next_scope": "Source-page-only correction of exactly these two shared raw rows from2 to3 in one packet. Preserve values, labels, keys, source owner/section/version, inheritance, selection, coverage and all other facts/HOLD; verify both levels/all12 choices and strict before-delta equality. No broad source cleanup or insurance-meaning change.",
+    "implemented": false
+  },
+  "source_evidence": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 2,
+      "visual_review": "Complete page rendered and inspected in this turn; headings, table columns and whole relevant object cells checked against raw/layout text."
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 3,
+      "visual_review": "Complete page rendered and inspected in this turn; headings, table columns and whole relevant object cells checked against raw/layout text."
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 3,
+      "visual_review": "Complete page rendered and inspected in this turn; headings, table columns and whole relevant object cells checked against raw/layout text."
+    }
+  ],
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "This bounded shared-object source-page remainder prevents combined catalog confirmation; remaining source/P2 inventory not cleared",
+    "HTU and every protected HOLD unchanged",
+    "8a89196fecd29ddb and physical insect damage deductible HOLD unchanged",
+    "Security/GDPR and P3-A05 identity/merge status not established here",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "integrity": {
+    "tracked_files_unchanged": 7875,
+    "all_existing_tracked_bytes_unchanged": true,
+    "tracked_set_unchanged": true,
+    "HEAD": "a563c50324f62cbdcd57c162fd0d02632def982b",
+    "origin_main": "a563c50324f62cbdcd57c162fd0d02632def982b",
+    "branch": "fix/house-vacancy",
+    "initial_tree": "CLEAN",
+    "staged_files": 0,
+    "new_files": "Only this new read-only audit packet; no source, code, test, old receipt or project-status edit"
+  },
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "777d869c31604bb1a427e92cfca5780ab421db0fb9643be0cb185d67c92ca56d"
+  },
+  "test_log_sha256": "38eea242dea46dcc910ceaa0b2d259c1f579a26a775a0523fb679ba33e28daa0",
+  "limits": [
+    "New receipt/evidence/log only. No code, test, source, old audit or project-status change; no commit/push/install/deploy.",
+    "Targeted41-file suite rerun here; previous fullsuite6244 result belongs to identical published candidate and is not a fresh fullsuite run. No typegen/lint/build/server/HTTP/PDF-generation gates rerun. Source PDF extraction/rendering only.",
+    "One bounded root with two exact rows, not a claim that every remaining global/P2 issue is enumerated. No broader source remediation authorized.",
+    "No approval or change of insurance meaning/wording, no new signature/P2 credit, no pilot clearance."
+  ],
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_RECEIPT",
+  "new_workstreams_started": false
+}

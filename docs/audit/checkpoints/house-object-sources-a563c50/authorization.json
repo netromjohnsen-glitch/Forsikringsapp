@@ -1,0 +1,34 @@
+{
+  "user_authorization": "Rett kildehenvisningene for hus.bygninger.tilbehor og hus.teknisk.solceller fra side 2 til 3 på fersk main. Kontroller begge husnivåer og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "base_revision": "a563c50324f62cbdcd57c162fd0d02632def982b",
+  "production_scope": {
+    "file": "lib/gjensidige-hus-catalog.ts",
+    "keys": [
+      "hus.bygninger.tilbehor",
+      "hus.teknisk.solceller"
+    ],
+    "change": "Exactly two page2-to3 digits on shared Standard rows, inherited by Pluss. No other production byte change."
+  },
+  "allowed_support_files": [
+    "tests/helpers/house-buildings-source.mjs",
+    "tests/remediation-house-buildings-source.test.mjs",
+    "docs/development-agent/current-project-status.md",
+    "docs/audit/checkpoints/house-object-sources-a563c50/*"
+  ],
+  "source_decision": "../house-foundation-revalidation-a563c50/receipt-house-foundation.json",
+  "preserve": "All wording, values, keys, other source metadata, source originals, selection/coverage/mapping/priority/inheritance, other facts, old audits and all HOLD",
+  "mechanical_policy": "Extend existing guarded page projection and existing full-state tests to these exact two keys; immutable historical baselines retained. No new insurance contract.",
+  "independent_production_roots": 1,
+  "gates": [
+    "Fresh main and independent before/source evidence",
+    "Exact two-byte production delta",
+    "Both products/all12 addon configurations,214 manual controls,144 document controls,threeJSON reenrichments,display/materialization and52 bidirectional comparisons through existing expanded tests",
+    "41-file targeted suite and170-file full suite because shared test adapter changes",
+    "Scoped lint,links,hashes,protected status and diff"
+  ],
+  "commit_push": "NOT_AUTHORIZED_THIS_TURN",
+  "install": "NOT_AUTHORIZED",
+  "deploy": "NOT_AUTHORIZED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE"
+}

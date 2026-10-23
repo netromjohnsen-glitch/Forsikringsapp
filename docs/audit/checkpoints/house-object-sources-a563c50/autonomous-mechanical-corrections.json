@@ -1,0 +1,22 @@
+{
+  "policy": "docs/development-agent/workflow.md#aktiv-fullmakt-autonom-gjennomføring",
+  "historical_quotas": "UNCHANGED_FROZEN",
+  "roots": [
+    {
+      "id": "EXTEND_EXISTING_EXACT_OBJECT_PAGE_PROJECTION",
+      "before": "Existing immutable before snapshots contain page2 on the two newly authorized keys. Existing helper only knows prior hus.bygninger.dekning page correction.",
+      "independent_evidence": [
+        "Fresh-main tracked hashes in before-integrity.json.gz",
+        "Prior immutable full-state V8 baseline hash retained",
+        "Separate read-only PDF decision, current source hashes and source-oracle.json",
+        "Exact fresh-main production diff must be two digits and nothing else"
+      ],
+      "correction": "Extend existing guarded exact-key/Standard-source page2/3 projection to two approved keys. Expand existing actual-page3/full-state/original-source checks and keep all negative checks. No fixture or old audit rewrite.",
+      "files": [
+        "tests/helpers/house-buildings-source.mjs",
+        "tests/remediation-house-buildings-source.test.mjs"
+      ],
+      "insurance_values_selection_priority_scope": "UNCHANGED"
+    }
+  ]
+}

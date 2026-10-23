@@ -1,5 +1,54 @@
 # Aktuell dokumentert prosjektstatus
 
+## Fast inventar og solcelleanlegg – validerte kildehenvisninger 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`a563c50324f62cbdcd57c162fd0d02632def982b`. Den forutgående rettelsen av
+`hus.bygninger.dekning`, receipt og prosjektstatus er publisert på denne revisjonen.
+Bolken er validert på samme basis. Publiseringsrevisjonen er committen som
+inneholder rettelsene, receipt og denne prosjektstatusen. Publisert status gjelder
+etter kontroll på remote main. Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-object-sources-a563c50/publication-authorization.md).
+Ingen installasjon eller deploy.
+
+Bare `hus.bygninger.tilbehor` og `hus.teknisk.solceller` sin primære henvisning er
+rettet fra Standard PDF-side 2 til 3. Hus Pluss arver begge felles rader og samme
+kildeeier. Produksjonsdiffen er nøyaktig to tegn. Ordlyd, verdi, nøkkel, øvrig
+kildemetadata, arv, dekning, kundevalg, mapping og dokumentprioritet er uendret.
+Den tidligere rettede `hus.bygninger.dekning` beholdes på side 3.
+
+[Receipt](../audit/checkpoints/house-object-sources-a563c50/receipt-house-object-sources.json),
+[validering](../audit/checkpoints/house-object-sources-a563c50/validation-summary.json),
+[checkpoint](../audit/checkpoints/house-object-sources-a563c50/checkpoint.json) og
+[kilde-/reverse-audit](../audit/checkpoints/house-object-sources-a563c50/source-and-reverse-audit.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-a563c50/receipt-house-foundation.json)
+beholdes byte-identisk som før-bevis i samme publiseringsbolk. Dens avgrensede
+restmangel er rettet i den validerte kandidaten. Ingen historisk receipt, originalkilde eller testbaseline er skrevet om.
+
+2552/2552 målrettede tester i 41 filer og 6244/6244 tester i 170 filer består uten
+skip. De 19 eksisterende kildekontraktkontrollene er utvidet; ingen nye testfiler.
+Kvalitetskontroll av de tre berørte kode-/testfilene: 0 feil og 0 warnings.
+Alle 12 tilleggskombinasjoner og hele den forutgående runtime-snapshottens 20
+syntetiske dokumentrolleprober er sammenlignet med før-grunnlaget; bare godkjente
+sidetall avviker. Tidligere 214 manuelle input, 144 dokumentkontroller og 52
+sammenligninger i begge retninger består. Historisk testhjelper projiserer bare
+navngitte, kildebekreftede sidetallsbytter; faktiske nåverdier må være side 3.
+
+Dette lukker bare de to navngitte sidetallsfeilene når inneholdende commit er
+bekreftet på remote main. Samlet
+katalogfundament er ikke frigitt. Ingen bredere kilde-/P2-opprydding eller
+forsikringsbetydning er godkjent. B-051 37/0/1/1, kampanje 67, ny signaturkreditt 0,
+P2-kreditt 0, globalt resolved/open UKJENT og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED
+beholdes. Samlet revalidering av katalogfundamentet på inneholdende fersk main
+gjenstår som separat oppgave; ingen ny implementering er startet.
+
+Alle HOLD beholdes eksakt, inkludert HTU `157c7afed18eb0fe` / SC-019/SR-033,
+`8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og uavklart P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. NITO venter;
+Sentralbord venter separat. Ingen ny arbeidsstrøm er startet.
+
+
 ## Forsikrede bygninger – validert kildehenvisningsrettelse 23. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

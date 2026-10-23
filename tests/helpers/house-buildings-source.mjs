@@ -4,6 +4,8 @@ import {readFileSync} from 'node:fs';
 // Independently frozen page decision and source identity, before production edit.
 export const buildingsSourceOracle=JSON.parse(readFileSync(new URL('../../docs/audit/checkpoints/house-buildings-source-1b5b5aa/source-oracle.json',import.meta.url)));
 const o=buildingsSourceOracle;
+// Two further keys approved against the same original object table on fresh a563c50.
+export const buildingsSourceKeys=[o.key,'hus.bygninger.tilbehor','hus.teknisk.solceller'];
 function project(value,page){
  const copy=structuredClone(value);
  function sourceTree(item){
@@ -17,7 +19,7 @@ function project(value,page){
  }
  function visit(item){
   if(!item||typeof item!=='object')return;
-  if(item.key===o.key)sourceTree(item);
+  if(buildingsSourceKeys.includes(item.key))sourceTree(item);
   else for(const child of Object.values(item))visit(child);
  }
  visit(copy);return copy;

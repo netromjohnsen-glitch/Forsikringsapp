@@ -1,0 +1,102 @@
+{
+  "classification": "CURRENT_VALIDATED_TWO_SHARED_OBJECT_SOURCE_PAGE_CORRECTIONS",
+  "status": "PASS_VALIDATED",
+  "authorization": "authorization.json",
+  "base_revision": "a563c50324f62cbdcd57c162fd0d02632def982b",
+  "tested_HEAD_is_base_not_candidate_commit": true,
+  "application_identity_sha256": "d401c6cc2442f3bc5f8fa051092268e0ea90489f0d90c6099e085065c7a751c5",
+  "candidate_identity": "candidate-identity.json",
+  "decision": "hus.bygninger.tilbehor and hus.teknisk.solceller primary page2-to3 corrected in shared Standard rows, inherited by Hus Pluss. Only the two authorized digits changed in production.",
+  "scope": {
+    "keys": [
+      "hus.bygninger.tilbehor",
+      "hus.teknisk.solceller"
+    ],
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "provider": "gjensidige",
+    "type": "Hus",
+    "agreement_scope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "source_owner": "gjensidigeHusStandard",
+    "before_page": 2,
+    "after_page": 3,
+    "raw_rows_changed": 2,
+    "all_other_production_bytes_unchanged": true,
+    "Pluss_inheritance_and_other_source_metadata": "UNCHANGED"
+  },
+  "source_oracle": "source-oracle.json",
+  "prior_read_only_receipt": "../house-foundation-revalidation-a563c50/receipt-house-foundation.json",
+  "prior_remainder": "HOUSE_SHARED_OBJECT_TABLE_REMAINING_SOURCE_PAGES",
+  "prior_read_only_packet": "Retained byte-identical as historical before evidence",
+  "source_and_reverse_audit": "source-and-reverse-audit.json",
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2552,
+      "pass": 2552,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 41,
+    "fullsuite": {
+      "tests": 6244,
+      "pass": 6244,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 170,
+    "scoped_eslint": "0 errors,0 warnings",
+    "expanded_existing_source_contract_tests": 19,
+    "new_test_files": 0,
+    "all12_configurations": "Both products full resolver/evidence/manual/threeJSON-reenrichment/materialization/display compared to independent before outputs with approved source-page delta only",
+    "20_document_role_probes": "Complete runtime snapshot equals before plus approved page projection",
+    "prior_regression_controls": "214 manual inputs,144 document controls,52 catalog comparisons in both directions; selection,document priority and scope isolation preserved",
+    "runtime_proof": "runtime-source-proof.json.gz"
+  },
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "historical_evidence": "Source originals and old audit packets/baselines unchanged. Existing guarded projection extended only to the two authorized exact keys; full-state assertions and negative controls retained. No new baseline generator or copied audit packet.",
+  "unchanged_status": {
+    "documented_campaign_published_at_base": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "project_status": "../../../development-agent/current-project-status.md",
+  "checkpoint": "checkpoint.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "commit_push": "AUTHORIZED_BY_PUBLICATION_AUTHORIZATION",
+  "install": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_bounded_step": "Combined ordinary-house foundation revalidation on containing fresh main remains separate. All HOLD and pilot gate unchanged.",
+  "publication_revision": "Containing Git commit; verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}
