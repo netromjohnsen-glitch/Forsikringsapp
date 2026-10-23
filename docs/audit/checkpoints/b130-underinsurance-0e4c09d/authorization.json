@@ -1,0 +1,239 @@
+{
+  "user_instruction": "Implementer den avklarte regelen for 15f5b4a3e9f79fd2 på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "recorded_utc": "2026-10-23T11:14:14.307300+00:00",
+  "base_main": "0e4c09d528e92da85e3afad6db50620f6db00983",
+  "branch": "fix/house-vacancy",
+  "signature": "15f5b4a3e9f79fd2",
+  "bindings": [
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 2,17",
+      "semantic_subject": "Fullverdi",
+      "semantic_dimension": "underforsikring",
+      "structured_value": "Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 68,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-3033",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusStandard",
+            "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Standard",
+            "termsNumber": "Hus Standard",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+            "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2115",
+      "source_first_inventory_id": "GJ-HU-057",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "2187cedb87f7b3d115ed",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    },
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus-pluss",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 2,18",
+      "semantic_subject": "Fullverdi",
+      "semantic_dimension": "underforsikring",
+      "structured_value": "Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 65,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-3120",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus-pluss",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Pluss",
+            "termsNumber": "Hus Pluss",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus Pluss",
+              "Råte og skadeinsekter"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2174",
+      "source_first_inventory_id": "GJ-HU-057",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "356cd0e850e23252417f",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    }
+  ],
+  "decision_path": "docs/audit/checkpoints/b130-underinsurance-review-0e4c09d/decision-15f5b4a3e9f79fd2.json",
+  "decision_sha256": "dde773a999adf4b52ec0fd66b70c9217c833dc5a1640b967e16870144202a0ad",
+  "contract": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "key": "hus.underforsikring.begrensning",
+    "label": "Underforsikring – areal og bygningsendringer",
+    "value": "Tilbygg, påbygg og sidebygg omfattes av bygningsforsikringen og skal meldes Gjensidige innen førstkommende hovedforfall for å unngå underforsikring. Er melding ikke gitt, reduseres erstatningen tilsvarende forholdet mellom avtalt pris før forandringen og riktig pris etter forandringen. Dersom bygningens areal er større enn det som fremgår av forsikringsbeviset, skal Gjensidige varsles, og erstatningen reduseres tilsvarende forholdet mellom avtalt pris med oppgitt areal og riktig pris med faktisk areal. Dersom bygningens gjenoppbyggingskostnad øker etter til-/påbygging, skal Gjensidige varsles innen neste hovedforfall; ellers kan erstatningen reduseres tilsvarende forholdet mellom bygningens avtalte og riktige pris før og etter endringen.",
+    "parent": "hus.ovrig",
+    "display": "Andre husvilkår / detail",
+    "standard": {
+      "owner": "gjensidigeHusStandard",
+      "source_document_id": "gjensidigeHusStandard",
+      "source_page": 17,
+      "source_section": "Erstatningsregler – Tilbygg, påbygg og sidebygg som ikke er meldt / Underforsikring",
+      "qualification_source_page": 2,
+      "qualification_source_section": "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder",
+      "replacesBase": "absent"
+    },
+    "pluss": {
+      "owner": "gjensidigeHusPluss",
+      "source_document_id": "gjensidigeHusPluss",
+      "source_page": 18,
+      "source_section": "Erstatningsregler – Tilbygg, påbygg og sidebygg som ikke er meldt / Underforsikring",
+      "qualification_source_page": 2,
+      "qualification_source_section": "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder",
+      "replacesBase": true
+    },
+    "raw_facts_added": 2,
+    "effective_rows_per_product_and_configuration": 1,
+    "fields_absent": [
+      "structuredValue",
+      "coverageAvailability",
+      "catalogSelectionConfirmed",
+      "deductibleClassification",
+      "selectionEvidenceKeys"
+    ],
+    "semantics": "Source-bound conditional settlement restriction, not confirmed customer insurance form, coverage, factual area, fulfilled notification or numerical settlement. No restriction to full_value is supported by these separate settlement headings. Preserve policy/object admission and authority."
+  },
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "allowed_validation_files": [
+    "tests/remediation-b-130-underinsurance.test.mjs",
+    "tests/helpers/b130-underinsurance.mjs",
+    "Existing tests/helpers only exact independently approved two-fact snapshot adaptation; preserve all cases and negatives"
+  ],
+  "allowed_documentation": [
+    "This new checkpoint packet and immutable read-only review packet",
+    "docs/development-agent/current-project-status.md"
+  ],
+  "gates": [
+    "Own-source forward and reverse audit",
+    "Relevant targeted suites on final candidate",
+    "Actual full manifest/fullsuite without skips",
+    "Typegen then TypeScript",
+    "ESLint zero errors and unchanged warning inventory",
+    "Webpack production build",
+    "Local synthetic HTTP/PDF runtime",
+    "Candidate identity, complete logs/hashes, integrity, links and git diff --check"
+  ],
+  "budget": "One original semantic scope; proven mechanical fixes independently logged under active autonomous policy, no numeric stop quota; historical quotas frozen",
+  "independent_semantic_scopes": 1,
+  "commit_push": false,
+  "deploy": false,
+  "install": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE"
+}

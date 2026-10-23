@@ -1,3 +1,4 @@
+import {applyUnderinsurance,withoutUnderinsurance} from './b130-underinsurance.mjs';
 import assert from 'node:assert/strict';
 import {withoutVacancy} from './b130-vacancy.mjs';
 import {readFileSync} from 'node:fs';
@@ -27,14 +28,14 @@ export function applyFrost(catalog){
   const existing=rows.filter(f=>f.key===frostOracle.key);
   if(existing.length)assert.deepEqual(existing,[fact]);else rows.push(fact);
  }
- return expected;
+ return applyUnderinsurance(expected);
 }
 
 // Project ONLY the independently specified new row when comparing immutable
 // older snapshots. Full additions/source fields are tested separately against
 // the oracle; every other existing byte/field remains subject to strict equality.
 export function withoutFrost(value){
- const copy=structuredClone(value);
+ const copy=withoutUnderinsurance(value);
  function visit(item){
   if(Array.isArray(item)){
    for(let i=item.length-1;i>=0;i--){

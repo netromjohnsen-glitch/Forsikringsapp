@@ -1,0 +1,196 @@
+{
+  "status": "PASS",
+  "source_oracle": "source-oracle.json",
+  "base_revision": "0e4c09d528e92da85e3afad6db50620f6db00983",
+  "tested_candidate_identity_sha256": "e736de2fc83ba68db910d9ff7241bc2e42a4af1ba400e37cacf8c60bd1345d5c",
+  "only_production_file": "lib/gjensidige-hus-catalog.ts",
+  "raw_catalog_delta": [
+    {
+      "owner": "gjensidigeHusStandard",
+      "operation": "ADD_ONE_FACT",
+      "key": "hus.underforsikring.begrensning",
+      "primary_page": 17,
+      "qualification_page": 2,
+      "replacesBase": false
+    },
+    {
+      "owner": "gjensidigeHusPluss",
+      "operation": "ADD_ONE_FACT",
+      "key": "hus.underforsikring.begrensning",
+      "primary_page": 18,
+      "qualification_page": 2,
+      "replacesBase": true
+    }
+  ],
+  "source_forward": "Both registered original PDF hashes and exact original headings/clauses on Standard2/17 and Pluss2/18 asserted in permanent tests. Full source facts SF3033/SF3120 with both original finding IDs retained.",
+  "reverse": "Entire production catalog strictly equals independently captured before plus exactly two source-oracle facts; every old key/value/metadata/source and all other products unchanged. Deliberate wrong page/qualifier/value mutations rejected.",
+  "complete_material_rule": "Extension/sidebuilding notification by first main anniversary and greater actual area, with corresponding agreed/right price basis; page2 reconstruction-cost context retains next-main-anniversary and possible reduction. No numerical area/sum/value ratio, selected insurance form, compliance, payout or object admission inferred.",
+  "source_and_inheritance": "One effective term per product in all12 addon configurations; own primary and page2 qualifier, Pluss replaces same key only, inherited primary in overriddenBase and complete qualifier in raw catalog evidence. All references survive three repeats and JSON.",
+  "document_priority": "Exact identified-product label with canonicalKey null; first and late rule-specific documents win, both comparison sides, current unknown/conflict behavior preserved. Fullverdi/Førsterisiko, generic area and notification inputs stay distinct. General terms remain supporting evidence/catalog.",
+  "isolation": "Fullvalue guarantee, insurance form, settlement and building admission, Smart/Utleie/råte, Rettshjelp, B020, premium/deductible and all previous fields retained. Other-product base and valid add-on packages exactly unchanged; side reversal and peer-unknown verified.",
+  "manual_controls": 214,
+  "document_pipeline_controls": 144,
+  "valid_addon_configurations": 12,
+  "new_contract_tests": 65,
+  "original_bindings": [
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "source_location": "PDF 2,17",
+      "semantic_subject": "Fullverdi",
+      "semantic_dimension": "underforsikring",
+      "structured_value": "Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 68,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-3033",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusStandard",
+            "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Standard",
+            "termsNumber": "Hus Standard",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+            "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2115",
+      "source_first_inventory_id": "GJ-HU-057",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "2187cedb87f7b3d115ed",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    },
+    {
+      "provider": "gjensidige",
+      "insurance_type": "Hus",
+      "scope": "ordinary",
+      "product": "gjensidige-hus-pluss",
+      "version": "Alminnelige vilkår",
+      "component": "",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "source_location": "PDF 2,18",
+      "semantic_subject": "Fullverdi",
+      "semantic_dimension": "underforsikring",
+      "structured_value": "Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "fact_status": "SOURCE_DOCUMENTED_RULE",
+      "advisor_relevance": "CORE",
+      "catalog_match": "[]",
+      "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+      "confidence": "HIGH",
+      "priority": "P1",
+      "manual_validation": true,
+      "catalog_full_fact_count_checked": 65,
+      "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+      "proposed_keys": [],
+      "source_excerpt": "",
+      "root_cause_id": "SCRC-025",
+      "audit_review_status": "MANUALLY_CHECKED",
+      "source_fact_id": "SF-3120",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "agreement_scope": "ordinary",
+      "product_id": "gjensidige-hus-pluss",
+      "version_unknown": false,
+      "catalog_version": "Alminnelige vilkår",
+      "source_metadata": {
+        "manifest_entries": [],
+        "runtime_records": [
+          {
+            "id": "gjensidigeHusPluss",
+            "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+            "documentName": "Alminnelige vilkår Hus Pluss",
+            "termsNumber": "Hus Pluss",
+            "version": "Alminnelige vilkår",
+            "effectiveFrom": "",
+            "updatedAt": "2026-09-20",
+            "company": "Gjensidige",
+            "insuranceType": "Hus",
+            "appliesTo": [
+              "Hus Pluss",
+              "Råte og skadeinsekter"
+            ],
+            "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+            "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "artifact_paths": [
+              "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+            ],
+            "link_status": "RESOLVED"
+          }
+        ]
+      },
+      "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+      "full_package_review_complete": true,
+      "representation_searched_in": [
+        "resolved base",
+        "inherited components",
+        "available optional components",
+        "materialized catalog snapshot"
+      ],
+      "key_support_existing_catalog": {},
+      "key_support_existing_type_registry": {},
+      "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+      "finding_id": "GAP-2174",
+      "source_first_inventory_id": "GJ-HU-057",
+      "validation_state": "FINAL",
+      "unique_source_semantic_id": "356cd0e850e23252417f",
+      "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+      "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+      "label_and_structuredValue_reviewed": true,
+      "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+    }
+  ],
+  "permanent_test": "tests/remediation-b-130-underinsurance.test.mjs",
+  "proof_gate": "fullsuite-final",
+  "registered_source_bytes_unchanged": true,
+  "canonical_schema_alias_engine_presentation_changes": []
+}

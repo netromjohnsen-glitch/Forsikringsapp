@@ -1,0 +1,74 @@
+{
+  "active_policy": "docs/development-agent/workflow.md#aktiv-fullmakt-autonom-gjennomf\u00f8ring",
+  "historical_quotas": "FROZEN_UNCHANGED",
+  "independent_root_count": 2,
+  "roots": [
+    {
+      "id": "MECH-U1",
+      "type": "Exact independently authorized two-row catalog delta in immutable historical snapshots",
+      "independent_evidence": [
+        "source-oracle.json frozen before production change with two original source hashes/pages",
+        "baseline.v8.gz captured before production change on fresh0e4c09d",
+        "source-and-representation proof of existing inheritance/provenance machinery in prior read-only decision"
+      ],
+      "preserved_contract": "Every original insurance meaning, prior row/source field, selection, document priority and negative control remains under strict assertions. Only the separately verified new facts are added/projected; exact old-row counts increase by2.",
+      "before_after": [
+        {
+          "file": "tests/helpers/b130-frost.mjs",
+          "before_sha256": "cd1d508323324b6a558550f338b00736547c8c891467fa10ab3f45ae647ba18c",
+          "after_sha256": "481148e0303887e9e67f62444cb2b51a9d0e9c6da8e19eed11db2b62c1f809d2",
+          "change": "Existing expected-catalog transform adds only the source-oracle pair; old-snapshot projection first verifies and removes only that pair. Existing frost assertions retained."
+        },
+        {
+          "file": "tests/remediation-b-051-legal.test.mjs",
+          "before_sha256": "447290dd9795c0a2e2e4278a66e25b535c2cb8d2dd44be312ec9598c3b7edcf1",
+          "after_sha256": "bac2292387f59dcad03025508dcca34035ee86f34390d255c5cd91df9605bd11",
+          "change": "raw,4162 -> raw,4164",
+          "proof": "Exactly two independently authorized raw facts in transformed expected catalog. Independent whole catalog delta test and unchanged source/row/negative assertions."
+        },
+        {
+          "file": "tests/remediation-b-051-health-help.test.mjs",
+          "before_sha256": "3ea4ac49b53b31d2c4c4aff2ec6e76a0f49961c571fe5b4a1960ef451ee93aad",
+          "after_sha256": "f8e7568ac3ddb52c41478e65c69a20888f2399c003e40f621d8ec475f8305ebd",
+          "change": "protectedRaw,4164 -> protectedRaw,4166",
+          "proof": "Exactly two independently authorized raw facts in transformed expected catalog. Independent whole catalog delta test and unchanged source/row/negative assertions."
+        },
+        {
+          "file": "tests/remediation-b-051-liability.test.mjs",
+          "before_sha256": "b75c4ea700fd7c3fe429532890eea0ea58bda44c66fcc5f0d3c5d201668da351",
+          "after_sha256": "a183092a62310dd86f8e967b82f676611ee2e4bcf6df5aa6529d30e4a8b1b35b",
+          "change": "protectedRaw,4164 -> protectedRaw,4166",
+          "proof": "Exactly two independently authorized raw facts in transformed expected catalog. Independent whole catalog delta test and unchanged source/row/negative assertions."
+        },
+        {
+          "file": "tests/remediation-b-051-rot-status.test.mjs",
+          "before_sha256": "d0074d94016c22df115b0b035df5c78144e4273285b616a3b9200252fba1f345",
+          "after_sha256": "d896ad1cfb9a4c72bce7f3a929f70acf8aadb0e5bfc5ac4532b950149dc2ed73",
+          "change": "protectedFacts, 4164 -> protectedFacts, 4166",
+          "proof": "Exactly two independently authorized raw facts in transformed expected catalog. Independent whole catalog delta test and unchanged source/row/negative assertions."
+        },
+        {
+          "file": "tests/remediation-b-051-smart.test.mjs",
+          "before_sha256": "45a0424972694ff1676816c671bc4e0cd0df1eb5af143de7a8fda008df29a742",
+          "after_sha256": "3f2b49b8381bbfdcbcf89e1627cf1657c7fa6025786344e17f32fc2142b1d047",
+          "change": "protectedRaw,4163 -> protectedRaw,4165",
+          "proof": "Exactly two independently authorized raw facts in transformed expected catalog. Independent whole catalog delta test and unchanged source/row/negative assertions."
+        }
+      ]
+    },
+    {
+      "id": "MECH-U2",
+      "type": "New source test verbatim phrase correction",
+      "before_after": [
+        {
+          "file": "tests/remediation-b-130-underinsurance.test.mjs",
+          "before_sha256": "b1d85742cd5ba911a9811ae1ba645a7e02bdb575182cddb33aab75af6320a803",
+          "after_sha256": "5375be8caec823016745a3eacbe2e3b8e7fb1234cc8b66815e161c27c4ed867b"
+        }
+      ],
+      "independent_evidence": "Both original PDF page2 raw/layout texts and visual reviews in immutable prior read-only proof, hashes unchanged. Actual wording Du m\u00e5 varsle ... hva and kan erstatningen reduseres; the authored rule paraphrase preserves exactly this meaning.",
+      "preserved_contract": "Replace mistaken test quotation with full actual original quotation. Keep both source tests and all other cases; production unchanged.",
+      "diagnostic": "underinsurance-v1.log.gz:63pass/2fail, only own page2 exact source quotation mismatch"
+    }
+  ]
+}

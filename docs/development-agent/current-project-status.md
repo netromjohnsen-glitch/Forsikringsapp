@@ -1,5 +1,59 @@
 # Aktuell dokumentert prosjektstatus
 
+## Fullverdi og underforsikring – validert B-130-bolk 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`0e4c09d528e92da85e3afad6db50620f6db00983`. Frost/bygningsvern-bolken,
+receipt og prosjektstatus er publisert på denne revisjonen. Underforsikringsbolken
+er implementert og validert på samme basis. Publiseringsrevisjonen er committen
+som inneholder rettelsen, receipt og denne prosjektstatusen. Publisert status gjelder
+etter bekreftelse på remote main. Commit/push er eksplisitt autorisert.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b130-underinsurance-0e4c09d/publication-authorization.md).
+Ingen installasjon eller deploy.
+
+B-130 / CR-226 / `15f5b4a3e9f79fd2` er avgrenset implementert for begge originalbindinger:
+Hus Standard GAP-2115/SF-3033 og Hus Pluss GAP-2174/SF-3120, ordinary /
+Alminnelige vilkår. `hus.underforsikring.begrensning` bevarer plikten til å melde
+tilbygg, påbygg og sidebygg innen førstkommende hovedforfall, reduksjonen ved
+manglende melding og regelen ved større faktisk areal enn forsikringsbeviset.
+Reduksjonsgrunnlaget er forholdet mellom avtalt og riktig **pris**, ikke arealbrøk.
+Side-2-forbeholdet om økt gjenoppbyggingskostnad, neste hovedforfall og mulig
+reduksjon er med. Standard har egen primærside 17, Pluss egen primærside 18;
+begge beholder egen side 2 som supplerende kilde. Pluss erstatter bare samme nøkkel.
+
+Regelen vises som betinget vilkårsdetalj. Ingen forsikringsform, faktisk areal,
+oppfylt meldeplikt, bygningsopptak, kundevalg eller erstatningsberegning utledes.
+Forsikringsform, fullverdigaranti og øvrige oppgjørs-/objektregler er uendret.
+Kundens konkrete dokumentregel og komplette kilder beholder forrang, også sent,
+ved gjentatt beriking og JSON. Generelle vilkår forblir evidens/katalog.
+Smart/Utleie/råte, Rettshjelp, B-020, priser, summer og generell egenandel beholdes.
+Ingen endring i schema, global normalizer/alias, engine eller presentasjon.
+
+[Receipt](../audit/checkpoints/b130-underinsurance-0e4c09d/completion-receipt-15f5b4a3e9f79fd2.json),
+[validering](../audit/checkpoints/b130-underinsurance-0e4c09d/validation-summary.json),
+[checkpoint](../audit/checkpoints/b130-underinsurance-0e4c09d/checkpoint.json) og
+[bevispakke](../audit/checkpoints/b130-underinsurance-0e4c09d/README.md).
+65 nye kontrakttester; 2454/2454 målrettede og 6146/6146 tester i 168 filer består,
+uten skip. Typegen/TypeScript, webpack-bygg og lokal syntetisk HTTP/PDF-runtime
+22/22 PASS. ESLint 0 feil og eksakt de samme 27 warnings. Åtte sluttgater deler
+samme kode-/testidentitet. Første runtimeforsøk ble stoppet av sandboxens lokale
+portforbud; samme kandidat bestod med godkjent lokal tilgang. 214 manuelle input,
+144 dokumentforløp og alle 12 gyldige tilleggskombinasjoner bevarer tidligere felt;
+bare to nye rå katalogfakta er lagt til. Kildeoriginaler og tidligere bevis er uendret.
+
+Denne bolken fullfører bare denne ene originalsignaturen med begge bindinger.
+Basis-main har **65** publiserte kampanjesignaturer; **66** inklusive denne signaturen
+gjelder etter bekreftelse av den inneholdende committen på remote main. B-051 37/0/1/1,
+P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Ingen komplett pilotklarering.
+
+Alle HOLD beholdes, inkludert HTU `157c7afed18eb0fe` / SC-019/SR-033,
+`8a89196fecd29ddb`, fysisk insektegenandel SC-020/SR-032 og øvrige beskyttede holds.
+B-130 `d58bff0e6b2d46eb` (personkrets) står fortsatt åpen. Sikkerhet/GDPR/P3-A05 med
+uavklart identitet/mergestatus, person/pilotscope, kritisk UX, feedback og operativ
+rådgiveraksept beholdes synlige. NITO og Sentralbord venter. Ingen ny arbeidsstrøm.
+
+
 
 ## Frost og bygningsvern – validert B-130-bolk 23. oktober 2026
 

@@ -1,0 +1,622 @@
+{
+  "classification": "CURRENT_READ_ONLY_CONTRACT_AND_MAPPING_DECISION_NOT_IMPLEMENTATION_OR_CLOSURE",
+  "status": "DECIDED_PROPOSED_SCOPED_CORRECTION",
+  "signature": "15f5b4a3e9f79fd2",
+  "review_id": "CR-226",
+  "original_batch": "B-130",
+  "created_at_utc": "2026-10-23T11:07:25.662248+00:00",
+  "decision": "Add one own-source nonasserting detail hus.underforsikring.begrensning per level using existing term machinery. Preserve both notification/area triggers and price-based proportional reduction. No insurer question required for this registered-source representation.",
+  "authorization": {
+    "user_instruction": "Avklar kontrakt og mapping for 15f5b4a3e9f79fd2 (fullverdi/underforsikring) på Hus Standard og Hus Pluss på fersk main. Lever én beslutning og presis rettingsbolk. Ingen kodeendringer eller deploy; behold alle HOLD. NITO og Sentralbord venter.",
+    "scope": "Read-only decision; only this new local audit packet written",
+    "implementation": false,
+    "commit_push": false,
+    "deploy": false
+  },
+  "revision": {
+    "fresh_GitHub_main_before_and_after_principal_probes": "0e4c09d528e92da85e3afad6db50620f6db00983",
+    "HEAD": "0e4c09d528e92da85e3afad6db50620f6db00983",
+    "origin_main": "0e4c09d528e92da85e3afad6db50620f6db00983",
+    "initial_working_tree": "CLEAN",
+    "staged_files": [],
+    "source_freshness": "Current registered local originals verified against SHA256; fresh repository main, not refreshed live insurer website or an invented effective date."
+  },
+  "source_binding": {
+    "original_registry": {
+      "signature_id": "15f5b4a3e9f79fd2",
+      "representative_finding_id": "GAP-2115",
+      "provider_family_scope": "[[\"gjensidige\", \"Hus\", \"ordinary\"]]",
+      "root_cause_id": "[\"RC-027\"]",
+      "final_batch_id": "B-130",
+      "disposition": "CANONICAL_REVIEW_FIRST",
+      "pilot_priority": "MUST_BEFORE_NITO",
+      "source_status": "CANONICAL_REVIEW_FIRST",
+      "P1_occurrences": "2",
+      "P2_occurrences": "0",
+      "finding_ids": "[\"GAP-2115\", \"GAP-2174\"]",
+      "products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "source_fact_ids": "[\"SF-3033\", \"SF-3120\"]",
+      "proposed_existing_keys": "[]",
+      "semantic_concept": "Fullverdi",
+      "semantic_dimension": "underforsikring",
+      "notes": "Ta beslutning per oppført konsept/dimensjon i canonical-review-queue. Prøv eksisterende eksakt nøkkel eller tydelig provider-detalj først. Ny nøkkel bare etter dokumentert tap/falsk ekvivalens ved gjenbruk. Deretter implementeres bare godkjent scoped forfatteroperasjon. Ingen generell schema-ombygging er bevist nødvendig.",
+      "covered_by_signature": "",
+      "mapping_evidence_basis": "Audit exact semantic review + current read-only type/key inventory. Existing key presence does not approve cross-provider semantics.",
+      "remediation_authorized": "False"
+    },
+    "canonical_review": {
+      "review_id": "CR-226",
+      "concept": "Fullverdi / underforsikring",
+      "current_keys": "[]",
+      "problem": "No exact mapping approved in the audit",
+      "disposition": "CANONICAL_REVIEW_FIRST",
+      "affected_products": "[\"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus\\\",\\\"Alminnelige vilkår\\\"]\", \"[\\\"gjensidige\\\",\\\"bolig\\\",\\\"ordinary\\\",\\\"gjensidige-hus-pluss\\\",\\\"Alminnelige vilkår\\\"]\"]",
+      "affected_families": "[\"Hus\"]",
+      "candidate_approach": "First test exact reuse or source-bound provider-specific detail within an existing parent. A new key is allowed only if subject, trigger, unit, period or optionality would otherwise be lost or falsely equated.",
+      "false_equivalence_risk": "Do not merge different event/subject/period/level merely to fill both sides. Existing type keys are candidates, not approved synonym mappings.",
+      "blocks_batches": "[\"B-130\"]",
+      "signature_ids": "[\"15f5b4a3e9f79fd2\"]",
+      "representative_finding_ids": "[\"GAP-2115\"]",
+      "existing_type_key_inventory_ref": "existing-type-registries.json#Hus",
+      "required_semantic_tuple": "[\"subject\", \"trigger\", \"unit\", \"period\", \"limit_basis\", \"conditions\", \"level\", \"optionality\", \"provider/type/scope/version\", \"source\"]",
+      "source_evidence": "[{\"finding_id\": \"GAP-2115\", \"source_fact_id\": \"SF-3033\", \"artifact\": \"catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf\", \"location\": \"PDF 2,17\"}]",
+      "full_evidence_ref": "Listed signature IDs → p1-triage.csv → frozen gap/source-fact inventory; batch evidence in triage.json",
+      "decision": "PENDING_REVIEW",
+      "human_signoff": "REQUIRED_BEFORE_IMPLEMENTATION"
+    },
+    "original_source_facts": [
+      {
+        "provider": "gjensidige",
+        "insurance_type": "Hus",
+        "scope": "ordinary",
+        "product": "gjensidige-hus",
+        "version": "Alminnelige vilkår",
+        "component": "",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "source_location": "PDF 2,17",
+        "semantic_subject": "Fullverdi",
+        "semantic_dimension": "underforsikring",
+        "structured_value": "Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "advisor_relevance": "CORE",
+        "catalog_match": "[]",
+        "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+        "confidence": "HIGH",
+        "priority": "P1",
+        "manual_validation": true,
+        "catalog_full_fact_count_checked": 68,
+        "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+        "proposed_keys": [],
+        "source_excerpt": "",
+        "root_cause_id": "SCRC-025",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "source_fact_id": "SF-3033",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "agreement_scope": "ordinary",
+        "product_id": "gjensidige-hus",
+        "version_unknown": false,
+        "catalog_version": "Alminnelige vilkår",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "id": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "documentName": "Alminnelige vilkår Hus Standard",
+              "termsNumber": "Hus Standard",
+              "version": "Alminnelige vilkår",
+              "effectiveFrom": "",
+              "updatedAt": "2026-09-20",
+              "company": "Gjensidige",
+              "insuranceType": "Hus",
+              "appliesTo": [
+                "Hus"
+              ],
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+              ],
+              "link_status": "RESOLVED"
+            }
+          ]
+        },
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+        "full_package_review_complete": true,
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "key_support_existing_catalog": {},
+        "key_support_existing_type_registry": {},
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "finding_id": "GAP-2115",
+        "source_first_inventory_id": "GJ-HU-057",
+        "validation_state": "FINAL",
+        "unique_source_semantic_id": "2187cedb87f7b3d115ed",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "label_and_structuredValue_reviewed": true,
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+      },
+      {
+        "provider": "gjensidige",
+        "insurance_type": "Hus",
+        "scope": "ordinary",
+        "product": "gjensidige-hus-pluss",
+        "version": "Alminnelige vilkår",
+        "component": "",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "source_location": "PDF 2,18",
+        "semantic_subject": "Fullverdi",
+        "semantic_dimension": "underforsikring",
+        "structured_value": "Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "advisor_relevance": "CORE",
+        "catalog_match": "[]",
+        "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+        "confidence": "HIGH",
+        "priority": "P1",
+        "manual_validation": true,
+        "catalog_full_fact_count_checked": 65,
+        "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+        "proposed_keys": [],
+        "source_excerpt": "",
+        "root_cause_id": "SCRC-025",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "source_fact_id": "SF-3120",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "agreement_scope": "ordinary",
+        "product_id": "gjensidige-hus-pluss",
+        "version_unknown": false,
+        "catalog_version": "Alminnelige vilkår",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "id": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "documentName": "Alminnelige vilkår Hus Pluss",
+              "termsNumber": "Hus Pluss",
+              "version": "Alminnelige vilkår",
+              "effectiveFrom": "",
+              "updatedAt": "2026-09-20",
+              "company": "Gjensidige",
+              "insuranceType": "Hus",
+              "appliesTo": [
+                "Hus Pluss",
+                "Råte og skadeinsekter"
+              ],
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+              ],
+              "link_status": "RESOLVED"
+            }
+          ]
+        },
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Tilbyggmeldesinnenfornyelse;feilarealellerikkevarsletutbygging girproporsjonalprisbasertreduksjon.",
+        "full_package_review_complete": true,
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "key_support_existing_catalog": {},
+        "key_support_existing_type_registry": {},
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "finding_id": "GAP-2174",
+        "source_first_inventory_id": "GJ-HU-057",
+        "validation_state": "FINAL",
+        "unique_source_semantic_id": "356cd0e850e23252417f",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "label_and_structuredValue_reviewed": true,
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained."
+      }
+    ],
+    "identical_two_primary_source_clauses": true,
+    "primary_headings": [
+      "Tilbygg, påbygg og sidebygg som ikke er meldt",
+      "Underforsikring"
+    ],
+    "supporting_context": "Each own page2 notification and possible price-based consequence. Standard16/Pluss17 fullvalue/firstloss settlement context read completely but kept separate.",
+    "insurer_question_required": false,
+    "historical_registry_authorization": "Frozen metadata is unchanged; this is read-only decision, future implementation still needs user authorization."
+  },
+  "semantic_contract": {
+    "providerId": "gjensidige",
+    "insuranceType": "bolig",
+    "agreementScope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "productIds": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "key": "hus.underforsikring.begrensning",
+    "label": "Underforsikring – areal og bygningsendringer",
+    "value": "Tilbygg, påbygg og sidebygg omfattes av bygningsforsikringen og skal meldes Gjensidige innen førstkommende hovedforfall for å unngå underforsikring. Er melding ikke gitt, reduseres erstatningen tilsvarende forholdet mellom avtalt pris før forandringen og riktig pris etter forandringen. Dersom bygningens areal er større enn det som fremgår av forsikringsbeviset, skal Gjensidige varsles, og erstatningen reduseres tilsvarende forholdet mellom avtalt pris med oppgitt areal og riktig pris med faktisk areal. Dersom bygningens gjenoppbyggingskostnad øker etter til-/påbygging, skal Gjensidige varsles innen neste hovedforfall; ellers kan erstatningen reduseres tilsvarende forholdet mellom bygningens avtalte og riktige pris før og etter endringen.",
+    "parent": "hus.ovrig",
+    "display": "Andre husvilkår / detail",
+    "standard": {
+      "owner": "gjensidigeHusStandard",
+      "source_document_id": "gjensidigeHusStandard",
+      "source_page": 17,
+      "source_section": "Erstatningsregler – Tilbygg, påbygg og sidebygg som ikke er meldt / Underforsikring",
+      "qualification_source_page": 2,
+      "qualification_source_section": "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder",
+      "replacesBase": "absent"
+    },
+    "pluss": {
+      "owner": "gjensidigeHusPluss",
+      "source_document_id": "gjensidigeHusPluss",
+      "source_page": 18,
+      "source_section": "Erstatningsregler – Tilbygg, påbygg og sidebygg som ikke er meldt / Underforsikring",
+      "qualification_source_page": 2,
+      "qualification_source_section": "Forsikringsbevis – Ansvarsbegrensninger / For bygningsforsikring gjelder",
+      "replacesBase": true
+    },
+    "raw_facts_added": 2,
+    "effective_rows_per_product_and_configuration": 1,
+    "fields_absent": [
+      "structuredValue",
+      "coverageAvailability",
+      "catalogSelectionConfirmed",
+      "deductibleClassification",
+      "selectionEvidenceKeys"
+    ],
+    "semantics": "Source-bound conditional settlement restriction, not confirmed customer insurance form, coverage, factual area, fulfilled notification or numerical settlement. No restriction to full_value is supported by these separate settlement headings. Preserve policy/object admission and authority."
+  },
+  "critical_interpretations": [
+    "Two distinct triggers: changes not notified by first main anniversary; actual building area larger than certificate. Page2 also states notification for increase in reconstruction cost after extension by next main anniversary and possible reduction.",
+    "Reduction basis is agreed price before / correct price after change, or agreed price for reported area / correct price for actual area; no area-only, sum, insured-value or numerical ratio inferred.",
+    "Fullvalue guarantee and insurance form are distinct. Do not infer selected form or limit this separate condition to fullvalue.",
+    "Primary says reduseres; page2 cost-increase clause says kan reduseres. Keep respective context, do not collapse either into automatic customer settlement.",
+    "Sidebuilding clause is source settlement text only. Do not modify admission/size/certificate logic of hus.bygninger.dekning or confirm that a customer object is insured."
+  ],
+  "mapping_decision": {
+    "new_key_collision": false,
+    "normalized_label": "underforsikring areal og bygningsendringer",
+    "nonasserting": true,
+    "extractor_enum_contains_key": false,
+    "extracted_counterpart": "canonicalKey null, existing exact unique normalized resolved-product label matcher; no broad free-text matcher or new global canonical key.",
+    "rejected_or_preserved_candidates": [
+      {
+        "keys": [
+          "hus.forsikringsform"
+        ],
+        "reason": "Identifies full_value / first_loss and first-loss value-gain condition. Distinct from price-based reductions. Appending rule overloads form and allows actual form override to suppress the condition."
+      },
+      {
+        "keys": [
+          "hus.gjenoppforing.hovedregel",
+          "hus.gjenoppforing.annetsted",
+          "hus.gjenoppforing.totalskade",
+          "hus.gjenoppforing.svanemerket"
+        ],
+        "reason": "Guarantee/value-gain deductions, restoration location/purpose/time, threshold and environmental benefits; neither whole pair of underinsurance triggers nor price basis."
+      },
+      {
+        "keys": [
+          "hus.bygninger.dekning"
+        ],
+        "reason": "Object admission/sidebuilding size rules, not notification deadline and price basis. Preserve unchanged; no automatic inclusion of a new customer building from the new condition."
+      },
+      {
+        "keys": [
+          "hus.pabud.dekning"
+        ],
+        "reason": "Area-based reduction for public-order additional expenses is a different unit and event. It must not replace the agreed/right price ratio."
+      },
+      {
+        "keys": [
+          "hus.andrebygninger.endring"
+        ],
+        "reason": "Other-provider rows cover temporary new-building cover/notification, different periods or value-before-change reduction; none preserves the entire exact Gjensidige rule. No global synonym."
+      },
+      {
+        "keys": [
+          "hus.avtale.forbehold"
+        ],
+        "reason": "General policy authority does not express the missing exact rule."
+      }
+    ],
+    "why_minimal": "One compound original fact, two independently sourced product rows, existing generic detail rendering and provenance inheritance; no wider model change."
+  },
+  "proposed_correction_packet": {
+    "authorization_status": "PROPOSED_ONLY_NOT_IMPLEMENTATION_AUTHORITY",
+    "one_production_file": "lib/gjensidige-hus-catalog.ts",
+    "author_operation": "Append exactly the two source-bound facts defined in semantic_contract using existing facts helper. Each primary plus own qualificationSource; Pluss replacesBase on same key only. Existing code and every old fact unchanged.",
+    "proposed_tests": [
+      "tests/remediation-b-130-underinsurance.test.mjs",
+      "tests/helpers/b130-underinsurance.mjs (only if necessary for independent oracle)"
+    ],
+    "narrow_existing_test_maintenance": "Only independently source-approved +2 raw-fact deltas in affected exact catalog snapshot assertions; preserve every prior case and negative. No old audit/source packet rewriting.",
+    "test_contracts": [
+      "Both original binding IDs and SHA256s; exact primary pages Standard17/Pluss18 and own page2 qualifier; complete pair of headings, notification obligation, first/next main anniversary and exact agreed/right price basis. No plain area, sum or value ratio.",
+      "Independent frozen fresh-main baseline plus exactly two authored facts, one effective row in all 8 Standard and 4 Pluss configurations; all old rows/fields/metadata and other products unchanged.",
+      "Own primary and qualifier sources survive manual creation, enrichment, three repeats and JSON. Pluss overriddenBase retains current {value,source} shape; complete inherited qualification remains in raw catalogFacts/resolveCatalogEvidence. Do not invent overriddenBase.sources.",
+      "Document Fullverdi or Førsterisiko overrides only hus.forsikringsform and does not suppress new condition. Generic Underforsikring, area and notification facts infer no new row, rate, compliance, sum or selected coverage.",
+      "Exact unique proposed-label rule with canonicalKey null uses existing resolved-product matcher. First and late rule-specific document fact beats catalog with complete source provenance; conflicts/unknowns retain established baseline contract.",
+      "General_terms supplies supporting evidence and preserves catalog origin; never customer object, form, area, notification, selected coverage or settlement confirmation.",
+      "Same-product equality, both comparison sides and side-swap; absent peer rule stays unknown and no false provider equivalence; no cross-provider/type/scope/version leakage.",
+      "Preserve B-020 authority/optional/unknown contract, fullvalue guarantee, firstloss/value-gain and other settlement rows, admitted buildings, manual/customer premium/deductible/sums, Smart/Utleie/råte and Rettshjelp; retain all frozen baseline manual/document cases and all HOLD."
+    ],
+    "final_validation": [
+      "Own-source forward and reverse audit",
+      "Relevant targeted suites on final candidate",
+      "Actual full manifest/fullsuite without skips",
+      "Typegen then TypeScript",
+      "ESLint zero errors and unchanged warning inventory",
+      "Webpack production build",
+      "Local synthetic HTTP/PDF runtime",
+      "Candidate identity, complete logs/hashes, integrity, links and git diff --check"
+    ],
+    "documents_to_update_after_authorized_implementation": [
+      "New completion receipt/checkpoint with both original bindings and final tested identity",
+      "docs/development-agent/current-project-status.md"
+    ],
+    "excluded": [
+      "Other B-130 signature/HOLD resolution",
+      "Engine/schema/global alias/normalizer/presentation edits",
+      "Numerical price/reduction or form inference",
+      "Source originals and prior audit edits",
+      "NITO/Sentralbord work",
+      "Install, commit, push or deploy without separate authorization"
+    ],
+    "completion_rule": "Only future authorized implementation and final validation can credit this one signature for both bindings; no whole B-130 or pilot clearance."
+  },
+  "verification_this_turn": {
+    "type": "Read-only source, identity and current representation probes; no candidate catalog injected",
+    "original_PDFs_verified": 2,
+    "complete_page_visual_reviews": 6,
+    "source_extraction_modes": [
+      "raw",
+      "layout"
+    ],
+    "valid_addon_configurations": 12,
+    "synthetic_document_role_probes": 20,
+    "form_area_notification_pipeline_probes": 10,
+    "scope_negatives": 8,
+    "standalone_nonasserting_term_probe": "No inferred coverage status; see evidence for inputs/results",
+    "all_preexisting_tracked_files_byte_identical": 7749,
+    "whole_appsuites_build_runtime": "NOT_RUN; no implementation candidate",
+    "published_validation_reference": "../b130-frost-8422e39/validation-summary.json; archived final validation for published frost only, not a PASS for this unimplemented rule",
+    "no_new_implementation_PASS_claim": true
+  },
+  "protected_status": {
+    "checkpoint": "docs/audit/checkpoints/b130-frost-8422e39/checkpoint.json",
+    "checkpoint_sha256": "a09651b316d58d7b3b61229af4f16559acf1e90a9be9846601a2832949ec96e1",
+    "unchanged_values": {
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "documented_campaign_count": 65,
+      "documented_campaign_signatures": [
+        "03cff9fe5cfbf518",
+        "08203cfa28493e63",
+        "0a6b5f6f535df685",
+        "0da02a8dae8fd373",
+        "0eda923b4090cf6c",
+        "0f51d1c0374f1f1f",
+        "0f7980d6139daa2e",
+        "1982ee310e18279c",
+        "1ee41770b0470c78",
+        "1f56c194d413f97d",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "2b078b058bc63967",
+        "35c58fbc06cf6e7d",
+        "373413bc13517ff4",
+        "3f4b9eff50404590",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "4165f79344a7d572",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "48393aac0a200fe5",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "5839d2c13e186676",
+        "597df4c45c6d3db9",
+        "6080e5e5a6bb3c63",
+        "688cc5923342804d",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "72170f7dfe5c91b6",
+        "73aab8a0ad4f6c11",
+        "7b2587a3bbc0c772",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8c14a1328e5080cf",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "8e9d297cb0d1bd0e",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5792662cc2fa9f8",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "c1440948744bfa17",
+        "c5ccc4f26fd475ae",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ce90710821e28a97",
+        "dc3e04a5fcce2317",
+        "ed99577218e2302b",
+        "f8bd15c89bc0dbd6",
+        "fbe23495ae09afb3"
+      ],
+      "current_B051_completed_signatures": [
+        "08203cfa28493e63",
+        "0eda923b4090cf6c",
+        "0f7980d6139daa2e",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "35c58fbc06cf6e7d",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "6080e5e5a6bb3c63",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "73aab8a0ad4f6c11",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ed99577218e2302b"
+      ],
+      "B051_partition_counts": [
+        37,
+        0,
+        1,
+        1
+      ],
+      "current_B071_revalidated_signatures": [
+        "2b078b058bc63967",
+        "1ee41770b0470c78",
+        "dc3e04a5fcce2317",
+        "0da02a8dae8fd373",
+        "688cc5923342804d",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "1982ee310e18279c",
+        "0f51d1c0374f1f1f",
+        "03cff9fe5cfbf518"
+      ],
+      "current_B071_not_revalidated": [
+        "5f31ff4946a666b5"
+      ],
+      "historical_only": {
+        "conversation_reported_resolved": 414,
+        "not_current_ledger_verified": true,
+        "mechanical": "19/16",
+        "semantic": "10/8",
+        "diagnostics_campaign": "19/12"
+      },
+      "historical_DEFER_SAFE_signatures": [
+        "0177d006e35081bf",
+        "01c571aed2922601",
+        "081897ea9890dd48",
+        "19e07ca100e66430",
+        "30fc68fdaa903cfb",
+        "4298f951ca3c66c3",
+        "42c2a36bff254c04",
+        "48f198515fc0f302",
+        "4b74844f6e3299d6",
+        "5451f3cd4d1439f3",
+        "57772b5d65c12f6e",
+        "614e6706ae2502ce",
+        "6a8fa7667b6b4f31",
+        "6aef26441eb0791f",
+        "765fd5db190904d0",
+        "891c9fac3031a8ee",
+        "b2dfb452aaacba84",
+        "b62a64284e4abbe1",
+        "c05c0db230591fe9",
+        "cb3e9dc1ef2d6684",
+        "cc9b15fa0f3121c0"
+      ],
+      "HARNESS_AUTONOMY_V1": {
+        "used": 33,
+        "ordinary_limit": 12,
+        "scope_used": 3,
+        "scope_limit": 6,
+        "capacity_for_other_roots": 0,
+        "ledger": "../b051-health-help-732b4cc/two-root-authorization-and-ledger.json",
+        "previous_root": "../b051-health-help-732b4cc/draft-identifier-authorization-and-ledger.json",
+        "status": "HISTORICAL_FROZEN_NO_LONGER_OPERATIONAL_STOP_QUOTA"
+      },
+      "global_resolved_open": "UNKNOWN",
+      "P2_credit": 0,
+      "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+      "NITO": "WAIT",
+      "Sentralbord": "WAIT_SEPARATE",
+      "remaining_B130_review_signatures": [
+        "15f5b4a3e9f79fd2",
+        "d58bff0e6b2d46eb"
+      ],
+      "remaining_pre_pilot_points": [
+        "B130 frost/bygningsvern ce90710821e28a97 validated for both original bindings. Base main 8422e39 has 64 published campaign signatures; 65 are published when containing commit is verified on remote main. Vacancy 597df4c45c6d3db9 is published at base. No complete catalog or pilot clearance.",
+        "Other B130 review signatures 15f5b4a3e9f79fd2 / d58bff0e6b2d46eb remain open; no implementation started",
+        "HTU 157c7afed18eb0fe / SC-019/SR-033 HOLD",
+        "8a89196fecd29ddb insect common-exclusion applicability HOLD",
+        "SC-020/SR-032 physical insect damage deductible HOLD (separate from Smart)",
+        "SC-035/SR-031 and B-071 hold",
+        "P3-A05 identity/mergestatus not established here; security/GDPR",
+        "Person insurance / pilot scope",
+        "Critical UX",
+        "Feedback",
+        "Operational adviser acceptance"
+      ]
+    },
+    "publication_interpretation": "Checkpoint count65 is now published because containing commit0e4c09d verified on remote main; no credit added this turn.",
+    "additional_HOLD": "8a89196fecd29ddb unchanged",
+    "signature_status": "OPEN_NOT_IMPLEMENTED_NOT_REVALIDATED",
+    "signature_closure_credit": 0,
+    "global_ledger_reconstructed": false,
+    "new_workstreams_started": false
+  },
+  "evidence": {
+    "path": "source-and-representation-proof.json.gz",
+    "sha256": "33f958432ddbae5d6ef6edada7ac642bcbaebc9ad604b0a86fb0e086b7f0828d",
+    "contents": "Full frozen bindings/review/batch, six raw/layout and visual source checks, current 12-configuration runtime output, 20 document-role and 10 factual probes, mapping/negative probes, repeatable main probe source, all7749 tracked hashes"
+  },
+  "integrity": {
+    "historical_sources_and_audit": "UNCHANGED",
+    "production_tests_project_status": "UNCHANGED",
+    "staged_files": [],
+    "commit_push_install_deploy": "NOT_PERFORMED",
+    "written_files": "Exactly three new untracked local audit files",
+    "checksum_policy": "SHA256SUMS seals decision JSON and compressed evidence, excludes itself"
+  }
+}
