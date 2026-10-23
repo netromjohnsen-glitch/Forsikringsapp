@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "base_revision": "1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f",
+  "application_identity_sha256": "11015a0160952cb69bbabfa07793970bdcfd03c4d8229a2e7d74063d1f6b8963",
+  "application_files_unchanged": true,
+  "old_sources_audits_and_prior_local_packet_unchanged": true,
+  "HOLD_campaign_and_global_status_unchanged": true,
+  "links_verified": [
+    "docs/audit/checkpoints/house-buildings-source-1b5b5aa/publication-authorization.md",
+    "docs/audit/checkpoints/house-buildings-source-1b5b5aa/receipt-house-buildings-source.json",
+    "docs/audit/checkpoints/house-buildings-source-1b5b5aa/validation-summary.json",
+    "docs/audit/checkpoints/house-buildings-source-1b5b5aa/checkpoint.json",
+    "docs/audit/checkpoints/house-buildings-source-1b5b5aa/source-and-reverse-audit.json",
+    "docs/audit/checkpoints/house-foundation-revalidation-1b5b5aa/receipt-house-foundation.json"
+  ],
+  "all_existing_changed_paths": [
+    "docs/development-agent/current-project-status.md",
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/helpers/b130-person-scope.mjs",
+    "tests/remediation-b-130-frost.test.mjs",
+    "tests/remediation-b-130-person-scope.test.mjs",
+    "tests/remediation-b-130-underinsurance.test.mjs",
+    "tests/remediation-b-130-vacancy.test.mjs"
+  ],
+  "diff_checks": "PASS",
+  "secure_publisher_self_test": "Publication failure/success exit-status controls PASS",
+  "new_appsuites_required": false,
+  "reason": "Only publication metadata changed after existing PASS candidate; no application/test or source original modifications."
+}

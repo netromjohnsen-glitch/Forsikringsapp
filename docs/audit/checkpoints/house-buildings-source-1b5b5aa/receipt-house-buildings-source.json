@@ -1,0 +1,106 @@
+{
+  "classification": "CURRENT_VALIDATED_SINGLE_SHARED_HOUSE_BUILDINGS_PRIMARY_SOURCE_PAGE_CORRECTION",
+  "status": "PASS_VALIDATED",
+  "authorization": "authorization.json",
+  "decision": "hus.bygninger.dekning primary page2 to3 corrected in the shared Standard row. Both Hus Standard and inherited Hus Pluss verified. Only this named remainder is addressed; no combined foundation/pilot clearance.",
+  "base_revision": "1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f",
+  "tested_HEAD_is_base_not_candidate_commit": true,
+  "application_identity_sha256": "11015a0160952cb69bbabfa07793970bdcfd03c4d8229a2e7d74063d1f6b8963",
+  "candidate_identity": "candidate-identity.json",
+  "scope": {
+    "key": "hus.bygninger.dekning",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "provider": "gjensidige",
+    "type": "Hus",
+    "agreement_scope": "ordinary",
+    "version": "Alminnelige vilkår",
+    "primary_source_owner": "gjensidigeHusStandard",
+    "before_page": 2,
+    "after_page": 3,
+    "raw_catalog_rows_changed": 1,
+    "source_owner_and_Pluss_inheritance": "UNCHANGED",
+    "wording_key_selection_coverage_mapping_priority_and_all_other_fields": "UNCHANGED"
+  },
+  "source_basis": {
+    "oracle": "source-oracle.json",
+    "registered_originals": "Both original SHA256 values unchanged; page3 exact raw text verified by tests; prior complete-page visual review retained in oracle",
+    "prior_read_only_receipt": "../house-foundation-revalidation-1b5b5aa/receipt-house-foundation.json",
+    "prior_remainder": "HOUSE_BUILDINGS_PRIMARY_SOURCE_PAGE",
+    "historical_SF_context": [
+      "SF-3063",
+      "SF-3150"
+    ],
+    "does_not_close_entire_SF_findings": true
+  },
+  "source_and_reverse_audit": "source-and-reverse-audit.json",
+  "validation": {
+    "targeted": {
+      "tests": 2552,
+      "pass": 2552,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 41,
+    "fullsuite": {
+      "tests": 6244,
+      "pass": 6244,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 170,
+    "new_contract_tests": 19,
+    "scoped_eslint": "0 errors,0 warnings",
+    "all12_addon_combinations": "Both products; exact full resolved/evidence/manual/threeJSON-reenrichment/display outputs except page-only delta",
+    "214_manual_inputs": "Full first outputs and exact captured repeat invocation preserved; true per-company repeated flows additionally verified by existing regression suites",
+    "144_document_controls": "Complete prior outputs preserved except page-only delta",
+    "52_catalog_comparisons": "Both directions/full prior outputs preserved except page-only delta",
+    "isolation": "Wrong provider/type/scope/version rejected; all other products unchanged",
+    "summary": "validation-summary.json"
+  },
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "historical_evidence": "Source originals, all old audit files including prior local revalidation, old frozen baseline snapshots and numeric policy history unchanged. Compatibility adapters project only independently approved page delta; new direct tests require actual page3 and full-catalog one-field equality.",
+  "unchanged_status": {
+    "documented_campaign_published_at_base": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "project_status": "../../../development-agent/current-project-status.md",
+  "checkpoint": "checkpoint.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "commit_push": "AUTHORIZED_BY_PUBLICATION_AUTHORIZATION",
+  "deploy": "NOT_PERFORMED",
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_bounded_step": "Combined ordinary-house foundation revalidation on containing fresh main remains a separate task; all HOLD unchanged.",
+  "publication_revision": "Containing Git commit; verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

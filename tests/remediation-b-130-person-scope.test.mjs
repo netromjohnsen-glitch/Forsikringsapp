@@ -1,3 +1,4 @@
+import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -27,7 +28,7 @@ const stages=i=>{const a=repeat(i),b=repeat(a);return[i,a,b,repeat(clean(b))];};
 const pick=i=>i.importantTerms.filter(t=>t.key===o.key);
 const raw=id=>structuredClone(baseline.documents.find(c=>c.id===id&&c.record.documentRole==='individual_agreement'&&!c.record.importantTerms.length&&!c.record.addOns.length).record);
 const record=(id,values=[],role='individual_agreement')=>({...raw(id),documentRole:role,importantTerms:values.map(value=>({name:o.label,value,canonicalKey:null,documentIndices:[1]}))});
-const states=i=>clean(deriveCanonicalCoverages(i,'Hus'));
+const states=i=>clean(deriveCanonicalCoverages(withOriginalBuildingsSourcePage(i),'Hus'));
 
 test('PERSONSCOPE original CR-228 signature has exactly both source bindings',()=>{
  assert.equal(o.signature,'d58bff0e6b2d46eb');assert.equal(o.original_registry.final_batch_id,'B-130');
@@ -147,7 +148,7 @@ test('PERSONSCOPE exact six-group wording retains distinct conditions without a 
  assert.doesNotMatch(o.value,/alle i husstanden|under 21|til fylte 21|fosterbarn|leietaker/u);
 });
 test('PERSONSCOPE separate health-service liability legal safety object and settlement rules strictly unchanged',()=>{
- for(const id of ids)for(const key of ['hus.service.helsehjelp','hus.ansvar.dekning','hus.rettshjelp.dekning','hus.sikkerhet.begrensning','hus.bygninger.dekning','hus.avtale.forbehold','hus.forsikringsform','hus.gjenoppforing.hovedregel','hus.fraflyttet.begrensning','hus.underforsikring.begrensning'])assert.deepEqual(resolveCatalogFacts(p(id),[],date).find(f=>f.key===key),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===id),[],date,null,baseline.catalog).find(f=>f.key===key));
+ for(const id of ids)for(const key of ['hus.service.helsehjelp','hus.ansvar.dekning','hus.rettshjelp.dekning','hus.sikkerhet.begrensning','hus.bygninger.dekning','hus.avtale.forbehold','hus.forsikringsform','hus.gjenoppforing.hovedregel','hus.fraflyttet.begrensning','hus.underforsikring.begrensning'])assert.deepEqual(withOriginalBuildingsSourcePage(resolveCatalogFacts(p(id),[],date).find(f=>f.key===key)),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===id),[],date,null,baseline.catalog).find(f=>f.key===key));
  const health=resolveCatalogFacts(p(ids[0]),[],date).find(f=>f.key==='hus.service.helsehjelp');assert.doesNotMatch(health.value,/tinglyst|panterett|sikkerhetsrett/u);
  const otherPersonScopes=Object.entries(productCatalog.facts).flatMap(([owner,rows])=>rows.filter(f=>f.key==='innbo.forsikrede'||f.key==='reise.personer.omfang').map(f=>({owner,fact:f})));
  assert.ok(otherPersonScopes.length);for(const {owner,fact}of otherPersonScopes)assert.deepEqual(fact,baseline.catalog.facts[owner].find(f=>f.key===fact.key));

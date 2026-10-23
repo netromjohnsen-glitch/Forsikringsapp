@@ -1,5 +1,55 @@
 # Aktuell dokumentert prosjektstatus
 
+## Forsikrede bygninger – validert kildehenvisningsrettelse 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f`. Personkretsrettelsen og de tre
+forutgående B-130-bolkene er faktisk publisert på denne revisjonen; 67 dokumenterte
+kampanjesignaturer er på main. Sidetallsrettelsen er validert på samme basis.
+Publiseringsrevisjonen er committen som inneholder rettelsen, receipt og denne
+prosjektstatusen; publisert status gjelder etter kontroll på remote main.
+Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-buildings-source-1b5b5aa/publication-authorization.md).
+Ingen installasjon eller deploy.
+
+Bare `hus.bygninger.dekning` sin primære kildehenvisning er rettet fra Standard
+PDF-side 2 til 3. Hus Pluss arver samme felles rad og kildeidentitet. Produksjonsdiffen
+er ett tegn i én katalograd; øvrig ordlyd, verdi, nøkkel, kildeeier, avsnitt, versjon,
+arv, dekning, mapping, kundevalg og dokumentprioritet er uendret. Ingen bredere
+sidetallsopprydding er gjort. Begge original-PDF-er og historiske receipts er bevart.
+
+[Receipt](../audit/checkpoints/house-buildings-source-1b5b5aa/receipt-house-buildings-source.json),
+[validering](../audit/checkpoints/house-buildings-source-1b5b5aa/validation-summary.json),
+[checkpoint](../audit/checkpoints/house-buildings-source-1b5b5aa/checkpoint.json) og
+[kilde-/reverse-audit](../audit/checkpoints/house-buildings-source-1b5b5aa/source-and-reverse-audit.json).
+Den [forutgående lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-1b5b5aa/receipt-house-foundation.json)
+beholdes byte-identisk som før-bevis i samme publiseringsbolk. Den navngitte
+restmangelen er rettet i den validerte kandidaten. Historiske testbaseliner beholdes; beviste tilpasninger av testhjelpere
+projiserer bare det godkjente sidetallsbyttet. Egne tester krever faktisk side 3 og
+komplett likhet med uavhengig før-katalog bortsett fra denne ene endringen.
+
+2552/2552 målrettede tester i 41 filer og 6244/6244 tester i 170 filer består uten
+skip; 19 nye kilde-/kontraktkontroller. Kvalitetskontroll av de åtte berørte kode-/
+testfilene: 0 feil og 0 warnings. Alle 12 tilleggskombinasjoner, 214 manuelle input,
+144 syntetiske dokumentkontroller, gjentatt JSON-beriking, materialisering, visning
+og 52 katalogsammenligninger i begge retninger er kontrollert mot før-grunnlaget.
+Ingen ny type-/API-/engine- eller visningsendring; build/server/deploy er ikke kjørt.
+
+Dette lukker bare den presise sidetallsrestmangelen når inneholdende commit er
+bekreftet på remote main. Samlet
+katalogfundament er ikke frigitt; resterende kilde-/P2-inventar og alle HOLD er
+uendret. B-051 37/0/1/1, kampanje 67, ny signaturkreditt 0, P2-kreditt 0, globalt
+resolved/open UKJENT og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes.
+Samlet revalidering av katalogfundamentet på inneholdende fersk main gjenstår
+som separat oppgave; ingen ny implementering er startet.
+
+HTU `157c7afed18eb0fe` / SC-019/SR-033, `8a89196fecd29ddb`, SC-020/SR-032,
+SC-035/SR-031, B-071-holdet og alle øvrige beskyttede HOLD beholdes eksakt.
+Sikkerhet/GDPR og uavklart P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. NITO venter;
+Sentralbord venter separat. Ingen ny arbeidsstrøm er startet.
+
+
 ## Personkrets og sikrede – validert B-130-bolk 23. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

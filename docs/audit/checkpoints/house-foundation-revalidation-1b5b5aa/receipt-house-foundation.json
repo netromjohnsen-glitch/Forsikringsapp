@@ -1,0 +1,221 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_FOUNDATION_REVALIDATION_WITH_ONE_PRECISE_REMAINDER",
+  "status": "COMPLETED_WITH_PRECISE_REMAINDER",
+  "decision": "Katalogfundamentet kan ikke samlet bekreftes ferdig. Én presis restmangel: hus.bygninger.dekning viser til Standard PDF2, mens kildestøtten står på PDF3. Feilen arves til Hus Pluss.",
+  "authorization": "Gjør samlet revalidering av ordinært katalogfundament for Hus Standard og Hus Pluss på fersk main. Lever én receipt med bekreftet grunnlag eller én presis restmangel. Ingen kodeendringer/deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-23T11:58:42.539609+00:00",
+  "fresh_main_before": "1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f",
+  "fresh_main_after": "1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f",
+  "fresh_main_method": "GitHub branches/main API checked before and after read-only checks; exact SHA equals local HEAD and origin/main. Receipt remains local/uncommitted.",
+  "branch": "fix/house-vacancy",
+  "scope": {
+    "provider": "gjensidige",
+    "type": "bolig/Hus",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "original_signature_inventory": 46,
+    "original_GAP_SF_links": 83,
+    "historical_source_fact_inventory": {
+      "total": 170,
+      "P1": 83,
+      "P2": 30,
+      "priority_blank": 57
+    },
+    "registered_source_artifacts_verified": 6,
+    "addon_configurations": {
+      "Standard": 8,
+      "Pluss": 4
+    },
+    "no_exhaustive_global_or_P2_closure_claim": true
+  },
+  "confirmed_ground": {
+    "B051_original_receipts_present_on_fresh_main": 37,
+    "B051_original_binding_links": 67,
+    "B130_receipts_present_on_fresh_main": [
+      {
+        "signature": "597df4c45c6d3db9",
+        "key": "hus.fraflyttet.begrensning",
+        "receipt": "docs/audit/checkpoints/b130-vacancy-f5f88cc/completion-receipt-597df4c45c6d3db9.json",
+        "sha256": "5e93e9ee3ac6897a87dad06e965b1eda7f1de50ad2ce89c0b0647c542d7f67ea"
+      },
+      {
+        "signature": "ce90710821e28a97",
+        "key": "hus.sikkerhet.begrensning",
+        "receipt": "docs/audit/checkpoints/b130-frost-8422e39/completion-receipt-ce90710821e28a97.json",
+        "sha256": "e0f4d260e31c51d82c0d86047ce3715342087110b1066ae7f4147aa06ba0b655"
+      },
+      {
+        "signature": "15f5b4a3e9f79fd2",
+        "key": "hus.underforsikring.begrensning",
+        "receipt": "docs/audit/checkpoints/b130-underinsurance-0e4c09d/completion-receipt-15f5b4a3e9f79fd2.json",
+        "sha256": "e4836918eb478a6067705998acee82e56fbec465ceae8f2a94d194b54924d280"
+      },
+      {
+        "signature": "d58bff0e6b2d46eb",
+        "key": "hus.personkrets.begrensning",
+        "receipt": "docs/audit/checkpoints/b130-person-scope-cfada9a/completion-receipt-d58bff0e6b2d46eb.json",
+        "sha256": "17c4299f3daa2229cbe81e8e4cd7889b0d12989da941efdc3df8a6281c03ccb7"
+      }
+    ],
+    "B130_original_source_bindings": 8,
+    "B130_packet_seal_files_verified": 150,
+    "publication_proof": "Exact git show fresh-main bytes/hash checked, not inferred from earlier PASS. Four B130 completions retained.",
+    "latest_published_application_identity": "6e24b557f60ee6b5fbe76d5b2059e68ac09fd2f62337cf82e4d9a0f2fb982e42",
+    "latest_published_application_files_verified": 9,
+    "existing_tests": {
+      "status": "PASS",
+      "test_files": 40,
+      "tests": 2533,
+      "pass": 2533,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "seconds": 23.96,
+      "log": "targeted-main.log.gz"
+    },
+    "runtime": "Current catalog resolution/materialization and all12 manual-choice combinations with three JSON re-enrichments and comparison display recorded. Scope negatives reject wrong provider/type/scope/version. Document-role behavior covered by existing targeted regression contracts plus synthetic read-only snapshots."
+  },
+  "precise_remainder": {
+    "id": "HOUSE_BUILDINGS_PRIMARY_SOURCE_PAGE",
+    "key": "hus.bygninger.dekning",
+    "label": "Forsikrede bygninger",
+    "affected_products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "type": "Shared source-reference metadata; not a new insurance-meaning decision",
+    "actual_primary_source": {
+      "documentId": "gjensidigeHusStandard",
+      "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+      "termsNumber": "Hus Standard",
+      "effectiveFrom": "",
+      "company": "Gjensidige",
+      "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+      "section": "Hus – Hva forsikringen omfatter",
+      "page": 2,
+      "version": "Alminnelige vilkår"
+    },
+    "expected_primary_source_page": 3,
+    "primary_source_document_retained": "gjensidigeHusStandard",
+    "root_location": "lib/gjensidige-hus-catalog.ts:41",
+    "inheritance": "One Standard raw row inherited by Pluss; no separate Pluss source replacement required for this finding",
+    "source_basis": "Standard PDF2 contains responsibility limitations. The full insured-object table supporting the existing wording is on Standard PDF3; Pluss PDF3 corroborates the object scope. All source bytes are current main snapshots.",
+    "observed_surfaces": [
+      "resolved facts, all12 addon powersets",
+      "catalog materialization, both levels",
+      "manual registration, both levels/all12 choices",
+      "three JSON roundtrip catalog reenrichments, all12 choices",
+      "comparison display, both sides/all12 choices"
+    ],
+    "why_blocking": "Advisor-facing evidence points to a page without the asserted insured-object table; combined source/provenance confirmation cannot be granted. Existing tests accept this pre-existing metadata and therefore PASS does not establish source correctness.",
+    "historical_source_inventory_context": [
+      "SF-3063",
+      "SF-3150"
+    ],
+    "one_sufficient_remainder_not_exhaustive_gap_count": true,
+    "narrow_proposed_correction": "Correct only primary page2 to3 for hus.bygninger.dekning in the shared Standard row and verify inheritance on both levels, manual/document reenrichment, materialization and display. Preserve wording, key, identity, source owner/section/version, coverage/selection rules, all other rows and all HOLD. No broader source-page sweep authorized.",
+    "implemented": false,
+    "does_not_reopen_B130_completions": true
+  },
+  "source_evidence": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page": 2,
+      "review": "Raw/layout text and rendered complete page visually checked"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page": 3,
+      "review": "Raw/layout text and rendered complete page visually checked"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page": 3,
+      "review": "Raw/layout text and rendered complete page visually checked"
+    }
+  ],
+  "diagnostic": "First test invocation omitted installed pdftotext from PATH:31 ENOENT failures, diagnostic log retained. Same40-file suite rerun with published environment:2533/2533 PASS; no install/test/code correction. Scratch probe loader invocation corrected to native Node; no package installed.",
+  "integrity": {
+    "all_original_tracked_files_unchanged": true,
+    "tracked_file_count": 7833,
+    "tracked_set_unchanged": true,
+    "staged_files": 0,
+    "HEAD": "1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f",
+    "origin_main": "1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f",
+    "only_new_audit_packet_untracked": true
+  },
+  "unchanged_status": {
+    "documented_campaign_count_now_present_on_main": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "new_signature_closure_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "P2_credit": 0,
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "Combined ordinary-house foundation still blocked by documented source-page remainder; other unresolved inventory/HOLD not cleared",
+    "HTU and all existing HOLD unchanged",
+    "Security/GDPR; P3-A05 identity/mergestatus not established here",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "limits": [
+    "No production code, tests, catalog data, old audit or project-status files edited",
+    "New audit receipt/evidence/logs only; no commit/push/install/deploy",
+    "No new full-suite, lint, typecheck, build, HTTP/server or PDF-generation run in this read-only task; source PDF extraction/rendering and existing targeted tests only",
+    "Earlier full-suite6225 and build checks belong to the published person-scope candidate, not rerun here",
+    "Registered source snapshot hashes verified; no new insurer-version/effective-date assertion",
+    "One sufficient remainder reported; no claim this is the sole remaining P2/global source issue"
+  ],
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "477bf087cfdb6e0fb4f753ef65c7ed83a5c583144dbfa63820191dcb95193390"
+  },
+  "logs": [
+    {
+      "path": "targeted-main.log.gz",
+      "sha256": "1c096b22ed6bcd3d9254575669f2b297aa55a6b689109d6e03c1e3e1a42bf149"
+    },
+    {
+      "path": "targeted-diagnostic-v1.log.gz",
+      "sha256": "eabb315a0156cde62c35d3c49bf68d230fc932004badf90a517e376b5f941c61"
+    }
+  ],
+  "publication_status": "LOCAL_UNCOMMITTED_AUDIT_RECEIPT",
+  "new_workstreams_started": false
+}

@@ -1,3 +1,4 @@
+import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -27,7 +28,7 @@ const stages=i=>{const a=repeat(i),b=repeat(a);return[i,a,b,repeat(clean(b))];};
 const pick=i=>i.importantTerms.filter(t=>t.key===o.key);
 const raw=id=>structuredClone(baseline.documents.find(c=>c.id===id&&c.record.documentRole==='individual_agreement'&&!c.record.importantTerms.length&&!c.record.addOns.length).record);
 const record=(id,values=[],role='individual_agreement')=>({...raw(id),documentRole:role,importantTerms:values.map(value=>({name:o.label,value,canonicalKey:null,documentIndices:[1]}))});
-const states=i=>clean(deriveCanonicalCoverages(i,'Hus'));
+const states=i=>clean(deriveCanonicalCoverages(withOriginalBuildingsSourcePage(i),'Hus'));
 const pdfText=(file,page)=>execFileSync('pdftotext',['-raw','-f',String(page),'-l',String(page),file,'-']).toString().replace(/\s+/gu,' ');
 
 test('UNDERINSURANCE CR-226 has exactly the two original P1 source bindings',()=>{
@@ -126,5 +127,5 @@ test('UNDERINSURANCE same product and side-swap retain source asymmetry and peer
 });
 test('UNDERINSURANCE price basis and first-main-anniversary deadline never become area ratio or form override',()=>{
  assert.match(o.value,/innen førstkommende hovedforfall/u);assert.match(o.value,/avtalt pris før forandringen og riktig pris etter forandringen/u);assert.match(o.value,/avtalt pris med oppgitt areal og riktig pris med faktisk areal/u);assert.match(o.value,/innen neste hovedforfall; ellers kan erstatningen reduseres/u);
- for(const id of ids)for(const key of ['hus.forsikringsform','hus.gjenoppforing.hovedregel','hus.gjenoppforing.annetsted','hus.gjenoppforing.totalskade','hus.gjenoppforing.svanemerket','hus.bygninger.dekning','hus.pabud.dekning','hus.fraflyttet.begrensning','hus.sikkerhet.begrensning'])assert.deepEqual(resolveCatalogFacts(p(id),[],date).find(f=>f.key===key),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===id),[],date,null,baseline.catalog).find(f=>f.key===key));
+ for(const id of ids)for(const key of ['hus.forsikringsform','hus.gjenoppforing.hovedregel','hus.gjenoppforing.annetsted','hus.gjenoppforing.totalskade','hus.gjenoppforing.svanemerket','hus.bygninger.dekning','hus.pabud.dekning','hus.fraflyttet.begrensning','hus.sikkerhet.begrensning'])assert.deepEqual(withOriginalBuildingsSourcePage(resolveCatalogFacts(p(id),[],date).find(f=>f.key===key)),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===id),[],date,null,baseline.catalog).find(f=>f.key===key));
 });

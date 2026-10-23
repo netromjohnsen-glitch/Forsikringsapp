@@ -1,0 +1,22 @@
+{
+  "classification": "AUTHORIZED_SINGLE_SHARED_HOUSE_BUILDINGS_SOURCE_PAGE_CORRECTION",
+  "user_authorization": "Rett bare kildehenvisningen for hus.bygninger.dekning fra side 2 til 3 på fersk main. Kontroller Hus Standard og Hus Pluss, og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "base_revision": "1b5b5aaa7d2e56845146be0a935ddc0e5a697f4f",
+  "source_decision": "../house-foundation-revalidation-1b5b5aa/receipt-house-foundation.json",
+  "key": "hus.bygninger.dekning",
+  "products": ["gjensidige-hus", "gjensidige-hus-pluss"],
+  "production_file": "lib/gjensidige-hus-catalog.ts",
+  "production_delta": "Only primary page2 to3 on shared Standard raw row. Pluss inherits same row/source. Preserve every other production byte.",
+  "allowed_support_files": ["tests/helpers/house-buildings-source.mjs", "tests/helpers/b130-person-scope.mjs", "tests/remediation-house-buildings-source.test.mjs", "tests/remediation-b-130-underinsurance.test.mjs", "tests/remediation-b-130-person-scope.test.mjs", "docs/development-agent/current-project-status.md", "docs/audit/checkpoints/house-buildings-source-1b5b5aa/*"],
+  "support_policy": "Only narrowly proven historical snapshot projections required by source page2-to3 change; preserve strict comparisons, original audit files and source originals. Add source and before/after regressions for both levels. Additional test files only if independently diagnosed mechanical baseline differences require them, and logged before edit.",
+  "sources": [{"id":"gjensidigeHusStandard","page":3,"sha256":"d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"},{"id":"gjensidigeHusPluss","page":3,"sha256":"79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"}],
+  "independent_roots": 1,
+  "gates": ["independent before/source hashes", "source and reverse audit: one raw page only", "both products/all12 addon choices/manual/three JSON reenrichments/display", "214 manual and144 synthetic document controls", "provider/type/scope/version isolation and both comparison directions", "existing40-file targeted suite plus new source contract tests", "full suite because shared snapshot helper changes", "diff, documentation links and immutable-file integrity"],
+  "budget": "One production metadata root. Active standing mechanical policy; no numeric historical quota reset. No new semantic/selection/mapping scope.",
+  "commit_push": "NOT_AUTHORIZED_THIS_TURN",
+  "deploy": "NOT_AUTHORIZED",
+  "install": "NOT_AUTHORIZED",
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE"
+}

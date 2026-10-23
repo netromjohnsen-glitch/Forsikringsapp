@@ -1,0 +1,38 @@
+{
+  "policy": "docs/development-agent/workflow.md#aktiv-fullmakt-autonom-gjennomføring",
+  "historical_numeric_quotas": "UNCHANGED_FROZEN",
+  "roots": [
+    {
+      "id": "BUILDINGS_PAGE_HISTORICAL_SNAPSHOT_PROJECTION",
+      "before": "Existing immutable historical snapshots carry Standard primary page2 on hus.bygninger.dekning. One production digit correction causes373 exact snapshot/digest failures in targeted diagnostic v1.",
+      "independent_evidence": [
+        "Frozen fresh-main full catalog and214 manual/144 document outputs captured before production edit",
+        "Prior independent PDF page decision and source-oracle.json; registered source hashes unchanged",
+        "Exact production byte delta limited to page2-to3 on one row",
+        "Dedicated new tests compare complete candidate catalog/outputs to independent before data with explicit page-only delta and reject page99/wrong source identity"
+      ],
+      "correction": "Add guarded bidirectional page projection for only this exact key/Standard source, attach to existing person-scope snapshot transform chain, and apply reverse projection to two explicit historical unchanged-building assertions. Preserve snapshots and every other field/negative assertion.",
+      "files": [
+        "tests/helpers/house-buildings-source.mjs",
+        "tests/helpers/b130-person-scope.mjs",
+        "tests/remediation-b-130-underinsurance.test.mjs",
+        "tests/remediation-b-130-person-scope.test.mjs",
+        "tests/remediation-b-130-frost.test.mjs",
+        "tests/remediation-b-130-vacancy.test.mjs"
+      ],
+      "meaning_selection_priority_isolation": "UNCHANGED; dedicated direct page3 tests require corrected current metadata regardless of compatibility projection",
+      "new_production_scope": false,
+      "additional_diagnosis": "Diagnostic v2:48 prior B130 manual-choice tests compare derived coverage evidence sources directly to frozen page2 sources. Project the already approved page delta before deriving comparison states in all four tests. No status/value fields removed."
+    },
+    {
+      "id": "NEW_CAPTURE_REPLAY_COMPANY_ARGUMENT",
+      "before": "New214-input baseline captured repeat() with company Gjensidige for every input, while replay used each input company; bil-ansvar mismatch reproduces invocation difference, not production regression. Frozen baseline retained.",
+      "evidence": "capture-before.mjs explicit repeat function; entire before catalog one-field-delta test passes; existing214-manual regression tests use true company independently.",
+      "correction": "Replay the same recorded repeat invocation in new test. All214 first-input outputs and144 document controls remain strict; proper per-company repeat covered by unchanged historical baseline contracts.",
+      "files": [
+        "tests/remediation-house-buildings-source.test.mjs"
+      ],
+      "production_change": false
+    }
+  ]
+}
