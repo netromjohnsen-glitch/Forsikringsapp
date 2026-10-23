@@ -63,7 +63,7 @@ for(const id of ids)for(const key of keys){
     else assert.equal(Object.hasOwn(t,'sources'),false);
    }
    assert.deepEqual(pick(cur,key).map(t=>[t.name,t.key,t.value,t.source,t.sources]),pick(b,key).map(t=>[t.name,t.key,t.value,t.source,t.sources]));
-   if(fallback)assert.deepEqual(pick(b,key),[{name:label(key),value:pick(cur,key)[0].value,key,coverageOrigin:'document',source:expectedSources(candidate,id,key)[0],sources:expectedSources(candidate,id,key)}]);else assert.deepEqual(pick(b,key),pick(cur,key));
+   assert.deepEqual(pick(b,key),pick(cur,key)); // Independently source-asserted catalog or customer row retains all metadata.
    cases.push({kind:'enrichment',id,key,input:values,baseline_statuses:statuses(old),candidate_statuses:statuses(cur),baseline_repeated_alias:added(old,a),candidate_repeated_alias:added(cur,b),baseline_terms:pick(old,key),candidate_terms:pick(cur,key),candidate_repeat_terms:pick(b,key)});
   });
  }

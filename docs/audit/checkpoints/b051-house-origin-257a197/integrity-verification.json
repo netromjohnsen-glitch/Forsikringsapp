@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "base_revision": "257a197aa016ba3c9567eeb4cebc8182d5e0aba5",
+  "tested_candidate_identity_sha256": "c8c6776ab4552bc5fb8a1182ab3596877137277c8f22c3ee194d8af329912631",
+  "application_files": 14,
+  "production_files": [
+    "lib/catalog-enrichment.ts"
+  ],
+  "final_gates_same_identity": 8,
+  "all_gate_logs_compressed_and_original_SHA_verified": 18,
+  "new_permanent_tests": 69,
+  "test_manifest_files": 165,
+  "prior_packet_files_byte_identical": 51,
+  "registered_PDF_SHA_verified": 2,
+  "catalog_identity": "Verified against frozen pre-change serialized catalog in permanent contract test",
+  "links_verified": 924,
+  "allowed_tracked_changed_files": [
+    "docs/development-agent/current-project-status.md",
+    "lib/catalog-enrichment.ts",
+    "tests/remediation-b-051-craftsmanship.test.mjs",
+    "tests/remediation-b-051-events-buildings.test.mjs",
+    "tests/remediation-b-051-garden.test.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/remediation-b-051-manual-rental-choice.test.mjs",
+    "tests/remediation-b-051-manual-smart-choice.test.mjs",
+    "tests/remediation-b-051-recovery-benefits.test.mjs",
+    "tests/remediation-b-051-rental-selection.test.mjs",
+    "tests/remediation-b-051-settlement-age.test.mjs",
+    "tests/remediation-b-051-smart-selection.test.mjs",
+    "tests/remediation-b-051-water.test.mjs"
+  ],
+  "allowed_untracked_application_files": [
+    "tests/helpers/house-origin.mjs",
+    "tests/remediation-b-051-house-origin.test.mjs"
+  ],
+  "all_HOLD_and_protected_counters": "UNCHANGED",
+  "other_pre_pilot_points_visible": true,
+  "staged_files": [],
+  "diff_check": "PASS",
+  "install": "NOT_PERFORMED",
+  "commit": "NOT_PERFORMED",
+  "push": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED",
+  "checksum_policy": "Every packet file including this report is sealed except SHA256SUMS itself"
+}

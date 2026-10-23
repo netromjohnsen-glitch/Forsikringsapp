@@ -1,0 +1,59 @@
+{
+  "classification": "CUSTOMER_CATALOG_PROVENANCE_NOT_ORIGINAL_SIGNATURE_COMPLETION",
+  "finding": "HOUSE_CATALOG_ORIGIN_ON_REPEATED_ENRICHMENT",
+  "status": "PASS_VALIDATED",
+  "base_revision": "257a197aa016ba3c9567eeb4cebc8182d5e0aba5",
+  "tested_candidate_identity_sha256": "c8c6776ab4552bc5fb8a1182ab3596877137277c8f22c3ee194d8af329912631",
+  "provider": "gjensidige",
+  "products": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "insurance_type": "bolig",
+  "agreement_scope": "ordinary",
+  "version": "Alminnelige vilkår",
+  "production_scope": [
+    "lib/catalog-enrichment.ts"
+  ],
+  "contract": {
+    "boundary": "Only genuine document layer enters document normalization; registered catalog layer is re-resolved from exact product and valid selection; uploaded general_terms retained separately with full references/evidence and no customer selection confirmation",
+    "metadata": "Catalog origin, identities, values, complete sources/presentation notes, structuredValue, deductibleClassification, coverageAvailability, catalogSelectionConfirmed and overriddenBase retained on repeated enrichment and JSON",
+    "sources": "Reuse complete presentation notes only while fact value, primary source and full registered source set including qualification notes match; regenerated current sources replace stale locations or added/removed qualification notes",
+    "document_priority": "Late genuine customer values receive same priority as fresh input; denial/conflict/unknown and established catalog fallback unchanged; catalog fallback remains catalog",
+    "choices": "Manual and document Smart/Utleie/rot, strict valid/invalid markers, Rettshjelp, premiums and general deductible preserved",
+    "isolation": "One production file, exact two ordinary products/version; global normalizer/coverage engine/catalog/source/schema/aliases/admission/object matching unchanged",
+    "baseline": "214 manual first results and 144 PDF first results exact before baseline; 202 other manual repeats exact; 12 target manual repeats differ only by approved origin/metadata/resolver order with strict unchanged full key/name/value/source/sources multiset",
+    "historical_data": "Prevents fresh catalog-to-document conversion. No source heuristics or migration of already mislabelled persisted document rows."
+  },
+  "validation": "validation-summary.json",
+  "gate_manifest": "gate-results.json",
+  "candidate_identity": "candidate-identity.json",
+  "source_contract_evidence": "source-and-contract-preflight.json",
+  "baseline_evidence": "baseline-identity.json",
+  "test_contract_updates": "test-contract-updates.json",
+  "current_customer_findings": "catalog-origin-findings.json",
+  "permanent_test": "tests/remediation-b-051-house-origin.test.mjs",
+  "original_signature_closure_credit": 0,
+  "documented_campaign_count": 63,
+  "B051_partition_counts": [
+    37,
+    0,
+    1,
+    1
+  ],
+  "global_resolved_open": "UNKNOWN",
+  "P2_credit": 0,
+  "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "commit_push_authorized": true,
+  "deploy": "NOT_PERFORMED",
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "no_pilot_readiness_claim": true,
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

@@ -271,6 +271,10 @@ function enrichInsurance(
     ? resolveCatalogFacts(product, [], asOf, null, catalog).filter(fact => optedParents.has(fact.key))
     : [];
   const originalTerms = insurance.importantTerms as EnrichedTerm[];
+  // Only these two ordinary house products opt into the provenance boundary.
+  // Catalog rows are regenerated below, never normalized as customer evidence.
+  const scopedHouseCatalog = product && isHouseSmartProduct(product) &&
+    normalizeInsuranceType(insurance.type) === "bolig";
   const smartSelection = product && isHouseSmartProduct(product) &&
     availableAddOns(product, asOf, null, catalog).some(addOn => addOn.id === HOUSE_SMART_ADDON)
     ? resolveHouseSmartSelection(product, { ...insurance, importantTerms: resolvedDocumentTerms ?? originalTerms }, asOf, catalog) : null;
@@ -279,7 +283,7 @@ function enrichInsurance(
   const scopedSupportingTerms = originalTerms.filter(term => term.coverageOrigin === "catalog" &&
     term.sources?.length && term.sources.every(source =>
       (source as CatalogFact["source"] & { documentRole?: string }).documentRole === "general_terms") &&
-    (optedParents.has(term.key ?? "") ||
+    (scopedHouseCatalog || optedParents.has(term.key ?? "") ||
       (product && isHouseSmartProduct(product) && Boolean(houseSmartTermKey(term))) ||
       (rentalSelection && Boolean(houseRentalTermKey(term))) ||
       optedAddOns.some(addOn => normalizeLabel(addOn.name) === normalizeLabel(term.name)) ||
@@ -290,6 +294,7 @@ function enrichInsurance(
     const smartTerms = smartSelection ? houseSmartDocumentAddOnTerms(insurance) : [];
     const normalized = normalizeDocumentFacts({ ...insurance, importantTerms: [...originalTerms, ...smartTerms].filter(term =>
       !scopedSupportingTerms.includes(term) &&
+      !(scopedHouseCatalog && term.coverageOrigin === "catalog") &&
       !(smartSelection && (term as EnrichedTerm).coverageOrigin === "catalog" && houseSmartTermKey(term)) &&
       !(rentalSelection && term.coverageOrigin === "catalog" && houseRentalTermKey(term)) &&
       !(term.coverageOrigin === "catalog" && optedParents.has(term.key ?? ""))) });
@@ -467,7 +472,32 @@ function enrichInsurance(
       } : {}),
       ...(fact.coverageAvailability === "unavailable" && optedParents.has(fact.key)
         ? { catalogSelectionConfirmed: false } : {}),
-    }));
+    })).map(term => {
+      const currentSource = term.source, currentSources = term.sources;
+      if (!scopedHouseCatalog || !currentSource || !currentSources) return term;
+      // Keep complete presentation notes from a previously materialized fact,
+      // only while its value and every registered source reference still match.
+      // Regeneration controls applicability/metadata; old optional rows cannot
+      // resurrect a choice or survive a product/version/source change.
+      const sourceReference = (source: CatalogFact["source"]) =>
+        catalogSourceIdentity({ ...source, note: undefined });
+      const registeredFact = (facts: readonly CatalogFact[] | null | undefined) => facts?.find(fact =>
+        fact.key === term.key && fact.value === term.value &&
+        catalogSourceIdentity(fact.source) === catalogSourceIdentity(currentSource));
+      const priorFact = registeredFact((insurance as CatalogEnrichedInsurance).catalogFacts);
+      const currentFact = registeredFact(effectiveFacts);
+      // Registered qualification notes may change without a new location.
+      // Preserve generated presentation notes only with an unchanged complete
+      // registered source set, including the underlying qualification notes.
+      if (!priorFact || !currentFact || JSON.stringify(catalogFactSources(priorFact).map(catalogSourceIdentity)) !==
+          JSON.stringify(catalogFactSources(currentFact).map(catalogSourceIdentity))) return term;
+      const previous = originalTerms.find(previous => previous.coverageOrigin === "catalog" &&
+        !scopedSupportingTerms.includes(previous) && previous.key === term.key && previous.value === term.value &&
+        previous.source && catalogSourceIdentity(previous.source) === catalogSourceIdentity(currentSource) &&
+        previous.sources?.length === currentSources.length && previous.sources.every((source, index) =>
+          sourceReference(source) === sourceReference(currentSources[index])));
+      return previous ? { ...term, sources: previous.sources! } : term;
+    });
 
   const effectiveTerms = [...documentTerms.filter(term => !isUndocumentedTermValue(term.value) ||
     !supplementalTerms.some(fact => fact.key === term.key)), ...supplementalTerms,

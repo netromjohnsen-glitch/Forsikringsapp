@@ -75,7 +75,8 @@ for(const id of ids)for(const key of keys)check('typed-metadata',()=>{
  assert.deepEqual(pick(manual(candidate,id),key)[0].structuredValue,cur.structuredValue);
  const ar=pick(repeat(baseline,a),key)[0],br=pick(repeat(candidate,b),key)[0];
  assert.equal(Object.hasOwn(br,'structuredValue'),Object.hasOwn(ar,'structuredValue'));
- assert.equal(Object.hasOwn(br,'structuredValue'),false); // extractedTerm's established repeat contract
+ assert.equal(Object.hasOwn(br,'structuredValue'),true);
+ assert.deepEqual(br.structuredValue,cur.structuredValue); // Independent registered typed-fact oracle.
 });
 
 check('complete-independent-eight-row-oracle',()=>assert.deepEqual(candidate,expectedCatalog));

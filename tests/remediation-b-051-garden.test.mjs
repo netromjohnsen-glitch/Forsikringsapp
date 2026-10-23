@@ -133,18 +133,13 @@ for (const id of ids) for (const key of keys) test('R-051-GARDEN-DOCUMENT ' + id
     const otherKey = keys.find(k => k !== key);
     assert.equal(pick(actual, otherKey)[0].value, oracle[otherKey].value);
     const again = enrichExtractedAgreementWithCatalog({ company: 'Gjensidige', totalAnnualPremium: null, insurances: [actual] }, date).insurances[0];
-    // Passing enriched terms back as extracted input follows extractedTerm's
-    // existing document representation, not catalogTerm's raw metadata shape.
-    // Full-field assertions account individually for every changed field.
+    // Catalog fallback keeps the independent complete first-row metadata on repeat.
     const expectedFirst = fallback
       ? [{ name: oracle[key].label, value: oracle[key].value, key, coverageOrigin: 'catalog',
         structuredValue: undefined, deductibleClassification: undefined,
         source: sources(key)[0], sources: sources(key), overriddenBase: [] }]
       : values.map(value => ({ name: oracle[key].label, value, key, coverageOrigin: 'document', source: customerSource }));
-    const expectedAgain = fallback
-      ? [{ name: oracle[key].label, value: oracle[key].value, key, coverageOrigin: 'document',
-        source: sources(key)[0], sources: sources(key) }]
-      : expectedFirst;
+    const expectedAgain = expectedFirst;
     assert.deepEqual(pick(actual, key), expectedFirst);
     assert.deepEqual(pick(again, key), expectedAgain);
     // No provenance/value is dropped, nor does another catalog rule regain priority.

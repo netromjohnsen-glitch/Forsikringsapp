@@ -50,10 +50,9 @@ for(const [i,id] of ids.entries()){
  test('WATER repeated enrichment preserves source and no addon selection '+id,()=>{
   const a=enrich(id),b=enrichExtractedAgreementWithCatalog({company:'Gjensidige',totalAnnualPremium:null,insurances:[a]},date).insurances[0];
   assert.equal(pick(a).length,1);assert.equal(pick(b).length,1);
-  // Existing base-fact normalization reclassifies catalog terms on repeat;
-  // preserve the complete fact value and original provenance in that layer.
+  // Catalog origin and complete source-backed metadata survive repeat.
   assert.deepEqual(pick(a).map(t=>[t.key,t.name,t.value,t.source,t.sources]),pick(b).map(t=>[t.key,t.name,t.value,t.source,t.sources]));
-  assert.equal(pick(a)[0].coverageOrigin,'catalog');assert.equal(pick(b)[0].coverageOrigin,'document');
+  assert.equal(pick(a)[0].coverageOrigin,'catalog');assert.equal(pick(b)[0].coverageOrigin,'catalog');assert.deepEqual(pick(b),pick(a));
   assert.equal(pick(a)[0].value,o.value);assert.deepEqual(pick(a)[0].sources,catalogFactSources(fact(id)[0]));
   const old=enrichExtractedAgreementWithCatalog(input(id),date,undefined,undefined,baseline).insurances[0];
   assert.deepEqual(a.addOnIds,old.addOnIds);assert.deepEqual(a.addOns,old.addOns);

@@ -1,3 +1,4 @@
+import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -103,7 +104,7 @@ test('SMART-MANUAL all 202 other manual results preserve baseline; non-Smart tar
   for(const i of [expectedFirst,expectedRepeat])i.addOns.find(a=>a.id===rental).manualSelection={origin:'manual',addOnId:rental,catalogReference:{...c.first.catalogReference}};
   expectedRepeat.addOnIds.push(rental);expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rows)];expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
  }
- assert.deepEqual(first,expectedFirst,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(result,expectedRepeat,c.id);}
+ assert.deepEqual(first,expectedFirst,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(result,withHouseCatalogOrigin(expectedRepeat,c.first),c.id);}
  assert.equal(createHash('sha256').update(serialize(productCatalog)).digest('hex'),meta.catalog_sha256);
 });
 test('SMART-MANUAL all 96 actual document pipeline outputs and displays are exact baseline',()=>{

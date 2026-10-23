@@ -1,0 +1,19 @@
+{
+  "status": "HOUSE_CATALOG_ORIGIN_RESOLVED_VALIDATED",
+  "scope": [
+    "gjensidige-hus",
+    "gjensidige-hus-pluss"
+  ],
+  "finding": "HOUSE_CATALOG_ORIGIN_ON_REPEATED_ENRICHMENT",
+  "resolution": "Catalog and supporting rows never become new customer-document evidence on repeat; complete metadata and source notes retained with current registered facts, customer priority preserved",
+  "still_open_in_authorized_scope": [],
+  "outside_scope": [
+    "Already mislabelled persisted document rows are not guessed from source heuristics",
+    "No global catalog/pilot clearance; all HOLD retained"
+  ],
+  "receipt": "completion-receipt-house-catalog-origin.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

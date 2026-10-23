@@ -176,8 +176,7 @@ for (const id of ids) for (const key of actualKeys(id)) test('R-051-EVENTS-DOCUM
       overriddenBase: expectedOverriddenBase(key) }]
       : values.map(value => ({ name: sourceOracle[key].label, value, key, coverageOrigin: 'document', source: customerSource }));
     assert.deepEqual(pick(actual, key), first);
-    assert.deepEqual(pick(again, key), fallback ? [{ name: sourceOracle[key].label, value: sourceOracle[key].value, key,
-      coverageOrigin: 'document', source: sources(key)[0], sources: sources(key) }] : first);
+    assert.deepEqual(pick(again, key), first); // Exact independent first-row oracle also applies on repeat.
     const baselineFirst = enrich(id, ts, baselineCatalog);
     const repeat = (insurance, catalog) => enrichExtractedAgreementWithCatalog({ company: 'Gjensidige',
       totalAnnualPremium: null, insurances: [insurance] }, date, undefined, undefined, catalog).insurances[0];

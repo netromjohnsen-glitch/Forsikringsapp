@@ -1,0 +1,62 @@
+{
+  "status": "PASS_PUBLICATION_READY",
+  "base_revision": "257a197aa016ba3c9567eeb4cebc8182d5e0aba5",
+  "candidate_identity_sha256": "c8c6776ab4552bc5fb8a1182ab3596877137277c8f22c3ee194d8af329912631",
+  "application_files_verified": 14,
+  "same_candidate_across_final_eight_gates": true,
+  "all_gate_logs_verified": 18,
+  "checksum_exclusions": [
+    "SHA256SUMS",
+    "publication-integrity.json"
+  ],
+  "initial_integrity_report": "integrity-verification.json",
+  "initial_integrity_note": "Immutable initial report/candidate identity describe local validation; original seal hashes retained in publication-preflight.json; this report verifies publication seal",
+  "original_verified_files_changed_for_publication": [
+    {
+      "file": "README.md",
+      "before_sha256": "20d2770dccea0a32614dec15a32babc1305c4d12c79efaec7e3dab4d5bbcd030",
+      "reason": "Authorized publication metadata only; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "checkpoint.json",
+      "before_sha256": "52b7d98367f69e0a9a20367d74d08910df1de645e435ed395147a6e83605243f",
+      "reason": "Authorized publication metadata only; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "completion-receipt-house-catalog-origin.json",
+      "before_sha256": "3a25b88de0c5ac4c27648286bfb58ec00d6fd42598f8c0da94c9b5a459ea9fc5",
+      "reason": "Authorized publication metadata only; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "catalog-origin-findings.json",
+      "before_sha256": "96f71fe3b88af5b58a6287d3dabf868e98515dcd967f762291ad9784b964b1cf",
+      "reason": "Authorized publication metadata only; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "validation-summary.json",
+      "before_sha256": "f3d8d51689703bf3bb9505d6dc90b4e81cbf8a6e36e637263afbebc111a871f4",
+      "reason": "Authorized publication metadata only; original hash retained in publication-preflight.json"
+    },
+    {
+      "file": "SHA256SUMS",
+      "before_sha256": "86786cab84fb0de339d7736e0782d58899b8f6a1c24a5eaf02a9c12ad3eff2a5",
+      "reason": "Regenerated publication seal after original 37-file seal verification"
+    }
+  ],
+  "new_publication_files": [
+    "publication-authorization.md",
+    "publication-preflight.json",
+    "publish-files.json",
+    "publication-integrity.json"
+  ],
+  "prior_packet_files_unchanged": 51,
+  "protected_HOLD_and_signature_sets_unchanged": true,
+  "project_status_history_byte_identical": true,
+  "publisher_self_test": "PASS",
+  "expected_staged_files": 57,
+  "publish_files_manifest_sha256": "dd32fe1dbc836c58f7de1761d14cbbd88502ede5ec9fc3ab82dbd1a88726f8ec",
+  "deploy": "NOT_PERFORMED_OR_AUTHORIZED",
+  "markdown_links_verified": 64,
+  "sealed_packet_files": 40,
+  "SHA256SUMS_sha256": "bc181986827968f19cd8f9d6ab4d6c81c5d784d9df8a9352f5f51beb27a8e41e"
+}

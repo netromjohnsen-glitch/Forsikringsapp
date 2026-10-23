@@ -1,0 +1,68 @@
+{
+  "status": "PASS_LOCAL_VALIDATED_CANDIDATE",
+  "base_revision": "257a197aa016ba3c9567eeb4cebc8182d5e0aba5",
+  "tested_candidate_identity_sha256": "c8c6776ab4552bc5fb8a1182ab3596877137277c8f22c3ee194d8af329912631",
+  "final_gate_labels": [
+    "typegen-final3",
+    "typescript-final3",
+    "eslint-final3",
+    "production-build-final3",
+    "diff-check-final3",
+    "targeted-final3",
+    "fullsuite-final3",
+    "http-pdf-runtime-final3"
+  ],
+  "earlier_gates": "Retained with own candidate identities and exact logs; only listed eight final3 gates validate final candidate",
+  "new_contract_tests": 69,
+  "targeted": {
+    "tests": 1541,
+    "pass": 1541,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "fullsuite": {
+    "tests": 5964,
+    "pass": 5964,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "files": 165
+  },
+  "typegen": "PASS",
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 27,
+    "exact_warning_inventory_unchanged": true
+  },
+  "webpack_build": "PASS",
+  "synthetic_local_HTTP_PDF": {
+    "status": "PASS",
+    "checks": 22,
+    "mocked_AI_and_synthetic_data": true,
+    "evidence": "http-pdf-runtime-final3.log.gz"
+  },
+  "isolation": {
+    "first_manual_outputs_exact_frozen_baseline": 214,
+    "first_PDF_pipeline_outputs_exact_frozen_baseline": 144,
+    "other_product_manual_repeats_exact_baseline": 202,
+    "target_manual_repeat_exact_metadata_delta_cases": 12,
+    "PDF_product_side_role_state_matrix_cases": 56,
+    "three_repeats_including_JSON": true,
+    "genuine_late_customer_priority": "same as fresh document values; unknown catalog fallback retained",
+    "registered_source_change_and_qualification_note_add_remove_checks": "PASS",
+    "scope_provider_product_type_version_and_registered_synthetic_nonordinary": "PASS",
+    "catalog_serialized_identity_unchanged": true,
+    "registered_PDF_SHA_verified": 2,
+    "prior_packet_files_verified": 51
+  },
+  "legacy_explicit_old_repeat_assertions_updated": 49,
+  "active_source_oracles_and_all_test_cases_preserved": true,
+  "test_skips": 0,
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "deploy": "NOT_PERFORMED",
+  "publication_revision": "Containing Git commit; effective after verification on remote main",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

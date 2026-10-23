@@ -1,3 +1,4 @@
+import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -117,6 +118,6 @@ for(const id of ids){
  });
 }
 test('RENTAL-DOCUMENT all 214 frozen manual initial/repeat results and displays remain exact; catalog unchanged',()=>{
- assert.equal(baseline.controls.length,214);for(const c of baseline.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(first,c.first,c.id);const repeated=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(repeated,c.repeated,c.id);assert.equal(groupAddOnNames([repeated],c.input.products[0].type),c.display,c.id);}
+ assert.equal(baseline.controls.length,214);for(const c of baseline.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(first,c.first,c.id);const repeated=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(repeated,withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([repeated],c.input.products[0].type),c.display,c.id);}
  assert.equal(hash(serialize(productCatalog)),meta.catalog_sha256);
 });

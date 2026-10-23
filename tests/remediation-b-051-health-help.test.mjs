@@ -155,11 +155,11 @@ for(const id of ids)check('baseline-raw-repeat-metadata:'+id,()=>{
  const a=pick(enrich(baseline,id,[]))[0],b=pick(repeat(baseline,enrich(baseline,id,[])))[0];
  const changes=(x,y)=>[...new Set([...Object.keys(x),...Object.keys(y)])].filter(k=>Object.hasOwn(x,k)!==Object.hasOwn(y,k)||(!Object.is(x[k],y[k])&&JSON.stringify(x[k])!==JSON.stringify(y[k])));
  assert.deepEqual(changes(first,second),changes(a,b));
- assert.deepEqual(changes(first,second),['coverageOrigin','structuredValue','deductibleClassification','overriddenBase']);
- assert.equal(first.coverageOrigin,'catalog');assert.equal(second.coverageOrigin,'document');
+ assert.deepEqual(changes(first,second),[]);assert.deepEqual(second,first);
+ assert.equal(first.coverageOrigin,'catalog');assert.equal(second.coverageOrigin,'catalog');
  assert.equal(first.structuredValue,undefined);assert.equal(first.deductibleClassification,undefined);assert.deepEqual(first.overriddenBase,[]);
- for(const k of ['structuredValue','deductibleClassification']){assert.equal(Object.hasOwn(first,k),true);assert.equal(first[k],undefined);assert.equal(Object.hasOwn(second,k),false);assert.equal(second[k],undefined);}
+ for(const k of ['structuredValue','deductibleClassification']){assert.equal(Object.hasOwn(first,k),true);assert.equal(first[k],undefined);assert.equal(Object.hasOwn(second,k),true);assert.equal(second[k],undefined);}
  for(const k of [...new Set([...Object.keys(first),...Object.keys(second)])].filter(k=>!['coverageOrigin','structuredValue','deductibleClassification','overriddenBase'].includes(k))){assert.equal(Object.hasOwn(first,k),Object.hasOwn(second,k));assert.deepEqual(first[k],second[k]);}
- for(const k of ['structuredValue','deductibleClassification','overriddenBase'])assert.equal(Object.hasOwn(second,k),false);
+ for(const k of ['structuredValue','deductibleClassification','overriddenBase'])assert.equal(Object.hasOwn(second,k),true);
  assert.deepEqual(pick(repeat(candidate,enrich(candidate,id,['Valgt','Ikke valgt']))).map(t=>t.value),['Valgt','Ikke valgt']);
 });

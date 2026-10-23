@@ -1,6 +1,59 @@
 # Aktuell dokumentert prosjektstatus
 
 
+## Katalogopprinnelse ved gjentatt beriking – validert 23. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`257a197aa016ba3c9567eeb4cebc8182d5e0aba5`. Dokumentbasert Utleie-valg, receipt og
+prosjektstatus er publisert på denne revisjonen. Opprinnelsesrettingen er validert på samme basis.
+Publiseringsrevisjonen er committen som inneholder rettelsen, receipt og denne
+prosjektstatusen. Publisert status gjelder etter bekreftelse på remote main.
+[Publiseringsfullmakt og kontroller](../audit/checkpoints/b051-house-origin-257a197/publication-authorization.md).
+Ingen installasjon eller deployhandling er utført.
+
+Bare Gjensidige Hus Standard og Hus Pluss, bolig / ordinary / Alminnelige vilkår,
+endrer produksjonsatferd. Én produksjonsfil skiller dokumentlaget fra katalog og
+opplastede støttevilkår før dokumentnormalisering. Gjeldende kataloglag beregnes
+fortsatt fra produkt og gyldige valg. Katalogopprinnelse, nøkler/verdier, komplette
+kilder/noter, strukturdata, egenandelsklassifisering, availability og overriddenBase
+beholdes gjennom gjentakelser og JSON. Tidligere presentasjonsnoter bevares bare
+med uendret registrert faktum og komplett kildesett; endrede eller fjernede
+kvalifikasjonsnoter og nye referanser oppdateres fra gjeldende katalog.
+
+Senere kundeverdier får samme prioritet som opprinnelige kundeverdier. Gjeldende
+ukjent-fallback videreføres som katalogopplysning. General_terms beholder
+katalogopprinnelse og komplette kilder/evidens, uten å opprette kundevalg.
+Smart/Utleie/råte, Rettshjelp, priser og generell egenandel beholdes. Global
+normalizer, coverage engine, katalog, originalkilder, schema, alias/admission og
+objektmatching er uendret. Ingen migrering eller heuristisk ommerking av eldre
+lagrede dokumentrader utføres.
+
+[Receipt](../audit/checkpoints/b051-house-origin-257a197/completion-receipt-house-catalog-origin.json),
+[validering](../audit/checkpoints/b051-house-origin-257a197/validation-summary.json),
+[checkpoint](../audit/checkpoints/b051-house-origin-257a197/checkpoint.json) og
+[bevispakke](../audit/checkpoints/b051-house-origin-257a197/README.md).
+69 nye tester; 1541/1541 målrettede kontroller og 5964/5964 tester i 165 filer, uten
+skip. Typegen/TypeScript og webpack-bygg består; ESLint 0 feil og de samme 27
+warnings. Lokal syntetisk HTTP/PDF-runtime 22/22. Alle åtte sluttgater er bundet
+til samme kode-/testidentitet, adskilt fra basis-SHA og dokumentasjonen.
+
+214 manuelle første resultater og 144 faktiske PDF-førsteresultater er uendret.
+202 øvrige manuelle produkter har også identisk repeat-resultat. På målproduktene
+kontrolleres den godkjente metadata-/rekkefølgedifferansen mot frosset før-baseline
+med uendret komplett key/name/value/source/sources-multiset. 49 eldre assertions
+som krevde feilmerket document-opprinnelse og metadatatap er oppdatert; samtlige
+testsaker, kildeorakler og reelle dokument-/statuskontroller beholdes. Tidligere
+bevispakke (51 filer), registrerte PDF-er og serialisert katalog er uendret.
+
+Dette lukker bare den avgrensede opprinnelsesfeilen. Ingen ny original-
+signaturkreditt eller pilotklarering. Alle HOLD beholdes, inkl. HTU
+`157c7afed18eb0fe` / SC-019/SR-033, `8a89196fecd29ddb` og fysisk insektegenandel
+SC-020/SR-032. B-051 37/0/1/1, kampanje 63, globalt resolved/open UKJENT, P2-kreditt 0
+og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED. Sikkerhet/GDPR/P3-A05 med uavklart
+identitet/mergestatus, person/pilotscope, kritisk UX, feedback og operativ
+rådgiveraksept står fortsatt synlige på vent. NITO og Sentralbord venter;
+ingen ny arbeidsstrøm. Publisering med commit og push er eksplisitt autorisert.
+
 ## Dokumentbasert Utleie-valg – validert 23. oktober 2026
 
 Fersk remote main, lokal HEAD og origin/main er kontrollert til

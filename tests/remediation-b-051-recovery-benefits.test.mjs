@@ -98,7 +98,7 @@ for(const [level,page,qual,hash]of [['Standard',18,5,'d237795bdfd0223a9e078bf308
 for(const id of ids)for(const key of keys)check('strict-raw-repeat-fields',()=>{
  const a=enrich(baseline,id,[]),b=enrich(candidate,id,[]),ar=repeat(baseline,a),br=repeat(candidate,b);
  const fields=i=>Object.keys(pick(i,key)[0]).sort();assert.deepEqual(fields(b),fields(a));assert.deepEqual(fields(br),fields(ar));
- const f=pick(b,key)[0],again=pick(br,key)[0];assert.deepEqual(again,{name:f.name,value:f.value,key:f.key,coverageOrigin:'document',source:f.source,sources:f.sources});
+ const f=pick(b,key)[0],again=pick(br,key)[0];assert.deepEqual(again,f); // First row below is independently asserted against the source oracle.
  assert.deepEqual(f,{name:fact(candidate,key).label,value:oracle[key].value,key,coverageOrigin:'catalog',structuredValue:undefined,deductibleClassification:undefined,source:fact(candidate,key).source,sources:catalogFactSources(fact(candidate,key)),overriddenBase:[]});
  const rf=resolveCatalogFacts(product(candidate,id),[],date,null,candidate).find(f=>f.key===key);
  assert.equal(Object.hasOwn(rf,'replacesBase'),false);assert.equal(Object.hasOwn(rf,'overriddenBase'),false);assert.equal(Object.hasOwn(rf.source,'productCode'),true);assert.equal(rf.source.productCode,undefined);assert.equal(Object.hasOwn(rf.source,'sourceType'),false);

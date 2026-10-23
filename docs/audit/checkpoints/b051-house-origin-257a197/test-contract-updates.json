@@ -1,0 +1,68 @@
+{
+  "authorized_roots": [
+    {
+      "id": "HOUSE_CATALOG_ORIGIN_BOUNDARY",
+      "evidence": "authorization.md; read-only decision; frozen before inventory",
+      "allowed_delta": "Exact two products on repeat: catalog row origin/metadata retained, late customer priority corrected and supporting separated; first output, values/sources and other products preserved. Exact legacy snapshot deltas asserted, historical bytes immutable.",
+      "active_snapshot_updates": {
+        "helper": "tests/helpers/house-origin.mjs",
+        "evidence": "Immutable pre-change manual first output: all catalog metadata and complete sources; old repeat contains identical value/key/name/source multiset. Assert core identity before restoring full initial rows/order. All other output fields compared unchanged.",
+        "files": [
+          "tests/remediation-b-051-rental-selection.test.mjs",
+          "tests/remediation-b-051-manual-rental-choice.test.mjs",
+          "tests/remediation-b-051-manual-smart-choice.test.mjs",
+          "tests/remediation-b-051-smart-selection.test.mjs"
+        ],
+        "historical_bytes_changed": false
+      }
+    },
+    {
+      "id": "EXPLICIT_LEGACY_REPEAT_CONTRACT",
+      "files": [
+        "tests/remediation-b-051-craftsmanship.test.mjs",
+        "tests/remediation-b-051-events-buildings.test.mjs",
+        "tests/remediation-b-051-garden.test.mjs",
+        "tests/remediation-b-051-health-help.test.mjs",
+        "tests/remediation-b-051-recovery-benefits.test.mjs",
+        "tests/remediation-b-051-settlement-age.test.mjs",
+        "tests/remediation-b-051-water.test.mjs"
+      ],
+      "before": "49 assertions require catalog->document conversion and loss of own metadata on repeat",
+      "after": "Catalog fallback retains independently asserted first catalog row, exact source/value/typed data/metadata and own-field presence; genuine document branches/refusal/conflict/unknown and all source oracles remain asserted",
+      "evidence": "fullsuite-final.log.gz exact 49 diffs; source oracles and first-pass complete field assertions already in each active test; document normalizer root and frozen before inventory; authorized provenance repair",
+      "historical_audit_modified": false
+    }
+  ],
+  "mechanical_roots": [
+    {
+      "id": "OPTIONAL_ORDINARY_REFERENCE_AND_ROW_ORDER",
+      "before": "New snapshot helper required explicit agreementScope on catalogReference, but ordinary references omit it; new manual check assumed checkbox order equals resolver row order",
+      "after": "Use established absent=ordinary reference contract. Restore full frozen first metadata row-by-row in frozen repeat order, after strict core multiset comparison. Compare keyed manual rows independently of checkbox order; whole-result snapshot still asserts repeat order.",
+      "evidence": "catalogReferenceForProduct; before baseline reference has provider/product/version only; frozen/current manual multi-addon repeats already follow resolver addon ordering. No production meaning change."
+    },
+    {
+      "id": "JSON_OPTIONAL_UNDEFINED_FIELDS",
+      "before": "New JSON-stage assertions compared optional own-properties with undefined against their required JSON omission",
+      "after": "Compare JSON-stage coverage/evidence using lossless JSON projection, retain exact non-JSON row and complete source checks",
+      "evidence": "JSON.stringify omits optional undefined productCode/key; no populated field, source value or role ignored."
+    },
+    {
+      "id": "FROZEN_RESOLVER_ROW_ORDER",
+      "before": "Historical repeat order put normalized base rows first and regenerated optional/availability rows last; restoring metadata alone kept that obsolete order",
+      "after": "Assert unchanged full core multiset; restore frozen first metadata; use first registered key slot in frozen repeat catalogFacts (Map replacement retains base key slot).",
+      "evidence": "product-catalog.ts resolveCatalogFacts uses Map.set to replace a base value without moving key insertion position; frozen catalogFacts is independent expected-order oracle."
+    },
+    {
+      "id": "SYNTHETIC_SCOPE_AND_INHERITANCE_FIXTURE",
+      "before": "New isolation fixture used unregistered nito scope and supplied Pluss without its parent",
+      "after": "Use an explicitly registered synthetic test scope and preserve the synthetic parent chain for each altered provider/type/version/scope. Assert exact lookup and unchanged out-of-scope normalization.",
+      "evidence": "catalogProductsForSelection requires registered scope; resolveProductComponentIds requires same provider/type/scope/version parent. No real NITO/catalog or production change."
+    },
+    {
+      "id": "GENERATED_SOURCE_OPTIONAL_TYPE_NARROWING",
+      "before": "catalogTerm return type permits optional source/sources, so new callback passes possibly undefined fields into strict source identity functions",
+      "after": "Capture and guard source/sources before callback comparisons; actual catalogTerm always emits both, so existing values/selection/provenance unchanged",
+      "evidence": "typescript-final2 diagnostics; catalogTerm returns fact.source and catalogFactSources(fact), whose first element is fact.source; fullsuite-final2 5964 passed before guard"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -115,7 +116,7 @@ test('SMART-SELECTION 202 other products and catalog identity preserve baseline;
    expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rentalRows)];
    expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
   }
-  assert.deepEqual(first,expectedFirst);assert.deepEqual(repeat(first),expectedRepeat);
+  assert.deepEqual(first,expectedFirst);assert.deepEqual(repeat(first),withHouseCatalogOrigin(expectedRepeat,c.first));
   const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first)],'Hus'),expected);
  }
  assert.equal(createHash('sha256').update(serialize(productCatalog)).digest('hex'),meta.catalog_sha256);
