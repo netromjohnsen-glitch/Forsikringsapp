@@ -1,5 +1,46 @@
 # Aktuell dokumentert prosjektstatus
 
+## Samlet ordinært husgrunnlag – revalidert 24. oktober 2026
+
+Dokumentert, frigitt kataloggrunnlag for Hus Standard og Hus Pluss er revalidert
+på fersk main `c262efbbc889348069704fe90fb2254b48cd4847`. Ingen ny ordinær restmangel utenfor eksisterende HOLD
+ble funnet i det avgrensede originalinventaret. Dette frigir ikke pilotporten.
+Alle HOLD og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes.
+
+[Samlet receipt](../audit/checkpoints/house-foundation-final-c262efb/receipt-house-foundation.json),
+[kilde-/originalbindingsbevis](../audit/checkpoints/house-foundation-final-c262efb/evidence.json.gz) og
+[checkpoint](../audit/checkpoints/house-foundation-final-c262efb/checkpoint.json).
+170 originale kildefakta er avstemt. De 83 P1-bindingene fordeler seg på
+67 i 37 publiserte B-051-receipts, åtte i fire B-130-receipts, fire i allerede
+publisert B-007/B-020 og fire i de to beholdte HOLD-signaturene HTU
+`157c7afed18eb0fe` og insektavgrensning `8a89196fecd29ddb`.
+Samtlige 30 opprinnelige P2-bindinger er vurdert mot dagens fakta og kildeomfang.
+Den særskilte Byggeforsikring-regelen om graving og to år etter opphør
+importeres ikke i ordinær husdekning. Historiske originalregistre beholdes.
+De navngitte generelle dimensjonene bevisforrang og punkt 12/17/18/19 er
+representert med kvalifikasjoner; dette gir ingen automatisk global signaturkreditt.
+
+Punkt 19 (`5d38b87`), punkt 17 (`b618f7e`), seks Smart-detaljer (`27dffab`)
+og fysisk Helsehjelp-rabatt (`c262efb`) er bekreftet på main med rettelser,
+receipts og prosjektstatus. PASS alene er ikke brukt som publiseringsbevis.
+12 valgkombinasjoner og tre JSON-berikinger er kontrollert på fersk main;
+øvrige felt, kundevalg, premier og dekningsstatuser er bevart. De sju
+kildehenvisningsrettelsene, egen kildeopprinnelse og dokumentprioritet består.
+Siste identiske publiserte kandidat bestod 3422/3422 målrettede tester i 51 filer,
+7114/7114 tester i 180 filer og kvalitetskontroll av ti filer uten feil/skip/warnings.
+Dette inkluderer 169 Smart- og 58 Helsehjelp-kontroller, 214 manuelle kontroller,
+144 dokumentflyter og 52 sammenligninger. Testsamlingen er ikke kjørt om igjen
+for denne dokumentasjonsbolken; kodeidentiteten er kontrollert uendret.
+
+B-051 37/0/1/1, kampanje 67, signatur-/P2-kreditt 0 og globalt resolved/open
+UKJENT er uendret. Alle øvrige HOLD, inkludert SC-020/SR-032 og B-071-holdet,
+beholdes. Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir åpne pre-pilotpunkter.
+Ingen flere arbeidsstrømmer er startet. Ingen kodeendringer, installasjon,
+Gjensidige-utsending eller deploy i denne revalideringen. NITO venter;
+Sentralbord venter separat. Publiseringsrevisjonen er committen som inneholder
+receipten og denne statusen, etter verifisering på remote main.
+
 ## Helsehjelp: rabatt på fysiske konsultasjoner – validert 24. oktober 2026
 
 Fersk main-basis er `27dffab69b656e2ea56027f7515ee9955074fba6`. `ed34078f38391643` med begge originalbindinger
