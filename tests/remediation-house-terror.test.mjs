@@ -1,3 +1,4 @@
+import {withoutSpread} from './helpers/house-spread.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -5,18 +6,32 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {deserialize} from 'node:v8';
 import {execFileSync} from 'node:child_process';
-import {productCatalog,resolveCatalogFacts,resolveCatalogEvidence,availableAddOns,findCatalogProduct} from '../lib/product-catalog.ts';
-import {normalizeManualAgreement} from '../lib/manual-agreement.ts';
-import {enrichExtractedAgreementWithCatalog} from '../lib/catalog-enrichment.ts';
-import {materializeCatalogProduct,compareCatalogProducts} from '../lib/catalog-product-comparison.ts';
+import {productCatalog as currentCatalog,resolveCatalogFacts as currentFacts,resolveCatalogEvidence as currentEvidence,availableAddOns as currentAddOns,findCatalogProduct as currentFind} from '../lib/product-catalog.ts';
+import {normalizeManualAgreement as currentManual} from '../lib/manual-agreement.ts';
+import {enrichExtractedAgreementWithCatalog as currentEnrich} from '../lib/catalog-enrichment.ts';
+import {materializeCatalogProduct as currentMaterialize,compareCatalogProducts as currentCompare} from '../lib/catalog-product-comparison.ts';
 import {groupTerms,groupInsurances} from '../lib/comparison.ts';
 import {deriveCanonicalCoverages} from '../lib/coverage-status.ts';
 import {normalizeCatalogTermKey,normalizeTermName} from '../lib/insurance-normalization.ts';
 import {conceptForFactKey} from '../lib/presentation-catalog.ts';
 import {isNonAssertingCoverageDetail} from '../lib/coverage-fact-semantics.ts';
 import {canonicalDocumentFactKeys} from '../lib/analysis-output.ts';
-import {documentPipeline} from './helpers/supporting-terms.mjs';
-import {terrorOracle as o,terrorFact,applyTerror,withoutTerror} from './helpers/house-terror.mjs';
+import {documentPipeline as currentPipeline} from './helpers/supporting-terms.mjs';
+import {terrorOracle as o,terrorFact,applyTerror as currentApplyTerror,withoutTerror} from './helpers/house-terror.mjs';
+
+
+// Preserve point18's exact contract;the new suite validates both point19 additions.
+const productCatalog=withoutSpread(currentCatalog);
+const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>currentFacts(p,a,date,channel,c);
+const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>currentEvidence(p,a,date,channel,c);
+const availableAddOns=(p,date,channel=null,c=productCatalog)=>currentAddOns(p,date,channel,c);
+const findCatalogProduct=(provider,id,version,context,c=productCatalog)=>currentFind(provider,id,version,context,c);
+const normalizeManualAgreement=(input,c=productCatalog)=>currentManual(input,c);
+const enrichExtractedAgreementWithCatalog=(input,date,measure,trace,c=productCatalog)=>currentEnrich(input,date,measure,trace,c);
+const materializeCatalogProduct=(p,c=productCatalog)=>currentMaterialize(p,c);
+const compareCatalogProducts=(a,b,c=productCatalog)=>currentCompare(a,b,c);
+const documentPipeline=(...args)=>withoutSpread(currentPipeline(...args));
+const applyTerror=c=>withoutSpread(currentApplyTerror(c));
 
 const dir=new URL('../docs/audit/checkpoints/house-terror-c93c33d/',import.meta.url),bytes=readFileSync(new URL('baseline.v8.gz',dir));
 assert.equal(createHash('sha256').update(bytes).digest('hex'),JSON.parse(readFileSync(new URL('baseline-identity.json',dir))).baseline_sha256);

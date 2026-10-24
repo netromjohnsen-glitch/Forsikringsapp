@@ -1,0 +1,287 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_DANGEROUS_SPREAD_POINT19_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "decision": "Egen kataloggren hus.farlig_spredning.begrensning med hele punkt19samlet som ett ikke-assertivt begrensningsvilkår. To rå rader,egen StandardPDF13 og PlussPDF14med replacesBase. Én effektiv regel per husnivå. Andre forsikringstypers positive regler/500millionergrense beholdes bare innen sin uttrykkelige tekstlige typeavgrensning;ingen positiv husdekning,individuell sum eller automatisk hendelsesberegning.",
+  "reason": "Ingen eksisterende nøkkel uttrykker denne typeavgrensede generelle bestemmelsen. Publisert punkt18s terrordefinisjon/ansvarstak dekker en annen kontraktsidentitet. En separat full punkt19rad bevarer begge og unngår sammenblanding av500millioner/hendelseskjede med punkt18s1milliard/48timer. Eksisterende begrensning-semantikk og hus.ovrig termrolle fungerer uten engine/alias/enum/presentasjonsendring.",
+  "authorization": "Avklar kontrakt og mapping for punkt19 Farlig spredning under d1230f13e6b445d7 på Hus Standard og Hus Pluss på fersk main. Lever én beslutning og presis rettingsbolk. Ingen kode/deploy;alle HOLD beholdes.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T15:39:13.787380+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "2028c16398b78f645eab2e42d1800c6598022470",
+  "fresh_main_after": "2028c16398b78f645eab2e42d1800c6598022470",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin/main exactSHA. Original source/binding inventories and registered PDFSHA256 verified against exact main blobs.",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. only",
+  "whole_signature_review_complete": false,
+  "whole_signature_closure": false,
+  "remaining_signature_dimensions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+  "published_points12and18": "CONFIRMED_NOT_REOPENED",
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point19_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point19_PDF_page_1_based": 14
+    }
+  ],
+  "source_contract": {
+    "exact_point19_body": "For personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt på reise- og personforsikringer dekker Gjensidige skade eller tap som følge av farlig spredning av biologiske eller kjemiske substanser, skade eller tap forårsaket av raketter, atomvåpen eller radioaktiv stråling. For reise- og personforsikringer gjelder følgende begrensning: Ved skade eller tap forårsaket av atomvåpen eller radioaktiv stråling, er samlet erstatningsansvar overfor alle kunder og kravstillere begrenset til kr 500 millioner pr. skadehendelse. Alle skader som skyldes samme hendelse eller som har sin årsak i en sammenhengende kjede av hendelser, regnes som én skadehendelse. For øvrige forsikringer dekkes ikke slike skader eller tap.",
+    "heading": "Farlig spredning av biologiske eller kjemiske substanser m.m.",
+    "source_pages": {
+      "Standard": 13,
+      "Pluss": 14
+    },
+    "no_source_conflict_found": true,
+    "external_question_needed": false,
+    "coupled_dimensions": [
+      {
+        "dimension": "First paragraph type scope",
+        "meaning": "Personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt reise/personforsikringer har den navngitte positive regelen. Dette er ikke ordinær husdekning."
+      },
+      {
+        "dimension": "Listed hazards",
+        "meaning": "Skade/tap som følge av farlig spredning av biologiske eller kjemiske substanser,eller forårsaket av raketter,atomvåpen eller radioaktiv stråling."
+      },
+      {
+        "dimension": "Second paragraph cap scope",
+        "meaning": "Bare for reise/personforsikringer og skade/tap forårsaket av atomvåpen eller radioaktiv stråling:500millioner samlet for alle kunder og kravstillere per skadehendelse. Ikke generell biologisk/kjemisk grense,ikke individuell sum eller husgrense."
+      },
+      {
+        "dimension": "Second paragraph event rule",
+        "meaning": "Samme hendelse eller årsak i sammenhengende kjede av hendelser regnes som én skadehendelse i denne typeavgrensede regelen. Ingen48timersregel her."
+      },
+      {
+        "dimension": "Ordinary-house relevant final paragraph",
+        "meaning": "For øvrige forsikringer dekkes ikke slike skader eller tap. Denne avgrensningen skal være tydelig sammen med de forutgående typegrensene."
+      }
+    ],
+    "relationship_to_published_point18": "Point18 is a separate source restriction with terrorism definition and aggregate cap;it is not an unconditional coverage grant. Point19 has its own listed hazards/type boundaries and does not state a terrorism-intent condition. Keep both complete and independently identified;do not merge500million/type/event rules with point18onebillion/48hours or rewrite either. No claim-level precedence/calculation engine is introduced.",
+    "ordinary_house_representation": "Whole original point19 in one nonasserting restriction term;other-type positives/cap are retained only in their explicit textual scope,never materialized as positive house coverage or individual house amount.",
+    "remaining_general_provisions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+    "published_points12and18": "CONFIRMED_ON_MAIN_NOT_REOPENED",
+    "no_current_law_interpretation": true
+  },
+  "proposed_correction_packet": {
+    "status": "PROPOSED_NOT_AUTHORIZED_FOR_IMPLEMENTATION",
+    "signature": "d1230f13e6b445d7",
+    "subscope": "Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. only",
+    "single_packet_scope": "One complete atomic point19restriction for both original bindings;exactly2own-source raw rows,one effective term per house level. No whole signature closure.",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "row": {
+      "key": "hus.farlig_spredning.begrensning",
+      "relative_Row_key": "farlig_spredning.begrensning",
+      "label": "Farlig spredning av biologiske eller kjemiske substanser m.m.",
+      "value": "For personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt på reise- og personforsikringer dekker Gjensidige skade eller tap som følge av farlig spredning av biologiske eller kjemiske substanser, skade eller tap forårsaket av raketter, atomvåpen eller radioaktiv stråling. For reise- og personforsikringer gjelder følgende begrensning: Ved skade eller tap forårsaket av atomvåpen eller radioaktiv stråling, er samlet erstatningsansvar overfor alle kunder og kravstillere begrenset til kr 500 millioner pr. skadehendelse. Alle skader som skyldes samme hendelse eller som har sin årsak i en sammenhengende kjede av hendelser, regnes som én skadehendelse. For øvrige forsikringer dekkes ikke slike skader eller tap.",
+      "decision": "NEW_ORDINARY_HOUSE_RESTRICTION_KEY",
+      "Standard": {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 13,
+        "replacesBase": false
+      },
+      "Pluss": {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 14,
+        "replacesBase": true
+      },
+      "source_section": "Generelle vilkår – Punkt 19. Farlig spredning av biologiske eller kjemiske substanser m.m.",
+      "qualificationSource": "Not needed;whole point19 on one page in each original source",
+      "materialized_role": "term",
+      "isNonAssertingCoverageDetail": true,
+      "presentation_group": "hus.ovrig"
+    },
+    "atomic_contract_reason": "Keep all three paragraphs together so scope of positives,500million/event rule and ordinary-other-insurance exclusion is explicit. Partial independently overridable fragments could attach another type cap/coverage to house or leave incomplete source context.",
+    "source_provenance": "Own registered Standard13/Pluss14 identities. Pluss replaces inherited Standard;both raw evidence rows and complete Standard overriddenBase retained. Registry/sourceType/blank effectiveFrom/source admission unchanged.",
+    "must_preserve": [
+      "First paragraph positive rule remains limited to statutory personal injury and travel/personinsurance;all listed hazards preserved.",
+      "500million cap only for travel/person and atomvåpen/radioaktivstråling,with aggregate all-customer/claimant scope;never individual house sum.",
+      "Same-event/connected-chain rule retained within its explicit source scope;do not import point18s48hours.",
+      "Final For øvrige forsikringer dekkes ikke slike skader eller tap retained verbatim;no added terror motive requirement.",
+      "Point18full wording,source/cap/type boundaries/definition unchanged. Separate full labels preserve independent point18/19customer document priority.",
+      "Exact full identified-product label may override complete point19;unknown fallback and conflicting specific values preserved. No generic/fuzzy alias.",
+      "All existing canonical coverages,Smart/rental/rot choices,premium/deductible,old fact values and sources/generated notes preserved through repeats."
+    ],
+    "do_not_append_to": [
+      "hus.terror.begrensning",
+      "hus.avtale.forbehold",
+      "hus.avtale.eierskifte",
+      "hus.plutselig.begrensning_ovrig",
+      "hus.ansvar.grense",
+      "hus.forsikringsform"
+    ],
+    "forbidden_new_fact_metadata": [
+      "coverageAvailability",
+      "structuredValue",
+      "deductibleClassification",
+      "selectionEvidenceKeys"
+    ],
+    "no_changes_to": [
+      "Engine,enrichment/comparison/coverage logic,presentation/UI,global aliases,canonical registry,extractor enum",
+      "Source originals,registry/sourceType/effective dates/source admission",
+      "Individual sum/coverage status/customer choice,claims/aggregate/event calculation",
+      "Published point12/18 or any other general provisions/providers/types/scopes/NITO",
+      "Historical inventories/receipts/snapshots/fingerprints/ledgers,HOLD,pilot gate"
+    ],
+    "focused_test_file": "tests/remediation-house-spread.test.mjs",
+    "source_guarded_helper_if_needed": "tests/helpers/house-spread.mjs",
+    "existing_test_compatibility_scope": {
+      "potential_files": [
+        "tests/helpers/house-terror.mjs",
+        "tests/remediation-house-terror.test.mjs",
+        "tests/remediation-b-051-health-help.test.mjs",
+        "tests/remediation-b-051-legal.test.mjs",
+        "tests/remediation-b-051-liability.test.mjs",
+        "tests/remediation-b-051-rot-status.test.mjs",
+        "tests/remediation-b-051-smart.test.mjs"
+      ],
+      "constraint": "Only if independently necessary for2approved raw additions:strict source-bound add/project composition in current expectation chain and before-point19 injection into preceding point18suite. Check entire source-bound value/metadata/source notes/overriddenBase before removing ONLY2new own-source rows;preserve existing guards/fixtures/fingerprints and every negative assertion. Protected raw counts may increase exactly2 with source/before proof. No candidate-derived oracle or historical rewrite."
+    },
+    "validation_plan": [
+      "Before production edit seal original GAP/SF links,registered hashes,complete Standard13/Pluss14 raw/layout pages and source-independent exact full point19oracle;capture fresh complete before-state.",
+      "Source-to-catalog and reverse audit:whole catalog before plus exactly2own-source facts;all3paragraphs/type limits/full hazard list/event rule preserved;no other production bytes. Exact own Standard13/Pluss14,replacesBase,raw evidence and overriddenBase.",
+      "Both levels/all12addon combinations:resolver,evidence,materialization,manual input and3JSONreenrichments. Every preexisting field,canonical coverage,customer choice,premium/deductible and provenance equals same-stage baseline;one effective nonasserting term.",
+      "Actual existing/offer document pipeline:full point19label overrides complete rule;unknown fallback and conflicting specific values retained. General terms alone create0customer insurance;paired supporting evidence creates no selection.",
+      "Independent point18/19document matrix:only19custom,only18custom,bothcustom,bothunknown;both products/sides and3JSONrepeats. Neither rule suppresses or overwrites the other;canonical coverages unchanged.",
+      "Generic Farlig spredning,ABC,Atomskade,Radioaktiv stråling,500millioner,Forsikringssum,Generelle vilkår etc get no aliases;positive customer building/fixture fields do not suppress independent point19.",
+      "Bare point19term infers0canonical coverage;no availability/individualsum/deductible/selection or claim/event calculations. Same-product0difference,forward/reverse comparisons,other-provider missing unknown;provider/type/version/ordinary boundaries and NITO isolation.",
+      "Run current47-file target manifest plus focused test(48files),fullsuite and scoped ESLint on final identical candidate. Preserve all earlier published rules and7source-page fixes. Read-only feasibility here is not production validation.",
+      "Update partial point19receipt/checkpoint/current-project-status only after validation. Whole d123and other dimensions not closed;no signature/P2/campaign credit,HOLDchange or pilotclearance."
+    ],
+    "required_documentation": [
+      "Explicit implementation authorization for point19only,key/fullvalue/bindings/sources/files",
+      "Independent source oracle,before snapshot,source/reverse audit,actual commands/logs,candidate identity and mechanical ledger if needed",
+      "completion-receipt-d1230f13e6b445d7-point19.json,checkpoint,current-project-status.md with partial scope and explicit local-versus-published status",
+      "This decision,prior local revalidation and all historical files immutable"
+    ],
+    "commit_push": "NOT_AUTHORIZED",
+    "deploy": "NOT_AUTHORIZED",
+    "install": "NOT_AUTHORIZED"
+  },
+  "rejected_mappings": [
+    {
+      "option": "Append to hus.terror.begrensning or require terrorist intent",
+      "reason": "Point19specifies own hazards/type scopes without a terror-intent condition. Merging would entangle different cap/event rules and customer overrides;point18unchanged."
+    },
+    {
+      "option": "Use forbehold/eierskifte/plutselig/ansvar/forsikringssum or another product/type key",
+      "reason": "Different contract identities/scopes.500million aggregate for travel/person is not house insured sum or personal liability sum."
+    },
+    {
+      "option": "Positive coverage/unavailable parent or structured money/event fields",
+      "reason": "Point19is a qualified restriction term;source does not justify a new house coverage,status/selection,individual amount or calculation engine."
+    },
+    {
+      "option": "Split paragraphs or broad Farlig spredning/ABC/Generelle vilkår alias",
+      "reason": "Could detach type boundaries or turn source-context positives into ordinary-house cover. Full label exact product match already works;generic labels stay unbound."
+    }
+  ],
+  "read_only_checks": {
+    "status": "PASS_READ_ONLY_MAPPING_FEASIBILITY",
+    "isolated_clone_only": true,
+    "proposed_raw_facts": 2,
+    "configurations": 12,
+    "manual_plus_three_JSON_reenrichments": "Every same-stage prior insurance/canonical coverage field equals control after projecting only proposed own-source point19rows;exact source/sources/notes retained.",
+    "document_probes": 20,
+    "general_terms_probes": 4,
+    "generic_label_probes": 18,
+    "point18_point19_independent_document_probes": 16,
+    "forward_reverse_comparison_rows": 12,
+    "positive_building_fixture_fields_preserved": true,
+    "materialized_role": "term",
+    "isNonAssertingCoverageDetail": true,
+    "presentation_group": "hus.ovrig",
+    "term_alone_infers_coverage": false,
+    "no_automatic_sum_or_event_calculation": true,
+    "all_other_products_unchanged": true,
+    "actual_global_catalog_unchanged": true,
+    "new_global_alias_registry_or_enum_needed": false,
+    "production_candidate_validated": false,
+    "appsuite_run": false
+  },
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "priority_effect": "Point19only decision;no originalP2reprioritization,new mandatory pilotblocker,HOLDlifting,P2credit,whole signature closure or pilotclearance.",
+  "integrity": {
+    "existing_files_unchanged": 8232,
+    "tracked_files_unchanged": 8228,
+    "prior4_local_revalidation_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false,
+    "only_new_read_only_packet": true
+  },
+  "implementation": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "commit_push": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "deploy": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "4d7e1c4850df8d33fe100387c2b4b5732a540e0d612774d133b889251b86abbc",
+    "probe_log": "mapping-probe.log.gz",
+    "probe_log_sha256": "f890ac256cff5b0a37adfaa474a47dcdfe9c55dd3aa6fc6c695a6f4c01262bda"
+  }
+}

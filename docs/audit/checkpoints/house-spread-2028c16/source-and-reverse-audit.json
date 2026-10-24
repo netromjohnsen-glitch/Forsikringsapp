@@ -1,0 +1,84 @@
+{
+  "status": "PASS_POINT19_ONLY",
+  "base_revision": "2028c16398b78f645eab2e42d1800c6598022470",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. only",
+  "whole_signature_closure": false,
+  "source_oracle_sha256": "b662d0266f122600a4f20e509b6365dc274cfbbf82759de5bef8147bea59578a",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point19_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point19_PDF_page_1_based": 14
+    }
+  ],
+  "two_own_source_facts": [
+    {
+      "fact": {
+        "key": "hus.farlig_spredning.begrensning",
+        "label": "Farlig spredning av biologiske eller kjemiske substanser m.m.",
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 13,
+          "section": "Generelle vilkår – Punkt 19. Farlig spredning av biologiske eller kjemiske substanser m.m.",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "For personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt på reise- og personforsikringer dekker Gjensidige skade eller tap som følge av farlig spredning av biologiske eller kjemiske substanser, skade eller tap forårsaket av raketter, atomvåpen eller radioaktiv stråling. For reise- og personforsikringer gjelder følgende begrensning: Ved skade eller tap forårsaket av atomvåpen eller radioaktiv stråling, er samlet erstatningsansvar overfor alle kunder og kravstillere begrenset til kr 500 millioner pr. skadehendelse. Alle skader som skyldes samme hendelse eller som har sin årsak i en sammenhengende kjede av hendelser, regnes som én skadehendelse. For øvrige forsikringer dekkes ikke slike skader eller tap."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.farlig_spredning.begrensning",
+        "label": "Farlig spredning av biologiske eller kjemiske substanser m.m.",
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 14,
+          "section": "Generelle vilkår – Punkt 19. Farlig spredning av biologiske eller kjemiske substanser m.m.",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "For personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt på reise- og personforsikringer dekker Gjensidige skade eller tap som følge av farlig spredning av biologiske eller kjemiske substanser, skade eller tap forårsaket av raketter, atomvåpen eller radioaktiv stråling. For reise- og personforsikringer gjelder følgende begrensning: Ved skade eller tap forårsaket av atomvåpen eller radioaktiv stråling, er samlet erstatningsansvar overfor alle kunder og kravstillere begrenset til kr 500 millioner pr. skadehendelse. Alle skader som skyldes samme hendelse eller som har sin årsak i en sammenhengende kjede av hendelser, regnes som én skadehendelse. For øvrige forsikringer dekkes ikke slike skader eller tap."
+      },
+      "owner": "gjensidigeHusPluss"
+    }
+  ],
+  "checks": [
+    "Both original Standard13/Pluss14complete raw/layout pages equal independent oracle,registeredSHA256 and exact main source blobs",
+    "All3point19paragraphs retained:type-limited positives/full hazards,500millionaggregate only for travel/person atom/radioactivity,event chain,ordinary-other-insurance exclusion",
+    "Whole catalog before plus exactly2own-source facts;exact production insertion only;strict complete source/value/metadata/generated notes/overriddenBase guards before projection",
+    "All12manual choices/3JSONrepeats preserve every old field and canonical coverage status",
+    "Actual existing/offer document priority,unknown fallback,conflicting specifics retained;general terms create0insurance/choices;generic labels gain no aliases",
+    "16independent point18/19document cases across products/sides/repeats;point18full value/provenance preserved,no new canonical coverage or sum",
+    "214manual/144document/52comparison controls and scope negatives pass;all prior source-page/named corrections retained"
+  ],
+  "focused_tests": 86,
+  "runtime_proof": "runtime-proof.json.gz"
+}

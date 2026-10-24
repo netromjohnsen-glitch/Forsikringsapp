@@ -1,0 +1,66 @@
+{
+  "status": "AUTHORIZED_IMPLEMENTATION_ONLY",
+  "user_instruction": "Implementer punkt19 Farlig spredning under d1230f13e6b445d7 på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy;behold alle HOLD.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T15:40:14.445048+00:00",
+  "base_revision": "2028c16398b78f645eab2e42d1800c6598022470",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. only",
+  "whole_signature_closure": false,
+  "decision": "../house-spread-contract-2028c16/receipt-house-spread-contract.json",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point19_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point19_PDF_page_1_based": 14
+    }
+  ],
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "exact_delta": "Two raw own-source hus.farlig_spredning.begrensning facts with complete point19. Standard13/Pluss14,replacesBase on Pluss. All other production bytes preserved.",
+  "allowed_tests": "New focused test/helper;strict two-row apply/projection in current expectation chain and prior point18runtime test;independently source/before-proven protected raw-count increments exactly2 if needed. Preserve all snapshots,fingerprints,negative guards.",
+  "allowed_documentation": "New implementation packet,partial point19receipt,checkpoint and current-project-status.md;prior8local readonly files immutable.",
+  "gates": [
+    "Before production edit seal original GAP/SF links,registered hashes,complete Standard13/Pluss14 raw/layout pages and source-independent exact full point19oracle;capture fresh complete before-state.",
+    "Source-to-catalog and reverse audit:whole catalog before plus exactly2own-source facts;all3paragraphs/type limits/full hazard list/event rule preserved;no other production bytes. Exact own Standard13/Pluss14,replacesBase,raw evidence and overriddenBase.",
+    "Both levels/all12addon combinations:resolver,evidence,materialization,manual input and3JSONreenrichments. Every preexisting field,canonical coverage,customer choice,premium/deductible and provenance equals same-stage baseline;one effective nonasserting term.",
+    "Actual existing/offer document pipeline:full point19label overrides complete rule;unknown fallback and conflicting specific values retained. General terms alone create0customer insurance;paired supporting evidence creates no selection.",
+    "Independent point18/19document matrix:only19custom,only18custom,bothcustom,bothunknown;both products/sides and3JSONrepeats. Neither rule suppresses or overwrites the other;canonical coverages unchanged.",
+    "Generic Farlig spredning,ABC,Atomskade,Radioaktiv stråling,500millioner,Forsikringssum,Generelle vilkår etc get no aliases;positive customer building/fixture fields do not suppress independent point19.",
+    "Bare point19term infers0canonical coverage;no availability/individualsum/deductible/selection or claim/event calculations. Same-product0difference,forward/reverse comparisons,other-provider missing unknown;provider/type/version/ordinary boundaries and NITO isolation.",
+    "Run current47-file target manifest plus focused test(48files),fullsuite and scoped ESLint on final identical candidate. Preserve all earlier published rules and7source-page fixes. Read-only feasibility here is not production validation.",
+    "Update partial point19receipt/checkpoint/current-project-status only after validation. Whole d123and other dimensions not closed;no signature/P2/campaign credit,HOLDchange or pilotclearance."
+  ],
+  "excluded_scope": [
+    "Engine,enrichment/comparison/coverage logic,presentation/UI,global aliases,canonical registry,extractor enum",
+    "Source originals,registry/sourceType/effective dates/source admission",
+    "Individual sum/coverage status/customer choice,claims/aggregate/event calculation",
+    "Published point12/18 or any other general provisions/providers/types/scopes/NITO",
+    "Historical inventories/receipts/snapshots/fingerprints/ledgers,HOLD,pilot gate"
+  ],
+  "commit_push_authorized": false,
+  "deploy_authorized": false,
+  "install_authorized": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "historical_P2_disposition": "DEFER_POST_PILOT unchanged;partial point19only,no signature/P2/campaign credit",
+  "historical_mechanical_counters": "UNCHANGED"
+}

@@ -1,0 +1,156 @@
+{
+  "classification": "CURRENT_VALIDATED_ORDINARY_HOUSE_DANGEROUS_SPREAD_POINT19",
+  "status": "PASS_VALIDATED_POINT19_ONLY",
+  "created_at_UTC": "2026-10-24T15:43:38.922087+00:00",
+  "base_revision": "2028c16398b78f645eab2e42d1800c6598022470",
+  "fresh_main_before": "2028c16398b78f645eab2e42d1800c6598022470",
+  "fresh_main_after": "2028c16398b78f645eab2e42d1800c6598022470",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin/main exactSHA. No reset/pull/stash.",
+  "application_identity_sha256": "9ee2f059648f436dbdac86ad6ff4740370df5c873452a663a00f680269e854da",
+  "tested_candidate": "Uncommitted application_files in candidate-identity.json;HEAD identifies base,not an implementation commit.",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. only",
+  "validated_subscope_only": "Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m.",
+  "whole_signature_review_complete": false,
+  "whole_signature_closure": false,
+  "remaining_signature_dimensions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+  "published_points12and18": "CONFIRMED_ON_BASE_MAIN_NOT_REOPENED",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point19_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point19_PDF_page_1_based": 14
+    }
+  ],
+  "original_priority": "P2",
+  "original_disposition": "DEFER_POST_PILOT retained in immutable registry;explicit point19implementation tracked separately",
+  "decision": "../house-spread-contract-2028c16/receipt-house-spread-contract.json",
+  "authorization": "authorization.json",
+  "implemented": {
+    "production_file": "lib/gjensidige-hus-catalog.ts",
+    "raw_rows_added": 2,
+    "effective_rows_per_product": 1,
+    "key": "hus.farlig_spredning.begrensning",
+    "label": "Farlig spredning av biologiske eller kjemiske substanser m.m.",
+    "value": "For personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt på reise- og personforsikringer dekker Gjensidige skade eller tap som følge av farlig spredning av biologiske eller kjemiske substanser, skade eller tap forårsaket av raketter, atomvåpen eller radioaktiv stråling. For reise- og personforsikringer gjelder følgende begrensning: Ved skade eller tap forårsaket av atomvåpen eller radioaktiv stråling, er samlet erstatningsansvar overfor alle kunder og kravstillere begrenset til kr 500 millioner pr. skadehendelse. Alle skader som skyldes samme hendelse eller som har sin årsak i en sammenhengende kjede av hendelser, regnes som én skadehendelse. For øvrige forsikringer dekkes ikke slike skader eller tap.",
+    "Standard_source_pages": [
+      13
+    ],
+    "Pluss_source_pages": [
+      14
+    ],
+    "own_Pluss_replaces_base": true,
+    "original_bindings_resolution": "Only point19within both original bindings validated;not full SF/signature closure. Published status requires containing commit verification on main.",
+    "source_to_catalog_and_reverse": "Complete catalog equals before plus exactly2source-approved facts. Strict guards validate full atomic value,registered metadata,source notes and inherited provenance. All previous fields retained.",
+    "contract": "One atomic full point19:positive first paragraph limited to statutory personal injury/travel/person;all biological/chemical spread,rocket,nuclear and radiation hazards;500millionaggregate and same-event/connected-chain rule only in stated travel/person atom/radiation scope;final ordinary-other-insurance exclusion. No house sum or added terrorism-intent condition;point18remains separate and unchanged.",
+    "coverage_contract": "Restriction term under hus.ovrig;isNonAssertingCoverageDetail=true. No.dekning suffix,availability/structured sum/deductible/selection metadata or related coverage parent. Term alone infers no canonical coverage;no claim,event,aggregate,cap-allocation calculation or customer-choice/status changes.",
+    "unchanged": [
+      "Every other production byte",
+      "Remaining general provisions/broader d123dimensions and published points12/18",
+      "All prior source-page corrections and object/additionalcost/settlement/garden rules",
+      "Positive building/fixture/sidebuilding and all optional Smart/rental/rot choices",
+      "Other providers,ordinary product/type/version/scope boundaries",
+      "Source registry/sourceType/effective dates/admission",
+      "Engine,global aliases,extractor enum,presentation/UI",
+      "Original PDFs,all historical inventories/receipts/snapshots/fingerprints and prior8local readonly files"
+    ]
+  },
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 3108,
+      "pass": 3108,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 48,
+    "fullsuite": {
+      "tests": 6800,
+      "pass": 6800,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 177,
+    "focused_contract_tests": 86,
+    "scoped_lint_files": 10,
+    "scoped_lint_output": "",
+    "same_candidate_identity_for_all_final_gates": true,
+    "source_reverse_audit": "source-and-reverse-audit.json",
+    "runtime_proof": "runtime-proof.json.gz",
+    "mechanical_corrections": "autonomous-mechanical-corrections.json"
+  },
+  "unchanged_status": {
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "documented_campaign_count": 67,
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "catalog_foundation": "Only point19locally validated;points12and18already on base main. Other d123dimensions unassessed/notclosed;no exhaustive ordinary foundation/globalP2closure/pilotclearance. Combined revalidation on containing published main remains separate.",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit;verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json",
+  "commit_push_authorized": true,
+  "deploy_authorized": false,
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_step": "Verify containing commit on remote main and exact payload hashes. Only point19 is published;broader signature remains unassessed/notclosed. Points12and18 remain published. Combined ordinary foundation revalidation remains separate;no deploy."
+}

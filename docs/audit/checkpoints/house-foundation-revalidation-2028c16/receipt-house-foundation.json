@@ -1,0 +1,437 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_FOUNDATION_REVALIDATION_WITH_ONE_PRECISE_REMAINDER",
+  "status": "CONFIRMED_PUBLISHED_GROUND_WITH_PRECISE_DEFERRED_P2_REMAINDER",
+  "decision": "Publisert kilde-/runtimegrunnlag for Hus Standard og Hus Pluss bekreftet på fersk main2028c16,inkludert punkt12,punkt18 og tidligere rettelser. Én presis rest er punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. under historisk d1230f13e6b445d7,GAP-2110/SF-3024 og GAP-2169/SF-3111. Øvrige-forsikringer-regelen er ikke representert i ordinært husgrunnlag. Hele bredere signaturen er ikke ferdig vurdert/lukket. P2/DEFER_POST_PILOT beholdes;ingen ny obligatorisk pilotblokkering.",
+  "authorization": "Samlet revalidering av ordinært katalogfundament for Hus Standard og Hus Pluss på fersk main;én receipt med bekreftet grunnlag eller én presis restmangel. Ingen kode/deploy;alle HOLD beholdes.NITO/Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T15:35:03.776512+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "2028c16398b78f645eab2e42d1800c6598022470",
+  "fresh_main_after": "2028c16398b78f645eab2e42d1800c6598022470",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin/main exactSHA. Exact main git blobs,sealed packets and latest52file publication manifest verified. PASS alone not publication proof.",
+  "scope": {
+    "provider": "gjensidige",
+    "type": "Hus/bolig",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "original_P1_signatures": 46,
+    "original_GAP_SF_links": 83,
+    "historical_source_facts": {
+      "total": 170,
+      "P1": 83,
+      "P2": 30,
+      "priority_blank": 57
+    },
+    "registered_sources_verified": 6,
+    "configurations": {
+      "Standard": 8,
+      "Pluss": 4
+    },
+    "document_role_probes": 60
+  },
+  "confirmed_ground": {
+    "B051_original_receipts_on_main": 37,
+    "B051_original_binding_links": 67,
+    "B130_original_completion_receipts_on_main": [
+      {
+        "signature": "597df4c45c6d3db9",
+        "receipt": "docs/audit/checkpoints/b130-vacancy-f5f88cc/completion-receipt-597df4c45c6d3db9.json",
+        "sha256": "5e93e9ee3ac6897a87dad06e965b1eda7f1de50ad2ce89c0b0647c542d7f67ea"
+      },
+      {
+        "signature": "ce90710821e28a97",
+        "receipt": "docs/audit/checkpoints/b130-frost-8422e39/completion-receipt-ce90710821e28a97.json",
+        "sha256": "e0f4d260e31c51d82c0d86047ce3715342087110b1066ae7f4147aa06ba0b655"
+      },
+      {
+        "signature": "15f5b4a3e9f79fd2",
+        "receipt": "docs/audit/checkpoints/b130-underinsurance-0e4c09d/completion-receipt-15f5b4a3e9f79fd2.json",
+        "sha256": "e4836918eb478a6067705998acee82e56fbec465ceae8f2a94d194b54924d280"
+      },
+      {
+        "signature": "d58bff0e6b2d46eb",
+        "receipt": "docs/audit/checkpoints/b130-person-scope-cfada9a/completion-receipt-d58bff0e6b2d46eb.json",
+        "sha256": "17c4299f3daa2229cbe81e8e4cd7889b0d12989da941efdc3df8a6281c03ccb7"
+      }
+    ],
+    "B130_original_bindings": 8,
+    "B130_sealed_files_verified_on_main": 150,
+    "published_P2_bolks": [
+      {
+        "signature": "8db65d4d3da9e98b",
+        "receipt": "docs/audit/checkpoints/house-settlement-form-6d42440/completion-receipt-8db65d4d3da9e98b.json",
+        "sha256": "df2189e55f73c04d77bce1bce5368d338b6a3cfc7f79ffe9245759f43d24fcb6",
+        "verified_containing_main": "979f01ca8cac052372cd610c537d9258269cc081",
+        "original_source_bindings": [
+          {
+            "finding_id": "GAP-2113",
+            "source_fact_id": "SF-3031",
+            "product": "gjensidige-hus",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+            "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "PDF_page_1_based": 16
+          },
+          {
+            "finding_id": "GAP-2172",
+            "source_fact_id": "SF-3118",
+            "product": "gjensidige-hus-pluss",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+            "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "PDF_page_1_based": 17
+          }
+        ],
+        "status_effective": "Containing commit confirmed on actual fresh main;not inferred from PASS"
+      },
+      {
+        "signature": "d68e94be42f1549b",
+        "receipt": "docs/audit/checkpoints/house-garden-import-83c8fee/completion-receipt-d68e94be42f1549b.json",
+        "sha256": "60994806a286336a6269b675e4490c2f12880bcd3cedf3ff3b2ce5e8caefc732",
+        "verified_containing_main": "979f01ca8cac052372cd610c537d9258269cc081",
+        "original_source_bindings": [
+          {
+            "finding_id": "GAP-2114",
+            "source_fact_id": "SF-3032",
+            "product": "gjensidige-hus",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+            "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "PDF_page_1_based": 16
+          },
+          {
+            "finding_id": "GAP-2173",
+            "source_fact_id": "SF-3119",
+            "product": "gjensidige-hus-pluss",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+            "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "PDF_page_1_based": 17
+          }
+        ],
+        "status_effective": "Containing commit confirmed on actual fresh main;not inferred from PASS"
+      },
+      {
+        "signature": "e103e7cb532fb8d4",
+        "receipt": "docs/audit/checkpoints/house-additional-costs-de087fc/completion-receipt-e103e7cb532fb8d4.json",
+        "sha256": "b6e842e0a2225fb0e708d98adcf9cb92348cb0071c1641ecd40589fb5131a1e8",
+        "verified_containing_main": "979f01ca8cac052372cd610c537d9258269cc081",
+        "original_source_bindings": [
+          {
+            "finding_id": "GAP-2099",
+            "source_fact_id": "SF-3008",
+            "product_id": "gjensidige-hus",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+            "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "priority": "P2",
+            "PDF_page_1_based": 5
+          },
+          {
+            "finding_id": "GAP-2158",
+            "source_fact_id": "SF-3095",
+            "product_id": "gjensidige-hus-pluss",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+            "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "priority": "P2",
+            "PDF_page_1_based": 6
+          }
+        ],
+        "status_effective": "Containing commit confirmed on actual fresh main;not inferred from PASS"
+      },
+      {
+        "signature": "a6beec054bdae0df",
+        "receipt": "docs/audit/checkpoints/house-object-exclusions-115ca6a/completion-receipt-a6beec054bdae0df.json",
+        "sha256": "e775809df698d7e079b7d8700df6a30fba618a88e19a25a9387c908861d46765",
+        "verified_containing_main": "979f01ca8cac052372cd610c537d9258269cc081",
+        "original_source_bindings": [
+          {
+            "finding_id": "GAP-2084",
+            "source_fact_id": "SF-2987",
+            "product_id": "gjensidige-hus",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+            "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "priority": "P2",
+            "PDF_page_1_based": 3
+          },
+          {
+            "finding_id": "GAP-2138",
+            "source_fact_id": "SF-3071",
+            "product_id": "gjensidige-hus-pluss",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+            "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "priority": "P2",
+            "PDF_page_1_based": 3
+          }
+        ],
+        "status_effective": "Containing commit confirmed on actual fresh main;not inferred from PASS"
+      }
+    ],
+    "published_partial_P2_packets": [
+      {
+        "path": "docs/audit/checkpoints/house-owner-change-979f01c/completion-receipt-d1230f13e6b445d7-point12.json",
+        "sha256": "ff6189dd3092141c881999937c8de4bbf9ffa23191e539c3d254e2656683855d",
+        "signature": "d1230f13e6b445d7",
+        "subscope": "point12 only",
+        "whole_signature_closure": false,
+        "original_bindings": [
+          {
+            "finding_id": "GAP-2110",
+            "source_fact_id": "SF-3024",
+            "product_id": "gjensidige-hus",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+            "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "priority": "P2",
+            "original_source_location": "PDF 12–13",
+            "point12_PDF_page_1_based": 12
+          },
+          {
+            "finding_id": "GAP-2169",
+            "source_fact_id": "SF-3111",
+            "product_id": "gjensidige-hus-pluss",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+            "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "priority": "P2",
+            "original_source_location": "PDF 13–14",
+            "point12_PDF_page_1_based": 13
+          }
+        ]
+      },
+      {
+        "path": "docs/audit/checkpoints/house-terror-c93c33d/completion-receipt-d1230f13e6b445d7-point18.json",
+        "sha256": "5d934de76281559035478d895ef97e70d6ec2a65de9510187605d15e4b1141df",
+        "signature": "d1230f13e6b445d7",
+        "subscope": "point18 only",
+        "whole_signature_closure": false,
+        "original_bindings": [
+          {
+            "finding_id": "GAP-2110",
+            "source_fact_id": "SF-3024",
+            "product_id": "gjensidige-hus",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+            "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+            "priority": "P2",
+            "original_source_location": "PDF 12–13",
+            "point18_PDF_page_1_based": 13
+          },
+          {
+            "finding_id": "GAP-2169",
+            "source_fact_id": "SF-3111",
+            "product_id": "gjensidige-hus-pluss",
+            "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+            "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+            "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+            "priority": "P2",
+            "original_source_location": "PDF 13–14",
+            "point18_PDF_page_1_based": 14
+          }
+        ]
+      }
+    ],
+    "latest_full_manifest_verified_files": 52,
+    "point18_only": "Full atomic hus.terror.begrensning on own StandardPDF13/PlussPDF14,Pluss replacement/provenance/raw evidence/generated notes verified all12configurations. Point12also exact;whole d123notclosed.",
+    "previous7source_pages": {
+      "hus.bygninger.dekning": 3,
+      "hus.bygninger.tilbehor": 3,
+      "hus.teknisk.solceller": 3,
+      "hus.gjenoppforing.hovedregel": 16,
+      "hus.gjenoppforing.totalskade": 16,
+      "hus.gjenoppforing.svanemerket": 16,
+      "hus.sikkerhet.egenandelsfritak": 17
+    },
+    "publication_packets_verified_on_main": [
+      {
+        "packet": "docs/audit/checkpoints/house-buildings-source-1b5b5aa",
+        "sealed_files_verified": 34
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-object-sources-a563c50",
+        "sealed_files_verified": 26
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-rebuilding-sources-39b63c1",
+        "sealed_files_verified": 26
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-safeguard-source-d4bcc45",
+        "sealed_files_verified": 28
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-settlement-form-6d42440",
+        "sealed_files_verified": 34
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-garden-import-83c8fee",
+        "sealed_files_verified": 29
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-additional-costs-de087fc",
+        "sealed_files_verified": 32
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-object-exclusions-115ca6a",
+        "sealed_files_verified": 31
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-owner-change-979f01c",
+        "sealed_files_verified": 31
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-terror-c93c33d",
+        "sealed_files_verified": 32
+      }
+    ],
+    "latest_application_identity_sha256": "43c331eb4bf56b7c5690132de03011fc43d1bef0b9bd09f6bcfe593cba5135f1",
+    "application_files_verified_on_main": 10,
+    "runtime_old_field_integrity": "All resolver/evidence/manual/threeJSONreenrichment/display/materialized old fields equal independent before-state after strict source-guarded removal of exactly2approved point18rows. Canonical coverages unchanged;point12,object/additionalcost/settlement/garden and7sourcepage fixes retained. Scope negatives and40specific document-priority probes pass.",
+    "existing_tests": {
+      "files": 47,
+      "tests": 3022,
+      "pass": 3022,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 36.72,
+      "log": "targeted-main.log.gz"
+    },
+    "not_a_fresh_fullsuite": "6714/6714 full176file suite belongs to identical published code/test candidate before publication;fullsuite not rerun in this read-only audit."
+  },
+  "precise_remainder": {
+    "id": "HOUSE_GENERAL_POINT19_DANGEROUS_SPREAD_ROCKET_NUCLEAR_RADIATION_TYPE_QUALIFIED_RULE_MISSING",
+    "signature": "d1230f13e6b445d7",
+    "subscope": "Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. only",
+    "classification": "One precise missing ordinary-house source/catalog rule within broader historical deferredP2signature",
+    "original_bindings": [
+      {
+        "finding_id": "GAP-2110",
+        "source_fact_id": "SF-3024",
+        "product_id": "gjensidige-hus",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "priority": "P2",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "original_source_location": "PDF 12–13",
+        "point19_PDF_page_1_based": 13
+      },
+      {
+        "finding_id": "GAP-2169",
+        "source_fact_id": "SF-3111",
+        "product_id": "gjensidige-hus-pluss",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "priority": "P2",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "original_source_location": "PDF 13–14",
+        "point19_PDF_page_1_based": 14
+      }
+    ],
+    "original_registry_disposition": "DEFER_POST_PILOT",
+    "source_contract_full_point19": "19. Farlig spredning av biologiske eller kjemiske substanser m.m. For personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt på reise- og personforsikringer dekker Gjensidige skade eller tap som følge av farlig spredning av biologiske eller kjemiske substanser, skade eller tap forårsaket av raketter, atomvåpen eller radioaktiv stråling. For reise- og personforsikringer gjelder følgende begrensning: Ved skade eller tap forårsaket av atomvåpen eller radioaktiv stråling, er samlet erstatningsansvar overfor alle kunder og kravstillere begrenset til kr 500 millioner pr. skadehendelse. Alle skader som skyldes samme hendelse eller som har sin årsak i en sammenhengende kjede av hendelser, regnes som én skadehendelse. For øvrige forsikringer dekkes ikke slike skader eller tap.",
+    "contract_dimensions": [
+      "Første ledd gir en typeavgrenset regel for personskade under Bilansvarsloven/Lov om yrkesskadeforsikring samt reise/personforsikringer,for farlig biologisk/kjemisk spredning,raketter,atomvåpen eller radioaktiv stråling.",
+      "Bare for reise/personforsikringer omtaler neste ledd skade/tap fra atomvåpen eller radioaktiv stråling med samlet500millioneransvar overfor alle kunder/kravstillere per hendelse;samme hendelse eller sammenhengende kjede regnes som én hendelse.",
+      "For øvrige forsikringer dekkes ikke slike skader eller tap. Denne øvrige-forsikringer-regelen mangler i ordinært husgrunnlag for begge originalbindingene."
+    ],
+    "source_cautions": [
+      "500millionergrensen og hendelseskjeden i andre ledd har uttrykkelig reise/personscope og skal ikke bli individuell husforsikringssum eller positiv husdekning.",
+      "Første ledds personskader og reise/persondekning skal ikke importeres som ordinær husdekning.",
+      "Publisert punkt18 omtaler biologiske/kjemiske substanser i terrordefinisjonen. Dette representerer ikke punkt19s egen typeavgrensning og øvrige-forsikringer-unntak.",
+      "Punkt19 skal ikke uten videre likestilles med bare terror;ingen terrorhensikt står som vilkår i denne ordlyden. Samspillet med punkt18 skal bevares ved separat kontrakt/mappingavklaring.",
+      "Full kontekst og alle typegrenser beholdes i beviset. Ingen mapping,kataloggren eller implementering besluttes her."
+    ],
+    "current_runtime_observation": "Point19specific hazards(rakett/atomvåpen/radioaktiv) and exact ordinary-type exclusion absent from all seven raw Gjensidige house components and all12resolver/evidence/manual/threeJSONreenrichment/display/materialized configurations. Known point18biochemical terror definition retained and separately verified,not falsely counted as point19representation.",
+    "published_ground_not_reopened": "Point12 hus.avtale.eierskifte and point18 hus.terror.begrensning confirmed on exact fresh main with own-source facts/provenance and same-stage old-field checks. Four named earlier P2bolks and7source-page corrections retained.",
+    "scope_limit": "Original GAP-2110/SF-3024 and GAP-2169/SF-3111 cover broader general provisions. This one sufficient remainder is point19only. Published12/18notreopened;all other broader-signature dimensions unassessed/notclosed.",
+    "effect_on_confirmation": "Cannot confirm exhaustive ordinary-catalog completeness. HistoricalP2/DEFER_POST_PILOT unchanged;no new mandatory pilotblocker,HOLD,priority change,P2credit or pilotclearance.",
+    "one_sufficient_remainder_not_exhaustive_global_gap_count": true,
+    "proposed_next_bounded_scope": "Separately authorized read-only contract/mapping clarification of point19only,both original bindings,ordinary-house exclusion and precise type boundaries,including relationship to already published point18.",
+    "implemented": false,
+    "new_HOLD_created": false,
+    "whole_signature_closure": false
+  },
+  "source_evidence": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 13,
+      "section": "Generelle vilkår19.Farlig spredning av biologiske eller kjemiske substanser m.m.",
+      "original_binding_range": "PDF 12–13"
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 14,
+      "section": "Generelle vilkår19.Farlig spredning av biologiske eller kjemiske substanser m.m.",
+      "original_binding_range": "PDF 13–14"
+    }
+  ],
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD unchanged",
+    "Ordinary catalog completeness not cleared;one precise historical deferredP2subscope,not broader signature/globalP2closure",
+    "Security/GDPR and P3-A05 identity/merge status not established here",
+    "Person insurance/pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "integrity": {
+    "tracked_files_unchanged": 8228,
+    "all_existing_tracked_bytes_unchanged": true,
+    "tracked_set_unchanged": true,
+    "HEAD": "2028c16398b78f645eab2e42d1800c6598022470",
+    "origin_main": "2028c16398b78f645eab2e42d1800c6598022470",
+    "branch": "fix/house-vacancy",
+    "initial_tree": "CLEAN",
+    "staged_files": 0,
+    "new_files": "Only current read-only receipt,evidence,testlog and checksums;no existing file edits"
+  },
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "59d16b4a316cc142036fbe1be4394e014c76d311784a93dc0ce91bad3623612d"
+  },
+  "test_log_sha256": "e8121d780dd28fbb9347a5fc645526f506ab99809d7a050ac9d688c675433218",
+  "limits": [
+    "Only four new local audit files;no existing code,test,source,old audit or project-status edits;no commit/push/install/deploy.",
+    "Fresh47file targeted tests and read-only source/runtime audit;no new fullsuite,build,lint,typegen,server or HTTPPDFgeneration.",
+    "One sufficient point19remainder;points12/18confirmed;other d123dimensions unassessed/notclosed. No mapping/implementation/reprioritization.",
+    "No signature/P2closure credit,HOLDchange or pilotclearance."
+  ],
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_RECEIPT",
+  "new_workstreams_started": false
+}

@@ -1,5 +1,69 @@
 # Aktuell dokumentert prosjektstatus
 
+## Punkt 19: Farlig spredning – validert 24. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til `2028c16398b78f645eab2e42d1800c6598022470`.
+Punkt 12, punkt 18 og tidligere bolker er publisert der. Punkt 19 under
+`d1230f13e6b445d7` er validert på denne basisen. Publiseringsrevisjonen er
+committen som inneholder rettelsen, delreceipten og denne prosjektstatusen.
+Publisert status gjelder etter kontroll på remote main. Commit/push er
+uttrykkelig autorisert i [publiseringsfullmakten](../audit/checkpoints/house-spread-2028c16/publication-authorization.md).
+Testet basis og eksakt kandidatidentitet er adskilt fra publiseringscommitten.
+Ingen installasjon eller deploy.
+
+To rå rader under `hus.farlig_spredning.begrensning` gir én effektiv
+begrensende vilkårsrad på hvert husnivå. Hele punkt 19 er bevart samlet med
+alle tre ledd: de navngitte positive personskade-/reise-/personreglene,
+hele farelisten med biologisk/kjemisk spredning, raketter, atomvåpen og
+radioaktiv stråling, og avslutningen om at slike skader eller tap ikke dekkes
+for øvrige forsikringer. Grensen på 500 millioner kroner gjelder samlet
+for alle kunder og kravstillere bare innen den uttrykkelige reise-/personregelen
+ved atomvåpen eller radioaktiv stråling. Regelen om samme hendelse eller en
+sammenhengende hendelseskjede beholdes innen dette scopet. Beløpet er ikke
+registrert som husforsikringssum, og det er ikke utledet positiv husdekning.
+
+Standard har egen kilde på PDF-side 13, Pluss egen kilde på side 14 med
+`replacesBase` og overstyrt Standard-provenance. Punkt 18 beholdes byte-identisk
+som egen bestemmelse; reglene om 1 milliard/48 timer og 500 millioner/hendelseskjede
+blandes ikke. Det legges ikke til noe terrorhensiktsvilkår i punkt 19.
+Raden er et ikke-assertivt begrensningsvilkår: ingen automatisk dekning,
+kundevalg, individuell sum, status eller hendelses-/ansvarsberegning.
+Ingen engine, globale aliaser, extractor-enum, presentasjon eller kilderegister
+er endret. Alle øvrige produksjonsbytes er identiske med testet main-basis.
+
+[Delreceipt for punkt 19](../audit/checkpoints/house-spread-2028c16/completion-receipt-d1230f13e6b445d7-point19.json),
+[validering](../audit/checkpoints/house-spread-2028c16/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-spread-2028c16/candidate-identity.json) og
+[checkpoint](../audit/checkpoints/house-spread-2028c16/checkpoint.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-2028c16/receipt-house-foundation.json)
+og [mappingbeslutningen](../audit/checkpoints/house-spread-contract-2028c16/receipt-house-spread-contract.json)
+beholdes byte-identisk. GAP-2110/SF-3024 og GAP-2169/SF-3111 er validert
+**bare for punkt 19** i denne bolken. Publisert punkt 12 og 18 gjenåpnes ikke.
+Øvrige dimensjoner i de bredere originalbindingene og signaturen er ikke
+ferdig vurdert eller lukket. P2/DEFER_POST_PILOT beholdes, uten global
+signatur-, P2- eller kampanjekreditt.
+
+3108/3108 målrettede tester i 48 filer og 6800/6800 tester i 177 filer består
+uten feil eller skip. 86 nye kontraktkontroller dekker komplette kildesider,
+alle 12 valgkombinasjoner, tre JSON-berikinger, individuell dokumentprioritet
+og typeavgrensningene for beløp og hendelser. 16 kombinerte dokumenttilfeller
+bevarer uavhengige regler for punkt 18 og 19. 214 manuelle kontroller,
+144 dokumentflyter og 52 sammenligninger bevarer øvrige felt og dekningsstatuser.
+Støttevilkår alene oppretter ingen forsikring; generiske etiketter gir ingen
+nye koblinger eller kundevalg. Kvalitetskontroll av 10 kode-/testfiler:
+0 feil og 0 warnings. Dokumenterte testtilpasninger gjelder bare de to
+kildeverifiserte rå radene; historiske snapshots, originaler og fingeravtrykk
+beholdes uendret. Første nye fokuserte testkjøring bestod alle 86 kontroller.
+
+Samlet katalogfundament er ikke frigitt. B-051 37/0/1/1, kampanje 67, ny
+signaturkreditt 0, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Alle HOLD er uendret,
+inkludert HTU, `8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. Samlet
+revalidering på inneholdende publisert main er en separat oppgave.
+NITO venter; Sentralbord venter separat. Ingen ny arbeidsstrøm er startet.
+
 ## Punkt 18: Skade ved terrorhandlinger – validert 24. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til `c93c33db262ddbd6906222bc4f11776ccc5ba8c3`.
