@@ -1,0 +1,53 @@
+{
+  "status": "AUTHORIZED_IMPLEMENTATION_ONLY",
+  "user_instruction": "Implementer den avklarte regelen for e103e7cb532fb8d4 på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy;behold alle HOLD.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T14:35:50.046447+00:00",
+  "base_revision": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a",
+  "signature": "e103e7cb532fb8d4",
+  "decision": "../house-additional-costs-contract-de087fc/receipt-house-additional-costs-contract.json",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2099",
+      "source_fact_id": "SF-3008",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 5
+    },
+    {
+      "finding_id": "GAP-2158",
+      "source_fact_id": "SF-3095",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 6
+    }
+  ],
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "exact_delta": "Six raw facts,three approved rules in each own Standard/Pluss component;exact wording/source/qualifiers per frozen oracle. No other production bytes changed.",
+  "allowed_tests": "New focused source-bound helper/test. Guarded exact six-row composition/projection in active expected-catalog helpers;strict legacy suite compatibility and exact+6 protected raw-row counters if needed. No edits to historic snapshots/receipts/source originals.",
+  "allowed_documentation": "New implementation packet plus current-project-status.md. Prior two local audit packets immutable.",
+  "gates": [
+    "Freeze independent source oracle and fresh complete before-state before production edit. Verify both original GAP/SF bindings and registered PDF hashes against fresh main.",
+    "Focused tests/remediation-house-additional-costs.test.mjs plus source-bound helper if needed: complete Standard5/18 and Pluss5/6/19 source text. Exact three values and own source/qualification refs, including heading continuation and generated provenance notes.",
+    "Both products/all12 addon combinations: raw/effective resolver,materialization,manual input,three JSON reenrichments. Compare full preexisting fields to same-stage baseline;exactly three additions per product;Pluss replacement/raw inheritance verified.",
+    "Source-to-catalog and reverse audit: only six approved raw rows. All other providers unchanged; existing shared removal/inflation keys align without copying their provider-specific wording/caps/conditions.",
+    "Actual current document pipeline existing/offer: each exact product-label rule overrides only its own key;unknown fallback;multiple conflicting specific rules preserved;generic headings unbound;general terms supporting only. Test catalogue-only/selected product distinction for removal coverage and no coverage inference from other two details.",
+    "Preserve complete own-source metadata,source.note,qualificationSource,sources and overriddenBase through repeated enrichment. Retain established generated notes independently of raw facts.",
+    "Same product and forward/reverse comparison;missing peer fact unknown,not unavailable. Preserve all preexisting coverages,all add-ons/premium/deductible and all protected HOLD,ordinary scope/type/version and NITO exclusion.",
+    "Run current43-file target manifest plus new focused test (44 files),fullsuite and scoped ESLint. Correct active harness expectations only with independent source/before evidence for these exact additions;immutable historical snapshots stay unchanged. No skipped files or unrelated production fixes."
+  ],
+  "commit_push_authorized": false,
+  "deploy_authorized": false,
+  "install_authorized": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "historical_P2_disposition": "DEFER_POST_PILOT unchanged;local scoped implementation does not grant campaign/P2closure credit or pilot clearance"
+}

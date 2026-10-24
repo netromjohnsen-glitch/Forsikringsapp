@@ -1,3 +1,4 @@
+import {applyAdditionalCosts,withoutAdditionalCosts} from './house-additional-costs.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
@@ -15,12 +16,12 @@ export function gardenImportFact(owner,key,jsonSnapshot=false){
 export function applyGardenImport(catalog){
  const copy=structuredClone(catalog);
  for(const owner of owners)for(const key of o.keys){const rows=copy.facts[owner],fact=gardenImportFact(owner,key,!Object.hasOwn(rows[0].source,'productCode')),existing=rows.filter(f=>f.key===key);if(existing.length)assert.deepEqual(existing,[fact]);else rows.push(fact);}
- return copy;
+ return applyAdditionalCosts(copy);
 }
 // Guard exact provider/key/value/source before projecting the four approved rows.
 // Keep Tryg's shared garden key and individual customer-document rules untouched.
 export function withoutGardenImport(value){
- const copy=structuredClone(value);
+ const copy=withoutAdditionalCosts(value);
  function visit(item){
   if(Array.isArray(item))for(let i=item.length-1;i>=0;i--){const row=item[i];
    if(o.keys.includes(row?.key)&&owners.includes(row.source?.documentId)){

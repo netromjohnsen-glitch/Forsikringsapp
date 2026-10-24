@@ -1,3 +1,4 @@
+import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -28,7 +29,7 @@ const stages=i=>{const a=repeat(i),b=repeat(a);return[i,a,b,repeat(clean(b))];};
 const pick=i=>i.importantTerms.filter(t=>t.key===o.key);
 const raw=id=>structuredClone(baseline.documents.find(c=>c.id===id&&c.record.documentRole==='individual_agreement'&&!c.record.importantTerms.length&&!c.record.addOns.length).record);
 const record=(id,values=[],role='individual_agreement')=>({...raw(id),documentRole:role,importantTerms:values.map(value=>({name:o.label,value,canonicalKey:null,documentIndices:[1]}))});
-const states=i=>clean(deriveCanonicalCoverages(withOriginalBuildingsSourcePage(i),'Hus'));
+const states=i=>clean(deriveCanonicalCoverages(withOriginalBuildingsSourcePage(withoutAdditionalCosts(i)),'Hus'));
 const pdfText=(file,page)=>execFileSync('pdftotext',['-raw','-f',String(page),'-l',String(page),file,'-']).toString().replace(/\s+/gu,' ');
 
 test('UNDERINSURANCE CR-226 has exactly the two original P1 source bindings',()=>{

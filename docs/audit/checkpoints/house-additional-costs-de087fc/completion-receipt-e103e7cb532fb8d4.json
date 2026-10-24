@@ -1,0 +1,169 @@
+{
+  "classification": "CURRENT_VALIDATED_ORDINARY_HOUSE_ADDITIONAL_COSTS",
+  "status": "PASS_VALIDATED",
+  "created_at_UTC": "2026-10-24T14:40:28.809629+00:00",
+  "base_revision": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a",
+  "fresh_main_before": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a",
+  "fresh_main_after": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a",
+  "fresh_main_method": "Connected GitHub branch API at start/end;HEAD/origin/main exactSHA. No pull/reset/stash.",
+  "application_identity_sha256": "05844718db80827cfe1dd811de70ac1581dd5978e5f6a6e9d572efbd7d3d3217",
+  "tested_candidate": "Uncommitted application_files in candidate-identity.json;HEAD identifies base,not an implementation commit.",
+  "signature": "e103e7cb532fb8d4",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2099",
+      "source_fact_id": "SF-3008",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 5
+    },
+    {
+      "finding_id": "GAP-2158",
+      "source_fact_id": "SF-3095",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 6
+    }
+  ],
+  "original_priority": "P2",
+  "original_disposition": "DEFER_POST_PILOT retained in immutable registry;explicit implementation authorized and validated separately",
+  "decision": "../house-additional-costs-contract-de087fc/receipt-house-additional-costs-contract.json",
+  "authorization": "authorization.json",
+  "implemented": {
+    "production_file": "lib/gjensidige-hus-catalog.ts",
+    "raw_rows_added": 6,
+    "effective_rows_per_product": 3,
+    "keys": [
+      "hus.rydding.dekning",
+      "hus.gjenoppforing.prisstigning",
+      "hus.vann.vannavgift"
+    ],
+    "values": [
+      {
+        "key": "hus.rydding.dekning",
+        "label": "Riving, rydding og bortkjøring",
+        "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen."
+      },
+      {
+        "key": "hus.gjenoppforing.prisstigning",
+        "label": "Prisstigning etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid."
+      },
+      {
+        "key": "hus.vann.vannavgift",
+        "label": "Økt vannavgift etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen."
+      }
+    ],
+    "Standard_source_pages": [
+      5,
+      18
+    ],
+    "Pluss_source_pages": [
+      5,
+      6,
+      19
+    ],
+    "own_Pluss_replaces_base": true,
+    "all_full_source_pages_and_hashes": "source-oracle.json",
+    "original_bindings_resolution": "Both original bindings validated for all three missing additional-cost dimensions;effective on published main only after containing commit verified.",
+    "source_to_catalog_and_reverse": "Whole productCatalog equals fresh-main baseline plus exactly six independently approved facts;projection guards all wording,metadata,primary/qualifying references,source notes and inheritance. Every preexisting field preserved across controls.",
+    "contract": "Covered damage and beyond insured sum preserved in each row;all4removal operations for worthless building remnants;average inflation by building-cost index within normal repair/rebuilding time;waterfee caused by damage. No adjacent loss-of-use cap transferred.",
+    "coverage_contract": "Removal uses existing coverage key/role;known selected product can assert it,unconfirmed bare catalog evidence remains unknown. Inflation and waterfee are terms and alone assert no coverage. General terms alone creates0insurances;paired identified individual agreement remains equal to no-general control. No optional customer choices added.",
+    "unchanged": [
+      "All other production bytes",
+      "Public-authority/loss-of-use/settlement/rental clauses",
+      "All other providers and shared removal/inflation facts",
+      "Ordinary product/type/version/scope boundaries",
+      "Source registry,sourceType,effective dates,source admission",
+      "Engine,global aliases,extractor enum,presentation/UI",
+      "Original source files,historical audits/receipts/snapshots and prior local decision/revalidation"
+    ]
+  },
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2801,
+      "pass": 2801,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 44,
+    "fullsuite": {
+      "tests": 6493,
+      "pass": 6493,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 173,
+    "focused_contract_tests": 105,
+    "scoped_lint_files": 14,
+    "scoped_lint_output": "",
+    "same_candidate_identity_for_all_final_gates": true,
+    "runtime_proof": "runtime-proof.json.gz",
+    "mechanical_corrections": "autonomous-mechanical-corrections.json"
+  },
+  "unchanged_status": {
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "documented_campaign_count": 67,
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "catalog_foundation": "Named additional-cost remainder implemented and locally validated; no claim of exhaustive catalog completeness,aggregate P2closure or pilot release. Combined revalidation on containing published fresh main remains a separate task.",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "commit_push_authorized": true,
+  "deploy_authorized": false,
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_step": "Verify containing commit on remote main and exact payload hashes. Combined ordinary foundation revalidation remains a separate task;no deploy.",
+  "publication_revision": "Containing Git commit;verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

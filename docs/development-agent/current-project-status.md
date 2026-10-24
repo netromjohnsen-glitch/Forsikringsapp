@@ -1,5 +1,60 @@
 # Aktuell dokumentert prosjektstatus
 
+## Tilleggsutgifter etter skade – validert 24. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`de087fccb92706dbf8d2bf6a697aa6cf6a27081a`. Hage/importverdsetting og tidligere bolker er publisert der.
+Tilleggsutgiftsbolken for `e103e7cb532fb8d4` er validert på denne basisen.
+Publiseringsrevisjonen er committen som inneholder rettelsen, receipt og denne
+prosjektstatusen. Publisert status gjelder etter kontroll på remote main.
+Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-additional-costs-de087fc/publication-authorization.md).
+Ingen installasjon eller deploy. Testet basis og eksakt kandidatidentitet er adskilt.
+
+Seks rå rader gir tre effektive regler på hvert husnivå:
+`hus.rydding.dekning`, `hus.gjenoppforing.prisstigning` og `hus.vann.vannavgift`.
+Etter erstatningsmessig skade dekkes tilleggene utover forsikringssummen.
+Rydderegelen bevarer riving, rydding, bortkjøring og deponering av verdiløse
+bygningsrester. Prisstigning følger gjennomsnittlig endring etter
+byggekostnadsindeksen innen normal reparasjons-/gjenoppføringstid. Vannavgiften
+må være økt som følge av skaden. Standard har egen kilde på side 5 og
+prisstigningsavgrensning på side 18. Pluss bruker egen liste på side 6,
+overskriften på side 5 og prisstigningsavgrensningen på side 19, med
+`replacesBase` og overstyrt Standard-provenance. Påbud, brukstap og oppgjørsform
+beholdes; brukstapets grense på 10 millioner overføres ikke til de tre tilleggene.
+Ingen engine, alias, extractor-enum, presentasjon eller kilderegister er endret.
+Alle øvrige produksjonsbytes er identiske med main-basis.
+
+[Receipt](../audit/checkpoints/house-additional-costs-de087fc/completion-receipt-e103e7cb532fb8d4.json),
+[validering](../audit/checkpoints/house-additional-costs-de087fc/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-additional-costs-de087fc/candidate-identity.json) og
+[checkpoint](../audit/checkpoints/house-additional-costs-de087fc/checkpoint.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-de087fc/receipt-house-foundation.json)
+og [mappingbeslutningen](../audit/checkpoints/house-additional-costs-contract-de087fc/receipt-house-additional-costs-contract.json)
+beholdes byte-identisk. GAP-2099/SF-3008 og GAP-2158/SF-3095 er validert for alle
+tre dimensjoner. Originalregisterets P2/DEFER_POST_PILOT beholdes; den eksplisitt
+autoriserte lokale implementeringen føres separat uten global telleendring.
+
+2801/2801 målrettede tester i 44 filer og 6493/6493 tester i 173 filer består uten
+feil eller skip. 105 nye kontraktkontroller dekker komplette kildesider, alle
+12 valgkombinasjoner, tre JSON-berikinger og individuell dokumentprioritet.
+214 manuelle kontroller, 144 dokumentflyter og 52 sammenligninger bevarer
+øvrige felt. Ryddeytelsen bruker eksisterende dekningsrolle; de to øvrige er
+vilkårsdetaljer. Katalog alene uten bekreftet produktvalg oppretter ikke valgt
+dekning; støttevilkår alene oppretter ingen forsikring. Sammen med en identifisert
+individuell avtale endrer støttevilkår ikke kundevalgene. Kvalitetskontroll av
+14 kode-/testfiler: 0 feil og 0 warnings. Testtilpasninger er dokumentert med
+før-bevis; historiske snapshots og fingeravtrykk er bevart.
+
+Samlet katalogfundament er ikke frigitt. B-051 37/0/1/1, kampanje 67, ny
+signaturkreditt 0, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Alle HOLD er uendret,
+inkludert HTU, `8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. Samlet revalidering
+på inneholdende publisert main er en separat oppgave. NITO venter; Sentralbord
+venter separat. Ingen ny arbeidsstrøm er startet.
+
 ## Hagebeplantning og importverdsetting – validert 24. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

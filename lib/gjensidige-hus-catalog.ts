@@ -223,6 +223,34 @@ pluss.push(...facts("gjensidigeHusPluss", [
   ["gjenoppforing.import.begrensning", "Gjenstander uten norsk forhandler – erstatningstak", "Når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes av forhandler i Norge, er erstatningen begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge.", "Erstatningsregler – Hus / Hvordan erstatningen blir beregnet", 17, undefined, true],
 ]));
 
+// Additional costs after covered damage, with each level's own list and qualifiers.
+standard.push(...facts("gjensidigeHusStandard", [
+  ["rydding.dekning", "Riving, rydding og bortkjøring", "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.", "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen", 5],
+  ["gjenoppforing.prisstigning", "Prisstigning etter skade", "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.", "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen", 5],
+  ["vann.vannavgift", "Økt vannavgift etter skade", "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.", "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen", 5],
+]));
+pluss.push(...facts("gjensidigeHusPluss", [
+  ["rydding.dekning", "Riving, rydding og bortkjøring", "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.", "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen", 6, undefined, true],
+  ["gjenoppforing.prisstigning", "Prisstigning etter skade", "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.", "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen", 6, undefined, true],
+  ["vann.vannavgift", "Økt vannavgift etter skade", "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.", "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen", 6, undefined, true],
+]));
+for (const key of ["hus.rydding.dekning", "hus.gjenoppforing.prisstigning", "hus.vann.vannavgift"]) {
+  const fact = pluss.find((fact) => fact.key === key)!;
+  fact.source.note = "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6.";
+  if (key !== "hus.gjenoppforing.prisstigning") {
+    fact.qualificationSource = { ...fact.source, page: 5,
+      section: "Hus – Overskrift til tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen (liste fortsetter på PDF-side 6)" };
+  }
+}
+for (const [rows, page, note] of [
+  [standard, 18, "Tilleggsytelsen er listet på PDF-side 5."],
+  [pluss, 19, "Tilleggsytelsen er listet på PDF-side 6 under overskriften på PDF-side 5."],
+] as const) {
+  const fact = rows.find((fact) => fact.key === "hus.gjenoppforing.prisstigning")!;
+  fact.qualificationSource = { ...fact.source, page,
+    section: "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid", note };
+}
+
 export const gjensidigeHusFacts: Record<string, CatalogFact[]> = {
   gjensidigeHusStandard: standard,
   gjensidigeHusPluss: pluss,

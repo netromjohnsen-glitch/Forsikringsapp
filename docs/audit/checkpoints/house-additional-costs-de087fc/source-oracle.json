@@ -1,0 +1,859 @@
+{
+  "signature": "e103e7cb532fb8d4",
+  "keys": [
+    "hus.rydding.dekning",
+    "hus.gjenoppforing.prisstigning",
+    "hus.vann.vannavgift"
+  ],
+  "rows": [
+    {
+      "key": "hus.rydding.dekning",
+      "label": "Riving, rydding og bortkjøring",
+      "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+      "mapping_decision": "REUSE_EXISTING_KEY",
+      "existing_owners": [
+        "trygHus",
+        "trygHusExtra",
+        "ifHusBasis",
+        "storebrandHusStandard",
+        "fremtindHusStandard",
+        "frendeHusStandard"
+      ],
+      "presentation_group": "hus.gjenoppforing",
+      "materialized_role": "coverage",
+      "proposed_own_source_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.rydding.dekning",
+            "label": "Riving, rydding og bortkjøring",
+            "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+              "page": 5,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.rydding.dekning",
+            "label": "Riving, rydding og bortkjøring",
+            "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+              "page": 6,
+              "version": "Alminnelige vilkår",
+              "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+            },
+            "qualificationSource": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Hus – Overskrift til tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen (liste fortsetter på PDF-side 6)",
+              "page": 5,
+              "version": "Alminnelige vilkår",
+              "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "hus.gjenoppforing.prisstigning",
+      "label": "Prisstigning etter skade",
+      "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+      "mapping_decision": "REUSE_EXISTING_KEY",
+      "existing_owners": [
+        "trygHus",
+        "trygHusExtra",
+        "ifHusBasis"
+      ],
+      "presentation_group": "hus.gjenoppforing",
+      "materialized_role": "term",
+      "proposed_own_source_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.gjenoppforing.prisstigning",
+            "label": "Prisstigning etter skade",
+            "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+              "page": 5,
+              "version": "Alminnelige vilkår"
+            },
+            "qualificationSource": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid",
+              "page": 18,
+              "version": "Alminnelige vilkår",
+              "note": "Tilleggsytelsen er listet på PDF-side 5."
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.gjenoppforing.prisstigning",
+            "label": "Prisstigning etter skade",
+            "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+              "page": 6,
+              "version": "Alminnelige vilkår",
+              "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+            },
+            "qualificationSource": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid",
+              "page": 19,
+              "version": "Alminnelige vilkår",
+              "note": "Tilleggsytelsen er listet på PDF-side 6 under overskriften på PDF-side 5."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "hus.vann.vannavgift",
+      "label": "Økt vannavgift etter skade",
+      "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+      "mapping_decision": "ONE_NEW_ORDINARY_DETAIL_KEY",
+      "existing_owners": [],
+      "presentation_group": "hus.vann-fukt",
+      "materialized_role": "term",
+      "proposed_own_source_facts": [
+        {
+          "owner": "gjensidigeHusStandard",
+          "fact": {
+            "key": "hus.vann.vannavgift",
+            "label": "Økt vannavgift etter skade",
+            "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+            "source": {
+              "documentId": "gjensidigeHusStandard",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Standard",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+              "page": 5,
+              "version": "Alminnelige vilkår"
+            }
+          }
+        },
+        {
+          "owner": "gjensidigeHusPluss",
+          "fact": {
+            "key": "hus.vann.vannavgift",
+            "label": "Økt vannavgift etter skade",
+            "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+            "replacesBase": true,
+            "source": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+              "page": 6,
+              "version": "Alminnelige vilkår",
+              "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+            },
+            "qualificationSource": {
+              "documentId": "gjensidigeHusPluss",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "termsNumber": "Hus Pluss",
+              "effectiveFrom": "",
+              "company": "Gjensidige",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "section": "Hus – Overskrift til tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen (liste fortsetter på PDF-side 6)",
+              "page": 5,
+              "version": "Alminnelige vilkår",
+              "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "owner": "gjensidigeHusStandard",
+      "fact": {
+        "key": "hus.rydding.dekning",
+        "label": "Riving, rydding og bortkjøring",
+        "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+          "page": 5,
+          "version": "Alminnelige vilkår"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusPluss",
+      "fact": {
+        "key": "hus.rydding.dekning",
+        "label": "Riving, rydding og bortkjøring",
+        "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+          "page": 6,
+          "version": "Alminnelige vilkår",
+          "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+        },
+        "qualificationSource": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Hus – Overskrift til tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen (liste fortsetter på PDF-side 6)",
+          "page": 5,
+          "version": "Alminnelige vilkår",
+          "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "fact": {
+        "key": "hus.gjenoppforing.prisstigning",
+        "label": "Prisstigning etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+          "page": 5,
+          "version": "Alminnelige vilkår"
+        },
+        "qualificationSource": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid",
+          "page": 18,
+          "version": "Alminnelige vilkår",
+          "note": "Tilleggsytelsen er listet på PDF-side 5."
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusPluss",
+      "fact": {
+        "key": "hus.gjenoppforing.prisstigning",
+        "label": "Prisstigning etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+          "page": 6,
+          "version": "Alminnelige vilkår",
+          "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+        },
+        "qualificationSource": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid",
+          "page": 19,
+          "version": "Alminnelige vilkår",
+          "note": "Tilleggsytelsen er listet på PDF-side 6 under overskriften på PDF-side 5."
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusStandard",
+      "fact": {
+        "key": "hus.vann.vannavgift",
+        "label": "Økt vannavgift etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+        "source": {
+          "documentId": "gjensidigeHusStandard",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Standard",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+          "page": 5,
+          "version": "Alminnelige vilkår"
+        }
+      }
+    },
+    {
+      "owner": "gjensidigeHusPluss",
+      "fact": {
+        "key": "hus.vann.vannavgift",
+        "label": "Økt vannavgift etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+        "replacesBase": true,
+        "source": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+          "page": 6,
+          "version": "Alminnelige vilkår",
+          "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+        },
+        "qualificationSource": {
+          "documentId": "gjensidigeHusPluss",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "Hus Pluss",
+          "effectiveFrom": "",
+          "company": "Gjensidige",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "section": "Hus – Overskrift til tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen (liste fortsetter på PDF-side 6)",
+          "page": 5,
+          "version": "Alminnelige vilkår",
+          "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+        }
+      }
+    }
+  ],
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2099",
+      "source_fact_id": "SF-3008",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 5
+    },
+    {
+      "finding_id": "GAP-2158",
+      "source_fact_id": "SF-3095",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 6
+    }
+  ],
+  "source_pages": [
+    {
+      "PDF_page_1_based": 5,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 68,
+        "catalog_match": "[{\"key\": \"hus.pabud.dekning\", \"label\": \"Offentlige påbud\", \"value\": \"Merutgifter på grunn av offentlig påbud etter dekningsmessig skade omfattes etter vilkårets regler. Omlegging av utvendige vann-/kloakkledninger eller renseanlegg bare som følge av lekkasje er unntatt.\", \"source\": {\"documentId\": \"gjensidigeHusStandard\", \"filename\": \"Hus-Standard-alminnelige-vilkar.pdf\", \"termsNumber\": \"Hus Standard\", \"effectiveFrom\": \"\", \"company\": \"Gjensidige\", \"url\": \"https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf\", \"section\": \"Hus – Tilleggsutgifter\", \"page\": 5, \"version\": \"Alminnelige vilkår\"}}]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "CATALOG_FACT_TOO_COARSE",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2099",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {
+          "hus.pabud.dekning": true
+        },
+        "key_support_existing_type_registry": {
+          "hus.pabud.dekning": null
+        },
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus",
+        "product_id": "gjensidige-hus",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [
+          "hus.pabud.dekning"
+        ],
+        "provider": "gjensidige",
+        "reason": "Påbud representert; egne rydding/prisstigning/vannavgift-ytelser mangler.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "utoversum",
+        "semantic_subject": "Etter skade",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Riving/rydding/bortkjøring/deponering,prisstigning,øktvannavgift ogoffentligpåbudtillegg.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-3008",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-032",
+        "source_location": "PDF 5",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Standard",
+              "effectiveFrom": "",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusStandard",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+              "termsNumber": "Hus Standard",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "structured_value": "Riving/rydding/bortkjøring/deponering,prisstigning,øktvannavgift ogoffentligpåbudtillegg.",
+        "unique_source_semantic_id": "d8cd63eb9d0b9013d795",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "layout_text": "      Hus                                                                                            Hus\n\nFORSIKRINGSBEVIS\n\n\n     Hus\n\n\n\n                                                                                                                             Nyheter og endringer\n       Dekkes                                                                   Dekkes ikke\n       Ombygging for rullestolbruker                                            Ombygging for rullestolbruker dekker\n       - Utgifter inntil kr 250 000 til nødvendige forandringer i boligen for   ikke:\n         å bedre bevegelsesmulighetene, dersom sikrede blir varig               - Skader oppstått utenfor forsikringstiden\n         rullestolbruker som følge av:                                          - Andre skader enn de som er forårsaket\n          - En plutselig ytre fysisk hendelse (ulykkestilfelle). Utgiftene må     av en plutselig ytre hendelse\n             ha påløpt innen 10 år regnet fra ulykken                             (ulykkestilfelle)\n          - Medfødt funksjonsnedsettelse. Utgiftene må ha påløpt innen          - Utgifter utover kr 250 000 selv om\n             10 år fra sikrede tilstås rullestol fra Hjelpemiddelsentralen        sikrede har både bygnings- og\n             eller annen offentlig instans, men senest 20 år etter                innboforsikring i Gjensidige\n\n\n\n\n                                                                                                                             Forsikringsoversikt\n             fødselstidspunktet                                                 - Skade som skyldes medisinske\n                                                                                  komplikasjoner ved undersøkelse eller\n                                                                                  behandling utført av autorisert eller\n                                                                                  uatorisert helsepersonell\n\n       Etter en erstatningsmessig skade dekkes i tillegg utover\n       forsikringssummen\n       - Riving, rydding, bortkjøring og deponering av verdiløse\n         bygningsrester\n       - Tap tilsvarende markedsleie på bolig som bebos av sikrede\n         når:\n          - Den ikke kan benyttes i reparasjons-/\n            gjenoppføringsperioden, som følge av en erstatningsmessig\n            skadehendelse som er inntruffet på, eller i umiddelbar nærhet\n\n\n\n\n                                                                                                                             Forsikringsbevis\n            av forsikringsstedet\n          - Som følge av redningstiltak etter FAL § 6-4, etter avtale med\n            Gjensidige\n          - Dersom all adkomst til forsikringsstedet er blokkert. Tap som\n            følge av at all adkomst til forsikringsstedet er blokkert eller\n            som følge av naturskade, erstattes inntil forsikringssummen,\n            maksimalt kr 10 millioner per kunde\n       - Merutgifter på grunn av offentlig påbud                                - Offentlig påbud for omlegging av\n       - Prisstigning                                                             utvendige vann- og kloakkledninger,\n       - Økt vannavgift som følge av skaden                                       eller etablering av renseanlegg, som\n                                                                                  følge av lekkasje\n\n\n\n\n                                                                                                                             Fellesdekninger / Generelle vilkår\n       I tillegg dekkes:\n       - Ansvar\n       - Rettshjelp\n       Se Fellesdekninger / Generelle vilkår\n\n\n\n\n                                                                                                                             Erstatningsregler\n\f",
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "raw_text": "Hus Hus\nHus\nFORSIKRINGSBEVIS\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nDekkes Dekkes ikke\nOmbygging for rullestolbruker\n- Utgifter inntil kr 250 000 til nødvendige forandringer i boligen for\nå bedre bevegelsesmulighetene, dersom sikrede blir varig\nrullestolbruker som følge av:\n- En plutselig ytre fysisk hendelse (ulykkestilfelle). Utgiftene må\nha påløpt innen 10 år regnet fra ulykken\n- Medfødt funksjonsnedsettelse. Utgiftene må ha påløpt innen\n10 år fra sikrede tilstås rullestol fra Hjelpemiddelsentralen\neller annen offentlig instans, men senest 20 år etter\nfødselstidspunktet\nOmbygging for rullestolbruker dekker\nikke:\n- Skader oppstått utenfor forsikringstiden\n- Andre skader enn de som er forårsaket\nav en plutselig ytre hendelse\n(ulykkestilfelle)\n- Utgifter utover kr 250 000 selv om\nsikrede har både bygnings- og\ninnboforsikring i Gjensidige\n- Skade som skyldes medisinske\nkomplikasjoner ved undersøkelse eller\nbehandling utført av autorisert eller\nuatorisert helsepersonell\nEtter en erstatningsmessig skade dekkes i tillegg utover\nforsikringssummen\n- Riving, rydding, bortkjøring og deponering av verdiløse\nbygningsrester\n- Tap tilsvarende markedsleie på bolig som bebos av sikrede\nnår:\n- Den ikke kan benyttes i reparasjons-/\ngjenoppføringsperioden, som følge av en erstatningsmessig\nskadehendelse som er inntruffet på, eller i umiddelbar nærhet\nav forsikringsstedet\n- Som følge av redningstiltak etter FAL § 6-4, etter avtale med\nGjensidige\n- Dersom all adkomst til forsikringsstedet er blokkert. Tap som\nfølge av at all adkomst til forsikringsstedet er blokkert eller\nsom følge av naturskade, erstattes inntil forsikringssummen,\nmaksimalt kr 10 millioner per kunde\n- Merutgifter på grunn av offentlig påbud\n- Prisstigning\n- Økt vannavgift som følge av skaden\nI tillegg dekkes:\n- Ansvar\n- Rettshjelp\nSe Fellesdekninger / Generelle vilkår\n- Offentlig påbud for omlegging av\nutvendige vann- og kloakkledninger,\neller etablering av renseanlegg, som\nfølge av lekkasje\f",
+      "render_sha256": "44082f3f63289f5f5e88379447337056804d283aea9c6121d0c33aaa53f45acf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "PDF_page_1_based": 6,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 65,
+        "catalog_match": "[{\"key\": \"hus.pabud.dekning\", \"label\": \"Offentlige påbud\", \"value\": \"Merutgifter på grunn av offentlig påbud etter dekningsmessig skade omfattes etter vilkårets regler. Omlegging av utvendige vann-/kloakkledninger eller renseanlegg bare som følge av lekkasje er unntatt.\", \"source\": {\"documentId\": \"gjensidigeHusStandard\", \"filename\": \"Hus-Standard-alminnelige-vilkar.pdf\", \"termsNumber\": \"Hus Standard\", \"effectiveFrom\": \"\", \"company\": \"Gjensidige\", \"url\": \"https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf\", \"section\": \"Hus – Tilleggsutgifter\", \"page\": 5, \"version\": \"Alminnelige vilkår\"}}]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "CATALOG_FACT_TOO_COARSE",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2158",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {
+          "hus.pabud.dekning": true
+        },
+        "key_support_existing_type_registry": {
+          "hus.pabud.dekning": null
+        },
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus-pluss",
+        "product_id": "gjensidige-hus-pluss",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [
+          "hus.pabud.dekning"
+        ],
+        "provider": "gjensidige",
+        "reason": "Påbud representert; egne rydding/prisstigning/vannavgift-ytelser mangler.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "utoversum",
+        "semantic_subject": "Etter skade",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Riving/rydding/bortkjøring/deponering,prisstigning,øktvannavgift ogoffentligpåbudtillegg.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-3095",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-032",
+        "source_location": "PDF 6",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus Pluss",
+                "Råte og skadeinsekter"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Pluss",
+              "effectiveFrom": "",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusPluss",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+              "termsNumber": "Hus Pluss",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "structured_value": "Riving/rydding/bortkjøring/deponering,prisstigning,øktvannavgift ogoffentligpåbudtillegg.",
+        "unique_source_semantic_id": "09b2daaacad19bebed13",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "layout_text": "           Hus                                                                                           Hus\n\nFORSIKRINGSBEVIS\n\n\n          Hus\n\n             Dekkes                                                                 Dekkes ikke\n             - Riving, rydding, bortkjøring og deponering av verdiløse              - Offentlig påbud for omlegging av\n               bygningsrester                                                         utvendige vann- og kloakkledninger,\n             - Tap tilsvarende markedsleie på bolig som bebos av sikrede              eller etablering av renseanlegg, som\n               når:                                                                   følge av lekkasje\n                - Den ikke kan benyttes i reparasjons-/\n                  gjenoppføringsperioden, som følge av en erstatningsmessig\n                  skadehendelse som er inntruffet på, eller i umiddelbar nærhet\n                  av forsikringsstedet\n                - Som følge av redningstiltak etter FAL § 6-4, etter avtale med\n                  Gjensidige\n                - Dersom all adkomst til forsikringsstedet er blokkert. Tap som\n                  følge av at all adkomst til forsikringsstedet er blokkert eller\n                  som følge av naturskade, erstattes inntil forsikringssummen,\n                  maksimalt kr 10 millioner per kunde\n             - Merutgifter på grunn av offentlig påbud\n             - Prisstigning\n             - Økt vannavgift som følge av skaden\n\n\n             I tillegg dekkes:\n             - Ansvar\n             - Rettshjelp\n             Se Fellesdekninger / Generelle vilkår\n\n\n\nRåte og skadeinsekter\n             Forsikringen gjelder for bygninger som er fullverdiforsikret.      Råte og skadeinsekter dekker ikke:\n                                                                                - Den del av skade på bygning som\n             Råte og skadeinsekter dekker:                                        utviklet seg før avtalen begynte å løpe,\n             - Skade på bygning (nedbrytning av materialer) som skyldes           og heller ikke for skadeutvikling etter at\n               råtesopper og treødeleggende insekter                              forsikringen har opphørt\n             - Bekjempelse av stokkmaur, husbukk, stripet borebille, kakerlakk, - Kostnader til kontroll, vedlikehold,\n               veggedyr, skjeggkre og andre skadeinsekter. Med bekjempelse        forbedringer og behandling av\n               menes reduksjon eller utryddelse. Selskapet avgjør hvilken         forebyggende karakter\n               metode som skal benyttes for å oppnå en reduksjon eller          - Skader på bygninger innen landbruks-\n               utryddelse                                                         og næringsvirksomhet selv om de er\n                                                                                  oppført i forsikringsbeviset\n\n                                                                                    Råteskader dekker ikke:\n                                                                                    - Råteskader på dører, vinduer og lekter\n                                                                                      på yttervegg/tak, laft og alt utvendig\n                                                                                      treverk\n                                                                                    - Utvikling av blåved, svertesopp og\n                                                                                      muggsopp\n                                                                                    - Annet som er skjemmende for\n                                                                                      utseendet\n\n                                                                                    Skadeinsekter dekker ikke:\n                                                                                    - Bekjempelse av aktivitet som startet før\n                                                                                      avtalen begynte å løpe og heller ikke\n                                                                                      bekjempelse av aktivitet etter at\n                                                                                      forsikringen har opphørt, selv om\n                                                                                      aktiviteten startet i forsikringstiden.\n                                                                                    - Fjerning av døde skadeinsekter og\n                                                                                      preparater etter bekjempelse\n\f",
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "raw_text": "Hus Hus\nHus\nFORSIKRINGSBEVIS\nDekkes Dekkes ikke\n- Riving, rydding, bortkjøring og deponering av verdiløse\nbygningsrester\n- Tap tilsvarende markedsleie på bolig som bebos av sikrede\nnår:\n- Den ikke kan benyttes i reparasjons-/\ngjenoppføringsperioden, som følge av en erstatningsmessig\nskadehendelse som er inntruffet på, eller i umiddelbar nærhet\nav forsikringsstedet\n- Som følge av redningstiltak etter FAL § 6-4, etter avtale med\nGjensidige\n- Dersom all adkomst til forsikringsstedet er blokkert. Tap som\nfølge av at all adkomst til forsikringsstedet er blokkert eller\nsom følge av naturskade, erstattes inntil forsikringssummen,\nmaksimalt kr 10 millioner per kunde\n- Merutgifter på grunn av offentlig påbud\n- Prisstigning\n- Økt vannavgift som følge av skaden\nI tillegg dekkes:\n- Ansvar\n- Rettshjelp\nSe Fellesdekninger / Generelle vilkår\n- Offentlig påbud for omlegging av\nutvendige vann- og kloakkledninger,\neller etablering av renseanlegg, som\nfølge av lekkasje\nRåte og skadeinsekter\nForsikringen gjelder for bygninger som er fullverdiforsikret.\nRåte og skadeinsekter dekker:\n- Skade på bygning (nedbrytning av materialer) som skyldes\nråtesopper og treødeleggende insekter\n- Bekjempelse av stokkmaur, husbukk, stripet borebille, kakerlakk,\nveggedyr, skjeggkre og andre skadeinsekter. Med bekjempelse\nmenes reduksjon eller utryddelse. Selskapet avgjør hvilken\nmetode som skal benyttes for å oppnå en reduksjon eller\nutryddelse\nRåte og skadeinsekter dekker ikke:\n- Den del av skade på bygning som\nutviklet seg før avtalen begynte å løpe,\nog heller ikke for skadeutvikling etter at\nforsikringen har opphørt\n- Kostnader til kontroll, vedlikehold,\nforbedringer og behandling av\nforebyggende karakter\n- Skader på bygninger innen landbruks-\nog næringsvirksomhet selv om de er\noppført i forsikringsbeviset\nRåteskader dekker ikke:\n- Råteskader på dører, vinduer og lekter\npå yttervegg/tak, laft og alt utvendig\ntreverk\n- Utvikling av blåved, svertesopp og\nmuggsopp\n- Annet som er skjemmende for\nutseendet\nSkadeinsekter dekker ikke:\n- Bekjempelse av aktivitet som startet før\navtalen begynte å løpe og heller ikke\nbekjempelse av aktivitet etter at\nforsikringen har opphørt, selv om\naktiviteten startet i forsikringstiden.\n- Fjerning av døde skadeinsekter og\npreparater etter bekjempelse\f",
+      "render_sha256": "8380d8a98c07d89b0a2b65f2c56b3ea60e74e123b2e9c28d8579dcd7bd634b11",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "PDF_page_1_based": 5,
+      "layout_text": "      Hus                                                                                             Hus\n\nFORSIKRINGSBEVIS\n\n\n     Hus\n\n\n\n                                                                                                                               Nyheter og endringer\n       Dekkes                                                                   Dekkes ikke\n                                                                                   - Skade som skyldes snøtyngde eller\n                                                                                     vind svakere enn storm når\n                                                                                     utvendige byggearbeider ikke er\n                                                                                     ferdige\n                                                                                   - Skade som skyldes utett bygning\n                                                                                     når utvendige byggearbeider ikke er\n                                                                                     ferdige\n\n\n\n\n                                                                                                                               Forsikringsoversikt\n       Håndverks- og entreprenørfeil - våtrom                                   Håndverks- og entreprenørfeil -\n       - Skade på våtrom som følge av materialfeil, konstruksjonsfeil,          våtrom, dekker ikke:\n         prosjekteringsfeil eller uriktig montasje utført av faglært            - Arbeider utført av sikrede\n         håndverker eller godkjent/registrert entreprenør                       - Arbeider utført av ufaglærte\n       - Skaden må ha oppstått i forsikringstiden og blitt konstatert innen     - Skade som skyldes bakterier og\n         10 år fra arbeidet ble utført                                            heksesot\n                                                                                - Kosmetiske feil og skader som kun\n                                                                                  består av flekker, riper, svinnsprekker,\n                                                                                  avskallinger, knirk i gulv, samt mindre\n                                                                                  hakk og merker\n                                                                                - Skade som andre enn sikrede er pliktig\n                                                                                  til, og har økonomisk evne til å erstatte,\n                                                                                  i henhold til garanti eller annen avtale\n\n       Håndverks- og entreprenørfeil - andre bygningsskader                     Håndverks- og entreprenørfeil - andre\n\n\n\n\n                                                                                                                               Forsikringsbevis\n       - Følgeskader på bygning som følge av materialfeil,                      bygningsskader, dekker ikke:\n         konstruksjonsfeil, prosjekteringsfeil eller uriktig montasje utført    - Utbedring av selve feilen/mangelen\n         av faglært håndverker eller godkjent/registrert entreprenør            - Følgeskader etter arbeider utført av\n       - Følgeskaden må ha oppstått i forsikringstiden og blitt konstatert        sikrede\n         innen 10 år fra arbeidet ble utført                                    - Følgeskader etter arbeider utført av\n                                                                                  ufaglærte\n                                                                                - Tilkomstkostnader for utbedring av\n                                                                                  selve feilen/mangelen, utover det som\n                                                                                  er nødvendig for utbedring av\n                                                                                  følgeskadene\n                                                                                - Skade som skyldes søl, bakterier og\n\n\n\n\n                                                                                                                               Fellesdekninger / Generelle vilkår\n                                                                                  heksesot\n                                                                                - Kosmetiske feil og skader som kun\n                                                                                  består av flekker, riper, svinnsprekker,\n                                                                                  avskallinger, knirk i gulv, samt mindre\n                                                                                  hakk og merker\n                                                                                - Følgeskade på drensledning\n                                                                                - Skade som andre enn sikrede er pliktig\n                                                                                  til, og har økonomisk evne til å erstatte,\n                                                                                  i henhold til garanti eller annen avtale\n\n       Ombygging for rullestolbruker                                            Ombygging for rullestolbruker dekker\n       - Utgifter inntil kr 250 000 til nødvendige forandringer i boligen for   ikke:\n         å bedre bevegelsesmulighetene, dersom sikrede blir varig               - Skader oppstått utenfor forsikringstiden\n         rullestolbruker som følge av:                                          - Andre skader enn de som er forårsaket\n          - En plutselig ytre fysisk hendelse (ulykkestilfelle). Utgiftene må     av en plutselig ytre hendelse\n             ha påløpt innen 10 år regnet fra ulykken                             (ulykkestilfelle)\n          - Medfødt funksjonsnedsettelse. Utgiftene må ha påløpt innen          - Utgifter utover kr 250 000 selv om\n\n\n\n                                                                                                                               Erstatningsregler\n             10 år fra sikrede tilstås rullestol fra Hjelpemiddelsentralen        sikrede har både bygnings- og\n             eller annen offentlig instans, men senest 20 år fra                  innboforsikring i Gjensidige\n             fødselstidspunktet                                                 - Skade som skyldes medisinske\n                                                                                  komplikasjoner ved undersøkelse eller\n                                                                                  behandling utført av autorisert eller\n                                                                                  uatorisert helsepersonell\n\n       Etter en erstatningsmessig skade dekkes i tillegg utover\n       forsikringssummen\n\f",
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "raw_text": "Hus Hus\nHus\nFORSIKRINGSBEVIS\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nDekkes Dekkes ikke\n- Skade som skyldes snøtyngde eller\nvind svakere enn storm når\nutvendige byggearbeider ikke er\nferdige\n- Skade som skyldes utett bygning\nnår utvendige byggearbeider ikke er\nferdige\nHåndverks- og entreprenørfeil - våtrom\n- Skade på våtrom som følge av materialfeil, konstruksjonsfeil,\nprosjekteringsfeil eller uriktig montasje utført av faglært\nhåndverker eller godkjent/registrert entreprenør\n- Skaden må ha oppstått i forsikringstiden og blitt konstatert innen\n10 år fra arbeidet ble utført\nHåndverks- og entreprenørfeil -\nvåtrom, dekker ikke:\n- Arbeider utført av sikrede\n- Arbeider utført av ufaglærte\n- Skade som skyldes bakterier og\nheksesot\n- Kosmetiske feil og skader som kun\nbestår av flekker, riper, svinnsprekker,\navskallinger, knirk i gulv, samt mindre\nhakk og merker\n- Skade som andre enn sikrede er pliktig\ntil, og har økonomisk evne til å erstatte,\ni henhold til garanti eller annen avtale\nHåndverks- og entreprenørfeil - andre bygningsskader\n- Følgeskader på bygning som følge av materialfeil,\nkonstruksjonsfeil, prosjekteringsfeil eller uriktig montasje utført\nav faglært håndverker eller godkjent/registrert entreprenør\n- Følgeskaden må ha oppstått i forsikringstiden og blitt konstatert\ninnen 10 år fra arbeidet ble utført\nHåndverks- og entreprenørfeil - andre\nbygningsskader, dekker ikke:\n- Utbedring av selve feilen/mangelen\n- Følgeskader etter arbeider utført av\nsikrede\n- Følgeskader etter arbeider utført av\nufaglærte\n- Tilkomstkostnader for utbedring av\nselve feilen/mangelen, utover det som\ner nødvendig for utbedring av\nfølgeskadene\n- Skade som skyldes søl, bakterier og\nheksesot\n- Kosmetiske feil og skader som kun\nbestår av flekker, riper, svinnsprekker,\navskallinger, knirk i gulv, samt mindre\nhakk og merker\n- Følgeskade på drensledning\n- Skade som andre enn sikrede er pliktig\ntil, og har økonomisk evne til å erstatte,\ni henhold til garanti eller annen avtale\nOmbygging for rullestolbruker\n- Utgifter inntil kr 250 000 til nødvendige forandringer i boligen for\nå bedre bevegelsesmulighetene, dersom sikrede blir varig\nrullestolbruker som følge av:\n- En plutselig ytre fysisk hendelse (ulykkestilfelle). Utgiftene må\nha påløpt innen 10 år regnet fra ulykken\n- Medfødt funksjonsnedsettelse. Utgiftene må ha påløpt innen\n10 år fra sikrede tilstås rullestol fra Hjelpemiddelsentralen\neller annen offentlig instans, men senest 20 år fra\nfødselstidspunktet\nOmbygging for rullestolbruker dekker\nikke:\n- Skader oppstått utenfor forsikringstiden\n- Andre skader enn de som er forårsaket\nav en plutselig ytre hendelse\n(ulykkestilfelle)\n- Utgifter utover kr 250 000 selv om\nsikrede har både bygnings- og\ninnboforsikring i Gjensidige\n- Skade som skyldes medisinske\nkomplikasjoner ved undersøkelse eller\nbehandling utført av autorisert eller\nuatorisert helsepersonell\nEtter en erstatningsmessig skade dekkes i tillegg utover\nforsikringssummen\f",
+      "render_sha256": "59e722a46cd8a0195d36291e23443d87be4903bbe22d9779d0e98cc1f0d15cfb",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    },
+    {
+      "PDF_page_1_based": 18,
+      "layout_text": "  ERSTATNINGSREGLER\n\n\n\n\n                                                                                                                                  Nyheter og endringer\n- Brannskade når brannalarm varsler om brannen. Alarmen          Erstattede materialer og gjenstander\n  må være koblet mot alarmstasjon                                Gjensidige har rett til å overta materialer og gjenstander når\n- Tyverialarm varsler om tyveri eller forsøk på tyveri.          det er utbetalt erstatning for gjenanskaffelse.\n  Alarmen må være koblet mot alarmstasjon\n                                                                 Grov uaktsomhet og forsett kan føre til redusert\nNaturskade                                                       erstatning\n- Er en brannforsikret bygning skadet i en naturulykke, og       Erstatningen kan bli redusert dersom sikrede har voldt\n  det ikke gis tillatelse til å reparere eller gjenoppbygge      skaden forsettelig eller ved grov uaktsomhet.\n  bygningen på skadestedet på grunn av fare for ny               Dette gjelder også når skaden er voldt av sikredes ektefelle,\n  naturskade, skal bygningen erstattes som om den var            eller samboer med felles adresse i Folkeregisteret.\n  totalskadet. For bolighus og fritidshus gjelder\n  naturskadeforsikringsloven § 1 tredje ledd.                    Merutgifter som følge av påbud fra offentlig myndighet\n                                                                 Ved skade som er dekket av forsikringen, erstatter\n- Er et brannforsikret bolighus eller fritidshus skadet i en     Gjensidige også nødvendige merutgifter påført som følge av\n\n\n\n\n                                                                                                                                  Forsikringsoversikt\n  naturulykke, og det ikke gis tillatelse til å reparere eller   påbud om bygningens utførelse gitt fra offentlig myndighet\n  gjenoppbygge huset på skadestedet pga. fare for ny             med hjemmel i lov eller offentlig forskrift. Med merutgifter\n  naturskade, skal forsikringsselskapet erstatte tomtens         menes differansen mellom verdien av den forsikrede\n  markedsverdi før skaden, oppad begrenset til 5 dekar.          bygning og verdien av tilsvarende bygning utført i samsvar\n  Det skadede huset og eventuelle forsikrede uthus skal          med påbud, og som dokumentert ikke kan dekkes av\n  dessuten erstattes som om de var totalskadet. Er               offentlig myndighet.\n  grunnen under et brannforsikret bolighus eller fritidshus      Dette gjelder utgifter til reparasjon/gjenoppføring av\n  blitt ustabil som følge av naturulykke, gjelder første og      bygning, grunnundersøkelser og fundamentering i\n  annet punktum tilsvarende selv om huset ikke er skadet.        forbindelse med gjenoppføring av bygning eller som ikke\n  Forsikringsselskapet har ikke klagerett over avslag på         direkte vedrører byggearbeidet, men som er en betingelse\n  søknad om tillatelse til reparasjon eller gjenoppbygging. I    for at bygningen tillates gjenoppført.\n  stedet for å erstatte tomt og bygninger etter tredje ledd      Dersom den gjenoppførte bygning er større enn den\n  kan forsikringsselskapet velge å sikre eiendommen,             skadede bygning, beregnes merutgiftene etter forholdet\n  forutsatt at den sikrede samtykker skriftlig.                  mellom gulvareal i skadet bygning og gulvareal i gjenoppført\n  Sikringstiltakene må gi så god beskyttelse mot                 bygning.\n\n\n\n                                                                                                                                  Forsikringsbevis\n  naturskade at eieren kan få tillatelse til reparasjon eller    Forsikringen dekker ikke tap av nytteareal, utgifter på grunn\n  gjenoppbygging på skadestedet. Forsikringsselskapet            av påbud som myndighetene hadde hjemmel for å gi selv\n  skal dekke utgiftene til sikringstiltakene og sørge for        om skaden ikke hadde inntruffet, merutgifter til istandsetting\n  ettersyn og vedlikehold.                                       etter antikvariske prinsipper, urasjonell byggemåte, bygning\n                                                                 som er midlertidig eller som står foran\n  Naturskade og flomlignende situasjon på hageanlegg             riving/ombygging/rehabilitering. Gjensidige kan kreve at\n- Ved skade på forsikret tomt (hage, hageanlegg,                 forsikringstager søker å utnytte de dispensasjonsmuligheter\n  gårdsplass, vei og den ikke-opparbeidede delen av              som ligger i offentlige forskrifter og lover.\n  tomta), erstattes kostnadene for\n  reparasjon/gjenanskaffelse til samme eller i det vesentlige\n\n\n\n\n                                                                                                                                  Fellesdekninger / Generelle vilkår\n  samme stand som før skaden, beregnet etter prisene på\n  skadedagen. Dersom skaden ikke repareres, erstattes\n  det laveste beløp av gjenopprettelseskostnad og\n  nedgangen i tomtens markedsverdi som følge av skaden.\n- Naturskadeerstatningen kan settes ned eller falle bort\n  når:\n   - Skaden helt eller delvis skyldes svak konstruksjon i\n     forhold til de påkjenninger tingen kan ventes å bli\n     utsatt for.\n   - Den skadelidte kan lastes for at han ikke forebygget\n     skaden eller hindret dens omfang.\n\nUtbetaling av erstatning\nErstatning utbetales i takt med reparasjon/gjenoppføring.\nUtbetaling er betinget av samtykke fra innehaver av tinglyst\neiendomsrett, panterett eller annen tinglyst sikkerhetsrett:\n- for bygning som gjenoppføres på annet sted/til annet\n\n\n\n\n                                                                                                                                  Erstatningsregler\n  formål.\n- ved kontanterstatning.\n\nDet justeres for gjennomsnittlig prisstigning etter\nbyggekostnadsindeksen, innenfor normal\nreparasjon/gjenoppføringstid.\n\nMerverdiavgift betales når det kan dokumenteres at dette er\npåløpt i forbindelse med reparasjon/gjenoppføring av skadet\nbygning.\n\f",
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "raw_text": "ERSTATNINGSREGLER\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nERSTATNINGSREGLER\n- Brannskade når brannalarm varsler om brannen. Alarmen\nmå være koblet mot alarmstasjon\n- Tyverialarm varsler om tyveri eller forsøk på tyveri.\nAlarmen må være koblet mot alarmstasjon\nNaturskade\n- Er en brannforsikret bygning skadet i en naturulykke, og\ndet ikke gis tillatelse til å reparere eller gjenoppbygge\nbygningen på skadestedet på grunn av fare for ny\nnaturskade, skal bygningen erstattes som om den var\ntotalskadet. For bolighus og fritidshus gjelder\nnaturskadeforsikringsloven § 1 tredje ledd.\n- Er et brannforsikret bolighus eller fritidshus skadet i en\nnaturulykke, og det ikke gis tillatelse til å reparere eller\ngjenoppbygge huset på skadestedet pga. fare for ny\nnaturskade, skal forsikringsselskapet erstatte tomtens\nmarkedsverdi før skaden, oppad begrenset til 5 dekar.\nDet skadede huset og eventuelle forsikrede uthus skal\ndessuten erstattes som om de var totalskadet. Er\ngrunnen under et brannforsikret bolighus eller fritidshus\nblitt ustabil som følge av naturulykke, gjelder første og\nannet punktum tilsvarende selv om huset ikke er skadet.\nForsikringsselskapet har ikke klagerett over avslag på\nsøknad om tillatelse til reparasjon eller gjenoppbygging. I\nstedet for å erstatte tomt og bygninger etter tredje ledd\nkan forsikringsselskapet velge å sikre eiendommen,\nforutsatt at den sikrede samtykker skriftlig.\nSikringstiltakene må gi så god beskyttelse mot\nnaturskade at eieren kan få tillatelse til reparasjon eller\ngjenoppbygging på skadestedet. Forsikringsselskapet\nskal dekke utgiftene til sikringstiltakene og sørge for\nettersyn og vedlikehold.\nNaturskade og flomlignende situasjon på hageanlegg\n- Ved skade på forsikret tomt (hage, hageanlegg,\ngårdsplass, vei og den ikke-opparbeidede delen av\ntomta), erstattes kostnadene for\nreparasjon/gjenanskaffelse til samme eller i det vesentlige\nsamme stand som før skaden, beregnet etter prisene på\nskadedagen. Dersom skaden ikke repareres, erstattes\ndet laveste beløp av gjenopprettelseskostnad og\nnedgangen i tomtens markedsverdi som følge av skaden.\n- Naturskadeerstatningen kan settes ned eller falle bort\nnår:\n- Skaden helt eller delvis skyldes svak konstruksjon i\nforhold til de påkjenninger tingen kan ventes å bli\nutsatt for.\n- Den skadelidte kan lastes for at han ikke forebygget\nskaden eller hindret dens omfang.\nUtbetaling av erstatning\nErstatning utbetales i takt med reparasjon/gjenoppføring.\nUtbetaling er betinget av samtykke fra innehaver av tinglyst\neiendomsrett, panterett eller annen tinglyst sikkerhetsrett:\n- for bygning som gjenoppføres på annet sted/til annet\nformål.\n- ved kontanterstatning.\nDet justeres for gjennomsnittlig prisstigning etter\nbyggekostnadsindeksen, innenfor normal\nreparasjon/gjenoppføringstid.\nMerverdiavgift betales når det kan dokumenteres at dette er\npåløpt i forbindelse med reparasjon/gjenoppføring av skadet\nbygning.\nErstattede materialer og gjenstander\nGjensidige har rett til å overta materialer og gjenstander når\ndet er utbetalt erstatning for gjenanskaffelse.\nGrov uaktsomhet og forsett kan føre til redusert\nerstatning\nErstatningen kan bli redusert dersom sikrede har voldt\nskaden forsettelig eller ved grov uaktsomhet.\nDette gjelder også når skaden er voldt av sikredes ektefelle,\neller samboer med felles adresse i Folkeregisteret.\nMerutgifter som følge av påbud fra offentlig myndighet\nVed skade som er dekket av forsikringen, erstatter\nGjensidige også nødvendige merutgifter påført som følge av\npåbud om bygningens utførelse gitt fra offentlig myndighet\nmed hjemmel i lov eller offentlig forskrift. Med merutgifter\nmenes differansen mellom verdien av den forsikrede\nbygning og verdien av tilsvarende bygning utført i samsvar\nmed påbud, og som dokumentert ikke kan dekkes av\noffentlig myndighet.\nDette gjelder utgifter til reparasjon/gjenoppføring av\nbygning, grunnundersøkelser og fundamentering i\nforbindelse med gjenoppføring av bygning eller som ikke\ndirekte vedrører byggearbeidet, men som er en betingelse\nfor at bygningen tillates gjenoppført.\nDersom den gjenoppførte bygning er større enn den\nskadede bygning, beregnes merutgiftene etter forholdet\nmellom gulvareal i skadet bygning og gulvareal i gjenoppført\nbygning.\nForsikringen dekker ikke tap av nytteareal, utgifter på grunn\nav påbud som myndighetene hadde hjemmel for å gi selv\nom skaden ikke hadde inntruffet, merutgifter til istandsetting\netter antikvariske prinsipper, urasjonell byggemåte, bygning\nsom er midlertidig eller som står foran\nriving/ombygging/rehabilitering. Gjensidige kan kreve at\nforsikringstager søker å utnytte de dispensasjonsmuligheter\nsom ligger i offentlige forskrifter og lover.\f",
+      "render_sha256": "7eeec24972164a90e93b9ace174e9d573e7f859a6bd496084de7a920b157bc08",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc"
+    },
+    {
+      "PDF_page_1_based": 19,
+      "layout_text": "  ERSTATNINGSREGLER\n\n\n\n\n                                                                                                                                  Nyheter og endringer\n- Brannskade når brannalarm varsler om brannen. Alarmen          Erstattede materialer og gjenstander\n  må være koblet mot alarmstasjon                                Gjensidige har rett til å overta materialer og gjenstander når\n- Tyverialarm varsler om tyveri eller forsøk på tyveri.          det er utbetalt erstatning for gjenanskaffelse.\n  Alarmen må være koblet mot alarmstasjon\n                                                                 Grov uaktsomhet og forsett kan føre til redusert\nNaturskade                                                       erstatning\n- Er en brannforsikret bygning skadet i en naturulykke, og       Erstatningen kan bli redusert dersom sikrede har voldt\n  det ikke gis tillatelse til å reparere eller gjenoppbygge      skaden forsettelig eller ved grov uaktsomhet.\n  bygningen på skadestedet på grunn av fare for ny               Dette gjelder også når skaden er voldt av sikredes ektefelle,\n  naturskade, skal bygningen erstattes som om den var            eller samboer med felles adresse i Folkeregisteret.\n  totalskadet. For bolighus og fritidshus gjelder\n  naturskadeforsikringsloven § 1 tredje ledd.                    Merutgifter som følge av påbud fra offentlig myndighet\n                                                                 Ved skade som er dekket av forsikringen, erstatter\n- Er et brannforsikret bolighus eller fritidshus skadet i en     Gjensidige også nødvendige merutgifter påført som følge av\n\n\n\n\n                                                                                                                                  Forsikringsoversikt\n  naturulykke, og det ikke gis tillatelse til å reparere eller   påbud om bygningens utførelse gitt fra offentlig myndighet\n  gjenoppbygge huset på skadestedet pga. fare for ny             med hjemmel i lov eller offentlig forskrift. Med merutgifter\n  naturskade, skal forsikringsselskapet erstatte tomtens         menes differansen mellom verdien av den forsikrede\n  markedsverdi før skaden, oppad begrenset til 5 dekar.          bygning og verdien av tilsvarende bygning utført i samsvar\n  Det skadede huset og eventuelle forsikrede uthus skal          med påbud, og som dokumentert ikke kan dekkes av\n  dessuten erstattes som om de var totalskadet. Er               offentlig myndighet.\n  grunnen under et brannforsikret bolighus eller fritidshus      Dette gjelder utgifter til reparasjon/gjenoppføring av\n  blitt ustabil som følge av naturulykke, gjelder første og      bygning, grunnundersøkelser og fundamentering i\n  annet punktum tilsvarende selv om huset ikke er skadet.        forbindelse med gjenoppføring av bygning eller som ikke\n  Forsikringsselskapet har ikke klagerett over avslag på         direkte vedrører byggearbeidet, men som er en betingelse\n  søknad om tillatelse til reparasjon eller gjenoppbygging. I    for at bygningen tillates gjenoppført.\n  stedet for å erstatte tomt og bygninger etter tredje ledd      Dersom den gjenoppførte bygning er større enn den\n  kan forsikringsselskapet velge å sikre eiendommen,             skadede bygning, beregnes merutgiftene etter forholdet\n  forutsatt at den sikrede samtykker skriftlig.                  mellom gulvareal i skadet bygning og gulvareal i gjenoppført\n  Sikringstiltakene må gi så god beskyttelse mot                 bygning.\n\n\n\n                                                                                                                                  Forsikringsbevis\n  naturskade at eieren kan få tillatelse til reparasjon eller    Forsikringen dekker ikke tap av nytteareal, utgifter på grunn\n  gjenoppbygging på skadestedet. Forsikringsselskapet            av påbud som myndighetene hadde hjemmel for å gi selv\n  skal dekke utgiftene til sikringstiltakene og sørge for        om skaden ikke hadde inntruffet, merutgifter til istandsetting\n  ettersyn og vedlikehold.                                       etter antikvariske prinsipper, urasjonell byggemåte, bygning\n                                                                 som er midlertidig eller som står foran\n  Naturskade og flomlignende situasjon på hageanlegg             riving/ombygging/rehabilitering. Gjensidige kan kreve at\n- Ved skade på forsikret tomt (hage, hageanlegg,                 forsikringstager søker å utnytte de dispensasjonsmuligheter\n  gårdsplass, vei og den ikke-opparbeidede delen av              som ligger i offentlige forskrifter og lover.\n  tomta), erstattes kostnadene for\n  reparasjon/gjenanskaffelse til samme eller i det vesentlige\n\n\n\n\n                                                                                                                                  Fellesdekninger / Generelle vilkår\n  samme stand som før skaden, beregnet etter prisene på\n  skadedagen. Dersom skaden ikke repareres, erstattes\n  det laveste beløp av gjenopprettelseskostnad og\n  nedgangen i tomtens markedsverdi som følge av skaden.\n- Naturskadeerstatningen kan settes ned eller falle bort\n  når:\n   - Skaden helt eller delvis skyldes svak konstruksjon i\n     forhold til de påkjenninger tingen kan ventes å bli\n     utsatt for.\n   - Den skadelidte kan lastes for at han ikke forebygget\n     skaden eller hindret dens omfang.\n\nUtbetaling av erstatning\nErstatning utbetales i takt med reparasjon/gjenoppføring.\nUtbetaling er betinget av samtykke fra innehaver av tinglyst\neiendomsrett, panterett eller annen tinglyst sikkerhetsrett:\n- for bygning som gjenoppføres på annet sted/til annet\n\n\n\n\n                                                                                                                                  Erstatningsregler\n  formål.\n- ved kontanterstatning.\n\nDet justeres for gjennomsnittlig prisstigning etter\nbyggekostnadsindeksen, innenfor normal\nreparasjon/gjenoppføringstid.\n\nMerverdiavgift betales når det kan dokumenteres at dette er\npåløpt i forbindelse med reparasjon/gjenoppføring av skadet\nbygning.\n\f",
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "raw_text": "ERSTATNINGSREGLER\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nERSTATNINGSREGLER\n- Brannskade når brannalarm varsler om brannen. Alarmen\nmå være koblet mot alarmstasjon\n- Tyverialarm varsler om tyveri eller forsøk på tyveri.\nAlarmen må være koblet mot alarmstasjon\nNaturskade\n- Er en brannforsikret bygning skadet i en naturulykke, og\ndet ikke gis tillatelse til å reparere eller gjenoppbygge\nbygningen på skadestedet på grunn av fare for ny\nnaturskade, skal bygningen erstattes som om den var\ntotalskadet. For bolighus og fritidshus gjelder\nnaturskadeforsikringsloven § 1 tredje ledd.\n- Er et brannforsikret bolighus eller fritidshus skadet i en\nnaturulykke, og det ikke gis tillatelse til å reparere eller\ngjenoppbygge huset på skadestedet pga. fare for ny\nnaturskade, skal forsikringsselskapet erstatte tomtens\nmarkedsverdi før skaden, oppad begrenset til 5 dekar.\nDet skadede huset og eventuelle forsikrede uthus skal\ndessuten erstattes som om de var totalskadet. Er\ngrunnen under et brannforsikret bolighus eller fritidshus\nblitt ustabil som følge av naturulykke, gjelder første og\nannet punktum tilsvarende selv om huset ikke er skadet.\nForsikringsselskapet har ikke klagerett over avslag på\nsøknad om tillatelse til reparasjon eller gjenoppbygging. I\nstedet for å erstatte tomt og bygninger etter tredje ledd\nkan forsikringsselskapet velge å sikre eiendommen,\nforutsatt at den sikrede samtykker skriftlig.\nSikringstiltakene må gi så god beskyttelse mot\nnaturskade at eieren kan få tillatelse til reparasjon eller\ngjenoppbygging på skadestedet. Forsikringsselskapet\nskal dekke utgiftene til sikringstiltakene og sørge for\nettersyn og vedlikehold.\nNaturskade og flomlignende situasjon på hageanlegg\n- Ved skade på forsikret tomt (hage, hageanlegg,\ngårdsplass, vei og den ikke-opparbeidede delen av\ntomta), erstattes kostnadene for\nreparasjon/gjenanskaffelse til samme eller i det vesentlige\nsamme stand som før skaden, beregnet etter prisene på\nskadedagen. Dersom skaden ikke repareres, erstattes\ndet laveste beløp av gjenopprettelseskostnad og\nnedgangen i tomtens markedsverdi som følge av skaden.\n- Naturskadeerstatningen kan settes ned eller falle bort\nnår:\n- Skaden helt eller delvis skyldes svak konstruksjon i\nforhold til de påkjenninger tingen kan ventes å bli\nutsatt for.\n- Den skadelidte kan lastes for at han ikke forebygget\nskaden eller hindret dens omfang.\nUtbetaling av erstatning\nErstatning utbetales i takt med reparasjon/gjenoppføring.\nUtbetaling er betinget av samtykke fra innehaver av tinglyst\neiendomsrett, panterett eller annen tinglyst sikkerhetsrett:\n- for bygning som gjenoppføres på annet sted/til annet\nformål.\n- ved kontanterstatning.\nDet justeres for gjennomsnittlig prisstigning etter\nbyggekostnadsindeksen, innenfor normal\nreparasjon/gjenoppføringstid.\nMerverdiavgift betales når det kan dokumenteres at dette er\npåløpt i forbindelse med reparasjon/gjenoppføring av skadet\nbygning.\nErstattede materialer og gjenstander\nGjensidige har rett til å overta materialer og gjenstander når\ndet er utbetalt erstatning for gjenanskaffelse.\nGrov uaktsomhet og forsett kan føre til redusert\nerstatning\nErstatningen kan bli redusert dersom sikrede har voldt\nskaden forsettelig eller ved grov uaktsomhet.\nDette gjelder også når skaden er voldt av sikredes ektefelle,\neller samboer med felles adresse i Folkeregisteret.\nMerutgifter som følge av påbud fra offentlig myndighet\nVed skade som er dekket av forsikringen, erstatter\nGjensidige også nødvendige merutgifter påført som følge av\npåbud om bygningens utførelse gitt fra offentlig myndighet\nmed hjemmel i lov eller offentlig forskrift. Med merutgifter\nmenes differansen mellom verdien av den forsikrede\nbygning og verdien av tilsvarende bygning utført i samsvar\nmed påbud, og som dokumentert ikke kan dekkes av\noffentlig myndighet.\nDette gjelder utgifter til reparasjon/gjenoppføring av\nbygning, grunnundersøkelser og fundamentering i\nforbindelse med gjenoppføring av bygning eller som ikke\ndirekte vedrører byggearbeidet, men som er en betingelse\nfor at bygningen tillates gjenoppført.\nDersom den gjenoppførte bygning er større enn den\nskadede bygning, beregnes merutgiftene etter forholdet\nmellom gulvareal i skadet bygning og gulvareal i gjenoppført\nbygning.\nForsikringen dekker ikke tap av nytteareal, utgifter på grunn\nav påbud som myndighetene hadde hjemmel for å gi selv\nom skaden ikke hadde inntruffet, merutgifter til istandsetting\netter antikvariske prinsipper, urasjonell byggemåte, bygning\nsom er midlertidig eller som står foran\nriving/ombygging/rehabilitering. Gjensidige kan kreve at\nforsikringstager søker å utnytte de dispensasjonsmuligheter\nsom ligger i offentlige forskrifter og lover.\f",
+      "render_sha256": "7eeec24972164a90e93b9ace174e9d573e7f859a6bd496084de7a920b157bc08",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792"
+    }
+  ],
+  "protected_checkpoint": {
+    "content": {
+      "B051_partition_counts": [
+        37,
+        0,
+        1,
+        1
+      ],
+      "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+      "HARNESS_AUTONOMY_V1": {
+        "capacity_for_other_roots": 0,
+        "ledger": "../b051-health-help-732b4cc/two-root-authorization-and-ledger.json",
+        "ordinary_limit": 12,
+        "previous_root": "../b051-health-help-732b4cc/draft-identifier-authorization-and-ledger.json",
+        "scope_limit": 6,
+        "scope_used": 3,
+        "status": "HISTORICAL_FROZEN_NO_LONGER_OPERATIONAL_STOP_QUOTA",
+        "used": 33
+      },
+      "NITO": "WAIT",
+      "P2_credit": 0,
+      "Sentralbord": "WAIT_SEPARATE",
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "additional_explicit_HOLD": [
+        "8a89196fecd29ddb"
+      ],
+      "application_identity_sha256": "62e0cda6da935b366c6dcf71b9b6e2000a0e3ddff482ea6dafe20b688c42e4a7",
+      "base_revision": "83c8fee68cc5accb76ded645b689976fff16d533",
+      "catalog_foundation": "Named valuation terms validated;published status effective after containing commit verified on remote main. Combined ordinary foundation not cleared,no globalP2closure/pilot release. Combined revalidation on containing fresh main remains separate.",
+      "classification": "CURRENT_VALIDATED_HOUSE_GARDEN_IMPORT_VALUATION",
+      "commit_push_authorized": true,
+      "current_B051_completed_signatures": [
+        "08203cfa28493e63",
+        "0eda923b4090cf6c",
+        "0f7980d6139daa2e",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "35c58fbc06cf6e7d",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "6080e5e5a6bb3c63",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "73aab8a0ad4f6c11",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ed99577218e2302b"
+      ],
+      "current_B130_completed_signatures": [
+        "15f5b4a3e9f79fd2",
+        "597df4c45c6d3db9",
+        "ce90710821e28a97",
+        "d58bff0e6b2d46eb"
+      ],
+      "current_receipt": "completion-receipt-d68e94be42f1549b.json",
+      "deploy_authorized": false,
+      "documented_campaign_count": 67,
+      "documented_campaign_signatures": [
+        "03cff9fe5cfbf518",
+        "08203cfa28493e63",
+        "0a6b5f6f535df685",
+        "0da02a8dae8fd373",
+        "0eda923b4090cf6c",
+        "0f51d1c0374f1f1f",
+        "0f7980d6139daa2e",
+        "15f5b4a3e9f79fd2",
+        "1982ee310e18279c",
+        "1ee41770b0470c78",
+        "1f56c194d413f97d",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "2b078b058bc63967",
+        "35c58fbc06cf6e7d",
+        "373413bc13517ff4",
+        "3f4b9eff50404590",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "4165f79344a7d572",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "48393aac0a200fe5",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "5839d2c13e186676",
+        "597df4c45c6d3db9",
+        "6080e5e5a6bb3c63",
+        "688cc5923342804d",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "72170f7dfe5c91b6",
+        "73aab8a0ad4f6c11",
+        "7b2587a3bbc0c772",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8c14a1328e5080cf",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "8e9d297cb0d1bd0e",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5792662cc2fa9f8",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "c1440948744bfa17",
+        "c5ccc4f26fd475ae",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ce90710821e28a97",
+        "d58bff0e6b2d46eb",
+        "dc3e04a5fcce2317",
+        "ed99577218e2302b",
+        "f8bd15c89bc0dbd6",
+        "fbe23495ae09afb3"
+      ],
+      "global_resolved_open": "UNKNOWN",
+      "historical_DEFER_SAFE_signatures": [
+        "0177d006e35081bf",
+        "01c571aed2922601",
+        "081897ea9890dd48",
+        "19e07ca100e66430",
+        "30fc68fdaa903cfb",
+        "4298f951ca3c66c3",
+        "42c2a36bff254c04",
+        "48f198515fc0f302",
+        "4b74844f6e3299d6",
+        "5451f3cd4d1439f3",
+        "57772b5d65c12f6e",
+        "614e6706ae2502ce",
+        "6a8fa7667b6b4f31",
+        "6aef26441eb0791f",
+        "765fd5db190904d0",
+        "891c9fac3031a8ee",
+        "b2dfb452aaacba84",
+        "b62a64284e4abbe1",
+        "c05c0db230591fe9",
+        "cb3e9dc1ef2d6684",
+        "cc9b15fa0f3121c0"
+      ],
+      "historical_only": {
+        "conversation_reported_resolved": 414,
+        "diagnostics_campaign": "19/12",
+        "mechanical": "19/16",
+        "not_current_ledger_verified": true,
+        "semantic": "10/8"
+      },
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "install": "NOT_PERFORMED",
+      "mapping_decision": "../house-garden-import-contract-83c8fee/receipt-house-garden-import-contract.json",
+      "new_signature_closure_credit": 0,
+      "new_workstreams_started": false,
+      "original_P2_disposition": "DEFER_POST_PILOT retained in immutable registry;explicitly authorized local implementation tracked separately",
+      "prior_checkpoint": "../house-settlement-form-6d42440/checkpoint.json",
+      "prior_revalidation": "../house-foundation-revalidation-83c8fee/receipt-house-foundation.json",
+      "publication_authorization": "publication-authorization.md",
+      "publication_preflight": "publication-preflight.json",
+      "publication_revision": "Containing Git commit;verify on remote main after push",
+      "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+      "remaining_B130_review_signatures": [],
+      "remaining_pre_pilot_points": [
+        "HTU and all other protected HOLD",
+        "8a89196fecd29ddb insect common-exclusion scope HOLD",
+        "SC-020/SR-032 physical insect damage deductible HOLD",
+        "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+        "Security/GDPR and P3-A05 identity/merge status unknown",
+        "Person insurance / pilot scope",
+        "Critical UX",
+        "Feedback",
+        "Operational adviser acceptance"
+      ],
+      "signature": "d68e94be42f1549b",
+      "specific_remainder": "HOUSE_SHARED_GARDEN_IMPORT_VALUATION_IMPLEMENTED_EFFECTIVE_WHEN_PUBLISHED_COMMIT_VERIFIED",
+      "status": "PASS_VALIDATED"
+    },
+    "path": "docs/audit/checkpoints/house-garden-import-83c8fee/checkpoint.json",
+    "sha256": "6a31746a6e4b0cefcae6b041539110d2c2732dddc9e1deb58c1a28c94a4ec705"
+  },
+  "original_P2_registry": {
+    "batch_id": "",
+    "candidate_authoring_files": "[\"lib/gjensidige-hus-catalog.ts\"]",
+    "disposition": "DEFER_POST_PILOT",
+    "family": "[\"Hus\"]",
+    "finding_ids": "[\"GAP-2099\", \"GAP-2158\"]",
+    "occurrence_count": "2",
+    "provider": "[\"gjensidige\"]",
+    "rationale": "No independent evidence of negligible marginal risk in the SAME approved edit. Preserve finding for later scoped follow-up; P2 is not dismissed.",
+    "signature_id": "e103e7cb532fb8d4",
+    "source_fact_ids": "[\"SF-3008\", \"SF-3095\"]"
+  },
+  "captured_before_production_edit": true,
+  "base_revision": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a"
+}

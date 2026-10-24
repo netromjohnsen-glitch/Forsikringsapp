@@ -1,3 +1,4 @@
+import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -28,7 +29,7 @@ const stages=i=>{const a=repeat(i),b=repeat(a);return[i,a,b,repeat(clean(b))];};
 const pick=i=>i.importantTerms.filter(t=>t.key===o.key);
 const raw=id=>structuredClone(baseline.documents.find(c=>c.id===id&&c.record.documentRole==='individual_agreement'&&!c.record.importantTerms.length&&!c.record.addOns.length).record);
 const record=(id,values=[],role='individual_agreement')=>({...raw(id),documentRole:role,importantTerms:values.map(value=>({name:o.label,value,canonicalKey:null,documentIndices:[1]}))});
-const states=i=>clean(deriveCanonicalCoverages(withOriginalBuildingsSourcePage(i),'Hus'));
+const states=i=>clean(deriveCanonicalCoverages(withOriginalBuildingsSourcePage(withoutAdditionalCosts(i)),'Hus'));
 
 test('FROST original CR-229 signature has exactly both source bindings',()=>{
  assert.equal(o.signature,'ce90710821e28a97');assert.equal(o.original_registry.final_batch_id,'B-130');

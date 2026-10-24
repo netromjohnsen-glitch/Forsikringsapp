@@ -1,0 +1,438 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_ADDITIONAL_COSTS_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "decision": "Tre selvstendige rader per husnivå i én bolk: gjenbruk hus.rydding.dekning og hus.gjenoppforing.prisstigning; legg til hus.vann.vannavgift som egen detalj. Seks rå rader med egne Standard-/Pluss-kilder. Bevar skadeutløser,tillegg utover sum,alle avgrensninger og individuell dokumentprioritet.",
+  "reason": "Rydding og prisstigning har allerede samme semantiske identitet i eksisterende huskataloger. Ingen nåværende vannavgiftsnøkkel finnes. En egen vannavgiftsdetalj beholder skadeårsaken uten å blande den med generell vannskade,påbud,brukstap eller oppgjørsmåte. Separate rader lar en kunderegel overstyre ett tillegg uten å skjule de to andre. Pluss har samme materielle tekst,men egen provenance med overskriften på side5 og listen på side6.",
+  "authorization": "Avklar kontrakt og mapping for e103e7cb532fb8d4 (tilleggsutgifter etter skade) på Hus Standard og Hus Pluss på fersk main. Lever én beslutning og presis rettingsbolk. Ingen kodeendringer/deploy;behold alle HOLD. NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T14:34:43.184288+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a",
+  "fresh_main_after": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin main equal exactSHA. Original PDF bytes verified against git blobs,not inferred from previous PASS.",
+  "signature": "e103e7cb532fb8d4",
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2099",
+      "source_fact_id": "SF-3008",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 5
+    },
+    {
+      "finding_id": "GAP-2158",
+      "source_fact_id": "SF-3095",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 6
+    }
+  ],
+  "source_contract": {
+    "common_trigger": "Etter en erstatningsmessig skade dekkes tilleggene utover forsikringssummen.",
+    "three_proposed_values": [
+      {
+        "key": "hus.rydding.dekning",
+        "label": "Riving, rydding og bortkjøring",
+        "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen."
+      },
+      {
+        "key": "hus.gjenoppforing.prisstigning",
+        "label": "Prisstigning etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid."
+      },
+      {
+        "key": "hus.vann.vannavgift",
+        "label": "Økt vannavgift etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen."
+      }
+    ],
+    "source_pages": {
+      "Standard": [
+        5,
+        18
+      ],
+      "Pluss": [
+        5,
+        6,
+        19
+      ]
+    },
+    "no_source_conflict_found": true,
+    "external_question_needed": false,
+    "unchanged_adjacent_rules": [
+      "hus.pabud.dekning",
+      "hus.brukstap.dekning",
+      "hus.gjenoppforing.oppgjorsmate",
+      "hus.utleie.vilkar"
+    ],
+    "no_10million_cap_transfer": true
+  },
+  "proposed_correction_packet": {
+    "status": "PROPOSED_NOT_AUTHORIZED_FOR_IMPLEMENTATION",
+    "signature": "e103e7cb532fb8d4",
+    "single_packet_scope": "Both original bindings and exactly three missing additional-cost rules; six raw facts, three effective facts per house level.",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "rows": [
+      {
+        "key": "hus.rydding.dekning",
+        "label": "Riving, rydding og bortkjøring",
+        "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+        "mapping_decision": "REUSE_EXISTING_KEY",
+        "existing_owners": [
+          "trygHus",
+          "trygHusExtra",
+          "ifHusBasis",
+          "storebrandHusStandard",
+          "fremtindHusStandard",
+          "frendeHusStandard"
+        ],
+        "presentation_group": "hus.gjenoppforing",
+        "materialized_role": "coverage",
+        "proposed_own_source_facts": [
+          {
+            "owner": "gjensidigeHusStandard",
+            "fact": {
+              "key": "hus.rydding.dekning",
+              "label": "Riving, rydding og bortkjøring",
+              "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+                "page": 5,
+                "version": "Alminnelige vilkår"
+              }
+            }
+          },
+          {
+            "owner": "gjensidigeHusPluss",
+            "fact": {
+              "key": "hus.rydding.dekning",
+              "label": "Riving, rydding og bortkjøring",
+              "value": "Etter en erstatningsmessig skade dekkes riving, rydding, bortkjøring og deponering av verdiløse bygningsrester i tillegg utover forsikringssummen.",
+              "replacesBase": true,
+              "source": {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+                "page": 6,
+                "version": "Alminnelige vilkår",
+                "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+              },
+              "qualificationSource": {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Hus – Overskrift til tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen (liste fortsetter på PDF-side 6)",
+                "page": 5,
+                "version": "Alminnelige vilkår",
+                "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "hus.gjenoppforing.prisstigning",
+        "label": "Prisstigning etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+        "mapping_decision": "REUSE_EXISTING_KEY",
+        "existing_owners": [
+          "trygHus",
+          "trygHusExtra",
+          "ifHusBasis"
+        ],
+        "presentation_group": "hus.gjenoppforing",
+        "materialized_role": "term",
+        "proposed_own_source_facts": [
+          {
+            "owner": "gjensidigeHusStandard",
+            "fact": {
+              "key": "hus.gjenoppforing.prisstigning",
+              "label": "Prisstigning etter skade",
+              "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+                "page": 5,
+                "version": "Alminnelige vilkår"
+              },
+              "qualificationSource": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid",
+                "page": 18,
+                "version": "Alminnelige vilkår",
+                "note": "Tilleggsytelsen er listet på PDF-side 5."
+              }
+            }
+          },
+          {
+            "owner": "gjensidigeHusPluss",
+            "fact": {
+              "key": "hus.gjenoppforing.prisstigning",
+              "label": "Prisstigning etter skade",
+              "value": "Etter en erstatningsmessig skade dekkes prisstigning i tillegg utover forsikringssummen. Det justeres for gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid.",
+              "replacesBase": true,
+              "source": {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+                "page": 6,
+                "version": "Alminnelige vilkår",
+                "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+              },
+              "qualificationSource": {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid",
+                "page": 19,
+                "version": "Alminnelige vilkår",
+                "note": "Tilleggsytelsen er listet på PDF-side 6 under overskriften på PDF-side 5."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "hus.vann.vannavgift",
+        "label": "Økt vannavgift etter skade",
+        "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+        "mapping_decision": "ONE_NEW_ORDINARY_DETAIL_KEY",
+        "existing_owners": [],
+        "presentation_group": "hus.vann-fukt",
+        "materialized_role": "term",
+        "proposed_own_source_facts": [
+          {
+            "owner": "gjensidigeHusStandard",
+            "fact": {
+              "key": "hus.vann.vannavgift",
+              "label": "Økt vannavgift etter skade",
+              "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+              "source": {
+                "documentId": "gjensidigeHusStandard",
+                "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Standard",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+                "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+                "page": 5,
+                "version": "Alminnelige vilkår"
+              }
+            }
+          },
+          {
+            "owner": "gjensidigeHusPluss",
+            "fact": {
+              "key": "hus.vann.vannavgift",
+              "label": "Økt vannavgift etter skade",
+              "value": "Etter en erstatningsmessig skade dekkes økt vannavgift som følge av skaden i tillegg utover forsikringssummen.",
+              "replacesBase": true,
+              "source": {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Hus – Tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen",
+                "page": 6,
+                "version": "Alminnelige vilkår",
+                "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+              },
+              "qualificationSource": {
+                "documentId": "gjensidigeHusPluss",
+                "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+                "termsNumber": "Hus Pluss",
+                "effectiveFrom": "",
+                "company": "Gjensidige",
+                "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+                "section": "Hus – Overskrift til tilleggsutgifter etter erstatningsmessig skade utover forsikringssummen (liste fortsetter på PDF-side 6)",
+                "page": 5,
+                "version": "Alminnelige vilkår",
+                "note": "Overskriften står på PDF-side 5; denne listen fortsetter på PDF-side 6."
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "source_ownership": "Standard source is own PDF5; Pluss source is own PDF6 and replacesBase true. Pluss heading on PDF5 must be preserved explicitly: qualificationSource PDF5 for removal/waterfee; inflation primary PDF6 carries note identifying heading PDF5, qualificationSource is own PDF19. Inflation Standard qualifier is own PDF18. There are two runtime source-reference slots; the Pluss inflation heading is an explicit primary-source note, not a claimed third separate runtime reference. Source oracle retains all three complete Pluss pages.",
+    "inheritance_and_reverse_audit": "Exactly one effective row per key/product. Standard raw evidence has three new facts; Pluss raw evidence has six, including the inherited Standard rows. Pluss overriddenBase retains Standard values and primary references. All registered source metadata/dates unchanged.",
+    "coverage_contract": "Reused hus.rydding.dekning already denotes this covered removal benefit across six house components. It is a coverage row, not a new optional selection or global registry parent. A known manually selected product can assert this benefit; catalog-only document evidence without confirmed customer selection remains unknown. Inflation/waterfee are term rows and alone infer no coverage. Preserve all other canonical coverages and all add-ons.",
+    "must_preserve": [
+      "Covered-damage trigger and payment beyond insured sum in each of the three values",
+      "All four removal operations and worthless building-remnants object",
+      "Average inflation according to building cost index within normal repair/rebuilding time",
+      "Increased water fee caused by the damage",
+      "Current public-authority and loss-of-use rules including their qualifiers/exclusions",
+      "Loss-of-use 10million limit stays with its own subclause; no transfer to these three rules",
+      "No added currency amounts,percentage caps,fullvalue-only prerequisite,unconditional inflation or general municipal/tax/fee coverage",
+      "Own Pluss provenance rather than only inherited Standard; full heading/list/qualifier context"
+    ],
+    "do_not_append_to": [
+      "hus.pabud.dekning",
+      "hus.brukstap.dekning",
+      "hus.gjenoppforing.oppgjorsmate",
+      "hus.utleie.vilkar"
+    ],
+    "no_changes_to": [
+      "Catalog engine,enrichment,coverage engine,presentation or UI",
+      "Global aliases,canonical type registry,document extractor enum",
+      "Source originals,source registry,source admission,sourceType,effective dates",
+      "Customer choice selectionEvidenceKeys,Smart/rental contracts",
+      "Historical audit inventories/receipts/snapshots,HOLD or global P2 ledger"
+    ],
+    "forbidden_new_fact_metadata": [
+      "coverageAvailability",
+      "structuredValue/arithmetic limits",
+      "deductibleClassification",
+      "selectionEvidenceKeys"
+    ],
+    "validation_plan": [
+      "Freeze independent source oracle and fresh complete before-state before production edit. Verify both original GAP/SF bindings and registered PDF hashes against fresh main.",
+      "Focused tests/remediation-house-additional-costs.test.mjs plus source-bound helper if needed: complete Standard5/18 and Pluss5/6/19 source text. Exact three values and own source/qualification refs, including heading continuation and generated provenance notes.",
+      "Both products/all12 addon combinations: raw/effective resolver,materialization,manual input,three JSON reenrichments. Compare full preexisting fields to same-stage baseline;exactly three additions per product;Pluss replacement/raw inheritance verified.",
+      "Source-to-catalog and reverse audit: only six approved raw rows. All other providers unchanged; existing shared removal/inflation keys align without copying their provider-specific wording/caps/conditions.",
+      "Actual current document pipeline existing/offer: each exact product-label rule overrides only its own key;unknown fallback;multiple conflicting specific rules preserved;generic headings unbound;general terms supporting only. Test catalogue-only/selected product distinction for removal coverage and no coverage inference from other two details.",
+      "Preserve complete own-source metadata,source.note,qualificationSource,sources and overriddenBase through repeated enrichment. Retain established generated notes independently of raw facts.",
+      "Same product and forward/reverse comparison;missing peer fact unknown,not unavailable. Preserve all preexisting coverages,all add-ons/premium/deductible and all protected HOLD,ordinary scope/type/version and NITO exclusion.",
+      "Run current43-file target manifest plus new focused test (44 files),fullsuite and scoped ESLint. Correct active harness expectations only with independent source/before evidence for these exact additions;immutable historical snapshots stay unchanged. No skipped files or unrelated production fixes."
+    ],
+    "required_documentation": [
+      "Explicit implementation authorization and exact allowed production/test files",
+      "Source oracle,before/reverse audit,actual commands/logs,candidate hashes and validation summary",
+      "One completion receipt for signature/both bindings/all three dimensions,checkpoint and current-project-status.md",
+      "Keep this decision and prior local foundation receipt byte-identical; distinguish local validation from published commit"
+    ],
+    "commit_push": "NOT_AUTHORIZED",
+    "deploy": "NOT_AUTHORIZED",
+    "install": "NOT_AUTHORIZED"
+  },
+  "read_only_checks": {
+    "status": "PASS_READ_ONLY_MAPPING_FEASIBILITY",
+    "cloned_catalog_only": true,
+    "raw_proposed_facts": 6,
+    "configurations": 12,
+    "manual_plus_three_JSON_reenrichments": "PASS;all preexisting terms,coverages and add-ons unchanged;only the source-proven removal coverage is added for known manually selected products. Full sources including generated notes verified.",
+    "document_probes": 60,
+    "general_terms_probes": 4,
+    "generic_label_probes": 12,
+    "forward_reverse_comparison_rows": 36,
+    "materialized_roles": [
+      "coverage",
+      "term",
+      "term"
+    ],
+    "no_new_optional_selection": true,
+    "catalog_only_removal_status": "unknown",
+    "inflation_and_water_fee_alone_infer_coverage": false,
+    "other_provider_catalog_unchanged": true,
+    "actual_global_catalog_unchanged": true,
+    "new_global_alias_or_enum_needed": false,
+    "production_candidate_validated": false,
+    "appsuite_run": false
+  },
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "priority_effect": "No reprioritization of historical P2/DEFER_POST_PILOT,no new mandatory prepilot blocker,no HOLD lifted and no aggregate P2closure or pilot release.",
+  "integrity": {
+    "existing_files_unchanged": 8062,
+    "tracked_files_unchanged": 8058,
+    "prior4_local_foundation_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false,
+    "only_new_read_only_audit_packet": true
+  },
+  "implementation": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "commit_push": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "deploy": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "install": "NOT_PERFORMED",
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "e9f367b4b3ee6dffceead6f9e2f9803a979ca6dbd3eb141a03d7a674690eaaba",
+    "probe_log": "mapping-probe.log.gz"
+  }
+}
