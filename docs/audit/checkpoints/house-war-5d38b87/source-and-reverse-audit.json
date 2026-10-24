@@ -1,0 +1,109 @@
+{
+  "status": "PASS_POINT17_ONLY",
+  "base_revision": "5d38b87d71686ca2a3226439b6ad1ea4defaabbf",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt17 Krig og uroligheter only",
+  "whole_signature_closure": false,
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point17_primary_PDF_page_1_based": 12,
+      "point17_continuation_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point17_primary_PDF_page_1_based": 13,
+      "point17_continuation_PDF_page_1_based": 14
+    }
+  ],
+  "source_oracle_sha256": "880681f33f4fe0476c8d6da6db2618c6adf4d1e83c9b0f1bf209400600da2143",
+  "two_own_source_facts": [
+    {
+      "fact": {
+        "key": "hus.krig.begrensning",
+        "label": "Krig og uroligheter",
+        "qualificationSource": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "note": "Fortsettelse med typeavgrensninger og seksukersregler.",
+          "page": 13,
+          "section": "Generelle vilkår – Punkt 17. Krig og uroligheter (fortsettelse)",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 12,
+          "section": "Generelle vilkår – Punkt 17. Krig og uroligheter",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Forsikringen dekker ikke skade på person, ting eller tap som skyldes - Krig eller alvorlige uroligheter i Norge - Krig, krigslignende tilstand eller andre former for uroligheter i utlandet dersom forsikrede reiser inn i, eller tar opphold i, et område med krig eller uroligheter der Norsk Utenriksdepartement som følge av sikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke annet er avtalt skriftlig - Deltakelse i krig - Begrensningene over gjelder ikke for personskade som går inn under Lov om yrkesskadeforsikring. På person og reiseforsikringer dekker Gjensidige likevel skade på person, ting eller tap som skyldes krig, krigslignende tilstand eller uroligheter i utlandet som oppstår i inntil 6 uker fra det Norske Utenriksdepartementet har utstedt reiseadvarsel, når forsikrede allerede befinner seg i området reiseadvarsel gjelder for. På motorvognforsikring dekker forsikringen ingen skader eller utgifter som oppstår i land der det Norske Utenriksdepartementet har utstedt reiseadvarsel som følge av krig, krigslignende tilstand eller uroligheter. På motorvognforsikringen dekker Gjensidige likevel skade på person, ting eller tap som oppstår i inntil 6 uker fra reiseadvarsel foreligger, når forsikret motorvogn allerede befinner seg i det området reiseadvarsel gjelder for."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.krig.begrensning",
+        "label": "Krig og uroligheter",
+        "qualificationSource": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "note": "Fortsettelse med typeavgrensninger og seksukersregler.",
+          "page": 14,
+          "section": "Generelle vilkår – Punkt 17. Krig og uroligheter (fortsettelse)",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 13,
+          "section": "Generelle vilkår – Punkt 17. Krig og uroligheter",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Forsikringen dekker ikke skade på person, ting eller tap som skyldes - Krig eller alvorlige uroligheter i Norge - Krig, krigslignende tilstand eller andre former for uroligheter i utlandet dersom forsikrede reiser inn i, eller tar opphold i, et område med krig eller uroligheter der Norsk Utenriksdepartement som følge av sikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke annet er avtalt skriftlig - Deltakelse i krig - Begrensningene over gjelder ikke for personskade som går inn under Lov om yrkesskadeforsikring. På person og reiseforsikringer dekker Gjensidige likevel skade på person, ting eller tap som skyldes krig, krigslignende tilstand eller uroligheter i utlandet som oppstår i inntil 6 uker fra det Norske Utenriksdepartementet har utstedt reiseadvarsel, når forsikrede allerede befinner seg i området reiseadvarsel gjelder for. På motorvognforsikring dekker forsikringen ingen skader eller utgifter som oppstår i land der det Norske Utenriksdepartementet har utstedt reiseadvarsel som følge av krig, krigslignende tilstand eller uroligheter. På motorvognforsikringen dekker Gjensidige likevel skade på person, ting eller tap som oppstår i inntil 6 uker fra reiseadvarsel foreligger, når forsikret motorvogn allerede befinner seg i det området reiseadvarsel gjelder for."
+      },
+      "owner": "gjensidigeHusPluss"
+    }
+  ],
+  "checks": [
+    "Full4original raw/layout pages,registered hashes,current main blobs and exact joined17body verified;only repeated pageheader removed in join",
+    "3general exclusions,Norway/foreign advice/written agreement,war participation,worker exception and distinct person/travel/motor6week conditions preserved",
+    "Whole catalog before+2exact own-source facts,complete primary+qualification refs/generatednotes/overriddenBase guards before projection",
+    "All12manual choices,3JSONrepeats and every old field/canonical coverage preserved;source continuation also in display",
+    "Actual document priority,unknown fallback,conflicting specifics,18generic labels,0policy/choice from supporting terms and independent17/18matrix",
+    "214manual/144document/52comparison controls,scope negatives,source-page and prior12/18/19rules retained"
+  ],
+  "focused_tests": 87,
+  "runtime_proof": "runtime-proof.json.gz"
+}

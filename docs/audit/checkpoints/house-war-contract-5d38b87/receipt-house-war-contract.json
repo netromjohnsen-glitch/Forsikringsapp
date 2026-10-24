@@ -1,0 +1,202 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_WAR_POINT17_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "created_at_UTC": "2026-10-24T15:51:04.171043+00:00",
+  "fresh_main_before": "5d38b87d71686ca2a3226439b6ad1ea4defaabbf",
+  "fresh_main_after": "5d38b87d71686ca2a3226439b6ad1ea4defaabbf",
+  "fresh_main_method": "Connected GitHub branch API;HEAD/origin exact;registered sources and original binding inventories on currentmainverified.",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt17 Krig og uroligheter only",
+  "whole_signature_closure": false,
+  "whole_signature_review_complete": false,
+  "remaining_signature_dimensions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point17_primary_PDF_page_1_based": 12,
+      "point17_continuation_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point17_primary_PDF_page_1_based": 13,
+      "point17_continuation_PDF_page_1_based": 14
+    }
+  ],
+  "decision": "Egen hus.krig.begrensning med hele punkt17samlet. To rå rader,egne Standard12/13og Pluss13/14kilder,Pluss replacesBase. Ingen positiv husdekning fra de typeavgrensede6ukereglene;ingen automatisk reiseadvarsel-/datoberegning.",
+  "reason": "No current house key expresses this general war/unrest rule. One complete atomic restriction preserves conditional geography/written agreement,worker-injury exception and separate type-limited person/travel/motor clauses. Keep12/18/19independent. Existing restriction/term/hus.ovrig and qualificationSource support suffice.",
+  "source_contract": {
+    "exact_point17": "Forsikringen dekker ikke skade på person, ting eller tap som skyldes - Krig eller alvorlige uroligheter i Norge - Krig, krigslignende tilstand eller andre former for uroligheter i utlandet dersom forsikrede reiser inn i, eller tar opphold i, et område med krig eller uroligheter der Norsk Utenriksdepartement som følge av sikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke annet er avtalt skriftlig - Deltakelse i krig - Begrensningene over gjelder ikke for personskade som går inn under Lov om yrkesskadeforsikring. På person og reiseforsikringer dekker Gjensidige likevel skade på person, ting eller tap som skyldes krig, krigslignende tilstand eller uroligheter i utlandet som oppstår i inntil 6 uker fra det Norske Utenriksdepartementet har utstedt reiseadvarsel, når forsikrede allerede befinner seg i området reiseadvarsel gjelder for. På motorvognforsikring dekker forsikringen ingen skader eller utgifter som oppstår i land der det Norske Utenriksdepartementet har utstedt reiseadvarsel som følge av krig, krigslignende tilstand eller uroligheter. På motorvognforsikringen dekker Gjensidige likevel skade på person, ting eller tap som oppstår i inntil 6 uker fra reiseadvarsel foreligger, når forsikret motorvogn allerede befinner seg i det området reiseadvarsel gjelder for.",
+    "no_source_conflict_found": true,
+    "external_question_needed": false,
+    "source_pages": {
+      "Standard": [
+        12,
+        13
+      ],
+      "Pluss": [
+        13,
+        14
+      ]
+    },
+    "must_preserve": [
+      "All3general exclusions and written-agreement qualifier in its actual foreign-advice scope",
+      "Worker-injury exception only within stated source scope",
+      "6weeks from advice/insured already there for person/travel;separate insured-motor-already-there6week exception,not house cover",
+      "One complete value,two own source refs per product;no inference of advice/dates/customer facts"
+    ]
+  },
+  "proposed_correction_packet": {
+    "status": "DECIDED_FOR_BOUNDED_AUTONOMOUS_IMPLEMENTATION_UNDER_STANDING_AUTHORIZATION",
+    "signature": "d1230f13e6b445d7",
+    "subscope": "Generelle vilkår punkt17 Krig og uroligheter only",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "row": {
+      "key": "hus.krig.begrensning",
+      "label": "Krig og uroligheter",
+      "value": "Forsikringen dekker ikke skade på person, ting eller tap som skyldes - Krig eller alvorlige uroligheter i Norge - Krig, krigslignende tilstand eller andre former for uroligheter i utlandet dersom forsikrede reiser inn i, eller tar opphold i, et område med krig eller uroligheter der Norsk Utenriksdepartement som følge av sikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke annet er avtalt skriftlig - Deltakelse i krig - Begrensningene over gjelder ikke for personskade som går inn under Lov om yrkesskadeforsikring. På person og reiseforsikringer dekker Gjensidige likevel skade på person, ting eller tap som skyldes krig, krigslignende tilstand eller uroligheter i utlandet som oppstår i inntil 6 uker fra det Norske Utenriksdepartementet har utstedt reiseadvarsel, når forsikrede allerede befinner seg i området reiseadvarsel gjelder for. På motorvognforsikring dekker forsikringen ingen skader eller utgifter som oppstår i land der det Norske Utenriksdepartementet har utstedt reiseadvarsel som følge av krig, krigslignende tilstand eller uroligheter. På motorvognforsikringen dekker Gjensidige likevel skade på person, ting eller tap som oppstår i inntil 6 uker fra reiseadvarsel foreligger, når forsikret motorvogn allerede befinner seg i det området reiseadvarsel gjelder for.",
+      "source_section": "Generelle vilkår – Punkt 17. Krig og uroligheter",
+      "Standard": {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 12,
+        "replacesBase": false
+      },
+      "Pluss": {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 13,
+        "replacesBase": true
+      },
+      "qualificationSource": {
+        "Standard_page": 13,
+        "Pluss_page": 14,
+        "section": "Generelle vilkår – Punkt 17. Krig og uroligheter (fortsettelse)",
+        "note": "Fortsettelse med typeavgrensninger og seksukersregler."
+      },
+      "materialized_role": "term",
+      "isNonAssertingCoverageDetail": true,
+      "presentation_group": "hus.ovrig"
+    },
+    "validation_plan": [
+      "Seal original links,source hashes,all4complete source pages and independent exact whole point17before edit;capture complete fresh-main baseline.",
+      "Only2own-source facts in lib/gjensidige-hus-catalog.ts. Full value includes3general exclusions,Norway/foreign advice and written-agreement qualifier,war participation,worker-injury exception and separate person/travel/motor6week rules. Primary12/13and qualification13/14.",
+      "One effective restriction per product;Pluss replacesBase. Exact raw/effective/provenance/generated2source notes/overriddenBase guards before projection. Every old field preserved all12manual choices/3JSONrepeats.",
+      "Actual document pipeline both sides:precise full label overrides one whole rule,unknown fallback,multiple specific conflicts retained. General terms create0policies/choices;generic labels do not gain aliases.",
+      "Independent17/18document matrix and preceding12/18/19rules;positive customer object fields preserved. Term alone no canonical coverage;no advice/date/policy evaluation.",
+      "Provider/type/version/ordinary/NITO boundaries,all214manual/144document/52comparison controls and7source-page fixes.",
+      "New focused test/helper;strict composition in preceding spread helper/test only if needed;5raw protected counters +2with independent source/before proof. Preserve historical files/fingerprints/guards.",
+      "Run48current targeted files plus new focused test(49),fullsuite and scoped ESLint on same final candidate. Record every mechanical correction.",
+      "Partial point17receipt/checkpoint/status only;full d123review remains separate,no signature/P2/HOLD/globalpilot changes. Secure publish under standing authorization only after final gates and fresh-main/hash/manifest checks."
+    ],
+    "no_changes_to": [
+      "Other production bytes,engine,aliases,enum,presentation,source registry/admission",
+      "Existing12/18/19or other providers/types/scopes/customer choices",
+      "Original PDFs,historical receipts/snapshots/fingerprints/ledgers,HOLD and pilot gate",
+      "Advice/date checks,automatic personal/travel/motor coverage,insurance sum or claims logic",
+      "NITO,Sentralbord,deploy and insurer messaging"
+    ],
+    "focused_test_file": "tests/remediation-house-war.test.mjs",
+    "source_guarded_helper_if_needed": "tests/helpers/house-war.mjs",
+    "required_documentation": [
+      "Explicit per-bolk exact authorization,source oracle,before/runtime/source-reverse proof,logs,candidate identity,mechanical ledger",
+      "completion-receipt-d1230f13e6b445d7-point17.json,checkpoint,current-project-status.md;local versus published distinction;whole signature not closed"
+    ],
+    "commit_push": "AUTHORIZED_AFTER_FINAL_GATES_UNDER_STANDING_AUTHORIZATION",
+    "deploy": "NOT_AUTHORIZED"
+  },
+  "rejected_mappings": [
+    "Reuse terror/spread/forbehold:distinct clause and document identity",
+    "Split fragments:detaches type/time/territory qualifications",
+    "CoverageAvailability/dekning or generic Krig/Reiseadvarsel aliases:would alter coverage/selection or scope"
+  ],
+  "read_only_checks": {
+    "status": "PASS_READ_ONLY_MAPPING_FEASIBILITY",
+    "configurations": 12,
+    "document_probes": 20,
+    "general_terms_probes": 4,
+    "generic_label_probes": 18,
+    "independent17_18document_probes": 16,
+    "comparison_rows": 12,
+    "source_references_per_effective_term": 2,
+    "global_catalog_unchanged": true,
+    "new_alias_enum_engine_needed": false,
+    "appsuite_run": false
+  },
+  "continuation_authorization": {
+    "user_instruction": "Kan du bare kjøre på alle neste steg?",
+    "reference": "../house-spread-2028c16/publication-authorization.md",
+    "bounds": "Ordinary house catalog publish/revalidation/next documented bolks;stop at genuine source/decision blocker. No deploy,HOLDchange,insurer messages,NITO/Sentralbord work."
+  },
+  "unchanged_status": {
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "documented_campaign_count": 67,
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "integrity": {
+    "existing_files_unchanged": 8275,
+    "tracked_files_unchanged": 8271,
+    "prior4_local_revalidation_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false
+  },
+  "implementation": "NOT_PERFORMED_IN_THIS_MAPPING_PHASE",
+  "deploy": "NOT_AUTHORIZED",
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "77db17db9e65332e15ed1428e885793be3b2ede5a4f80703fd18a9450aab8983",
+    "probe_log": "mapping-probe.log.gz"
+  }
+}

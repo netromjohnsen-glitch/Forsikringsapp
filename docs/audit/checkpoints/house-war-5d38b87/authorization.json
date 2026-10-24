@@ -1,0 +1,69 @@
+{
+  "status": "AUTHORIZED_IMPLEMENTATION_AND_SECURED_PUBLICATION_AFTER_GATES",
+  "user_instruction": "Kan du bare kjøre på alle neste steg?",
+  "standing_authorization": "../house-spread-2028c16/publication-authorization.md",
+  "created_at_UTC": "2026-10-24T15:51:27.022341+00:00",
+  "base_revision": "5d38b87d71686ca2a3226439b6ad1ea4defaabbf",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt17 Krig og uroligheter only",
+  "whole_signature_closure": false,
+  "decision": "../house-war-contract-5d38b87/receipt-house-war-contract.json",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point17_primary_PDF_page_1_based": 12,
+      "point17_continuation_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point17_primary_PDF_page_1_based": 13,
+      "point17_continuation_PDF_page_1_based": 14
+    }
+  ],
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "exact_delta": "Exactly2full own-source hus.krig.begrensning facts. Standardprimary12/continuation13,Plussprimary13/continuation14,replacesBase. All other production bytes unchanged.",
+  "allowed_tests": "New source-bound focused helper/test;strict new2row composition/projection in preceding spread helper/test;5protected raw counts+2onlywith independent proof. No historical snapshot/fingerprint/guard changes.",
+  "allowed_documentation": "Current named implementation/partial receipt/checkpoint/project status and secure publication metadata;prior8local read-only files immutable.",
+  "gates": [
+    "Seal original links,source hashes,all4complete source pages and independent exact whole point17before edit;capture complete fresh-main baseline.",
+    "Only2own-source facts in lib/gjensidige-hus-catalog.ts. Full value includes3general exclusions,Norway/foreign advice and written-agreement qualifier,war participation,worker-injury exception and separate person/travel/motor6week rules. Primary12/13and qualification13/14.",
+    "One effective restriction per product;Pluss replacesBase. Exact raw/effective/provenance/generated2source notes/overriddenBase guards before projection. Every old field preserved all12manual choices/3JSONrepeats.",
+    "Actual document pipeline both sides:precise full label overrides one whole rule,unknown fallback,multiple specific conflicts retained. General terms create0policies/choices;generic labels do not gain aliases.",
+    "Independent17/18document matrix and preceding12/18/19rules;positive customer object fields preserved. Term alone no canonical coverage;no advice/date/policy evaluation.",
+    "Provider/type/version/ordinary/NITO boundaries,all214manual/144document/52comparison controls and7source-page fixes.",
+    "New focused test/helper;strict composition in preceding spread helper/test only if needed;5raw protected counters +2with independent source/before proof. Preserve historical files/fingerprints/guards.",
+    "Run48current targeted files plus new focused test(49),fullsuite and scoped ESLint on same final candidate. Record every mechanical correction.",
+    "Partial point17receipt/checkpoint/status only;full d123review remains separate,no signature/P2/HOLD/globalpilot changes. Secure publish under standing authorization only after final gates and fresh-main/hash/manifest checks."
+  ],
+  "excluded_scope": [
+    "Other production bytes,engine,aliases,enum,presentation,source registry/admission",
+    "Existing12/18/19or other providers/types/scopes/customer choices",
+    "Original PDFs,historical receipts/snapshots/fingerprints/ledgers,HOLD and pilot gate",
+    "Advice/date checks,automatic personal/travel/motor coverage,insurance sum or claims logic",
+    "NITO,Sentralbord,deploy and insurer messaging"
+  ],
+  "commit_push_authorized": true,
+  "publication_condition": "Same candidate passes all gates,fresh main matches,no extra staged files,ordinary push only;verify remote exact commit/payload.",
+  "deploy_authorized": false,
+  "install_authorized": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "historical_P2_disposition": "DEFER_POST_PILOT unchanged;onlypoint17,no whole-signature/P2credit"
+}

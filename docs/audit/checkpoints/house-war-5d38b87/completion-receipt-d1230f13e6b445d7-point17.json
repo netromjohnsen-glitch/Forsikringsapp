@@ -1,0 +1,156 @@
+{
+  "classification": "CURRENT_VALIDATED_ORDINARY_HOUSE_WAR_POINT17",
+  "status": "PASS_VALIDATED_POINT17_ONLY",
+  "created_at_UTC": "2026-10-24T15:54:23.620289+00:00",
+  "base_revision": "5d38b87d71686ca2a3226439b6ad1ea4defaabbf",
+  "fresh_main_before": "5d38b87d71686ca2a3226439b6ad1ea4defaabbf",
+  "fresh_main_after": "5d38b87d71686ca2a3226439b6ad1ea4defaabbf",
+  "fresh_main_method": "Connected GitHub branch API;HEAD/origin exact. No reset/pull/stash.",
+  "application_identity_sha256": "f18704d6387df45afe1169d87b354430cee16a7750a4a10f82f8496628bbba91",
+  "tested_candidate": "Uncommitted application_files in candidate identity,not the base HEAD implementation commit.",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt17 Krig og uroligheter only",
+  "validated_subscope_only": "Generelle vilkår punkt17 Krig og uroligheter only",
+  "whole_signature_review_complete": false,
+  "whole_signature_closure": false,
+  "remaining_signature_dimensions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+  "published_points12_18_19": "CONFIRMED_ON_BASE_MAIN_NOT_REOPENED",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point17_primary_PDF_page_1_based": 12,
+      "point17_continuation_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point17_primary_PDF_page_1_based": 13,
+      "point17_continuation_PDF_page_1_based": 14
+    }
+  ],
+  "original_priority": "P2",
+  "original_disposition": "DEFER_POST_PILOT retained in immutable registry;explicit partial implementation tracked separately",
+  "decision": "../house-war-contract-5d38b87/receipt-house-war-contract.json",
+  "authorization": "authorization.json",
+  "implemented": {
+    "production_file": "lib/gjensidige-hus-catalog.ts",
+    "raw_rows_added": 2,
+    "effective_rows_per_product": 1,
+    "key": "hus.krig.begrensning",
+    "label": "Krig og uroligheter",
+    "value": "Forsikringen dekker ikke skade på person, ting eller tap som skyldes - Krig eller alvorlige uroligheter i Norge - Krig, krigslignende tilstand eller andre former for uroligheter i utlandet dersom forsikrede reiser inn i, eller tar opphold i, et område med krig eller uroligheter der Norsk Utenriksdepartement som følge av sikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke annet er avtalt skriftlig - Deltakelse i krig - Begrensningene over gjelder ikke for personskade som går inn under Lov om yrkesskadeforsikring. På person og reiseforsikringer dekker Gjensidige likevel skade på person, ting eller tap som skyldes krig, krigslignende tilstand eller uroligheter i utlandet som oppstår i inntil 6 uker fra det Norske Utenriksdepartementet har utstedt reiseadvarsel, når forsikrede allerede befinner seg i området reiseadvarsel gjelder for. På motorvognforsikring dekker forsikringen ingen skader eller utgifter som oppstår i land der det Norske Utenriksdepartementet har utstedt reiseadvarsel som følge av krig, krigslignende tilstand eller uroligheter. På motorvognforsikringen dekker Gjensidige likevel skade på person, ting eller tap som oppstår i inntil 6 uker fra reiseadvarsel foreligger, når forsikret motorvogn allerede befinner seg i det området reiseadvarsel gjelder for.",
+    "Standard_source_pages": [
+      12,
+      13
+    ],
+    "Pluss_source_pages": [
+      13,
+      14
+    ],
+    "own_Pluss_replaces_base": true,
+    "references_per_effective_fact": 2,
+    "contract": "Complete point17 including3exclusions,Norway/foreign advice/written agreement,participation,worker exception and separate person/travel/motor6week clauses. Those type-specific positives do not create house coverage.",
+    "coverage_contract": "Nonasserting restriction term/hus.ovrig;no coverageAvailability/structured amount/deductible/selection fields or automatic advice/date/customer-policy evaluation.",
+    "source_to_catalog_and_reverse": "Complete before+2with source/qualification/value/metadata/generatednote/overriddenBase guards;all other production bytes and prior fields unchanged.",
+    "unchanged": [
+      "Published12/18/19and every prior house rule/sourcepagefix",
+      "Engine,global aliases,enum,presentation/UI,source originals/registry/admission",
+      "Other providers/types/versions/ordinary scopes,NITO/customer choices",
+      "Historical receipts/inventories/snapshots/fingerprints and8prior local readonly files"
+    ]
+  },
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 3195,
+      "pass": 3195,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 49,
+    "fullsuite": {
+      "tests": 6887,
+      "pass": 6887,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 178,
+    "focused_contract_tests": 87,
+    "scoped_lint_files": 10,
+    "scoped_lint_output": "",
+    "same_candidate_identity_for_all_final_gates": true,
+    "source_reverse_audit": "source-and-reverse-audit.json",
+    "runtime_proof": "runtime-proof.json.gz",
+    "mechanical_corrections": "autonomous-mechanical-corrections.json"
+  },
+  "unchanged_status": {
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "documented_campaign_count": 67,
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "catalog_foundation": "Only point17locally validated. Broader signature/globalP2/ordinary foundation not yet cleared. Next aggregate review must assess actual original semantic dimensions,not assume whole closure from partial PASS.",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit;verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json",
+  "commit_push_authorized": true,
+  "deploy_authorized": false,
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_step": "Verify containing commit and exact payload on main,then aggregate original-binding/catalog revalidation under standing authorization. Partial point17PASS alone not whole closure;allHOLD unchanged,no deploy."
+}

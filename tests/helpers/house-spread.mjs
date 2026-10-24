@@ -1,3 +1,4 @@
+import {applyWar,withoutWar} from './house-war.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
@@ -23,12 +24,12 @@ export function spreadSources(fact,manual=false){
 export function applySpread(catalog){
  const copy=structuredClone(catalog);
  for(const owner of owners)for(const key of o.keys){const rows=copy.facts[owner],fact=spreadFact(owner,key,!Object.hasOwn(rows[0].source,'productCode')),existing=rows.filter(f=>f.key===key);if(existing.length)assert.deepEqual(existing,[fact]);else rows.push(fact);}
- return copy;
+ return applyWar(copy);
 }
 // Check exact own-provider contract before projecting the two approved point19 additions.
 // Shared other-provider keys and customer-document rules are never projected.
 export function withoutSpread(value){
- const copy=structuredClone(value);
+ const copy=withoutWar(value);
  function visit(item){
   if(Array.isArray(item))for(let i=item.length-1;i>=0;i--){const row=item[i];
    if(o.keys.includes(row?.key)&&owners.includes(row.source?.documentId)){

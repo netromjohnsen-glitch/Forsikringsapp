@@ -1,5 +1,52 @@
 # Aktuell dokumentert prosjektstatus
 
+## Punkt 17: Krig og uroligheter – validert 24. oktober 2026
+
+Fersk main, HEAD og origin/main er kontrollert til `5d38b87d71686ca2a3226439b6ad1ea4defaabbf`.
+Punkt 12, 18 og 19 er publisert der. Punkt 17 under `d1230f13e6b445d7`
+er validert på denne basisen. Publiseringsrevisjonen er committen som inneholder
+rettelsen, delreceipten og denne prosjektstatusen. Publisert status gjelder
+etter kontroll på remote main under [publiseringsfullmakten](../audit/checkpoints/house-war-5d38b87/publication-authorization.md).
+Ingen installasjon eller deploy. Testet basis og kandidatidentitet er adskilt.
+
+To rå rader under `hus.krig.begrensning` gir én effektiv begrensningsrad
+på hvert husnivå. Hele punkt 17 er samlet: de tre alminnelige unntakene,
+Norge/utland, reiseadvarsel og forbehold om annen skriftlig avtale i den
+utenlandske regelen, deltakelse i krig, unntaket for personskade under
+Lov om yrkesskadeforsikring og de særskilte person-/reise-/motorreglene
+med seksukersvilkår. Disse typeavgrensede reglene oppretter ingen positiv
+husdekning. Ingen reiseadvarsel, dato eller kundesituasjon beregnes automatisk.
+Standard har hovedkilde på PDF-side 12 og fortsettelse på 13; Pluss har
+hovedkilde på 13 og fortsettelse på 14 med `replacesBase`. Begge kildereferanser,
+kildenoter og overstyrt Standard-provenance bevares. Alle øvrige produksjonsbytes,
+inkludert punkt 12, 18 og 19, er identiske med testet main-basis.
+
+[Delreceipt](../audit/checkpoints/house-war-5d38b87/completion-receipt-d1230f13e6b445d7-point17.json),
+[validering](../audit/checkpoints/house-war-5d38b87/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-war-5d38b87/candidate-identity.json),
+[checkpoint](../audit/checkpoints/house-war-5d38b87/checkpoint.json),
+[forutgående revalidering](../audit/checkpoints/house-foundation-revalidation-5d38b87/receipt-house-foundation.json)
+og [mappingbeslutning](../audit/checkpoints/house-war-contract-5d38b87/receipt-house-war-contract.json).
+Originalbindingene GAP-2110/SF-3024 og GAP-2169/SF-3111 er validert bare for
+punkt 17 i denne bolken. Hele signaturen er ikke automatisk lukket;
+P2/DEFER_POST_PILOT og global signatur-/P2-/kampanjekreditt beholdes uendret.
+
+3195/3195 målrettede tester i 49 filer og 6887/6887 tester i 178 filer består
+uten feil eller skip. 87 nye kontraktkontroller dekker alle fire kildesider,
+12 valgkombinasjoner, tre JSON-berikinger, dokumentprioritet, hoved-/fortsettelseskilder
+og typegrensene. 214 manuelle kontroller, 144 dokumentflyter og 52 sammenligninger
+bevarer øvrige felt og dekningsstatuser. Kvalitetskontroll av ti kode-/testfiler:
+0 feil og 0 warnings. Mekaniske testtilpasninger gjelder bare de to kildeverifiserte
+rå radene og én foreldet visningsside i ny test; historiske bevis er uendret.
+
+Alle HOLD beholdes, inkludert HTU og de øvrige beskyttede signaturene.
+B-051 37/0/1/1, kampanje 67, ny signaturkreditt 0, P2-kreditt 0, globalt
+resolved/open UKJENT og CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes.
+Samlet revalidering og vurdering av originalbindingenes faktiske dimensjoner
+følger etter publisering. Sikkerhet/GDPR og P3-A05-identitet/mergestatus,
+personforsikring/pilotscope, kritisk UX, feedback og operativ rådgiveraksept
+forblir synlige. NITO venter; Sentralbord venter separat.
+
 ## Punkt 19: Farlig spredning – validert 24. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til `2028c16398b78f645eab2e42d1800c6598022470`.
