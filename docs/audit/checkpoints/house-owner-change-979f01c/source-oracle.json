@@ -1,0 +1,515 @@
+{
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt12 Opphør ved eierskifte only",
+  "whole_signature_closure": false,
+  "keys": [
+    "hus.avtale.eierskifte"
+  ],
+  "rows": [
+    {
+      "key": "hus.avtale.eierskifte",
+      "label": "Opphør ved eierskifte",
+      "value": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring.",
+      "decision": "NEW_ORDINARY_HOUSE_AGREEMENT_TERM_KEY",
+      "Standard": {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 12,
+        "replacesBase": false
+      },
+      "Pluss": {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 13,
+        "replacesBase": true
+      },
+      "source_section": "Generelle vilkår – Punkt 12. Opphør ved eierskifte",
+      "qualificationSource": "Not needed;whole point12 on one page",
+      "materialized_role": "term",
+      "presentation_group": "hus.ovrig"
+    }
+  ],
+  "facts": [
+    {
+      "fact": {
+        "key": "hus.avtale.eierskifte",
+        "label": "Opphør ved eierskifte",
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 12,
+          "section": "Generelle vilkår – Punkt 12. Opphør ved eierskifte",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.avtale.eierskifte",
+        "label": "Opphør ved eierskifte",
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 13,
+          "section": "Generelle vilkår – Punkt 12. Opphør ved eierskifte",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring."
+      },
+      "owner": "gjensidigeHusPluss"
+    }
+  ],
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point12_PDF_page_1_based": 12
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point12_PDF_page_1_based": 13
+    }
+  ],
+  "source_pages": [
+    {
+      "PDF_page_1_based": 12,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 68,
+        "catalog_match": "[{\"key\": \"hus.avtale.forbehold\", \"label\": \"Forsikringsbevisets forrang\", \"value\": \"De alminnelige vilkårene er en generell oversikt og er ikke del av den enkelte avtalen. Forsikringsbeviset og kundens fullstendige vilkår avgjør valgt dekning, summer, egenandeler og registrerte utvidelser.\", \"source\": {\"documentId\": \"gjensidigeHusStandard\", \"filename\": \"Hus-Standard-alminnelige-vilkar.pdf\", \"termsNumber\": \"Hus Standard\", \"effectiveFrom\": \"\", \"company\": \"Gjensidige\", \"url\": \"https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf\", \"section\": \"Forsikringsoversikt / Forsikringsbevis\", \"page\": 1, \"version\": \"Alminnelige vilkår\"}}]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "CATALOG_FACT_TOO_COARSE",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2110",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {
+          "hus.avtale.forbehold": true
+        },
+        "key_support_existing_type_registry": {
+          "hus.avtale.forbehold": null
+        },
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus",
+        "product_id": "gjensidige-hus",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [
+          "hus.avtale.forbehold"
+        ],
+        "provider": "gjensidige",
+        "reason": "Bevisforrang korrekt;14dny-eierettervern og generelle materielle unntak mangler.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "materiell",
+        "semantic_subject": "Generelt",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringsbevisførvilkår;14dagereierskifteettervern,krig/terror/ABCtypedifferensiert.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-3024",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-048",
+        "source_location": "PDF 12–13",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Standard",
+              "effectiveFrom": "",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusStandard",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+              "termsNumber": "Hus Standard",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "structured_value": "Forsikringsbevisførvilkår;14dagereierskifteettervern,krig/terror/ABCtypedifferensiert.",
+        "unique_source_semantic_id": "75c1274a01fef3bea353",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "layout_text": "  GENERELLE VILKÅR\n\n\n\n\n                                                                                                                                    Nyheter og endringer\n1. Forsikringsavtalen                                              Tilgodebeløp kan også overføres til annet forsikringsforhold\nForsikringsavtalen omfatter bare lovlig interesse som kan          i Gjensidige.\nverdsettes i penger.\n                                                                   10. Avtalegiro\nForsikringsavtalen består av                                       Betaling via AvtaleGiro forutsetter trekk i henhold til\n- forsikringsdokumentet                                            betalingsoversikten. Ved manglende trekk forfaller\n- eventuell avtale ved kollektive forsikringer                     resterende del av årspremien til betaling\n  og reguleres også av\n- forsikringsavtaleloven (FAL)                                     11. Renter\n- det øvrige lovverket                                             Det beregnes renter ved erstatningsoppgjør i samsvar med\n                                                                   forsikringsavtalelovens §§ 8-4 og 18-4.\nForsikringsbeviset gjelder foran forsikringsvilkår og\nsikkerhetsforskrifter. Spesielle bestemmelser gjelder foran        12. Opphør ved eierskifte\ngenerelle bestemmelser.                                            I stedet for forsikringsavtalelovens § 7-2 gjelder:\n\n\n\n\n                                                                                                                                    Forsikringsoversikt\n                                                                   Skifter den ting forsikringen er knyttet til eier, faller\n2. Norske lover og domstoler                                       forsikringen bort. Gjensidige svarer likevel for\nNorsk lovgivning gjelder for forsikringsavtalen. Tvister etter     forsikringstilfeller som inntrer innen fjorten dager etter\nforsikringsavtalen avgjøres utelukkende ved norsk domstol.         eierskiftet. Forsikringen bortfaller uansett når den nye eier\n                                                                   har tegnet forsikring.\n3. Garantiordning for skadeforsikringer\nGjensidige er med i en garantiordning for individuelle/private     13. Automatisk opphør av forsikring på registrerte\nskadeforsikringer som kan bidra dersom selskapet ikke har          kjøretøy med ansvarsforsikring\npenger til å betale.                                               Motorvognforsikringen på registrerte kjøretøy med\n                                                                   ansvarsforsikring opphører automatisk ved salg, vraking,\n4. Valuta                                                          tyveri og avregistrering.\nPriser, erstatninger og renter beregnes og gjøres opp i\nnorske kroner.                                                     14. Trafikkforsikringsavgift til staten (TFA)\n                                                                   Forsikringsselskapene er pålagt å kreve inn\n5. Grunnpris                                                       trafikkforsikringsavgift til staten.\n\n\n\n                                                                                                                                    Forsikringsbevis\nGrunnprisen er et fast beløp uavhengig av                          Trafikkforsikringsavgiften følger ansvarsforsikringen for\nforsikringsavtalens omfang. Den dekker kostnader til               kjøretøy, og du betaler for den perioden kjøretøyet er\nadministrasjon og refunderes ikke ved oppsigelse i                 registrert.\nforsikringsåret.\n                                                                   15. Gjensidiges rett til å si opp forsikringen i\n6. Ettårige avtaler fornyes automatisk                             forsikringstiden\nForsikringen er ettårig og fornyes automatisk for ett år av        Gjensidige kan si opp forsikringen i forsikringstiden når det\ngangen dersom ikke forsikringstaker sier opp forsikringen.         foreligger et særlig forhold og oppsigelse er rimelig.\nGjensidige kan endre pris og vilkår hvert år ved hovedforfall.     Dette gjelder ved;\n                                                                   -gjentatte manglende betalinger\n\n\n\n\n                                                                                                                                    Fellesdekninger / Generelle vilkår\n7. Angrerett                                                       -konkurs\nPrivate forsikringstakere har rett til å angre på inngått avtale   -manglende medvirkning til legitimering eller andre\nom kjøp av forsikring når salget har skjedd per telefon eller      kundetiltak etter hvitvaskingsloven\ninternett. Angrefristen er 30 dager for personforsikring og 14     -befatning med ulovlig interesse som kan ha innvirkning på\ndager for øvrige forsikringer. Fristen løper fra mottatt           forsikringsavtalen\nforsikringsdokument.                                               -skadefrekvens eller skadeforløp som avviker fra det\n                                                                   normale\nMelding om bruk av angrerett må gis innen utløpet av               -truende eller trakasserende adferd overfor representant for\nangrefristen. Forsikringen vil da bli avsluttet, og                Gjensidige.\nforsikringstakeren vil kun betale forsikringspremie og evt\ntrafikkforsikringsavgift for de dagene forsikringen har vært i     16. Svik\nkraft.                                                             Ved svik opphører både rett til erstatning og refusjon av\n                                                                   innbetalt beløp, og alle forsikringsavtaler kan sies opp med\n8. Tidsbegrensede forsikringer                                     øyeblikkelig virkning. Allerede utbetalte erstatningsbeløp\nForsikringer som er avtalt for en tidsbegrenset periode,           kan kreves tilbakebetalt.\nopphører på avtalt utløpsdato uten ytterligere varsel.\n                                                                   17. Krig og uroligheter\n\n\n\n\n                                                                                                                                    Erstatningsregler\n9. Tilgodehavende                                                  Forsikringen dekker ikke skade på person, ting eller tap\nOpphører forsikringen i forsikringstiden, beregnes                 som skyldes\ntilgodehavende for gjenstående del av forsikringstiden, så         - Krig eller alvorlige uroligheter i Norge\nsant ikke annet er angitt i de enkelte forsikringsbevis.           - Krig, krigslignende tilstand eller andre former for\nDette gjelder ikke for grunnpris, se punkt 5.                        uroligheter i utlandet dersom forsikrede reiser inn i, eller\n                                                                     tar opphold i, et område med krig eller uroligheter der\nØnskes beløpet utbetalt, må kontonummer oppgis. For                  Norsk Utenriksdepartement som følge av\nprivatkunder må kontonummeret eies av forsikringstager.              sikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke\nFor næringslivskunder må kontonummer og forsikringstager             annet er avtalt skriftlig\nvære knyttet til samme organisasjonsnummer.                        - Deltakelse i krig\n\f",
+      "raw_text": "GENERELLE VILKÅR\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\n1. Forsikringsavtalen\nForsikringsavtalen omfatter bare lovlig interesse som kan\nverdsettes i penger.\nForsikringsavtalen består av\n- forsikringsdokumentet\n- eventuell avtale ved kollektive forsikringer\nog reguleres også av\n- forsikringsavtaleloven (FAL)\n- det øvrige lovverket\nForsikringsbeviset gjelder foran forsikringsvilkår og\nsikkerhetsforskrifter. Spesielle bestemmelser gjelder foran\ngenerelle bestemmelser.\n2. Norske lover og domstoler\nNorsk lovgivning gjelder for forsikringsavtalen. Tvister etter\nforsikringsavtalen avgjøres utelukkende ved norsk domstol.\n3. Garantiordning for skadeforsikringer\nGjensidige er med i en garantiordning for individuelle/private\nskadeforsikringer som kan bidra dersom selskapet ikke har\npenger til å betale.\n4. Valuta\nPriser, erstatninger og renter beregnes og gjøres opp i\nnorske kroner.\n5. Grunnpris\nGrunnprisen er et fast beløp uavhengig av\nforsikringsavtalens omfang. Den dekker kostnader til\nadministrasjon og refunderes ikke ved oppsigelse i\nforsikringsåret.\n6. Ettårige avtaler fornyes automatisk\nForsikringen er ettårig og fornyes automatisk for ett år av\ngangen dersom ikke forsikringstaker sier opp forsikringen.\nGjensidige kan endre pris og vilkår hvert år ved hovedforfall.\n7. Angrerett\nPrivate forsikringstakere har rett til å angre på inngått avtale\nom kjøp av forsikring når salget har skjedd per telefon eller\ninternett. Angrefristen er 30 dager for personforsikring og 14\ndager for øvrige forsikringer. Fristen løper fra mottatt\nforsikringsdokument.\nMelding om bruk av angrerett må gis innen utløpet av\nangrefristen. Forsikringen vil da bli avsluttet, og\nforsikringstakeren vil kun betale forsikringspremie og evt\ntrafikkforsikringsavgift for de dagene forsikringen har vært i\nkraft.\n8. Tidsbegrensede forsikringer\nForsikringer som er avtalt for en tidsbegrenset periode,\nopphører på avtalt utløpsdato uten ytterligere varsel.\n9. Tilgodehavende\nOpphører forsikringen i forsikringstiden, beregnes\ntilgodehavende for gjenstående del av forsikringstiden, så\nsant ikke annet er angitt i de enkelte forsikringsbevis.\nDette gjelder ikke for grunnpris, se punkt 5.\nØnskes beløpet utbetalt, må kontonummer oppgis. For\nprivatkunder må kontonummeret eies av forsikringstager.\nFor næringslivskunder må kontonummer og forsikringstager\nvære knyttet til samme organisasjonsnummer.\nTilgodebeløp kan også overføres til annet forsikringsforhold\ni Gjensidige.\n10. Avtalegiro\nBetaling via AvtaleGiro forutsetter trekk i henhold til\nbetalingsoversikten. Ved manglende trekk forfaller\nresterende del av årspremien til betaling\n11. Renter\nDet beregnes renter ved erstatningsoppgjør i samsvar med\nforsikringsavtalelovens §§ 8-4 og 18-4.\n12. Opphør ved eierskifte\nI stedet for forsikringsavtalelovens § 7-2 gjelder:\nSkifter den ting forsikringen er knyttet til eier, faller\nforsikringen bort. Gjensidige svarer likevel for\nforsikringstilfeller som inntrer innen fjorten dager etter\neierskiftet. Forsikringen bortfaller uansett når den nye eier\nhar tegnet forsikring.\n13. Automatisk opphør av forsikring på registrerte\nkjøretøy med ansvarsforsikring\nMotorvognforsikringen på registrerte kjøretøy med\nansvarsforsikring opphører automatisk ved salg, vraking,\ntyveri og avregistrering.\n14. Trafikkforsikringsavgift til staten (TFA)\nForsikringsselskapene er pålagt å kreve inn\ntrafikkforsikringsavgift til staten.\nTrafikkforsikringsavgiften følger ansvarsforsikringen for\nkjøretøy, og du betaler for den perioden kjøretøyet er\nregistrert.\n15. Gjensidiges rett til å si opp forsikringen i\nforsikringstiden\nGjensidige kan si opp forsikringen i forsikringstiden når det\nforeligger et særlig forhold og oppsigelse er rimelig.\nDette gjelder ved;\n-gjentatte manglende betalinger\n-konkurs\n-manglende medvirkning til legitimering eller andre\nkundetiltak etter hvitvaskingsloven\n-befatning med ulovlig interesse som kan ha innvirkning på\nforsikringsavtalen\n-skadefrekvens eller skadeforløp som avviker fra det\nnormale\n-truende eller trakasserende adferd overfor representant for\nGjensidige.\n16. Svik\nVed svik opphører både rett til erstatning og refusjon av\ninnbetalt beløp, og alle forsikringsavtaler kan sies opp med\nøyeblikkelig virkning. Allerede utbetalte erstatningsbeløp\nkan kreves tilbakebetalt.\n17. Krig og uroligheter\nForsikringen dekker ikke skade på person, ting eller tap\nsom skyldes\n- Krig eller alvorlige uroligheter i Norge\n- Krig, krigslignende tilstand eller andre former for\nuroligheter i utlandet dersom forsikrede reiser inn i, eller\ntar opphold i, et område med krig eller uroligheter der\nNorsk Utenriksdepartement som følge av\nsikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke\nannet er avtalt skriftlig\n- Deltakelse i krig\f",
+      "render_sha256": "103e92600eacf8ba03ac7de4435b7c30524171c0f0b1b79c0ac0457609b9275a"
+    },
+    {
+      "PDF_page_1_based": 13,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 65,
+        "catalog_match": "[{\"key\": \"hus.avtale.forbehold\", \"label\": \"Forsikringsbevisets forrang\", \"value\": \"De alminnelige vilkårene er en generell oversikt og er ikke del av den enkelte avtalen. Forsikringsbeviset og kundens fullstendige vilkår avgjør valgt dekning, summer, egenandeler og registrerte utvidelser.\", \"source\": {\"documentId\": \"gjensidigeHusStandard\", \"filename\": \"Hus-Standard-alminnelige-vilkar.pdf\", \"termsNumber\": \"Hus Standard\", \"effectiveFrom\": \"\", \"company\": \"Gjensidige\", \"url\": \"https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf\", \"section\": \"Forsikringsoversikt / Forsikringsbevis\", \"page\": 1, \"version\": \"Alminnelige vilkår\"}}]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "CATALOG_FACT_TOO_COARSE",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2169",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {
+          "hus.avtale.forbehold": true
+        },
+        "key_support_existing_type_registry": {
+          "hus.avtale.forbehold": null
+        },
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus-pluss",
+        "product_id": "gjensidige-hus-pluss",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [
+          "hus.avtale.forbehold"
+        ],
+        "provider": "gjensidige",
+        "reason": "Bevisforrang korrekt;14dny-eierettervern og generelle materielle unntak mangler.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "materiell",
+        "semantic_subject": "Generelt",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Forsikringsbevisførvilkår;14dagereierskifteettervern,krig/terror/ABCtypedifferensiert.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-3111",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-048",
+        "source_location": "PDF 13–14",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus Pluss",
+                "Råte og skadeinsekter"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Pluss",
+              "effectiveFrom": "",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusPluss",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+              "termsNumber": "Hus Pluss",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "structured_value": "Forsikringsbevisførvilkår;14dagereierskifteettervern,krig/terror/ABCtypedifferensiert.",
+        "unique_source_semantic_id": "aeaec8c011fd61b7e641",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "layout_text": "  GENERELLE VILKÅR\n\n\n\n\n                                                                                                                                    Nyheter og endringer\n1. Forsikringsavtalen                                              Tilgodebeløp kan også overføres til annet forsikringsforhold\nForsikringsavtalen omfatter bare lovlig interesse som kan          i Gjensidige.\nverdsettes i penger.\n                                                                   10. Avtalegiro\nForsikringsavtalen består av                                       Betaling via AvtaleGiro forutsetter trekk i henhold til\n- forsikringsdokumentet                                            betalingsoversikten. Ved manglende trekk forfaller\n- eventuell avtale ved kollektive forsikringer                     resterende del av årspremien til betaling\n  og reguleres også av\n- forsikringsavtaleloven (FAL)                                     11. Renter\n- det øvrige lovverket                                             Det beregnes renter ved erstatningsoppgjør i samsvar med\n                                                                   forsikringsavtalelovens §§ 8-4 og 18-4.\nForsikringsbeviset gjelder foran forsikringsvilkår og\nsikkerhetsforskrifter. Spesielle bestemmelser gjelder foran        12. Opphør ved eierskifte\ngenerelle bestemmelser.                                            I stedet for forsikringsavtalelovens § 7-2 gjelder:\n\n\n\n\n                                                                                                                                    Forsikringsoversikt\n                                                                   Skifter den ting forsikringen er knyttet til eier, faller\n2. Norske lover og domstoler                                       forsikringen bort. Gjensidige svarer likevel for\nNorsk lovgivning gjelder for forsikringsavtalen. Tvister etter     forsikringstilfeller som inntrer innen fjorten dager etter\nforsikringsavtalen avgjøres utelukkende ved norsk domstol.         eierskiftet. Forsikringen bortfaller uansett når den nye eier\n                                                                   har tegnet forsikring.\n3. Garantiordning for skadeforsikringer\nGjensidige er med i en garantiordning for individuelle/private     13. Automatisk opphør av forsikring på registrerte\nskadeforsikringer som kan bidra dersom selskapet ikke har          kjøretøy med ansvarsforsikring\npenger til å betale.                                               Motorvognforsikringen på registrerte kjøretøy med\n                                                                   ansvarsforsikring opphører automatisk ved salg, vraking,\n4. Valuta                                                          tyveri og avregistrering.\nPriser, erstatninger og renter beregnes og gjøres opp i\nnorske kroner.                                                     14. Trafikkforsikringsavgift til staten (TFA)\n                                                                   Forsikringsselskapene er pålagt å kreve inn\n5. Grunnpris                                                       trafikkforsikringsavgift til staten.\n\n\n\n                                                                                                                                    Forsikringsbevis\nGrunnprisen er et fast beløp uavhengig av                          Trafikkforsikringsavgiften følger ansvarsforsikringen for\nforsikringsavtalens omfang. Den dekker kostnader til               kjøretøy, og du betaler for den perioden kjøretøyet er\nadministrasjon og refunderes ikke ved oppsigelse i                 registrert.\nforsikringsåret.\n                                                                   15. Gjensidiges rett til å si opp forsikringen i\n6. Ettårige avtaler fornyes automatisk                             forsikringstiden\nForsikringen er ettårig og fornyes automatisk for ett år av        Gjensidige kan si opp forsikringen i forsikringstiden når det\ngangen dersom ikke forsikringstaker sier opp forsikringen.         foreligger et særlig forhold og oppsigelse er rimelig.\nGjensidige kan endre pris og vilkår hvert år ved hovedforfall.     Dette gjelder ved;\n                                                                   -gjentatte manglende betalinger\n\n\n\n\n                                                                                                                                    Fellesdekninger / Generelle vilkår\n7. Angrerett                                                       -konkurs\nPrivate forsikringstakere har rett til å angre på inngått avtale   -manglende medvirkning til legitimering eller andre\nom kjøp av forsikring når salget har skjedd per telefon eller      kundetiltak etter hvitvaskingsloven\ninternett. Angrefristen er 30 dager for personforsikring og 14     -befatning med ulovlig interesse som kan ha innvirkning på\ndager for øvrige forsikringer. Fristen løper fra mottatt           forsikringsavtalen\nforsikringsdokument.                                               -skadefrekvens eller skadeforløp som avviker fra det\n                                                                   normale\nMelding om bruk av angrerett må gis innen utløpet av               -truende eller trakasserende adferd overfor representant for\nangrefristen. Forsikringen vil da bli avsluttet, og                Gjensidige.\nforsikringstakeren vil kun betale forsikringspremie og evt\ntrafikkforsikringsavgift for de dagene forsikringen har vært i     16. Svik\nkraft.                                                             Ved svik opphører både rett til erstatning og refusjon av\n                                                                   innbetalt beløp, og alle forsikringsavtaler kan sies opp med\n8. Tidsbegrensede forsikringer                                     øyeblikkelig virkning. Allerede utbetalte erstatningsbeløp\nForsikringer som er avtalt for en tidsbegrenset periode,           kan kreves tilbakebetalt.\nopphører på avtalt utløpsdato uten ytterligere varsel.\n                                                                   17. Krig og uroligheter\n\n\n\n\n                                                                                                                                    Erstatningsregler\n9. Tilgodehavende                                                  Forsikringen dekker ikke skade på person, ting eller tap\nOpphører forsikringen i forsikringstiden, beregnes                 som skyldes\ntilgodehavende for gjenstående del av forsikringstiden, så         - Krig eller alvorlige uroligheter i Norge\nsant ikke annet er angitt i de enkelte forsikringsbevis.           - Krig, krigslignende tilstand eller andre former for\nDette gjelder ikke for grunnpris, se punkt 5.                        uroligheter i utlandet dersom forsikrede reiser inn i, eller\n                                                                     tar opphold i, et område med krig eller uroligheter der\nØnskes beløpet utbetalt, må kontonummer oppgis. For                  Norsk Utenriksdepartement som følge av\nprivatkunder må kontonummeret eies av forsikringstager.              sikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke\nFor næringslivskunder må kontonummer og forsikringstager             annet er avtalt skriftlig\nvære knyttet til samme organisasjonsnummer.                        - Deltakelse i krig\n\f",
+      "raw_text": "GENERELLE VILKÅR\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\n1. Forsikringsavtalen\nForsikringsavtalen omfatter bare lovlig interesse som kan\nverdsettes i penger.\nForsikringsavtalen består av\n- forsikringsdokumentet\n- eventuell avtale ved kollektive forsikringer\nog reguleres også av\n- forsikringsavtaleloven (FAL)\n- det øvrige lovverket\nForsikringsbeviset gjelder foran forsikringsvilkår og\nsikkerhetsforskrifter. Spesielle bestemmelser gjelder foran\ngenerelle bestemmelser.\n2. Norske lover og domstoler\nNorsk lovgivning gjelder for forsikringsavtalen. Tvister etter\nforsikringsavtalen avgjøres utelukkende ved norsk domstol.\n3. Garantiordning for skadeforsikringer\nGjensidige er med i en garantiordning for individuelle/private\nskadeforsikringer som kan bidra dersom selskapet ikke har\npenger til å betale.\n4. Valuta\nPriser, erstatninger og renter beregnes og gjøres opp i\nnorske kroner.\n5. Grunnpris\nGrunnprisen er et fast beløp uavhengig av\nforsikringsavtalens omfang. Den dekker kostnader til\nadministrasjon og refunderes ikke ved oppsigelse i\nforsikringsåret.\n6. Ettårige avtaler fornyes automatisk\nForsikringen er ettårig og fornyes automatisk for ett år av\ngangen dersom ikke forsikringstaker sier opp forsikringen.\nGjensidige kan endre pris og vilkår hvert år ved hovedforfall.\n7. Angrerett\nPrivate forsikringstakere har rett til å angre på inngått avtale\nom kjøp av forsikring når salget har skjedd per telefon eller\ninternett. Angrefristen er 30 dager for personforsikring og 14\ndager for øvrige forsikringer. Fristen løper fra mottatt\nforsikringsdokument.\nMelding om bruk av angrerett må gis innen utløpet av\nangrefristen. Forsikringen vil da bli avsluttet, og\nforsikringstakeren vil kun betale forsikringspremie og evt\ntrafikkforsikringsavgift for de dagene forsikringen har vært i\nkraft.\n8. Tidsbegrensede forsikringer\nForsikringer som er avtalt for en tidsbegrenset periode,\nopphører på avtalt utløpsdato uten ytterligere varsel.\n9. Tilgodehavende\nOpphører forsikringen i forsikringstiden, beregnes\ntilgodehavende for gjenstående del av forsikringstiden, så\nsant ikke annet er angitt i de enkelte forsikringsbevis.\nDette gjelder ikke for grunnpris, se punkt 5.\nØnskes beløpet utbetalt, må kontonummer oppgis. For\nprivatkunder må kontonummeret eies av forsikringstager.\nFor næringslivskunder må kontonummer og forsikringstager\nvære knyttet til samme organisasjonsnummer.\nTilgodebeløp kan også overføres til annet forsikringsforhold\ni Gjensidige.\n10. Avtalegiro\nBetaling via AvtaleGiro forutsetter trekk i henhold til\nbetalingsoversikten. Ved manglende trekk forfaller\nresterende del av årspremien til betaling\n11. Renter\nDet beregnes renter ved erstatningsoppgjør i samsvar med\nforsikringsavtalelovens §§ 8-4 og 18-4.\n12. Opphør ved eierskifte\nI stedet for forsikringsavtalelovens § 7-2 gjelder:\nSkifter den ting forsikringen er knyttet til eier, faller\nforsikringen bort. Gjensidige svarer likevel for\nforsikringstilfeller som inntrer innen fjorten dager etter\neierskiftet. Forsikringen bortfaller uansett når den nye eier\nhar tegnet forsikring.\n13. Automatisk opphør av forsikring på registrerte\nkjøretøy med ansvarsforsikring\nMotorvognforsikringen på registrerte kjøretøy med\nansvarsforsikring opphører automatisk ved salg, vraking,\ntyveri og avregistrering.\n14. Trafikkforsikringsavgift til staten (TFA)\nForsikringsselskapene er pålagt å kreve inn\ntrafikkforsikringsavgift til staten.\nTrafikkforsikringsavgiften følger ansvarsforsikringen for\nkjøretøy, og du betaler for den perioden kjøretøyet er\nregistrert.\n15. Gjensidiges rett til å si opp forsikringen i\nforsikringstiden\nGjensidige kan si opp forsikringen i forsikringstiden når det\nforeligger et særlig forhold og oppsigelse er rimelig.\nDette gjelder ved;\n-gjentatte manglende betalinger\n-konkurs\n-manglende medvirkning til legitimering eller andre\nkundetiltak etter hvitvaskingsloven\n-befatning med ulovlig interesse som kan ha innvirkning på\nforsikringsavtalen\n-skadefrekvens eller skadeforløp som avviker fra det\nnormale\n-truende eller trakasserende adferd overfor representant for\nGjensidige.\n16. Svik\nVed svik opphører både rett til erstatning og refusjon av\ninnbetalt beløp, og alle forsikringsavtaler kan sies opp med\nøyeblikkelig virkning. Allerede utbetalte erstatningsbeløp\nkan kreves tilbakebetalt.\n17. Krig og uroligheter\nForsikringen dekker ikke skade på person, ting eller tap\nsom skyldes\n- Krig eller alvorlige uroligheter i Norge\n- Krig, krigslignende tilstand eller andre former for\nuroligheter i utlandet dersom forsikrede reiser inn i, eller\ntar opphold i, et område med krig eller uroligheter der\nNorsk Utenriksdepartement som følge av\nsikkerhetsrisikoen har utstedt reiseadvarsel – hvis ikke\nannet er avtalt skriftlig\n- Deltakelse i krig\f",
+      "render_sha256": "103e92600eacf8ba03ac7de4435b7c30524171c0f0b1b79c0ac0457609b9275a"
+    }
+  ],
+  "original_P2_registry": {
+    "batch_id": "",
+    "candidate_authoring_files": "[\"lib/gjensidige-hus-catalog.ts\"]",
+    "disposition": "DEFER_POST_PILOT",
+    "family": "[\"Hus\"]",
+    "finding_ids": "[\"GAP-2110\", \"GAP-2169\"]",
+    "occurrence_count": "2",
+    "provider": "[\"gjensidige\"]",
+    "rationale": "No independent evidence of negligible marginal risk in the SAME approved edit. Preserve finding for later scoped follow-up; P2 is not dismissed.",
+    "signature_id": "d1230f13e6b445d7",
+    "source_fact_ids": "[\"SF-3024\", \"SF-3111\"]"
+  },
+  "protected_checkpoint": {
+    "content": {
+      "B051_partition_counts": [
+        37,
+        0,
+        1,
+        1
+      ],
+      "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+      "HARNESS_AUTONOMY_V1": {
+        "capacity_for_other_roots": 0,
+        "ledger": "../b051-health-help-732b4cc/two-root-authorization-and-ledger.json",
+        "ordinary_limit": 12,
+        "previous_root": "../b051-health-help-732b4cc/draft-identifier-authorization-and-ledger.json",
+        "scope_limit": 6,
+        "scope_used": 3,
+        "status": "HISTORICAL_FROZEN_NO_LONGER_OPERATIONAL_STOP_QUOTA",
+        "used": 33
+      },
+      "NITO": "WAIT",
+      "P2_credit": 0,
+      "Sentralbord": "WAIT_SEPARATE",
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "additional_explicit_HOLD": [
+        "8a89196fecd29ddb"
+      ],
+      "application_identity_sha256": "2c6a310f28d08dba997b1aad855d08f1bcc773e2075bc9ad4f5ceb2d5457e5ee",
+      "base_revision": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+      "catalog_foundation": "Named object-exclusion remainder implemented and locally validated. No exhaustive ordinary-catalog completeness,global P2closure or pilot clearance. Combined revalidation on containing published fresh main remains separate.",
+      "classification": "CURRENT_VALIDATED_HOUSE_OBJECT_EXCLUSIONS",
+      "commit_push_authorized": true,
+      "current_B051_completed_signatures": [
+        "08203cfa28493e63",
+        "0eda923b4090cf6c",
+        "0f7980d6139daa2e",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "35c58fbc06cf6e7d",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "6080e5e5a6bb3c63",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "73aab8a0ad4f6c11",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ed99577218e2302b"
+      ],
+      "current_B130_completed_signatures": [
+        "15f5b4a3e9f79fd2",
+        "597df4c45c6d3db9",
+        "ce90710821e28a97",
+        "d58bff0e6b2d46eb"
+      ],
+      "current_receipt": "completion-receipt-a6beec054bdae0df.json",
+      "deploy_authorized": false,
+      "documented_campaign_count": 67,
+      "documented_campaign_signatures": [
+        "03cff9fe5cfbf518",
+        "08203cfa28493e63",
+        "0a6b5f6f535df685",
+        "0da02a8dae8fd373",
+        "0eda923b4090cf6c",
+        "0f51d1c0374f1f1f",
+        "0f7980d6139daa2e",
+        "15f5b4a3e9f79fd2",
+        "1982ee310e18279c",
+        "1ee41770b0470c78",
+        "1f56c194d413f97d",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "2b078b058bc63967",
+        "35c58fbc06cf6e7d",
+        "373413bc13517ff4",
+        "3f4b9eff50404590",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "4165f79344a7d572",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "48393aac0a200fe5",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "5839d2c13e186676",
+        "597df4c45c6d3db9",
+        "6080e5e5a6bb3c63",
+        "688cc5923342804d",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "72170f7dfe5c91b6",
+        "73aab8a0ad4f6c11",
+        "7b2587a3bbc0c772",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8c14a1328e5080cf",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "8e9d297cb0d1bd0e",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5792662cc2fa9f8",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "c1440948744bfa17",
+        "c5ccc4f26fd475ae",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ce90710821e28a97",
+        "d58bff0e6b2d46eb",
+        "dc3e04a5fcce2317",
+        "ed99577218e2302b",
+        "f8bd15c89bc0dbd6",
+        "fbe23495ae09afb3"
+      ],
+      "global_resolved_open": "UNKNOWN",
+      "historical_DEFER_SAFE_signatures": [
+        "0177d006e35081bf",
+        "01c571aed2922601",
+        "081897ea9890dd48",
+        "19e07ca100e66430",
+        "30fc68fdaa903cfb",
+        "4298f951ca3c66c3",
+        "42c2a36bff254c04",
+        "48f198515fc0f302",
+        "4b74844f6e3299d6",
+        "5451f3cd4d1439f3",
+        "57772b5d65c12f6e",
+        "614e6706ae2502ce",
+        "6a8fa7667b6b4f31",
+        "6aef26441eb0791f",
+        "765fd5db190904d0",
+        "891c9fac3031a8ee",
+        "b2dfb452aaacba84",
+        "b62a64284e4abbe1",
+        "c05c0db230591fe9",
+        "cb3e9dc1ef2d6684",
+        "cc9b15fa0f3121c0"
+      ],
+      "historical_only": {
+        "conversation_reported_resolved": 414,
+        "diagnostics_campaign": "19/12",
+        "mechanical": "19/16",
+        "not_current_ledger_verified": true,
+        "semantic": "10/8"
+      },
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "install": "NOT_PERFORMED",
+      "mapping_decision": "../house-object-exclusions-contract-115ca6a/receipt-house-object-exclusions-contract.json",
+      "new_signature_closure_credit": 0,
+      "new_workstreams_started": false,
+      "next_step": "Verify containing commit on remote main and exact payload hashes. Combined ordinary foundation revalidation remains a separate task;no deploy.",
+      "original_P2_disposition": "DEFER_POST_PILOT unchanged;explicit implementation tracked separately",
+      "prior_checkpoint": "../house-additional-costs-de087fc/checkpoint.json",
+      "prior_revalidation": "../house-foundation-revalidation-115ca6a/receipt-house-foundation.json",
+      "publication_authorization": "publication-authorization.md",
+      "publication_preflight": "publication-preflight.json",
+      "publication_revision": "Containing Git commit;verify on remote main after push",
+      "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+      "remaining_B130_review_signatures": [],
+      "remaining_pre_pilot_points": [
+        "HTU and all other protected HOLD",
+        "8a89196fecd29ddb insect common-exclusion scope HOLD",
+        "SC-020/SR-032 physical insect damage deductible HOLD",
+        "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+        "Security/GDPR and P3-A05 identity/merge status unknown",
+        "Person insurance / pilot scope",
+        "Critical UX",
+        "Feedback",
+        "Operational adviser acceptance"
+      ],
+      "signature": "a6beec054bdae0df",
+      "specific_remainder": "HOUSE_SHARED_BUILDING_OBJECT_EXCLUSIONS_IMPLEMENTED_EFFECTIVE_WHEN_PUBLISHED_COMMIT_VERIFIED",
+      "status": "PASS_VALIDATED"
+    },
+    "path": "docs/audit/checkpoints/house-object-exclusions-115ca6a/checkpoint.json",
+    "sha256": "8ffe41b4a9b1af535b04839a298f01a9708a1dd6a03cb9952b4a76ef13897675"
+  },
+  "base_revision": "979f01ca8cac052372cd610c537d9258269cc081",
+  "captured_before_production_edit": true
+}

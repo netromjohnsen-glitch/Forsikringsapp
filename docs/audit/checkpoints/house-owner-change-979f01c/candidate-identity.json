@@ -1,0 +1,22 @@
+{
+  "base_revision": "979f01ca8cac052372cd610c537d9258269cc081",
+  "candidate_is_uncommitted": true,
+  "application_identity_sha256": "a72c517f715d4aa6c1c352e3d0bfce06573c510d261e513983f22c1bdcc8ba51",
+  "algorithm": "SHA256(canonical compact sorted JSON path->SHA256 mapping)",
+  "application_files": {
+    "lib/gjensidige-hus-catalog.ts": "514543142933d51ee0c85dfc50843689c29aef79ac6b0428165f75a691fffdd3",
+    "tests/helpers/house-object-exclusions.mjs": "10c97b3bf0d801c89b5254cb2259bb8b105edbfe4ec4ebc040a037425230d2f1",
+    "tests/helpers/house-owner-change.mjs": "dbadc8d2e1c729b2d2506983f09279408f6faa5d15aa8a3942543f8842a37762",
+    "tests/remediation-b-051-health-help.test.mjs": "2158ce7861ab6823b1c61d27cb922b2ac469b1f776f73ca0c8cc8289112acd7a",
+    "tests/remediation-b-051-legal.test.mjs": "86da1020c9da871fdd687f7fc456928d911afd2e99daf88de2d7df901550226d",
+    "tests/remediation-b-051-liability.test.mjs": "f9bcc0f85f2ccdfda668828cc1f29a94ef52b06ffc1086972054aada10c75b91",
+    "tests/remediation-b-051-rot-status.test.mjs": "2b19a6f7bf864a6b171e502c9b8a75ab4a335f5365dd011727f8e8fb6a00b728",
+    "tests/remediation-b-051-smart.test.mjs": "49207d5f7a0020caa1397303f97fee703ba0da60ca3d768a2ec3d7a08fc9e3c6",
+    "tests/remediation-house-object-exclusions.test.mjs": "a4ec82b83fb60891d16007a666c911a6ab9e5a1ddfb3abbcfebbc126c6ee8a23",
+    "tests/remediation-house-owner-change.test.mjs": "9b789d67e1b36d8db9cb77655e2bb0f396121a731fccc675b5fbb2fa83c84bf0"
+  },
+  "only_changed_production_file": "lib/gjensidige-hus-catalog.ts",
+  "production_delta": "Exactly2own-source hus.avtale.eierskifte facts,one per product. Point12only;all other production bytes equal fresh main.",
+  "source_oracle_sha256": "b58532a9f767f7c6786bf6d900b1b3f3d6d8911ae10b5db66b42f5c7b8b1c1e5",
+  "baseline_sha256": "3116f142995aed79755b3384b791fd32564ef83376d91580385d891cdfd48b99"
+}

@@ -1,5 +1,60 @@
 # Aktuell dokumentert prosjektstatus
 
+## Punkt 12: Opphør ved eierskifte – validert 24. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`979f01ca8cac052372cd610c537d9258269cc081`. Objektunntak og tidligere bolker er publisert der.
+Punkt 12 under `d1230f13e6b445d7` er validert på denne basisen.
+Publiseringsrevisjonen er committen som inneholder rettelsen, delreceipten og
+denne prosjektstatusen. Publisert status gjelder etter kontroll på remote main.
+Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-owner-change-979f01c/publication-authorization.md).
+Ingen installasjon eller deploy. Testet basis og eksakt kandidatidentitet er adskilt.
+
+To rå rader under `hus.avtale.eierskifte` gir én effektiv avtalevilkårsrad på
+hvert husnivå. Hele punkt 12 beholdes samlet med vilkårets FAL § 7-2-henvisning:
+Ved eierskifte faller forsikringen bort; Gjensidige svarer likevel for
+forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet;
+forsikringen bortfaller uansett når ny eier har tegnet forsikring. Det er ikke
+utledet en ubetinget 14-dagers videreføring av avtalen. Standard har egen kilde
+på PDF-side 12, Pluss egen kilde på side 13 med `replacesBase` og overstyrt
+Standard-provenance. Raden er beskrivende avtalevilkår: ingen datoberegning,
+eiersjekk, automatisk oppsigelse eller endring av dekningsstatus/kundevalg.
+Ingen engine, globale aliaser, extractor-enum, presentasjon eller kilderegister
+er endret. Alle øvrige produksjonsbytes er identiske med testet main-basis.
+
+[Delreceipt for punkt 12](../audit/checkpoints/house-owner-change-979f01c/completion-receipt-d1230f13e6b445d7-point12.json),
+[validering](../audit/checkpoints/house-owner-change-979f01c/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-owner-change-979f01c/candidate-identity.json) og
+[checkpoint](../audit/checkpoints/house-owner-change-979f01c/checkpoint.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-979f01c/receipt-house-foundation.json)
+og [mappingbeslutningen](../audit/checkpoints/house-owner-change-contract-979f01c/receipt-house-owner-change-contract.json)
+beholdes byte-identisk. GAP-2110/SF-3024 og GAP-2169/SF-3111 er validert
+**bare for punkt 12**. Øvrige dimensjoner i de bredere originalbindingene og
+signaturen er ikke ferdig vurdert eller lukket. Originalregisterets
+P2/DEFER_POST_PILOT beholdes; lokal delimplementering gir ingen global
+signatur-, P2- eller kampanjekreditt.
+
+2952/2952 målrettede tester i 46 filer og 6644/6644 tester i 175 filer består uten
+feil eller skip. 66 nye kontroller dekker komplette kildesider, alle
+12 valgkombinasjoner, tre JSON-berikinger, individuell dokumentprioritet og
+vern mot å miste tidlig opphør eller endre 14-dagersleddet. 214 manuelle
+kontroller, 144 dokumentflyter og 52 sammenligninger bevarer øvrige felt og
+dekningsstatuser. Støttevilkår alene oppretter ingen forsikring; generiske
+etiketter gir ingen nye aliaser/kundevalg. Kvalitetskontroll av 10 kode-/testfiler:
+0 feil og 0 warnings. Dokumenterte testtilpasninger gjelder kun de to
+kildeverifiserte rå radene og en ny testfixtures indeksfeil; historiske
+snapshots, originaler og fingeravtrykk er bevart.
+
+Samlet katalogfundament er ikke frigitt. B-051 37/0/1/1, kampanje 67, ny
+signaturkreditt 0, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Alle HOLD er uendret,
+inkludert HTU, `8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. Samlet revalidering
+på inneholdende publisert main er en separat oppgave. NITO venter; Sentralbord
+venter separat. Ingen ny arbeidsstrøm er startet.
+
 ## Objektunntak for hobbyveksthus og mineralolje – validert 24. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

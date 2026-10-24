@@ -1,0 +1,64 @@
+{
+  "status": "AUTHORIZED_IMPLEMENTATION_ONLY",
+  "user_instruction": "Implementer punkt12 «Opphør ved eierskifte» under d1230f13e6b445d7 på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy;behold alle HOLD.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T15:06:57.255154+00:00",
+  "base_revision": "979f01ca8cac052372cd610c537d9258269cc081",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt12 Opphør ved eierskifte only",
+  "whole_signature_closure": false,
+  "decision": "../house-owner-change-contract-979f01c/receipt-house-owner-change-contract.json",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point12_PDF_page_1_based": 12
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point12_PDF_page_1_based": 13
+    }
+  ],
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "exact_delta": "Two raw facts,one atomic hus.avtale.eierskifte term per product. Own Standard12/Pluss13,Pluss replacesBase. Preserve full point12/FALreference. No other production bytes changed.",
+  "allowed_tests": "Focused new source-bound helper/test;strict exact2row composition/projection in current expectation chain and preceding object-exclusion runtime test;source/before-proven raw protected count increments exactly2 if needed. Historical snapshots/source/receipts/fingerprints immutable.",
+  "allowed_documentation": "New implementation packet,partial point12receipt,checkpoint and current-project-status.md. Prior two local read-only packets immutable.",
+  "gates": [
+    "Freeze both original GAP/SF links,registered source SHA256,complete StandardPDF12/PlussPDF13 raw/layout pages and exact point12 text before production edit. Independent oracle and fresh complete before-state.",
+    "Focused tests/remediation-house-owner-change.test.mjs plus source-bound helper if needed. Whole catalog equals before plus exactly2approved own-source facts;reverse audit checks full wording,metadata,source notes and overriddenBase before projection.",
+    "Both levels/all12 addon combinations:resolver/evidence,materialization,manual input and3JSONreenrichments. Same-stage baseline controls preserve every preexisting field,canonical coverage,customer choice,premium/deductible/source metadata. Exactly one effective rule per product and correct Pluss raw inheritance.",
+    "Actual deterministic existing/offer document pipeline:precise Opphør ved eierskifte label overrides complete point12;unknown fallback;multiple specific conflicts preserved;general terms alone creates0insurance and paired supporting evidence does not create choices. This does not validate a changed extraction model.",
+    "Generic Eierskifte,Ny eier,Opphør,Oppsigelse,Avtalevilkår,Ettervern,14 dager labels acquire no aliases. Existing positive building/fixture customer fields do not suppress independent point12.",
+    "Term alone infers no canonical coverage and no insurance is automatically cancelled or marked selected/not_selected. Do not introduce real-world date/owner-policy evaluation.",
+    "Complete Standard12/Pluss13 provenance,manual generated notes and overriddenBase preserved through repeats;same-product0difference,forward/reverse comparisons,missing other-provider fact unknown not unavailable. All provider/type/version/ordinary boundaries,NITO exclusion and HOLD retained.",
+    "Run current45-file target manifest plus focused test (46files),fullsuite and scoped ESLint. Only independently source/before-proven mechanical test compatibility for2raw additions;no changed immutable snapshots,fingerprints,skipped files or unrelated production fixes."
+  ],
+  "excluded_scope": [
+    "Remaining dimensions of d1230f13e6b445d7",
+    "Automatic cancellation/date/owner-policy calculations",
+    "Engine/alias/enum/presentation/source-registry changes",
+    "HOLD/pilot/P2ledger changes",
+    "NITO and Sentralbord"
+  ],
+  "commit_push_authorized": false,
+  "deploy_authorized": false,
+  "install_authorized": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "historical_P2_disposition": "DEFER_POST_PILOT unchanged;partial implementation only,no whole-signature/globalP2closure or campaign credit"
+}

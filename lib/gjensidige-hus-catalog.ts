@@ -261,6 +261,10 @@ pluss.push(...facts("gjensidigeHusPluss", [
   ["bygninger.mineralolje.unntak", "Tank og fyrkjel for mineralolje – objektunntak", "Tank og fyrkjel for mineralolje er ikke forsikret.", "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje", 3, undefined, true],
 ]));
 
+// Point 12 stays one qualified agreement term; it does not change customer status.
+standard.push(...facts("gjensidigeHusStandard", [["avtale.eierskifte", "Opphør ved eierskifte", "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring.", "Generelle vilkår – Punkt 12. Opphør ved eierskifte", 12]]));
+pluss.push(...facts("gjensidigeHusPluss", [["avtale.eierskifte", "Opphør ved eierskifte", "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring.", "Generelle vilkår – Punkt 12. Opphør ved eierskifte", 13, undefined, true]]));
+
 export const gjensidigeHusFacts: Record<string, CatalogFact[]> = {
   gjensidigeHusStandard: standard,
   gjensidigeHusPluss: pluss,

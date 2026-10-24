@@ -1,0 +1,243 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_OWNER_CHANGE_POINT12_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "decision": "Én samlet avtalevilkårsrad hus.avtale.eierskifte med hele punkt12,inkludert opphør ved eierskifte,begrenset14dagersansvar og opphør når ny eier har tegnet forsikring. To rå rader:egen StandardPDF12 og PlussPDF13 med replacesBase. Én effektiv regel per produkt. Ingen automatisk avtale-/dekningsstatus eller datoberegning.",
+  "reason": "Ingen eksisterende nøkkel uttrykker denne kontrakten presist. De tre leddene avgrenser hverandre og må holdes samlet;egen identitet bevarer uavhengig dokumentprioritet og eksisterende forbeholds-/rettshjelps-/utleieregler. Eksisterende termrolle og hus.ovrig-gruppe fungerer uten engine-/alias-/enum-/presentasjonsendring.",
+  "authorization": "Avklar kontrakt og mapping for punkt12 «Opphør ved eierskifte» under d1230f13e6b445d7 på Hus Standard og Hus Pluss på fersk main. Lever én beslutning og presis rettingsbolk. Ingen kode/deploy;behold alle HOLD.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T15:05:14.139883+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "979f01ca8cac052372cd610c537d9258269cc081",
+  "fresh_main_after": "979f01ca8cac052372cd610c537d9258269cc081",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin main exactSHA. Both original PDF bytes verified against main blobs and registered SHA256.",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt12 Opphør ved eierskifte only",
+  "whole_signature_review_complete": false,
+  "whole_signature_closure": false,
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point12_PDF_page_1_based": 12
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point12_PDF_page_1_based": 13
+    }
+  ],
+  "source_contract": {
+    "exact_point12": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring.",
+    "three_coupled_elements": [
+      "Ved eierskifte faller forsikringen bort",
+      "Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet",
+      "Forsikringen bortfaller uansett når ny eier har tegnet forsikring"
+    ],
+    "rule_is_not_unconditional_14day_policy_extension": true,
+    "no_current_law_interpretation": true,
+    "source_pages": {
+      "Standard": 12,
+      "Pluss": 13
+    },
+    "remaining_general_provisions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+    "no_source_conflict_found": true,
+    "external_question_needed": false
+  },
+  "proposed_correction_packet": {
+    "status": "PROPOSED_NOT_AUTHORIZED_FOR_IMPLEMENTATION",
+    "signature": "d1230f13e6b445d7",
+    "subscope": "Generelle vilkår punkt12 Opphør ved eierskifte only",
+    "single_packet_scope": "One complete atomic contractual rule for both original bindings;two raw own-source facts,one effective fact per house level. Entire broader original signature not included.",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "row": {
+      "key": "hus.avtale.eierskifte",
+      "label": "Opphør ved eierskifte",
+      "value": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring.",
+      "decision": "NEW_ORDINARY_HOUSE_AGREEMENT_TERM_KEY",
+      "Standard": {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 12,
+        "replacesBase": false
+      },
+      "Pluss": {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 13,
+        "replacesBase": true
+      },
+      "source_section": "Generelle vilkår – Punkt 12. Opphør ved eierskifte",
+      "qualificationSource": "Not needed;whole point12 on one page",
+      "materialized_role": "term",
+      "presentation_group": "hus.ovrig"
+    },
+    "atomic_contract_reason": "Cessation on owner change,retained liability for events within14days,and cut-off when new owner has taken insurance are a single qualified rule. Keep all3elements and contract FAL§7-2 reference in one value so a document override cannot leave an unconditional14day continuation from detached fragments.",
+    "source_provenance": "Own registered Standard12/Pluss13 references. Pluss replaces inherited Standard;raw Pluss evidence and overriddenBase retain Standard. Registry metadata,blank effectiveFrom and absent sourceType unchanged.",
+    "do_not_append_to": [
+      "hus.avtale.forbehold",
+      "hus.personkrets.begrensning",
+      "hus.rettshjelp.dekning",
+      "hus.utleie.vilkar",
+      "hus.utleie.mislighold"
+    ],
+    "no_automatic_contract_action": "Descriptive catalog term only. Do not compute dates,look up successor policies,cancel/change agreements,set coverage statuses or change customer choices. No timeline engine or new insurance coverage.",
+    "must_preserve": [
+      "Insurance ceases on owner change,distinct from insurer liability for events in the limited interval",
+      "Retained liability only for insured events occurring within14days after owner change",
+      "Earlier cut-off when new owner has taken insurance",
+      "Full source reference I stedet for forsikringsavtalelovens§7-2 applies as contract wording;no new current-law interpretation",
+      "One exact-label customer override replaces whole point12;unknown falls back to complete source rule;generic headings do not gain aliases",
+      "All other general terms and broader d1230f13e6b445d7 dimensions remain outside this packet",
+      "Existing rights/legal-aid after sale,rental14day notices,positive building rules and all named published P2facts unchanged"
+    ],
+    "no_changes_to": [
+      "Engine,enrichment,comparison/coverage logic,presentation/UI",
+      "Global aliases,canonical registry,document extractor enum",
+      "Source originals/registry/admission,sourceType,effective dates",
+      "Optional selection/Smart/rental contracts",
+      "Historical inventories/receipts/snapshots/P2ledger,HOLD,pilot gate",
+      "General points13vehicle termination/TFA or general war/terror/ABC provisions"
+    ],
+    "forbidden_new_fact_metadata": [
+      "coverageAvailability",
+      "structuredValue or date/duration calculations",
+      "deductibleClassification",
+      "selectionEvidenceKeys"
+    ],
+    "validation_plan": [
+      "Freeze both original GAP/SF links,registered source SHA256,complete StandardPDF12/PlussPDF13 raw/layout pages and exact point12 text before production edit. Independent oracle and fresh complete before-state.",
+      "Focused tests/remediation-house-owner-change.test.mjs plus source-bound helper if needed. Whole catalog equals before plus exactly2approved own-source facts;reverse audit checks full wording,metadata,source notes and overriddenBase before projection.",
+      "Both levels/all12 addon combinations:resolver/evidence,materialization,manual input and3JSONreenrichments. Same-stage baseline controls preserve every preexisting field,canonical coverage,customer choice,premium/deductible/source metadata. Exactly one effective rule per product and correct Pluss raw inheritance.",
+      "Actual deterministic existing/offer document pipeline:precise Opphør ved eierskifte label overrides complete point12;unknown fallback;multiple specific conflicts preserved;general terms alone creates0insurance and paired supporting evidence does not create choices. This does not validate a changed extraction model.",
+      "Generic Eierskifte,Ny eier,Opphør,Oppsigelse,Avtalevilkår,Ettervern,14 dager labels acquire no aliases. Existing positive building/fixture customer fields do not suppress independent point12.",
+      "Term alone infers no canonical coverage and no insurance is automatically cancelled or marked selected/not_selected. Do not introduce real-world date/owner-policy evaluation.",
+      "Complete Standard12/Pluss13 provenance,manual generated notes and overriddenBase preserved through repeats;same-product0difference,forward/reverse comparisons,missing other-provider fact unknown not unavailable. All provider/type/version/ordinary boundaries,NITO exclusion and HOLD retained.",
+      "Run current45-file target manifest plus focused test (46files),fullsuite and scoped ESLint. Only independently source/before-proven mechanical test compatibility for2raw additions;no changed immutable snapshots,fingerprints,skipped files or unrelated production fixes."
+    ],
+    "required_documentation": [
+      "Explicit implementation authorization for point12only,exact key/wording/sources/files/bindings",
+      "Source/reverse audit,before snapshot,actual commands/logs,candidate identity and mechanical ledger if needed",
+      "One partial-scope receipt e.g.completion-receipt-d1230f13e6b445d7-point12.json,checkpoint and current-project-status.md",
+      "Receipt must say point12 validated only;whole original signature and remaining dimensions unassessed/not closed. No original-signature/P2credit.",
+      "This decision and prior local foundation receipt immutable;local PASS distinct from published containing commit"
+    ],
+    "commit_push": "NOT_AUTHORIZED",
+    "deploy": "NOT_AUTHORIZED",
+    "install": "NOT_AUTHORIZED"
+  },
+  "rejected_mappings": [
+    {
+      "option": "Reuse existing hus.avtale.forbehold or another type/provider termination key",
+      "reason": "Document precedence,animal age expiry,season termination,rental notices and legal-aid after sale are different contracts. No existing canonical key found for this owner-change condition."
+    },
+    {
+      "option": "Three separately overridable rows for cessation,14days and new policy",
+      "reason": "These clauses qualify each other;separate overrides risk presenting14days as unconditional continuation after source cutoff. One complete point12 value preserves the combined contract."
+    },
+    {
+      "option": "Availability/cancellation status or calendar implementation",
+      "reason": "User authorizes contract/mapping decision only,and later scoped catalog text. Sources do not provide customer facts needed to decide actual owner change/new policy. No status or engine action justified."
+    }
+  ],
+  "read_only_checks": {
+    "status": "PASS_READ_ONLY_MAPPING_FEASIBILITY",
+    "isolated_clone_only": true,
+    "proposed_raw_facts": 2,
+    "configurations": 12,
+    "manual_plus_three_JSON_reenrichments": "Full preexisting insurance state and canonical coverages match same-stage unmodified catalog controls after projecting only proposed rows;exact new source/sources metadata and generated notes verified.",
+    "document_probes": 20,
+    "general_terms_probes": 4,
+    "generic_label_probes": 14,
+    "forward_reverse_comparison_rows": 12,
+    "positive_building_fixture_fields_preserved": true,
+    "materialized_role": "term",
+    "isNonAssertingCoverageDetail": false,
+    "role_basis": "Key has no.dekning suffix or coverageAvailability;no coverage relation/parent mapping. Both catalog materialization and bare-term coverage inference verified,not assumed from nonasserting helper.",
+    "term_alone_infers_coverage": false,
+    "no_automatic_cancellation_or_date_calculation": true,
+    "all_other_providers_unchanged": true,
+    "actual_global_catalog_unchanged": true,
+    "new_global_alias_registry_or_enum_needed": false,
+    "production_candidate_validated": false,
+    "appsuite_run": false
+  },
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "priority_effect": "Point12only decision. No whole-signature completion,no historical P2reprioritization,no new mandatory prepilot blocker,no HOLD lifting,P2credit or pilot release.",
+  "integrity": {
+    "existing_files_unchanged": 8147,
+    "tracked_files_unchanged": 8143,
+    "prior4_local_revalidation_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false,
+    "only_new_read_only_packet": true
+  },
+  "implementation": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "commit_push": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "deploy": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "install": "NOT_PERFORMED",
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "a1919e78fdc9c66fedb53af30093c7c0ca493c819a7884c5ad3a67f22a415aad",
+    "probe_log": "mapping-probe.log.gz"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "classification": "CURRENT_VALIDATED_ORDINARY_HOUSE_OWNER_CHANGE_POINT12",
+  "status": "PASS_VALIDATED_POINT12_ONLY",
+  "created_at_UTC": "2026-10-24T15:10:03.174394+00:00",
+  "base_revision": "979f01ca8cac052372cd610c537d9258269cc081",
+  "fresh_main_before": "979f01ca8cac052372cd610c537d9258269cc081",
+  "fresh_main_after": "979f01ca8cac052372cd610c537d9258269cc081",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin/main exactSHA. No reset/pull/stash.",
+  "application_identity_sha256": "a72c517f715d4aa6c1c352e3d0bfce06573c510d261e513983f22c1bdcc8ba51",
+  "tested_candidate": "Uncommitted application_files in candidate-identity.json;HEAD identifies base,not an implementation commit.",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt12 Opphør ved eierskifte only",
+  "validated_subscope_only": "Generelle vilkår punkt12 Opphør ved eierskifte",
+  "whole_signature_review_complete": false,
+  "whole_signature_closure": false,
+  "remaining_signature_dimensions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point12_PDF_page_1_based": 12
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point12_PDF_page_1_based": 13
+    }
+  ],
+  "original_priority": "P2",
+  "original_disposition": "DEFER_POST_PILOT retained in immutable registry;explicit point12implementation tracked separately",
+  "decision": "../house-owner-change-contract-979f01c/receipt-house-owner-change-contract.json",
+  "authorization": "authorization.json",
+  "implemented": {
+    "production_file": "lib/gjensidige-hus-catalog.ts",
+    "raw_rows_added": 2,
+    "effective_rows_per_product": 1,
+    "key": "hus.avtale.eierskifte",
+    "label": "Opphør ved eierskifte",
+    "value": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring.",
+    "Standard_source_pages": [
+      12
+    ],
+    "Pluss_source_pages": [
+      13
+    ],
+    "own_Pluss_replaces_base": true,
+    "original_bindings_resolution": "Only point12 within both original bindings validated;not full SF/signature closure. Published status effective only after containing commit verified on main.",
+    "source_to_catalog_and_reverse": "Complete catalog equals before plus exactly2independently source-approved facts. Strict guards validate full wording,registered metadata,sources/generated notes and inherited provenance. All previous fields retained.",
+    "contract": "One atomic full point12 with FAL7-2reference:insurance ceases on owner change;insurer answers for insured events within14days after transfer;ceases in any event when new owner has taken insurance. No unconditional14daypolicy continuation.",
+    "coverage_contract": "Descriptive term role under existing hus.ovrig group. No.dekning suffix,coverageAvailability or related-coverage parent. Term alone infers no canonical coverage. No real-world policy/date/owner lookup,cancellation or customer coverage-status changes.",
+    "unchanged": [
+      "Every other production byte",
+      "Remaining general provisions and broader d1230f13e6b445d7 dimensions",
+      "Prior object-exclusion/additional-cost/settlement/garden-import facts and7source-page fixes",
+      "Positive building/fixture/side-building,rental14day notices and legal-aid after-sale rules",
+      "All other providers,ordinary product/type/version/scope boundaries",
+      "Source registry/sourceType/effective dates/source admission",
+      "Engine,global aliases,extractor enum,presentation/UI",
+      "Original PDFs,all historical inventories/receipts/snapshots and prior local readonly packets"
+    ]
+  },
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2952,
+      "pass": 2952,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 46,
+    "fullsuite": {
+      "tests": 6644,
+      "pass": 6644,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 175,
+    "focused_contract_tests": 66,
+    "scoped_lint_files": 10,
+    "scoped_lint_output": "",
+    "same_candidate_identity_for_all_final_gates": true,
+    "source_reverse_audit": "source-and-reverse-audit.json",
+    "runtime_proof": "runtime-proof.json.gz",
+    "mechanical_corrections": "autonomous-mechanical-corrections.json"
+  },
+  "unchanged_status": {
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "documented_campaign_count": 67,
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "catalog_foundation": "Only point12 locally validated. Other d1230f13e6b445d7 dimensions not assessed/closed,no exhaustive ordinary foundation/globalP2closure/pilot clearance. Combined revalidation on containing published main remains separate.",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit;verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json",
+  "commit_push_authorized": true,
+  "deploy_authorized": false,
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_step": "Verify containing commit on remote main and exact payload hashes. Only point12 is published;broader signature remains unassessed/not closed. Combined ordinary foundation revalidation remains separate;no deploy."
+}

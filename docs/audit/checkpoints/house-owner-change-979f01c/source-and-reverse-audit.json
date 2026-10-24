@@ -1,0 +1,84 @@
+{
+  "status": "PASS_POINT12_ONLY",
+  "base_revision": "979f01ca8cac052372cd610c537d9258269cc081",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt12 Opphør ved eierskifte only",
+  "whole_signature_closure": false,
+  "source_oracle_sha256": "b58532a9f767f7c6786bf6d900b1b3f3d6d8911ae10b5db66b42f5c7b8b1c1e5",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point12_PDF_page_1_based": 12
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point12_PDF_page_1_based": 13
+    }
+  ],
+  "two_own_source_facts": [
+    {
+      "fact": {
+        "key": "hus.avtale.eierskifte",
+        "label": "Opphør ved eierskifte",
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 12,
+          "section": "Generelle vilkår – Punkt 12. Opphør ved eierskifte",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.avtale.eierskifte",
+        "label": "Opphør ved eierskifte",
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 13,
+          "section": "Generelle vilkår – Punkt 12. Opphør ved eierskifte",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "I stedet for forsikringsavtalelovens § 7-2 gjelder: Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort. Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet. Forsikringen bortfaller uansett når den nye eier har tegnet forsikring."
+      },
+      "owner": "gjensidigeHusPluss"
+    }
+  ],
+  "checks": [
+    "Both complete original Standard12/Pluss13 raw/layout pages equal frozen independent oracle and registered/main PDF SHA256",
+    "Exact entire point12 including contract FAL7-2reference,cessation,14dayevent liability and new-policy cutoff;point13vehicle rule excluded",
+    "Whole catalog equals before plus exactly2approved facts;strict source/value/metadata/note/overriddenBase guards before projection",
+    "All12manual choices and3JSONrepeats retain every old field and canonical coverage status",
+    "Actual existing/offer document pipeline exact label overrides entire point12;unknown fallback,multiple specific conflicts retained;general terms create0insurance and no choices",
+    "Generic headings gain no alias;bare point12 term infers0canonical coverage;no automatic policy cancellation/date calculation",
+    "Positive building/fixture customer fields and other providers/source-page fixes retained;all52bidirectional comparison controls pass"
+  ],
+  "focused_tests": 66,
+  "runtime_proof": "runtime-proof.json.gz"
+}
