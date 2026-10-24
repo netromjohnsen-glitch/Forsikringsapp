@@ -297,6 +297,11 @@ smart.push(smartDetail4);
 const smartDetail5 = facts("gjensidigeHusSmart", [["service.smart.pakkeinnhold", "Hus Smart – innhold i alarmpakkene", "Vann- og brannalarm inneholder 4 røykvarslere, 1 vannsensor og 1 alarmsentral. Vann-, brann- og innbruddsalarm inneholder i tillegg 1 sirene, 1 bevegelsessensor med kamera, 1 betjeningspanel og 2 magnetkontakter. Komponentene som følger med, leies og inngår i månedsprisen. Tilleggsutstyr er valgfritt. Medlemsfordeler inngår ikke i denne ordinære pakkebeskrivelsen.", "Hva inneholder alarmtjenesten? / Vann- og brannalarm; Vann-, brann- og innbruddsalarm", 1]])[0];
 smart.push(smartDetail5);
 
+// Separate service-discount detail keeps the full ordinary Helsehjelp contract intact.
+const physicalHealthDiscount = facts("gjensidigeHusProduct", [["service.helsehjelp.fysisk_rabatt", "Helsehjelp 24/7 – rabatt på fysiske konsultasjoner", "Helsehjelp 24/7 gir i samarbeid med Dr.Dropin 15 % rabatt på fysiske konsultasjoner med allmennlege, psykolog og andre utvalgte helsetjenester. Rabattordningen er en tjenestefordel, ikke dekning av behandlingsutgifter. Øvrige vilkår for Helsehjelp 24/7 gjelder.", "Helsehjelp 24/7 – videokonsultasjoner med lege og psykolog / Rabatt på fysiske konsultasjoner", 1]])[0];
+physicalHealthDiscount.qualificationSource = { ...facts("gjensidigeHusStandard", [["service.helsehjelp.fysisk_rabatt", "Helsehjelp 24/7 – rabatt på fysiske konsultasjoner", "Helsehjelp 24/7 gir i samarbeid med Dr.Dropin 15 % rabatt på fysiske konsultasjoner med allmennlege, psykolog og andre utvalgte helsetjenester. Rabattordningen er en tjenestefordel, ikke dekning av behandlingsutgifter. Øvrige vilkår for Helsehjelp 24/7 gjelder.", "Helsehjelp 24/7 / Rabatt på utvalgte tjenester og avgrensning av behandlingsutgifter", 11]])[0].source, note: "De ordinære Helsehjelp-vilkårene gjelder;akutt/øyeblikkelig hjelp og behandlingsutgifter på sykehus og klinikker er ikke omfattet." };
+standard.push(physicalHealthDiscount);
+
 export const gjensidigeHusFacts: Record<string, CatalogFact[]> = {
   gjensidigeHusStandard: standard,
   gjensidigeHusPluss: pluss,

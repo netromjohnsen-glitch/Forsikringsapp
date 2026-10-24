@@ -1,5 +1,38 @@
 # Aktuell dokumentert prosjektstatus
 
+## Helsehjelp: rabatt på fysiske konsultasjoner – validert 24. oktober 2026
+
+Fersk main-basis er `27dffab69b656e2ea56027f7515ee9955074fba6`. `ed34078f38391643` med begge originalbindinger
+GAP-2123/SF-3053 og GAP-2182/SF-3139 er validert som én egen detaljrad:
+`hus.service.helsehjelp.fysisk_rabatt`. Hus Standard eier raden; Hus Pluss
+arver den. Registrert produktside dokumenterer 15 % rabatt på fysiske konsultasjoner
+med allmennlege, psykolog og andre utvalgte helsetjenester hos Dr.Dropin.
+Standard side 11 supplerer med tjenestens ordinære vilkår og avgrensning av
+behandlingsutgifter. Hele eksisterende Helsehjelp-rad og øvrige produksjonsbytes
+beholdes. Ingen rabatt-/premieberegning, forsikringsoppgjør eller nye kundevalg.
+
+3422/3422 målrettede tester i 51 filer og 7114/7114 tester i 180 filer består
+uten feil eller skip. 58 nye kontraktkontroller dekker kilder, begge husnivåer,
+12 tilleggskombinasjoner, dokumentprioritet og tre JSON-berikinger.
+214 manuelle kontroller, 144 dokumentflyter og 52 sammenligninger bevarer
+øvrige felt, inkludert alle seks publiserte Smart-detaljer.
+Kvalitetskontroll av ti kode-/testfiler: 0 feil og 0 warnings.
+
+[Receipt](../audit/checkpoints/house-health-discount-27dffab/completion-receipt-ed34078f38391643.json),
+[validering](../audit/checkpoints/house-health-discount-27dffab/validation-summary.json),
+[beslutning](../audit/checkpoints/house-health-discount-27dffab/contract-decision.json) og
+[checkpoint](../audit/checkpoints/house-health-discount-27dffab/checkpoint.json).
+Publiseringsrevisjonen er committen som inneholder rettelsen, receipten og denne statusen.
+Publisert status gjelder etter kontroll av remote main under
+[publiseringsfullmakten](../audit/checkpoints/house-health-discount-27dffab/publication-authorization.md).
+Ingen global signatur-/P2-/kampanjekreditt; historisk P2/DEFER_POST_PILOT beholdes.
+Samlet ordinært grunnlag revalideres etter publisering. Alle HOLD og øvrige
+pre-pilotpunkter beholdes: sikkerhet/GDPR og P3-A05-identitet/mergestatus,
+personforsikring/pilotscope, kritisk UX, feedback og operativ rådgiveraksept.
+B-051 37/0/1/1, kampanje 67, globalt resolved/open UKJENT og
+REMEDIATION_REQUIRED er uendret. Ingen installasjon eller deploy.
+NITO venter; Sentralbord venter separat.
+
 ## Seks ordinære Smart-detaljer – validert 24. oktober 2026
 
 Fersk main-basis er `b618f7ecdb9fb99ea74ba0581b37ead8a406fd78`. Seks avgrensede røtter er validert på denne basisen:
