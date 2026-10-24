@@ -1,3 +1,4 @@
+import {applySettlement as withCurrentSettlement} from './helpers/house-settlement-form.mjs';
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
@@ -15,7 +16,7 @@ import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {expectedCatalog as oldOracle} from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
 
 const key='hus.ansvar.dekning', ids=['gjensidige-hus','gjensidige-hus-pluss'];
-const baseline=structuredClone(oracleBaseline),candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
+const baseline=withCurrentSettlement(structuredClone(oracleBaseline)),candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
 const value=sourceOracle.value;
 const before=baseline.facts.gjensidigeHusStandard.find(f=>f.key===key);
 const after=expectedCatalog.facts.gjensidigeHusStandard.find(f=>f.key===key);
@@ -118,7 +119,7 @@ check('prior-53-immutable-receipts',()=>{
  assert.equal(prior.length,53);assert.equal(new Set(prior.map(x=>x.signature)).size,53);
  for(const entry of prior)assert.equal(createHash('sha256').update(readFileSync(new URL('../'+entry.path,import.meta.url))).digest('hex'),entry.sha256);
 });
-check('isolation-counts',()=>{assert.equal(protectedRaw,4168);assert.equal(untouched,317);assert.equal(otherProducts,202);});
+check('isolation-counts',()=>{assert.equal(protectedRaw,4170);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-deltas',()=>{
  assert.deepEqual(fps.map(f=>f.after),[
  '484a1a5784ec806384cd6ceb215839b8f7a3f9baa777557fd9ef783756e76b8d',

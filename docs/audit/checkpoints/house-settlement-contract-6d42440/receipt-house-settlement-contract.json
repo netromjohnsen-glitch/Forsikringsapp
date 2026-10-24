@@ -1,0 +1,179 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_SETTLEMENT_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "decision": "Bruk eksisterende hus.gjenoppforing.oppgjorsmate med etiketten Oppgjørsmåte. Ingen egen kataloggren,global alias,extractor-enum eller engineendring er nødvendig.",
+  "reason": "Nøkkelen er allerede brukt for samme regeltype: If har oppgjørsvalg og75%udokumentert arbeidslønn;Tryg har oppgjørsvalg og kontanttak. Gjensidiges eget komplette avgrensede regelsett kan sammenlignes under samme identitet uten å kopiere andre selskapers vilkår. Eksisterende presentasjonsgruppe hus.gjenoppforing beholder hver detaljrad. Eksakt entydig etikett på sikkert identifisert produkt gir dokumentprioritet gjennom eksisterende kode.",
+  "authorization": "Gjør lesende kontrakt-/mappingavklaring av oppgjørsform og arbeidsbetaling for GAP-2113/SF-3031 og GAP-2172/SF-3118 på Hus Standard og Hus Pluss på fersk main. Avklar om eksisterende hus.gjenoppforing.oppgjorsmate kan brukes eller om egen kataloggren er nødvendig. Bevar fakturakravet, beregningsgrunnlaget for75%,regelen om300kroner for øvrige arbeider og kontantoppgjørets kostnadstak. Lever én begrunnet beslutning og presis rettingsbolk. Ingen kodeendringer eller deploy;behold alleHOLD.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T14:01:27.377183+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "6d42440b60cff961a9786bdde083506b96523661",
+  "fresh_main_after": "6d42440b60cff961a9786bdde083506b96523661",
+  "fresh_main_method": "Connected GitHub branch API;HEAD and origin/main equal exactSHA. Relevant originalsource bytes verified against git blob at main.",
+  "signature": "8db65d4d3da9e98b",
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2113",
+      "source_fact_id": "SF-3031",
+      "product": "gjensidige-hus",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16
+    },
+    {
+      "finding_id": "GAP-2172",
+      "source_fact_id": "SF-3118",
+      "product": "gjensidige-hus-pluss",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17
+    }
+  ],
+  "source_contract": {
+    "company_choice": "Gjensidige velger bistand til reparasjon/utbedring/gjenoppføring eller kontanterstatning,innenfor vilkårets krav til tilsvarende stand.",
+    "supplier": "Ved reparasjon/gjenoppføring velger Gjensidige leverandør;avtale inngås på sikredes vegne og fakturaer utstedes til sikrede.Mva-fradragsberettigede kostnader erstattes uten mva.",
+    "cash_cap": "Kontantoppgjør skal ikke overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring.",
+    "labor_condition": "Hvis betaling av håndverker/arbeidskraft ikke kan dokumenteres med faktura,erstattes arbeidspenger med75%av timesats ekskl.mva.etter kalkyle fra Gjensidiges takstmann/leverandør.",
+    "other_work": "Timesats for øvrige arbeider er300kroner.Dette er ikke en generell timesats for alt arbeid.",
+    "no_broadening": "Ingen generell75%av hele skadeoppgjøret,ingen totalskade-/aldersfradragsberegning og ingen kundevalg/egenandel utledes."
+  },
+  "proposed_correction_packet": {
+    "status": "PROPOSED_NOT_AUTHORIZED_FOR_IMPLEMENTATION",
+    "operation": "Add one ordinary settlement term under existing key for both exact original bindings",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "key": "hus.gjenoppforing.oppgjorsmate",
+    "label": "Oppgjørsmåte",
+    "proposed_value": "Gjensidige velger mellom å bistå ved reparasjon/utbedring eller gjenoppføring til tilsvarende eller vesentlig tilsvarende stand som før skaden og kontanterstatning tilsvarende kostnaden ved reparasjon/gjenoppføring til vesentlig tilsvarende stand. Ved reparasjon/gjenoppføring velger Gjensidige leverandør, inngår avtale på vegne av sikrede, og fakturaer utstedes til sikrede. Der sikrede har fradrag for merverdiavgift, erstattes kostnadene uten denne avgiften. Ved kontantoppgjør skal erstatningen ikke overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring. Dersom det ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt, erstattes arbeidspenger med 75 % av timesats ekskl. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør. Timesats for øvrige arbeider er 300 kroner.",
+    "raw_rows": [
+      {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 16,
+        "section": "Erstatningsregler – Hus / Hvordan erstatningen blir beregnet",
+        "replacesBase": false
+      },
+      {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 17,
+        "section": "Erstatningsregler – Hus / Hvordan erstatningen blir beregnet",
+        "replacesBase": true
+      }
+    ],
+    "effective_rows": "Exactly one per product in every addon combination; Pluss own source replaces inherited Standard effective row; raw evidence retains both and overriddenBase provenance is retained.",
+    "forbidden_added_metadata": [
+      "structuredValue",
+      "coverageAvailability",
+      "deductibleClassification",
+      "selectionEvidenceKeys",
+      "new source registration/sourceType/effective date"
+    ],
+    "no_engine_or_alias_changes": [
+      "lib/insurance-normalization.ts",
+      "lib/presentation-catalog.ts",
+      "lib/analysis-output.ts",
+      "lib/catalog-enrichment.ts",
+      "lib/coverage-status.ts",
+      "lib/product-catalog.ts"
+    ],
+    "test_scope": [
+      "One focused tests/remediation-house-settlement-form.test.mjs with independent source oracle and exact whole-state before-plus-two-rows assertions.",
+      "One narrowly source/provider/key-guarded test helper if needed to compose current baseline adapters. Only mechanically proven compatibility adjustments to existing baseline-dependent tests/helpers; keep original audits/snapshots unchanged and keep other-provider same-key facts intact.",
+      "Original PDF hashes and full qualified blocks Standard16/Pluss17; exact75% labor calculation and300 other-work distinction; cash cap and supplier/payment conditions; no75000 or generic deductible conversion.",
+      "Both ordinary products/all12 addon configurations; direct resolver/evidence/materialization/manual/threeJSON reenrichments; same-product equality, side reversal and peer missing->unknown.",
+      "Actual document pipeline existing/offer: exact Oppgjørsmåte customer rule overrides catalog through repetitions; missing/unknown falls back without selection inference; conflicting specific rules preserved. General terms remain supporting evidence.",
+      "Negative labels Oppgjør,Arbeidsbetaling,Timesats remain unbound unless explicitly scoped/identified; no fuzzy matching or new general heading aliases.",
+      "Isolation of If/Tryg rows and all other providers,insurance types,nito,wrong versions. All other current catalog facts and customer fields identical after removing only exactly approved Gjensidige delta.",
+      "Existing named source pages/fullvalue/firstloss/non-rebuilding/age deductions,HOLD,manualSmart/rental,documentPriority and catalogOrigin regression gates. Run current combined41file target suite plus added focused file; fullsuite for shared adapter changes; scoped ESLint."
+    ],
+    "required_documentation": [
+      "New implementation authorization,independent source oracle,before inventory,actual commands/logs,exact candidate identity,completion receipt for the two named original bindings,checkpoint and current-project-status.md.",
+      "Keep this read-only decision packet and prior local foundation-revalidation packet byte-identical as historical evidence; future receipt explicitly distinguishes source decision,current implementation and verified publication."
+    ],
+    "gates": "All relevant existing baseline/source/normalization/enrichment/comparison/document/manual regressions must pass on final exact candidate. No skips; any new semantic root needs separate decision. No production claim from this simulation.",
+    "excluded_scope": [
+      "Garden/import/plant valuation and other adjacent settlement rules",
+      "Totalskade damage threshold75% versus labor payment75%;fullvalue/firstloss conditions",
+      "Age deduction,ordinary deductible/customer selection changes",
+      "All HOLD,broader source cleanup,P2/global ledger or pilot gate release",
+      "NITO and Sentralbord"
+    ],
+    "commit_push": "NOT_AUTHORIZED",
+    "deploy": "NOT_AUTHORIZED",
+    "install": "NOT_AUTHORIZED"
+  },
+  "read_only_checks": {
+    "isolated_prototype_only": true,
+    "all12_addon_combinations": "PASS",
+    "manual_plus_three_JSON_enrichments": "PASS against same-stage unmodified catalog control;all other terms and coverage evidence identical",
+    "document_probes": 16,
+    "document_probe_limits": "Actual current document pipeline followed by custom-catalog enrichment in isolated process;not an extractor-model or changed production pipeline test",
+    "comparisons_forward_and_reverse": 10,
+    "materialized_role": "term",
+    "concept_id": "hus.gjenoppforing",
+    "derive_coverages_from_only_this_term": [],
+    "current_production_row_present": false,
+    "fresh_appsuite_run": false,
+    "new_production_candidate_validated": false
+  },
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "0c50e1dc57b2c4b12eb93d13f6342407de7b64719006c0403eaec64e84ad8626",
+    "probe_log": "mapping-probe.log.gz",
+    "probe_diagnostic": "diagnostic-v2.log.gz"
+  },
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "integrity": {
+    "all7972tracked_and4prior_local_audit_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false,
+    "only_new_read_only_packet": true
+  },
+  "implementation": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "commit_push": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "deploy": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "install": "NOT_PERFORMED",
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "next_step": "Only the proposed bounded implementation after explicit implementation authorization; no priority/gate/HOLD change follows from this decision."
+}

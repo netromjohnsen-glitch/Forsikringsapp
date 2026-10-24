@@ -1,3 +1,4 @@
+import {applySettlement,withoutSettlement} from './house-settlement-form.mjs';
 import {withBuildingsSourcePage,withOriginalBuildingsSourcePage} from './house-buildings-source.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -17,12 +18,12 @@ export function applyPersonScope(catalog){
   const existing=rows.filter(f=>f.key===o.key);
   if(existing.length)assert.deepEqual(existing,[fact]);else rows.push(fact);
  }
- return withBuildingsSourcePage(expected);
+ return applySettlement(withBuildingsSourcePage(expected));
 }
 // Only this approved delta is projected out of immutable older snapshots.
 // Complete new rows/provenance are independently checked by the scoped suite.
 export function withoutPersonScope(value){
- const copy=withOriginalBuildingsSourcePage(value);
+ const copy=withOriginalBuildingsSourcePage(withoutSettlement(value));
  function visit(item){
   if(Array.isArray(item)){
    for(let i=item.length-1;i>=0;i--){const row=item[i];

@@ -1,3 +1,4 @@
+import {applySettlement as withCurrentSettlement} from './helpers/house-settlement-form.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
@@ -20,7 +21,7 @@ const proposal=JSON.parse(readFileSync(new URL('proposal.json',audit)));
 const snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',audit)));
 const bytes=readFileSync(new URL(snapshot.snapshot,audit));
 assert.equal(createHash('sha256').update(bytes).digest('hex'),snapshot.sha256);
-const baseline=applyRot(deserialize(gunzipSync(bytes))),candidate=productCatalog,keys=proposal.rows.map(x=>x.key),ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
+const baseline=withCurrentSettlement(applyRot(deserialize(gunzipSync(bytes)))),candidate=productCatalog,keys=proposal.rows.map(x=>x.key),ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
 
 const product=(c,id)=>c.products.find(x=>x.productId===id);
 const states=i=>deriveCanonicalCoverages(i,'Hus').map(x=>({id:x.id,status:x.status,conflict:x.conflict}));
@@ -97,6 +98,6 @@ check('scoped-document-priority-regression',{},()=>{
   assert.equal(legalStates(b).length,1);assert.equal(legalStates(b).some(s=>s.id==='rettshjelp.dekning'),false);assert.equal(legalStates(b).find(s=>s.id===keys[0]).status,vs.length===1?'not_selected':'unknown');assert.equal(legalStates(b).find(s=>s.id===keys[0]).conflict,vs.length!==1);
  }
 });
-check('isolation-counts',{},()=>{let raw=0,components=0;for(const[o,fs]of Object.entries(baseline.facts)){raw+=fs.filter(f=>o!==proposal.owner||!keys.includes(f.key)).length;if(o!==proposal.owner)components++;}assert.equal(raw,4166);assert.equal(components,317);assert.equal(baseline.products.length-ids.length,202);});
+check('isolation-counts',{},()=>{let raw=0,components=0;for(const[o,fs]of Object.entries(baseline.facts)){raw+=fs.filter(f=>o!==proposal.owner||!keys.includes(f.key)).length;if(o!==proposal.owner)components++;}assert.equal(raw,4168);assert.equal(components,317);assert.equal(baseline.products.length-ids.length,202);});
 check('no-HTU-decision',{},()=>{for(const r of proposal.rows)assert.doesNotMatch(r.value,/husleietvist|HTU|15[ .]?000/iu);});
 process.on('exit',()=>{if(process.env.LEGAL_PROBE_RESULT_FILE)writeFileSync(process.env.LEGAL_PROBE_RESULT_FILE,gzipSync(JSON.stringify({checks,canonicalChanges,metadataTransitions,fingerprints,observations,failures}),{mtime:0}));});

@@ -1,3 +1,4 @@
+import {applySettlement as withCurrentSettlement} from './helpers/house-settlement-form.mjs';
 import {execFileSync} from 'node:child_process';
 import test from 'node:test';
 import {deserialize} from 'node:v8';
@@ -14,7 +15,7 @@ import {normalizeManualAgreement} from '../lib/manual-agreement.ts';
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
 import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {expectedCatalog as activeExpected} from './helpers/b051-liability.mjs';
-const path=new URL('../docs/audit/checkpoints/b051-rot-77db841/',import.meta.url),p=JSON.parse(readFileSync(new URL('proposal.json',path))),snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',path))),bytes=readFileSync(new URL(snapshot.snapshot,path)),baseline=applyRotStatus(deserialize(gunzipSync(bytes))),candidate=productCatalog,key=p.key,ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-08T12:00:00Z');
+const path=new URL('../docs/audit/checkpoints/b051-rot-77db841/',import.meta.url),p=JSON.parse(readFileSync(new URL('proposal.json',path))),snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',path))),bytes=readFileSync(new URL(snapshot.snapshot,path)),baseline=withCurrentSettlement(applyRotStatus(deserialize(gunzipSync(bytes)))),candidate=productCatalog,key=p.key,ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-08T12:00:00Z');
 assert.equal(createHash('sha256').update(bytes).digest('hex'),snapshot.sha256);
 
 const product=(c,id)=>c.products.find(x=>x.productId===id),terms=i=>i.importantTerms.filter(t=>t.key===key||t.name===p.label),state=i=>deriveCanonicalCoverages(i,'Hus').map(x=>({id:x.id,status:x.status,conflict:x.conflict})),rot=i=>state(i).filter(x=>/rate|råte/u.test(x.id)),source={documentId:'synthetic:rot:customer',filename:'Kundebevis.pdf',termsNumber:'Syntetisk kundebevis',effectiveFrom:'',company:'Gjensidige',page:2,section:'Råte',note:'Minneprobe'};

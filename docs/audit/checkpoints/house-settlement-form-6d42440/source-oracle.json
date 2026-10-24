@@ -1,0 +1,230 @@
+{
+  "signature": "8db65d4d3da9e98b",
+  "key": "hus.gjenoppforing.oppgjorsmate",
+  "label": "Oppgjørsmåte",
+  "value": "Gjensidige velger mellom å bistå ved reparasjon/utbedring eller gjenoppføring til tilsvarende eller vesentlig tilsvarende stand som før skaden og kontanterstatning tilsvarende kostnaden ved reparasjon/gjenoppføring til vesentlig tilsvarende stand. Ved reparasjon/gjenoppføring velger Gjensidige leverandør, inngår avtale på vegne av sikrede, og fakturaer utstedes til sikrede. Der sikrede har fradrag for merverdiavgift, erstattes kostnadene uten denne avgiften. Ved kontantoppgjør skal erstatningen ikke overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring. Dersom det ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt, erstattes arbeidspenger med 75 % av timesats ekskl. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør. Timesats for øvrige arbeider er 300 kroner.",
+  "facts": [
+    {
+      "key": "hus.gjenoppforing.oppgjorsmate",
+      "label": "Oppgjørsmåte",
+      "source": {
+        "company": "Gjensidige",
+        "documentId": "gjensidigeHusStandard",
+        "effectiveFrom": "",
+        "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+        "page": 16,
+        "section": "Erstatningsregler – Hus / Hvordan erstatningen blir beregnet",
+        "termsNumber": "Hus Standard",
+        "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+        "version": "Alminnelige vilkår"
+      },
+      "value": "Gjensidige velger mellom å bistå ved reparasjon/utbedring eller gjenoppføring til tilsvarende eller vesentlig tilsvarende stand som før skaden og kontanterstatning tilsvarende kostnaden ved reparasjon/gjenoppføring til vesentlig tilsvarende stand. Ved reparasjon/gjenoppføring velger Gjensidige leverandør, inngår avtale på vegne av sikrede, og fakturaer utstedes til sikrede. Der sikrede har fradrag for merverdiavgift, erstattes kostnadene uten denne avgiften. Ved kontantoppgjør skal erstatningen ikke overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring. Dersom det ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt, erstattes arbeidspenger med 75 % av timesats ekskl. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør. Timesats for øvrige arbeider er 300 kroner."
+    },
+    {
+      "key": "hus.gjenoppforing.oppgjorsmate",
+      "label": "Oppgjørsmåte",
+      "replacesBase": true,
+      "source": {
+        "company": "Gjensidige",
+        "documentId": "gjensidigeHusPluss",
+        "effectiveFrom": "",
+        "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+        "page": 17,
+        "section": "Erstatningsregler – Hus / Hvordan erstatningen blir beregnet",
+        "termsNumber": "Hus Pluss",
+        "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+        "version": "Alminnelige vilkår"
+      },
+      "value": "Gjensidige velger mellom å bistå ved reparasjon/utbedring eller gjenoppføring til tilsvarende eller vesentlig tilsvarende stand som før skaden og kontanterstatning tilsvarende kostnaden ved reparasjon/gjenoppføring til vesentlig tilsvarende stand. Ved reparasjon/gjenoppføring velger Gjensidige leverandør, inngår avtale på vegne av sikrede, og fakturaer utstedes til sikrede. Der sikrede har fradrag for merverdiavgift, erstattes kostnadene uten denne avgiften. Ved kontantoppgjør skal erstatningen ikke overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring. Dersom det ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt, erstattes arbeidspenger med 75 % av timesats ekskl. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør. Timesats for øvrige arbeider er 300 kroner."
+    }
+  ],
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2113",
+      "source_fact_id": "SF-3031",
+      "product": "gjensidige-hus",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16
+    },
+    {
+      "finding_id": "GAP-2172",
+      "source_fact_id": "SF-3118",
+      "product": "gjensidige-hus-pluss",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17
+    }
+  ],
+  "source_pages": [
+    {
+      "PDF_page_1_based": 16,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 68,
+        "catalog_match": "[]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2113",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {},
+        "key_support_existing_type_registry": {},
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus",
+        "product_id": "gjensidige-hus",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [],
+        "provider": "gjensidige",
+        "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "arbeid/form",
+        "semantic_subject": "Oppgjør",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Selskapvelgerreparasjon/gjenoppbygging/kontant/leverandør;75%arbeidsatsutenfaktura,300krøvrigtime,kontantkostnadstak.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-3031",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-055",
+        "source_location": "PDF 16",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Standard",
+              "effectiveFrom": "",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusStandard",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+              "termsNumber": "Hus Standard",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "structured_value": "Selskapvelgerreparasjon/gjenoppbygging/kontant/leverandør;75%arbeidsatsutenfaktura,300krøvrigtime,kontantkostnadstak.",
+        "unique_source_semantic_id": "bfd184baea94d57830c5",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "bounded_block": "Oppgjør etter skade på bygning eller tomt kan skje på følgende måter: - Selskapet bistår sikrede i gjennomføringen av reparasjon/utbedring eller gjenoppføring, til tilsvarende eller vesentlig tilsvarende stand som før skaden - Selskapet utbetaler kontanterstatning tilsvarende kostnaden ved å reparere eller gjenoppføre til vesentlig tilsvarende stand (kontantoppgjør) Gjensidige bestemmer hvilke av alternativene ovenfor som velges Dagens byggeskikk legges til grunn for oppgjøret med mindre annet er avtalt med Gjensidige. Gjøres skaden opp ved at bygningen repareres eller gjenoppføres, velger Gjensidige leverandør. Gjensidige inngår på vegne av sikrede avtale med leverandør, og fakturaer utstedes til sikrede. Der sikrede har fradrag for merverdiavgift, erstatter Gjensidige kostnadene uten denne avgiften. Ved utbedring kan det benyttes nye eller brukte materialer med tilsvarende kvalitet og funksjon. Sikrede må akseptere at det kan forekomme mindre forskjeller i utseende, som farge, nyanse eller overflate, når det ikke påvirker bygningens bruksegenskaper. Eventuelle reklamasjoner skal sikrede først rette direkte til leverandør. Hvis sikrede og leverandør ikke blir enige, og Gjensidige har bistått i gjennomføringen, vil Gjensidige vurdere om det foreligger mangler ved de utførte arbeidene. Er Gjensidige enig med sikrede i dette, kontakter selskapet leverandør for en ny vurdering. Gjøres skaden opp ved kontantoppgjør skal ikke erstatningen overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring. Dersom det ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt, erstattes arbeidspenger med 75% av timesats eks. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør. Timesats for øvrige arbeider er kr 300.",
+      "layout_text": "  ERSTATNINGSREGLER\n\n\n\n\n                                                                                                                                Nyheter og endringer\n                                                                 erstatningsansvar. Utbetaling av erstatning foretas i\n                                                                 samsvar med bestemmelsene i vilkårenes punkt om\n         Hus                                                     \"Utbetaling av erstatning\". Se for øvrig bestemmelse om\n                                                                 skjønn i generelle vilkår.\nI stedet for Forsikringsavtaleloven § 6-1 gjelder:               Fullverdiforsikret bygning - fullverdigaranti:\n                                                                 Det gjøres ikke fradrag for eventuell verdiøkning ved at\nSkademelding                                                     gammel bygning/bygningsdel erstattes med ny når\n- Skade skal snarest meldes Gjensidige                           bygningen repareres eller gjenoppføres til samme formål på\n- Brann, innbrudd, tyveri og skadeverk skal i tillegg meldes     samme sted innen 5 år.\n  politiet\n                                                                 Dersom bygningen velges gjenoppført på et annet sted eller\nHvordan erstatningen blir beregnet                               til annet formål, eksempelvis økning i antall boenheter, og\nOppgjør etter skade på bygning eller tomt kan skje på            dette innebærer en verdiøkning, gjøres det fradrag i\nfølgende måter:\n\n\n\n\n                                                                                                                                Forsikringsoversikt\n                                                                 erstatningen for enhver verdiøkning. Verdiøkningen\n- Selskapet bistår sikrede i gjennomføringen av                  beregnes ut ifra differansen i markedsverdi av bygningen før\n   reparasjon/utbedring eller gjenoppføring, til tilsvarende     skade, og bygning som oppføres etter skade.\n   eller vesentlig tilsvarende stand som før skaden\n- Selskapet utbetaler kontanterstatning tilsvarende              Dersom Gjensidige står for prosessen for gjenoppføring av\n   kostnaden ved å reparere eller gjenoppføre til vesentlig      totalskadet bolig, på samme sted og til samme formål, kan\n   tilsvarende stand (kontantoppgjør)                            kunden velge å få denne gjenoppført som en svanemerket\nGjensidige bestemmer hvilke av alternativene ovenfor som         bolig. Dekningen omfatter en merkostnad på inntil kr 250\nvelges                                                           000 av hva det ville kostet å gjenoppføre boligen uten\n                                                                 svanemerking.\nDagens byggeskikk legges til grunn for oppgjøret med\nmindre annet er avtalt med Gjensidige. Gjøres skaden opp         Er skaden større enn 75% av bygningens\nved at bygningen repareres eller gjenoppføres, velger            gjenoppføringskostnad, beregnet etter punktet ”Hvordan\nGjensidige leverandør. Gjensidige inngår på vegne av             erstatningen blir beregnet”, kan sikrede kreve erstatning\nsikrede avtale med leverandør, og fakturaer utstedes til         som om bygningen var totalskadet - uten at det gjøres\n\n\n\n                                                                                                                                Forsikringsbevis\nsikrede. Der sikrede har fradrag for merverdiavgift, erstatter   fradrag for gjenverdiene. Det er en forutsetning at\nGjensidige kostnadene uten denne avgiften.                       gjenverdiene er revet og fjernet innen 2 år etter\n                                                                 skadetidspunktet.\nVed utbedring kan det benyttes nye eller brukte materialer\nmed tilsvarende kvalitet og funksjon. Sikrede må akseptere       Førsterisikoforsikret bygning\nat det kan forekomme mindre forskjeller i utseende, som          For førsterisikoforsikret bygning som repareres eller\nfarge, nyanse eller overflate, når det ikke påvirker             gjenoppbygges innen 5 år, er erstatningen begrenset til\nbygningens bruksegenskaper.                                      avtalt forsikringssum.\nEventuelle reklamasjoner skal sikrede først rette direkte til    Dersom ny bygning setter sikrede i en vesentlig bedre\nleverandør. Hvis sikrede og leverandør ikke blir enige, og\n\n\n\n\n                                                                                                                                Fellesdekninger / Generelle vilkår\n                                                                 økonomisk situasjon enn før skaden, gjøres det fradrag for\nGjensidige har bistått i gjennomføringen, vil Gjensidige         verdiøkningen. Fradraget gjøres for den del av\nvurdere om det foreligger mangler ved de utførte arbeidene.      verdiøkningen som overstiger 40 % av bygningens\nEr Gjensidige enig med sikrede i dette, kontakter selskapet      markedsverdi før skaden eller bygningens avkastningsverdi\nleverandør for en ny vurdering.                                  dersom det gjelder konsesjonspliktig landbrukseiendom.\nGjøres skaden opp ved kontantoppgjør skal ikke                   Dersom bygningen velges gjenoppført på et annet sted eller\nerstatningen overstige det Gjensidige ville betalt ved           til annet formål, eksempelvis økning i antall boenheter, og\nreparasjon/gjenoppføring.                                        dette innebærer en verdiøkning, gjøres det fradrag for\n                                                                 enhver verdiøkning. Verdiøkningen beregnes ut ifra\nDersom det ikke kan dokumenteres med faktura at                  differansen i markedsverdi av bygningen før skade, og\nhåndverker/arbeidskraft er betalt, erstattes arbeidspenger       bygning som oppføres etter skade.\nmed 75% av timesats eks. mva. etter kalkyle utført av\nGjensidiges takstmann/leverandør. Timesats for øvrige\narbeider er kr 300.\n                                                                 Bygning som ikke repareres eller gjenoppføres innen 5\nSkadet beplantning i hageanlegg erstattes med pris for           år\n\n\n\n\n                                                                                                                                Erstatningsregler\ntilsvarende ung vekst i gartneri.                                Erstatningen settes til det laveste av:\n                                                                 - erstatning etter reglene i punktet om «Hvordan\nNår gjenstand av samme merke/modell eller kvalitet ikke             erstatningen blir beregnet».\nkan kjøpes av forhandler i Norge er erstatningen begrenset       - nedgang i bygningens markedsverdi som følge av skaden\ntil kjøpesum inkludert frakt og kostnader ved innførsel til         eller bygningens avkastningsverdi dersom det gjelder\nNorge.                                                              konsesjonspliktig landbrukseiendom.\nSkadens økonomiske omfang fastsettes ved skjønn dersom           Bygning/bygningsdel som er bestemt revet/utskiftet\nsikrede eller Gjensidige krever det. Skjønnets verdsettelser\ndanner øvre økonomiske grense for Gjensidiges\n\f",
+      "raw_text": "ERSTATNINGSREGLER\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nERSTATNINGSREGLER\nHus\nI stedet for Forsikringsavtaleloven § 6-1 gjelder:\nSkademelding\n- Skade skal snarest meldes Gjensidige\n- Brann, innbrudd, tyveri og skadeverk skal i tillegg meldes\npolitiet\nHvordan erstatningen blir beregnet\nOppgjør etter skade på bygning eller tomt kan skje på\nfølgende måter:\n- Selskapet bistår sikrede i gjennomføringen av\nreparasjon/utbedring eller gjenoppføring, til tilsvarende\neller vesentlig tilsvarende stand som før skaden\n- Selskapet utbetaler kontanterstatning tilsvarende\nkostnaden ved å reparere eller gjenoppføre til vesentlig\ntilsvarende stand (kontantoppgjør)\nGjensidige bestemmer hvilke av alternativene ovenfor som\nvelges\nDagens byggeskikk legges til grunn for oppgjøret med\nmindre annet er avtalt med Gjensidige. Gjøres skaden opp\nved at bygningen repareres eller gjenoppføres, velger\nGjensidige leverandør. Gjensidige inngår på vegne av\nsikrede avtale med leverandør, og fakturaer utstedes til\nsikrede. Der sikrede har fradrag for merverdiavgift, erstatter\nGjensidige kostnadene uten denne avgiften.\nVed utbedring kan det benyttes nye eller brukte materialer\nmed tilsvarende kvalitet og funksjon. Sikrede må akseptere\nat det kan forekomme mindre forskjeller i utseende, som\nfarge, nyanse eller overflate, når det ikke påvirker\nbygningens bruksegenskaper.\nEventuelle reklamasjoner skal sikrede først rette direkte til\nleverandør. Hvis sikrede og leverandør ikke blir enige, og\nGjensidige har bistått i gjennomføringen, vil Gjensidige\nvurdere om det foreligger mangler ved de utførte arbeidene.\nEr Gjensidige enig med sikrede i dette, kontakter selskapet\nleverandør for en ny vurdering.\nGjøres skaden opp ved kontantoppgjør skal ikke\nerstatningen overstige det Gjensidige ville betalt ved\nreparasjon/gjenoppføring.\nDersom det ikke kan dokumenteres med faktura at\nhåndverker/arbeidskraft er betalt, erstattes arbeidspenger\nmed 75% av timesats eks. mva. etter kalkyle utført av\nGjensidiges takstmann/leverandør. Timesats for øvrige\narbeider er kr 300.\nSkadet beplantning i hageanlegg erstattes med pris for\ntilsvarende ung vekst i gartneri.\nNår gjenstand av samme merke/modell eller kvalitet ikke\nkan kjøpes av forhandler i Norge er erstatningen begrenset\ntil kjøpesum inkludert frakt og kostnader ved innførsel til\nNorge.\nSkadens økonomiske omfang fastsettes ved skjønn dersom\nsikrede eller Gjensidige krever det. Skjønnets verdsettelser\ndanner øvre økonomiske grense for Gjensidiges\nerstatningsansvar. Utbetaling av erstatning foretas i\nsamsvar med bestemmelsene i vilkårenes punkt om\n\"Utbetaling av erstatning\". Se for øvrig bestemmelse om\nskjønn i generelle vilkår.\nFullverdiforsikret bygning - fullverdigaranti:\nDet gjøres ikke fradrag for eventuell verdiøkning ved at\ngammel bygning/bygningsdel erstattes med ny når\nbygningen repareres eller gjenoppføres til samme formål på\nsamme sted innen 5 år.\nDersom bygningen velges gjenoppført på et annet sted eller\ntil annet formål, eksempelvis økning i antall boenheter, og\ndette innebærer en verdiøkning, gjøres det fradrag i\nerstatningen for enhver verdiøkning. Verdiøkningen\nberegnes ut ifra differansen i markedsverdi av bygningen før\nskade, og bygning som oppføres etter skade.\nDersom Gjensidige står for prosessen for gjenoppføring av\ntotalskadet bolig, på samme sted og til samme formål, kan\nkunden velge å få denne gjenoppført som en svanemerket\nbolig. Dekningen omfatter en merkostnad på inntil kr 250\n000 av hva det ville kostet å gjenoppføre boligen uten\nsvanemerking.\nEr skaden større enn 75% av bygningens\ngjenoppføringskostnad, beregnet etter punktet ”Hvordan\nerstatningen blir beregnet”, kan sikrede kreve erstatning\nsom om bygningen var totalskadet - uten at det gjøres\nfradrag for gjenverdiene. Det er en forutsetning at\ngjenverdiene er revet og fjernet innen 2 år etter\nskadetidspunktet.\nFørsterisikoforsikret bygning\nFor førsterisikoforsikret bygning som repareres eller\ngjenoppbygges innen 5 år, er erstatningen begrenset til\navtalt forsikringssum.\nDersom ny bygning setter sikrede i en vesentlig bedre\nøkonomisk situasjon enn før skaden, gjøres det fradrag for\nverdiøkningen. Fradraget gjøres for den del av\nverdiøkningen som overstiger 40 % av bygningens\nmarkedsverdi før skaden eller bygningens avkastningsverdi\ndersom det gjelder konsesjonspliktig landbrukseiendom.\nDersom bygningen velges gjenoppført på et annet sted eller\ntil annet formål, eksempelvis økning i antall boenheter, og\ndette innebærer en verdiøkning, gjøres det fradrag for\nenhver verdiøkning. Verdiøkningen beregnes ut ifra\ndifferansen i markedsverdi av bygningen før skade, og\nbygning som oppføres etter skade.\nBygning som ikke repareres eller gjenoppføres innen 5\når\nErstatningen settes til det laveste av:\n- erstatning etter reglene i punktet om «Hvordan\nerstatningen blir beregnet».\n- nedgang i bygningens markedsverdi som følge av skaden\neller bygningens avkastningsverdi dersom det gjelder\nkonsesjonspliktig landbrukseiendom.\nBygning/bygningsdel som er bestemt revet/utskiftet\f"
+    },
+    {
+      "PDF_page_1_based": 17,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 65,
+        "catalog_match": "[]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "SOURCE_FACT_PRESENT_BUT_MISSING_FROM_CATALOG",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2172",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {},
+        "key_support_existing_type_registry": {},
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus-pluss",
+        "product_id": "gjensidige-hus-pluss",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [],
+        "provider": "gjensidige",
+        "reason": "Material source rule absent or reduced to general reference in exact base, optional component and structured/label metadata.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "arbeid/form",
+        "semantic_subject": "Oppgjør",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Selskapvelgerreparasjon/gjenoppbygging/kontant/leverandør;75%arbeidsatsutenfaktura,300krøvrigtime,kontantkostnadstak.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-3118",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-055",
+        "source_location": "PDF 17",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus Pluss",
+                "Råte og skadeinsekter"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Pluss",
+              "effectiveFrom": "",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusPluss",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+              "termsNumber": "Hus Pluss",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "structured_value": "Selskapvelgerreparasjon/gjenoppbygging/kontant/leverandør;75%arbeidsatsutenfaktura,300krøvrigtime,kontantkostnadstak.",
+        "unique_source_semantic_id": "15bbef49cb7c748ba5b9",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "bounded_block": "Oppgjør etter skade på bygning eller tomt kan skje på følgende måter: - Selskapet bistår sikrede i gjennomføringen av reparasjon/utbedring eller gjenoppføring, til tilsvarende eller vesentlig tilsvarende stand som før skaden - Selskapet utbetaler kontanterstatning tilsvarende kostnaden ved å reparere eller gjenoppføre til vesentlig tilsvarende stand (kontantoppgjør) Gjensidige bestemmer hvilke av alternativene ovenfor som velges Dagens byggeskikk legges til grunn for oppgjøret med mindre annet er avtalt med Gjensidige. Gjøres skaden opp ved at bygningen repareres eller gjenoppføres, velger Gjensidige leverandør. Gjensidige inngår på vegne av sikrede avtale med leverandør, og fakturaer utstedes til sikrede. Der sikrede har fradrag for merverdiavgift, erstatter Gjensidige kostnadene uten denne avgiften. Ved utbedring kan det benyttes nye eller brukte materialer med tilsvarende kvalitet og funksjon. Sikrede må akseptere at det kan forekomme mindre forskjeller i utseende, som farge, nyanse eller overflate, når det ikke påvirker bygningens bruksegenskaper. Eventuelle reklamasjoner skal sikrede først rette direkte til leverandør. Hvis sikrede og leverandør ikke blir enige, og Gjensidige har bistått i gjennomføringen, vil Gjensidige vurdere om det foreligger mangler ved de utførte arbeidene. Er Gjensidige enig med sikrede i dette, kontakter selskapet leverandør for en ny vurdering. Gjøres skaden opp ved kontantoppgjør skal ikke erstatningen overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring. Dersom det ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt, erstattes arbeidspenger med 75% av timesats eks. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør. Timesats for øvrige arbeider er kr 300.",
+      "layout_text": "  ERSTATNINGSREGLER\n\n\n\n\n                                                                                                                                Nyheter og endringer\n                                                                 erstatningsansvar. Utbetaling av erstatning foretas i\n                                                                 samsvar med bestemmelsene i vilkårenes punkt om\n         Hus                                                     \"Utbetaling av erstatning\". Se for øvrig bestemmelse om\n                                                                 skjønn i generelle vilkår.\nI stedet for Forsikringsavtaleloven § 6-1 gjelder:               Fullverdiforsikret bygning - fullverdigaranti:\n                                                                 Det gjøres ikke fradrag for eventuell verdiøkning ved at\nSkademelding                                                     gammel bygning/bygningsdel erstattes med ny når\n- Skade skal snarest meldes Gjensidige                           bygningen repareres eller gjenoppføres til samme formål på\n- Brann, innbrudd, tyveri og skadeverk skal i tillegg meldes     samme sted innen 5 år.\n  politiet\n                                                                 Dersom bygningen velges gjenoppført på et annet sted eller\nHvordan erstatningen blir beregnet                               til annet formål, eksempelvis økning i antall boenheter, og\nOppgjør etter skade på bygning eller tomt kan skje på            dette innebærer en verdiøkning, gjøres det fradrag i\nfølgende måter:\n\n\n\n\n                                                                                                                                Forsikringsoversikt\n                                                                 erstatningen for enhver verdiøkning. Verdiøkningen\n- Selskapet bistår sikrede i gjennomføringen av                  beregnes ut ifra differansen i markedsverdi av bygningen før\n   reparasjon/utbedring eller gjenoppføring, til tilsvarende     skade, og bygning som oppføres etter skade.\n   eller vesentlig tilsvarende stand som før skaden\n- Selskapet utbetaler kontanterstatning tilsvarende              Dersom Gjensidige står for prosessen for gjenoppføring av\n   kostnaden ved å reparere eller gjenoppføre til vesentlig      totalskadet bolig, på samme sted og til samme formål, kan\n   tilsvarende stand (kontantoppgjør)                            kunden velge å få denne gjenoppført som en svanemerket\nGjensidige bestemmer hvilke av alternativene ovenfor som         bolig. Dekningen omfatter en merkostnad på inntil kr 250\nvelges                                                           000 av hva det ville kostet å gjenoppføre boligen uten\n                                                                 svanemerking.\nDagens byggeskikk legges til grunn for oppgjøret med\nmindre annet er avtalt med Gjensidige. Gjøres skaden opp         Er skaden større enn 75% av bygningens\nved at bygningen repareres eller gjenoppføres, velger            gjenoppføringskostnad, beregnet etter punktet ”Hvordan\nGjensidige leverandør. Gjensidige inngår på vegne av             erstatningen blir beregnet”, kan sikrede kreve erstatning\nsikrede avtale med leverandør, og fakturaer utstedes til         som om bygningen var totalskadet - uten at det gjøres\n\n\n\n                                                                                                                                Forsikringsbevis\nsikrede. Der sikrede har fradrag for merverdiavgift, erstatter   fradrag for gjenverdiene. Det er en forutsetning at\nGjensidige kostnadene uten denne avgiften.                       gjenverdiene er revet og fjernet innen 2 år etter\n                                                                 skadetidspunktet.\nVed utbedring kan det benyttes nye eller brukte materialer\nmed tilsvarende kvalitet og funksjon. Sikrede må akseptere       Førsterisikoforsikret bygning\nat det kan forekomme mindre forskjeller i utseende, som          For førsterisikoforsikret bygning som repareres eller\nfarge, nyanse eller overflate, når det ikke påvirker             gjenoppbygges innen 5 år, er erstatningen begrenset til\nbygningens bruksegenskaper.                                      avtalt forsikringssum.\nEventuelle reklamasjoner skal sikrede først rette direkte til    Dersom ny bygning setter sikrede i en vesentlig bedre\nleverandør. Hvis sikrede og leverandør ikke blir enige, og\n\n\n\n\n                                                                                                                                Fellesdekninger / Generelle vilkår\n                                                                 økonomisk situasjon enn før skaden, gjøres det fradrag for\nGjensidige har bistått i gjennomføringen, vil Gjensidige         verdiøkningen. Fradraget gjøres for den del av\nvurdere om det foreligger mangler ved de utførte arbeidene.      verdiøkningen som overstiger 40 % av bygningens\nEr Gjensidige enig med sikrede i dette, kontakter selskapet      markedsverdi før skaden eller bygningens avkastningsverdi\nleverandør for en ny vurdering.                                  dersom det gjelder konsesjonspliktig landbrukseiendom.\nGjøres skaden opp ved kontantoppgjør skal ikke                   Dersom bygningen velges gjenoppført på et annet sted eller\nerstatningen overstige det Gjensidige ville betalt ved           til annet formål, eksempelvis økning i antall boenheter, og\nreparasjon/gjenoppføring.                                        dette innebærer en verdiøkning, gjøres det fradrag for\n                                                                 enhver verdiøkning. Verdiøkningen beregnes ut ifra\nDersom det ikke kan dokumenteres med faktura at                  differansen i markedsverdi av bygningen før skade, og\nhåndverker/arbeidskraft er betalt, erstattes arbeidspenger       bygning som oppføres etter skade.\nmed 75% av timesats eks. mva. etter kalkyle utført av\nGjensidiges takstmann/leverandør. Timesats for øvrige\narbeider er kr 300.\n                                                                 Bygning som ikke repareres eller gjenoppføres innen 5\nSkadet beplantning i hageanlegg erstattes med pris for           år\n\n\n\n\n                                                                                                                                Erstatningsregler\ntilsvarende ung vekst i gartneri.                                Erstatningen settes til det laveste av:\n                                                                 - erstatning etter reglene i punktet om «Hvordan\nNår gjenstand av samme merke/modell eller kvalitet ikke             erstatningen blir beregnet».\nkan kjøpes av forhandler i Norge er erstatningen begrenset       - nedgang i bygningens markedsverdi som følge av skaden\ntil kjøpesum inkludert frakt og kostnader ved innførsel til         eller bygningens avkastningsverdi dersom det gjelder\nNorge.                                                              konsesjonspliktig landbrukseiendom.\nSkadens økonomiske omfang fastsettes ved skjønn dersom           Bygning/bygningsdel som er bestemt revet/utskiftet\nsikrede eller Gjensidige krever det. Skjønnets verdsettelser\ndanner øvre økonomiske grense for Gjensidiges\n\f",
+      "raw_text": "ERSTATNINGSREGLER\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nERSTATNINGSREGLER\nHus\nI stedet for Forsikringsavtaleloven § 6-1 gjelder:\nSkademelding\n- Skade skal snarest meldes Gjensidige\n- Brann, innbrudd, tyveri og skadeverk skal i tillegg meldes\npolitiet\nHvordan erstatningen blir beregnet\nOppgjør etter skade på bygning eller tomt kan skje på\nfølgende måter:\n- Selskapet bistår sikrede i gjennomføringen av\nreparasjon/utbedring eller gjenoppføring, til tilsvarende\neller vesentlig tilsvarende stand som før skaden\n- Selskapet utbetaler kontanterstatning tilsvarende\nkostnaden ved å reparere eller gjenoppføre til vesentlig\ntilsvarende stand (kontantoppgjør)\nGjensidige bestemmer hvilke av alternativene ovenfor som\nvelges\nDagens byggeskikk legges til grunn for oppgjøret med\nmindre annet er avtalt med Gjensidige. Gjøres skaden opp\nved at bygningen repareres eller gjenoppføres, velger\nGjensidige leverandør. Gjensidige inngår på vegne av\nsikrede avtale med leverandør, og fakturaer utstedes til\nsikrede. Der sikrede har fradrag for merverdiavgift, erstatter\nGjensidige kostnadene uten denne avgiften.\nVed utbedring kan det benyttes nye eller brukte materialer\nmed tilsvarende kvalitet og funksjon. Sikrede må akseptere\nat det kan forekomme mindre forskjeller i utseende, som\nfarge, nyanse eller overflate, når det ikke påvirker\nbygningens bruksegenskaper.\nEventuelle reklamasjoner skal sikrede først rette direkte til\nleverandør. Hvis sikrede og leverandør ikke blir enige, og\nGjensidige har bistått i gjennomføringen, vil Gjensidige\nvurdere om det foreligger mangler ved de utførte arbeidene.\nEr Gjensidige enig med sikrede i dette, kontakter selskapet\nleverandør for en ny vurdering.\nGjøres skaden opp ved kontantoppgjør skal ikke\nerstatningen overstige det Gjensidige ville betalt ved\nreparasjon/gjenoppføring.\nDersom det ikke kan dokumenteres med faktura at\nhåndverker/arbeidskraft er betalt, erstattes arbeidspenger\nmed 75% av timesats eks. mva. etter kalkyle utført av\nGjensidiges takstmann/leverandør. Timesats for øvrige\narbeider er kr 300.\nSkadet beplantning i hageanlegg erstattes med pris for\ntilsvarende ung vekst i gartneri.\nNår gjenstand av samme merke/modell eller kvalitet ikke\nkan kjøpes av forhandler i Norge er erstatningen begrenset\ntil kjøpesum inkludert frakt og kostnader ved innførsel til\nNorge.\nSkadens økonomiske omfang fastsettes ved skjønn dersom\nsikrede eller Gjensidige krever det. Skjønnets verdsettelser\ndanner øvre økonomiske grense for Gjensidiges\nerstatningsansvar. Utbetaling av erstatning foretas i\nsamsvar med bestemmelsene i vilkårenes punkt om\n\"Utbetaling av erstatning\". Se for øvrig bestemmelse om\nskjønn i generelle vilkår.\nFullverdiforsikret bygning - fullverdigaranti:\nDet gjøres ikke fradrag for eventuell verdiøkning ved at\ngammel bygning/bygningsdel erstattes med ny når\nbygningen repareres eller gjenoppføres til samme formål på\nsamme sted innen 5 år.\nDersom bygningen velges gjenoppført på et annet sted eller\ntil annet formål, eksempelvis økning i antall boenheter, og\ndette innebærer en verdiøkning, gjøres det fradrag i\nerstatningen for enhver verdiøkning. Verdiøkningen\nberegnes ut ifra differansen i markedsverdi av bygningen før\nskade, og bygning som oppføres etter skade.\nDersom Gjensidige står for prosessen for gjenoppføring av\ntotalskadet bolig, på samme sted og til samme formål, kan\nkunden velge å få denne gjenoppført som en svanemerket\nbolig. Dekningen omfatter en merkostnad på inntil kr 250\n000 av hva det ville kostet å gjenoppføre boligen uten\nsvanemerking.\nEr skaden større enn 75% av bygningens\ngjenoppføringskostnad, beregnet etter punktet ”Hvordan\nerstatningen blir beregnet”, kan sikrede kreve erstatning\nsom om bygningen var totalskadet - uten at det gjøres\nfradrag for gjenverdiene. Det er en forutsetning at\ngjenverdiene er revet og fjernet innen 2 år etter\nskadetidspunktet.\nFørsterisikoforsikret bygning\nFor førsterisikoforsikret bygning som repareres eller\ngjenoppbygges innen 5 år, er erstatningen begrenset til\navtalt forsikringssum.\nDersom ny bygning setter sikrede i en vesentlig bedre\nøkonomisk situasjon enn før skaden, gjøres det fradrag for\nverdiøkningen. Fradraget gjøres for den del av\nverdiøkningen som overstiger 40 % av bygningens\nmarkedsverdi før skaden eller bygningens avkastningsverdi\ndersom det gjelder konsesjonspliktig landbrukseiendom.\nDersom bygningen velges gjenoppført på et annet sted eller\ntil annet formål, eksempelvis økning i antall boenheter, og\ndette innebærer en verdiøkning, gjøres det fradrag for\nenhver verdiøkning. Verdiøkningen beregnes ut ifra\ndifferansen i markedsverdi av bygningen før skade, og\nbygning som oppføres etter skade.\nBygning som ikke repareres eller gjenoppføres innen 5\når\nErstatningen settes til det laveste av:\n- erstatning etter reglene i punktet om «Hvordan\nerstatningen blir beregnet».\n- nedgang i bygningens markedsverdi som følge av skaden\neller bygningens avkastningsverdi dersom det gjelder\nkonsesjonspliktig landbrukseiendom.\nBygning/bygningsdel som er bestemt revet/utskiftet\f"
+    }
+  ],
+  "decision_sha256": "3f078bf8771b2e9605d459386b10f905f49156feecd0b576acd7db93cadee0dd",
+  "frozen_before_production_edit": true
+}

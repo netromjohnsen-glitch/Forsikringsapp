@@ -1,5 +1,55 @@
 # Aktuell dokumentert prosjektstatus
 
+## Oppgjørsform og arbeidsbetaling – validert 24. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`6d42440b60cff961a9786bdde083506b96523661`. De tidligere kildehenvisningsrettelsene
+er publisert der. Oppgjørsbolken er validert på samme basis. Publiseringsrevisjonen
+er committen som inneholder rettelsen, receipt og denne prosjektstatusen. Publisert
+status gjelder etter kontroll på remote main. Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-settlement-form-6d42440/publication-authorization.md).
+Testet basis og kandidatidentitet holdes adskilt. Ingen installasjon eller deploy.
+
+Bare `hus.gjenoppforing.oppgjorsmate` er lagt til: én Standard-rad med egen
+fullvilkårskilde på PDF-side 16 og én Pluss-rad med egen kilde på side 17 og
+`replacesBase`. Hvert nivå får én effektiv rad; Pluss beholder overstyrt
+Standard-provenance i bevisgrunnlaget. Gjensidiges valg av oppgjør og leverandør,
+kontanttaket, fakturakravet, 75 % av timesats ekskl. mva. etter selskapets
+kalkyle og 300 kroner for øvrige arbeider er bevart. Dette er en oppgjørsregel;
+ingen dekning, kundevalg, egenandel, aldersfradrag eller totalskadeterskel utledes.
+Ingen engine, alias, extractor-enum eller kilderegister er endret. Alle øvrige
+produksjonsbytes er identiske med testet main-basis.
+
+[Receipt](../audit/checkpoints/house-settlement-form-6d42440/completion-receipt-8db65d4d3da9e98b.json),
+[validering](../audit/checkpoints/house-settlement-form-6d42440/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-settlement-form-6d42440/candidate-identity.json) og
+[checkpoint](../audit/checkpoints/house-settlement-form-6d42440/checkpoint.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-6d42440/receipt-house-foundation.json)
+og [mappingbeslutningen](../audit/checkpoints/house-settlement-contract-6d42440/receipt-house-settlement-contract.json)
+beholdes byte-identisk som før-bevis. Begge originalbindinger,
+GAP-2113/SF-3031 og GAP-2172/SF-3118, er validert i kandidaten. Originalregisteret
+beholder P2/DEFER_POST_PILOT for `8db65d4d3da9e98b`; den eksplisitt autoriserte
+implementeringen føres separat, uten global prioriterings- eller telleendring.
+
+2615/2615 målrettede tester i 42 filer og 6307/6307 tester i 171 filer består uten
+skip. 57 nye kontraktkontroller dekker begge originalkilder, alle 12
+valgkombinasjoner, manuell registrering, tre JSON-berikinger, dokumentprioritet,
+støttevilkår, generiske negative etiketter og provider/type/scope-isolasjon.
+214 manuelle kontroller, 144 dokumentflyter og 52 sammenligninger i begge retninger
+bevarer øvrig atferd. Kvalitetskontroll av 12 kode-/testfiler: 0 feil og 0 warnings.
+Eldre fulle katalogforventninger er tilpasset med den kildeverifiserte toraders-
+endringen; historiske snapshots, originaler og fingeravtrykk er uendret.
+Diagnostikk og de mekaniske tilpasningene er dokumentert i auditpakken.
+
+Samlet katalogfundament er ikke frigitt. B-051 37/0/1/1, kampanje 67, ny
+signaturkreditt 0, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Alle HOLD er uendret, inkludert
+HTU, `8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. Samlet revalidering
+på inneholdende fersk main gjenstår som separat oppgave. NITO venter;
+Sentralbord venter separat. Ingen ny arbeidsstrøm er startet.
+
 ## Ordinært egenandelsfritak ved sikring – validert kildehenvisning 23. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "signature": "8db65d4d3da9e98b",
+  "key": "hus.gjenoppforing.oppgjorsmate",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2113",
+      "source_fact_id": "SF-3031",
+      "product": "gjensidige-hus",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16
+    },
+    {
+      "finding_id": "GAP-2172",
+      "source_fact_id": "SF-3118",
+      "product": "gjensidige-hus-pluss",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17
+    }
+  ],
+  "source_pages": {
+    "Standard": 16,
+    "Pluss": 17
+  },
+  "raw_additions": 2,
+  "effective_per_product": 1,
+  "Pluss_own_source_replaces_Standard": true,
+  "Pluss_raw_evidence_retains_both": true,
+  "candidate_equals_before_plus_exact_oracle_facts": true,
+  "reverse_equals_complete_before_catalog": true,
+  "full_existing_raw_and_runtime_fields_preserved_except_approved_term": true,
+  "other_provider_same_key_rows": "If/Tryg unchanged; no global alias/canonical enum/engine change",
+  "contract_checks": [
+    "invoice condition",
+    "75%of hourly rate excludingVAT by Gjensidige appraiser/supplier estimate",
+    "NOK300for other work only",
+    "company settlement/supplier choice",
+    "cash cap",
+    "supplier invoice and VAT deduction qualifications"
+  ],
+  "negative_semantics": "No coverage/deductible/customer-selection/total-loss/age-deduction/structured-rate inference",
+  "current_test_proof": "57 focused controls and full combined suite; runtime-proof.json.gz contains actual public API outputs",
+  "original_source_registry_and_p2_defer": "Unchanged"
+}

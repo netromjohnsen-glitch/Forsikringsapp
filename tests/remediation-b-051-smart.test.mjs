@@ -1,3 +1,4 @@
+import {applySettlement as withCurrentSettlement} from './helpers/house-settlement-form.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
@@ -22,7 +23,7 @@ const proposal=JSON.parse(readFileSync(new URL('proposal.json',audit)));
 const snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',audit)));
 const snapshotBytes=readFileSync(new URL(snapshot.snapshot,audit));
 assert.equal(createHash('sha256').update(snapshotBytes).digest('hex'),snapshot.sha256);
-const baseline=applyRot(applyLegal(deserialize(gunzipSync(snapshotBytes)))),candidate=productCatalog,addon='gjensidige-hus-smart',ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
+const baseline=withCurrentSettlement(applyRot(applyLegal(deserialize(gunzipSync(snapshotBytes))))),candidate=productCatalog,addon='gjensidige-hus-smart',ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
 
 let checks=0;const samples=[];
 // The old DATA_ONLY raw oracle remains frozen. Runtime expectations now include
@@ -80,7 +81,7 @@ check(()=>{for(const meta of ['products','addOns','sources','insuranceTypes'])as
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const fingerprints=ids.flatMap(id=>(id===ids[0]?[[],['gjensidige-hus-rate-insekter'],[addon]]:[[],[addon]]).map(addons=>{const fs=c=>resolveCatalogFacts(get(c,id),addons,date,null,c).filter(f=>!f.key.startsWith('hus.skadedyr.')&&f.key!=='hus.rate.dekning');return {id,addons,before:hash(fs(baseline)),after:hash(fs(candidate))};}));
 
-check(()=>{assert.equal(protectedRaw,4167);assert.equal(components,317);assert.equal(otherProducts,202);assert.equal(baseline.products.length,204);});
+check(()=>{assert.equal(protectedRaw,4169);assert.equal(components,317);assert.equal(otherProducts,202);assert.equal(baseline.products.length,204);});
 check(()=>{for(const f of fingerprints.filter(f=>!f.addons.includes(addon)))assert.equal(f.before,f.after);});
 const verification=JSON.parse(readFileSync(new URL('source-verification.json',audit)));
 for(const source of verification.frozen_sources)check(()=>assert.equal(createHash('sha256').update(readFileSync(new URL('../'+source.path,import.meta.url))).digest('hex'),source.sha256));

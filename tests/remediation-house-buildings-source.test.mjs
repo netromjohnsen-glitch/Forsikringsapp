@@ -1,3 +1,4 @@
+import {withoutSettlement} from './helpers/house-settlement-form.mjs';
 import {safeguardSourceOracle} from './helpers/house-safeguard-source.mjs';
 import {rebuildingSourceOracle,rebuildingSourceKeys} from './helpers/house-rebuilding-source.mjs';
 import test from 'node:test';
@@ -7,13 +8,24 @@ import {createHash} from 'node:crypto';
 import {deserialize} from 'node:v8';
 import {gunzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
-import {productCatalog,resolveCatalogFacts,resolveCatalogEvidence,findCatalogProduct} from '../lib/product-catalog.ts';
-import {normalizeManualAgreement} from '../lib/manual-agreement.ts';
-import {enrichExtractedAgreementWithCatalog} from '../lib/catalog-enrichment.ts';
-import {materializeCatalogProduct,compareCatalogProducts} from '../lib/catalog-product-comparison.ts';
+import {productCatalog as currentCatalog,resolveCatalogFacts as currentFacts,resolveCatalogEvidence as currentEvidence,findCatalogProduct as currentFind} from '../lib/product-catalog.ts';
+import {normalizeManualAgreement as currentManual} from '../lib/manual-agreement.ts';
+import {enrichExtractedAgreementWithCatalog as currentEnrich} from '../lib/catalog-enrichment.ts';
+import {materializeCatalogProduct as currentMaterialize,compareCatalogProducts as currentCompare} from '../lib/catalog-product-comparison.ts';
 import {groupInsurances,groupTerms} from '../lib/comparison.ts';
-import {documentPipeline} from './helpers/supporting-terms.mjs';
+import {documentPipeline as currentPipeline} from './helpers/supporting-terms.mjs';
 import {buildingsSourceOracle as o,buildingsSourceKeys,withBuildingsSourcePage,withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
+// Keep the source-page regression contract against its immutable before snapshot.
+// The separate settlement suite proves the full production catalog plus exactly two rows.
+const productCatalog=withoutSettlement(currentCatalog);
+const resolveCatalogFacts=(p,a,date)=>currentFacts(p,a,date,null,productCatalog);
+const resolveCatalogEvidence=(p,a,date)=>currentEvidence(p,a,date,null,productCatalog);
+const findCatalogProduct=(provider,id,version,context)=>currentFind(provider,id,version,context,productCatalog);
+const normalizeManualAgreement=input=>currentManual(input,productCatalog);
+const enrichExtractedAgreementWithCatalog=(input,date)=>currentEnrich(input,date,undefined,undefined,productCatalog);
+const materializeCatalogProduct=p=>currentMaterialize(p,productCatalog);
+const compareCatalogProducts=(a,b)=>currentCompare(a,b,productCatalog);
+const documentPipeline=(...args)=>withoutSettlement(currentPipeline(...args));
 const dir=new URL('../docs/audit/checkpoints/house-buildings-source-1b5b5aa/',import.meta.url),bytes=readFileSync(new URL('baseline.v8.gz',dir));
 assert.equal(createHash('sha256').update(bytes).digest('hex'),JSON.parse(readFileSync(new URL('baseline-identity.json',dir))).baseline_sha256);
 const before=deserialize(gunzipSync(bytes)),date=new Date('2026-10-23T12:00:00Z');

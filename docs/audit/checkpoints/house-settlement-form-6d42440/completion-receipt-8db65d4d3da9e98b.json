@@ -1,0 +1,132 @@
+{
+  "classification": "CURRENT_VALIDATED_HOUSE_SETTLEMENT_FORM_AND_LABOR_RULE",
+  "status": "PASS_VALIDATED",
+  "signature": "8db65d4d3da9e98b",
+  "authorization": "authorization.json",
+  "base_revision": "6d42440b60cff961a9786bdde083506b96523661",
+  "tested_HEAD_is_base_not_candidate_commit": true,
+  "application_identity_sha256": "9c4f05ec31da86a01b2dc184c8c7bcef20588df1017ef2c2dc516d46636e1ffb",
+  "candidate_identity": "candidate-identity.json",
+  "source_oracle": "source-oracle.json",
+  "decision": "Existing hus.gjenoppforing.oppgjorsmate with exact approved wording,oneStandard16raw row andonePluss17rawrow withreplacesBase;oneeffective row per product. Original source-owner retained per level;Pluss overriddenBase evidence retained.",
+  "scope": {
+    "provider": "gjensidige",
+    "insurance_type": "Hus",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "key": "hus.gjenoppforing.oppgjorsmate",
+    "label": "Oppgjørsmåte",
+    "value": "Gjensidige velger mellom å bistå ved reparasjon/utbedring eller gjenoppføring til tilsvarende eller vesentlig tilsvarende stand som før skaden og kontanterstatning tilsvarende kostnaden ved reparasjon/gjenoppføring til vesentlig tilsvarende stand. Ved reparasjon/gjenoppføring velger Gjensidige leverandør, inngår avtale på vegne av sikrede, og fakturaer utstedes til sikrede. Der sikrede har fradrag for merverdiavgift, erstattes kostnadene uten denne avgiften. Ved kontantoppgjør skal erstatningen ikke overstige det Gjensidige ville betalt ved reparasjon/gjenoppføring. Dersom det ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt, erstattes arbeidspenger med 75 % av timesats ekskl. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør. Timesats for øvrige arbeider er 300 kroner.",
+    "raw_rows_added": 2,
+    "other_production_bytes_unchanged": true,
+    "engine_alias_enum_source_registry": "UNCHANGED"
+  },
+  "original_source_bindings": [
+    {
+      "finding_id": "GAP-2113",
+      "source_fact_id": "SF-3031",
+      "product": "gjensidige-hus",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16
+    },
+    {
+      "finding_id": "GAP-2172",
+      "source_fact_id": "SF-3118",
+      "product": "gjensidige-hus-pluss",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17
+    }
+  ],
+  "binding_validation": [
+    {
+      "finding_id": "GAP-2113",
+      "source_fact_id": "SF-3031",
+      "product": "gjensidige-hus",
+      "implementation_status": "VALIDATED_EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN"
+    },
+    {
+      "finding_id": "GAP-2172",
+      "source_fact_id": "SF-3118",
+      "product": "gjensidige-hus-pluss",
+      "implementation_status": "VALIDATED_EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN"
+    }
+  ],
+  "prior_read_only_decision": "../house-settlement-contract-6d42440/receipt-house-settlement-contract.json",
+  "prior_read_only_revalidation": "../house-foundation-revalidation-6d42440/receipt-house-foundation.json",
+  "prior_local_packets": "Both unchanged byte-identical;historical read-only status not rewritten",
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2615,
+      "pass": 2615,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 42,
+    "fullsuite": {
+      "tests": 6307,
+      "pass": 6307,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 171,
+    "scoped_eslint": "0errors,0warnings across12code/test files",
+    "focused_contract_tests": 57,
+    "original_sources": "Exact registered SHA and complete source blocks Standard16/Pluss17",
+    "runtime": "Bothlevels/all12 choices,resolver/evidence/materialization/manual+threeJSON reenrichments/bothdisplay sides;214manual,144document,52bidirectional comparisons preserve every other field",
+    "document_priority": "Specific exact product-label rules override catalog;unknown falls back;multiple specific rules preserved. General terms evidence only. Generic headings remain unbound.",
+    "semantics": "75%labor rate basis with invoice condition and estimate source;300other-work rate;cash cap and settlement/supplier conditions. Term role only,no coverage/selection/deductible/age/total-loss inference.",
+    "runtime_proof": "runtime-proof.json.gz"
+  },
+  "source_and_reverse_audit": "source-and-reverse-audit.json",
+  "production_delta": "production-delta.json",
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "original_P2_disposition": "DEFER_POST_PILOT retained as historical original registry. Implementation now explicitly authorized,tracked separately;no aggregate P2closure credit asserted.",
+  "unchanged_status": {
+    "documented_campaign_published_at_base": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "project_status": "../../../development-agent/current-project-status.md",
+  "checkpoint": "checkpoint.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "commit_push": "AUTHORIZED_BY_PUBLICATION_AUTHORIZATION",
+  "install": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_bounded_step": "Combined ordinary-house foundation revalidation on containing fresh main remains separate. All HOLD,global credits and pilot gate unchanged.",
+  "publication_revision": "Containing Git commit; verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}
