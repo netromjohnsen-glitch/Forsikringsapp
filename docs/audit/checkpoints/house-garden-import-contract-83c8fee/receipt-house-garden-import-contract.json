@@ -1,0 +1,223 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_GARDEN_IMPORT_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "decision": "To separate verdsettingsrader i én avgrenset bolk: gjenbruk hus.hage.oppgjor for skadet hagebeplantning og legg til hus.gjenoppforing.import.begrensning for den betingede begrensningen når tilsvarende gjenstand ikke kan kjøpes hos norsk forhandler. Fire rå rader med egen Standard16/Pluss17provenance gir to effektive regler per produkt. Ingen globale aliaser,engine- eller presentasjonsendringer.",
+  "reason": "Tryg bruker allerede hus.hage.oppgjor for hageoppgjør og ung vekst;Gjensidiges egen kortere regel passer samme identitet uten å kopiere Trygs sterkere tekst om tilbakeføring. Ingen eksisterende importbegrensningsnøkkel funnet i gjeldende katalog. Egen begrensningsrad bevarer vilkårets betingelse og hindrer sammenblanding med garden omfang/ordinært kontantoppgjør. Isolert simulering viser selvstendig dokumentprioritet for begge regler.",
+  "authorization": "Avklar kontrakt og mapping for d68e94be42f1549b (hagebeplantning/importverdsetting) på Hus Standard og Hus Pluss på fersk main. Lever én beslutning og presis rettingsbolk. Ingen kodeendringer/deploy;behold alle HOLD. NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T14:18:26.558080+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "fresh_main_after": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin main equal exact SHA. Both original source bytes/hash verified against git blobs at main.",
+  "signature": "d68e94be42f1549b",
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2114",
+      "source_fact_id": "SF-3032",
+      "product": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16
+    },
+    {
+      "finding_id": "GAP-2173",
+      "source_fact_id": "SF-3119",
+      "product": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17
+    }
+  ],
+  "source_contract": {
+    "garden": "Skadet beplantning i hageanlegg erstattes med pris for tilsvarende ung vekst i gartneri.",
+    "import_condition": "Gjenstand av samme merke/modell eller kvalitet kan ikke kjøpes av forhandler i Norge.",
+    "conditional_cap": "Erstatningen er da begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge.",
+    "no_expansion": [
+      "Ingen dekning eller erstatning av fullvoksne planter utledes",
+      "Ingen universell importgrense eller bestemt historisk/ny kjøpspris utledes",
+      "Kostnader ved innførsel bevares;frakt/toll i gammel audit er ikke ny tollregel",
+      "Ingen endring av hageareal/fareunntak eller ordinær arbeids-/kontantregel"
+    ]
+  },
+  "proposed_correction_packet": {
+    "status": "PROPOSED_NOT_AUTHORIZED_FOR_IMPLEMENTATION",
+    "single_packet_signature": "d68e94be42f1549b",
+    "operation": "Add two separate ordinary valuation facts to each exact house level;reuse garden settlement key and introduce only one conditional import-limit key. Four raw facts total,two effective per product.",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "rows": [
+      {
+        "key": "hus.hage.oppgjor",
+        "label": "Hageanlegg – erstatning",
+        "value": "Skadet beplantning i hageanlegg erstattes med pris for tilsvarende ung vekst i gartneri.",
+        "decision": "REUSE_EXISTING_KEY",
+        "source_section": "Erstatningsregler – Hus / Hvordan erstatningen blir beregnet",
+        "Standard": {
+          "owner": "gjensidigeHusStandard",
+          "source": "gjensidigeHusStandard",
+          "page": 16,
+          "replacesBase": false
+        },
+        "Pluss": {
+          "owner": "gjensidigeHusPluss",
+          "source": "gjensidigeHusPluss",
+          "page": 17,
+          "replacesBase": true
+        }
+      },
+      {
+        "key": "hus.gjenoppforing.import.begrensning",
+        "label": "Gjenstander uten norsk forhandler – erstatningstak",
+        "value": "Når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes av forhandler i Norge, er erstatningen begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge.",
+        "decision": "NEW_CATALOG_DETAIL_KEY",
+        "source_section": "Erstatningsregler – Hus / Hvordan erstatningen blir beregnet",
+        "Standard": {
+          "owner": "gjensidigeHusStandard",
+          "source": "gjensidigeHusStandard",
+          "page": 16,
+          "replacesBase": false
+        },
+        "Pluss": {
+          "owner": "gjensidigeHusPluss",
+          "source": "gjensidigeHusPluss",
+          "page": 17,
+          "replacesBase": true
+        }
+      }
+    ],
+    "effective_and_raw_provenance": "Each product gets one effective fact per key;Pluss own-source rows replace inherited Standard. ResolveCatalogEvidence preserves both original rows for Pluss;overriddenBase retained. Preserve established rawfacts/source field order from facts() so existing JSON fingerprint checks remain meaningful.",
+    "do_not_append_to": [
+      "hus.hage.objekter",
+      "hus.gjenoppforing.oppgjorsmate"
+    ],
+    "reason_for_separate_rows": "Garden object/coverage scope,ordinary settlement method/labor rule,plant valuation and no-Norwegian-dealer item cap are distinct dimensions. Separate identities allow a specific customer rule to replace one valuation rule while preserving the other and existing settlement/coverage rules.",
+    "no_engine_alias_or_source_registry_change": [
+      "lib/insurance-normalization.ts",
+      "lib/presentation-catalog.ts",
+      "lib/analysis-output.ts",
+      "lib/catalog-enrichment.ts",
+      "lib/product-catalog.ts",
+      "lib/coverage-status.ts",
+      "lib/coverage-fact-semantics.ts",
+      "lib/gjensidige-hus-sources.ts"
+    ],
+    "forbidden_added_fact_metadata": [
+      "structuredValue or arithmetic money/percentage limits",
+      "coverageAvailability or new coverage parent",
+      "deductibleClassification",
+      "selectionEvidenceKeys",
+      "new sourceType,effective date or source admission"
+    ],
+    "test_scope": [
+      "Focused tests/remediation-house-garden-import.test.mjs and source-bound tests/helpers/house-garden-import.mjs only if needed;independent oracle frozen before production edits.",
+      "Exact original PDF hashes and raw source blocks Standard16/Pluss17;all trigger components and both distinct valuation dimensions represented. No copied Tryg stronger restoration wording,no universal import ceiling,no invented toll-only rule.",
+      "Full fresh before-catalog plus only four approved raw facts;reverse comparison checks complete rows/provenance before projecting them out. Preserve shared Tryg garden-key facts and all other providers.",
+      "Both levels/all12 addon combinations;resolver/raw evidence/materialization/manual input and three JSON reenrichments;one effective row per key/product and exact own source. All other old fields remain equal to before.",
+      "Actual document pipeline existing/offer: each exact product-label rule overrides only its own key;multiple conflicting specific rules preserved;unknown fallback;general terms supporting only. Existing Oppgjørsmåte customer override must not suppress these two distinct terms.",
+      "Generic Hage,Hageanlegg,Beplantning,Import,Importverdsetting,Erstatningstak headings do not acquire new aliases or customer choice semantics. Both terms alone infer no coverage.",
+      "Same product and side reversal. Garden key aligns with Tryg without copying wording;peers missing import key remain unknown,not unavailable. Both grouping roles stay term.",
+      "Current ordinary provider/type/version/scope boundaries,NITO exclusion,manualSmart/rental,documentpriority,catalogOrigin,all protectedHOLD/source-page fixes.",
+      "Only mechanically proven active expectation/legacy-test compatibility for exactly these four additions;original snapshots/audits never edited. Frozen counts may change by exactly4 where applicable;no fingerprint values regenerated from unexplained differences.",
+      "Run current42-file target manifest plus focused file,fullsuite for shared harness adaptations,and scoped ESLint on all touched code/testfiles. No skip,no unrelated production fix."
+    ],
+    "required_documentation": [
+      "Implementation authorization with exact signature/bindings/keys/wording and source references",
+      "Fresh before-state snapshot and source/reverse audits,actual commands/logs and exact candidate file hashes",
+      "One completion receipt covering both source bindings and both dimensions,checkpoint and current-project-status.md",
+      "Preserve this decision and prior foundation revalidation byte-identical as history;no automatic publication claim"
+    ],
+    "excluded_scope": [
+      "Other garden objects/area/weather/coverage/brygge terms",
+      "Ordinary settlement/labor rule,fullvalue/firstloss/totalskade/age-deduction changes",
+      "General customs/import/tax policy or automated amount calculations",
+      "All HOLD,global P2ledger,campaign credits,pilot release and historical priority changes",
+      "NITO and Sentralbord"
+    ],
+    "commit_push": "NOT_AUTHORIZED",
+    "deploy": "NOT_AUTHORIZED",
+    "install": "NOT_AUTHORIZED"
+  },
+  "read_only_checks": {
+    "isolated_prototype_only": true,
+    "raw_proposed_facts": 4,
+    "configurations": 12,
+    "manual_plus_three_JSON_reenrichments": "PASS against same-stage unmodified-catalog controls;all other terms,coverage evidence,selection,premium,deductible unchanged",
+    "document_probes": 40,
+    "general_terms_probes": 4,
+    "generic_label_probes": 12,
+    "forward_reverse_comparison_rows": 24,
+    "other_provider_catalog_unchanged": true,
+    "materialized_role": "term for both keys",
+    "garden_presentation_group": "hus.ovrig (existing detail group)",
+    "import_presentation_group": "hus.gjenoppforing (existing group)",
+    "import_nonasserting_role": true,
+    "no_global_alias_or_extractor_enum_change_needed": true,
+    "actual_global_catalog_unchanged": true,
+    "production_candidate_validated": false,
+    "fresh_appsuite_run": false
+  },
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "3801ecdbcb0af7c48ac930941b09c9d9b9dfd1f02aa51c4a1aac757a6370ee25",
+    "probe_log": "mapping-probe.log.gz"
+  },
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "priority_effect": "Read-only mapping decision does not reprioritize historical DEFER_POST_PILOT or create a new mandatory pre-pilot blocker. No pilot clearance or P2closure.",
+  "integrity": {
+    "existing_files_unchanged": 8022,
+    "tracked_files_unchanged": 8018,
+    "prior4_local_revalidation_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false,
+    "only_new_read_only_packet": true
+  },
+  "implementation": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "commit_push": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "deploy": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "install": "NOT_PERFORMED",
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "next_step": "Only proposed bounded implementation after explicit implementation authorization. All HOLD and priority/gate statuses unchanged."
+}

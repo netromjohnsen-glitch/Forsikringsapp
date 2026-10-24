@@ -1,5 +1,60 @@
 # Aktuell dokumentert prosjektstatus
 
+## Hagebeplantning og importverdsetting – validert 24. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`83c8fee68cc5accb76ded645b689976fff16d533`. Oppgjørsform/arbeidsbetaling og tidligere
+kildehenvisningsrettelser er publisert der. Verdsettingsbolken er validert på samme
+basis. Publiseringsrevisjonen er committen som inneholder rettelsen, receipt og
+denne prosjektstatusen. Publisert status gjelder etter kontroll på remote main.
+Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-garden-import-83c8fee/publication-authorization.md).
+Testet basis og eksakt kandidatidentitet holdes adskilt. Ingen installasjon eller deploy.
+
+Fire rå rader er lagt til: `hus.hage.oppgjor` og
+`hus.gjenoppforing.import.begrensning`, hver med Standard-kilde på PDF-side 16
+og egen Pluss-kilde på side 17 med `replacesBase`. Hvert nivå har én effektiv rad
+per regel, og Pluss beholder overstyrt Standard-provenance. Skadet beplantning i
+hageanlegg verdsettes til tilsvarende ung vekst i gartneri. Importbegrensningen
+gjelder bare når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes
+av forhandler i Norge; da begrenses erstatningen til kjøpesum inkludert frakt og
+kostnader ved innførsel til Norge. Ingen generell importgrense, tollregel eller
+fullvoksen planteerstatning er utledet. Hageomfang/fareunntak og den eksisterende
+oppgjørs-/arbeidsbetalingsregelen er bevart. Ingen engine, globale aliaser,
+extractor-enum, presentasjon eller kilderegister er endret. Alle øvrige
+produksjonsbytes er identiske med testet main-basis.
+
+[Receipt](../audit/checkpoints/house-garden-import-83c8fee/completion-receipt-d68e94be42f1549b.json),
+[validering](../audit/checkpoints/house-garden-import-83c8fee/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-garden-import-83c8fee/candidate-identity.json) og
+[checkpoint](../audit/checkpoints/house-garden-import-83c8fee/checkpoint.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-83c8fee/receipt-house-foundation.json)
+og [mappingbeslutningen](../audit/checkpoints/house-garden-import-contract-83c8fee/receipt-house-garden-import-contract.json)
+beholdes byte-identisk som før-bevis. Begge originalbindinger,
+GAP-2114/SF-3032 og GAP-2173/SF-3119, er validert for begge dimensjonene.
+Originalregisteret beholder P2/DEFER_POST_PILOT for `d68e94be42f1549b`; den
+uttrykkelig autoriserte implementeringen føres separat uten global
+prioriterings- eller telleendring.
+
+2696/2696 målrettede tester i 43 filer og 6388/6388 tester i 172 filer består uten
+skip. 81 nye kontraktkontroller dekker begge kilder, alle 12 valgkombinasjoner,
+tre JSON-berikinger og selvstendig dokumentprioritet for hver verdsettingsregel.
+Støttevilkår, negative generiske etiketter, produktgrenser og at hver regel alene
+ikke oppretter dekning er kontrollert. 214 manuelle kontroller, 144 dokumentflyter
+og 52 sammenligninger i begge retninger bevarer øvrige felt. Trygs eksisterende
+hagenøkkel er uendret. Kvalitetskontroll av 10 kode-/testfiler: 0 feil og 0 warnings.
+Eldre testforventninger er tilpasset kun den kildeverifiserte fire-radersendringen;
+historiske snapshots, originaler og fingeravtrykk er bevart.
+
+Samlet katalogfundament er ikke frigitt. B-051 37/0/1/1, kampanje 67, ny
+signaturkreditt 0, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Alle HOLD er uendret, inkludert
+HTU, `8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. Samlet revalidering
+på inneholdende fersk main gjenstår som separat oppgave. NITO venter;
+Sentralbord venter separat. Ingen ny arbeidsstrøm er startet.
+
 ## Oppgjørsform og arbeidsbetaling – validert 24. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

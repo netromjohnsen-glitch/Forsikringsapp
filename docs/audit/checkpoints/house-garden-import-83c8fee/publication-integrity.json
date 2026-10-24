@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "base_revision": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "application_identity_sha256": "62e0cda6da935b366c6dcf71b9b6e2000a0e3ddff482ea6dafe20b688c42e4a7",
+  "application_files_unchanged": true,
+  "old_sources_audits_and_prior_local_packets_unchanged": true,
+  "HOLD_campaign_and_global_status_unchanged": true,
+  "older_project_status_sections_unchanged": true,
+  "links_verified": [
+    "docs/audit/checkpoints/house-garden-import-83c8fee/publication-authorization.md",
+    "docs/audit/checkpoints/house-garden-import-83c8fee/completion-receipt-d68e94be42f1549b.json",
+    "docs/audit/checkpoints/house-garden-import-83c8fee/validation-summary.json",
+    "docs/audit/checkpoints/house-garden-import-83c8fee/candidate-identity.json",
+    "docs/audit/checkpoints/house-garden-import-83c8fee/checkpoint.json",
+    "docs/audit/checkpoints/house-foundation-revalidation-83c8fee/receipt-house-foundation.json",
+    "docs/audit/checkpoints/house-garden-import-contract-83c8fee/receipt-house-garden-import-contract.json"
+  ],
+  "existing_changed_paths": [
+    "docs/development-agent/current-project-status.md",
+    "lib/gjensidige-hus-catalog.ts",
+    "tests/helpers/house-settlement-form.mjs",
+    "tests/remediation-b-051-health-help.test.mjs",
+    "tests/remediation-b-051-legal.test.mjs",
+    "tests/remediation-b-051-liability.test.mjs",
+    "tests/remediation-b-051-rot-status.test.mjs",
+    "tests/remediation-b-051-smart.test.mjs",
+    "tests/remediation-house-settlement-form.test.mjs"
+  ],
+  "diff_checks": "PASS",
+  "secure_publisher_self_test": "Publication failure/success exit-status controls PASS",
+  "appsuite_repeated": false,
+  "reason": "Only publication metadata changed since final PASS candidate;all10production/testfiles identical."
+}

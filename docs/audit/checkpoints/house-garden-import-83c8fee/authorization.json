@@ -1,0 +1,57 @@
+{
+  "status": "AUTHORIZED_IMPLEMENTATION_ONLY",
+  "user_instruction": "Implementer den avklarte regelen for d68e94be42f1549b på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy; behold alle HOLD. NITO og Sentralbord venter.",
+  "date": "2026-10-24",
+  "base_revision": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "decision": "../house-garden-import-contract-83c8fee/receipt-house-garden-import-contract.json",
+  "signature": "d68e94be42f1549b",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2114",
+      "source_fact_id": "SF-3032",
+      "product": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16
+    },
+    {
+      "finding_id": "GAP-2173",
+      "source_fact_id": "SF-3119",
+      "product": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17
+    }
+  ],
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "exact_delta": "Four appended raw facts,two approved keys/wordings. Each Standard16 andPluss17 withreplacesBase. No other production bytes changed.",
+  "allowed_tests": "Focused new test/helper;source-bound guarded composition of exact four-row addition/removal in active expected-catalog helpers. Strict legacy compatibility and explicit protected-row-count increments exactly4;no archived snapshot/source/audit/fingerprint edits.",
+  "allowed_documentation": "New implementation audit packet and current-project-status.md;old local decision/revalidation packets immutable.",
+  "gates": [
+    "exact source/reverse audit",
+    "whole state before plus only four approved raw facts",
+    "bothlevels all12manual choices/documentpriority/repeats/comparison/isolation",
+    "current43-file target manifest",
+    "fullsuite",
+    "scoped ESLint",
+    "integrity/links/diff"
+  ],
+  "excluded_scope": [
+    "Other garden objects/area/weather/coverage/brygge terms",
+    "Ordinary settlement/labor rule,fullvalue/firstloss/totalskade/age-deduction changes",
+    "General customs/import/tax policy or automated amount calculations",
+    "All HOLD,global P2ledger,campaign credits,pilot release and historical priority changes",
+    "NITO and Sentralbord"
+  ],
+  "commit_push_authorized": false,
+  "deploy_authorized": false,
+  "install_authorized": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "historical_P2_disposition": "DEFER_POST_PILOT retained in original registry;explicit local implementation recorded separately,no global campaign/P2closure credit"
+}

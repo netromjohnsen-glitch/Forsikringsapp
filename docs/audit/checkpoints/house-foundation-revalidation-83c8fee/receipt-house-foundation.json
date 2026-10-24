@@ -1,0 +1,239 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_FOUNDATION_REVALIDATION_WITH_ONE_PRECISE_REMAINDER",
+  "status": "CONFIRMED_PUBLISHED_GROUND_WITH_PRECISE_DEFERRED_P2_REMAINDER",
+  "decision": "Publisert kilde-/runtimegrunnlag for Hus Standard og Hus Pluss er bekreftet på fersk main83c8fee,inkludert oppgjørsform/arbeidsbetaling og tidligere rettelser. Samlet fullstendighet kan fortsatt ikke bekreftes: én presis rest er d68e94be42f1549b,hagebeplantning/importverdsetting,GAP-2114/SF-3032 og GAP-2173/SF-3119. Dette beholder historisk P2/DEFER_POST_PILOT og etablerer ingen ny obligatorisk pilotblokkering.",
+  "authorization": "Gjør samlet revalidering av ordinært katalogfundament for Hus Standard og Hus Pluss på fersk main. Lever én receipt med bekreftet grunnlag eller én presis restmangel. Ingen kodeendringer/deploy;behold alle HOLD. NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T14:14:34.744583+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "fresh_main_after": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin main equal exactSHA. Actual git blobs verified;PASS alone not publication proof.",
+  "scope": {
+    "provider": "gjensidige",
+    "type": "Hus/bolig",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "original_P1_signatures": 46,
+    "original_GAP_SF_links": 83,
+    "historical_source_facts": {
+      "total": 170,
+      "P1": 83,
+      "P2": 30,
+      "priority_blank": 57
+    },
+    "registered_sources_verified": 6,
+    "configurations": {
+      "Standard": 8,
+      "Pluss": 4
+    },
+    "document_role_probes": 24
+  },
+  "confirmed_ground": {
+    "B051_original_receipts_on_main": 37,
+    "B051_original_binding_links": 67,
+    "B130_original_completion_receipts_on_main": [
+      {
+        "signature": "597df4c45c6d3db9",
+        "receipt": "docs/audit/checkpoints/b130-vacancy-f5f88cc/completion-receipt-597df4c45c6d3db9.json",
+        "sha256": "5e93e9ee3ac6897a87dad06e965b1eda7f1de50ad2ce89c0b0647c542d7f67ea"
+      },
+      {
+        "signature": "ce90710821e28a97",
+        "receipt": "docs/audit/checkpoints/b130-frost-8422e39/completion-receipt-ce90710821e28a97.json",
+        "sha256": "e0f4d260e31c51d82c0d86047ce3715342087110b1066ae7f4147aa06ba0b655"
+      },
+      {
+        "signature": "15f5b4a3e9f79fd2",
+        "receipt": "docs/audit/checkpoints/b130-underinsurance-0e4c09d/completion-receipt-15f5b4a3e9f79fd2.json",
+        "sha256": "e4836918eb478a6067705998acee82e56fbec465ceae8f2a94d194b54924d280"
+      },
+      {
+        "signature": "d58bff0e6b2d46eb",
+        "receipt": "docs/audit/checkpoints/b130-person-scope-cfada9a/completion-receipt-d58bff0e6b2d46eb.json",
+        "sha256": "17c4299f3daa2229cbe81e8e4cd7889b0d12989da941efdc3df8a6281c03ccb7"
+      }
+    ],
+    "B130_original_bindings": 8,
+    "B130_sealed_files_verified_on_main": 150,
+    "published_settlement": {
+      "signature": "8db65d4d3da9e98b",
+      "receipt": "docs/audit/checkpoints/house-settlement-form-6d42440/completion-receipt-8db65d4d3da9e98b.json",
+      "sha256": "df2189e55f73c04d77bce1bce5368d338b6a3cfc7f79ffe9245759f43d24fcb6",
+      "both_original_bindings_revalidated": true,
+      "Standard_primary_page": 16,
+      "Pluss_primary_page": 17,
+      "all12_choices_and_exact_own_provenance": "PASS",
+      "document_priority": "Actual document pipeline Oppgjørsmåte probes pass;generalterms evidence only",
+      "full_published57file_manifest_verified": true
+    },
+    "previous7source_pages": {
+      "hus.bygninger.dekning": 3,
+      "hus.bygninger.tilbehor": 3,
+      "hus.teknisk.solceller": 3,
+      "hus.gjenoppforing.hovedregel": 16,
+      "hus.gjenoppforing.totalskade": 16,
+      "hus.gjenoppforing.svanemerket": 16,
+      "hus.sikkerhet.egenandelsfritak": 17
+    },
+    "source_correction_and_settlement_packets_verified_on_main": [
+      {
+        "packet": "docs/audit/checkpoints/house-buildings-source-1b5b5aa",
+        "sealed_files_verified": 34
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-object-sources-a563c50",
+        "sealed_files_verified": 26
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-rebuilding-sources-39b63c1",
+        "sealed_files_verified": 26
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-safeguard-source-d4bcc45",
+        "sealed_files_verified": 28
+      },
+      {
+        "packet": "docs/audit/checkpoints/house-settlement-form-6d42440",
+        "sealed_files_verified": 34
+      }
+    ],
+    "latest_application_identity_sha256": "9c4f05ec31da86a01b2dc184c8c7bcef20588df1017ef2c2dc516d46636e1ffb",
+    "application_files_verified_on_main": 12,
+    "runtime_old_field_integrity": "All prior resolved/evidence/manual/threeJSON reenrichment/display/materialized fields equal independent before-snapshot after removing only exactly approved settlement term. Scope negatives pass.",
+    "existing_tests": {
+      "files": 42,
+      "tests": 2615,
+      "pass": 2615,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 26.0,
+      "log": "targeted-main.log.gz"
+    },
+    "not_a_fresh_fullsuite": "6307/6307 belongs to identical published code/test candidate before publication;fullsuite not rerun in this read-only audit."
+  },
+  "precise_remainder": {
+    "id": "HOUSE_SHARED_GARDEN_IMPORT_VALUATION_RULE_MISSING",
+    "signature": "d68e94be42f1549b",
+    "classification": "Current bounded P2 source-to-catalog omission;original DEFER_POST_PILOT retained",
+    "affected_products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "original_bindings": [
+      {
+        "finding_id": "GAP-2114",
+        "source_fact_id": "SF-3032",
+        "product_id": "gjensidige-hus",
+        "priority": "P2",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "PDF_page_1_based": 16
+      },
+      {
+        "finding_id": "GAP-2173",
+        "source_fact_id": "SF-3119",
+        "product_id": "gjensidige-hus-pluss",
+        "priority": "P2",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "PDF_page_1_based": 17
+      }
+    ],
+    "original_registry_disposition": "DEFER_POST_PILOT",
+    "contract_dimensions": [
+      "Skadet beplantning i hageanlegg erstattes med pris for tilsvarende ung vekst i gartneri.",
+      "Når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes av forhandler i Norge,er erstatningen begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge."
+    ],
+    "source_basis": "Exact identical bounded block in registered StandardPDF16 and PlussPDF17;full pages read in raw/layout and visually reviewed. Both rendered pages byte-identical at same resolution;both originalPDF hashes checked.",
+    "source_caution": "Use original wording kostnader ved innførsel; historical audit shorthand frakt/toll is not an independently specified customs-duty rule. Preserve trigger same brand/model or quality unavailable from a dealer in Norway;do not make a general import cap or mature-plant replacement promise.",
+    "current_runtime_observation": "Neither condition represented in any current raw Gjensidige house component or all12 resolved/evidence/manual/threeJSON reenrichment/materialized/display configurations. Whole term values/labels/structured metadata and nearby garden scope/current settlement rule searched.",
+    "why_existing_terms_insufficient": "hus.hage.objekter describes insured garden area and event exclusions,not plant valuation. Newly published hus.gjenoppforing.oppgjorsmate describes settlement/labor/cash cap,not these independent object valuation conditions.",
+    "prior_settlement_fix": "8db65d4d3da9e98b,both originalbindings,published at83c8fee and separately revalidated;not reopened.",
+    "effect_on_confirmation": "Prevents claiming exhaustive ordinary-catalog completeness. This receipt does not elevate deferred P2 to a new mandatory pre-pilot blocker or introduce/relax any HOLD. No pilot decision is made.",
+    "one_sufficient_remainder_not_exhaustive_global_gap_count": true,
+    "proposed_next_bounded_scope": "If prioritized later,read-only contract/mapping decision for these exact two originalbindings and their two distinct valuation dimensions;decide existing vs separate keys and source ownership. No implementation or reprioritization authorized here.",
+    "implemented": false,
+    "new_HOLD_created": false
+  },
+  "source_evidence": [
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16,
+      "visual_review": "Full Standard16 page inspected;Pluss17render byte-identical;raw/layout independently extracted from both originals."
+    },
+    {
+      "path": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17,
+      "visual_review": "Full Standard16 page inspected;Pluss17render byte-identical;raw/layout independently extracted from both originals."
+    }
+  ],
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "Protected HTU and all other HOLD unchanged",
+    "Ordinary catalog completeness and remaining source/P2inventory not cleared;deferred P2priority preserved",
+    "Security/GDPR and P3-A05 identity/merge status not established here",
+    "Person insurance/pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "integrity": {
+    "tracked_files_unchanged": 8018,
+    "all_existing_tracked_bytes_unchanged": true,
+    "tracked_set_unchanged": true,
+    "HEAD": "83c8fee68cc5accb76ded645b689976fff16d533",
+    "origin_main": "83c8fee68cc5accb76ded645b689976fff16d533",
+    "branch": "fix/house-vacancy",
+    "initial_tree": "CLEAN",
+    "staged_files": 0,
+    "new_files": "Only current read-only audit packet;no code,test,source,old receipt or project-status edit"
+  },
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "adb48c3e84cac905e255437bbf3cdced7100fcff2bb4053dd60e2827b7887896"
+  },
+  "test_log_sha256": "cb3227f3c535720f65ac8c7703fc79602ce74acc1aa831e46d95ad5b9f9d531b",
+  "limits": [
+    "Only new receipt,evidence,testlog and checksums. No code,test,source,old audit or project-status edit;no commit/push/install/deploy.",
+    "Fresh targeted42file suite and independent source/runtime audit;no fullsuite,typegen,lint,build,server or HTTP-PDF generation. SourcePDF extraction/rendering only.",
+    "One precise known deferred P2remainder,not exhaustive current global/P2gap count. No mapping/implementation or reprioritization.",
+    "No new signature/P2closure credit,noHOLD change,no pilot clearance."
+  ],
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_RECEIPT",
+  "new_workstreams_started": false
+}

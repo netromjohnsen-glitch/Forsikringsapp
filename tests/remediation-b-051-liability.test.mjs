@@ -119,7 +119,7 @@ check('prior-53-immutable-receipts',()=>{
  assert.equal(prior.length,53);assert.equal(new Set(prior.map(x=>x.signature)).size,53);
  for(const entry of prior)assert.equal(createHash('sha256').update(readFileSync(new URL('../'+entry.path,import.meta.url))).digest('hex'),entry.sha256);
 });
-check('isolation-counts',()=>{assert.equal(protectedRaw,4170);assert.equal(untouched,317);assert.equal(otherProducts,202);});
+check('isolation-counts',()=>{assert.equal(protectedRaw,4174);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-deltas',()=>{
  assert.deepEqual(fps.map(f=>f.after),[
  '484a1a5784ec806384cd6ceb215839b8f7a3f9baa777557fd9ef783756e76b8d',

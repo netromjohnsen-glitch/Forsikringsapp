@@ -1,3 +1,4 @@
+import {applyGardenImport,withoutGardenImport} from './house-garden-import.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
@@ -19,12 +20,12 @@ export function applySettlement(catalog){
  for(const owner of owners){const rows=copy.facts[owner],fact=settlementFact(owner,!Object.hasOwn(rows[0].source,'productCode'));
   const existing=rows.filter(f=>f.key===o.key);if(existing.length)assert.deepEqual(existing,[fact]);else rows.push(fact);
  }
- return copy;
+ return applyGardenImport(copy);
 }
 // Remove only exact approved Gjensidige additions for immutable earlier snapshots.
 // Other providers sharing the same key and customer document rules are preserved.
 export function withoutSettlement(value){
- const copy=structuredClone(value);
+ const copy=withoutGardenImport(value);
  function visit(item){
   if(Array.isArray(item)){
    for(let i=item.length-1;i>=0;i--){const row=item[i];

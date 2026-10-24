@@ -1,0 +1,155 @@
+{
+  "classification": "CURRENT_VALIDATED_HOUSE_GARDEN_IMPORT_VALUATION",
+  "status": "PASS_VALIDATED",
+  "signature": "d68e94be42f1549b",
+  "authorization": "authorization.json",
+  "base_revision": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "tested_HEAD_is_base_not_candidate_commit": true,
+  "application_identity_sha256": "62e0cda6da935b366c6dcf71b9b6e2000a0e3ddff482ea6dafe20b688c42e4a7",
+  "candidate_identity": "candidate-identity.json",
+  "source_oracle": "source-oracle.json",
+  "decision": "Two separate terms:reuse hus.hage.oppgjor for young-plant valuation;new hus.gjenoppforing.import.begrensning for the conditional unavailable-Norwegian-dealer item cap. Four rawfacts,own Standard16/Pluss17sources,two effective rows per product. Pluss replaces inherited Standard and retains overriddenBase.",
+  "scope": {
+    "provider": "gjensidige",
+    "insurance_type": "Hus",
+    "agreement_scope": "ordinary",
+    "products": [
+      "gjensidige-hus",
+      "gjensidige-hus-pluss"
+    ],
+    "version": "Alminnelige vilkår",
+    "keys": [
+      "hus.hage.oppgjor",
+      "hus.gjenoppforing.import.begrensning"
+    ],
+    "rows": [
+      {
+        "key": "hus.hage.oppgjor",
+        "label": "Hageanlegg – erstatning",
+        "value": "Skadet beplantning i hageanlegg erstattes med pris for tilsvarende ung vekst i gartneri."
+      },
+      {
+        "key": "hus.gjenoppforing.import.begrensning",
+        "label": "Gjenstander uten norsk forhandler – erstatningstak",
+        "value": "Når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes av forhandler i Norge, er erstatningen begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge."
+      }
+    ],
+    "raw_rows_added": 4,
+    "all_other_production_bytes_unchanged": true,
+    "engine_alias_enum_presentation_source_registry": "UNCHANGED"
+  },
+  "original_source_bindings": [
+    {
+      "finding_id": "GAP-2114",
+      "source_fact_id": "SF-3032",
+      "product": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "PDF_page_1_based": 16
+    },
+    {
+      "finding_id": "GAP-2173",
+      "source_fact_id": "SF-3119",
+      "product": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "PDF_page_1_based": 17
+    }
+  ],
+  "binding_validation": [
+    {
+      "finding_id": "GAP-2114",
+      "source_fact_id": "SF-3032",
+      "product": "gjensidige-hus",
+      "validated_dimensions": [
+        "hus.hage.oppgjor",
+        "hus.gjenoppforing.import.begrensning"
+      ],
+      "implementation_status": "VALIDATED_EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN"
+    },
+    {
+      "finding_id": "GAP-2173",
+      "source_fact_id": "SF-3119",
+      "product": "gjensidige-hus-pluss",
+      "validated_dimensions": [
+        "hus.hage.oppgjor",
+        "hus.gjenoppforing.import.begrensning"
+      ],
+      "implementation_status": "VALIDATED_EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN"
+    }
+  ],
+  "prior_read_only_decision": "../house-garden-import-contract-83c8fee/receipt-house-garden-import-contract.json",
+  "prior_read_only_revalidation": "../house-foundation-revalidation-83c8fee/receipt-house-foundation.json",
+  "prior_local_packets": "Both byte-identical;historical read-only statuses not rewritten",
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2696,
+      "pass": 2696,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 43,
+    "fullsuite": {
+      "tests": 6388,
+      "pass": 6388,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 172,
+    "scoped_eslint": "0errors,0warnings across10code/test files",
+    "focused_contract_tests": 81,
+    "source_contract": "Exact registered original hashes/full blocks Standard16/Pluss17;approved wording and all import triggers preserved",
+    "runtime": "Bothlevels/all12choices,resolver/raw evidence/materialization/manual+threeJSON reenrichments/bothdisplay sides;214manual,144document,52bidirectional comparisons preserve every otherfield",
+    "document_priority": "Each exact product-label rule independently overrides its own catalog row;other valuation and ordinary settlement/labor rule retained. Unknown fallback,conflicting specific values preserved,generalterms evidence only,generic headings unbound.",
+    "isolation": "Tryg existing garden key and every other product/addon unchanged;provider/type/version/nito boundaries and no coverage/customerchoice inference",
+    "runtime_proof": "runtime-proof.json.gz"
+  },
+  "source_and_reverse_audit": "source-and-reverse-audit.json",
+  "production_delta": "production-delta.json",
+  "mechanical_corrections": "autonomous-mechanical-corrections.json",
+  "original_P2_disposition": "DEFER_POST_PILOT preserved as historical registry. User now explicitly authorized this local implementation;no global reprioritization/closure credit claimed.",
+  "unchanged_status": {
+    "documented_campaign_published_at_base": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "project_status": "../../../development-agent/current-project-status.md",
+  "checkpoint": "checkpoint.json",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "commit_push": "AUTHORIZED_BY_PUBLICATION_AUTHORIZATION",
+  "install": "NOT_PERFORMED",
+  "deploy": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_bounded_step": "Combined ordinary-house foundation revalidation on containing fresh main remains separate. All HOLD,global credits and pilot gate unchanged.",
+  "publication_revision": "Containing Git commit;verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json"
+}

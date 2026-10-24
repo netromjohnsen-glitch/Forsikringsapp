@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "base_revision": "83c8fee68cc5accb76ded645b689976fff16d533",
+  "production_file": "lib/gjensidige-hus-catalog.ts",
+  "only_four_raw_facts_added": true,
+  "all_other_production_bytes_unchanged": true,
+  "block": "// Separate valuation rules preserve plant replacement and conditional import limits.\nstandard.push(...facts(\"gjensidigeHusStandard\", [\n  [\"hage.oppgjor\", \"Hageanlegg – erstatning\", \"Skadet beplantning i hageanlegg erstattes med pris for tilsvarende ung vekst i gartneri.\", \"Erstatningsregler – Hus / Hvordan erstatningen blir beregnet\", 16],\n  [\"gjenoppforing.import.begrensning\", \"Gjenstander uten norsk forhandler – erstatningstak\", \"Når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes av forhandler i Norge, er erstatningen begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge.\", \"Erstatningsregler – Hus / Hvordan erstatningen blir beregnet\", 16],\n]));\npluss.push(...facts(\"gjensidigeHusPluss\", [\n  [\"hage.oppgjor\", \"Hageanlegg – erstatning\", \"Skadet beplantning i hageanlegg erstattes med pris for tilsvarende ung vekst i gartneri.\", \"Erstatningsregler – Hus / Hvordan erstatningen blir beregnet\", 17, undefined, true],\n  [\"gjenoppforing.import.begrensning\", \"Gjenstander uten norsk forhandler – erstatningstak\", \"Når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes av forhandler i Norge, er erstatningen begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge.\", \"Erstatningsregler – Hus / Hvordan erstatningen blir beregnet\", 17, undefined, true],\n]));\n\n",
+  "before_sha256": "6688027fc7902ceb92dfd25fcd4ade6e4e353ff6a29802bc3dd8617ea4225a26",
+  "after_sha256": "b641fdee9b3cb633b6880b001cf2578b92270d8b5d588382b466bfdaf757ba9e",
+  "source_registry_and_engines_unchanged": true
+}
