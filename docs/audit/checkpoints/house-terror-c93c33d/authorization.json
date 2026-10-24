@@ -1,0 +1,65 @@
+{
+  "status": "AUTHORIZED_IMPLEMENTATION_ONLY",
+  "user_instruction": "Implementer punkt18 Skade ved terrorhandlinger under d1230f13e6b445d7 på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy;behold alle HOLD.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T15:22:22.453255+00:00",
+  "base_revision": "c93c33db262ddbd6906222bc4f11776ccc5ba8c3",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt18 Skade ved terrorhandlinger only",
+  "whole_signature_closure": false,
+  "decision": "../house-terror-contract-c93c33d/receipt-house-terror-contract.json",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point18_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point18_PDF_page_1_based": 14
+    }
+  ],
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "exact_delta": "Two raw own-source hus.terror.begrensning facts with complete point18. Standard13/Pluss14,replacesBase on Pluss. All other production bytes preserved.",
+  "allowed_tests": "New focused test/helper;strict two-row apply/projection in current expectation chain and prior owner-change runtime test;independently source/before-proven protected raw-count increments exactly2 if needed. Preserve all snapshots,fingerprints,negative guards.",
+  "allowed_documentation": "New implementation packet,partial point18receipt,checkpoint and current-project-status.md;prior8local readonly files immutable.",
+  "gates": [
+    "Before edit seal both original GAP/SF links,complete point18/source pages and registered SHA256;take fresh complete runtime/before snapshot and independent source oracle.",
+    "Source-to-catalog/reverse audit:whole catalog equals before plus exactly2approved own-source point18facts;no other production bytes. Exact atomic value and section/pages13/14,Pluss replacesBase and full source metadata.",
+    "Focused tests for both levels/all12addon combinations:resolver,evidence,materialization,manual input and3JSONreenrichments. One effective term,raw evidence1Standard/2Pluss,complete source notes and overriddenBase;all old fields/choices/canonical coverage values unchanged.",
+    "Actual existing/offer document pipeline:exact full label overrides only this whole rule;unknown fallback;multiple conflicting specific terms kept. Generic Terror,Krig og terror,Forsikringssum,Ansvarsbegrensning,48timer,Generelle vilkår etc get no aliases. General terms alone produce0customer policies;supporting evidence paired with policy does not select coverages.",
+    "Independent customer building/fixture/forbehold/point12 and other fields do not suppress point18. Term alone infers no coverage,individual sum or status;nonasserting restriction role remains term and display has no affirmative coverage tick.",
+    "Same-product0difference,forward/reverse comparisons,other-provider missing row unknown;full provider/type/version/ordinary boundaries and NITO isolation. All prior named corrections and7source-page fixes preserved.",
+    "Run current46-file target manifest plus focused test(47files),fullsuite and scoped ESLint on final identical candidate. Read-only feasibility here is not production validation or an app-suite PASS.",
+    "Update one partial point18receipt/checkpoint/current-project-status after implementation validation. No full d123closure,P2credit,HOLDchange or pilotclearance;no commit/push/deploy in implementation authorization unless separately explicit."
+  ],
+  "excluded_scope": [
+    "Engine,enrichment/comparison/coverage logic,global aliases,canonical registry,extraction enum,presentation/UI",
+    "Source originals,registry/sourceType/effective dates/source admission",
+    "Insurance-sum fields,customer choice/status,claim calculation/event aggregation/cap allocation",
+    "Other providers/types/scopes/NITO,war17/ABC19 or other general provisions",
+    "Point12,every earlier named correction,immutable historical inventories/receipts/snapshots/ledgers,HOLD and pilot gate"
+  ],
+  "commit_push_authorized": false,
+  "deploy_authorized": false,
+  "install_authorized": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "historical_P2_disposition": "DEFER_POST_PILOT unchanged;partial point18only,no signature/P2/campaign credit",
+  "historical_mechanical_counters": "UNCHANGED"
+}

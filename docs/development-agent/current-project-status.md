@@ -1,5 +1,66 @@
 # Aktuell dokumentert prosjektstatus
 
+## Punkt 18: Skade ved terrorhandlinger – validert 24. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til `c93c33db262ddbd6906222bc4f11776ccc5ba8c3`.
+Punkt 12 og tidligere bolker er publisert der. Punkt 18 under
+`d1230f13e6b445d7` er validert på denne basisen. Publiseringsrevisjonen er
+committen som inneholder rettelsen, delreceipten og denne prosjektstatusen.
+Publisert status gjelder etter kontroll på remote main. Commit/push er
+uttrykkelig autorisert i [publiseringsfullmakten](../audit/checkpoints/house-terror-c93c33d/publication-authorization.md).
+Testet basis og eksakt kandidatidentitet er adskilt fra publiseringscommitten.
+Ingen installasjon eller deploy.
+
+To rå rader under `hus.terror.begrensning` gir én effektiv begrensende
+vilkårsrad på hvert husnivå. Hele punkt 18 beholdes samlet: Gjensidiges
+samlede erstatningsansvar overfor alle kunder og andre kravstillere er
+begrenset til 1 milliard kroner per skadehendelse; skader innen 48 timer regnes
+som samme hendelse, med forholdsmessig reduksjon dersom grensen overstiges.
+Hele objektlisten, direkte/indirekte årsakssammenheng, bygninger med mer enn
+25 etasjer, objekter/interesser utenfor Norden, typeavgrensningene for reise,
+person og de navngitte personskadereglene, samt terrordefinisjonen er bevart.
+Dette felles taket er ikke registrert som individuell husforsikringssum.
+Ingen ubetinget terrordekning eller generelt terroravslag utledes.
+
+Standard har egen kilde på PDF-side 13, Pluss egen kilde på side 14 med
+`replacesBase` og overstyrt Standard-provenance. Raden er et ikke-assertivt
+begrensningsvilkår: ingen automatisk dekning, kundevalg, status eller
+beregning av hendelser, samlet ansvar eller fordeling. Ingen engine, globale
+aliaser, extractor-enum, presentasjon eller kilderegister er endret.
+Alle øvrige produksjonsbytes er identiske med testet main-basis.
+
+[Delreceipt for punkt 18](../audit/checkpoints/house-terror-c93c33d/completion-receipt-d1230f13e6b445d7-point18.json),
+[validering](../audit/checkpoints/house-terror-c93c33d/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-terror-c93c33d/candidate-identity.json) og
+[checkpoint](../audit/checkpoints/house-terror-c93c33d/checkpoint.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-c93c33d/receipt-house-foundation.json)
+og [mappingbeslutningen](../audit/checkpoints/house-terror-contract-c93c33d/receipt-house-terror-contract.json)
+beholdes byte-identisk. GAP-2110/SF-3024 og GAP-2169/SF-3111 er validert
+**bare for punkt 18** i denne bolken. Publisert punkt 12 gjenåpnes ikke.
+Øvrige dimensjoner i de bredere originalbindingene og signaturen er ikke
+ferdig vurdert eller lukket. P2/DEFER_POST_PILOT beholdes, uten global
+signatur-, P2- eller kampanjekreditt.
+
+3022/3022 målrettede tester i 47 filer og 6714/6714 tester i 176 filer består
+uten feil eller skip. 70 nye kontraktkontroller dekker komplette kildesider,
+alle 12 valgkombinasjoner, tre JSON-berikinger, individuell dokumentprioritet
+og vern mot feil ansvarstak, hendelsesregel, unntak og definisjon. 214 manuelle
+kontroller, 144 dokumentflyter og 52 sammenligninger bevarer øvrige felt og
+dekningsstatuser. Støttevilkår alene oppretter ingen forsikring; generiske
+etiketter gir ingen nye koblinger eller kundevalg. Kvalitetskontroll av
+10 kode-/testfiler: 0 feil og 0 warnings. Dokumenterte testtilpasninger gjelder
+kun to kildeverifiserte rå rader og én gammel punkt 12-etikett i ny test.
+Historiske snapshots, originaler og fingeravtrykk er bevart.
+
+Samlet katalogfundament er ikke frigitt. B-051 37/0/1/1, kampanje 67, ny
+signaturkreditt 0, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Alle HOLD er uendret,
+inkludert HTU, `8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. Samlet
+revalidering på inneholdende publisert main er en separat oppgave.
+NITO venter; Sentralbord venter separat. Ingen ny arbeidsstrøm er startet.
+
 ## Punkt 12: Opphør ved eierskifte – validert 24. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

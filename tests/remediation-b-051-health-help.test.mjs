@@ -115,7 +115,7 @@ check('all-54-immutable-receipts',()=>{
  const prior=JSON.parse(readFileSync(new URL('prior-receipts.json',audit)));assert.equal(prior.length,54);assert.equal(new Set(prior.map(x=>x.signature)).size,54);
  for(const entry of prior)assert.equal(digestBytes(readFileSync(new URL('../'+entry.path,import.meta.url))),entry.sha256);
 });
-check('exact-isolation-counts',()=>{assert.equal(protectedRaw,4186);assert.equal(untouched,317);assert.equal(otherProducts,202);});
+check('exact-isolation-counts',()=>{assert.equal(protectedRaw,4188);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-differences',()=>{
  assert.deepEqual(fps.map(x=>x.before),['6b6cd034652ebea56cf3450b29699df0e75409c38cc682046e5f5517595b925a','26f3e2aaf802d5b4de0d73321fcdc18df0af41c3684ed03d9d5d9407c4c40022','ec256ccb96b30d4175ccf896edce3ea05f3ab8045a07234f28236be0231a8072']);
  assert.deepEqual(fps.map(x=>x.after),['250f5ac9807ac84576dae88e4fbc0521a793e601ec7f0c58e33303f427cff20c','b49d74919a120094da90f915aa491d0e8086a03b0bf2d57da122a252041c8f4e','7eb6a84291e695fab0e1cc42e0b29ecc0b0ad8bdec4e860760454413b2f56cc7']);

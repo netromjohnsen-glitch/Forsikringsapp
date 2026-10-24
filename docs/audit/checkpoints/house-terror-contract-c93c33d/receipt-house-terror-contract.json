@@ -1,0 +1,293 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_TERROR_POINT18_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "decision": "Egen kataloggren hus.terror.begrensning,én samlet begrensende vilkårsrad med hele punkt18 Skade ved terrorhandlinger. To rå rader med egen StandardPDF13 og PlussPDF14;Pluss replacesBase. Én effektiv regel per husnivå. Ingen individuell forsikringssum,dekningsstatus eller automatisk beregning.",
+  "reason": "Ingen eksisterende nøkkel uttrykker den felles terrorbestemmelsen. Bevisforrang,eierskifte,plutselig skade,ansvar og andre produkters terroromtale er andre kontrakter. De sammenkoblede grensene/unntakene og definisjonen bevares samlet. Eksisterende begrensning-semantikk og hus.ovrig termrolle fungerer uten engine/alias/enum/presentasjonsendring.",
+  "authorization": "Avklar kontrakt og mapping for punkt18 Skade ved terrorhandlinger under d1230f13e6b445d7 på Hus Standard og Hus Pluss på fersk main. Én beslutning og presis rettingsbolk. Ingen kode/deploy;alle HOLD beholdes.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T15:21:10.660837+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "c93c33db262ddbd6906222bc4f11776ccc5ba8c3",
+  "fresh_main_after": "c93c33db262ddbd6906222bc4f11776ccc5ba8c3",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin/main exactSHA. Source originals and binding inventories compared to exact main git blobs and registeredSHA256.",
+  "signature": "d1230f13e6b445d7",
+  "subscope": "Generelle vilkår punkt18 Skade ved terrorhandlinger only",
+  "whole_signature_review_complete": false,
+  "whole_signature_closure": false,
+  "remaining_signature_dimensions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+  "published_point12": "CONFIRMED_NOT_REOPENED",
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2110",
+      "source_fact_id": "SF-3024",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "original_source_location": "PDF 12–13",
+      "point18_PDF_page_1_based": 13
+    },
+    {
+      "finding_id": "GAP-2169",
+      "source_fact_id": "SF-3111",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "original_source_location": "PDF 13–14",
+      "point18_PDF_page_1_based": 14
+    }
+  ],
+  "source_contract": {
+    "exact_point18": "Ved terrorhandling er Gjensidiges samlede erstatningsansvar overfor alle kunder og andre kravstillere begrenset til kr 1 milliard pr. skadehendelse. Alle skader som inntreffer innenfor et tidsrom på 48 timer, regnes som samme hendelse. Overstiges fastsatt grense pr. hendelse, vil erstatningen bli redusert forholdsmessig. For følgende objekter/interesser dekkes uansett ikke skade som direkte eller indirekte er en følge av terrorhandling: - Dammer, tunneler, broer, flyplasser, jernbanestasjoner, kraftverk, bygninger med mer enn 25 etasjer - Objekter/interesser utenfor Norden Begrensningene over gjelder ikke for reiseforsikring eller personforsikringer - eller for personskade som går inn under Bilansvarsloven eller Lov om yrkesskadeforsikring. Med terrorhandling forstås en rettsstridig, skadevoldende handling rettet mot allmennheten, herunder en voldshandling eller farlig spredning av biologiske eller kjemiske substanser - og som forstås å være utført i den hensikt å utøve innflytelse på politiske, religiøse eller andre ideologiske organer eller for å fremkalle frykt.",
+    "source_pages": {
+      "Standard": 13,
+      "Pluss": 14
+    },
+    "no_source_conflict_found": true,
+    "external_question_needed": false,
+    "coupled_dimensions": [
+      {
+        "dimension": "Aggregate cap",
+        "meaning": "Gjensidiges samlede erstatningsansvar overfor alle kunder og andre kravstillere begrenset til kr1milliard per skadehendelse. Not an individual house insured sum."
+      },
+      {
+        "dimension": "Event definition",
+        "meaning": "Alle skader innenfor48timer regnes som samme hendelse."
+      },
+      {
+        "dimension": "Oversubscribed event",
+        "meaning": "Overstiges fastsatt grense per hendelse reduseres erstatningen forholdsmessig."
+      },
+      {
+        "dimension": "Object exclusions",
+        "meaning": "Direkte eller indirekte terrorskade dekkes uansett ikke for dammer,tunneler,broer,flyplasser,jernbanestasjoner,kraftverk og bygninger med mer enn25etasjer."
+      },
+      {
+        "dimension": "Geographic exclusion",
+        "meaning": "Samme direkte/indirekte unntak gjelder objekter/interesser utenfor Norden."
+      },
+      {
+        "dimension": "Type boundaries",
+        "meaning": "Begrensningene gjelder ikke reise/personforsikringer eller personskade under Bilansvarsloven eller Lov om yrkesskadeforsikring. Retain full source wording as explicit type boundaries,not independent ordinary-house coverage."
+      },
+      {
+        "dimension": "Definition",
+        "meaning": "Rettsstridig skadevoldende handling rettet mot allmennheten,herunder voldshandling/farlig spredning av biologiske eller kjemiske substanser,forstått utført for å påvirke politiske,religiøse eller andre ideologiske organer eller fremkalle frykt."
+      }
+    ],
+    "not_universal_terror_exclusion": true,
+    "not_unconditional_positive_coverage": true,
+    "no_automatic_claim_or_aggregate_calculation": true,
+    "remaining_general_provisions": "OUTSIDE_SCOPE_UNASSESSED_NOT_CLOSED",
+    "published_point12": "CONFIRMED_ON_MAIN_NOT_REOPENED",
+    "no_current_law_interpretation": true
+  },
+  "proposed_correction_packet": {
+    "status": "PROPOSED_NOT_AUTHORIZED_FOR_IMPLEMENTATION",
+    "signature": "d1230f13e6b445d7",
+    "subscope": "Generelle vilkår punkt18 Skade ved terrorhandlinger only",
+    "single_packet_scope": "One complete atomic general restriction for both original bindings;exactly2raw own-source facts,one effective fact per house level. No whole signature closure.",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "row": {
+      "key": "hus.terror.begrensning",
+      "relative_Row_key": "terror.begrensning",
+      "label": "Skade ved terrorhandlinger",
+      "value": "Ved terrorhandling er Gjensidiges samlede erstatningsansvar overfor alle kunder og andre kravstillere begrenset til kr 1 milliard pr. skadehendelse. Alle skader som inntreffer innenfor et tidsrom på 48 timer, regnes som samme hendelse. Overstiges fastsatt grense pr. hendelse, vil erstatningen bli redusert forholdsmessig. For følgende objekter/interesser dekkes uansett ikke skade som direkte eller indirekte er en følge av terrorhandling: - Dammer, tunneler, broer, flyplasser, jernbanestasjoner, kraftverk, bygninger med mer enn 25 etasjer - Objekter/interesser utenfor Norden Begrensningene over gjelder ikke for reiseforsikring eller personforsikringer - eller for personskade som går inn under Bilansvarsloven eller Lov om yrkesskadeforsikring. Med terrorhandling forstås en rettsstridig, skadevoldende handling rettet mot allmennheten, herunder en voldshandling eller farlig spredning av biologiske eller kjemiske substanser - og som forstås å være utført i den hensikt å utøve innflytelse på politiske, religiøse eller andre ideologiske organer eller for å fremkalle frykt.",
+      "decision": "NEW_ORDINARY_HOUSE_RESTRICTION_KEY",
+      "Standard": {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 13,
+        "replacesBase": false
+      },
+      "Pluss": {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 14,
+        "replacesBase": true
+      },
+      "source_section": "Generelle vilkår – Punkt 18. Skade ved terrorhandlinger",
+      "qualificationSource": "Not needed;complete point18 on one page in each source",
+      "materialized_role": "term",
+      "isNonAssertingCoverageDetail": true,
+      "presentation_group": "hus.ovrig"
+    },
+    "atomic_contract_reason": "Cap,event grouping,proportional reduction,object/geographic exclusions,type exceptions and definition qualify the same condition. Preserve complete point18 in one value to prevent partial overrides leaving an unconditional sum or universal terror exclusion.",
+    "source_provenance": "Own registered Standard13 and Pluss14 source identities. Pluss replaces inherited Standard;both raw evidence rows and Standard overriddenBase retained. All registry metadata,blank effectiveFrom,absent sourceType/source admission unchanged.",
+    "must_preserve": [
+      "1billion is shared across all Gjensidige customers and other claimants per event;never map to individual insured sum or per-customer house limit.",
+      "48hours event grouping and proportional reduction above shared cap.",
+      "Entire excluded object list;more than25floors,not25orover;direct/indirect causation and outsideNordics.",
+      "All source exceptions for travel/person/personal injury retained as type boundaries,without admitting other insurance products or inferring house coverage.",
+      "Full terror definition including allmennheten,violence or biological/chemical spread,and ideological influence/fear intent.",
+      "Exact identified-product label override replaces complete point18;unknown value falls back to complete source term;conflicting specific customer values remain visible.",
+      "All existing facts,canonical coverages,Smart/rental/other customer choices,premium/deductible and repeated-enrichment provenance unchanged."
+    ],
+    "do_not_append_to": [
+      "hus.avtale.forbehold",
+      "hus.avtale.eierskifte",
+      "hus.plutselig.begrensning_ovrig",
+      "hus.ansvar.grense",
+      "hus.forsikringsform"
+    ],
+    "forbidden_new_fact_metadata": [
+      "coverageAvailability",
+      "structuredValue",
+      "deductibleClassification",
+      "selectionEvidenceKeys"
+    ],
+    "no_changes_to": [
+      "Engine,enrichment/comparison/coverage logic,global aliases,canonical registry,extraction enum,presentation/UI",
+      "Source originals,registry/sourceType/effective dates/source admission",
+      "Insurance-sum fields,customer choice/status,claim calculation/event aggregation/cap allocation",
+      "Other providers/types/scopes/NITO,war17/ABC19 or other general provisions",
+      "Point12,every earlier named correction,immutable historical inventories/receipts/snapshots/ledgers,HOLD and pilot gate"
+    ],
+    "focused_test_file": "tests/remediation-house-terror.test.mjs",
+    "source_guarded_helper_if_needed": "tests/helpers/house-terror.mjs",
+    "existing_test_compatibility_scope": {
+      "basis": "Current independent before snapshots and exact expected-catalog chains assert whole facts. Only compatibility required by2approved source-bound raw additions;no unrelated semantics.",
+      "potential_files": [
+        "tests/helpers/house-owner-change.mjs",
+        "tests/remediation-house-owner-change.test.mjs",
+        "tests/remediation-b-051-health-help.test.mjs",
+        "tests/remediation-b-051-legal.test.mjs",
+        "tests/remediation-b-051-liability.test.mjs",
+        "tests/remediation-b-051-rot-status.test.mjs",
+        "tests/remediation-b-051-smart.test.mjs"
+      ],
+      "constraint": "If needed,compose the strict new source-bound apply/project helper into existing chain;validate full row/value/source/metadata/generated notes and overriddenBase before removing ONLY2own-source point18rows. Preserve prior guards/expected facts/historical snapshots. Every change needs independent mechanical evidence. Do not regenerate fingerprints from candidate or broadly filter same-named document facts."
+    },
+    "validation_plan": [
+      "Before edit seal both original GAP/SF links,complete point18/source pages and registered SHA256;take fresh complete runtime/before snapshot and independent source oracle.",
+      "Source-to-catalog/reverse audit:whole catalog equals before plus exactly2approved own-source point18facts;no other production bytes. Exact atomic value and section/pages13/14,Pluss replacesBase and full source metadata.",
+      "Focused tests for both levels/all12addon combinations:resolver,evidence,materialization,manual input and3JSONreenrichments. One effective term,raw evidence1Standard/2Pluss,complete source notes and overriddenBase;all old fields/choices/canonical coverage values unchanged.",
+      "Actual existing/offer document pipeline:exact full label overrides only this whole rule;unknown fallback;multiple conflicting specific terms kept. Generic Terror,Krig og terror,Forsikringssum,Ansvarsbegrensning,48timer,Generelle vilkår etc get no aliases. General terms alone produce0customer policies;supporting evidence paired with policy does not select coverages.",
+      "Independent customer building/fixture/forbehold/point12 and other fields do not suppress point18. Term alone infers no coverage,individual sum or status;nonasserting restriction role remains term and display has no affirmative coverage tick.",
+      "Same-product0difference,forward/reverse comparisons,other-provider missing row unknown;full provider/type/version/ordinary boundaries and NITO isolation. All prior named corrections and7source-page fixes preserved.",
+      "Run current46-file target manifest plus focused test(47files),fullsuite and scoped ESLint on final identical candidate. Read-only feasibility here is not production validation or an app-suite PASS.",
+      "Update one partial point18receipt/checkpoint/current-project-status after implementation validation. No full d123closure,P2credit,HOLDchange or pilotclearance;no commit/push/deploy in implementation authorization unless separately explicit."
+    ],
+    "required_documentation": [
+      "Explicit implementation authorization for point18only,exact key/value/bindings/files/source pages",
+      "Independent source oracle,before snapshot,source/reverse audit,actual checks/logs,candidate identity,mechanical corrections if needed",
+      "completion-receipt-d1230f13e6b445d7-point18.json and checkpoint/current-project-status.md stating point18only and remaining signature dimensions unassessed/notclosed",
+      "Preserve this decision and prior local foundation receipt;local validation separate from remote-main publication"
+    ],
+    "commit_push": "NOT_AUTHORIZED",
+    "deploy": "NOT_AUTHORIZED",
+    "install": "NOT_AUTHORIZED"
+  },
+  "rejected_mappings": [
+    {
+      "option": "Reuse hus.avtale.forbehold/eierskifte/plutselig/ansvar/insurance sum or another provider/type terror row",
+      "reason": "Separate identities/contracts and source scopes;the cap belongs to insurer-wide claims aggregation,not an individual property or liability coverage sum."
+    },
+    {
+      "option": "Split cap,event grouping,reduction and exceptions into independently overridable rows",
+      "reason": "Would fragment one qualified event limitation and risk partial override retaining an unconditional cap/universal exclusion. One complete point18term preserves scope and all qualifications."
+    },
+    {
+      "option": "hus.terror.dekning or availability/structured sum",
+      "reason": "Would imply positive or unavailable coverage or customer sum not established by this source. Restriction term is nonasserting and infers no canonical coverage."
+    },
+    {
+      "option": "Broad Terror/Krig og terror/Generelle vilkår alias or global enum addition",
+      "reason": "Precise existing product-scoped exact-label match already works;generic labels can cover other general clauses and stay unbound."
+    }
+  ],
+  "read_only_checks": {
+    "status": "PASS_READ_ONLY_MAPPING_FEASIBILITY",
+    "isolated_clone_only": true,
+    "proposed_raw_facts": 2,
+    "configurations": 12,
+    "manual_plus_three_JSON_reenrichments": "Full same-stage preexisting insurance/canonical coverage state preserved after projecting only proposed own-source rows;complete new source/sources metadata and notes checked.",
+    "document_probes": 20,
+    "general_terms_probes": 4,
+    "generic_label_probes": 18,
+    "forward_reverse_comparison_rows": 12,
+    "positive_building_fixture_fields_preserved": true,
+    "materialized_role": "term",
+    "isNonAssertingCoverageDetail": true,
+    "presentation_group": "hus.ovrig",
+    "term_alone_infers_coverage": false,
+    "no_automatic_aggregate_calculation": true,
+    "all_other_products_unchanged": true,
+    "actual_global_catalog_unchanged": true,
+    "new_global_alias_registry_or_enum_needed": false,
+    "production_candidate_validated": false,
+    "appsuite_run": false
+  },
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "priority_effect": "Point18only decision;no historical P2reprioritization,new mandatory prepilot blocker,HOLDlifting,P2credit,whole signature closure or pilotclearance.",
+  "integrity": {
+    "existing_files_unchanged": 8189,
+    "tracked_files_unchanged": 8185,
+    "prior4_local_revalidation_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false,
+    "only_new_read_only_packet": true
+  },
+  "implementation": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "commit_push": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "deploy": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "2cf0b15bcc22be602fac8b7d497ba4a18954001bb927c168da7a8981e50c06b2",
+    "probe_log": "mapping-probe.log.gz",
+    "probe_log_sha256": "8b6b86da4f35b8fe40bfffccc91fac87106f7ba5723d77cb3eb8ca3321596ad3"
+  }
+}
