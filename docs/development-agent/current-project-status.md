@@ -1,5 +1,41 @@
 # Aktuell dokumentert prosjektstatus
 
+## Seks ordinære Smart-detaljer – validert 24. oktober 2026
+
+Fersk main-basis er `b618f7ecdb9fb99ea74ba0581b37ead8a406fd78`. Seks avgrensede røtter er validert på denne basisen:
+pris, installasjon/leverandørbytte, aktivering/kundeplikter, utstyr/retur/skylagring,
+flytting/oppsigelse og ordinært pakkeinnhold. De gir seks nye detaljrader i den
+eksisterende valgfrie Smart-komponenten for Hus Standard og Hus Pluss.
+Ingen nye kundevalg, premie-/sum-/dekningsberegninger eller globale aliaser.
+Veiledende tjenestepris holdes separat fra forsikringspremien; kundens gjeldende
+avtale styrer faktisk pris. Originalvilkårets punkt 8 og 10 beholdes ordrett,
+inkludert skillet mellom flytting og bytte av selskap. Kjøpt ringeklokke og
+leieutstyr skilles; skylagringens tolv måneder og etterfølgende avtale bevares.
+Egne medlemsfordeler legges ikke til ordinærpakker. Begge registrerte HTML-kilder
+og alle tolv opprinnelige GAP-/SF-bindinger er kontrollert.
+
+3364/3364 målrettede tester i 50 filer og
+7056/7056 tester i 179 filer består uten feil eller skip.
+169 nye kontraktkontroller dekker 12 valgkombinasjoner, 140 individuelle dokumenttilfeller,
+tre gjentatte JSON-berikinger, kildehenvisninger og kundeprioritet. 214 manuelle
+kontroller, 144 dokumentflyter og 52 sammenligninger bevarer alle øvrige felt.
+Kvalitetskontroll av ti kode-/testfiler: 0 feil og 0 warnings.
+
+[Validering](../audit/checkpoints/house-smart-details-b618f7e/validation-summary.json),
+[checkpoint med seks separate receipts](../audit/checkpoints/house-smart-details-b618f7e/checkpoint.json),
+[kilde-/mappingbeslutning](../audit/checkpoints/house-smart-contract-b618f7e/receipt-house-smart-contract.json),
+[forutgående samlet revalidering](../audit/checkpoints/house-foundation-revalidation-b618f7e/receipt-house-foundation.json).
+Publiseringsrevisjonen er committen som inneholder rettelsen, de seks receipts
+og denne statusen. Publisert status gjelder etter kontroll av remote main
+under [publiseringsfullmakten](../audit/checkpoints/house-smart-details-b618f7e/publication-authorization.md).
+Original P2/DEFER_POST_PILOT beholdes historisk; ingen global signatur-, P2- eller
+kampanjekreditt utledes av denne bolken. Samlet ordinært katalogfundament krever
+fortsatt egen revalidering på publisert main. Alle HOLD, B-051 37/0/1/1,
+kampanje 67, globalt resolved/open UKJENT og REMEDIATION_REQUIRED beholdes.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige.
+Ingen installasjon eller deploy. NITO venter; Sentralbord venter separat.
+
 ## Punkt 17: Krig og uroligheter – validert 24. oktober 2026
 
 Fersk main, HEAD og origin/main er kontrollert til `5d38b87d71686ca2a3226439b6ad1ea4defaabbf`.
