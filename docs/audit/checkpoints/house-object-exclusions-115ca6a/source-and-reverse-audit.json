@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "base_revision": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "source_oracle_sha256": "7fdb3ecf639803cf8e9af1058cd6c326e732ef27bdb51632d3ea67dd814cd3c3",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2084",
+      "source_fact_id": "SF-2987",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    },
+    {
+      "finding_id": "GAP-2138",
+      "source_fact_id": "SF-3071",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    }
+  ],
+  "four_own_source_facts": [
+    {
+      "fact": {
+        "key": "hus.bygninger.hobbyveksthus.unntak",
+        "label": "Hobbyveksthus – objektunntak",
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Hobbyveksthus er ikke forsikret."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.bygninger.mineralolje.unntak",
+        "label": "Tank og fyrkjel for mineralolje – objektunntak",
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Tank og fyrkjel for mineralolje er ikke forsikret."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.bygninger.hobbyveksthus.unntak",
+        "label": "Hobbyveksthus – objektunntak",
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Hobbyveksthus er ikke forsikret."
+      },
+      "owner": "gjensidigeHusPluss"
+    },
+    {
+      "fact": {
+        "key": "hus.bygninger.mineralolje.unntak",
+        "label": "Tank og fyrkjel for mineralolje – objektunntak",
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Tank og fyrkjel for mineralolje er ikke forsikret."
+      },
+      "owner": "gjensidigeHusPluss"
+    }
+  ],
+  "checks": [
+    "Both complete original PDF3 raw/layout pages equal sealed before-oracle;registeredPDF SHA256 matches original main bytes",
+    "Both clauses under What is insured / Excluded column;no broader object or energy-source exclusion",
+    "Full current catalog equals before plus four exact raw facts;reverse helper validates full values/sources/metadata/notes/overriddenBase before projection",
+    "All12manual selections and3JSONrepeats retain exact preexisting terms/coverages/choices/source metadata",
+    "Actual document pipeline exact label precedence,unknown fallback,multiple specific conflicts retained,generic labels unbound,supporting terms create no insurance",
+    "Both new .unntak keys remain nonasserting term roles,infer no coverage alone,and do not negate building parent",
+    "Positive customer building/fixture fields and all other providers/source-page rules retained",
+    "Same-product comparison0differences;52bidirectional comparisons preserve old rows,missing peer new fact remains unknown"
+  ],
+  "runtime_proof": "runtime-proof.json.gz",
+  "focused_tests": 85
+}

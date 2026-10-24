@@ -186,7 +186,7 @@ test('R-051-ROT-STATUS only two independently authorized catalog metadata change
     assert.deepEqual(productCatalog.facts[owner].filter(f => owner !== 'gjensidigeHusStandard' || f.key !== key), rows);
     protectedFacts += rows.length; if (owner !== 'gjensidigeHusStandard') protectedComponents++;
   }
-  assert.equal(protectedFacts, 4180); assert.equal(protectedComponents, 317);
+  assert.equal(protectedFacts, 4184); assert.equal(protectedComponents, 317);
 });
 test('R-051-ROT-STATUS 13 products/six providers and 201 other comparable products isolated', () => {
   const inventory = baseline.products.filter(p => resolveCatalogFacts(p, [], date, null, baseline).some(f => f.key === key) ||

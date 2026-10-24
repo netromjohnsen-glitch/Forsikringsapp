@@ -1,0 +1,160 @@
+{
+  "classification": "CURRENT_VALIDATED_ORDINARY_HOUSE_OBJECT_EXCLUSIONS",
+  "status": "PASS_VALIDATED",
+  "created_at_UTC": "2026-10-24T14:54:23.540127+00:00",
+  "base_revision": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "fresh_main_before": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "fresh_main_after": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "fresh_main_method": "Connected GitHub branch API at start/end;HEAD/origin/main exactSHA. No reset/pull/stash.",
+  "application_identity_sha256": "2c6a310f28d08dba997b1aad855d08f1bcc773e2075bc9ad4f5ceb2d5457e5ee",
+  "tested_candidate": "Uncommitted application_files in candidate-identity.json. HEAD identifies base,not an implementation commit.",
+  "signature": "a6beec054bdae0df",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2084",
+      "source_fact_id": "SF-2987",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    },
+    {
+      "finding_id": "GAP-2138",
+      "source_fact_id": "SF-3071",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    }
+  ],
+  "original_priority": "P2",
+  "original_disposition": "DEFER_POST_PILOT retained in immutable registry;explicit local implementation tracked separately",
+  "decision": "../house-object-exclusions-contract-115ca6a/receipt-house-object-exclusions-contract.json",
+  "authorization": "authorization.json",
+  "implemented": {
+    "production_file": "lib/gjensidige-hus-catalog.ts",
+    "raw_rows_added": 4,
+    "effective_rows_per_product": 2,
+    "keys": [
+      "hus.bygninger.hobbyveksthus.unntak",
+      "hus.bygninger.mineralolje.unntak"
+    ],
+    "values": [
+      {
+        "key": "hus.bygninger.hobbyveksthus.unntak",
+        "label": "Hobbyveksthus – objektunntak",
+        "value": "Hobbyveksthus er ikke forsikret."
+      },
+      {
+        "key": "hus.bygninger.mineralolje.unntak",
+        "label": "Tank og fyrkjel for mineralolje – objektunntak",
+        "value": "Tank og fyrkjel for mineralolje er ikke forsikret."
+      }
+    ],
+    "Standard_source_pages": [
+      3
+    ],
+    "Pluss_source_pages": [
+      3
+    ],
+    "own_Pluss_replaces_base": true,
+    "original_bindings_resolution": "Both original bindings validated for both absent object exclusions;effective on published main only after containing commit verified.",
+    "source_to_catalog_and_reverse": "Whole catalog equals fresh-main before plus exactly four independently source-approved facts. Guarded reverse preserves all other fields,primary sources,manual notes and inheritance.",
+    "contract": "Hobby greenhouses excluded as insured objects;both tank and furnace excluded specifically for mineral oil. No extension to all greenhouses,garden rooms,tanks,heating systems,plumbing or other energy sources. Existing >10sqm detached-building registration requirement and positive building terms unchanged.",
+    "coverage_contract": "Both keys contain .unntak;materialized term roles and nonasserting semantics preserved. No building-parent availability negation,no coverage or optional customer choice created. Exact product-label document rule overrides only its own exclusion;generic headings are not new aliases.",
+    "unchanged": [
+      "Every other production byte",
+      "Positive building/fixtures/solar/side-building and plumbing/garden/brygge rules",
+      "Previously published three additional-cost/settlement/garden-import rules and7source-page fixes",
+      "All other providers,ordinary product/type/version/scope boundaries",
+      "Source registry/sourceType/effective dates/source admission",
+      "Engine,global aliases,extractor enum,presentation/UI",
+      "Original PDFs,historical audit/P2inventory/receipts/snapshots and prior local readonly packets"
+    ]
+  },
+  "validation": {
+    "summary": "validation-summary.json",
+    "targeted": {
+      "tests": 2886,
+      "pass": 2886,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "targeted_files": 45,
+    "fullsuite": {
+      "tests": 6578,
+      "pass": 6578,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullsuite_files": 174,
+    "focused_contract_tests": 85,
+    "scoped_lint_files": 10,
+    "scoped_lint_output": "",
+    "same_candidate_identity_for_all_final_gates": true,
+    "source_reverse_audit": "source-and-reverse-audit.json",
+    "runtime_proof": "runtime-proof.json.gz",
+    "mechanical_corrections": "autonomous-mechanical-corrections.json"
+  },
+  "unchanged_status": {
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "documented_campaign_count": 67,
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "catalog_foundation": "Named object-exclusion remainder implemented and locally validated. No exhaustive ordinary-catalog completeness,global P2closure or pilot clearance. Combined revalidation on containing published fresh main remains separate.",
+  "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+  "publication_revision": "Containing Git commit;verify on remote main after push",
+  "publication_authorization": "publication-authorization.md",
+  "publication_preflight": "publication-preflight.json",
+  "commit_push_authorized": true,
+  "deploy_authorized": false,
+  "install": "NOT_PERFORMED",
+  "new_workstreams_started": false,
+  "next_step": "Verify containing commit on remote main and exact payload hashes. Combined ordinary foundation revalidation remains a separate task;no deploy."
+}

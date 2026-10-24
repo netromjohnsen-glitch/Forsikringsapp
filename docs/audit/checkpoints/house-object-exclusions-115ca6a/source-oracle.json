@@ -1,0 +1,573 @@
+{
+  "signature": "a6beec054bdae0df",
+  "keys": [
+    "hus.bygninger.hobbyveksthus.unntak",
+    "hus.bygninger.mineralolje.unntak"
+  ],
+  "rows": [
+    {
+      "key": "hus.bygninger.hobbyveksthus.unntak",
+      "label": "Hobbyveksthus – objektunntak",
+      "value": "Hobbyveksthus er ikke forsikret.",
+      "decision": "NEW_NONASSERTING_OBJECT_EXCLUSION_DETAIL",
+      "Standard": {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 3,
+        "replacesBase": false
+      },
+      "Pluss": {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 3,
+        "replacesBase": true
+      },
+      "source_section": "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus",
+      "qualificationSource": "None needed;entire clause and table heading on same page",
+      "presentation_group": "hus.ovrig",
+      "materialized_role": "term"
+    },
+    {
+      "key": "hus.bygninger.mineralolje.unntak",
+      "label": "Tank og fyrkjel for mineralolje – objektunntak",
+      "value": "Tank og fyrkjel for mineralolje er ikke forsikret.",
+      "decision": "NEW_NONASSERTING_OBJECT_EXCLUSION_DETAIL",
+      "Standard": {
+        "owner": "gjensidigeHusStandard",
+        "source": "gjensidigeHusStandard",
+        "page": 3,
+        "replacesBase": false
+      },
+      "Pluss": {
+        "owner": "gjensidigeHusPluss",
+        "source": "gjensidigeHusPluss",
+        "page": 3,
+        "replacesBase": true
+      },
+      "source_section": "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje",
+      "qualificationSource": "None needed;entire clause and table heading on same page",
+      "presentation_group": "hus.ovrig",
+      "materialized_role": "term"
+    }
+  ],
+  "facts": [
+    {
+      "fact": {
+        "key": "hus.bygninger.hobbyveksthus.unntak",
+        "label": "Hobbyveksthus – objektunntak",
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Hobbyveksthus er ikke forsikret."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.bygninger.mineralolje.unntak",
+        "label": "Tank og fyrkjel for mineralolje – objektunntak",
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusStandard",
+          "effectiveFrom": "",
+          "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje",
+          "termsNumber": "Hus Standard",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Tank og fyrkjel for mineralolje er ikke forsikret."
+      },
+      "owner": "gjensidigeHusStandard"
+    },
+    {
+      "fact": {
+        "key": "hus.bygninger.hobbyveksthus.unntak",
+        "label": "Hobbyveksthus – objektunntak",
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Hobbyveksthus er ikke forsikret."
+      },
+      "owner": "gjensidigeHusPluss"
+    },
+    {
+      "fact": {
+        "key": "hus.bygninger.mineralolje.unntak",
+        "label": "Tank og fyrkjel for mineralolje – objektunntak",
+        "replacesBase": true,
+        "source": {
+          "company": "Gjensidige",
+          "documentId": "gjensidigeHusPluss",
+          "effectiveFrom": "",
+          "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+          "page": 3,
+          "section": "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje",
+          "termsNumber": "Hus Pluss",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+          "version": "Alminnelige vilkår"
+        },
+        "value": "Tank og fyrkjel for mineralolje er ikke forsikret."
+      },
+      "owner": "gjensidigeHusPluss"
+    }
+  ],
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2084",
+      "source_fact_id": "SF-2987",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    },
+    {
+      "finding_id": "GAP-2138",
+      "source_fact_id": "SF-3071",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    }
+  ],
+  "source_pages": [
+    {
+      "PDF_page_1_based": 3,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 68,
+        "catalog_match": "[{\"key\": \"hus.bygninger.dekning\", \"label\": \"Forsikrede bygninger\", \"value\": \"Bygningen i forsikringsbeviset med fastmontert utstyr, samt frittliggende bygg på forsikringsstedet inntil 10 m² BTA. Større sidebygg må fremgå av beviset.\", \"source\": {\"documentId\": \"gjensidigeHusStandard\", \"filename\": \"Hus-Standard-alminnelige-vilkar.pdf\", \"termsNumber\": \"Hus Standard\", \"effectiveFrom\": \"\", \"company\": \"Gjensidige\", \"url\": \"https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf\", \"section\": \"Hus – Hva forsikringen omfatter\", \"page\": 2, \"version\": \"Alminnelige vilkår\"}}]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "CATALOG_FACT_TOO_COARSE",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2084",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {
+          "hus.bygninger.dekning": true
+        },
+        "key_support_existing_type_registry": {
+          "hus.bygninger.dekning": null
+        },
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus",
+        "product_id": "gjensidige-hus",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [
+          "hus.bygninger.dekning"
+        ],
+        "provider": "gjensidige",
+        "reason": "Hobbyveksthus og mineraloljetank/-fyrkjel ikke spesifisert; størresidebygg korrekt.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "unntak",
+        "semantic_subject": "Bygningsobjekter",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Hobbyveksthus, tank/fyrkjelmineralolje, uregistrertsidebygg over10kvm er ikke dekket.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-2987",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-006",
+        "source_location": "PDF 3",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Standard",
+              "effectiveFrom": "",
+              "filename": "Hus-Standard-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusStandard",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+              "termsNumber": "Hus Standard",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+        "structured_value": "Hobbyveksthus, tank/fyrkjelmineralolje, uregistrertsidebygg over10kvm er ikke dekket.",
+        "unique_source_semantic_id": "ab49ace302f81055af8b",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "layout_text": "                 Hus                                                                                          Hus\n\nFORSIKRINGSBEVIS\n\n\n             Hus\n\n\n\n                                                                                                                                        Nyheter og endringer\n                  Dekkes                                                                Dekkes ikke\n\n\nBygning\nHvem gjelder      - Forsikringstaker\nforsikringen      - Ektefelle eller samboer med felles adresse i Folkeregisteret\nfor (sikrede)?    - Barn som bor hjemme eller som bor borte pga\n                    utdanning/førstegangstjeneste, og ikke har meldt adresseendring\n                    til Folkeregisteret\n                  - Privatperson som er medeier med tinglyst eiendomsrett i\n\n\n\n\n                                                                                                                                        Forsikringsoversikt\n                    forsikret eiendom\n                  - Andre som har tinglyst eiendomsrett, panterett eller annen\n                    tinglyst sikkerhetsrett i eiendommen\n                  - Barn som er en del av den faste husstanden, men er\n                    folkeregistrert på annen adresse pga. delt foreldreansvar\n\nHva er            - Bygning angitt i forsikringsbeviset, med fastmontert utstyr         - Brønn eller borehull\nforsikret?        - Frittliggende bygg på forsikringsstedet til og med bruttoareal 10   - Molo/bølgebryter, også når dette\n                    kvm.                                                                  fungerer som fundament for brygge\n                  - Solceller som dekker privat forbruk                                 - Flytebrygge og landgang\n                  - Utvendige ledninger med tilknyttet utstyr fram til spredeledning    - Frittliggende bygg over bruttoareal 10\n                    eller offentlig ledning                                               kvm. som ikke er angitt i\n                  - Hageanlegg inntil 5 dekar, inkludert utvendig badekilde/-basseng   forsikringsbeviset\n                  - Fast brygge tilhørende forsikret bygning inntil kr 100 000,      - Hobbyveksthus\n\n\n\n\n                                                                                                                                        Forsikringsbevis\n                    begrenset til brann og naturskade                                - Tank og fyrkjel for mineralolje\n\n\n\n                  - For bygg under oppføring, rehabilitering, tilbygg og påbygg\n                    gjelder også på forsikringsstedet:\n                     - Materialer til bygget\n                     - Brakker, lagerskur og containere\nHvilke skader?    Plutselig og uforutsett skade ved:                                    Plutselig og uforutsett skade dekker\n                  - Brannskade og skade som følge av lynnedslag, eksplosjon,            ikke:\n                    nedsoting og elektriske fenomen                                     - Skade som andre enn sikrede er pliktig\n\n\n\n\n                                                                                                                                        Fellesdekninger / Generelle vilkår\n                  - Vannskader                                                            til, og har økonomisk evne til å erstatte,\n                     - Lekkasje fra bygningens rørledning, installasjoner og              i henhold til garanti eller annen avtale\n                       akvarium                                                         - Skade som skyldes manglende\n                     - Vann som trenger inn i bygning fra grunnen eller terreng når       vedlikehold eller slitasje på bygning og\n                       dette fører til vannspeil                                          tilknyttet utstyr\n                     - Vann som trenger inn gjennom åpning eller utetthet oppstått      - Svimerker og gnistskader som ikke\n                       ved erstatningsmessig bygningsskade                                skyldes brann\n                     - Vannskade på tilstøtende rom som følge av utett våtrom           - Vannskader:\n                  - Tyveri og skader som følge av tyveri fra bygning                       - Vann som trenger inn gjennom utett\n                  - Er det i forsikringsbeviset angitt utleie dekkes også:                     bygning\n                     - Skadeverk (jf. straffeloven § 351) med vilje påført av              - Vann og fukt som trenger inn i\n                       leietager                                                               bygning fra grunnen eller terreng når\n                     - Misligholdt husleie inntil 6 måneder. Gjelder kun en gang               dette ikke fører til vannspeil\n                       per leietager                                                       - Skade på våtrom som skyldes at det\n                     - Nødvendige utgifter til utkastelse ved skadeverk eller                  er utett. Med våtrom menes\n                       misligholdt husleie inntil kr 20 000                                    bygningskomponenter som befinner\n\n\n\n\n                                                                                                                                        Erstatningsregler\n                     - Utover forsikringssummen dekkes i tillegg tap av                        seg innenfor våtrommets bjelkelag\n                       husleieinntekter for rom som er godkjent for varig opphold,             og stenderverk\n                       etter en erstatningsmessig skade                                 - Skadeverk (jf. straffeloven § 351) påført\n                  Se erstatningsregler: Leiekontrakt og utkastelse.                       av leietager, misligholdt husleie, utgifter\n                                                                                          til utkastelse og tap av husleieinntekter,\n                  - Bekjempelse av levende mus, rotter og andre skadedyr i                med mindre utleie er angitt i\n                    bygning                                                               forsikringsbeviset\n                  - Skade forårsaket av mus, rotter og andre dyr                        - Utgifter til misligholdt husleie utover 6\n                    - Med skade menes her fysisk skade på bygning/bygningsdel,            måneder, selv om sikrede har både\n                       svekket isolasjonsevne og lukt.\n\f",
+      "raw_text": "Hus Hus\nHus\nFORSIKRINGSBEVIS\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nDekkes Dekkes ikke\nBygning\nHvem gjelder\nforsikringen\nfor (sikrede)?\n- Forsikringstaker\n- Ektefelle eller samboer med felles adresse i Folkeregisteret\n- Barn som bor hjemme eller som bor borte pga\nutdanning/førstegangstjeneste, og ikke har meldt adresseendring\ntil Folkeregisteret\n- Privatperson som er medeier med tinglyst eiendomsrett i\nforsikret eiendom\n- Andre som har tinglyst eiendomsrett, panterett eller annen\ntinglyst sikkerhetsrett i eiendommen\n- Barn som er en del av den faste husstanden, men er\nfolkeregistrert på annen adresse pga. delt foreldreansvar\nHva er\nforsikret?\n- Bygning angitt i forsikringsbeviset, med fastmontert utstyr\n- Frittliggende bygg på forsikringsstedet til og med bruttoareal 10\nkvm.\n- Solceller som dekker privat forbruk\n- Utvendige ledninger med tilknyttet utstyr fram til spredeledning\neller offentlig ledning\n- Hageanlegg inntil 5 dekar, inkludert utvendig badekilde/-basseng\n- Fast brygge tilhørende forsikret bygning inntil kr 100 000,\nbegrenset til brann og naturskade\n- For bygg under oppføring, rehabilitering, tilbygg og påbygg\ngjelder også på forsikringsstedet:\n- Materialer til bygget\n- Brakker, lagerskur og containere\n- Brønn eller borehull\n- Molo/bølgebryter, også når dette\nfungerer som fundament for brygge\n- Flytebrygge og landgang\n- Frittliggende bygg over bruttoareal 10\nkvm. som ikke er angitt i\nforsikringsbeviset\n- Hobbyveksthus\n- Tank og fyrkjel for mineralolje\nHvilke skader? Plutselig og uforutsett skade ved:\n- Brannskade og skade som følge av lynnedslag, eksplosjon,\nnedsoting og elektriske fenomen\n- Vannskader\n- Lekkasje fra bygningens rørledning, installasjoner og\nakvarium\n- Vann som trenger inn i bygning fra grunnen eller terreng når\ndette fører til vannspeil\n- Vann som trenger inn gjennom åpning eller utetthet oppstått\nved erstatningsmessig bygningsskade\n- Vannskade på tilstøtende rom som følge av utett våtrom\n- Tyveri og skader som følge av tyveri fra bygning\n- Er det i forsikringsbeviset angitt utleie dekkes også:\n- Skadeverk (jf. straffeloven § 351) med vilje påført av\nleietager\n- Misligholdt husleie inntil 6 måneder. Gjelder kun en gang\nper leietager\n- Nødvendige utgifter til utkastelse ved skadeverk eller\nmisligholdt husleie inntil kr 20 000\n- Utover forsikringssummen dekkes i tillegg tap av\nhusleieinntekter for rom som er godkjent for varig opphold,\netter en erstatningsmessig skade\nSe erstatningsregler: Leiekontrakt og utkastelse.\n- Bekjempelse av levende mus, rotter og andre skadedyr i\nbygning\n- Skade forårsaket av mus, rotter og andre dyr\n- Med skade menes her fysisk skade på bygning/bygningsdel,\nsvekket isolasjonsevne og lukt.\nPlutselig og uforutsett skade dekker\nikke:\n- Skade som andre enn sikrede er pliktig\ntil, og har økonomisk evne til å erstatte,\ni henhold til garanti eller annen avtale\n- Skade som skyldes manglende\nvedlikehold eller slitasje på bygning og\ntilknyttet utstyr\n- Svimerker og gnistskader som ikke\nskyldes brann\n- Vannskader:\n- Vann som trenger inn gjennom utett\nbygning\n- Vann og fukt som trenger inn i\nbygning fra grunnen eller terreng når\ndette ikke fører til vannspeil\n- Skade på våtrom som skyldes at det\ner utett. Med våtrom menes\nbygningskomponenter som befinner\nseg innenfor våtrommets bjelkelag\nog stenderverk\n- Skadeverk (jf. straffeloven § 351) påført\nav leietager, misligholdt husleie, utgifter\ntil utkastelse og tap av husleieinntekter,\nmed mindre utleie er angitt i\nforsikringsbeviset\n- Utgifter til misligholdt husleie utover 6\nmåneder, selv om sikrede har både\f",
+      "render_sha256": "70bce52adc1f92cf0a73d0e7563ea113dfd170c538ffd2af87a201c9fe8efacb"
+    },
+    {
+      "PDF_page_1_based": 3,
+      "binding": {
+        "advisor_relevance": "CORE",
+        "agreement_scope": "ordinary",
+        "audit_review_status": "MANUALLY_CHECKED",
+        "catalog_full_fact_count_checked": 65,
+        "catalog_match": "[{\"key\": \"hus.bygninger.dekning\", \"label\": \"Forsikrede bygninger\", \"value\": \"Bygningen i forsikringsbeviset med fastmontert utstyr, samt frittliggende bygg på forsikringsstedet inntil 10 m² BTA. Større sidebygg må fremgå av beviset.\", \"source\": {\"documentId\": \"gjensidigeHusStandard\", \"filename\": \"Hus-Standard-alminnelige-vilkar.pdf\", \"termsNumber\": \"Hus Standard\", \"effectiveFrom\": \"\", \"company\": \"Gjensidige\", \"url\": \"https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Standard-alminnelige-vilkar.pdf\", \"section\": \"Hus – Hva forsikringen omfatter\", \"page\": 2, \"version\": \"Alminnelige vilkår\"}}]",
+        "catalog_version": "Alminnelige vilkår",
+        "classification": "CATALOG_FACT_TOO_COARSE",
+        "component": "",
+        "confidence": "HIGH",
+        "confidence_scope": "Exact source rule and exact product; package closure separately recorded",
+        "customer_mode_impact_class": "LIKELY_SHARED_WITH_CUSTOMER_MODE",
+        "fact_status": "SOURCE_DOCUMENTED_RULE",
+        "finding_id": "GAP-2138",
+        "full_package_review_complete": true,
+        "insurance_type": "Hus",
+        "key_support_existing_catalog": {
+          "hus.bygninger.dekning": true
+        },
+        "key_support_existing_type_registry": {
+          "hus.bygninger.dekning": null
+        },
+        "label_and_structuredValue_reviewed": true,
+        "manual_validation": true,
+        "priority": "P2",
+        "product": "gjensidige-hus-pluss",
+        "product_id": "gjensidige-hus-pluss",
+        "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+        "proposed_keys": [
+          "hus.bygninger.dekning"
+        ],
+        "provider": "gjensidige",
+        "reason": "Hobbyveksthus og mineraloljetank/-fyrkjel ikke spesifisert; størresidebygg korrekt.",
+        "representation_searched_in": [
+          "resolved base",
+          "inherited components",
+          "available optional components",
+          "materialized catalog snapshot"
+        ],
+        "review_scope": "Available local official package; unresolved material source questions explicitly retained.",
+        "root_cause_id": "SCRC-025",
+        "scope": "ordinary",
+        "semantic_dimension": "unntak",
+        "semantic_subject": "Bygningsobjekter",
+        "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+        "source_evidence": "Parafrase av lokalt kontrollert kildepunkt: Hobbyveksthus, tank/fyrkjelmineralolje, uregistrertsidebygg over10kvm er ikke dekket.",
+        "source_excerpt": "",
+        "source_fact_id": "SF-3071",
+        "source_first_inventory": "gjensidige-hus-independent-inventory.json",
+        "source_first_inventory_id": "GJ-HU-006",
+        "source_location": "PDF 3",
+        "source_metadata": {
+          "manifest_entries": [],
+          "runtime_records": [
+            {
+              "appliesTo": [
+                "Hus Pluss",
+                "Råte og skadeinsekter"
+              ],
+              "artifact_paths": [
+                "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf"
+              ],
+              "company": "Gjensidige",
+              "documentName": "Alminnelige vilkår Hus Pluss",
+              "effectiveFrom": "",
+              "filename": "Hus-Pluss-alminnelige-vilkar.pdf",
+              "id": "gjensidigeHusPluss",
+              "insuranceType": "Hus",
+              "link_status": "RESOLVED",
+              "sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+              "termsNumber": "Hus Pluss",
+              "updatedAt": "2026-09-20",
+              "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hus-Pluss-alminnelige-vilkar.pdf",
+              "version": "Alminnelige vilkår"
+            }
+          ]
+        },
+        "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+        "structured_value": "Hobbyveksthus, tank/fyrkjelmineralolje, uregistrertsidebygg over10kvm er ikke dekket.",
+        "unique_source_semantic_id": "5f4362fab7ab11a4995c",
+        "validation_state": "FINAL",
+        "version": "Alminnelige vilkår",
+        "version_unknown": false
+      },
+      "layout_text": "                 Hus                                                                                          Hus\n\nFORSIKRINGSBEVIS\n\n\n             Hus\n\n\n\n                                                                                                                                        Nyheter og endringer\n                  Dekkes                                                                Dekkes ikke\nHvem gjelder      - Forsikringstaker\nforsikringen      - Ektefelle eller samboer med felles adresse i Folkeregisteret\nfor (sikrede)?    - Barn som bor hjemme eller som bor borte pga\n                    utdanning/førstegangstjeneste, og ikke har meldt adresseendring\n                    til Folkeregisteret\n                  - Privatperson som er medeier med tinglyst eiendomsrett i\n                    forsikret eiendom\n                  - Andre som har tinglyst eiendomsrett, panterett eller annen\n                    tinglyst sikkerhetsrett i eiendommen\n\n\n\n\n                                                                                                                                        Forsikringsoversikt\n                  - Barn som er en del av den faste husstanden, men er\n                    folkeregistrert på annen adresse pga. delt foreldreansvar\n\nHva er            - Bygning angitt i forsikringsbeviset, med fastmontert utstyr         - Brønn eller borehull\nforsikret?        - Frittliggende bygg på forsikringsstedet til og med bruttoareal 10   - Molo/bølgebryter, også når dette\n                    kvm.                                                                  fungerer som fundament for brygge\n                  - Solceller som dekker privat forbruk                                 - Flytebrygge og landgang\n                  - Utvendige ledninger med tilknyttet utstyr fram til spredeledning    - Frittliggende bygg over bruttoareal 10\n                    eller offentlig ledning                                               kvm. som ikke er angitt i\n                  - Hageanlegg inntil 5 dekar, inkludert utvendig badekilde/-basseng   forsikringsbeviset\n                  - Fast brygge tilhørende forsikret bygning inntil kr 100 000,      - Hobbyveksthus\n                    begrenset til brann og naturskade                                - Tank og fyrkjel for mineralolje\n\n\n\n\n                                                                                                                                        Forsikringsbevis\n                  - For bygg under oppføring, rehabilitering, tilbygg og påbygg\n                    gjelder også på forsikringsstedet:\n                     - Materialer til bygget\n                     - Brakker, lagerskur og containere\nHvilke skader?    Plutselig og uforutsett skade ved:                                    Plutselig og uforutsett skade dekker\n                  - Brannskade og skade som følge av lynnedslag, eksplosjon,            ikke:\n                    nedsoting og elektriske fenomen                                     - Skade som andre enn sikrede er pliktig\n                  - Vannskader                                                            til, og har økonomisk evne til å erstatte,\n                     - Lekkasje fra bygningens rørledning, installasjoner og              i henhold til garanti eller annen avtale\n                       akvarium                                                         - Skade som skyldes manglende\n\n\n\n\n                                                                                                                                        Fellesdekninger / Generelle vilkår\n                     - Vann som trenger inn i bygning fra grunnen eller terreng når       vedlikehold eller slitasje på bygning og\n                       dette fører til vannspeil                                          tilknyttet utstyr\n                     - Vann som trenger inn gjennom åpning eller utetthet oppstått      - Svimerker og gnistskader som ikke\n                       ved erstatningsmessig bygningsskade                                skyldes brann\n                     - Vannskade på tilstøtende rom som følge av utett våtrom           - Vannskader:\n                     - Vannskade som følge av vanninntrengning gjennom utett               - Vann og fukt som trenger inn i\n                       bygning over bakkeplan, men ikke utbedring av selve                     bygning fra grunnen eller terreng når\n                       feilen/mangelen                                                         dette ikke fører til vannspeil\n                  - Tyveri og skader som følge av tyveri fra bygning                       - Skade på våtrom som skyldes at det\n                  - Er det i forsikringsbeviset angitt utleie dekkes også:                     er utett. Med våtrom menes\n                     - Skadeverk (jf. straffeloven § 351) med vilje påført av                  bygningskomponenter som befinner\n                       leietager                                                               seg innenfor våtrommets bjelkelag\n                     - Misligholdt husleie inntil 6 måneder. Gjelder kun en gang               og stenderverk\n                       per leietager                                                       - Vann som trenger inn gjennom utett\n                     - Nødvendige utgifter til utkastelse ved skadeverk eller                  tak som er eldre enn 50 år\n                       misligholdt husleie inntil kr 20 000                                - Vann som trenger inn gjennom utett\n\n\n\n\n                                                                                                                                        Erstatningsregler\n                     - Utover forsikringssummen dekkes i tillegg tap av                        bygning når bygningen ikke er\n                       husleieinntekter for rom som er godkjent for varig opphold,             fullverdiforsikret\n                       etter en erstatningsmessig skade                                    - Ved vanninntrenging gjennom utett\n                  Se erstatningsregler: Leiekontrakt og utkastelse.                            bygning dekkes ikke skade på selve\n                                                                                               taket/veggen. Med dette menes alle\n                  - Bekjempelse av levende mus, rotter og andre skadedyr i                     sjikt utenfor takstol/-sperre eller\n                    bygning                                                                    stenderverk/bærende konstruksjoner\n                  - Skade forårsaket av mus, rotter og andre dyr                        - Skadeverk (jf. straffeloven § 351) påført\n                    - Med skade menes her fysisk skade på bygning/bygningsdel,            av leietager, misligholdt husleie, utgifter\n                       svekket isolasjonsevne og lukt                                     til utkastelse og tap av husleieinntekter,\n\f",
+      "raw_text": "Hus Hus\nHus\nFORSIKRINGSBEVIS\nNyheter og endringer Forsikringsoversikt Forsikringsbevis Fellesdekninger / Generelle vilkår Erstatningsregler\nDekkes Dekkes ikke\nHvem gjelder\nforsikringen\nfor (sikrede)?\n- Forsikringstaker\n- Ektefelle eller samboer med felles adresse i Folkeregisteret\n- Barn som bor hjemme eller som bor borte pga\nutdanning/førstegangstjeneste, og ikke har meldt adresseendring\ntil Folkeregisteret\n- Privatperson som er medeier med tinglyst eiendomsrett i\nforsikret eiendom\n- Andre som har tinglyst eiendomsrett, panterett eller annen\ntinglyst sikkerhetsrett i eiendommen\n- Barn som er en del av den faste husstanden, men er\nfolkeregistrert på annen adresse pga. delt foreldreansvar\nHva er\nforsikret?\n- Bygning angitt i forsikringsbeviset, med fastmontert utstyr\n- Frittliggende bygg på forsikringsstedet til og med bruttoareal 10\nkvm.\n- Solceller som dekker privat forbruk\n- Utvendige ledninger med tilknyttet utstyr fram til spredeledning\neller offentlig ledning\n- Hageanlegg inntil 5 dekar, inkludert utvendig badekilde/-basseng\n- Fast brygge tilhørende forsikret bygning inntil kr 100 000,\nbegrenset til brann og naturskade\n- For bygg under oppføring, rehabilitering, tilbygg og påbygg\ngjelder også på forsikringsstedet:\n- Materialer til bygget\n- Brakker, lagerskur og containere\n- Brønn eller borehull\n- Molo/bølgebryter, også når dette\nfungerer som fundament for brygge\n- Flytebrygge og landgang\n- Frittliggende bygg over bruttoareal 10\nkvm. som ikke er angitt i\nforsikringsbeviset\n- Hobbyveksthus\n- Tank og fyrkjel for mineralolje\nHvilke skader? Plutselig og uforutsett skade ved:\n- Brannskade og skade som følge av lynnedslag, eksplosjon,\nnedsoting og elektriske fenomen\n- Vannskader\n- Lekkasje fra bygningens rørledning, installasjoner og\nakvarium\n- Vann som trenger inn i bygning fra grunnen eller terreng når\ndette fører til vannspeil\n- Vann som trenger inn gjennom åpning eller utetthet oppstått\nved erstatningsmessig bygningsskade\n- Vannskade på tilstøtende rom som følge av utett våtrom\n- Vannskade som følge av vanninntrengning gjennom utett\nbygning over bakkeplan, men ikke utbedring av selve\nfeilen/mangelen\n- Tyveri og skader som følge av tyveri fra bygning\n- Er det i forsikringsbeviset angitt utleie dekkes også:\n- Skadeverk (jf. straffeloven § 351) med vilje påført av\nleietager\n- Misligholdt husleie inntil 6 måneder. Gjelder kun en gang\nper leietager\n- Nødvendige utgifter til utkastelse ved skadeverk eller\nmisligholdt husleie inntil kr 20 000\n- Utover forsikringssummen dekkes i tillegg tap av\nhusleieinntekter for rom som er godkjent for varig opphold,\netter en erstatningsmessig skade\nSe erstatningsregler: Leiekontrakt og utkastelse.\n- Bekjempelse av levende mus, rotter og andre skadedyr i\nbygning\n- Skade forårsaket av mus, rotter og andre dyr\n- Med skade menes her fysisk skade på bygning/bygningsdel,\nsvekket isolasjonsevne og lukt\nPlutselig og uforutsett skade dekker\nikke:\n- Skade som andre enn sikrede er pliktig\ntil, og har økonomisk evne til å erstatte,\ni henhold til garanti eller annen avtale\n- Skade som skyldes manglende\nvedlikehold eller slitasje på bygning og\ntilknyttet utstyr\n- Svimerker og gnistskader som ikke\nskyldes brann\n- Vannskader:\n- Vann og fukt som trenger inn i\nbygning fra grunnen eller terreng når\ndette ikke fører til vannspeil\n- Skade på våtrom som skyldes at det\ner utett. Med våtrom menes\nbygningskomponenter som befinner\nseg innenfor våtrommets bjelkelag\nog stenderverk\n- Vann som trenger inn gjennom utett\ntak som er eldre enn 50 år\n- Vann som trenger inn gjennom utett\nbygning når bygningen ikke er\nfullverdiforsikret\n- Ved vanninntrenging gjennom utett\nbygning dekkes ikke skade på selve\ntaket/veggen. Med dette menes alle\nsjikt utenfor takstol/-sperre eller\nstenderverk/bærende konstruksjoner\n- Skadeverk (jf. straffeloven § 351) påført\nav leietager, misligholdt husleie, utgifter\ntil utkastelse og tap av husleieinntekter,\f",
+      "render_sha256": "1b588d2447ba192644988f9974899a7ae3e6e9a53084755fdfcd120d4e98b255"
+    }
+  ],
+  "original_P2_registry": {
+    "batch_id": "",
+    "candidate_authoring_files": "[\"lib/gjensidige-hus-catalog.ts\"]",
+    "disposition": "DEFER_POST_PILOT",
+    "family": "[\"Hus\"]",
+    "finding_ids": "[\"GAP-2084\", \"GAP-2138\"]",
+    "occurrence_count": "2",
+    "provider": "[\"gjensidige\"]",
+    "rationale": "No independent evidence of negligible marginal risk in the SAME approved edit. Preserve finding for later scoped follow-up; P2 is not dismissed.",
+    "signature_id": "a6beec054bdae0df",
+    "source_fact_ids": "[\"SF-2987\", \"SF-3071\"]"
+  },
+  "protected_checkpoint": {
+    "content": {
+      "B051_partition_counts": [
+        37,
+        0,
+        1,
+        1
+      ],
+      "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+      "HARNESS_AUTONOMY_V1": {
+        "capacity_for_other_roots": 0,
+        "ledger": "../b051-health-help-732b4cc/two-root-authorization-and-ledger.json",
+        "ordinary_limit": 12,
+        "previous_root": "../b051-health-help-732b4cc/draft-identifier-authorization-and-ledger.json",
+        "scope_limit": 6,
+        "scope_used": 3,
+        "status": "HISTORICAL_FROZEN_NO_LONGER_OPERATIONAL_STOP_QUOTA",
+        "used": 33
+      },
+      "NITO": "WAIT",
+      "P2_credit": 0,
+      "Sentralbord": "WAIT_SEPARATE",
+      "additional_B051_holds_unchanged": [
+        "SC-019/SR-033",
+        "SC-020/SR-032"
+      ],
+      "additional_explicit_HOLD": [
+        "8a89196fecd29ddb"
+      ],
+      "application_identity_sha256": "05844718db80827cfe1dd811de70ac1581dd5978e5f6a6e9d572efbd7d3d3217",
+      "base_revision": "de087fccb92706dbf8d2bf6a697aa6cf6a27081a",
+      "catalog_foundation": "Named additional-cost remainder implemented and locally validated; no claim of exhaustive catalog completeness,aggregate P2closure or pilot release. Combined revalidation on containing published fresh main remains a separate task.",
+      "classification": "CURRENT_VALIDATED_HOUSE_ADDITIONAL_COSTS",
+      "commit_push_authorized": true,
+      "current_B051_completed_signatures": [
+        "08203cfa28493e63",
+        "0eda923b4090cf6c",
+        "0f7980d6139daa2e",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "35c58fbc06cf6e7d",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "6080e5e5a6bb3c63",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "73aab8a0ad4f6c11",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ed99577218e2302b"
+      ],
+      "current_B130_completed_signatures": [
+        "15f5b4a3e9f79fd2",
+        "597df4c45c6d3db9",
+        "ce90710821e28a97",
+        "d58bff0e6b2d46eb"
+      ],
+      "current_receipt": "completion-receipt-e103e7cb532fb8d4.json",
+      "deploy_authorized": false,
+      "documented_campaign_count": 67,
+      "documented_campaign_signatures": [
+        "03cff9fe5cfbf518",
+        "08203cfa28493e63",
+        "0a6b5f6f535df685",
+        "0da02a8dae8fd373",
+        "0eda923b4090cf6c",
+        "0f51d1c0374f1f1f",
+        "0f7980d6139daa2e",
+        "15f5b4a3e9f79fd2",
+        "1982ee310e18279c",
+        "1ee41770b0470c78",
+        "1f56c194d413f97d",
+        "2113807ceb290224",
+        "239b00779349f2fd",
+        "25004bc4d7dd2c03",
+        "275365b3ec2971df",
+        "292dacd4533926fd",
+        "2b078b058bc63967",
+        "35c58fbc06cf6e7d",
+        "373413bc13517ff4",
+        "3f4b9eff50404590",
+        "403c9b3f0e9aa19f",
+        "41206e12c93c0058",
+        "4165f79344a7d572",
+        "416dfaab0492ce1b",
+        "46e94bcf464af845",
+        "48393aac0a200fe5",
+        "4971fe7dbeac3649",
+        "49adf65854171146",
+        "4a844bae3be9dea8",
+        "57c775ac935fb504",
+        "5839d2c13e186676",
+        "597df4c45c6d3db9",
+        "6080e5e5a6bb3c63",
+        "688cc5923342804d",
+        "6af32d21acb9584c",
+        "6ceaaaf84f1dc597",
+        "6e5f3830ca4701d4",
+        "6f0ac8fe783a963d",
+        "72170f7dfe5c91b6",
+        "73aab8a0ad4f6c11",
+        "7b2587a3bbc0c772",
+        "7ba0298883905c58",
+        "86992ec620da2894",
+        "8a1beb3695ddb2fd",
+        "8c14a1328e5080cf",
+        "8d28f56b17a9bae2",
+        "8e8d82878deb95b5",
+        "8e9d297cb0d1bd0e",
+        "90d49006ef7999d3",
+        "a4e5c76df5cbf2af",
+        "a7561c0d03ede572",
+        "af150eab853a1648",
+        "af3a3ee673fedc83",
+        "b3b964a9c6105360",
+        "b5792662cc2fa9f8",
+        "b5b211cad16d32c6",
+        "bb47646cd8b17f20",
+        "c1440948744bfa17",
+        "c5ccc4f26fd475ae",
+        "cdd055ea730897ab",
+        "ce381a27b7435bec",
+        "ce90710821e28a97",
+        "d58bff0e6b2d46eb",
+        "dc3e04a5fcce2317",
+        "ed99577218e2302b",
+        "f8bd15c89bc0dbd6",
+        "fbe23495ae09afb3"
+      ],
+      "global_resolved_open": "UNKNOWN",
+      "historical_DEFER_SAFE_signatures": [
+        "0177d006e35081bf",
+        "01c571aed2922601",
+        "081897ea9890dd48",
+        "19e07ca100e66430",
+        "30fc68fdaa903cfb",
+        "4298f951ca3c66c3",
+        "42c2a36bff254c04",
+        "48f198515fc0f302",
+        "4b74844f6e3299d6",
+        "5451f3cd4d1439f3",
+        "57772b5d65c12f6e",
+        "614e6706ae2502ce",
+        "6a8fa7667b6b4f31",
+        "6aef26441eb0791f",
+        "765fd5db190904d0",
+        "891c9fac3031a8ee",
+        "b2dfb452aaacba84",
+        "b62a64284e4abbe1",
+        "c05c0db230591fe9",
+        "cb3e9dc1ef2d6684",
+        "cc9b15fa0f3121c0"
+      ],
+      "historical_only": {
+        "conversation_reported_resolved": 414,
+        "diagnostics_campaign": "19/12",
+        "mechanical": "19/16",
+        "not_current_ledger_verified": true,
+        "semantic": "10/8"
+      },
+      "holds_unchanged": [
+        "157c7afed18eb0fe",
+        "26668a6c81e5b5d9",
+        "5f31ff4946a666b5",
+        "7767772472433807",
+        "SC-019/SR-033",
+        "SC-020/SR-032",
+        "SC-035/SR-031",
+        "e2f70dda0093e9e4"
+      ],
+      "install": "NOT_PERFORMED",
+      "mapping_decision": "../house-additional-costs-contract-de087fc/receipt-house-additional-costs-contract.json",
+      "new_signature_closure_credit": 0,
+      "new_workstreams_started": false,
+      "next_step": "Verify containing commit on remote main and exact payload hashes. Combined ordinary foundation revalidation remains a separate task;no deploy.",
+      "original_P2_disposition": "DEFER_POST_PILOT unchanged;explicit implementation tracked separately",
+      "prior_checkpoint": "../house-garden-import-83c8fee/checkpoint.json",
+      "prior_revalidation": "../house-foundation-revalidation-de087fc/receipt-house-foundation.json",
+      "publication_authorization": "publication-authorization.md",
+      "publication_preflight": "publication-preflight.json",
+      "publication_revision": "Containing Git commit;verify on remote main after push",
+      "publication_status": "EFFECTIVE_WHEN_CONTAINING_COMMIT_VERIFIED_ON_REMOTE_MAIN",
+      "remaining_B130_review_signatures": [],
+      "remaining_pre_pilot_points": [
+        "HTU and all other protected HOLD",
+        "8a89196fecd29ddb insect common-exclusion scope HOLD",
+        "SC-020/SR-032 physical insect damage deductible HOLD",
+        "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+        "Security/GDPR and P3-A05 identity/merge status unknown",
+        "Person insurance / pilot scope",
+        "Critical UX",
+        "Feedback",
+        "Operational adviser acceptance"
+      ],
+      "signature": "e103e7cb532fb8d4",
+      "specific_remainder": "HOUSE_SHARED_POST_DAMAGE_ADDITIONAL_COSTS_IMPLEMENTED_EFFECTIVE_WHEN_PUBLISHED_COMMIT_VERIFIED",
+      "status": "PASS_VALIDATED"
+    },
+    "path": "docs/audit/checkpoints/house-additional-costs-de087fc/checkpoint.json",
+    "sha256": "ccc62896c20ff9981bc64438165a4f650310a1a1d6a3cd08fff9795b3f3d73f5"
+  },
+  "base_revision": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "captured_before_production_edit": true
+}

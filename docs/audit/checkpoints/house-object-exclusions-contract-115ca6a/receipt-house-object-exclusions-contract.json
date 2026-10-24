@@ -1,0 +1,269 @@
+{
+  "classification": "CURRENT_READ_ONLY_ORDINARY_HOUSE_OBJECT_EXCLUSIONS_MAPPING_DECISION",
+  "status": "DECISION_COMPLETE_IMPLEMENTATION_NOT_PERFORMED",
+  "decision": "To egne unntaksdetaljer i én bolk: hus.bygninger.hobbyveksthus.unntak og hus.bygninger.mineralolje.unntak. Fire rå rader med egne Standard-/Pluss-kilder på PDF-side3 og replacesBase på Pluss gir to effektive regler per produkt. Positiv bygningsdekning og kundevalg beholdes.",
+  "reason": "Ingen eksisterende katalogidentitet dekker presist disse to objektunntakene. Separat mapping lar en konkret kunderegel overstyre bare det aktuelle objektet. .unntak gir eksisterende ikke-assertiv termrolle,slik at detaljene ikke avviser hele bygningsdekningen eller oppretter kundevalg. Ingen engine-/alias-/enum-/presentasjonsendring er nødvendig i foreslått bolk.",
+  "authorization": "Avklar kontrakt og mapping for a6beec054bdae0df på Hus Standard og Hus Pluss på fersk main. Lever én beslutning og presis rettingsbolk. Ingen kodeendringer/deploy;behold alle HOLD. NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T14:50:07.425184+00:00",
+  "user_date": "2026-10-24",
+  "fresh_main_before": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "fresh_main_after": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "fresh_main_method": "Connected GitHub branch API start/end;HEAD/origin main exactSHA. Both original PDFs verified byte-for-byte against main git blobs and registered source SHA256.",
+  "signature": "a6beec054bdae0df",
+  "original_priority": "P2",
+  "original_disposition_retained": "DEFER_POST_PILOT",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2084",
+      "source_fact_id": "SF-2987",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    },
+    {
+      "finding_id": "GAP-2138",
+      "source_fact_id": "SF-3071",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    }
+  ],
+  "source_contract": {
+    "table_scope": "Hva er forsikret? / Dekkes ikke",
+    "exact_proposed_values": [
+      {
+        "key": "hus.bygninger.hobbyveksthus.unntak",
+        "label": "Hobbyveksthus – objektunntak",
+        "value": "Hobbyveksthus er ikke forsikret."
+      },
+      {
+        "key": "hus.bygninger.mineralolje.unntak",
+        "label": "Tank og fyrkjel for mineralolje – objektunntak",
+        "value": "Tank og fyrkjel for mineralolje er ikke forsikret."
+      }
+    ],
+    "both_original_PDF_pages": 3,
+    "already_represented_and_unchanged": "Frittliggende bygg over10kvm må være angitt i beviset;existing hus.bygninger.dekning already represents that requirement.",
+    "no_expansion": [
+      "Ingen generalisering til alle veksthus,glassrom eller andre objekter",
+      "Ingen generalisering fra mineralolje til alle tanker,fyrkjeler,varmeanlegg eller rør",
+      "Ingen generell utilgjengelig bygningsdekning eller automatisk kundevalg"
+    ],
+    "no_source_conflict_found": true,
+    "external_question_needed": false
+  },
+  "proposed_correction_packet": {
+    "status": "PROPOSED_NOT_AUTHORIZED_FOR_IMPLEMENTATION",
+    "signature": "a6beec054bdae0df",
+    "single_packet_scope": "Both original bindings and exactly two absent object exclusions. Four raw facts, two effective facts per product.",
+    "production_files": [
+      "lib/gjensidige-hus-catalog.ts"
+    ],
+    "rows": [
+      {
+        "key": "hus.bygninger.hobbyveksthus.unntak",
+        "label": "Hobbyveksthus – objektunntak",
+        "value": "Hobbyveksthus er ikke forsikret.",
+        "decision": "NEW_NONASSERTING_OBJECT_EXCLUSION_DETAIL",
+        "Standard": {
+          "owner": "gjensidigeHusStandard",
+          "source": "gjensidigeHusStandard",
+          "page": 3,
+          "replacesBase": false
+        },
+        "Pluss": {
+          "owner": "gjensidigeHusPluss",
+          "source": "gjensidigeHusPluss",
+          "page": 3,
+          "replacesBase": true
+        },
+        "source_section": "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus",
+        "qualificationSource": "None needed;entire clause and table heading on same page",
+        "presentation_group": "hus.ovrig",
+        "materialized_role": "term"
+      },
+      {
+        "key": "hus.bygninger.mineralolje.unntak",
+        "label": "Tank og fyrkjel for mineralolje – objektunntak",
+        "value": "Tank og fyrkjel for mineralolje er ikke forsikret.",
+        "decision": "NEW_NONASSERTING_OBJECT_EXCLUSION_DETAIL",
+        "Standard": {
+          "owner": "gjensidigeHusStandard",
+          "source": "gjensidigeHusStandard",
+          "page": 3,
+          "replacesBase": false
+        },
+        "Pluss": {
+          "owner": "gjensidigeHusPluss",
+          "source": "gjensidigeHusPluss",
+          "page": 3,
+          "replacesBase": true
+        },
+        "source_section": "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje",
+        "qualificationSource": "None needed;entire clause and table heading on same page",
+        "presentation_group": "hus.ovrig",
+        "materialized_role": "term"
+      }
+    ],
+    "source_provenance": "Own registered StandardPDF3 and PlussPDF3. Exactly one effective fact per key/product;Pluss own rows replace inherited Standard. Raw Pluss evidence preserves both levels and overriddenBase retains Standard. Preserve existing source metadata,including blank effectiveFrom and absence of sourceType.",
+    "do_not_append_to": [
+      "hus.bygninger.dekning",
+      "hus.bygninger.tilbehor",
+      "hus.plutselig.begrensning",
+      "hus.ror.brudd",
+      "hus.aldersfradrag.utvendige_ledninger"
+    ],
+    "coverage_contract": "Both keys contain .unntak and remain nonasserting term details through existing coverage/materialization semantics. Do not set coverageAvailability unavailable on building parent or create new coverage/add-on. Both facts alone infer no canonical coverage. All current coverages and customer choices remain equal to same-stage baseline.",
+    "must_preserve": [
+      "Hobbyveksthus object,without adding all greenhouses/garden rooms/brygge or weather-specific claims",
+      "Both tank and furnace,limited to mineral oil;no general exclusion of all tanks,plumbing,heating or energy sources",
+      "Existing greater-than10sqm detached-building registration requirement remains unchanged and is not an extra missing rule",
+      "Existing positive building/fixture/solar/rør/hage/brygge terms,public-authority/loss-of-use and three additional-cost rules unchanged",
+      "Each exact product-label customer rule overrides only its own detail. No fuzzy cross-field interpretation of generic object/coverage headings.",
+      "Own Pluss source reference even though wording identical;no source registry or new date/admission"
+    ],
+    "no_changes_to": [
+      "Engine,enrichment,coverage engine,comparison logic,presentation/UI",
+      "Global aliases,canonical registry,document extractor enum",
+      "Source originals/registry,sourceType,effective dates",
+      "Optional choices/selectionEvidenceKeys,Smart/rental contracts",
+      "Historical source inventory/P2ledger/receipts/snapshots,HOLD or pilot gate"
+    ],
+    "forbidden_new_fact_metadata": [
+      "coverageAvailability",
+      "structuredValue or numeric cap",
+      "deductibleClassification",
+      "selectionEvidenceKeys"
+    ],
+    "validation_plan": [
+      "Freeze original GAP-2084/SF-2987 and GAP-2138/SF-3071/source hashes/fullPDF3 raw+layout table context before production edit;independent exact-wording/source oracle and complete current baseline.",
+      "Focused tests/remediation-house-object-exclusions.test.mjs plus source-bound helper if needed. Complete catalog equals before plus exactly four raw facts;reverse audit validates every new source/value/metadata field before projecting.",
+      "Both levels/all12 addon combinations:resolver/evidence/materialization,manual input and3JSONreenrichments. Compare full preexisting fields and canonical coverages against same-stage before-catalog controls;one effective fact/key,Pluss raw inheritance and overriddenBase retained.",
+      "Both existing/offer document pipelines:each precise label overrides only own rule;multiple specific conflicts preserved,unknown fallback,explicit customer value preserved. General terms alone creates0insurances;supporting terms do not create choices. Both new rules alone infer no coverage.",
+      "Generic Bygninger,Forsikrede bygninger,Hobbyveksthus,Tank,Fyrkjel,Mineralolje,Objektunntak labels gain no new aliases or automatic cross-rule mapping. Existing positive building/fixture customer fields do not suppress independently keyed exclusions.",
+      "Same-product equality,forward/reverse comparison,and other-provider missing fact stays unknown rather than unavailable;both roles remain term and default existing hus.ovrig group.",
+      "Preserve both house levels own PDF3 sources,full registered metadata,manual generated notes and overriddenBase through repeats. All other provider/type/ordinary/version boundaries and NITO exclusion remain unchanged.",
+      "Run current44-file target manifest plus focused test (45files),fullsuite and scoped ESLint on touched code/tests. Only source/before-proven compatibility changes for exactly four approved rows;no fingerprint regeneration to hide unexplained change,skip or unrelated production fix."
+    ],
+    "required_documentation": [
+      "Explicit implementation authorization for exact signature/bindings/keys/values/sources/files",
+      "Source/reverse audit,before snapshot,commands/logs,candidate identity and mechanical correction ledger if needed",
+      "One completion receipt for both bindings/two clauses,checkpoint and current-project-status.md",
+      "Preserve this decision and prior local revalidation byte-identical;local PASS remains distinct from published containing commit"
+    ],
+    "commit_push": "NOT_AUTHORIZED",
+    "deploy": "NOT_AUTHORIZED",
+    "install": "NOT_AUTHORIZED"
+  },
+  "rejected_mappings": [
+    {
+      "option": "Append both clauses to hus.bygninger.dekning",
+      "reason": "Mixes positive building scope with two separate object exclusions;an exact parent-label override can hide both subordinate rules. Separate details preserve independent document priority and current positive parent."
+    },
+    {
+      "option": "One generic combined hus.bygninger.unntak row",
+      "reason": "No current key to reuse;combining clauses lets one specific customer rule for one object suppress the unrelated exclusion. Two specific identities prevent that coupling."
+    },
+    {
+      "option": "Reuse peril/age/plumbing or Innbo greenhouse keys",
+      "reason": "House object exclusions are independent of a specific damage cause,age-deduction rule or another insurance type. Those existing identities do not denote these clauses."
+    },
+    {
+      "option": "Mark hus.bygninger.dekning coverageAvailability unavailable",
+      "reason": "Would negate the whole building coverage from subordinate object exclusions;not supported by either source."
+    }
+  ],
+  "read_only_checks": {
+    "status": "PASS_READ_ONLY_MAPPING_FEASIBILITY",
+    "isolated_clone_only": true,
+    "proposed_raw_facts": 4,
+    "configurations": 12,
+    "manual_plus_three_JSON_reenrichments": "Full old insurance state and canonical coverages match same-stage unmodified catalog controls after projecting only proposed rows. Exact new primary/sources metadata and generated notes verified.",
+    "document_probes": 40,
+    "general_terms_probes": 4,
+    "generic_label_probes": 14,
+    "forward_reverse_comparison_rows": 24,
+    "positive_building_fixture_override_probes": "Both fields/both products,each through3JSONrepeats;two independent exclusions retained.",
+    "materialized_roles": [
+      "term",
+      "term"
+    ],
+    "nonasserting_both_keys": true,
+    "new_terms_alone_infer_coverage": false,
+    "all_other_providers_unchanged": true,
+    "actual_global_catalog_unchanged": true,
+    "no_new_alias_registry_or_enum_change_needed": true,
+    "production_candidate_validated": false,
+    "appsuite_run": false
+  },
+  "unchanged_status": {
+    "documented_campaign_published": 67,
+    "B051_partition_counts": [
+      37,
+      0,
+      1,
+      1
+    ],
+    "B130_completed_signatures": [
+      "15f5b4a3e9f79fd2",
+      "597df4c45c6d3db9",
+      "ce90710821e28a97",
+      "d58bff0e6b2d46eb"
+    ],
+    "new_signature_closure_credit": 0,
+    "P2_credit": 0,
+    "global_resolved_open": "UNKNOWN",
+    "CATALOG_PILOT_GATE": "REMEDIATION_REQUIRED",
+    "all_HOLD": [
+      "157c7afed18eb0fe",
+      "26668a6c81e5b5d9",
+      "5f31ff4946a666b5",
+      "7767772472433807",
+      "SC-019/SR-033",
+      "SC-020/SR-032",
+      "SC-035/SR-031",
+      "e2f70dda0093e9e4"
+    ],
+    "additional_explicit_HOLD": [
+      "8a89196fecd29ddb"
+    ],
+    "NITO": "WAIT",
+    "Sentralbord": "WAIT_SEPARATE"
+  },
+  "remaining_pre_pilot_points": [
+    "HTU and all other protected HOLD",
+    "8a89196fecd29ddb insect common-exclusion scope HOLD",
+    "SC-020/SR-032 physical insect damage deductible HOLD",
+    "Ordinary house catalog foundation requires combined revalidation; no broad source-page cleanup or P2 closure",
+    "Security/GDPR and P3-A05 identity/merge status unknown",
+    "Person insurance / pilot scope",
+    "Critical UX",
+    "Feedback",
+    "Operational adviser acceptance"
+  ],
+  "priority_effect": "No reprioritization of historical P2/DEFER_POST_PILOT,no new mandatory prepilot blocker,no HOLD lifted,no aggregate P2closure or pilot release.",
+  "integrity": {
+    "existing_files_unchanged": 8105,
+    "tracked_files_unchanged": 8101,
+    "prior4_local_revalidation_files_unchanged": true,
+    "staged_files": 0,
+    "project_status_edited": false,
+    "only_new_read_only_packet": true
+  },
+  "implementation": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "commit_push": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "deploy": "NOT_PERFORMED_NOT_AUTHORIZED",
+  "install": "NOT_PERFORMED",
+  "publication_status": "LOCAL_UNCOMMITTED_READ_ONLY_DECISION",
+  "evidence": {
+    "path": "evidence.json.gz",
+    "sha256": "8ee6cd47f57b65b3b711f4f14410c5270cf581f151cf8bacd3770d2a0ea2b8ae",
+    "probe_log": "mapping-probe.log.gz"
+  }
+}

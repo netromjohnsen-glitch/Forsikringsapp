@@ -1,5 +1,60 @@
 # Aktuell dokumentert prosjektstatus
 
+## Objektunntak for hobbyveksthus og mineralolje – validert 24. oktober 2026
+
+Fersk GitHub-main, HEAD og origin/main er kontrollert til
+`115ca6aba5d547e5059294bcce6dad6d0a19d59a`. Tilleggsutgifter og tidligere bolker er publisert der.
+Objektunntaksbolken for `a6beec054bdae0df` er validert på denne basisen.
+Publiseringsrevisjonen er committen som inneholder rettelsen, receipt og denne
+prosjektstatusen. Publisert status gjelder etter kontroll på remote main.
+Commit/push er eksplisitt autorisert i
+[publiseringsfullmakten](../audit/checkpoints/house-object-exclusions-115ca6a/publication-authorization.md).
+Ingen installasjon eller deploy. Testet basis og eksakt kandidatidentitet er adskilt.
+
+Fire rå rader gir to effektive detaljer på hvert husnivå:
+`hus.bygninger.hobbyveksthus.unntak` og `hus.bygninger.mineralolje.unntak`.
+Hobbyveksthus er ikke forsikret. Tank og fyrkjel for mineralolje er ikke forsikret.
+Begge er objektunntak under «Hva er forsikret? / Dekkes ikke», med egne
+Standard-/Pluss-kilder på PDF-side 3. Pluss har `replacesBase` og beholder
+overstyrt Standard-provenance. Det er ikke utledet generelle unntak for alle
+veksthus, glassrom, tanker, varmeanlegg, rør eller andre energikilder.
+Eksisterende bygningsdekning, fast inventar og krav om registrering av større
+sidebygg er bevart. Begge nøklene er unntaksdetaljer som ikke oppretter dekning,
+slår av bygningsdekningen eller oppretter kundevalg. En konkret dokumentregel
+kan overstyre ett unntak uten å skjule det andre. Ingen engine, globale aliaser,
+extractor-enum, presentasjon eller kilderegister er endret. Alle øvrige
+produksjonsbytes er identiske med testet main-basis.
+
+[Receipt](../audit/checkpoints/house-object-exclusions-115ca6a/completion-receipt-a6beec054bdae0df.json),
+[validering](../audit/checkpoints/house-object-exclusions-115ca6a/validation-summary.json),
+[kandidatidentitet](../audit/checkpoints/house-object-exclusions-115ca6a/candidate-identity.json) og
+[checkpoint](../audit/checkpoints/house-object-exclusions-115ca6a/checkpoint.json).
+Den [lesende revalideringen](../audit/checkpoints/house-foundation-revalidation-115ca6a/receipt-house-foundation.json)
+og [mappingbeslutningen](../audit/checkpoints/house-object-exclusions-contract-115ca6a/receipt-house-object-exclusions-contract.json)
+beholdes byte-identisk. GAP-2084/SF-2987 og GAP-2138/SF-3071 er validert for
+begge objektunntakene. Originalregisterets P2/DEFER_POST_PILOT beholdes;
+den uttrykkelig autoriserte lokale implementeringen føres separat uten global
+telle- eller prioriteringsendring.
+
+2886/2886 målrettede tester i 45 filer og 6578/6578 tester i 174 filer består uten
+feil eller skip. 85 nye kontraktkontroller dekker komplette kildesider, alle
+12 valgkombinasjoner, tre JSON-berikinger og individuell dokumentprioritet.
+214 manuelle kontroller, 144 dokumentflyter og 52 sammenligninger bevarer
+øvrige felt og dekningsstatuser. Støttevilkår alene oppretter ingen forsikring,
+og generiske etiketter gir ingen ny mapping eller kundevalg. Kvalitetskontroll
+av 10 kode-/testfiler: 0 feil og 0 warnings. Eldre testforventninger er tilpasset
+kun den kildeverifiserte fire-radersendringen; historiske snapshots, originaler
+og fingeravtrykk er bevart.
+
+Samlet katalogfundament er ikke frigitt. B-051 37/0/1/1, kampanje 67, ny
+signaturkreditt 0, P2-kreditt 0, globalt resolved/open UKJENT og
+CATALOG_PILOT_GATE = REMEDIATION_REQUIRED beholdes. Alle HOLD er uendret,
+inkludert HTU, `8a89196fecd29ddb`, SC-020/SR-032, SC-035/SR-031 og B-071-holdet.
+Sikkerhet/GDPR og P3-A05-identitet/mergestatus, personforsikring/pilotscope,
+kritisk UX, feedback og operativ rådgiveraksept forblir synlige. Samlet revalidering
+på inneholdende publisert main er en separat oppgave. NITO venter; Sentralbord
+venter separat. Ingen ny arbeidsstrøm er startet.
+
 ## Tilleggsutgifter etter skade – validert 24. oktober 2026
 
 Fersk GitHub-main, HEAD og origin/main er kontrollert til

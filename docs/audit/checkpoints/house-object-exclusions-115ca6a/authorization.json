@@ -1,0 +1,53 @@
+{
+  "status": "AUTHORIZED_IMPLEMENTATION_ONLY",
+  "user_instruction": "Implementer den avklarte regelen for a6beec054bdae0df på Hus Standard og Hus Pluss på fersk main. Kjør kontroller og oppdater receipt og prosjektstatus. Ingen deploy;behold alle HOLD.NITO og Sentralbord venter.",
+  "created_at_UTC": "2026-10-24T14:51:25.217608+00:00",
+  "base_revision": "115ca6aba5d547e5059294bcce6dad6d0a19d59a",
+  "signature": "a6beec054bdae0df",
+  "decision": "../house-object-exclusions-contract-115ca6a/receipt-house-object-exclusions-contract.json",
+  "original_bindings": [
+    {
+      "finding_id": "GAP-2084",
+      "source_fact_id": "SF-2987",
+      "product_id": "gjensidige-hus",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Standard-alminnelige-vilkar.pdf",
+      "source_sha256": "d237795bdfd0223a9e078bf308d86fdc2f46de953784aea06264ff8024e44edc",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    },
+    {
+      "finding_id": "GAP-2138",
+      "source_fact_id": "SF-3071",
+      "product_id": "gjensidige-hus-pluss",
+      "product_identity": "[\"gjensidige\",\"bolig\",\"ordinary\",\"gjensidige-hus-pluss\",\"Alminnelige vilkår\"]",
+      "source_artifact": "catalog/sources/gjensidige/hus/Hus-Pluss-alminnelige-vilkar.pdf",
+      "source_sha256": "79f127ae557e13af8c7a55f95a56c69cf890188dc2e5fcbd4b50ee051e10c792",
+      "priority": "P2",
+      "PDF_page_1_based": 3
+    }
+  ],
+  "allowed_production_files": [
+    "lib/gjensidige-hus-catalog.ts"
+  ],
+  "exact_delta": "Four raw facts,two nonasserting object-exclusion keys per product. Own Standard/PlussPDF3,Pluss replacesBase. No other production bytes changed.",
+  "allowed_tests": "Focused new source-bound helper/test;strict exact four-row composition/projection in current expectation chain and previous additional-cost runtime test;source/before-proven raw protected count increments exactly4 if needed. No historical snapshot/source/receipt/fingerprint edits.",
+  "allowed_documentation": "New implementation packet and current-project-status.md. Prior two local read-only packets immutable.",
+  "gates": [
+    "Freeze original GAP-2084/SF-2987 and GAP-2138/SF-3071/source hashes/fullPDF3 raw+layout table context before production edit;independent exact-wording/source oracle and complete current baseline.",
+    "Focused tests/remediation-house-object-exclusions.test.mjs plus source-bound helper if needed. Complete catalog equals before plus exactly four raw facts;reverse audit validates every new source/value/metadata field before projecting.",
+    "Both levels/all12 addon combinations:resolver/evidence/materialization,manual input and3JSONreenrichments. Compare full preexisting fields and canonical coverages against same-stage before-catalog controls;one effective fact/key,Pluss raw inheritance and overriddenBase retained.",
+    "Both existing/offer document pipelines:each precise label overrides only own rule;multiple specific conflicts preserved,unknown fallback,explicit customer value preserved. General terms alone creates0insurances;supporting terms do not create choices. Both new rules alone infer no coverage.",
+    "Generic Bygninger,Forsikrede bygninger,Hobbyveksthus,Tank,Fyrkjel,Mineralolje,Objektunntak labels gain no new aliases or automatic cross-rule mapping. Existing positive building/fixture customer fields do not suppress independently keyed exclusions.",
+    "Same-product equality,forward/reverse comparison,and other-provider missing fact stays unknown rather than unavailable;both roles remain term and default existing hus.ovrig group.",
+    "Preserve both house levels own PDF3 sources,full registered metadata,manual generated notes and overriddenBase through repeats. All other provider/type/ordinary/version boundaries and NITO exclusion remain unchanged.",
+    "Run current44-file target manifest plus focused test (45files),fullsuite and scoped ESLint on touched code/tests. Only source/before-proven compatibility changes for exactly four approved rows;no fingerprint regeneration to hide unexplained change,skip or unrelated production fix."
+  ],
+  "commit_push_authorized": false,
+  "deploy_authorized": false,
+  "install_authorized": false,
+  "all_HOLD": "UNCHANGED",
+  "NITO": "WAIT",
+  "Sentralbord": "WAIT_SEPARATE",
+  "historical_P2_disposition": "DEFER_POST_PILOT unchanged;explicit local implementation tracked separately,no campaign/P2closure credit or pilot clearance"
+}

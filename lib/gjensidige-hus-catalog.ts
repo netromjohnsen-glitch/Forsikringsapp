@@ -251,6 +251,16 @@ for (const [rows, page, note] of [
     section: "Erstatningsregler – Utbetaling av erstatning / Gjennomsnittlig prisstigning etter byggekostnadsindeksen innenfor normal reparasjons-/gjenoppføringstid", note };
 }
 
+// Object exclusions qualify the insured objects without negating building coverage.
+standard.push(...facts("gjensidigeHusStandard", [
+  ["bygninger.hobbyveksthus.unntak", "Hobbyveksthus – objektunntak", "Hobbyveksthus er ikke forsikret.", "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus", 3],
+  ["bygninger.mineralolje.unntak", "Tank og fyrkjel for mineralolje – objektunntak", "Tank og fyrkjel for mineralolje er ikke forsikret.", "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje", 3],
+]));
+pluss.push(...facts("gjensidigeHusPluss", [
+  ["bygninger.hobbyveksthus.unntak", "Hobbyveksthus – objektunntak", "Hobbyveksthus er ikke forsikret.", "Hus – Hva er forsikret? / Dekkes ikke / Hobbyveksthus", 3, undefined, true],
+  ["bygninger.mineralolje.unntak", "Tank og fyrkjel for mineralolje – objektunntak", "Tank og fyrkjel for mineralolje er ikke forsikret.", "Hus – Hva er forsikret? / Dekkes ikke / Tank og fyrkjel for mineralolje", 3, undefined, true],
+]));
+
 export const gjensidigeHusFacts: Record<string, CatalogFact[]> = {
   gjensidigeHusStandard: standard,
   gjensidigeHusPluss: pluss,

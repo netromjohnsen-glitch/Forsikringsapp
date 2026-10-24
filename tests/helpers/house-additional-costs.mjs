@@ -1,3 +1,4 @@
+import {applyObjectExclusions,withoutObjectExclusions} from './house-object-exclusions.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
@@ -23,12 +24,12 @@ export function additionalCostsSources(fact,manual=false){
 export function applyAdditionalCosts(catalog){
  const copy=structuredClone(catalog);
  for(const owner of owners)for(const key of o.keys){const rows=copy.facts[owner],fact=additionalCostsFact(owner,key,!Object.hasOwn(rows[0].source,'productCode')),existing=rows.filter(f=>f.key===key);if(existing.length)assert.deepEqual(existing,[fact]);else rows.push(fact);}
- return copy;
+ return applyObjectExclusions(copy);
 }
 // Check exact own-provider contract before projecting the six approved additions.
 // Shared other-provider keys and customer-document rules are never projected.
 export function withoutAdditionalCosts(value){
- const copy=structuredClone(value);
+ const copy=withoutObjectExclusions(value);
  function visit(item){
   if(Array.isArray(item))for(let i=item.length-1;i>=0;i--){const row=item[i];
    if(o.keys.includes(row?.key)&&owners.includes(row.source?.documentId)){
