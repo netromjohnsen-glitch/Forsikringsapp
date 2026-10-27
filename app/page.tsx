@@ -51,6 +51,11 @@ type DocumentResult = {
 const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", "MC", "Bobil", "Båt", "Hund", "Katt", ...vehicleObjectTypes.map(({ label }) => label)];
 
 export default function Home() {
+  const [customerSession, setCustomerSession] = useState(0);
+  return <ComparisonSession key={customerSession} onNewCustomer={() => setCustomerSession((current) => current + 1)} />;
+}
+
+function ComparisonSession({ onNewCustomer }: { onNewCustomer: () => void }) {
   const [comparisonMode, setComparisonMode] = useState<"agreements" | "products">("agreements");
   const [existingFiles, setExistingFiles] = useState<File[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
@@ -67,7 +72,11 @@ export default function Home() {
   const generation = useRef(createAnalysisGeneration());
   const activeRequest = useRef<AbortController | null>(null);
   const traceRequest = useRef<AbortController | null>(null);
-  useEffect(() => () => { activeRequest.current?.abort(); traceRequest.current?.abort(); }, []);
+  useEffect(() => () => {
+    generation.current.next();
+    activeRequest.current?.abort();
+    traceRequest.current?.abort();
+  }, []);
   function cancelAnalysis() {
     generation.current.next(); activeRequest.current?.abort(); activeRequest.current = null;
     traceRequest.current?.abort(); traceRequest.current = null;
@@ -176,7 +185,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
           <p className="brand-eyebrow text-sm font-semibold uppercase tracking-[0.16em]">Rådgiververktøy</p>
           <h1 className="brand-title mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-            Forsikringsassistent
+            Forsikringstolken
           </h1>
           <p className="body-copy mt-3 text-lg">
             {comparisonMode === "agreements"
@@ -184,12 +193,24 @@ export default function Home() {
               : "Sammenlign dekninger og vilkår mellom katalogførte produkter."}
           </p>
           <p className="body-copy mt-1 text-sm">{comparisonMode === "agreements"
-            ? "Last opp forsikringsdokumenter eller registrer forsikringene manuelt. Cloud deploy test"
+            ? "Last opp forsikringsdokumenter eller registrer forsikringene manuelt."
             : "Ingen kundedokumenter, kundedata eller AI-analyse er nødvendig."}</p>
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <p className="body-copy text-sm">Avslutt kundesaken før du begynner på en ny.</p>
+          <button
+            type="button"
+            className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700"
+            onClick={() => {
+              if (window.confirm("Starte med en ny kunde? Dokumenter, manuelle opplysninger og resultater tømmes fra denne arbeidsflaten. Pågående analyse avbrytes. Dette kan ikke angres.")) onNewCustomer();
+            }}
+          >
+            Ny kunde
+          </button>
+        </div>
         <div className="mb-6">
           <p className="mb-2 text-sm font-medium text-slate-700">Hva vil du sammenligne?</p>
           <div className="mode-switch inline-flex rounded-xl p-1 ring-1" role="group" aria-label="Velg sammenligningsmodus">

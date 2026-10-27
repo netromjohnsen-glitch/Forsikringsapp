@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Forsikringsassistent",
+  title: "Forsikringstolken",
   description: "Sammenlign eksisterende forsikringer med et nytt tilbud.",
 };
 
