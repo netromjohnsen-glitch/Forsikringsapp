@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-14T14:37:55+01:00",
+  "authorized_scope": "Private forsikringer. Integrering med main, Linux-kontroll, publisering og verifisering av pilot.",
+  "target_ref": "refs/heads/main",
+  "production_baseline": "03dc5993b864ca9f3b17c75acb4946e7516486c6",
+  "tested_commit": "7172d26a77f2a67d182085fcbc373aba0236f9f4",
+  "tested_tree": "a6c46ad5095f069a14988ebf40b8d37802a2f4de",
+  "parents": [
+    "65f145fd68207e8599cce364d731ab6364cea3d4",
+    "eaf3b3ac6473cbbd37ccdcf07e88984b903d5a73"
+  ],
+  "staged_file_count": 164,
+  "catalog": {
+    "selectable": 307,
+    "added": 50,
+    "preserved_person": 55,
+    "cabin_added": 13,
+    "valuables_added": 7,
+    "motor_home_added": 19,
+    "contents_travel_added": 11
+  },
+  "gates": {
+    "linux_node": "v24.22.1",
+    "pdftotext": "26.11.0 (conda-forge Linux x86-64)",
+    "full_suite": {
+      "files": 182,
+      "tests": 7126,
+      "pass": 7126,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "exit": 0,
+      "command": "xargs node --v8-pool-size=2 --max-old-space-size=1200 --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test --test-concurrency=1 --test-reporter=tap < tests.manifest.txt"
+    },
+    "next_typegen": {
+      "command": "node node_modules/next/dist/bin/next typegen",
+      "exit": 0
+    },
+    "typescript": {
+      "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+      "exit": 0
+    },
+    "eslint": {
+      "command": "node node_modules/eslint/bin/eslint.js . --format json",
+      "files": 416,
+      "errors": 0,
+      "warnings": 29,
+      "exit": 0
+    },
+    "build": {
+      "command": "CIRCLE_NODE_TOTAL=3 NEXT_TELEMETRY_DISABLED=1 npm run build -- --webpack",
+      "exit": 0
+    },
+    "catalog": {
+      "command": "node scripts/verify-product-comparison.mjs",
+      "exit": 0,
+      "selectable": 307
+    },
+    "http_pdf": {
+      "command": "node scripts/verify-analysis-http.mjs",
+      "exit": 0,
+      "checks": 22
+    },
+    "local_linux_browser": {
+      "status": "PASS",
+      "mode": "local",
+      "productVariants": 50,
+      "manualVariants": 50,
+      "comparisons": 3,
+      "checks": [
+        "Tryg cabin limits",
+        "Gjensidige valuables source",
+        "KLP travel duration",
+        "Fritidsbolig alias",
+        "Tryg optional pests"
+      ],
+      "manualSubmitted": true
+    }
+  },
+  "mechanical_corrections": [
+    {
+      "root": "git am mail processing normalized CRLF in 11 KLP archive PDFs",
+      "proof": "git mailsplit reproduced transformed SHA-256; --keep-cr restored original SHA-256",
+      "correction": "Restored PDF objects from exact Git bundle and matched the original source inventory."
+    },
+    {
+      "root": "Historical tests included catalog additions outside the frozen fixture cohort",
+      "proof": "Existing historical projection isolates the 204 fixture products and preserves detection of changes to historical facts.",
+      "correction": "Applied the existing projection to historical references while retaining the original expectations and full current catalog checks."
+    },
+    {
+      "root": "Concurrent Linux test processes were stopped with SIGKILL when WSL ran out of memory",
+      "correction": "Reran the complete test manifest sequentially with bounded Node memory."
+    },
+    {
+      "root": "Ubuntu Poppler 24.02 produces different layout tokens from the archived raw-text oracles",
+      "proof": "Archived PDF hashes pass. Poppler 26.11 reproduced all 67 frozen raw and layout text values across 13 checkpoints byte for byte.",
+      "correction": "Reran all 182 test files with the isolated Linux Poppler 26.11 build. The raw-text oracles and assertions kept their original data."
+    }
+  ],
+  "next_step": "Verify that Railway reports SUCCESS for the pushed main revision and check the catalog in the authenticated production pilot.",
+  "evidence_sha256": {
+    "tests.manifest.txt": "4b950e1bd52ef6484e923c874573017630816fe4f8314f735da0054a76ff234d",
+    "staged-files.sha256": "1653a3bc6409bb10ace6803486f9c11ca7955b591c12acc85f000f5ac35ef38e",
+    "staged-objects.txt": "f86c4ad3e22d05d9bfdf62d859ea3e946e98645a6cb8c783120812de67ad9101",
+    "full-suite.tap.gz": "4ac31ed2b8a801b4c50b0c8381d641fb561b9211bcd56929921ba007fd7b5357",
+    "typegen-final.log": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+    "typescript-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "catalog-final.log": "c671520e5e2b7b1e6e06c2d6f0ff05232141a847ca3b74f0e3583ac1d8cc4a30",
+    "runtime-final.log": "377073791c7ad3c758fd74769b42f239d8677407faea2a5653949db5e35f1710",
+    "eslint-summary.json": "f97c186a25cdbff1b677f2aab9d25938ce0890a963644ad3b974707a4d08ee45",
+    "pdf-tool-final.log": "a09ccccc8e67b36691dd9fb29281471500a79ca9f23ee9ed3d1dc7bb7da3821d",
+    "browser-final.log": "004ca399541a17a5dbe81cb3070cc42b5069d21640bb8304ee039c382a98820b",
+    "eslint.json.gz": "0585175c160fd42fb95371b340b735c9bc1557739bd74bded5eb9bc5cb691451",
+    "build-final.log.gz": "84d97e2f60febb43b669ac95f303cebc23e61d0aa9c9e62929f5740eaa5a54b1"
+  }
+}
