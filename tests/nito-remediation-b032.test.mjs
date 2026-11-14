@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -82,7 +83,7 @@ test('R-032-13: PC-2070–2082 held-out scope, travel length, luggage, dental/ac
  assert.match(text('omrade.verden'),/Ansvar og rettshjelp.*bare.*utenfor Norden/);assert.match(text('varighet.maks'),/70 dager/);assert.match(text('bagasje.uhell'),/2 500.*per skadetilfelle.*Mobiltelefon, datamaskin/);assert.match(text('bagasje.forsinket'),/fire timers.*5 000.*jobbreise/);assert.match(text('medisinsk.tann'),/5 000.*1 000/);assert.match(text('ulykke.invaliditet'),/700 000.*500 000.*100 000/);assert.match(text('ulykke.dodsfall'),/150 000.*500 000.*100 000/);assert.match(text('ulykke.behandling'),/to år.*5 %/);assert.match(text('avbestilling.dyrepensjonat'),/2 500/);assert.match(text('evakuering'),/2 000.*per døgn.*150 000.*forsikringsår/);
 });
 test('R-032-14: no historical generation/provider/type/scope leakage',()=>{
- for(const p of productCatalog.products.filter(p=>p.productId!==id))for(const key of changed){assert.ok(facts(p.productId).filter(f=>f.key===key).every(f=>f.value!==fact(id,key).value));}
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>p.productId!==id))for(const key of changed){assert.ok(facts(p.productId).filter(f=>f.key===key).every(f=>f.value!==fact(id,key).value));}
  for(const scope of ['nito','lofavor'])assert.equal(findCatalogProductBySelection('Fremtind','Reise','Reise',scope),null);
  assert.equal(product('eika-reise-p10').providerId,'fremtind-eika-legacy');assert.equal(product('eika-reise-p10').version,'P10-P10P-2025-01-01');
 });

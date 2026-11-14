@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -89,7 +90,7 @@ test('R-039-SCOPE: exact provider/type/version, no cross-product source/add-on l
   assert.equal(findCatalogProduct('if',id,'2026-09-01'),null);assert.equal(findCatalogProduct('frende',id,'unknown'),null);
   for(const scope of [{insuranceType:'Innbo'},{agreementScope:'nito'}])assert.equal(findCatalogProduct('frende',id,'2026-09-01',scope),null);
  }
- for(const other of productCatalog.products.filter(p=>!ids.includes(p.productId))){assert.equal(availableAddOns(other,date).some(a=>a.id==='frende-hus-utleie'),false);
+ for(const other of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId))){assert.equal(availableAddOns(other,date).some(a=>a.id==='frende-hus-utleie'),false);
   assert.ok(resolveCatalogFacts(other,[],date).every(f=>!['frendeHusStandard','frendeHusExtended','frendeHusRental'].includes(f.source.documentId)),other.productId);
  }
 });

@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFileSync} from 'node:fs';
@@ -14,7 +15,7 @@ import {documentPipeline} from './helpers/supporting-terms.mjs';
 import {expectedCatalog as oldOracle} from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
 
 const key='hus.ansvar.dekning', ids=['gjensidige-hus','gjensidige-hus-pluss'];
-const baseline=structuredClone(oracleBaseline),candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
+const baseline=structuredClone(oracleBaseline),candidate=beforePersonInsuranceCatalog(productCatalog),date=new Date('2026-10-07T12:00:00Z');
 const value=sourceOracle.value;
 const before=baseline.facts.gjensidigeHusStandard.find(f=>f.key===key);
 const after=expectedCatalog.facts.gjensidigeHusStandard.find(f=>f.key===key);

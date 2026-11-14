@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import assert from 'node:assert/strict';
@@ -21,7 +22,7 @@ const proposal=JSON.parse(readFileSync(new URL('proposal.json',audit)));
 const snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',audit)));
 const snapshotBytes=readFileSync(new URL(snapshot.snapshot,audit));
 assert.equal(createHash('sha256').update(snapshotBytes).digest('hex'),snapshot.sha256);
-const baseline=applyRot(applyLegal(deserialize(gunzipSync(snapshotBytes)))),candidate=productCatalog,addon='gjensidige-hus-smart',ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
+const baseline=applyRot(applyLegal(deserialize(gunzipSync(snapshotBytes)))),candidate=beforePersonInsuranceCatalog(productCatalog),addon='gjensidige-hus-smart',ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
 
 let checks=0;const samples=[];
 // OPEN baseline customer-mode findings are characterization, never approval.

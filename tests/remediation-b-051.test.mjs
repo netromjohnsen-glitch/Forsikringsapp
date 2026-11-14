@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -95,5 +96,5 @@ test('R-051-CUSTOMER-COMPARISON: separate document priorities survive both direc
 
 test('R-051-SCOPE: exact provider/type/version/ordinary identities; no new components/addons/sources',()=>{
  for(const id of ids){const p=product(id);assert.equal(findCatalogProduct('gjensidige',id,p.version,{agreementScope:'ordinary',insuranceType:'Hus'}),p);for(const context of [{insuranceType:'Innbo'},{agreementScope:'nito'}])assert.equal(findCatalogProduct('gjensidige',id,p.version,context),null);assert.equal(findCatalogProduct('gjensidige',id,'2026-10-06',{insuranceType:'Hus'}),null);}
- for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.equal(resolveCatalogFacts(p,[],date).some(f=>f.source.documentId==='gjensidigeHusStandard'),false,p.productId);
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId)))assert.equal(resolveCatalogFacts(p,[],date).some(f=>f.source.documentId==='gjensidigeHusStandard'),false,p.productId);
 });

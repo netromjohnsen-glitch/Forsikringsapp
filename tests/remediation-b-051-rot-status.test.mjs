@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -175,9 +176,10 @@ test('R-051-ROT-STATUS customer comparison retains value and full source in both
   }
 });
 test('R-051-ROT-STATUS only two independently authorized catalog metadata changes', () => {
-  assert.deepEqual(productCatalog, applyRotStatus(baseline));
-  assert.deepEqual(JSON.parse(JSON.stringify(productCatalog)), JSON.parse(JSON.stringify(expectedCatalog)));
-  for (const field of ['products', 'sources', 'insuranceTypes', 'agreementScopes']) assert.deepEqual(productCatalog[field], baseline[field]);
+  const historical = beforePersonInsuranceCatalog(productCatalog);
+  assert.deepEqual(historical, applyRotStatus(baseline));
+  assert.deepEqual(JSON.parse(JSON.stringify(historical)), JSON.parse(JSON.stringify(expectedCatalog)));
+  for (const field of ['products', 'sources', 'insuranceTypes', 'agreementScopes']) assert.deepEqual(historical[field], baseline[field]);
   let protectedFacts = 0, protectedComponents = 0;
   for (const [owner, facts] of Object.entries(baseline.facts)) {
     const rows = owner === 'gjensidigeHusStandard' ? facts.filter(f => f.key !== key) : facts;

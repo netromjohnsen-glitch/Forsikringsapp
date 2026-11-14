@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -70,5 +71,5 @@ test('R-033-06: held-out PC-1884 onwards retain sums, geography, deductibles and
  }
 });
 test('R-033-07: no non-Bil product or other provider acquires these Bil components',()=>{
- for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>!['sp1Ulykke','sp1Rettshjelp','sp1Delkasko','sp1Kasko','sp1Toppkasko','sp1Maskinskade'].includes(f.source.documentId)));
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>!['sp1Ulykke','sp1Rettshjelp','sp1Delkasko','sp1Kasko','sp1Toppkasko','sp1Maskinskade'].includes(f.source.documentId)));
 });

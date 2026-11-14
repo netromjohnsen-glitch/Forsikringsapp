@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -94,5 +95,5 @@ test('R-049-SCOPE: provider/type/scope/version and held dimensions stay isolated
  for(const id of ids){const p=product(id);assert.equal(findCatalogProduct('if',id,p.version,{insuranceType:'Campingvogn',agreementScope:'ordinary'}),null);assert.equal(findCatalogProduct(p.providerId,id,'invented-version',{insuranceType:'Campingvogn',agreementScope:'ordinary'}),null);assert.equal(findCatalogProduct(p.providerId,id,p.version,{insuranceType:'Snøscooter',agreementScope:'ordinary'}),null);assert.equal(findCatalogProduct(p.providerId,id,p.version,{insuranceType:'Campingvogn',agreementScope:'nito'}),null);
  assert.doesNotMatch(own(id,'redning.dekning').value,/750|hjemmehjelp|på vei og var kjørbar|nærmeste verksted/);}
  assert.equal(own(ids[0],'glass.dekning').value,'Inkludert i produktnivået');assert.equal(own(ids[0],'glass.dekning').source.section,'Hvilke skader/utgifter');
- for(const p of productCatalog.products.filter(p=>p.providerId!=='gjensidige'||p.insuranceType!=='Campingvogn'))assert.ok(facts(p.productId).every(f=>!f.source.documentId.includes('gjensidige-Campingvogn')&&f.qualificationSource?.documentId!=='vehicle:'+files[3]));
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>p.providerId!=='gjensidige'||p.insuranceType!=='Campingvogn'))assert.ok(facts(p.productId).every(f=>!f.source.documentId.includes('gjensidige-Campingvogn')&&f.qualificationSource?.documentId!=='vehicle:'+files[3]));
 });

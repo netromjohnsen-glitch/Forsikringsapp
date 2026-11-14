@@ -6,9 +6,13 @@ export function catalogFactScopeApplies(fact: CatalogFact, sources: Readonly<Rec
   const expected = catalogAgreementScope(product);
   // This boundary also applies to legacy sources, before their authority and
   // date policy. Undeclared sources are ordinary, never universally applicable.
-  const applies = (reference: CatalogFact["source"]) =>
-    catalogAgreementScope(sources[reference.documentId] ?? reference) === expected &&
-    (reference.agreementScope === undefined || reference.agreementScope === expected);
+  const applies = (reference: CatalogFact["source"]) => {
+    const source = sources[reference.documentId];
+    const pages = source?.physicalPages;
+    return catalogAgreementScope(source ?? reference) === expected &&
+      (reference.agreementScope === undefined || reference.agreementScope === expected) &&
+      (!pages || (Number.isInteger(reference.page) && pages[0] <= reference.page && reference.page <= pages[1]));
+  };
   return applies(fact.source) && (!fact.qualificationSource || applies(fact.qualificationSource));
 }
 

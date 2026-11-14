@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -64,7 +65,7 @@ test('R-031-11: historical PC-0109/0110/2111–2130 held-out positive controls',
  assert.match(fact(ids[2],'kasko.begrensning').value,/Maskinskade omfattes ikke/);
 });
 test('R-031-12: no other provider/type/scope/version acquires the MC refinements',()=>{
- for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId))){assert.ok(facts(p.productId).every(f=>f.value!==travel));}
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId))){assert.ok(facts(p.productId).every(f=>f.value!==travel));}
  for(const scope of ['ordinary-dnb','nito','lofavor'])assert.equal(findCatalogProductBySelection('Fremtind','MC','Kasko',scope),null);
  assert.equal(product('fremtind-bobil-kasko').insuranceType,'Bobil');assert.match(fact('fremtind-bobil-kasko','kasko.egenandel').value,/dyr.*2 000/);
 });

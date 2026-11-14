@@ -1,6 +1,7 @@
 import { vehicleObjectCoverages, vehicleObjectTypes } from "./vehicle-object-registry.ts";
 import { bobilBonusLabels, mcBobilCoverages, mcBobilTypes, mcBobilVehicleAliases } from "./mc-bobil-registry.ts";
 import { boatPetCoverages, boatPetTypes } from "./boat-pet-registry.ts";
+import { personInsuranceTypeAliases, personInsuranceTypeLabels } from "./person-insurance-registry.ts";
 // Aliasgrupper er hele betegnelser. Delord og likhetsgrad brukes ikke til matching.
 const insuranceAliases: Record<string, readonly string[]> = {
   bil: ["bil", "personbil", "privatbil", "motorvogn"],
@@ -20,9 +21,7 @@ const insuranceAliases: Record<string, readonly string[]> = {
   lastebil: ["lastebil"],
   hund: ["hund", "hunde"],
   katt: ["katt", "katte"],
-  barn: ["barn", "barne"],
-  ulykke: ["ulykke", "ulykkes"],
-  liv: ["liv", "livs"],
+  ...personInsuranceTypeAliases,
   // Fritidsbolig er et annet objekt enn vanlig bolig.
   fritidsbolig: ["fritidsbolig", "hytte"],
 };
@@ -191,9 +190,7 @@ const canonicalInsuranceTypeLabels: Record<string, string> = {
   lastebil: "Lastebil",
   hund: "Hund",
   katt: "Katt",
-  barn: "Barn",
-  ulykke: "Ulykke",
-  liv: "Liv",
+  ...personInsuranceTypeLabels,
   fritidsbolig: "Fritidsbolig",
 };
 

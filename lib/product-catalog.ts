@@ -32,6 +32,8 @@ import { storebrandReiseAddOns, storebrandReiseFacts, storebrandReiseProducts, s
 import { gjensidigeReiseAddOns, gjensidigeReiseFacts, gjensidigeReiseProducts, gjensidigeReiseSources } from "./gjensidige-reise-catalog.ts";
 import { fremtindReiseAddOns, fremtindReiseFacts, fremtindReiseProducts, fremtindReiseSources } from "./fremtind-reise-catalog.ts";
 import { frendeReiseAddOns, frendeReiseFacts, frendeReiseProducts, frendeReiseSources } from "./frende-reise-catalog.ts";
+import { personInsuranceFacts, personInsuranceProducts, personInsuranceSources } from "./person-insurance-catalog.ts";
+import { personInsuranceTypes } from "./person-insurance-registry.ts";
 import type { BuildingFactData } from "./building-facts.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { resolveCatalogSources } from "./catalog-source-resolution.ts";
@@ -49,6 +51,7 @@ export type CatalogSource = {
   // Unlike legacy appliesTo (display names), these are canonical product IDs.
   productIds?: string[];
   sourceType?: "full_terms" | "ipid" | "product_page";
+  physicalPages?: readonly [firstPage: number, lastPage: number];
   validTo?: string;
   providerId?: string;
   productVersion?: string;
@@ -113,12 +116,13 @@ export type ProductCatalog = {
 export const productCatalog: ProductCatalog = {
   agreementScopes: [...mcBobilAgreementScopes, ...boatPetAgreementScopes],
   companies: ["Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende"],
-  insuranceTypes: ["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Ulykke", "Båt", "MC", "Bobil", "Hund", "Katt", "Barn", "Liv"],
+  insuranceTypes: ["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise",
+    "Båt", "MC", "Bobil", "Hund", "Katt", ...personInsuranceTypes],
   products: [...trygProducts, ...ifProducts, ...gjensidigeProducts, ...storebrandProducts,
     ...sparebank1FremtindProducts, ...dnbFremtindProducts, ...eikaFremtindProducts, ...fremtindProducts, ...frendeProducts,
     ...trygInnboProducts, ...ifInnboProducts, ...gjensidigeInnboProducts, ...storebrandInnboProducts,
     ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts, ...ifHusProducts, ...storebrandHusProducts,
-    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts, ...mcBobilProducts, ...boatPetProducts],
+    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts, ...mcBobilProducts, ...boatPetProducts, ...personInsuranceProducts],
   addOns: [...vehicleObjectAddOns, ...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
     ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns,
@@ -127,12 +131,12 @@ export const productCatalog: ProductCatalog = {
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,
     ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources, ...ifHusSources, ...storebrandHusSources,
-    ...gjensidigeHusSources, ...fremtindHusSources, ...frendeHusSources, ...trygReiseSources, ...ifReiseSources, ...storebrandReiseSources, ...gjensidigeReiseSources, ...fremtindReiseSources, ...frendeReiseSources },
+    ...gjensidigeHusSources, ...fremtindHusSources, ...frendeHusSources, ...trygReiseSources, ...ifReiseSources, ...storebrandReiseSources, ...gjensidigeReiseSources, ...fremtindReiseSources, ...frendeReiseSources, ...personInsuranceSources },
   facts: { ...boatPetFacts, ...mcBobilFacts, ...vehicleObjectFacts, ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
     ...sparebank1FremtindFacts, ...dnbFremtindFacts, ...eikaFremtindFacts, ...fremtindFacts, ...frendeFacts,
     ...trygInnboFacts, ...ifInnboFacts, ...gjensidigeInnboFacts, ...storebrandInnboFacts,
     ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts, ...ifHusFacts, ...storebrandHusFacts,
-    ...gjensidigeHusFacts, ...fremtindHusFacts, ...frendeHusFacts, ...trygReiseFacts, ...ifReiseFacts, ...storebrandReiseFacts, ...gjensidigeReiseFacts, ...fremtindReiseFacts, ...frendeReiseFacts },
+    ...gjensidigeHusFacts, ...fremtindHusFacts, ...frendeHusFacts, ...trygReiseFacts, ...ifReiseFacts, ...storebrandReiseFacts, ...gjensidigeReiseFacts, ...fremtindReiseFacts, ...frendeReiseFacts, ...personInsuranceFacts },
 };
 
 const normalizeIdentity = (value: string) => value.normalize("NFKC")

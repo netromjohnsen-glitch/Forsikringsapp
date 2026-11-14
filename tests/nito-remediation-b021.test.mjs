@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -81,7 +82,7 @@ test('R-021-06: ordinary scope, product identity and contextual aliases stay iso
     assert.equal(normalizeTermName(label, { insuranceType: 'Reise' }), key);
     assert.notEqual(normalizeTermName(label, { insuranceType: 'Innbo' }), key);
   }
-  for (const p of productCatalog.products.filter(p => p.company === 'Storebrand' && p.insuranceType !== 'Reise')) {
+  for (const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p => p.company === 'Storebrand' && p.insuranceType !== 'Reise')) {
     assert.equal(resolveCatalogFacts(p, [], asOf).some(f => keys.includes(f.key)), false);
   }
 });

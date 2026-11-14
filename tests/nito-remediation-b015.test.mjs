@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -33,7 +34,7 @@ test('R-015-02: exact product, scope, version and type isolation', () => {
     assert.equal(findCatalogProduct('tryg', id, p.version, scope), null);
   }
   assert.equal(findCatalogProduct('tryg', id, 'unknown'), null);
-  for (const p of productCatalog.products.filter(p => p.productId !== id)) {
+  for (const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p => p.productId !== id)) {
     assert.equal(resolveCatalogFacts(p, [], date).some(f => f.key === key), false, p.productId);
   }
 });

@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
@@ -20,7 +21,7 @@ const proposal=JSON.parse(readFileSync(new URL('proposal.json',audit)));
 const snapshot=JSON.parse(readFileSync(new URL('baseline-snapshot.json',audit)));
 const bytes=readFileSync(new URL(snapshot.snapshot,audit));
 assert.equal(createHash('sha256').update(bytes).digest('hex'),snapshot.sha256);
-const baseline=applyRot(deserialize(gunzipSync(bytes))),candidate=productCatalog,keys=proposal.rows.map(x=>x.key),ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
+const baseline=applyRot(deserialize(gunzipSync(bytes))),candidate=beforePersonInsuranceCatalog(productCatalog),keys=proposal.rows.map(x=>x.key),ids=['gjensidige-hus','gjensidige-hus-pluss'],date=new Date('2026-10-07T12:00:00Z');
 
 const product=(c,id)=>c.products.find(x=>x.productId===id);
 const states=i=>deriveCanonicalCoverages(i,'Hus').map(x=>({id:x.id,status:x.status,conflict:x.conflict}));

@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
@@ -21,7 +22,7 @@ import { applySettlement } from '../docs/audit/checkpoints/b051-settlement-age-0
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
 const baseline=applyRot(applyLegal(applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(applySettlement(previousBaseline))))))));
-const candidate=productCatalog;
+const candidate=beforePersonInsuranceCatalog(productCatalog);
 const audit=new URL('../docs/audit/checkpoints/b051-craftsmanship-0cedd98/',import.meta.url);
 const keys=Object.keys(oracle),ids=['gjensidige-hus','gjensidige-hus-pluss'];
 const date=new Date('2026-10-07T12:00:00Z'), digest=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');

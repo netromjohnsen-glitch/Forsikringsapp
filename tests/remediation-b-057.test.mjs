@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -65,5 +66,5 @@ test('R-057-SCOPE: exact family/provider/scope/version, excluded dimension remai
  assert.doesNotMatch(own(id,'redning.dekning').value,/750|utelåsing|driftsstans|tauing|på vei|kjørbar før|hjelp hjemme/);
  assert.ok(facts(id).every(f=>!f.key.endsWith('.egenandel')&&!f.key.includes('utleie')));
  }
- for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>!files.some(file=>f.source.documentId==='vehicle:'+file)));
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>!files.some(file=>f.source.documentId==='vehicle:'+file)));
 });

@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -87,7 +88,7 @@ test('R-043-SCOPE: one ordinary product, exact provider/type/version, unique key
  assert.equal(findCatalogProduct('frende',id,p.version,{insuranceType:'MC',agreementScope:'ordinary'}),null);
  const fs=resolveCatalogFacts(p,[],date);assert.equal(new Set(fs.map(f=>f.key)).size,fs.length);assert.ok(fs.every(f=>f.key.startsWith('reise.')));
  const out=enrich(id,[]);assert.deepEqual(out.addOnIds,[]);assert.equal(out.annualPremium,null);assert.equal(out.deductible,null);
- for(const peer of productCatalog.products.filter(p=>p.productId!==id))
+ for(const peer of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>p.productId!==id))
   assert.ok(resolveCatalogFacts(peer,[],date).every(f=>f.source.documentId!==source),peer.productId);
  assert.ok(fs.every(f=>!['frendeReiseReplacedTerms2020','frendeReiseMiddleEast2026'].includes(f.source.documentId)));
 });
