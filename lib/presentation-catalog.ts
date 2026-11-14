@@ -3,7 +3,7 @@ import { mcBobilCoverages, type McBobilType } from "./mc-bobil-registry.ts";
 import { boatPetCoverages, type BoatPetType } from "./boat-pet-registry.ts";
 import type { PersonInsuranceType } from "./person-insurance-registry.ts";
 import type { AgreementScopeId } from "./agreement-scope.ts";
-export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "reise" | "snøscooter" | "campingvogn" | "tilhenger" | McBobilType | BoatPetType | PersonInsuranceType;
+export type PresentationInsuranceType = "bil" | "innbo" | "bolig" | "fritidsbolig" | "verdisak" | "reise" | "snøscooter" | "campingvogn" | "tilhenger" | McBobilType | BoatPetType | PersonInsuranceType;
 export type PresentationTier = "primary" | "secondary" | "detail";
 export type PresentationFactType =
   | "coverage"
@@ -213,6 +213,17 @@ const personInsurancePresentationConcepts: readonly PresentationConcept[] = [
 // Rekkefølgen er en eksplisitt, kuratert presentasjonsrekkefølge. Den er ikke
 // en produktpoengsum og sier ikke hvilket produkt som er best.
 export const presentationConcepts: readonly PresentationConcept[] = [
+  concept("fritidsbolig.omfang", "fritidsbolig", "Bygning og forsikringsomfang", [/^hytte\.(?:avtale|bygning|bygninger|omfang|gjenoppforing|forsikringssum)\./u], "primary", ["economic-risk"]),
+  concept("fritidsbolig.brann-natur", "fritidsbolig", "Brann, tyveri og naturskade", [/^hytte\.(?:brann|tyveri|naturskade)\./u], "primary", ["economic-risk"]),
+  concept("fritidsbolig.vann", "fritidsbolig", "Vann og fukt", [/^hytte\.(?:vann|utett|vatrom)\./u], "primary", ["economic-risk", "level-difference"]),
+  concept("fritidsbolig.rate-skadedyr", "fritidsbolig", "Råte og skadedyr", [/^hytte\.(?:rate|dyr|skadedyr|sopp)\./u], "primary", ["economic-risk", "level-difference"]),
+  concept("fritidsbolig.bruk", "fritidsbolig", "Bruk, utleie og feriegaranti", [/^hytte\.(?:utleie|feriegaranti|ubeboelig)\./u], "secondary", ["level-difference"]),
+  concept("fritidsbolig.ansvar", "fritidsbolig", "Ansvar og rettshjelp", [/^hytte\.(?:ansvar|rettshjelp)\./u], "secondary", ["economic-risk"]),
+  concept("fritidsbolig.egenandel", "fritidsbolig", "Egenandeler og sikkerhetskrav", [/^hytte\.(?:egenandel|sikkerhet)\./u], "secondary", ["misunderstanding-risk"]),
+  concept("verdisak.omfang", "verdisak", "Gjenstander og gyldighetsområde", [/^verdisak\.(?:gjenstand|omrade)(?:\.|$)/u], "primary", ["misunderstanding-risk"]),
+  concept("verdisak.skade-tap", "verdisak", "Uhell, tyveri og tap", [/^verdisak\.(?:uhell|tyveri|tap)(?:\.|$)/u], "primary", ["economic-risk", "level-difference"]),
+  concept("verdisak.erstatning", "verdisak", "Forsikringssum og egenandeler", [/^verdisak\.(?:forsikringssum|egenandel|aldersfradrag|grense|sykkel)(?:\.|$)/u], "primary", ["economic-risk", "level-difference"]),
+  concept("verdisak.vilkar", "verdisak", "Sikkerhetskrav og bruk", [/^verdisak\.(?:sikkerhet|vilkar)(?:\.|$)/u], "secondary", ["misunderstanding-risk"]),
   ...personInsurancePresentationConcepts,
   ...boatPetPresentationConcepts,
   ...mcBobilPresentationConcepts,

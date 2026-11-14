@@ -49,7 +49,7 @@ type DocumentResult = {
   insuranceData: InsuranceData;
 };
 
-const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", "MC", "Bobil", "Båt", "Hund", "Katt", ...vehicleObjectTypes.map(({ label }) => label),
+const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Hytte", "Verdisak", "Reise", "MC", "Bobil", "Båt", "Hund", "Katt", ...vehicleObjectTypes.map(({ label }) => label),
   ...personInsuranceTypes];
 
 export default function Home() {

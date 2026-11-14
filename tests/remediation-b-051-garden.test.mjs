@@ -254,5 +254,5 @@ test('R-051-GARDEN-SCOPE: no new type/channel/version/parent/addon or source adm
   }
   assert.deepEqual(json(beforePersonInsuranceCatalog(productCatalog).sources), baseline.sources);
   assert.deepEqual(json(beforePersonInsuranceCatalog(productCatalog).products), baseline.products);
-  assert.deepEqual(json(productCatalog.addOns), transformRotStatusAddOns(baseline.addOns));
+  assert.deepEqual(json(beforePersonInsuranceCatalog(productCatalog).addOns), transformRotStatusAddOns(baseline.addOns));
 });

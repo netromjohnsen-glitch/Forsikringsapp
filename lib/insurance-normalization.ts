@@ -23,7 +23,8 @@ const insuranceAliases: Record<string, readonly string[]> = {
   katt: ["katt", "katte"],
   ...personInsuranceTypeAliases,
   // Fritidsbolig er et annet objekt enn vanlig bolig.
-  fritidsbolig: ["fritidsbolig", "hytte"],
+  fritidsbolig: ["fritidsbolig", "fritidshus", "hytte"],
+  verdisak: ["verdisak", "verdisaks", "verdigjenstand", "verdigjenstands", "verdisaker", "verdigjenstander"],
 };
 
 const termAliases: Record<string, readonly string[]> = {
@@ -110,6 +111,29 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "tyveri.dekning": ["tyveri", "tyveridekning"],
     "rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],
   },
+  fritidsbolig: {
+    "hytte.brann.dekning": ["brannskade", "brann"],
+    "hytte.vann.dekning": ["vannskade og rørbrudd"],
+    "hytte.tyveri.dekning": ["tyveri og skadeverk"],
+    "hytte.naturskade.dekning": ["naturskade"],
+    "hytte.dyr.dekning": ["skade fra dyr og bekjempelse"],
+    "hytte.rate.dekning": ["sopp, råte og treødeleggende insekter"],
+    "hytte.utett.dekning": ["følgeskade fra utett tak eller vegg"],
+    "hytte.feriegaranti.dekning": ["tap når hytta ikke kan brukes"],
+    "hytte.utleie.dekning": ["skadeverk eller mislighold ved utleie"],
+    "hytte.ansvar.dekning": ["privatansvar", "ansvarsforsikring"],
+    "hytte.rettshjelp.dekning": ["rettshjelp"],
+    "hytte.egenandel.egenandel": ["avtalt egenandel"],
+    "hytte.sikkerhet.vann": ["sikkerhetsforskrift for vann ved fravær"],
+  },
+  verdisak: {
+    "verdisak.omrade": ["hvor gjelder forsikringen", "geografisk gyldighet"],
+    "verdisak.uhell": ["plutselig skade og uhell", "uhellsskade"],
+    "verdisak.tyveri": ["tyveri"],
+    "verdisak.tap": ["tap av gjenstand"],
+    "verdisak.egenandel": ["ordinær egenandel"],
+    "verdisak.sykkel.egenandel": ["egenandel for sykkel"],
+  },
   reise: {
     "reise.forsinkelse.fremmote_sum": ["Forsinket fremmøte – sum"],
     "reise.forsinkelse.avgang_sum": ["Forsinket avgang – sum"],
@@ -192,6 +216,7 @@ const canonicalInsuranceTypeLabels: Record<string, string> = {
   katt: "Katt",
   ...personInsuranceTypeLabels,
   fritidsbolig: "Fritidsbolig",
+  verdisak: "Verdisak",
 };
 
 const nonPassengerVehicleAliases: Record<string, readonly string[]> = {
