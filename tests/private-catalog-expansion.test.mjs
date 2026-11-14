@@ -95,6 +95,24 @@ test("travel levels compare the same duration row with source and preserve direc
   assert.equal(forward.first.sources[0].sourceType, "product_page");
 });
 
+test("Gjensidige Verdisak Standard and Pluss preserve distinct terms when compared in either order", () => {
+  const products = productComparisonOptions("Verdisak", "Gjensidige", ordinary);
+  const standard = products.find(product => product.productId === "gjensidige-verdisak-standard");
+  const pluss = products.find(product => product.productId === "gjensidige-verdisak-pluss");
+  assert.ok(standard && pluss);
+  assert.notEqual(standard.sourceId, pluss.sourceId);
+  const row = (first, second) => compareCatalogProducts(first, second).sections
+    .flatMap(section => section.rows).find(item => item.key === "verdisak.tap");
+  const forward = row(standard, pluss);
+  const reverse = row(pluss, standard);
+  assert.equal(forward.first.state, "unavailable");
+  assert.equal(forward.second.state, "included");
+  assert.deepEqual(forward.first, reverse.second);
+  assert.deepEqual(forward.second, reverse.first);
+  assert.match(forward.first.sources[0].filename, /-standard\.pdf$/u);
+  assert.match(forward.second.sources[0].filename, /-pluss\.pdf$/u);
+});
+
 test("an optional cover remains separate from the selected insurance level", () => {
   const options = productComparisonOptions("Bil", "Landkreditt", ordinary);
   const kasko = options.find(product => product.name === "Kasko");

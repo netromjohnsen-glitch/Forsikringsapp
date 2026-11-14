@@ -41,8 +41,21 @@ type ProviderInput = {
   providerId: string;
   name: string;
   version: string | null;
+  level?: "standard" | "pluss";
   documents: Record<string, DocumentInput>;
   facts: FactInput[];
+};
+
+const gjensidigeProductSheet: DocumentInput = {
+  filename: "gjensidige-verdisak-ipid.pdf",
+  documentName: "Produktark Verdigjenstandsforsikring",
+  termsNumber: "",
+  effectiveFrom: "",
+  productCode: "EAP16",
+  sourceType: "ipid",
+  url: "https://www.gjensidige.no/ipid/gfno/EAP16",
+  sha256: "a43f19bad025594ab91e32f47e134816b5ade99a1f396128f33e5bca0eb23312",
+  physicalPages: [1, 2],
 };
 
 const providers: ProviderInput[] = [
@@ -143,8 +156,53 @@ const providers: ProviderInput[] = [
   {
     company: "Gjensidige",
     providerId: "gjensidige",
+    name: "Verdigjenstander Standard",
+    version: null,
+    level: "standard",
+    documents: {
+      terms: {
+        filename: "gjensidige-verdisak-standard.pdf",
+        documentName: "Verdigjenstand Standard – alminnelige vilkår og eksempel på forsikringsbevis",
+        termsNumber: "",
+        effectiveFrom: "",
+        url: "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Verdigjenstand-Standard-alminnelige-vilkar.pdf",
+        sha256: "ced4529eceded395b9e239e446f097e7be732c0bd23583c045829fe16d621e69",
+        physicalPages: [1, 7],
+        certificatePages: [1, 2],
+      },
+      ipid: gjensidigeProductSheet,
+    },
+    facts: [
+      { key: "verdisak.gjenstand", page: 2, section: "Hva er forsikret?",
+        value: "Gjenstander som står i forsikringsbeviset. Registreringspliktige motorvogner eller motorvogner konstruert for over 25 km/t er unntatt." },
+      { key: "verdisak.omrade", page: 2, section: "Hvor gjelder forsikringen?", document: "ipid",
+        value: "Produktarket oppgir at gjenstandsforsikringen gjelder i hele verden." },
+      { key: "verdisak.uhell", page: 2, section: "Hvilke skader?",
+        value: "Dekningen gjelder angitte hendelser, blant annet brann, bestemte vannskader, bygningssammenbrudd og transportskade. Søl og kondens er unntatt." },
+      { key: "verdisak.tyveri", page: 2, section: "Hvilke skader?", coverageAvailability: "included",
+        value: "Tyveri og ran omfattes. Hærverk omfattes i forbindelse med innbrudd i bygning." },
+      { key: "verdisak.tap", page: 2, section: "Hvilke skader?", coverageAvailability: "unavailable",
+        value: "Gjenstander som er mistet eller kommet bort, er unntatt." },
+      { key: "verdisak.forsikringssum", page: 7, section: "Hvordan erstatningen blir beregnet",
+        value: "Erstatningen kan ikke overstige forsikringssummen." },
+      { key: "verdisak.egenandel", page: 7, section: "Egenandel", deductibleClassification: "standard",
+        value: "1 000 kr per skadeoppgjør." },
+      { key: "verdisak.sykkel.aldersfradrag", page: 7, section: "Erstatningsgrunnlag",
+        value: "For nyanskaffet sykkel og elsykkel trekkes 10 % per påbegynt år fra den er tre år, maksimalt 80 %. Ved reparasjon gjøres det ikke fradrag." },
+      { key: "verdisak.aldersfradrag", page: 7, section: "Erstatningsgrunnlag",
+        value: "PC, nettbrett, smartklokker, datautstyr og briller har 10 % aldersfradrag fra ett år. For blant annet kamera og øvrig elektronikk starter fradraget ved tre år. Maks 80 %." },
+      { key: "verdisak.vilkar.utleie", page: 2, section: "Hvilke skader?", coverageAvailability: "unavailable",
+        value: "Skade under utleie er unntatt." },
+      { key: "verdisak.sikkerhet", page: 1, section: "Sikkerhetsforskrifter",
+        value: "Sykkel og elsykkel må låses fast eller låses inne. Sykkel, sykkeltilhenger og elsparkesykkel over 15 000 kr må sikres med FG-godkjent lås." },
+    ],
+  },
+  {
+    company: "Gjensidige",
+    providerId: "gjensidige",
     name: "Verdigjenstander Pluss",
     version: null,
+    level: "pluss",
     documents: {
       terms: {
         filename: "gjensidige-verdisak-pluss.pdf",
@@ -156,17 +214,7 @@ const providers: ProviderInput[] = [
         physicalPages: [1, 7],
         certificatePages: [1, 2],
       },
-      ipid: {
-        filename: "gjensidige-verdisak-ipid.pdf",
-        documentName: "Produktark Verdigjenstandsforsikring",
-        termsNumber: "",
-        effectiveFrom: "",
-        productCode: "EAP16",
-        sourceType: "ipid",
-        url: "https://www.gjensidige.no/ipid/gfno/EAP16",
-        sha256: "a43f19bad025594ab91e32f47e134816b5ade99a1f396128f33e5bca0eb23312",
-        physicalPages: [1, 2],
-      },
+      ipid: gjensidigeProductSheet,
     },
     facts: [
       { key: "verdisak.gjenstand", page: 2, section: "Hva er forsikret?",
@@ -175,8 +223,8 @@ const providers: ProviderInput[] = [
         value: "Produktarket oppgir at gjenstandsforsikringen gjelder i hele verden." },
       { key: "verdisak.uhell", page: 2, section: "Hvilke skader?", coverageAvailability: "included",
         value: "Plutselige og uforutsette skader. Årsak og skadetidspunkt må være kjent." },
-      { key: "verdisak.tap", page: 2, section: "Hvilke skader?",
-        value: "Gjenglemte og bortrotede gjenstander er unntatt. Det samme gjelder skade med ukjent årsak eller tidspunkt." },
+      { key: "verdisak.tap", page: 2, section: "Hvilke skader?", coverageAvailability: "included",
+        value: "Plutselig og uforutsett tap med kjent årsak og tidspunkt kan dekkes. Gjenglemte og bortrotede gjenstander er unntatt." },
       { key: "verdisak.forsikringssum", page: 7, section: "Hvordan erstatningen blir beregnet",
         value: "Erstatningen kan ikke overstige forsikringssummen." },
       { key: "verdisak.egenandel", page: 7, section: "Egenandel", deductibleClassification: "standard",
@@ -321,9 +369,9 @@ export const valuablesProducts: CatalogProduct[] = [];
 export const valuablesFacts: Record<string, CatalogFact[]> = {};
 export const valuablesSources: Record<string, CatalogSource> = {};
 
-for (const { company, providerId, name, version, documents, facts } of providers) {
-  const productId = providerId === "gjensidige" ? "gjensidige-verdisak-pluss" : providerId + "-verdisak";
-  const componentId = "private-valuables:" + providerId;
+for (const { company, providerId, name, version, level, documents, facts } of providers) {
+  const productId = providerId + "-verdisak" + (level ? "-" + level : "");
+  const componentId = "private-valuables:" + providerId + (level === "standard" ? ":standard" : "");
   valuablesProducts.push({
     company, providerId, insuranceType: type, name, productId, version,
     agreementScope: "ordinary", sourceId: componentId, componentIds: [componentId],
