@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutHealthDiscount} from './helpers/house-health-discount.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -16,7 +17,7 @@ import {canonicalDocumentFactKeys} from '../lib/analysis-output.ts';
 import {documentPipeline as actualPipeline} from './helpers/supporting-terms.mjs';
 import {smartDetailsOracle as o,smartDetailFact,smartDetailSources,applySmartDetails as actualApplySmart,withoutSmartDetails} from './helpers/house-smart-details.mjs';
 // The new physical-service discount has its own independent suite;retain this six-row contract exactly.
-const productCatalog=withoutHealthDiscount(actualCatalog);
+const productCatalog=withoutHealthDiscount(beforePersonInsuranceCatalog(actualCatalog));
 const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>actualFacts(p,a,date,channel,c);
 const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>actualEvidence(p,a,date,channel,c);
 const availableAddOns=(p,date,channel=null,c=productCatalog)=>actualAddOns(p,date,channel,c);

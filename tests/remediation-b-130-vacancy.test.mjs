@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import {withoutFrostAndVacancy,withoutFrost} from './helpers/b130-frost.mjs';
@@ -40,8 +41,8 @@ test('VACANCY original CR-224 signature has exactly both source bindings',()=>{
  const queue=readFileSync(new URL('../docs/audit/legacy-local/source-catalog-remediation-triage/canonical-review-queue.csv',import.meta.url),'utf8');assert.ok(queue.includes('CR-224'));assert.ok(queue.includes(o.signature));
 });
 test('VACANCY complete catalog equals independent before catalog plus exactly two raw facts',()=>{
- assert.deepEqual(withoutFrost(productCatalog),applyVacancy(baseline.catalog));
- assert.deepEqual(withoutFrostAndVacancy(productCatalog),baseline.catalog);
+ assert.deepEqual(withoutFrost(beforePersonInsuranceCatalog(productCatalog)),applyVacancy(baseline.catalog));
+ assert.deepEqual(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)),baseline.catalog);
  for(const owner of owners)assert.deepEqual(productCatalog.facts[owner].filter(f=>f.key===o.key),[vacancyFact(owner)]);
  for(const owner of owners){const bad=applyVacancy(baseline.catalog);bad.facts[owner].find(f=>f.key===o.key).source.page=99;assert.throws(()=>applyVacancy(bad));assert.throws(()=>withoutFrostAndVacancy(bad));}
 });
@@ -110,5 +111,5 @@ test('VACANCY same product and side reversal; peer unknown is not lack of covera
   assert.ok(forward);assert.deepEqual(forward.first,reverse.second);assert.deepEqual(forward.second,reverse.first);assert.equal(forward.first.text,o.value);assert.equal(forward.conceptId,'hus.ovrig');
   if(!ids.includes(b)){assert.equal(forward.second.state,'unknown');assert.deepEqual(forward.second.sources,[]);}
  }
- for(const product of productCatalog.products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),[],date,null,baseline.catalog));for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),selected,date,null,baseline.catalog));}}
+ for(const product of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),[],date,null,baseline.catalog));for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),selected,date,null,baseline.catalog));}}
 });

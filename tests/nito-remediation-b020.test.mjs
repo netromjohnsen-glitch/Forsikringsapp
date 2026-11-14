@@ -1,4 +1,5 @@
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -46,7 +47,7 @@ test('R-020-02: exact provider/type/scope/version boundaries', () => {
     for (const scope of [{ agreementScope: 'nito' }, { insuranceType: 'Innbo' }]) assert.equal(findCatalogProduct('gjensidige', id, p.version, scope), null);
     assert.equal(findCatalogProduct('gjensidige', id, 'unknown'), null);
   }
-  for (const p of productCatalog.products.filter(p => ![base, plus].includes(p.productId))) {
+  for (const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p => ![base, plus].includes(p.productId))) {
     assert.equal(resolveCatalogFacts(p, [], date).some(f => [...animals, ...insects].includes(f.key)), false, p.productId);
   }
 });

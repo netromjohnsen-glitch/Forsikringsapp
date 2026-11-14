@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import test from 'node:test';
@@ -82,7 +83,7 @@ for(const id of ids){
 }
 test('HOUSE-ORIGIN 214 frozen manual controls differ only by authorized target origin/metadata; 202 other products exact',()=>{
  assert.equal(before.controls.length,214);for(const c of before.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutFrostAndVacancy(first),c.first,c.id);const next=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutFrostAndVacancy(next),withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([next],c.input.products[0].type),c.display,c.id);}
- assert.equal(hash(serialize(withoutFrostAndVacancy(productCatalog))),vacancyCatalogBaselineHash);
+ assert.equal(hash(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))),vacancyCatalogBaselineHash);
 });
 test('HOUSE-ORIGIN all 144 original PDF outputs are exactly unchanged on first enrichment',()=>{
  assert.equal(before.documents.length,144);for(const c of before.documents){const actual=documentPipeline([[c.record]],c.side).insuranceData;assert.deepEqual(withoutFrostAndVacancy(actual),c.output,c.id);assert.equal(groupAddOnNames(actual.insurances,'Hus'),c.display,c.id);}

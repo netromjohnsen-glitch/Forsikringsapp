@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
@@ -39,8 +40,8 @@ test('FROST original CR-229 signature has exactly both source bindings',()=>{
  const queue=readFileSync(new URL('../docs/audit/legacy-local/source-catalog-remediation-triage/canonical-review-queue.csv',import.meta.url),'utf8');assert.ok(queue.includes('CR-229'));assert.ok(queue.includes(o.signature));
 });
 test('FROST complete catalog equals independent before catalog plus exactly two raw facts',()=>{
- assert.deepEqual(productCatalog,applyFrost(baseline.catalog));
- assert.deepEqual(withoutFrost(productCatalog),baseline.catalog);
+ assert.deepEqual(beforePersonInsuranceCatalog(productCatalog),applyFrost(baseline.catalog));
+ assert.deepEqual(withoutFrost(beforePersonInsuranceCatalog(productCatalog)),baseline.catalog);
  for(const owner of owners)assert.deepEqual(productCatalog.facts[owner].filter(f=>f.key===o.key),[frostFact(owner)]);
  for(const owner of owners){const bad=applyFrost(baseline.catalog);bad.facts[owner].find(f=>f.key===o.key).source.page=99;assert.throws(()=>applyFrost(bad));assert.throws(()=>withoutFrost(bad));}
 });
@@ -109,7 +110,7 @@ test('FROST same product and side reversal; peer unknown is not lack of coverage
   assert.ok(forward);assert.deepEqual(forward.first,reverse.second);assert.deepEqual(forward.second,reverse.first);assert.equal(forward.first.text,o.value);assert.equal(forward.conceptId,'hus.ovrig');
   if(!ids.includes(b)){assert.equal(forward.second.state,'unknown');assert.deepEqual(forward.second.sources,[]);}
  }
- for(const product of productCatalog.products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),[],date,null,baseline.catalog));for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),selected,date,null,baseline.catalog));}}
+ for(const product of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),[],date,null,baseline.catalog));for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),selected,date,null,baseline.catalog));}}
 });
 
 for(const id of ids)for(const [name,value] of [['Fast bebodd','Ja'],['Ikke fast bebodd','Ja; ubebodd i tre døgn'],['Ubebodd periode','Fire døgn'],['Sikkerhetsforskrift oppfylt','Nei']])test('FROST customer occupancy/compliance is retained without inferred coverage decision '+id+'/'+name+'/'+value,()=>{

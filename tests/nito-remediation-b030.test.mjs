@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -260,7 +261,7 @@ test('R-030-19: exact source applicability rejects Topp, wrong provider/type/sco
     assert.equal(resolveCatalogFacts(candidate, [], date).some(f => f.key === weather), false);
   }
   for (const scope of ['nito', 'lofavor']) assert.equal(findCatalogProductBySelection('Fremtind', 'Innbo', 'Innbo', scope), null);
-  for (const p of productCatalog.products.filter(p => !ids.includes(p.productId))) {
+  for (const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p => !ids.includes(p.productId))) {
     assert.equal(resolveCatalogFacts(p, [], date).some(f => f.key === weather), false, p.productId);
   }
 });

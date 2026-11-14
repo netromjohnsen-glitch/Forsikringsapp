@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
@@ -40,7 +41,7 @@ test('UNDERINSURANCE CR-226 has exactly the two original P1 source bindings',()=
  assert.equal(meta.base_revision,'0e4c09d528e92da85e3afad6db50620f6db00983');assert.equal(meta.captured_before_production_change,true);
 });
 test('UNDERINSURANCE exact catalog equals independent before plus two fully specified rows',()=>{
- assert.deepEqual(productCatalog,applyUnderinsurance(baseline.catalog));assert.deepEqual(withoutUnderinsurance(productCatalog),baseline.catalog);
+ assert.deepEqual(beforePersonInsuranceCatalog(productCatalog),applyUnderinsurance(baseline.catalog));assert.deepEqual(withoutUnderinsurance(beforePersonInsuranceCatalog(productCatalog)),baseline.catalog);
  for(const owner of owners){
   assert.deepEqual(productCatalog.facts[owner].filter(f=>f.key===o.key),[underinsuranceFact(owner)]);
   for(const mutate of [f=>f.source.page=99,f=>f.qualificationSource.page=99,f=>f.value='Reduseres etter arealbrøk']){
@@ -120,7 +121,7 @@ test('UNDERINSURANCE same product and side-swap retain source asymmetry and peer
   assert.ok(forward);assert.deepEqual(forward.first,reverse.second);assert.deepEqual(forward.second,reverse.first);assert.equal(forward.first.text,o.value);assert.equal(forward.conceptId,'hus.ovrig');
   if(!ids.includes(b)){assert.equal(forward.second.state,'unknown');assert.deepEqual(forward.second.sources,[]);}
  }
- for(const product of productCatalog.products.filter(p=>!ids.includes(p.productId))){
+ for(const product of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId))){
   const before=baseline.catalog.products.find(p=>p.productId===product.productId);
   assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(before,[],date,null,baseline.catalog));
   for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(before,selected,date,null,baseline.catalog));}

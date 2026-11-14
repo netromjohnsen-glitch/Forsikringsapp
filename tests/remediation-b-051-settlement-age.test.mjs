@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
@@ -19,7 +20,7 @@ import {baselineCatalog as previousBaseline, expectedCatalog as previousExpected
 import { applyRecovery } from '../docs/audit/checkpoints/b051-recovery-benefits-69c71dc/expected-catalog.mjs';
 import { applyPhysical } from '../docs/audit/checkpoints/b051-physical-exclusions-0be8fad/expected-catalog.mjs';
 const baseline=applyRot(applyLegal(applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(previousBaseline))))))),expectedCatalog=applyRot(applyLegal(applySmart(applyHealthHelp(applyLiability(applyPhysical(applyRecovery(previousExpectedCatalog)))))));
-const candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
+const candidate=beforePersonInsuranceCatalog(productCatalog),date=new Date('2026-10-07T12:00:00Z');
 const ids=['gjensidige-hus','gjensidige-hus-pluss'];
 const product=(c,id)=>c.products.find(p=>p.productId===id),fact=(c,key)=>c.facts.gjensidigeHusStandard.find(f=>f.key===key);
 const input=(id,terms=[])=>({company:'Gjensidige',totalAnnualPremium:null,insurances:[{company:'Gjensidige',type:'Hus',productName:product(baseline,id).name,annualPremium:null,deductible:null,coverageSummary:null,importantTerms:terms,addOns:[]}]});

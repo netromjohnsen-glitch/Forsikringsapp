@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutOwnerChange} from './helpers/house-owner-change.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -20,7 +21,7 @@ import {documentPipeline as currentPipeline} from './helpers/supporting-terms.mj
 import {objectExclusionsOracle as o,objectExclusionsFact,applyObjectExclusions as currentApplyObjectExclusions,withoutObjectExclusions} from './helpers/house-object-exclusions.mjs';
 
 // Keep the immutable object-exclusion contract; the new suite checks both point12 additions.
-const productCatalog=withoutOwnerChange(currentCatalog);
+const productCatalog=withoutOwnerChange(beforePersonInsuranceCatalog(currentCatalog));
 const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>currentFacts(p,a,date,channel,c);
 const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>currentEvidence(p,a,date,channel,c);
 const availableAddOns=(p,date,channel=null,c=productCatalog)=>currentAddOns(p,date,channel,c);

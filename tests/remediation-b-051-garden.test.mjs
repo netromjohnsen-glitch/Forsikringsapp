@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import {applyRot, transformRotStatusAddOns} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
@@ -246,7 +247,7 @@ test('R-051-GARDEN-SCOPE: no new type/channel/version/parent/addon or source adm
     assert.equal(findCatalogProduct('gjensidige', id, p.version, { insuranceType: 'Katt' }), null);
     assert.equal(findCatalogProduct('gjensidige', id, '2026-10-06', { insuranceType: 'Hus' }), null);
   }
-  assert.deepEqual(json(productCatalog.sources), baseline.sources);
-  assert.deepEqual(json(productCatalog.products), baseline.products);
-  assert.deepEqual(json(productCatalog.addOns), transformRotStatusAddOns(baseline.addOns));
+  assert.deepEqual(json(beforePersonInsuranceCatalog(productCatalog).sources), baseline.sources);
+  assert.deepEqual(json(beforePersonInsuranceCatalog(productCatalog).products), baseline.products);
+  assert.deepEqual(json(beforePersonInsuranceCatalog(productCatalog).addOns), transformRotStatusAddOns(baseline.addOns));
 });

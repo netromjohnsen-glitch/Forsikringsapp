@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -103,7 +104,7 @@ test('versions stay distinct inside one scope; name lookup never picks an arbitr
 });
 test('all 121 existing products keep their exact lookup and component resolution', () => {
   // Preserve the original compatibility control while adding new typed catalogs.
-  const originalProducts = productCatalog.products.filter(p => !['MC', 'Bobil', 'Båt', 'Hund', 'Katt'].includes(p.insuranceType));
+  const originalProducts = beforePersonInsuranceCatalog(productCatalog).products.filter(p => !['MC', 'Bobil', 'Båt', 'Hund', 'Katt'].includes(p.insuranceType));
   assert.equal(originalProducts.length, 121);
   for (const p of originalProducts) {
     assert.equal(findCatalogProduct(p.providerId, p.productId, p.version), p);

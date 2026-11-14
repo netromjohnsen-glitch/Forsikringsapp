@@ -153,10 +153,8 @@ const assertB089Provenance = (fact, binding) => {
   }
 };
 
-test("Båt/Hund/Katt gir tolv dynamiske produktfamilier", () => {
-  assert.deepEqual(productComparisonInsuranceTypes(), [
-    "Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Båt", "MC", "Bobil", "Hund", "Katt",
-  ]);
+test("Båt/Hund/Katt kan velges i produktsammenligningen", () => {
+  assert.deepEqual(productComparisonInsuranceTypes().filter((type) => types.includes(type)), types);
   for (const type of types) assert.deepEqual(productComparisonProviders(type), packages.map((entry) => entry[1]));
 });
 

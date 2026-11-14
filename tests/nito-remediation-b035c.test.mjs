@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -211,7 +212,7 @@ for(const [id,value,limit] of [['if-bobil-super','Ingen bonustap for skader inne
 test('R-035C-PC: catalog scope isolated to four ordinary Frende Bobil products',()=>{
   for(const p of productCatalog.products)if(p.insuranceType==='Bobil'&&!ids.includes(p.productId))
     assert.ok(resolveCatalogFacts(p,[],date).every(f=>!f.key.startsWith('bonus.')));
-  for(const p of productCatalog.products)if(!ids.includes(p.productId))
+  for(const p of beforePersonInsuranceCatalog(productCatalog).products)if(!ids.includes(p.productId))
     assert.ok(resolveCatalogFacts(p,[],date).every(f=>!(f.source.documentId===ownSource&&f.key.startsWith('bonus.'))));
   for(const id of ids){const out=enriched(id);assert.deepEqual(out.addOnIds,[]);assert.equal(out.annualPremium,null);}
 });

@@ -32,6 +32,12 @@ import { storebrandReiseAddOns, storebrandReiseFacts, storebrandReiseProducts, s
 import { gjensidigeReiseAddOns, gjensidigeReiseFacts, gjensidigeReiseProducts, gjensidigeReiseSources } from "./gjensidige-reise-catalog.ts";
 import { fremtindReiseAddOns, fremtindReiseFacts, fremtindReiseProducts, fremtindReiseSources } from "./fremtind-reise-catalog.ts";
 import { frendeReiseAddOns, frendeReiseFacts, frendeReiseProducts, frendeReiseSources } from "./frende-reise-catalog.ts";
+import { personInsuranceFacts, personInsuranceProducts, personInsuranceSources } from "./person-insurance-catalog.ts";
+import { personInsuranceTypes } from "./person-insurance-registry.ts";
+import { cabinAddOns, cabinFacts, cabinProducts, cabinSources } from "./private-cabin-catalog.ts";
+import { valuablesFacts, valuablesProducts, valuablesSources } from "./private-valuables-catalog.ts";
+import { newMotorHomeAddOns, newMotorHomeFacts, newMotorHomeProducts, newMotorHomeSources } from "./new-private-motor-home-catalog.ts";
+import { newContentsTravelFacts, newContentsTravelProducts, newContentsTravelSources } from "./new-private-contents-travel-catalog.ts";
 import type { BuildingFactData } from "./building-facts.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { resolveCatalogSources } from "./catalog-source-resolution.ts";
@@ -49,6 +55,7 @@ export type CatalogSource = {
   // Unlike legacy appliesTo (display names), these are canonical product IDs.
   productIds?: string[];
   sourceType?: "full_terms" | "ipid" | "product_page";
+  physicalPages?: readonly [firstPage: number, lastPage: number];
   validTo?: string;
   providerId?: string;
   productVersion?: string;
@@ -112,27 +119,32 @@ export type ProductCatalog = {
 
 export const productCatalog: ProductCatalog = {
   agreementScopes: [...mcBobilAgreementScopes, ...boatPetAgreementScopes],
-  companies: ["Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende"],
-  insuranceTypes: ["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise", "Ulykke", "Båt", "MC", "Bobil", "Hund", "Katt", "Barn", "Liv"],
+  companies: ["Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende", "KLP", "Landkreditt", "WaterCircles"],
+  insuranceTypes: ["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Hytte", "Innbo", "Verdisak", "Reise",
+    "Båt", "MC", "Bobil", "Hund", "Katt", ...personInsuranceTypes],
   products: [...trygProducts, ...ifProducts, ...gjensidigeProducts, ...storebrandProducts,
     ...sparebank1FremtindProducts, ...dnbFremtindProducts, ...eikaFremtindProducts, ...fremtindProducts, ...frendeProducts,
     ...trygInnboProducts, ...ifInnboProducts, ...gjensidigeInnboProducts, ...storebrandInnboProducts,
     ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts, ...ifHusProducts, ...storebrandHusProducts,
-    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts, ...mcBobilProducts, ...boatPetProducts],
+    ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts, ...mcBobilProducts, ...boatPetProducts, ...personInsuranceProducts,
+    ...cabinProducts, ...valuablesProducts, ...newMotorHomeProducts, ...newContentsTravelProducts],
   addOns: [...vehicleObjectAddOns, ...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
     ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns,
-    ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns, ...mcBobilAddOns, ...boatPetAddOns],
+    ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns, ...mcBobilAddOns, ...boatPetAddOns,
+    ...cabinAddOns, ...newMotorHomeAddOns],
   sources: { ...boatPetSources, ...mcBobilSources, ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,
     ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources, ...ifHusSources, ...storebrandHusSources,
-    ...gjensidigeHusSources, ...fremtindHusSources, ...frendeHusSources, ...trygReiseSources, ...ifReiseSources, ...storebrandReiseSources, ...gjensidigeReiseSources, ...fremtindReiseSources, ...frendeReiseSources },
+    ...gjensidigeHusSources, ...fremtindHusSources, ...frendeHusSources, ...trygReiseSources, ...ifReiseSources, ...storebrandReiseSources, ...gjensidigeReiseSources, ...fremtindReiseSources, ...frendeReiseSources, ...personInsuranceSources,
+    ...cabinSources, ...valuablesSources, ...newMotorHomeSources, ...newContentsTravelSources },
   facts: { ...boatPetFacts, ...mcBobilFacts, ...vehicleObjectFacts, ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
     ...sparebank1FremtindFacts, ...dnbFremtindFacts, ...eikaFremtindFacts, ...fremtindFacts, ...frendeFacts,
     ...trygInnboFacts, ...ifInnboFacts, ...gjensidigeInnboFacts, ...storebrandInnboFacts,
     ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts, ...ifHusFacts, ...storebrandHusFacts,
-    ...gjensidigeHusFacts, ...fremtindHusFacts, ...frendeHusFacts, ...trygReiseFacts, ...ifReiseFacts, ...storebrandReiseFacts, ...gjensidigeReiseFacts, ...fremtindReiseFacts, ...frendeReiseFacts },
+    ...gjensidigeHusFacts, ...fremtindHusFacts, ...frendeHusFacts, ...trygReiseFacts, ...ifReiseFacts, ...storebrandReiseFacts, ...gjensidigeReiseFacts, ...fremtindReiseFacts, ...frendeReiseFacts, ...personInsuranceFacts,
+    ...cabinFacts, ...valuablesFacts, ...newMotorHomeFacts, ...newContentsTravelFacts },
 };
 
 const normalizeIdentity = (value: string) => value.normalize("NFKC")
@@ -146,6 +158,12 @@ const normalizeIdentity = (value: string) => value.normalize("NFKC")
 const companyAliases: Readonly<Record<string, string>> = {
   "gjensidige forsikring asa": "gjensidige",
   "eika": "eika fremtind",
+  "klp skadeforsikring": "klp",
+  "klp skadeforsikring as": "klp",
+  "landkreditt forsikring": "landkreditt",
+  "landkreditt forsikring as": "landkreditt",
+  "watercircles forsikring": "watercircles",
+  "watercircles forsikring asa": "watercircles",
 };
 
 function canonicalCompanyIdentity(value: string): string {

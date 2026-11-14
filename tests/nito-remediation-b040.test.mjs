@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -106,7 +107,7 @@ test('R-040-18: exact provider/type/scope/version; no leaked Frende Innbo addons
  assert.equal(findCatalogProduct('frende',id,'2026-09-01',{insuranceType:'Innbo',agreementScope:'ordinary'}),product(id));
  assert.equal(findCatalogProduct('if',id,'2026-09-01'),null);assert.equal(findCatalogProduct('frende',id,'wrong-version'),null);
  for(const opts of [{insuranceType:'Hus'},{agreementScope:'nito'}])assert.equal(findCatalogProduct('frende',id,'2026-09-01',opts),null);
- for(const p of productCatalog.products.filter(p=>p.productId!==id)){
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>p.productId!==id)){
   assert.equal(availableAddOns(p,date).some(a=>a.id===addon),false,p.productId);
   assert.ok(resolveCatalogFacts(p,[],date).every(f=>!['frendeInnboStandard','frendeInnboUhell'].includes(f.source.documentId)),p.productId);
  }

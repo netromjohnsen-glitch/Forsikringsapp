@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './before-person-insurance-catalog.mjs';
 import {applyRot} from './b051-rot.mjs';
 import {applyLegal} from './b051-legal.mjs';
 import {applySmart} from './b051-smart.mjs';
@@ -27,7 +28,7 @@ export const expectedCatalog=applyLiability(baselineCatalog);
 export function assertLiabilityCatalog(){
  // The historical whole-catalog oracle is a JSON snapshot. Preserve its layer;
  // raw undefined fields are checked separately in the permanent liability gate.
- assert.deepEqual(JSON.parse(JSON.stringify(productCatalog)),JSON.parse(JSON.stringify(expectedCatalog)));
+ assert.deepEqual(JSON.parse(JSON.stringify(beforePersonInsuranceCatalog(productCatalog))),JSON.parse(JSON.stringify(expectedCatalog)));
  const fact=productCatalog.facts[sourceOracle.owner].find(f=>f.key===sourceOracle.key);
  assert.equal(Object.hasOwn(fact.source,'productCode'),true);assert.equal(fact.source.productCode,undefined);
  assert.equal(Object.hasOwn(fact.source,'sourceType'),false);

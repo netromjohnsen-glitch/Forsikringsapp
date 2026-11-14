@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
@@ -107,7 +108,7 @@ test('SMART-MANUAL all 202 other manual results preserve baseline; non-Smart tar
   expectedRepeat.addOnIds.push(rental);expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rows)];expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
  }
  assert.deepEqual(withoutFrostAndVacancy(first),expectedFirst,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutFrostAndVacancy(result),withHouseCatalogOrigin(expectedRepeat,c.first),c.id);}
- assert.equal(createHash('sha256').update(serialize(withoutFrostAndVacancy(productCatalog))).digest('hex'),vacancyCatalogBaselineHash);
+ assert.equal(createHash('sha256').update(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))).digest('hex'),vacancyCatalogBaselineHash);
 });
 test('SMART-MANUAL all 96 actual document pipeline outputs and displays are exact baseline',()=>{
  assert.equal(baseline.documents.length,96);for(const c of baseline.documents){const output=documentPipeline([[c.record]],c.side).insuranceData;assert.deepEqual(withoutFrostAndVacancy(output),c.output,c.id);assert.equal(groupAddOnNames(output.insurances,'Hus'),c.display,c.id);}

@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutWar} from './helpers/house-war.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -21,7 +22,7 @@ import {spreadOracle as o,spreadFact,applySpread as currentApplySpread,withoutSp
 
 
 // Preserve point19's exact contract;the new suite checks both point17 additions.
-const productCatalog=withoutWar(currentCatalog);
+const productCatalog=withoutWar(beforePersonInsuranceCatalog(currentCatalog));
 const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>currentFacts(p,a,date,channel,c);
 const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>currentEvidence(p,a,date,channel,c);
 const availableAddOns=(p,date,channel=null,c=productCatalog)=>currentAddOns(p,date,channel,c);

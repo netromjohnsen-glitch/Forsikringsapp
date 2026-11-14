@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -153,5 +154,5 @@ test('R-045-SCOPE: exact provider/type/channel/scope/version; no other family in
   assert.equal(findCatalogProduct('frende',id,'invented',{insuranceType:'Tilhenger',agreementScope:'ordinary'}),null);
   assert.ok(facts(id).every(f=>f.key.startsWith('tilhenger.')));
  }
- for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>![pdfFile,htmlFile].includes(f.source.filename)&&![pdfFile,htmlFile].includes(f.qualificationSource?.filename)));
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>![pdfFile,htmlFile].includes(f.source.filename)&&![pdfFile,htmlFile].includes(f.qualificationSource?.filename)));
 });

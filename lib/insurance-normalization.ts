@@ -1,6 +1,7 @@
 import { vehicleObjectCoverages, vehicleObjectTypes } from "./vehicle-object-registry.ts";
 import { bobilBonusLabels, mcBobilCoverages, mcBobilTypes, mcBobilVehicleAliases } from "./mc-bobil-registry.ts";
 import { boatPetCoverages, boatPetTypes } from "./boat-pet-registry.ts";
+import { personInsuranceTypeAliases, personInsuranceTypeLabels } from "./person-insurance-registry.ts";
 // Aliasgrupper er hele betegnelser. Delord og likhetsgrad brukes ikke til matching.
 const insuranceAliases: Record<string, readonly string[]> = {
   bil: ["bil", "personbil", "privatbil", "motorvogn"],
@@ -20,11 +21,10 @@ const insuranceAliases: Record<string, readonly string[]> = {
   lastebil: ["lastebil"],
   hund: ["hund", "hunde"],
   katt: ["katt", "katte"],
-  barn: ["barn", "barne"],
-  ulykke: ["ulykke", "ulykkes"],
-  liv: ["liv", "livs"],
+  ...personInsuranceTypeAliases,
   // Fritidsbolig er et annet objekt enn vanlig bolig.
-  fritidsbolig: ["fritidsbolig", "hytte"],
+  fritidsbolig: ["fritidsbolig", "fritidshus", "hytte"],
+  verdisak: ["verdisak", "verdisaks", "verdigjenstand", "verdigjenstands", "verdisaker", "verdigjenstander"],
 };
 
 const termAliases: Record<string, readonly string[]> = {
@@ -112,6 +112,29 @@ const contextualTermAliases: Record<string, Record<string, readonly string[]>> =
     "tyveri.dekning": ["tyveri", "tyveridekning"],
     "rettshjelp.dekning": ["rettshjelp", "rettshjelpsdekning"],
   },
+  fritidsbolig: {
+    "hytte.brann.dekning": ["brannskade", "brann"],
+    "hytte.vann.dekning": ["vannskade og rørbrudd"],
+    "hytte.tyveri.dekning": ["tyveri og skadeverk"],
+    "hytte.naturskade.dekning": ["naturskade"],
+    "hytte.dyr.dekning": ["skade fra dyr og bekjempelse"],
+    "hytte.rate.dekning": ["sopp, råte og treødeleggende insekter"],
+    "hytte.utett.dekning": ["følgeskade fra utett tak eller vegg"],
+    "hytte.feriegaranti.dekning": ["tap når hytta ikke kan brukes"],
+    "hytte.utleie.dekning": ["skadeverk eller mislighold ved utleie"],
+    "hytte.ansvar.dekning": ["privatansvar", "ansvarsforsikring"],
+    "hytte.rettshjelp.dekning": ["rettshjelp"],
+    "hytte.egenandel.egenandel": ["avtalt egenandel"],
+    "hytte.sikkerhet.vann": ["sikkerhetsforskrift for vann ved fravær"],
+  },
+  verdisak: {
+    "verdisak.omrade": ["hvor gjelder forsikringen", "geografisk gyldighet"],
+    "verdisak.uhell": ["plutselig skade og uhell", "uhellsskade"],
+    "verdisak.tyveri": ["tyveri"],
+    "verdisak.tap": ["tap av gjenstand"],
+    "verdisak.egenandel": ["ordinær egenandel"],
+    "verdisak.sykkel.egenandel": ["egenandel for sykkel"],
+  },
   reise: {
     "reise.forsinkelse.fremmote_sum": ["Forsinket fremmøte – sum"],
     "reise.forsinkelse.avgang_sum": ["Forsinket avgang – sum"],
@@ -192,10 +215,9 @@ const canonicalInsuranceTypeLabels: Record<string, string> = {
   lastebil: "Lastebil",
   hund: "Hund",
   katt: "Katt",
-  barn: "Barn",
-  ulykke: "Ulykke",
-  liv: "Liv",
+  ...personInsuranceTypeLabels,
   fritidsbolig: "Fritidsbolig",
+  verdisak: "Verdisak",
 };
 
 const nonPassengerVehicleAliases: Record<string, readonly string[]> = {

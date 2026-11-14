@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutSettlement} from './helpers/house-settlement-form.mjs';
 import {safeguardSourceOracle} from './helpers/house-safeguard-source.mjs';
 import {rebuildingSourceOracle,rebuildingSourceKeys} from './helpers/house-rebuilding-source.mjs';
@@ -17,7 +18,7 @@ import {documentPipeline as currentPipeline} from './helpers/supporting-terms.mj
 import {buildingsSourceOracle as o,buildingsSourceKeys,withBuildingsSourcePage,withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 // Keep the source-page regression contract against its immutable before snapshot.
 // The separate settlement suite proves the full production catalog plus exactly two rows.
-const productCatalog=withoutSettlement(currentCatalog);
+const productCatalog=withoutSettlement(beforePersonInsuranceCatalog(currentCatalog));
 const resolveCatalogFacts=(p,a,date)=>currentFacts(p,a,date,null,productCatalog);
 const resolveCatalogEvidence=(p,a,date)=>currentEvidence(p,a,date,null,productCatalog);
 const findCatalogProduct=(provider,id,version,context)=>currentFind(provider,id,version,context,productCatalog);

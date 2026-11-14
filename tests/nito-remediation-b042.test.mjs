@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -209,7 +210,7 @@ test('R-042-SCOPE: shared source bytes never permit Bobil/MC or provider/scope l
  for(const scope of [{insuranceType:'Bobil',agreementScope:'ordinary'},{insuranceType:'MC',agreementScope:'lofavor'}])
   assert.equal(findCatalogProduct('frende',ids[2],'2026-01-01',scope),null);
  assert.equal(findCatalogProduct('frende',ids[2],'2025-01-01',{insuranceType:'MC',agreementScope:'ordinary'}),null);
- for(const p of productCatalog.products)if(!ids.includes(p.productId))
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products)if(!ids.includes(p.productId))
   assert.ok(resolveCatalogFacts(p,[],date).every(f=>!(f.source.documentId===source&&f.key.startsWith('bonus.'))));
  assert.equal(fact('if-bobil-super','parkering.bonus').value,'Ingen bonustap for skader innen denne dekningen');
  assert.equal(fact('storebrand-bobil-super','parkering.bonus').value,'Uten bonustap innen beløpsgrensen');

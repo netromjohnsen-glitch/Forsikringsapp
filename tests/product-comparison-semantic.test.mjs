@@ -106,10 +106,13 @@ test('explicit unavailable catalog coverage is not converted to unknown',()=>{
 });
 test('every original fact value and source survives hierarchy, without catalog mutation',()=>{
   const before=JSON.stringify(result);
+  const catalogBefore = JSON.stringify(productCatalog);
   for(const side of ['first','second']) for(const fact of result.sections.flatMap(s=>s.rows).flatMap(r=>r[side].facts)) {
     assert.ok(factsOn(view,side).some(f=>JSON.stringify(f)===JSON.stringify(fact)),fact.key);
   }
-  productComparisonView(result);assert.equal(JSON.stringify(result),before);assert.equal(productCatalog.products.length,204);
+  productComparisonView(result);
+  assert.equal(JSON.stringify(result), before);
+  assert.equal(JSON.stringify(productCatalog), catalogBefore);
 });
 test('rendered unknown count is 9; actual missing evidence stays visible',()=>{
   assert.equal(unknowns(view),9);assert.equal(html.split('Ikke dokumentert i kataloggrunnlaget').length-1,9);

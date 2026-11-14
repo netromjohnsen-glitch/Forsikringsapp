@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutObjectExclusions} from './helpers/house-object-exclusions.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -19,7 +20,7 @@ import {documentPipeline as currentPipeline} from './helpers/supporting-terms.mj
 import {additionalCostsOracle as o,additionalCostsFact,additionalCostsSources,applyAdditionalCosts as currentApplyAdditionalCosts,withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 
 // Keep the immutable additional-cost contract; the new suite checks the full four-row object delta.
-const productCatalog=withoutObjectExclusions(currentCatalog);
+const productCatalog=withoutObjectExclusions(beforePersonInsuranceCatalog(currentCatalog));
 const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>currentFacts(p,a,date,channel,c);
 const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>currentEvidence(p,a,date,channel,c);
 const availableAddOns=(p,date,channel=null,c=productCatalog)=>currentAddOns(p,date,channel,c);

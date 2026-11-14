@@ -2,6 +2,7 @@
 import { objectDisplayLabel, objectWarning, type ObjectComparisonContext } from "../lib/object-matching.ts";
 
 import { vehicleObjectTypes } from "../lib/vehicle-object-registry.ts";
+import { personInsuranceTypes } from "../lib/person-insurance-registry.ts";
 import { useEffect, useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
 import { readAnalysisResponse, validateUploadSelection } from "@/lib/analysis-client";
 import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressState } from "@/lib/analysis-progress";
@@ -48,7 +49,8 @@ type DocumentResult = {
   insuranceData: InsuranceData;
 };
 
-const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Reise", "MC", "Bobil", "Båt", "Hund", "Katt", ...vehicleObjectTypes.map(({ label }) => label)];
+const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Hytte", "Verdisak", "Reise", "MC", "Bobil", "Båt", "Hund", "Katt", ...vehicleObjectTypes.map(({ label }) => label),
+  ...personInsuranceTypes];
 
 export default function Home() {
   const [comparisonMode, setComparisonMode] = useState<"agreements" | "products">("agreements");

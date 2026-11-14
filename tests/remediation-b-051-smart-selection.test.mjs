@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
@@ -121,7 +122,7 @@ test('SMART-SELECTION 202 other products and catalog identity preserve baseline;
   assert.deepEqual(withoutFrostAndVacancy(first),expectedFirst);assert.deepEqual(withoutFrostAndVacancy(repeat(first)),withHouseCatalogOrigin(expectedRepeat,c.first));
   const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first)],'Hus'),expected);
  }
- assert.equal(createHash('sha256').update(serialize(withoutFrostAndVacancy(productCatalog))).digest('hex'),vacancyCatalogBaselineHash);
+ assert.equal(createHash('sha256').update(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))).digest('hex'),vacancyCatalogBaselineHash);
 });
 test('SMART-SELECTION unknown product/provider/type/scope/version and unavailable component never activate',()=>{
  const r=record(ids[0],'individual_agreement',['Valgt'],true);

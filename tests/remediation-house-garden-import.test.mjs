@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -20,7 +21,7 @@ import {documentPipeline as currentPipeline} from './helpers/supporting-terms.mj
 import {gardenImportOracle as o,gardenImportFact,applyGardenImport as currentApplyGardenImport,withoutGardenImport} from './helpers/house-garden-import.mjs';
 
 // Retain the immutable garden/import contract while the new suite checks the full six-row delta.
-const productCatalog=withoutAdditionalCosts(currentCatalog);
+const productCatalog=withoutAdditionalCosts(beforePersonInsuranceCatalog(currentCatalog));
 const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>currentFacts(p,a,date,channel,c);
 const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>currentEvidence(p,a,date,channel,c);
 const availableAddOns=(p,date,channel=null,c=productCatalog)=>currentAddOns(p,date,channel,c);

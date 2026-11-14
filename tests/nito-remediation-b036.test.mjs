@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -112,5 +113,5 @@ test('R-036-SCOPE: wrong provider/type/scope/version cannot resolve Frende Boat 
     for(const scope of [{insuranceType:'Bobil'},{agreementScope:'nito'}])assert.equal(findCatalogProduct('frende',id,'2026-01-01',scope),null);
     assert.equal(findCatalogProduct('if',id,'2026-01-01'),null);assert.equal(findCatalogProduct('frende',id,'unknown'),null);
   }
-  for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>f.source.documentId!==sourceId));
+  for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>f.source.documentId!==sourceId));
 });

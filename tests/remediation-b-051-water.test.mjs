@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -86,7 +87,7 @@ test('WATER precise row survives both comparison directions; unverified peers un
  for(const id of ids)assert.equal(compareCatalogProducts(product(id),product(id)).differenceCount,0);
 });
 test('WATER full-field source oracle; only the two authorized rows added',()=>{
- assert.deepEqual(productCatalog,expected);
+ assert.deepEqual(beforePersonInsuranceCatalog(productCatalog),expected);
  for(const id of ids){
   const before=resolveCatalogFacts(product(id,baseline),[],date,null,baseline);
   const after=resolveCatalogFacts(product(id),[],date).filter(f=>f.key!==key);assert.deepEqual(withoutFrostAndVacancy(after),before);

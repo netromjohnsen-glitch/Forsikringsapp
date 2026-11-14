@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
@@ -39,8 +40,8 @@ test('PERSONSCOPE original CR-228 signature has exactly both source bindings',()
  const queue=readFileSync(new URL('../docs/audit/legacy-local/source-catalog-remediation-triage/canonical-review-queue.csv',import.meta.url),'utf8');assert.ok(queue.includes('CR-228'));assert.ok(queue.includes(o.signature));
 });
 test('PERSONSCOPE complete catalog equals independent before catalog plus exactly two raw facts',()=>{
- assert.deepEqual(productCatalog,applyPersonScope(baseline.catalog));
- assert.deepEqual(withoutPersonScope(productCatalog),baseline.catalog);
+ assert.deepEqual(beforePersonInsuranceCatalog(productCatalog),applyPersonScope(baseline.catalog));
+ assert.deepEqual(withoutPersonScope(beforePersonInsuranceCatalog(productCatalog)),baseline.catalog);
  for(const owner of owners)assert.deepEqual(productCatalog.facts[owner].filter(f=>f.key===o.key),[personScopeFact(owner)]);
  for(const owner of owners){const bad=applyPersonScope(baseline.catalog);bad.facts[owner].find(f=>f.key===o.key).source.page=99;assert.throws(()=>applyPersonScope(bad));assert.throws(()=>withoutPersonScope(bad));}
 });
@@ -112,7 +113,7 @@ test('PERSONSCOPE same product and side reversal; peer unknown is not lack of co
   assert.ok(forward);assert.deepEqual(forward.first,reverse.second);assert.deepEqual(forward.second,reverse.first);assert.equal(forward.first.text,o.value);assert.equal(forward.conceptId,'hus.ovrig');
   if(!ids.includes(b)){assert.equal(forward.second.state,'unknown');assert.deepEqual(forward.second.sources,[]);}
  }
- for(const product of productCatalog.products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),[],date,null,baseline.catalog));for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),selected,date,null,baseline.catalog));}}
+ for(const product of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId))){assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),[],date,null,baseline.catalog));for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===product.productId),selected,date,null,baseline.catalog));}}
 });
 
 
@@ -151,6 +152,6 @@ test('PERSONSCOPE exact six-group wording retains distinct conditions without a 
 test('PERSONSCOPE separate health-service liability legal safety object and settlement rules strictly unchanged',()=>{
  for(const id of ids)for(const key of ['hus.service.helsehjelp','hus.ansvar.dekning','hus.rettshjelp.dekning','hus.sikkerhet.begrensning','hus.bygninger.dekning','hus.avtale.forbehold','hus.forsikringsform','hus.gjenoppforing.hovedregel','hus.fraflyttet.begrensning','hus.underforsikring.begrensning'])assert.deepEqual(withOriginalBuildingsSourcePage(resolveCatalogFacts(p(id),[],date).find(f=>f.key===key)),resolveCatalogFacts(baseline.catalog.products.find(p=>p.productId===id),[],date,null,baseline.catalog).find(f=>f.key===key));
  const health=resolveCatalogFacts(p(ids[0]),[],date).find(f=>f.key==='hus.service.helsehjelp');assert.doesNotMatch(health.value,/tinglyst|panterett|sikkerhetsrett/u);
- const otherPersonScopes=Object.entries(productCatalog.facts).flatMap(([owner,rows])=>rows.filter(f=>f.key==='innbo.forsikrede'||f.key==='reise.personer.omfang').map(f=>({owner,fact:f})));
+ const otherPersonScopes=Object.entries(beforePersonInsuranceCatalog(productCatalog).facts).flatMap(([owner,rows])=>rows.filter(f=>f.key==='innbo.forsikrede'||f.key==='reise.personer.omfang').map(f=>({owner,fact:f})));
  assert.ok(otherPersonScopes.length);for(const {owner,fact}of otherPersonScopes)assert.deepEqual(fact,baseline.catalog.facts[owner].find(f=>f.key===fact.key));
 });

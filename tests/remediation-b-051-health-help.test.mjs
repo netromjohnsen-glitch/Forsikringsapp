@@ -1,5 +1,6 @@
 import {applySettlement as withCurrentSettlement} from './helpers/house-settlement-form.mjs';
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import {applyRot} from './helpers/b051-rot.mjs';
 import {applyLegal} from './helpers/b051-legal.mjs';
 import {applySmart} from './helpers/b051-smart.mjs';
@@ -22,7 +23,7 @@ const oldOracle=applyRot(applyLegal(applySmart(applyLiability(previousCatalog)))
 const expectedCatalog=applyHealthHelp(oldOracle);
 
 const key='hus.service.helsehjelp', ids=['gjensidige-hus','gjensidige-hus-pluss'];
-const baseline=withCurrentSettlement(structuredClone(oldOracle)),candidate=productCatalog,date=new Date('2026-10-07T12:00:00Z');
+const baseline=withCurrentSettlement(structuredClone(oldOracle)),candidate=beforePersonInsuranceCatalog(productCatalog),date=new Date('2026-10-07T12:00:00Z');
 const value=healthOracle.value;
 const before=baseline.facts.gjensidigeHusStandard.find(f=>f.key===key);
 const expectedFact=expectedCatalog.facts.gjensidigeHusStandard.find(f=>f.key===key);

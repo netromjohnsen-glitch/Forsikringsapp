@@ -257,9 +257,13 @@ function enrichInsurance(
   const productIdentity = insurance.canonicalProductName === undefined
     ? insurance.productName
     : insurance.canonicalProductName;
-  const product = measure("catalogLookup", () => company && productIdentity
-    ? findCatalogProductBySelection(company, insurance.type, productIdentity, insurance.agreementScope, catalog)
-    : null);
+  const product = measure("catalogLookup", () => {
+    const candidate = company && productIdentity
+      ? findCatalogProductBySelection(company, insurance.type, productIdentity, insurance.agreementScope, catalog) : null;
+    // A customer PDF with a matching product name does not establish the
+    // applicable person terms, individual reservations or coverage choices.
+    return candidate?.sourceId?.startsWith("person:") ? null : candidate;
+  });
   trace?.product(insurance, product);
   // Only explicitly configured Hus parents participate in this opt-in. Other
   // product families, details and aliases retain their existing contracts.

@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutSmartDetails} from './helpers/house-smart-details.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -21,7 +22,7 @@ import {warOracle as o,warFact,warSources,applyWar as currentApplyWar,withoutWar
 
 
 // The independent service-detail suite checks the six approved additions;keep point17's exact contract.
-const productCatalog=withoutSmartDetails(currentCatalog);
+const productCatalog=withoutSmartDetails(beforePersonInsuranceCatalog(currentCatalog));
 const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>currentFacts(p,a,date,channel,c);
 const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>currentEvidence(p,a,date,channel,c);
 const availableAddOns=(p,date,channel=null,c=productCatalog)=>currentAddOns(p,date,channel,c);

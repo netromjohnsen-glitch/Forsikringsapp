@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -58,5 +59,5 @@ test('R-034-05: held-out PC-0579–0614 meaning and disputed SC-012 values stay 
  assert.equal(fact('frende-bil-utvidet','bilnokkel.grense').value,'Inntil 20 000 kr uten egenandel og bonustap');assert.equal(fact('frende-bil-utvidet','ladekabel.dekning').value,'Skadet eller stjålet ladekabel uten egenandel og bonustap');assert.equal(fact('frende-bil-utvidet','leasing.startleie').value,'Forholdsmessig erstatning av resterende startleie ved totalskade eller tyveri');
 });
 test('R-034-06: no other provider/type/scope/version receives these Bil-only refinements',()=>{
- for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>!['frendeAnsvar','frendeDelkasko','frendeKasko','frendeUtvidet'].includes(f.source.documentId)));
+ for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>!['frendeAnsvar','frendeDelkasko','frendeKasko','frendeUtvidet'].includes(f.source.documentId)));
 });

@@ -1,3 +1,4 @@
+import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -82,5 +83,5 @@ test('R-037-SCOPE: provider/type/scope/version isolation; no new vehicle bonus o
     assert.equal(findCatalogProduct('if',id,'2026-01-01'),null);assert.equal(findCatalogProduct('frende',id,'unknown'),null);
     assert.ok(facts(id).every(f=>!f.key.startsWith('bonus.')&&!f.key.endsWith('.alder')));
   }
-  for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>![pdf,web].includes(f.source.documentId)));
+  for(const p of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId)))assert.ok(facts(p.productId).every(f=>![pdf,web].includes(f.source.documentId)));
 });

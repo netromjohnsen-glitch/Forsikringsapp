@@ -1,3 +1,4 @@
+import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutGardenImport} from './helpers/house-garden-import.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -19,7 +20,7 @@ import {settlementOracle as o,settlementFact,applySettlement as currentApplySett
 
 // Preserve the frozen two-row settlement regression contract; the garden/import
 // suite checks actual production and the complete independent four-row delta.
-const productCatalog=withoutGardenImport(currentCatalog);
+const productCatalog=withoutGardenImport(beforePersonInsuranceCatalog(currentCatalog));
 const resolveCatalogFacts=(p,a,date,channel=null,c=productCatalog)=>currentFacts(p,a,date,channel,c);
 const resolveCatalogEvidence=(p,a,date,channel=null,c=productCatalog)=>currentEvidence(p,a,date,channel,c);
 const availableAddOns=(p,date,channel=null,c=productCatalog)=>currentAddOns(p,date,channel,c);
