@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-19T12:44:47+01:00",
+  "baseline": "2c2010162a7e91b5e26f9f2495dc1f93a855d21a",
+  "tested_revision": "800650add02e368f51d583321f07e4e5c2d80add",
+  "scope": "Privatforsikring",
+  "archived_documents_with_page_links": 8,
+  "original_references_checked": 205,
+  "catalog_facts_updated": 134,
+  "physical_page_numbers_changed": 118,
+  "references_moved_to_companion_document": 2,
+  "catalog_text_corrections": 1,
+  "test_files": 189,
+  "test_results": {
+    "tests": 7207,
+    "pass": 7207,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "build": {
+    "typescript": "PASS",
+    "eslint_errors": 0,
+    "eslint_existing_warnings_in_changed_files": 3,
+    "webpack": "PASS",
+    "archive_trace": "PASS",
+    "synthetic_http": "PASS",
+    "catalog": "PASS"
+  },
+  "local_browser": {
+    "status": "PASS",
+    "mode": "local",
+    "archives": 9,
+    "clicks": [
+      "/api/vilkar/fremtind/bat#page=7",
+      "/api/vilkar/tryg/ipid-bat#page=2",
+      "/api/vilkar/gjensidige/ipid-bat#page=2",
+      "/api/vilkar/storebrand/bat#page=10",
+      "/api/vilkar/storebrand/dyr#page=4",
+      "/api/vilkar/frende/hund#page=5",
+      "/api/vilkar/frende/katt#page=4",
+      "/api/vilkar/gjensidige/ipid-hund#page=1"
+    ],
+    "agreementComparison": true
+  },
+  "publication": {
+    "status": "AWAITING_APPROVAL",
+    "blocked_action": "Direkte publisering til main",
+    "reason": "Automatisk godkjenningskontroll krevde eksplisitt autorisasjon for direkte publisering til den beskyttede hovedgrenen.",
+    "production_verification": "PENDING"
+  },
+  "tested_files_sha256": {
+    "docs/audit/checkpoints/private-policy-pages-20261119/scope.json": "9d1dec1e31a7e0fce781066f14685b939bdc745c46d2201e95939692f4c8a16b",
+    "docs/audit/checkpoints/private-policy-pages-20261119/source-changes.json": "57a4a1098943138c8685167fef5cb851b1865922ed1c5c6243d4ef57324c82ce",
+    "docs/audit/checkpoints/private-policy-pages-20261119/storebrand-page-evidence.json": "ca266af5462389b127b23fd143dafeda71d2778c72f2392548fb3fa162c3b71e",
+    "lib/boat-pet-catalog.ts": "3470d6cc5d1fae8498ea87fc0b9352e4fa3bcd1a9106f1f27939362f8059b175",
+    "lib/terms-archive-documents.ts": "eda5b56ad45e0e6faaa412ea31ace5a8db5be307d54cdb3490a8894533966381",
+    "lib/terms-archive.ts": "5873ac5eaa8acaba9b8f6905319c7b18dba8be8ab062f37ccd85015768189b5d",
+    "tests/boat-pet-catalog.test.mjs": "e8df93beaec3fc66a97e46888ea5720dd7beb0f746b91243420b55b4a8a05589",
+    "tests/catalog-enrichment-provenance.test.mjs": "626aad7055e348c523c9ef0e1efbbdd66d64b39c2572a024c40b40a9bb2562a7",
+    "tests/helpers/before-person-insurance-catalog.mjs": "fe695226dd5adcc1b7d644628348b8fc152d25ae0c517e344511380d5937372f",
+    "tests/helpers/before-private-policy-pages.mjs": "2349974f55dc2a4aafb9c3b7eb83bcb70241ea56d2d12279c7a35110fa3e1413",
+    "tests/nito-remediation-b018.test.mjs": "b5dcc86052255358acf1fbe90e9962e9b8478124983dd1a4b05a2e1e39a46c86",
+    "tests/nito-remediation-b041.test.mjs": "9c008ff93b6734e004bb34293d5ee19e1d6020d2e06cd7afbdc0a2f8756a4160",
+    "tests/private-policy-pages.test.mjs": "845568d0bc7103ed74f532ee8ef2f3872a77d0039fce896417b8d2bc09424702",
+    "tests/remediation-b-051-house-origin.test.mjs": "a741d0af122c5b64e66763e647eb704e0b17af75a122050d9c1a59c2d9c67089",
+    "tests/remediation-b-051-legal-priority.test.mjs": "4a296561c9c06da8cad2937eecbe4a12da663ed0ab0d848804e0f8a31fdc4892",
+    "tests/remediation-b-051-manual-rental-choice.test.mjs": "d16f0d63c23ea4a271a762022083e6ea8c917c3ba6fdfe334016591d70c9583b",
+    "tests/remediation-b-051-manual-smart-choice.test.mjs": "8c4bac10e9be69824a4f993103adaea998c85063b257313f57121f719c23f3a2",
+    "tests/remediation-b-051-rental-selection.test.mjs": "1aba95e5bd975848c3c855a9f6e4704f253eea37b32802c29c95418e9e1e985d",
+    "tests/remediation-b-051-rot-status.test.mjs": "c57ddf1cd5a4bbfd6229d7bdcad646097db155003043714de53d19d4091e3b17",
+    "tests/remediation-b-051-smart-selection.test.mjs": "9eabc1e3c568f763af05c9e1f6c62ee8503ee4d23e537bc558ba11456ca04b1e",
+    "tests/remediation-b-130-frost.test.mjs": "4d941215ca11a7f77783c2e267ed6071eadcb8de2807625f58c925c2948a03c3",
+    "tests/remediation-b-130-person-scope.test.mjs": "47fe8dc07561113b66135f69d869e3b9358e9c06ce5c53e111b8d2051fcf41b0",
+    "tests/remediation-b-130-underinsurance.test.mjs": "a627c29e96c0034326971910038c38086fe091b6547f14b3ba8dd51e7a9623fc",
+    "tests/remediation-b-130-vacancy.test.mjs": "2c0cb64a2cbb05112fde94e7273bd62076c1c809730c0a2c1ebd6c2b398b0d49",
+    "tests/remediation-house-health-discount.test.mjs": "63bd879ef42ad86f60b48f092094c32c262f6461b202be004ac9b41d98a8836e",
+    "tests/terms-archive.test.mjs": "78a35ea68348cb235c1ed95dd43d92a2819d0fc4608689d0e55fee6e2d50650a"
+  }
+}
