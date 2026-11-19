@@ -323,6 +323,7 @@ test("the verified NITO age limits align with the same ordinary coverage in both
       assert.match(row.first.text, /Ved samboerbrudd opphører dekningen når samboerforholdet tar slutt/u);
       assert.match(row.first.text, /Ved opphør som følge av medlemmets død eller utmelding fra NITO, eller ved separasjon, skilsmisse eller samboerbrudd, kan den medforsikrede kjøpe individuell fortsettelsesforsikring uten ny helseerklæring/u);
       assert.match(row.first.text, /Skriftlig melding må sendes til Tryg innen seks måneder etter at den opprinnelige dekningen opphørte/u);
+      assert.match(row.first.text, /Fortsettelsesforsikringen kan ha maksimalt samme forsikringssum og forsikringstid som den medforsikredes opprinnelige NITO Liv-dekning/u);
       assert.match(row.first.text, /Forsikringsbeviset har forrang/u);
       assert.match(terms.section, /Punkt 6.*punkt 7.*punkt 1/u);
     }
