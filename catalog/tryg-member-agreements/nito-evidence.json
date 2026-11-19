@@ -182,18 +182,41 @@
     "termsNumber": "54702",
     "facts": [
       {
-        "key": "ulykke.medisinsk_invaliditet",
-        "label": "Forsikringssum ved medisinsk invaliditet",
+        "key": "person.ulykke.invaliditet",
+        "label": "Varig medisinsk invaliditet etter ulykke",
         "value": "1 000 000 kroner ved 100 prosent medisinsk invaliditet, uten egenandel. Ved delvis invaliditet utbetales en forholdsmessig del.",
         "page": 2,
-        "section": "Dekninger og forsikringssummer – Medisinsk invaliditet"
+        "section": "Dekninger og forsikringssummer – Medisinsk invaliditet",
+        "coverageAvailability": "included"
       },
       {
-        "key": "ulykke.behandlingsutgifter",
-        "label": "Utgifter til medisinsk behandling",
+        "key": "person.ulykke.utgifter",
+        "label": "Behandlings- og reiseutgifter etter ulykke",
         "value": "Inntil 5 prosent av forsikringssummen for medisinsk invaliditet. Egenandel 500 kroner.",
         "page": 2,
-        "section": "Dekninger og forsikringssummer – vilkårspunkt 4.2"
+        "section": "Dekninger og forsikringssummer – vilkårspunkt 4.2",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.ulykke.arbeid",
+        "label": "Ulykkesdekning på jobb og i fritiden",
+        "value": "Forsikringen gjelder hele døgnet i arbeidstid, studietid og på fritiden.",
+        "page": 4,
+        "section": "Punkt 2"
+      },
+      {
+        "key": "person.ulykke.geografi",
+        "label": "Hvor ulykkesforsikringen gjelder",
+        "value": "Norden og utenlandsopphold utenfor Norden i inntil 12 måneder. Lengre opphold er omfattet for medlemmer av nordisk trygdeordning og for personer som omfattes av norsk yrkesskadeforsikringslov under oppholdet.",
+        "page": 4,
+        "section": "Punkt 1"
+      },
+      {
+        "key": "person.ulykke.opphor",
+        "label": "Opphørsalder",
+        "value": "Til utgangen av kalenderåret medlemmet fyller 75 år. Vilkåret har også regler om utmelding og opphør av nordisk trygdemedlemskap.",
+        "page": 4,
+        "section": "Punkt 3 og forsikringsbeviset (s. 2)"
       }
     ]
   },
@@ -205,18 +228,49 @@
     "termsNumber": "54703",
     "facts": [
       {
-        "key": "ulykke.medisinsk_invaliditet",
-        "label": "Forsikringssum ved medisinsk invaliditet",
+        "key": "person.ulykke.invaliditet",
+        "label": "Varig medisinsk invaliditet etter ulykke",
         "value": "45 G for medlem uten medforsikret familie. Ved medforsikret familie avhenger summen av familiesammensetningen på ulykkesdagen og utbetalingen av graden av medisinsk invaliditet.",
         "page": 2,
-        "section": "Forsikringssummer medisinsk invaliditet"
+        "section": "Forsikringssummer medisinsk invaliditet",
+        "coverageAvailability": "included"
       },
       {
-        "key": "ulykke.behandlingsutgifter",
-        "label": "Utgifter til medisinsk behandling",
+        "key": "person.ulykke.utgifter",
+        "label": "Behandlings- og reiseutgifter etter ulykke",
         "value": "Inntil 5 prosent av forsikringssummen for medisinsk invaliditet. Egenandel 500 kroner.",
         "page": 2,
-        "section": "Forsikringssummer øvrige dekninger – Utgifter til medisinsk behandling"
+        "section": "Forsikringssummer øvrige dekninger – Utgifter til medisinsk behandling",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.ulykke.arbeid",
+        "label": "Ulykkesdekning på jobb og i fritiden",
+        "value": "Forsikringen gjelder hele døgnet i arbeidstid, studietid og på fritiden.",
+        "page": 5,
+        "section": "Punkt 3"
+      },
+      {
+        "key": "person.ulykke.geografi",
+        "label": "Hvor ulykkesforsikringen gjelder",
+        "value": "Norden og utenlandsopphold utenfor Norden i inntil 12 måneder. Lengre opphold er omfattet for medlemmer av nordisk trygdeordning og for personer som omfattes av norsk yrkesskadeforsikringslov under oppholdet.",
+        "page": 5,
+        "section": "Punkt 2"
+      },
+      {
+        "key": "person.ulykke.opphor",
+        "label": "Opphørsalder",
+        "value": "Til utgangen av året den voksne fyller 75 år og barnet fyller 21 år. Medforsikrede trer også ut når forsikringen opphører for medlemmet.",
+        "page": 5,
+        "section": "Punkt 4 og forsikringsbeviset (s. 2)"
+      },
+      {
+        "key": "person.ulykke.dodsfall",
+        "label": "Utbetaling ved dødsfall etter ulykke",
+        "value": "50 000 kr utbetales til medlemmet hvis et forsikret barn dør som følge av en ulykke. Ytelsen gjelder barns død.",
+        "page": 6,
+        "section": "Punkt 5.4 og 6.4 (s. 8), forsikringsbeviset (s. 2)",
+        "coverageAvailability": "included"
       }
     ]
   },
@@ -351,18 +405,26 @@
     },
     "facts": [
       {
-        "key": "liv.dodsfall",
-        "label": "Dødsfall ved sykdom eller ulykke",
+        "key": "person.liv.utbetaling",
+        "label": "Utbetaling ved dødsfall",
         "value": "Dødsfall som skyldes sykdom eller ulykke i forsikringstiden kan gi engangsutbetaling.",
         "page": 1,
-        "section": "1 Hva forsikringen omfatter"
+        "section": "1 Hva forsikringen omfatter",
+        "coverageAvailability": "included"
       },
       {
-        "key": "liv.forsikringssum",
-        "label": "Forsikringssum",
+        "key": "person.liv.sum",
+        "label": "Regulering av forsikringssummen",
         "value": "Forsikringssummen i G fremgår av forsikringsbeviset. Gjeldende grunnbeløp og alderen forsikrede ville ha oppnådd i inneværende forsikringsår brukes ved beregningen.",
         "page": 1,
         "section": "2 Slik beregnes erstatningen"
+      },
+      {
+        "key": "person.liv.mottaker",
+        "label": "Hvem får utbetalingen?",
+        "value": "Særskilt begunstiget fremgår av forsikringsbeviset. Ellers går utbetalingen til ektefelle eller samboer som oppfyller vilkårene, deretter til livsarvinger og så til arvinger etter lov eller testament. Ektefelle og samboer som er skilt, separert eller flyttet fra forsikrede på dødsfallstidspunktet har ikke rett til utbetaling.",
+        "page": 1,
+        "section": "Punkt 3"
       }
     ]
   },
@@ -382,18 +444,62 @@
     },
     "facts": [
       {
-        "key": "ufore.forskudd",
-        "label": "Månedlige forskuddsutbetalinger",
+        "key": "person.ufore.forskudd",
+        "label": "Månedlig forskudd ved arbeidsuførhet",
         "value": "Forskudd kan utbetales når forsikrede har fått innvilget arbeidsavklaringspenger eller uføretrygd og har vært minst 50 prosent arbeidsufør sammenhengende i minst 12 måneder. Vilkåret har også regler om når forsikringstilfellet må ha inntruffet.",
         "page": 1,
-        "section": "2.1 Månedlig forskuddsutbetaling av forsikringssum"
+        "section": "2.1 Månedlig forskuddsutbetaling av forsikringssum",
+        "coverageAvailability": "included"
       },
       {
-        "key": "ufore.engangsutbetaling",
-        "label": "Engangsutbetaling ved varig uførhet",
+        "key": "person.ufore.kapital",
+        "label": "Engangsutbetaling ved varig arbeidsuførhet",
         "value": "Engangsutbetaling krever minst 50 prosent sammenhengende arbeidsuførhet i minst to år og en vurdering om minst 50 prosent varig uførhet i ethvert yrke. Vilkåret forutsetter også første sykedag senest i kalenderåret den forsikrede fyller 60 år.",
         "page": 1,
-        "section": "2.2 Engangsutbetaling av forsikringssum"
+        "section": "2.2 Engangsutbetaling av forsikringssum",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.ufore.forskudd.minstegrad",
+        "label": "Minste uføregrad for månedlig forskudd",
+        "value": "Minst 50 % sammenhengende arbeidsuførhet.",
+        "page": 1,
+        "section": "Punkt 2.1"
+      },
+      {
+        "key": "person.ufore.forskudd.karenstid",
+        "label": "Ventetid etter inntruffet uførhet for forskudd",
+        "value": "Minst 12 måneder sammenhengende arbeidsuførhet før månedlig forskudd kan gis.",
+        "page": 1,
+        "section": "Punkt 2.1"
+      },
+      {
+        "key": "person.ufore.forskudd.nav",
+        "label": "Krav til offentlig ytelse for forskudd",
+        "value": "Innvilget arbeidsavklaringspenger eller uføretrygd.",
+        "page": 1,
+        "section": "Punkt 2.1"
+      },
+      {
+        "key": "person.ufore.kapital.minstegrad",
+        "label": "Minste uføregrad for uførekapital",
+        "value": "Minst 50 % sammenhengende arbeidsuførhet, vurdert til minst 50 % varig arbeidsuførhet i ethvert yrke.",
+        "page": 1,
+        "section": "Punkt 2.2"
+      },
+      {
+        "key": "person.ufore.kapital.ventetid",
+        "label": "Ventetid etter inntruffet uførhet for uførekapital",
+        "value": "Minst to år sammenhengende arbeidsuførhet med minst 50 % uføregrad.",
+        "page": 1,
+        "section": "Punkt 2.2"
+      },
+      {
+        "key": "person.ufore.forskudd.varighet",
+        "label": "Varighet og sluttoppgjør for månedlig forskudd",
+        "value": "Forskudd så lenge uføregraden er minst 50 % og forsikrede mottar arbeidsavklaringspenger eller uføretrygd. Forskuddet opphører når forsikringssummen er brukt opp eller vilkårene for engangsutbetaling er oppfylt.",
+        "page": 2,
+        "section": "Punkt 3.1 (forts.)"
       }
     ]
   },
@@ -417,6 +523,79 @@
         "value": "5 G. Utbetalingen beregnes med grunnbeløpet som gjelder når forsikringstilfellet inntreffer.",
         "page": 2,
         "section": "NITO Uføreforsikring inkluderer følgende"
+      },
+      {
+        "key": "person.ufore.kapital",
+        "label": "Engangsutbetaling ved varig arbeidsuførhet",
+        "value": "Utbetaling ved NAV-vedtak om minst 50 % varig uførhet, eller etter 48 måneder med minst 50 % sammenhengende arbeidsuførhet fulgt direkte av 12 måneder innvilget arbeidsavklaringspenger på minst 50 %.",
+        "page": 4,
+        "section": "Punkt 3–4",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.ufore.kapital.minstegrad",
+        "label": "Minste uføregrad for uførekapital",
+        "value": "Minst 50 % arbeidsuførhet ved de angitte alternative vilkårene om NAV-vedtak eller sammenhengende sykmelding og arbeidsavklaringspenger.",
+        "page": 4,
+        "section": "Punkt 3–4"
+      }
+    ]
+  },
+  "behandling-enkel": {
+    "filename": "nito-behandling-enkel-ipid.pdf",
+    "url": "https://www.tryg.no/system/files/download/pdf/ipid/NITO-IPID-Behandling-Enkel.pdf",
+    "sha256": "f2b1b66df125b380a79a4d173a3ef3a6a8a9eabda2d40d396156d63823d3ad54",
+    "version": "2026-09-01",
+    "termsNumber": "",
+    "sourceType": "ipid",
+    "pages": 2,
+    "facts": [
+      {
+        "key": "person.behandling.tilgang",
+        "label": "Tilgang til privat utredning og behandling",
+        "value": "Forhåndsgodkjent utredning og behandling i Norge ved private klinikker eller sykehus som Tryg har avtale med.",
+        "page": 2,
+        "section": "Hvor gjelder forsikringen?",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.behandling.bildediagnostikk",
+        "label": "Bildediagnostikk",
+        "value": "Produktarket oppgir bildediagnostikk som dekket. PET-undersøkelse er unntatt.",
+        "page": 1,
+        "section": "Hva dekker forsikringen? og Hva dekker forsikringen ikke?",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.behandling.dagkirurgi",
+        "label": "Dagkirurgi",
+        "value": "Produktarket oppgir dagkirurgi på privat sykehus som dekket.",
+        "page": 1,
+        "section": "Hva dekker forsikringen?",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.behandling.fysikalsk",
+        "label": "Fysikalsk behandling",
+        "value": "Produktarket oppgir fysikalsk behandling som dekket.",
+        "page": 1,
+        "section": "Hva dekker forsikringen?",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.behandling.reiseutgifter",
+        "label": "Reiseutgifter til behandling",
+        "value": "Produktarket oppgir reiseutgifter som dekket.",
+        "page": 1,
+        "section": "Hva dekker forsikringen?",
+        "coverageAvailability": "included"
+      },
+      {
+        "key": "person.behandling.forhandsgodkjenning",
+        "label": "Krav om forhåndsgodkjenning",
+        "value": "Utredning og behandling må forhåndsgodkjennes av Behandlingsservice.",
+        "page": 1,
+        "section": "Begrensninger i forsikringen, jf. Hvor gjelder forsikringen? (s. 2)"
       }
     ]
   },

@@ -33,8 +33,10 @@ type ProductEvidence = {
   version: string;
   termsNumber: string;
   validTo?: string;
+  sourceType?: string;
+  pages?: number;
   termination?: Pick<CatalogFact, "key" | "label" | "value"> & { page: number; section: string; productPage: string };
-  facts: Array<Pick<CatalogFact, "key" | "label" | "value"> & { page: number; section: string }>;
+  facts: Array<Pick<CatalogFact, "key" | "label" | "value"> & { page: number; section: string; coverageAvailability?: string }>;
 };
 
 export const trygMemberInventories = [nito, utdanningsforbundet] as Inventory[];
@@ -101,6 +103,11 @@ for (const { providerId, agreementScope, products } of trygMemberInventories) {
       const evidence = entries[editionId];
       const suffix = editionId === item.id ? "" : "-" + evidence.version;
       const sourceId = evidence ? `${productId}-terms${suffix}` : undefined;
+      const sourceType = evidence?.sourceType ?? "full_terms";
+      if (sourceType !== "full_terms" && sourceType !== "ipid" && sourceType !== "product_page") {
+        throw new Error(`Ukjent kildetype for ${productId}.`);
+      }
+      const version = sourceType === "full_terms" ? evidence?.version ?? null : null;
       const isHouseRental = item.id === houseRental;
       const parentIds = ["hus", "hus-ekstra"].map(id => `tryg-${agreementScope}-${id}`);
       const insuranceType = legacyStudent ? "Studentforsikring" : item.insuranceType;
@@ -109,7 +116,7 @@ for (const { providerId, agreementScope, products } of trygMemberInventories) {
         insuranceType, name: item.name,
         requiresExplicitAgreementScope: true,
         selectionNames: selectionNames[productId],
-        version: evidence?.version ?? null,
+        version,
         componentIds: sourceId ? [sourceId] : [],
         ...(sourceId ? { sourceId } : {}),
       };
@@ -123,26 +130,33 @@ for (const { providerId, agreementScope, products } of trygMemberInventories) {
       }
       if (!evidence || !sourceId) continue;
 
-      const source = {
+      const source: CatalogSource = {
         id: sourceId, filename: evidence.filename, termsNumber: evidence.termsNumber,
         effectiveFrom: evidence.version, providerId, agreementScope, company: "Tryg",
         insuranceType, productIds: isHouseRental ? parentIds : [productId],
-        ...(isHouseRental ? {} : { productVersion: evidence.version }),
+        ...(!isHouseRental && version ? { productVersion: version } : {}),
         // An annual edition cannot apply before its printed year. This is a
         // lower bound, not a claim about the exact start date.
         ...(/^\d{4}$/u.test(evidence.version) ? { validFrom: evidence.version + "-01-01" } : {}),
         validTo: legacyStudent ? "2026-12-31" : evidence.validTo,
-        url: evidence.url, sha256: evidence.sha256, sourceType: "full_terms" as const,
+        url: evidence.url, sha256: evidence.sha256, sourceType,
+        ...(evidence.pages ? { physicalPages: [1, evidence.pages] as const } : {}),
       };
       trygMemberSources[sourceId] = source;
-      trygMemberFacts[sourceId] = evidence.facts.map(({ page, section, ...fact }) => ({
-        ...fact,
-        source: {
-          documentId: sourceId, filename: source.filename, termsNumber: source.termsNumber,
-          effectiveFrom: source.effectiveFrom, url: source.url, company: source.company,
-          agreementScope, version: evidence.version, page, section,
-        },
-      }));
+      trygMemberFacts[sourceId] = evidence.facts.map(({ page, section, coverageAvailability, ...fact }) => {
+        if (coverageAvailability !== undefined && coverageAvailability !== "included" && coverageAvailability !== "unavailable") {
+          throw new Error(`Ukjent dekningsstatus for ${productId}: ${fact.key}.`);
+        }
+        return {
+          ...fact,
+          ...(coverageAvailability ? { coverageAvailability } : {}),
+          source: {
+            documentId: sourceId, filename: source.filename, termsNumber: source.termsNumber,
+            effectiveFrom: source.effectiveFrom, url: source.url, company: source.company,
+            agreementScope, version: evidence.version, page, section,
+          },
+        };
+      });
 
       if (!evidence.termination) continue;
 

@@ -266,6 +266,106 @@ test("terms from each original PDF survive catalogue comparison with exact sourc
   }
 });
 
+test("Tryg Kritisk sykdom uses the private product terms for symptom and age limits", () => {
+  const tryg = option("Tryg", "Kritisk sykdom", "Kritisk sykdom");
+  const gjensidige = option("Gjensidige", "Kritisk sykdom", "Alvorlig sykdom");
+  const comparisonRows = (first, second) => productComparisonView(compareCatalogProducts(first, second))
+    .flatMap(section => section.groups.flatMap(group => group.rows));
+  const forward = comparisonRows(tryg, gjensidige);
+  const reverse = comparisonRows(gjensidige, tryg);
+
+  for (const [key, expected, section] of [
+    ["person.sykdom.karenstid", /90 dagene.*begynner å gjelde.*12 måneder.*økt dekningsomfang/u, "Punkt 2"],
+    ["person.sykdom.opphor", /første hovedforfall.*67 år/u, "Punkt 1"],
+  ]) {
+    const matching = forward.filter(candidate => candidate.key === key);
+    assert.equal(matching.length, 1);
+    const [row] = matching;
+    assert.match(row.first.text, expected);
+    assert.equal(row.first.state, "included");
+    assert.equal(row.second.state, "included");
+    assert.deepEqual(row.first, reverse.find(candidate => candidate.key === key).second);
+    const [source] = row.first.sources;
+    assert.equal(source.agreementScope, "ordinary");
+    assert.equal(source.termsNumber, "UUL41500");
+    assert.equal(source.page, 1);
+    assert.equal(source.section, section);
+    assert.equal(termsSourceHref(source), "/api/vilkar/tryg/person-produktvilkar#page=1");
+  }
+  for (const key of ["person.sykdom.overlevelse", "person.sykdom.sykehus"]) {
+    const row = forward.find(candidate => candidate.key === key);
+    assert.equal(row.first.state, "unknown");
+    assert.equal(row.second.state, "included");
+  }
+});
+
+test("personal member terms align with ordinary rows and keep the chosen agreement scope", () => {
+  const cases = [
+    {
+      type: "Ulykke", scope: "nito", memberId: "tryg-nito-ulykke-grunn",
+      peer: option("Tryg", "Ulykke", "Ulykkesforsikring"),
+      rows: [["person.ulykke.invaliditet", 2, /1 000 000/u], ["person.ulykke.geografi", 4, /12 måneder/u]],
+    },
+    {
+      type: "Barn", scope: "utdanningsforbundet", memberId: "tryg-utdanningsforbundet-barneforsikring",
+      peer: option("If", "Barn", "Standard Barneforsikring"),
+      rows: [["person.barn.hjelpestonad", 8, /hjelpestønad/u]],
+    },
+    {
+      type: "Kritisk sykdom", scope: "utdanningsforbundet",
+      memberId: "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle",
+      peer: option("Tryg", "Kritisk sykdom", "Kritisk sykdom"),
+      rows: [["person.sykdom.karenstid", 2, /90/u], ["person.sykdom.opphor", 5, /70/u]],
+    },
+  ];
+
+  for (const { type, scope, memberId, peer, rows } of cases) {
+    const member = productComparisonOptions(type, "Tryg", scope).find(product => product.productId === memberId);
+    assert.ok(member, memberId);
+    assert.ok(!productComparisonOptions(type, "Tryg", ordinary).some(product => product.productId === memberId));
+    const compared = compareCatalogProducts(member, peer).sections.flatMap(section => section.rows);
+    for (const [key, page, expected] of rows) {
+      const matching = compared.filter(row => row.key === key);
+      assert.equal(matching.length, 1, key);
+      const [{ first, second }] = matching;
+      assert.match(first.text, expected);
+      assert.equal(first.state, "included");
+      assert.equal(second.state, "included");
+      assert.equal(first.sources[0].agreementScope, scope);
+      assert.equal(first.sources[0].documentId, memberId + "-terms");
+      assert.equal(first.sources[0].page, page);
+      assert.equal(second.sources[0].agreementScope, ordinary);
+    }
+  }
+});
+
+test("product information sheets stay labelled and archived under the product they describe", () => {
+  const member = productComparisonOptions("Behandling", "Tryg", "nito")
+    .find(product => product.productId === "tryg-nito-behandling-enkel");
+  assert.ok(member);
+  assert.ok(!productComparisonOptions("Behandling", "Tryg", ordinary).some(product => product.productId === member.productId));
+  assert.equal(member.version, null);
+  const facts = materializeCatalogProduct(member).facts;
+  assert.equal(facts.length, 6);
+  assert.ok(facts.every(fact => fact.sources.every(source =>
+    source.sourceType === "ipid" && source.agreementScope === "nito")));
+  const daySurgery = facts.find(fact => fact.key === "person.behandling.dagkirurgi");
+  assert.match(daySurgery.value, /dagkirurgi på privat sykehus/u);
+  assert.equal(termsSourceHref(daySurgery.sources[0]), "/api/vilkar/tryg/nito-behandling-enkel-produktark#page=1");
+
+  for (const [type, name, key, age, slug] of [
+    ["Kritisk sykdom", "Kritisk sykdom", "person.sykdom.opphor", /67 år/u, "kritisk-sykdom-produktark"],
+    ["Liv", "Livsforsikring", "person.liv.opphor", /80 år/u, "livsforsikring-produktark"],
+    ["Ulykke", "Ulykkesforsikring", "person.ulykke.opphor", /75 år/u, "ulykkesforsikring-produktark"],
+  ]) {
+    const product = option("Fremtind", type, name);
+    const fact = materializeCatalogProduct(product).facts.find(candidate => candidate.key === key);
+    assert.match(fact.value, age);
+    assert.equal(fact.sources[0].sourceType, "ipid");
+    assert.equal(termsSourceHref(fact.sources[0]), "/api/vilkar/fremtind/" + slug + "#page=1");
+  }
+});
+
 test("the same contractual condition uses the same row in both comparison directions", () => {
   const first = option("If", "Liv", "Livsforsikring");
   const second = option("Landkreditt", "Liv", "Livsforsikring");

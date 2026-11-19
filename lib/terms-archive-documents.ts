@@ -549,6 +549,46 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     ],
   },
   {
+    provider: "fremtind",
+    slug: "kritisk-sykdom-produktark",
+    archivePath: "catalog/sources/person/fremtind-person-kritisk-ipid.pdf",
+    sources: [
+      ["person:fremtind-person-kritisk:kritisk-ipid", "", "https://content.dnb.no/docs/8679113/ipid-kritisk-sykdom-ks03.pdf"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "livsforsikring-produktark",
+    archivePath: "catalog/sources/person/fremtind-person-liv-ipid.pdf",
+    sources: [
+      ["person:fremtind-person-liv:liv-ipid", "", "https://dokument.fremtind.no/ipid/IPID_Livsforsikring.pdf"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "ulykkesforsikring-produktark",
+    archivePath: "catalog/sources/person/fremtind-person-ulykke-ipid.pdf",
+    sources: [
+      ["person:fremtind-person-ulykke:ulykke-ipid", "", "https://dokument.fremtind.no/ipid/IPID_UlykkesforsikringII.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "nito-behandling-enkel-produktark",
+    archivePath: "catalog/sources/tryg/member-agreements/nito-behandling-enkel-ipid.pdf",
+    sources: [
+      ["tryg-nito-behandling-enkel-terms", "2026-09-01", "https://www.tryg.no/system/files/download/pdf/ipid/NITO-IPID-Behandling-Enkel.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "person-produktvilkar",
+    archivePath: "catalog/sources/person/tryg-person-ulykke-produktvilkar.pdf",
+    sources: [
+      ["person:tryg-person-kritisk:ulykke-produktvilkar", "", "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41500"],
+    ],
+  },
+  {
     provider: "tryg",
     slug: "nito-person-produkt",
     archivePath: "catalog/sources/tryg/member-agreements/nito-05uul41847.pdf",

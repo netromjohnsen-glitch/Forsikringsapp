@@ -213,8 +213,8 @@ test('syntetiske PDF-er uten dokumentert avtale eller vilkårsutgave forblir dok
   const annualEdition = trygMemberProducts.find(product => product.agreementScope === 'utdanningsforbundet' &&
     product.version && /^\d{4}$/u.test(product.version));
   assert.ok(annualEdition, 'minst én Utdanningsforbundet-utgave identifiseres bare med årstall');
-  const unversioned = trygMemberProducts.find(product => product.version === null);
-  assert.ok(unversioned, 'minst ett manuelt medlemsprodukt har ukjent vilkårsutgave');
+  const unversioned = trygMemberProducts.find(product => product.productId === 'tryg-nito-behandling-enkel');
+  assert.equal(unversioned.version, null, 'produktarkets dato er ikke en vilkårsutgave');
   const cases = [
     { product, agreementScope: null, edition: product.version },
     { product, agreementScope: 'nito' },
@@ -224,7 +224,7 @@ test('syntetiske PDF-er uten dokumentert avtale eller vilkårsutgave forblir dok
     { product: accident, agreementScope: null, edition: accident.version },
     { product: annualEdition, agreementScope: 'utdanningsforbundet', edition: `${annualEdition.version}-01-01` },
     { product: unversioned, agreementScope: unversioned.agreementScope },
-    { product: unversioned, agreementScope: unversioned.agreementScope, edition: '2026-01-01' },
+    { product: unversioned, agreementScope: unversioned.agreementScope, edition: '2026-09-01' },
   ];
   const results = await runPdfCases(cases);
   for (const result of results) {

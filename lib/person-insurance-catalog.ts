@@ -42,6 +42,7 @@ export type PersonTerms = {
   pages: number;
   edition?: string;
   effectiveFrom: string;
+  sourceType?: CatalogSource["sourceType"];
 };
 
 const terms: Record<string, PersonTerms> = {
@@ -1303,7 +1304,7 @@ for (const { providerId, company, products } of providers) {
         id, providerId, company, insuranceType: entry.type, agreementScope: "ordinary",
         filename: `${providerId}-person-${document}.pdf`,
         documentName: `${company} – ${entry.name}`,
-        sourceType: "full_terms", productIds: [productId],
+        sourceType: evidence.sourceType ?? "full_terms", productIds: [productId],
         termsNumber: evidence.edition ?? "",
         effectiveFrom: evidence.effectiveFrom, url: evidence.url, sha256: evidence.sha256,
         physicalPages: [1, evidence.pages],

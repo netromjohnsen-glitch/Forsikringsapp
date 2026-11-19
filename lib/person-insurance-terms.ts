@@ -66,6 +66,18 @@ export const additionalFactKinds = {
 } as const;
 
 export const additionalPersonTerms: Record<string, PersonTerms> = {
+  "fremtind-kritisk-ipid": {
+    url: "https://content.dnb.no/docs/8679113/ipid-kritisk-sykdom-ks03.pdf",
+    sha256: "a4b0d7ed6af631efde236400e7d46ea74d5fc2c4b203ee768b9ad5c5dbb30086", pages: 2, effectiveFrom: "", edition: "KS03 V.101", sourceType: "ipid",
+  },
+  "fremtind-liv-ipid": {
+    url: "https://dokument.fremtind.no/ipid/IPID_Livsforsikring.pdf",
+    sha256: "6a6fe90e3e3e02311e89584459e5d242b79cc68e9c4093284fda07a7fb9c3036", pages: 2, effectiveFrom: "", edition: "V.108", sourceType: "ipid",
+  },
+  "fremtind-ulykke-ipid": {
+    url: "https://dokument.fremtind.no/ipid/IPID_UlykkesforsikringII.pdf",
+    sha256: "cc6700f53e44d2e7747d7739763721661b50b7fe39065b88ec17023ff0ca8f3d", pages: 2, effectiveFrom: "", edition: "V.106", sourceType: "ipid",
+  },
   "fremtind-barn-uforekapital": { url: "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_uforekapital2_barn.pdf", sha256: "86db9f142cc9f0f37aa0844d35c4cf505ba80743a6645aa30a08646fc451cda9", pages: 2, effectiveFrom: "2023-05-11", edition: "2023-05-11" },
   "fremtind-barn-uforepensjon": { url: "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_uforepensjon2_barn.pdf", sha256: "b8b8cae0db58015842452a7ad8bca0b36fbd8ec158678a306158579a2f695904", pages: 2, effectiveFrom: "2024-08-29", edition: "2024-08-29" },
   "gjensidige-barn-uforepensjon": { url: "https://www.gjensidige.no/files/privat/vilkar/person/uforepensjon-barn-alminnelige-vilkar.pdf", sha256: "770cba5b0150d639292d05cd97dd93df346b21ebe81e036401c977a075dac263", pages: 7, effectiveFrom: "" },
@@ -159,6 +171,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "fremtind-person-behandling": [
     {
+      kind: "behandlingForhandsgodkjenning", page: 4, section: "Punkt 5.1",
+      value: "Fremtind skal forhåndsgodkjenne all behandling i sitt medisinske nettverk. Det kreves gyldig henvisning fra lege i Skandinavia.",
+    },
+    {
       kind: "behandlingBilder", page: 2, section: "§ 4.1.1",
       value: "Røntgen, CT, MR, klinisk mammografi, bentetthetsmåling og ultralyd i forbindelse med utredning, diagnostisering og behandling hos lege. PET/CT ved første kreftdiagnostisering kan dekkes ved særskilte vilkår.",
     },
@@ -202,6 +218,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "fremtind-person-kritisk": [
     {
+      kind: "sykdomOpphor", document: "kritisk-ipid", page: 1, section: "Hvilken forsikring er dette?",
+      value: "Forsikringen varer til fylte 67 år, ifølge produktinformasjonen.",
+    },
+    {
       kind: "sykdomKreft", page: 3, section: "Punkt 5.A",
       value: "Ondartet kreft i ICD-10 kodegruppe C, som hovedregel bekreftet med vevsprøve i spesialisthelsetjenesten. Blant unntakene er forstadier, prostatakreft under de angitte tersklene og føflekkreft på 0,5 mm eller mindre.",
     },
@@ -236,6 +256,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "fremtind-person-liv": [
     {
+      kind: "livOpphor", document: "liv-ipid", page: 1, section: "Hvilken forsikring er dette?",
+      value: "Frem til fylte 80 år ifølge produktarket. Den avtalte utløpsdatoen fremgår av forsikringsavtalen.",
+    },
+    {
       kind: "livMottaker", page: 1, section: "Punkt 2",
       value: "Hvis forsikringstakeren ikke har disponert over forsikringen, går beløpet til ektefellen hvis avdøde også var forsikringstaker, ellers til forsikringstakeren. Ved mangel på ektefelle med rett til utbetaling går beløpet til arvinger etter lov eller testament.",
     },
@@ -246,6 +270,14 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "fremtind-person-uforekapital": [
     {
+      kind: "uforeSymptom", page: 2, section: "Punkt 5 a (s. 2–3)",
+      value: "Sykdom som er påvist eller har gitt tegn eller symptomer innen tre måneder etter at forsikringstakeren aksepterte avtalen, er unntatt. Fristen er tolv måneder for psykiske lidelser, utmattelsestilstander og muskel- og skjelettlidelser. Ved kvalifiserende flytting av tilsvarende forsikring som har løpt i minst tolv måneder, gjelder klausulen bare for utvidelse eller økt sum.",
+    },
+    {
+      kind: "kapitalOpphor", page: 1, section: "Punkt 3.1.1",
+      value: "Opphørsdatoen fremgår av forsikringsbeviset. Ventetiden for engangsutbetaling må ha startet innen denne datoen.",
+    },
+    {
       kind: "kapitalMinstegrad", page: 1, section: "Punkt 3.1.1",
       value: "Minst 50 % sammenhengende arbeidsuførhet som vurderes som varig.",
     },
@@ -255,6 +287,14 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "fremtind-person-uforekapital-forskudd": [
+    {
+      kind: "uforeSymptom", page: 2, section: "Punkt 5 a (s. 2–3)",
+      value: "Sykdom som er påvist eller har gitt tegn eller symptomer innen tre måneder etter at forsikringstakeren aksepterte avtalen, er unntatt. Fristen er tolv måneder for psykiske lidelser, utmattelsestilstander og muskel- og skjelettlidelser. Ved kvalifiserende flytting av tilsvarende forsikring som har løpt i minst tolv måneder, gjelder klausulen bare for utvidelse eller økt sum.",
+    },
+    {
+      kind: "kapitalOpphor", page: 1, section: "Punkt 3.1.1",
+      value: "Opphørsdatoen fremgår av forsikringsbeviset. Ventetiden for engangsutbetaling må ha startet innen denne datoen.",
+    },
     {
       kind: "kapitalMinstegrad", page: 1, section: "Punkt 3.1.1",
       value: "Minst 50 % sammenhengende arbeidsuførhet som vurderes som varig.",
@@ -299,6 +339,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "fremtind-person-ulykke": [
+    {
+      kind: "ulykkeOpphor", document: "ulykke-ipid", page: 1, section: "Hvilken forsikring er dette?",
+      value: "Ved fylte 75 år ifølge produktarket.",
+    },
     {
       kind: "ulykkeUtgifter", page: 3, section: "§ 6.2",
       value: "Nødvendige behandlings- og reiseutgifter i Norden i inntil to år etter ulykken. Opptil 5 % av invaliditetssummen og 1 000 kr i egenandel. Varig invaliditet er ikke et krav for refusjon.",
@@ -567,6 +611,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "gjensidige-person-barn-basis": [
     {
+      kind: "barnSkolerobot", page: 12, section: "Punkt 10",
+      value: "Forhåndsgodkjent leie av AV1 ved skolefravær etter sykdom eller ulykke, dokumentert av lege eller lærer. Gjelder til barnet er tilbake i vanlig undervisning, maksimalt 12 måneder ved helt eller delvis samme sykdom eller ulykke. Utgifter som dekkes fra annet hold, er unntatt.",
+    },
+    {
       kind: "barnPensjonRegulering", page: 7, section: "Erstatningsregler § 3",
       value: "Eventuelt overskudd fra avsetningene kan øke uførepensjonen under utbetaling. Den vanlige G-reguleringen utsettes til barnet er fullt arbeidsført igjen dersom det har krav på uførepensjon på reguleringstidspunktet.",
       document: "barn-uforepensjon",
@@ -607,6 +655,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "gjensidige-person-barn-medium": [
+    {
+      kind: "barnSkolerobot", page: 12, section: "Punkt 10",
+      value: "Forhåndsgodkjent leie av AV1 ved skolefravær etter sykdom eller ulykke, dokumentert av lege eller lærer. Gjelder til barnet er tilbake i vanlig undervisning, maksimalt 12 måneder ved helt eller delvis samme sykdom eller ulykke. Utgifter som dekkes fra annet hold, er unntatt.",
+    },
     {
       kind: "barnPensjonRegulering", page: 7, section: "Erstatningsregler § 3",
       value: "Eventuelt overskudd fra avsetningene kan øke uførepensjonen under utbetaling. Den vanlige G-reguleringen utsettes til barnet er fullt arbeidsført igjen dersom det har krav på uførepensjon på reguleringstidspunktet.",
@@ -649,6 +701,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "gjensidige-person-barn-pluss": [
     {
+      kind: "barnSkolerobot", page: 12, section: "Punkt 10",
+      value: "Forhåndsgodkjent leie av AV1 ved skolefravær etter sykdom eller ulykke, dokumentert av lege eller lærer. Gjelder til barnet er tilbake i vanlig undervisning, maksimalt 12 måneder ved helt eller delvis samme sykdom eller ulykke. Utgifter som dekkes fra annet hold, er unntatt.",
+    },
+    {
       kind: "barnPensjonRegulering", page: 7, section: "Erstatningsregler § 3",
       value: "Eventuelt overskudd fra avsetningene kan øke uførepensjonen under utbetaling. Den vanlige G-reguleringen utsettes til barnet er fullt arbeidsført igjen dersom det har krav på uførepensjon på reguleringstidspunktet.",
       document: "barn-uforepensjon",
@@ -689,6 +745,22 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "gjensidige-person-behandling": [
+    {
+      kind: "behandlingEgenandel", page: 2, section: "Forsikringsbevis – Dekkes (s. 2–3)",
+      value: "Publisert forsikringsbevis oppgir 250 kr per operasjon, per konsultasjon ved blant annet bildediagnostikk og legespesialist, og per behandling hos psykolog eller fysikalsk behandler. Videokonsultasjon med allmennlege koster 150 kr i egenandel.",
+    },
+    {
+      kind: "behandlingBildeFrist", page: 2, section: "Forsikringsbevis – Dekkes",
+      value: "Publisert forsikringsbevis oppgir røntgen og bildediagnostikk innen ti virkedager.",
+    },
+    {
+      kind: "behandlingDagkirurgi", page: 9, section: "Erstatningsregler punkt 3.2",
+      value: "Garantien for privat sykehusbehandling omfatter også dagkirurgi og annen legebehandling uten innleggelse.",
+    },
+    {
+      kind: "behandlingDagkirurgiFrist", page: 9, section: "Erstatningsregler punkt 3.2",
+      value: "10 virkedager fra Gjensidige har mottatt fullstendig og nødvendig medisinsk dokumentasjon. Garantien gjelder også dagkirurgi.",
+    },
     {
       kind: "operasjonsfrist", page: 9, section: "Erstatningsregler § 3.2",
       value: "10 virkedager til sykehusbehandling fra Gjensidige har mottatt fullstendig og nødvendig dokumentasjon for medisinsk behandling. Fristen gjelder også dagkirurgi og annen legebehandling uten innleggelse.",
@@ -736,6 +808,15 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "gjensidige-person-helse-55": [
+    {
+      kind: "behandlingAndrevurdering", page: 2, section: "Forsikringsbevis – Dekkes ikke",
+      unavailable: true,
+      value: "Ny medisinsk vurdering (second opinion) hos legespesialist er unntatt.",
+    },
+    {
+      kind: "behandlingEgenandel", page: 2, section: "Forsikringsbevis – Dekkes",
+      value: "Publisert forsikringsbevis oppgir 250 kr per konsultasjon ved utredning hos legespesialist og etterkontroll, per dagkirurgisk operasjon og per behandling hos psykolog eller fysikalsk behandler.",
+    },
     {
       kind: "behandlingBilder", page: 2, section: "Hva dekkes · Utredning og behandling hos legespesialist",
       value: "Blant annet røntgen, CT, MR, mammografi, ultralyd og bentetthetsmåling ved dekket utredning. Publisert forsikringsbevis oppgir 250 kr i egenandel per konsultasjon.",
@@ -876,6 +957,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "if-person-barn-standard": [
     {
+      kind: "barnPensjonRegulering", page: 2, section: "Mulige utvidelser av Standard Barneforsikring",
+      value: "Indeksregulering under utbetaling krever både Super og avtalt indeksregulering.",
+      unavailable: true,
+    },
+    {
       kind: "barnPensjon", page: 2, section: "Oversikt over forsikringen og mulige utvidelser",
       value: "Månedlig uførepensjon krever at Super-tillegget er avtalt.",
       unavailable: true,
@@ -992,6 +1078,31 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "if-person-gravid-basis": [
+    {
+      kind: "gravidKomplikasjon", page: 2, section: "Oversikt over forsikringen",
+      value: "Dekningen inngår i Super Gravidforsikring.",
+      unavailable: true,
+    },
+    {
+      kind: "gravidDiagnose", page: 2, section: "Oversikt over forsikringen",
+      value: "Dekningen inngår i Super Gravidforsikring.",
+      unavailable: true,
+    },
+    {
+      kind: "gravidSykehus", page: 2, section: "Oversikt over forsikringen",
+      value: "Dekningen inngår i Super Gravidforsikring.",
+      unavailable: true,
+    },
+    {
+      kind: "gravidHelserad", page: 2, section: "Oversikt over forsikringen",
+      value: "Dekningen inngår i Super Gravidforsikring.",
+      unavailable: true,
+    },
+    {
+      kind: "gravidKrisehjelp", page: 2, section: "Oversikt over forsikringen",
+      value: "Dekningen inngår i Super Gravidforsikring.",
+      unavailable: true,
+    },
     {
       kind: "gravidDodsfall", page: 4, section: "§ 4.3",
       value: "25 000 kr ved dødsfall hos mor eller barn i forsikringstiden. Dødsfall hos det ventede barnet før svangerskapsuke 26 + 0 gir ingen utbetaling.",
@@ -1138,6 +1249,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "if-person-uforepensjon": [
+    {
+      kind: "pensjonPremiefritak", page: 4, section: "Punkt 4.1 (forts.)",
+      value: "Det betales ingen premie for uførepensjonen som er under utbetaling. Ved 40–99 % uførhet reduseres premien i samsvar med uføregraden.",
+    },
     {
       kind: "pensjonMinstegrad", page: 3, section: "Punkt 4.1",
       value: "Minst 40 % sammenhengende arbeidsuførhet. Uførepensjonen opprettholdes så lenge uføregraden er minst 40 % av en dekket årsak.",
@@ -1575,6 +1690,15 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "storebrand-person-helse": [
     {
+      kind: "behandlingDagkirurgi", page: 11, section: "Spesielle vilkår 03.02.01 punkt 2.1",
+      conditional: true,
+      value: "Ved avtalt dagkirurgidekning dekkes operasjon uten overnatting på privat sykehus eller hos godkjent legespesialist etter henvisning og forhåndsgodkjenning.",
+    },
+    {
+      kind: "behandlingForhandsgodkjenning", page: 2, section: "Oversikt over dekninger, jf. Erstatningsregler punkt 11 (s. 8)",
+      value: "Forhåndsgodkjenning kreves for blant annet sykehusbehandling, dagkirurgi, utredning hos spesialist og kreftbehandling.",
+    },
+    {
       kind: "behandlingAndrevurdering", page: 3, section: "§ 1.5.2",
       value: "Én ny vurdering hos legespesialist per forsikringstilfelle ved livstruende sykdom eller skade, eller særlig risikofylt behandling.",
     },
@@ -1768,6 +1892,12 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       addOn: "Uførepensjon",
     },
     {
+      kind: "barnPensjonRegulering", page: 1, section: "§ 3",
+      value: "Forsikringssummen G-reguleres årlig frem til opphør eller forsikringstilfellet. Månedsytelsen beregnes ut fra forsikringssummen på uføretidspunktet.",
+      document: "barn-uforepensjon",
+      addOn: "Uførepensjon",
+    },
+    {
       kind: "barnKapital", page: 1, section: "§§ 2–3",
       value: "900 000 kr ved minst 50 % sammenhengende arbeidsuførhet i minst to år, vurdert varig. Tidligst fra fylte 18 år.",
       document: "barn-uforekapital",
@@ -1837,6 +1967,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "tryg-person-behandling": [
     {
+      kind: "behandlingEgenandel", page: 4, section: "Punkt 6 – Fysikalsk behandling",
+      value: "250 kr per behandlingstime ved fysikalsk behandling.",
+    },
+    {
       kind: "forsteHelsehjelp", page: 6, section: "§ 12",
       value: "10 virkedager til første undersøkelse, innleggelse, behandling eller operasjon for samme skade eller sykdom, fra dagen etter at Tryg har mottatt nødvendig dokumentasjon, tidligst dagen etter mottatt henvisning. Vilkåret har unntak.",
       conditional: true,
@@ -1880,6 +2014,14 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "tryg-person-behandling-55": [
     {
+      kind: "behandlingForhandsgodkjenning", page: 1, section: "Punkt 1 – Forhåndsgodkjennelse",
+      value: "Tryg skal forhåndsgodkjenne medisinsk utredning, behandling og andre utgifter som skal dekkes.",
+    },
+    {
+      kind: "behandlingEgenandel", page: 2, section: "Fysikalske behandlinger",
+      value: "250 kr per behandlingstime ved fysikalsk behandling.",
+    },
+    {
       kind: "forsteHelsehjelp", page: 3, section: "§ 3",
       value: "10 virkedager til første tilbudte undersøkelse, innleggelse, behandling eller operasjon for samme skade eller sykdom fra dagen etter at Tryg har mottatt nødvendig dokumentasjon, tidligst dagen etter mottatt henvisning.",
       conditional: true,
@@ -1914,6 +2056,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "tryg-person-behandling-enkel": [
+    {
+      kind: "behandlingEgenandel", page: 3, section: "Punkt 3.3–3.4",
+      value: "250 kr per behandlingstime ved fysikalsk behandling. Ingen egenandel ved dekket dagkirurgi.",
+    },
     {
       kind: "forsteHelsehjelp", page: 4, section: "§ 5",
       value: "10 virkedager til første tilbudte undersøkelse, utredning hos legespesialist eller dagkirurgi for samme sykdom eller skade, fra dagen etter at fullstendig dokumentasjon er mottatt, tidligst dagen etter mottatt henvisning. Vilkåret har unntak.",
@@ -2058,6 +2204,14 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "tryg-person-kritisk": [
+    {
+      kind: "sykdomKarenstid", document: "ulykke-produktvilkar", page: 1, section: "Punkt 2",
+      value: "Sykdom som viser symptomer de første 90 dagene etter at forsikringen begynner å gjelde, er unntatt. Ved flytting av tilsvarende dekning som har løpt i minst 12 måneder før oppsigelse, kan klausulen bare gjelde økt dekningsomfang eller forsikringssum.",
+    },
+    {
+      kind: "sykdomOpphor", document: "ulykke-produktvilkar", page: 1, section: "Punkt 1",
+      value: "Gjelder frem til første hovedforfall etter at den forsikrede fyller 67 år.",
+    },
     {
       kind: "sykdomKreft", page: 1, section: "Punkt 2.1",
       value: "Kreftdiagnose fra analyse av vevsprøver på spesiallaboratorium. Blant unntakene er hud- og leppekreft, føflekkreft under 0,5 mm, forstadier og svulster på eller under den angitte TNM-grensen.",
