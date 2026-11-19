@@ -1,0 +1,34 @@
+{
+  "scope": "Repair and reverify the 16 deviations from the original 109 synthetic Tryg membership PDF cases, in the same 22 groups.",
+  "authority": "User request to fix the deviations, re-run in Railway production, and update the main production receipt only if all pass.",
+  "baseline": "d4e22d381ea60a526227223a0837b528f7dd5631",
+  "changes": [
+    {
+      "affected": "Five cases with a missing extracted scope in edition-04",
+      "contract": "Recover a missing Tryg member scope only with unambiguous insurer, agreement, product and edition evidence in the record's uniquely owned PDF. Retain strict third-party, ambiguous, unsupported and unscoped behaviour."
+    },
+    {
+      "affected": "Eleven versioned personal insurance cases",
+      "contract": "Validate current canonical facts against the archived full terms and qualification sources. Preserve original inputs, groups and strict checks of product, scope, version, fact values, source, page and applied claims."
+    }
+  ],
+  "gates": [
+    "Local regression and application checks",
+    "Exact Railway production revision and all 109 assertions in the original 22 groups",
+    "Publish the production receipt only after all scenarios pass"
+  ],
+  "constraints": {
+    "autoDeploy": false,
+    "pilotHold": true,
+    "nitoPaused": true
+  },
+  "integratedBase": "7ed4d9eb02d77ff9faaed9a7815e3f97f9ed05c4",
+  "sourceUrlUpdates": {
+    "nito/reise-enkeltperson": {
+      "previousUrl": "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/nito-reiseforsikring-enkeltperson---forsikringsbevis-og-vilkar-2026.pdf",
+      "verifiedUrl": "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/2026/nito-reiseforsikring-enkeltperson---forsikringsbevis-og-vilkar-2026.pdf",
+      "unchangedArchivedPdfSha256": "28ea69381919a6102214026c7b07820bc52c2e7067784040b67e16758627f8b5",
+      "sourceAudit": "../private-terms-open-20261119/source-review.json"
+    }
+  }
+}

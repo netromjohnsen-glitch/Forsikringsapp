@@ -12,10 +12,45 @@ import type { AnalysisTelemetry } from "./analysis-telemetry.ts";
 import { PdfSecurityError } from "./pdf-upload-security.ts";
 import type { AnalysisSide } from "./analysis-progress.ts";
 import { attachSupportingTerms, isCustomerObject, supportingEvidence } from "./supporting-terms.ts";
-import { catalogProductMatchesName, catalogProductsMatchingName, productCatalog } from "./product-catalog.ts";
+import { canonicalProviderId, catalogProductMatchesName, catalogProductsMatchingName, productCatalog, type CatalogProduct } from "./product-catalog.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { hasHouseRentalEditionMismatch, resolveHouseRentalDocumentSelection } from "./hus-rental-selection.ts";
 import { hasDocumentCatalogVersion } from "./pdf-page-evidence.ts";
+
+function trygMemberScopeFromDocument(lines: string[]) {
+  const issuers = lines.flatMap(line => {
+    const declaration = /^(?:forsikringsselskap|forsikringsgiver)\s*:\s*(.*)$/iu.exec(line);
+    return declaration ? [declaration[1]] : [];
+  });
+  if (!issuers.length || issuers.some(issuer => canonicalProviderId(issuer) !== "tryg")) return null;
+
+  const agreements = new Set(lines.flatMap(line => {
+    const declaration = /^medlemsavtale\s*:\s*(.*)$/iu.exec(line);
+    return declaration ? [declaration[1].toLocaleLowerCase("nb-NO")] : [];
+  }));
+  if (agreements.size !== 1) return null;
+  const [scope] = agreements;
+  return scope === "nito" || scope === "utdanningsforbundet" ? scope : null;
+}
+
+function isPrintedProduct(product: CatalogProduct, lines: string[]) {
+  return lines.some(line =>
+    catalogProductMatchesName(product, line.replace(/^(?:produkt(?:navn)?|forsikring)\s*:\s*/iu, "")));
+}
+
+function matchingDocumentProducts(company: string, type: string, name: string, scope: string | null | undefined, lines: string[]) {
+  const exactMatches = catalogProductsMatchingName(company, type, name, scope);
+  if (exactMatches.length || scope !== "nito" || normalizeInsuranceType(type) !== "innbo") return exactMatches;
+
+  // The extractor can report bare Innbo for this exact NITO cabin contents product.
+  return catalogProductsMatchingName(company, "Innbo fritidsbolig", name, scope).filter(candidate =>
+    candidate.productId === "tryg-nito-innbo-fritidsbolig" && isPrintedProduct(candidate, lines));
+}
+
+function matchesPrintedEdition(product: CatalogProduct, text: string) {
+  const termsNumber = product.sourceId ? productCatalog.sources?.[product.sourceId]?.termsNumber : undefined;
+  return hasDocumentCatalogVersion(text, product.version, termsNumber);
+}
 
 export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatch, telemetry: AnalysisTelemetry, trace?: ProductionTrace) {
   const sourceIds = (indices?: number[]) => {
@@ -49,28 +84,29 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
       const documents = sourceIds(product.documentIndices);
       // Each member record needs its own edition evidence. A shared document
       // cannot identify which of its declarations applies to this record.
-      const editionText = documents.length === 1 && documentOwners.get(documents[0]) === 1 ? documents[0].text : "";
-      const exactMatches = company && name ? catalogProductsMatchingName(company, product.type, name, product.agreementScope) : [];
-      // The extractor sometimes reports bare Innbo for the exact NITO cabin
-      // contents product. Require that its name is also printed on the owning PDF.
-      const cabinContentsMatches = exactMatches.length === 0 && company && name && product.agreementScope === "nito" &&
-        normalizeInsuranceType(product.type) === "innbo"
-        ? catalogProductsMatchingName(company, "Innbo fritidsbolig", name, product.agreementScope).filter(candidate =>
-          candidate.productId === "tryg-nito-innbo-fritidsbolig" && editionText.split(/\r?\n/u).some(line =>
-            catalogProductMatchesName(candidate, line.trim().replace(/^(?:produkt(?:navn)?|forsikring)\s*:\s*/iu, ""))))
+      const editionText = documents.length === 1 && documentOwners.get(documents[0]) === 1 ? (documents[0].text ?? "") : "";
+      const lines = editionText.split(/\r?\n/u).map(line => line.trim().normalize("NFKC"));
+      const proposedScope = product.agreementScope == null && company && canonicalProviderId(company) === "tryg" && isCustomerObject(product)
+        ? trygMemberScopeFromDocument(lines) : null;
+      // A printed agreement alone is insufficient. Preserve the ordinary or
+      // unscoped lookup unless the same PDF proves this member product and edition.
+      const recovered = proposedScope && company && name
+        ? matchingDocumentProducts(company, product.type, name, proposedScope, lines).filter(candidate =>
+          candidate.requiresExplicitAgreementScope && isPrintedProduct(candidate, lines) && matchesPrintedEdition(candidate, editionText))
         : [];
-      const candidates = [...exactMatches, ...cabinContentsMatches];
+      const recoveredScope = recovered.length === 1 ? proposedScope : null;
+      const candidates = recoveredScope ? recovered
+        : company && name ? matchingDocumentProducts(company, product.type, name, product.agreementScope, lines) : [];
       const needsEdition = candidates.some(candidate => candidate.requiresExplicitAgreementScope);
-      const applicable = needsEdition ? candidates.filter(candidate => {
-        const termsNumber = candidate.sourceId ? productCatalog.sources?.[candidate.sourceId]?.termsNumber : undefined;
-        return hasDocumentCatalogVersion(editionText, candidate.version, termsNumber);
-      }) : candidates;
+      const applicable = needsEdition && !recoveredScope
+        ? candidates.filter(candidate => matchesPrintedEdition(candidate, editionText)) : candidates;
       const catalogProduct = applicable.length === 1 ? applicable[0] : null;
       const edition = needsEdition ? { documentCatalogVersion: catalogProduct?.version ?? null } : {};
-      const type = catalogProduct && cabinContentsMatches.includes(catalogProduct) ? catalogProduct.insuranceType : product.type;
+      const type = catalogProduct?.productId === "tryg-nito-innbo-fritidsbolig" && normalizeInsuranceType(product.type) === "innbo"
+        ? catalogProduct.insuranceType : product.type;
       const rentalEdition = catalogProduct && hasHouseRentalEditionMismatch(catalogProduct, editionText)
         ? { documentHouseRentalEditionMismatch: true as const } : {};
-      const attached = { ...product, type, ...edition, ...rentalEdition,
+      const attached = { ...product, ...(recoveredScope ? { agreementScope: recoveredScope } : {}), type, ...edition, ...rentalEdition,
         objectIdentifiers: product.objectIdentifiers?.map(id => ({ ...id, sources: sources(id.documentIndices) })),
         importantTerms: product.importantTerms.map(term => attach(term, product.documentRole)),
         addOns: product.addOns.map(addon => ({ ...addon, importantTerms: addon.importantTerms.map(term => attach(term, product.documentRole)) })),

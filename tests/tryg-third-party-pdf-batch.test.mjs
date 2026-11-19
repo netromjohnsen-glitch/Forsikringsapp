@@ -28,31 +28,29 @@ function response(company, insurances) {
   };
 }
 
-async function pipeline(modelResponse) {
-  const output = JSON.parse(modelResponse.output_text);
+async function pipeline(modelResponse, documents) {
+  if (!documents) {
+    const { insurances } = JSON.parse(modelResponse.output_text);
+    documents = insurances.map(item =>
+      `Individuelt forsikringsbevis - syntetisk\nForsikringsselskap: ${item.company}\nProdukt: ${item.productName}\nVilkårsutgave: 2026-01-01`);
+  }
   const controller = new AbortController();
   let extractionCalls = 0;
   const result = await analyzePdfBatches({
-    sides: [{ side: "existing", files: output.insurances.map((_, i) => ({ data: new Uint8Array([i + 1]) })) }],
+    sides: [{ side: "existing", files: documents.map((_, i) => ({ data: new Uint8Array([i + 1]) })) }],
     controller,
     telemetry: createAnalysisTelemetry("00000000-0000-0000-0000-000000000000"),
     emit: () => {},
-    parse: async (file) => {
-      const item = output.insurances[file.data[0] - 1];
-      return {
-        text: `Individuelt forsikringsbevis - syntetisk\nForsikringsselskap: ${item.company}\nProdukt: ${item.productName}\nVilkårsutgave: 2026-01-01`,
-        pages: 1, parseMs: 0, textMs: 0,
-      };
-    },
+    parse: async (file) => ({ text: documents[file.data[0] - 1], pages: 1, parseMs: 0, textMs: 0 }),
     extract: async (batch) => {
       extractionCalls++;
-      assert.equal(batch.documents.length, output.insurances.length);
+      assert.equal(batch.documents.length, documents.length);
       return parseExtractionResponse(modelResponse);
     },
   });
   assert.equal(extractionCalls, 1);
   assert.equal(result.partialSuccess, false);
-  assert.equal(result.successfulDocuments, output.insurances.length);
+  assert.equal(result.successfulDocuments, documents.length);
   return mergeBatchResults(result.results, "existing", result.partialSuccess).insuranceData.insurances;
 }
 
@@ -100,6 +98,80 @@ test("en ekte Tryg-medlemsavtale i samme batch beholder scope og vilkårsoppslag
   assert.equal(external.company, "VIS Forsikring");
   assert.equal(external.agreementScope, null);
   assert.equal(external.catalogReference, null);
+});
+
+function memberCertificate({
+  company = "Tryg", scope = "NITO", productName = NITO_CABIN_CONTENTS, version = "2026-01-01", termsNumber,
+} = {}) {
+  const lines = [
+    "Individuelt forsikringsbevis - syntetisk",
+    `Forsikringsselskap: ${company}`,
+    `Medlemsavtale: ${scope}`,
+    `Produkt: ${productName}`,
+    "Forsikringsperiode: 01.09.2026 - 31.08.2027",
+  ];
+  if (version) lines.push(`Vilkårsutgave: ${version}`);
+  if (termsNumber) {
+    const [year, month, day] = version.split("-");
+    lines.push(`Vilkår ${termsNumber} gjelder fra ${day}.${month}.${year}.`);
+  }
+  return lines.join("\n");
+}
+
+test("fem Tryg-bevis i samme batch gjenfinner medlemsavtale og utgave fra eget dokument", async () => {
+  const expected = [
+    { productName: "NITO Elbil Ekstra", type: "Bil", id: "tryg-nito-elbil-ekstra", version: "2026-07-01", termsNumber: "PAU27015" },
+    { productName: NITO_CABIN_CONTENTS, type: "Innbo", id: "tryg-nito-innbo-fritidsbolig", version: "2026-01-01" },
+    { productName: "NITO Husforsikring", type: "Hus", id: "tryg-nito-hus", version: "2026-01-01", termsNumber: "PPK11507" },
+    { productName: "NITO Uføreforsikring etter studentmedlemskap", type: "Uføre", id: "tryg-nito-ufore-etter-studiet", version: "2026-01-01", termsNumber: "54712" },
+    { productName: "Utdanningsforbundet Studentforsikring", type: "Studentforsikring", id: "tryg-utdanningsforbundet-student", version: "2026", scope: "Utdanningsforbundet" },
+  ];
+  const model = response("Tryg", expected.map((item, index) =>
+    insurance("Tryg", null, item.productName, item.type, index + 1)));
+  const results = await pipeline(model, expected.map(item => memberCertificate(item)));
+  assert.equal(results.length, expected.length);
+  for (const [index, item] of expected.entries()) {
+    const record = results.find(result => result.documentReferences.some(ref => ref.documentIndex === index));
+    const scope = item.scope?.toLowerCase() ?? "nito";
+    assert.ok(record, item.productName);
+    assert.equal(record.agreementScope, scope, item.productName);
+    assert.equal(record.catalogReference?.productId, item.id, item.productName);
+    assert.equal(record.catalogReference?.version, item.version, item.productName);
+    assert.ok(record.catalogFacts?.length, item.productName);
+  }
+});
+
+const unprovenMemberScopes = [
+  ["annen forsikringsgiver", memberCertificate({ company: VIS })],
+  ["motstridende forsikringsgivere", memberCertificate() + `\nForsikringsselskap: ${AMTRUST}`],
+  ["motstridende medlemsavtaler", memberCertificate() + "\nMedlemsavtale: Utdanningsforbundet"],
+  ["medlemsorganisasjon", memberCertificate().replace("Medlemsavtale:", "Medlemsorganisasjon:")],
+  ["manglende vilkårsutgave", memberCertificate({ version: null })],
+  ["ukjent vilkårsutgave", memberCertificate({ version: "2099-01-01" })],
+  ["annet produkt i beviset", memberCertificate({ productName: "NITO Husforsikring" })],
+];
+
+for (const [reason, document] of unprovenMemberScopes) {
+  test(`manglende scope beholdes ved ${reason}`, async () => {
+    const raw = insurance("Tryg", null, NITO_CABIN_CONTENTS, "Innbo fritidsbolig", 1);
+    const [result] = await pipeline(response("Tryg", [raw]), [document]);
+    assert.equal(result.agreementScope, null);
+    assert.equal(result.catalogReference, null);
+    assert.equal(result.catalogFacts?.length ?? 0, 0);
+  });
+}
+
+test("to poster på samme PDF kan ikke gjenopprette medlemsavtalen fra dokumentet", async () => {
+  const records = [
+    insurance("Tryg", null, NITO_CABIN_CONTENTS, "Innbo fritidsbolig", 1),
+    insurance("Tryg", null, "NITO Husforsikring", "Hus", 1),
+  ];
+  const results = await pipeline(response("Tryg", records), [memberCertificate()]);
+  assert.equal(results.length, records.length);
+  for (const result of results) {
+    assert.equal(result.agreementScope, null);
+    assert.equal(result.catalogReference, null);
+  }
 });
 
 test("direkte validering, ukjent scope og manglende eller ikke godkjent forsikringsgiver er fortsatt strenge", () => {
