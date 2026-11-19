@@ -1,3 +1,5 @@
+import { trygBoatMarketArchives } from "./tryg-boat-market.ts";
+
 type ArchiveSource = readonly [documentId: string, effectiveFrom: string, originalUrl: string];
 
 type MemberArchiveSource = readonly [scope: string, productId: string, originalUrl: string, documentNumber: string, date: string, sha256: string];
@@ -11,6 +13,7 @@ type TermsArchiveDocument = {
 };
 
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
+  ...trygBoatMarketArchives,
   {
     provider: "fremtind",
     slug: "bat",

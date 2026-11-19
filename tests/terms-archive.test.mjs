@@ -7,6 +7,7 @@ import { termsArchiveDocuments } from "../lib/terms-archive-documents.ts";
 import { memberTermsSourceHref, termsSourceHref } from "../lib/terms-archive.ts";
 import { createPilotSession, PILOT_COOKIE_NAME } from "../lib/pilot-access.ts";
 import { findCatalogProduct, productCatalog, resolveCatalogFacts } from "../lib/product-catalog.ts";
+import { marketProductCatalog } from "../lib/market-product-catalog.ts";
 import { trygMemberInventories } from "../lib/tryg-member-catalog.ts";
 
 function archiveRequest(provider, document, cookie) {
@@ -24,7 +25,7 @@ test("each archive route resolves only the intended catalogue document and editi
     assert.ok(!routes.has(route), route);
     routes.add(route);
     for (const [documentId, effectiveFrom, originalUrl] of document.sources) {
-      const catalogSource = productCatalog.sources[documentId];
+      const catalogSource = marketProductCatalog.sources[documentId];
       assert.ok(catalogSource?.sha256, documentId);
       assert.equal(catalogSource.url, originalUrl, documentId);
       assert.equal(catalogSource.effectiveFrom, effectiveFrom, documentId);
@@ -113,7 +114,7 @@ test("authenticated pilot requests serve the exact PDF for every allowed archive
     const bytes = Buffer.from(await response.arrayBuffer());
     assert.equal(bytes.subarray(0, 5).toString(), "%PDF-");
     const sha256 = createHash("sha256").update(bytes).digest("hex");
-    for (const [documentId] of document.sources) assert.equal(sha256, productCatalog.sources[documentId].sha256, documentId);
+    for (const [documentId] of document.sources) assert.equal(sha256, marketProductCatalog.sources[documentId].sha256, documentId);
   }
   assert.equal((await archiveRequest("frende", "__proto__", cookie)).status, 404);
   assert.equal((await archiveRequest("unregistered", "hytte", cookie)).status, 404);

@@ -333,9 +333,9 @@ for (const [providerId, company] of packages) {
   }
 }
 
-test("66 offentlige originaler har verifiserbare SHA-256 hashes", () => {
+test("67 offentlige originaler har verifiserbare SHA-256 hashes", () => {
   const manifest = JSON.parse(fs.readFileSync("catalog/sources/boat-pet/manifest.json", "utf8"));
-  assert.equal(manifest.documents.length, 66);
+  assert.equal(manifest.documents.length, 67);
   assert.equal(manifest.sourcePackages.length, 18);
   assert.equal(new Set(manifest.sourcePackages.map((entry) => `${entry.providerId}:${entry.insuranceType}`)).size, 18);
   for (const document of manifest.documents) {
@@ -383,7 +383,7 @@ test("66 offentlige originaler har verifiserbare SHA-256 hashes", () => {
     assert.ok(artifact, `Mangler manifestkobling for ${source.id}`);
     assert.equal(source.sha256, artifact.sha256);
   }
-  assert.equal(manifest.documents.filter((document) => document.filename.endsWith(".pdf")).length, 52);
+  assert.equal(manifest.documents.filter((document) => document.filename.endsWith(".pdf")).length, 53);
   assert.equal(manifest.documents.filter((document) => document.filename.endsWith(".html")).length, 14);
 });
 

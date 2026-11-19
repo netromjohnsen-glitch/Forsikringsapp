@@ -4,9 +4,10 @@ import { useMemo, useState } from "react";
 import { agreementScopeDisplayName } from "@/lib/provider-presentation";
 import { memberTermsSourceHref, termsSourceHref } from "@/lib/terms-archive";
 import { trygMemberInventories } from "@/lib/tryg-member-catalog";
+import { marketProductCatalog } from "@/lib/market-product-catalog";
 import { catalogAgreementScope } from "@/lib/agreement-scope";
 import { personInsuranceTypes } from "@/lib/person-insurance-registry";
-import { catalogProductIdentity, productCatalog, type CatalogProduct } from "@/lib/product-catalog";
+import { catalogProductIdentity, type CatalogProduct } from "@/lib/product-catalog";
 import {
   compareCatalogProducts,
   findProductComparisonProduct,
@@ -96,17 +97,17 @@ function ProductSelector({
   onChange: (value: Selection) => void;
   onInvalidate: () => void;
 }) {
-  const providers = productComparisonProviders(insuranceType);
-  const scopes = selection.company ? productComparisonScopes(insuranceType, selection.company) : [];
+  const providers = productComparisonProviders(insuranceType, marketProductCatalog);
+  const scopes = selection.company ? productComparisonScopes(insuranceType, selection.company, marketProductCatalog) : [];
   const selectedScope = selection.agreementScope || (scopes.length === 1 ? scopes[0].id : "");
   const products = selection.company
-    ? productComparisonOptions(insuranceType, selection.company, selectedScope || null)
+    ? productComparisonOptions(insuranceType, selection.company, selectedScope || null, marketProductCatalog)
     : [];
   const showScope = scopes.some((scope) => scope.id !== "ordinary") || scopes.length > 1;
   const selectedProduct = products.find((product) => catalogProductIdentity(product) === selection.productIdentity);
   const sourceId = selectedProduct?.sourceId;
   const terms = sourceId?.startsWith("person:")
-    ? [...new Map(Object.values(productCatalog.sources ?? {})
+    ? [...new Map(Object.values(marketProductCatalog.sources ?? {})
       .filter((source) => source.id === sourceId ||
         source.id.startsWith(`${sourceId}:`) && !source.id.startsWith(`${sourceId}:tillegg:`))
       .flatMap((source) => {
@@ -131,7 +132,7 @@ function ProductSelector({
             value={selection.company}
             onChange={(event) => {
               const company = event.target.value;
-              const nextScopes = company ? productComparisonScopes(insuranceType, company) : [];
+              const nextScopes = company ? productComparisonScopes(insuranceType, company, marketProductCatalog) : [];
               update({ company, agreementScope: nextScopes.length === 1 ? nextScopes[0].id : "", productIdentity: "" });
             }}
             className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
@@ -338,7 +339,7 @@ function focusInsuranceType(select: HTMLSelectElement | null) {
 
 export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { personInsuranceFirst?: boolean }) {
   const insuranceTypeGroups = useMemo(() => {
-    const types = productComparisonInsuranceTypes();
+    const types = productComparisonInsuranceTypes(marketProductCatalog);
     const personTypes = new Set<string>(personInsuranceTypes);
     return [
       { label: "Skadeforsikringer", types: types.filter(type => !personTypes.has(type)) },
@@ -356,14 +357,14 @@ export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { p
     setError("");
   }
 
-  const firstProduct = first.productIdentity ? findProductComparisonProduct(first.productIdentity) : null;
-  const secondProduct = second.productIdentity ? findProductComparisonProduct(second.productIdentity) : null;
+  const firstProduct = first.productIdentity ? findProductComparisonProduct(first.productIdentity, marketProductCatalog) : null;
+  const secondProduct = second.productIdentity ? findProductComparisonProduct(second.productIdentity, marketProductCatalog) : null;
   const ready = Boolean(insuranceType && firstProduct && secondProduct);
 
   function compare() {
     if (!firstProduct || !secondProduct) return;
     try {
-      setResult(compareCatalogProducts(firstProduct, secondProduct, productCatalog));
+      setResult(compareCatalogProducts(firstProduct, secondProduct, marketProductCatalog));
       setError("");
     } catch {
       setResult(null);
