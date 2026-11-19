@@ -67,8 +67,18 @@ export const additionalFactKinds = {
 
 export const additionalPersonTerms: Record<string, PersonTerms> = {
   "fremtind-kritisk-ipid": {
-    url: "https://content.dnb.no/docs/8679113/ipid-kritisk-sykdom-ks03.pdf",
-    sha256: "a4b0d7ed6af631efde236400e7d46ea74d5fc2c4b203ee768b9ad5c5dbb30086", pages: 2, effectiveFrom: "", edition: "KS03 V.101", sourceType: "ipid",
+    url: "https://dokument.fremtind.no/ipid/IPID_Kritisk_sykdom_KS03.pdf",
+    sha256: "7f33ba1eed01835d6eee9f3f4cc41dd0450d8f1dd78268054b19b39390d04e5b", pages: 2, effectiveFrom: "", edition: "KS03 V.102", sourceType: "ipid",
+  },
+  "fremtind-kritisk-generelle": {
+    url: "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/generelle_vilkar_personforsikring.pdf",
+    sha256: "b46b96d14e7ca48b3adac8ec101f0cce6e1928a93363fe6809578b973c9e53ec", pages: 4, effectiveFrom: "2026-04-29",
+    documentName: "Fremtind – Generelle vilkår for personforsikring",
+  },
+  "landkreditt-kritisk-flytteavtale": {
+    url: "https://www.finansnorge.no/siteassets/dokumenter/avtaler/1.3.8-bransjeavtale-ved-flytting-av-individuelle-personforsikringer-med-helsevurdering-01.09.23-.pdf",
+    sha256: "188a9a0f0b4769134e692a5750fcf7c19282c12a09cc22600335143a604556c7", pages: 4, effectiveFrom: "2023-09-01",
+    documentName: "Finans Norge – Bransjeavtale om flytting av individuelle personforsikringer",
   },
   "fremtind-liv-ipid": {
     url: "https://dokument.fremtind.no/ipid/IPID_Livsforsikring.pdf",
@@ -224,7 +234,8 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomOpphor", document: "kritisk-ipid", page: 1, section: "Hvilken forsikring er dette?",
-      value: "Forsikringen varer til fylte 67 år, ifølge produktinformasjonen.",
+      value: "Ifølge produktarket varer forsikringen til fylte 67 år. Generelle vilkår viser til den avtalte utløpsdatoen.",
+      qualification: { document: "kritisk-generelle", page: 2, section: "Punkt 4 – Avtalt utløpsdato" },
     },
     {
       kind: "sykdomKreft", page: 3, section: "Punkt 5.A",
@@ -248,7 +259,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomKarenstid", page: 6, section: "Punkt 6 a",
-      value: "Sykdom påvist eller med tegn eller symptomer før tre måneder etter at forsikrede aksepterte avtalen, er unntatt. Ved flytting av tilsvarende forsikring som har løpt i minst 12 måneder, gjelder klausulen bare for utvidelser eller økt sum.",
+      value: "Kritisk sykdom som skyldes sykdom eller lidelse som påvises eller viser tegn eller symptomer før det har gått tre måneder fra den forsikrede aksepterte avtalen, er unntatt. Ved flytting av tilsvarende dekning som var i kraft i minst 12 måneder før oppsigelsen, gjelder klausulen bare for utvidelser eller økt forsikringssum.",
     },
     {
       kind: "sykdomGjentakelse", page: 2, section: "Punkt 4",
@@ -467,7 +478,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomKarenstid", page: 4, section: "Punkt 5.2",
-      value: "Sykdom påvist eller med tegn eller symptomer innen tre måneder etter levert fullstendig helseerklæring, er unntatt. Vilkårene har unntak for tilsvarende dekninger som har løpt i minst 12 måneder og flyttes etter bransjeavtalen. Økning eller utvidelse omfattes fortsatt av klausulen.",
+      value: "Sykdom som blir påvist eller viser tegn eller symptomer innen tre måneder etter levering av fullstendig helseerklæring, er unntatt. Ved flytting av tilsvarende dekning mellom selskaper i bransjeavtalen må den tidligere dekningen ha vært i kraft i minst 12 måneder da søknaden ble sendt til Frende. Klausulen gjelder fortsatt ved økt forsikringssum og for nye diagnoser og dekninger.",
     },
     {
       kind: "sykdomOpphor", page: 4, section: "Punkt 4",
@@ -604,7 +615,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomKarenstid", page: 2, section: "Forsikringsbevis – Alvorlig sykdom",
-      value: "Sykdom påvist eller med tegn eller symptomer innen tre måneder etter at Gjensidige mottok utfylt og signert helseerklæring, er unntatt. Ved flytting av tilsvarende forsikring som har løpt minst 12 måneder, gjelder klausulen bare for utvidelser eller økt sum.",
+      value: "Sykdom påvist eller med tegn eller symptomer innen tre måneder etter at Gjensidige mottok utfylt og signert helseerklæring, er unntatt. Ved flytting av tilsvarende forsikring som var i kraft i minst 12 måneder før oppsigelsen, gjelder klausulen bare for utvidelser eller økt forsikringssum.",
     },
     {
       kind: "sykdomOpphor", page: 1, section: "Forsikringsoversikt – Alvorlig sykdom",
@@ -1217,7 +1228,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomKarenstid", page: 8, section: "Punkt 6.1",
-      value: "Sykdom påvist eller med tegn eller symptomer i de første 90 dagene etter at If mottok fullstendig helseerklæring, er unntatt. For godkjent, tilsvarende forsikring med utløpt karenstid ved flytting gjelder begrensningen bare eventuell økning av forsikringssummen. Utvidelser eller forhøyelser kan utløse ny karenstid for den nye delen.",
+      value: "Sykdom påvist eller med tegn eller symptomer de første 90 dagene etter at If mottok fullstendig helseerklæring, er unntatt. Ved godkjent flytting av tilsvarende forsikring med utløpt karenstid hos tidligere selskap gjelder klausulen bare eventuell økning av forsikringssummen. Ved utvidelse eller forhøyelse starter en ny karenstid på 90 dager for den nye delen.",
     },
     {
       kind: "sykdomOpphor", page: 3, section: "Punkt 3",
@@ -1348,7 +1359,8 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomKarenstid", page: 8, section: "Generelle begrensninger – Symptomklausul",
-      value: "Sykdom påvist eller med symptomer i de første tre månedene etter at helseerklæringen ble signert og sendt, er unntatt. Tilsvarende dekning og sum kan unntas fra klausulen ved flytting hvis den tidligere forsikringen var betalt og hadde løpt minst 12 måneder.",
+      value: "Sykdom påvist eller med symptomer de første tre månedene etter at helseerklæringen ble signert og sendt, er unntatt. Forsikringen opphører ved symptomer i symptomperioden. Ved flytting gjelder klausulen bare nye eller utvidede dekninger og økte summer hvis tidligere forsikring var betalt og hadde vært i kraft i minst 12 måneder før oppsigelsen.",
+      qualification: { document: "person", page: 6, section: "Aldersreduksjon og opphør av forsikringen" },
     },
     {
       kind: "sykdomOpphor", page: 6, section: "Aldersreduksjon og opphør av forsikringen",
@@ -1558,7 +1570,8 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomKarenstid", page: 3, section: "Punkt 5.5",
-      value: "Sykdom som er påvist eller har vist tegn eller symptomer i de første tre månedene etter at en fullstendig helseerklæring ble signert og sendt, er unntatt. Ved senere utvidelse gjelder klausulen tilsvarende for ny dekning.",
+      value: "Sykdom som er påvist eller har vist tegn eller symptomer de første tre månedene etter at fullstendig helseerklæring ble signert og sendt, er unntatt. Ved senere utvidelse gjelder klausulen for den nye delen. Ved flytting etter bransjeavtalen gjelder klausulen ikke for tilsvarende hoveddekning dersom den tidligere forsikringen var i kraft og premien betalt i minst 12 måneder. Helseerklæringen må sendes før den gamle forsikringen sies opp.",
+      qualification: { document: "kritisk-flytteavtale", page: 2, section: "Finans Norges flytteavtale – Punkt 3 og 4" },
     },
     {
       kind: "sykdomOpphor", page: 9, section: "Punkt 14",
@@ -1777,8 +1790,8 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       value: "Forsikrede må være i live 24 timer etter endelig diagnose, gjennomført operasjon eller registrering på norsk venteliste for transplantasjon.",
     },
     {
-      kind: "sykdomKarenstid", page: 7, section: "Punkt A.2 a",
-      value: "Sykdom påvist eller med tegn eller symptomer innen tre måneder etter signert forsikringssøknad er unntatt. Ved flytting av tilsvarende forsikring som løp minst 12 måneder, gjelder klausulen bare utvidelser eller økt sum.",
+      kind: "sykdomKarenstid", page: 7, section: "Punkt A.2 a og A.3",
+      value: "Kritisk sykdom som skyldes sykdom eller lidelse som påvises eller viser tegn eller symptomer innen tre måneder etter signert forsikringssøknad, er unntatt. Forsikringen opphører ved symptom på sykdom i symptomperioden. Ved flytting av tilsvarende forsikring som var i kraft i minst 12 måneder før oppsigelsen, gjelder klausulen bare for utvidelser eller økt forsikringssum.",
     },
     {
       kind: "sykdomOpphor", page: 7, section: "Punkt A.3",
@@ -2236,7 +2249,8 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomKarenstid", document: "ulykke-produktvilkar", page: 1, section: "Punkt 2",
-      value: "Sykdom som viser symptomer de første 90 dagene etter at forsikringen begynner å gjelde, er unntatt. Ved flytting av tilsvarende dekning som har løpt i minst 12 måneder før oppsigelse, kan klausulen bare gjelde økt dekningsomfang eller forsikringssum.",
+      value: "Sykdom som viser symptomer de første 90 dagene etter at forsikringen begynner å gjelde, er unntatt. Ved godkjent søknad regnes oppstarten fra Trygs mottak av søknad med fullstendige helseopplysninger, tidligst fra avtalt ikrafttredelse. Ved flytting fra et annet selskap av tilsvarende dekning som har løpt i minst 12 måneder før oppsigelse, kan klausulen bare gjelde økt dekningsomfang eller forsikringssum.",
+      qualification: { document: "ulykke-produktvilkar", page: 2, section: "Punkt 4 – Når forsikringen gjelder" },
     },
     {
       kind: "sykdomOpphor", document: "ulykke-produktvilkar", page: 1, section: "Punkt 1",

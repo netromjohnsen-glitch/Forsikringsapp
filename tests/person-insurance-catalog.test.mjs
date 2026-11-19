@@ -367,6 +367,56 @@ test("critical illness compares separate hospital cash and survival conditions a
   }
 });
 
+test("critical illness keeps each variant's symptom deadline, transfer terms and expiry on the shared rows", () => {
+  const type = "Kritisk sykdom";
+  const peer = option("Gjensidige", type, "Alvorlig sykdom");
+  const cases = [
+    [option("Tryg", type, "Kritisk sykdom"), /90 dagene.*fullstendige helseopplysninger.*avtalt ikrafttredelse.*12 måneder før oppsigelse/u,
+      /første hovedforfall.*67 år/u, [1, 2], [1]],
+    [option("If", type, "Kritisk sykdom"), /90 dagene.*If mottok.*utløpt karenstid.*starter en ny karenstid på 90 dager/u,
+      /Ut forsikringsåret.*67 år.*uføredekning.*60 år/u, [8], [3]],
+    [peer, /tre måneder.*Gjensidige mottok.*12 måneder før oppsigelsen/u,
+      /Senest ved fylte 67 år/u, [2], [1]],
+    [option("Storebrand", type, "Kritisk sykdom"), /tre måneder etter signert forsikringssøknad.*opphører.*12 måneder før oppsigelsen/u,
+      /31. desember.*67 år/u, [7], [7]],
+    [option("Frende", type, "Kritisk sykdom"), /tre måneder etter levering.*12 måneder da søknaden ble sendt til Frende/u,
+      /hovedforfall etter fylte 67 år/u, [4], [4]],
+    [option("Fremtind", type, "Kritisk sykdom"), /tre måneder fra den forsikrede aksepterte.*12 måneder før oppsigelsen/u,
+      /produktarket.*fylte 67 år.*avtalte utløpsdatoen/u, [6], [1, 2]],
+    [option("KLP", type, "Alvorlige sykdommer"), /tre månedene.*signert og sendt.*opphører ved symptomer.*12 måneder før oppsigelsen/u,
+      /31. desember.*67 år/u, [8, 6], [6]],
+    [option("Landkreditt", type, "Kritisk sykdom"), /tre månedene.*signert og sendt.*flytting etter bransjeavtalen.*premien betalt i minst 12 måneder.*før den gamle forsikringen sies opp/u,
+      /første hovedforfall.*67 år/u, [3, 2], [9]],
+  ];
+
+  const members = productComparisonOptions(type, "Tryg", "utdanningsforbundet");
+  for (const suffix of ["medlem", "ektefelle"]) {
+    const product = members.find(candidate => candidate.productId === "tryg-utdanningsforbundet-kritisk-sykdom-" + suffix);
+    assert.ok(product);
+    cases.push([product, /90 dagene.*Trygs mottak av søknad med fullstendige helseopplysninger/u,
+      /utgangen av kalenderåret.*70 år/u, [4], [5]]);
+  }
+
+  for (const [product, symptomText, expiryText, symptomPages, expiryPages] of cases) {
+    const rows = compareCatalogProducts(product, peer).sections.flatMap(section => section.rows);
+    for (const [key, expected, pages] of [
+      ["person.sykdom.karenstid", symptomText, symptomPages],
+      ["person.sykdom.opphor", expiryText, expiryPages],
+    ]) {
+      const matching = rows.filter(row => row.key === key);
+      assert.equal(matching.length, 1, product.productId);
+      const [{ first }] = matching;
+      assert.equal(first.state, "included", product.productId);
+      assert.match(first.text, expected, product.productId);
+      assert.deepEqual(first.sources.map(source => source.page), pages, product.productId);
+      for (const source of first.sources) {
+        assert.equal(source.agreementScope, product.agreementScope, product.productId);
+        assert.match(termsSourceHref(source), new RegExp("^/api/vilkar/.+#page=" + source.page + "$"));
+      }
+    }
+  }
+});
+
 test("personal member terms align with ordinary rows and keep the chosen agreement scope", () => {
   const cases = [
     {
@@ -383,7 +433,7 @@ test("personal member terms align with ordinary rows and keep the chosen agreeme
       type: "Kritisk sykdom", scope: "utdanningsforbundet",
       memberId: "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle",
       peer: option("Tryg", "Kritisk sykdom", "Kritisk sykdom"),
-      rows: [["person.sykdom.karenstid", 2, /90/u], ["person.sykdom.opphor", 5, /70/u]],
+      rows: [["person.sykdom.karenstid", 4, /90/u], ["person.sykdom.opphor", 5, /70/u]],
     },
   ];
 

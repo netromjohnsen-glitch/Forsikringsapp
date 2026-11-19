@@ -565,7 +565,23 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "kritisk-sykdom-produktark",
     archivePath: "catalog/sources/person/fremtind-person-kritisk-ipid.pdf",
     sources: [
-      ["person:fremtind-person-kritisk:kritisk-ipid", "", "https://content.dnb.no/docs/8679113/ipid-kritisk-sykdom-ks03.pdf"],
+      ["person:fremtind-person-kritisk:kritisk-ipid", "", "https://dokument.fremtind.no/ipid/IPID_Kritisk_sykdom_KS03.pdf", "https://content.dnb.no/docs/8679113/ipid-kritisk-sykdom-ks03.pdf"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "kritisk-sykdom-generelle-personvilkar",
+    archivePath: "catalog/sources/person/fremtind-person-kritisk-generelle.pdf",
+    sources: [
+      ["person:fremtind-person-kritisk:kritisk-generelle", "2026-04-29", "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/generelle_vilkar_personforsikring.pdf"],
+    ],
+  },
+  {
+    provider: "landkreditt",
+    slug: "kritisk-sykdom-flytteavtale",
+    archivePath: "catalog/sources/person/landkreditt-person-kritisk-flytteavtale.pdf",
+    sources: [
+      ["person:landkreditt-person-kritisk:kritisk-flytteavtale", "2023-09-01", "https://www.finansnorge.no/siteassets/dokumenter/avtaler/1.3.8-bransjeavtale-ved-flytting-av-individuelle-personforsikringer-med-helsevurdering-01.09.23-.pdf"],
     ],
   },
   {
