@@ -1,7 +1,9 @@
-import type { CatalogFact, CatalogProduct, CatalogSource } from "./product-catalog.ts";
+import type { CatalogAddOn, CatalogFact, CatalogProduct, CatalogSource } from "./product-catalog.ts";
+import { additionalFactKinds, additionalPersonFacts, additionalPersonTerms } from "./person-insurance-terms.ts";
 import type { personInsuranceTypes } from "./person-insurance-registry.ts";
 
 const factKinds = {
+  ...additionalFactKinds,
   liv: { key: "person.liv.utbetaling", label: "Utbetaling ved dødsfall" },
   ulykke: { key: "person.ulykke.invaliditet", label: "Varig medisinsk invaliditet etter ulykke" },
   dodsulykke: { key: "person.ulykke.dodsfall", label: "Utbetaling ved dødsfall etter ulykke" },
@@ -34,7 +36,7 @@ const factKinds = {
   barnBoligtilpasning: { key: "person.barn.boligtilpasning", label: "Tilpasning av bolig" },
 } as const;
 
-type PersonTerms = {
+export type PersonTerms = {
   url: string;
   sha256: string;
   pages: number;
@@ -43,6 +45,7 @@ type PersonTerms = {
 };
 
 const terms: Record<string, PersonTerms> = {
+  ...additionalPersonTerms,
   "tryg-ulykke": {
     url: "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Skade&vilkNr=05UUL41501",
     sha256: "b0faf320a63f716d457db4e7df6d65cb1116dc737deec1a3c2d7d00a7be8a64f", pages: 3,
@@ -355,7 +358,7 @@ const terms: Record<string, PersonTerms> = {
   },
 };
 
-type PersonFactDefinition = {
+export type PersonFactDefinition = {
   kind: keyof typeof factKinds;
   value: string;
   page: number;
@@ -363,6 +366,9 @@ type PersonFactDefinition = {
   document?: string;
   qualification?: { document: string; page: number; section: string };
   conditional?: true;
+  unavailable?: true;
+  addOn?: string;
+  replace?: true;
 };
 
 type PersonProductDefinition = {
@@ -1276,14 +1282,18 @@ const providers: readonly {
 export const personInsuranceProducts: CatalogProduct[] = [];
 export const personInsuranceSources: Record<string, CatalogSource> = {};
 export const personInsuranceFacts: Record<string, CatalogFact[]> = {};
+export const personInsuranceAddOns: CatalogAddOn[] = [];
 
 for (const { providerId, company, products } of providers) {
   for (const entry of products) {
     const productId = `${providerId}-person-${entry.id}`;
     const anchorId = `person:${productId}`;
     const version = terms[`${providerId}-${entry.document}`].edition ?? null;
+    const extraFacts = additionalPersonFacts[productId] ?? [];
+    const replacedKinds = new Set(extraFacts.filter((fact) => fact.replace).map((fact) => fact.kind));
+    const factDefinitions = [...entry.facts.filter((fact) => !replacedKinds.has(fact.kind)), ...extraFacts];
     const sourceIds = new Map<string, string>();
-    const documents = new Set([entry.document, ...entry.facts.flatMap(fact =>
+    const documents = new Set([entry.document, ...factDefinitions.flatMap(fact =>
       [fact.document, fact.qualification?.document].filter((document): document is string => Boolean(document)))]);
     for (const document of documents) {
       const evidence = terms[`${providerId}-${document}`];
@@ -1317,13 +1327,37 @@ for (const { providerId, company, products } of providers) {
         ...(source.version ? { version: source.version } : {}),
       };
     };
-    personInsuranceFacts[anchorId] = entry.facts.map(fact => ({
-      ...factKinds[fact.kind], value: fact.value,
-      ...(fact.conditional ? {} : { coverageAvailability: "included" as const }),
-      source: citation(fact.document ?? entry.document, fact.page, fact.section),
-      ...(fact.qualification ? { qualificationSource: citation(
-        fact.qualification.document, fact.qualification.page, fact.qualification.section,
-      ) } : {}),
-    }));
+    personInsuranceFacts[anchorId] = [];
+    for (const fact of factDefinitions) {
+      const kind = factKinds[fact.kind];
+      const { key, label } = kind;
+      const isTerm = fact.conditional || ("term" in kind && kind.term);
+      const catalogFact: CatalogFact = {
+        key, label, value: fact.value,
+        ...(fact.unavailable ? { coverageAvailability: "unavailable" } :
+          isTerm ? {} : { coverageAvailability: "included" }),
+        source: citation(fact.document ?? entry.document, fact.page, fact.section),
+        ...(fact.qualification ? { qualificationSource: citation(
+          fact.qualification.document, fact.qualification.page, fact.qualification.section,
+        ) } : {}),
+      };
+      if (!fact.addOn) {
+        personInsuranceFacts[anchorId].push(catalogFact);
+        continue;
+      }
+
+      const slug = fact.addOn.toLocaleLowerCase("nb-NO").normalize("NFD")
+        .replace(/\p{Mark}/gu, "").replace(/[^a-z0-9]+/gu, "-").replace(/^-|-$/gu, "");
+      const componentId = `${anchorId}:tillegg:${slug}`;
+      if (!personInsuranceFacts[componentId]) {
+        personInsuranceFacts[componentId] = [];
+        personInsuranceSources[componentId] = { ...personInsuranceSources[catalogFact.source.documentId], id: componentId };
+        personInsuranceAddOns.push({
+          id: componentId, componentId, name: fact.addOn, providerId,
+          agreementScope: "ordinary", insuranceTypes: [entry.type], requiresLevel: [productId],
+        });
+      }
+      personInsuranceFacts[componentId].push(catalogFact);
+    }
   }
 }

@@ -1,12 +1,16 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { compareCatalogProducts, productComparisonOptions, productComparisonProviders } from "../lib/catalog-product-comparison.ts";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { productComparisonView } from "../lib/product-comparison-presentation.ts";
+import { additionalFactKinds, additionalPersonFacts } from "../lib/person-insurance-terms.ts";
+import { compareCatalogProducts, materializeCatalogProduct, productComparisonOptions, productComparisonProviders } from "../lib/catalog-product-comparison.ts";
 import { enrichBatch, mergeBatchResults } from "../lib/analysis-merge.ts";
 import { createAnalysisTelemetry } from "../lib/analysis-telemetry.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
 import { applyManualProductSelection, manualProductOptions } from "../lib/manual-product-selection.ts";
 import { personInsuranceProducts } from "../lib/person-insurance-catalog.ts";
-import { productCatalog, resolveCatalogFacts } from "../lib/product-catalog.ts";
+import { availableAddOns, productCatalog, resolveAddOnPackage, resolveCatalogFacts } from "../lib/product-catalog.ts";
 
 const asOf = new Date("2026-11-14");
 const ordinary = "ordinary";
@@ -57,7 +61,10 @@ test("optional accident coverage stays conditional and shared sources do not act
   assert.match(invalidity.first.text, /Inkludert/);
   assert.match(invalidity.second.text, /Forsikringsbeviset/);
   assert.doesNotMatch(invalidity.second.text, /Inkludert/);
-  assert.equal(rows.find(row => row.key === "person.ulykke.dodsfall").first.state, "unknown");
+  const death = rows.find(row => row.key === "person.ulykke.dodsfall").first;
+  assert.match(death.text, /Ved avtalt dødsfallsdekning/u);
+  assert.doesNotMatch(death.text, /Inkludert/u);
+  assert.equal(death.sources[0].termsNumber, "UUL41502");
 
   const standard = option("If", "Barn", "Standard Barneforsikring");
   const superProduct = option("If", "Barn", "Super Barneforsikring");
@@ -176,4 +183,66 @@ test("a personal policy PDF keeps document facts and does not inherit public cat
   assert.equal(product.annualPremium, "2400");
   assert.ok(product.importantTerms.some(term => term.value === "Et beløp fra kundens avtale"));
   assert.ok(product.importantTerms.every(term => term.coverageOrigin === "document"));
+});
+
+
+test("terms from each original PDF survive catalogue comparison with exact source and availability", () => {
+  const products = new Map(personInsuranceProducts.map(product => [product.productId, product]));
+  assert.equal(Object.keys(additionalPersonFacts).length, products.size);
+  assert.equal(new Set(Object.values(additionalFactKinds).map(kind => kind.key)).size, Object.keys(additionalFactKinds).length);
+  const fileHashes = new Map();
+
+  for (const [productId, definitions] of Object.entries(additionalPersonFacts)) {
+    const product = products.get(productId);
+    assert.ok(product, productId);
+    assert.ok(definitions.length > 0, productId);
+    const materialized = materializeCatalogProduct(product).facts;
+    const comparison = compareCatalogProducts(product, product);
+    assert.equal(comparison.differenceCount, 0, productId);
+    const rows = productComparisonView(comparison).flatMap(section => section.groups.flatMap(group => group.rows));
+    assert.equal(rows.length, new Set(rows.map(row => row.key)).size, productId);
+
+    for (const definition of definitions) {
+      const kind = additionalFactKinds[definition.kind];
+      const expectedId = `person:${productId}`;
+      const fact = materialized.find(candidate => candidate.value === definition.value && candidate.label === (kind?.label ?? candidate.label)
+        && candidate.sources[0].page === definition.page && candidate.sources[0].section === definition.section);
+      assert.ok(fact, `${productId} ${definition.kind}`);
+      if (kind?.term) assert.equal(fact.role, "term", `${productId} ${kind.key}`);
+      assert.deepEqual(rows.find(row => row.key === fact.key)?.first.facts.find(visible => visible.value === fact.value),
+        fact, `${productId} ${fact.key}`);
+      const source = productCatalog.sources[fact.sources[0].documentId];
+      assert.ok(source.id === expectedId || source.id.startsWith(`${expectedId}:`), productId);
+      assert.deepEqual(source.productIds, [productId]);
+      assert.ok(definition.page >= source.physicalPages[0] && definition.page <= source.physicalPages[1]);
+      if (!fileHashes.has(source.filename)) {
+        const hash = createHash("sha256").update(readFileSync(new URL(`../catalog/sources/person/${source.filename}`, import.meta.url))).digest("hex");
+        fileHashes.set(source.filename, hash);
+      }
+      assert.equal(fileHashes.get(source.filename), source.sha256, source.filename);
+
+      if (definition.addOn) {
+        assert.equal(fact.state, "optional", `${productId} ${definition.kind}`);
+        const addOn = availableAddOns(product, asOf).find(candidate => candidate.name === definition.addOn);
+        assert.ok(addOn, `${productId} ${definition.addOn}`);
+        assert.ok(!resolveCatalogFacts(product, [], asOf).some(entry => entry.value === fact.value));
+        const packageIds = resolveAddOnPackage(product, addOn.id, asOf);
+        assert.ok(resolveCatalogFacts(product, packageIds, asOf).some(entry => entry.value === fact.value));
+      }
+    }
+  }
+});
+
+test("the same contractual condition uses the same row in both comparison directions", () => {
+  const first = option("If", "Liv", "Livsforsikring");
+  const second = option("Landkreditt", "Liv", "Livsforsikring");
+  const row = (a, b) => compareCatalogProducts(a, b).sections.flatMap(section => section.rows)
+    .find(candidate => candidate.key === "person.liv.opphor");
+  const forward = row(first, second);
+  const reverse = row(second, first);
+  assert.equal(forward.label, "Opphørsalder");
+  assert.match(forward.first.text, /Ut forsikringsåret/);
+  assert.match(forward.second.text, /første hovedforfall/);
+  assert.deepEqual(forward.first, reverse.second);
+  assert.deepEqual(forward.second, reverse.first);
 });

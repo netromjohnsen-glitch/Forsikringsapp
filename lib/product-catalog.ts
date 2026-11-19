@@ -32,7 +32,7 @@ import { storebrandReiseAddOns, storebrandReiseFacts, storebrandReiseProducts, s
 import { gjensidigeReiseAddOns, gjensidigeReiseFacts, gjensidigeReiseProducts, gjensidigeReiseSources } from "./gjensidige-reise-catalog.ts";
 import { fremtindReiseAddOns, fremtindReiseFacts, fremtindReiseProducts, fremtindReiseSources } from "./fremtind-reise-catalog.ts";
 import { frendeReiseAddOns, frendeReiseFacts, frendeReiseProducts, frendeReiseSources } from "./frende-reise-catalog.ts";
-import { personInsuranceFacts, personInsuranceProducts, personInsuranceSources } from "./person-insurance-catalog.ts";
+import { personInsuranceAddOns, personInsuranceFacts, personInsuranceProducts, personInsuranceSources } from "./person-insurance-catalog.ts";
 import { personInsuranceTypes } from "./person-insurance-registry.ts";
 import { cabinAddOns, cabinFacts, cabinProducts, cabinSources } from "./private-cabin-catalog.ts";
 import { valuablesFacts, valuablesProducts, valuablesSources } from "./private-valuables-catalog.ts";
@@ -132,7 +132,7 @@ export const productCatalog: ProductCatalog = {
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
     ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns,
     ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns, ...mcBobilAddOns, ...boatPetAddOns,
-    ...cabinAddOns, ...newMotorHomeAddOns],
+    ...cabinAddOns, ...newMotorHomeAddOns, ...personInsuranceAddOns],
   sources: { ...boatPetSources, ...mcBobilSources, ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,

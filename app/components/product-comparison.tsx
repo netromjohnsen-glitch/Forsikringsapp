@@ -103,8 +103,10 @@ function ProductSelector({
   const selectedProduct = products.find((product) => catalogProductIdentity(product) === selection.productIdentity);
   const sourceId = selectedProduct?.sourceId;
   const terms = sourceId?.startsWith("person:")
-    ? Object.values(productCatalog.sources ?? {}).filter((source) =>
-      (source.id === sourceId || source.id.startsWith(`${sourceId}:`)) && source.url)
+    ? [...new Map(Object.values(productCatalog.sources ?? {})
+      .filter((source) => source.url && (source.id === sourceId ||
+        source.id.startsWith(`${sourceId}:`) && !source.id.startsWith(`${sourceId}:tillegg:`)))
+      .map((source) => [source.url, source])).values()]
     : [];
 
   function update(next: Selection) {

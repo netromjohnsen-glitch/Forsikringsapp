@@ -211,7 +211,9 @@ export function productComparisonView(
     const id = groupIdentity(type, row);
     let group = section.groups.find((candidate) => candidate.id === id);
     if (!group) {
-      group = { id, label: id.endsWith(".avtale") ? "Avtalevilkår" : groupLabels[id] ?? row.label.split(" – ")[0], rows: [], models: [], details: { first: [], second: [] } };
+      const label = id === "person" ? section.label
+        : id.endsWith(".avtale") ? "Avtalevilkår" : groupLabels[id] ?? row.label.split(" – ")[0];
+      group = { id, label, rows: [], models: [], details: { first: [], second: [] } };
       section.groups.push(group);
     }
     if (type === "bil" && /^maskinskade\.(?:egenandel(?:\.|$)|fradrag$)/u.test(row.key)) {
