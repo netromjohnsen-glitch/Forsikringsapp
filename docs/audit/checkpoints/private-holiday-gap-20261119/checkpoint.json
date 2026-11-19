@@ -1,0 +1,70 @@
+{
+  "asOf": "2026-11-19",
+  "authorization": "scope.json",
+  "evidence": "source-review.json",
+  "testedBase": "dd626256f133bd24558b3e84ff597fa226c2db12",
+  "deployedRevision": "8bfc5906cb4cae6a451b5c1c9f455920e3fb5088",
+  "deploymentId": "7234214f-0aa6-4cb7-a806-5064488815da",
+  "changes": [
+    "Ni Tryg Bil-vilkår har klikkbare originalkilder med fysisk PDF-side. Henvisningene for tyveri, glass og veihjelp i Kasko er avstemt mot gjeldende Kasko-PDF.",
+    "Tryg Bil-sammenligningen dokumenterer geografi, rettshjelp, bonus og reparasjonsgaranti med aktuelle vilkår.",
+    "20 punkter oppdatert i sju eksisterende ordinære privatvarianter fra Landkreditt, WaterCircles og Gjensidige.",
+    "Åtte ordinære alternativer for innbo i fritidsbolig, to hver fra Gjensidige, Storebrand, Tryg og WaterCircles."
+  ],
+  "privateProductsVerified": 18,
+  "newPrivateHolidayContents": [
+    {
+      "company": "Storebrand",
+      "name": "Standard",
+      "productId": "sb-innbo-fritidsbolig-standard"
+    },
+    {
+      "company": "Storebrand",
+      "name": "Super",
+      "productId": "sb-innbo-fritidsbolig-super"
+    },
+    {
+      "company": "Gjensidige",
+      "name": "Innbo Hytte",
+      "productId": "gjensidige-innbo-hytte"
+    },
+    {
+      "company": "Gjensidige",
+      "name": "Innbo Hytte Pluss",
+      "productId": "gjensidige-innbo-hytte-pluss"
+    },
+    {
+      "company": "WaterCircles",
+      "name": "Standard",
+      "productId": "watercircles-innbo-fritidsbolig-standard"
+    },
+    {
+      "company": "WaterCircles",
+      "name": "Elite",
+      "productId": "watercircles-innbo-fritidsbolig-elite"
+    },
+    {
+      "company": "Tryg",
+      "name": "Innbo",
+      "productId": "tryg-innbo-fritidsbolig-standard"
+    },
+    {
+      "company": "Tryg",
+      "name": "Innbo Ekstra",
+      "productId": "tryg-innbo-fritidsbolig-ekstra"
+    }
+  ],
+  "scopeDecisions": [
+    "De to Tryg-alternativene for innbo i fritidsbolig kjøpes sammen med hytteforsikringen hos Tryg.",
+    "WaterCircles Standard bruker sykkeltyverigrensen i fullvilkåret WtCIBF 1.05, side 4 (20 000 kr). Produktsiden oppgir 15 000 kr.",
+    "Kandidaten endrer bare markedsdata og arkivhenvisninger for ordinære privatprodukter. Kataloggrunnlag og søk for NITO er utenfor oppdraget."
+  ],
+  "gates": {
+    "nodeTestsPassed": 7276,
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "webpack": "PASS",
+    "localPdfArchives": 24,
+    "live": "production-verification.json"
+  }
+}
