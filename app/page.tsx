@@ -54,6 +54,7 @@ const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Hytte", "Verdisak", "Reise"
 
 export default function Home() {
   const [comparisonMode, setComparisonMode] = useState<"agreements" | "products">("agreements");
+  const [personInsuranceFirst, setPersonInsuranceFirst] = useState(false);
   const [existingFiles, setExistingFiles] = useState<File[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [existingMode, setExistingMode] = useState<"pdf" | "manual">("pdf");
@@ -74,6 +75,12 @@ export default function Home() {
     generation.current.next(); activeRequest.current?.abort(); activeRequest.current = null;
     traceRequest.current?.abort(); traceRequest.current = null;
     setProgress(emptyProgress()); setPartial(null);
+  }
+
+  function openProductComparison(personFirst = false) {
+    cancelAnalysis();
+    setPersonInsuranceFirst(personFirst);
+    setComparisonMode("products");
   }
 
   function addFiles(side: "existing" | "offer", newFiles: FileList | null) {
@@ -206,7 +213,7 @@ export default function Home() {
             <button
               type="button"
               aria-pressed={comparisonMode === "products"}
-              onClick={() => { cancelAnalysis(); setComparisonMode("products"); }}
+              onClick={() => openProductComparison()}
               className={`mode-button rounded-lg px-4 py-2 text-sm font-semibold ${comparisonMode === "products" ? "mode-button-active" : ""}`}
             >
               Sammenlign produkter
@@ -215,9 +222,18 @@ export default function Home() {
           <p className="body-copy mt-2 text-sm">{comparisonMode === "agreements"
             ? "Sammenlign kundens forsikringer og tilbud."
             : "Sammenlign produktdekninger direkte fra den kildebelagte katalogen."}</p>
+          {comparisonMode === "agreements" && (
+            <button
+              type="button"
+              className="text-link mt-2 rounded text-sm font-medium underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2"
+              onClick={() => openProductComparison(true)}
+            >
+              Sammenlign personforsikringer
+            </button>
+          )}
         </div>
 
-        {comparisonMode === "products" ? <ProductComparisonWorkspace /> : <>
+        {comparisonMode === "products" ? <ProductComparisonWorkspace personInsuranceFirst={personInsuranceFirst} /> : <>
         <div className="surface-card rounded-2xl border p-5 sm:p-8">
           <h2 className="section-title text-xl font-semibold">Ny sammenligning</h2>
           <p className="body-copy mt-2">

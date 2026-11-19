@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { agreementScopeDisplayName } from "@/lib/provider-presentation";
 import { catalogAgreementScope } from "@/lib/agreement-scope";
+import { personInsuranceTypes } from "@/lib/person-insurance-registry";
 import { catalogProductIdentity, productCatalog, type CatalogProduct } from "@/lib/product-catalog";
 import {
   compareCatalogProducts,
@@ -99,6 +100,12 @@ function ProductSelector({
     ? productComparisonOptions(insuranceType, selection.company, selectedScope || null)
     : [];
   const showScope = scopes.some((scope) => scope.id !== "ordinary") || scopes.length > 1;
+  const selectedProduct = products.find((product) => catalogProductIdentity(product) === selection.productIdentity);
+  const sourceId = selectedProduct?.sourceId;
+  const terms = sourceId?.startsWith("person:")
+    ? Object.values(productCatalog.sources ?? {}).filter((source) =>
+      (source.id === sourceId || source.id.startsWith(`${sourceId}:`)) && source.url)
+    : [];
 
   function update(next: Selection) {
     onInvalidate();
@@ -154,6 +161,13 @@ function ProductSelector({
             </option>)}
           </select>
         </label>
+        {terms.length > 0 && <ul aria-label={`Vilkår for produkt ${side}`} className="space-y-1 text-sm">
+          {terms.map((source) => <li key={source.id}>
+            <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">
+              Åpne vilkår (PDF){source.termsNumber ? ` · ${source.termsNumber}` : ""}
+            </a>
+          </li>)}
+        </ul>}
       </div>
     </fieldset>
   );
@@ -255,8 +269,19 @@ function ProductResult({ result }: { result: CatalogProductComparison }) {
   );
 }
 
-export function ProductComparisonWorkspace() {
-  const insuranceTypes = useMemo(() => productComparisonInsuranceTypes(), []);
+function focusInsuranceType(select: HTMLSelectElement | null) {
+  select?.focus();
+}
+
+export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { personInsuranceFirst?: boolean }) {
+  const insuranceTypeGroups = useMemo(() => {
+    const types = productComparisonInsuranceTypes();
+    const personTypes = new Set<string>(personInsuranceTypes);
+    return [
+      { label: "Skadeforsikringer", types: types.filter(type => !personTypes.has(type)) },
+      { label: "Personforsikringer", types: types.filter(type => personTypes.has(type)) },
+    ];
+  }, []);
   const [insuranceType, setInsuranceType] = useState("");
   const [first, setFirst] = useState<Selection>(emptySelection);
   const [second, setSecond] = useState<Selection>(emptySelection);
@@ -291,6 +316,7 @@ export function ProductComparisonWorkspace() {
         <label className="mt-6 block max-w-md text-sm font-medium text-gray-700">
           Forsikringstype
           <select
+            ref={personInsuranceFirst ? focusInsuranceType : undefined}
             value={insuranceType}
             onChange={(event) => {
               setInsuranceType(event.target.value);
@@ -301,7 +327,11 @@ export function ProductComparisonWorkspace() {
             className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
           >
             <option value="">Velg forsikringstype</option>
-            {insuranceTypes.map((type) => <option key={type} value={type}>{type}</option>)}
+            {(personInsuranceFirst ? [...insuranceTypeGroups].reverse() : insuranceTypeGroups).map(({ label, types }) => (
+              <optgroup key={label} label={label}>
+                {types.map((type) => <option key={type} value={type}>{type}</option>)}
+              </optgroup>
+            ))}
           </select>
         </label>
 

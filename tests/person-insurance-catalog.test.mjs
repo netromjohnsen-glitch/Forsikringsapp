@@ -16,12 +16,14 @@ const option = (company, type, name) => {
   return result;
 };
 
-test("all six existing insurers have selectable accident, child and critical illness products", () => {
-  for (const type of ["Ulykke", "Barn", "Kritisk sykdom"]) {
-    assert.deepEqual(new Set(productComparisonProviders(type)), new Set([
-      "Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende",
-    ]));
+test("all nine existing insurers have selectable person products where public terms are available", () => {
+  const providers = ["Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende", "KLP", "Landkreditt"];
+  assert.deepEqual(new Set(productComparisonProviders("Ulykke")), new Set([...providers, "WaterCircles"]));
+  for (const type of ["Barn", "Kritisk sykdom"]) {
+    assert.deepEqual(new Set(productComparisonProviders(type)), new Set(providers));
   }
+  assert.deepEqual(productComparisonOptions("Liv", "WaterCircles", ordinary), []);
+  assert.deepEqual(productComparisonOptions("Behandling", "WaterCircles", ordinary), []);
   assert.deepEqual(productComparisonOptions("Liv", "Tryg", ordinary), []);
   assert.deepEqual(productComparisonOptions("Behandling", "Frende", ordinary), []);
   assert.equal(productComparisonOptions("Liv", "Fremtind", ordinary).length, 1);
@@ -100,6 +102,41 @@ test("child accident payouts and treatment deadlines align only with the same be
   const firstTreatment = rows.find(row => row.key === "person.behandling.forste_behandling");
   assert.equal(firstTreatment.first.state, "unknown");
   assert.match(firstTreatment.second.text, /10 virkedager/u);
+});
+
+test("new insurers align like-for-like benefits and preserve variant-specific sources", () => {
+  const accident = compareCatalogProducts(
+    option("KLP", "Ulykke", "Fritidsulykke Maks"),
+    option("WaterCircles", "Ulykke", "Ulykkesforsikring"),
+  ).sections.flatMap(section => section.rows);
+  const progressive = accident.find(row => row.key === "person.ulykke.progressiv");
+  assert.match(progressive.first.text, /140 %/);
+  assert.match(progressive.second.text, /Avtalt dobbel erstatning/);
+  const expenses = accident.find(row => row.key === "person.ulykke.utgifter");
+  assert.match(expenses.first.text, /tre årene/);
+  assert.match(expenses.second.text, /to årene/);
+  assert.equal(expenses.first.sources[0].page, 2);
+  assert.equal(expenses.second.sources[0].termsNumber, "WtCULY-2.12");
+
+  const children = compareCatalogProducts(
+    option("KLP", "Barn", "Barn Maks"),
+    option("Landkreditt", "Barn", "Barneulykke"),
+  ).sections.flatMap(section => section.rows);
+  const pension = children.find(row => row.key === "person.barn.uforepensjon");
+  assert.equal(pension.first.sources[0].filename, "klp-person-barn-maks.pdf");
+  assert.equal(pension.second.state, "unknown");
+  const death = children.find(row => row.key === "person.barn.ulykkesdodsfall");
+  assert.equal(death.first.state, "unknown");
+  assert.match(death.second.text, /begravelsesutgifter/);
+
+  const health = compareCatalogProducts(
+    option("Landkreditt", "Behandling", "Helseforsikring – privat"),
+    option("Gjensidige", "Behandling", "Behandlingsforsikring"),
+  ).sections.flatMap(section => section.rows);
+  assert.equal(health.find(row => row.key === "person.behandling.ventetid").first.state, "unknown");
+  const firstCare = health.find(row => row.key === "person.behandling.forste_helsehjelp");
+  assert.match(firstCare.first.text, /10 virkedager/);
+  assert.equal(firstCare.second.state, "unknown");
 });
 
 test("manual product selection resolves the chosen person's product facts and preserves price input", () => {

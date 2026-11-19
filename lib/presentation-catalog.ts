@@ -194,6 +194,8 @@ const personInsurancePresentationConcepts: readonly PresentationConcept[] = [
     "primary", ["economic-risk", "misunderstanding-risk"]),
   concept("barn.ufore", "barn", "Utbetaling ved arbeidsuførhet", [/^person\.barn\.ufore(?:pensjon|kapital)(?:\.|$)/u],
     "primary", ["economic-risk", "misunderstanding-risk"]),
+  concept("barn.andre-ytelser", "barn", "Dødsfall, sykehus og omsorg", [/^person\.barn\.(?:dodsfall|sykehus|hjelpestonad|boligtilpasning)(?:\.|$)/u],
+    "secondary", ["economic-risk"]),
   concept("liv.dodsfall", "liv", "Utbetaling ved dødsfall", [/^person\.liv\./u],
     "primary", ["economic-risk"]),
   concept("uføre.pensjon", "uføre", "Løpende uføreytelser og forskudd", [/^person\.ufore\.(?:pensjon|forskudd)(?:\.|$)/u],

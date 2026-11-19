@@ -25,6 +25,13 @@ const factKinds = {
   gravidDiagnose: { key: "person.gravid.medfodt", label: "Engangsutbetaling ved medfødt diagnose" },
   gravidSykehus: { key: "person.gravid.sykehus", label: "Utbetaling ved sykehusinnleggelse" },
   senior: { key: "person.senior.utbetaling", label: "Økonomisk førstehjelp" },
+  ulykkeUtgifter: { key: "person.ulykke.utgifter", label: "Behandlings- og reiseutgifter etter ulykke" },
+  ulykkeProgressiv: { key: "person.ulykke.progressiv", label: "Forhøyet erstatning ved høy medisinsk invaliditet" },
+  forsteHelsehjelp: { key: "person.behandling.forste_helsehjelp", label: "Frist for første konsultasjon, undersøkelse eller behandling" },
+  barnDodsfall: { key: "person.barn.dodsfall", label: "Utbetaling ved dødsfall etter ulykke eller sykdom" },
+  barnSykehus: { key: "person.barn.sykehus", label: "Dagpenger ved sykehusopphold" },
+  barnHjelpestonad: { key: "person.barn.hjelpestonad", label: "Utvidet hjelpestønad" },
+  barnBoligtilpasning: { key: "person.barn.boligtilpasning", label: "Tilpasning av bolig" },
 } as const;
 
 type PersonTerms = {
@@ -286,6 +293,66 @@ const terms: Record<string, PersonTerms> = {
     sha256: "07378f212e91a26e5644ceef4a7ba791b89157bdf48b263dbade863e2ad3f7e7", pages: 5,
     edition: "2023-05-11", effectiveFrom: "2023-05-11",
   },
+  "klp-person": {
+    url: "https://www.klp.no/media/forsikring/Person.pdf",
+    sha256: "fcc376aa9893e93eefc16cd6f51edb4cf5172c06e5f30a812e8067852eea9578", pages: 12, effectiveFrom: "",
+  },
+  "klp-barn": {
+    url: "https://www.klp.no/media/forsikring/Vilkar-Barn.pdf",
+    sha256: "926a83c1dff441d67a9935f3cb14bc05b66bddf17e58c3997495a0582ce95c24", pages: 13, effectiveFrom: "",
+  },
+  "klp-barn-maks": {
+    url: "https://www.klp.no/media/forsikring/Barn.pdf",
+    sha256: "4da1838db9ed82b6c61a1ae2680bf25b66aaf7703ad59f8e584f1ff77970ca72", pages: 14, effectiveFrom: "",
+  },
+  "klp-ulykke": {
+    url: "https://www.klp.no/media/forsikring/Fritidsulykke.pdf",
+    sha256: "cdb43a3c88587ac2a3410b7c95b4e30c04e9a28c8809ea71dd587691584d9fb9", pages: 9, effectiveFrom: "",
+  },
+  "klp-spedbarn": {
+    url: "https://www.klp.no/media/forsikring/Spedbarn.pdf",
+    sha256: "e9def937338d086e1ea778af4bdba91743a14e551291ad6f10c4f3bc1a488aeb", pages: 6, effectiveFrom: "",
+  },
+  "landkreditt-barn": {
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-barn-og-ungdom.pdf",
+    sha256: "1c7f6359a6e6ad04282cd163fbeecbf701e84ba471beb935d0d0d6efa780c295", pages: 14,
+    edition: "2022-10-01", effectiveFrom: "2022-10-01",
+  },
+  "landkreditt-barneulykke": {
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-barneulykke.pdf",
+    sha256: "fa561614461c88d8f3f7e4331821620473715fea7583a65fdb0b9849a0cb5735", pages: 9,
+    edition: "2022-10-01", effectiveFrom: "2022-10-01",
+  },
+  "landkreditt-behandling": {
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-helse-privat.pdf",
+    sha256: "6b5bea18bf81010167927c23f001476bdaf69e40dbeb8c75b3a3868604104224", pages: 9,
+    edition: "2026-07-01", effectiveFrom: "2026-07-01",
+  },
+  "landkreditt-kritisk-sykdom": {
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-kritisk-sykdom.pdf",
+    sha256: "cfc9347a4f3b4622990224796e732177224113cb22bbc9543b612a86c731a728", pages: 10,
+    edition: "2022-10-01", effectiveFrom: "2022-10-01",
+  },
+  "landkreditt-liv": {
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-dodsfall.pdf",
+    sha256: "8ccc2c8e190800863399c0afb3d1d016068af52cb6f3651030161eef5e0a3a62", pages: 6,
+    edition: "2026-05-01", effectiveFrom: "2026-05-01",
+  },
+  "landkreditt-ufore": {
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-ufore.pdf",
+    sha256: "7fd8493f1235f04bc55b4261beb68c143fdb6269bc06be746bdbd9fed23368c7", pages: 6,
+    edition: "2022-10-01", effectiveFrom: "2022-10-01",
+  },
+  "landkreditt-ulykke": {
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-ulykke.pdf",
+    sha256: "d0b93d49ad08a2b8d061f58a5567a0397a396fa01ffa8c115c1b2b546fb5322f", pages: 9,
+    edition: "2025-03-01", effectiveFrom: "2025-03-01",
+  },
+  "watercircles-ulykke": {
+    url: "https://www.watercircles.no/wp-content/uploads/2024/11/WaterCircles-Ulykke-vilkar-WtCULY-2.12-01.01.25.pdf",
+    sha256: "b4009fd2de1abee7985ecce5860e81a635030270aa7f75b4e4ee733181a3f8d6", pages: 7,
+    edition: "WtCULY-2.12", effectiveFrom: "2025-01-01",
+  },
 };
 
 type PersonFactDefinition = {
@@ -305,6 +372,56 @@ type PersonProductDefinition = {
   document: string;
   facts: readonly PersonFactDefinition[];
 };
+
+const klpAccidentFacts: readonly PersonFactDefinition[] = [
+  {
+    kind: "ulykke", page: 1, section: "Varig medisinsk invaliditet", conditional: true,
+    value: "Varig medisinsk invaliditet etter en dekket fritidsulykke kan gi erstatning når dekningen fremgår av forsikringsbeviset.",
+  },
+  {
+    kind: "dodsulykke", page: 5, section: "Dødsfall", conditional: true,
+    value: "Når dødsfalldekning står i forsikringsbeviset, kan dødsfall innen ett år etter ulykkesskaden gi erstatning. Fra fylte 70 år er summen begrenset til 100 000 kr.",
+  },
+  {
+    kind: "ulykkeUtgifter", page: 2, section: "Behandlingsutgifter",
+    value: "Avtalte behandlings- og reiseutgifter i Norge de første tre årene etter ulykken. Vilkårene har en særregel for utsatt permanent tannbehandling for barn.",
+  },
+];
+
+const klpChildFacts: readonly PersonFactDefinition[] = [
+  {
+    kind: "barnUlykke", page: 1, section: "Medisinsk invaliditet",
+    value: "Engangsutbetaling ved varig medisinsk invaliditet etter dekket ulykkesskade i avtaleperioden. Forsikringsbeviset angir maksimal sum.",
+  },
+  {
+    kind: "barnKapital", page: 5, section: "Erstatningsbestemmelser – varig arbeidsuførhet",
+    value: "Engangsutbetaling ved minst 50 % vedvarende arbeidsuførhet i minst to år når uførheten vurderes som varig. Utbetaling tidligst fra fylte 18 år.",
+  },
+  {
+    kind: "barnDiagnose", page: 2, section: "Alvorlige sykdommer (s. 2–3)",
+    value: "Engangsutbetaling for en av de oppførte alvorlige sykdommene når den konstateres i avtaleperioden.",
+  },
+  {
+    kind: "barnUtgifter", page: 3, section: "Behandlingsutgifter",
+    value: "Rimelige og nødvendige behandlings- og reiseutgifter i inntil tre år etter en ulykke, når NAV ikke dekker dem. Forsikringsbeviset angir maksimal sum.",
+  },
+  {
+    kind: "barnDodsfall", page: 3, section: "Dødsfall",
+    value: "Avtalt engangsbeløp dersom barnet dør som følge av en ulykke eller sykdom i avtaleperioden.",
+  },
+  {
+    kind: "barnSykehus", page: 2, section: "Dagpenger ved barns sykehusopphold",
+    value: "Avtalte dagpenger ved minst ti sammenhengende dager på et offentlig godkjent sykehus i Norden.",
+  },
+  {
+    kind: "barnHjelpestonad", page: 2, section: "Utvidet hjelpestønad",
+    value: "Engangsutbetaling når sykdom eller ulykke gir økt pleie- og omsorgsbehov før fylte 18 år og rett til forhøyet hjelpestønad fra NAV ved sats 2, 3 eller 4.",
+  },
+  {
+    kind: "barnBoligtilpasning", page: 2, section: "Tilpasning av bolig",
+    value: "Engangsutbetaling ved nødvendig ombygging av boligen etter dekket sykdom eller ulykke, begrenset til avtalt forsikringssum.",
+  },
+];
 
 const providers: readonly {
   company: string;
@@ -948,6 +1065,207 @@ const providers: readonly {
           {
             kind: "barnDodsulykke", page: 5, section: "§ 10",
             value: "Ved dødsfall i forsikringstiden som følge av ulykke utbetales et engangsbeløp på 1 G.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    providerId: "klp", company: "KLP",
+    products: [
+      {
+        id: "ulykke", type: "Ulykke", name: "Fritidsulykke", document: "ulykke",
+        facts: klpAccidentFacts,
+      },
+      {
+        id: "ulykke-maks", type: "Ulykke", name: "Fritidsulykke Maks", document: "ulykke",
+        facts: [...klpAccidentFacts, {
+          kind: "ulykkeProgressiv", page: 4, section: "Høyere erstatning ved medisinsk invaliditetsgrad over 50 %",
+          value: "Ved invaliditetsgrad over 50 % legges det dobbelte av den overskytende prosentsatsen til invaliditetsgraden. Ved 80 % invaliditet gir beregningen 140 % av forsikringssummen.",
+        }],
+      },
+      {
+        id: "barn", type: "Barn", name: "Barn", document: "barn",
+        facts: klpChildFacts,
+      },
+      {
+        id: "barn-maks", type: "Barn", name: "Barn Maks", document: "barn-maks",
+        facts: [...klpChildFacts, {
+          kind: "barnPensjon", page: 8, section: "Erstatningsbestemmelsene for uførepensjon (s. 8–9)",
+          value: "Månedlig uførepensjon ved minst 50 % sammenhengende arbeidsuførhet i mer enn 12 måneder. Tidligst fra fylte 18 år og senest til fylte 67 år, med vilkår om at forsikringen er i kraft frem til uførheten er fastsatt.",
+        }],
+      },
+      {
+        id: "spedbarn", type: "Barn", name: "Spedbarnsforsikring", document: "spedbarn",
+        facts: [
+          {
+            kind: "barnUlykke", page: 1, section: "Ulykkesskader – medisinsk invaliditet",
+            value: "Engangsutbetaling etter varig medisinsk invaliditet fra en dekket ulykke i spedbarnsperioden. Forsikringen opphører seks måneder etter avtaleinngåelse og senest når barnet er ni måneder.",
+          },
+          {
+            kind: "barnUtgifter", page: 1, section: "Ulykkesskader – behandlingsutgifter",
+            value: "Nødvendige og rimelige behandlingsutgifter som ikke dekkes fra annet hold, inntil summen i forsikringsbeviset.",
+          },
+          {
+            kind: "barnDodsulykke", page: 1, section: "Ulykkesskader – dødsfall",
+            value: "Engangsutbetaling med avtalt sum dersom barnet dør etter en ulykkesskade i forsikringstiden.",
+          },
+        ],
+      },
+      {
+        id: "liv", type: "Liv", name: "Livsforsikring", document: "person",
+        facts: [{
+          kind: "liv", page: 1, section: "Dødsfall",
+          value: "Avtalt engangsbeløp ved dødsfall, uansett årsak. Erstatningen tilfaller den begunstigede hvis en er oppnevnt, ellers ektefelle eller arvinger etter reglene i vilkårene.",
+        }],
+      },
+      {
+        id: "ufore", type: "Uføre", name: "Uføreforsikring", document: "person",
+        facts: [{
+          kind: "pensjon", page: 2, section: "Uførepensjon",
+          value: "Månedlig utbetaling etter minst 50 % sammenhengende arbeidsuførhet utover en karenstid på 12 måneder. Det gis premiefritak mens uførepensjonen utbetales.",
+        }],
+      },
+      {
+        id: "alvorlige-sykdommer", type: "Kritisk sykdom", name: "Alvorlige sykdommer", document: "person",
+        facts: [{
+          kind: "sykdom", page: 1, section: "Alvorlige sykdommer",
+          value: "Avtalt engangsbeløp når en oppført sykdom blir konstatert i forsikringstiden. Sykdom regnes som konstatert ved første legediagnose, med særskilte diagnosekrav i oppgjørsreglene.",
+        }],
+      },
+    ],
+  },
+  {
+    providerId: "landkreditt", company: "Landkreditt",
+    products: [
+      {
+        id: "ulykke", type: "Ulykke", name: "Ulykkesforsikring", document: "ulykke",
+        facts: [
+          {
+            kind: "ulykke", page: 3, section: "§§ 3.1 og 4.1 (s. 3–4)",
+            value: "Erstatning ved varig medisinsk invaliditet etter en dekket ulykke, tidligst ett år etter skadedato. Avtalt sum utbetales ved 100 % invaliditet og forholdsmessig ved lavere grad.",
+          },
+          {
+            kind: "ulykkeUtgifter", page: 4, section: "§ 4.2 (s. 4–5)",
+            value: "Rimelige og nødvendige behandlings- og reiseutgifter i de tre første årene etter en dekket ulykke kan refunderes. Egenandel 600 kr per ulykkestilfelle og øvre grense etter forsikringsbeviset.",
+          },
+          {
+            kind: "dodsulykke", page: 5, section: "§ 4.3", conditional: true,
+            value: "Når dødsfallstillegget er avtalt, kan det gis erstatning ved dødsfall innen ett år som følge av ulykkesskaden. Forskuddsbetalt invaliditetserstatning trekkes fra.",
+          },
+        ],
+      },
+      {
+        id: "liv", type: "Liv", name: "Livsforsikring", document: "liv",
+        facts: [{
+          kind: "liv", page: 3, section: "§ 4",
+          value: "Forsikringssummen i forsikringsbeviset utbetales som et engangsbeløp hvis forsikrede dør i forsikringstiden.",
+        }],
+      },
+      {
+        id: "ufore", type: "Uføre", name: "Uføreforsikring", document: "ufore",
+        facts: [{
+          kind: "kapital", page: 5, section: "§ 7.2, jf. § 3 (s. 3)",
+          value: "Engangsutbetaling etter minst 50 % sammenhengende arbeidsuførhet i minst to år, når arbeidsuførheten vurderes som minst 50 % varig. Sykdommen eller ulykken må ha inntruffet i forsikringstiden.",
+        }],
+      },
+      {
+        id: "kritisk", type: "Kritisk sykdom", name: "Kritisk sykdom", document: "kritisk-sykdom",
+        facts: [{
+          kind: "sykdom", page: 3, section: "§§ 4, 5.3 og 6",
+          value: "Engangsutbetaling ved en oppført diagnose eller operasjon som oppfyller vilkårene. Forsikrede må være i live 30 dager etter endelig diagnose eller gjennomført operasjon. Kritisk sykdom som skyldes ulykke er unntatt.",
+        }],
+      },
+      {
+        id: "behandling", type: "Behandling", name: "Helseforsikring – privat", document: "behandling",
+        facts: [
+          {
+            kind: "behandling", page: 4, section: "§ 7, jf. §§ 6.2–6.3 (s. 3–4)",
+            value: "Medisinsk nødvendig utredning eller behandling i privat spesialisthelsetjeneste i Norge når det offentlige ikke tilbyr nødvendig time innen garantifristen. Konsultasjon, undersøkelse og behandling krever skriftlig forhåndsgodkjenning fra Falck.",
+          },
+          {
+            kind: "forsteHelsehjelp", page: 4, section: "§ 6.3", conditional: true,
+            value: "10 virkedager fra Falck mottar gyldig henvisning og signert samtykke til konsultasjon, undersøkelse eller behandling i Norge. Garantien gjelder første henvisning for forsikringstilfellet, med oppgitte unntak.",
+          },
+        ],
+      },
+      {
+        id: "barn", type: "Barn", name: "Barne- og ungdomsforsikring", document: "barn",
+        facts: [
+          {
+            kind: "barnUlykke", page: 3, section: "§ 4.1.1",
+            value: "Varig medisinsk invaliditet etter dekket ulykke gir utbetaling etter invaliditetsgraden. Forsikringsbeviset angir summen ved 100 % invaliditet.",
+          },
+          {
+            kind: "barnUtgifter", page: 5, section: "§ 5.2 (s. 5–6)",
+            value: "Rimelige og nødvendige behandlings- og reiseutgifter i de tre første årene etter en dekket ulykke kan refunderes. Egenandel 600 kr per ulykkestilfelle og øvre grense etter forsikringsbeviset.",
+          },
+          {
+            kind: "barnDodsulykke", page: 6, section: "§ 5.3",
+            value: "Dødsfallserstatning til begravelsesutgifter ved dødsfall innen ett år som følge av ulykkesskaden.",
+          },
+          {
+            kind: "barnKapital", page: 4, section: "§ 4.2.1",
+            value: "Engangsutbetaling etter minst 50 % sammenhengende arbeidsuførhet i minst to år når minst 50 % varig arbeidsuførhet er fastslått. Tidligst fra fylte 18 år. Sykdommen eller ulykken må ha inntruffet i forsikringstiden.",
+          },
+          {
+            kind: "barnDiagnose", page: 4, section: "§ 4.2.2",
+            value: "Erstatning for oppførte diagnoser eller gjennomført transplantasjon når vilkårene er oppfylt og forsikrede er i live etter 30 dager.",
+          },
+          {
+            kind: "barnSykehus", page: 9, section: "§ 6.5",
+            value: "Ved minst ti sammenhengende dager på offentlig godkjent sykehus i Norden gis dagpenger fra første dag, i inntil 365 dager for samme sykdom eller ulykke.",
+          },
+          {
+            kind: "barnHjelpestonad", page: 9, section: "§ 6.6",
+            value: "Utvidet hjelpestønad i inntil fem år når folketrygden har innvilget hjelpestønad og forsikringen fortsatt er i kraft. Stønadssatsen styrer utbetalingen, og beløpsgrensen per år står i forsikringsbeviset.",
+          },
+          {
+            kind: "barnBoligtilpasning", page: 9, section: "§ 6.7 (s. 9–10)",
+            value: "Engangsdekning for nødvendige, rimelige utgifter til boligtilpasning etter dekket sykdom eller ulykkesskade. Ombyggingen må forhåndsgodkjennes og dokumenteres med kostnadsoverslag og anbefaling fra helsepersonell.",
+          },
+        ],
+      },
+      {
+        id: "barn-ulykke", type: "Barn", name: "Barneulykke", document: "barneulykke",
+        facts: [
+          {
+            kind: "barnUlykke", page: 3, section: "§§ 3.1 og 4.1",
+            value: "Varig medisinsk invaliditet etter dekket ulykke gir utbetaling etter invaliditetsgraden, tidligst ett år etter skadedato. Forsikringsbeviset angir summen ved 100 % invaliditet.",
+          },
+          {
+            kind: "barnUtgifter", page: 4, section: "§ 4.2 (s. 4–5)",
+            value: "Rimelige og nødvendige behandlings- og reiseutgifter i de tre første årene etter en dekket ulykke kan refunderes. Egenandel 600 kr per ulykkestilfelle og øvre grense etter forsikringsbeviset.",
+          },
+          {
+            kind: "barnDodsulykke", page: 5, section: "§ 4.3",
+            value: "Dødsfallserstatning til begravelsesutgifter ved dødsfall innen ett år som følge av ulykkesskaden.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    providerId: "watercircles", company: "WaterCircles",
+    products: [
+      {
+        id: "ulykke", type: "Ulykke", name: "Ulykkesforsikring", document: "ulykke",
+        facts: [
+          {
+            kind: "ulykke", page: 5, section: "§ 5.1", conditional: true,
+            value: "Når invaliditetsdekning er avtalt, beregnes erstatningen etter varig medisinsk invaliditetsgrad.",
+          },
+          {
+            kind: "ulykkeProgressiv", page: 5, section: "§ 5.1", conditional: true,
+            value: "Avtalt dobbel erstatning gir dobbel utbetaling fra 51 % medisinsk invaliditet. Tillegget opphører ved utløpet av forsikringsåret den forsikrede fyller 70 år.",
+          },
+          {
+            kind: "ulykkeUtgifter", page: 5, section: "§ 5.2", conditional: true,
+            value: "Ved avtalt invaliditetsdekning kan nødvendige behandlings- og reiseutgifter i Norden dekkes de første to årene etter ulykken, med inntil 5 % av invaliditetssummen og en egenandel på 2 500 kr per ulykkesskade.",
+          },
+          {
+            kind: "dodsulykke", page: 5, section: "§§ 5.3 og 7.2.3 (s. 5 og 7)", conditional: true,
+            value: "Ved avtalt invaliditetsdekning uten egen dødsfallsdekning er summen 50 000 kr. Hvis egen dødsfallsdekning er avtalt, gjelder beløpet i forsikringsbeviset. Ulykken må ha skjedd i forsikringstiden og ført til dødsfall innen to år etter skadedato.",
           },
         ],
       },
