@@ -44,10 +44,38 @@
     "agreementComparison": true
   },
   "publication": {
-    "status": "AWAITING_APPROVAL",
-    "blocked_action": "Direkte publisering til main",
-    "reason": "Automatisk godkjenningskontroll krevde eksplisitt autorisasjon for direkte publisering til den beskyttede hovedgrenen.",
-    "production_verification": "PENDING"
+    "status": "VERIFIED",
+    "date": "2026-11-19T14:01:16+01:00",
+    "branch": "main",
+    "revision": "05305d9905c86d2862cec0ba84a6db31cd546afc",
+    "deployment": "e6c3c221-07ec-46c0-b0f1-d8496e17fff0",
+    "production_browser": {
+      "status": "PASS",
+      "mode": "authenticated UI",
+      "archives": 9,
+      "clicks": [
+        "/api/vilkar/fremtind/bat#page=7",
+        "/api/vilkar/tryg/ipid-bat#page=2",
+        "/api/vilkar/gjensidige/ipid-bat#page=2",
+        "/api/vilkar/storebrand/bat#page=10",
+        "/api/vilkar/storebrand/dyr#page=4",
+        "/api/vilkar/frende/hund#page=5",
+        "/api/vilkar/frende/katt#page=4",
+        "/api/vilkar/gjensidige/ipid-hund#page=1"
+      ],
+      "viewerPages": [
+        7,
+        2,
+        2,
+        10,
+        4,
+        5,
+        4,
+        1
+      ],
+      "agreementComparison": false,
+      "deployment": "e6c3c221-07ec-46c0-b0f1-d8496e17fff0"
+    }
   },
   "tested_files_sha256": {
     "docs/audit/checkpoints/private-policy-pages-20261119/scope.json": "9d1dec1e31a7e0fce781066f14685b939bdc745c46d2201e95939692f4c8a16b",
@@ -76,5 +104,40 @@
     "tests/remediation-b-130-vacancy.test.mjs": "2c0cb64a2cbb05112fde94e7273bd62076c1c809730c0a2c1ebd6c2b398b0d49",
     "tests/remediation-house-health-discount.test.mjs": "63bd879ef42ad86f60b48f092094c32c262f6461b202be004ac9b41d98a8836e",
     "tests/terms-archive.test.mjs": "78a35ea68348cb235c1ed95dd43d92a2819d0fc4608689d0e55fee6e2d50650a"
+  },
+  "integrated_candidate": {
+    "upstream": "eaa35a6004229656ef767ae50a21f0291e548b64",
+    "tested_revision": "05305d9905c86d2862cec0ba84a6db31cd546afc",
+    "test_files": 189,
+    "test_results": {
+      "tests": 7208,
+      "pass": 7208,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "build": {
+      "typescript": "PASS",
+      "eslint_errors": 0,
+      "webpack": "PASS",
+      "archive_trace": "PASS"
+    },
+    "local_browser": {
+      "status": "PASS",
+      "mode": "local",
+      "archives": 9,
+      "clicks": [
+        "/api/vilkar/fremtind/bat#page=7",
+        "/api/vilkar/tryg/ipid-bat#page=2",
+        "/api/vilkar/gjensidige/ipid-bat#page=2",
+        "/api/vilkar/storebrand/bat#page=10",
+        "/api/vilkar/storebrand/dyr#page=4",
+        "/api/vilkar/frende/hund#page=5",
+        "/api/vilkar/frende/katt#page=4",
+        "/api/vilkar/gjensidige/ipid-hund#page=1"
+      ],
+      "agreementComparison": true
+    }
   }
 }
