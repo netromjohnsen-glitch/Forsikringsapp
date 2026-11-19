@@ -1,0 +1,27 @@
+{
+  "asOf": "2026-11-19",
+  "authorization": "scope.json",
+  "evidence": "source-review.json",
+  "testedBase": "d4e22d381ea60a526227223a0837b528f7dd5631",
+  "deployedRevision": "7ed4d9eb02d77ff9faaed9a7815e3f97f9ed05c4",
+  "deploymentId": "0acf33f7-a998-4bf1-bbea-dc645746b95e",
+  "changes": [
+    "Leiebil og maskinskade vises som inkludert i DNB Bobil Topp. DNBs produktoversikt viser pakken. Fremtinds fullvilkår har leiebil på side 1 og maskinskade på side 1 og 2.",
+    "Frende Hund Veterinær oppgir valgfri sum inntil 50 000 kr per skadetilfelle og forsikringsår med gjeldende IPID side 1 og arkivert fullvilkår side 4.",
+    "NITO Reise Enkeltperson bruker offisiell 2026-adresse. Begge kjente adresser åpner samme arkiverte utgave.",
+    "NITO Ulykke Utvidet åpner på side 2 for beløpet ved barns død som følge av ulykke."
+  ],
+  "verificationLimits": [
+    "Frende Hunds offentlige fullvilkårsendepunkt returnerte HTTP 404. Tolken beholder arkivert utgave av 01.01.2026. IPID er fortsatt lenket fra Frende og sammenfaller med innholdet i aktuell oversikt.",
+    "Direkte nedlasting av de sju fullvilkårene hos NITO krevde medlemsinnlogging. Offentlig indeksert innhold og NITOs dokumentoversikt bekrefter oppføringene som angitt i kildebeviset. NITO Behandling Enkel er kontrollert mot gjeldende offentlig IPID, mens fullvilkår finnes på Min side.",
+    "Bobil Topp-pakken er definert fra DNBs offentlige kjøpsoversikt. Kundens forsikringsbevis viser hvilke vilkår som gjelder for den aktuelle avtalen."
+  ],
+  "gates": {
+    "nodeTestsPassed": 7251,
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "webpack": "PASS",
+    "localPdfArchives": 12,
+    "live": "production-verification.json"
+  }
+}
