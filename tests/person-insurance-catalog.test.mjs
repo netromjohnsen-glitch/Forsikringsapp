@@ -80,6 +80,35 @@ test("optional accident coverage stays conditional and shared sources do not act
   assert.deepEqual(childCapital.second.sources.map(source => source.termsNumber), ["BAF2-4", "SUB1-5"]);
 });
 
+test("If Super retains the Standard help benefit with the Super exception on the same row", () => {
+  const standard = option("If", "Barn", "Standard Barneforsikring");
+  const superProduct = option("If", "Barn", "Super Barneforsikring");
+  const rows = (a, b) => productComparisonView(compareCatalogProducts(a, b))
+    .flatMap(section => section.groups.flatMap(group => group.rows))
+    .filter(row => row.key === "person.barn.hjelpestonad");
+  const forward = rows(standard, superProduct);
+  const reverse = rows(superProduct, standard);
+  assert.equal(forward.length, 1);
+  assert.equal(reverse.length, 1);
+  const [row] = forward;
+  assert.equal(row.different, true);
+  assert.deepEqual(row.first, reverse[0].second);
+  assert.deepEqual(row.second, reverse[0].first);
+  const locations = value => value.sources.map(source => [source.termsNumber, source.page, source.section]);
+
+  for (const side of [row.first, row.second]) {
+    assert.equal(side.state, "included");
+    assert.match(side.text, /før fylte 18 år.*innvilget og utbetalt hjelpestønad fra NAV/u);
+    assert.match(side.text, /50 000, 75 000, 275 000 og 912 500 kr/u);
+    assert.match(side.text, /samordnes med økonomisk førstehjelp/u);
+  }
+  assert.match(row.first.text, /psykiske lidelser.*§ 6\.1\.1 gjelder\./u);
+  assert.match(row.second.text, /opphever Super unntaket.*psykiske lidelser.*§ 6\.1\.1/u);
+  assert.match(row.second.text, /Individuelle reservasjoner/u);
+  assert.deepEqual(locations(row.first), [["BAF2-4", 8, "§ 5.4"], ["BAF2-4", 11, "§ 6.1.1"]]);
+  assert.deepEqual(locations(row.second), [["BAF2-4", 8, "§ 5.4"], ["SUB1-5", 4, "§ 4.3"]]);
+});
+
 test("child accident payouts and treatment deadlines align only with the same benefit or milestone", () => {
   const child = compareCatalogProducts(
     option("Fremtind", "Barn", "Barneulykkesforsikring"),

@@ -79,6 +79,8 @@ export const additionalPersonTerms: Record<string, PersonTerms> = {
   "tryg-ulykke-progressiv": { url: "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Progressiv-Erstatning&vilkNr=05UUL41504", sha256: "44b43618a8332f792d4549b076ae93597dccbfbe11442b8d87127b74dc483e7f", pages: 1, effectiveFrom: "2021-11-01", edition: "UUL41504" },
 };
 
+const ifChildHelpBenefit = "Engangsutbetaling når barnet i forsikringstiden før fylte 18 år får innvilget og utbetalt hjelpestønad fra NAV for en dekket tilstand. Sats 1–4 gir henholdsvis 50 000, 75 000, 275 000 og 912 500 kr. Utbetalingen samordnes med økonomisk førstehjelp.";
+
 export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactDefinition[]>> = {
   "fremtind-person-barn": [
     {
@@ -876,10 +878,17 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "barnHjelpestonad", page: 8, section: "§ 5.4",
-      value: "Engangsbeløp når barnet før fylte 18 år innvilges og mottar hjelpestønad fra NAV etter en dekket tilstand. 50 000–912 500 kr avhengig av sats. Samordnes med økonomisk førstehjelp.",
+      value: `${ifChildHelpBenefit} Unntaket for blant annet psykiske lidelser, atferds- og utviklingsforstyrrelser i BAF § 6.1.1 gjelder.`,
+      qualification: { document: "barn", page: 11, section: "§ 6.1.1" },
     },
   ],
   "if-person-barn-super": [
+    {
+      kind: "barnHjelpestonad", page: 8, section: "§ 5.4",
+      value: `${ifChildHelpBenefit} For hjelpestønad opphever Super unntaket for blant annet psykiske lidelser, atferds- og utviklingsforstyrrelser i BAF § 6.1.1. Individuelle reservasjoner i forsikringsbeviset gjelder.`,
+      document: "barn",
+      qualification: { document: "barn-super", page: 4, section: "§ 4.3" },
+    },
     {
       kind: "barnDiagnose", page: 5, section: "§ 5.1 (s. 5–7)",
       value: "Økonomisk førstehjelp ved en oppført diagnose, skade eller gjennomført behandling. Barnet må være i live 24 timer etter forsikringstilfellet. Utbetalingen kan trekkes fra eventuell invaliditetserstatning.",
