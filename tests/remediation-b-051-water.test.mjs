@@ -92,7 +92,10 @@ test('WATER full-field source oracle; only the two authorized rows added',()=>{
   const before=resolveCatalogFacts(product(id,baseline),[],date,null,baseline);
   const after=resolveCatalogFacts(product(id),[],date).filter(f=>f.key!==key);assert.deepEqual(withoutFrostAndVacancy(after),before);
  }
- for(const p of productCatalog.products.filter(p=>!ids.includes(p.productId)))assert.equal(resolveCatalogFacts(p,[],date).some(f=>f.key===key),false,p.productId);
+ for (const peer of productCatalog.products.filter(p => !ids.includes(p.productId))) {
+  const peerFacts = resolveCatalogFacts(peer, [], date);
+  assert.ok(!peerFacts.some(fact => fact.key === key && owners.includes(fact.source.documentId)), peer.productId);
+ }
 });
 for(const id of ids)for(const side of ['existing','offer'])test('WATER supporting terms cannot create a customer or override refusal '+id+'/'+side,()=>{
  const record=(role,values)=>({type:'Hus',company:'Gjensidige',agreementScope:'ordinary',productName:product(id).name,canonicalProductName:product(id).name,annualPremium:null,deductible:null,coverageSummary:null,agreementPeriod:null,objectIdentifiers:[],documentIndices:[1],documentRole:role,addOns:[],importantTerms:values.map(value=>({name:o.label,value,documentIndices:[1]}))});

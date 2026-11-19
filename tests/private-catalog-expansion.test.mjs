@@ -61,7 +61,8 @@ test("every new base coverage is attributable to the correct product and an arch
   ];
   for (const [products, sources, folder] of archives) {
     for (const source of Object.values(sources)) {
-      const bytes = readFileSync(new URL("../catalog/sources/" + folder + source.filename, import.meta.url));
+      const archivePath = source.filename.includes("/") ? source.filename : folder + source.filename;
+      const bytes = readFileSync(new URL("../catalog/sources/" + archivePath, import.meta.url));
       assert.equal(createHash("sha256").update(bytes).digest("hex"), source.sha256, source.id);
       if (source.physicalPages) assert.equal(bytes.subarray(0, 5).toString(), "%PDF-");
     }
@@ -115,7 +116,8 @@ test("new travel facts use the established travel rows and navigation", () => {
     for (const id of ["reise.rammer", "reise.bagasje", "reise.sykdom-hjemtransport"]) {
       assert.ok(sections.some(section => section.id === id), company + " – " + id);
     }
-    assert.equal(sections.some(section => section.id === "reise.ovrig"), false, company);
+    const otherRows = sections.find(section => section.id === "reise.ovrig")?.groups.flatMap(group => group.rows) ?? [];
+    assert.ok(otherRows.every(row => /^reise\.(?!avbestilling\.|bagasje\.|medisinsk\.|hjemtransport\b|varighet\.|leiebil\.)/.test(row.key)), company);
   }
   const [waterCircles] = productComparisonOptions("Reise", "WaterCircles", ordinary);
   const waterCirclesFacts = resolveCatalogFacts(waterCircles, [], asOf);
@@ -163,4 +165,28 @@ test("an optional cover remains separate from the selected insurance level", () 
   assert.ok(resolveCatalogFacts(cabin, [pests.id], asOf).some(fact => fact.key === "hytte.rate.dekning"));
   const compared = compareCatalogProducts(cabin, cabin).sections.flatMap(section => section.rows);
   assert.equal(compared.find(row => row.key === "hytte.rate.dekning").first.state, "optional");
+});
+
+test("the expanded contents and travel terms bind shared pages and leave rental optional", () => {
+  const select = (type, company, name) => productComparisonOptions(type, company, ordinary).find(product => product.name === name);
+  const standard = select("Innbo", "KLP", "Innbo");
+  const maks = select("Innbo", "KLP", "Innbo Maks");
+  assert.equal(resolveCatalogFacts(standard, [], asOf).find(fact => fact.key === "rettshjelp.dekning").source.page, 5);
+  assert.equal(resolveCatalogFacts(maks, [], asOf).find(fact => fact.key === "rettshjelp.dekning").source.page, 9);
+
+  const landkredittStandard = select("Innbo", "Landkreditt", "Innbo Standard");
+  const landkredittExtended = select("Innbo", "Landkreditt", "Innbo Utvidet");
+  const option = "landkreditt-innbo-utleie";
+  assert.ok(!availableAddOns(landkredittStandard, asOf).some(addOn => addOn.id === option));
+  assert.ok(availableAddOns(landkredittExtended, asOf).some(addOn => addOn.id === option));
+  assert.ok(!resolveCatalogFacts(landkredittExtended, [], asOf).some(fact => fact.key === "utleie.dekning"));
+  const rental = resolveCatalogFacts(landkredittExtended, [option], asOf);
+  assert.equal(rental.find(fact => fact.key === "utleie.dekning").source.page, 23);
+  assert.equal(rental.find(fact => fact.key === "utleie.fravikelse").source.page, 24);
+
+  const travel = select("Reise", "WaterCircles", "Reise Elite");
+  const facts = resolveCatalogFacts(travel, [], asOf);
+  assert.equal(facts.find(fact => fact.key === "reise.omrade.pandemi").source.page, 19);
+  assert.equal(facts.find(fact => fact.key === "reise.felles.erstatningsunntak").source.page, 3);
+  assert.equal(facts.find(fact => fact.key === "reise.rettshjelp.sum").source.page, 15);
 });

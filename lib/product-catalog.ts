@@ -37,7 +37,7 @@ import { personInsuranceTypes } from "./person-insurance-registry.ts";
 import { cabinAddOns, cabinFacts, cabinProducts, cabinSources } from "./private-cabin-catalog.ts";
 import { valuablesFacts, valuablesProducts, valuablesSources } from "./private-valuables-catalog.ts";
 import { newMotorHomeAddOns, newMotorHomeFacts, newMotorHomeProducts, newMotorHomeSources } from "./new-private-motor-home-catalog.ts";
-import { newContentsTravelFacts, newContentsTravelProducts, newContentsTravelSources } from "./new-private-contents-travel-catalog.ts";
+import { newContentsTravelAddOns, newContentsTravelFacts, newContentsTravelProducts, newContentsTravelSources } from "./new-private-contents-travel-catalog.ts";
 import type { BuildingFactData } from "./building-facts.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { resolveCatalogSources } from "./catalog-source-resolution.ts";
@@ -132,7 +132,7 @@ export const productCatalog: ProductCatalog = {
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
     ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns,
     ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns, ...mcBobilAddOns, ...boatPetAddOns,
-    ...cabinAddOns, ...newMotorHomeAddOns, ...personInsuranceAddOns],
+    ...cabinAddOns, ...newMotorHomeAddOns, ...personInsuranceAddOns, ...newContentsTravelAddOns],
   sources: { ...boatPetSources, ...mcBobilSources, ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,

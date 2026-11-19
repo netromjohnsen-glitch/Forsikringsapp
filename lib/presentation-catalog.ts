@@ -233,13 +233,28 @@ const personInsurancePresentationConcepts: readonly PresentationConcept[] = [
 // Rekkefølgen er en eksplisitt, kuratert presentasjonsrekkefølge. Den er ikke
 // en produktpoengsum og sier ikke hvilket produkt som er best.
 export const presentationConcepts: readonly PresentationConcept[] = [
-  concept("fritidsbolig.omfang", "fritidsbolig", "Bygning og forsikringsomfang", [/^hytte\.(?:avtale|bygning|bygninger|omfang|gjenoppforing|forsikringssum)\./u], "primary", ["economic-risk"]),
-  concept("fritidsbolig.brann-natur", "fritidsbolig", "Brann, tyveri og naturskade", [/^hytte\.(?:brann|tyveri|naturskade)\./u], "primary", ["economic-risk"]),
-  concept("fritidsbolig.vann", "fritidsbolig", "Vann og fukt", [/^hytte\.(?:vann|utett|vatrom)\./u], "primary", ["economic-risk", "level-difference"]),
+  concept("fritidsbolig.omfang", "fritidsbolig", "Bygning og forsikringsomfang", [
+    /^hytte\.(?:avtale\.(?:geografi|sikrede)|bygning|bygninger|andrebygninger|omfang|gjenstand|hage|forsikringsform|forsikringssum)(?:\.|$)/u,
+  ], "primary", ["economic-risk"]),
+  concept("fritidsbolig.brann-natur", "fritidsbolig", "Brann, tyveri og naturskade", [
+    /^hytte\.(?:brann|tyveri|naturskade|vaer|snovejr|elektrisk|eksplosjon)\./u,
+  ], "primary", ["economic-risk"]),
+  concept("fritidsbolig.vann", "fritidsbolig", "Vann og fukt", [
+    /^hytte\.(?:vann|ror|utett|vatrom|vannoverflate)\./u,
+  ], "primary", ["economic-risk", "level-difference"]),
   concept("fritidsbolig.rate-skadedyr", "fritidsbolig", "Råte og skadedyr", [/^hytte\.(?:rate|dyr|skadedyr|sopp)\./u], "primary", ["economic-risk", "level-difference"]),
-  concept("fritidsbolig.bruk", "fritidsbolig", "Bruk, utleie og feriegaranti", [/^hytte\.(?:utleie|feriegaranti|ubeboelig)\./u], "secondary", ["level-difference"]),
+  concept("fritidsbolig.skade", "fritidsbolig", "Plutselig skade og håndverkerfeil", [
+    /^hytte\.(?:plutselig|handverker|teknisk|glass)\./u,
+  ], "primary", ["economic-risk", "level-difference"]),
+  concept("fritidsbolig.bruk", "fritidsbolig", "Bruk, utleie og feriegaranti", [
+    /^hytte\.(?:utleie|leietap|feriegaranti|ubeboelig|service)\./u,
+  ], "secondary", ["level-difference"]),
   concept("fritidsbolig.ansvar", "fritidsbolig", "Ansvar og rettshjelp", [/^hytte\.(?:ansvar|rettshjelp)\./u], "secondary", ["economic-risk"]),
-  concept("fritidsbolig.egenandel", "fritidsbolig", "Egenandeler og sikkerhetskrav", [/^hytte\.(?:egenandel|sikkerhet)\./u], "secondary", ["misunderstanding-risk"]),
+  concept("fritidsbolig.oppgjor", "fritidsbolig", "Oppgjør, gjenoppføring og aldersfradrag", [
+    /^hytte\.(?:oppgjor|gjenoppforing|aldersfradrag|pabud|rydding)\./u,
+  ], "secondary", ["economic-risk"]),
+  concept("fritidsbolig.egenandel", "fritidsbolig", "Egenandeler og sikkerhetskrav", [/^hytte\.(?:egenandel|sikkerhet|krav)\./u], "secondary", ["misunderstanding-risk"]),
+  concept("fritidsbolig.vilkar", "fritidsbolig", "Felles vilkår og unntak", [/^hytte\.(?:avtale|unntak)\./u], "detail", ["misunderstanding-risk"]),
   concept("verdisak.omfang", "verdisak", "Gjenstander og gyldighetsområde", [/^verdisak\.(?:gjenstand|omrade)(?:\.|$)/u], "primary", ["misunderstanding-risk"]),
   concept("verdisak.skade-tap", "verdisak", "Uhell, tyveri og tap", [/^verdisak\.(?:uhell|tyveri|tap)(?:\.|$)/u], "primary", ["economic-risk", "level-difference"]),
   concept("verdisak.erstatning", "verdisak", "Forsikringssum og egenandeler", [/^verdisak\.(?:forsikringssum|egenandel|aldersfradrag|grense|sykkel)(?:\.|$)/u], "primary", ["economic-risk", "level-difference"]),
@@ -270,7 +285,7 @@ export const presentationConcepts: readonly PresentationConcept[] = [
     ["economic-risk", "level-difference"]),
   concept("bil.ansvar-rettshjelp", "bil", "Ansvar og rettshjelp", [/^(?:ansvar|rettshjelp)\./u], "secondary",
     ["economic-risk", "misunderstanding-risk"]),
-  concept("bil.bonus-ung-forer", "bil", "Bonus og ung fører", [/^bonus\./u], "secondary",
+  concept("bil.bonus-ung-forer", "bil", "Bonus og ung fører", [/^(?:avtale\.)?bonus\./u], "secondary",
     ["customer-specific", "misunderstanding-risk"], ["limit", "conditional-benefit"]),
   concept("bil.ovrig", "bil", "Andre bilvilkår", [/.+/u], "detail", ["misunderstanding-risk"]),
 

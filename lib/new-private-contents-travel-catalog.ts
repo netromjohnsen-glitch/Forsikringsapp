@@ -1,6 +1,8 @@
-import type { CatalogFact, CatalogProduct, CatalogSource } from "./product-catalog.ts";
+import type { CatalogAddOn, CatalogFact, CatalogProduct, CatalogSource } from "./product-catalog.ts";
 
-type Row = readonly [
+import { additionalContentsTravelTerms, generalContentsTravelTerms } from "./private-contents-travel-terms.ts";
+
+export type Row = readonly [
   key: string, label: string, value: string, section: string, page: number,
   availability?: CatalogFact["coverageAvailability"],
   deductible?: CatalogFact["deductibleClassification"],
@@ -8,10 +10,26 @@ type Row = readonly [
 
 type Document = {
   url: string;
+  filename?: string;
   sha256: string;
   pages: number;
   termsNumber?: string;
   effectiveFrom?: string;
+};
+
+const generalDocuments: Partial<Record<string, Document>> = {
+  landkreditt: {
+    filename: "private-insurers-general/landkreditt-general.pdf",
+    url: "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-generelle.pdf",
+    sha256: "bef93e5ae0dceeb7bf41fef26fd5137dede34e5e9291de973406d47ba7752c79",
+    pages: 11, effectiveFrom: "2025-01-01",
+  },
+  watercircles: {
+    filename: "private-insurers-general/watercircles-general.pdf",
+    url: "https://www.watercircles.no/wp-content/uploads/2025/11/WaterCircles-Generelle-vilkar-WtCGEN-2.14-01.01.26.pdf",
+    sha256: "4c36eb01274c59fc95be0597a87434b9244833d1f91c406cdd22b3f0e50ba01c",
+    pages: 8, termsNumber: "WtCGEN-2.14", effectiveFrom: "2026-01-01",
+  },
 };
 
 const documents: Record<string, Document> = {
@@ -80,7 +98,7 @@ const landkredittInnbo: readonly Row[] = [
   ["brann.dekning", "Brann", "Plutselig og uforutsett brann, nedsoting, lynnedslag eller annet elektrisk fenomen.", "4.1 a", 5],
   ["vann.dekning", "Vannskade", "Blant annet utilsiktet væske fra bygningsrør eller plutselig overflatevann som gir vannspeil over laveste gulv.", "4.1 c", 5],
   ["tyveri.dekning", "Tyveri", "Tyveri på de stedene vilkåret angir, med egne beløpsgrenser ved flere oppbevaringssteder.", "4.1 d", 5],
-  ["sykkel.tyveri.grense", "Sykkel og elsykkel – tyverigrense", "30 000 kr per gjenstand utenfor låst bygning, med mindre forsikringsbeviset angir annet.", "4.1 d viii", 6],
+  ["sykkel.tyveri.grense", "Sykkel og elsykkel – tyverigrense", "30 000 kr per gjenstand utenfor låst bygning, med mindre forsikringsbeviset angir annet. Gjelder også sykkeltilhenger og angitte små elektriske kjøretøy.", "4.1 d viii", 6],
   ["innbo.egenandel", "Generell egenandel", "Trekkes etter beløpet i forsikringsbeviset.", "5.2", 8, undefined, "reference"],
 ];
 
@@ -170,7 +188,7 @@ export const newContentsTravelFacts: Record<string, CatalogFact[]> = {};
 function registerSource(product: CatalogProduct, documentId: string, document: Document): CatalogSource {
   const source = newContentsTravelSources[documentId] ??= {
     id: documentId,
-    filename: `${documentId}.${document.pages ? "pdf" : "html"}`,
+    filename: document.filename ?? `${documentId}.${document.pages ? "pdf" : "html"}`,
     sourceType: document.pages ? "full_terms" : "product_page",
     providerId: product.providerId,
     company: product.company,
@@ -207,7 +225,14 @@ for (const definition of definitions) {
   };
   newContentsTravelProducts.push(product);
   const source = registerSource(product, definition.document, doc);
-  const rows = definition.rows.map((row) => fact(source, row));
+  const rows = [...definition.rows, ...additionalContentsTravelTerms[definition.id]]
+    .map((row) => fact(source, row));
+  const generalDocument = generalDocuments[definition.providerId];
+  if (generalDocument) {
+    const generalId = [definition.providerId, definition.type.toLowerCase(), "general"].join("-");
+    const general = registerSource(product, generalId, generalDocument);
+    rows.push(...generalContentsTravelTerms[definition.providerId].map((row) => fact(general, row)));
+  }
   if (definition.duration) {
     const duration = definition.duration;
     const overview = registerSource(product, duration.document, documents[duration.document]);
@@ -215,3 +240,29 @@ for (const definition of definitions) {
   }
   newContentsTravelFacts[product.productId] = rows;
 }
+
+const rentalAddOn: CatalogAddOn = {
+  id: "landkreditt-innbo-utleie",
+  name: "Utleieforsikring",
+  componentId: "landkreditt-innbo-utleie",
+  providerId: "landkreditt",
+  insuranceTypes: ["Innbo"],
+  requiresLevel: ["landkreditt-innbo-utvidet"],
+  agreementScope: "ordinary",
+};
+
+const rentalRows: readonly Row[] = [
+  ["utleie.dekning", "Utleieforsikring", "Ved valgt privat utleiedekning kan forsettlig skadeverk fra leietaker, misligholdt husleie i inntil seks måneder én gang per leietaker og nødvendige utkastelsesutgifter inntil 20 000 kr omfattes. Tapte leieinntekter etter en erstatningsmessig skade dekkes utover forsikringssummen etter vilkåret. Det kreves at tillegget er avtalt i forsikringsbeviset.", "13.2", 23, "included"],
+  ["utleie.husleietap", "Beregning av husleietap", "Erstatningstiden løper fra skaden til normal utbedring eller gjenoppføring. Tap beregnes ut fra leie eller markedsleie for umøblerte rom, med angitte fradrag. Ved manglende reparasjon eller gjenoppføring er perioden begrenset til tre måneder.", "13.1", 23],
+  ["utleie.vilkar", "Skriftlig leieavtale og sikkerhet", "Leiekontrakten må blant annet angi partene, leie, depositum eller bankgaranti, fraflytting og varighet. Husleie som lovlig holdes tilbake på grunn av feil eller mangler omfattes ikke.", "13.2, side 23–24", 23],
+  ["utleie.fravikelse", "Tvangsfravikelse og regress", "Leieavtalen må ha særskilt tvangsgrunnlag, blant annet godta fravikelse dersom leien ikke betales 14 dager etter skriftlig varsel etter lovens regler. Ved utbetaling overtar foretaket utleiers krav mot leietaker for oppgjøret.", "13.2", 24],
+];
+
+const rentalSource: CatalogSource = {
+  ...newContentsTravelSources["landkreditt-innbo"],
+  id: rentalAddOn.id,
+  productIds: rentalAddOn.requiresLevel!,
+};
+newContentsTravelSources[rentalSource.id] = rentalSource;
+newContentsTravelFacts[rentalAddOn.componentId] = rentalRows.map(row => fact(rentalSource, row));
+export const newContentsTravelAddOns: CatalogAddOn[] = [rentalAddOn];
