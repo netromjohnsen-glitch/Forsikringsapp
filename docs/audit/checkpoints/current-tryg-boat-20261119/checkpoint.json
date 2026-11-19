@@ -1,0 +1,98 @@
+{
+  "verified_at": "2026-11-19T17:08:29+01:00",
+  "tested_base": "fadace60acdb479369507e9a356565f6a9594abc",
+  "tested_revision": "4d3f93e30a8dd57f73608079bca6399fde37a58a",
+  "scope": {
+    "baseline": "15fad338bffc9abac1b6e9084909fdb64d80d881",
+    "user_scope": "Produktsammenligning for dagens marked, med gjeldende ordinære private Tryg Båt-vilkår. Bedrifts- og medlemsavtaler inngår ikke i endringen.",
+    "verified": "2026-11-19",
+    "published_offers": [
+      "Ansvar",
+      "Brann/Tyveri/Ansvar",
+      "Kasko/Ansvar",
+      "Båt Ekstra"
+    ],
+    "market_offer_source": "https://www.tryg.no/forsikringer/bat/batforsikring",
+    "market_decision": "Separat Brann/Ansvar har aktive dekningsvilkår i produktsidene for de ulike båttypene, men fremgår ikke som egen pakke i Trygs åpne markedssammenligning. Markedsvisningen følger de fire verifiserte tilbudene.",
+    "archive_policy": "Tidligere eksakte avtaleoppslag og PDF-arkiv bevares. Bruk egne kildeidentiteter for markedsdata. Ved gjenbruk av PDF-bytes er offisiell ordinær URL og identisk SHA-256 verifisert uavhengig av arkivets eldre katalogplassering.",
+    "storebrand": "Storebrand lenker fortsatt byteidentisk båt03 2024-09-01 fra den ordinære produktsiden. PDF-side 5 er gjeldende."
+  },
+  "market_edition": "2026-09-01",
+  "test_files": 192,
+  "test_results": {
+    "tests": 7230,
+    "pass": 7230,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "build": {
+    "typescript": "PASS",
+    "eslint_errors": 0,
+    "webpack": "PASS",
+    "archive_trace": "PASS",
+    "synthetic_http": {
+      "status": "PASS",
+      "sourcePaths": [
+        "/api/vilkar/tryg/bat-ipid-2026-09",
+        "/api/vilkar/tryg/bat-ulykke",
+        "/api/vilkar/tryg/bat-produkt-innenbord",
+        "/api/vilkar/tryg/bat-kasko-innenbord",
+        "/api/vilkar/tryg/bat-ekstra",
+        "/api/vilkar/tryg/bat-maskinskade",
+        "/api/vilkar/tryg/bat-kasko-seilbat",
+        "/api/vilkar/tryg/bat-kasko-robat",
+        "/api/vilkar/tryg/bat-kasko-pahengsmotor"
+      ]
+    }
+  },
+  "production": {
+    "status": "PASS",
+    "rawReferences": 63,
+    "archives": 9,
+    "comparisons": [
+      {
+        "description": "Båt: Tryg Ansvar / Tryg Brann/Tyveri/Ansvar",
+        "references": 19,
+        "wordingBindings": 5
+      },
+      {
+        "description": "Båt: Tryg Kasko/Ansvar / Tryg Båt Ekstra",
+        "references": 56,
+        "wordingBindings": 11
+      }
+    ],
+    "renderedReferences": 75,
+    "viewerPages": {
+      "/api/vilkar/tryg/bat-ekstra#page=1": 1,
+      "/api/vilkar/tryg/bat-ekstra#page=2": 2,
+      "/api/vilkar/tryg/bat-ipid-2026-09#page=1": 1,
+      "/api/vilkar/tryg/bat-ipid-2026-09#page=2": 2,
+      "/api/vilkar/tryg/bat-kasko-innenbord#page=2": 2,
+      "/api/vilkar/tryg/bat-kasko-innenbord#page=3": 3,
+      "/api/vilkar/tryg/bat-kasko-pahengsmotor#page=2": 2,
+      "/api/vilkar/tryg/bat-kasko-robat#page=2": 2,
+      "/api/vilkar/tryg/bat-kasko-seilbat#page=3": 3,
+      "/api/vilkar/tryg/bat-maskinskade#page=1": 1,
+      "/api/vilkar/tryg/bat-produkt-innenbord#page=1": 1,
+      "/api/vilkar/tryg/bat-ulykke#page=1": 1,
+      "/api/vilkar/tryg/bat-ulykke#page=2": 2
+    },
+    "deployment": "d099af67-e41d-4b8b-a6c7-229b4b9a0b91",
+    "revision": "4d3f93e30a8dd57f73608079bca6399fde37a58a"
+  },
+  "tested_files_sha256": {
+    "app/components/product-comparison.tsx": "25c886249ad7cbfc825f78579dfd1df61477d933bcf2754aa41cda1224821c70",
+    "catalog/sources/boat-pet/manifest.json": "bcfa25778062b3409723c2ac569ddb274eeecae58d021596b0910e0fbb364a2a",
+    "catalog/sources/boat-pet/tryg-boat-ipid-2026-09.pdf": "87306b65124b15af75a125d12a6952310361726a94e09a894cee5a4895ae8cce",
+    "docs/audit/checkpoints/current-tryg-boat-20261119/scope.json": "66d66dd8bdde825034735d03a22944ed3818653966aa9452efde22b448a3aab1",
+    "docs/audit/checkpoints/current-tryg-boat-20261119/verified-documents.json": "38b5cac2026066f4c42650afa61ba1f93dc1d902a31a9639d3cdd756a84f0277",
+    "lib/market-product-catalog.ts": "3f980d25a1191c6e4d63acd60bd12c16698f74509c40f839c147f2c5673494a2",
+    "lib/terms-archive-documents.ts": "2f6b96dcf36fa6dbdc4827be47cff62cddcd566b6709a8f05d7420f3fdf27639",
+    "lib/tryg-boat-market.ts": "269658037577454735771f4b0af6662be7106fa85e38c8c08d62115c50a5cf45",
+    "tests/boat-pet-catalog.test.mjs": "59a19440dc29910c9a06d016c6c295f48b0f1dc657e40a9a3aa09e6315e641bf",
+    "tests/terms-archive.test.mjs": "b204fa16ed86ff50951328869ef5de011f2d3dd5c1d83938b9cae33981b3b807",
+    "tests/tryg-boat-market.test.mjs": "24bc4e5a2c0d86ea56ff9d74635dab45188612750147477832ef9b6dbe88517b"
+  }
+}
