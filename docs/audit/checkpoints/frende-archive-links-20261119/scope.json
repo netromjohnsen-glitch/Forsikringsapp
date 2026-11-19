@@ -1,0 +1,41 @@
+{
+  "baseline": "6ef8edacac65054d3a50134cc44074e53137b8e8",
+  "authorization": "Brukeren ber om å åpne de arkiverte Frende-vilkårene for hytte og verdisak direkte fra Tolken.",
+  "source_bindings": [
+    [
+      "cabin:frende:building",
+      "2026-09-01",
+      "catalog/sources/frende/hus/canonical/Vilkar-husforsikring.pdf",
+      "6938aa5da4dc6d21996a635cfeb9bd0f156be0a8a991d6fcceb5e02e2b4aeca7"
+    ],
+    [
+      "private-valuables:frende",
+      "2026-01-01",
+      "catalog/sources/private-valuables/frende-verdisak.pdf",
+      "8d4fa8381e2897b7638805d0d7856eeef64288b56db8851f3b5f8f4ff8bb1f62"
+    ]
+  ],
+  "application_paths": [
+    "app/api/vilkar/frende/[document]/route.ts",
+    "app/components/product-comparison.tsx",
+    "app/page.tsx",
+    "lib/frende-terms-archive.ts",
+    "next.config.ts",
+    "tests/frende-terms-archive.test.mjs",
+    "tests/object-aware-comparison.test.mjs",
+    "tests/pilot-quality-presentation.test.mjs",
+    "tests/presentation-integrity.test.mjs",
+    "tests/presentation-price.test.mjs",
+    "tests/totalskade-presentation.test.mjs"
+  ],
+  "verification": [
+    "PDF SHA-256",
+    "Tilgangskontroll og kildevisning",
+    "Full testsuite",
+    "TypeScript og ESLint",
+    "Produksjonsbygg og HTTP",
+    "Publisert pilot"
+  ],
+  "publication": "Hovedgren og eksakt testet revisjon på eksisterende pilot",
+  "test_harness": "Testutdragene av produksjonsvisningen laster den nye lenkefunksjonen som en avhengighet. Eksisterende assertions er bevart."
+}

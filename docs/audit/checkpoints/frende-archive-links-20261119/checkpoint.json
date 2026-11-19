@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-19T12:00:00+01:00",
+  "tested_revision": "ed2a1dc27750a6db6ea21a35abea12eabc8de848",
+  "parent": "6ef8edacac65054d3a50134cc44074e53137b8e8",
+  "tested_files_sha256": {
+    "app/api/vilkar/frende/[document]/route.ts": "eb69b2fecd9f19f63afb3925de910d8492baf63e2fa400c73f8fb667a974c29d",
+    "app/components/product-comparison.tsx": "1d0448d985f411761c373b030a4a4e1fb8fef82c998b6b4ea53155466fc56fb7",
+    "app/page.tsx": "629b8a5c49baea47f2fee2a8018778088716a1cc43ebdf3ef8ae03a77df9e92f",
+    "lib/frende-terms-archive.ts": "3067e387779fb4fd6efbb3ea9b687b3852517d6d1ea7fd75eb9d1efbf4771863",
+    "next.config.ts": "24632d95ad25fd5a109e1f426883036d126714961747cf27b57fb41f39cba7b3",
+    "tests/frende-terms-archive.test.mjs": "2030fe4987e458bc0addde3bb96f624ff9849d27a21607bcd1f25ed020449dcb",
+    "tests/object-aware-comparison.test.mjs": "48a2b27dfcbfe03219b84128c685d9007f54b24f19b92936c11c9a81802e0661",
+    "tests/pilot-quality-presentation.test.mjs": "1f822d629343445076ee025215c0a6298a1b8372ab4cacbf0cd8607573c1452f",
+    "tests/presentation-integrity.test.mjs": "9cc857ed7a751b0d69454911da550fbbecc367c76ed8bee22e9304219af2fdb3",
+    "tests/presentation-price.test.mjs": "75fb7d327eb70dbef270a9acfe792cb064234eea82ab634b203052045a4dce45",
+    "tests/totalskade-presentation.test.mjs": "b645ec76aceae6cd72916bc1e1f1f5578d9c1745cd3d21babce192858f90b565"
+  },
+  "full_suite": {
+    "tests": 7168,
+    "pass": 7168,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "typescript": "PASS",
+  "eslint": {
+    "errors": 0,
+    "warnings": 29
+  },
+  "webpack_build": "PASS",
+  "pdfs_in_production_trace": [
+    "catalog/sources/frende/hus/canonical/Vilkar-husforsikring.pdf",
+    "catalog/sources/private-valuables/frende-verdisak.pdf"
+  ],
+  "synthetic_http": "PASS",
+  "local_browser": {
+    "status": "PASS",
+    "mode": "local",
+    "results": [
+      {
+        "document": "hytte",
+        "page": 7,
+        "bytes": "SHA-256 match",
+        "clicked": true
+      },
+      {
+        "document": "verdisak",
+        "page": 2,
+        "bytes": "SHA-256 match",
+        "clicked": true
+      }
+    ],
+    "agreementComparison": true
+  },
+  "production": {
+    "status": "PASS",
+    "mode": "authenticated UI",
+    "results": [
+      {
+        "document": "hytte",
+        "page": 7,
+        "bytes": "SHA-256 match",
+        "clicked": true
+      },
+      {
+        "document": "verdisak",
+        "page": 2,
+        "bytes": "SHA-256 match",
+        "clicked": true
+      }
+    ],
+    "agreementComparison": false,
+    "deployment": "cf321c12-cfd4-42c8-a402-c37690f20146"
+  }
+}
