@@ -1,4 +1,5 @@
 import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
+import { beforePrivatePolicyPages } from "./helpers/before-private-policy-pages.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
@@ -96,7 +97,8 @@ for(const id of ids){
  });
 }
 test('RENTAL-MANUAL 202 other products and six non-rental manual controls preserve exact initial/repeat output',()=>{
- assert.equal(baseline.others.length,202);assert.equal(baseline.controls.length,6);for(const c of [...baseline.others,...baseline.controls]){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutFrostAndVacancy(first),c.first,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutFrostAndVacancy(result),withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([result],c.input.products[0].type),c.display);}
+ const catalog = beforePrivatePolicyPages(productCatalog);
+ assert.equal(baseline.others.length,202);assert.equal(baseline.controls.length,6);for(const c of [...baseline.others,...baseline.controls]){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input,catalog),{message:c.error});continue;}const first=normalizeManualAgreement(c.input,catalog).insuranceData.insurances[0];assert.deepEqual(withoutFrostAndVacancy(first),c.first,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date,undefined,undefined,catalog).insurances[0];assert.deepEqual(withoutFrostAndVacancy(result),withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([result],c.input.products[0].type),c.display);}
  assert.equal(hash(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))),vacancyCatalogBaselineHash);
 });
 test('RENTAL-DOCUMENT all 144 frozen before cases differ only by the authorized document choice',()=>{

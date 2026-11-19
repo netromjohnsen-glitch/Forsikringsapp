@@ -64,22 +64,61 @@ const row = (key: string, value: string, providerId: string, type: "båt" | "hun
   ...(classification ? { deductibleClassification: classification } : {}),
 });
 
+const sharedBoatCitations: Partial<Record<string, Record<string, readonly [page: number, section: string]>>> = {
+  [sourceId("storebrand", "båt")]: {
+    "bat.ansvar.dekning": [16, "9.1 Ansvarsforsikring"],
+    "bat.rettshjelp.dekning": [17, "10.3.1 Rettshjelp"],
+    "bat.geografi.dekning": [5, "3 Hvor og når forsikringen gjelder"],
+    "bat.geografi.omrade": [5, "3 Hvor og når forsikringen gjelder"],
+    "bat.brann.dekning": [7, "5.1.1 Brann"],
+    "bat.tyveri.dekning": [7, "5.1.2 Tyveri"],
+    "bat.kasko.dekning": [9, "5.2 Tilleggsdekninger for kasko"],
+    "bat.redning.dekning": [8, "5.1.3 nr. 1 og 5 Båtredning og bergelønn"],
+    "bat.transport.dekning": [8, "5.1.3 nr. 2 Transport til verksted"],
+  },
+  [sourceId("tryg", "båt")]: {
+    "bat.rettshjelp.dekning": [2, "Hvor gjelder forsikringen? – Rettshjelp"],
+    "bat.geografi.dekning": [2, "Hvor gjelder forsikringen?"],
+    "bat.geografi.omrade": [2, "Hvor gjelder forsikringen?"],
+  },
+  [sourceId("gjensidige", "båt")]: {
+    "bat.geografi.dekning": [2, "Hvor gjelder forsikringen?"],
+    "bat.geografi.omrade": [2, "Hvor gjelder forsikringen?"],
+  },
+  [sourceId("sparebank1-fremtind", "båt")]: {
+    "bat.ansvar.dekning": [1, "Minikaskoforsikring 1.2 Ansvar"],
+    "bat.rettshjelp.dekning": [9, "Rettshjelp 1 Hvem forsikringen gjelder for"],
+    "bat.geografi.dekning": [1, "Fritidsbåtforsikring 2 Hvor gjelder forsikringen?"],
+    "bat.geografi.omrade": [1, "Fritidsbåtforsikring 2 Hvor gjelder forsikringen?"],
+    "bat.brann.dekning": [2, "Minikaskoforsikring 2.1 Brann"],
+    "bat.tyveri.dekning": [2, "Minikaskoforsikring 2.3 Tyveri"],
+    "bat.kasko.dekning": [5, "Kaskoforsikring 2.1 Kaskoskade"],
+    "bat.redning.dekning": [2, "Minikaskoforsikring 2.5–2.6 Båtredning og bergelønn"],
+    "bat.transport.dekning": [2, "Minikaskoforsikring 2.4 Transport"],
+  },
+};
+
+const sharedBoatRow = (key: string, value: string, providerId: string, section: string): BoatPetRow => {
+  const [page, physicalSection] = sharedBoatCitations[sourceId(providerId, "båt")]?.[key] ?? [1, section];
+  return row(key, value, providerId, "båt", page, physicalSection);
+};
+
 const boatCore = (providerId: string, geography: string): BoatPetRow[] => [
-  row("bat.ansvar.dekning", "Inkludert", providerId, "båt", 1, "Produktoversikt"),
-  row("bat.rettshjelp.dekning", "Inkludert", providerId, "båt", 1, "Produktoversikt"),
-  row("bat.geografi.dekning", "Inkludert", providerId, "båt", 1, "Geografisk område"),
-  row("bat.geografi.omrade", geography, providerId, "båt", 1, "Geografisk område"),
+  sharedBoatRow("bat.ansvar.dekning", "Inkludert", providerId, "Produktoversikt"),
+  sharedBoatRow("bat.rettshjelp.dekning", "Inkludert", providerId, "Produktoversikt"),
+  sharedBoatRow("bat.geografi.dekning", "Inkludert", providerId, "Geografisk område"),
+  sharedBoatRow("bat.geografi.omrade", geography, providerId, "Geografisk område"),
 ];
 const boatFire = (providerId: string, geography: string): BoatPetRow[] => [
   ...boatCore(providerId, geography),
-  row("bat.brann.dekning", "Inkludert", providerId, "båt", 1, "Brann"),
-  row("bat.tyveri.dekning", "Inkludert", providerId, "båt", 1, "Tyveri"),
+  sharedBoatRow("bat.brann.dekning", "Inkludert", providerId, "Brann"),
+  sharedBoatRow("bat.tyveri.dekning", "Inkludert", providerId, "Tyveri"),
 ];
 const boatKasko = (providerId: string, geography: string): BoatPetRow[] => [
   ...boatFire(providerId, geography),
-  row("bat.kasko.dekning", "Inkludert", providerId, "båt", 1, "Kasko"),
-  row("bat.redning.dekning", "Inkludert", providerId, "båt", 1, "Redning og berging"),
-  row("bat.transport.dekning", "Inkludert ved dekningsmessig skade", providerId, "båt", 1, "Transport"),
+  sharedBoatRow("bat.kasko.dekning", "Inkludert", providerId, "Kasko"),
+  sharedBoatRow("bat.redning.dekning", "Inkludert", providerId, "Redning og berging"),
+  sharedBoatRow("bat.transport.dekning", "Inkludert ved dekningsmessig skade", providerId, "Transport"),
 ];
 const product = (
   providerId: string, company: string, name: string, rows: BoatPetRow[], version: string | null,
@@ -155,11 +194,23 @@ const boatProducts: BoatPetProductDefinition[] = [
   product("gjensidige", "Gjensidige", "Kasko", boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land"), null),
   product("gjensidige", "Gjensidige", "Pluss", [...boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land"), row("bat.totalskade.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.dekning", "Inkludert med motor- og båttypebegrensninger", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.alder", "Motor og drivverk eldre enn 10 år er unntatt", "gjensidige", "båt", 1, "Pluss"), row("bat.ferieavbrudd.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss")], null),
   product("storebrand", "Storebrand", "Delkasko", boatFire("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"), "2024-09-01"),
-  product("storebrand", "Storebrand", "Kasko", [...boatKasko("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"), row("bat.opplagsutstyr.dekning", "Inkludert", "storebrand", "båt", 8, "5.2 Kasko")], "2024-09-01"),
-  product("storebrand", "Storebrand", "Super", [...boatKasko("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"), row("bat.opplagsutstyr.dekning", "Inkludert", "storebrand", "båt", 9, "5.2 Dekningstabell"), row("bat.opplagsutstyr.grense", "20 000 kr", "storebrand", "båt", 9, "5.2 Dekningstabell"), row("bat.ferieavbrudd.dekning", "Inkludert", "storebrand", "båt", 8, "5.3 Super"), row("bat.ferieavbrudd.dager", "Inntil 30 dager", "storebrand", "båt", 8, "5.3 Super"), row("bat.ferieavbrudd.grense", "Inntil 60 000 kr", "storebrand", "båt", 8, "5.3 Super"), row("bat.totalskade.dekning", "Inkludert", "storebrand", "båt", 8, "5.3 Super"), row("bat.totalskade.alder", "Inntil 3 år fra kjøpsdato", "storebrand", "båt", 8, "5.3 Super")], "2024-09-01"),
+  product("storebrand", "Storebrand", "Kasko", [
+    ...boatKasko("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"),
+    row("bat.opplagsutstyr.dekning", "Inkludert", "storebrand", "båt", 9, "5.2 Dekningstabell"),
+  ], "2024-09-01"),
+  product("storebrand", "Storebrand", "Super", [
+    ...boatKasko("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"),
+    row("bat.opplagsutstyr.dekning", "Inkludert", "storebrand", "båt", 9, "5.2 Dekningstabell"),
+    row("bat.opplagsutstyr.grense", "20 000 kr", "storebrand", "båt", 9, "5.2 Dekningstabell"),
+    row("bat.ferieavbrudd.dekning", "Inkludert", "storebrand", "båt", 10, "5.3 nr. 1 Ferieavbrudd"),
+    row("bat.ferieavbrudd.dager", "Inntil 30 dager", "storebrand", "båt", 10, "5.3 nr. 1 Ferieavbrudd"),
+    row("bat.ferieavbrudd.grense", "Inntil 60 000 kr", "storebrand", "båt", 10, "5.3 nr. 1 Ferieavbrudd"),
+    row("bat.totalskade.dekning", "Inkludert", "storebrand", "båt", 10, "5.3 nr. 6 Totalskadegaranti"),
+    row("bat.totalskade.alder", "Inntil 3 år fra kjøpsdato", "storebrand", "båt", 10, "5.3 nr. 6 Totalskadegaranti"),
+  ], "2024-09-01"),
   product("sparebank1-fremtind", "Fremtind", "Delkasko", boatFire("sparebank1-fremtind", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter"), "2024-06-10"),
-  product("sparebank1-fremtind", "Fremtind", "Kasko", [...boatKasko("sparebank1-fremtind", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter"), row("bat.ferieavbrudd.dekning", "Inkludert", "sparebank1-fremtind", "båt", 7, "Kasko"), row("bat.ferieavbrudd.dager", "Inntil 10 dager", "sparebank1-fremtind", "båt", 7, "Kasko"), row("bat.ferieavbrudd.dagsbelop", "Inntil 1 000 kr per dag", "sparebank1-fremtind", "båt", 7, "Kasko")], "2024-06-10"),
-  product("sparebank1-fremtind", "Fremtind", "Toppkasko", [...boatKasko("sparebank1-fremtind", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter"), row("bat.ferieavbrudd.dekning", "Inkludert", "sparebank1-fremtind", "båt", 8, "Toppkasko"), row("bat.ferieavbrudd.dager", "Inntil 15 dager", "sparebank1-fremtind", "båt", 8, "Toppkasko"), row("bat.ferieavbrudd.dagsbelop", "Inntil 1 500 kr per dag", "sparebank1-fremtind", "båt", 8, "Toppkasko"), row("bat.totalskade.dekning", "Inkludert", "sparebank1-fremtind", "båt", 9, "Totalskadegaranti"), row("bat.maskinskade.dekning", "Inkludert med dokumenterte motor- og aldersbegrensninger", "sparebank1-fremtind", "båt", 8, "Toppkasko"), row("bat.maskinskade.egenandel", "4 000 kr, med vilkårets fradragsregel", "sparebank1-fremtind", "båt", 9, "Maskin-/seilskade", "coverage")], "2024-06-10"),
+  product("sparebank1-fremtind", "Fremtind", "Kasko", [...boatKasko("sparebank1-fremtind", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter"), row("bat.ferieavbrudd.dekning", "Inkludert", "sparebank1-fremtind", "båt", 6, "Kaskoforsikring 2.2 Erstatning ved avbrutt ferietur"), row("bat.ferieavbrudd.dager", "Inntil 10 dager", "sparebank1-fremtind", "båt", 6, "Kaskoforsikring 2.2 Erstatning ved avbrutt ferietur"), row("bat.ferieavbrudd.dagsbelop", "Inntil 1 000 kr per dag", "sparebank1-fremtind", "båt", 6, "Kaskoforsikring 2.2 Erstatning ved avbrutt ferietur")], "2024-06-10"),
+  product("sparebank1-fremtind", "Fremtind", "Toppkasko", [...boatKasko("sparebank1-fremtind", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter"), row("bat.ferieavbrudd.dekning", "Inkludert", "sparebank1-fremtind", "båt", 6, "Toppkaskoforsikring 2.1 Erstatning ved avbrutt ferietur"), row("bat.ferieavbrudd.dager", "Inntil 15 dager", "sparebank1-fremtind", "båt", 7, "Toppkaskoforsikring 2.1 Erstatning ved avbrutt ferietur (forts.)"), row("bat.ferieavbrudd.dagsbelop", "Inntil 1 500 kr per dag", "sparebank1-fremtind", "båt", 6, "Toppkaskoforsikring 2.1 Erstatning ved avbrutt ferietur"), row("bat.totalskade.dekning", "Inkludert", "sparebank1-fremtind", "båt", 7, "Toppkaskoforsikring 3.2 Totalskadegaranti"), row("bat.maskinskade.dekning", "Inkludert med dokumenterte motor- og aldersbegrensninger", "sparebank1-fremtind", "båt", 7, "Toppkaskoforsikring 2.3 Maskin-/seilskade"), row("bat.maskinskade.egenandel", "4 000 kr, med vilkårets fradragsregel", "sparebank1-fremtind", "båt", 7, "Toppkaskoforsikring 4.1 Maskin-/seilskade", "coverage")], "2024-06-10"),
   product("frende", "Frende", "Brann og tyveri", frendeBoatFire, "2026-01-01"),
   product("frende", "Frende", "Kasko", frendeBoatKasko(false), "2026-01-01"),
   product("frende", "Frende", "Utvidet", [...frendeBoatKasko(true), row("bat.opplagsutstyr.dekning", "Inkludert", "frende", "båt", 3, "Hva som er forsikret")], "2026-01-01"),
@@ -194,6 +245,13 @@ const ifCatCommon = (type: "hund" | "katt"): BoatPetRow[] => type === "katt" ? [
   row("dyr.karenstid.sykdom", "20 dager: sykdom, feil eller svakheter som katten hadde ved ikrafttredelse, eller som påvises eller viser symptomer innen 20 dager etter kjøp. Karenstiden gjelder ikke ved flytting fra annet selskap eller tidligere forsikring i If med annen eier. Ved forhøyelse av forsikringssum eller utvidelse starter ny karenstid bare for forhøyelsen/utvidelsen.", "if", "katt", 7, "6.2.1"),
   row("dyr.veterinaralder.opphor", "Veterinærforsikringen kan beholdes hele kattens liv", "if", "katt", 4, "4 Varighet"),
 ] : [];
+const storebrandVet = (type: "hund" | "katt"): BoatPetRow[] => [
+  row("dyr.veterinar.dekning", "Inkludert", "storebrand", type, 4, "B.4.1 Veterinærutgifter"),
+  row("dyr.veterinar.sum.valgbar", "Valgt forsikringssum per forsikringsår fremgår av forsikringsbeviset", "storebrand", type, 3, "B.2 Forsikringssum"),
+  row("dyr.veterinar.egenandel.fast", "2 500 kr per skadetilfelle", "storebrand", type, 3, "B.3 Egenandel", "reference"),
+  row("dyr.veterinaralder.opphor", "Veterinærforsikringen gjelder livet ut", "storebrand", type, 3, "B.1 Forsikringens gyldighet"),
+];
+
 const petProducts: BoatPetProductDefinition[] = [
   petProduct("tryg", "Tryg", "hund", "Behandling", "2026-09-01", [
     ...vetBase("tryg", "hund", "Kundens valgte sum fremgår av forsikringsbeviset", "Fremgår av forsikringsbeviset").filter((fact) => fact.key === "dyr.veterinar.dekning"),
@@ -243,17 +301,30 @@ const petProducts: BoatPetProductDefinition[] = [
     { ...row("dyr.tannsykdom.begrensning", "Unntatt tannkjøttbetennelse (stomatitt, gingivitt og periodontitt), tannbyll/abscess med unntak for avskalling/fraktur, fjerning av tannstein og følger av tannstein, og annen tannsykdom/tannskade med unntak for tannfraktur/tannbrudd forårsaket av en ulykke. Hunden skal vaksineres og det skal gjennomføres årlig tann-/helsekontroll etter veterinærfaglige anbefalinger. Ved behov for forebyggende behandling og rens av tenner skal dette gjennomføres. Veterinær skal kontaktes straks hunden blir syk, skadet eller viser tegn til sløvhet eller avmagring. Veterinærens anvisning skal følges, og sykdom/skade skal behandles med midler som er til rådighet. Dersom sikkerhetsforskriftene ikke overholdes, kan retten til erstatning bortfalle helt eller delvis, jf. forsikringsavtaleloven §4-8. Produktets tann-FAQ presiserer at årlige tann-/helsekontroller hos veterinær og tannrens dersom nødvendig må kunne dokumenteres for dekning av karies og emaljedefekter.", "gjensidige", "hund", 2, "Dekkes ikke – tannbehandling; sikkerhetsforskrifter PDF-side 1 (trykt side 5–6)", undefined, "boat-pet:gjensidige:hund:treatment"), qualificationSource: { sourceId: "boat-pet:gjensidige:hund:product", page: 1, section: "Dekkes periodontitt? – dokumentert tannkontroll og nødvendig tannrens" } },
     { ...row("dyr.diagnostikk.grense", "Innenfor forsikringssummen du har valgt, får du dekket utgifter til MR-undersøkelser og CT-undersøkelser med opptil 5 000 kroner per år eller skadetilfelle.", "gjensidige", "hund", 1, "Behandling – MR og CT", undefined, "boat-pet:gjensidige:hund:product"), label: "MR/CT – grense" },
     { ...row("dyr.diagnostikk.begrensning", "Innenfor valgt forsikringssum: Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, selv om skaden ikke er dekket, med inntil 3 000 kr. Fullvilkåret viser til summen angitt i forsikringsbeviset.", "gjensidige", "hund", 1, "Forsikringen dekker – Behandling (trykt side 5)", undefined, "boat-pet:gjensidige:hund:treatment"), label: "Undersøkelse ledd/rygg frem til diagnose", qualificationSource: { sourceId: "boat-pet:gjensidige:hund:treatment", page: 3, section: "Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)" } },
-    row("dyr.rehabilitering.grense", "Inntil 5 000 kr", "gjensidige", "hund", 1, "Behandling"), row("dyr.allergi.grense", "Inntil 5 000 kr", "gjensidige", "hund", 1, "Behandling"),
+    { ...row("dyr.rehabilitering.grense", "Inntil 5 000 kr", "gjensidige", "hund", 1, "Forsikringsoversikt – Behandling (trykt side 5)", undefined, "boat-pet:gjensidige:hund:treatment"),
+      qualificationSource: { sourceId: "boat-pet:gjensidige:hund:treatment", page: 3, section: "Rehabilitering og fysikalsk behandling – summen i forsikringsbeviset" } },
+    { ...row("dyr.allergi.grense", "Inntil 5 000 kr", "gjensidige", "hund", 1, "Forsikringsoversikt – Behandling (trykt side 5)", undefined, "boat-pet:gjensidige:hund:treatment"),
+      qualificationSource: { sourceId: "boat-pet:gjensidige:hund:treatment", page: 2, section: "Allergi/atopi – summen i forsikringsbeviset" } },
     row("dyr.rehabilitering.begrensning", "Rehabiliteringen må være gjennomført innen 3 måneder etter at behandlende veterinær har foreskrevet den og skje på veterinærklinikk eller et behandlingssted som behandlende veterinær henviser til.", "gjensidige", "hund", 8, "Erstatningsregler – Rehabilitering (trykt side 13)", undefined, "boat-pet:gjensidige:hund:treatment"),
   ]),
   petProduct("gjensidige", "Gjensidige", "katt", "Behandling", null, [...vetBase("gjensidige", "katt", "Valgt forsikringssum fremgår av forsikringsbeviset", "Fremgår av forsikringsbeviset"), row("dyr.allergi.grense", "Inntil 5 000 kr", "gjensidige", "katt", 1, "Behandling")]),
-  petProduct("storebrand", "Storebrand", "hund", "Veterinær", "2025-02-01", [...vetBase("storebrand", "hund", "Valgt forsikringssum per forsikringsår fremgår av forsikringsbeviset", "2 500 kr per skadetilfelle"), row("dyr.veterinaralder.opphor", "Veterinærforsikringen gjelder livet ut", "storebrand", "hund", 2, "B.1")]),
-  petProduct("storebrand", "Storebrand", "katt", "Veterinær", "2025-02-01", [...vetBase("storebrand", "katt", "Valgt forsikringssum per forsikringsår fremgår av forsikringsbeviset", "2 500 kr per skadetilfelle"), row("dyr.veterinaralder.opphor", "Veterinærforsikringen gjelder livet ut", "storebrand", "katt", 2, "B.1")]),
+  petProduct("storebrand", "Storebrand", "hund", "Veterinær", "2025-02-01", storebrandVet("hund")),
+  petProduct("storebrand", "Storebrand", "katt", "Veterinær", "2025-02-01", storebrandVet("katt")),
   ...(["hund", "katt"] as const).flatMap((type) => {
-    const life = [row("dyr.liv.dekning", "Inkludert", "storebrand", type, 1, "Dødsfall"), row("dyr.liv.sum.valgbar", "Valgt forsikringssum fremgår av forsikringsbeviset", "storebrand", type, 1, "Dødsfall"), row("dyr.liv.reduksjon.start", "Fra 8 år", "storebrand", type, 1, "Dødsfall"), row("dyr.liv.reduksjon.sats", "90 % ved 8 år, 75 % ved 9 år og 60 % ved 10 år", "storebrand", type, 1, "Dødsfall"), row("dyr.liv.opphor", "Første forfall etter fylte 10 år", "storebrand", type, 1, "Dødsfall"), ...(type === "hund" ? [row("hund.bruksverdi.dekning", "Inkludert i valgt dødsfallsdekning", "storebrand", type, 1, "Dødsfall og nedsatt bruksverdi"), row("hund.bruksverdi.grense", "Maksimalt 50 % av hundens forsikringssum for død", "storebrand", type, 1, "Dødsfall og nedsatt bruksverdi")] : [])];
+    const life = [
+      row("dyr.liv.dekning", "Inkludert", "storebrand", type, 8, "B.5.1 nr. 1 Dødsfall eller forsvunnet dyr"),
+      row("dyr.liv.sum.valgbar", "Valgt forsikringssum fremgår av forsikringsbeviset", "storebrand", type, 3, "B.2 Forsikringssum"),
+      row("dyr.liv.reduksjon.start", "Fra 8 år", "storebrand", type, 8, "B.5.1 nr. 1 Dødsfall eller forsvunnet dyr"),
+      row("dyr.liv.reduksjon.sats", "90 % ved 8 år, 75 % ved 9 år og 60 % ved 10 år", "storebrand", type, 8, "B.5.1 nr. 1 Dødsfall eller forsvunnet dyr"),
+      row("dyr.liv.opphor", "Første forfall etter fylte 10 år", "storebrand", type, 8, "B.5.1 nr. 1 Dødsfall eller forsvunnet dyr"),
+      ...(type === "hund" ? [
+        row("hund.bruksverdi.dekning", "Inkludert i valgt dødsfallsdekning", "storebrand", type, 9, "B.5.1 nr. 2 Nedsatt bruksverdi"),
+        row("hund.bruksverdi.grense", "Maksimalt 50 % av hundens forsikringssum for død", "storebrand", type, 9, "B.5.1 nr. 2 Nedsatt bruksverdi"),
+      ] : []),
+    ];
     return [
       petProduct("storebrand", "Storebrand", type, "Dødsfall", "2025-02-01", life),
-      petProduct("storebrand", "Storebrand", type, "Veterinær og Dødsfall", "2025-02-01", [...vetBase("storebrand", type, "Valgt forsikringssum per forsikringsår fremgår av forsikringsbeviset", "2 500 kr per skadetilfelle"), row("dyr.veterinaralder.opphor", "Veterinærforsikringen gjelder livet ut", "storebrand", type, 2, "B.1"), ...life]),
+      petProduct("storebrand", "Storebrand", type, "Veterinær og Dødsfall", "2025-02-01", [...storebrandVet(type), ...life]),
     ];
   }),
   petProduct("sparebank1-fremtind", "Fremtind", "hund", "Veterinær", "2025-08-07", [
@@ -279,8 +350,8 @@ const petProducts: BoatPetProductDefinition[] = [
   petProduct("frende", "Frende", "hund", "Veterinær", "2026-01-01", [
     row("dyr.veterinar.dekning", "Rimelige og nødvendige utgifter til undersøkelse og behandling av syk eller skadet hund, inkludert medisiner og materiell som veterinæren bruker, og nødvendig opphold på dyrehospital/-klinikk", "frende", "hund", 2, "4.1.1"),
     row("dyr.veterinar.sum.valgbar", "Per skadetilfelle og samlet per forsikringsår; faktisk sum står i forsikringsbeviset. Samlet erstatning for veterinærutgifter og medisinutgifter per skadetilfelle er begrenset til bevisets sum, også når samme skadetilfelle gir veterinærutgifter over flere forsikringsår", "frende", "hund", 4, "8.4, jf. 4.1 side 2"),
-    row("dyr.veterinar.egenandel.fast", "Minst 1 000 kr per skadetilfelle", "frende", "hund", 1, "Veterinærbehandling", "reference"),
-    row("dyr.veterinar.egenandel.prosent", "25 % av skaden", "frende", "hund", 4, "8.6 Egenandel", "coverage"),
+    row("dyr.veterinar.egenandel.fast", "Minst 1 000 kr per skadetilfelle", "frende", "hund", 5, "8.6 Egenandel", "reference"),
+    row("dyr.veterinar.egenandel.prosent", "25 % av skaden", "frende", "hund", 5, "8.6 Egenandel", "coverage"),
     row("dyr.allergi.grense", "Inntil 15 000 kr til førstegangsdiagnostisering og behandling av allergi/atopi. Unntatt hund med symptomer på øre- eller hudlidelser før kjøp eller innen 20 dager etterpå. Antistoffer i blodprøve før tre måneder etter kjøp regnes som allergi påbegynt før forsikringen", "frende", "hund", 2, "4.1.4 og 4.2.4 (fortsatt side 3)"),
     row("dyr.karenstid.sykdom", "20 dager fra opprinnelig kjøp i Frende eller tidligere selskap; eksisterende sykdom eller skade er unntatt. Ved økning av forsikringssummen gjelder karens bare økningen", "frende", "hund", 3, "4.2.11"),
     row("dyr.veterinar.begrensning", "Unntatt forebyggende undersøkelse/behandling, rehabilitering, reiser, fôr, foreskrevne/utleverte medisiner og forbindingsmateriell, alternativ undersøkelse/behandling, adferdsforstyrrelser/unormalt temperament og komplikasjoner etter behandling av sykdom/skade som ikke omfattes. Tannbehandling er avgrenset til trekking av tenner knekt ved ulykke; særskilte raseunntak i 4.2.7–9 gjelder. Behandling etter at hunden ikke lenger er forsikret i Frende er unntatt, selv om sykdom/skade inntraff i forsikringstiden", "frende", "hund", 2, "4.2.1–3, 5–10 og 12 (fortsatt side 3)"),
@@ -288,7 +359,7 @@ const petProducts: BoatPetProductDefinition[] = [
   petProduct("frende", "Frende", "katt", "Veterinær", "2026-01-01", [
     row("dyr.veterinar.dekning", "Rimelige og nødvendige utgifter til undersøkelse og behandling av syk eller skadet katt, inkludert medisiner og materiell som veterinæren bruker, og nødvendig opphold på dyrehospital/-klinikk", "frende", "katt", 2, "4.1.1"),
     row("dyr.veterinar.sum.valgbar", "Samlet erstatning for alle veterinærutgifter og alle medisinutgifter per skadetilfelle er begrenset til forsikringssummen i forsikringsbeviset; dette gjelder også når samme skadetilfelle gir veterinærutgifter over flere forsikringsår", "frende", "katt", 3, "7.4 Forsikringssum"),
-    row("dyr.veterinar.egenandel.fast", "Minst 1 000 kr per skadetilfelle", "frende", "katt", 1, "Veterinærbehandling", "reference"),
+    row("dyr.veterinar.egenandel.fast", "Minst 1 000 kr per skadetilfelle", "frende", "katt", 4, "7.6 Egenandel", "reference"),
     row("dyr.veterinar.egenandel.prosent", "25 % av skaden", "frende", "katt", 4, "7.6 Egenandel", "coverage"),
     row("dyr.allergi.grense", "Inntil 15 000 kr til førstegangsdiagnostisering og behandling av allergi/atopi. Unntatt katt med symptomer på øre- eller hudlidelser før kjøp eller innen 20 dager etterpå. Antistoffer i blodprøve før tre måneder etter kjøp regnes som allergi påbegynt før forsikringen", "frende", "katt", 2, "4.1.2 og 4.2.4"),
     row("dyr.karenstid.sykdom", "20 dager fra opprinnelig kjøp i Frende eller tidligere selskap; eksisterende sykdom eller skade er unntatt. Ved økning av forsikringssummen gjelder karens bare økningen", "frende", "katt", 2, "4.2.8"),
@@ -405,9 +476,15 @@ const petAddOns: BoatPetAddOnDefinition[] = [
     { ...petAddOn("frende", "Frende", type, `frende-${type}-tap`, "Tap", ["Veterinær"], [...(type === "hund" ? [
       row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset: hunden dør eller avlives av dyrevernhensyn etter ulykke/sykdom, blir stjålet eller forsvinner, eller helt taper bruksegenskaper etter ulykke/sykdom som dokumentert ferdig trent og regelmessig brukt brukshund", "frende", type, 3, "7.1 (fortsatt side 4)"),
       row("dyr.liv.begrensning", "Unntatt sykdom/skade ved kjøp i Frende eller tidligere selskap, eller innen 20 dager etter kjøp; ved sumøkning bare økningen. Avliving på grunn av adferdsforstyrrelser/unormalt temperament eller komplikasjoner etter behandling/operative inngrep som ikke omfattes er unntatt", "frende", type, 4, "7.2"),
-    ] : [row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "Tap"),
+    ] : [row("dyr.liv.dekning", "Valgfri dekning når oppført i forsikringsbeviset", "frende", type, 3, "6 Tap"),
       row("dyr.liv.begrensning", "Unntatt sykdom/skade ved kjøp i Frende eller tidligere selskap, eller som oppstår innen 20 dager etter kjøp; ved sumøkning bare økningen. Avliving etter komplikasjoner etter behandling og operative inngrep som ikke omfattes av forsikringen er unntatt", "frende", type, 3, "6.2"),
-    ]), row("dyr.liv.forsvinning", "Inkludert i valgt Tap-dekning", "frende", type, 3, "Tap"), row("dyr.liv.opphor", "Første hovedforfall etter 10 år", "frende", type, 2, "Hvor og når"), ...(type === "hund" ? frendeDogUseRows : [])]),
+    ]),
+      type === "hund"
+        ? row("dyr.liv.forsvinning", "Inkludert i valgt Tap-dekning", "frende", type, 3, "7.1.2")
+        : row("dyr.liv.forsvinning", "Vilkårene av 01.01.2026 dekker tyveri ved innbrudd i bygning. Bortkomst alene gir ikke erstatning.", "frende", type, 3, "6.1"),
+      row("dyr.liv.opphor", "Første hovedforfall etter 10 år", "frende", type, 2, "2 Hvor og når forsikringen gjelder"),
+      ...(type === "hund" ? frendeDogUseRows : []),
+    ]),
       ...(type === "hund" ? { selectionEvidenceKeys: ["dyr.liv.dekning"] } : {}) },
   ]),
 ];

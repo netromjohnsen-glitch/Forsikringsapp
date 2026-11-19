@@ -1,3 +1,4 @@
+import { beforePrivatePolicyPages } from "./helpers/before-private-policy-pages.mjs";
 import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
@@ -22,7 +23,7 @@ const date=new Date('2026-10-23T12:00:00Z');
 const product=id=>productCatalog.products.find(p=>p.productId===id);
 const record=(id,role,values,addon=false)=>({company:'Gjensidige',type:'Hus',agreementScope:'ordinary',productName:product(id).name,canonicalProductName:product(id).name,documentRole:role,objectIdentifiers:[],agreementPeriod:null,documentIndices:[1],annualPremium:null,deductible:null,coverageSummary:null,importantTerms:values.map(value=>({name:'Hus Smart',value,canonicalKey:null,documentIndices:[1]})),addOns:addon?[{name:'Hus Smart',annualPremium:null,deductible:null,importantTerms:[]}]:[]});
 const selection=(id,i)=>resolveHouseSmartDocumentSelection(product(id),i);
-const repeat=i=>enrichExtractedAgreementWithCatalog({company:'Gjensidige',totalAnnualPremium:null,insurances:[i]},date).insurances[0];
+const repeat=(i,catalog)=>enrichExtractedAgreementWithCatalog({company:'Gjensidige',totalAnnualPremium:null,insurances:[i]},date,undefined,undefined,catalog).insurances[0];
 const observation=[];
 const cases=[['absent',[],false,'unknown',false],['addon-only',[],true,'selected',false],['yes-term',['Valgt'],false,'selected',false],['yes-addon',['Valgt'],true,'selected',false],['no-term',['Ikke valgt'],false,'not_selected',false],['no-addon',['Ikke valgt'],true,'not_selected',false],['conflict',['Valgt','Ikke valgt'],true,'unknown',true],['unknown',['Ukjent'],true,'unknown',false],['description',['Valgfri alarmtjeneste; kan kjøpes separat.'],false,'unknown',false],['condition',['Når Hus Smart er valgt, gjelder egne avtalevilkår.'],false,'unknown',false]];
 for(const id of ids)for(const side of ['existing','offer'])for(const role of ['individual_agreement','unknown'])for(const[name,values,addon,status,conflict]of cases)test(`SMART-SELECTION pipeline ${id}/${side}/${role}/${name}`,()=>{
@@ -101,11 +102,12 @@ for(const id of ids)test(`SMART-SELECTION exact aliases preserve other identitie
 });
 test('SMART-SELECTION 202 other products and catalog identity preserve baseline; manual Smart follows explicit-choice contract',()=>{
  const meta=JSON.parse(readFileSync(new URL('baseline-identity.json',audit)));const bytes=readFileSync(new URL('baseline.v8.gz',audit));assert.equal(createHash('sha256').update(bytes).digest('hex'),meta.baseline_sha256);const baseline=deserialize(gunzipSync(bytes));assert.equal(baseline.others.length,202);
- for(const c of baseline.others){if(c.error)assert.throws(()=>enrichExtractedAgreementWithCatalog(c.input,date),{message:c.error},c.id);else assert.deepEqual(enrichExtractedAgreementWithCatalog(c.input,date),c.output,c.id);}
+ const historical=beforePrivatePolicyPages(productCatalog);
+ for(const c of baseline.others){if(c.error)assert.throws(()=>enrichExtractedAgreementWithCatalog(c.input,date,undefined,undefined,historical),{message:c.error},c.id);else assert.deepEqual(enrichExtractedAgreementWithCatalog(c.input,date,undefined,undefined,historical),c.output,c.id);}
  // Only the authorized Smart and Utleie manual proofs/continuation and their
  // exact original catalog rows may differ from this frozen document-choice baseline.
  for(const c of baseline.manual){
-  const first=normalizeManualAgreement(c.input).insuranceData.insurances[0],expectedFirst=structuredClone(c.first),expectedRepeat=structuredClone(c.repeated);
+  const first=normalizeManualAgreement(c.input,historical).insuranceData.insurances[0],expectedFirst=structuredClone(c.first),expectedRepeat=structuredClone(c.repeated);
   if(c.first.addOnIds.includes(addonId)){
    for(const i of [expectedFirst,expectedRepeat])i.addOns.find(a=>a.id===addonId).manualSelection={origin:'manual',addOnId:addonId,catalogReference:{...c.first.catalogReference}};
    expectedRepeat.addOnIds=[...expectedRepeat.addOnIds,addonId];
@@ -119,8 +121,8 @@ test('SMART-SELECTION 202 other products and catalog identity preserve baseline;
    expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rentalRows)];
    expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
   }
-  assert.deepEqual(withoutFrostAndVacancy(first),expectedFirst);assert.deepEqual(withoutFrostAndVacancy(repeat(first)),withHouseCatalogOrigin(expectedRepeat,c.first));
-  const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first)],'Hus'),expected);
+  assert.deepEqual(withoutFrostAndVacancy(first),expectedFirst);assert.deepEqual(withoutFrostAndVacancy(repeat(first,historical)),withHouseCatalogOrigin(expectedRepeat,c.first));
+  const expected=c.first.addOnIds.includes(addonId)?(c.first.addOnIds.length>1?'Hus Smart · Utleie':'Hus Smart'):null;assert.equal(groupAddOnNames([first],'Hus'),expected);assert.equal(groupAddOnNames([repeat(first,historical)],'Hus'),expected);
  }
  assert.equal(createHash('sha256').update(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))).digest('hex'),vacancyCatalogBaselineHash);
 });

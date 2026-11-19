@@ -1,4 +1,5 @@
 import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
+import { beforePrivatePolicyPages } from "./helpers/before-private-policy-pages.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import {withHouseCatalogOrigin} from './helpers/house-origin.mjs';
@@ -101,13 +102,14 @@ for(const id of ids){
  });
 }
 test('SMART-MANUAL all 202 other manual results preserve baseline; non-Smart targets allow only authorized Utleie delta',()=>{
- assert.equal(baseline.others.length,202);for(const c of [...baseline.others,...baseline.manual.filter(c=>!c.input.products[0].addOnIds.includes(addon))]){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0],expectedFirst=structuredClone(c.first),expectedRepeat=structuredClone(c.repeated);
+ const catalog = beforePrivatePolicyPages(productCatalog);
+ assert.equal(baseline.others.length,202);for(const c of [...baseline.others,...baseline.manual.filter(c=>!c.input.products[0].addOnIds.includes(addon))]){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input,catalog),{message:c.error});continue;}const first=normalizeManualAgreement(c.input,catalog).insuranceData.insurances[0],expectedFirst=structuredClone(c.first),expectedRepeat=structuredClone(c.repeated);
  if(c.first.addOnIds.includes('gjensidige-hus-utleie')){
   const rental='gjensidige-hus-utleie',rows=c.first.importantTerms.filter(t=>t.key?.startsWith('hus.utleie.')),names=new Set(rows.map(t=>t.name));
   for(const i of [expectedFirst,expectedRepeat])i.addOns.find(a=>a.id===rental).manualSelection={origin:'manual',addOnId:rental,catalogReference:{...c.first.catalogReference}};
   expectedRepeat.addOnIds.push(rental);expectedRepeat.importantTerms=[...expectedRepeat.importantTerms.filter(t=>!names.has(t.name)),...structuredClone(rows)];expectedRepeat.catalogFacts.push(...structuredClone(c.first.catalogFacts.filter(f=>f.key.startsWith('hus.utleie.'))));
  }
- assert.deepEqual(withoutFrostAndVacancy(first),expectedFirst,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutFrostAndVacancy(result),withHouseCatalogOrigin(expectedRepeat,c.first),c.id);}
+ assert.deepEqual(withoutFrostAndVacancy(first),expectedFirst,c.id);const result=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date,undefined,undefined,catalog).insurances[0];assert.deepEqual(withoutFrostAndVacancy(result),withHouseCatalogOrigin(expectedRepeat,c.first),c.id);}
  assert.equal(createHash('sha256').update(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))).digest('hex'),vacancyCatalogBaselineHash);
 });
 test('SMART-MANUAL all 96 actual document pipeline outputs and displays are exact baseline',()=>{

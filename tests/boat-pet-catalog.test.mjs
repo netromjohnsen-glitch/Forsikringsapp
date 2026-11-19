@@ -286,10 +286,20 @@ for (const [providerId, company] of packages) {
         assert.equal(joint.value, 'Innenfor valgt forsikringssum: Undersøkelse av sykdom eller skade i ledd eller rygg frem til diagnose blir stilt, selv om skaden ikke er dekket, med inntil 3 000 kr. Fullvilkåret viser til summen angitt i forsikringsbeviset.');
         assert.deepEqual(joint.source, { ...reference(treatment, 1, 'Forsikringen dekker – Behandling (trykt side 5)'), note: fact.source.note });
         assert.deepEqual(joint.qualificationSource, reference(treatment, 3, 'Undersøkelse av sykdom eller skade i ledd eller rygg (trykt side 7)'));
-        for (const other of packageFacts.filter(f => f !== fact && !bindings.some(([key]) => key === f.key) && !deductibleKeys.includes(f.key) && !diagnosticKeys.includes(f.key)))
+        const amountLimits = [
+          ['dyr.rehabilitering.grense', 3, 'Rehabilitering og fysikalsk behandling – summen i forsikringsbeviset'],
+          ['dyr.allergi.grense', 2, 'Allergi/atopi – summen i forsikringsbeviset'],
+        ];
+        for (const [key, qualifierPage, qualifierSection] of amountLimits) {
+          const amount = packageFacts.find(f => f.key === key);
+          assert.equal(amount.value, 'Inntil 5 000 kr');
+          assert.deepEqual(amount.source, { ...reference(treatment, 1, 'Forsikringsoversikt – Behandling (trykt side 5)'), note: fact.source.note });
+          assert.deepEqual(amount.qualificationSource, reference(treatment, qualifierPage, qualifierSection));
+        }
+        for (const other of packageFacts.filter(f => f !== fact && !bindings.some(([key]) => key === f.key) && !deductibleKeys.includes(f.key) && !diagnosticKeys.includes(f.key) && !amountLimits.some(([key]) => key === f.key))) {
           assert.equal(other.source.documentId, source.id);
-        assert.deepEqual(packageFacts.filter(f => f.source.documentId === source.id).map(f => f.key).sort(),
-          ['dyr.allergi.grense', 'dyr.rehabilitering.grense']);
+        }
+        assert.deepEqual(packageFacts.filter(f => f.source.documentId === source.id).map(f => f.key), []);
         const limit = packageFacts.find(f => f.key === 'dyr.veterinar.begrensning');
         assert.deepEqual(limit.qualificationSource, reference(treatment, 2, 'Forutsetninger og Dekkes ikke – Veterinærutgifter (trykt side 6)'));
         const dental = packageFacts.find(f => f.key === 'dyr.tannsykdom.begrensning');

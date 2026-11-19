@@ -151,6 +151,11 @@ for (const productId of ["if-bil-kasko", "fremtind-hus-standard", "frende-snosco
             assert.equal(term, undefined);
             assert.deepEqual(customer.importantTerms.filter(t => t.key?.startsWith("dyr.diagnostikk.")), []);
             assert.equal(canonicalCoverage(customer, "Hund", "dyr.diagnostikk.dekning").status, "unknown");
+          } else if (productId === "gjensidige-hund-behandling" && ["dyr.rehabilitering.grense", "dyr.allergi.grense"].includes(fact.key)) {
+            // An archived example limit preserves provenance for product and manual
+            // views. It cannot assert a customer's undocumented coverage.
+            assert.equal(term, undefined);
+            assert.equal(canonicalCoverage(customer, "Hund", fact.key.replace(/\.grense$/u, ".dekning")).status, "unknown");
           } else {
             assert.ok(term);
             assert.deepEqual(term.sources, union(fact));

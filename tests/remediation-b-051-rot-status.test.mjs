@@ -1,3 +1,4 @@
+import { beforePrivatePolicyPages } from "./helpers/before-private-policy-pages.mjs";
 import {applySettlement as withCurrentSettlement} from './helpers/house-settlement-form.mjs';
 import {applyWater} from './helpers/b051-water.mjs';
 import { beforePersonInsuranceCatalog } from './helpers/before-person-insurance-catalog.mjs';
@@ -185,7 +186,7 @@ test('R-051-ROT-STATUS only two independently authorized catalog metadata change
   let protectedFacts = 0, protectedComponents = 0;
   for (const [owner, facts] of Object.entries(baseline.facts)) {
     const rows = owner === 'gjensidigeHusStandard' ? facts.filter(f => f.key !== key) : facts;
-    assert.deepEqual(productCatalog.facts[owner].filter(f => owner !== 'gjensidigeHusStandard' || f.key !== key), rows);
+    assert.deepEqual(historical.facts[owner].filter(f => owner !== 'gjensidigeHusStandard' || f.key !== key), rows);
     protectedFacts += rows.length; if (owner !== 'gjensidigeHusStandard') protectedComponents++;
   }
   assert.equal(protectedFacts, 4199); assert.equal(protectedComponents, 317);
@@ -201,10 +202,11 @@ test('R-051-ROT-STATUS 13 products/six providers and 201 other comparable produc
     else assert.equal(state(insurance).status, 'selected');
   }
   const others = productComparisonProducts(baseline).filter(p => p.productId !== standard);
+  const historical = beforePrivatePolicyPages(productCatalog);
   assert.equal(others.length, 201);
   for (const p of others) {
-    assert.deepEqual(materializeCatalogProduct(product(p.productId), productCatalog), materializeCatalogProduct(p, baseline), p.productId);
-    assert.deepEqual(compareCatalogProducts(product(p.productId), product(p.productId)), compareCatalogProducts(p, p, baseline));
+    assert.deepEqual(materializeCatalogProduct(product(p.productId), historical), materializeCatalogProduct(p, baseline), p.productId);
+    assert.deepEqual(compareCatalogProducts(product(p.productId), product(p.productId), historical), compareCatalogProducts(p, p, baseline));
   }
   for (const [id, untouchedKey] of [['tryg-hus', 'hus.skadedyr.bygningsskade'], ['fremtind-hus-standard', 'hus.skadedyr.bekjempelse'], ['tryg-reise', 'reise.ulykke.dekning'], ['tryg-reise-ekstra', 'reise.ulykke.dekning']]) {
     const current = compareCatalogProducts(product(id), product(id)).sections.flatMap(s => s.rows).find(r => r.key === untouchedKey);

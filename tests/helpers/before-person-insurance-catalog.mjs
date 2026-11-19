@@ -1,3 +1,5 @@
+import { beforePrivatePolicyPages } from "./before-private-policy-pages.mjs";
+
 // Frozen catalogue checkpoints predate the person, private and Tryg member entries.
 const historicalInsuranceTypes = [
   "Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise",
@@ -26,6 +28,6 @@ export function beforePersonInsuranceCatalog(catalog) {
       !addedProviders.has(product.providerId) && !expandedIds.test(product.productId) && !expandedIds.test(product.sourceId ?? "")),
     addOns: catalog.addOns.filter(addOn => !addedProviders.has(addOn.providerId) && !expandedIds.test(addOn.id)),
     sources: existingEntries(catalog.sources),
-    facts: existingEntries(catalog.facts),
+    facts: existingEntries(beforePrivatePolicyPages(catalog).facts),
   };
 }

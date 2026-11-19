@@ -32,8 +32,7 @@ test("each archive route resolves only the intended catalogue document and editi
       assert.ok(!citations.has(identity), identity);
       citations.add(identity);
       const source = { documentId, effectiveFrom, url: originalUrl, page: 1 };
-      const fragment = document.pageAnchors === false ? "" : "#page=1";
-      assert.equal(termsSourceHref(source), route + fragment);
+      assert.equal(termsSourceHref(source), route + "#page=1");
       assert.equal(termsSourceHref({ ...source, page: 0 }), route);
       assert.equal(termsSourceHref({ ...source, effectiveFrom: "1900-01-01" }), originalUrl);
       assert.equal(termsSourceHref({ ...source, url: "https://example.test/new.pdf" }), "https://example.test/new.pdf");

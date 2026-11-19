@@ -6,7 +6,6 @@ type TermsArchiveDocument = {
   provider: string;
   slug: string;
   archivePath: string;
-  pageAnchors?: boolean;
   sources: readonly ArchiveSource[];
   memberSources?: readonly MemberArchiveSource[];
 };
@@ -16,7 +15,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "fremtind",
     slug: "bat",
     archivePath: "catalog/sources/boat-pet/fremtind-boat-terms.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:sparebank1-fremtind:båt", "2024-06-10", "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html"],
     ],
@@ -130,7 +128,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "frende",
     slug: "hund",
     archivePath: "catalog/sources/boat-pet/frende-dog-terms.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:frende:hund", "2026-01-01", "https://www.frende.no/forsikringer/hundeforsikring/"],
     ],
@@ -168,7 +165,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "frende",
     slug: "katt",
     archivePath: "catalog/sources/boat-pet/frende-cat-terms.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:frende:katt", "2026-01-01", "https://www.frende.no/forsikringer/katteforsikring/"],
     ],
@@ -211,7 +207,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "gjensidige",
     slug: "ipid-bat",
     archivePath: "catalog/sources/boat-pet/gjensidige-boat-ipid.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:gjensidige:båt", "", "https://www.gjensidige.no/forsikring/batforsikring"],
     ],
@@ -220,7 +215,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "gjensidige",
     slug: "ipid-hund",
     archivePath: "catalog/sources/boat-pet/gjensidige-dog-ipid.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:gjensidige:hund", "", "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring"],
     ],
@@ -245,7 +239,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "storebrand",
     slug: "bat",
     archivePath: "catalog/sources/boat-pet/storebrand-boat-terms.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:storebrand:båt", "2024-09-01", "https://www.storebrand.no/privat/forsikring/batforsikring"],
     ],
@@ -254,7 +247,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "storebrand",
     slug: "dyr",
     archivePath: "catalog/sources/boat-pet/storebrand-pet-terms.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:storebrand:hund", "2025-02-01", "https://www.storebrand.no/privat/forsikring/hundeforsikring"],
       ["boat-pet:storebrand:katt", "2025-02-01", "https://www.storebrand.no/privat/forsikring/katteforsikring"],
@@ -330,7 +322,6 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     provider: "tryg",
     slug: "ipid-bat",
     archivePath: "catalog/sources/boat-pet/tryg-boat-ipid.pdf",
-    pageAnchors: false,
     sources: [
       ["boat-pet:tryg:båt", "2024-07-01", "https://www.tryg.no/system/files/download/pdf/ipid/IPID-Batforsikring.pdf"],
     ],

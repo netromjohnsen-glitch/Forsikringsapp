@@ -1,4 +1,5 @@
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
+import {beforePrivatePolicyPages} from './helpers/before-private-policy-pages.mjs';
 import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import {withOriginalBuildingsSourcePage} from './helpers/house-buildings-source.mjs';
 import test from 'node:test';
@@ -24,6 +25,7 @@ const dir=new URL('../docs/audit/checkpoints/b130-underinsurance-0e4c09d/',impor
 const meta=JSON.parse(readFileSync(new URL('baseline-identity.json',dir))),bytes=readFileSync(new URL('baseline.v8.gz',dir));
 assert.equal(createHash('sha256').update(bytes).digest('hex'),meta.baseline_sha256);
 const baseline=deserialize(gunzipSync(bytes)),ids=['gjensidige-hus','gjensidige-hus-pluss'],owners=['gjensidigeHusStandard','gjensidigeHusPluss'],date=new Date('2026-10-23T12:00:00Z');
+const historicalCatalog=beforePrivatePolicyPages(productCatalog);
 const clean=x=>JSON.parse(JSON.stringify(x)),p=id=>productCatalog.products.find(p=>p.productId===id);
 const repeat=i=>enrichExtractedAgreementWithCatalog({company:'Gjensidige',totalAnnualPremium:null,insurances:[i]},date).insurances[0];
 const stages=i=>{const a=repeat(i),b=repeat(a);return[i,a,b,repeat(clean(b))];};
@@ -110,7 +112,7 @@ for(const [n,id]of ids.entries()){
  });
 }
 test('UNDERINSURANCE all 214 manual inputs and 144 actual document controls preserve every old field',()=>{
- for(const c of baseline.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutUnderinsurance(first),c.first,c.id);const next=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutUnderinsurance(next),c.repeated,c.id);}
+ for(const c of baseline.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input,historicalCatalog),{message:c.error});continue;}const first=normalizeManualAgreement(c.input,historicalCatalog).insuranceData.insurances[0];assert.deepEqual(withoutUnderinsurance(first),c.first,c.id);const next=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date,undefined,undefined,historicalCatalog).insurances[0];assert.deepEqual(withoutUnderinsurance(next),c.repeated,c.id);}
  for(const c of baseline.documents)assert.deepEqual(withoutUnderinsurance(documentPipeline([[c.record]],c.side).insuranceData),c.output,c.id);
  assert.equal(baseline.controls.length,214);assert.equal(baseline.documents.length,144);assert.equal(baseline.configurations.length,12);
 });
@@ -123,8 +125,8 @@ test('UNDERINSURANCE same product and side-swap retain source asymmetry and peer
  }
  for(const product of beforePersonInsuranceCatalog(productCatalog).products.filter(p=>!ids.includes(p.productId))){
   const before=baseline.catalog.products.find(p=>p.productId===product.productId);
-  assert.deepEqual(resolveCatalogFacts(product,[],date),resolveCatalogFacts(before,[],date,null,baseline.catalog));
-  for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date),resolveCatalogFacts(before,selected,date,null,baseline.catalog));}
+  assert.deepEqual(resolveCatalogFacts(product,[],date,null,historicalCatalog),resolveCatalogFacts(before,[],date,null,baseline.catalog));
+  for(const addon of availableAddOns(product,date)){const selected=resolveAddOnPackage(product,addon.id,date);assert.equal(resolveCatalogFacts(product,selected,date,null,historicalCatalog).some(f=>f.key===o.key),false);assert.deepEqual(resolveCatalogFacts(product,selected,date,null,historicalCatalog),resolveCatalogFacts(before,selected,date,null,baseline.catalog));}
  }
 });
 test('UNDERINSURANCE price basis and first-main-anniversary deadline never become area ratio or form override',()=>{

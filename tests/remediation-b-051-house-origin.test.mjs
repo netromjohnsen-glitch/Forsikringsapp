@@ -1,4 +1,5 @@
 import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
+import { beforePrivatePolicyPages } from "./helpers/before-private-policy-pages.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import test from 'node:test';
@@ -82,7 +83,8 @@ for(const id of ids){
  });
 }
 test('HOUSE-ORIGIN 214 frozen manual controls differ only by authorized target origin/metadata; 202 other products exact',()=>{
- assert.equal(before.controls.length,214);for(const c of before.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input),{message:c.error});continue;}const first=normalizeManualAgreement(c.input).insuranceData.insurances[0];assert.deepEqual(withoutFrostAndVacancy(first),c.first,c.id);const next=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date).insurances[0];assert.deepEqual(withoutFrostAndVacancy(next),withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([next],c.input.products[0].type),c.display,c.id);}
+ const catalog = beforePrivatePolicyPages(productCatalog);
+ assert.equal(before.controls.length,214);for(const c of before.controls){if(c.error){assert.throws(()=>normalizeManualAgreement(c.input,catalog),{message:c.error});continue;}const first=normalizeManualAgreement(c.input,catalog).insuranceData.insurances[0];assert.deepEqual(withoutFrostAndVacancy(first),c.first,c.id);const next=enrichExtractedAgreementWithCatalog({company:c.input.company,totalAnnualPremium:null,insurances:[first]},date,undefined,undefined,catalog).insurances[0];assert.deepEqual(withoutFrostAndVacancy(next),withHouseCatalogOrigin(c.repeated,c.first),c.id);assert.equal(groupAddOnNames([next],c.input.products[0].type),c.display,c.id);}
  assert.equal(hash(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))),vacancyCatalogBaselineHash);
 });
 test('HOUSE-ORIGIN all 144 original PDF outputs are exactly unchanged on first enrichment',()=>{

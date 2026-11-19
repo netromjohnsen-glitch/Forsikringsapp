@@ -5,7 +5,7 @@ export function termsSourceHref(source: Pick<FactSource, "documentId" | "effecti
   const archive = termsArchiveDocuments.find(document => document.sources.some(([id, date, url]) =>
     id === source.documentId && date === source.effectiveFrom && url === source.url));
   if (!archive) return source.url;
-  const page = archive.pageAnchors !== false && Number.isInteger(source.page) && source.page > 0 ? "#page=" + source.page : "";
+  const page = Number.isInteger(source.page) && source.page > 0 ? "#page=" + source.page : "";
   return "/api/vilkar/" + archive.provider + "/" + archive.slug + page;
 }
 

@@ -1,4 +1,5 @@
 import { beforePersonInsuranceCatalog } from "./helpers/before-person-insurance-catalog.mjs";
+import { beforePrivatePolicyPages } from "./helpers/before-private-policy-pages.mjs";
 import {withoutFrostAndVacancy} from './helpers/b130-frost.mjs';
 import {vacancyCatalogBaselineHash} from './helpers/b130-vacancy.mjs';
 import test from 'node:test';
@@ -75,9 +76,10 @@ for(const id of ids)test(`LEGAL-PRIORITY both customer comparison directions ${i
  }
 });
 test('LEGAL-PRIORITY all other 202 catalog products preserve exact baseline enrichment output',()=>{
+ const catalog = beforePrivatePolicyPages(productCatalog);
  const meta=JSON.parse(readFileSync(new URL('baseline-identity.json',dir))),bytes=readFileSync(new URL('other-product-baseline.v8.gz',dir));
  assert.equal(createHash('sha256').update(bytes).digest('hex'),meta.snapshot_sha256);const cases=deserialize(gunzipSync(bytes));assert.equal(cases.length,202);
- for(const c of cases){if(c.error)assert.throws(()=>enrichExtractedAgreementWithCatalog(c.input,date),{message:c.error},c.id);else assert.deepEqual(enrichExtractedAgreementWithCatalog(c.input,date),c.output,c.id);}
+ for(const c of cases){if(c.error)assert.throws(()=>enrichExtractedAgreementWithCatalog(c.input,date,undefined,undefined,catalog),{message:c.error},c.id);else assert.deepEqual(enrichExtractedAgreementWithCatalog(c.input,date,undefined,undefined,catalog),c.output,c.id);}
  assert.equal(createHash('sha256').update(serialize(withoutFrostAndVacancy(beforePersonInsuranceCatalog(productCatalog)))).digest('hex'),vacancyCatalogBaselineHash);
 });
 test('LEGAL-PRIORITY no global alias; unknown product/scope/type/version cannot gain scoped identity',()=>{

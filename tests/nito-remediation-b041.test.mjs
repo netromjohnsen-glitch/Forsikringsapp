@@ -45,6 +45,9 @@ test('R-041-01: original hash, official dated full terms and seven exact binding
   assert.match(text,/20 000 kroner per skadetilfelle og samlet per forsikringsår/);
   assert.match(text,/alle veterinærutgifter og alle medisinutgifter per skadetilfelle/);
   assert.match(text,/ett og samme skadetilfelle påfører deg veterinærutgifter over flere forsikringsår/);
+  const tapPage=pdf.pages[2].text.replace(/\s+/gu,' ');
+  assert.match(tapPage,/6\.1 Når vi erstatter tap av katten/);
+  assert.match(tapPage,/blir stjålet ved innbrudd i bygning/);
  }finally{await parser.destroy();}
 });
 for(const [gap,sf,component,key,page,section,values] of oracle)test(`R-041-${gap}/${sf}: exact subject, qualification and own-source provenance`,()=>{
@@ -129,5 +132,7 @@ test('R-041-17: existing Katt addon and Hund selection-evidence contracts retain
  for(const addon of [medicine,tap]){const a=productCatalog.addOns.find(a=>a.id===addon);assert.equal(a.requiresAddOnIds,undefined);assert.equal(a.selectionEvidenceKeys,undefined);assert.deepEqual(a.requiresLevel,[id]);}
  assert.deepEqual(productCatalog.addOns.find(a=>a.id==='frende-hund-tap').selectionEvidenceKeys,['dyr.liv.dekning']);
  assert.equal(productCatalog.addOns.some(a=>a.id==='frende-hund-bruksverdi'),false);
- assert.equal(own('dyr.liv.forsvinning',tap).value,'Inkludert i valgt Tap-dekning');
+ const disappearance=own('dyr.liv.forsvinning',tap);
+ assert.equal(disappearance.value,'Vilkårene av 01.01.2026 dekker tyveri ved innbrudd i bygning. Bortkomst alene gir ikke erstatning.');
+ assert.equal(disappearance.source.page,3);assert.equal(disappearance.source.section,'6.1');
 });

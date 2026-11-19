@@ -7,6 +7,7 @@ import { materializeCatalogProduct, compareCatalogProducts } from '../lib/catalo
 import { enrichExtractedAgreementWithCatalog } from '../lib/catalog-enrichment.ts';
 import { normalizeManualAgreement } from '../lib/manual-agreement.ts';
 import { canonicalCoverage } from '../lib/coverage-status.ts';
+import { beforePrivatePolicyPages } from './helpers/before-private-policy-pages.mjs';
 
 // B-018: 461c6c588118df04 / GAP-1284 / SF-1902 / RC-108 / CR-162.
 // Depends on B-022's selectionEvidenceKeys guard, not a Bruk→Liv rule.
@@ -88,8 +89,10 @@ test('R-018-06: PC-0571–0574 preserve base, Tap expiry, deductibles and custom
   const registry = readFileSync(new URL('../docs/audit/legacy-local/source-catalog-remediation-triage/regression-control-registry.csv', import.meta.url), 'utf8');
   for (let pc = 571; pc <= 574; pc++) assert.ok(registry.includes(`PC-0${pc},AUDITED_POSITIVE,frende`));
   // Updated for source-verified B-038 text/provenance; B-018 semantics are asserted below.
-  assert.equal(digest(facts()), '27c5b42872a732bf40c3882f2221bd1c4ded9ab4f5ecd7e9b3c7b6610008ad8f');
-  assert.equal(digest(facts([tap]).filter(f => !f.key.startsWith('hund.bruksverdi.'))), '236e42c804a8c19497f6468ce0d23072f555d0a79adf84a4fab315c52a0ec510');
+  const historicalCatalog = beforePrivatePolicyPages(productCatalog);
+  const historicalFacts = (ids = []) => resolveCatalogFacts(product(id), ids, date, null, historicalCatalog);
+  assert.equal(digest(historicalFacts()), '27c5b42872a732bf40c3882f2221bd1c4ded9ab4f5ecd7e9b3c7b6610008ad8f');
+  assert.equal(digest(historicalFacts([tap]).filter(f => !f.key.startsWith('hund.bruksverdi.'))), '236e42c804a8c19497f6468ce0d23072f555d0a79adf84a4fab315c52a0ec510');
   assert.match(own('dyr.veterinar.sum.valgbar').value, /faktisk sum står i forsikringsbeviset/u);
   assert.match(own('dyr.veterinar.egenandel.fast').value, /Minst 1 000 kr/u);
   assert.equal(own('dyr.veterinar.egenandel.prosent').value, '25 % av skaden');
@@ -134,7 +137,8 @@ test('R-018-09: Frende Katt semantics preserved after B-041, independent Fremtin
   const catAddOns = productCatalog.addOns.filter(a => a.providerId === 'frende' && a.insuranceTypes?.includes('Katt'));
   // B-041 changes five source-bound texts and adds two existing restriction keys.
   // Product/addon metadata, selection evidence and 314 other components were unchanged.
-  assert.equal(digest([p, productCatalog.facts[p.productId], catAddOns.map(a => [a, productCatalog.facts[a.componentId]])]), 'd6129429f8119cad204897e5da127d4170d1122fc281f0c6f0d57924f5996dda');
+  const historicalCatalog = beforePrivatePolicyPages(productCatalog);
+  assert.equal(digest([p, historicalCatalog.facts[p.productId], catAddOns.map(a => [a, historicalCatalog.facts[a.componentId]])]), 'd6129429f8119cad204897e5da127d4170d1122fc281f0c6f0d57924f5996dda');
   assert.equal(p.providerId, 'frende'); assert.equal(p.insuranceType, 'Katt');
   assert.equal(p.agreementScope, 'ordinary'); assert.equal(p.version, '2026-01-01');
   assert.deepEqual(p.componentIds, ['frende-katt-veterin-r']);
@@ -161,7 +165,10 @@ test('R-018-09: Frende Katt semantics preserved after B-041, independent Fremtin
   assert.equal(catFact('dyr.veterinar.egenandel.prosent').value, '25 % av skaden');
   assert.equal(catFact('dyr.veterinar.egenandel.prosent').deductibleClassification, 'coverage');
   assert.equal(catFact('dyr.liv.opphor').value, 'Første hovedforfall etter 10 år');
-  assert.equal(catFact('dyr.liv.forsvinning').value, 'Inkludert i valgt Tap-dekning');
+  const disappearance = catFact('dyr.liv.forsvinning');
+  assert.equal(disappearance.value, 'Vilkårene av 01.01.2026 dekker tyveri ved innbrudd i bygning. Bortkomst alene gir ikke erstatning.');
+  assert.equal(disappearance.source.page, 3);
+  assert.equal(disappearance.source.section, '6.1');
   const catDocument = enrichExtractedAgreementWithCatalog({ company: 'Frende', totalAnnualPremium: null, insurances: [{
     type: 'Katt', productName: 'Veterinær', agreementScope: 'ordinary', annualPremium: null, deductible: null,
     coverageSummary: null, addOns: [], importantTerms: [term('dyr.liv.dekning', 'Ikke valgt'), term('dyr.veterinar.sum.valgbar', '37 000 kr')] }] }, date).insurances[0];
