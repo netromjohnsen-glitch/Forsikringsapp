@@ -322,6 +322,51 @@ test("Tryg Kritisk sykdom aligns symptom, age, survival and hospital terms with 
   assert.equal(termsSourceHref(hospitalSource), "/api/vilkar/tryg/kritisk-sykdom#page=3");
 });
 
+test("critical illness compares separate hospital cash and survival conditions across all variants", () => {
+  const type = "Kritisk sykdom";
+  const peer = option("Gjensidige", type, "Alvorlig sykdom");
+  const cases = [
+    [option("Tryg", type, "Kritisk sykdom"), /ingen egen overlevelsesfrist/u, "unavailable", /ingen egen utbetaling/u, "tryg/kritisk-sykdom", [1], [3]],
+    [option("If", type, "Kritisk sykdom"), /24 timer.*legen stiller diagnosen/u, "unavailable", /ingen egen utbetaling.*hjerneslagerstatningen.*14 dager/u, "if/kritisk-sykdom", [3], [3, 5]],
+    [peer, /24 timer/u, "included", /100 000 kr.*60 sammenhengende dager/u, "gjensidige/alvorlig-sykdom", [8], [8]],
+    [option("Storebrand", type, "Kritisk sykdom"), /24 timer/u, "included", /50 000 kr.*60 sammenhengende døgn/u, "storebrand/kritisk-sykdom", [7], [7]],
+    [option("Frende", type, "Kritisk sykdom"), /30 dager/u, "unavailable", /ingen egen utbetaling/u, "frende/kritisk-sykdom", [4], [4]],
+    [option("Fremtind", type, "Kritisk sykdom"), /24 timer/u, "unavailable", /ingen egen utbetaling/u, "fremtind/kritisk-sykdom", [2], [1]],
+    [option("KLP", type, "Alvorlige sykdommer"), /30 dager/u, "unavailable", /ingen egen utbetaling/u, "klp/alvorlige-sykdommer", [4], [1]],
+    [option("Landkreditt", type, "Kritisk sykdom"), /30 dager/u, "unavailable", /ingen egen utbetaling/u, "landkreditt/kritisk-sykdom", [3], [3]],
+  ];
+
+  const members = productComparisonOptions(type, "Tryg", "utdanningsforbundet");
+  for (const suffix of ["medlem", "ektefelle"]) {
+    const product = members.find(candidate => candidate.productId === "tryg-utdanningsforbundet-kritisk-sykdom-" + suffix);
+    assert.ok(product);
+    cases.push([
+      product, /dekket diagnose er endelig stilt.*ingen egen overlevelsesfrist/u,
+      "unavailable", /ingen egen utbetaling.*20 oppførte/u,
+      "tryg/utdanningsforbundet-kritisk-sykdom-" + suffix, [6], [8],
+    ]);
+  }
+
+  for (const [product, survivalText, hospitalState, hospitalText, archive, survivalPages, hospitalPages] of cases) {
+    const id = product.productId;
+    const rows = compareCatalogProducts(product, peer).sections.flatMap(section => section.rows);
+    const survival = rows.filter(row => row.key === "person.sykdom.overlevelse");
+    const hospital = rows.filter(row => row.key === "person.sykdom.sykehus");
+    assert.equal(survival.length, 1, id);
+    assert.equal(hospital.length, 1, id);
+    assert.equal(survival[0].first.state, "included", id);
+    assert.equal(hospital[0].first.state, hospitalState, id);
+    assert.match(survival[0].first.text, survivalText, id);
+    assert.match(hospital[0].first.text, hospitalText, id);
+    assert.match(hospital[0].second.text, /100 000 kr.*60 sammenhengende dager/u, id);
+    for (const [row, pages] of [[survival[0], survivalPages], [hospital[0], hospitalPages]]) {
+      assert.deepEqual(row.first.sources.map(termsSourceHref), pages.map(page => "/api/vilkar/" + archive + "#page=" + page), id);
+      assert.ok(row.first.sources.every(source => source.agreementScope === product.agreementScope &&
+        source.documentId === product.sourceId), id);
+    }
+  }
+});
+
 test("personal member terms align with ordinary rows and keep the chosen agreement scope", () => {
   const cases = [
     {

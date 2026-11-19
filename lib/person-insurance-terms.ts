@@ -218,6 +218,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "fremtind-person-kritisk": [
     {
+      kind: "sykdomSykehus", page: 1, section: "Punkt 4 og 5 (s. 1–2)",
+      value: "Langvarig sykehusopphold gir ingen egen utbetaling. Forsikringssummen utbetales ved sykdom, skade eller behandling som er oppført i vilkårene.",
+      unavailable: true,
+    },
+    {
       kind: "sykdomOpphor", document: "kritisk-ipid", page: 1, section: "Hvilken forsikring er dette?",
       value: "Forsikringen varer til fylte 67 år, ifølge produktinformasjonen.",
     },
@@ -435,6 +440,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "frende-person-kritisk": [
+    {
+      kind: "sykdomSykehus", page: 4, section: "Punkt 4",
+      value: "Langvarig sykehusopphold gir ingen egen utbetaling. Engangserstatningen gjelder dekkede diagnoser, behandlinger, operasjoner eller oppføring på venteliste som oppfyller vilkårene.",
+      unavailable: true,
+    },
     {
       kind: "sykdomKreft", page: 2, section: "Punkt 2 – Kreft",
       value: "Kreft dokumentert ved vevs- eller celleundersøkelse. Vilkåret omfatter blant annet lymfekreft i stadium II–IV og føflekkreft tykkere enn 0,5 mm. Forstadier, lymfekreft i stadium I og kronisk lymfatisk leukemi er blant unntakene.",
@@ -1180,6 +1190,12 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "if-person-kritisk": [
     {
+      kind: "sykdomSykehus", page: 3, section: "Punkt 4.1",
+      value: "Langvarig sykehusopphold gir ingen egen utbetaling. Ved dekket hjerneslag og langvarig innleggelse utbetales hjerneslagerstatningen etter 14 dager dersom nødvendig dokumentasjon foreligger.",
+      unavailable: true,
+      qualification: { document: "kritisk", page: 5, section: "Punkt 5 c – Hjerneslag" },
+    },
+    {
       kind: "sykdomKreft", page: 5, section: "Punkt 5 a",
       value: "Kreft i ICD-10 kodegruppe C med unntakene i vilkåret. Forstadier og hud- eller leppekreft er unntatt. Ondartet føflekkreft omfattes.",
     },
@@ -1197,7 +1213,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "sykdomOverlevelse", page: 3, section: "Punkt 4.1",
-      value: "Forsikrede må være i live 24 timer etter forsikringstilfellet.",
+      value: "Forsikrede må være i live 24 timer etter at legen stiller diagnosen, skaden skjer eller behandlingen utføres.",
     },
     {
       kind: "sykdomKarenstid", page: 8, section: "Punkt 6.1",
@@ -1305,6 +1321,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "klp-person-alvorlige-sykdommer": [
+    {
+      kind: "sykdomSykehus", page: 1, section: "Alvorlige sykdommer – Hva som dekkes",
+      value: "Langvarig sykehusopphold gir ingen egen utbetaling. Forsikringen gir engangserstatning ved en sykdom som står i vilkårene.",
+      unavailable: true,
+    },
     {
       kind: "sykdomKreft", page: 4, section: "Erstatningsbestemmelser – Kreft",
       value: "Ondartede svulster, blant annet leukemi og ondartet lymfekreft, bekreftet med vevsprøve. Hud- og leppekreft er unntatt, med unntak for ondartet føflekkreft. Vilkåret har også egne unntak for forstadier og andre svulster.",
@@ -1510,6 +1531,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "landkreditt-person-kritisk": [
+    {
+      kind: "sykdomSykehus", page: 3, section: "Punkt 4",
+      value: "Langvarig sykehusopphold gir ingen egen utbetaling. Forsikringen gir én engangserstatning ved en sykdom som står i vilkårene.",
+      unavailable: true,
+    },
     {
       kind: "sykdomKreft", page: 3, section: "Punkt 6.1 (s. 3–4)",
       value: "Ondartede svulster, inkludert leukemi, lymfekreft og ondartet føflekkreft. Som hovedregel kreves bekreftelse ved vevsundersøkelse. Vilkåret har egne unntak for blant annet forstadier.",

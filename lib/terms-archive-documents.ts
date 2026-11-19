@@ -583,6 +583,78 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     ],
   },
   {
+    provider: "if",
+    slug: "kritisk-sykdom",
+    archivePath: "catalog/sources/person/if-person-kritisk.pdf",
+    sources: [
+      ["person:if-person-kritisk", "2025-08-23", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "alvorlig-sykdom",
+    archivePath: "catalog/sources/person/gjensidige-person-kritisk.pdf",
+    sources: [
+      ["person:gjensidige-person-alvorlig-sykdom", "", "https://www.gjensidige.no/files/privat/vilkar/person/alvorlig-sykdom-alminnelige-vilkar.pdf"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "kritisk-sykdom",
+    archivePath: "catalog/sources/person/storebrand-person-kritisk.pdf",
+    sources: [
+      ["person:storebrand-person-kritisk", "2023-03", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/be9f85de-96f6-4842-9979-990e26679cc7:782c93d799a653a2399367e5e2ba6de5b81b2429/vilkar-forsikring-kritisk-sykdom.pdf"],
+    ],
+  },
+  {
+    provider: "frende",
+    slug: "kritisk-sykdom",
+    archivePath: "catalog/sources/person/frende-person-kritisk.pdf",
+    sources: [
+      ["person:frende-person-kritisk", "2026-09-01", "https://api.frende.no/documents/terms/public/life/CriticalIllness"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "kritisk-sykdom",
+    archivePath: "catalog/sources/person/fremtind-person-kritisk.pdf",
+    sources: [
+      ["person:fremtind-person-kritisk", "2025-09-22", "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_kritisk_Sykdom_KS03.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
+    slug: "alvorlige-sykdommer",
+    archivePath: "catalog/sources/person/klp-person-person.pdf",
+    sources: [
+      ["person:klp-person-alvorlige-sykdommer", "", "https://www.klp.no/media/forsikring/Person.pdf"],
+    ],
+  },
+  {
+    provider: "landkreditt",
+    slug: "kritisk-sykdom",
+    archivePath: "catalog/sources/person/landkreditt-person-kritisk-sykdom.pdf",
+    sources: [
+      ["person:landkreditt-person-kritisk", "2022-10-01", "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-kritisk-sykdom.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "utdanningsforbundet-kritisk-sykdom-medlem",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-kritisk-sykdom-medlem.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms", "2026", "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_medlem-2026.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "utdanningsforbundet-kritisk-sykdom-ektefelle",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-kritisk-sykdom-ektefelle.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms", "2026", "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf"],
+    ],
+  },
+  {
     provider: "tryg",
     slug: "kritisk-sykdom",
     archivePath: "catalog/sources/person/tryg-person-kritisk.pdf",
