@@ -33,7 +33,7 @@ type ProductEvidence = {
   version: string;
   termsNumber: string;
   validTo?: string;
-  termination?: Pick<CatalogFact, "key" | "label" | "value"> & { section: string; productPage: string };
+  termination?: Pick<CatalogFact, "key" | "label" | "value"> & { page: number; section: string; productPage: string };
   facts: Array<Pick<CatalogFact, "key" | "label" | "value"> & { page: number; section: string }>;
 };
 
@@ -152,7 +152,7 @@ for (const { providerId, agreementScope, products } of trygMemberInventories) {
       const pageId = `${productId}-product-page${suffix}`;
       const binding = { providerId, agreementScope, company: source.company, insuranceType,
         productIds: [productId], productVersion: evidence.version };
-      const { section, productPage, ...fact } = evidence.termination;
+      const { page, section, productPage, ...fact } = evidence.termination;
       const termsSource = trygMemberSources[termsId] = {
         ...binding, id: termsId, filename: terms.archive.path.split("/").at(-1)!,
         termsNumber: "UUL41847", effectiveFrom: terms.effectiveDate, url: terms.url,
@@ -169,7 +169,7 @@ for (const { providerId, agreementScope, products } of trygMemberInventories) {
         source: {
           documentId: termsId, filename: termsSource.filename, termsNumber: termsSource.termsNumber,
           effectiveFrom: termsSource.effectiveFrom, url: termsSource.url, company: source.company,
-          agreementScope, version: termsSource.effectiveFrom, page: 2, section,
+          agreementScope, version: termsSource.effectiveFrom, page, section,
         },
         qualificationSource: {
           documentId: pageId, filename: pageSource.filename, termsNumber: "", effectiveFrom: "",

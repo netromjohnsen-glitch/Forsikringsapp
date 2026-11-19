@@ -9,6 +9,7 @@ import { enrichBatch, mergeBatchResults } from "../lib/analysis-merge.ts";
 import { createAnalysisTelemetry } from "../lib/analysis-telemetry.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
 import { applyManualProductSelection, manualProductOptions } from "../lib/manual-product-selection.ts";
+import { termsSourceHref } from "../lib/terms-archive.ts";
 import { personInsuranceProducts } from "../lib/person-insurance-catalog.ts";
 import { availableAddOns, productCatalog, resolveAddOnPackage, resolveCatalogFacts } from "../lib/product-catalog.ts";
 
@@ -310,7 +311,15 @@ test("the verified NITO age limits align with the same ordinary coverage in both
     assert.deepEqual(row.second, reverse[0].first);
     const [terms, page] = row.first.sources;
     assert.equal(terms.termsNumber, "UUL41847");
-    assert.equal(terms.page, 2);
+    const termsPage = type === "Liv" ? 3 : 2;
+    assert.equal(terms.page, termsPage);
+    assert.equal(termsSourceHref(terms), "/api/vilkar/tryg/nito-person-produkt#page=" + termsPage);
+    if (type === "Liv") {
+      assert.match(row.first.text, /medforsikret ektefelle eller samboer.*31\. desember i året de selv fyller 75 år/u);
+      assert.match(row.first.text, /medlemmets dekning opphører på grunn av alder.*sin egen avtalte opphørsalder så lenge medlemmet fortsatt er medlem i NITO/u);
+      assert.match(row.first.text, /Forsikringsbeviset har forrang/u);
+      assert.match(terms.section, /Punkt 6.*punkt 1/u);
+    }
     assert.equal(terms.effectiveFrom, "2022-01-01");
     assert.equal(terms.agreementScope, "nito");
     assert.equal(page.sourceType, "product_page");
