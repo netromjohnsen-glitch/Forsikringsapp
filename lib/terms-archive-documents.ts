@@ -1,9 +1,14 @@
+import { privateHolidayContentsArchives } from "./private-holiday-contents-gjensidige-watercircles.ts";
+import { privateHomeTravelCoverageArchives } from "./private-home-travel-coverage-market.ts";
 import { frendeDogMarketArchives } from "./frende-dog-market.ts";
 import { fremtindBobilMarketArchives } from "./fremtind-bobil-market.ts";
 import { sparebank1FremtindBilMarketArchives } from "./sparebank1-fremtind-bil-market.ts";
+import { storebrandHolidayContentsArchives } from "./holiday-contents-storebrand-market.ts";
 import { storebrandInnboMarketArchives } from "./storebrand-innbo-market.ts";
 import { storebrandMotorMarketArchives } from "./storebrand-motor-market.ts";
+import { trygBilMarketArchives } from "./tryg-bil-market.ts";
 import { trygBoatMarketArchives } from "./tryg-boat-market.ts";
+import { trygHolidayContentsArchives } from "./holiday-contents-tryg-market.ts";
 import { trygHomeMarketArchives } from "./tryg-home-market-evidence.ts";
 import { trygSnowMarketArchives } from "./tryg-snow-market.ts";
 
@@ -20,9 +25,14 @@ type TermsArchiveDocument = {
 };
 
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
+  ...trygBilMarketArchives,
   ...trygBoatMarketArchives,
+  ...trygHolidayContentsArchives,
   ...trygHomeMarketArchives,
   ...trygSnowMarketArchives,
+  ...storebrandHolidayContentsArchives,
+  ...privateHolidayContentsArchives,
+  ...privateHomeTravelCoverageArchives,
   ...storebrandInnboMarketArchives,
   ...storebrandMotorMarketArchives,
   ...fremtindBobilMarketArchives,

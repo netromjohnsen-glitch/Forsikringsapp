@@ -1,0 +1,579 @@
+{
+  "asOf": "2026-11-19",
+  "trygBil": {
+    "officialIndex": "https://www.tryg.no/forsikringer/kjoretoy/bilforsikring/vilkar",
+    "existingPdfEditionsLinked": 9,
+    "supplementalEvidence": [
+      "PAU14000 s. 1–2",
+      "PGE91500 s. 4–5"
+    ],
+    "physicalPageCorrections": [
+      "Kasko tyveri §2.3 og glass §2.4 på side 2",
+      "Kasko veihjelp §2.5 starter på side 2, egenandel på side 3"
+    ]
+  },
+  "otherCoverageGaps": {
+    "ordinaryVariantsScreened": 68,
+    "variantsUpdated": 7,
+    "coverageRowsAddedOrClarified": 20,
+    "products": [
+      "Landkreditt Reise",
+      "WaterCircles Reise Standard og Elite",
+      "WaterCircles Innbo Standard og Elite",
+      "Gjensidige Hytte og Hytte Pluss"
+    ]
+  },
+  "holidayContents": {
+    "variants": [
+      {
+        "company": "Storebrand",
+        "name": "Standard",
+        "productId": "sb-innbo-fritidsbolig-standard"
+      },
+      {
+        "company": "Storebrand",
+        "name": "Super",
+        "productId": "sb-innbo-fritidsbolig-super"
+      },
+      {
+        "company": "Gjensidige",
+        "name": "Innbo Hytte",
+        "productId": "gjensidige-innbo-hytte"
+      },
+      {
+        "company": "Gjensidige",
+        "name": "Innbo Hytte Pluss",
+        "productId": "gjensidige-innbo-hytte-pluss"
+      },
+      {
+        "company": "WaterCircles",
+        "name": "Standard",
+        "productId": "watercircles-innbo-fritidsbolig-standard"
+      },
+      {
+        "company": "WaterCircles",
+        "name": "Elite",
+        "productId": "watercircles-innbo-fritidsbolig-elite"
+      },
+      {
+        "company": "Tryg",
+        "name": "Innbo",
+        "productId": "tryg-innbo-fritidsbolig-standard"
+      },
+      {
+        "company": "Tryg",
+        "name": "Innbo Ekstra",
+        "productId": "tryg-innbo-fritidsbolig-ekstra"
+      }
+    ],
+    "purchaseQualification": "Begge Tryg-variantene kjøpes sammen med Trygs hytteforsikring.",
+    "gjensidigeSourceScope": "Gjensidiges offentlige alminnelige vilkår. Forsikringsbeviset fastsetter valgte summer og vilkår for avtalen.",
+    "waterCirclesStandardDecision": "Fullvilkåret WtCIBF 1.05 side 4 oppgir sykkeltyverigrense 20 000 kr. Produktsiden oppgir 15 000 kr. Tolken bruker den daterte PDF-en."
+  },
+  "archiveChecks": [
+    {
+      "route": "/api/vilkar/tryg/bil-ansvar-pau25003",
+      "path": "catalog/sources/tryg/Bilforsikring-Ansvar.pdf",
+      "sources": [
+        {
+          "id": "ansvar",
+          "date": "2024-07-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25003&vilk=Bilforsikring-Ansvar",
+          "termsNumber": "PAU25003",
+          "sha256": "c024994aa75d6dd5a6f6fd8349589a19afb3d7e6d69ab133dbb280c57342b3d6",
+          "physicalPages": [
+            1,
+            1
+          ],
+          "httpStatus": 200,
+          "liveSha256": "c024994aa75d6dd5a6f6fd8349589a19afb3d7e6d69ab133dbb280c57342b3d6",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 1
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-delkasko-pau25835",
+      "path": "catalog/sources/tryg/Bilforsikring-Delkasko.pdf",
+      "sources": [
+        {
+          "id": "delkasko",
+          "date": "2026-01-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25835&vilk=Bilforsikring-Delkasko",
+          "termsNumber": "PAU25835",
+          "sha256": "3337c9c2e76f572f5c537470ff244c02ab7b24df3b71e2d1a041e974a68743be",
+          "physicalPages": [
+            1,
+            3
+          ],
+          "httpStatus": 200,
+          "liveSha256": "3337c9c2e76f572f5c537470ff244c02ab7b24df3b71e2d1a041e974a68743be",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 3
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-kasko-pau25205",
+      "path": "catalog/sources/tryg/Bilforsikring-Kasko.pdf",
+      "sources": [
+        {
+          "id": "kasko",
+          "date": "2026-07-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU25205&vilk=Bilforsikring-Kasko",
+          "termsNumber": "PAU25205",
+          "sha256": "d7d2763819d9d3b8718231813f38fc0e1d86e0d2ccd7fdda4e06d06c84451dae",
+          "physicalPages": [
+            1,
+            4
+          ],
+          "httpStatus": 200,
+          "liveSha256": "d7d2763819d9d3b8718231813f38fc0e1d86e0d2ccd7fdda4e06d06c84451dae",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 4
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-ekstra-pau27002",
+      "path": "catalog/sources/tryg/Bilforsikring-BilEkstra.pdf",
+      "sources": [
+        {
+          "id": "bilEkstra",
+          "date": "2026-07-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU27002&vilk=Bilforsikring-BilEkstra",
+          "termsNumber": "PAU27002",
+          "sha256": "c7514c58cf572dc52fc8251a7d5caec64d53c8b670ea3e24c517eff5e040c74d",
+          "physicalPages": [
+            1,
+            2
+          ],
+          "httpStatus": 200,
+          "liveSha256": "c7514c58cf572dc52fc8251a7d5caec64d53c8b670ea3e24c517eff5e040c74d",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 2
+    },
+    {
+      "route": "/api/vilkar/tryg/elbil-ekstra-pau27013",
+      "path": "catalog/sources/tryg/Bilforsikring-ElbilEkstra.pdf",
+      "sources": [
+        {
+          "id": "elbilEkstra",
+          "date": "2026-07-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU27013&vilk=Bilforsikring-ElbilEkstra",
+          "termsNumber": "PAU27013",
+          "sha256": "2696a5e335c88c020f1d6eebb007cc941a02f6c56b2373ce116223e61c1da48d",
+          "physicalPages": [
+            1,
+            2
+          ],
+          "httpStatus": 200,
+          "liveSha256": "2696a5e335c88c020f1d6eebb007cc941a02f6c56b2373ce116223e61c1da48d",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 2
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-leiebil-pau27008",
+      "path": "catalog/sources/tryg/Bilforsikring-Leiebil.pdf",
+      "sources": [
+        {
+          "id": "leiebil",
+          "date": "2026-10-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU27008&vilk=Bilforsikring-Leiebil",
+          "termsNumber": "PAU27008",
+          "sha256": "a488b0963dd74741c1608f1b5687f4aa070c533efa73950c465410987646192e",
+          "physicalPages": [
+            1,
+            1
+          ],
+          "httpStatus": 200,
+          "liveSha256": "a488b0963dd74741c1608f1b5687f4aa070c533efa73950c465410987646192e",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 1
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-maskinskade-pau27110",
+      "path": "catalog/sources/tryg/Bilforsikring-Maskinskade.pdf",
+      "sources": [
+        {
+          "id": "maskinskade",
+          "date": "2026-08-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU27110&vilk=Bilforsikring-Maskinskade",
+          "termsNumber": "PAU27110",
+          "sha256": "2aa1b0b720c552de29409db06dfdd89c97a57a27a2b669576f3e15f90b21c71d",
+          "physicalPages": [
+            1,
+            2
+          ],
+          "httpStatus": 200,
+          "liveSha256": "2aa1b0b720c552de29409db06dfdd89c97a57a27a2b669576f3e15f90b21c71d",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 2
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-forer-passasjerulykke-pau28003",
+      "path": "catalog/sources/tryg/Fører- og Passasjerulykke.pdf",
+      "sources": [
+        {
+          "id": "ulykke",
+          "date": "2024-07-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU28003&vilk=Forerogpassasjerulykke",
+          "termsNumber": "PAU28003",
+          "sha256": "d3b347f12c14756916de04c0a5a595d34bf8c082ff8d59dc1e2f02d07cfa8f52",
+          "physicalPages": [
+            1,
+            2
+          ],
+          "httpStatus": 200,
+          "liveSha256": "d3b347f12c14756916de04c0a5a595d34bf8c082ff8d59dc1e2f02d07cfa8f52",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 2
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-forer-passasjerulykke-ekstra-pau28013",
+      "path": "catalog/sources/tryg/Fører- og passasjerulykke Ekstra.pdf",
+      "sources": [
+        {
+          "id": "ulykkeEkstra",
+          "date": "2024-05-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU28013&vilk=ForerogpassasjerulykkeEkstra",
+          "termsNumber": "PAU28013",
+          "sha256": "00f818f64e54c2db9dc58d77786232f27cb771c802f1fa4d5ac45e50aa01a556",
+          "physicalPages": [
+            1,
+            2
+          ],
+          "httpStatus": 200,
+          "liveSha256": "00f818f64e54c2db9dc58d77786232f27cb771c802f1fa4d5ac45e50aa01a556",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 2
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-produkt-pau14000",
+      "path": "catalog/sources/tryg/market-bil-2026/PAU14000.pdf",
+      "sources": [
+        {
+          "id": "tryg-bil-produkt-pau14000",
+          "date": "2026-07-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PAU14000&vilk=Bilforsikring-Produkt",
+          "termsNumber": "PAU14000",
+          "sha256": "ab2cad9d7799652ab208f237e0d9a1f1d36b3ad2fdc5b504b3536f37db25b116",
+          "physicalPages": [
+            1,
+            2
+          ],
+          "httpStatus": 200,
+          "liveSha256": "ab2cad9d7799652ab208f237e0d9a1f1d36b3ad2fdc5b504b3536f37db25b116",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 2
+    },
+    {
+      "route": "/api/vilkar/tryg/bil-rettshjelp-pge91500",
+      "path": "catalog/sources/tryg/hus/05PGE91500.pdf",
+      "sources": [
+        {
+          "id": "tryg-bil-rettshjelp-pge91500",
+          "date": "2026-01-01",
+          "url": "https://www.tryg.no/odpdf?vilkNr=05PGE91500&vilk=Fellesvilkaar-Rettshjelp",
+          "termsNumber": "PGE91500",
+          "sha256": "bb2facd87cd377c994521ecf530ff82e1872ffc058d142f32832e5cd1999e291",
+          "physicalPages": [
+            1,
+            5
+          ],
+          "httpStatus": 200,
+          "liveSha256": "bb2facd87cd377c994521ecf530ff82e1872ffc058d142f32832e5cd1999e291",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 5
+    },
+    {
+      "route": "/api/vilkar/gjensidige/innbo-hytte",
+      "path": "catalog/sources/private-holiday-contents/gjensidige-standard.pdf",
+      "sources": [
+        {
+          "id": "gjensidige-innbo-hytte",
+          "date": "",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Standard-i-Hytte-alminnelige-vilkar.pdf",
+          "termsNumber": "Innbo Hytte – alminnelige vilkår",
+          "sha256": "8671f2c31f565fcf462af0b307f53edfc873539654d47eacbf15f16f6c31b68b",
+          "physicalPages": [
+            1,
+            15
+          ],
+          "httpStatus": 200,
+          "liveSha256": "8671f2c31f565fcf462af0b307f53edfc873539654d47eacbf15f16f6c31b68b",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 15
+    },
+    {
+      "route": "/api/vilkar/gjensidige/innbo-hytte-pluss",
+      "path": "catalog/sources/private-holiday-contents/gjensidige-pluss.pdf",
+      "sources": [
+        {
+          "id": "gjensidige-innbo-hytte-pluss",
+          "date": "",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Innbo-Pluss-i-Hytte-alminnelige-vilkar.pdf",
+          "termsNumber": "Innbo Hytte Pluss – alminnelige vilkår",
+          "sha256": "63ee777d3bbeb6bcad2b92a31bde615c129d5115e7a45b3f7e12aeaa9df96548",
+          "physicalPages": [
+            1,
+            16
+          ],
+          "httpStatus": 200,
+          "liveSha256": "63ee777d3bbeb6bcad2b92a31bde615c129d5115e7a45b3f7e12aeaa9df96548",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 16
+    },
+    {
+      "route": "/api/vilkar/watercircles/innbo-fritidsbolig-105",
+      "path": "catalog/sources/private-holiday-contents/watercircles-terms.pdf",
+      "sources": [
+        {
+          "id": "watercircles-innbo-fritidsbolig-terms",
+          "date": "2026-01-01",
+          "url": "https://www.watercircles.no/wp-content/uploads/2025/12/WaterCircles-Innbo-og-losore-Fritidsbolig-vilkar-WtCIBF-1.05-01.01.2026.pdf",
+          "termsNumber": "WtCIBF-1.05",
+          "sha256": "751079b0621201da359bed6b4290da48897fc45e65cbc28b4f8346605e7fe924",
+          "physicalPages": [
+            1,
+            11
+          ],
+          "httpStatus": 200,
+          "liveSha256": "751079b0621201da359bed6b4290da48897fc45e65cbc28b4f8346605e7fe924",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 11
+    },
+    {
+      "route": "/api/vilkar/watercircles/innbo-fritidsbolig-ipid",
+      "path": "catalog/sources/private-holiday-contents/watercircles-ipid.pdf",
+      "sources": [
+        {
+          "id": "watercircles-innbo-fritidsbolig-ipid",
+          "date": "",
+          "url": "https://www.watercircles.no/wp-content/uploads/2023/11/InnboFritidsboligIPID.pdf",
+          "termsNumber": "IPID Innbo fritidsbolig",
+          "sha256": "bc3a6da38900ab3de21f552beb68d16068e019c222e96e47821786036c245402",
+          "physicalPages": [
+            1,
+            2
+          ],
+          "httpStatus": 200,
+          "liveSha256": "bc3a6da38900ab3de21f552beb68d16068e019c222e96e47821786036c245402",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 2
+    },
+    {
+      "route": "/api/vilkar/landkreditt/reise",
+      "path": "catalog/sources/new-private-contents-travel/landkreditt-reise.pdf",
+      "sources": [
+        {
+          "id": "landkreditt-reise",
+          "date": "2026-05-01",
+          "url": "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-reise.pdf",
+          "termsNumber": "",
+          "sha256": "40de3aee9b92e86e7362d1dad246887f53c9feb2ad2ee2c49b97123f02152e88",
+          "physicalPages": [
+            1,
+            22
+          ],
+          "httpStatus": 200,
+          "liveSha256": "40de3aee9b92e86e7362d1dad246887f53c9feb2ad2ee2c49b97123f02152e88",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 22
+    },
+    {
+      "route": "/api/vilkar/watercircles/reise-2-17",
+      "path": "catalog/sources/new-private-contents-travel/watercircles-reise.pdf",
+      "sources": [
+        {
+          "id": "watercircles-reise",
+          "date": "2026-08-01",
+          "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+          "termsNumber": "WtCREI-2.17",
+          "sha256": "70291d41311f5d5e5f407866b91ed1eb0291a36e1cfc1ea190aa127261756128",
+          "physicalPages": [
+            1,
+            19
+          ],
+          "httpStatus": 200,
+          "liveSha256": "70291d41311f5d5e5f407866b91ed1eb0291a36e1cfc1ea190aa127261756128",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 19
+    },
+    {
+      "route": "/api/vilkar/watercircles/innbo-2-17",
+      "path": "catalog/sources/new-private-contents-travel/watercircles-innbo.pdf",
+      "sources": [
+        {
+          "id": "watercircles-innbo",
+          "date": "2026-01-01",
+          "url": "https://www.watercircles.no/wp-content/uploads/2025/12/WaterCircles-Innbo-og-losore-vilkar-WtCIBO-2.17-01.01.26.pdf",
+          "termsNumber": "WtCIBO-2.17",
+          "sha256": "9e1ea298ce19a346766c27710077e72adc39d342ccf7b81621d0ad26789e3783",
+          "physicalPages": [
+            1,
+            19
+          ],
+          "httpStatus": 200,
+          "liveSha256": "9e1ea298ce19a346766c27710077e72adc39d342ccf7b81621d0ad26789e3783",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 19
+    },
+    {
+      "route": "/api/vilkar/gjensidige/hytte-standard-alminnelige",
+      "path": "catalog/sources/private-cabin/gjensidige-hytte.pdf",
+      "sources": [
+        {
+          "id": "cabin:gjensidige:standard",
+          "date": "",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hytte-Standard-alminnelige-vilkar.pdf",
+          "termsNumber": "",
+          "sha256": "c9a0bca16a12a512242e7192781a4b3fafc56f7fdb6e9e549c200bea40012ab0",
+          "physicalPages": [
+            1,
+            17
+          ],
+          "httpStatus": 200,
+          "liveSha256": "c9a0bca16a12a512242e7192781a4b3fafc56f7fdb6e9e549c200bea40012ab0",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 17
+    },
+    {
+      "route": "/api/vilkar/gjensidige/hytte-pluss-alminnelige",
+      "path": "catalog/sources/private-cabin/gjensidige-hytte-pluss.pdf",
+      "sources": [
+        {
+          "id": "cabin:gjensidige:pluss",
+          "date": "",
+          "url": "https://www.gjensidige.no/files/privat/vilkar/bolig-innbo-og-verdier/Hytte-Pluss-alminnelige-vilkar.pdf",
+          "termsNumber": "",
+          "sha256": "034e140e2951f2c8ac113dcb2e2571ab164c3a21c3c41c76f31f43850c99a758",
+          "physicalPages": [
+            1,
+            18
+          ],
+          "httpStatus": 200,
+          "liveSha256": "034e140e2951f2c8ac113dcb2e2571ab164c3a21c3c41c76f31f43850c99a758",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 18
+    },
+    {
+      "route": "/api/vilkar/storebrand/innbo-fritidsbolig-innbo10",
+      "path": "catalog/sources/storebrand/innbo/Storebrand_Innbo_innbo10.pdf",
+      "sources": [
+        {
+          "id": "storebrand:market:innbo-fritidsbolig:innbo10",
+          "date": "2026-09-20",
+          "url": "https://www.storebrand.no/privat/forsikring/innboforsikring-hytte/_/attachment/inline/9b3b5c27-3e81-4201-b0aa-a27ea63add19:bc9ded709c0c568e911dae5f8ebf9e1155de14ff/vilkar-innboforsikring.pdf",
+          "termsNumber": "innbo10",
+          "sha256": "b0e518d636a1350de08d5f9783ce65165d6b25b137382f089365344f5d836256",
+          "physicalPages": [
+            1,
+            31
+          ],
+          "httpStatus": 200,
+          "liveSha256": "b0e518d636a1350de08d5f9783ce65165d6b25b137382f089365344f5d836256",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 31
+    },
+    {
+      "route": "/api/vilkar/tryg/innbo-fritidsbolig-ppk32000-2025-07",
+      "path": "catalog/sources/private-cabin/tryg-hytte-produkt.pdf",
+      "sources": [
+        {
+          "id": "tryg:market:innbo-fritidsbolig:PPK32000",
+          "date": "2025-07-01",
+          "url": "https://www.tryg.no/odpdf?vilk=Fritidshusforsikring-Produkt&vilkNr=05PPK32000",
+          "termsNumber": "PPK32000",
+          "sha256": "14010738eb671a0240209b263c0bdc28f2875be5fa960de75d19ecb802a47121",
+          "physicalPages": [
+            1,
+            1
+          ],
+          "httpStatus": 200,
+          "liveSha256": "14010738eb671a0240209b263c0bdc28f2875be5fa960de75d19ecb802a47121",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 1
+    },
+    {
+      "route": "/api/vilkar/tryg/innbo-fritidsbolig-ppk32013-2026-07",
+      "path": "catalog/sources/private-cabin/tryg-hytte-innbo-2026-07.pdf",
+      "sources": [
+        {
+          "id": "tryg:market:innbo-fritidsbolig:PPK32013",
+          "date": "2026-07-01",
+          "url": "https://www.tryg.no/odpdf?vilk=Fritidshusforsikring-Innbo&vilkNr=05PPK32013",
+          "termsNumber": "PPK32013",
+          "sha256": "d4287ae753b95c8662780995af89f61bc9810accb1bf8004de939f7ac7465fdf",
+          "physicalPages": [
+            1,
+            5
+          ],
+          "httpStatus": 200,
+          "liveSha256": "d4287ae753b95c8662780995af89f61bc9810accb1bf8004de939f7ac7465fdf",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 5
+    },
+    {
+      "route": "/api/vilkar/tryg/innbo-fritidsbolig-ppk32014-2026-07",
+      "path": "catalog/sources/private-cabin/tryg-hytte-innbo-ekstra-2026-07.pdf",
+      "sources": [
+        {
+          "id": "tryg:market:innbo-fritidsbolig:PPK32014",
+          "date": "2026-07-01",
+          "url": "https://www.tryg.no/odpdf?vilk=Fritidshusforsikring-Innbo-Ekstra&vilkNr=05PPK32014",
+          "termsNumber": "PPK32014",
+          "sha256": "370901ed23d1c0ce2ea1df03f7190a6a0265136b9d90dd828705ab5e78f298be",
+          "physicalPages": [
+            1,
+            6
+          ],
+          "httpStatus": 200,
+          "liveSha256": "370901ed23d1c0ce2ea1df03f7190a6a0265136b9d90dd828705ab5e78f298be",
+          "freshByteMatch": true
+        }
+      ],
+      "pdfPages": 6
+    }
+  ]
+}
