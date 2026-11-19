@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "catalogue": "Tryg membership catalogue for NITO and Utdanningsforbundet",
+  "verification_status": "PRODUCTION_VERIFIED",
+  "tested_revision": "06b336ffc656c47bc97b9bd2707a380247effe73",
+  "verified_on_oslo": "2026-11-19",
+  "scope": "Original 109 synthetic PDF scenarios in 22 original groups",
+  "production": {
+    "status": "PASS",
+    "service": "Forsikringsapp",
+    "environment": "production",
+    "revision": "06b336ffc656c47bc97b9bd2707a380247effe73",
+    "deployment": "69c5d474-e3ac-4e29-8e0c-2d777cdd0e68",
+    "first_group_recorded_at_utc": "2026-11-19T16:31:33.025819807Z",
+    "last_group_recorded_at_utc": "2026-11-19T16:34:47.851945753Z",
+    "groups_passed": 22,
+    "groups_total": 22,
+    "scenarios_passed": 109,
+    "scenarios_total": 109,
+    "failed_documents": 0,
+    "partial_groups": 0
+  },
+  "coverage": {
+    "product_editions": 38,
+    "house_rental_add_ons": 2,
+    "member_scope_guards": 63,
+    "third_party_documents": 6,
+    "expected_catalogue_fact_applications_verified": 79,
+    "ordinary_catalogue_links_among_member_scope_guards": [
+      "utdanningsforbundet/mc-kasko",
+      "utdanningsforbundet/bobil-delkasko",
+      "utdanningsforbundet/snoscooter-ansvar",
+      "utdanningsforbundet/hytte"
+    ],
+    "third_party_issuers": [
+      {
+        "scenario": "nito/hus-rate-skadedyr",
+        "insurer": "VIS Forsikring (Norsk Hussopp Forsikring)"
+      },
+      {
+        "scenario": "nito/inntekt",
+        "insurer": "AmTrust International Underwriters DAC"
+      },
+      {
+        "scenario": "nito/inntekt-5000",
+        "insurer": "AmTrust International Underwriters DAC"
+      },
+      {
+        "scenario": "nito/advokat",
+        "insurer": "AmTrust International Underwriters DAC"
+      },
+      {
+        "scenario": "nito/inntekt-10000",
+        "insurer": "AmTrust International Underwriters DAC"
+      },
+      {
+        "scenario": "utdanningsforbundet/hus-rate-skadedyr",
+        "insurer": "VIS Forsikring (Norsk Hussopp Forsikring)"
+      }
+    ],
+    "third_party_groups_passed": 3,
+    "third_party_groups_http_statuses": [
+      200,
+      200,
+      200
+    ]
+  },
+  "method": "Each original group used synthetic PDF documents on one comparison side and a synthetic manual control on the other side. Local assertions checked the product, agreement, edition and applied source facts for versioned products and add-ons. Each request ID was matched to analysis telemetry on the tested Railway deployment.",
+  "receipt_evidence": {
+    "manifest_sha256": "20b50bd051c0a6432c605299322c724907ec3aaacf268b2964d2a3d847ebf156",
+    "raw_receipt_set_sha256": "1b56b803baea240e5cbdc3e881be28bac3048769af220bb7a5a94a1ad7d196c1",
+    "raw_receipt_set_digest_input": "Sorted result filename, space, per-file SHA-256 and line feed for each group",
+    "groups": [
+      {
+        "group": "edition-01",
+        "category": "edition",
+        "scenarios": [
+          "nito/bil-ansvar",
+          "nito/reise-enkeltperson",
+          "nito/innbo-student",
+          "nito/hus-ekstra",
+          "nito/student-meg"
+        ],
+        "result_file_sha256": "f091288eaec672c4ac7b5945c71d91b4f125795d289245133fb8a57fa2cce04f",
+        "request_id": "5a9a77cf-bb04-4aff-9a11-765982c471bc",
+        "recorded_at_utc": "2026-11-19T16:31:33.025819807Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "edition-02",
+        "category": "edition",
+        "scenarios": [
+          "nito/bil-delkasko",
+          "nito/reise-familie",
+          "nito/ulykke-grunn",
+          "nito/liv",
+          "nito/student-mitt"
+        ],
+        "result_file_sha256": "bb4d249927acfecf126cdca6809102e632b101b74a39a196f96354e152bc9f5e",
+        "request_id": "b7b104c1-8bc6-4226-898d-f008af195cd8",
+        "recorded_at_utc": "2026-11-19T16:31:35.938351530Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "edition-03",
+        "category": "edition",
+        "scenarios": [
+          "nito/bil-ekstra",
+          "nito/innbo",
+          "nito/ulykke-utvidet",
+          "nito/ufore-ekstra",
+          "utdanningsforbundet/kritisk-sykdom-ektefelle"
+        ],
+        "result_file_sha256": "58edf9acfdc2fe02a61b8f1c29702fcf924964cec3cdb3c876290a8314e860c7",
+        "request_id": "3c30ab5b-f73a-4ff8-813e-b6a3a36dd9f9",
+        "recorded_at_utc": "2026-11-19T16:31:55.741583803Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "edition-04",
+        "category": "edition",
+        "scenarios": [
+          "nito/elbil-ekstra",
+          "nito/innbo-fritidsbolig",
+          "nito/hus",
+          "nito/ufore-etter-studiet",
+          "utdanningsforbundet/student"
+        ],
+        "result_file_sha256": "ad2d5e23aa34c71f515f7a87df293f996a881e0481418abd4edb386a19c0e5aa",
+        "request_id": "3e90422d-e36b-4bd0-be14-7a33c467216a",
+        "recorded_at_utc": "2026-11-19T16:31:57.652681154Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "edition-05",
+        "category": "edition",
+        "scenarios": [
+          "utdanningsforbundet/bil-delkasko",
+          "utdanningsforbundet/hus",
+          "utdanningsforbundet/reise-familie",
+          "utdanningsforbundet/liv-ektefelle",
+          "utdanningsforbundet/70-pluss-en-person"
+        ],
+        "result_file_sha256": "0699d71e02569d8d98150786b8286f5957585fc9b5e069fb5cdd609d4f9d799d",
+        "request_id": "01f5f26b-44ff-4e7f-81d2-46d106eb41f6",
+        "recorded_at_utc": "2026-11-19T16:32:06.959375301Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "edition-06",
+        "category": "edition",
+        "scenarios": [
+          "utdanningsforbundet/bil-delkasko-2026-01-01",
+          "utdanningsforbundet/hus-ekstra",
+          "utdanningsforbundet/grunnforsikring",
+          "utdanningsforbundet/ufore-medlem",
+          "utdanningsforbundet/70-pluss-familie"
+        ],
+        "result_file_sha256": "a233833be47e712cb7c1fa6c25d1ec0b7a5ebcdd43962102ee85359053b2b124",
+        "request_id": "a6342cef-76ac-42c3-98d8-98191667fa55",
+        "recorded_at_utc": "2026-11-19T16:32:26.870709922Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "edition-07",
+        "category": "edition",
+        "scenarios": [
+          "utdanningsforbundet/elbil-ekstra",
+          "utdanningsforbundet/innbo",
+          "utdanningsforbundet/barneforsikring",
+          "utdanningsforbundet/ufore-ektefelle"
+        ],
+        "result_file_sha256": "7f8de610cdd36357755ac52435303de4bbb68312815789299cf7c48c34ad061b",
+        "request_id": "5b17335b-b994-4438-af8b-fe969191c0a8",
+        "recorded_at_utc": "2026-11-19T16:32:29.884758917Z",
+        "http_status": 200,
+        "pdfs_parsed": 4,
+        "successful_documents": 4,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "edition-08",
+        "category": "edition",
+        "scenarios": [
+          "utdanningsforbundet/elbil-ekstra-2026-01-01",
+          "utdanningsforbundet/reise-en-person",
+          "utdanningsforbundet/liv-medlem",
+          "utdanningsforbundet/kritisk-sykdom-medlem"
+        ],
+        "result_file_sha256": "2c2c16df45ee5db4b9f013c41d0d88ae97e92c72bb8ed8edecaeeab909e03443",
+        "request_id": "2bc3023b-622f-407f-b7eb-5abd3f76b6f0",
+        "recorded_at_utc": "2026-11-19T16:32:37.950469326Z",
+        "http_status": 200,
+        "pdfs_parsed": 4,
+        "successful_documents": 4,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "addon-01",
+        "category": "addon",
+        "scenarios": [
+          "nito/hus-utleie"
+        ],
+        "result_file_sha256": "3b4c685001a054fd8b9fc03ae74f821c97f09fb19deb6210cc78d513fe1f1426",
+        "request_id": "b5bde085-b51f-4a68-abbe-6eeb38cb5d3a",
+        "recorded_at_utc": "2026-11-19T16:32:42.982351609Z",
+        "http_status": 200,
+        "pdfs_parsed": 1,
+        "successful_documents": 1,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "addon-02",
+        "category": "addon",
+        "scenarios": [
+          "utdanningsforbundet/hus-utleie"
+        ],
+        "result_file_sha256": "ed22379b69d80237cc19bb978db3cab23ea0dcbdcb4ad16dc9aaa5551e16c270",
+        "request_id": "0e890fe5-f239-4a0b-9bf5-9c52812dbc15",
+        "recorded_at_utc": "2026-11-19T16:32:48.420555621Z",
+        "http_status": 200,
+        "pdfs_parsed": 1,
+        "successful_documents": 1,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-01",
+        "category": "guard",
+        "scenarios": [
+          "nito/behandling-enkel",
+          "nito/hytte",
+          "nito/bobil",
+          "nito/campingvogn",
+          "nito/veterankjoretoy",
+          "nito/traktor",
+          "nito/tilhenger",
+          "nito/snoscooter"
+        ],
+        "result_file_sha256": "bc951acf088358d19649f9abd66a85880160cf79c848a298ee69601d8145327c",
+        "request_id": "14cf55fe-2f9c-4fe5-9d54-24646dd817c2",
+        "recorded_at_utc": "2026-11-19T16:33:08.422065545Z",
+        "http_status": 200,
+        "pdfs_parsed": 8,
+        "successful_documents": 8,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-02",
+        "category": "guard",
+        "scenarios": [
+          "nito/mc",
+          "nito/moped",
+          "nito/elsparkesykkel",
+          "nito/utleie",
+          "nito/rate-og-skadedyr",
+          "nito/verdigjenstand",
+          "nito/sykkel",
+          "nito/bat"
+        ],
+        "result_file_sha256": "d0e4ad610338c65ef9a22608cfecdea13ba9718670c7440a46105b23c9adc872",
+        "request_id": "e8577ab1-f3d8-41c7-bd68-059c8da6ad4c",
+        "recorded_at_utc": "2026-11-19T16:33:13.830647458Z",
+        "http_status": 200,
+        "pdfs_parsed": 8,
+        "successful_documents": 8,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-03",
+        "category": "guard",
+        "scenarios": [
+          "nito/barn",
+          "nito/ulykke-barn",
+          "nito/behandling",
+          "utdanningsforbundet/mc-ansvar",
+          "utdanningsforbundet/bat-kasko",
+          "utdanningsforbundet/bobil-kasko",
+          "utdanningsforbundet/traktor",
+          "utdanningsforbundet/snoscooter-kasko"
+        ],
+        "result_file_sha256": "94a76834d379869bfd350db83cc7b9895177eda26b7574e6f28e0685c84df77b",
+        "request_id": "d9d54222-52ad-476a-8c20-b81e9304db3a",
+        "recorded_at_utc": "2026-11-19T16:33:33.837938150Z",
+        "http_status": 200,
+        "pdfs_parsed": 8,
+        "successful_documents": 8,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-04",
+        "category": "guard",
+        "scenarios": [
+          "nito/behandling-55",
+          "nito/kritisk-sykdom",
+          "nito/ulykke",
+          "utdanningsforbundet/mc-delkasko",
+          "utdanningsforbundet/bat-ekstra",
+          "utdanningsforbundet/bobil-ekstra",
+          "utdanningsforbundet/tilhenger",
+          "utdanningsforbundet/sykkel"
+        ],
+        "result_file_sha256": "0148809bf650f966848c9b400f56d40121bcb4f81a4e73c1119bdc633547a67e",
+        "request_id": "51e3f89b-2836-4364-93f4-ec109d64eccc",
+        "recorded_at_utc": "2026-11-19T16:33:37.567375062Z",
+        "http_status": 200,
+        "pdfs_parsed": 8,
+        "successful_documents": 8,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-05",
+        "category": "guard",
+        "scenarios": [
+          "nito/ulykke-familie",
+          "nito/katt",
+          "nito/hund",
+          "utdanningsforbundet/mc-kasko",
+          "utdanningsforbundet/bobil-delkasko",
+          "utdanningsforbundet/moped",
+          "utdanningsforbundet/snoscooter-ansvar",
+          "utdanningsforbundet/hytte"
+        ],
+        "result_file_sha256": "175e457c7854a046f42ab0d728e3414f33368a184fcd78944bbe966abc741c93",
+        "request_id": "4bf82014-dc40-4462-8125-ca9783d9fe63",
+        "recorded_at_utc": "2026-11-19T16:33:57.454311867Z",
+        "http_status": 200,
+        "pdfs_parsed": 8,
+        "successful_documents": 8,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-06",
+        "category": "guard",
+        "scenarios": [
+          "utdanningsforbundet/mc-ekstra",
+          "utdanningsforbundet/bat-brann-tyveri-ansvar",
+          "utdanningsforbundet/bobil-ansvar",
+          "utdanningsforbundet/campingvogn",
+          "utdanningsforbundet/elsparkesykkel",
+          "utdanningsforbundet/veterankjoretoy",
+          "utdanningsforbundet/snoscooter-brann-tyveri",
+          "utdanningsforbundet/hytte-ekstra"
+        ],
+        "result_file_sha256": "93475b8817fc73c52e68e946a1fc1f5548f4dc7bf42bd5f6aadaa713e5fbe533",
+        "request_id": "f7107db3-d0ba-4253-b9f4-0786dc08f8f5",
+        "recorded_at_utc": "2026-11-19T16:34:01.433235740Z",
+        "http_status": 200,
+        "pdfs_parsed": 8,
+        "successful_documents": 8,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-07",
+        "category": "guard",
+        "scenarios": [
+          "utdanningsforbundet/hytte-innbo",
+          "utdanningsforbundet/utleie",
+          "utdanningsforbundet/behandling",
+          "utdanningsforbundet/familieulykke",
+          "utdanningsforbundet/katt-behandling"
+        ],
+        "result_file_sha256": "b73ceb0208296de0d943342eecc37ed89da13b9b9ac0c8326027a6368094b6ab",
+        "request_id": "35b204cf-cdbd-489c-9ffd-f74955dbc8f7",
+        "recorded_at_utc": "2026-11-19T16:34:11.149068954Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-08",
+        "category": "guard",
+        "scenarios": [
+          "utdanningsforbundet/hytte-innbo-ekstra",
+          "utdanningsforbundet/verdigjenstand",
+          "utdanningsforbundet/behandling-enkel",
+          "utdanningsforbundet/hund-behandling",
+          "utdanningsforbundet/katt-ekstra"
+        ],
+        "result_file_sha256": "5a0ece415f1eb5b891f615aafc6686563f0b85af6a0c64b7c3d68576787c249f",
+        "request_id": "20c40b41-0079-4c54-9996-60573478366b",
+        "recorded_at_utc": "2026-11-19T16:34:20.026516397Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "guard-09",
+        "category": "guard",
+        "scenarios": [
+          "utdanningsforbundet/behandling-55-pluss",
+          "utdanningsforbundet/gravid-spedbarn",
+          "utdanningsforbundet/ulykke",
+          "utdanningsforbundet/hund-ekstra",
+          "utdanningsforbundet/person-3i1"
+        ],
+        "result_file_sha256": "c410c02458e96405f699e3bcf4136d7d29a39236d7bde27c1fc09d2f91b71c41",
+        "request_id": "7e79d63c-2950-4726-aead-e8cff5bde5ce",
+        "recorded_at_utc": "2026-11-19T16:34:29.835347668Z",
+        "http_status": 200,
+        "pdfs_parsed": 5,
+        "successful_documents": 5,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "external-01",
+        "category": "external",
+        "scenarios": [
+          "nito/hus-rate-skadedyr",
+          "nito/inntekt"
+        ],
+        "result_file_sha256": "b4b86b7b88f725c61febf7d5ead5508f77357d4b066c0a6542dfb37deb977f89",
+        "request_id": "9116cc93-67f7-4048-95cb-8eb696e4c209",
+        "recorded_at_utc": "2026-11-19T16:34:36.049984866Z",
+        "http_status": 200,
+        "pdfs_parsed": 2,
+        "successful_documents": 2,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "external-02",
+        "category": "external",
+        "scenarios": [
+          "nito/inntekt-5000",
+          "nito/advokat"
+        ],
+        "result_file_sha256": "f48ba20e74d7536b2a2a6f1c0b54ee1d5bb516c451245fdb75eb00e57b21108e",
+        "request_id": "b9e2a8e5-43ec-4aaf-9a58-f0680125a4f5",
+        "recorded_at_utc": "2026-11-19T16:34:41.233945467Z",
+        "http_status": 200,
+        "pdfs_parsed": 2,
+        "successful_documents": 2,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      },
+      {
+        "group": "external-03",
+        "category": "external",
+        "scenarios": [
+          "nito/inntekt-10000",
+          "utdanningsforbundet/hus-rate-skadedyr"
+        ],
+        "result_file_sha256": "10a073cee811178c783afe0ace40489a6e17297b56aed0ce2dd81c7bee673d7f",
+        "request_id": "c8df2f83-fc95-4066-8b58-f05fb1b1cee9",
+        "recorded_at_utc": "2026-11-19T16:34:47.851945753Z",
+        "http_status": 200,
+        "pdfs_parsed": 2,
+        "successful_documents": 2,
+        "failed_documents": 0,
+        "partial_success": false,
+        "extraction_calls": 1,
+        "status": "PASS"
+      }
+    ]
+  },
+  "constraints": {
+    "railway_auto_deploy": false,
+    "pilot_hold": true,
+    "nito_paused": true,
+    "pilot_status": "PENDING",
+    "pilot_startup_permit_issued": false,
+    "pilot_running_services": 0,
+    "catalog_pilot_gate": "REMEDIATION_REQUIRED"
+  },
+  "related_receipts": {
+    "third_party_pdf_validation": "verification.json",
+    "member_product_and_rental_lookups": "../tryg-pdf-oppslag-20261119/verification.json"
+  }
+}

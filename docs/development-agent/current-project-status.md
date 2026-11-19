@@ -1,5 +1,18 @@
 # Aktuell dokumentert prosjektstatus
 
+## Tryg-katalogen for NITO og Utdanningsforbundet – produksjonsverifisert 19. november 2026
+
+Alle **109 syntetiske PDF-scenarioer** bestod i de **22 opprinnelige gruppene**
+på `06b336ffc656c47bc97b9bd2707a380247effe73` i Railway-produksjon.
+Alle gruppene svarte HTTP 200. Kvitteringen knytter hver gruppe til
+forespørselen i Railway og dokumenterer 38 produktutgaver, to utleietillegg,
+63 kontroller av medlemskobling og seks tredjepartsbevis.
+[Testkvittering](../audit/checkpoints/tryg-tredjeparts-pdf-20261119/production-verification.json).
+
+Automatisk deploy er av. Den separate piloten står på HOLD med aktiv
+NITO-pause og oppstartstillatelse på vent. `CATALOG_PILOT_GATE` står på
+`REMEDIATION_REQUIRED`.
+
 ## Samlet ordinært husgrunnlag – revalidert 24. oktober 2026
 
 Dokumentert, frigitt kataloggrunnlag for Hus Standard og Hus Pluss er revalidert
