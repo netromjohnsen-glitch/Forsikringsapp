@@ -73,7 +73,7 @@ const klpReise: readonly Row[] = [
   ["bagasje.forsinket", "Forsinket bagasje", "Ved minst 4 timers forsinkelse dekkes klær og toalettsaker med inntil 5 000 kr per person på feriestedet. Leie av forsinket sportsutstyr m.m. har en egen grense på 5 000 kr per person.", "Forsinkelse", 1],
   ["avbestilling.dekning", "Avbestilling", "Forhåndsbetalt reise og opphold ved angitte hendelser, blant annet akutt sykdom, ulykke eller dødsfall. Sykdom eller skade må dokumenteres av lege.", "Avbestilling", 2],
   ["medisinsk.behandling", "Akutt sykdom og skade på reise", "Nødvendige merutgifter ved uventet og akutt sykdom, ulykkesskade eller uventet akutt forverring av sykdom.", "Sykeutgifter", 4],
-  ["hjemtransport.dekning", "Hjemtransport", "Nødvendige merutgifter til fremskyndet hjemreise i Norge, blant annet ved egen akutt sykdom, ulykkesskade eller dødsfall.", "Hjemtransport", 5],
+  ["hjemtransport", "Hjemtransport", "Nødvendige merutgifter til fremskyndet transport til hjemsted i Norge, blant annet ved egen akutt sykdom, ulykkesskade eller dødsfall.", "Hjemtransport", 5],
 ];
 
 const landkredittInnbo: readonly Row[] = [
@@ -81,21 +81,21 @@ const landkredittInnbo: readonly Row[] = [
   ["vann.dekning", "Vannskade", "Blant annet utilsiktet væske fra bygningsrør eller plutselig overflatevann som gir vannspeil over laveste gulv.", "4.1 c", 5],
   ["tyveri.dekning", "Tyveri", "Tyveri på de stedene vilkåret angir, med egne beløpsgrenser ved flere oppbevaringssteder.", "4.1 d", 5],
   ["sykkel.tyveri.grense", "Sykkel og elsykkel – tyverigrense", "30 000 kr per gjenstand utenfor låst bygning, med mindre forsikringsbeviset angir annet.", "4.1 d viii", 6],
-  ["egenandel.standard", "Generell egenandel", "Trekkes etter beløpet i forsikringsbeviset.", "5.2", 8, undefined, "reference"],
+  ["innbo.egenandel", "Generell egenandel", "Trekkes etter beløpet i forsikringsbeviset.", "5.2", 8, undefined, "reference"],
 ];
 
 const watercirclesInnbo: readonly Row[] = [
   ["brann.dekning", "Brann", "Brann, plutselig nedsoting og eksplosjon. Svi- og gnistskader uten brann er unntatt.", "A.1.1", 3],
   ["vann.dekning", "Vannskade", "Blant annet utstrømming fra rørledning ved brudd eller lekkasje, og plutselig inntrenging fra terreng med synlig frittstående vann over laveste gulv.", "A.1.4", 4],
   ["innbo.forsikringssum", "Samlet forsikringssum", "Forsikringsbeviset angir innbosummen. Innenfor den gjelder blant annet en særgrense på 500 000 kr for enkeltgjenstander og samlinger, med mulighet for økt avtalt sum.", "A.2.1", 5],
-  ["egenandel.standard", "Generell egenandel", "Avtalt egenandel i forsikringsbeviset, med mindre vilkårene angir en særskilt egenandel.", "A.6.3", 7, undefined, "reference"],
+  ["innbo.egenandel", "Generell egenandel", "Avtalt egenandel i forsikringsbeviset, med mindre vilkårene angir en særskilt egenandel.", "A.6.3", 7, undefined, "reference"],
 ];
 
 const watercirclesReise: readonly Row[] = [
-  ["varighet.avtalt", "Avtalt reisevarighet", "Forsikringsbeviset angir reisevarigheten. Perioden regnes fra man forlater registrert bostedsadresse til retur dit.", "1.1", 3],
+  ["varighet.valg", "Avtalt reisevarighet", "Forsikringsbeviset angir reisevarigheten. Perioden regnes fra man forlater registrert bostedsadresse til retur dit.", "1.1", 3],
   ["bagasje.forsinket", "Forsinket bagasje", "Utgifter til klær og toalettsaker når innsjekket bagasje er minst 4 timer forsinket til reisemålet, inntil 6 000 kr per person og 20 000 kr per familie. Hjemreise er unntatt.", "3.5", 6],
   ["medisinsk.behandling", "Akutt sykdom og skade på reise", "Dekker dokumenterte merutgifter til medisinsk behandling ved uventet akutt sykdom eller ulykkesskade på reisen.", "5.2", 9],
-  ["hjemtransport.dekning", "Hjemtransport", "Etter forhåndsgodkjenning dekkes angitt syketransport til behandlingssted eller hjemsted. Hjemreisen må være medisinsk forsvarlig.", "5.5 d", 10],
+  ["hjemtransport", "Hjemtransport", "Etter forhåndsgodkjenning dekkes angitt syketransport til behandlingssted eller hjemsted. Hjemreisen må være medisinsk forsvarlig.", "5.5 d", 10],
 ];
 
 type ProductDefinition = {
@@ -139,7 +139,7 @@ const definitions: ProductDefinition[] = [
     ["bagasje.forsinket", "Forsinket bagasje", "Ved transportørbekreftet forsinkelse over 4 timer dekkes klær og toalettsaker inntil 6 000 kr per sikret, med mindre annet er avtalt. Spesialbagasje kan gi en egen utgiftsdekning.", "5.1", 6],
     ["avbestilling.dekning", "Avbestilling", "Dokumenterte avbestillingskostnader før avreise ved angitte hendelser. Reise må være betalt før avreisedatoen.", "6.1–6.2", 7],
     ["leiebil.egenandel", "Leiebilegenandel", "Avtalt egenandel ved skade på eller tyveri av leiebil på fritidsreise med minst én overnatting. Kasko og gyldig førerkort kreves.", "7.1", 8, "included"],
-    ["hjemtransport.dekning", "Hjemtransport", "Medisinsk nødvendig hjemtransport ved egen akutt sykdom eller ulykke, etter forhåndsgodkjenning fra Landkreditt eller SOS.", "9–9.1", 9],
+    ["hjemtransport", "Hjemtransport", "Medisinsk nødvendig hjemtransport ved egen akutt sykdom eller ulykke, etter forhåndsgodkjenning fra Landkreditt eller SOS.", "9–9.1", 9],
     ["medisinsk.behandling", "Akutt sykdom og skade på reise", "Rimelige og nødvendige dokumenterte utgifter ved blant annet ulykke, akutt sykdom eller akutt forverring av kronisk lidelse. For lege og sykehus i Norden gjelder særregler om offentlig behandling.", "10.1–10.3", 10],
   ] },
   { company: "WaterCircles", providerId: "watercircles", type: "Innbo", id: "watercircles-innbo-standard", name: "Innbo Standard", document: "watercircles-innbo", rows: [
@@ -189,7 +189,8 @@ function registerSource(product: CatalogProduct, documentId: string, document: D
 function fact(source: CatalogSource, row: Row): CatalogFact {
   const [key, label, value, section, page, coverageAvailability, deductibleClassification] = row;
   return {
-    key, label, value, coverageAvailability, deductibleClassification,
+    key: source.insuranceType === "Reise" ? `reise.${key}` : key,
+    label, value, coverageAvailability, deductibleClassification,
     source: {
       documentId: source.id, filename: source.filename, termsNumber: source.termsNumber,
       effectiveFrom: source.effectiveFrom, company: source.company, url: source.url, section, page,

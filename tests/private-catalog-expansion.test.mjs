@@ -5,6 +5,7 @@ import test from "node:test";
 import { compareCatalogProducts, productComparisonOptions, productComparisonProviders } from "../lib/catalog-product-comparison.ts";
 import { normalizeInsuranceType, normalizeTermName } from "../lib/insurance-normalization.ts";
 import { manualProductOptions } from "../lib/manual-product-selection.ts";
+import { productComparisonView } from "../lib/product-comparison-presentation.ts";
 import { cabinProducts, cabinSources } from "../lib/private-cabin-catalog.ts";
 import { valuablesProducts, valuablesSources } from "../lib/private-valuables-catalog.ts";
 import { newMotorHomeProducts, newMotorHomeSources } from "../lib/new-private-motor-home-catalog.ts";
@@ -85,7 +86,7 @@ test("every new base coverage is attributable to the correct product and an arch
 test("travel levels compare the same duration row with source and preserve direction", () => {
   const [klp, klpMaks] = productComparisonOptions("Reise", "KLP", ordinary);
   const row = (first, second) => compareCatalogProducts(first, second).sections
-    .flatMap(section => section.rows).find(item => item.key === "varighet.maks");
+    .flatMap(section => section.rows).find(item => item.key === "reise.varighet.maks");
   const forward = row(klp, klpMaks);
   const reverse = row(klpMaks, klp);
   assert.match(forward.first.text, /50 sammenhengende dager/u);
@@ -93,6 +94,38 @@ test("travel levels compare the same duration row with source and preserve direc
   assert.equal(forward.first.text, reverse.second.text);
   assert.equal(forward.second.text, reverse.first.text);
   assert.equal(forward.first.sources[0].sourceType, "product_page");
+});
+
+test("new travel facts use the established travel rows and navigation", () => {
+  for (const company of newCompanies) {
+    const [product] = productComparisonOptions("Reise", company, ordinary);
+    const [peer] = productComparisonOptions("Reise", "Tryg", ordinary);
+    const comparison = compareCatalogProducts(product, peer);
+    const rows = comparison.sections.flatMap(section => section.rows);
+    const duration = rows.find(row => row.key === "reise.varighet.maks");
+    assert.ok(duration?.first.sources.length > 0, company);
+    assert.ok(duration?.second.sources.length > 0, company);
+    const medical = rows.find(row => row.key === "reise.medisinsk.behandling");
+    assert.ok(medical?.first.sources.length > 0, company);
+    assert.ok(medical?.second.sources.length > 0, company);
+    const repatriation = rows.find(row => row.key === "reise.hjemtransport");
+    assert.ok(repatriation?.first.sources.length > 0, company);
+    assert.ok(repatriation?.second.sources.length > 0, company);
+    const sections = productComparisonView(compareCatalogProducts(product, product));
+    for (const id of ["reise.rammer", "reise.bagasje", "reise.sykdom-hjemtransport"]) {
+      assert.ok(sections.some(section => section.id === id), company + " – " + id);
+    }
+    assert.equal(sections.some(section => section.id === "reise.ovrig"), false, company);
+  }
+  const [waterCircles] = productComparisonOptions("Reise", "WaterCircles", ordinary);
+  const waterCirclesFacts = resolveCatalogFacts(waterCircles, [], asOf);
+  assert.ok(waterCirclesFacts.some(fact => fact.key === "reise.varighet.valg" && fact.source.page === 3));
+  assert.ok(waterCirclesFacts.some(fact => fact.key === "reise.varighet.maks" && fact.source.page === 0));
+  for (const company of ["Landkreditt", "WaterCircles"]) {
+    const [contents] = productComparisonOptions("Innbo", company, ordinary);
+    const deductible = resolveCatalogFacts(contents, [], asOf).find(fact => fact.key === "innbo.egenandel");
+    assert.equal(deductible?.deductibleClassification, "reference", company);
+  }
 });
 
 test("Gjensidige Verdisak Standard and Pluss preserve distinct terms when compared in either order", () => {
