@@ -266,7 +266,7 @@ test("terms from each original PDF survive catalogue comparison with exact sourc
   }
 });
 
-test("Tryg Kritisk sykdom aligns symptom, age and survival terms with the public sources", () => {
+test("Tryg Kritisk sykdom aligns symptom, age, survival and hospital terms with the public sources", () => {
   const tryg = option("Tryg", "Kritisk sykdom", "Kritisk sykdom");
   const gjensidige = option("Gjensidige", "Kritisk sykdom", "Alvorlig sykdom");
   const comparisonRows = (first, second) => productComparisonView(compareCatalogProducts(first, second))
@@ -306,9 +306,20 @@ test("Tryg Kritisk sykdom aligns symptom, age and survival terms with the public
   assert.equal(source.section, "Punkt 1–2");
   assert.equal(termsSourceHref(source), "/api/vilkar/tryg/kritisk-sykdom#page=1");
 
-  const hospital = forward.find(row => row.key === "person.sykdom.sykehus");
-  assert.equal(hospital.first.state, "unknown");
+  const hospitalRows = forward.filter(row => row.key === "person.sykdom.sykehus");
+  assert.equal(hospitalRows.length, 1);
+  const [hospital] = hospitalRows;
+  assert.equal(hospital.first.state, "unavailable");
+  assert.match(hospital.first.text, /gir ingen egen utbetaling.*én engangserstatning/u);
   assert.equal(hospital.second.state, "included");
+  assert.match(hospital.second.text, /100 000 kr.*60 sammenhengende dager/u);
+  assert.deepEqual(hospital.first, reverse.find(row => row.key === hospital.key).second);
+  const [hospitalSource] = hospital.first.sources;
+  assert.equal(hospitalSource.agreementScope, "ordinary");
+  assert.equal(hospitalSource.termsNumber, "UUL41901");
+  assert.equal(hospitalSource.page, 3);
+  assert.equal(hospitalSource.section, "Punkt 3");
+  assert.equal(termsSourceHref(hospitalSource), "/api/vilkar/tryg/kritisk-sykdom#page=3");
 });
 
 test("personal member terms align with ordinary rows and keep the chosen agreement scope", () => {

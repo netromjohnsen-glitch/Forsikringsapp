@@ -2236,6 +2236,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       kind: "sykdomUtbetalingsgrense", page: 3, section: "Punkt 3",
       value: "Én utbetaling for en dekket diagnose. Forsikringen opphører etter utbetalingen.",
     },
+    {
+      kind: "sykdomSykehus", page: 3, section: "Punkt 3",
+      value: "Langvarig sykehusopphold gir ingen egen utbetaling. Forsikringen gir én engangserstatning ved en av diagnosene som er omfattet av vilkårene.",
+      unavailable: true,
+    },
   ],
   "tryg-person-ulykke": [
     {
