@@ -3,15 +3,12 @@
 ## Tryg-katalogen for NITO og Utdanningsforbundet – produksjonsverifisert 19. november 2026
 
 Alle **109 syntetiske PDF-scenarioer** bestod i de **22 opprinnelige gruppene**
-på `88935be981491829b3d7fb0aeb3efbf481021afc` i Railway-produksjon. Alle gruppene svarte HTTP 200.
-Vilkårskontrollene omfattet 38 produktutgaver, to utleietillegg,
-63 kontroller av medlemsavgrensning og seks tredjepartsbevis.
-
-Første kjøring ga 108 av 109. Den opprinnelige gruppen `edition-04` bestod
-etter at testen også krevde de to kildeverifiserte vilkårene for NITO Uføre etter
-studiet. Kvitteringen viser begge forsøkene på samme utrulling.
-[Testkvittering](../audit/checkpoints/tryg-tredjeparts-pdf-20261119/production-verification-88935be9.json).
-[Tidligere kvittering for `06b336ff`](../audit/checkpoints/tryg-tredjeparts-pdf-20261119/production-verification.json).
+på `8bfc5906cb4cae6a451b5c1c9f455920e3fb5088` i Railway-produksjon. De 20 resterende gruppene ble
+kjørt, og de to allerede beståtte tredjepartsgruppene ble bekreftet fra samme
+utrulling. Alle gruppene svarte HTTP 200. Oppslagene anvendte 142
+kildeverifiserte katalogfakta, inkludert de nye radene for Kritisk sykdom.
+[Testkvittering](../audit/checkpoints/tryg-tredjeparts-pdf-20261119/production-verification-8bfc5906.json).
+[Tidligere kvittering for `88935be9`](../audit/checkpoints/tryg-tredjeparts-pdf-20261119/production-verification-88935be9.json).
 
 Automatisk deploy er av. Den separate piloten står på HOLD med aktiv
 NITO-pause og oppstartstillatelse på vent. `CATALOG_PILOT_GATE` står på

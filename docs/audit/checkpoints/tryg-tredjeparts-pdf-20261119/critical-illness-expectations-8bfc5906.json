@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tested_revision": "8bfc5906cb4cae6a451b5c1c9f455920e3fb5088",
+  "base_overlay": {
+    "path": "person-facts-revalidation.json",
+    "sha256": "cd71496b56e9207f1408fa7f98d9593c6ca5374f6d610c00638d8d83b4a89b0e"
+  },
+  "effective_overlay_sha256": "4a066318cfce357acab3e7c6df519bda5a8e5d2430b2ff217242b0b4827836dc",
+  "original_fixture_definition_sha256": "99074538a736c78caacbe5cf4b2454a2420067c47d480c31173d238816df9cdf",
+  "method": "Append the two listed facts to each cited case in the existing person-facts overlay. Archived PDFs, case inputs, original group membership, and all prior assertions are unchanged.",
+  "added_expectations": [
+    {
+      "case_id": "utdanningsforbundet/kritisk-sykdom-medlem",
+      "archived_pdf": "../../../../catalog/sources/tryg/member-agreements/udf-kritisk-sykdom-medlem.pdf",
+      "archived_pdf_sha256": "8b23f1943052b743fb358f58cc8ab9d2da5ba634e4b219ba7fc690b011603d95",
+      "source": "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms",
+      "version": "2026",
+      "facts": [
+        {
+          "key": "person.sykdom.overlevelse",
+          "label": "Krav om overlevelse",
+          "value": "Rett til erstatning oppstår når en dekket diagnose er endelig stilt. Vilkårene oppgir ingen egen overlevelsesfrist etter diagnosen.",
+          "page": 6,
+          "section": "Punkt 8.1",
+          "scope": "utdanningsforbundet",
+          "source": "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms",
+          "terms": "",
+          "version": "2026",
+          "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_medlem-2026.pdf"
+        },
+        {
+          "key": "person.sykdom.sykehus",
+          "label": "Utbetaling ved langvarig sykehusopphold",
+          "value": "Langvarig sykehusopphold gir ingen egen utbetaling. Forsikringen gir én engangserstatning ved en av de 20 oppførte sykdommene eller tilstandene.",
+          "page": 8,
+          "section": "Punkt 8.2",
+          "scope": "utdanningsforbundet",
+          "source": "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms",
+          "terms": "",
+          "version": "2026",
+          "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_medlem-2026.pdf"
+        }
+      ]
+    },
+    {
+      "case_id": "utdanningsforbundet/kritisk-sykdom-ektefelle",
+      "archived_pdf": "../../../../catalog/sources/tryg/member-agreements/udf-kritisk-sykdom-ektefelle.pdf",
+      "archived_pdf_sha256": "34de32384eca3038bc33c7df83badea5ebf5729825f3fbe010e2e2b6e5ae7e5e",
+      "source": "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms",
+      "version": "2026",
+      "facts": [
+        {
+          "key": "person.sykdom.overlevelse",
+          "label": "Krav om overlevelse",
+          "value": "Rett til erstatning oppstår når en dekket diagnose er endelig stilt. Vilkårene oppgir ingen egen overlevelsesfrist etter diagnosen.",
+          "page": 6,
+          "section": "Punkt 8.1",
+          "scope": "utdanningsforbundet",
+          "source": "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms",
+          "terms": "",
+          "version": "2026",
+          "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf"
+        },
+        {
+          "key": "person.sykdom.sykehus",
+          "label": "Utbetaling ved langvarig sykehusopphold",
+          "value": "Langvarig sykehusopphold gir ingen egen utbetaling. Forsikringen gir én engangserstatning ved en av de 20 oppførte sykdommene eller tilstandene.",
+          "page": 8,
+          "section": "Punkt 8.2",
+          "scope": "utdanningsforbundet",
+          "source": "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms",
+          "terms": "",
+          "version": "2026",
+          "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf"
+        }
+      ]
+    }
+  ],
+  "expected_fact_applications": 142,
+  "catalogue_additions_introduced_in": "bc3d90cdb7fd5f32b5b9a32aa8a100d7eaaa7ea6"
+}
