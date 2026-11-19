@@ -12,7 +12,8 @@ const names=new Set(['heroFactOrder','differenceIdentity','orderedFamilyItems','
 const source=fs.readFileSync('app/page.tsx','utf8'),ast=ts.createSourceFile('page.tsx',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
 const body=ast.statements.filter(n=>names.has(n.name?.text)||n.declarationList?.declarations.some(d=>names.has(d.name.text))).map(n=>n.getText(ast)).join('\n');
 let js=ts.transpileModule(body+'\nexport {ConceptFamilyCard};',{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext}}).outputText.replace('"react/jsx-runtime"',JSON.stringify(pathToFileURL(require.resolve('react/jsx-runtime')).href));
-const {ConceptFamilyCard}=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
+const termsSourceImport = 'import { termsSourceHref } from ' + JSON.stringify(new URL('../lib/frende-terms-archive.ts', import.meta.url).href) + ';\n';
+const {ConceptFamilyCard}=await import('data:text/javascript;base64,'+Buffer.from(termsSourceImport + js).toString('base64'));
 const src=(id='pdf:existing:0',page=1)=>({documentId:id,filename:'Synthetic source',termsNumber:'',effectiveFrom:'',page,section:'Synthetic',note:id.startsWith('pdf:')?'Kundedokument':'Offentlig alminnelig vilkårseksempel; faktisk avtale må bekreftes i kundens forsikringsbevis'});
 const row=(key,label,value,sources=[src()])=>({key,label,first:value,second:value,firstSources:sources,secondSources:sources,firstCoverage:null,secondCoverage:null,firstMissingLabel:'Ikke dokumentert',secondMissingLabel:'Ikke dokumentert'});
 const coverage=(key,label,status='selected')=>{const c={id:key,label,status,summary:null,details:[],sources:[src()],conflict:false,evidence:[{status,sources:[src()],origin:'document'}]};return {...row(key,label,null),firstCoverage:c,secondCoverage:c};};

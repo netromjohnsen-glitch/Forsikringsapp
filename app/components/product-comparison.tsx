@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { agreementScopeDisplayName } from "@/lib/provider-presentation";
+import { termsSourceHref } from "@/lib/frende-terms-archive";
 import { catalogAgreementScope } from "@/lib/agreement-scope";
 import { personInsuranceTypes } from "@/lib/person-insurance-registry";
 import { catalogProductIdentity, productCatalog, type CatalogProduct } from "@/lib/product-catalog";
@@ -35,6 +36,7 @@ function sourceTypeLabel(source: ProductComparisonSource): string {
 }
 
 function ProductSource({ source, label }: { source: ProductComparisonSource; label: string }) {
+  const sourceHref = termsSourceHref(source);
   return (
     <details className="mt-2 text-xs text-slate-600">
       <summary
@@ -48,7 +50,7 @@ function ProductSource({ source, label }: { source: ProductComparisonSource; lab
         <p>{[source.company, source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : null,
           source.effectiveFrom, source.page > 0 ? `side ${source.page}` : null,
           source.section ? `punkt ${source.section}` : null].filter(Boolean).join(" · ")}</p>
-        {source.url && <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">Åpne originalkilde</a>}
+        {sourceHref && <a href={sourceHref} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">Åpne originalkilde</a>}
       </div>
     </details>
   );

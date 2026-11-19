@@ -11,6 +11,7 @@ import { VehiclePriceList } from "./components/vehicle-price";
 import { PortfolioPriceList } from "./components/portfolio-price";
 import { portfolioPrice, portfolioPriceDifference, type PortfolioPriceInput } from "@/lib/portfolio-price-presentation";
 import { providerDisplayName, agreementProviderDisplayName, agreementScopeDisplayName } from "@/lib/provider-presentation";
+import { termsSourceHref } from "@/lib/frende-terms-archive";
 import { AnalysisProgress } from "./components/analysis-progress";
 import { ProductComparisonWorkspace } from "./components/product-comparison";
 import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";
@@ -1267,6 +1268,7 @@ function DifferenceValues({ text, compact = false, unclamped = false, pair }: { 
 }
 
 function SourceDetails({ source, baseLabel, origin }: { source: FactSource; baseLabel?: string; origin?: "document" | "catalog" }) {
+  const sourceHref = termsSourceHref(source);
   return (
     <details className="mt-2 text-xs text-slate-600">
       <summary aria-label={baseLabel ? `Vis kilde: ${baseLabel}` : undefined} className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-4">Vis kilde{(origin || source.documentRole === "general_terms") && <span className="font-normal"> · {source.documentRole === "general_terms" ? "produktvilkår" : origin === "document" ? "kundedokument" : "offentlig vilkår"}</span>}</summary>
@@ -1275,7 +1277,7 @@ function SourceDetails({ source, baseLabel, origin }: { source: FactSource; base
         {source.note && <p>{source.note}</p>}
         <p>{[source.company, source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : null, source.effectiveFrom, source.page > 0 ? `side ${source.page}` : null, `punkt ${source.section}`].filter(Boolean).join(" · ")}</p>
         <p className="break-words text-slate-500">Dokument: {source.filename}</p>
-        {source.url && <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">Åpne originalkilde</a>}
+        {sourceHref && <a href={sourceHref} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">Åpne originalkilde</a>}
       </div>
     </details>
   );

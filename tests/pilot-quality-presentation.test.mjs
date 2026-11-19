@@ -12,7 +12,8 @@ const names=new Set(['heroFactOrder','differenceIdentity','orderedFamilyItems','
 const code=fs.readFileSync('app/page.tsx','utf8'),ast=ts.createSourceFile('page.tsx',code,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
 const body=ast.statements.filter(n=>names.has(n.name?.text)||n.declarationList?.declarations.some(d=>names.has(d.name.text))).map(n=>n.getText(ast)).join('\n');
 const js=ts.transpileModule(body+'\nexport {ConceptFamilyCard};',{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext}}).outputText.replace('"react/jsx-runtime"',JSON.stringify(pathToFileURL(require.resolve('react/jsx-runtime')).href));
-const {ConceptFamilyCard}=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
+const termsSourceImport = 'import { termsSourceHref } from ' + JSON.stringify(new URL('../lib/frende-terms-archive.ts', import.meta.url).href) + ';\n';
+const {ConceptFamilyCard}=await import('data:text/javascript;base64,'+Buffer.from(termsSourceImport + js).toString('base64'));
 const src=(page=1,id='synthetic-customer')=>({documentId:id,filename:'Syntetisk dokument',page,section:'Avtale',termsNumber:'',effectiveFrom:''});
 const row=(key,label,value,sources=[src()],origin='document')=>({key,label,first:value,second:value,firstSources:sources,secondSources:sources,firstSourceOrigins:sources.map(source=>({source,origin})),secondSourceOrigins:sources.map(source=>({source,origin})),firstCoverage:null,secondCoverage:null,firstMissingLabel:'Ikke dokumentert',secondMissingLabel:'Ikke dokumentert'});
 function coverage(prefix='bilnokkel',label='Bilnøkkel',text='Tapt, stjålet eller skadet bilnøkkel; forsikringssum 7 500 kr; egenandel 1 500 kr',status='selected'){

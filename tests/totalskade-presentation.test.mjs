@@ -89,7 +89,8 @@ const declarations=ast.statements.filter(node=>names.has(node.name?.text)||node.
 const require=createRequire(import.meta.url);
 let js=ts.transpileModule(declarations+'\nexport {ConceptFamilyCard};',{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext}}).outputText;
 js=js.replace('"react/jsx-runtime"',JSON.stringify(pathToFileURL(require.resolve('react/jsx-runtime')).href));
-const {ConceptFamilyCard}=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
+const termsSourceImport = 'import { termsSourceHref } from ' + JSON.stringify(new URL('../lib/frende-terms-archive.ts', import.meta.url).href) + ';\n';
+const {ConceptFamilyCard}=await import('data:text/javascript;base64,'+Buffer.from(termsSourceImport + js).toString('base64'));
 test('actual collapsed card renders full long age and km without line clamping',()=>{
  const age='For Kasko gjelder totalskadegarantien inntil kjøretøyet er 1 år fra første registreringsdato';
  const difference=family(shown(age,'15 000 km',otherKm,'Gjensidige'));
