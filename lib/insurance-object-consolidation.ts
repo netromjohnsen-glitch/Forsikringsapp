@@ -142,6 +142,7 @@ function mergeRecords(records: readonly DocumentObjectRecord[], hooks?: Consolid
   return {
     ...first,
     ...(documentCatalogVersion !== undefined ? { documentCatalogVersion } : {}),
+    ...(records.some(record => record.documentHouseRentalEditionMismatch) ? { documentHouseRentalEditionMismatch: true as const } : {}),
     ...(records.some(record => record.agreementScope != null) ? { agreementScope: records.find(record => record.agreementScope != null)!.agreementScope } : {}),
     type: normalizeInsuranceType(first.type, first),
     productName: displayNames.length === 1 ? displayNames[0] : canonicalNames[0] ?? (displayNames.join(" · ") || null),

@@ -57,6 +57,7 @@ export type ExtractedInsurance = {
   agreementPeriod?: AgreementPeriod | null;
   // Internal PDF evidence. null explicitly blocks an automatic catalog link.
   documentCatalogVersion?: string | null;
+  documentHouseRentalEditionMismatch?: true;
   documentRole?: DocumentRole;
   objectIdentifiers?: ObjectIdentifier[];
   documentIndices?: number[];

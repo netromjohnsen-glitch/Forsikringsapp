@@ -12,8 +12,9 @@ import type { AnalysisTelemetry } from "./analysis-telemetry.ts";
 import { PdfSecurityError } from "./pdf-upload-security.ts";
 import type { AnalysisSide } from "./analysis-progress.ts";
 import { attachSupportingTerms, isCustomerObject, supportingEvidence } from "./supporting-terms.ts";
-import { catalogProductsMatchingName, productCatalog } from "./product-catalog.ts";
-import { resolveHouseRentalDocumentSelection } from "./hus-rental-selection.ts";
+import { catalogProductMatchesName, catalogProductsMatchingName, productCatalog } from "./product-catalog.ts";
+import { normalizeInsuranceType } from "./insurance-normalization.ts";
+import { hasHouseRentalEditionMismatch, resolveHouseRentalDocumentSelection } from "./hus-rental-selection.ts";
 import { hasDocumentCatalogVersion } from "./pdf-page-evidence.ts";
 
 export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatch, telemetry: AnalysisTelemetry, trace?: ProductionTrace) {
@@ -45,19 +46,31 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
       const productSources = sources(product.documentIndices).map(source => ({ ...source, documentRole: product.documentRole ?? "unknown" }));
       const company = product.company === undefined ? agreement.company : product.company;
       const name = product.canonicalProductName === undefined ? product.productName : product.canonicalProductName;
-      const candidates = company && name ? catalogProductsMatchingName(company, product.type, name, product.agreementScope) : [];
-      const needsEdition = candidates.some(candidate => candidate.requiresExplicitAgreementScope);
       const documents = sourceIds(product.documentIndices);
       // Each member record needs its own edition evidence. A shared document
       // cannot identify which of its declarations applies to this record.
       const editionText = documents.length === 1 && documentOwners.get(documents[0]) === 1 ? documents[0].text : "";
+      const exactMatches = company && name ? catalogProductsMatchingName(company, product.type, name, product.agreementScope) : [];
+      // The extractor sometimes reports bare Innbo for the exact NITO cabin
+      // contents product. Require that its name is also printed on the owning PDF.
+      const cabinContentsMatches = exactMatches.length === 0 && company && name && product.agreementScope === "nito" &&
+        normalizeInsuranceType(product.type) === "innbo"
+        ? catalogProductsMatchingName(company, "Innbo fritidsbolig", name, product.agreementScope).filter(candidate =>
+          candidate.productId === "tryg-nito-innbo-fritidsbolig" && editionText.split(/\r?\n/u).some(line =>
+            catalogProductMatchesName(candidate, line.trim().replace(/^(?:produkt(?:navn)?|forsikring)\s*:\s*/iu, ""))))
+        : [];
+      const candidates = [...exactMatches, ...cabinContentsMatches];
+      const needsEdition = candidates.some(candidate => candidate.requiresExplicitAgreementScope);
       const applicable = needsEdition ? candidates.filter(candidate => {
         const termsNumber = candidate.sourceId ? productCatalog.sources?.[candidate.sourceId]?.termsNumber : undefined;
         return hasDocumentCatalogVersion(editionText, candidate.version, termsNumber);
       }) : candidates;
       const catalogProduct = applicable.length === 1 ? applicable[0] : null;
       const edition = needsEdition ? { documentCatalogVersion: catalogProduct?.version ?? null } : {};
-      const attached = { ...product, ...edition,
+      const type = catalogProduct && cabinContentsMatches.includes(catalogProduct) ? catalogProduct.insuranceType : product.type;
+      const rentalEdition = catalogProduct && hasHouseRentalEditionMismatch(catalogProduct, editionText)
+        ? { documentHouseRentalEditionMismatch: true as const } : {};
+      const attached = { ...product, type, ...edition, ...rentalEdition,
         objectIdentifiers: product.objectIdentifiers?.map(id => ({ ...id, sources: sources(id.documentIndices) })),
         importantTerms: product.importantTerms.map(term => attach(term, product.documentRole)),
         addOns: product.addOns.map(addon => ({ ...addon, importantTerms: addon.importantTerms.map(term => attach(term, product.documentRole)) })),

@@ -1,0 +1,128 @@
+{
+  "baseline": "9e27c2dca69bfab2a9388b524a4f68c30b19199e",
+  "authorized_on": "2026-11-19",
+  "authorization": "Fix the NITO Innbo fritidsbolig PDF lookup and both Tryg member home rental add-on PDF lookups, then test those three cases with synthetic PDFs in production.",
+  "authorized_scope": [
+    "NITO Innbo fritidsbolig classification and exact scoped PDF edition lookup",
+    "Explicit NITO and Utdanningsforbundet house rental selection and PPK11506 source application",
+    "Targeted regression tests and verification receipt"
+  ],
+  "source_catalog": "catalog/tryg-member-agreements",
+  "publication": {
+    "repository": "netromjohnsen-glitch/Forsikringsapp",
+    "branch": "main",
+    "strategy": "fast-forward",
+    "production_activation": "manual deploy of tested commit"
+  },
+  "constraints": {
+    "auto_deploy": false,
+    "pilot_hold": true,
+    "nito_paused": true,
+    "pilot_startup": false
+  },
+  "gates": [
+    "original source bytes and pages",
+    "focused PDF regression tests",
+    "complete local suite",
+    "ESLint",
+    "Next.js production build",
+    "local synthetic HTTP",
+    "three production synthetic PDF cases"
+  ],
+  "sources_and_baseline_findings": [
+    {
+      "agreement": "nito",
+      "catalog_product": "innbo-fritidsbolig",
+      "version": "2026-01-01",
+      "terms_number": "",
+      "archive": "catalog/sources/tryg/member-agreements/nito-innbo-fritidsbolig.pdf",
+      "sha256": "c5e0eba96b2a40f67fcacf2ce497ebd5cb93927365a7f6f1187869dfbf58dc3a",
+      "physical_pages": [
+        2
+      ],
+      "facts": [
+        "innbo.forsikringssum",
+        "innbo.forsikringssted"
+      ],
+      "before": {
+        "synthetic_production_request": "22cbd3e7-2c56-4b2f-be86-dc70774baac0",
+        "observed": "The owning synthetic PDF was classified as ordinary Innbo despite its exact NITO product title and declared edition."
+      }
+    },
+    {
+      "agreement": "nito",
+      "catalog_product": "hus-utleie",
+      "version": "2026-01-01",
+      "terms_number": "PPK11506",
+      "archive": "catalog/sources/tryg/member-agreements/nito-hus-utleie.pdf",
+      "sha256": "7291f82a98a75c3ada8c2f9a34f03a9031dcb55abe7bb6cf8805ab6f130bdf3b",
+      "physical_pages": [
+        1
+      ],
+      "facts": [
+        "hus.utleie_skadeverk",
+        "hus.utleie_husleie"
+      ],
+      "before": {
+        "synthetic_production_request": "62839a47-e6a6-426c-b8a5-b90c0daf27d5",
+        "observed": "The PDF documented rental selection, but only the base house terms were applied."
+      }
+    },
+    {
+      "agreement": "utdanningsforbundet",
+      "catalog_product": "hus-utleie",
+      "version": "2026-01-01",
+      "terms_number": "PPK11506",
+      "archive": "catalog/sources/tryg/member-agreements/udf-hus-utleie.pdf",
+      "sha256": "7291f82a98a75c3ada8c2f9a34f03a9031dcb55abe7bb6cf8805ab6f130bdf3b",
+      "physical_pages": [
+        1
+      ],
+      "facts": [
+        "hus.utleie.tapt-leie",
+        "hus.utleie.egenandel"
+      ],
+      "before": {
+        "synthetic_production_request": "45b65e66-4766-41f5-a5ec-4d0a80e72d30",
+        "observed": "The PDF documented rental selection, but only the base house terms were applied."
+      }
+    }
+  ],
+  "local_verification": {
+    "tested_revision": "b186038185702d7aa882fa40cc8d7009ecc9a6cc",
+    "tested_parent": "5aa16fc6be5d43bfec4195026d92a33b0c74e929",
+    "source_sha256": {
+      "lib/analysis-merge.ts": "7a716f87145ffa3d2b84515654537505403732b5c61aba1af40573456ea232c4",
+      "lib/analysis-output.ts": "981e2894eccc8410947e4bc7917dfd7e4a730c9f0216c61bc1cecf71e238a5d8",
+      "lib/catalog-enrichment.ts": "ffefc3027e1d2383d22ba5834e7e546ba9b8621f5068ed74baf0e03849058fb1",
+      "lib/hus-rental-selection.ts": "c4743a68c4ed6b56a541e991fd7bf69a06e0b487b33e769e2f18c69b0dd8b97d",
+      "lib/insurance-object-consolidation.ts": "4bfe8a0161ddbdd1072a1aef203a1ce89e1fc0262fddea8aecdcdea09b83c3d8",
+      "lib/pdf-page-evidence.ts": "b5d5314c8d76c486ac81e289dc2f5a2e0d724ba8fe575f151918c3a35b10256d",
+      "tests/tryg-member-utleie-pdf.test.mjs": "64aeda0d370adedf74fbc6ac95f70cc1378c54bb4fec3c2a4877855876328f48",
+      "tests/tryg-nito-hytteinnbo-pdf.test.mjs": "cf25d06987b64c095e53c7d4ca45bb03acbae52d1c9acb1644b65b3387764ffa"
+    },
+    "tests": {
+      "tests": 7227,
+      "pass": 7227,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "test_files": 191,
+    "rule_outs": [
+      "wrong or absent membership scope",
+      "exclusive PDF ownership",
+      "conflicting or absent house edition",
+      "explicit refusal or unknown rental choice",
+      "different PPK11506 edition",
+      "manufacturer source attribution across both agreements"
+    ],
+    "scoped_eslint": "PASS",
+    "typescript": "PASS",
+    "webpack_build": "PASS",
+    "synthetic_http_pdf": "PASS",
+    "candidate_diff_check": "PASS"
+  },
+  "mechanical_test_cleanup": "Removed a blank line at the end of the new NITO test before rerunning the complete gate."
+}

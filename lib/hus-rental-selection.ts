@@ -1,6 +1,7 @@
 import { catalogAgreementScope } from "./agreement-scope.ts";
 import { coverageStatusFromText, type CoverageSource, type CoverageStatus, type CoverageTerm } from "./coverage-status.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
+import { hasConflictingNumberedCatalogVersion } from "./pdf-page-evidence.ts";
 import { availableAddOns, catalogReferenceForProduct, productCatalog,
   type CatalogAddOn, type CatalogProduct, type ProductCatalog } from "./product-catalog.ts";
 
@@ -10,8 +11,8 @@ export const HOUSE_RENTAL_KEYS = ["hus.utleie.vilkar", "hus.utleie.mislighold", 
 type RentalTerm = CoverageTerm & { canonicalKey?: string | null };
 type RentalAddOn = { name: string; id?: string; coverageOrigin?: string; source?: unknown;
   manualSelection?: unknown; importantTerms: readonly RentalTerm[] };
-type RentalInsurance = { type: string; documentRole?: string; importantTerms: readonly RentalTerm[];
-  addOns?: readonly RentalAddOn[]; addOnIds?: readonly string[] };
+type RentalInsurance = { type: string; documentRole?: string; documentCatalogVersion?: string | null; importantTerms: readonly RentalTerm[];
+  documentHouseRentalEditionMismatch?: true; addOns?: readonly RentalAddOn[]; addOnIds?: readonly string[] };
 export type HouseRentalSelection = { status: CoverageStatus; conflict: boolean; sources: CoverageSource[] };
 const words = (value: string) => value.normalize("NFKC").toLocaleLowerCase("nb-NO")
   .replace(/[^\p{L}\p{N}]+/gu, " ").trim().replace(/\s+/gu, " ");
@@ -102,25 +103,67 @@ function internalRentalContext(insurance: RentalInsurance): boolean {
       (entry.coverageOrigin !== "document" && Boolean(entry.id || entry.source))));
 }
 
-export function resolveHouseRentalDocumentSelection(product: CatalogProduct, insurance: RentalInsurance):
-  (HouseRentalSelection & { viaAddOn: boolean }) | null {
-  if (!isHouseRentalProduct(product) || normalizeInsuranceType(insurance.type) !== "bolig" ||
-      internalRentalContext(insurance)) return null;
-  const addOns = insurance.documentRole === "general_terms" ? [] : (insurance.addOns ?? []).filter(entry =>
-    words(entry.name) === "utleie" && !Object.hasOwn(entry, "manualSelection") &&
+export function houseRentalAddOnId(product: CatalogProduct): string | null {
+  if (isHouseRentalProduct(product)) return HOUSE_RENTAL_ADDON;
+  const scope = catalogAgreementScope(product);
+  if (product.providerId !== "tryg" || !product.version || !product.requiresExplicitAgreementScope ||
+      normalizeInsuranceType(product.insuranceType) !== "bolig" ||
+      (scope !== "nito" && scope !== "utdanningsforbundet")) return null;
+  return [`tryg-${scope}-hus`, `tryg-${scope}-hus-ekstra`].includes(product.productId)
+    ? `tryg-${scope}-hus-utleie` : null;
+}
+
+export function hasHouseRentalEditionMismatch(product: CatalogProduct, editionText: string,
+  catalog: ProductCatalog = productCatalog): boolean {
+  const id = houseRentalAddOnId(product);
+  if (!id || id === HOUSE_RENTAL_ADDON) return false;
+  const addOn = catalog.addOns?.find(entry => entry.id === id);
+  const source = addOn ? catalog.sources?.[addOn.componentId] : undefined;
+  return Boolean(source && hasConflictingNumberedCatalogVersion(editionText, source.effectiveFrom, source.termsNumber));
+}
+
+export function resolveHouseRentalDocumentSelection(product: CatalogProduct, insurance: RentalInsurance,
+  catalog: ProductCatalog = productCatalog): (HouseRentalSelection & { viaAddOn: boolean }) | null {
+  const id = houseRentalAddOnId(product);
+  if (!id || normalizeInsuranceType(insurance.type) !== "bolig" || internalRentalContext(insurance)) return null;
+  const member = id !== HOUSE_RENTAL_ADDON;
+  const addOn = member ? catalog.addOns?.find(entry => entry.id === id && entry.providerId === product.providerId &&
+    catalogAgreementScope(entry) === catalogAgreementScope(product) && entry.requiresLevel?.includes(product.productId)) : null;
+  // The PDF merge sets the edition only after it can attribute it to one owning record.
+  if (member && (!addOn || insurance.documentRole !== "individual_agreement" ||
+      insurance.documentCatalogVersion !== product.version)) return null;
+  const isDocumentChoice = (entry: RentalAddOn) => !Object.hasOwn(entry, "manualSelection") &&
     (!entry.importantTerms.length || entry.importantTerms.some(documentTerm)) &&
-    (entry.coverageOrigin === "document" || (!entry.coverageOrigin && !entry.id && !entry.source)));
+    (entry.coverageOrigin === "document" || (!entry.coverageOrigin && !entry.id && !entry.source));
+  const documentAddOns = insurance.documentRole === "general_terms" ? [] :
+    (insurance.addOns ?? []).filter(isDocumentChoice);
+  const names = addOn ? [addOn.name, "Utleie", "Utleieforsikring", "Utleiedekning"] : ["Utleie"];
+  const headings = new Set(names.map(words));
+  if (member) {
+    const otherId = id === "tryg-nito-hus-utleie" ? "tryg-utdanningsforbundet-hus-utleie" : "tryg-nito-hus-utleie";
+    const other = catalog.addOns?.find(entry => entry.id === otherId);
+    const namedChoices = [...documentAddOns, ...insurance.importantTerms.filter(documentTerm)];
+    if (other && namedChoices.some(choice => words(choice.name) === words(other.name))) return null;
+  }
+  const choiceHeading = (term: RentalTerm, inAddOn = false) => {
+    if (!member) return houseRentalChoiceHeading(term, inAddOn);
+    if (term.canonicalKey || term.key?.includes(".")) return false;
+    return headings.has(words(term.name)) || (inAddOn && ["valg", "valgstatus", "status", "dekning"].includes(words(term.name)));
+  };
+  const addOns = documentAddOns.filter(entry => headings.has(words(entry.name)));
   const parents = insurance.documentRole === "general_terms" ? [] : [
-    ...insurance.importantTerms.filter(term => houseRentalChoiceHeading(term)),
-    ...addOns.flatMap(entry => entry.importantTerms.filter(term => houseRentalChoiceHeading(term, true))),
+    ...insurance.importantTerms.filter(term => choiceHeading(term)),
+    ...addOns.flatMap(entry => entry.importantTerms.filter(term => choiceHeading(term, true))),
   ].filter(documentTerm);
-  const parsed = parents.map(term => coverageStatusFromText(term.value, { subject: "Utleie", productName: product.name }));
+  const parsed = parents.map(term => coverageStatusFromText(term.value, {
+    subject: "Utleie", ...(member ? { subjectAliases: names } : {}), productName: product.name,
+  }));
   const statuses = new Set(parsed.filter(status => status === "selected" || status === "not_selected"));
   const conflict = statuses.size > 1;
-  // The extractor lists agreed addons. An explicit refusal/unknown parent
-  // overrides that structured choice; detail clauses never supply a parent.
+  // An explicitly selected add-on is reliable unless its parent status is uncertain or rejected.
   const viaAddOn = !statuses.size && !parsed.includes("unknown") && addOns.length > 0;
   const status = conflict ? "unknown" : statuses.has("not_selected") ? "not_selected" :
+    member && parsed.includes("unknown") ? "unknown" :
     statuses.has("selected") || viaAddOn ? "selected" : "unknown";
   const sources = [...parents, ...addOns.flatMap(entry => entry.importantTerms.filter(documentTerm))]
     .flatMap(term => term.sources ?? (term.source ? [term.source] : []));
@@ -134,9 +177,10 @@ export function resolveHouseRentalSelection(product: CatalogProduct, insurance: 
   // markers even alongside a document heading. Generated root IDs from a
   // previous document enrichment must not turn that document into manual input.
   if (internalRentalContext(insurance)) return resolveHouseRentalManualSelection(product, insurance, asOf, catalog);
-  const document = resolveHouseRentalDocumentSelection(product, insurance);
+  const document = resolveHouseRentalDocumentSelection(product, insurance, catalog);
   if (!document) return null;
-  if (document.status === "selected" && !availableAddOns(product, asOf, null, catalog)
-    .some(addOn => addOn.id === HOUSE_RENTAL_ADDON)) return { ...document, status: "unknown" };
+  const id = houseRentalAddOnId(product);
+  if (document.status === "selected" && ((id !== HOUSE_RENTAL_ADDON && insurance.documentHouseRentalEditionMismatch) ||
+    !availableAddOns(product, asOf, null, catalog).some(addOn => addOn.id === id))) return { ...document, status: "unknown" };
   return document;
 }

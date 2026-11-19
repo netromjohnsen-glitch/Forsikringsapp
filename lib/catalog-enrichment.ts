@@ -17,7 +17,7 @@ import { coverageStatusFromText, deriveCanonicalCoverages } from "./coverage-sta
 import { normalizeDocumentFacts, type DocumentFact } from "./document-fact-normalization.ts";
 import { HOUSE_SMART_ADDON, HOUSE_SMART_PARENT, houseSmartDocumentAddOnTerms, houseSmartTermKey,
   isHouseSmartProduct, resolveHouseSmartSelection, validatedHouseSmartManualSelection } from "./hus-smart-selection.ts";
-import { HOUSE_RENTAL_ADDON, HOUSE_RENTAL_KEYS, houseRentalTermKey, resolveHouseRentalSelection,
+import { HOUSE_RENTAL_KEYS, houseRentalAddOnId, houseRentalTermKey, resolveHouseRentalSelection,
   resolveHouseRentalDocumentSelection } from "./hus-rental-selection.ts";
 import {
   findCatalogProductBySelection,
@@ -357,7 +357,7 @@ function enrichInsurance(
     const key = houseRentalTermKey(term);
     return key ? { ...term, key } : term;
   });
-  if (product && resolveHouseRentalDocumentSelection(product, insurance)?.viaAddOn) documentTerms.push({
+  if (resolveHouseRentalDocumentSelection(product, insurance, catalog)?.viaAddOn) documentTerms.push({
     name: "Utleie", value: "Valgt", coverageOrigin: "document",
     ...(rentalSelection?.sources.length ? { sources: rentalSelection.sources } : {}),
   });
@@ -378,7 +378,8 @@ function enrichInsurance(
   });
   const selectedAddOnIds = selectedScopedAddOns(product, insurance, documentTerms, asOf, catalog);
   if (smartSelection?.status === "selected") selectedAddOnIds.push(HOUSE_SMART_ADDON);
-  if (rentalSelection?.status === "selected") selectedAddOnIds.push(HOUSE_RENTAL_ADDON);
+  const rentalAddOnId = houseRentalAddOnId(product);
+  if (rentalSelection?.status === "selected" && rentalAddOnId) selectedAddOnIds.push(rentalAddOnId);
   const manualParents = new Set(insurance.addOns.flatMap(entry => {
     const addOn = validatedManualSelectionAddOn(product, entry, asOf, catalog);
     return addOn && selectedAddOnIds.includes(addOn.id) ? addOn.selectionEvidenceKeys ?? [] : [];
