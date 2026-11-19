@@ -115,7 +115,7 @@ async function renderModule(path,names,imports='') {
  js=js.replace('"react/jsx-runtime"',JSON.stringify(pathToFileURL(require.resolve('react/jsx-runtime')).href));
  return import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
 }
-const termsSourceImport = 'import { termsSourceHref } from ' + JSON.stringify(new URL('../lib/frende-terms-archive.ts', import.meta.url).href) + ';\n';
+const termsSourceImport = 'import { termsSourceHref } from ' + JSON.stringify(new URL('../lib/terms-archive.ts', import.meta.url).href) + ';\n';
 const {ConceptFamilyCard}=await renderModule('app/page.tsx',new Set(['heroFactOrder','differenceIdentity','orderedFamilyItems','splitDifferenceValues','compactPair','collapsedHero','humanDetailLabel','sentenceCase','ConceptFamilyCard','PresentationTypeLabel','PresentationSources','DifferenceValues','SourceDetails']),termsSourceImport);
 const {PortfolioPriceList}=await renderModule('app/components/portfolio-price.tsx',new Set(['PortfolioPriceList']),`import {formatPortfolioPrice} from '${pathToFileURL(process.cwd()+'/lib/portfolio-price-presentation.ts')}';`);
 const renderDetails=terms=>renderToStaticMarkup(React.createElement(ConceptFamilyCard,{difference:{title:'Rettshjelp',kind:'term',text:'',details:details(terms)}}));

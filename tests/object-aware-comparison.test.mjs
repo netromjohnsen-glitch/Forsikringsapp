@@ -87,7 +87,7 @@ const require=createRequire(import.meta.url);
 let code=ts.transpileModule('const {objectDisplayLabel,objectWarning,catalogConnectionStatus,groupAddOnNames,providerDisplayName,agreementScopeDisplayName}=globalThis.__objectUi;\n'+declarations+'\nexport {ConceptFamilyCard,InsuranceRows};',{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext}}).outputText;
 code=code.replace('"react/jsx-runtime"',JSON.stringify(pathToFileURL(require.resolve('react/jsx-runtime')).href));
 globalThis.__objectUi={objectDisplayLabel,objectWarning,catalogConnectionStatus,groupAddOnNames,providerDisplayName,agreementScopeDisplayName};
-const termsSourceImport = 'import { termsSourceHref } from ' + JSON.stringify(new URL('../lib/frende-terms-archive.ts', import.meta.url).href) + ';\n';
+const termsSourceImport = 'import { termsSourceHref } from ' + JSON.stringify(new URL('../lib/terms-archive.ts', import.meta.url).href) + ';\n';
 const {ConceptFamilyCard,InsuranceRows}=await import('data:text/javascript;base64,'+Buffer.from(termsSourceImport + code).toString('base64'));
 delete globalThis.__objectUi;
 test('missing warning is visible without opening a details disclosure',()=>{const r=compare([object()],[]);const html=renderToStaticMarkup(React.createElement(ConceptFamilyCard,{difference:r.shown[0]}));assert.match(html,/ikke funnet/);assert.doesNotMatch(html,/<details/);assert.match(html,/AB10001/);});

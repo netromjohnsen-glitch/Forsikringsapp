@@ -1,16 +1,16 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { frendeTermsArchive } from "../../../../../lib/frende-terms-archive.ts";
+import { termsArchiveDocuments } from "../../../../../lib/terms-archive-documents.ts";
 import { NO_STORE_HEADERS, noStoreJson } from "../../../../../lib/http-security.ts";
 import { hasValidPilotSession } from "../../../../../lib/pilot-access.ts";
 
 export const runtime = "nodejs";
 
-export async function GET(request: Request, { params }: { params: Promise<{ document: string }> }) {
+export async function GET(request: Request, { params }: { params: Promise<{ provider: string; document: string }> }) {
   if (!hasValidPilotSession(request)) return noStoreJson({ error: "Gyldig pilottilgang kreves." }, 401);
 
-  const { document } = await params;
-  const archive = frendeTermsArchive.find(item => item.slug === document);
+  const { provider, document } = await params;
+  const archive = termsArchiveDocuments.find(item => item.provider === provider && item.slug === document);
   if (!archive) return noStoreJson({ error: "Vilkåret finnes ikke i arkivet." }, 404);
 
   const pdf = await readFile(join(process.cwd(), archive.archivePath));
@@ -18,7 +18,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ docu
     headers: {
       ...NO_STORE_HEADERS,
       "Content-Type": "application/pdf",
-      "Content-Disposition": 'inline; filename="' + archive.filename + '"',
+      "Content-Disposition": 'inline; filename="' + archive.provider + '-' + archive.slug + '.pdf"',
       "Content-Length": String(pdf.byteLength),
       "X-Content-Type-Options": "nosniff",
     },

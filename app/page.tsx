@@ -11,7 +11,7 @@ import { VehiclePriceList } from "./components/vehicle-price";
 import { PortfolioPriceList } from "./components/portfolio-price";
 import { portfolioPrice, portfolioPriceDifference, type PortfolioPriceInput } from "@/lib/portfolio-price-presentation";
 import { providerDisplayName, agreementProviderDisplayName, agreementScopeDisplayName } from "@/lib/provider-presentation";
-import { termsSourceHref } from "@/lib/frende-terms-archive";
+import { termsSourceHref } from "@/lib/terms-archive";
 import { AnalysisProgress } from "./components/analysis-progress";
 import { ProductComparisonWorkspace } from "./components/product-comparison";
 import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { agreementScopeDisplayName } from "@/lib/provider-presentation";
-import { termsSourceHref } from "@/lib/frende-terms-archive";
+import { memberTermsSourceHref, termsSourceHref } from "@/lib/terms-archive";
 import { trygMemberInventories } from "@/lib/tryg-member-catalog";
 import { catalogAgreementScope } from "@/lib/agreement-scope";
 import { personInsuranceTypes } from "@/lib/person-insurance-registry";
@@ -107,9 +107,12 @@ function ProductSelector({
   const sourceId = selectedProduct?.sourceId;
   const terms = sourceId?.startsWith("person:")
     ? [...new Map(Object.values(productCatalog.sources ?? {})
-      .filter((source) => source.url && (source.id === sourceId ||
-        source.id.startsWith(`${sourceId}:`) && !source.id.startsWith(`${sourceId}:tillegg:`)))
-      .map((source) => [source.url, source])).values()]
+      .filter((source) => source.id === sourceId ||
+        source.id.startsWith(`${sourceId}:`) && !source.id.startsWith(`${sourceId}:tillegg:`))
+      .flatMap((source) => {
+        const href = termsSourceHref({ documentId: source.id, effectiveFrom: source.effectiveFrom, url: source.url, page: 0 });
+        return href ? [[href, { id: source.id, termsNumber: source.termsNumber, href }] as const] : [];
+      })).values()]
     : [];
 
   function update(next: Selection) {
@@ -168,7 +171,7 @@ function ProductSelector({
         </label>
         {terms.length > 0 && <ul aria-label={`Vilkår for produkt ${side}`} className="space-y-1 text-sm">
           {terms.map((source) => <li key={source.id}>
-            <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">
+            <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">
               Åpne vilkår (PDF){source.termsNumber ? ` · ${source.termsNumber}` : ""}
             </a>
           </li>)}
@@ -302,15 +305,19 @@ function TrygMemberOfferings() {
                         {product.notes && <p className="mt-1">{Array.isArray(product.notes) ? product.notes.join(" ") : product.notes}</p>}
                         {!!product.components?.length && <p className="mt-1">Dekninger og komponenter: {product.components.join(", ")}</p>}
                         <ul className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
-                          {product.sources.map((source, index) => (
-                            <li key={`${source.url}:${index}`}>
-                              <a className="text-link underline" href={source.url}>
-                                {source.label ?? (source.role.includes("terms") ? "Vilkår" : source.role === "ipid" ? "Produktark" : "Kilde")}
-                                {source.documentNumber ? ` ${source.documentNumber}` : ""}
-                                {(source.effectiveDate ?? source.publicationDate) ? ` (${source.effectiveDate ?? source.publicationDate})` : ""}
-                              </a>
-                            </li>
-                          ))}
+                          {product.sources.map((source, index) => {
+                            const href = memberTermsSourceHref(inventory.agreementScope, product.id, source);
+                            const archived = href !== source.url;
+                            return (
+                              <li key={`${source.url}:${index}`}>
+                                <a className="text-link underline" href={href} target={archived ? "_blank" : undefined} rel={archived ? "noopener noreferrer" : undefined}>
+                                  {source.label ?? (source.role.includes("terms") ? "Vilkår" : source.role === "ipid" ? "Produktark" : "Kilde")}
+                                  {source.documentNumber ? ` ${source.documentNumber}` : ""}
+                                  {(source.effectiveDate ?? source.publicationDate) ? ` (${source.effectiveDate ?? source.publicationDate})` : ""}
+                                </a>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </details>
                     </li>

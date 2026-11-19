@@ -1,11 +1,9 @@
 import type { NextConfig } from "next";
+import { termsArchiveDocuments } from "./lib/terms-archive-documents.ts";
 
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
-    "/api/vilkar/frende/*": [
-      "./catalog/sources/frende/hus/canonical/Vilkar-husforsikring.pdf",
-      "./catalog/sources/private-valuables/frende-verdisak.pdf",
-    ],
+    "/api/vilkar/*/*": [...new Set(termsArchiveDocuments.map(document => "./" + document.archivePath))],
     "/api/analyze": ["./lib/pdf-text-worker.mjs", "./node_modules/pdf-parse/**/*",
       "./node_modules/pdfjs-dist/**/*", "./node_modules/@napi-rs/canvas*/**/*"],
   },
