@@ -33,6 +33,7 @@ type ProductEvidence = {
   version: string;
   termsNumber: string;
   validTo?: string;
+  termination?: Pick<CatalogFact, "key" | "label" | "value"> & { section: string; productPage: string };
   facts: Array<Pick<CatalogFact, "key" | "label" | "value"> & { page: number; section: string }>;
 };
 
@@ -142,6 +143,40 @@ for (const { providerId, agreementScope, products } of trygMemberInventories) {
           agreementScope, version: evidence.version, page, section,
         },
       }));
+
+      if (!evidence.termination) continue;
+
+      const terms = item.sources.find(entry => entry.role === "product_terms" && entry.documentNumber === "UUL41847");
+      if (!terms?.archive || !terms.effectiveDate) throw new Error(`Mangler produktvilkår for ${productId}.`);
+      const termsId = `${productId}-product-terms${suffix}`;
+      const pageId = `${productId}-product-page${suffix}`;
+      const binding = { providerId, agreementScope, company: source.company, insuranceType,
+        productIds: [productId], productVersion: evidence.version };
+      const { section, productPage, ...fact } = evidence.termination;
+      const termsSource = trygMemberSources[termsId] = {
+        ...binding, id: termsId, filename: terms.archive.path.split("/").at(-1)!,
+        termsNumber: "UUL41847", effectiveFrom: terms.effectiveDate, url: terms.url,
+        sha256: terms.archive.sha256, physicalPages: [1, terms.archive.pages], sourceType: "full_terms",
+      };
+      const pageSource = trygMemberSources[pageId] = {
+        ...binding, id: pageId, filename: `Tryg – ${item.name}`,
+        termsNumber: "", effectiveFrom: "", url: productPage, sourceType: "product_page",
+      };
+
+      product.componentIds?.push(termsId);
+      trygMemberFacts[termsId] = [{
+        ...fact,
+        source: {
+          documentId: termsId, filename: termsSource.filename, termsNumber: termsSource.termsNumber,
+          effectiveFrom: termsSource.effectiveFrom, url: termsSource.url, company: source.company,
+          agreementScope, version: termsSource.effectiveFrom, page: 2, section,
+        },
+        qualificationSource: {
+          documentId: pageId, filename: pageSource.filename, termsNumber: "", effectiveFrom: "",
+          url: pageSource.url, company: source.company, agreementScope, page: 0,
+          section: "Opphør ved utgangen av kalenderåret",
+        },
+      }];
     }
   }
 }

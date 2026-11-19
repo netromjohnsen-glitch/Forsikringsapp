@@ -280,6 +280,54 @@ test("the same contractual condition uses the same row in both comparison direct
 });
 
 
+test("the verified NITO age limits align with the same ordinary coverage in both directions", () => {
+  const scenarios = [
+    ["Liv", "NITO Livsforsikring", "tryg-nito-liv", "person.liv.opphor", "Opphørsalder", "75", "2022-01-01",
+      "if-person-liv", "nito-livsforsikring"],
+    ["Uføre", "NITO Uføreforsikring Ekstra", "tryg-nito-ufore-ekstra", "person.ufore.kapital.opphor",
+      "Aldersgrense for uførekapital", "60", "2023-01-01", "landkreditt-person-ufore", "nito-uforeforsikring-ekstra"],
+  ];
+  for (const [type, name, id, key, label, age, version, competitor, pageSlug] of scenarios) {
+    const member = productComparisonOptions(type, "Tryg", "nito").find(product => product.name === name);
+    const ordinaryProduct = productCatalog.products.find(product => product.productId === competitor);
+    assert.ok(member, name);
+    assert.ok(ordinaryProduct, competitor);
+    assert.equal(member.productId, id);
+    assert.equal(member.version, version);
+
+    const rows = (first, second) => productComparisonView(compareCatalogProducts(first, second))
+      .flatMap(section => section.groups.flatMap(group => group.rows)).filter(row => row.key === key);
+    const forward = rows(member, ordinaryProduct);
+    const reverse = rows(ordinaryProduct, member);
+    assert.equal(forward.length, 1);
+    assert.equal(reverse.length, 1);
+    const [row] = forward;
+    assert.equal(row.label, label);
+    assert.equal(row.first.state, "included");
+    assert.equal(row.second.state, "included");
+    assert.match(row.first.text, new RegExp(`31\\. desember.*fyller ${age} år.*første hovedforfall.*${age} år`, "u"));
+    assert.deepEqual(row.first, reverse[0].second);
+    assert.deepEqual(row.second, reverse[0].first);
+    const [terms, page] = row.first.sources;
+    assert.equal(terms.termsNumber, "UUL41847");
+    assert.equal(terms.page, 2);
+    assert.equal(terms.effectiveFrom, "2022-01-01");
+    assert.equal(terms.agreementScope, "nito");
+    assert.equal(page.sourceType, "product_page");
+    assert.equal(page.url, "https://www.tryg.no/partnere/nito/nito-personforsikring/" + pageSlug);
+    assert.deepEqual(productCatalog.sources[terms.documentId].productIds, [id]);
+    assert.equal(productCatalog.sources[terms.documentId].productVersion, version);
+    assert.deepEqual(productCatalog.sources[page.documentId].productIds, [id]);
+    assert.equal(productCatalog.sources[page.documentId].productVersion, version);
+    assert.ok(row.second.sources.every(source => source.agreementScope !== "nito"));
+  }
+
+  const student = productComparisonOptions("Uføre", "Tryg", "nito")
+    .find(product => product.productId === "tryg-nito-ufore-etter-studiet");
+  assert.ok(student);
+  assert.ok(resolveCatalogFacts(student, [], asOf).every(fact => fact.key !== "person.ufore.kapital.opphor"));
+});
+
 test("annual regulation of child disability pension compares the same option without activating it", () => {
   const first = option("If", "Barn", "Super Barneforsikring");
   const second = option("Storebrand", "Barn", "Barneforsikring Super");

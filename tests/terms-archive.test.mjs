@@ -86,7 +86,7 @@ test("the member list links the exact NITO terms including the equivalent travel
       bindings++;
     }
   }
-  assert.equal(bindings, 11);
+  assert.equal(bindings, 13);
 });
 
 test("authenticated pilot requests serve the exact PDF for every allowed archive route", async t => {

@@ -518,4 +518,17 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
       ["nito", "ulykke-utvidet", "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/2026/nito-utvidet-ulykkesforsikring---forsikringsbevis-og-vilkar-2026.pdf", "54703", "2026-01-01", "94aaf02b8aae8c146340626bb3fe0da7d922fe3478e0807d4db273ad99b9bbe2"],
     ],
   },
+  {
+    provider: "tryg",
+    slug: "nito-person-produkt",
+    archivePath: "catalog/sources/tryg/member-agreements/nito-05uul41847.pdf",
+    sources: [
+      ["tryg-nito-liv-product-terms", "2022-01-01", "https://www.tryg.no/odpdf?vilk=nito-person-produkt&vilkNr=05UUL41847"],
+      ["tryg-nito-ufore-ekstra-product-terms", "2022-01-01", "https://www.tryg.no/odpdf?vilk=nito-person-produkt&vilkNr=05UUL41847"],
+    ],
+    memberSources: [
+      ["nito", "liv", "https://www.tryg.no/odpdf?vilk=nito-person-produkt&vilkNr=05UUL41847", "UUL41847", "2022-01-01", "0c1178486dc148bdd4a86e533bf5119ba0cf428742e5cd362c797038e036ba42"],
+      ["nito", "ufore-ekstra", "https://www.tryg.no/odpdf?vilk=nito-person-produkt&vilkNr=05UUL41847", "UUL41847", "2022-01-01", "0c1178486dc148bdd4a86e533bf5119ba0cf428742e5cd362c797038e036ba42"],
+    ],
+  },
 ];
