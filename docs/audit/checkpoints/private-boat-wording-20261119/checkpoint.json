@@ -1,0 +1,120 @@
+{
+  "published_at": "2026-11-19T16:36:33+01:00",
+  "tested_base": "5c41e7ce10bd4caea7a082c49f2b19714e1c8b5a",
+  "tested_revision": "7cf2f654f1b787d5a5ce9c064849c515d8f47967",
+  "scope": {
+    "baseline": "5c41e7ce10bd4caea7a082c49f2b19714e1c8b5a",
+    "user_scope": "Rett tre Tryg-punkter og Storebrands geografiske dekning. Bruk riktig vilkårsversjon, kilde og sidetall og verifiser i publisert Tolken. Kun ordinær privat båtforsikring.",
+    "tryg": {
+      "product_edition": "2024-07-01",
+      "source_file": "catalog/sources/boat-pet/tryg-boat-ipid.pdf",
+      "physical_pdf_page": 1,
+      "variants": [
+        "Brann/Ansvar",
+        "Kasko/Ansvar",
+        "Båt Ekstra"
+      ],
+      "rule": "Bevar 2024-utgaven. Bruk det arkiverte produktarket til det det faktisk dokumenterer. Brann/Ansvar har ikke egen oppføring i dette produktarket. Vilkår fra 2025/2026 eller medlemsavtaler brukes ikke som grunnlag for ordinær 2024-dekning.",
+      "full_terms": {
+        "terms_number": "PFB33100",
+        "applies_to": "Ordinær Kasko/Ansvar for båter med innenbordsmotor",
+        "version": "2024-07-01",
+        "physical_pdf_page": 3,
+        "clause": "3.4 Transport av skadet båt, jf. 1.1 og 2.1 på side 1",
+        "archive_capture": "https://web.archive.org/web/20240730140157id_/https://www.tryg.no/odpdf?vilkNr=05PFB33100&vilk=Baatforsikring-innenbords-Kasko-Ansvar",
+        "sha256": "84c383430ae8cc7fa3b693550bd6701a00b815cb940eb97e3ef675227f4f9e8d"
+      },
+      "source_limits": "Produktarket dokumenterer ikke brann for Brann/Ansvar eller utløserne for hjemtransport under Båt Ekstra. Søket fant ikke en verifisert ordinær fullvilkårsutgave fra 1. juli 2024 til disse punktene. Fullvilkåret for innenbordsmotor brukes bare for transportpunktet det dokumenterer i Kasko/Ansvar, inkludert når Båt Ekstra bygger på den pakken."
+    },
+    "storebrand": {
+      "edition": "2024-09-01",
+      "terms_number": "båt03",
+      "source_file": "catalog/sources/boat-pet/storebrand-boat-terms.pdf",
+      "physical_pdf_page": 5,
+      "printed_page": 4,
+      "section": "3 Hvor og når forsikringen gjelder",
+      "variants": [
+        "Delkasko",
+        "Kasko",
+        "Super"
+      ]
+    }
+  },
+  "changed_rows": 6,
+  "test_files": 189,
+  "test_results": {
+    "tests": 7212,
+    "pass": 7212,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "build": {
+    "typescript": "PASS",
+    "eslint_errors": 0,
+    "webpack": "PASS",
+    "archive_trace": "PASS",
+    "synthetic_http": {
+      "status": "PASS",
+      "sourcePaths": [
+        "/api/vilkar/tryg/ipid-bat#page=1",
+        "/api/vilkar/tryg/bat-kasko-innenbord-2024-07#page=3",
+        "/api/vilkar/storebrand/bat#page=5"
+      ]
+    }
+  },
+  "production": {
+    "status": "PASS",
+    "rawReferences": 71,
+    "archives": 3,
+    "comparisons": [
+      {
+        "description": "Båt: Storebrand Kasko / Storebrand Super",
+        "references": 26,
+        "wordingBindings": 2
+      },
+      {
+        "description": "Båt: Tryg Ansvar / Tryg Brann/Ansvar",
+        "references": 9,
+        "wordingBindings": 1
+      },
+      {
+        "description": "Båt: Tryg Brann/Tyveri/Ansvar / Tryg Kasko/Ansvar",
+        "references": 17,
+        "wordingBindings": 2
+      },
+      {
+        "description": "Båt: Tryg Båt Ekstra / Storebrand Delkasko",
+        "references": 19,
+        "wordingBindings": 3
+      }
+    ],
+    "renderedReferences": 71,
+    "viewerPages": {
+      "/api/vilkar/storebrand/bat#page=5": 5,
+      "/api/vilkar/storebrand/bat#page=7": 7,
+      "/api/vilkar/storebrand/bat#page=8": 8,
+      "/api/vilkar/storebrand/bat#page=9": 9,
+      "/api/vilkar/storebrand/bat#page=10": 10,
+      "/api/vilkar/storebrand/bat#page=16": 16,
+      "/api/vilkar/storebrand/bat#page=17": 17,
+      "/api/vilkar/tryg/bat-kasko-innenbord-2024-07#page=3": 3,
+      "/api/vilkar/tryg/ipid-bat#page=1": 1,
+      "/api/vilkar/tryg/ipid-bat#page=2": 2
+    },
+    "deployment": "dd16940c-35e6-46c0-8e8f-e19740cb0c88",
+    "revision": "7cf2f654f1b787d5a5ce9c064849c515d8f47967"
+  },
+  "tested_files_sha256": {
+    "catalog/sources/boat-pet/manifest.json": "73743dc7aa4d3939bc2a7c4b851a194da585ec7eb29579dff3af2d9a73ae4ccb",
+    "catalog/sources/boat-pet/tryg-boat-kasko-inboard-2024-07-terms.pdf": "84c383430ae8cc7fa3b693550bd6701a00b815cb940eb97e3ef675227f4f9e8d",
+    "docs/audit/checkpoints/private-boat-wording-20261119/scope.json": "4608c90b0fc9d947ab3e9114794682fb2348b83daa66eca9678c7d6e7d3eea5f",
+    "docs/audit/checkpoints/private-boat-wording-20261119/source-changes.json": "90b4500ec76cf71883fdc907d544f6680492c7d201cb055d91ab349528024c7b",
+    "lib/boat-pet-catalog.ts": "dc3841c326908bd2b0f11e36d29c8b773702be522775bd3e6524141d7f5a9b74",
+    "lib/terms-archive-documents.ts": "f4a86585904b0df548dcff00b969a7d8229536879f4f238d9f48f5145468f896",
+    "tests/boat-pet-catalog.test.mjs": "8a60ee8ee6ead343062fc3cdaa364b7ecfe921b2f075c44f245e05846077866a",
+    "tests/helpers/before-private-policy-pages.mjs": "866d63e73a0150e9cf190ee765e88cabfd7c8d4ff39f536ac782c855656e770d",
+    "tests/private-policy-pages.test.mjs": "b1bf37293a930380de610591e0dc4e2bdbc7c0222b82aaf387df3629e06c9e17"
+  }
+}
