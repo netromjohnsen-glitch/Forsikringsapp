@@ -230,7 +230,9 @@ export function productComparisonView(
   const rank = (id: string) => order.indexOf(id) < 0 ? Number.MAX_SAFE_INTEGER : order.indexOf(id);
   for (const section of sections.values()) {
     for (const group of section.groups) {
-      group.rows.sort((a, b) => productRowPriority(a.key) - productRowPriority(b.key) || a.key.localeCompare(b.key, "nb"));
+      group.rows.sort(section.id === "kritisk sykdom.diagnoser"
+        ? (a, b) => a.label.localeCompare(b.label, "nb")
+        : (a, b) => productRowPriority(a.key) - productRowPriority(b.key) || a.key.localeCompare(b.key, "nb"));
       group.showHeading = group.label !== section.label;
       // Suppress only a repetition immediately below its heading. A later row
       // still needs its own label when other facts or models intervene.

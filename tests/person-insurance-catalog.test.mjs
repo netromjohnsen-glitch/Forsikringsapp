@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { productComparisonView } from "../lib/product-comparison-presentation.ts";
 import { additionalFactKinds, additionalPersonFacts } from "../lib/person-insurance-terms.ts";
-import { compareCatalogProducts, materializeCatalogProduct, productComparisonOptions, productComparisonProviders } from "../lib/catalog-product-comparison.ts";
+import { compareCatalogProducts, materializeCatalogProduct, productComparisonOptions, productComparisonProducts, productComparisonProviders } from "../lib/catalog-product-comparison.ts";
 import { enrichBatch, mergeBatchResults } from "../lib/analysis-merge.ts";
 import { createAnalysisTelemetry } from "../lib/analysis-telemetry.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
@@ -238,6 +238,13 @@ test("terms from each original PDF survive catalogue comparison with exact sourc
     for (const definition of definitions) {
       const kind = additionalFactKinds[definition.kind];
       const expectedId = `person:${productId}`;
+      // Complete diagnosis lists replace the shorter diagnosis facts in product mode.
+      if (kind?.key.startsWith("person.sykdom.diagnose.")) {
+        assert.ok(resolveCatalogFacts(product, [], asOf).some(fact => fact.key === kind.key &&
+          fact.value === definition.value && fact.source.page === definition.page &&
+          fact.source.section === definition.section), productId);
+        continue;
+      }
       const fact = materialized.find(candidate => candidate.value === definition.value && candidate.label === (kind?.label ?? candidate.label)
         && candidate.sources[0].page === definition.page && candidate.sources[0].section === definition.section);
       assert.ok(fact, `${productId} ${definition.kind}`);
@@ -415,6 +422,93 @@ test("critical illness keeps each variant's symptom deadline, transfer terms and
       }
     }
   }
+});
+
+const diagnosisPrefix = "person.sykdom.diagnose.";
+const criticalVariants = () => productComparisonProducts()
+  .filter(product => product.insuranceType === "Kritisk sykdom");
+
+test("all selectably current critical illness lists align every covered trigger across product pairs", () => {
+  const counts = {
+    "tryg-person-kritisk": 25,
+    "if-person-kritisk": 24,
+    "gjensidige-person-alvorlig-sykdom": 31,
+    "storebrand-person-kritisk": 27,
+    "frende-person-kritisk": 20,
+    "fremtind-person-kritisk": 20,
+    "klp-person-alvorlige-sykdommer": 18,
+    "landkreditt-person-kritisk": 24,
+    "tryg-utdanningsforbundet-kritisk-sykdom-medlem": 20,
+    "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle": 20,
+  };
+  const variants = criticalVariants();
+  assert.deepEqual(new Set(variants.map(product => product.productId)), new Set(Object.keys(counts)));
+  const coverage = new Map(variants.map(product => {
+    const materialized = materializeCatalogProduct(product);
+    const facts = materialized.facts.filter(fact => fact.key.startsWith(diagnosisPrefix));
+    assert.equal(facts.length, counts[product.productId], product.productId);
+    const source = productCatalog.sources[product.sourceId];
+    for (const fact of facts) {
+      assert.equal(fact.state, "included", product.productId);
+      for (const citation of fact.sources) {
+        assert.equal(citation.documentId, product.sourceId, product.productId);
+        assert.equal(citation.agreementScope, product.agreementScope, product.productId);
+        assert.ok(citation.page >= source.physicalPages[0] && citation.page <= source.physicalPages[1]);
+        assert.match(termsSourceHref(citation), new RegExp("^/api/vilkar/.+#page=" + citation.page + "$"));
+      }
+    }
+    return [product.productId, new Set(facts.map(fact => fact.key))];
+  }));
+  assert.equal(new Set([...coverage.values()].flatMap(keys => [...keys])).size, 41);
+
+  for (const [index, first] of variants.entries()) {
+    for (const second of variants.slice(index + 1)) {
+      const left = coverage.get(first.productId);
+      const right = coverage.get(second.productId);
+      const section = productComparisonView(compareCatalogProducts(first, second))
+        .find(candidate => candidate.label === "Diagnoser og behandlinger");
+      assert.ok(section);
+      const rows = section.groups.flatMap(group => group.rows);
+      assert.deepEqual(new Set(rows.map(row => row.key)), new Set([...left, ...right]));
+      assert.equal(rows.length, new Set(rows.map(row => row.key)).size);
+      assert.deepEqual(rows.map(row => row.label), rows.map(row => row.label).sort((a, b) => a.localeCompare(b, "nb")));
+      for (const row of rows) {
+        for (const [name, keys, product] of [["first", left, first], ["second", right, second]]) {
+          assert.equal(row[name].state, keys.has(row.key) ? "included" : "unavailable", row.key);
+          assert.ok(row[name].sources.every(source => source.documentId === product.sourceId));
+        }
+      }
+    }
+  }
+});
+
+test("critical illness preserves narrower criteria and independent diagnosis citations", () => {
+  const variants = new Map(criticalVariants().map(product => [product.productId, product]));
+  const rowsFor = (first, second) => compareCatalogProducts(variants.get(first), variants.get(second))
+    .sections.flatMap(section => section.rows);
+  const trygGj = rowsFor("tryg-person-kritisk", "gjensidige-person-alvorlig-sykdom");
+  const row = (rows, key) => rows.find(candidate => candidate.key === diagnosisPrefix + key);
+  assert.equal(row(trygGj, "hjerteinfarkt").first.state, "included");
+  assert.equal(row(trygGj, "angina").first.state, "unavailable");
+  assert.match(row(trygGj, "angina").first.text, /^Ingen egen oppføring/u);
+  assert.equal(row(trygGj, "angina").second.state, "included");
+  assert.match(row(trygGj, "stomi").first.text, /kolostomi|tykktarm/iu);
+  assert.match(row(trygGj, "stomi").second.text, /ileostomi|tynntarm/iu);
+  assert.equal(row(trygGj, "demens_vaskular").second.sources[1].section, "Erstatningsregler punkt 2.2");
+
+  const member = "tryg-utdanningsforbundet-kritisk-sykdom-medlem";
+  const partner = "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle";
+  const members = rowsFor(member, partner);
+  assert.equal(termsSourceHref(row(members, "synstap").first.sources[0]), "/api/vilkar/tryg/utdanningsforbundet-kritisk-sykdom-medlem#page=7");
+  assert.equal(termsSourceHref(row(members, "synstap").second.sources[0]), "/api/vilkar/tryg/utdanningsforbundet-kritisk-sykdom-ektefelle#page=8");
+
+  const tryg = variants.get("tryg-person-kritisk");
+  const gjensidige = variants.get("gjensidige-person-alvorlig-sykdom");
+  const changedSource = { ...productCatalog.sources[tryg.sourceId], sha256: "unverified" };
+  const customCatalog = { ...productCatalog, sources: { ...productCatalog.sources, [tryg.sourceId]: changedSource } };
+  const stale = compareCatalogProducts(tryg, gjensidige, customCatalog).sections.flatMap(section => section.rows);
+  assert.equal(row(stale, "angina").first.state, "unknown");
+  assert.equal(row(stale, "kreft").first.state, "included");
 });
 
 test("personal member terms align with ordinary rows and keep the chosen agreement scope", () => {

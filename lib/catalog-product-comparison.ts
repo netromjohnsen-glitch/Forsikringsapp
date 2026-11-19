@@ -2,6 +2,7 @@ import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.
 import { catalogFactSources, catalogSourceIdentity } from "./catalog-enrichment.ts";
 import { coverageStatusFromText } from "./coverage-status.ts";
 import { isNonAssertingCoverageDetail } from "./coverage-fact-semantics.ts";
+import { criticalIllnessComparisonDiagnoses, diagnosisNotListed, isCriticalIllnessDiagnosisKey } from "./critical-illness-comparison.ts";
 import { normalizeInsuranceType } from "./insurance-normalization.ts";
 import { conceptForFactKey, conceptsForInsurance } from "./presentation-catalog.ts";
 import {
@@ -63,6 +64,7 @@ export type ProductComparisonSection = {
 export type MaterializedCatalogProduct = {
   product: CatalogProduct;
   facts: ProductComparisonFact[];
+  diagnosisListSource?: ProductComparisonSource;
 };
 
 export type CatalogProductComparison = {
@@ -194,10 +196,15 @@ export function materializeCatalogProduct(
   catalog: ProductCatalog = productCatalog,
 ): MaterializedCatalogProduct {
   if (!canMaterialize(product, catalog)) throw new Error("Katalogproduktet kan ikke sammenlignes sikkert.");
-  const baseFacts = resolveCatalogFacts(product, [], new Date(), null, catalog)
+  const date = new Date();
+  const source = product.sourceId ? catalog.sources?.[product.sourceId] : undefined;
+  const diagnoses = criticalIllnessComparisonDiagnoses(product, source, date);
+  const baseFacts = resolveCatalogFacts(product, [], date, null, catalog)
     .filter((fact) => !customerSpecificKey.test(fact.key));
   const baseIdentities = new Set(baseFacts.map(factIdentity));
-  const facts: ProductComparisonFact[] = baseFacts.map((fact) => productFact(
+  const facts: ProductComparisonFact[] = baseFacts
+    .filter(fact => !(diagnoses && isCriticalIllnessDiagnosisKey(fact.key)))
+    .map((fact) => productFact(
     fact,
     fact.coverageAvailability ?? (isNonAssertingCoverageDetail(fact.key) ? "included" :
       coverageStatusFromText(fact.value, { subject: fact.label, productName: product.name }) === "not_selected"
@@ -223,7 +230,8 @@ export function materializeCatalogProduct(
       }
     }
   }
-  return { product, facts };
+  if (diagnoses) facts.push(...diagnoses.facts);
+  return { product, facts, ...(diagnoses && { diagnosisListSource: diagnoses.listSource }) };
 }
 
 function valueForKey(facts: ProductComparisonFact[], preferOptional = false): ProductComparisonValue {
@@ -266,9 +274,11 @@ export function compareCatalogProducts(
   const rows = keys.map((key): ProductComparisonRow => {
     const leftFacts = first.facts.filter((fact) => fact.key === key);
     const rightFacts = second.facts.filter((fact) => fact.key === key);
-    const left = valueForKey(leftFacts, availableAddOns(firstProduct, new Date(), null, catalog)
+    const left = (!leftFacts.length ? diagnosisNotListed(key, first.diagnosisListSource) : undefined) ??
+      valueForKey(leftFacts, availableAddOns(firstProduct, new Date(), null, catalog)
         .some(addOn => addOn.selectionEvidenceKeys?.includes(key)));
-    const right = valueForKey(rightFacts, availableAddOns(secondProduct, new Date(), null, catalog)
+    const right = (!rightFacts.length ? diagnosisNotListed(key, second.diagnosisListSource) : undefined) ??
+      valueForKey(rightFacts, availableAddOns(secondProduct, new Date(), null, catalog)
         .some(addOn => addOn.selectionEvidenceKeys?.includes(key)));
     const concept = conceptForFactKey(firstType, key);
     return {
