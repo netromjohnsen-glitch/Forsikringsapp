@@ -1,0 +1,172 @@
+{
+  "date": "2026-11-19T11:39:15+01:00",
+  "production_baseline": "91b701ec945298add6a859a4ee7d4e971bb0e6f7",
+  "catalog_baseline": "f04a1877849def108e229480d7b1a9ca30bdaa64",
+  "tested_commit": "f7d81371151d330bcf8457119c2a0ca2b8bbf491",
+  "tested_tree": "3e070da1c327761c0b48e4072e42661e3ba2e3ca",
+  "scope": "50 private varianter i publisert utvalg",
+  "coverage": {
+    "categories": [
+      {
+        "insuranceType": "Hytte",
+        "variants": 13,
+        "previousBaseFacts": 150,
+        "currentBaseFacts": 1042,
+        "optionalFacts": 82
+      },
+      {
+        "insuranceType": "Verdisak",
+        "variants": 7,
+        "previousBaseFacts": 72,
+        "currentBaseFacts": 398,
+        "optionalFacts": 0
+      },
+      {
+        "insuranceType": "Bil",
+        "variants": 12,
+        "previousBaseFacts": 222,
+        "currentBaseFacts": 892,
+        "optionalFacts": 13
+      },
+      {
+        "insuranceType": "Hus",
+        "variants": 7,
+        "previousBaseFacts": 137,
+        "currentBaseFacts": 725,
+        "optionalFacts": 25
+      },
+      {
+        "insuranceType": "Innbo",
+        "variants": 6,
+        "previousBaseFacts": 39,
+        "currentBaseFacts": 285,
+        "optionalFacts": 4
+      },
+      {
+        "insuranceType": "Reise",
+        "variants": 5,
+        "previousBaseFacts": 33,
+        "currentBaseFacts": 246,
+        "optionalFacts": 0
+      }
+    ],
+    "previousBaseFacts": 653,
+    "currentBaseFacts": 3588,
+    "optionalFactsPerVariant": 124,
+    "archiveFiles": 54,
+    "pdfFiles": 52,
+    "exactArchiveHashes": "PASS",
+    "physicalPageBounds": "PASS",
+    "variantAndAddOnScope": "PASS",
+    "representationInProductView": "PASS"
+  },
+  "corrections": [
+    "Landkreditt Bil viser rettshjelpssum fra forsikringsbeviset i samsvar med punkt 9.3 på PDF-side 9.",
+    "Landkreditt Innbo Utvidet har et frivillig utleietillegg. PDF-side 23–24, punkt 13, dokumenterer innholdet. Produktsiden dokumenterer nivåkravet.",
+    "KLP Innbo og Innbo Maks viser henholdsvis PDF-side 5 og 9 for de felles rettshjelpsbestemmelsene.",
+    "Bonusvilkår for nye bilprodukter vises i sammenligningen. Nye hyttepunkt er fordelt under de relevante forsikringsemnene."
+  ],
+  "sourceNotes": {
+    "publicLinkFailures": [
+      {
+        "filename": "frende/hus/canonical/Vilkar-husforsikring.pdf",
+        "url": "https://api.frende.no/documents/terms/public/pnc/VacationHomeInsurance",
+        "http": 404
+      },
+      {
+        "filename": "private-valuables/frende-verdisak.pdf",
+        "url": "https://api.frende.no/documents/terms/public/pnc/ValuablesInsurance",
+        "http": 404
+      }
+    ],
+    "frende": "Originalene er bevart i Git. Leverandørens nettsted lenker til begge direkte dokumentadresser. Dokumentene ble også bekreftet i de indekserte kildene.",
+    "gjensidige": "De to geografipunktene for Verdigjenstander viser til IPID. Leverandøren leverer nå en PDF med andre bytes, men tekstekstraktet samsvarer med det arkiverte produktarket.",
+    "landkredittRentalEligibility": "https://www.landkreditt.no/forsikring/privat/innbo/",
+    "certificateSpecificTerms": "Individuelle summer, egenandeler, risikoopplysninger og sikkerhetsforskrifter som vilkårene henviser til, hentes fra forsikringsbeviset.",
+    "fixedEditionScope": "Punkt er knyttet til vilkårsutgaven hver variant er registrert med. Separate produkter, ekstra avtaler utenfor utvalget og bedriftsforsikring inngår ikke."
+  },
+  "evidence": {
+    "full_suite": {
+      "files": 185,
+      "tests": 7166,
+      "pass": 7166,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "linuxNode": "v24.22.1",
+    "typegen": "PASS",
+    "typescript": "PASS",
+    "eslint": {
+      "files": 421,
+      "errors": 0,
+      "warnings": 29
+    },
+    "webpackBuild": "PASS",
+    "catalogComparison": "PASS",
+    "syntheticHttpAndPdf": "PASS",
+    "browser": {
+      "status": "PASS",
+      "mode": "local",
+      "productVariants": 50,
+      "manualVariants": 50,
+      "comparisons": 9,
+      "checks": [
+        "Tryg cabin limits",
+        "Gjensidige valuables source",
+        "KLP travel duration",
+        "Six PDF source comparisons",
+        "KLP Innbo pages 5 and 9",
+        "Landkreditt optional rental",
+        "Fritidsbolig alias",
+        "Tryg optional pests"
+      ],
+      "manualSubmitted": true
+    }
+  },
+  "sha256": {
+    "browser.log": "3230e5c5afbad45c1342135ce3a2a0efd8167f89a4b564b0cef5ff8f83dfb112",
+    "build.log.gz": "983ff8c9e7576ec9c987cdd06476513c9408b940f66104279c0eb6dc63548a40",
+    "catalog.log": "0928935f20f02b649240f53bcb3c5c2fa3e71b536ee608784c02c90df9522032",
+    "changed-files.sha256": "4501e74fb91835d8b6c46630fa7267747e738e2c76ca86b87be1f5c90e23ab96",
+    "eslint-summary.json": "9e133591bdf88d153a91ce66f65f6fac4836c248826783f14ed215b83ab47837",
+    "poppler.log": "15f830e729f4dc82c7c8989df9727720ade1683330f6ce0ebf808055da03191a",
+    "public-source-probes.json": "bf09c37baf8153e31ff540d69d0b19719bbec6dd71b722cbbe754422f5d27164",
+    "runtime.log": "4649223aa538f56472d6e6dc3d039bd5febce5fd933503f53114774b85436bd8",
+    "scope.json": "6416722db3e0f2ef0149b41162c31500af1f1204a0f368adb9a05562e166c7a9",
+    "terms-inventory.json.gz": "a30c865c95745acf4e7c1490cc59b6ffbe5abea899a9dfd1645975849c2a4a2e",
+    "test.tap.gz": "ae86ac257f00055a184f98f9c1aca6849cfaeeefabe2c439bc339d6de36b0bac",
+    "tests.txt": "7e200fbacbee3ab57b28a645054d95353c847fb2ea97c4ffd0e7966236835a5b",
+    "typegen.log": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+    "typescript.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "production-verification.json": "c8f9bffbc844d43b59a8a6e5813dbe4f9a2fecc37187e8e2a294199e873cab5c"
+  },
+  "production": {
+    "time": "2026-11-19T11:44:05+01:00",
+    "revision": "f7d81371151d330bcf8457119c2a0ca2b8bbf491",
+    "deployment": "80b0b68a-331f-4d36-b7ef-c72e352bb49e",
+    "railwayStatus": "SUCCESS",
+    "pilotHealthStatus": 200,
+    "url": "https://forsikringsapp-production.up.railway.app/",
+    "browser": {
+      "status": "PASS",
+      "mode": "authenticated UI",
+      "productVariants": 50,
+      "manualVariants": 50,
+      "comparisons": 9,
+      "checks": [
+        "Tryg cabin limits",
+        "Gjensidige valuables source",
+        "KLP travel duration",
+        "Six PDF source comparisons",
+        "KLP Innbo pages 5 and 9",
+        "Landkreditt optional rental",
+        "Fritidsbolig alias",
+        "Tryg optional pests"
+      ],
+      "manualSubmitted": false,
+      "deployment": "80b0b68a-331f-4d36-b7ef-c72e352bb49e"
+    }
+  }
+}

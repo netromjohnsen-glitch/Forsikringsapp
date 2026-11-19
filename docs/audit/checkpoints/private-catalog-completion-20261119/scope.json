@@ -1,0 +1,22 @@
+{
+  "baseline": "f04a1877849def108e229480d7b1a9ca30bdaa64",
+  "authorization": "Brukeren ber om gjennomgang av vilkårene for alle 50 nye private varianter og at manglende vilkårspunkter legges inn med kilde og PDF-sidetall.",
+  "scope": {
+    "Hytte": 13,
+    "Verdisak": 7,
+    "Bil og Hus": 19,
+    "Innbo og Reise": 11
+  },
+  "constraints": [
+    "Private forsikringer i det publiserte utvalget.",
+    "Kontroller produkt, nivå, tilvalg, dato, original PDF-side og punkt.",
+    "Bevar valgmekanikk og prioritet for kundedokumenter."
+  ],
+  "catalog_modules": [
+    "lib/private-cabin-catalog.ts",
+    "lib/private-valuables-catalog.ts",
+    "lib/new-private-motor-home-catalog.ts",
+    "lib/new-private-contents-travel-catalog.ts"
+  ],
+  "verification": ["Originalkilder og kontrollsummer", "Katalog- og sammenligningskontroller", "Linux fullsuite", "TypeScript", "ESLint", "Produksjonsbygg", "Syntetisk HTTP/PDF", "Pilotkontroll"]
+}
