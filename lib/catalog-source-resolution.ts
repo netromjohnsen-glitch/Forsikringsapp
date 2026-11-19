@@ -27,6 +27,12 @@ export type CatalogSourceDecision = {
 // retain their existing component/inheritance policy; authority is never
 // inferred from filenames, company names, numeric values or array order.
 const authority = { full_terms: 3, ipid: 2, product_page: 1 } as const;
+export function sourceDateApplies(source: CatalogSource, date: string): boolean {
+  return (!/^\d{4}-\d{2}-\d{2}$/.test(source.effectiveFrom) || source.effectiveFrom <= date) &&
+    (!source.validFrom || source.validFrom <= date) &&
+    (!source.validTo || source.validTo >= date);
+}
+
 export function resolveCatalogSources(
   candidates: readonly CatalogFact[], sources: Readonly<Record<string, CatalogSource>>,
   product: CatalogProduct, asOf: Date,
@@ -46,8 +52,7 @@ export function resolveCatalogSources(
         (!source.insuranceType || normalizeInsuranceType(source.insuranceType) === normalizeInsuranceType(product.insuranceType)) &&
         (!source.productIds || source.productIds.includes(product.productId)) &&
         (!source.productVersion || source.productVersion === product.version) &&
-        (!/^\d{4}-\d{2}-\d{2}$/.test(source.effectiveFrom) || source.effectiveFrom <= date) &&
-        (!source.validTo || source.validTo >= date);
+        sourceDateApplies(source, date);
     });
     if (!applicable.length) { decisions.push({ key, reason: "inapplicable", winners: [], evidence }); continue; }
     if (applicable.some(fact => !sources[fact.source.documentId]?.sourceType)) {

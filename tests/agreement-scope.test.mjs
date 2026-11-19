@@ -343,8 +343,12 @@ test('ordinary presentation benefits never leak into member agreements', () => w
 test('scope is excluded from existing telemetry event vocabulary', () => {
   assert.equal(sanitizeTraceEvent({ stage: 'extraction', agreementScope: member }), null);
 });
-test('current UI remains free from empty agreement selectors, with native future selector semantics', () => {
-  for (const p of productCatalog.products.filter(p => !['MC', 'Bobil'].includes(p.insuranceType))) assert.ok(!catalogAgreementScopeOptions(productCatalog, p.company, p.insuranceType).some(s => s.id !== 'ordinary'));
+test('UI offers registered scopes only for the matching provider and insurance type', () => {
+  for (const p of productCatalog.products.filter(p => !['MC', 'Bobil'].includes(p.insuranceType) && p.company !== 'Tryg')) {
+    assert.deepEqual(catalogAgreementScopeOptions(productCatalog, p.company, p.insuranceType).map(s => s.id), ['ordinary']);
+  }
+  const trygBilScopes = catalogAgreementScopeOptions(productCatalog, 'Tryg', 'Bil').map(scope => scope.id);
+  assert.deepEqual(trygBilScopes.sort(), ['nito', 'ordinary', 'utdanningsforbundet']);
   const page = readFileSync(new URL('../app/page.tsx', import.meta.url), 'utf8');
   assert.match(page, /if \(!scopes\.some\(scope => scope\.id !== "ordinary"\)\) return null/);
   assert.match(page, /Avtale \/ medlemsavtale\s*<select/);

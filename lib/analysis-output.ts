@@ -55,6 +55,8 @@ export type ExtractedAddOn = {
 export type ExtractedInsurance = {
   agreementScope?: AgreementScopeId | null;
   agreementPeriod?: AgreementPeriod | null;
+  // Internal PDF evidence. null explicitly blocks an automatic catalog link.
+  documentCatalogVersion?: string | null;
   documentRole?: DocumentRole;
   objectIdentifiers?: ObjectIdentifier[];
   documentIndices?: number[];

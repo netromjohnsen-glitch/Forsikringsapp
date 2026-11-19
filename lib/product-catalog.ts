@@ -1,3 +1,4 @@
+import { trygMemberAgreementScopes, trygMemberProducts, trygMemberAddOns, trygMemberSources, trygMemberFacts } from "./tryg-member-catalog.ts";
 import { vehicleObjectProducts, vehicleObjectFacts, vehicleObjectAddOns, vehicleObjectSources } from "./vehicle-object-catalog.ts";
 import { mcBobilProducts, mcBobilFacts, mcBobilAddOns, mcBobilSources, mcBobilAgreementScopes } from "./mc-bobil-catalog.ts";
 import { boatPetProducts, boatPetFacts, boatPetAddOns, boatPetSources, boatPetAgreementScopes } from "./boat-pet-catalog.ts";
@@ -39,7 +40,7 @@ import { valuablesFacts, valuablesProducts, valuablesSources } from "./private-v
 import { newMotorHomeAddOns, newMotorHomeFacts, newMotorHomeProducts, newMotorHomeSources } from "./new-private-motor-home-catalog.ts";
 import { newContentsTravelAddOns, newContentsTravelFacts, newContentsTravelProducts, newContentsTravelSources } from "./new-private-contents-travel-catalog.ts";
 import type { BuildingFactData } from "./building-facts.ts";
-import { normalizeInsuranceType } from "./insurance-normalization.ts";
+import { canonicalInsuranceTypeLabel, normalizeInsuranceType } from "./insurance-normalization.ts";
 import { resolveCatalogSources } from "./catalog-source-resolution.ts";
 import { catalogFactScopeApplies } from "./catalog-source-resolution.ts";
 import { catalogAgreementScope, isRegisteredAgreementScope, productsInAgreementScope, type AgreementScopeId, type AgreementScopeDefinition } from "./agreement-scope.ts";
@@ -56,6 +57,7 @@ export type CatalogSource = {
   productIds?: string[];
   sourceType?: "full_terms" | "ipid" | "product_page";
   physicalPages?: readonly [firstPage: number, lastPage: number];
+  validFrom?: string;
   validTo?: string;
   providerId?: string;
   productVersion?: string;
@@ -78,6 +80,8 @@ export type CatalogFact = {
 };
 export type CatalogProduct = {
   agreementScope?: AgreementScopeId;
+  requiresExplicitAgreementScope?: true;
+  selectionNames?: readonly string[];
   company: string;
   insuranceType: string;
   name: string;
@@ -118,28 +122,29 @@ export type ProductCatalog = {
 };
 
 export const productCatalog: ProductCatalog = {
-  agreementScopes: [...mcBobilAgreementScopes, ...boatPetAgreementScopes],
+  agreementScopes: [...mcBobilAgreementScopes, ...boatPetAgreementScopes, ...trygMemberAgreementScopes],
   companies: ["Tryg", "If", "Gjensidige", "Storebrand", "Fremtind", "Frende", "KLP", "Landkreditt", "WaterCircles"],
-  insuranceTypes: ["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Hytte", "Innbo", "Verdisak", "Reise",
-    "Båt", "MC", "Bobil", "Hund", "Katt", ...personInsuranceTypes],
+  insuranceTypes: [...new Set(["Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Hytte", "Innbo", "Verdisak", "Reise",
+    "Båt", "MC", "Bobil", "Hund", "Katt", ...personInsuranceTypes,
+    ...trygMemberProducts.map(product => canonicalInsuranceTypeLabel(product.insuranceType))])],
   products: [...trygProducts, ...ifProducts, ...gjensidigeProducts, ...storebrandProducts,
     ...sparebank1FremtindProducts, ...dnbFremtindProducts, ...eikaFremtindProducts, ...fremtindProducts, ...frendeProducts,
     ...trygInnboProducts, ...ifInnboProducts, ...gjensidigeInnboProducts, ...storebrandInnboProducts,
     ...fremtindInnboProducts, ...frendeInnboProducts, ...trygHusProducts, ...ifHusProducts, ...storebrandHusProducts,
     ...gjensidigeHusProducts, ...fremtindHusProducts, ...frendeHusProducts, ...trygReiseProducts, ...ifReiseProducts, ...storebrandReiseProducts, ...gjensidigeReiseProducts, ...fremtindReiseProducts, ...frendeReiseProducts, ...vehicleObjectProducts, ...mcBobilProducts, ...boatPetProducts, ...personInsuranceProducts,
-    ...cabinProducts, ...valuablesProducts, ...newMotorHomeProducts, ...newContentsTravelProducts],
-  addOns: [...vehicleObjectAddOns, ...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
+    ...cabinProducts, ...valuablesProducts, ...newMotorHomeProducts, ...newContentsTravelProducts, ...trygMemberProducts],
+  addOns: [...trygMemberAddOns, ...vehicleObjectAddOns, ...trygAddOns, ...ifAddOns, ...gjensidigeAddOns, ...storebrandAddOns,
     ...sparebank1FremtindAddOns, ...dnbFremtindAddOns, ...eikaFremtindAddOns, ...fremtindAddOns, ...frendeAddOns,
     ...trygInnboAddOns, ...gjensidigeInnboAddOns, ...frendeInnboAddOns, ...trygHusAddOns, ...ifHusAddOns, ...storebrandHusAddOns,
     ...gjensidigeHusAddOns, ...fremtindHusAddOns, ...frendeHusAddOns, ...trygReiseAddOns, ...ifReiseAddOns, ...storebrandReiseAddOns, ...gjensidigeReiseAddOns, ...fremtindReiseAddOns, ...frendeReiseAddOns, ...mcBobilAddOns, ...boatPetAddOns,
     ...cabinAddOns, ...newMotorHomeAddOns, ...personInsuranceAddOns, ...newContentsTravelAddOns],
-  sources: { ...boatPetSources, ...mcBobilSources, ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
+  sources: { ...trygMemberSources, ...boatPetSources, ...mcBobilSources, ...vehicleObjectSources, ...trygSources, ...ifSources, ...gjensidigeSources, ...storebrandSources,
     ...sparebank1FremtindSources, ...dnbFremtindSources, ...eikaFremtindSources, ...fremtindSources, ...frendeSources,
     ...trygInnboSources, ...ifInnboSources, ...gjensidigeInnboSources, ...storebrandInnboSources,
     ...fremtindInnboSources, ...frendeInnboSources, ...trygHusSources, ...ifHusSources, ...storebrandHusSources,
     ...gjensidigeHusSources, ...fremtindHusSources, ...frendeHusSources, ...trygReiseSources, ...ifReiseSources, ...storebrandReiseSources, ...gjensidigeReiseSources, ...fremtindReiseSources, ...frendeReiseSources, ...personInsuranceSources,
     ...cabinSources, ...valuablesSources, ...newMotorHomeSources, ...newContentsTravelSources },
-  facts: { ...boatPetFacts, ...mcBobilFacts, ...vehicleObjectFacts, ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
+  facts: { ...trygMemberFacts, ...boatPetFacts, ...mcBobilFacts, ...vehicleObjectFacts, ...trygFacts, ...ifFacts, ...gjensidigeFacts, ...storebrandFacts,
     ...sparebank1FremtindFacts, ...dnbFremtindFacts, ...eikaFremtindFacts, ...fremtindFacts, ...frendeFacts,
     ...trygInnboFacts, ...ifInnboFacts, ...gjensidigeInnboFacts, ...storebrandInnboFacts,
     ...fremtindInnboFacts, ...frendeInnboFacts, ...trygHusFacts, ...ifHusFacts, ...storebrandHusFacts,
@@ -156,6 +161,8 @@ const normalizeIdentity = (value: string) => value.normalize("NFKC")
 // Juridiske navn kobles eksplisitt til katalogens presentasjonsnavn. Vi
 // fjerner ikke selskapsendelser generelt, fordi det kan gi usikre treff.
 const companyAliases: Readonly<Record<string, string>> = {
+  "tryg forsikring": "tryg",
+  "tryg forsikring a s": "tryg",
   "gjensidige forsikring asa": "gjensidige",
   "eika": "eika fremtind",
   "klp skadeforsikring": "klp",
@@ -201,8 +208,16 @@ export function catalogAgreementScopeOptions(catalog: ProductCatalog, company: s
 // providers/types with several scopes require explicit document scope.
 export function resolvedAgreementScope(company: string | null, insuranceType: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog): AgreementScopeId | null {
   if (agreementScope != null) return agreementScopeAllowed(company, agreementScope, catalog) ? agreementScope : null;
+  if (agreementScope === undefined && company &&
+      catalogProductsForSelection(catalog, company, insuranceType).some(product => catalogAgreementScope(product) === "ordinary")) {
+    return "ordinary";
+  }
   const scopes = company ? catalogAgreementScopeOptions(catalog, company, insuranceType) : [];
-  return scopes.length > 1 ? null : scopes[0]?.id ?? "ordinary";
+  if (scopes.length > 1) return null;
+  const scope = scopes[0]?.id ?? "ordinary";
+  if (scope !== "ordinary" && company &&
+      catalogProductsForSelection(catalog, company, insuranceType).length === 0) return null;
+  return scope;
 }
 
 export function catalogProductMatchesSelection(
@@ -218,7 +233,12 @@ export function catalogProductMatchesSelection(
   return catalogProductsForSelection({ ...catalog, products: [...catalog.products, product] }, company,
     normalizeInsuranceType(insuranceType, { productName: name }), agreementScope)
     .includes(product) &&
-    normalizeIdentity(product.name) === normalizeIdentity(name);
+    catalogProductMatchesName(product, name);
+}
+
+export function catalogProductMatchesName(product: CatalogProduct, name: string): boolean {
+  const identity = normalizeIdentity(name);
+  return [product.name, ...(product.selectionNames ?? [])].some(candidate => normalizeIdentity(candidate) === identity);
 }
 
 export function productSuggestions(catalog: ProductCatalog, company: string, insuranceType: string, agreementScope?: AgreementScopeId | null): string[] {
@@ -237,8 +257,13 @@ export function catalogProductsForSelection(
     .filter((product) => canonicalCompanyIdentity(product.company) === canonicalCompanyIdentity(company) &&
       normalizeInsuranceType(product.insuranceType, { productName: product.name }) ===
         normalizeInsuranceType(insuranceType));
-  return productsInAgreementScope(candidates.filter(product =>
-    isRegisteredAgreementScope(catalogAgreementScope(product), catalog.agreementScopes, product.providerId)), agreementScope);
+  // A missing scope is the legacy input form. Preserve its ordinary results.
+  // An explicit null from document analysis still means an unknown agreement.
+  const eligible = candidates.filter(product =>
+    (agreementScope !== undefined || !product.requiresExplicitAgreementScope) &&
+    isRegisteredAgreementScope(catalogAgreementScope(product), catalog.agreementScopes, product.providerId));
+  return productsInAgreementScope(eligible, agreementScope)
+    .filter(product => agreementScope != null || !product.requiresExplicitAgreementScope);
 }
 
 export type CatalogProductReference = {
@@ -262,16 +287,22 @@ export function findCatalogProduct(providerId: string, productId: string, versio
   const candidates = catalog.products.filter(product => product.providerId === providerId && product.productId === productId &&
     product.version === version && (!scope.insuranceType || normalizeInsuranceType(product.insuranceType) === normalizeInsuranceType(scope.insuranceType)) &&
     isRegisteredAgreementScope(catalogAgreementScope(product), catalog.agreementScopes, providerId));
-  const selected = productsInAgreementScope(candidates, scope.agreementScope);
+  const selected = productsInAgreementScope(candidates, scope.agreementScope)
+    .filter(product => scope.agreementScope != null || !product.requiresExplicitAgreementScope);
   return selected.length === 1 ? selected[0] : null;
 }
 
 // Brukes også når klienten har mistet katalogreferansen etter feltendringer.
 // Ingen fuzzy matching: flere mulige versjoner gir ingen automatisk kobling.
-export function findCatalogProductBySelection(company: string, insuranceType: string, name: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog) {
-  if (!company.trim() || !insuranceType.trim() || !name.trim()) return null;
-  const selected = catalogProductsForSelection(catalog, company, normalizeInsuranceType(insuranceType, { productName: name }), agreementScope)
-    .filter(product => normalizeIdentity(product.name) === normalizeIdentity(name));
+export function catalogProductsMatchingName(company: string, insuranceType: string, name: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog) {
+  if (!company.trim() || !insuranceType.trim() || !name.trim()) return [];
+  return catalogProductsForSelection(catalog, company, normalizeInsuranceType(insuranceType, { productName: name }), agreementScope)
+    .filter(product => catalogProductMatchesName(product, name));
+}
+
+export function findCatalogProductBySelection(company: string, insuranceType: string, name: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog, version?: string | null) {
+  const selected = catalogProductsMatchingName(company, insuranceType, name, agreementScope, catalog)
+    .filter(product => version === undefined || product.version === version);
   return selected.length === 1 ? selected[0] : null;
 }
 

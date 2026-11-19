@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { agreementScopeDisplayName } from "@/lib/provider-presentation";
 import { termsSourceHref } from "@/lib/frende-terms-archive";
+import { trygMemberInventories } from "@/lib/tryg-member-catalog";
 import { catalogAgreementScope } from "@/lib/agreement-scope";
 import { personInsuranceTypes } from "@/lib/person-insurance-registry";
 import { catalogProductIdentity, productCatalog, type CatalogProduct } from "@/lib/product-catalog";
@@ -273,6 +274,57 @@ function ProductResult({ result }: { result: CatalogProductComparison }) {
   );
 }
 
+const inventoryKindLabels = {
+  member: "Egne medlemsvilkår",
+  discount: "Ordinært Tryg-tilbud",
+  historical: "Tidligere ordninger",
+  "other-insurer": "Andre forsikringsgivere",
+} as const;
+
+function TrygMemberOfferings() {
+  return (
+    <section aria-labelledby="tryg-member-offerings" className="surface-card mt-5 rounded-2xl border p-5 sm:p-8">
+      <h2 id="tryg-member-offerings" className="section-title text-xl font-semibold">Tryg medlemsavtaler</h2>
+      {trygMemberInventories.map(inventory => (
+        <details key={inventory.agreementScope} className="mt-4 border-t border-slate-200 pt-4">
+          <summary className="cursor-pointer font-semibold">{inventory.name}</summary>
+          {(Object.keys(inventoryKindLabels) as Array<keyof typeof inventoryKindLabels>).map(kind => {
+            const products = inventory.products.filter(product => product.kind === kind);
+            if (!products.length) return null;
+            return (
+              <section key={kind} className="mt-4">
+                <h3 className="font-medium">{inventoryKindLabels[kind]}</h3>
+                <ul className="mt-2 space-y-2 text-sm">
+                  {products.map(product => (
+                    <li key={product.id}>
+                      <details>
+                        <summary className="cursor-pointer">{product.name}{product.insurer ? ` · ${product.insurer}` : ""}</summary>
+                        {product.notes && <p className="mt-1">{Array.isArray(product.notes) ? product.notes.join(" ") : product.notes}</p>}
+                        {!!product.components?.length && <p className="mt-1">Dekninger og komponenter: {product.components.join(", ")}</p>}
+                        <ul className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
+                          {product.sources.map((source, index) => (
+                            <li key={`${source.url}:${index}`}>
+                              <a className="text-link underline" href={source.url}>
+                                {source.label ?? (source.role.includes("terms") ? "Vilkår" : source.role === "ipid" ? "Produktark" : "Kilde")}
+                                {source.documentNumber ? ` ${source.documentNumber}` : ""}
+                                {(source.effectiveDate ?? source.publicationDate) ? ` (${source.effectiveDate ?? source.publicationDate})` : ""}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </details>
+      ))}
+    </section>
+  );
+}
+
 function focusInsuranceType(select: HTMLSelectElement | null) {
   select?.focus();
 }
@@ -351,6 +403,7 @@ export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { p
         {error && <div role="alert" className="error-panel mt-6 rounded-xl border p-4">{error}</div>}
       </div>
       {result && <ProductResult result={result} />}
+      <TrygMemberOfferings />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { sourceDateApplies } from "./catalog-source-resolution.ts";
 import type { MeasureSync } from "./analysis-telemetry.ts";
 import type { TraceObjectObserver } from "./production-trace.ts";
 import type { ExtractedAgreement, ExtractedInsurance, ExtractedTerm } from "./analysis-output.ts";
@@ -258,13 +259,22 @@ function enrichInsurance(
     ? insurance.productName
     : insurance.canonicalProductName;
   const product = measure("catalogLookup", () => {
-    const candidate = company && productIdentity
-      ? findCatalogProductBySelection(company, insurance.type, productIdentity, insurance.agreementScope, catalog) : null;
+    if (!company || !productIdentity || insurance.documentCatalogVersion === null) return null;
+    const candidate = findCatalogProductBySelection(company, insurance.type, productIdentity, insurance.agreementScope, catalog, insurance.documentCatalogVersion);
+    if (candidate?.requiresExplicitAgreementScope) {
+      if (!candidate.version || candidate.version !== insurance.documentCatalogVersion) return null;
+      const source = candidate.sourceId ? catalog.sources?.[candidate.sourceId] : undefined;
+      const date = insurance.agreementPeriod?.from ?? asOf.toISOString().slice(0, 10);
+      return source && sourceDateApplies(source, date) ? candidate : null;
+    }
     // A customer PDF with a matching product name does not establish the
     // applicable person terms, individual reservations or coverage choices.
     return candidate?.sourceId?.startsWith("person:") ? null : candidate;
   });
   trace?.product(insurance, product);
+  if (product?.requiresExplicitAgreementScope && insurance.agreementPeriod?.from) {
+    asOf = new Date(insurance.agreementPeriod.from);
+  }
   // Only explicitly configured Hus parents participate in this opt-in. Other
   // product families, details and aliases retain their existing contracts.
   const optedAddOns = product && normalizeInsuranceType(insurance.type) === "bolig"

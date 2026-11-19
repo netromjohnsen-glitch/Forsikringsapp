@@ -3,7 +3,7 @@ import type { DocumentObjectRecord, ConsolidatedDocumentObject } from "./insuran
 import type { CatalogEnrichedInsurance } from "./catalog-enrichment.ts";
 import type { FactSource } from "./comparison.ts";
 import { normalizeDocumentFacts } from "./document-fact-normalization.ts";
-import { canonicalProviderId, findCatalogProductBySelection, catalogProductIdentity, resolvedAgreementScope, catalogProductsForSelection, productCatalog } from "./product-catalog.ts";
+import { canonicalProviderId, findCatalogProductBySelection, catalogProductIdentity, resolvedAgreementScope, catalogProductsMatchingName, productCatalog } from "./product-catalog.ts";
 import { normalizeInsuranceType, normalizeTermName, relatedCoveragesForInsuranceType, isUndocumentedTermValue, isAmbiguousBobilParkingBonusLabel } from "./insurance-normalization.ts";
 import { objectIdentity } from "./object-matching.ts";
 import { defaultIdentifierStrategies } from "./object-identity-strategies.ts";
@@ -35,18 +35,21 @@ function productScope(record: Customer | DocumentObjectRecord) {
   const type = normalizeInsuranceType(record.type, record);
   const agreementScope = resolvedAgreementScope(record.company, record.type, record.agreementScope);
   if (agreementScope === null) return null;
-  const product = findCatalogProductBySelection(record.company, record.type, name, record.agreementScope);
+  const product = findCatalogProductBySelection(record.company, record.type, name, record.agreementScope, productCatalog, record.documentCatalogVersion);
   // A known name with unresolved catalog versions is not an uncatalogued
   // product. Do not fall back to raw-name attachment across those versions.
-  if (!product && catalogProductsForSelection(productCatalog, record.company, type, agreementScope)
-    .some(candidate => words(candidate.name) === words(name))) return null;
-  return JSON.stringify([provider, type, agreementScope, product ? catalogProductIdentity(product) : words(name)]);
+  if (!product && catalogProductsMatchingName(record.company, type, name, agreementScope).length) return null;
+  const identity = JSON.stringify([provider, type, agreementScope, product ? catalogProductIdentity(product) : words(name)]);
+  return { identity, requiresVerifiedEdition: product?.requiresExplicitAgreementScope === true };
 }
 
 export function supportingTermsApply(customer: Customer, terms: DocumentObjectRecord, side?: "existing" | "offer"): boolean {
   if (terms.documentRole !== "general_terms" || !isCustomerObject(customer)) return false;
+  if (customer.documentCatalogVersion !== undefined && !customer.catalogReference) return false;
   const scope = productScope(customer);
-  if (!scope || scope !== productScope(terms)) return false;
+  if (!scope || scope.identity !== productScope(terms)?.identity) return false;
+  if (scope.requiresVerifiedEdition &&
+      (!customer.documentCatalogVersion || customer.documentCatalogVersion !== terms.documentCatalogVersion)) return false;
   if (!customer.documentReferences?.length && !side) return false;
   const sides = new Set([...(side ? [side] : []), ...[...(customer.documentReferences ?? []), ...terms.documentReferences].map(r => r.side)]);
   if (sides.size > 1) return false;
@@ -104,7 +107,7 @@ export function attachSupportingTerms<T extends Customer>(customer: T, records: 
   if (!applicable.length) return observed(customer);
   const productName = customer.canonicalProductName === undefined ? customer.productName : customer.canonicalProductName;
   const product = customer.company && productName && findCatalogProductBySelection(
-    customer.company, customer.type, productName, customer.agreementScope);
+    customer.company, customer.type, productName, customer.agreementScope, productCatalog, customer.documentCatalogVersion);
   const smart = product && isHouseSmartProduct(product);
   const rental = product && isHouseRentalProduct(product);
   const rentalSelection = rental ? resolveHouseRentalSelection(product, customer) : null;

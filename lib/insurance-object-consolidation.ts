@@ -39,7 +39,7 @@ function providerIdentity(record: DocumentObjectRecord): string | null {
 function productIdentity(record: DocumentObjectRecord, company: string | null): string | null {
   const name = record.canonicalProductName === undefined ? record.productName : record.canonicalProductName;
   if (!name) return null;
-  const product = company && findCatalogProductBySelection(company, record.type, name, record.agreementScope);
+  const product = company && findCatalogProductBySelection(company, record.type, name, record.agreementScope, undefined, record.documentCatalogVersion ?? undefined);
   return product ? catalogProductIdentity(product) : textIdentity(name);
 }
 export function insuranceConsolidationIssues(records: readonly DocumentObjectRecord[]): ConsolidationIssue[] {
@@ -137,8 +137,11 @@ function mergeRecords(records: readonly DocumentObjectRecord[], hooks?: Consolid
   }
   const from = records.find(record => record.agreementPeriod?.from)?.agreementPeriod?.from ?? null;
   const to = records.find(record => record.agreementPeriod?.to)?.agreementPeriod?.to ?? null;
+  const versions = new Set(records.map(record => record.documentCatalogVersion));
+  const documentCatalogVersion = versions.size === 1 ? first.documentCatalogVersion : null;
   return {
     ...first,
+    ...(documentCatalogVersion !== undefined ? { documentCatalogVersion } : {}),
     ...(records.some(record => record.agreementScope != null) ? { agreementScope: records.find(record => record.agreementScope != null)!.agreementScope } : {}),
     type: normalizeInsuranceType(first.type, first),
     productName: displayNames.length === 1 ? displayNames[0] : canonicalNames[0] ?? (displayNames.join(" · ") || null),

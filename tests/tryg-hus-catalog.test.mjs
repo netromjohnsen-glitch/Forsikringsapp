@@ -9,7 +9,7 @@ import { getPath } from "pdf-parse/worker";
 import { createDifferences, groupInsurances, groupTerms } from "../lib/comparison.ts";
 import { presentImportantDifferences } from "../lib/comparison-presentation.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
-import { availableAddOns, productCatalog, productSuggestions, resolveCatalogEvidence,
+import { availableAddOns, findCatalogProductBySelection, productCatalog, productSuggestions, resolveCatalogEvidence,
   resolveCatalogFacts, resolveProductComponentIds } from "../lib/product-catalog.ts";
 
 PDFParse.setWorker(getPath());
@@ -32,11 +32,12 @@ const compare = (left, right) => {
   return { groups, terms, raw, shown };
 };
 
-test("alle 16 offisielle Tryg Hus-kilder er lokale, uendrede og registrert", async () => {
+test("alle 16 ordinære Tryg Hus-kilder er lokale, uendrede og registrert", async () => {
   const files = (await readdir(root)).filter((name) => name.endsWith(".pdf")).sort();
   assert.equal(files.length, 16);
   const sources = Object.values(productCatalog.sources).filter((source) =>
-    source.company === "Tryg" && source.insuranceType === "Hus");
+    source.company === "Tryg" && source.insuranceType === "Hus" &&
+    (source.agreementScope ?? "ordinary") === "ordinary");
   assert.equal(sources.length, 16);
   assert.deepEqual(sources.map((source) => source.filename).sort(), files);
   for (const source of sources) {
@@ -216,8 +217,10 @@ test("fremtidig ansvarsvilkår og NITO Hus kobles ikke automatisk", () => {
   const asOf = new Date("2026-09-19T12:00:00Z");
   const evidence = resolveCatalogEvidence(product("Hus Ekstra"), [], asOf);
   assert.equal(evidence.some((entry) => entry.source.documentId === "trygHusLiabilityFuture"), false);
-  assert.equal(productCatalog.products.some((entry) => entry.company === "Tryg" &&
-    entry.insuranceType === "Hus" && /NITO/iu.test(entry.name)), false);
+  const memberName = "NITO Husforsikring";
+  assert.equal(findCatalogProductBySelection("Tryg", "Hus", memberName), null);
+  assert.equal(findCatalogProductBySelection("Tryg", "Hus", memberName, "ordinary"), null);
+  assert.equal(findCatalogProductBySelection("Tryg", "Hus", memberName, "nito")?.productId, "tryg-nito-hus");
   const nito = normalizeManualAgreement({ company:"Tryg", totalAnnualPremium:"", products:[{
     type:"Hus", productName:"NITO Hus", annualPremium:"", deductible:"", coverageSummary:"",
     importantTerms:[{ name:"Dekning", value:"Ukjent NITO-vilkår" }], addOnIds:[],

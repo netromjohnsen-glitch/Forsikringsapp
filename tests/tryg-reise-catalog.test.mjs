@@ -9,7 +9,7 @@ import { getPath } from "pdf-parse/worker";
 import { createDifferences, groupInsurances } from "../lib/comparison.ts";
 import { presentImportantDifferences } from "../lib/comparison-presentation.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
-import { availableAddOns, productCatalog, productSuggestions, resolveCatalogEvidence,
+import { availableAddOns, findCatalogProductBySelection, productCatalog, productSuggestions, resolveCatalogEvidence,
   resolveCatalogFacts, resolveProductComponentIds } from "../lib/product-catalog.ts";
 
 PDFParse.setWorker(getPath());
@@ -21,10 +21,11 @@ const manual = (name, addOnIds = []) => normalizeManualAgreement({ company: "Try
   products: [{ type: "Reise", productName: name, annualPremium: "", deductible: "",
     coverageSummary: "", importantTerms: [], addOnIds }] });
 
-test("tretten offisielle Tryg Reise-kildefiler er lokale og uendrede", async () => {
+test("tretten ordinære Tryg Reise-kildefiler er lokale og uendrede", async () => {
   assert.equal((await readdir(root)).length, 13);
   const expected = Object.values(productCatalog.sources).filter((source) =>
-    source.company === "Tryg" && source.insuranceType === "Reise");
+    source.company === "Tryg" && source.insuranceType === "Reise" &&
+    (source.agreementScope ?? "ordinary") === "ordinary");
   assert.equal(expected.length, 14, "Reise/Reise Ekstra er to logiske kilder i samme dokument");
   for (const source of expected) {
     const bytes = await readFile(path.join(root, source.filename));
@@ -47,6 +48,10 @@ test("PDF-ene dokumenterer datoer, nivåer og separat personforsikring", async (
 
 test("produktstruktur og arv er Reise til Ekstra til Premium", () => {
   assert.deepEqual(productSuggestions(productCatalog, "Tryg", "Reise"), ["Reise", "Reise Ekstra", "Reise Premium"]);
+  const memberName = "NITO Reiseforsikring Enkeltperson";
+  assert.equal(findCatalogProductBySelection("Tryg", "Reise", memberName), null);
+  assert.equal(findCatalogProductBySelection("Tryg", "Reise", memberName, "ordinary"), null);
+  assert.equal(findCatalogProductBySelection("Tryg", "Reise", memberName, "nito")?.productId, "tryg-nito-reise-enkeltperson");
   assert.equal(product("Reise Ekstra").inheritsProductId, "tryg-reise");
   assert.equal(product("Reise Premium").inheritsProductId, "tryg-reise-ekstra");
   const ids = resolveProductComponentIds(product("Reise Premium"));

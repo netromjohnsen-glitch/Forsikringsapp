@@ -147,7 +147,7 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
     );
     if (catalogProduct && (!catalogProductMatchesSelection(
       catalogProduct, company, type, field(product.productName, "produktnavn", 150),
-      agreementScope ?? catalogProduct.agreementScope, catalog,
+      agreementScope === undefined ? catalogProduct.agreementScope : agreementScope, catalog,
     ) || (selectedByFields && catalogProduct !== selectedByFields))) {
       throw new ManualAgreementError("Valgt katalogprodukt stemmer ikke med selskap, type og produkt.");
     }

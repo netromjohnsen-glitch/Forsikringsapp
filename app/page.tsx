@@ -441,7 +441,8 @@ function ManualEditor({ side, value, onChange }: {
                 if (!company) {
                   return { ...product, agreementScope: null, type: "", productName: "", annualMileage: "", customProduct: false, catalogReference: null, addOnIds: [] };
                 }
-                return transitionManualProductScope({ ...product, agreementScope: null }, company, product.type);
+                const agreementScope = company.trim().toLowerCase() === "tryg" ? undefined : null;
+                return transitionManualProductScope({ ...product, agreementScope }, company, product.type);
               }),
             }));
           }}
@@ -462,7 +463,8 @@ function ManualEditor({ side, value, onChange }: {
         </select>
       </label>}
       <datalist id={`insurance-types-${side}`}>
-        {pilotInsuranceTypes.map((type) => (
+        {(value.company === "Tryg" ? [...new Set([...pilotInsuranceTypes, ...productCatalog.insuranceTypes])]
+          : pilotInsuranceTypes).map((type) => (
           <option key={type} value={type} />
         ))}
       </datalist>
@@ -504,9 +506,14 @@ function ManualEditor({ side, value, onChange }: {
             {(() => {
               const scopes = catalogAgreementScopeOptions(productCatalog, value.company, product.type);
               if (!scopes.some(scope => scope.id !== "ordinary")) return null;
+              const hasTrygMemberOptions = scopes.some(scope =>
+                scope.id === "nito" || scope.id === "utdanningsforbundet");
+              const defaultOrdinary = hasTrygMemberOptions && scopes.some(scope => scope.id === "ordinary");
+              const displayedScope = product.agreementScope === undefined && defaultOrdinary
+                ? "ordinary" : product.agreementScope;
               return <label className="text-sm font-medium text-gray-700">
                 Avtale / medlemsavtale
-                <select value={product.agreementScope ?? ""} onChange={event => changeProduct(index,
+                <select value={displayedScope ?? ""} onChange={event => changeProduct(index,
                   changeManualAgreementScope(product, value.company, product.type, event.target.value || null),
                 )} className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none">
                   <option value="">Ukjent / ikke oppgitt</option>

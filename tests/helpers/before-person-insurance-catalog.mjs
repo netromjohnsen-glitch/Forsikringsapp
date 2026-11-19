@@ -1,12 +1,12 @@
-// Frozen catalogue checkpoints predate the person and private expansion entries.
+// Frozen catalogue checkpoints predate the person, private and Tryg member entries.
 const historicalInsuranceTypes = [
   "Snøscooter", "Campingvogn", "Tilhenger", "Bil", "Hus", "Innbo", "Reise",
   "Ulykke", "Båt", "MC", "Bobil", "Hund", "Katt", "Barn", "Liv",
 ];
-const addedTypeLabels = new Set(["Uføre", "Kritisk sykdom", "Behandling", "Gravid", "Senior", "Hytte", "Verdisak"]);
+const addedTypeLabels = new Set(["Uføre", "Kritisk sykdom", "Behandling", "Gravid", "Senior", "Hytte", "Verdisak", "Innbo fritidsbolig", "Personforsikring", "Studentforsikring", "70+"]);
 const addedProviders = new Set(["klp", "landkreditt", "watercircles"]);
 const addedCompanies = new Set(["KLP", "Landkreditt", "WaterCircles"]);
-const expandedIds = /^(?:person:|cabin:|private-valuables:|new-private:|(?:klp|landkreditt|watercircles)-|(?:tryg|if|gjensidige|storebrand|fremtind|frende)-hytte-)/;
+const expandedIds = /^(?:tryg-(?:nito|utdanningsforbundet)-|person:|cabin:|private-valuables:|new-private:|(?:klp|landkreditt|watercircles)-|(?:tryg|if|gjensidige|storebrand|fremtind|frende)-hytte-)/;
 
 export function beforePersonInsuranceCatalog(catalog) {
   if (!catalog.products.some((product) => product.sourceId?.startsWith("person:"))) return catalog;
@@ -19,10 +19,11 @@ export function beforePersonInsuranceCatalog(catalog) {
   };
   return {
     ...catalog,
+    agreementScopes: catalog.agreementScopes?.filter(scope => scope.id !== "nito" && scope.id !== "utdanningsforbundet"),
     insuranceTypes: insuranceTypes.sort((a, b) => historicalPosition(a) - historicalPosition(b)),
     companies: catalog.companies.filter(company => !addedCompanies.has(company)),
     products: catalog.products.filter(product =>
-      !addedProviders.has(product.providerId) && !expandedIds.test(product.sourceId ?? "")),
+      !addedProviders.has(product.providerId) && !expandedIds.test(product.productId) && !expandedIds.test(product.sourceId ?? "")),
     addOns: catalog.addOns.filter(addOn => !addedProviders.has(addOn.providerId) && !expandedIds.test(addOn.id)),
     sources: existingEntries(catalog.sources),
     facts: existingEntries(catalog.facts),

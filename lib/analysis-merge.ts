@@ -12,8 +12,9 @@ import type { AnalysisTelemetry } from "./analysis-telemetry.ts";
 import { PdfSecurityError } from "./pdf-upload-security.ts";
 import type { AnalysisSide } from "./analysis-progress.ts";
 import { attachSupportingTerms, isCustomerObject, supportingEvidence } from "./supporting-terms.ts";
-import { findCatalogProductBySelection } from "./product-catalog.ts";
+import { catalogProductsMatchingName, productCatalog } from "./product-catalog.ts";
 import { resolveHouseRentalDocumentSelection } from "./hus-rental-selection.ts";
+import { hasDocumentCatalogVersion } from "./pdf-page-evidence.ts";
 
 export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatch, telemetry: AnalysisTelemetry, trace?: ProductionTrace) {
   const sourceIds = (indices?: number[]) => {
@@ -27,9 +28,11 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
     termsNumber: "Ikke oppgitt", effectiveFrom: "", page: 0, section: "Dokumentopplysninger; side/punkt ikke identifisert",
   }));
   const attach = (term: ExtractedTerm, role: DocumentRole = "unknown") => ({ ...term, coverageOrigin: "document" as const, sources: sources(term.documentIndices).map(source => ({ ...source, documentRole: role })) });
+  const documentOwners = new Map<ExtractionBatch["documents"][number], number>();
   // Validate the entire batch before publishing product events or mutating any result.
   for (const product of agreement.insurances) {
     const documents = new Set(sourceIds(product.documentIndices));
+    for (const doc of documents) documentOwners.set(doc, (documentOwners.get(doc) ?? 0) + 1);
     for (const term of [...(product.objectIdentifiers ?? []), ...product.importantTerms, ...product.addOns.flatMap((addon) => addon.importantTerms)]) {
       if (sourceIds(term.documentIndices).some((doc) => !documents.has(doc))) throw new AnalysisOutputError("Faktareferanse utenfor produktets dokumenter.");
     }
@@ -40,13 +43,29 @@ export function enrichBatch(agreement: ExtractedAgreement, batch: ExtractionBatc
     documentRecords,
     insurances: agreement.insurances.flatMap((product, productIndex) => {
       const productSources = sources(product.documentIndices).map(source => ({ ...source, documentRole: product.documentRole ?? "unknown" }));
-      const attached = { ...product, objectIdentifiers: product.objectIdentifiers?.map(id => ({ ...id, sources: sources(id.documentIndices) })), importantTerms: product.importantTerms.map(term => attach(term, product.documentRole)), addOns: product.addOns.map((addon) => ({ ...addon, importantTerms: addon.importantTerms.map(term => attach(term, product.documentRole)) })) };
       const company = product.company === undefined ? agreement.company : product.company;
       const name = product.canonicalProductName === undefined ? product.productName : product.canonicalProductName;
-      const catalogProduct = company && name ? findCatalogProductBySelection(company, product.type, name, product.agreementScope) : null;
+      const candidates = company && name ? catalogProductsMatchingName(company, product.type, name, product.agreementScope) : [];
+      const needsEdition = candidates.some(candidate => candidate.requiresExplicitAgreementScope);
+      const documents = sourceIds(product.documentIndices);
+      // Each member record needs its own edition evidence. A shared document
+      // cannot identify which of its declarations applies to this record.
+      const editionText = documents.length === 1 && documentOwners.get(documents[0]) === 1 ? documents[0].text : "";
+      const applicable = needsEdition ? candidates.filter(candidate => {
+        const termsNumber = candidate.sourceId ? productCatalog.sources?.[candidate.sourceId]?.termsNumber : undefined;
+        return hasDocumentCatalogVersion(editionText, candidate.version, termsNumber);
+      }) : candidates;
+      const catalogProduct = applicable.length === 1 ? applicable[0] : null;
+      const edition = needsEdition ? { documentCatalogVersion: catalogProduct?.version ?? null } : {};
+      const attached = { ...product, ...edition,
+        objectIdentifiers: product.objectIdentifiers?.map(id => ({ ...id, sources: sources(id.documentIndices) })),
+        importantTerms: product.importantTerms.map(term => attach(term, product.documentRole)),
+        addOns: product.addOns.map(addon => ({ ...addon, importantTerms: addon.importantTerms.map(term => attach(term, product.documentRole)) })),
+      };
       // Persist the agreed-addon choice while its original record attribution is
       // still known. Consolidation must not invent the choice's document source.
-      if (catalogProduct && resolveHouseRentalDocumentSelection(catalogProduct, attached)?.viaAddOn) {
+      const selectionProduct = catalogProduct ?? (candidates.length === 1 ? candidates[0] : null);
+      if (selectionProduct && resolveHouseRentalDocumentSelection(selectionProduct, attached)?.viaAddOn) {
         attached.importantTerms.push({ name: "Utleie", value: "Valgt", canonicalKey: null,
           documentIndices: product.documentIndices, coverageOrigin: "document", sources: productSources });
       }

@@ -9,7 +9,7 @@ import { getPath } from "pdf-parse/worker";
 import { createDifferences, groupInsurances, groupTerms } from "../lib/comparison.ts";
 import { presentImportantDifferences } from "../lib/comparison-presentation.ts";
 import { normalizeManualAgreement } from "../lib/manual-agreement.ts";
-import { availableAddOns, productCatalog, productSuggestions, resolveCatalogEvidence,
+import { availableAddOns, findCatalogProductBySelection, productCatalog, productSuggestions, resolveCatalogEvidence,
   resolveCatalogFacts, resolveProductComponentIds } from "../lib/product-catalog.ts";
 
 PDFParse.setWorker(getPath());
@@ -121,8 +121,10 @@ test("fremtidig privatansvarsvilkår aktiveres ikke og NITO-data lekker ikke", (
   const facts = resolveCatalogEvidence(product("Innbo Ekstra"), [], asOf);
   assert.equal(facts.some((entry) => entry.source.documentId === "trygInnboLiabilityFuture"), false);
   assert.equal(facts.some((entry) => /NITO/iu.test(`${entry.label} ${entry.value}`)), false);
-  assert.equal(productCatalog.products.some((entry) =>
-    entry.company === "Tryg" && entry.insuranceType === "Innbo" && /NITO/iu.test(entry.name)), false);
+  const memberName = "NITO Innboforsikring";
+  assert.equal(findCatalogProductBySelection("Tryg", "Innbo", memberName), null);
+  assert.equal(findCatalogProductBySelection("Tryg", "Innbo", memberName, "ordinary"), null);
+  assert.equal(findCatalogProductBySelection("Tryg", "Innbo", memberName, "nito")?.productId, "tryg-nito-innbo");
   assert.equal(productCatalog.sources.trygInnboLiabilityFuture.effectiveFrom, "2026-10-01");
 });
 
