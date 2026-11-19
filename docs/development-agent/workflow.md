@@ -77,6 +77,9 @@ ikke hvis ESLint har 0 feil. Et gammelt Cloud-build-unntak gjelder bare den iden
 diagnostiserte feilen; siste sumvalg-build/runtime bestod uten unntak.
 Dokumentasjonsarbeid alene krever lenker/bindinger/policy/integritet/diff, ikke appsuite.
 
+Ved Tryg-endringer, bruk [PDF-regresjonstesting ved Tryg-endringer](tryg-pdf-regression.md)
+for å velge originalgrupper og avklare når hele 109-matrisen skal kjøres.
+
 Lagre logs, receipt, eksakte signatursett, kandidatidentitet, kommandoer/resultater,
 rootregnskap og checkpoint i Git. /tmp er kun reproducerbare mellomfiler.
 Receipt må skille testet SHA fra kandidatfil-/diff-identitet og senere dokumentasjonscommit.
