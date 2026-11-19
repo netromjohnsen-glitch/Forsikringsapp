@@ -317,6 +317,8 @@ test("the verified NITO age limits align with the same ordinary coverage in both
     if (type === "Liv") {
       assert.match(row.first.text, /medforsikret ektefelle eller samboer.*31\. desember i året de selv fyller 75 år/u);
       assert.match(row.first.text, /medlemmets dekning opphører på grunn av alder.*sin egen avtalte opphørsalder så lenge medlemmet fortsatt er medlem i NITO/u);
+      assert.match(row.first.text, /medforsikrede opphører dekningen ved utgangen av forsikringsåret hvis medlemmet dør/u);
+      assert.match(row.first.text, /Ved utmelding opphører den ved utgangen av året medlemskapet i NITO tar slutt/u);
       assert.match(row.first.text, /Forsikringsbeviset har forrang/u);
       assert.match(terms.section, /Punkt 6.*punkt 1/u);
     }
