@@ -2205,6 +2205,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "tryg-person-kritisk": [
     {
+      kind: "sykdomOverlevelse", page: 1, section: "Punkt 1–2",
+      value: "Rett til erstatning oppstår når en dekket diagnose er endelig stilt. Vilkårene oppgir ingen egen overlevelsesfrist etter diagnosen.",
+    },
+    {
       kind: "sykdomKarenstid", document: "ulykke-produktvilkar", page: 1, section: "Punkt 2",
       value: "Sykdom som viser symptomer de første 90 dagene etter at forsikringen begynner å gjelde, er unntatt. Ved flytting av tilsvarende dekning som har løpt i minst 12 måneder før oppsigelse, kan klausulen bare gjelde økt dekningsomfang eller forsikringssum.",
     },

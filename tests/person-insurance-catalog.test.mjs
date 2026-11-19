@@ -266,7 +266,7 @@ test("terms from each original PDF survive catalogue comparison with exact sourc
   }
 });
 
-test("Tryg Kritisk sykdom uses the private product terms for symptom and age limits", () => {
+test("Tryg Kritisk sykdom aligns symptom, age and survival terms with the public sources", () => {
   const tryg = option("Tryg", "Kritisk sykdom", "Kritisk sykdom");
   const gjensidige = option("Gjensidige", "Kritisk sykdom", "Alvorlig sykdom");
   const comparisonRows = (first, second) => productComparisonView(compareCatalogProducts(first, second))
@@ -292,11 +292,23 @@ test("Tryg Kritisk sykdom uses the private product terms for symptom and age lim
     assert.equal(source.section, section);
     assert.equal(termsSourceHref(source), "/api/vilkar/tryg/person-produktvilkar#page=1");
   }
-  for (const key of ["person.sykdom.overlevelse", "person.sykdom.sykehus"]) {
-    const row = forward.find(candidate => candidate.key === key);
-    assert.equal(row.first.state, "unknown");
-    assert.equal(row.second.state, "included");
-  }
+  const survivalRows = forward.filter(row => row.key === "person.sykdom.overlevelse");
+  assert.equal(survivalRows.length, 1);
+  const [survival] = survivalRows;
+  assert.equal(survival.first.state, "included");
+  assert.match(survival.first.text, /dekket diagnose er endelig stilt.*ingen egen overlevelsesfrist/u);
+  assert.match(survival.second.text, /i live 24 timer/u);
+  assert.deepEqual(survival.first, reverse.find(row => row.key === survival.key).second);
+  const [source] = survival.first.sources;
+  assert.equal(source.agreementScope, "ordinary");
+  assert.equal(source.termsNumber, "UUL41901");
+  assert.equal(source.page, 1);
+  assert.equal(source.section, "Punkt 1–2");
+  assert.equal(termsSourceHref(source), "/api/vilkar/tryg/kritisk-sykdom#page=1");
+
+  const hospital = forward.find(row => row.key === "person.sykdom.sykehus");
+  assert.equal(hospital.first.state, "unknown");
+  assert.equal(hospital.second.state, "included");
 });
 
 test("personal member terms align with ordinary rows and keep the chosen agreement scope", () => {

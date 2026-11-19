@@ -582,6 +582,14 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   },
   {
     provider: "tryg",
+    slug: "kritisk-sykdom",
+    archivePath: "catalog/sources/person/tryg-person-kritisk.pdf",
+    sources: [
+      ["person:tryg-person-kritisk", "2026-01-01", "https://www.tryg.no/odpdf?vilk=kritisk-sykdom-Dekningsvilkaar&vilkNr=05UUL41901"],
+    ],
+  },
+  {
+    provider: "tryg",
     slug: "person-produktvilkar",
     archivePath: "catalog/sources/person/tryg-person-ulykke-produktvilkar.pdf",
     sources: [
