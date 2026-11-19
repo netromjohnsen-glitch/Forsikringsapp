@@ -1,0 +1,72 @@
+{
+  "authorization": "scope.json",
+  "as_of": "2026-11-19",
+  "tested_base": "06b336ffc656c47bc97b9bd2707a380247effe73",
+  "deployed_revision": "a1eaf8635a1e4e92a23964ea97f641f170f260e0",
+  "deployment_id": "57ec6c18-bf74-406b-8ab2-67eca20bdc0a",
+  "market": {
+    "private_variants_reviewed": 358,
+    "referenced_baseline_source_ids": 488,
+    "private_variants_updated": 29,
+    "source_review": "source-review.json.gz",
+    "changes": [
+      {
+        "provider": "Storebrand",
+        "products": "Innbo Standard og Super",
+        "variant_count": 2,
+        "terms": "innbo10 2026-09-20"
+      },
+      {
+        "provider": "Storebrand",
+        "products": "Bil, MC, bobil, snøscooter",
+        "variant_count": 14,
+        "terms": "motor10 2026-11-15"
+      },
+      {
+        "provider": "Fremtind / SpareBank 1",
+        "products": "Bil Delkasko, Kasko, Toppkasko og aktuelle tillegg",
+        "variant_count": 3,
+        "terms": "PMO-357.210-013, PMO-350.402-004, PMO-350.201-002 fra 2026-09-24"
+      },
+      {
+        "provider": "Fremtind / DNB",
+        "products": "Bobil Ansvar, Minikasko, Kasko, Topp og aktuelle tillegg",
+        "variant_count": 4,
+        "terms": "Gjeldende pakker med PMO-357.210-013 og tillegg PMO-350.402-004 / PMO-350.201-002"
+      },
+      {
+        "provider": "Tryg",
+        "products": "Hus, Hus Ekstra og Innbo Ekstra",
+        "variant_count": 3,
+        "terms": "IPID 2026-09-01"
+      },
+      {
+        "provider": "Tryg",
+        "products": "Snøscooter",
+        "variant_count": 3,
+        "terms": "IPID 2026-09-01 og PAU26320 / PAU25505 2026-10-01"
+      }
+    ],
+    "decisions": [
+      "De gjeldende katalogutgavene styrer produktsammenligningen. Originale eksakte produkt- og kilde-ID-er brukes fortsatt ved avtaleoppslag.",
+      "Ulike autoritative formål kan ha egne dokumentutgaver med samme dokumentnummer. Vilkårsversjon, kilde, produkt og distribusjonskanal må stemme.",
+      "DNBs veiledende Bobil-side oppgir leiebil og maskinskade i Topp. Det lenkede generelle IPID-et og de separate klausulene bekrefter vilkårene når dekningen gjelder, mens det åpne PDF-settet ikke entydig bekrefter innplasseringen. Den eksisterende valgfri-visningen er derfor beholdt i denne revisjonen.",
+      "Trygs fullvilkår fra oktober gir 6 000 kr ved brann/tyveri på Brann og tyveri, mens den veiledende FAQ-en oppgir 4 000 kr. Kasko har 4 000 kr etter fullvilkårene."
+    ],
+    "verification_limits": [
+      "Frende Hund og enkelte andre direkte Frende-endepunkter svarte HTTP 404. Frende viser fortsatt disse lenkene. Eldre 2019-filer har annet innhold. For flere Frende-produkter bekreftet den indekserte PDF-en den arkiverte utgaven uten direkte byteverifisering.",
+      "Noen kollektive NITO-dokumenter krevde innlogging ved direkte oppslag. Gjeldende medlemsoversikter, offentlige deldokumenter og allerede arkiverte utgaver ble kontrollert der tilgjengelig.",
+      "En match mot arkiverte bytes viser dokumentidentitet. Gjeldende markedsstatus bygger også på selskapets nåværende produkt- eller vilkårsoversikt der det kunne kontrolleres."
+    ]
+  },
+  "validation": {
+    "node_tests_passed": 7245,
+    "test_manifest": "tests.txt",
+    "tap": "full-test.tap.gz",
+    "typescript": "PASS",
+    "eslint_errors": 0,
+    "webpack_build": "PASS",
+    "local_authenticated_http_pdf_sha256": 22,
+    "live": "production-verification.json"
+  }
+}
