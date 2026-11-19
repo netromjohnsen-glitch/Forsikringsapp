@@ -189,6 +189,22 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   },
   {
     provider: "gjensidige",
+    slug: "bat-kasko",
+    archivePath: "catalog/sources/boat-pet/gjensidige-boat-kasko-terms.pdf",
+    sources: [
+      ["boat-pet:gjensidige:båt:kasko", "", "https://www.gjensidige.no/forsikring/batforsikring"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "bat-pluss",
+    archivePath: "catalog/sources/boat-pet/gjensidige-boat-plus-terms.pdf",
+    sources: [
+      ["boat-pet:gjensidige:båt:pluss", "", "https://www.gjensidige.no/forsikring/batforsikring"],
+    ],
+  },
+  {
+    provider: "gjensidige",
     slug: "hund-behandling",
     archivePath: "catalog/sources/boat-pet/gjensidige-dog-treatment-terms.pdf",
     sources: [

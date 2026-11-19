@@ -1,0 +1,98 @@
+{
+  "changes": [
+    {
+      "component": "gjensidige-bat-kasko",
+      "key": "bat.transport.dekning",
+      "before": {
+        "documentId": "boat-pet:gjensidige:båt",
+        "filename": "gjensidige-boat-ipid.pdf",
+        "termsNumber": "EAP14",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/batforsikring",
+        "company": "Gjensidige",
+        "page": 1,
+        "section": "Transport",
+        "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+      },
+      "after": {
+        "documentId": "boat-pet:gjensidige:båt:kasko",
+        "filename": "gjensidige-boat-kasko-terms.pdf",
+        "termsNumber": "Fritidsbåt – Kasko",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/batforsikring",
+        "company": "Gjensidige",
+        "page": 3,
+        "section": "Fritidsbåt – Hvilke skader? – Redningskostnader",
+        "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+      },
+      "href": "/api/vilkar/gjensidige/bat-kasko#page=3"
+    },
+    {
+      "component": "gjensidige-bat-pluss",
+      "key": "bat.transport.dekning",
+      "before": {
+        "documentId": "boat-pet:gjensidige:båt",
+        "filename": "gjensidige-boat-ipid.pdf",
+        "termsNumber": "EAP14",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/batforsikring",
+        "company": "Gjensidige",
+        "page": 1,
+        "section": "Transport",
+        "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+      },
+      "after": {
+        "documentId": "boat-pet:gjensidige:båt:pluss",
+        "filename": "gjensidige-boat-plus-terms.pdf",
+        "termsNumber": "Fritidsbåt – Pluss",
+        "effectiveFrom": "",
+        "version": "",
+        "agreementScope": "ordinary",
+        "url": "https://www.gjensidige.no/forsikring/batforsikring",
+        "company": "Gjensidige",
+        "page": 4,
+        "section": "Fritidsbåt – Hvilke skader? – Redningskostnader",
+        "note": "Offentlig produktgrunnlag. Kundens forsikringsbevis har forrang; valgfrie dekninger og kundespesifikke summer krever dokumentert valg."
+      },
+      "href": "/api/vilkar/gjensidige/bat-pluss#page=4"
+    }
+  ],
+  "addedSources": {
+    "boat-pet:gjensidige:båt:kasko": {
+      "id": "boat-pet:gjensidige:båt:kasko",
+      "filename": "gjensidige-boat-kasko-terms.pdf",
+      "providerId": "gjensidige",
+      "company": "Gjensidige",
+      "insuranceType": "Båt",
+      "agreementScope": "ordinary",
+      "sourceType": "full_terms",
+      "termsNumber": "Fritidsbåt – Kasko",
+      "effectiveFrom": "",
+      "version": "",
+      "url": "https://www.gjensidige.no/forsikring/batforsikring",
+      "sha256": "efff0f6c28d758d9e8d707ce698394d8173c5892541aaa0f26ff2a9f4a03742e",
+      "documentName": "Fritidsbåt – Kasko"
+    },
+    "boat-pet:gjensidige:båt:pluss": {
+      "id": "boat-pet:gjensidige:båt:pluss",
+      "filename": "gjensidige-boat-plus-terms.pdf",
+      "providerId": "gjensidige",
+      "company": "Gjensidige",
+      "insuranceType": "Båt",
+      "agreementScope": "ordinary",
+      "sourceType": "full_terms",
+      "termsNumber": "Fritidsbåt – Pluss",
+      "effectiveFrom": "",
+      "version": "",
+      "url": "https://www.gjensidige.no/forsikring/batforsikring",
+      "sha256": "1f0a4130b2b6ce03404b71bf301f8efdb70c01005b3f96d017116018bf7eb6ae",
+      "documentName": "Fritidsbåt – Pluss"
+    }
+  }
+}

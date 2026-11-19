@@ -15,6 +15,7 @@ export function beforePersonInsuranceCatalog(catalog) {
   const existingEntries = (entries) => Object.fromEntries(Object.entries(entries)
     .filter(([id]) => !expandedIds.test(id)));
   const insuranceTypes = catalog.insuranceTypes.filter((type) => !addedTypeLabels.has(type));
+  const historical = beforePrivatePolicyPages(catalog);
   const historicalPosition = (type) => {
     const index = historicalInsuranceTypes.indexOf(type);
     return index < 0 ? Infinity : index;
@@ -27,7 +28,7 @@ export function beforePersonInsuranceCatalog(catalog) {
     products: catalog.products.filter(product =>
       !addedProviders.has(product.providerId) && !expandedIds.test(product.productId) && !expandedIds.test(product.sourceId ?? "")),
     addOns: catalog.addOns.filter(addOn => !addedProviders.has(addOn.providerId) && !expandedIds.test(addOn.id)),
-    sources: existingEntries(catalog.sources),
-    facts: existingEntries(beforePrivatePolicyPages(catalog).facts),
+    sources: existingEntries(historical.sources),
+    facts: existingEntries(historical.facts),
   };
 }

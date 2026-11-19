@@ -26,6 +26,8 @@ const sourceSeeds: SourceSeed[] = [
   { providerId: "if", company: "If", type: "hund", filename: "if-dog-terms.pdf", version: "2022-12-01", termsNumber: "Hundeforsikring", url: "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hundeforsikring", sha256: "d2372736a4d99d4c434ac87ea068c5051908742ae03e454220b6b1cc1d436c75" },
   { providerId: "if", company: "If", type: "katt", filename: "if-cat-terms.pdf", version: "2022-12-01", termsNumber: "Katteforsikring", url: "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Katteforsikring", sha256: "bcd631394fbfe7d0a6f0de3d7e79dc82aee2f5d5bb16d4a0b7192e177716abe7" },
   { providerId: "gjensidige", company: "Gjensidige", type: "båt", filename: "gjensidige-boat-ipid.pdf", version: "", termsNumber: "EAP14", url: "https://www.gjensidige.no/forsikring/batforsikring", sha256: "c0e14e39f1c5dce3c6d238e8822eb14267e998ad0e762f08887d05bc3cb9c7a0", sourceType: "ipid" },
+  { id: "boat-pet:gjensidige:båt:kasko", providerId: "gjensidige", company: "Gjensidige", type: "båt", filename: "gjensidige-boat-kasko-terms.pdf", version: "", termsNumber: "Fritidsbåt – Kasko", url: "https://www.gjensidige.no/forsikring/batforsikring", sha256: "efff0f6c28d758d9e8d707ce698394d8173c5892541aaa0f26ff2a9f4a03742e" },
+  { id: "boat-pet:gjensidige:båt:pluss", providerId: "gjensidige", company: "Gjensidige", type: "båt", filename: "gjensidige-boat-plus-terms.pdf", version: "", termsNumber: "Fritidsbåt – Pluss", url: "https://www.gjensidige.no/forsikring/batforsikring", sha256: "1f0a4130b2b6ce03404b71bf301f8efdb70c01005b3f96d017116018bf7eb6ae" },
   { providerId: "gjensidige", company: "Gjensidige", type: "hund", filename: "gjensidige-dog-ipid.pdf", version: "", termsNumber: "EAP32", url: "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring", sha256: "aa39107d5777e4f0a342918ef9e4ceba8828793665a3dc2eb41172107d1404ba", sourceType: "ipid" },
   { id: "boat-pet:gjensidige:hund:treatment", providerId: "gjensidige", company: "Gjensidige", type: "hund", filename: "gjensidige-dog-treatment-terms.pdf", version: "", termsNumber: "", url: "https://www.gjensidige.no/forsikring/dyreforsikring/hundeforsikring", sha256: "8e62b121bdd630f1873803e2312150daa67186b52f744d3ab00f6d3c6de46cb6", sourceType: "full_terms" },
   { providerId: "gjensidige", company: "Gjensidige", type: "katt", filename: "gjensidige-cat-ipid.pdf", version: "", termsNumber: "EAP30", url: "https://www.gjensidige.no/forsikring/dyreforsikring/katteforsikring", sha256: "314d266136da6b7b5aec994b70d45591e687bd5baac203fe0609437e7fdc4ee8", sourceType: "ipid" },
@@ -114,11 +116,15 @@ const boatFire = (providerId: string, geography: string): BoatPetRow[] => [
   sharedBoatRow("bat.brann.dekning", "Inkludert", providerId, "Brann"),
   sharedBoatRow("bat.tyveri.dekning", "Inkludert", providerId, "Tyveri"),
 ];
-const boatKasko = (providerId: string, geography: string): BoatPetRow[] => [
+const boatKasko = (
+  providerId: string,
+  geography: string,
+  transport = sharedBoatRow("bat.transport.dekning", "Inkludert ved dekningsmessig skade", providerId, "Transport"),
+): BoatPetRow[] => [
   ...boatFire(providerId, geography),
   sharedBoatRow("bat.kasko.dekning", "Inkludert", providerId, "Kasko"),
   sharedBoatRow("bat.redning.dekning", "Inkludert", providerId, "Redning og berging"),
-  sharedBoatRow("bat.transport.dekning", "Inkludert ved dekningsmessig skade", providerId, "Transport"),
+  transport,
 ];
 const product = (
   providerId: string, company: string, name: string, rows: BoatPetRow[], version: string | null,
@@ -181,6 +187,10 @@ const frendeBoatAccident: BoatPetRow[] = [
   frendeBoatRow("bat.ulykke.begrensning", "Ikke rygg-/nakkelidelser uten røntgenpåvist ulykkesbrudd i ryggsøylen, selvmord/forsøk, psykiske skader (unntatt ICD-10 F43.1 PTSD som følge av fysisk skade med livsvarig erstatningsmessig invaliditet), rus/bedøvende midler eller motorsport med båt/vannscooter.", 8, "11.4 (fortsatt side 9)"),
 ];
 
+const gjensidigeBoatTransport = (variant: "kasko" | "pluss", page: number): BoatPetRow =>
+  row("bat.transport.dekning", "Inkludert ved dekningsmessig skade", "gjensidige", "båt",
+    page, "Fritidsbåt – Hvilke skader? – Redningskostnader", undefined, "boat-pet:gjensidige:båt:" + variant);
+
 const boatProducts: BoatPetProductDefinition[] = [
   product("tryg", "Tryg", "Ansvar", boatCore("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), "2024-07-01"),
   product("tryg", "Tryg", "Brann/Ansvar", [...boatCore("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), row("bat.brann.dekning", "Inkludert", "tryg", "båt", 1, "Brann/Ansvar")], "2024-07-01"),
@@ -191,8 +201,8 @@ const boatProducts: BoatPetProductDefinition[] = [
   product("if", "If", "Kasko", [...boatKasko("if", "Europa og europeiske farvann inntil 200 nautiske mil fra grunnlinjen, med dokumenterte overfarter"), row("bat.losore.dekning", "Inkludert", "if", "båt", 3, "Hva er forsikret"), row("bat.losore.grense", "50 000 kr per skadetilfelle", "if", "båt", 3, "Hva er forsikret")], "2023-02-01"),
   product("if", "If", "Super", [...boatKasko("if", "Europa og europeiske farvann inntil 200 nautiske mil fra grunnlinjen, med dokumenterte overfarter"), row("bat.ferieavbrudd.dekning", "Inkludert", "if", "båt", 6, "4.10 Superforsikring"), row("bat.losore.grense", "Uten særskilt sumbegrensning innenfor produktvilkårene", "if", "båt", 6, "4.10.1"), row("bat.opplagsutstyr.dekning", "Inkludert", "if", "båt", 6, "4.10.6")], "2023-02-01"),
   product("gjensidige", "Gjensidige", "Delkasko", boatFire("gjensidige", "Europa inntil 200 nautiske mil fra land"), null),
-  product("gjensidige", "Gjensidige", "Kasko", boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land"), null),
-  product("gjensidige", "Gjensidige", "Pluss", [...boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land"), row("bat.totalskade.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.dekning", "Inkludert med motor- og båttypebegrensninger", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.alder", "Motor og drivverk eldre enn 10 år er unntatt", "gjensidige", "båt", 1, "Pluss"), row("bat.ferieavbrudd.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss")], null),
+  product("gjensidige", "Gjensidige", "Kasko", boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land", gjensidigeBoatTransport("kasko", 3)), null),
+  product("gjensidige", "Gjensidige", "Pluss", [...boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land", gjensidigeBoatTransport("pluss", 4)), row("bat.totalskade.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.dekning", "Inkludert med motor- og båttypebegrensninger", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.alder", "Motor og drivverk eldre enn 10 år er unntatt", "gjensidige", "båt", 1, "Pluss"), row("bat.ferieavbrudd.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss")], null),
   product("storebrand", "Storebrand", "Delkasko", boatFire("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"), "2024-09-01"),
   product("storebrand", "Storebrand", "Kasko", [
     ...boatKasko("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"),

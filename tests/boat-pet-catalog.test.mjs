@@ -304,6 +304,19 @@ for (const [providerId, company] of packages) {
         assert.deepEqual(limit.qualificationSource, reference(treatment, 2, 'Forutsetninger og Dekkes ikke – Veterinærutgifter (trykt side 6)'));
         const dental = packageFacts.find(f => f.key === 'dyr.tannsykdom.begrensning');
         assert.deepEqual(dental.qualificationSource, reference(website, 1, 'Dekkes periodontitt? – dokumentert tannkontroll og nødvendig tannrens'));
+      } else if (providerId === "gjensidige" && type === "Båt") {
+        const transportSources = new Map([
+          ["gjensidige-bat-kasko", "boat-pet:gjensidige:båt:kasko"],
+          ["gjensidige-bat-pluss", "boat-pet:gjensidige:båt:pluss"],
+        ]);
+        for (const product of packageProducts) {
+          const alternate = transportSources.get(product.productId);
+          const productFacts = facts(product);
+          if (alternate) assert.equal(productFacts.filter(fact => fact.source.documentId === alternate).length, 1);
+          for (const fact of productFacts) {
+            assert.equal(fact.source.documentId, fact.key === "bat.transport.dekning" && alternate ? alternate : source.id);
+          }
+        }
       } else {
         assert.equal(packageFacts.every((fact) => fact.source.documentId === source.id), true);
       }

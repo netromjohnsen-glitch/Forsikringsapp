@@ -6,7 +6,7 @@ import { basename } from "node:path";
 import { boatPetFacts } from "../lib/boat-pet-catalog.ts";
 import { termsSourceHref } from "../lib/terms-archive.ts";
 import { termsArchiveDocuments } from "../lib/terms-archive-documents.ts";
-import { beforePrivatePolicyPageFact } from "./helpers/before-private-policy-pages.mjs";
+import { beforePrivatePolicyPageFact, beforeTransportSourceCorrection } from "./helpers/before-private-policy-pages.mjs";
 
 const receipt = JSON.parse(readFileSync(new URL("../docs/audit/checkpoints/private-policy-pages-20261119/source-changes.json", import.meta.url), "utf8"));
 const scope = JSON.parse(readFileSync(new URL("../docs/audit/checkpoints/private-policy-pages-20261119/scope.json", import.meta.url), "utf8"));
@@ -31,7 +31,9 @@ test("all eight immutable archives use bounded physical-page anchors", () => {
       }
     }
   }
-  assert.deepEqual(Object.fromEntries(counts), receipt.after_reference_counts);
+  const expected = { ...receipt.after_reference_counts };
+  expected["gjensidige-boat-ipid.pdf"] -= 2;
+  assert.deepEqual(Object.fromEntries(counts), expected);
   assert.equal(counts.size, 8);
 });
 
@@ -39,9 +41,10 @@ test("each audited fact matches the recorded correction and historical checks re
   for (const { component, key, edits } of receipt.changes) {
     const fact = boatPetFacts[component].find(entry => entry.key === key);
     assert.ok(fact, component + " " + key);
+    const afterOriginalCorrection = beforeTransportSourceCorrection(component, fact);
     const original = beforePrivatePolicyPageFact(component, fact);
     for (const { field, property, after, before } of edits) {
-      assert.deepEqual(property ? fact[field][property] : fact[field], after);
+      assert.deepEqual(property ? afterOriginalCorrection[field][property] : afterOriginalCorrection[field], after);
       assert.deepEqual(property ? original[field][property] : original[field], before);
     }
   }
@@ -67,5 +70,18 @@ test("geography, boat trip interruption and deductibles open the pages that stat
     const limit = behandling.find(fact => fact.key === key);
     assert.equal(termsSourceHref(limit.source), "/api/vilkar/gjensidige/hund-behandling#page=1");
     assert.equal(termsSourceHref(limit.qualificationSource), "/api/vilkar/gjensidige/hund-behandling#page=" + page);
+  }
+});
+
+test("transport after damage links to the Kasko and Pluss full terms on physical pages 3 and 4", () => {
+  for (const [variant, page, printedPage] of [["kasko", 3, 7], ["pluss", 4, 8]]) {
+    const component = "gjensidige-bat-" + variant;
+    const fact = boatPetFacts[component].find(entry => entry.key === "bat.transport.dekning");
+    assert.equal(fact.value, "Inkludert ved dekningsmessig skade");
+    assert.equal(fact.source.agreementScope, "ordinary");
+    assert.equal(fact.source.page, page);
+    assert.equal(fact.source.section, "Fritidsbåt – Hvilke skader? – Redningskostnader");
+    assert.equal(termsSourceHref(fact.source), "/api/vilkar/gjensidige/bat-" + variant + "#page=" + page, "trykt side " + printedPage);
+    assert.equal(beforeTransportSourceCorrection(component, fact).source.documentId, "boat-pet:gjensidige:båt");
   }
 });
