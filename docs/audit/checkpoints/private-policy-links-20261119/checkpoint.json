@@ -1,7 +1,7 @@
 {
   "date": "2026-11-19T12:26:34+01:00",
   "tested_revision": "5c29c98f69ed73c395bb6c64c9f1941c2fabc0f6",
-  "audited_urls": 661,
+  "audited_urls": 662,
   "audited_original_catalog_urls": 385,
   "audited_member_inventory_urls": 316,
   "scope": "Privatforsikring",
@@ -92,5 +92,34 @@
     "tests/presentation-integrity.test.mjs": "4ae7970fc26d0b4f88aa6f699590bef5e2ff9205ee5593c4fcf903196bfeda59",
     "tests/presentation-price.test.mjs": "a75f2895c845c0f8cdfb8f3681823d157dad65523cc4651ab09750a66b0bcdc2",
     "tests/totalskade-presentation.test.mjs": "214bb0caf6ed0238ba57f51af21b8876feb6ac6c01d0079bdb34423467fb6780"
+  },
+  "late_private_product_source_checks": {
+    "revision": "a44d9216ae487d58db712b6593eeda297032bb76",
+    "exact_pdfs": [
+      {
+        "source": "person:tryg-person-familieulykke:familieulykke-produktvilkar",
+        "url": "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41515",
+        "status": 200,
+        "sha256": "4ea5ac8a302e9361e37863940e032003c83bbb8ee7ffad343c01255758a2d827"
+      },
+      {
+        "source": "person:tryg-person-gravid-gratis:gravid-produktvilkar",
+        "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+        "status": 200,
+        "sha256": "764303066ce773f33f47551cc0111e85140937f80b84e45a3e54a5c22f7baa7d"
+      },
+      {
+        "source": "person:if-person-barn-super:tillegg:indeksregulering-under-utbetaling",
+        "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Super_Barneforsikring",
+        "status": 200,
+        "sha256": "e66f94b10875d88bfbe86b12f8f1d40296c7809a8defd7aee1a36ffa40db1b8c"
+      },
+      {
+        "source": "person:storebrand-person-barn-super:tillegg:regulering-av-uf-repensjon",
+        "url": "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/f5b84faf-32b7-400c-bd99-0e4ac6019365:fd42690c132354bb4588994192094c3fecadb4e1/vilkar-barneforsikring01.pdf",
+        "status": 200,
+        "sha256": "af40e1085d9fbfa44af73a4ec376e4d9fecb4886e0ef14aba9c87ee1b4c6e7a5"
+      }
+    ]
   }
 }
