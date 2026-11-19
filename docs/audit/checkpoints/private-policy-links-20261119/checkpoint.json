@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-19T12:26:34+01:00",
+  "tested_revision": "5c29c98f69ed73c395bb6c64c9f1941c2fabc0f6",
+  "audited_urls": 661,
+  "audited_original_catalog_urls": 385,
+  "audited_member_inventory_urls": 316,
+  "scope": "Privatforsikring",
+  "flagged_original_urls": {
+    "html_instead_of_pdf": 14,
+    "http": 8,
+    "wrong_pdf": 15
+  },
+  "previously_routed_original_urls": 2,
+  "newly_routed_original_urls": 46,
+  "newly_routed_member_urls": 11,
+  "unresolved_no_archived_pdf": [
+    "https://prod.nito.no/siteassets/dokumenter/forsikringsdokumenter/ipid/ipid-nito-inntektsforsikring_2026-1.pdf",
+    "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/2026/nito-innteksforsikring-2026.pdf",
+    "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/2026/nito-inntektsforsikring---forsikringsbevis-og-vilkar-2026-10000.pdf",
+    "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/2026/nito-inntektsforsikring---forsikringsbevis-og-vilkar-2026-5000.pdf"
+  ],
+  "archive_routes": 56,
+  "archived_pdfs": 55,
+  "verified_citation_pages": 981,
+  "pdfs_opened_on_first_page": [
+    "catalog/sources/boat-pet/fremtind-boat-terms.pdf",
+    "catalog/sources/boat-pet/frende-dog-terms.pdf",
+    "catalog/sources/boat-pet/frende-cat-terms.pdf",
+    "catalog/sources/boat-pet/gjensidige-boat-ipid.pdf",
+    "catalog/sources/boat-pet/gjensidige-dog-ipid.pdf",
+    "catalog/sources/boat-pet/storebrand-boat-terms.pdf",
+    "catalog/sources/boat-pet/storebrand-pet-terms.pdf",
+    "catalog/sources/boat-pet/tryg-boat-ipid.pdf"
+  ],
+  "test_files": 188,
+  "test_results": {
+    "tests": 7201,
+    "pass": 7201,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "build": {
+    "typescript": "PASS",
+    "eslint_errors": 0,
+    "webpack": "PASS",
+    "archive_trace": "PASS",
+    "synthetic_http": "PASS"
+  },
+  "local_browser": {
+    "status": "PASS",
+    "mode": "local",
+    "archives": 56,
+    "clicks": [
+      "/api/vilkar/frende/ulykke",
+      "/api/vilkar/tryg/nito-reise-enkeltperson",
+      "/api/vilkar/frende/hus",
+      "/api/vilkar/tryg/katt-behandling",
+      "/api/vilkar/storebrand/dyr",
+      "/api/vilkar/fremtind/kasko-bil",
+      "/api/vilkar/gjensidige/hund-behandling"
+    ],
+    "agreementComparison": true
+  },
+  "production": {
+    "status": "PASS",
+    "mode": "authenticated UI",
+    "archives": 56,
+    "clicks": [
+      "/api/vilkar/frende/ulykke",
+      "/api/vilkar/tryg/nito-reise-enkeltperson",
+      "/api/vilkar/frende/hus",
+      "/api/vilkar/tryg/katt-behandling",
+      "/api/vilkar/storebrand/dyr",
+      "/api/vilkar/fremtind/kasko-bil",
+      "/api/vilkar/gjensidige/hund-behandling"
+    ],
+    "agreementComparison": false,
+    "deployment": "537f864f-a574-475d-bd81-fc5ba41d128b"
+  },
+  "tested_files_sha256": {
+    "app/api/vilkar/[provider]/[document]/route.ts": "8f9dd85cd3e130b13bfb7b5387b60413a484932a00db206a8d6d9c68ec9d605d",
+    "app/components/product-comparison.tsx": "02528da7e7888455d11fdf3e05f2be6ef2f44a3cb0bac662079c86faa08d1b8a",
+    "app/page.tsx": "c634e61ff897ac5e08bf26dc2ff680e9c2a98838b5f19c095595646361b2d0af",
+    "lib/terms-archive.ts": "76e8d181ebf99988af669ae99ad33ffd4f932cdaff60a97ce86f8a26b6ec0ae6",
+    "lib/terms-archive-documents.ts": "38ae4b91fda5d8f485897fef08b853524d5b44ccfa38eef301d81163652e2542",
+    "next.config.ts": "f5152b41d9c4fb476bdbfbdc2dd4d2677eb000f36dee786de4ec014482d83ace",
+    "tests/terms-archive.test.mjs": "31e993aa3ac08a20283ce750d0e8ae86b8fd4df165a053598f5a67c1cc61d540",
+    "tests/object-aware-comparison.test.mjs": "d8ddab11f56c716812d94b8fb16d8056ee02579e1fe1f96c9da8efe67b04e269",
+    "tests/pilot-quality-presentation.test.mjs": "e86b5e04fd3173b263f1c5c752e07685336d1cc6c2ec5ef2ed09c27f3573963d",
+    "tests/presentation-integrity.test.mjs": "4ae7970fc26d0b4f88aa6f699590bef5e2ff9205ee5593c4fcf903196bfeda59",
+    "tests/presentation-price.test.mjs": "a75f2895c845c0f8cdfb8f3681823d157dad65523cc4651ab09750a66b0bcdc2",
+    "tests/totalskade-presentation.test.mjs": "214bb0caf6ed0238ba57f51af21b8876feb6ac6c01d0079bdb34423467fb6780"
+  }
+}

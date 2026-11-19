@@ -1,0 +1,25 @@
+{
+  "baseline": "62468048b3684392caeb2d1ba7b1ba4a96a94b88",
+  "authorization": "Kontroller privatforsikringens vilkårslenker i Tolken og koble feilaktige lenker til den riktige arkivutgaven der den finnes.",
+  "source_scope": "Registrerte privatforsikringskilder og kilder i produktvelger, produktsammenligning og avtalesammenligning.",
+  "source_contract": "Bruk original kilde-ID, utgavedato og URL sammen med en SHA-256-verifisert PDF i repoet. Opprinnelige kildehenvisninger og PDF-filer er uforanderlige.",
+  "application_paths": [
+    "app/api/vilkar/frende/[document]/route.ts",
+    "app/api/vilkar/[provider]/[document]/route.ts",
+    "app/components/product-comparison.tsx",
+    "app/page.tsx",
+    "lib/frende-terms-archive.ts",
+    "lib/terms-archive.ts",
+    "lib/terms-archive-documents.ts",
+    "next.config.ts",
+    "tests/frende-terms-archive.test.mjs",
+    "tests/terms-archive.test.mjs",
+    "tests/object-aware-comparison.test.mjs",
+    "tests/pilot-quality-presentation.test.mjs",
+    "tests/presentation-integrity.test.mjs",
+    "tests/presentation-price.test.mjs",
+    "tests/totalskade-presentation.test.mjs"
+  ],
+  "verification": ["HTTP GET og PDF-innhold", "Eksakt kilde og sidetall", "Tilgangskontroll", "Full testsuite, TypeScript og ESLint", "Bygg, filpakking og HTTP/PDF", "Produksjonspilot"],
+  "publication": "Hovedgren og testet revisjon på eksisterende pilot"
+}
