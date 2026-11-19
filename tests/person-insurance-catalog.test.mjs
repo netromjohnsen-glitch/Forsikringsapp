@@ -70,7 +70,10 @@ test("optional accident coverage stays conditional and shared sources do not act
   const superProduct = option("If", "Barn", "Super Barneforsikring");
   const childRows = compareCatalogProducts(standard, superProduct).sections.flatMap(section => section.rows);
   const disability = childRows.find(row => row.key === "person.barn.uforepensjon");
-  assert.equal(disability.first.state, "unknown");
+  assert.equal(disability.first.state, "unavailable");
+  assert.match(disability.first.text, /krever at Super-tillegget er avtalt/u);
+  assert.equal(disability.first.sources[0].termsNumber, "BAF2-4");
+  assert.equal(disability.second.state, "included");
   assert.equal(disability.second.sources[0].termsNumber, "SUB1-5");
   const invaliditySource = childRows.find(row => row.key === "person.barn.invaliditet").second.sources[0];
   assert.equal(invaliditySource.termsNumber, "BAF2-4");
@@ -274,4 +277,73 @@ test("the same contractual condition uses the same row in both comparison direct
   assert.match(forward.second.text, /første hovedforfall/);
   assert.deepEqual(forward.first, reverse.second);
   assert.deepEqual(forward.second, reverse.first);
+});
+
+
+test("annual regulation of child disability pension compares the same option without activating it", () => {
+  const first = option("If", "Barn", "Super Barneforsikring");
+  const second = option("Storebrand", "Barn", "Barneforsikring Super");
+  const key = "person.barn.uforepensjon.regulering";
+  const rowFor = (a, b) => productComparisonView(compareCatalogProducts(a, b))
+    .flatMap(section => section.groups.flatMap(group => group.rows)).filter(row => row.key === key);
+  const forward = rowFor(first, second);
+  const reverse = rowFor(second, first);
+  assert.equal(forward.length, 1);
+  assert.equal(reverse.length, 1);
+  const [{ first: ifValue, second: storebrandValue }] = forward;
+  assert.deepEqual(ifValue, reverse[0].second);
+  assert.deepEqual(storebrandValue, reverse[0].first);
+  assert.equal(ifValue.state, "optional");
+  assert.equal(storebrandValue.state, "optional");
+  assert.match(ifValue.text, /med 2 % årlig/u);
+  assert.match(storebrandValue.text, /minst 2 % årlig/u);
+  assert.deepEqual(ifValue.sources.map(source => [source.termsNumber, source.page]), [["SUB1-5", 4], ["BAF2-4", 2]]);
+  assert.deepEqual(storebrandValue.sources.map(source => source.page), [19, 2]);
+  for (const product of [first, second]) {
+    assert.ok(!resolveCatalogFacts(product, [], asOf).some(fact => fact.key === key));
+  }
+  const continuation = compareCatalogProducts(first, second).sections.flatMap(section => section.rows)
+    .find(row => row.key === "person.barn.opphor").first;
+  assert.match(continuation.text, /Uførepensjon \(REN\).*pågående utbetaling/u);
+  assert.deepEqual(continuation.sources.map(source => [source.termsNumber, source.page]), [["BAF2-4", 4], ["SUB1-5", 3]]);
+});
+
+test("Tryg Family Accident scope and Gratis pregnancy exclusions use the product's own terms", () => {
+  const family = option("Tryg", "Ulykke", "Ulykkesforsikring familie");
+  const individual = option("Tryg", "Ulykke", "Ulykkesforsikring");
+  const familyRows = compareCatalogProducts(family, individual).sections.flatMap(section => section.rows);
+  for (const [key, value, page] of [
+    ["person.ulykke.geografi", /inntil 12 måneder/u, 1],
+    ["person.ulykke.opphor", /80 år.*21 år/u, 1],
+    ["person.ulykke.arbeid", /fritiden.*yrkesskadeforsikringen/u, 2],
+  ]) {
+    const row = familyRows.find(candidate => candidate.key === key);
+    assert.match(row.first.text, value);
+    assert.equal(row.first.sources[0].termsNumber, "UUL41515");
+    assert.equal(row.first.sources[0].page, page);
+    assert.equal(row.second.sources[0].termsNumber, "UUL41500");
+  }
+  const gratis = option("Tryg", "Gravid", "Gravidforsikring Gratis");
+  const extra = option("Tryg", "Gravid", "Gravidforsikring Ekstra");
+  const rows = compareCatalogProducts(gratis, extra).sections.flatMap(section => section.rows);
+  for (const key of ["medfodt", "sykehus", "psykologisk_forstehjelp", "helserad", "ulykkesutgifter"]) {
+    const row = rows.find(candidate => candidate.key === `person.gravid.${key}`);
+    assert.equal(row.first.state, "unavailable");
+    assert.equal(row.second.state, "included");
+    assert.deepEqual(row.first.sources.map(source => source.termsNumber), ["UUL41812", "UUL41840"]);
+  }
+  assert.equal(rows.find(row => row.key === "person.gravid.dodsfall").first.state, "included");
+});
+
+test("Fremtind child disability riders continue separately while remaining optional", () => {
+  const withRiders = option("Fremtind", "Barn", "Barneforsikring");
+  const accident = option("Fremtind", "Barn", "Barneulykkesforsikring");
+  const rows = compareCatalogProducts(withRiders, accident).sections.flatMap(section => section.rows);
+  for (const [key, file] of [["uforepensjon", "barn-uforepensjon"], ["uforekapital", "barn-uforekapital"]]) {
+    const row = rows.find(candidate => candidate.key === `person.barn.${key}`);
+    assert.equal(row.first.state, "optional");
+    assert.equal(row.second.state, "unknown");
+    assert.match(row.first.text, /Ved fylte 26 år videreføres det som egen avtale/u);
+    assert.deepEqual(row.first.sources.map(source => source.filename), [`fremtind-person-${file}.pdf`, "fremtind-person-barn.pdf"]);
+  }
 });

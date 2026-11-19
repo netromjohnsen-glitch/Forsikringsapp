@@ -5,6 +5,7 @@ export const additionalFactKinds = {
   barnBetalingsfritak: { key: "person.barn.betalingsfritak", label: "Betalingsfritak ved foresattes død" },
   barnGeografi: { key: "person.barn.geografi", label: "Hvor barneforsikringen gjelder", term: true },
   barnOpphor: { key: "person.barn.opphor", label: "Opphørsalder og videreføring", term: true },
+  barnPensjonRegulering: { key: "person.barn.uforepensjon.regulering", label: "Årlig regulering av uførepensjon under utbetaling" },
   barnSkolerobot: { key: "person.barn.skolerobot", label: "Skolerobot ved langvarig fravær" },
   behandlingAndrevurdering: { key: "person.behandling.andrevurdering", label: "Ny medisinsk vurdering (second opinion)" },
   behandlingBildeFrist: { key: "person.behandling.bildediagnostikkfrist", label: "Frist for bildediagnostikk", term: true },
@@ -73,6 +74,14 @@ export const additionalPersonTerms: Record<string, PersonTerms> = {
   "tryg-barn-uforekapital": { url: "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Arbeidsufoerhet&vilkNr=05UUL41703", sha256: "8838c9b2932d9ff4adc3cf1a34603e2bb527ccb89ea57ae80289a1039ba84344", pages: 1, effectiveFrom: "2022-01-01", edition: "UUL41703" },
   "tryg-barn-uforepensjon": { url: "https://www.tryg.no/odpdf?vilk=Ufoerepensjon&vilkNr=05UUL41705", sha256: "d66e7cca69a80fd93cf27b2b86276d632f6a07e0b3e936e96c85ab73964f3b15", pages: 2, effectiveFrom: "2021-11-01", edition: "UUL41705" },
   "tryg-barn-utvalgte-sykdommer": { url: "https://www.tryg.no/odpdf?vilk=Utvalgte-sykdommer&vilkNr=05UUL41707", sha256: "fe53db446a255c710c01e088d808eadbef87cd8401d38069d210ef7471f79158", pages: 4, effectiveFrom: "2023-01-01", edition: "UUL41707" },
+  "tryg-familieulykke-produktvilkar": {
+    url: "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41515",
+    sha256: "4ea5ac8a302e9361e37863940e032003c83bbb8ee7ffad343c01255758a2d827", pages: 2, effectiveFrom: "2018-10-01", edition: "UUL41515",
+  },
+  "tryg-gravid-produktvilkar": {
+    url: "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+    sha256: "764303066ce773f33f47551cc0111e85140937f80b84e45a3e54a5c22f7baa7d", pages: 2, effectiveFrom: "2025-06-01", edition: "UUL41840",
+  },
   "tryg-ulykke-dodsfall": { url: "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Doedsfall&vilkNr=05UUL41502", sha256: "36c331f7eede867adae092a6a155fea90a32bc5c139dc5de3185177f7de18109", pages: 1, effectiveFrom: "2025-01-01", edition: "UUL41502" },
   "tryg-ulykke-faginvaliditet": { url: "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Invaliditet&vilkNr=05UUL41503", sha256: "0868ad274e919252f341e6cc3d95880a3e3a223fa6182662385c87029e951e5d", pages: 1, effectiveFrom: "2021-11-01", edition: "UUL41503" },
   "tryg-ulykke-produktvilkar": { url: "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41500", sha256: "2e2e8cd7f1b28f0edb5e433adb2881d90b35d0fb45dfc043a69d6387c273d604", pages: 2, effectiveFrom: "", edition: "UUL41500" },
@@ -116,15 +125,17 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       value: "Fritak for premie til barnet fyller 20 år når en foresatt med foreldreansvar dør og forsikringen har vært i kraft i minst 12 måneder.",
     },
     {
-      kind: "barnPensjon", page: 1, section: "§ 3",
-      value: "Månedlig ytelse ved minst 50 % sammenhengende arbeidsuførhet ut over karenstiden i forsikringsbeviset. Fra tidligst fylte 18 år til senest 67 år eller avtalt opphørsdato.",
+      kind: "barnPensjon", page: 1, section: "§§ 2–3",
+      value: "Månedlig ytelse ved minst 50 % sammenhengende arbeidsuførhet ut over karenstiden i forsikringsbeviset. Fra tidligst fylte 18 år til senest 67 år eller avtalt opphørsdato. Tillegget følger barneforsikringen frem til 26 år. Ved fylte 26 år videreføres det som egen avtale dersom barneforsikringen er holdt i kraft. Forsikringssummen fastsettes i kroner på 26-årsdagen.",
       document: "barn-uforepensjon",
+      qualification: { document: "barn", page: 1, section: "§ 2" },
       addOn: "Uførepensjon II",
     },
     {
-      kind: "barnKapital", page: 1, section: "§ 3",
-      value: "Avtalt engangsbeløp ved minst 50 % sammenhengende arbeidsuførhet i minst to år når uførheten vurderes som varig. Tidligst ved fylte 18 år.",
+      kind: "barnKapital", page: 1, section: "§§ 2–3",
+      value: "Avtalt engangsbeløp ved minst 50 % sammenhengende arbeidsuførhet i minst to år når uførheten vurderes som varig. Tidligst ved fylte 18 år. Tillegget følger barneforsikringen frem til 26 år. Ved fylte 26 år videreføres det som egen avtale dersom barneforsikringen er holdt i kraft. Forsikringssummen fastsettes i kroner på 26-årsdagen.",
       document: "barn-uforekapital",
+      qualification: { document: "barn", page: 1, section: "§ 2" },
       addOn: "Uførekapital II",
     },
   ],
@@ -303,6 +314,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "frende-person-barn-best": [
     {
+      kind: "barnPensjonRegulering", page: 5, section: "§ 4.4",
+      value: "Eventuelt overskudd på premiereserven brukes til å øke uførepensjoner under utbetaling.",
+      conditional: true,
+    },
+    {
       kind: "barnUtgifter", page: 8, section: "§ 4.8 (s. 8–9)",
       value: "Nødvendige behandlings- og reiseutgifter i inntil tre år. Egenandel 1 000 kr og sum som oppgitt i forsikringsbeviset. Egne vilkår for utsatt permanent tannbehandling.",
     },
@@ -336,6 +352,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "frende-person-barn-bra": [
+    {
+      kind: "barnPensjonRegulering", page: 5, section: "§ 4.4",
+      value: "Eventuelt overskudd på premiereserven brukes til å øke uførepensjoner under utbetaling.",
+      conditional: true,
+    },
     {
       kind: "barnUtgifter", page: 8, section: "§ 4.8 (s. 8–9)",
       value: "Nødvendige behandlings- og reiseutgifter i inntil tre år. Egenandel 1 000 kr og sum som oppgitt i forsikringsbeviset. Egne vilkår for utsatt permanent tannbehandling.",
@@ -546,6 +567,12 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "gjensidige-person-barn-basis": [
     {
+      kind: "barnPensjonRegulering", page: 7, section: "Erstatningsregler § 3",
+      value: "Eventuelt overskudd fra avsetningene kan øke uførepensjonen under utbetaling. Den vanlige G-reguleringen utsettes til barnet er fullt arbeidsført igjen dersom det har krav på uførepensjon på reguleringstidspunktet.",
+      document: "barn-uforepensjon",
+      conditional: true,
+    },
+    {
       kind: "barnUtgifter", page: 12, section: "Erstatningsregler § 8",
       value: "Behandling og reise i inntil to år etter ulykken. Samlet grense står i forsikringsbeviset. Inntil 15 000 kr for privat behandling og reise dit, og 500 kr i egenandel per ulykkesskade.",
     },
@@ -581,6 +608,12 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "gjensidige-person-barn-medium": [
     {
+      kind: "barnPensjonRegulering", page: 7, section: "Erstatningsregler § 3",
+      value: "Eventuelt overskudd fra avsetningene kan øke uførepensjonen under utbetaling. Den vanlige G-reguleringen utsettes til barnet er fullt arbeidsført igjen dersom det har krav på uførepensjon på reguleringstidspunktet.",
+      document: "barn-uforepensjon",
+      conditional: true,
+    },
+    {
       kind: "barnUtgifter", page: 12, section: "Erstatningsregler § 8",
       value: "Behandling og reise i inntil to år etter ulykken. Samlet grense står i forsikringsbeviset. Inntil 15 000 kr for privat behandling og reise dit, og 500 kr i egenandel per ulykkesskade.",
     },
@@ -615,6 +648,12 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "gjensidige-person-barn-pluss": [
+    {
+      kind: "barnPensjonRegulering", page: 7, section: "Erstatningsregler § 3",
+      value: "Eventuelt overskudd fra avsetningene kan øke uførepensjonen under utbetaling. Den vanlige G-reguleringen utsettes til barnet er fullt arbeidsført igjen dersom det har krav på uførepensjon på reguleringstidspunktet.",
+      document: "barn-uforepensjon",
+      conditional: true,
+    },
     {
       kind: "barnUtgifter", page: 12, section: "Erstatningsregler § 8",
       value: "Behandling og reise i inntil to år etter ulykken. Samlet grense står i forsikringsbeviset. Inntil 15 000 kr for privat behandling og reise dit, og 500 kr i egenandel per ulykkesskade.",
@@ -837,6 +876,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "if-person-barn-standard": [
     {
+      kind: "barnPensjon", page: 2, section: "Oversikt over forsikringen og mulige utvidelser",
+      value: "Månedlig uførepensjon krever at Super-tillegget er avtalt.",
+      unavailable: true,
+    },
+    {
       kind: "barnDiagnose", page: 5, section: "§ 5.1 (s. 5–7)",
       value: "Økonomisk førstehjelp ved en oppført diagnose, skade eller gjennomført behandling. Barnet må være i live 24 timer etter forsikringstilfellet. Utbetalingen kan trekkes fra eventuell invaliditetserstatning.",
       document: "barn",
@@ -884,6 +928,12 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "if-person-barn-super": [
     {
+      kind: "barnPensjonRegulering", page: 4, section: "§ 4.1",
+      value: "Med avtalt indeksregulering øker uførepensjonen med 2 % årlig mens den utbetales.",
+      qualification: { document: "barn", page: 2, section: "Mulige utvidelser av Standard Barneforsikring" },
+      addOn: "Indeksregulering under utbetaling",
+    },
+    {
       kind: "barnHjelpestonad", page: 8, section: "§ 5.4",
       value: `${ifChildHelpBenefit} For hjelpestønad opphever Super unntaket for blant annet psykiske lidelser, atferds- og utviklingsforstyrrelser i BAF § 6.1.1. Individuelle reservasjoner i forsikringsbeviset gjelder.`,
       document: "barn",
@@ -921,8 +971,9 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
     {
       kind: "barnOpphor", page: 4, section: "§ 4",
-      value: "Kan beholdes til fylte 26 år. Tilbud om overgang til voksenforsikringer uten ny helsevurdering ved utgangen av forsikringsåret barnet fyller 26.",
+      value: "Kan beholdes til fylte 26 år. Ved utgangen av det forsikringsåret barnet fyller 26, får barnet tilbud om overgang til voksenforsikringen Uførepensjon (REN) uten ny helsevurdering, også ved pågående utbetaling.",
       document: "barn",
+      qualification: { document: "barn-super", page: 3, section: "§ 3.3" },
     },
     {
       kind: "barnGeografi", page: 4, section: "§§ 2–3",
@@ -1174,6 +1225,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "klp-person-barn": [
     {
+      kind: "barnPensjon", page: 1, section: "Hvem som har rett til erstatning",
+      value: "Månedlig uførepensjon følger varianten Barn Maks.",
+      unavailable: true,
+    },
+    {
       kind: "barnOpphor", page: 1, section: "Hvem forsikringen gjelder for",
       value: "Til og med 31. desember i året barnet fyller 26.",
     },
@@ -1183,6 +1239,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "klp-person-barn-maks": [
+    {
+      kind: "barnPensjonRegulering", page: 9, section: "Erstatningsbestemmelser – uførepensjon",
+      value: "G-reguleringen opphører når retten til utbetaling oppstår. Utbetalt uførepensjon står uregulert de første fem årene. Deretter overføres pensjonen til Kommunal Landspensjonskasse og kan øke dersom avkastningen overstiger 2 %.",
+      conditional: true,
+    },
     {
       kind: "barnOpphor", page: 1, section: "Hvem forsikringen gjelder for",
       value: "Til og med 31. desember i året barnet fyller 26.",
@@ -1411,6 +1472,11 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "storebrand-person-barn-standard": [
     {
+      kind: "barnPensjonRegulering", page: 2, section: "§ A.1 (dekningstabell)",
+      value: "Tillegget for regulering av uførepensjon under utbetaling tilbys med Super.",
+      unavailable: true,
+    },
+    {
       kind: "barnUtgifter", page: 16, section: "§ H.3.1–H.3.2",
       value: "Behandlingsutgifter i inntil to år etter en ulykkesskade. Erstatningsgrensen står i forsikringsbeviset og egenandelen er 1 000 kr per ulykkestilfelle. Første permanente tannbehandling kan dekkes senere etter særregler.",
     },
@@ -1450,6 +1516,12 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "storebrand-person-barn-super": [
+    {
+      kind: "barnPensjonRegulering", page: 19, section: "§ K.1",
+      value: "Med avtalt regulering øker uførepensjonen med minst 2 % årlig mens den utbetales. Et overskudd etter punkt J.3.4 kan gi høyere regulering.",
+      qualification: { document: "barn", page: 2, section: "§ A.1" },
+      addOn: "Regulering av uførepensjon",
+    },
     {
       kind: "barnUtgifter", page: 16, section: "§ H.3.1–H.3.2",
       value: "Behandlingsutgifter i inntil to år etter en ulykkesskade. Erstatningsgrensen står i forsikringsbeviset og egenandelen er 1 000 kr per ulykkestilfelle. Første permanente tannbehandling kan dekkes senere etter særregler.",
@@ -1706,13 +1778,18 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       value: "Forhåndsgodkjent privat leie av AV1 ved minst 30 sammenhengende dager med legeattestert fravær fra skole eller studier. Gjeldende tilbud fra annet hold går foran.",
     },
     {
-      kind: "barnBehandling", page: 1, section: "§ 1",
-      value: "Forhåndsgodkjent medisinsk nødvendig utredning og behandling etter sykdom eller ulykke. Vilkårene beskriver blant annet spesialist-, sykehus- og kreftbehandling og krav til henvisning.",
+      kind: "barnBehandling", page: 1, section: "§ 1, jf. § 12 (s. 6)",
+      value: "Forhåndsgodkjent medisinsk nødvendig utredning og behandling etter sykdom eller ulykke. Garantien på 14 virkedager gjelder første undersøkelse, innleggelse, behandling eller operasjon. Fristen løper fra dagen etter at nødvendig dokumentasjon er mottatt, tidligst dagen etter mottatt henvisning.",
       document: "barn-behandling",
+      qualification: { document: "barn-produktvilkar", page: 1, section: "§§ 2–3" },
       addOn: "Behandling",
     },
   ],
   "tryg-person-barn-ulykke": [
+    {
+      kind: "barnSkolerobot", page: 3, section: "§§ 4.1–4.2 (s. 3–4)",
+      value: "Forhåndsgodkjent leie av AV1 ved minst 30 sammenhengende kalenderdager med legeattestert skolefravær. Inntil seks måneder totalt for samme sykdom eller skade når barnet mangler rett til skolerobot fra annet hold.",
+    },
     {
       kind: "barnOpphor", page: 1, section: "§ 1",
       value: "Senest ved første hovedforfall etter fylte 26 år. Medlemskap i norsk folketrygd kreves, med egne regler for behandlingsdekningen.",
@@ -1732,9 +1809,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       value: "100 000 kr ved dødsfall innen ett år etter ulykkesskaden, med fradrag for utbetalt invaliditetserstatning.",
     },
     {
-      kind: "barnDiagnose", page: 1, section: "§ 2 og § 4",
-      value: "Engangsutbetaling ved de alvorlige tilstandene som er angitt i tillegget. Diagnosen må stilles i forsikringstiden av legespesialist ved norsk sykehus eller poliklinikk.",
+      kind: "barnDiagnose", page: 2, section: "§§ 4.1–4.2, jf. § 2 (s. 1)",
+      value: "300 000 kr ved endelig diagnose for en oppført alvorlig sykdom når barnet er i live 30 dager etter at diagnosen er endelig stilt. Diagnosen må stilles i forsikringstiden av legespesialist ved norsk sykehus eller poliklinikk.",
       document: "barn-utvalgte-sykdommer",
+      qualification: { document: "barn-produktvilkar", page: 1, section: "§ 2" },
       addOn: "Utvalgte sykdommer",
     },
     {
@@ -1750,9 +1828,10 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       addOn: "Utvalgte sykdommer",
     },
     {
-      kind: "barnBehandling", page: 1, section: "§ 1",
-      value: "Forhåndsgodkjent medisinsk nødvendig utredning og behandling etter sykdom eller ulykke. Vilkårene beskriver blant annet spesialist-, sykehus- og kreftbehandling og krav til henvisning.",
+      kind: "barnBehandling", page: 1, section: "§ 1, jf. § 12 (s. 6)",
+      value: "Forhåndsgodkjent medisinsk nødvendig utredning og behandling etter sykdom eller ulykke. Garantien på 14 virkedager gjelder første undersøkelse, innleggelse, behandling eller operasjon. Fristen løper fra dagen etter at nødvendig dokumentasjon er mottatt, tidligst dagen etter mottatt henvisning.",
       document: "barn-behandling",
+      qualification: { document: "barn-produktvilkar", page: 1, section: "§§ 2–3" },
       addOn: "Behandling",
     },
   ],
@@ -1867,6 +1946,21 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "tryg-person-familieulykke": [
     {
+      kind: "ulykkeGeografi", page: 1, section: "§ 3",
+      value: "Norge og utenlandsopphold i inntil 12 måneder. Vilkårene åpner for lengre opphold for blant annet studenter, au pairer og ansatte i norsk utenrikstjeneste eller norske foretak i utlandet.",
+      document: "familieulykke-produktvilkar",
+    },
+    {
+      kind: "ulykkeOpphor", page: 1, section: "§ 1",
+      value: "Første hovedforfall etter fylte 80 år for voksne og etter fylte 21 år for forsikrede barn. Ved utmelding av folketrygden opphører forsikringen for den forsikrede.",
+      document: "familieulykke-produktvilkar",
+    },
+    {
+      kind: "ulykkeArbeid", page: 2, section: "§ 4",
+      value: "Forsikringen gjelder i fritiden. Den har unntak for ulykkesskader som dekkes av yrkesskadeforsikringen.",
+      document: "familieulykke-produktvilkar",
+    },
+    {
       kind: "ulykkeUtgifter", page: 2, section: "§ 3.2 (s. 2–3)",
       value: "Inntil 25 000 kr for nødvendige behandlings- og reiseutgifter per forsikret i tre år etter ulykken. Egenandel 1 000 kr. Vilkårene har egne regler for utsatt permanent tannbehandling for barn.",
     },
@@ -1902,6 +1996,36 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
     },
   ],
   "tryg-person-gravid-gratis": [
+    {
+      kind: "gravidUlykkesutgifter", page: 1, section: "§ 1",
+      value: "Behandlingsutgifter etter ulykke krever Ekstra eller Premium.",
+      qualification: { document: "gravid-produktvilkar", page: 1, section: "§ 2" },
+      unavailable: true,
+    },
+    {
+      kind: "gravidHelserad", page: 1, section: "§ 1",
+      value: "Tilgang til Tryg Legehjelp krever Ekstra eller Premium.",
+      qualification: { document: "gravid-produktvilkar", page: 1, section: "§ 2" },
+      unavailable: true,
+    },
+    {
+      kind: "gravidKrisehjelp", page: 1, section: "§ 1",
+      value: "Psykologisk førstehjelp krever Ekstra eller Premium.",
+      qualification: { document: "gravid-produktvilkar", page: 1, section: "§ 2" },
+      unavailable: true,
+    },
+    {
+      kind: "gravidSykehus", page: 1, section: "§ 1",
+      value: "Utbetaling ved sykehusinnleggelse krever Ekstra eller Premium.",
+      qualification: { document: "gravid-produktvilkar", page: 1, section: "§ 2" },
+      unavailable: true,
+    },
+    {
+      kind: "gravidDiagnose", page: 1, section: "§ 1",
+      value: "Engangsutbetaling ved medfødt diagnose krever Ekstra eller Premium.",
+      qualification: { document: "gravid-produktvilkar", page: 1, section: "§ 2" },
+      unavailable: true,
+    },
     {
       kind: "gravidDodsfall", page: 2, section: "§§ 2.2 og 3.2 (s. 2–3)",
       value: "50 000 kr ved dødsfall hos mor eller barn som følge av ulykkesskade, svangerskaps- eller fødselskomplikasjoner. For det ventede barnet gjelder dekningen fra svangerskapsuke 26 + 0.",
