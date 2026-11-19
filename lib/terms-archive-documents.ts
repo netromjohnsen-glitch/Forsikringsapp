@@ -336,6 +336,14 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   },
   {
     provider: "tryg",
+    slug: "bat-kasko-innenbord-2024-07",
+    archivePath: "catalog/sources/boat-pet/tryg-boat-kasko-inboard-2024-07-terms.pdf",
+    sources: [
+      ["boat-pet:tryg:båt:kasko-innenbord-2024-07", "2024-07-01", "https://www.tryg.no/odpdf?vilkNr=05PFB33100&vilk=Baatforsikring-innenbords-Kasko-Ansvar"],
+    ],
+  },
+  {
+    provider: "tryg",
     slug: "ipid-bat",
     archivePath: "catalog/sources/boat-pet/tryg-boat-ipid.pdf",
     sources: [

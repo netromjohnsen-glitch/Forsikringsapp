@@ -304,6 +304,14 @@ for (const [providerId, company] of packages) {
         assert.deepEqual(limit.qualificationSource, reference(treatment, 2, 'Forutsetninger og Dekkes ikke – Veterinærutgifter (trykt side 6)'));
         const dental = packageFacts.find(f => f.key === 'dyr.tannsykdom.begrensning');
         assert.deepEqual(dental.qualificationSource, reference(website, 1, 'Dekkes periodontitt? – dokumentert tannkontroll og nødvendig tannrens'));
+      } else if (providerId === "tryg" && type === "Båt") {
+        const kaskoTransportId = "boat-pet:tryg:båt:kasko-innenbord-2024-07";
+        for (const product of packageProducts) {
+          for (const fact of facts(product)) {
+            const inboardTransport = product.productId === "tryg-bat-kasko-ansvar" && fact.key === "bat.transport.dekning";
+            assert.equal(fact.source.documentId, inboardTransport ? kaskoTransportId : source.id);
+          }
+        }
       } else if (providerId === "gjensidige" && type === "Båt") {
         const transportSources = new Map([
           ["gjensidige-bat-kasko", "boat-pet:gjensidige:båt:kasko"],
@@ -325,9 +333,9 @@ for (const [providerId, company] of packages) {
   }
 }
 
-test("65 offentlige originaler har verifiserbare SHA-256 hashes", () => {
+test("66 offentlige originaler har verifiserbare SHA-256 hashes", () => {
   const manifest = JSON.parse(fs.readFileSync("catalog/sources/boat-pet/manifest.json", "utf8"));
-  assert.equal(manifest.documents.length, 65);
+  assert.equal(manifest.documents.length, 66);
   assert.equal(manifest.sourcePackages.length, 18);
   assert.equal(new Set(manifest.sourcePackages.map((entry) => `${entry.providerId}:${entry.insuranceType}`)).size, 18);
   for (const document of manifest.documents) {
@@ -375,7 +383,7 @@ test("65 offentlige originaler har verifiserbare SHA-256 hashes", () => {
     assert.ok(artifact, `Mangler manifestkobling for ${source.id}`);
     assert.equal(source.sha256, artifact.sha256);
   }
-  assert.equal(manifest.documents.filter((document) => document.filename.endsWith(".pdf")).length, 51);
+  assert.equal(manifest.documents.filter((document) => document.filename.endsWith(".pdf")).length, 52);
   assert.equal(manifest.documents.filter((document) => document.filename.endsWith(".html")).length, 14);
 });
 

@@ -14,6 +14,7 @@ const sourceSeeds: SourceSeed[] = [
   { id: "boat-pet:tryg:katt:treatment", providerId: "tryg", company: "Tryg", type: "katt", filename: "tryg-cat-treatment-terms.pdf", version: "2026-07-01", termsNumber: "PLB52006", url: "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring", sha256: "fa7297b2b37cab3f8e8d51151643bcd4293fc7fbb0a33f77de86108af16bf9dc" },
   { id: "boat-pet:tryg:katt:product", providerId: "tryg", company: "Tryg", type: "katt", filename: "tryg-dog-product-terms.pdf", version: "2026-05-10", termsNumber: "PLB52000", url: "https://www.tryg.no/forsikringer/dyreforsikring/hundeforsikring", sha256: "a7936fd27cd305b1a6eeb8153d8289dffff5c075e0e50ffbd9590f8bb2d83318" },
   { providerId: "tryg", company: "Tryg", type: "båt", filename: "tryg-boat-ipid.pdf", version: "2024-07-01", termsNumber: "IPID Fritidsbåtforsikring", url: "https://www.tryg.no/system/files/download/pdf/ipid/IPID-Batforsikring.pdf", sha256: "75d8af24d727a2994d3fc2ae566ad075f1cb7f7edad4993d78c3b59bc1700ff5", sourceType: "ipid" },
+  { id: "boat-pet:tryg:båt:kasko-innenbord-2024-07", providerId: "tryg", company: "Tryg", type: "båt", filename: "tryg-boat-kasko-inboard-2024-07-terms.pdf", version: "2024-07-01", termsNumber: "PFB33100", url: "https://www.tryg.no/odpdf?vilkNr=05PFB33100&vilk=Baatforsikring-innenbords-Kasko-Ansvar", sha256: "84c383430ae8cc7fa3b693550bd6701a00b815cb940eb97e3ef675227f4f9e8d" },
   { providerId: "tryg", company: "Tryg", type: "hund", filename: "tryg-pet-ipid.pdf", version: "2026-09-01", termsNumber: "IPID Dyreforsikring", url: "https://www.tryg.no/system/files/download/pdf/ipid/IPID-Hund-og-katt.pdf", sha256: "41843abc16ad8ee39782e70f29d8cbb115463bcebe28882cca42078ce07fd824" , sourceType: "ipid"},
   { providerId: "tryg", company: "Tryg", type: "katt", filename: "tryg-pet-ipid.pdf", version: "2026-09-01", termsNumber: "IPID Dyreforsikring", url: "https://www.tryg.no/system/files/download/pdf/ipid/IPID-Hund-og-katt.pdf", sha256: "41843abc16ad8ee39782e70f29d8cbb115463bcebe28882cca42078ce07fd824", sourceType: "ipid" },
   { id: "boat-pet:tryg:båt:machinery", providerId: "tryg", company: "Tryg", type: "båt", filename: "tryg-boat-machinery-terms.pdf", version: "2026-01-01", termsNumber: "PFB36910", url: "https://www.tryg.no/forsikringer/kjoretoy/batforsikring", sha256: "c4a722384e402e7581f9a2b718b0fbe90b622912261b41279e1904a9d960f50d" },
@@ -191,25 +192,47 @@ const gjensidigeBoatTransport = (variant: "kasko" | "pluss", page: number): Boat
   row("bat.transport.dekning", "Inkludert ved dekningsmessig skade", "gjensidige", "båt",
     page, "Fritidsbåt – Hvilke skader? – Redningskostnader", undefined, "boat-pet:gjensidige:båt:" + variant);
 
+const trygWorkshopTransport = "Produktarket oppgir transport til nærmeste verksted ved båtskade i forbindelse med brann eller tyveri.";
+const trygInboardTransportSource = {
+  sourceId: "boat-pet:tryg:båt:kasko-innenbord-2024-07",
+  page: 3,
+  section: "3.4 Transport av skadet båt, jf. 1.1 og 2.1 på side 1",
+};
+const trygInboardTransport = "For båt med innenbordsmotor dekker Kasko/Ansvar transport til nærmeste verksted ved skade omfattet av punkt 2.1, eller reparasjon på stedet hvis det er rimeligere.";
+const storebrandBoatGeography = "Hele året i Norge, Sverige, Danmark og Finland, og i disse landenes farvann ut til 12 nautiske mil fra grunnlinjen. " +
+  "Dekningen omfatter også Kattegat, Skagerrak øst for linjen mellom Lindesnes og Hirtshals, Østersjøen, Finskebukta og Bottenvika. " +
+  "Fra 1. april til 30. september gjelder forsikringen også i resten av Europa og i europeiske farvann ut til 200 nautiske mil fra fastlandets grunnlinje, " +
+  "inkludert overfart til Svalbard, Island, Storbritannia, Madeira, Azorene og Kanariøyene. Rettshjelp gjelder bare i Norden.";
+
 const boatProducts: BoatPetProductDefinition[] = [
   product("tryg", "Tryg", "Ansvar", boatCore("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), "2024-07-01"),
-  product("tryg", "Tryg", "Brann/Ansvar", [...boatCore("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), row("bat.brann.dekning", "Inkludert", "tryg", "båt", 1, "Brann/Ansvar")], "2024-07-01"),
+  product("tryg", "Tryg", "Brann/Ansvar", [...boatCore("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), row("bat.brann.begrensning", "Produktarket omtaler brann for Brann/Tyveri/Ansvar. Brann/Ansvar er ikke spesifisert som egen variant i denne utgaven. Dekningen for Brann/Ansvar må bekreftes i forsikringsbeviset og fullvilkårene.", "tryg", "båt", 1, "Hva dekker forsikringen? – Brann/Tyveri/Ansvar")], "2024-07-01"),
   product("tryg", "Tryg", "Brann/Tyveri/Ansvar", boatFire("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), "2024-07-01"),
-  product("tryg", "Tryg", "Kasko/Ansvar", [...boatKasko("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), row("bat.haerverk.dekning", "Inkludert", "tryg", "båt", 1, "Kasko/Ansvar")], "2024-07-01"),
-  product("tryg", "Tryg", "Båt Ekstra", [...boatKasko("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt"), row("bat.ferieavbrudd.dekning", "Inkludert", "tryg", "båt", 1, "Båt Ekstra"), row("bat.opplagsutstyr.dekning", "Inkludert", "tryg", "båt", 1, "Båt Ekstra"), row("bat.jolle.dekning", "Inkludert", "tryg", "båt", 1, "Båt Ekstra")], "2024-07-01"),
+  product("tryg", "Tryg", "Kasko/Ansvar", [...boatKasko("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt",
+      {
+        ...row("bat.transport.dekning", trygWorkshopTransport + " " + trygInboardTransport,
+          "tryg", "båt", trygInboardTransportSource.page, trygInboardTransportSource.section, undefined, trygInboardTransportSource.sourceId),
+        qualificationSource: { sourceId: sourceId("tryg", "båt"), page: 1, section: "Brann/Tyveri/Ansvar og Kasko/Ansvar – Transport" },
+      }), row("bat.haerverk.dekning", "Inkludert", "tryg", "båt", 1, "Kasko/Ansvar")], "2024-07-01"),
+  product("tryg", "Tryg", "Båt Ekstra", [...boatKasko("tryg", "Europa inntil 200 nautiske mil fra fastlandet, med dokumenterte overfarter; Russland er unntatt",
+      {
+        ...row("bat.transport.dekning", trygWorkshopTransport + " " + trygInboardTransport + " Produktarket oppgir også hjemtransport av båten under Båt Ekstra. Utløserne for hjemtransport må bekreftes i fullvilkåret for tillegget.",
+          "tryg", "båt", 1, "Brann/Tyveri/Ansvar, Kasko/Ansvar og Båt Ekstra – Transport"),
+        qualificationSource: trygInboardTransportSource,
+      }), row("bat.ferieavbrudd.dekning", "Inkludert", "tryg", "båt", 1, "Båt Ekstra"), row("bat.opplagsutstyr.dekning", "Inkludert", "tryg", "båt", 1, "Båt Ekstra"), row("bat.jolle.dekning", "Inkludert", "tryg", "båt", 1, "Båt Ekstra")], "2024-07-01"),
   product("if", "If", "Delkasko", boatFire("if", "Europa og europeiske farvann inntil 200 nautiske mil fra grunnlinjen, med dokumenterte overfarter"), "2023-02-01"),
   product("if", "If", "Kasko", [...boatKasko("if", "Europa og europeiske farvann inntil 200 nautiske mil fra grunnlinjen, med dokumenterte overfarter"), row("bat.losore.dekning", "Inkludert", "if", "båt", 3, "Hva er forsikret"), row("bat.losore.grense", "50 000 kr per skadetilfelle", "if", "båt", 3, "Hva er forsikret")], "2023-02-01"),
   product("if", "If", "Super", [...boatKasko("if", "Europa og europeiske farvann inntil 200 nautiske mil fra grunnlinjen, med dokumenterte overfarter"), row("bat.ferieavbrudd.dekning", "Inkludert", "if", "båt", 6, "4.10 Superforsikring"), row("bat.losore.grense", "Uten særskilt sumbegrensning innenfor produktvilkårene", "if", "båt", 6, "4.10.1"), row("bat.opplagsutstyr.dekning", "Inkludert", "if", "båt", 6, "4.10.6")], "2023-02-01"),
   product("gjensidige", "Gjensidige", "Delkasko", boatFire("gjensidige", "Europa inntil 200 nautiske mil fra land"), null),
   product("gjensidige", "Gjensidige", "Kasko", boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land", gjensidigeBoatTransport("kasko", 3)), null),
   product("gjensidige", "Gjensidige", "Pluss", [...boatKasko("gjensidige", "Europa inntil 200 nautiske mil fra land", gjensidigeBoatTransport("pluss", 4)), row("bat.totalskade.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.dekning", "Inkludert med motor- og båttypebegrensninger", "gjensidige", "båt", 1, "Pluss"), row("bat.maskinskade.alder", "Motor og drivverk eldre enn 10 år er unntatt", "gjensidige", "båt", 1, "Pluss"), row("bat.ferieavbrudd.dekning", "Inkludert", "gjensidige", "båt", 1, "Pluss")], null),
-  product("storebrand", "Storebrand", "Delkasko", boatFire("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"), "2024-09-01"),
+  product("storebrand", "Storebrand", "Delkasko", boatFire("storebrand", storebrandBoatGeography), "2024-09-01"),
   product("storebrand", "Storebrand", "Kasko", [
-    ...boatKasko("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"),
+    ...boatKasko("storebrand", storebrandBoatGeography),
     row("bat.opplagsutstyr.dekning", "Inkludert", "storebrand", "båt", 9, "5.2 Dekningstabell"),
   ], "2024-09-01"),
   product("storebrand", "Storebrand", "Super", [
-    ...boatKasko("storebrand", "Norden; 1. april–30. september også Europa inntil 200 nautiske mil og dokumenterte overfarter"),
+    ...boatKasko("storebrand", storebrandBoatGeography),
     row("bat.opplagsutstyr.dekning", "Inkludert", "storebrand", "båt", 9, "5.2 Dekningstabell"),
     row("bat.opplagsutstyr.grense", "20 000 kr", "storebrand", "båt", 9, "5.2 Dekningstabell"),
     row("bat.ferieavbrudd.dekning", "Inkludert", "storebrand", "båt", 10, "5.3 nr. 1 Ferieavbrudd"),
