@@ -319,6 +319,8 @@ test("the verified NITO age limits align with the same ordinary coverage in both
       assert.match(row.first.text, /medlemmets dekning opphører på grunn av alder.*sin egen avtalte opphørsalder så lenge medlemmet fortsatt er medlem i NITO/u);
       assert.match(row.first.text, /medforsikrede opphører dekningen ved utgangen av forsikringsåret hvis medlemmet dør/u);
       assert.match(row.first.text, /Ved utmelding opphører den ved utgangen av året medlemskapet i NITO tar slutt/u);
+      assert.match(row.first.text, /Ved separasjon eller skilsmisse opphører ektefellens dekning når det er gitt bevilling eller avsagt dom, også før avgjørelsen er rettskraftig eller endelig/u);
+      assert.match(row.first.text, /Ved samboerbrudd opphører dekningen når samboerforholdet tar slutt/u);
       assert.match(row.first.text, /Forsikringsbeviset har forrang/u);
       assert.match(terms.section, /Punkt 6.*punkt 1/u);
     }
