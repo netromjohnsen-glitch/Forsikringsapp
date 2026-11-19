@@ -1,0 +1,86 @@
+{
+  "baseline": "aa2cea8ded39351fa262c5504760e3768415362e",
+  "authorized_on": "2026-11-19",
+  "authorization": "Fix the third-party PDF batches returning HTTP 503 and verify the three original synthetic batches in production.",
+  "scope": [
+    "Analysis and validation of third-party PDF products",
+    "Proof that a non-Tryg provider receives no Tryg member terms",
+    "Targeted regression tests and publication receipt"
+  ],
+  "before_production": {
+    "revision": "fadace60acdb479369507e9a356565f6a9594abc",
+    "group_statuses": [
+      503,
+      503,
+      200
+    ]
+  },
+  "publication": {
+    "repository": "netromjohnsen-glitch/Forsikringsapp",
+    "branch": "main",
+    "strategy": "fast-forward",
+    "production_activation": "manual deploy of the tested commit"
+  },
+  "constraints": {
+    "auto_deploy": false,
+    "pilot_hold": true,
+    "nito_paused": true,
+    "pilot_startup": false
+  },
+  "reproduced_validator_failure": {
+    "method": "Original synthetic PDF bytes, production PDF worker and extraction schema, OpenAI completed response, unmodified parser",
+    "validator": "Ugyldig avtalescope.",
+    "production_batches": [
+      {
+        "previous_request": "d8f5095d-5d0f-42b8-a0a6-56bb468c0740",
+        "insurers": [
+          "VIS",
+          "AmTrust"
+        ],
+        "extracted_scope": [
+          "nito",
+          "nito"
+        ]
+      },
+      {
+        "previous_request": "b6eeaa9f-5bf5-4728-a3a3-652242f62f8a",
+        "insurers": [
+          "AmTrust",
+          "AmTrust"
+        ],
+        "extracted_scope": [
+          "nito",
+          "nito"
+        ]
+      }
+    ],
+    "expected": "Retain individual provider and document attribution. Clear the inapplicable Tryg member scope. Apply no Tryg member catalogue terms."
+  },
+  "local_verification": {
+    "tested_baseline": "aa2cea8ded39351fa262c5504760e3768415362e",
+    "source_sha256": {
+      "lib/analysis-output.ts": "fa55b76bde175d2a472e03d6131c33b8f0ba2f1a5a6c7f5002860f87ff679bc2",
+      "tests/tryg-third-party-pdf-batch.test.mjs": "94fefb3fa7edd39279ae06df9c2163a06a05e416295cd2d5d7f3b19803720912"
+    },
+    "tests": {
+      "tests": 7236,
+      "pass": 7236,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "test_files": 193,
+    "scoped_eslint": "PASS",
+    "typescript": "PASS",
+    "webpack_build": "PASS",
+    "synthetic_http_pdf": "PASS",
+    "verification": [
+      "same-scope and cross-issuer completed response",
+      "individual PDF attribution",
+      "no Tryg member facts on external policies",
+      "valid Tryg membership in mixed batch",
+      "strict validation for unknown or mismatched scope"
+    ]
+  }
+}
