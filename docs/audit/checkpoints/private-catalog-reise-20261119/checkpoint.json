@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-19T10:57:44+01:00",
+  "production_baseline": "8b6937dc7abf70edb52ed1f23b5c2f8af0f03727",
+  "tested_commit": "7c5e715fece310e2f26e83eae22d7024a784d8b0",
+  "tested_tree": "440e252a9525d1210602558eb317d2630e85c47a",
+  "corrections": [
+    "Reisefakta hos KLP, Landkreditt og WaterCircles bruker etablerte reisenøkler, inkludert hjemtransport og avtalt varighet.",
+    "Presiserte KLPs omtale av fremskyndet transport til hjemsted i Norge i samsvar med arkivert vilkår side 5.",
+    "Generell egenandel for Landkreditt og WaterCircles Innbo vises på den etablerte egenandelsraden og viser fortsatt til forsikringsbeviset."
+  ],
+  "evidence": {
+    "historical_catalog_hashes": "Existing fixtures retained",
+    "new_fact_sources": "Existing source files, URLs, SHA-256 and references retained",
+    "full_suite": {
+      "files": 182,
+      "tests": 7127,
+      "pass": 7127,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "exit": 0,
+      "command": "xargs node --v8-pool-size=2 --max-old-space-size=1200 --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test --test-concurrency=2 --test-reporter=tap < tests.txt"
+    },
+    "linux_node": "v24.22.1",
+    "pdf_tool": "26.11.0",
+    "typegen": "PASS",
+    "tsc_no_emit": "PASS",
+    "eslint": {
+      "files": 416,
+      "errors": 0,
+      "warnings": 29
+    },
+    "webpack_build": "PASS",
+    "compare_catalog": "PASS",
+    "synthetic_http": "PASS",
+    "browser": {
+      "status": "PASS",
+      "mode": "local",
+      "productVariants": 50,
+      "manualVariants": 50,
+      "comparisons": 3,
+      "checks": [
+        "Tryg cabin limits",
+        "Gjensidige valuables source",
+        "KLP travel duration",
+        "Fritidsbolig alias",
+        "Tryg optional pests"
+      ],
+      "manualSubmitted": true
+    }
+  },
+  "next_step": "Kontroller publisert revisjon og sammenlign KLP Reise mot If Standard i den autentiserte piloten.",
+  "sha256": {
+    "tests.txt": "1ffa92fa9b1c95edb8ced70f9ae62a07b85368157e3e7c238be504376dc17306",
+    "changed-files.sha256": "c3e4a9e9bbe9aad93e9945f38da7b06be6bf1716a3aee80b637f4afdcd963cae",
+    "poppler.log": "a09ccccc8e67b36691dd9fb29281471500a79ca9f23ee9ed3d1dc7bb7da3821d",
+    "typegen.log": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+    "typescript.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "eslint-summary.json": "f97c186a25cdbff1b677f2aab9d25938ce0890a963644ad3b974707a4d08ee45",
+    "catalog.log": "c885600f3f942bd25563bffd5587e4114b174b9d687154c46edcb1cc803ed41e",
+    "runtime.log": "84dd20b6f888ddd2be1efe26d9fbfcc9d12c663358122dc15d3a5848531d2a39",
+    "browser.log": "53badbba2c800e1a14a8ebe05474fc00f171228340c2ba74f392ed697664840d",
+    "test.tap.gz": "39e3c1e1852251d28451874cc76f845e657a16dd309958b358416f67c07bdd8d",
+    "build.log.gz": "05f85a53cf1b2ffa5dace1f765c4509d89ae75b67930fbeb8db93a4e0a74d6d5"
+  }
+}
