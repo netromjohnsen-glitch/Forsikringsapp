@@ -20,7 +20,7 @@ test("the current private market lists Tryg's four advertised products and retai
   assert.equal(findProductComparisonProduct(catalogProductIdentity(previous), marketProductCatalog), null);
   const oldTransport = resolveCatalogFacts(previous, []).find(fact => fact.key === "bat.transport.dekning");
   assert.equal(termsSourceHref(oldTransport.source), "/api/vilkar/tryg/bat-kasko-innenbord-2024-07#page=3");
-  for (const product of productCatalog.products.filter(product => product.providerId !== "tryg" || product.insuranceType !== "Båt" || product.agreementScope !== "ordinary")) {
+  for (const product of productCatalog.products.filter(product => product.insuranceType === "Båt" && (product.providerId !== "tryg" || product.agreementScope !== "ordinary"))) {
     assert.ok(marketProductCatalog.products.includes(product));
   }
 });

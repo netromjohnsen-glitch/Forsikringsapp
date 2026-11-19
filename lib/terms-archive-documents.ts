@@ -1,4 +1,10 @@
+import { fremtindBobilMarketArchives } from "./fremtind-bobil-market.ts";
+import { sparebank1FremtindBilMarketArchives } from "./sparebank1-fremtind-bil-market.ts";
+import { storebrandInnboMarketArchives } from "./storebrand-innbo-market.ts";
+import { storebrandMotorMarketArchives } from "./storebrand-motor-market.ts";
 import { trygBoatMarketArchives } from "./tryg-boat-market.ts";
+import { trygHomeMarketArchives } from "./tryg-home-market-evidence.ts";
+import { trygSnowMarketArchives } from "./tryg-snow-market.ts";
 
 type ArchiveSource = readonly [documentId: string, effectiveFrom: string, originalUrl: string];
 
@@ -14,6 +20,12 @@ type TermsArchiveDocument = {
 
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   ...trygBoatMarketArchives,
+  ...trygHomeMarketArchives,
+  ...trygSnowMarketArchives,
+  ...storebrandInnboMarketArchives,
+  ...storebrandMotorMarketArchives,
+  ...fremtindBobilMarketArchives,
+  ...sparebank1FremtindBilMarketArchives,
   {
     provider: "fremtind",
     slug: "bat",
