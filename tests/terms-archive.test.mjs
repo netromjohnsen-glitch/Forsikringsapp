@@ -89,6 +89,36 @@ test("the member list links the exact NITO terms including the equivalent travel
   assert.equal(bindings, 13);
 });
 
+test("NITO Reiseforsikring Enkeltperson cites the current listing URL and preserves archived comparison links", () => {
+  const product = findCatalogProduct("tryg", "tryg-nito-reise-enkeltperson", "2026-01-01",
+    { insuranceType: "Reise", agreementScope: "nito" });
+  assert.ok(product);
+  const facts = resolveCatalogFacts(product, []);
+  assert.equal(facts.length, 3);
+  for (const { source } of facts) {
+    assert.equal(source.termsNumber, "54709");
+    assert.match(source.url, /\/forsikringsvilkar\/2026\/nito-reiseforsikring-enkeltperson---forsikringsbevis-og-vilkar-2026\.pdf$/u);
+    const previousUrl = source.url.replace("/forsikringsvilkar/2026/", "/forsikringsvilkar/");
+    const href = "/api/vilkar/tryg/nito-reise-enkeltperson#page=2";
+    assert.equal(source.page, 2);
+    assert.equal(termsSourceHref(source), href);
+    assert.equal(termsSourceHref({ ...source, url: previousUrl }), href);
+    assert.equal(termsSourceHref({ ...source, url: previousUrl, effectiveFrom: "2025-01-01" }), previousUrl);
+    assert.equal(termsSourceHref({ ...source, url: previousUrl, documentId: "tryg-nito-reise-familie-terms" }), previousUrl);
+  }
+});
+
+test("NITO Utvidet Ulykkesforsikring opens at the insured amount for a child's accidental death", () => {
+  const product = findCatalogProduct("tryg", "tryg-nito-ulykke-utvidet", "2026-01-01",
+    { insuranceType: "Ulykke", agreementScope: "nito" });
+  assert.ok(product);
+  const death = resolveCatalogFacts(product, []).find(fact => fact.key === "person.ulykke.dodsfall");
+  assert.match(death.value, /50 000 kr/u);
+  assert.equal(death.source.termsNumber, "54703");
+  assert.equal(termsSourceHref(death.source), "/api/vilkar/tryg/nito-ulykke-utvidet#page=2");
+  assert.match(death.source.section, /5\.4 \(s\. 6\) og 6\.4 \(s\. 8\)/u);
+});
+
 test("authenticated pilot requests serve the exact PDF for every allowed archive route", async t => {
   t.mock.method(process, "cwd", () => fileURLToPath(new URL("..", import.meta.url)));
   const previousCode = process.env.PILOT_ACCESS_CODE;

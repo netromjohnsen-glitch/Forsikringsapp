@@ -5,6 +5,7 @@ const revision = "2026-09-24";
 const previousToppId = "mcb-ff-fremtind-bobil-topp";
 const oldSource = (suffix: string) => "mcb-ff-fremtind-bobil-" + suffix;
 const currentId = (id: string) => id + "-marked-20260924";
+const toppProductId = currentId("fremtind-bobil-topp");
 
 const documents = {
   ansvar: ["ansvar", "0e36f6bf5b484ca3d246d63dd701b7b76c9b6de4095a37be2c695ebc4edb5568", 6, "ansvar"],
@@ -94,6 +95,10 @@ const products = previousProducts.map(product => {
     if (source.documentId === oldSource("kasko") || source.documentId === previousToppId + "-kasko") {
       if (key === "kasko.egenandel") return withSource(fact, kasko, 8, "Kasko 3.1");
       if (key === "feilfylling.dekning") return withSource(fact, kasko, 7, "Kasko 1.1, redning i Minikasko 2.4.2 side 5");
+      if (isTopp && key === "kasko.begrensning") {
+        return withSource(fact, kasko, 7, "Kasko 1.1",
+          "Skade under utleie krever at forsikringsbeviset uttrykkelig omfatter det. Leiebil og maskinskade har egne dekningsvilkår.");
+      }
       return withSource(fact, kasko, 7, "Kasko 1.1");
     }
     if (source.documentId !== previousToppId || !isTopp) throw new Error("Uventet vilkårskilde for DNB Bobil: " + source.documentId);
@@ -109,6 +114,20 @@ const products = previousProducts.map(product => {
     version: tier === "ansvar" ? product.version : revision,
   };
 });
+
+const dnbProductPage = previous.sources["mcb-ff-fremtind-dnb-bobil-page"];
+const toppPackageSource: CatalogFact["source"] = {
+  documentId: dnbProductPage.id,
+  filename: dnbProductPage.filename,
+  company: "DNB",
+  termsNumber: dnbProductPage.termsNumber,
+  effectiveFrom: dnbProductPage.effectiveFrom,
+  agreementScope: dnbProductPage.agreementScope,
+  url: dnbProductPage.url,
+  page: 0,
+  section: "Sammenlign bobilforsikringer – Topp",
+  note: "DNBs produktoversikt viser hvilke dekninger som inngår ved kjøp av Bobil Topp.",
+};
 
 const addOns = (["leiebil", "maskinskade"] as const).map(document => {
   const addOn = previous.addOns.find(item => item.id === "fremtind-bobil-" + document)!;
@@ -127,7 +146,18 @@ const addOns = (["leiebil", "maskinskade"] as const).map(document => {
     }
     return withSource(fact, source, fact.source.page, fact.source.section, value);
   });
-  return { ...addOn, id, componentId: id, requiresLevel };
+  // DNB lists these covers in the current Topp package. Fremtind publishes
+  // separate contractual clauses for their limits, including on this tier.
+  facts[toppProductId].push(...facts[id].map(fact => ({
+    ...fact,
+    ...(fact.key.endsWith(".dekning") ? {
+      coverageAvailability: "included" as const,
+      qualificationSource: toppPackageSource,
+    } : {}),
+    source: { ...fact.source,
+      note: "Dekningen inngår ifølge DNBs oversikt for Bobil Topp. Forsikringsbeviset viser hva som gjelder for den konkrete avtalen." },
+  })));
+  return { ...addOn, id, componentId: id, requiresLevel: requiresLevel.filter(productId => productId !== toppProductId) };
 });
 
 export const fremtindBobilMarket = {

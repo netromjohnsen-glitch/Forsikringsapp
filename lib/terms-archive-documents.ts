@@ -1,3 +1,4 @@
+import { frendeDogMarketArchives } from "./frende-dog-market.ts";
 import { fremtindBobilMarketArchives } from "./fremtind-bobil-market.ts";
 import { sparebank1FremtindBilMarketArchives } from "./sparebank1-fremtind-bil-market.ts";
 import { storebrandInnboMarketArchives } from "./storebrand-innbo-market.ts";
@@ -6,7 +7,7 @@ import { trygBoatMarketArchives } from "./tryg-boat-market.ts";
 import { trygHomeMarketArchives } from "./tryg-home-market-evidence.ts";
 import { trygSnowMarketArchives } from "./tryg-snow-market.ts";
 
-type ArchiveSource = readonly [documentId: string, effectiveFrom: string, originalUrl: string];
+type ArchiveSource = readonly [documentId: string, effectiveFrom: string, originalUrl: string, previousUrl?: string];
 
 type MemberArchiveSource = readonly [scope: string, productId: string, originalUrl: string, documentNumber: string, date: string, sha256: string];
 
@@ -25,6 +26,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   ...storebrandInnboMarketArchives,
   ...storebrandMotorMarketArchives,
   ...fremtindBobilMarketArchives,
+  ...frendeDogMarketArchives,
   ...sparebank1FremtindBilMarketArchives,
   {
     provider: "fremtind",
@@ -475,7 +477,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "nito-reise-enkeltperson",
     archivePath: "catalog/sources/tryg/member-agreements/nito-reise-enkeltperson.pdf",
     sources: [
-      ["tryg-nito-reise-enkeltperson-terms", "2026-01-01", "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/nito-reiseforsikring-enkeltperson---forsikringsbevis-og-vilkar-2026.pdf"],
+      ["tryg-nito-reise-enkeltperson-terms", "2026-01-01", "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/2026/nito-reiseforsikring-enkeltperson---forsikringsbevis-og-vilkar-2026.pdf", "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/nito-reiseforsikring-enkeltperson---forsikringsbevis-og-vilkar-2026.pdf"],
     ],
     memberSources: [
       ["nito", "reise-enkeltperson", "https://www.nito.no/siteassets/dokumenter/forsikringsdokumenter/forsikringsvilkar/2026/nito-reiseforsikring-enkeltperson---forsikringsbevis-og-vilkar-2026.pdf", "54709", "2026-01-01", ""],

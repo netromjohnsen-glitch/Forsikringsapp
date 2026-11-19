@@ -31,17 +31,30 @@ test("DNB's market packages use their own official PDFs and physical PDF pages",
   assert.equal(fact("Minikasko", "glass.dekning").sources[0].termsNumber, "PMO-357.210-013");
 });
 
-test("DNB's revised Maskinskade and Leiebil still require optional coverage", () => {
-  for (const tier of ["Kasko", "Topp"]) {
-    const exclusion = fact(tier, "maskinskade.begrensning");
-    assert.equal(exclusion.state, "optional");
-    assert.match(exclusion.value, /fører til eller skyldes forhøyet oljeforbruk/);
-    assert.equal(termsSourceHref(exclusion.sources[0]), "/api/vilkar/fremtind/bobil-maskinskade-20260924#page=1");
-    const rentals = fact(tier, "leiebil.dager");
-    assert.equal(rentals.state, "optional");
-    assert.equal(rentals.sources[0].termsNumber, "PMO-350.402-004");
+test("DNB markets both covers as included in Bobil Topp, with separate applicable Fremtind terms", () => {
+  for (const [key, slug, termsNumber] of [
+    ["leiebil.dekning", "leiebil", "PMO-350.402-004"],
+    ["maskinskade.dekning", "maskinskade", "PMO-350.201-002"],
+  ]) {
+    const topp = fact("Topp", key);
+    assert.equal(topp.state, "included");
+    assert.deepEqual(topp.addOnNames, []);
+    assert.equal(topp.sources[0].termsNumber, termsNumber);
+    assert.equal(termsSourceHref(topp.sources[0]), "/api/vilkar/fremtind/bobil-" + slug + "-20260924#page=1");
+    const offer = topp.sources[1];
+    assert.equal(offer.sourceType, "product_page");
+    assert.equal(offer.company, "DNB");
+    assert.equal(termsSourceHref(offer), "https://www.dnb.no/forsikring/kjoretoy/bobilforsikring");
+    const kasko = fact("Kasko", key);
+    assert.equal(kasko.state, "optional");
+    assert.equal(kasko.sources.length, 1);
+    assert.equal(fact("Minikasko", key), undefined);
   }
-  assert.equal(fact("Minikasko", "maskinskade.begrensning"), undefined);
+  assert.equal(fact("Topp", "leiebil.dager").value, "Normal reparasjonstid, inntil 45 dager");
+  assert.equal(fact("Topp", "leiebil.dagsgrense").value, "Inntil 600 kr per dag");
+  assert.match(fact("Topp", "maskinskade.begrensning").value, /fører til eller skyldes forhøyet oljeforbruk/);
+  assert.equal(termsSourceHref(fact("Topp", "maskinskade.egenandel.kilometer").sources[0]), "/api/vilkar/fremtind/bobil-maskinskade-20260924#page=2");
+  assert.match(fact("Topp", "maskinskade.km").value, /200 000 km/);
 });
 
 test("DNB's earlier exact products, sources and versions remain resolvable", () => {

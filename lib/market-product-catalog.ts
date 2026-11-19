@@ -1,3 +1,4 @@
+import { frendeDogMarket } from "./frende-dog-market.ts";
 import { fremtindBobilMarket } from "./fremtind-bobil-market.ts";
 import { productCatalog, type CatalogProduct } from "./product-catalog.ts";
 import { sparebank1FremtindBilMarket } from "./sparebank1-fremtind-bil-market.ts";
@@ -18,6 +19,7 @@ const marketUpdates = [
   storebrandInnboMarket,
   storebrandMotorMarket,
   fremtindBobilMarket,
+  frendeDogMarket,
   sparebank1FremtindBilMarket,
   trygHomeMarketEvidence,
   trygSnowMarket,
