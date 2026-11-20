@@ -118,6 +118,22 @@ test("Reise plasserer kontanter, reisedokumenter, nøkler og verdisaker på egne
   }
 });
 
+test("KLP Reise og Reise Maks har den dokumenterte passgrensen på samme rad som Landkreditt", () => {
+  const key = "reise.bagasje.pass_billetter";
+  for (const [id, slug] of [["klp-reise", "reise"], ["klp-reise-maks", "reise-maks"]]) {
+    const row = rows(id, "landkreditt-reise").find((entry) => entry.key === key);
+    assert.equal(row.first.state, "included");
+    assert.equal(row.second.state, "included");
+    assert.match(row.first.text, /10 000 kr per person/u);
+    assert.match(row.second.text, /20 000 kr per sikret/u);
+    assert.equal(row.first.sources.length, 1);
+    assert.equal(row.first.sources[0].documentId, id);
+    assert.equal(termsSourceHref(row.first.sources[0]), `/api/vilkar/klp/${slug}#page=3`);
+    assert.ok(facts(id, productCatalog).every((entry) => entry.key !== key));
+  }
+  assert.match(fact("klp-reise-maks", "reise.leiebil.vilkar").value, /bilkollektiv/u);
+});
+
 test("Reise skiller tilleggsdekning fra vilkår for eksisterende leiebildekning", () => {
   const standard = "watercircles-reise-standard";
   const elite = "watercircles-reise-elite";

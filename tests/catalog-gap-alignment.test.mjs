@@ -318,3 +318,34 @@ test("the six pregnancy products use one expiry row with edition-specific dates 
     assert.ok(!resolveCatalogFacts(product(id), []).some(entry => entry.key === key));
   }
 });
+
+
+test("Tryg and If align pregnancy coverage start and retain the requirements for each variant", () => {
+  const key = "person.gravid.oppstart";
+  const basic = "if-person-gravid-basis";
+  const superProduct = "if-person-gravid-super";
+  const gratis = "tryg-person-gravid-gratis";
+  const targets = [
+    [gratis, /16\. svangerskapsuke.*24 timer etter bestilling/u, "tryg/gravid-produktvilkar#page=2"],
+    ["tryg-person-gravid-ekstra", /16\. svangerskapsuke.*24 timer.*betalt.*bekreftet de helserelaterte forutsetningene/u, "tryg/gravid-produktvilkar#page=2"],
+    ["tryg-person-gravid-premium", /16\. svangerskapsuke.*24 timer.*betalt.*bekreftet de helserelaterte forutsetningene/u, "tryg/gravid-produktvilkar#page=2"],
+    [basic, /13 \+ 0.*37 \+ 0.*dagen etter tegning/u, "if/gravid-basis#page=3"],
+    [superProduct, /13 \+ 0.*37 \+ 0.*kjøpt og betalt.*enkel helsevurdering/u, "if/gravid-super#page=3"],
+  ];
+
+  for (const [id, text, href] of targets) {
+    const result = rows(id, basic);
+    const start = result.filter(row => row.key === key);
+    assert.equal(start.length, 1, id);
+    assert.equal(start[0].label, "Når forsikringen begynner å gjelde");
+    assert.match(start[0].first.text, text);
+    assert.equal(termsSourceHref(start[0].first.sources[0]), "/api/vilkar/" + href);
+    const reversed = rows(basic, id).find(row => row.key === key);
+    assert.deepEqual(start[0].first, reversed.second);
+    assert.deepEqual(start[0].second, reversed.first);
+    assert.ok(result.some(row => row.key === "person.gravid.opphor"));
+    assert.ok(!resolveCatalogFacts(product(id), []).some(entry => entry.key === key));
+  }
+  assert.doesNotMatch(fact(gratis, key).value, /betalt|helserelaterte/u);
+  assert.doesNotMatch(fact(superProduct, key).value, /dagen etter/u);
+});

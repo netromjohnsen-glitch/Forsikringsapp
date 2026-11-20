@@ -386,6 +386,14 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   },
   {
     provider: "klp",
+    slug: "reise",
+    archivePath: "catalog/sources/new-private-contents-travel/klp-reise.pdf",
+    sources: [
+      ["klp-reise", "", "https://www.klp.no/media/forsikring/Reise.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
     slug: "reise-maks",
     archivePath: "catalog/sources/new-private-contents-travel/klp-reise-maks.pdf",
     sources: [
