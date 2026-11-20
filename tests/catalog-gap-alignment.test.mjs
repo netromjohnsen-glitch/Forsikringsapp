@@ -240,3 +240,19 @@ test("market results use the same canonical type when legacy Barn names are swap
   assert.equal(compareCatalogProducts(a, b, marketProductCatalog).insuranceType, "Barn");
   assert.equal(compareCatalogProducts(b, a, marketProductCatalog).insuranceType, "Barn");
 });
+
+
+test("Tryg Premium SmartDelay uses the Collinson certificate and its 2026 edition", () => {
+  const lounge = "reise.tjeneste.lounge";
+  const loungeFact = (level, date) =>
+    resolveCatalogFacts(product("tryg-reise-" + level), [], new Date(date), null, marketProductCatalog)
+      .find(row => row.key === lounge);
+  const premium = loungeFact("premium", "2026-11-20");
+  assert.match(premium.value, /minst 60 minutter.*inntil fire medreisende.*minst 24 timer.*40 euro/u);
+  assert.deepEqual([premium.source, premium.qualificationSource].map(termsSourceHref), [
+    "/api/vilkar/tryg/reise-smartdelay-2026#page=1",
+    "/api/vilkar/tryg/reise-smartdelay-2026#page=7",
+  ]);
+  assert.equal(loungeFact("ekstra", "2026-11-20"), undefined);
+  assert.equal(loungeFact("premium", "2027-01-01"), undefined);
+});

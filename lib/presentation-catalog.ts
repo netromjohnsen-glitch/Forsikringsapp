@@ -184,7 +184,7 @@ const boatPetPresentationConcepts: readonly PresentationConcept[] = [
 ];
 
 const personInsurancePresentationConcepts: readonly PresentationConcept[] = [
-  concept("ulykke.skade", "ulykke", "Erstatning ved ulykke", [/^person\.ulykke\.(?:invaliditet|dodsfall|utgifter|progressiv|faginvaliditet|krisehjelp)(?:\.|$)/u],
+  concept("ulykke.skade", "ulykke", "Erstatning ved ulykke", [/^person\.ulykke\.(?:invaliditet|psykisk_invaliditet|dodsfall|utgifter|progressiv|faginvaliditet|krisehjelp)(?:\.|$)/u],
     "primary", ["economic-risk", "misunderstanding-risk"]),
   concept("ulykke.vilkar", "ulykke", "Hvor og når forsikringen gjelder", [/^person\.ulykke\./u],
     "secondary", ["misunderstanding-risk"]),

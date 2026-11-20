@@ -194,7 +194,7 @@ export default function Home() {
               : "Sammenlign dekninger og vilkår mellom katalogførte produkter."}
           </p>
           <p className="body-copy mt-1 text-sm">{comparisonMode === "agreements"
-            ? "Last opp forsikringsdokumenter eller registrer forsikringene manuelt. Cloud deploy test"
+            ? "Last opp forsikringsdokumenter eller registrer forsikringene manuelt."
             : "Ingen kundedokumenter, kundedata eller AI-analyse er nødvendig."}</p>
         </div>
       </header>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type Ref } from "react";
 import { agreementScopeDisplayName } from "@/lib/provider-presentation";
 import { memberTermsSourceHref, termsSourceHref } from "@/lib/terms-archive";
 import { trygMemberInventories } from "@/lib/tryg-member-catalog";
@@ -8,6 +8,7 @@ import { marketProductCatalog } from "@/lib/market-product-catalog";
 import { catalogAgreementScope } from "@/lib/agreement-scope";
 import { personInsuranceTypes } from "@/lib/person-insurance-registry";
 import { catalogProductIdentity, type CatalogProduct } from "@/lib/product-catalog";
+import { comparisonSourcePresentation } from "@/lib/catalog-source-presentation";
 import {
   compareCatalogProducts,
   findProductComparisonProduct,
@@ -31,27 +32,21 @@ type Selection = {
 
 const emptySelection = (): Selection => ({ company: "", agreementScope: "", productIdentity: "" });
 
-function sourceTypeLabel(source: ProductComparisonSource): string {
-  if (source.sourceType === "ipid") return "IPID / produktark";
-  if (source.sourceType === "product_page") return "Produktside";
-  return "Offentlig vilkår";
-}
-
 function ProductSource({ source, label }: { source: ProductComparisonSource; label: string }) {
   const sourceHref = termsSourceHref(source);
+  const presentation = comparisonSourcePresentation(source);
   return (
     <details className="mt-2 text-xs text-slate-600">
       <summary
         aria-label={`Vis kilde: ${label}`}
         className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-4"
       >
-        Vis kilde · {sourceTypeLabel(source)}
+        Vis kilde · {presentation.label}
       </summary>
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
         {source.note && <p>{source.note}</p>}
         <p>{[source.company, source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : null,
-          source.effectiveFrom, source.page > 0 ? `side ${source.page}` : null,
-          source.section ? `punkt ${source.section}` : null].filter(Boolean).join(" · ")}</p>
+          source.effectiveFrom, presentation.page, presentation.section].filter(Boolean).join(" · ")}</p>
         {sourceHref && <a href={sourceHref} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">Åpne originalkilde</a>}
       </div>
     </details>
@@ -244,12 +239,13 @@ function CoverageGroup({ group, result }: { group: ProductCoverageGroup; result:
   </div>;
 }
 
-function ProductResult({ result }: { result: CatalogProductComparison }) {
+function ProductResult({ result, headingRef }: { result: CatalogProductComparison; headingRef?: Ref<HTMLHeadingElement> }) {
   const sections = productComparisonView(result);
   return (
     <section className="surface-card mt-8 min-w-0 rounded-2xl border p-5 sm:p-8" aria-labelledby="product-comparison-result">
       <p className="brand-eyebrow text-xs font-semibold uppercase tracking-[0.12em]">Produktsammenligning</p>
-      <h2 id="product-comparison-result" className="section-title mt-1 text-2xl font-semibold">{result.insuranceType}</h2>
+      <h2 id="product-comparison-result" tabIndex={-1} ref={headingRef}
+        className="section-title mt-1 scroll-mt-6 rounded text-2xl font-semibold focus-visible:outline-2 focus-visible:outline-offset-4">{result.insuranceType}</h2>
       <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
         <ProductHeader label="Produkt A" product={result.first.product} />
         <span className="text-sm font-medium text-slate-500">mot</span>
@@ -350,6 +346,10 @@ export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { p
   const [first, setFirst] = useState<Selection>(emptySelection);
   const [second, setSecond] = useState<Selection>(emptySelection);
   const [result, setResult] = useState<CatalogProductComparison | null>(null);
+  const resultHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (result) resultHeading.current?.focus();
+  }, [result]);
   const [error, setError] = useState("");
 
   function invalidate() {
@@ -410,7 +410,8 @@ export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { p
         {!ready && <p className="mt-2 text-sm text-slate-600">Velg forsikringstype og ett entydig katalogprodukt på hver side.</p>}
         {error && <div role="alert" className="error-panel mt-6 rounded-xl border p-4">{error}</div>}
       </div>
-      {result && <ProductResult result={result} />}
+      <p role="status" aria-atomic="true" className="sr-only">{result ? "Sammenligningen er klar." : ""}</p>
+      {result && <ProductResult result={result} headingRef={resultHeading} />}
       <TrygMemberOfferings />
     </>
   );

@@ -291,3 +291,12 @@ test("ulike vilkår holdes separate", () => {
   assert.notEqual(normalizeTermName("Veterinærdekning"), normalizeTermName("Ansvar for dyr"));
   assert.notEqual(normalizeTermName("Reiselengde"), normalizeTermName("Reisegods"));
 });
+
+
+test("the two confirmed diagnosis-payment labels align for child policies only", () => {
+  for (const name of ["Engangsutbetaling ved utvalgte diagnoser", "Økonomisk førstehjelp ved utvalgte diagnoser"]) {
+    assert.equal(normalizeTermName(name, { insuranceType: "Barneforsikring" }), "person.barn.diagnose");
+    assert.notEqual(normalizeTermName(name, { insuranceType: "Kritisk sykdom" }), "person.barn.diagnose");
+  }
+  assert.notEqual(normalizeTermName("Økonomisk førstehjelp", { insuranceType: "Barn" }), "person.barn.diagnose");
+});

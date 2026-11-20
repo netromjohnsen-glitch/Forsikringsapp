@@ -27,6 +27,71 @@ type TermsArchiveDocument = {
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   {
     provider: "tryg",
+    slug: "barn-behandling",
+    archivePath: "catalog/sources/person/tryg-person-barn-behandling.pdf",
+    sources: [
+      ["person:tryg-person-barn-ekstra:barn-behandling", "2025-01-01", "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702"],
+      ["person:tryg-person-barn-ulykke:barn-behandling", "2025-01-01", "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "ulykkesforsikring",
+    archivePath: "catalog/sources/person/if-person-ulykke.pdf",
+    sources: [
+      ["person:if-person-ulykke", "2017-03", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Ulykkesforsikring"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "ulykkesforsikring",
+    archivePath: "catalog/sources/person/gjensidige-person-ulykke.pdf",
+    sources: [
+      ["person:gjensidige-person-ulykke", "", "https://www.gjensidige.no/files/privat/vilkar/person/ulykkesforsikring-alminnelige-vilkar.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "ulykkesforsikring-skade",
+    archivePath: "catalog/sources/person/tryg-person-ulykke.pdf",
+    sources: [
+      ["person:tryg-person-ulykke", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Skade&vilkNr=05UUL41501"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "ulykkesforsikring-dodsfall",
+    archivePath: "catalog/sources/person/tryg-person-ulykke-dodsfall.pdf",
+    sources: [
+      ["person:tryg-person-ulykke:ulykke-dodsfall", "2025-01-01", "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Doedsfall&vilkNr=05UUL41502"],
+    ],
+  },
+  {
+    provider: "frende",
+    slug: "livsforsikring",
+    archivePath: "catalog/sources/person/frende-person-liv.pdf",
+    sources: [
+      ["person:frende-person-liv", "2025-01-01", "https://api.frende.no/documents/terms/public/life/Life"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "livsforsikring",
+    archivePath: "catalog/sources/person/fremtind-person-liv.pdf",
+    sources: [
+      ["person:fremtind-person-liv", "2024-05-30", "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_liv.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "reise-smartdelay-2026",
+    archivePath: "catalog/sources/tryg/reise/SmartDelay-Tryg-2026.pdf",
+    sources: [
+      ["tryg-reise-premium:smartdelay-2026", "2026-01-01", "https://norsk.smartdelay.com/assets/pdfs/nn_NO/Terms_Tryg_nn-NO.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
     slug: "nito-bil-produkt-pau14000",
     archivePath: "catalog/sources/tryg/market-bil-2026/PAU14000.pdf",
     sources: [
@@ -256,6 +321,33 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     archivePath: "catalog/sources/if/Kjoretoyforsikring-MOT2-2.pdf",
     sources: [
       ["ifAnsvar", "2024-03", "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=MOT2-2"],
+      ["vehicle:if-Vilkaar-4103ea25.pdf", "2024-03", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring"],
+      ["mcb:if:bobil:if-MOT2-2.pdf", "2024-03", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "campingvogn-bobil-sv707",
+    archivePath: "catalog/sources/mc-bobil/if-SV707.pdf",
+    sources: [
+      ["vehicle:if-SV707.pdf", "2022-06", "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707"],
+      ["mcb:if:bobil:if-SV707.pdf", "2022-06", "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "campingvogn-tilhenger-camp02",
+    archivePath: "catalog/sources/vehicle-extensions/storebrand-vilkar-campingvogn-og-tilhenger.pdf",
+    sources: [
+      ["vehicle:storebrand-vilkar-campingvogn-og-tilhenger.pdf", "2026-03-01", "https://www.storebrand.no/privat/forsikring/campingvognforsikring/_/attachment/inline/047a8396-0549-4f55-8afe-a20fe3cc42d6:af61e7bae3bcc2f6f5300195d35d576c461f0b33/vilkar-campingvogn-og-tilhenger.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
+    slug: "reise-maks",
+    archivePath: "catalog/sources/new-private-contents-travel/klp-reise-maks.pdf",
+    sources: [
+      ["klp-reise-maks", "", "https://www.klp.no/media/forsikring/Vilkar-Reise-Maks.pdf"],
     ],
   },
   {

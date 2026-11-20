@@ -306,6 +306,29 @@
         1,
         2
       ]
+    },
+    "tryg-reise-premium:smartdelay-2026": {
+      "id": "tryg-reise-premium:smartdelay-2026",
+      "providerId": "tryg",
+      "company": "Collinson Insurance Europe Limited",
+      "insuranceType": "Reise",
+      "agreementScope": "ordinary",
+      "filename": "SmartDelay-Tryg-2026.pdf",
+      "termsNumber": "Ikke oppgitt",
+      "effectiveFrom": "2026-01-01",
+      "validTo": "2026-12-31",
+      "documentName": "SmartDelay+ – forsikringsbevis og vilkår for Tryg",
+      "url": "https://norsk.smartdelay.com/assets/pdfs/nn_NO/Terms_Tryg_nn-NO.pdf",
+      "sha256": "7de84ea44a841fcca536f3d823a79c37a8eaed806a867f8f8b1e6778805625ee",
+      "sourceType": "full_terms",
+      "productIds": [
+        "tryg-reise-premium"
+      ],
+      "productVersion": "2026-09-20-canonical",
+      "physicalPages": [
+        1,
+        12
+      ]
     }
   },
   "components": {
@@ -1347,13 +1370,17 @@
           "effectiveFrom": "2026-01-01",
           "termsNumber": "UUL41701",
           "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Grunndekning&vilkNr=05UUL41701",
-          "sha256": "5aa5a1a2af33eeb0f38362f622ab86a72adab162d2c8fc6307d493b56883fc1f"
+          "sha256": "5aa5a1a2af33eeb0f38362f622ab86a72adab162d2c8fc6307d493b56883fc1f",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41701"
         },
         "person:tryg-person-barn-ekstra:barn-produktvilkar": {
           "effectiveFrom": "2023-01-01",
           "termsNumber": "UUL41700",
           "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
-          "sha256": "9ec3dd644f600b3c8fbc0936eb2061b0cc46b508eeb25d88994f08bd4d9c2324"
+          "sha256": "9ec3dd644f600b3c8fbc0936eb2061b0cc46b508eeb25d88994f08bd4d9c2324",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41701"
         }
       },
       "remove": [],
@@ -1374,6 +1401,22 @@
             "effectiveFrom": "2026-01-01",
             "agreementScope": "ordinary",
             "version": "UUL41701"
+          }
+        },
+        {
+          "key": "person.barn.helserad",
+          "label": "Medisinsk rådgivning og digital helsehjelp",
+          "value": "Tryg Legehjelp gir tilgang til sykepleiere og allmennleger 365 dager i året for helsespørsmål, resepter og henvisning til spesialist.",
+          "source": {
+            "documentId": "person:tryg-person-barn-ekstra:barn-produktvilkar",
+            "filename": "tryg-person-barn-produktvilkar.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
+            "termsNumber": "UUL41700",
+            "effectiveFrom": "2023-01-01",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "§ 2 – Tryg Legehjelp"
           }
         }
       ]
@@ -1673,7 +1716,9 @@
           "effectiveFrom": "2025-08-23",
           "termsNumber": "HEL1-6",
           "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Helseforsikring",
-          "sha256": "f76e894f9a659290528939cd09eebd4d1d6ea8c0d86bc28992f987384408d6cd"
+          "sha256": "f76e894f9a659290528939cd09eebd4d1d6ea8c0d86bc28992f987384408d6cd",
+          "agreementScope": "ordinary",
+          "productVersion": "HEL1-6"
         }
       },
       "remove": [],
@@ -1711,6 +1756,42 @@
             "agreementScope": "ordinary",
             "version": "HEL1-6"
           }
+        },
+        {
+          "key": "person.behandling.medisin",
+          "label": "Egenandel for reseptbelagte medisiner",
+          "value": "If refunderer egenandelen for reseptbelagte medisiner som behandlende legespesialist forskriver i forbindelse med et forsikringstilfelle. Grensen er tre måneders forbruk fra første uttak etter at resepten ble utstedt.",
+          "coverageAvailability": "included",
+          "source": {
+            "documentId": "person:if-person-helse",
+            "section": "Punkt 5.11 – Medisiner",
+            "page": 4,
+            "filename": "if-person-helse.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Helseforsikring",
+            "termsNumber": "HEL1-6",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "HEL1-6"
+          }
+        },
+        {
+          "key": "person.behandling.hjelpemidler",
+          "label": "Tekniske hjelpemidler",
+          "value": "Inntil 10 000 kr totalt til medisinsk nødvendige tekniske hjelpemidler ved operasjon eller behandling. Behandlende legespesialist må dokumentere at behovet skyldes et forsikringstilfelle. Dekningen gjelder ikke når forsikrede har rett til tilsvarende hjelpemidler fra det offentlige.",
+          "coverageAvailability": "included",
+          "source": {
+            "documentId": "person:if-person-helse",
+            "section": "Punkt 5.13 – Tekniske hjelpemidler",
+            "page": 5,
+            "filename": "if-person-helse.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Helseforsikring",
+            "termsNumber": "HEL1-6",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "HEL1-6"
+          }
         }
       ]
     },
@@ -1720,7 +1801,9 @@
           "effectiveFrom": "2024-06-08",
           "termsNumber": "BAF2-4",
           "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
-          "sha256": "ac5392c0a252caa6bb4d02f2d6578fc7a5e3a73dfe429a81b212652942407e52"
+          "sha256": "ac5392c0a252caa6bb4d02f2d6578fc7a5e3a73dfe429a81b212652942407e52",
+          "agreementScope": "ordinary",
+          "productVersion": "BAF2-4"
         }
       },
       "remove": [
@@ -1748,19 +1831,60 @@
         {
           "key": "person.barn.diagnose",
           "label": "Engangsutbetaling ved utvalgte diagnoser",
-          "value": "4 G ved en oppført diagnose, skade eller gjennomført behandling. Barnet må være i live 24 timer etter forsikringstilfellet. Utbetalingen samordnes med hjelpestønad og varig medisinsk invaliditet etter vilkårene.",
-          "coverageAvailability": "included",
+          "value": "4 G ved en oppført diagnose, skade eller gjennomført behandling. Også andre alvorlige sykdommer og skader kan gi utbetaling når en spesialist har stilt diagnosen og tilstanden med overveiende sannsynlighet gir erstatningsberettiget medisinsk invaliditet over 50 %, med vilkårenes unntak. Barnet må være i live 24 timer etter forsikringstilfellet. Det gis som hovedregel én utbetaling per bokstavgruppe, med unntak for brannskade. Har den samme tilstanden gitt økonomisk førstehjelp etter gruppen for andre alvorlige sykdommer og skader, gis det ingen ny utbetaling når tilstanden fører til en listeført diagnose. Utbetalingen samordnes med hjelpestønad og varig medisinsk invaliditet.",
           "source": {
             "documentId": "person:if-person-barn-standard",
-            "section": "§ 5.1 (s. 5–7)",
-            "page": 5,
             "filename": "if-person-barn.pdf",
             "company": "If",
             "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
             "termsNumber": "BAF2-4",
             "effectiveFrom": "2024-06-08",
             "agreementScope": "ordinary",
-            "version": "BAF2-4"
+            "page": 5,
+            "section": "§ 5.1"
+          },
+          "qualificationSource": {
+            "documentId": "person:if-person-barn-standard",
+            "filename": "if-person-barn.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
+            "termsNumber": "BAF2-4",
+            "effectiveFrom": "2024-06-08",
+            "agreementScope": "ordinary",
+            "page": 7,
+            "section": "§ 5.1 s, jf. §§ 6.1–6.2"
+          }
+        },
+        {
+          "key": "person.barn.helserad",
+          "label": "Medisinsk rådgivning og digital helsehjelp",
+          "value": "Døgnåpen medisinsk telefonrådgivning fra autorisert helsepersonell for foreldre som har spørsmål om barnets helse, sykdom eller skade. Barn over 16 år kan bruke tjenesten selv. Når det trengs, kan tjenesten sette familien i kontakt med digital lege eller anbefale annen helsehjelp.",
+          "source": {
+            "documentId": "person:if-person-barn-standard",
+            "filename": "if-person-barn.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
+            "termsNumber": "BAF2-4",
+            "effectiveFrom": "2024-06-08",
+            "agreementScope": "ordinary",
+            "page": 10,
+            "section": "§ 5.9.1"
+          }
+        },
+        {
+          "key": "person.barn.psykologisk_forstehjelp",
+          "label": "Psykologisk førstehjelp",
+          "value": "Inntil 10 timer for barnet, foreldre eller søsken ved en psykisk reaksjon etter at barnet er rammet av alvorlig sykdom, alvorlig ulykke eller en oppført plutselig, uforutsett hendelse. Det kan også gjelde når barnet var til stede ved en slik plutselig hendelse uten selv å bli fysisk skadet. Behandlingen må starte i direkte tilknytning til hendelsen og skje i Vertikal Helses nettverk. If dekker samme hendelse under bare én av sine personforsikringer.",
+          "source": {
+            "documentId": "person:if-person-barn-standard",
+            "filename": "if-person-barn.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
+            "termsNumber": "BAF2-4",
+            "effectiveFrom": "2024-06-08",
+            "agreementScope": "ordinary",
+            "page": 10,
+            "section": "§ 5.9.2"
           }
         }
       ]
@@ -1771,13 +1895,17 @@
           "effectiveFrom": "2024-06-08",
           "termsNumber": "SUB1-5",
           "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Super_Barneforsikring",
-          "sha256": "e66f94b10875d88bfbe86b12f8f1d40296c7809a8defd7aee1a36ffa40db1b8c"
+          "sha256": "e66f94b10875d88bfbe86b12f8f1d40296c7809a8defd7aee1a36ffa40db1b8c",
+          "agreementScope": "ordinary",
+          "productVersion": "SUB1-5"
         },
         "person:if-person-barn-super:barn": {
           "effectiveFrom": "2024-06-08",
           "termsNumber": "BAF2-4",
           "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
-          "sha256": "ac5392c0a252caa6bb4d02f2d6578fc7a5e3a73dfe429a81b212652942407e52"
+          "sha256": "ac5392c0a252caa6bb4d02f2d6578fc7a5e3a73dfe429a81b212652942407e52",
+          "agreementScope": "ordinary",
+          "productVersion": "SUB1-5"
         }
       },
       "remove": [
@@ -1805,19 +1933,60 @@
         {
           "key": "person.barn.diagnose",
           "label": "Engangsutbetaling ved utvalgte diagnoser",
-          "value": "4 G ved en oppført diagnose, skade eller gjennomført behandling. Barnet må være i live 24 timer etter forsikringstilfellet. Utbetalingen samordnes med hjelpestønad og varig medisinsk invaliditet etter vilkårene.",
-          "coverageAvailability": "included",
+          "value": "4 G ved en oppført diagnose, skade eller gjennomført behandling. Også andre alvorlige sykdommer og skader kan gi utbetaling når en spesialist har stilt diagnosen og tilstanden med overveiende sannsynlighet gir erstatningsberettiget medisinsk invaliditet over 50 %, med vilkårenes unntak. Barnet må være i live 24 timer etter forsikringstilfellet. Det gis som hovedregel én utbetaling per bokstavgruppe, med unntak for brannskade. Har den samme tilstanden gitt økonomisk førstehjelp etter gruppen for andre alvorlige sykdommer og skader, gis det ingen ny utbetaling når tilstanden fører til en listeført diagnose. Utbetalingen samordnes med hjelpestønad og varig medisinsk invaliditet.",
           "source": {
             "documentId": "person:if-person-barn-super:barn",
-            "section": "§ 5.1 (s. 5–7)",
-            "page": 5,
             "filename": "if-person-barn.pdf",
             "company": "If",
             "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
             "termsNumber": "BAF2-4",
             "effectiveFrom": "2024-06-08",
             "agreementScope": "ordinary",
-            "version": "BAF2-4"
+            "page": 5,
+            "section": "§ 5.1"
+          },
+          "qualificationSource": {
+            "documentId": "person:if-person-barn-super:barn",
+            "filename": "if-person-barn.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
+            "termsNumber": "BAF2-4",
+            "effectiveFrom": "2024-06-08",
+            "agreementScope": "ordinary",
+            "page": 7,
+            "section": "§ 5.1 s, jf. §§ 6.1–6.2"
+          }
+        },
+        {
+          "key": "person.barn.helserad",
+          "label": "Medisinsk rådgivning og digital helsehjelp",
+          "value": "Døgnåpen medisinsk telefonrådgivning fra autorisert helsepersonell for foreldre som har spørsmål om barnets helse, sykdom eller skade. Barn over 16 år kan bruke tjenesten selv. Når det trengs, kan tjenesten sette familien i kontakt med digital lege eller anbefale annen helsehjelp.",
+          "source": {
+            "documentId": "person:if-person-barn-super:barn",
+            "filename": "if-person-barn.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
+            "termsNumber": "BAF2-4",
+            "effectiveFrom": "2024-06-08",
+            "agreementScope": "ordinary",
+            "page": 10,
+            "section": "§ 5.9.1"
+          }
+        },
+        {
+          "key": "person.barn.psykologisk_forstehjelp",
+          "label": "Psykologisk førstehjelp",
+          "value": "Inntil 10 timer for barnet, foreldre eller søsken ved en psykisk reaksjon etter at barnet er rammet av alvorlig sykdom, alvorlig ulykke eller en oppført plutselig, uforutsett hendelse. Det kan også gjelde når barnet var til stede ved en slik plutselig hendelse uten selv å bli fysisk skadet. Behandlingen må starte i direkte tilknytning til hendelsen og skje i Vertikal Helses nettverk. If dekker samme hendelse under bare én av sine personforsikringer.",
+          "source": {
+            "documentId": "person:if-person-barn-super:barn",
+            "filename": "if-person-barn.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring",
+            "termsNumber": "BAF2-4",
+            "effectiveFrom": "2024-06-08",
+            "agreementScope": "ordinary",
+            "page": 10,
+            "section": "§ 5.9.2"
           }
         }
       ]
@@ -1828,10 +1997,14 @@
           "effectiveFrom": "2018-11-10",
           "termsNumber": "GOV5-2",
           "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Godt_voksen",
-          "sha256": "25f6e817184e7b6cf8bbaaaa8fd6e8a9f1fed6edf4f3817893eb405f5734f095"
+          "sha256": "25f6e817184e7b6cf8bbaaaa8fd6e8a9f1fed6edf4f3817893eb405f5734f095",
+          "agreementScope": "ordinary",
+          "productVersion": "GOV5-2"
         }
       },
-      "remove": [],
+      "remove": [
+        "person.senior.utbetaling"
+      ],
       "rows": [
         {
           "key": "person.senior.geografi",
@@ -1901,6 +2074,49 @@
             "agreementScope": "ordinary",
             "version": "GOV5-2"
           }
+        },
+        {
+          "key": "person.senior.utbetaling",
+          "label": "Engangsutbetaling ved oppført sykdom eller skade",
+          "value": "100 000 kr ved en oppført sykdom, skade eller behandling i forsikringstiden dersom forsikrede er i live 24 timer etter forsikringstilfellet. Én utbetaling per bokstavgruppe. Dersom samme sykdom eller hendelse faller i flere grupper, gir den bare én utbetaling.",
+          "source": {
+            "documentId": "person:if-person-godt-voksen",
+            "filename": "if-person-senior.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Godt_voksen",
+            "termsNumber": "GOV5-2",
+            "effectiveFrom": "2018-11-10",
+            "agreementScope": "ordinary",
+            "page": 3,
+            "section": "§ 4.1"
+          }
+        },
+        {
+          "key": "person.senior.diagnose.hjerneslag",
+          "label": "Hjerneslag",
+          "value": "Akutt hjerneblødning eller hjerneinfarkt med nevrologiske utfall som fortsatt er til stede ved utskrivning, bekreftet med CT eller MR. Ved langvarig innleggelse kan hjerneslagerstatningen utbetales etter 14 dager dersom nødvendig dokumentasjon foreligger. Hjerneblødning som skyldes ytre skade er unntatt.",
+          "source": {
+            "documentId": "person:if-person-godt-voksen",
+            "filename": "if-person-senior.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Godt_voksen",
+            "termsNumber": "GOV5-2",
+            "effectiveFrom": "2018-11-10",
+            "agreementScope": "ordinary",
+            "page": 3,
+            "section": "§ 4.1 c – Hjerneslag"
+          },
+          "qualificationSource": {
+            "documentId": "person:if-person-godt-voksen",
+            "filename": "if-person-senior.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Godt_voksen",
+            "termsNumber": "GOV5-2",
+            "effectiveFrom": "2018-11-10",
+            "agreementScope": "ordinary",
+            "page": 4,
+            "section": "§ 4.1 c – Langvarig innleggelse"
+          }
         }
       ]
     },
@@ -1910,10 +2126,13 @@
           "effectiveFrom": "",
           "termsNumber": "",
           "url": "https://www.gjensidige.no/files/privat/vilkar/person/ulykkesforsikring-alminnelige-vilkar.pdf",
-          "sha256": "58813e7eacd82fb7857b1492d13fe78f4bd2cbc20e508fad402e12a40b31a42e"
+          "sha256": "58813e7eacd82fb7857b1492d13fe78f4bd2cbc20e508fad402e12a40b31a42e",
+          "agreementScope": "ordinary"
         }
       },
-      "remove": [],
+      "remove": [
+        "person.ulykke.utgifter"
+      ],
       "rows": [
         {
           "key": "person.ulykke.arbeid",
@@ -1929,6 +2148,50 @@
             "termsNumber": "",
             "effectiveFrom": "",
             "agreementScope": "ordinary"
+          }
+        },
+        {
+          "key": "person.ulykke.psykisk_invaliditet",
+          "label": "Medisinsk invaliditet ved psykisk skade",
+          "value": "Varig psykisk funksjonsnedsettelse kan gi invaliditetserstatning dersom samme ulykke også har gitt en fysisk skade som medfører erstatningsberettiget medisinsk invaliditet.",
+          "source": {
+            "documentId": "person:gjensidige-person-ulykke",
+            "filename": "gjensidige-person-ulykke.pdf",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/person/ulykkesforsikring-alminnelige-vilkar.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "Forsikringsbevis – Ulykkesforsikring / Hva dekkes"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "person.ulykke.utgifter",
+          "label": "Behandlingsutgifter etter ulykke",
+          "value": "Inntil 50 000 kr til tannbehandling eller 15 000 kr til annen behandling i Norden, med 500 kr i egenandel per skadetilfelle. Utgifter dekkes normalt i inntil to år etter skaden. Tannbehandling som ikke kan gjennomføres innen toårsfristen, kan dekkes hvis den er utført innen utgangen av året forsikrede fyller 25 år og det offentlige ikke dekker den.",
+          "source": {
+            "documentId": "person:gjensidige-person-ulykke",
+            "filename": "gjensidige-person-ulykke.pdf",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/person/ulykkesforsikring-alminnelige-vilkar.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "Forsikringsbevis – Behandlingsutgifter"
+          },
+          "qualificationSource": {
+            "documentId": "person:gjensidige-person-ulykke",
+            "filename": "gjensidige-person-ulykke.pdf",
+            "company": "Gjensidige",
+            "url": "https://www.gjensidige.no/files/privat/vilkar/person/ulykkesforsikring-alminnelige-vilkar.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "agreementScope": "ordinary",
+            "page": 8,
+            "section": "Erstatningsregler § 2 – Behandlingsutgifter"
           }
         }
       ]
@@ -2992,6 +3255,2163 @@
             "agreementScope": "ordinary"
           },
           "coverageAvailability": "unavailable"
+        }
+      ]
+    },
+    "trygReisePremiumServices": {
+      "bindings": {
+        "trygReisePremium": {
+          "effectiveFrom": "2026-01-01",
+          "sha256": "a97b0d836b6465ff1c79a49441306f5cc1c77cc656c17870a5a3e04d836a475b"
+        },
+        "trygReiseProductPage": {
+          "url": "https://www.tryg.no/forsikringer/reise-og-fritid/reiseforsikring",
+          "sha256": "5025281e76080e5854c80cd098825d50d7f28f5d137e55237dfa1d0ac9648567"
+        }
+      },
+      "remove": [
+        "reise.tjeneste.lounge"
+      ],
+      "rows": [
+        {
+          "key": "reise.tjeneste.lounge",
+          "label": "SmartDelay+ ved flyforsinkelse",
+          "value": "Ved rapportert flyforsinkelse på minst 60 minutter får sikrede og inntil fire medreisende på samme fly loungekupong. Alle må stå i samme registrering, og hver flystrekning må være registrert minst 24 timer før avgang. Uten lounge på avreiseflyplassen utbetales 40 euro per registrert reisende. SmartDelay+ leveres av Collinson.",
+          "source": {
+            "documentId": "tryg-reise-premium:smartdelay-2026",
+            "page": 1,
+            "section": "Forsikringsbevis – Hva forsikringen omfatter",
+            "filename": "SmartDelay-Tryg-2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "2026-01-01",
+            "company": "Collinson Insurance Europe Limited",
+            "url": "https://norsk.smartdelay.com/assets/pdfs/nn_NO/Terms_Tryg_nn-NO.pdf",
+            "agreementScope": "ordinary"
+          },
+          "qualificationSource": {
+            "documentId": "tryg-reise-premium:smartdelay-2026",
+            "page": 7,
+            "section": "Forsinkelsesterskel, Registrert flyvning og Reisefølge",
+            "filename": "SmartDelay-Tryg-2026.pdf",
+            "termsNumber": "Ikke oppgitt",
+            "effectiveFrom": "2026-01-01",
+            "company": "Collinson Insurance Europe Limited",
+            "url": "https://norsk.smartdelay.com/assets/pdfs/nn_NO/Terms_Tryg_nn-NO.pdf",
+            "agreementScope": "ordinary"
+          }
+        }
+      ]
+    },
+    "storebrand-bat-delkasko": {
+      "bindings": {
+        "boat-pet:storebrand:båt": {
+          "effectiveFrom": "2024-09-01",
+          "termsNumber": "båt03",
+          "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+          "sha256": "e945049a6b9fba643d9804279690fc8e1dfbb1cd4a419a81503e58fd5b959baa"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "bat.redning.dekning",
+          "label": "Redning og berging",
+          "value": "Rimelige utgifter til slep til nærmeste trygge fortøyningssted etter et plutselig og uforutsett uhell som gjør at båten ikke kan seiles eller kjøres videre.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 8,
+            "section": "5.1.3 nr. 1"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.redning.grense",
+          "label": "Redning og berging – grense",
+          "value": "Ingen særskilt beløpsgrense for dokumenterte, rimelige utgifter til båtredning.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 7,
+            "section": "5.1.3 Dekningstabell"
+          }
+        },
+        {
+          "key": "bat.redning.egenandel",
+          "label": "Redning og berging – egenandel",
+          "value": "750 kr.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 8,
+            "section": "5.1.3 Egenandeler"
+          },
+          "deductibleClassification": "coverage"
+        }
+      ]
+    },
+    "storebrand-bat-kasko": {
+      "bindings": {
+        "boat-pet:storebrand:båt": {
+          "effectiveFrom": "2024-09-01",
+          "termsNumber": "båt03",
+          "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+          "sha256": "e945049a6b9fba643d9804279690fc8e1dfbb1cd4a419a81503e58fd5b959baa"
+        }
+      },
+      "remove": [
+        "bat.redning.dekning"
+      ],
+      "rows": [
+        {
+          "key": "bat.redning.dekning",
+          "label": "Redning og berging",
+          "value": "Rimelige utgifter til slep til nærmeste trygge fortøyningssted etter et plutselig og uforutsett uhell som gjør at båten ikke kan seiles eller kjøres videre.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 8,
+            "section": "5.1.3 nr. 1"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.redning.grense",
+          "label": "Redning og berging – grense",
+          "value": "Ingen særskilt beløpsgrense for dokumenterte, rimelige utgifter til båtredning.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 7,
+            "section": "5.1.3 Dekningstabell"
+          }
+        },
+        {
+          "key": "bat.redning.egenandel",
+          "label": "Redning og berging – egenandel",
+          "value": "750 kr.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 8,
+            "section": "5.1.3 Egenandeler"
+          },
+          "deductibleClassification": "coverage"
+        },
+        {
+          "key": "bat.opplagsutstyr.grense",
+          "label": "Opplagsutstyr – grense",
+          "value": "Inntil 20 000 kr ved tyveri av eller skade på opplagsutstyr.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 9,
+            "section": "5.2 Dekningstabell"
+          }
+        }
+      ]
+    },
+    "storebrand-bat-super": {
+      "bindings": {
+        "boat-pet:storebrand:båt": {
+          "effectiveFrom": "2024-09-01",
+          "termsNumber": "båt03",
+          "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+          "sha256": "e945049a6b9fba643d9804279690fc8e1dfbb1cd4a419a81503e58fd5b959baa"
+        }
+      },
+      "remove": [
+        "bat.redning.dekning"
+      ],
+      "rows": [
+        {
+          "key": "bat.redning.dekning",
+          "label": "Redning og berging",
+          "value": "Rimelige utgifter til slep til nærmeste trygge fortøyningssted etter et plutselig og uforutsett uhell som gjør at båten ikke kan seiles eller kjøres videre.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 8,
+            "section": "5.1.3 nr. 1"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.redning.grense",
+          "label": "Redning og berging – grense",
+          "value": "Ingen særskilt beløpsgrense for dokumenterte, rimelige utgifter til båtredning.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 7,
+            "section": "5.1.3 Dekningstabell"
+          }
+        },
+        {
+          "key": "bat.redning.egenandel",
+          "label": "Redning og berging – egenandel",
+          "value": "750 kr.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 8,
+            "section": "5.1.3 Egenandeler"
+          },
+          "deductibleClassification": "coverage"
+        },
+        {
+          "key": "bat.jolle.dekning",
+          "label": "Jolle og ekstra motor",
+          "value": "Dekker tilhørende jolle, gummibåt eller livbåt inntil 4 meter med utenbordsmotor inntil 10 hk.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 10,
+            "section": "5.3 nr. 5"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.jolle.grense",
+          "label": "Jolle og ekstra motor – grense",
+          "value": "Innenfor forsikringssummen.",
+          "source": {
+            "documentId": "boat-pet:storebrand:båt",
+            "filename": "storebrand-boat-terms.pdf",
+            "termsNumber": "båt03",
+            "effectiveFrom": "2024-09-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/batforsikring",
+            "page": 9,
+            "section": "5.3 Dekningstabell"
+          }
+        }
+      ]
+    },
+    "sparebank1-fremtind-bat-delkasko": {
+      "bindings": {
+        "boat-pet:sparebank1-fremtind:båt": {
+          "effectiveFrom": "2024-06-10",
+          "termsNumber": "PMO-380.000-004",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+          "sha256": "1364fc8bde39923ea1e9f0f36a9d9abf5596721958114b93485b5c730d70669f"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "bat.redning.dekning",
+          "label": "Redning og berging",
+          "value": "Utgifter til slep til nærmeste trygge fortøyningssted etter driftsstans eller tilfeldig og plutselig skade som gjør at båten ikke kan seiles eller kjøres videre.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 2,
+            "section": "Minikasko §2.5 Båtredning"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.redning.geografi",
+          "label": "Redning og berging – geografisk område",
+          "value": "Norden.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 1,
+            "section": "2 Hvor gjelder forsikringen?"
+          }
+        },
+        {
+          "key": "bat.redning.egenandel",
+          "label": "Redning og berging – egenandel",
+          "value": "750 kr ved assistanse.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 4,
+            "section": "Minikasko §4.2 Redning"
+          },
+          "deductibleClassification": "coverage"
+        }
+      ]
+    },
+    "sparebank1-fremtind-bat-kasko": {
+      "bindings": {
+        "boat-pet:sparebank1-fremtind:båt": {
+          "effectiveFrom": "2024-06-10",
+          "termsNumber": "PMO-380.000-004",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+          "sha256": "1364fc8bde39923ea1e9f0f36a9d9abf5596721958114b93485b5c730d70669f"
+        }
+      },
+      "remove": [
+        "bat.redning.dekning"
+      ],
+      "rows": [
+        {
+          "key": "bat.redning.dekning",
+          "label": "Redning og berging",
+          "value": "Utgifter til slep til nærmeste trygge fortøyningssted etter driftsstans eller tilfeldig og plutselig skade som gjør at båten ikke kan seiles eller kjøres videre.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 2,
+            "section": "Minikasko §2.5 Båtredning"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.redning.geografi",
+          "label": "Redning og berging – geografisk område",
+          "value": "Norden.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 1,
+            "section": "2 Hvor gjelder forsikringen?"
+          }
+        },
+        {
+          "key": "bat.redning.egenandel",
+          "label": "Redning og berging – egenandel",
+          "value": "750 kr ved assistanse.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 4,
+            "section": "Minikasko §4.2 Redning"
+          },
+          "deductibleClassification": "coverage"
+        },
+        {
+          "key": "bat.jolle.dekning",
+          "label": "Jolle og ekstra motor",
+          "value": "Dekker tilhørende jolle inntil 12 fot med utenbordsmotor inntil 15 hk.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 5,
+            "section": "Kasko §1.1"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.jolle.grense",
+          "label": "Jolle og ekstra motor – grense",
+          "value": "Inntil 50 000 kr.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 5,
+            "section": "Kasko §1.1"
+          }
+        }
+      ]
+    },
+    "sparebank1-fremtind-bat-toppkasko": {
+      "bindings": {
+        "boat-pet:sparebank1-fremtind:båt": {
+          "effectiveFrom": "2024-06-10",
+          "termsNumber": "PMO-380.000-004",
+          "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+          "sha256": "1364fc8bde39923ea1e9f0f36a9d9abf5596721958114b93485b5c730d70669f"
+        }
+      },
+      "remove": [
+        "bat.redning.dekning"
+      ],
+      "rows": [
+        {
+          "key": "bat.redning.dekning",
+          "label": "Redning og berging",
+          "value": "Utgifter til slep til nærmeste trygge fortøyningssted etter driftsstans eller tilfeldig og plutselig skade som gjør at båten ikke kan seiles eller kjøres videre.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 2,
+            "section": "Minikasko §2.5 Båtredning"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.redning.geografi",
+          "label": "Redning og berging – geografisk område",
+          "value": "Norden.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 1,
+            "section": "2 Hvor gjelder forsikringen?"
+          }
+        },
+        {
+          "key": "bat.redning.egenandel",
+          "label": "Redning og berging – egenandel",
+          "value": "750 kr ved assistanse.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 4,
+            "section": "Minikasko §4.2 Redning"
+          },
+          "deductibleClassification": "coverage"
+        },
+        {
+          "key": "bat.jolle.dekning",
+          "label": "Jolle og ekstra motor",
+          "value": "Dekker tilhørende jolle inntil 12 fot med utenbordsmotor inntil 15 hk.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 5,
+            "section": "Kasko §1.1"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "bat.jolle.grense",
+          "label": "Jolle og ekstra motor – grense",
+          "value": "Inntil 50 000 kr.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 5,
+            "section": "Kasko §1.1"
+          }
+        },
+        {
+          "key": "bat.opplagsutstyr.dekning",
+          "label": "Opplagsutstyr",
+          "value": "Skade på stativ, presenning og krybbe.",
+          "source": {
+            "documentId": "boat-pet:sparebank1-fremtind:båt",
+            "filename": "fremtind-boat-terms.pdf",
+            "termsNumber": "PMO-380.000-004",
+            "effectiveFrom": "2024-06-10",
+            "company": "Fremtind",
+            "agreementScope": "ordinary",
+            "url": "https://www.sparebank1.no/nb/bank/privat/forsikring/batforsikring.html",
+            "page": 7,
+            "section": "Toppkasko §2.4"
+          },
+          "coverageAvailability": "included"
+        }
+      ]
+    },
+    "if-campingvogn-delkasko": {
+      "bindings": {
+        "vehicle:if-Vilkaar-4103ea25.pdf": {
+          "effectiveFrom": "2024-03",
+          "termsNumber": "MOT2-2",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+          "sha256": "57a0966a974bddc588454e8c829ad02543649c5e577c3fec5f804b8bf2d81987"
+        },
+        "vehicle:if-Vilkaar-df7c20ba.pdf": {
+          "effectiveFrom": "2025-06",
+          "termsNumber": "GEN2-9",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+          "sha256": "b74e00edd2b18560d77a4ec9ef089a393ced723b5ec619186fb0678e96fde046"
+        },
+        "vehicle:if-campingvognforsikring.html": {
+          "effectiveFrom": "",
+          "termsNumber": "",
+          "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+          "sha256": "aad3994299dd6f12a8603e98a17d9a4d7a528f1443bd47f9250aaf6cc8be8943"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "campingvogn.rettshjelp.grense",
+          "label": "Rettshjelp – forsikringssum",
+          "value": "Inntil 100 000 kr per tvist. Inntil 250 000 kr samlet når minst tre parter står på sikredes side og de faktiske og juridiske problemstillingene i det vesentlige er de samme. En annen forsikringssum i kjøretøyvilkåret går foran.",
+          "source": {
+            "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 25,
+            "section": "12.5"
+          },
+          "qualificationSource": {
+            "documentId": "vehicle:if-Vilkaar-df7c20ba.pdf",
+            "filename": "if-Vilkaar-df7c20ba.pdf",
+            "termsNumber": "GEN2-9",
+            "effectiveFrom": "2025-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+            "page": 11,
+            "section": "23.3 Forsikringssum"
+          }
+        },
+        {
+          "key": "campingvogn.redning.dekning",
+          "label": "Redning",
+          "value": "Veihjelp ved blant annet skade, tyveri eller tekniske problemer. Omfatter blant annet berging, tauing, hjemtransport eller transport av reservedeler etter vilkåret.",
+          "source": {
+            "documentId": "vehicle:if-campingvognforsikring.html",
+            "filename": "if-campingvognforsikring.html",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+            "page": 1,
+            "section": "Dekningsoversikt – Veihjelp"
+          },
+          "coverageAvailability": "included",
+          "qualificationSource": {
+            "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 5,
+            "section": "4.7 Veihjelp, fortsetter side 6"
+          }
+        },
+        {
+          "key": "campingvogn.redning.egenandel",
+          "label": "Redning – egenandel",
+          "value": "750 kr.",
+          "source": {
+            "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 19,
+            "section": "8.5.6 Veihjelp"
+          },
+          "deductibleClassification": "coverage"
+        },
+        {
+          "key": "campingvogn.losore.grense",
+          "label": "Løsøre og bagasje – grense",
+          "value": "Inntil 40 000 kr samlet for fastmontert tilleggsutstyr og bagasje, begrenset til 50 % av campingvognens gjenanskaffelsesverdi. Høyere sum kan avtales.",
+          "source": {
+            "documentId": "vehicle:if-Vilkaar-4103ea25.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 3,
+            "section": "3.4"
+          },
+          "qualificationSource": {
+            "documentId": "vehicle:if-campingvognforsikring.html",
+            "filename": "if-campingvognforsikring.html",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+            "page": 1,
+            "section": "Dekningsoversikt – Fastmontert tilleggsutstyr og bagasje"
+          }
+        },
+        {
+          "key": "campingvogn.fortelt.dekning",
+          "label": "Fortelt og tilbygg",
+          "value": "Platting, spikertelt og levegger er inkludert fra Kasko.",
+          "source": {
+            "documentId": "vehicle:if-campingvognforsikring.html",
+            "filename": "if-campingvognforsikring.html",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+            "page": 1,
+            "section": "Dekningsoversikt – Platting, spikertelt og levegger"
+          },
+          "coverageAvailability": "unavailable"
+        }
+      ]
+    },
+    "if-campingvogn-kasko": {
+      "bindings": {
+        "vehicle:if-campingvognforsikring.html": {
+          "effectiveFrom": "",
+          "termsNumber": "",
+          "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+          "sha256": "aad3994299dd6f12a8603e98a17d9a4d7a528f1443bd47f9250aaf6cc8be8943"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "campingvogn.fortelt.dekning",
+          "label": "Fortelt og tilbygg",
+          "value": "Platting, spikertelt og levegger som tilhører campingvognen er inkludert.",
+          "source": {
+            "documentId": "vehicle:if-campingvognforsikring.html",
+            "filename": "if-campingvognforsikring.html",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+            "page": 1,
+            "section": "Dekningsoversikt – Platting, spikertelt og levegger"
+          },
+          "coverageAvailability": "included",
+          "replacesBase": true
+        },
+        {
+          "key": "campingvogn.fortelt.grense",
+          "label": "Fortelt og tilbygg – grense",
+          "value": "Inntil 40 000 kr. Høyere sum kan avtales.",
+          "source": {
+            "documentId": "vehicle:if-campingvognforsikring.html",
+            "filename": "if-campingvognforsikring.html",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+            "page": 1,
+            "section": "Dekningsoversikt – Platting, spikertelt og levegger"
+          }
+        }
+      ]
+    },
+    "if-campingvogn-super": {
+      "bindings": {
+        "vehicle:if-SV707.pdf": {
+          "effectiveFrom": "2022-06",
+          "termsNumber": "SV707",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+          "sha256": "a4e2c6ecafc88fafbb5a0e194a373c4e2953b920d2947582352bdf845a03154e"
+        },
+        "vehicle:if-campingvognforsikring.html": {
+          "effectiveFrom": "",
+          "termsNumber": "",
+          "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+          "sha256": "aad3994299dd6f12a8603e98a17d9a4d7a528f1443bd47f9250aaf6cc8be8943"
+        }
+      },
+      "remove": [
+        "campingvogn.losore.grense"
+      ],
+      "rows": [
+        {
+          "key": "campingvogn.losore.grense",
+          "label": "Løsøre og bagasje – grense",
+          "value": "Inntil 100 000 kr samlet for tilleggsutstyr og bagasje i campingvognen.",
+          "source": {
+            "documentId": "vehicle:if-SV707.pdf",
+            "filename": "if-SV707.pdf",
+            "termsNumber": "SV707",
+            "effectiveFrom": "2022-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+            "page": 3,
+            "section": "3.3.3 Utvidet dekning for tilleggsutstyr og bagasje"
+          },
+          "replacesBase": true
+        },
+        {
+          "key": "campingvogn.fortelt.grense",
+          "label": "Fortelt og tilbygg – grense",
+          "value": "Inntil 40 000 kr. Høyere sum kan avtales.",
+          "source": {
+            "documentId": "vehicle:if-SV707.pdf",
+            "filename": "if-SV707.pdf",
+            "termsNumber": "SV707",
+            "effectiveFrom": "2022-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+            "page": 2,
+            "section": "1 Hva er forsikret"
+          },
+          "replacesBase": true,
+          "qualificationSource": {
+            "documentId": "vehicle:if-campingvognforsikring.html",
+            "filename": "if-campingvognforsikring.html",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://www.if.no/privat/forsikring/kjoretoy/campingvognforsikring",
+            "page": 1,
+            "section": "Dekningsoversikt – Platting, spikertelt og levegger"
+          }
+        },
+        {
+          "key": "campingvogn.redning.grense",
+          "label": "Redning – grense",
+          "value": "Inntil 5 000 kr samlet for å frigjøre campingvognen fra bygningskonstruksjon og lignende og transportere den til kjørbar vei etter en dekket skade.",
+          "source": {
+            "documentId": "vehicle:if-SV707.pdf",
+            "filename": "if-SV707.pdf",
+            "termsNumber": "SV707",
+            "effectiveFrom": "2022-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+            "page": 2,
+            "section": "2.1 Transport etter skade"
+          }
+        }
+      ]
+    },
+    "if-bobil-ansvar": {
+      "bindings": {
+        "mcb:if:bobil:if-MOT2-2.pdf": {
+          "effectiveFrom": "2024-03",
+          "termsNumber": "MOT2-2",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+          "sha256": "57a0966a974bddc588454e8c829ad02543649c5e577c3fec5f804b8bf2d81987"
+        },
+        "vehicle:if-Vilkaar-df7c20ba.pdf": {
+          "effectiveFrom": "2025-06",
+          "termsNumber": "GEN2-9",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+          "sha256": "b74e00edd2b18560d77a4ec9ef089a393ced723b5ec619186fb0678e96fde046"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "rettshjelp.grense",
+          "label": "Rettshjelp – forsikringssum",
+          "value": "Inntil 100 000 kr per tvist. Inntil 250 000 kr samlet når minst tre parter står på sikredes side og de faktiske og juridiske problemstillingene i det vesentlige er de samme. En annen forsikringssum i kjøretøyvilkåret går foran.",
+          "source": {
+            "documentId": "mcb:if:bobil:if-MOT2-2.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 25,
+            "section": "12.5"
+          },
+          "qualificationSource": {
+            "documentId": "vehicle:if-Vilkaar-df7c20ba.pdf",
+            "filename": "if-Vilkaar-df7c20ba.pdf",
+            "termsNumber": "GEN2-9",
+            "effectiveFrom": "2025-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+            "page": 11,
+            "section": "23.3 Forsikringssum"
+          }
+        }
+      ]
+    },
+    "if-bobil-delkasko": {
+      "bindings": {
+        "mcb:if:bobil:if-MOT2-2.pdf": {
+          "effectiveFrom": "2024-03",
+          "termsNumber": "MOT2-2",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+          "sha256": "57a0966a974bddc588454e8c829ad02543649c5e577c3fec5f804b8bf2d81987"
+        },
+        "vehicle:if-Vilkaar-df7c20ba.pdf": {
+          "effectiveFrom": "2025-06",
+          "termsNumber": "GEN2-9",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+          "sha256": "b74e00edd2b18560d77a4ec9ef089a393ced723b5ec619186fb0678e96fde046"
+        },
+        "mcb:if:bobil:if-SV707.pdf": {
+          "effectiveFrom": "2022-06",
+          "termsNumber": "SV707",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+          "sha256": "a4e2c6ecafc88fafbb5a0e194a373c4e2953b920d2947582352bdf845a03154e"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "rettshjelp.grense",
+          "label": "Rettshjelp – forsikringssum",
+          "value": "Inntil 100 000 kr per tvist. Inntil 250 000 kr samlet når minst tre parter står på sikredes side og de faktiske og juridiske problemstillingene i det vesentlige er de samme. En annen forsikringssum i kjøretøyvilkåret går foran.",
+          "source": {
+            "documentId": "mcb:if:bobil:if-MOT2-2.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 25,
+            "section": "12.5"
+          },
+          "qualificationSource": {
+            "documentId": "vehicle:if-Vilkaar-df7c20ba.pdf",
+            "filename": "if-Vilkaar-df7c20ba.pdf",
+            "termsNumber": "GEN2-9",
+            "effectiveFrom": "2025-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+            "page": 11,
+            "section": "23.3 Forsikringssum"
+          }
+        },
+        {
+          "key": "bobil.utleie.egenandel",
+          "label": "Utleie – egenandel",
+          "value": "Avtalt egenandel øker med 10 000 kr ved skade mens bobilen er utleid dersom utleien ikke var avtalt med If på forhånd.",
+          "source": {
+            "documentId": "mcb:if:bobil:if-SV707.pdf",
+            "filename": "if-SV707.pdf",
+            "termsNumber": "SV707",
+            "effectiveFrom": "2022-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+            "page": 5,
+            "section": "6.2.1 Egenandel ved utleie"
+          },
+          "deductibleClassification": "coverage"
+        }
+      ]
+    },
+    "if-bobil-kasko": {
+      "bindings": {
+        "mcb:if:bobil:if-MOT2-2.pdf": {
+          "effectiveFrom": "2024-03",
+          "termsNumber": "MOT2-2",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+          "sha256": "57a0966a974bddc588454e8c829ad02543649c5e577c3fec5f804b8bf2d81987"
+        },
+        "vehicle:if-Vilkaar-df7c20ba.pdf": {
+          "effectiveFrom": "2025-06",
+          "termsNumber": "GEN2-9",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+          "sha256": "b74e00edd2b18560d77a4ec9ef089a393ced723b5ec619186fb0678e96fde046"
+        },
+        "mcb:if:bobil:if-SV707.pdf": {
+          "effectiveFrom": "2022-06",
+          "termsNumber": "SV707",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+          "sha256": "a4e2c6ecafc88fafbb5a0e194a373c4e2953b920d2947582352bdf845a03154e"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "rettshjelp.grense",
+          "label": "Rettshjelp – forsikringssum",
+          "value": "Inntil 100 000 kr per tvist. Inntil 250 000 kr samlet når minst tre parter står på sikredes side og de faktiske og juridiske problemstillingene i det vesentlige er de samme. En annen forsikringssum i kjøretøyvilkåret går foran.",
+          "source": {
+            "documentId": "mcb:if:bobil:if-MOT2-2.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 25,
+            "section": "12.5"
+          },
+          "qualificationSource": {
+            "documentId": "vehicle:if-Vilkaar-df7c20ba.pdf",
+            "filename": "if-Vilkaar-df7c20ba.pdf",
+            "termsNumber": "GEN2-9",
+            "effectiveFrom": "2025-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+            "page": 11,
+            "section": "23.3 Forsikringssum"
+          }
+        },
+        {
+          "key": "bobil.utleie.egenandel",
+          "label": "Utleie – egenandel",
+          "value": "Avtalt egenandel øker med 10 000 kr ved skade mens bobilen er utleid dersom utleien ikke var avtalt med If på forhånd.",
+          "source": {
+            "documentId": "mcb:if:bobil:if-SV707.pdf",
+            "filename": "if-SV707.pdf",
+            "termsNumber": "SV707",
+            "effectiveFrom": "2022-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+            "page": 5,
+            "section": "6.2.1 Egenandel ved utleie"
+          },
+          "deductibleClassification": "coverage"
+        }
+      ]
+    },
+    "if-bobil-super": {
+      "bindings": {
+        "mcb:if:bobil:if-MOT2-2.pdf": {
+          "effectiveFrom": "2024-03",
+          "termsNumber": "MOT2-2",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+          "sha256": "57a0966a974bddc588454e8c829ad02543649c5e577c3fec5f804b8bf2d81987"
+        },
+        "vehicle:if-Vilkaar-df7c20ba.pdf": {
+          "effectiveFrom": "2025-06",
+          "termsNumber": "GEN2-9",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+          "sha256": "b74e00edd2b18560d77a4ec9ef089a393ced723b5ec619186fb0678e96fde046"
+        },
+        "mcb:if:bobil:if-SV707.pdf": {
+          "effectiveFrom": "2022-06",
+          "termsNumber": "SV707",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+          "sha256": "a4e2c6ecafc88fafbb5a0e194a373c4e2953b920d2947582352bdf845a03154e"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "rettshjelp.grense",
+          "label": "Rettshjelp – forsikringssum",
+          "value": "Inntil 100 000 kr per tvist. Inntil 250 000 kr samlet når minst tre parter står på sikredes side og de faktiske og juridiske problemstillingene i det vesentlige er de samme. En annen forsikringssum i kjøretøyvilkåret går foran.",
+          "source": {
+            "documentId": "mcb:if:bobil:if-MOT2-2.pdf",
+            "filename": "if-Vilkaar-4103ea25.pdf",
+            "termsNumber": "MOT2-2",
+            "effectiveFrom": "2024-03",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kj%C3%B8ret%C3%B8yforsikring",
+            "page": 25,
+            "section": "12.5"
+          },
+          "qualificationSource": {
+            "documentId": "vehicle:if-Vilkaar-df7c20ba.pdf",
+            "filename": "if-Vilkaar-df7c20ba.pdf",
+            "termsNumber": "GEN2-9",
+            "effectiveFrom": "2025-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r",
+            "page": 11,
+            "section": "23.3 Forsikringssum"
+          }
+        },
+        {
+          "key": "bobil.utleie.egenandel",
+          "label": "Utleie – egenandel",
+          "value": "Avtalt egenandel øker med 10 000 kr ved skade mens bobilen er utleid dersom utleien ikke var avtalt med If på forhånd.",
+          "source": {
+            "documentId": "mcb:if:bobil:if-SV707.pdf",
+            "filename": "if-SV707.pdf",
+            "termsNumber": "SV707",
+            "effectiveFrom": "2022-06",
+            "company": "If",
+            "agreementScope": "ordinary",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=SV707",
+            "page": 5,
+            "section": "6.2.1 Egenandel ved utleie"
+          },
+          "deductibleClassification": "coverage"
+        }
+      ]
+    },
+    "storebrand-tilhenger-brann-og-tyveri": {
+      "bindings": {
+        "vehicle:storebrand-vilkar-campingvogn-og-tilhenger.pdf": {
+          "effectiveFrom": "2026-03-01",
+          "termsNumber": "camp02",
+          "url": "https://www.storebrand.no/privat/forsikring/campingvognforsikring/_/attachment/inline/047a8396-0549-4f55-8afe-a20fe3cc42d6:af61e7bae3bcc2f6f5300195d35d576c461f0b33/vilkar-campingvogn-og-tilhenger.pdf",
+          "sha256": "fae736d8fb37b41b2c9e09f9c0de99760691023a3bd8c4d5d6ee520957e883c8"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "tilhenger.redning.egenandel",
+          "label": "Redning – egenandel",
+          "value": "750 kr.",
+          "source": {
+            "documentId": "vehicle:storebrand-vilkar-campingvogn-og-tilhenger.pdf",
+            "filename": "storebrand-vilkar-campingvogn-og-tilhenger.pdf",
+            "termsNumber": "camp02",
+            "effectiveFrom": "2026-03-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/campingvognforsikring/_/attachment/inline/047a8396-0549-4f55-8afe-a20fe3cc42d6:af61e7bae3bcc2f6f5300195d35d576c461f0b33/vilkar-campingvogn-og-tilhenger.pdf",
+            "page": 6,
+            "section": "6.1.3 Veihjelp – egenandeler"
+          },
+          "deductibleClassification": "coverage"
+        }
+      ]
+    },
+    "storebrand-tilhenger-kasko": {
+      "bindings": {
+        "vehicle:storebrand-vilkar-campingvogn-og-tilhenger.pdf": {
+          "effectiveFrom": "2026-03-01",
+          "termsNumber": "camp02",
+          "url": "https://www.storebrand.no/privat/forsikring/campingvognforsikring/_/attachment/inline/047a8396-0549-4f55-8afe-a20fe3cc42d6:af61e7bae3bcc2f6f5300195d35d576c461f0b33/vilkar-campingvogn-og-tilhenger.pdf",
+          "sha256": "fae736d8fb37b41b2c9e09f9c0de99760691023a3bd8c4d5d6ee520957e883c8"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "tilhenger.redning.egenandel",
+          "label": "Redning – egenandel",
+          "value": "750 kr.",
+          "source": {
+            "documentId": "vehicle:storebrand-vilkar-campingvogn-og-tilhenger.pdf",
+            "filename": "storebrand-vilkar-campingvogn-og-tilhenger.pdf",
+            "termsNumber": "camp02",
+            "effectiveFrom": "2026-03-01",
+            "company": "Storebrand",
+            "agreementScope": "ordinary",
+            "url": "https://www.storebrand.no/privat/forsikring/campingvognforsikring/_/attachment/inline/047a8396-0549-4f55-8afe-a20fe3cc42d6:af61e7bae3bcc2f6f5300195d35d576c461f0b33/vilkar-campingvogn-og-tilhenger.pdf",
+            "page": 6,
+            "section": "6.1.3 Veihjelp – egenandeler"
+          },
+          "deductibleClassification": "coverage"
+        }
+      ]
+    },
+    "watercircles-reise-standard": {
+      "bindings": {
+        "watercircles-reise": {
+          "effectiveFrom": "2026-08-01",
+          "termsNumber": "WtCREI-2.17",
+          "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+          "sha256": "70291d41311f5d5e5f407866b91ed1eb0291a36e1cfc1ea190aa127261756128"
+        }
+      },
+      "remove": [
+        "reise.bagasje.per_gjenstand"
+      ],
+      "rows": [
+        {
+          "key": "reise.bagasje.kontanter",
+          "label": "Kontanter",
+          "value": "Inntil 3 000 kr per skadetilfelle.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 a"
+          }
+        },
+        {
+          "key": "reise.bagasje.pass_billetter",
+          "label": "Pass og reisedokumenter",
+          "value": "Inntil 10 000 kr per person og 50 000 kr per familie.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 c"
+          }
+        },
+        {
+          "key": "reise.bagasje.nokler",
+          "label": "Nøkler",
+          "value": "Inntil 5 000 kr per skadetilfelle.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5, siste punkt g – Nøkler"
+          }
+        },
+        {
+          "key": "reise.bagasje.per_gjenstand",
+          "label": "Reisegods – enkeltgjenstand",
+          "value": "Inntil 10 000 kr per skadetilfelle for andre enkeltgjenstander enn verdisaker etter punkt 4.6.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 g – Andre enkeltgjenstander"
+          }
+        },
+        {
+          "key": "reise.bagasje.verdisaker",
+          "label": "Verdigjenstander samlet",
+          "value": "Inntil 15 000 kr per verdigjenstand. Samlet grense er 150 000 kr per skadetilfelle og 300 000 kr per familie. Mobiltelefon har egen grense.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 d–f og 4.6"
+          }
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement",
+          "label": "Tapt overnatting og arrangement",
+          "value": "Erstatning for tapt hotell og arrangement ved forsinkelse er del av Reise Elite.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 6,
+            "section": "Innledning til 3.7, tillegg for Reise Elite"
+          },
+          "coverageAvailability": "unavailable"
+        },
+        {
+          "key": "reise.leiebil.egenandel",
+          "label": "Egenandel leid kjøretøy",
+          "value": "Refusjon av egenandel ved skade på eller tyveri av leiebil er del av Reise Elite.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 4,
+            "section": "1.10 Egenandel leiebil på feriereise"
+          },
+          "coverageAvailability": "unavailable"
+        }
+      ]
+    },
+    "watercircles-reise-elite": {
+      "bindings": {
+        "watercircles-reise": {
+          "effectiveFrom": "2026-08-01",
+          "termsNumber": "WtCREI-2.17",
+          "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+          "sha256": "70291d41311f5d5e5f407866b91ed1eb0291a36e1cfc1ea190aa127261756128"
+        }
+      },
+      "remove": [
+        "reise.bagasje.per_gjenstand"
+      ],
+      "rows": [
+        {
+          "key": "reise.bagasje.kontanter",
+          "label": "Kontanter",
+          "value": "Inntil 10 000 kr per skadetilfelle.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 a"
+          }
+        },
+        {
+          "key": "reise.bagasje.pass_billetter",
+          "label": "Pass og reisedokumenter",
+          "value": "Inntil 15 000 kr per skadetilfelle og 75 000 kr per familie.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 c"
+          }
+        },
+        {
+          "key": "reise.bagasje.nokler",
+          "label": "Nøkler",
+          "value": "Inntil 5 000 kr per skadetilfelle.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5, siste punkt g – Nøkler"
+          }
+        },
+        {
+          "key": "reise.bagasje.per_gjenstand",
+          "label": "Reisegods – enkeltgjenstand",
+          "value": "Inntil 20 000 kr per skadetilfelle for andre enkeltgjenstander enn verdisaker etter punkt 4.6.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 g – Andre enkeltgjenstander"
+          }
+        },
+        {
+          "key": "reise.bagasje.verdisaker",
+          "label": "Verdigjenstander samlet",
+          "value": "Inntil 40 000 kr per verdigjenstand. Samlet grense er 150 000 kr per skadetilfelle og 300 000 kr per familie. Mobiltelefon har egen grense.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 8,
+            "section": "4.5 d–f og 4.6"
+          }
+        },
+        {
+          "key": "reise.forsinkelse.hotell_arrangement",
+          "label": "Tapt overnatting og arrangement",
+          "value": "Inntil 5 000 kr per person for én betalt hotellovernatting og billetter til ett forhåndsbetalt arrangement når du ankommer reisemålet minst åtte timer forsinket av en årsak som omfattes. Jobbreiser, refunderbare utgifter og billetter som er overdratt til andre, er unntatt.",
+          "source": {
+            "documentId": "watercircles-reise",
+            "filename": "watercircles-reise.pdf",
+            "termsNumber": "WtCREI-2.17",
+            "effectiveFrom": "2026-08-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2026/06/WaterCircles-Reise-vilkar-WtCREI-2.17-01.08.2026.pdf",
+            "page": 7,
+            "section": "3.7 Tapte hotellutgifter og arrangement ved forsinket reise"
+          },
+          "coverageAvailability": "included"
+        }
+      ]
+    },
+    "landkreditt-reise": {
+      "bindings": {
+        "landkreditt-reise": {
+          "effectiveFrom": "2026-05-01",
+          "termsNumber": "",
+          "url": "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-reise.pdf",
+          "sha256": "40de3aee9b92e86e7362d1dad246887f53c9feb2ad2ee2c49b97123f02152e88"
+        }
+      },
+      "remove": [
+        "reise.leiebil.vilkar"
+      ],
+      "rows": [
+        {
+          "key": "reise.bagasje.kontanter",
+          "label": "Kontanter",
+          "value": "Inntil 5 000 kr per sikret. Tilgodelapper, gavekort og verdipapirer er unntatt.",
+          "source": {
+            "documentId": "landkreditt-reise",
+            "filename": "landkreditt-reise.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026-05-01",
+            "company": "Landkreditt",
+            "agreementScope": "ordinary",
+            "url": "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-reise.pdf",
+            "page": 5,
+            "section": "4.2 e og 4.3 b"
+          }
+        },
+        {
+          "key": "reise.bagasje.pass_billetter",
+          "label": "Pass og reisedokumenter",
+          "value": "Inntil 20 000 kr per sikret for pass, reisedokumenter og andre utgifter ved tap av disse.",
+          "source": {
+            "documentId": "landkreditt-reise",
+            "filename": "landkreditt-reise.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026-05-01",
+            "company": "Landkreditt",
+            "agreementScope": "ordinary",
+            "url": "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-reise.pdf",
+            "page": 5,
+            "section": "4.3 c"
+          }
+        },
+        {
+          "key": "reise.bagasje.nokler",
+          "label": "Nøkler",
+          "value": "Inntil 4 000 kr ved tap av nøkler.",
+          "source": {
+            "documentId": "landkreditt-reise",
+            "filename": "landkreditt-reise.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026-05-01",
+            "company": "Landkreditt",
+            "agreementScope": "ordinary",
+            "url": "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-reise.pdf",
+            "page": 5,
+            "section": "4.3 d"
+          }
+        },
+        {
+          "key": "reise.leiebil.vilkar",
+          "label": "Leiebil – vilkår",
+          "value": "Kasko, gyldig førerkort, leiekontrakt med bilutleiefirma og faktura kreves. Kjøring utenfor offentlig eller privat vei, trening og gjennomføring av hastighetsløp, leasing, helårsleie, bilpool, leiebil ved flytting eller hjemkjøring av varer og erstatningsbil mens egen bil står på verksted er unntatt.",
+          "source": {
+            "documentId": "landkreditt-reise",
+            "filename": "landkreditt-reise.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026-05-01",
+            "company": "Landkreditt",
+            "agreementScope": "ordinary",
+            "url": "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-reise.pdf",
+            "page": 8,
+            "section": "7.1–7.3"
+          }
+        }
+      ]
+    },
+    "klp-reise-maks": {
+      "bindings": {
+        "klp-reise-maks": {
+          "effectiveFrom": "",
+          "termsNumber": "",
+          "url": "https://www.klp.no/media/forsikring/Vilkar-Reise-Maks.pdf",
+          "sha256": "7e8f7cfe8a86bf83a7d0a26590fb080c908246a41807c1221c750729d4f9681b"
+        }
+      },
+      "remove": [
+        "reise.leiebil.vilkar"
+      ],
+      "rows": [
+        {
+          "key": "reise.leiebil.vilkar",
+          "label": "Leiebil – vilkår",
+          "value": "Kasko, skriftlig leieavtale og krav fra godkjent utleiefirma kreves. Andre kjøretøy enn bil og motorsykkel er unntatt. Egenandel ved privatleie, leasing, bildelering eller bilkollektiv, flytting eller hjemkjøring av varer er også unntatt.",
+          "source": {
+            "documentId": "klp-reise-maks",
+            "filename": "klp-reise-maks.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "company": "KLP",
+            "agreementScope": "ordinary",
+            "url": "https://www.klp.no/media/forsikring/Vilkar-Reise-Maks.pdf",
+            "page": 6,
+            "section": "Egenandel leiebil – hva som dekkes og ikke dekkes"
+          }
+        }
+      ]
+    },
+    "person:klp-person-ufore": {
+      "bindings": {
+        "person:klp-person-ufore": {
+          "effectiveFrom": "",
+          "termsNumber": "",
+          "url": "https://www.klp.no/media/forsikring/Person.pdf",
+          "sha256": "fcc376aa9893e93eefc16cd6f51edb4cf5172c06e5f30a812e8067852eea9578",
+          "agreementScope": "ordinary"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.ufore.pensjon.inntektsreduksjon",
+          "label": "Reduksjon av uførepensjon ved annen inntekt",
+          "value": "KLP kan redusere uførepensjonen hvis summen av uførepensjon fra private forsikringer, trygd og lønn under sykdom overstiger 90 % av gjennomsnittlig arbeidsinntekt de siste tre årene før arbeidsuførheten. KLP reduserer ikke utbetalingen hvis uførepensjonen fra private forsikringer er under 10 000 kr i måneden.",
+          "source": {
+            "documentId": "person:klp-person-ufore",
+            "section": "Reduksjon av utbetaling i forhold til inntekt",
+            "page": 7,
+            "filename": "klp-person-person.pdf",
+            "company": "KLP",
+            "url": "https://www.klp.no/media/forsikring/Person.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "",
+            "agreementScope": "ordinary"
+          }
+        }
+      ]
+    },
+    "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms": {
+      "bindings": {
+        "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms": {
+          "effectiveFrom": "2026",
+          "termsNumber": "",
+          "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_medlem-2026.pdf",
+          "sha256": "8b23f1943052b743fb358f58cc8ab9d2da5ba634e4b219ba7fc690b011603d95",
+          "agreementScope": "utdanningsforbundet",
+          "productVersion": "2026"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.sykdom.opphor.dod",
+          "label": "Opphør ved medlemmets død",
+          "value": "Medlemmets dekning opphører når dødsfallet er registrert hos Utdanningsforbundet.",
+          "source": {
+            "documentId": "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms",
+            "section": "Punkt 7 – Forsikringens opphør",
+            "page": 5,
+            "filename": "udf-kritisk-sykdom-medlem.pdf",
+            "company": "Tryg",
+            "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_medlem-2026.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026",
+            "agreementScope": "utdanningsforbundet",
+            "version": "2026"
+          }
+        },
+        {
+          "key": "person.sykdom.opphor.utmelding",
+          "label": "Opphør ved utmelding",
+          "value": "Medlemmets dekning opphører to måneder etter utmeldingsdatoen dersom medlemskapet i Utdanningsforbundet opphører.",
+          "source": {
+            "documentId": "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms",
+            "section": "Punkt 7 – Forsikringens opphør",
+            "page": 5,
+            "filename": "udf-kritisk-sykdom-medlem.pdf",
+            "company": "Tryg",
+            "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_medlem-2026.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026",
+            "agreementScope": "utdanningsforbundet",
+            "version": "2026"
+          }
+        },
+        {
+          "key": "person.sykdom.opphor.utbetaling",
+          "label": "Opphør etter utbetaling",
+          "value": "Forsikringen opphører ved utbetaling av forsikringssummen.",
+          "source": {
+            "documentId": "tryg-utdanningsforbundet-kritisk-sykdom-medlem-terms",
+            "section": "Punkt 7 – Forsikringens opphør",
+            "page": 5,
+            "filename": "udf-kritisk-sykdom-medlem.pdf",
+            "company": "Tryg",
+            "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_medlem-2026.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026",
+            "agreementScope": "utdanningsforbundet",
+            "version": "2026"
+          }
+        }
+      ]
+    },
+    "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms": {
+      "bindings": {
+        "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms": {
+          "effectiveFrom": "2026",
+          "termsNumber": "",
+          "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf",
+          "sha256": "34de32384eca3038bc33c7df83badea5ebf5729825f3fbe010e2e2b6e5ae7e5e",
+          "agreementScope": "utdanningsforbundet",
+          "productVersion": "2026"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.sykdom.opphor.dod",
+          "label": "Opphør ved medlemmets død",
+          "value": "Dekningen for ektefelle eller samboer opphører to måneder etter at meldingen om medlemmets dødsfall er registrert hos Utdanningsforbundet.",
+          "source": {
+            "documentId": "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms",
+            "section": "Punkt 7 – Forsikringens opphør",
+            "page": 5,
+            "filename": "udf-kritisk-sykdom-ektefelle.pdf",
+            "company": "Tryg",
+            "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026",
+            "agreementScope": "utdanningsforbundet",
+            "version": "2026"
+          }
+        },
+        {
+          "key": "person.sykdom.opphor.utmelding",
+          "label": "Opphør ved utmelding",
+          "value": "Dekningen for ektefelle eller samboer opphører to måneder etter medlemmets utmeldingsdato dersom medlemskapet i Utdanningsforbundet opphører.",
+          "source": {
+            "documentId": "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms",
+            "section": "Punkt 7 – Forsikringens opphør",
+            "page": 5,
+            "filename": "udf-kritisk-sykdom-ektefelle.pdf",
+            "company": "Tryg",
+            "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026",
+            "agreementScope": "utdanningsforbundet",
+            "version": "2026"
+          }
+        },
+        {
+          "key": "person.sykdom.opphor.utbetaling",
+          "label": "Opphør etter utbetaling",
+          "value": "Forsikringen opphører ved utbetaling av forsikringssummen.",
+          "source": {
+            "documentId": "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms",
+            "section": "Punkt 7 – Forsikringens opphør",
+            "page": 5,
+            "filename": "udf-kritisk-sykdom-ektefelle.pdf",
+            "company": "Tryg",
+            "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026",
+            "agreementScope": "utdanningsforbundet",
+            "version": "2026"
+          }
+        },
+        {
+          "key": "person.sykdom.opphor.samlivsbrudd",
+          "label": "Opphør ved separasjon, skilsmisse eller samboerbrudd",
+          "value": "Dekningen opphører ved utløpet av perioden det er betalt premie for. Ved separasjon eller skilsmisse regnes bruddet fra dagen det er avsagt dom eller gitt bevilling. Ved samboerbrudd regnes bruddet fra dagen adresseendringen skjer i Folkeregisteret.",
+          "source": {
+            "documentId": "tryg-utdanningsforbundet-kritisk-sykdom-ektefelle-terms",
+            "section": "Punkt 7 – Forsikringens opphør",
+            "page": 5,
+            "filename": "udf-kritisk-sykdom-ektefelle.pdf",
+            "company": "Tryg",
+            "url": "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/kritisk-sykdom_ektefelle-2026.pdf",
+            "termsNumber": "",
+            "effectiveFrom": "2026",
+            "agreementScope": "utdanningsforbundet",
+            "version": "2026"
+          }
+        }
+      ]
+    },
+    "person:if-person-kritisk:tillegg:uf-rhet-som-f-lge-av-kritisk-sykdom": {
+      "bindings": {
+        "person:if-person-kritisk": {
+          "effectiveFrom": "2025-08-23",
+          "termsNumber": "KRS1-4",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+          "sha256": "90d54001856930103422d732d0c74e5d8b4abbf8909d8b8ee9898bce6b09b8e7",
+          "agreementScope": "ordinary",
+          "productVersion": "KRS1-4"
+        }
+      },
+      "remove": [
+        "person.sykdom.ufore"
+      ],
+      "rows": [
+        {
+          "key": "person.sykdom.ufore",
+          "label": "Uførekapital ved kritisk sykdom",
+          "value": "Hvis uføredekningen er avtalt, kan et forsikringstilfelle som omfattes av kritisk sykdom-vilkåret gi engangsutbetaling. Forsikrede må på grunn av forsikringstilfellet ha vært minst 40 % sammenhengende arbeidsufør i to år, og uførheten må vurderes som varig. Som hovedregel må alle vilkårene være oppfylt i forsikringstiden.",
+          "source": {
+            "documentId": "person:if-person-kritisk",
+            "section": "Punkt 4.2 – Uførhet som følge av kritisk sykdom",
+            "page": 4,
+            "filename": "if-person-kritisk.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+            "termsNumber": "KRS1-4",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "KRS1-4"
+          }
+        },
+        {
+          "key": "person.sykdom.ufore.ventetid_ved_opphor",
+          "label": "Påbegynt ventetid ved opphør av uføredekningen",
+          "value": "Uføredekningen opphører ved utgangen av forsikringsåret den forsikrede fyller 60 år. Ved dette aldersopphøret holder det at den sammenhengende toårsperioden med arbeidsuførhet har startet mens forsikringen var i kraft.",
+          "qualificationSource": {
+            "documentId": "person:if-person-kritisk",
+            "section": "Punkt 3 – Når forsikringen gjelder og hvor lenge den kan beholdes",
+            "page": 3,
+            "filename": "if-person-kritisk.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+            "termsNumber": "KRS1-4",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "KRS1-4"
+          },
+          "source": {
+            "documentId": "person:if-person-kritisk",
+            "section": "Punkt 4.2 – Aldersopphør",
+            "page": 4,
+            "filename": "if-person-kritisk.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+            "termsNumber": "KRS1-4",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "KRS1-4"
+          }
+        },
+        {
+          "key": "person.sykdom.ufore.beregning",
+          "label": "Beregning av uførekapital ved kritisk sykdom",
+          "value": "Avtalt sum ved 100 % uførhet står i forsikringsbeviset. Utbetalingen er den andelen av forsikringssummen da vilkårene for uføreerstatning var oppfylt, som svarer til reduksjonen i arbeidsevnen sammenlignet med antatt arbeidsevne uten sykdommen eller skaden.",
+          "qualificationSource": {
+            "documentId": "person:if-person-kritisk",
+            "section": "Punkt 4.2 – Avtalt forsikringssum",
+            "page": 4,
+            "filename": "if-person-kritisk.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+            "termsNumber": "KRS1-4",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "KRS1-4"
+          },
+          "source": {
+            "documentId": "person:if-person-kritisk",
+            "section": "Punkt 7.2.2 – Uføreerstatning som følge av kritisk sykdom",
+            "page": 9,
+            "filename": "if-person-kritisk.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+            "termsNumber": "KRS1-4",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "KRS1-4"
+          }
+        },
+        {
+          "key": "person.sykdom.ufore.andre_arsaker",
+          "label": "Beregning av uførekapital ved flere årsaker",
+          "value": "Hvis andre forhold også har gjort den forsikrede arbeidsufør, erstattes bare den delen som skyldes den dekkede sykdommen eller skaden. Den må alene medføre mer enn 40 % arbeidsuførhet.",
+          "source": {
+            "documentId": "person:if-person-kritisk",
+            "section": "Punkt 7.2.2 – Arbeidsuførhet av flere årsaker",
+            "page": 10,
+            "filename": "if-person-kritisk.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+            "termsNumber": "KRS1-4",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "KRS1-4"
+          }
+        },
+        {
+          "key": "person.sykdom.ufore.regulering",
+          "label": "Regulering av forsikringssum for uføredekningen",
+          "value": "Ved hver fornyelse til og med forsikringsåret den forsikrede fyller 50 år, reguleres forsikringssummen i takt med økningen i folketrygdens grunnbeløp (G). Ved hver fornyelse etter fylte 50 år reduseres summen med 10 % av forrige forsikringsårs sum.",
+          "source": {
+            "documentId": "person:if-person-kritisk",
+            "section": "Punkt 4.2 – Regulering av forsikringssum",
+            "page": 4,
+            "filename": "if-person-kritisk.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Kritisk_sykdom",
+            "termsNumber": "KRS1-4",
+            "effectiveFrom": "2025-08-23",
+            "agreementScope": "ordinary",
+            "version": "KRS1-4"
+          }
+        }
+      ]
+    },
+    "person:tryg-person-barn-ekstra:tillegg:behandling": {
+      "bindings": {
+        "person:tryg-person-barn-ekstra": {
+          "effectiveFrom": "2026-01-01",
+          "termsNumber": "UUL41701",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Grunndekning&vilkNr=05UUL41701",
+          "sha256": "5aa5a1a2af33eeb0f38362f622ab86a72adab162d2c8fc6307d493b56883fc1f",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41701"
+        },
+        "person:tryg-person-barn-ekstra:tillegg:behandling": {
+          "effectiveFrom": "2025-01-01",
+          "termsNumber": "UUL41702",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702",
+          "sha256": "7785c8e91e4219c4f8fcd37514f2ecc1c7f8aa873ef469aa6a4798448a534c8b",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41701"
+        },
+        "person:tryg-person-barn-ekstra:barn-behandling": {
+          "effectiveFrom": "2025-01-01",
+          "termsNumber": "UUL41702",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702",
+          "sha256": "7785c8e91e4219c4f8fcd37514f2ecc1c7f8aa873ef469aa6a4798448a534c8b",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41701"
+        },
+        "person:tryg-person-barn-ekstra:barn-produktvilkar": {
+          "effectiveFrom": "2023-01-01",
+          "termsNumber": "UUL41700",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
+          "sha256": "9ec3dd644f600b3c8fbc0936eb2061b0cc46b508eeb25d88994f08bd4d9c2324",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41701"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.barn.behandling.garantikompensasjon",
+          "label": "Kompensasjon ved brudd på behandlingsgarantien",
+          "value": "Med behandlingstillegget utbetales 500 kr per dag ved brudd på 14-virkedagersgarantien, frem til undersøkelse eller behandling kan tilbys, og inntil 10 000 kr samlet. Garantien har unntak blant annet ved medisinske årsaker, forhold utenfor Trygs eller behandlers kontroll og behandling i utlandet.",
+          "source": {
+            "documentId": "person:tryg-person-barn-ekstra:barn-behandling",
+            "filename": "tryg-person-barn-behandling.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702",
+            "termsNumber": "UUL41702",
+            "effectiveFrom": "2025-01-01",
+            "agreementScope": "ordinary",
+            "page": 6,
+            "section": "§ 12"
+          },
+          "qualificationSource": {
+            "documentId": "person:tryg-person-barn-ekstra:barn-produktvilkar",
+            "filename": "tryg-person-barn-produktvilkar.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
+            "termsNumber": "UUL41700",
+            "effectiveFrom": "2023-01-01",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "§§ 2–3"
+          }
+        }
+      ]
+    },
+    "person:tryg-person-barn-ulykke": {
+      "bindings": {
+        "person:tryg-person-barn-ulykke": {
+          "effectiveFrom": "2026-01-01",
+          "termsNumber": "UUL41706",
+          "url": "https://www.tryg.no/odpdf?vilk=Barneulykke-Skade&vilkNr=05UUL41706",
+          "sha256": "27437b40a949b68f9b8428d8ae86a9d01d82724d219fdf114094f4cc71cb0584",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41706"
+        },
+        "person:tryg-person-barn-ulykke:barn-produktvilkar": {
+          "effectiveFrom": "2023-01-01",
+          "termsNumber": "UUL41700",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
+          "sha256": "9ec3dd644f600b3c8fbc0936eb2061b0cc46b508eeb25d88994f08bd4d9c2324",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41706"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.barn.helserad",
+          "label": "Medisinsk rådgivning og digital helsehjelp",
+          "value": "Tryg Legehjelp gir tilgang til sykepleiere og allmennleger 365 dager i året for helsespørsmål, resepter og henvisning til spesialist.",
+          "source": {
+            "documentId": "person:tryg-person-barn-ulykke:barn-produktvilkar",
+            "filename": "tryg-person-barn-produktvilkar.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
+            "termsNumber": "UUL41700",
+            "effectiveFrom": "2023-01-01",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "§ 2 – Tryg Legehjelp"
+          }
+        }
+      ]
+    },
+    "person:tryg-person-barn-ulykke:tillegg:behandling": {
+      "bindings": {
+        "person:tryg-person-barn-ulykke": {
+          "effectiveFrom": "2026-01-01",
+          "termsNumber": "UUL41706",
+          "url": "https://www.tryg.no/odpdf?vilk=Barneulykke-Skade&vilkNr=05UUL41706",
+          "sha256": "27437b40a949b68f9b8428d8ae86a9d01d82724d219fdf114094f4cc71cb0584",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41706"
+        },
+        "person:tryg-person-barn-ulykke:tillegg:behandling": {
+          "effectiveFrom": "2025-01-01",
+          "termsNumber": "UUL41702",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702",
+          "sha256": "7785c8e91e4219c4f8fcd37514f2ecc1c7f8aa873ef469aa6a4798448a534c8b",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41706"
+        },
+        "person:tryg-person-barn-ulykke:barn-behandling": {
+          "effectiveFrom": "2025-01-01",
+          "termsNumber": "UUL41702",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702",
+          "sha256": "7785c8e91e4219c4f8fcd37514f2ecc1c7f8aa873ef469aa6a4798448a534c8b",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41706"
+        },
+        "person:tryg-person-barn-ulykke:barn-produktvilkar": {
+          "effectiveFrom": "2023-01-01",
+          "termsNumber": "UUL41700",
+          "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
+          "sha256": "9ec3dd644f600b3c8fbc0936eb2061b0cc46b508eeb25d88994f08bd4d9c2324",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41706"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.barn.behandling.garantikompensasjon",
+          "label": "Kompensasjon ved brudd på behandlingsgarantien",
+          "value": "Med behandlingstillegget utbetales 500 kr per dag ved brudd på 14-virkedagersgarantien, frem til undersøkelse eller behandling kan tilbys, og inntil 10 000 kr samlet. Garantien har unntak blant annet ved medisinske årsaker, forhold utenfor Trygs eller behandlers kontroll og behandling i utlandet.",
+          "source": {
+            "documentId": "person:tryg-person-barn-ulykke:barn-behandling",
+            "filename": "tryg-person-barn-behandling.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Behandlingsforsikring&vilkNr=05UUL41702",
+            "termsNumber": "UUL41702",
+            "effectiveFrom": "2025-01-01",
+            "agreementScope": "ordinary",
+            "page": 6,
+            "section": "§ 12"
+          },
+          "qualificationSource": {
+            "documentId": "person:tryg-person-barn-ulykke:barn-produktvilkar",
+            "filename": "tryg-person-barn-produktvilkar.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700",
+            "termsNumber": "UUL41700",
+            "effectiveFrom": "2023-01-01",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "§§ 2–3"
+          }
+        }
+      ]
+    },
+    "person:if-person-ulykke": {
+      "bindings": {
+        "person:if-person-ulykke": {
+          "effectiveFrom": "2017-03",
+          "termsNumber": "ULY5-6",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Ulykkesforsikring",
+          "sha256": "57992df59b6a25e2dec0f172ff5ef9e42980f29c7b11833299f6f032e79211a7",
+          "agreementScope": "ordinary",
+          "productVersion": "ULY5-6"
+        }
+      },
+      "remove": [
+        "person.ulykke.krisehjelp"
+      ],
+      "rows": [
+        {
+          "key": "person.ulykke.krisehjelp",
+          "label": "Psykologisk førstehjelp",
+          "value": "Ved avtalt invaliditetsdekning dekkes inntil ti behandlinger per hendelse ved akutt psykisk krise etter alvorlig ulykke eller annen plutselig og uforutsett hendelse. Dersom en slik hendelse fører til forsikredes død, har også ektefelle, samboer eller barn rett til behandlingen. Hjelpen formidles av Psykologvakten, og behovet må meldes innen 12 måneder.",
+          "source": {
+            "documentId": "person:if-person-ulykke",
+            "filename": "if-person-ulykke.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Ulykkesforsikring",
+            "termsNumber": "ULY5-6",
+            "effectiveFrom": "2017-03",
+            "agreementScope": "ordinary",
+            "page": 5,
+            "section": "§ 5.4"
+          },
+          "qualificationSource": {
+            "documentId": "person:if-person-ulykke",
+            "filename": "if-person-ulykke.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Ulykkesforsikring",
+            "termsNumber": "ULY5-6",
+            "effectiveFrom": "2017-03",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "Oversikt over forsikringen – Invaliditetsdekning"
+          }
+        },
+        {
+          "key": "person.ulykke.psykisk_invaliditet",
+          "label": "Medisinsk invaliditet ved psykisk skade",
+          "value": "Psykiske lidelser og andre tilstander i ICD-10 F00–F99 og følger av slike er unntatt fra invaliditetserstatning.",
+          "source": {
+            "documentId": "person:if-person-ulykke",
+            "filename": "if-person-ulykke.pdf",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Ulykkesforsikring",
+            "termsNumber": "ULY5-6",
+            "effectiveFrom": "2017-03",
+            "agreementScope": "ordinary",
+            "page": 6,
+            "section": "§ 6.1"
+          },
+          "coverageAvailability": "unavailable"
+        }
+      ]
+    },
+    "person:tryg-person-ulykke": {
+      "bindings": {
+        "person:tryg-person-ulykke": {
+          "effectiveFrom": "2026-01-01",
+          "termsNumber": "UUL41501",
+          "url": "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Skade&vilkNr=05UUL41501",
+          "sha256": "b0faf320a63f716d457db4e7df6d65cb1116dc737deec1a3c2d7d00a7be8a64f",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41501"
+        },
+        "person:tryg-person-ulykke:ulykke-dodsfall": {
+          "effectiveFrom": "2025-01-01",
+          "termsNumber": "UUL41502",
+          "url": "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Doedsfall&vilkNr=05UUL41502",
+          "sha256": "36c331f7eede867adae092a6a155fea90a32bc5c139dc5de3185177f7de18109",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41501"
+        }
+      },
+      "remove": [
+        "person.ulykke.dodsfall"
+      ],
+      "rows": [
+        {
+          "key": "person.ulykke.psykisk_invaliditet",
+          "label": "Medisinsk invaliditet ved psykisk skade",
+          "value": "PTSD kan dekkes når kriteriene i ICD-10 F43.1 er oppfylt og lidelsen oppstod som følge av eller samtidig med en ulykkesskade. Diagnosen må stilles av psykiater eller klinisk psykolog med spesialkompetanse på PTSD. Andre psykiske lidelser er unntatt.",
+          "source": {
+            "documentId": "person:tryg-person-ulykke",
+            "filename": "tryg-person-ulykke.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Skade&vilkNr=05UUL41501",
+            "termsNumber": "UUL41501",
+            "effectiveFrom": "2026-01-01",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "§ 2.1 – Unntak og begrensninger"
+          },
+          "coverageAvailability": "included"
+        },
+        {
+          "key": "person.ulykke.dodsfall",
+          "label": "Utbetaling ved dødsfall etter ulykke",
+          "value": "Med avtalt dødsfallsdekning kan dødsfall som skyldes ulykkesskaden innen ett år etter ulykken gi avtalt sum hvis det ikke allerede er utbetalt erstatning for samme ulykkesskade til avdøde. Et ubetalt krav om medisinsk invaliditet for samme skade faller da bort. Forsikringsbeviset kan fastsette andre vilkår.",
+          "source": {
+            "documentId": "person:tryg-person-ulykke:ulykke-dodsfall",
+            "filename": "tryg-person-ulykke-dodsfall.pdf",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Doedsfall&vilkNr=05UUL41502",
+            "termsNumber": "UUL41502",
+            "effectiveFrom": "2025-01-01",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "§§ 2–3"
+          }
+        }
+      ]
+    },
+    "person:frende-person-liv": {
+      "bindings": {
+        "person:frende-person-liv": {
+          "effectiveFrom": "2025-01-01",
+          "termsNumber": "2025-01-01",
+          "url": "https://api.frende.no/documents/terms/public/life/Life",
+          "sha256": "32b07503b29640546366a2ebd103f98e53b54df73245dcc63f4381a1cd7d99f6",
+          "agreementScope": "ordinary",
+          "productVersion": "2025-01-01"
+        }
+      },
+      "remove": [
+        "person.liv.mottaker"
+      ],
+      "rows": [
+        {
+          "key": "person.liv.mottaker",
+          "label": "Hvem mottar utbetalingen",
+          "value": "En oppnevnt begunstiget kan få beløpet. Ellers går utbetalingen til ektefelle eller, subsidiært, til arvinger etter lov eller testament når avdøde også var forsikringseier. Når forsikringseieren er en annen person, går utbetalingen til forsikringseieren. Ektefellens fortrinn faller bort hvis det før dødsfallet foreligger dom eller bevilling om separasjon eller skilsmisse, også når avgjørelsen ikke er rettskraftig eller endelig.",
+          "source": {
+            "documentId": "person:frende-person-liv",
+            "filename": "frende-person-liv.pdf",
+            "company": "Frende",
+            "url": "https://api.frende.no/documents/terms/public/life/Life",
+            "termsNumber": "2025-01-01",
+            "effectiveFrom": "2025-01-01",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "§ 2 – Utbetaling ved død"
+          }
+        }
+      ]
+    },
+    "person:fremtind-person-liv": {
+      "bindings": {
+        "person:fremtind-person-liv": {
+          "effectiveFrom": "2024-05-30",
+          "termsNumber": "2024-05-30",
+          "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_liv.pdf",
+          "sha256": "b28ed0d362220e07ab58dd236cf9bebcf52c530a2cead12d5d85c4dc23f2ac18",
+          "agreementScope": "ordinary",
+          "productVersion": "2024-05-30"
+        }
+      },
+      "remove": [
+        "person.liv.mottaker"
+      ],
+      "rows": [
+        {
+          "key": "person.liv.mottaker",
+          "label": "Hvem mottar utbetalingen",
+          "value": "Dersom forsikringstakeren ikke har disponert over forsikringen, går beløpet til ektefellen når avdøde også var forsikringstaker, ellers til forsikringstakeren. Ved mangel på ektefelle med rett til utbetaling går beløpet til arvinger etter lov eller testament. Ektefellens fortrinn faller bort hvis det før dødsfallet foreligger dom eller bevilling om separasjon eller skilsmisse, også når avgjørelsen ikke er rettskraftig eller endelig.",
+          "source": {
+            "documentId": "person:fremtind-person-liv",
+            "filename": "fremtind-person-liv.pdf",
+            "company": "Fremtind",
+            "url": "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_liv.pdf",
+            "termsNumber": "2024-05-30",
+            "effectiveFrom": "2024-05-30",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "§ 2 – Utbetaling ved død"
+          }
         }
       ]
     }

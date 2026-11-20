@@ -25,13 +25,13 @@ const facts = (view, side) => view.flatMap(s => s.groups).flatMap(g => [
 ]);
 const require = createRequire(import.meta.url);
 const ui = fs.readFileSync(new URL('../app/components/product-comparison.tsx', import.meta.url), 'utf8');
-let js = ts.transpileModule(ui + '\nexport { ProductResult };', {
+let js = ts.transpileModule(ui + '\nexport { ProductResult, ProductSource };', {
   compilerOptions: { jsx: ts.JsxEmit.ReactJSX, module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
 }).outputText;
 js = js.replace(/from "(@\/[^"\n]+|react(?:\/jsx-runtime)?)"/gu, (_m, spec) => `from ${JSON.stringify(
   spec.startsWith('@/') ? pathToFileURL(path.resolve(spec.slice(2) + '.ts')).href : pathToFileURL(require.resolve(spec)).href,
 )}`);
-const { ProductResult } = await import(`data:text/javascript;base64,${Buffer.from(js).toString('base64')}`);
+const { ProductResult, ProductSource } = await import(`data:text/javascript;base64,${Buffer.from(js).toString('base64')}`);
 const render = result => renderToStaticMarkup(React.createElement(ProductResult, { result }));
 
 test('Tryg Kasko rescue restriction renders as the documented restriction, not included coverage', () => {
@@ -206,4 +206,21 @@ test('new restriction evidence stays within existing privacy-safe trace vocabula
     assert.ok(sanitizeTraceEvent({ stage: 'coverage', coverages }));
     assert.doesNotMatch(JSON.stringify(coverages), /synthetic private restriction|maskinskade.egenandel.begrensning/u);
   }
+});
+
+
+test("product source badges distinguish product pages, HTML terms and PDF citations", () => {
+  const cite = (documentId, url, sourceType) => renderToStaticMarkup(React.createElement(ProductSource, {
+    source: { documentId, url, sourceType, company: "Eksempel", page: 1, section: "Dekningen", termsNumber: "Ikke oppgitt", effectiveFrom: "" },
+    label: "Kildekontroll",
+  }));
+  for (const documentId of ["vehicle:if-campingvognforsikring.html", "gjensidigeHusProduct", "trygReiseProductPage", "a-typed-page"]) {
+    const html = cite(documentId, "https://example.test/kilde", documentId === "a-typed-page" ? "product_page" : undefined);
+    assert.match(html, /Vis kilde · Produktside/u);
+    assert.doesNotMatch(html, /side 1/u);
+  }
+  const terms = cite("gjensidigeHusSmartTerms", "https://example.test/kundeavtale", undefined);
+  assert.match(terms, /Vis kilde · Offentlig vilkår/u);
+  assert.doesNotMatch(terms, /side 1/u);
+  assert.match(cite("a-pdf", "https://example.test/vilkar.pdf", "full_terms"), /side 1/u);
 });
