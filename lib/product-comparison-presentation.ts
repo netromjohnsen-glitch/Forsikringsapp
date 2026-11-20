@@ -127,6 +127,7 @@ const groupLabels: Record<string, string> = {
   kasko: "Kaskoskade", maskinskade: "Maskinskade / motor- og girskade", nyverdi: "Totalskade og nybil",
   leiebil: "Leiebil", veihjelp: "Veihjelp", glass: "Glass", ulykke: "Fører- og passasjerulykke",
   utstyr: "Utstyr og eiendeler", parkering: "Parkeringsskade", bilnokkel: "Bilnøkkel",
+  "reise.bagasje": "Reisegods",
 };
 
 const agreementLabels: Readonly<Record<string, string>> = {

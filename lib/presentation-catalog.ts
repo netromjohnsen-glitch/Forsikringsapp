@@ -198,7 +198,7 @@ const personInsurancePresentationConcepts: readonly PresentationConcept[] = [
     "primary", ["economic-risk", "misunderstanding-risk"]),
   concept("barn.andre-ytelser", "barn", "Dødsfall, sykehus og omsorg", [/^person\.barn\.(?:dodsfall|sykehus|hjelpestonad|boligtilpasning)(?:\.|$)/u],
     "secondary", ["economic-risk"]),
-  concept("barn.helse-og-skole", "barn", "Helsehjelp, skole og betalingsfritak", [/^person\.barn\.(?:behandling|skolerobot|betalingsfritak)(?:\.|$)/u],
+  concept("barn.helse-og-skole", "barn", "Helsehjelp, skole og betalingsfritak", [/^person\.barn\.(?:behandling|skolerobot|betalingsfritak|helserad|skole_arbeid|psykologisk_forstehjelp)(?:\.|$)/u],
     "secondary", ["economic-risk"]),
   concept("barn.vilkar", "barn", "Hvor og når forsikringen gjelder", [/^person\.barn\.(?:geografi|opphor)(?:\.|$)/u],
     "secondary", ["misunderstanding-risk"]),

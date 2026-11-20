@@ -25,6 +25,202 @@ type TermsArchiveDocument = {
 };
 
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
+  {
+    provider: "tryg",
+    slug: "barn-ekstra",
+    archivePath: "catalog/sources/person/tryg-person-barn-ekstra.pdf",
+    sources: [
+      ["person:tryg-person-barn-ekstra", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Barn-og-ungdom-Ekstra-Grunndekning&vilkNr=05UUL41701"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "barn-utvalgte-sykdommer",
+    archivePath: "catalog/sources/person/tryg-person-barn-utvalgte-sykdommer.pdf",
+    sources: [
+      ["person:tryg-person-barn-ulykke:barn-utvalgte-sykdommer", "2023-01-01", "https://www.tryg.no/odpdf?vilk=Utvalgte-sykdommer&vilkNr=05UUL41707"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "barn-produktvilkar",
+    archivePath: "catalog/sources/person/tryg-person-barn-produktvilkar.pdf",
+    sources: [
+      ["person:tryg-person-barn-ekstra:barn-produktvilkar", "2023-01-01", "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700"],
+      ["person:tryg-person-barn-ulykke:barn-produktvilkar", "2023-01-01", "https://www.tryg.no/odpdf?vilk=Barn&vilkNr=05UUL41700"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "gravid-ekstra",
+    archivePath: "catalog/sources/person/tryg-person-gravid-ekstra.pdf",
+    sources: [
+      ["person:tryg-person-gravid-ekstra", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Ekstra&vilkNr=05UUL41813"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "gravid-premium",
+    archivePath: "catalog/sources/person/tryg-person-gravid-premium.pdf",
+    sources: [
+      ["person:tryg-person-gravid-premium", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Premium&vilkNr=05UUL41814"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "barneforsikring",
+    archivePath: "catalog/sources/person/if-person-barn.pdf",
+    sources: [
+      ["person:if-person-barn-standard", "2024-06-08", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring"],
+      ["person:if-person-barn-super:barn", "2024-06-08", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Barneforsikring"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "godt-voksen",
+    archivePath: "catalog/sources/person/if-person-senior.pdf",
+    sources: [
+      ["person:if-person-godt-voksen", "2018-11-10", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Godt_voksen"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "barneforsikring",
+    archivePath: "catalog/sources/person/storebrand-person-barn.pdf",
+    sources: [
+      ["person:storebrand-person-barn-standard", "2026-10-08", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/f5b84faf-32b7-400c-bd99-0e4ac6019365:fd42690c132354bb4588994192094c3fecadb4e1/vilkar-barneforsikring01.pdf"],
+      ["person:storebrand-person-barn-super", "2026-10-08", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/f5b84faf-32b7-400c-bd99-0e4ac6019365:fd42690c132354bb4588994192094c3fecadb4e1/vilkar-barneforsikring01.pdf"],
+    ],
+  },
+  {
+    provider: "frende",
+    slug: "barneforsikring",
+    archivePath: "catalog/sources/person/frende-person-barn.pdf",
+    sources: [
+      ["person:frende-person-barn-bra", "2026-06-20", "https://api.frende.no/documents/terms/public/life/Child"],
+      ["person:frende-person-barn-best", "2026-06-20", "https://api.frende.no/documents/terms/public/life/Child"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "barneforsikring",
+    archivePath: "catalog/sources/person/fremtind-person-barn.pdf",
+    sources: [
+      ["person:fremtind-person-barn", "2025-08-14", "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_barneforsikring_5.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
+    slug: "barneforsikring",
+    archivePath: "catalog/sources/person/klp-person-barn.pdf",
+    sources: [
+      ["person:klp-person-barn", "", "https://www.klp.no/media/forsikring/Vilkar-Barn.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
+    slug: "barn-maks",
+    archivePath: "catalog/sources/person/klp-person-barn-maks.pdf",
+    sources: [
+      ["person:klp-person-barn-maks", "", "https://www.klp.no/media/forsikring/Barn.pdf"],
+    ],
+  },
+  {
+    provider: "landkreditt",
+    slug: "barneforsikring",
+    archivePath: "catalog/sources/person/landkreditt-person-barn.pdf",
+    sources: [
+      ["person:landkreditt-person-barn", "2022-10-01", "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-barn-og-ungdom.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "utdanningsforbundet-barneforsikring",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-barneforsikring.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-barneforsikring-terms", "2026", "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/barneforsikring-2026.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
+    slug: "uforepensjon-produktark",
+    archivePath: "catalog/sources/person/klp-person-uforepensjon-ipid.pdf",
+    sources: [
+      ["person:klp-person-ufore:uforepensjon-ipid", "", "https://www.klp.no/media/forsikring/produktark-ipid/Uforeforsikring.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
+    slug: "personforsikring",
+    archivePath: "catalog/sources/person/klp-person-person.pdf",
+    sources: [
+      ["person:klp-person-ufore", "", "https://www.klp.no/media/forsikring/Person.pdf"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "helseforsikring",
+    archivePath: "catalog/sources/person/storebrand-person-behandling.pdf",
+    sources: [
+      ["person:storebrand-person-helse", "2026-01-01", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/2ca10c62-bc30-4603-a032-a726aba53799:f03d21b73546b896bcf4cff1516d26dcf7e4809c/vilkar-helseforsikring-tegnet-etter-nov-2009.pdf"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "helse-55",
+    archivePath: "catalog/sources/person/gjensidige-person-behandling-55.pdf",
+    sources: [
+      ["person:gjensidige-person-helse-55", "", "https://www.gjensidige.no/files/privat/vilkar/person/helse-55-alminnelige-vilkar.pdf"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "behandlingsforsikring",
+    archivePath: "catalog/sources/person/gjensidige-person-behandling.pdf",
+    sources: [
+      ["person:gjensidige-person-behandling", "", "https://www.gjensidige.no/files/privat/vilkar/person/behandlingsforsikring-alminnelige-vilkar.pdf"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "helseforsikring-produktark",
+    archivePath: "catalog/sources/person/if-person-helse-ipid.pdf",
+    sources: [
+      ["person:if-person-helse:helse-ipid", "", "https://if.no/apps/vilkarsbasendokument/IPID?ipid=Helseforsikring"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "helseforsikring",
+    archivePath: "catalog/sources/person/if-person-helse.pdf",
+    sources: [
+      ["person:if-person-helse", "2025-08-23", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Helseforsikring"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "behandling-55",
+    archivePath: "catalog/sources/person/tryg-person-behandling-55.pdf",
+    sources: [
+      ["person:tryg-person-behandling-55", "2025-01-01", "https://www.tryg.no/odpdf?vilk=55pluss-Dekningsvilkaar&vilkNr=05UUL41803"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "behandling-enkel",
+    archivePath: "catalog/sources/person/tryg-person-behandling-enkel.pdf",
+    sources: [
+      ["person:tryg-person-behandling-enkel", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Behandling-enkel-Dekningsvilkaar&vilkNr=05UUL41808"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "behandling",
+    archivePath: "catalog/sources/person/tryg-person-behandling.pdf",
+    sources: [
+      ["person:tryg-person-behandling", "2025-01-01", "https://www.tryg.no/odpdf?vilk=Behandlingsforsikring-Dekningsvilkaar&vilkNr=05UUL41801"],
+    ],
+  },
   ...trygBilMarketArchives,
   ...trygBoatMarketArchives,
   ...trygHolidayContentsArchives,
@@ -38,6 +234,30 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   ...fremtindBobilMarketArchives,
   ...frendeDogMarketArchives,
   ...sparebank1FremtindBilMarketArchives,
+  {
+    provider: "if",
+    slug: "kjoretoy-mot2-2",
+    archivePath: "catalog/sources/if/Kjoretoyforsikring-MOT2-2.pdf",
+    sources: [
+      ["ifAnsvar", "2024-03", "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=MOT2-2"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "generelle-vilkar-gen2-9",
+    archivePath: "catalog/sources/vehicle-extensions/if-Vilkaar-df7c20ba.pdf",
+    sources: [
+      ["vehicle:if-Vilkaar-df7c20ba.pdf", "2025-06", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Generelle_vilk%C3%A5r"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "helars-reise-era3-4",
+    archivePath: "catalog/sources/if/reise/canonical/Helars-reiseforsikring-vilkar.pdf",
+    sources: [
+      ["ifReiseTerms", "2025-03-22", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Hel%C3%A5rs_reiseforsikring"],
+    ],
+  },
   {
     provider: "fremtind",
     slug: "bat",
@@ -693,6 +913,9 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "person-produktvilkar",
     archivePath: "catalog/sources/person/tryg-person-ulykke-produktvilkar.pdf",
     sources: [
+      ["person:tryg-person-behandling:ulykke-produktvilkar", "", "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41500"],
+      ["person:tryg-person-behandling-enkel:ulykke-produktvilkar", "", "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41500"],
+      ["person:tryg-person-behandling-55:ulykke-produktvilkar", "", "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41500"],
       ["person:tryg-person-kritisk:ulykke-produktvilkar", "", "https://www.tryg.no/odpdf?vilk=Ulykkesforsikring-Produktvilkaar&vilkNr=05UUL41500"],
     ],
   },

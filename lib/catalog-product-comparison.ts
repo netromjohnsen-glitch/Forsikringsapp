@@ -1,5 +1,6 @@
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
 import { catalogFactSources, catalogSourceIdentity } from "./catalog-enrichment.ts";
+import { alignComparisonRow, comparisonRowKey } from "./catalog-comparison-row-alignment.ts";
 import { coverageStatusFromText } from "./coverage-status.ts";
 import { isNonAssertingCoverageDetail } from "./coverage-fact-semantics.ts";
 import { criticalIllnessComparisonDiagnoses, diagnosisNotListed, isCriticalIllnessDiagnosisKey } from "./critical-illness-comparison.ts";
@@ -191,9 +192,11 @@ export function findProductComparisonProduct(
   }, catalog);
 }
 
+type ComparisonCatalog = ProductCatalog & { alignComparisonRows?: boolean };
+
 export function materializeCatalogProduct(
   product: CatalogProduct,
-  catalog: ProductCatalog = productCatalog,
+  catalog: ComparisonCatalog = productCatalog,
 ): MaterializedCatalogProduct {
   if (!canMaterialize(product, catalog)) throw new Error("Katalogproduktet kan ikke sammenlignes sikkert.");
   const date = new Date();
@@ -231,7 +234,11 @@ export function materializeCatalogProduct(
     }
   }
   if (diagnoses) facts.push(...diagnoses.facts);
-  return { product, facts, ...(diagnoses && { diagnosisListSource: diagnoses.listSource }) };
+  return {
+    product,
+    facts: catalog.alignComparisonRows ? facts.map(fact => alignComparisonRow(product, fact)) : facts,
+    ...(diagnoses && { diagnosisListSource: diagnoses.listSource }),
+  };
 }
 
 function valueForKey(facts: ProductComparisonFact[], preferOptional = false): ProductComparisonValue {
@@ -263,23 +270,27 @@ function comparableValue(value: ProductComparisonValue): string {
 export function compareCatalogProducts(
   firstProduct: CatalogProduct,
   secondProduct: CatalogProduct,
-  catalog: ProductCatalog = productCatalog,
+  catalog: ComparisonCatalog = productCatalog,
 ): CatalogProductComparison {
   const firstType = normalizeInsuranceType(firstProduct.insuranceType);
   const secondType = normalizeInsuranceType(secondProduct.insuranceType);
   if (firstType !== secondType) throw new Error("Produktene må ha samme forsikringstype.");
   const first = materializeCatalogProduct(firstProduct, catalog);
   const second = materializeCatalogProduct(secondProduct, catalog);
+  const optionalKeys = (product: CatalogProduct) => new Set(
+    availableAddOns(product, new Date(), null, catalog).flatMap(addOn =>
+      (addOn.selectionEvidenceKeys ?? []).map(key => catalog.alignComparisonRows ? comparisonRowKey(product, key) : key)),
+  );
+  const leftOptionalKeys = optionalKeys(firstProduct);
+  const rightOptionalKeys = optionalKeys(secondProduct);
   const keys = [...new Set([...first.facts, ...second.facts].map((fact) => fact.key))];
   const rows = keys.map((key): ProductComparisonRow => {
     const leftFacts = first.facts.filter((fact) => fact.key === key);
     const rightFacts = second.facts.filter((fact) => fact.key === key);
     const left = (!leftFacts.length ? diagnosisNotListed(key, first.diagnosisListSource) : undefined) ??
-      valueForKey(leftFacts, availableAddOns(firstProduct, new Date(), null, catalog)
-        .some(addOn => addOn.selectionEvidenceKeys?.includes(key)));
+      valueForKey(leftFacts, leftOptionalKeys.has(key));
     const right = (!rightFacts.length ? diagnosisNotListed(key, second.diagnosisListSource) : undefined) ??
-      valueForKey(rightFacts, availableAddOns(secondProduct, new Date(), null, catalog)
-        .some(addOn => addOn.selectionEvidenceKeys?.includes(key)));
+      valueForKey(rightFacts, rightOptionalKeys.has(key));
     const concept = conceptForFactKey(firstType, key);
     return {
       key,

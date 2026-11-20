@@ -1,0 +1,181 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { compareCatalogProducts, materializeCatalogProduct, productComparisonProducts } from "../lib/catalog-product-comparison.ts";
+import { marketProductCatalog } from "../lib/market-product-catalog.ts";
+import { availableAddOns, resolveCatalogFacts } from "../lib/product-catalog.ts";
+import { termsSourceHref } from "../lib/terms-archive.ts";
+
+const catalog = new Map(productComparisonProducts(marketProductCatalog).map(candidate => [candidate.productId, candidate]));
+const product = id => {
+  const entry = catalog.get(id);
+  assert.ok(entry, id);
+  return entry;
+};
+const rows = (first, second) => compareCatalogProducts(product(first), product(second), marketProductCatalog)
+  .sections.flatMap(section => section.rows);
+const fact = (id, key) => {
+  const result = materializeCatalogProduct(product(id), marketProductCatalog).facts.find(entry => entry.key === key);
+  assert.ok(result, `${id} ${key}`);
+  return result;
+};
+
+test("equivalent property coverage shares a row and keeps its source and scope in either direction", () => {
+  const cases = [
+    ["tryg-nito-bil-delkasko", "bil-delkasko", "bil.brann", "brann.dekning", "included"],
+    ["tryg-nito-bil-delkasko", "bil-delkasko", "bil.glass", "glass.dekning", "included"],
+    ["tryg-nito-bil-ansvar", "bil-ansvar", "bil.rettshjelp", "rettshjelp.dekning", "included"],
+    ["tryg-nito-hus", "tryg-hus", "hus.utvendige_ror", "hus.ror.utvendig", "included"],
+    ["tryg-nito-hus-ekstra", "tryg-hus-ekstra", "hus.kunstnerisk_utsmykning", "hus.bygninger.utsmykning", "included"],
+    ["tryg-nito-hus", "tryg-utdanningsforbundet-hus", "hus.utleie_husleie", "hus.utleie.tapt-leie", "optional"],
+    ["watercircles-innbo-standard", "tryg-innbo", "rettshjelp.sum", "rettshjelp.grense", "included"],
+    ["fremtind-innbo-standard", "klp-innbo", "ran.dekning", "tyveri.ran", "included"],
+    ["klp-innbo", "fremtind-innbo-standard", "innbo.glass", "glass.sanitaer.dekning", "included"],
+    ["tryg-nito-reise-enkeltperson", "tryg-reise", "reise.hvem", "reise.personer.omfang", "included"],
+    ["landkreditt-bil-delkasko", "sb-bil-delkasko-motor10", "veihjelp.omfang", "veihjelp.geografi", "included"],
+    ["gjensidige-hytte-standard", "tryg-hytte-standard", "hytte.avtale.krig", "hytte.unntak.krig", "included"],
+  ];
+
+  for (const [first, second, oldKey, key, state] of cases) {
+    const comparison = rows(first, second);
+    assert.equal(comparison.filter(row => row.key === key).length, 1, key);
+    assert.ok(!comparison.some(row => row.key === oldKey), oldKey);
+    const row = comparison.find(candidate => candidate.key === key);
+    assert.equal(row.first.state, state, key);
+    assert.notEqual(row.second.state, "unknown", key);
+    const reverse = rows(second, first).find(candidate => candidate.key === key);
+    assert.deepEqual(row.first, reverse.second, key);
+    assert.deepEqual(row.second, reverse.first, key);
+    if (first.startsWith("tryg-nito-")) {
+      assert.equal(row.first.sources[0].agreementScope, "nito", key);
+      if (state === "included") {
+        assert.ok(resolveCatalogFacts(product(first), []).some(entry => entry.key === oldKey), oldKey);
+      }
+    }
+  }
+
+  const house = rows("tryg-nito-hus", "tryg-nito-hus-ekstra");
+  const art = house.find(row => row.key === "hus.bygninger.utsmykning");
+  assert.equal(art.first.state, "unavailable");
+  assert.equal(art.second.state, "included");
+  assert.equal(house.find(row => row.key === "hus.ror.utvendig").second.state, "included");
+});
+
+test("coverage limits, claim deadlines and settlement rules keep separate rows", () => {
+  const house = new Map(rows("tryg-hus-ekstra", "klp-hus-hus").map(row => [row.key, row]));
+  assert.match(house.get("hus.gjenoppforing.fullverdigaranti").first.text, /Ingen fradrag/u);
+  assert.notEqual(house.get("hus.gjenoppforing.hovedregel").first.state, "unknown");
+  const cabin = new Map(rows("tryg-hytte-standard", "storebrand-hytte-standard").map(row => [row.key, row]));
+  assert.match(cabin.get("hytte.utleie.skadeverk.grense").first.text, /500 000/u);
+  assert.match(cabin.get("hytte.utleie.skadeverk").second.text, /Forsettlig skadeverk/u);
+  assert.match(cabin.get("hytte.krav.meldefrist").second.text, /innen ett år/u);
+  assert.notEqual(cabin.get("hytte.avtale.meldefrist").second.state, "unknown");
+});
+
+test("treatment facts align payments, ages and restrictions without inheriting another variant", () => {
+  const pair = rows("tryg-person-behandling-55", "gjensidige-person-helse-55");
+  const byKey = key => pair.find(row => row.key === "person.behandling." + key);
+  const help = byKey("hjelpebehov_hjemme");
+  assert.match(help.first.text, /tre sammenhengende måneder.*120 000 kr/u);
+  assert.match(help.second.text, /30 000 kr.*120 000 kr.*Én utbetaling per vedtak/u);
+  assert.deepEqual([help.first, help.second].map(side => side.sources[0].page), [3, 8]);
+  assert.equal(termsSourceHref(help.first.sources[0]), "/api/vilkar/tryg/behandling-55#page=3");
+  assert.match(byKey("opphor").first.text, /første hovedforfall.*80 år/u);
+  assert.match(byKey("opphor").second.text, /senest ved fylte 80 år/iu);
+  assert.equal(byKey("rehabilitering").first.state, "unavailable");
+  assert.equal(byKey("rehabilitering").second.state, "included");
+  assert.equal(byKey("kreftbehandling").first.state, "unavailable");
+  assert.equal(byKey("kreftbehandling").second.state, "unavailable");
+  assert.equal(fact("tryg-person-behandling", "person.behandling.kreftbehandling").state, "included");
+  assert.equal(fact("if-person-helse", "person.behandling.opphor").sources[0].sourceType, "ipid");
+  assert.ok(!materializeCatalogProduct(product("tryg-nito-behandling-enkel"), marketProductCatalog).facts
+    .some(entry => entry.key === "person.behandling.opphor"));
+});
+
+test("new person facts keep contractual amounts, variant sources, and optional scope", () => {
+  const cystic = "person.barn.diagnose.cystisk_fibrose";
+  const pair = rows("if-person-barn-standard", "tryg-person-barn-ekstra");
+  const common = pair.filter(row => row.key === cystic);
+  assert.equal(common.length, 1);
+  assert.equal(common[0].first.sources[0].page, 6);
+  assert.match(common[0].second.text, /klorid/u);
+  assert.match(pair.find(row => row.key === "person.barn.diagnose").first.text, /4 G/u);
+  assert.equal(fact("tryg-person-barn-ulykke", cystic).state, "optional");
+  assert.equal(fact("tryg-utdanningsforbundet-barneforsikring", cystic).sources[0].agreementScope, "utdanningsforbundet");
+  for (const variant of ["ekstra", "premium"]) {
+    const condition = fact("tryg-person-gravid-" + variant, "person.gravid.medfodt");
+    assert.match(condition.value, /200 000 kr/u);
+    assert.ok(condition.sources.some(source => source.page === 3));
+  }
+  const klp = product("klp-person-ufore");
+  const capital = "person.ufore.kapital";
+  assert.ok(!resolveCatalogFacts(klp, []).some(entry => entry.key === capital));
+  assert.equal(fact(klp.productId, capital).state, "optional");
+  const addOn = availableAddOns(klp, new Date(), null, marketProductCatalog).find(entry => entry.name === "Varig uførhet – engangserstatning");
+  assert.ok(addOn);
+  assert.ok(resolveCatalogFacts(klp, [addOn.id], new Date(), null, marketProductCatalog).some(entry => entry.key === capital));
+  const student = fact("tryg-nito-ufore-etter-studiet", "person.ufore.kapital.opphor");
+  assert.match(student.value, /60 år/u);
+  assert.equal(student.sources[0].agreementScope, "nito");
+  const accident = fact("gjensidige-person-ulykke", "person.ulykke.arbeid");
+  assert.equal(accident.sources[0].sourceType, "product_page");
+  assert.equal(accident.sources[0].page, 0);
+});
+
+test("source-backed limits and distinctions are visible across property and travel levels", () => {
+  for (const name of ["ansvar", "delkasko", "kasko", "super"]) {
+    const right = fact("if-bil-" + name, "rettshjelp.grense");
+    assert.match(right.value, /100 000 kr.*250 000 kr/u);
+    assert.ok(right.sources.some(source => source.termsNumber === "GEN2-9" && source.page === 11));
+  }
+
+  const assistance = "reise.sykeledsagelse.tilkalling";
+  const cash = "reise.bagasje.kontanter";
+  for (const level of ["standard", "super"]) {
+    const id = "if-reise-" + level;
+    const cashRow = rows(id, "frende-reiseforsikring").find(row => row.key === cash);
+    assert.match(cashRow.first.text, /5 000 kr per person.*10 000 kr per familie/u);
+    assert.equal(cashRow.first.sources[0].page, 11);
+    assert.equal(cashRow.second.state, "included");
+    assert.match(fact(id, "reise.bagasje.verdisaker").value, /30 000 kr/u);
+    assert.match(fact(id, "reise.bagasje.per_gjenstand").value, /40 000 kr/u);
+    assert.match(fact(id, "reise.forsinkelse.avgang_sum").value, /3 000 kr per person.*24 timer/u);
+  }
+  const basic = rows("if-reise-basis", "frende-reiseforsikring");
+  assert.equal(basic.find(row => row.key === assistance).second.state, "included");
+  assert.match(basic.find(row => row.key === assistance).first.text, /inntil tre nære familiemedlemmer/u);
+  assert.notEqual(basic.find(row => row.key === cash).first.state, "included");
+
+  const freezer = "innbo.fryserinnhold.dekning";
+  const adaptation = "innbo.ombygging.grense";
+  for (const id of ["gjensidige-innbo-hytte", "gjensidige-innbo-hytte-pluss"]) {
+    assert.match(fact(id, freezer).value, /utilsiktet temperaturstigning.*luktskade/u);
+    const common = rows(id, "watercircles-innbo-fritidsbolig-elite").find(row => row.key === adaptation);
+    assert.equal(common.second.state, "included");
+    assert.match(common.first.text, /250 000 kr.*medfødt funksjonsnedsettelse/u);
+  }
+});
+
+test("veterinary facts require a veterinary plan and cite its conditions", () => {
+  for (const species of ["hund", "katt"]) {
+    for (const level of ["veterin-r", "veterin-r-og-d-dsfall"]) {
+      const id = "storebrand-" + species + "-" + level;
+      const imaging = fact(id, "dyr.diagnostikk.grense");
+      assert.match(imaging.value, /5 000 kr/u);
+      assert.equal(imaging.sources[0].page, 5);
+    }
+    const lifeOnly = materializeCatalogProduct(product("storebrand-" + species + "-d-dsfall"), marketProductCatalog);
+    assert.ok(!lifeOnly.facts.some(row => row.key === "dyr.diagnostikk.grense"));
+  }
+});
+
+test("catalog evidence does not change the terms retrieved for uploaded agreements", () => {
+  const keys = [
+    ["tryg-nito-ufore-etter-studiet", "person.ufore.kapital.opphor"],
+    ["tryg-utdanningsforbundet-barneforsikring", "person.barn.diagnose.cystisk_fibrose"],
+    ["if-reise-standard", "reise.bagasje.kontanter"],
+  ];
+  for (const [id, key] of keys) {
+    assert.ok(!resolveCatalogFacts(product(id), []).some(row => row.key === key), id);
+    assert.ok(fact(id, key).sources.length, id);
+  }
+});
