@@ -27,6 +27,22 @@ type TermsArchiveDocument = {
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   {
     provider: "tryg",
+    slug: "nito-bil-produkt-pau14000",
+    archivePath: "catalog/sources/tryg/market-bil-2026/PAU14000.pdf",
+    sources: [
+      ["tryg-nito-bil-delkasko:produktvilkar", "2026-07-01", "https://www.tryg.no/odpdf?vilk=nito-Bil-Produkt&vilkNr=05PAU14000"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "nito-bil-rettshjelp-pge91500",
+    archivePath: "catalog/sources/tryg/hus/05PGE91500.pdf",
+    sources: [
+      ["tryg-nito-bil-delkasko:rettshjelpsvilkar", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Rettshjelp&vilkNr=05PGE91500"],
+    ],
+  },
+  {
+    provider: "tryg",
     slug: "barn-ekstra",
     archivePath: "catalog/sources/person/tryg-person-barn-ekstra.pdf",
     sources: [
@@ -508,11 +524,20 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   },
   {
     provider: "storebrand",
+    slug: "dyr-produktark",
+    archivePath: "catalog/sources/boat-pet/storebrand-pet-ipid.pdf",
+    sources: [
+      ["boat-pet:storebrand:hund:ipid", "", "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf"],
+      ["boat-pet:storebrand:katt:ipid", "", "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf"],
+    ],
+  },
+  {
+    provider: "storebrand",
     slug: "dyr",
     archivePath: "catalog/sources/boat-pet/storebrand-pet-terms.pdf",
     sources: [
-      ["boat-pet:storebrand:hund", "2025-02-01", "https://www.storebrand.no/privat/forsikring/hundeforsikring"],
-      ["boat-pet:storebrand:katt", "2025-02-01", "https://www.storebrand.no/privat/forsikring/katteforsikring"],
+      ["boat-pet:storebrand:hund", "2025-02-01", "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf", "https://www.storebrand.no/privat/forsikring/hundeforsikring"],
+      ["boat-pet:storebrand:katt", "2025-02-01", "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf", "https://www.storebrand.no/privat/forsikring/katteforsikring"],
     ],
   },
   {

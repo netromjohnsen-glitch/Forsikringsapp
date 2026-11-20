@@ -46,6 +46,24 @@ test("each archive route resolves only the intended catalogue document and editi
   assert.equal(termsSourceHref({ documentId: helpPage.id, effectiveFrom: helpPage.effectiveFrom, url: helpPage.url, page: 0 }), helpPage.url);
 });
 
+test("Storebrand pet terms use the live Dyr04 PDF and retain exact edition aliases", () => {
+  const officialPdf = "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf";
+  for (const [insuranceType, legacy] of [
+    ["hund", "https://www.storebrand.no/privat/forsikring/hundeforsikring"],
+    ["katt", "https://www.storebrand.no/privat/forsikring/katteforsikring"],
+  ]) {
+    const documentId = `boat-pet:storebrand:${insuranceType}`;
+    const { effectiveFrom, url } = marketProductCatalog.sources[documentId];
+    assert.equal(url, officialPdf);
+    assert.equal(productCatalog.sources[documentId].url, legacy);
+    const cite = { documentId, effectiveFrom, url, page: 5 };
+    assert.equal(termsSourceHref(cite), "/api/vilkar/storebrand/dyr#page=5");
+    assert.equal(termsSourceHref({ ...cite, url: legacy }), "/api/vilkar/storebrand/dyr#page=5");
+    assert.equal(termsSourceHref({ ...cite, effectiveFrom: "1900-01-01" }), officialPdf);
+    assert.equal(termsSourceHref({ ...cite, effectiveFrom: "1900-01-01", url: legacy }), legacy);
+  }
+});
+
 test("existing Frende links still open the original cited pages", () => {
   for (const [slug, id, version, type] of [
     ["hytte", "frende-hytte-standard", "2026-09-01", "Hytte"],

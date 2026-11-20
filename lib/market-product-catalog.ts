@@ -50,10 +50,17 @@ const marketFacts = Object.assign({}, productCatalog.facts, ...marketUpdates.map
 const comparisonSources = { ...marketSources };
 const activeComponents = new Set<string>();
 
+for (const [id, update] of Object.entries(comparisonEvidence.sourceUrlUpdates)) {
+  const source = marketSources[id];
+  if (source?.effectiveFrom !== update.effectiveFrom || source.sha256 !== update.sha256 ||
+    source.url !== update.previousUrl) continue;
+  comparisonSources[id] = { ...source, url: update.url, previousUrl: update.previousUrl };
+}
+
 // Apply reviewed rows only to the source editions they were extracted from.
 for (const [component, evidence] of Object.entries(comparisonEvidence.components)) {
   const matchesEdition = Object.entries(evidence.bindings).every(([id, expected]) => {
-    const source = marketSources[id];
+    const source = comparisonSources[id];
     return source && Object.entries(expected).every(([field, value]) =>
       source[field as keyof CatalogSource] === value);
   });

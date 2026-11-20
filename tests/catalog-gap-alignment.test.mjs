@@ -3,6 +3,7 @@ import test from "node:test";
 import { compareCatalogProducts, materializeCatalogProduct, productComparisonProducts } from "../lib/catalog-product-comparison.ts";
 import { marketProductCatalog } from "../lib/market-product-catalog.ts";
 import { availableAddOns, resolveCatalogFacts } from "../lib/product-catalog.ts";
+import { productComparisonView } from "../lib/product-comparison-presentation.ts";
 import { termsSourceHref } from "../lib/terms-archive.ts";
 
 const catalog = new Map(productComparisonProducts(marketProductCatalog).map(candidate => [candidate.productId, candidate]));
@@ -162,9 +163,19 @@ test("veterinary facts require a veterinary plan and cite its conditions", () =>
       const imaging = fact(id, "dyr.diagnostikk.grense");
       assert.match(imaging.value, /5 000 kr/u);
       assert.equal(imaging.sources[0].page, 5);
+      assert.match(imaging.sources[0].url, /vilkar-hund-og-katteforsikring\.pdf$/u);
+      assert.match(fact(id, "dyr.veterinar.dekning").sources[0].url, /vilkar-hund-og-katteforsikring\.pdf$/u);
     }
-    const lifeOnly = materializeCatalogProduct(product("storebrand-" + species + "-d-dsfall"), marketProductCatalog);
-    assert.ok(!lifeOnly.facts.some(row => row.key === "dyr.diagnostikk.grense"));
+    const lifeOnly = "storebrand-" + species + "-d-dsfall";
+    for (const key of ["dyr.diagnostikk.dekning", "dyr.diagnostikk.grense",
+      "dyr.rehabilitering.dekning", "dyr.rehabilitering.grense"]) {
+      const excluded = fact(lifeOnly, key);
+      assert.equal(excluded.state, "unavailable", key);
+      assert.match(excluded.value, /krever veterinærforsikring/u);
+      assert.equal(excluded.sources[0].sourceType, "ipid");
+      assert.equal(termsSourceHref(excluded.sources[0]), "/api/vilkar/storebrand/dyr-produktark#page=1");
+      assert.ok(!resolveCatalogFacts(product(lifeOnly), []).some(row => row.key === key));
+    }
   }
 });
 
@@ -178,4 +189,54 @@ test("catalog evidence does not change the terms retrieved for uploaded agreemen
     assert.ok(!resolveCatalogFacts(product(id), []).some(row => row.key === key), id);
     assert.ok(fact(id, key).sources.length, id);
   }
+});
+
+test("NITO Delkasko aligns legal-expenses coverage and limits with distinct own-scope sources", () => {
+  const id = "tryg-nito-bil-delkasko";
+  const comparison = new Map(rows(id, "if-bil-delkasko").map(row => [row.key, row]));
+  const scope = comparison.get("rettshjelp.dekning");
+  assert.match(scope.first.text, /Norden når ansvar er avtalt/u);
+  const limit = comparison.get("rettshjelp.grense");
+  assert.match(limit.first.text, /100 000 kr.*250 000 kr.*20 000 kr/u);
+  assert.doesNotMatch(limit.first.text, /ID-tyveri/u);
+  assert.match(limit.second.text, /100 000 kr/u);
+  assert.deepEqual(limit.first.sources.map(termsSourceHref), [
+    "/api/vilkar/tryg/nito-bil-rettshjelp-pge91500#page=4",
+    "/api/vilkar/tryg/nito-bil-produkt-pau14000#page=1",
+  ]);
+  for (const row of [scope, limit]) {
+    assert.ok(row.first.sources.every(source => source.agreementScope === "nito"));
+    const reverse = rows("if-bil-delkasko", id).find(candidate => candidate.key === row.key);
+    assert.deepEqual(reverse.second, row.first);
+  }
+  assert.ok(!resolveCatalogFacts(product(id), []).some(row => row.key === "rettshjelp.grense"));
+  assert.ok(!materializeCatalogProduct(product("tryg-nito-bil-ansvar"), marketProductCatalog).facts
+    .some(row => row.sources.some(source => source.documentId.startsWith(id + ":"))));
+});
+
+test("market row and group headings describe shared subjects in either direction", () => {
+  const view = (a, b) => productComparisonView(compareCatalogProducts(product(a), product(b), marketProductCatalog));
+  const dog = "gjensidige-hund-behandling";
+  const pet = "storebrand-hund-veterin-r";
+  for (const [first, second] of [[dog, pet], [pet, dog]]) {
+    const group = view(first, second).flatMap(section => section.groups).find(group => group.id === "dyr.diagnostikk");
+    assert.equal(group.label, "Diagnostikk");
+    const cap = group.rows.find(row => row.key === "dyr.diagnostikk.grense");
+    assert.equal(cap.label, "Diagnostikk – grense");
+    assert.match((first === pet ? cap.first : cap.second).text, /scintigrafi/u);
+  }
+  const a = "tryg-nito-hus";
+  const b = "tryg-utdanningsforbundet-hus";
+  for (const [first, second] of [[a, b], [b, a]]) {
+    assert.ok(view(first, second).flatMap(section => section.groups)
+      .some(group => group.id === "hus.utleie" && group.label === "Utleie"));
+  }
+});
+
+test("market results use the same canonical type when legacy Barn names are swapped", () => {
+  const a = [...catalog.values()].find(product => product.insuranceType === "Barn");
+  const b = [...catalog.values()].find(product => product.insuranceType === "Barneforsikring");
+  assert.ok(a && b);
+  assert.equal(compareCatalogProducts(a, b, marketProductCatalog).insuranceType, "Barn");
+  assert.equal(compareCatalogProducts(b, a, marketProductCatalog).insuranceType, "Barn");
 });

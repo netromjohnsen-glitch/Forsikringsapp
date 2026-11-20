@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { materializeCatalogProduct, productComparisonProducts } from "../lib/catalog-product-comparison.ts";
+import { compareCatalogProducts, materializeCatalogProduct, productComparisonProducts } from "../lib/catalog-product-comparison.ts";
 import { marketProductCatalog } from "../lib/market-product-catalog.ts";
 import { privateHolidayContentsArchives, privateHolidayContentsMarket } from "../lib/private-holiday-contents-gjensidige-watercircles.ts";
 import { productCatalog } from "../lib/product-catalog.ts";
@@ -52,6 +52,28 @@ test("WaterCircles cites the published WtCIBF 1.05 terms for bicycle limits", ()
   assert.equal(legal.state, "unavailable");
   assert.equal(termsSourceHref(legal.sources[0]), "/api/vilkar/watercircles/innbo-fritidsbolig-ipid#page=1");
   assert.equal(fact("watercircles-innbo-fritidsbolig-elite", "skadedyr.dekning"), undefined);
+});
+
+test("WaterCircles freezer food aligns across cabin contents products and keeps the Elite limit distinct", () => {
+  const standard = products.find((product) => product.productId === "watercircles-innbo-fritidsbolig-standard");
+  const elite = products.find((product) => product.productId === "watercircles-innbo-fritidsbolig-elite");
+  const storebrand = products.find((product) => product.productId === "sb-innbo-fritidsbolig-super");
+  const withinWaterCircles = compareCatalogProducts(standard, elite, marketProductCatalog)
+    .sections.flatMap((section) => section.rows);
+  const limit = withinWaterCircles.find((row) => row.key === "innbo.fryserinnhold.grense");
+  assert.equal(limit.first.text, "Inntil 10 000 kr.");
+  assert.equal(limit.second.text, "Ingen særskilt beløpsgrense for matvarer i fryser.");
+  assert.equal(termsSourceHref(limit.first.sources[0]), "/api/vilkar/watercircles/innbo-fritidsbolig-105#page=4");
+  assert.equal(termsSourceHref(limit.second.sources[0]), "/api/vilkar/watercircles/innbo-fritidsbolig-105#page=9");
+  for (const watercircles of [standard, elite]) {
+    const comparison = compareCatalogProducts(watercircles, storebrand, marketProductCatalog);
+    const row = comparison.sections.flatMap((section) => section.rows).find((row) => row.key === "innbo.fryserinnhold.dekning");
+    assert.equal(row.first.state, "included");
+    assert.equal(row.second.state, "included");
+    assert.equal(row.first.facts[0].value, "Skade på matvarer ved utilsiktet temperaturstigning i fryser.");
+    assert.equal(termsSourceHref(row.first.sources[0]), "/api/vilkar/watercircles/innbo-fritidsbolig-105#page=4");
+    assert.ok(privateHolidayContentsMarket.facts[watercircles.productId].every((fact) => !fact.key.startsWith("innbo.fryserinnhold.")));
+  }
 });
 
 test("private holiday contents archive retains all four original PDFs", async () => {

@@ -92,3 +92,37 @@ export function alignComparisonRow<T extends { key: string; label: string }>(pro
   const label = alignments[normalizeInsuranceType(product.insuranceType)]?.labels?.[key] ?? row.label;
   return key === row.key && label === row.label ? row : { ...row, key, label };
 }
+
+// These catalogue headings describe the shared comparison dimension. A particular
+// product's scope, threshold, and service name belong in its own cell.
+const sharedHeadings: Readonly<Record<string, string>> = {
+  "dyr.diagnostikk.dekning": "Diagnostikk",
+  "dyr.diagnostikk.grense": "Diagnostikk – grense",
+  "innbo.fryserinnhold.dekning": "Matvarer ved temperaturstigning",
+  "innbo.fryserinnhold.grense": "Matvarer ved temperaturstigning – beløpsgrense",
+  "reise.bagasje.kontanter": "Penger",
+  "reise.tjeneste.alarm": "Reiseassistanse",
+  "reise.tjeneste.legehjelp": "Digital legehjelp",
+  "hus.utleie.egenandel": "Utleie – egenandel",
+};
+
+const headingsByType: Readonly<Record<string, RowLabels>> = {
+  bil: {
+    "avtale.automatiskopphor": "Automatisk opphør",
+    "bil.leiebil": "Leiebil",
+    "kasko.egenandel.ung": "Kasko – egenandel ved ung fører",
+    "ulykke.invaliditet.barn": "Fører/passasjer – invaliditet barn",
+  },
+  innbo: {
+    "ansvar.sum": "Privatansvar – forsikringssum",
+    "innbo.geografi": "Innbo – geografisk område",
+  },
+};
+
+export function comparisonRowHeading(type: string, key: string, first?: string, second?: string): string {
+  const heading = headingsByType[type]?.[key] ?? sharedHeadings[key];
+  if (heading) return heading;
+  if (!first || !second) return first || second || key;
+  // Prefer an existing concise heading without giving the first column priority.
+  return first.length < second.length || (first.length === second.length && first <= second) ? first : second;
+}

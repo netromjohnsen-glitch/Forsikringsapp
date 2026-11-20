@@ -49,6 +49,7 @@ export type CatalogSource = {
   agreementScope?: AgreementScopeId;
   id: string; filename: string; termsNumber: string; effectiveFrom: string;
   company?: string; url?: string; sha256?: string;
+  previousUrl?: string;
   productCode?: string; version?: string;
   distributionChannels?: string[];
   documentName?: string; insuranceType?: string; updatedAt?: string;

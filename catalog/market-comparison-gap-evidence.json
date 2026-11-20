@@ -1,4 +1,18 @@
 {
+  "sourceUrlUpdates": {
+    "boat-pet:storebrand:hund": {
+      "effectiveFrom": "2025-02-01",
+      "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591",
+      "previousUrl": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+      "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf"
+    },
+    "boat-pet:storebrand:katt": {
+      "effectiveFrom": "2025-02-01",
+      "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591",
+      "previousUrl": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+      "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf"
+    }
+  },
   "sources": {
     "ifAnsvar": {
       "id": "ifAnsvar",
@@ -202,6 +216,96 @@
         1,
         12
       ]
+    },
+    "tryg-nito-bil-delkasko:produktvilkar": {
+      "id": "tryg-nito-bil-delkasko:produktvilkar",
+      "providerId": "tryg",
+      "company": "Tryg",
+      "insuranceType": "Bil",
+      "agreementScope": "nito",
+      "productIds": [
+        "tryg-nito-bil-delkasko"
+      ],
+      "productVersion": "2026-01-01",
+      "sourceType": "full_terms",
+      "filename": "PAU14000.pdf",
+      "documentName": "NITO Bilforsikring – Produktvilkår",
+      "termsNumber": "PAU14000",
+      "effectiveFrom": "2026-07-01",
+      "url": "https://www.tryg.no/odpdf?vilk=nito-Bil-Produkt&vilkNr=05PAU14000",
+      "sha256": "ab2cad9d7799652ab208f237e0d9a1f1d36b3ad2fdc5b504b3536f37db25b116",
+      "physicalPages": [
+        1,
+        2
+      ]
+    },
+    "tryg-nito-bil-delkasko:rettshjelpsvilkar": {
+      "id": "tryg-nito-bil-delkasko:rettshjelpsvilkar",
+      "providerId": "tryg",
+      "company": "Tryg",
+      "insuranceType": "Bil",
+      "agreementScope": "nito",
+      "productIds": [
+        "tryg-nito-bil-delkasko"
+      ],
+      "productVersion": "2026-01-01",
+      "sourceType": "full_terms",
+      "filename": "05PGE91500.pdf",
+      "documentName": "Rettshjelpsvilkår for NITO Bil Delkasko",
+      "termsNumber": "PGE91500",
+      "effectiveFrom": "2026-01-01",
+      "url": "https://www.tryg.no/odpdf?vilk=Rettshjelp&vilkNr=05PGE91500",
+      "sha256": "bb2facd87cd377c994521ecf530ff82e1872ffc058d142f32832e5cd1999e291",
+      "physicalPages": [
+        1,
+        5
+      ]
+    },
+    "boat-pet:storebrand:hund:ipid": {
+      "id": "boat-pet:storebrand:hund:ipid",
+      "providerId": "storebrand",
+      "company": "Storebrand",
+      "insuranceType": "Hund",
+      "agreementScope": "ordinary",
+      "productIds": [
+        "storebrand-hund-d-dsfall"
+      ],
+      "productVersion": "2025-02-01",
+      "sourceType": "ipid",
+      "filename": "storebrand-pet-ipid.pdf",
+      "documentName": "Storebrand – Produktark hunde- og katteforsikring",
+      "termsNumber": "17098c",
+      "effectiveFrom": "",
+      "version": "12/2024",
+      "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+      "sha256": "5253776bf7a895753eab0d07df50fb78c85c7925f80a7a29d54c883c8f0d4ce4",
+      "physicalPages": [
+        1,
+        2
+      ]
+    },
+    "boat-pet:storebrand:katt:ipid": {
+      "id": "boat-pet:storebrand:katt:ipid",
+      "providerId": "storebrand",
+      "company": "Storebrand",
+      "insuranceType": "Katt",
+      "agreementScope": "ordinary",
+      "productIds": [
+        "storebrand-katt-d-dsfall"
+      ],
+      "productVersion": "2025-02-01",
+      "sourceType": "ipid",
+      "filename": "storebrand-pet-ipid.pdf",
+      "documentName": "Storebrand – Produktark hunde- og katteforsikring",
+      "termsNumber": "17098c",
+      "effectiveFrom": "",
+      "version": "12/2024",
+      "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+      "sha256": "5253776bf7a895753eab0d07df50fb78c85c7925f80a7a29d54c883c8f0d4ce4",
+      "physicalPages": [
+        1,
+        2
+      ]
     }
   },
   "components": {
@@ -367,7 +471,7 @@
         "boat-pet:storebrand:hund": {
           "effectiveFrom": "2025-02-01",
           "termsNumber": "dyr04",
-          "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+          "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
           "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591"
         }
       },
@@ -384,7 +488,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 Veterinærutgifter",
@@ -402,7 +506,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 nr. 1 Tannbehandling",
@@ -420,7 +524,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -438,7 +542,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -456,7 +560,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -474,7 +578,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -492,7 +596,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -510,7 +614,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -528,7 +632,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 6,
             "section": "B.4.2 nr. 1 Karenstid",
@@ -542,7 +646,7 @@
         "boat-pet:storebrand:katt": {
           "effectiveFrom": "2025-02-01",
           "termsNumber": "dyr04",
-          "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+          "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
           "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591"
         }
       },
@@ -559,7 +663,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 Veterinærutgifter",
@@ -577,7 +681,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 nr. 1 Tannbehandling",
@@ -595,7 +699,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -613,7 +717,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -631,7 +735,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -649,7 +753,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -667,7 +771,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -685,7 +789,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -703,7 +807,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 6,
             "section": "B.4.2 nr. 1 Karenstid",
@@ -717,7 +821,7 @@
         "boat-pet:storebrand:hund": {
           "effectiveFrom": "2025-02-01",
           "termsNumber": "dyr04",
-          "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+          "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
           "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591"
         }
       },
@@ -734,7 +838,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 Veterinærutgifter",
@@ -752,7 +856,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 nr. 1 Tannbehandling",
@@ -770,7 +874,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -788,7 +892,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -806,7 +910,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -824,7 +928,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -842,7 +946,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -860,7 +964,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -878,7 +982,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/hundeforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 6,
             "section": "B.4.2 nr. 1 Karenstid",
@@ -892,7 +996,7 @@
         "boat-pet:storebrand:katt": {
           "effectiveFrom": "2025-02-01",
           "termsNumber": "dyr04",
-          "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+          "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
           "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591"
         }
       },
@@ -909,7 +1013,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 Veterinærutgifter",
@@ -927,7 +1031,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 4,
             "section": "B.4.1 nr. 1 Tannbehandling",
@@ -945,7 +1049,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -963,7 +1067,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 3 Allergi",
@@ -981,7 +1085,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -999,7 +1103,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 4 Fysioterapi, kiropraktikk og rehabilitering",
@@ -1017,7 +1121,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -1035,7 +1139,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 5,
             "section": "B.4.1 nr. 5 MR, CT og scintigrafi",
@@ -1053,7 +1157,7 @@
             "effectiveFrom": "2025-02-01",
             "version": "2025-02-01",
             "agreementScope": "ordinary",
-            "url": "https://www.storebrand.no/privat/forsikring/katteforsikring",
+            "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
             "company": "Storebrand",
             "page": 6,
             "section": "B.4.2 nr. 1 Karenstid",
@@ -2578,6 +2682,316 @@
             "page": 9,
             "section": "B.1.5"
           }
+        },
+        {
+          "key": "innbo.fryserinnhold.dekning",
+          "label": "Matvarer i fryser",
+          "value": "Skade på matvarer ved utilsiktet temperaturstigning i fryser.",
+          "source": {
+            "documentId": "watercircles-innbo-fritidsbolig-terms",
+            "filename": "watercircles-terms.pdf",
+            "termsNumber": "WtCIBF-1.05",
+            "effectiveFrom": "2026-01-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2025/12/WaterCircles-Innbo-og-losore-Fritidsbolig-vilkar-WtCIBF-1.05-01.01.2026.pdf",
+            "page": 4,
+            "section": "A.1.7 Matvarer i fryser"
+          }
+        },
+        {
+          "key": "innbo.fryserinnhold.grense",
+          "label": "Matvarer i fryser – grense",
+          "value": "Ingen særskilt beløpsgrense for matvarer i fryser.",
+          "source": {
+            "documentId": "watercircles-innbo-fritidsbolig-terms",
+            "filename": "watercircles-terms.pdf",
+            "termsNumber": "WtCIBF-1.05",
+            "effectiveFrom": "2026-01-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2025/12/WaterCircles-Innbo-og-losore-Fritidsbolig-vilkar-WtCIBF-1.05-01.01.2026.pdf",
+            "page": 9,
+            "section": "B.2 nr. 16 Matvarer i fryser"
+          }
+        }
+      ]
+    },
+    "watercircles-innbo-fritidsbolig-standard": {
+      "bindings": {
+        "watercircles-innbo-fritidsbolig-terms": {
+          "effectiveFrom": "2026-01-01",
+          "termsNumber": "WtCIBF-1.05",
+          "url": "https://www.watercircles.no/wp-content/uploads/2025/12/WaterCircles-Innbo-og-losore-Fritidsbolig-vilkar-WtCIBF-1.05-01.01.2026.pdf",
+          "sha256": "751079b0621201da359bed6b4290da48897fc45e65cbc28b4f8346605e7fe924"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "innbo.fryserinnhold.dekning",
+          "label": "Matvarer i fryser",
+          "value": "Skade på matvarer ved utilsiktet temperaturstigning i fryser.",
+          "source": {
+            "documentId": "watercircles-innbo-fritidsbolig-terms",
+            "filename": "watercircles-terms.pdf",
+            "termsNumber": "WtCIBF-1.05",
+            "effectiveFrom": "2026-01-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2025/12/WaterCircles-Innbo-og-losore-Fritidsbolig-vilkar-WtCIBF-1.05-01.01.2026.pdf",
+            "page": 4,
+            "section": "A.1.7 Matvarer i fryser"
+          }
+        },
+        {
+          "key": "innbo.fryserinnhold.grense",
+          "label": "Matvarer i fryser – grense",
+          "value": "Inntil 10 000 kr.",
+          "source": {
+            "documentId": "watercircles-innbo-fritidsbolig-terms",
+            "filename": "watercircles-terms.pdf",
+            "termsNumber": "WtCIBF-1.05",
+            "effectiveFrom": "2026-01-01",
+            "company": "WaterCircles",
+            "agreementScope": "ordinary",
+            "url": "https://www.watercircles.no/wp-content/uploads/2025/12/WaterCircles-Innbo-og-losore-Fritidsbolig-vilkar-WtCIBF-1.05-01.01.2026.pdf",
+            "page": 4,
+            "section": "A.1.7 Matvarer i fryser"
+          }
+        }
+      ]
+    },
+    "tryg-nito-bil-delkasko-terms": {
+      "bindings": {
+        "tryg-nito-bil-delkasko-terms": {
+          "agreementScope": "nito",
+          "productVersion": "2026-01-01",
+          "termsNumber": "PAU25835",
+          "effectiveFrom": "2026-01-01",
+          "url": "https://www.tryg.no/odpdf?vilk=nito-bil-delkasko&vilkNr=05PAU25835",
+          "sha256": "3337c9c2e76f572f5c537470ff244c02ab7b24df3b71e2d1a041e974a68743be"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "rettshjelp.dekning",
+          "label": "Rettshjelp",
+          "value": "Gjelder i Norden når ansvar er avtalt i forsikringsbeviset.",
+          "source": {
+            "documentId": "tryg-nito-bil-delkasko:produktvilkar",
+            "page": 1,
+            "section": "Punkt 2–3",
+            "filename": "PAU14000.pdf",
+            "termsNumber": "PAU14000",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=nito-Bil-Produkt&vilkNr=05PAU14000",
+            "agreementScope": "nito"
+          },
+          "qualificationSource": {
+            "documentId": "tryg-nito-bil-delkasko:rettshjelpsvilkar",
+            "page": 2,
+            "section": "Punkt 5.3 (s. 2–3)",
+            "filename": "05PGE91500.pdf",
+            "termsNumber": "PGE91500",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Rettshjelp&vilkNr=05PGE91500",
+            "agreementScope": "nito"
+          }
+        },
+        {
+          "key": "rettshjelp.grense",
+          "label": "Rettshjelp – forsikringssum",
+          "value": "Ved avtalt ansvar: Inntil 100 000 kr samlet per tvist, eller inntil 250 000 kr samlet ved minst tre parter på sikredes side. Grensen gjelder samlet også på tvers av forsikringsselskap. Ved tvist med Tryg om rettshjelpsdekning er grensen 20 000 kr uansett antall parter.",
+          "source": {
+            "documentId": "tryg-nito-bil-delkasko:rettshjelpsvilkar",
+            "page": 4,
+            "section": "Punkt 6.1",
+            "filename": "05PGE91500.pdf",
+            "termsNumber": "PGE91500",
+            "effectiveFrom": "2026-01-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Rettshjelp&vilkNr=05PGE91500",
+            "agreementScope": "nito"
+          },
+          "qualificationSource": {
+            "documentId": "tryg-nito-bil-delkasko:produktvilkar",
+            "page": 1,
+            "section": "Punkt 2",
+            "filename": "PAU14000.pdf",
+            "termsNumber": "PAU14000",
+            "effectiveFrom": "2026-07-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=nito-Bil-Produkt&vilkNr=05PAU14000",
+            "agreementScope": "nito"
+          }
+        }
+      ]
+    },
+    "storebrand-hund-d-dsfall": {
+      "bindings": {
+        "boat-pet:storebrand:hund": {
+          "agreementScope": "ordinary",
+          "termsNumber": "dyr04",
+          "effectiveFrom": "2025-02-01",
+          "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
+          "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "dyr.diagnostikk.dekning",
+          "label": "Diagnostikk",
+          "value": "MR, CT og scintigrafi krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:hund:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
+        },
+        {
+          "key": "dyr.diagnostikk.grense",
+          "label": "Diagnostikk – grense",
+          "value": "MR, CT og scintigrafi krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:hund:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
+        },
+        {
+          "key": "dyr.rehabilitering.dekning",
+          "label": "Rehabilitering",
+          "value": "Fysioterapi, kiropraktikk og rehabilitering krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:hund:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
+        },
+        {
+          "key": "dyr.rehabilitering.grense",
+          "label": "Rehabilitering – grense",
+          "value": "Fysioterapi, kiropraktikk og rehabilitering krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:hund:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
+        }
+      ]
+    },
+    "storebrand-katt-d-dsfall": {
+      "bindings": {
+        "boat-pet:storebrand:katt": {
+          "agreementScope": "ordinary",
+          "termsNumber": "dyr04",
+          "effectiveFrom": "2025-02-01",
+          "url": "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf",
+          "sha256": "b236f856380b8010c7439765ea72a88d076e5d387d4653a7f033980892732591"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "dyr.diagnostikk.dekning",
+          "label": "Diagnostikk",
+          "value": "MR, CT og scintigrafi krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:katt:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
+        },
+        {
+          "key": "dyr.diagnostikk.grense",
+          "label": "Diagnostikk – grense",
+          "value": "MR, CT og scintigrafi krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:katt:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
+        },
+        {
+          "key": "dyr.rehabilitering.dekning",
+          "label": "Rehabilitering",
+          "value": "Fysioterapi, kiropraktikk og rehabilitering krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:katt:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
+        },
+        {
+          "key": "dyr.rehabilitering.grense",
+          "label": "Rehabilitering – grense",
+          "value": "Fysioterapi, kiropraktikk og rehabilitering krever veterinærforsikring.",
+          "source": {
+            "documentId": "boat-pet:storebrand:katt:ipid",
+            "page": 1,
+            "section": "Hva omfatter forsikringen? / Hva dekker forsikringen?",
+            "filename": "storebrand-pet-ipid.pdf",
+            "termsNumber": "17098c",
+            "effectiveFrom": "",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/ipid/_/attachment/inline/ac04c858-4151-4348-b4b1-19f0a1139e3e%3A8504d91aa1b6dbbf64bcbefe39b585e49e3b5d6a/ipid-hund-og-katteforsikring.pdf",
+            "agreementScope": "ordinary"
+          },
+          "coverageAvailability": "unavailable"
         }
       ]
     }

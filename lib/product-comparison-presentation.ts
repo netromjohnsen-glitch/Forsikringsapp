@@ -130,6 +130,15 @@ const groupLabels: Record<string, string> = {
   "reise.bagasje": "Reisegods",
 };
 
+const marketGroupLabels: Readonly<Record<string, string>> = {
+  "dyr.diagnostikk": "Diagnostikk",
+  "gjenoppforing": "Gjenoppføring",
+  "hus.gjenoppforing": "Gjenoppføring",
+  "hus.utleie": "Utleie",
+  "reise.tjeneste": "Reisetjenester",
+  "reise.varighet": "Reisevarighet",
+};
+
 const agreementLabels: Readonly<Record<string, string>> = {
   geografi: "Geografisk område", sesong: "Sesong / sesongvilkår",
   egenandel: "Egenandel", forsikringssum: "Forsikringssum",
@@ -210,12 +219,16 @@ export function productComparisonView(
       sections.set(identity.id, section);
     }
     const id = groupIdentity(type, row);
+    const definedLabel = id === "person" ? section.label
+      : id.endsWith(".avtale") ? "Avtalevilkår"
+        : (result.stableHeadings ? marketGroupLabels[id] : undefined) ?? groupLabels[id];
+    const rowHeading = row.label.split(" – ", 1)[0];
     let group = section.groups.find((candidate) => candidate.id === id);
     if (!group) {
-      const label = id === "person" ? section.label
-        : id.endsWith(".avtale") ? "Avtalevilkår" : groupLabels[id] ?? row.label.split(" – ")[0];
-      group = { id, label, rows: [], models: [], details: { first: [], second: [] } };
+      group = { id, label: definedLabel ?? rowHeading, rows: [], models: [], details: { first: [], second: [] } };
       section.groups.push(group);
+    } else if (result.stableHeadings && !definedLabel && group.label !== rowHeading) {
+      group.label = section.label;
     }
     if (type === "bil" && /^maskinskade\.(?:egenandel(?:\.|$)|fradrag$)/u.test(row.key)) {
       let model = group.models[0];

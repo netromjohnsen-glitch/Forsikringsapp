@@ -1,10 +1,10 @@
 import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.ts";
 import { catalogFactSources, catalogSourceIdentity } from "./catalog-enrichment.ts";
-import { alignComparisonRow, comparisonRowKey } from "./catalog-comparison-row-alignment.ts";
+import { alignComparisonRow, comparisonRowHeading, comparisonRowKey } from "./catalog-comparison-row-alignment.ts";
 import { coverageStatusFromText } from "./coverage-status.ts";
 import { isNonAssertingCoverageDetail } from "./coverage-fact-semantics.ts";
 import { criticalIllnessComparisonDiagnoses, diagnosisNotListed, isCriticalIllnessDiagnosisKey } from "./critical-illness-comparison.ts";
-import { normalizeInsuranceType } from "./insurance-normalization.ts";
+import { canonicalInsuranceTypeLabel, normalizeInsuranceType } from "./insurance-normalization.ts";
 import { conceptForFactKey, conceptsForInsurance } from "./presentation-catalog.ts";
 import {
   availableAddOns,
@@ -75,6 +75,7 @@ export type CatalogProductComparison = {
   sections: ProductComparisonSection[];
   importantSections: ProductComparisonSection[];
   differenceCount: number;
+  stableHeadings?: true;
 };
 
 const customerSpecificKey = /^(?:premie\.|bonus\.|kjoretoy\.(?:kjorelengde|kilometerstand|registreringsnummer|vin)\b|objekt\.)/u;
@@ -95,9 +96,16 @@ function factIdentity(fact: CatalogFact): string {
 }
 
 function sourcesForFact(fact: CatalogFact, catalog: ProductCatalog): ProductComparisonSource[] {
-  return catalogFactSources(fact).map((source) => ({
-    ...source, sourceType: catalog.sources?.[source.documentId]?.sourceType,
-  }));
+  return catalogFactSources(fact).map((source) => {
+    const registered = catalog.sources?.[source.documentId];
+    const currentUrl = registered?.previousUrl && source.url === registered.previousUrl &&
+      source.effectiveFrom === registered.effectiveFrom ? registered.url : undefined;
+    return {
+      ...source,
+      ...(currentUrl && { url: currentUrl }),
+      sourceType: registered?.sourceType,
+    };
+  });
 }
 
 function productFact(
@@ -284,6 +292,7 @@ export function compareCatalogProducts(
   const leftOptionalKeys = optionalKeys(firstProduct);
   const rightOptionalKeys = optionalKeys(secondProduct);
   const keys = [...new Set([...first.facts, ...second.facts].map((fact) => fact.key))];
+  if (catalog.alignComparisonRows) keys.sort();
   const rows = keys.map((key): ProductComparisonRow => {
     const leftFacts = first.facts.filter((fact) => fact.key === key);
     const rightFacts = second.facts.filter((fact) => fact.key === key);
@@ -292,11 +301,16 @@ export function compareCatalogProducts(
     const right = (!rightFacts.length ? diagnosisNotListed(key, second.diagnosisListSource) : undefined) ??
       valueForKey(rightFacts, rightOptionalKeys.has(key));
     const concept = conceptForFactKey(firstType, key);
+    const leftLabel = leftFacts[0]?.label;
+    const rightLabel = rightFacts[0]?.label;
+    const label = catalog.alignComparisonRows
+      ? comparisonRowHeading(firstType, key, leftLabel, rightLabel)
+      : leftLabel ?? rightLabel ?? key;
     return {
       key,
-      label: leftFacts[0]?.label ?? rightFacts[0]?.label ?? key,
+      label,
       conceptId: concept?.id ?? `${firstType}.ufordelt.${key}`,
-      conceptLabel: concept?.label ?? leftFacts[0]?.label ?? rightFacts[0]?.label ?? key,
+      conceptLabel: concept?.label ?? label,
       conceptTier: concept?.defaultTier ?? "detail",
       first: left,
       second: right,
@@ -310,7 +324,10 @@ export function compareCatalogProducts(
   }).sort((a, b) => (conceptOrder.get(a.id) ?? Number.MAX_SAFE_INTEGER) -
     (conceptOrder.get(b.id) ?? Number.MAX_SAFE_INTEGER));
   return {
-    insuranceType: firstProduct.insuranceType,
+    insuranceType: catalog.alignComparisonRows
+      ? canonicalInsuranceTypeLabel(firstProduct.insuranceType)
+      : firstProduct.insuranceType,
+    ...(catalog.alignComparisonRows && { stableHeadings: true }),
     first,
     second,
     sections,
