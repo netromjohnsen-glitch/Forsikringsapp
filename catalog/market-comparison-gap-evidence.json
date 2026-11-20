@@ -329,6 +329,76 @@
         1,
         12
       ]
+    },
+    "trygReiseLiability202610": {
+      "id": "trygReiseLiability202610",
+      "company": "Tryg",
+      "providerId": "tryg",
+      "insuranceType": "Reise",
+      "agreementScope": "ordinary",
+      "termsNumber": "PGE90020",
+      "effectiveFrom": "2026-10-01",
+      "filename": "PGE90020-Privat-ansvar.pdf",
+      "documentName": "Privatansvar for Tryg Reise",
+      "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020",
+      "sha256": "c75dcb29b61d990dd95869e884fb64f59dd839717f9cb88fa9d85f0618d000df",
+      "sourceType": "full_terms",
+      "physicalPages": [
+        1,
+        3
+      ],
+      "productIds": [
+        "tryg-reise",
+        "tryg-reise-ekstra",
+        "tryg-reise-premium"
+      ],
+      "productVersion": "2026-09-20-canonical"
+    },
+    "person:tryg-person-gravid-ekstra:gravid-produktvilkar": {
+      "id": "person:tryg-person-gravid-ekstra:gravid-produktvilkar",
+      "providerId": "tryg",
+      "company": "Tryg",
+      "insuranceType": "Gravid",
+      "agreementScope": "ordinary",
+      "filename": "tryg-person-gravid-produktvilkar.pdf",
+      "documentName": "Tryg – Gravidforsikring Ekstra – produktvilkår",
+      "sourceType": "full_terms",
+      "productIds": [
+        "tryg-person-gravid-ekstra"
+      ],
+      "termsNumber": "UUL41840",
+      "effectiveFrom": "2025-06-01",
+      "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+      "sha256": "764303066ce773f33f47551cc0111e85140937f80b84e45a3e54a5c22f7baa7d",
+      "physicalPages": [
+        1,
+        2
+      ],
+      "version": "UUL41840",
+      "productVersion": "UUL41813"
+    },
+    "person:tryg-person-gravid-premium:gravid-produktvilkar": {
+      "id": "person:tryg-person-gravid-premium:gravid-produktvilkar",
+      "providerId": "tryg",
+      "company": "Tryg",
+      "insuranceType": "Gravid",
+      "agreementScope": "ordinary",
+      "filename": "tryg-person-gravid-produktvilkar.pdf",
+      "documentName": "Tryg – Gravidforsikring Premium – produktvilkår",
+      "sourceType": "full_terms",
+      "productIds": [
+        "tryg-person-gravid-premium"
+      ],
+      "termsNumber": "UUL41840",
+      "effectiveFrom": "2025-06-01",
+      "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+      "sha256": "764303066ce773f33f47551cc0111e85140937f80b84e45a3e54a5c22f7baa7d",
+      "physicalPages": [
+        1,
+        2
+      ],
+      "version": "UUL41840",
+      "productVersion": "UUL41814"
     }
   },
   "components": {
@@ -1650,7 +1720,17 @@
           "effectiveFrom": "2026-01-01",
           "termsNumber": "UUL41813",
           "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Ekstra&vilkNr=05UUL41813",
-          "sha256": "437122f68004fed8946784da64e4f772f0f0523490b68e900b839abae115cd77"
+          "sha256": "437122f68004fed8946784da64e4f772f0f0523490b68e900b839abae115cd77",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41813"
+        },
+        "person:tryg-person-gravid-gratis:gravid-produktvilkar": {
+          "effectiveFrom": "2025-06-01",
+          "termsNumber": "UUL41840",
+          "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+          "sha256": "764303066ce773f33f47551cc0111e85140937f80b84e45a3e54a5c22f7baa7d",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41812"
         }
       },
       "remove": [
@@ -1674,6 +1754,22 @@
             "agreementScope": "ordinary",
             "version": "UUL41813"
           }
+        },
+        {
+          "key": "person.gravid.opphor",
+          "label": "Når forsikringen opphører",
+          "value": "Opphører 6 måneder etter termindato og kan ikke fornyes.",
+          "source": {
+            "documentId": "person:tryg-person-gravid-ekstra:gravid-produktvilkar",
+            "filename": "tryg-person-gravid-produktvilkar.pdf",
+            "termsNumber": "UUL41840",
+            "effectiveFrom": "2025-06-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "§ 4"
+          }
         }
       ]
     },
@@ -1683,7 +1779,17 @@
           "effectiveFrom": "2026-01-01",
           "termsNumber": "UUL41814",
           "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Premium&vilkNr=05UUL41814",
-          "sha256": "7ef0564690a01bc17f58205991b1369e951a8c4bd0a97ad3040c7aa588a564f3"
+          "sha256": "7ef0564690a01bc17f58205991b1369e951a8c4bd0a97ad3040c7aa588a564f3",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41814"
+        },
+        "person:tryg-person-gravid-gratis:gravid-produktvilkar": {
+          "effectiveFrom": "2025-06-01",
+          "termsNumber": "UUL41840",
+          "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+          "sha256": "764303066ce773f33f47551cc0111e85140937f80b84e45a3e54a5c22f7baa7d",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41812"
         }
       },
       "remove": [
@@ -1706,6 +1812,22 @@
             "effectiveFrom": "2026-01-01",
             "agreementScope": "ordinary",
             "version": "UUL41814"
+          }
+        },
+        {
+          "key": "person.gravid.opphor",
+          "label": "Når forsikringen opphører",
+          "value": "Opphører 6 måneder etter termindato og kan ikke fornyes.",
+          "source": {
+            "documentId": "person:tryg-person-gravid-premium:gravid-produktvilkar",
+            "filename": "tryg-person-gravid-produktvilkar.pdf",
+            "termsNumber": "UUL41840",
+            "effectiveFrom": "2025-06-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "§ 4"
           }
         }
       ]
@@ -5411,6 +5533,256 @@
             "agreementScope": "ordinary",
             "page": 1,
             "section": "§ 2 – Utbetaling ved død"
+          }
+        }
+      ]
+    },
+    "trygReiseBase": {
+      "bindings": {
+        "trygReiseBase": {
+          "termsNumber": "PRF46001",
+          "effectiveFrom": "2026-01-01",
+          "sha256": "eef499eb1f5d9c26fae8928ca6e8ea240a80dda3d64a774d13b7d78946ff1606"
+        },
+        "trygReiseLiabilityFuture": {
+          "effectiveFrom": "2026-10-01",
+          "sha256": "c75dcb29b61d990dd95869e884fb64f59dd839717f9cb88fa9d85f0618d000df",
+          "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"
+        }
+      },
+      "remove": [
+        "reise.ansvar.dekning"
+      ],
+      "rows": [
+        {
+          "key": "reise.ansvar.dekning",
+          "label": "Privatansvar",
+          "value": "Rettslig erstatningsansvar som privatperson for person- eller tingskade på reise utenfor Norden. Om det foreligger ansvar, avgjøres etter retten i landet der den skadevoldende handlingen skjer. Skaden må være konstatert i forsikringstiden.",
+          "source": {
+            "documentId": "trygReiseLiability202610",
+            "company": "Tryg",
+            "agreementScope": "ordinary",
+            "page": 1,
+            "section": "Punkt 1, 2 og 3.1",
+            "filename": "PGE90020-Privat-ansvar.pdf",
+            "termsNumber": "PGE90020",
+            "effectiveFrom": "2026-10-01",
+            "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"
+          }
+        },
+        {
+          "key": "reise.ansvar.unntak",
+          "label": "Privatansvar – unntak",
+          "value": "Blant unntakene er ansvar overfor nærmeste familie, skade på felleseide ting og skade på ting som sikrede har mottatt til bruk, leie, lån eller oppbevaring. Ansvar for skade på leid bolig kan likevel dekkes ved brann, eksplosjon eller når vann eller fyringsolje strømmer ut fra bygningens rørledning.",
+          "source": {
+            "documentId": "trygReiseLiability202610",
+            "company": "Tryg",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "Punkt 3.2, side 1–2",
+            "filename": "PGE90020-Privat-ansvar.pdf",
+            "termsNumber": "PGE90020",
+            "effectiveFrom": "2026-10-01",
+            "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"
+          }
+        }
+      ]
+    },
+    "trygReiseBaseSums": {
+      "bindings": {
+        "trygReiseSums": {
+          "sha256": "5a94ffb15f362a736ee1f6d8378f29a4b991633aabe1e1919d7f277eac621f6d"
+        },
+        "trygReiseLiabilityFuture": {
+          "effectiveFrom": "2026-10-01",
+          "sha256": "c75dcb29b61d990dd95869e884fb64f59dd839717f9cb88fa9d85f0618d000df",
+          "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "reise.ansvar.egenandel",
+          "label": "Privatansvar – egenandel",
+          "value": "1 000 kr per skadetilfelle.",
+          "deductibleClassification": "coverage",
+          "source": {
+            "documentId": "trygReiseLiability202610",
+            "company": "Tryg",
+            "agreementScope": "ordinary",
+            "page": 3,
+            "section": "Punkt 3.3",
+            "filename": "PGE90020-Privat-ansvar.pdf",
+            "termsNumber": "PGE90020",
+            "effectiveFrom": "2026-10-01",
+            "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"
+          }
+        }
+      ]
+    },
+    "trygReiseExtraSums": {
+      "bindings": {
+        "trygReiseExtra": {
+          "termsNumber": "PRF46001",
+          "effectiveFrom": "2026-01-01",
+          "sha256": "eef499eb1f5d9c26fae8928ca6e8ea240a80dda3d64a774d13b7d78946ff1606"
+        },
+        "trygReiseLiabilityFuture": {
+          "effectiveFrom": "2026-10-01",
+          "sha256": "c75dcb29b61d990dd95869e884fb64f59dd839717f9cb88fa9d85f0618d000df",
+          "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "reise.ansvar.egenandel",
+          "label": "Privatansvar – egenandel",
+          "value": "Ingen egenandel, med mindre 1 000 kr er valgt i forsikringsbeviset.",
+          "deductibleClassification": "coverage",
+          "replacesBase": true,
+          "source": {
+            "documentId": "trygReiseLiability202610",
+            "company": "Tryg",
+            "agreementScope": "ordinary",
+            "page": 3,
+            "section": "Punkt 3.3",
+            "filename": "PGE90020-Privat-ansvar.pdf",
+            "termsNumber": "PGE90020",
+            "effectiveFrom": "2026-10-01",
+            "url": "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"
+          }
+        }
+      ]
+    },
+    "person:tryg-person-gravid-gratis": {
+      "bindings": {
+        "person:tryg-person-gravid-gratis": {
+          "effectiveFrom": "2026-01-01",
+          "termsNumber": "UUL41812",
+          "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Gratis&vilkNr=05UUL41812",
+          "sha256": "02334247425da3c989e20dd7ea6d0b7e6192666226e10d4a90af7feb779ac36f",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41812"
+        },
+        "person:tryg-person-gravid-gratis:gravid-produktvilkar": {
+          "effectiveFrom": "2025-06-01",
+          "termsNumber": "UUL41840",
+          "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+          "sha256": "764303066ce773f33f47551cc0111e85140937f80b84e45a3e54a5c22f7baa7d",
+          "agreementScope": "ordinary",
+          "productVersion": "UUL41812"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.gravid.opphor",
+          "label": "Når forsikringen opphører",
+          "value": "Opphører 6 måneder etter termindato og kan ikke fornyes. Ved utvidelse til Ekstra eller Premium opphører Gratis når den nye dekningen trer i kraft.",
+          "source": {
+            "documentId": "person:tryg-person-gravid-gratis:gravid-produktvilkar",
+            "filename": "tryg-person-gravid-produktvilkar.pdf",
+            "termsNumber": "UUL41840",
+            "effectiveFrom": "2025-06-01",
+            "company": "Tryg",
+            "url": "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840",
+            "agreementScope": "ordinary",
+            "page": 2,
+            "section": "§ 4"
+          }
+        }
+      ]
+    },
+    "person:if-person-gravid-basis": {
+      "bindings": {
+        "person:if-person-gravid-basis": {
+          "effectiveFrom": "2024-11-09",
+          "termsNumber": "GRO1-3",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Basis_Gravidforsikring",
+          "sha256": "2ec7d29522c415f2d591f156827cd874310ef7f03640e77578954fffdfd52dec",
+          "agreementScope": "ordinary",
+          "productVersion": "GRO1-3"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.gravid.opphor",
+          "label": "Når forsikringen opphører",
+          "value": "Opphører 3 måneder etter oppgitt termindato. Ved utvidelse til Super opphører Basis når den nye dekningen trer i kraft.",
+          "source": {
+            "documentId": "person:if-person-gravid-basis",
+            "filename": "if-person-gravid-basis.pdf",
+            "termsNumber": "GRO1-3",
+            "effectiveFrom": "2024-11-09",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Basis_Gravidforsikring",
+            "agreementScope": "ordinary",
+            "page": 3,
+            "section": "§ 3"
+          }
+        }
+      ]
+    },
+    "person:if-person-gravid-super": {
+      "bindings": {
+        "person:if-person-gravid-super": {
+          "effectiveFrom": "2024-11-09",
+          "termsNumber": "GRA1-4",
+          "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Super_Gravidforsikring",
+          "sha256": "08132b98f9354bd32fca89b3ea2341e65ab093ea85d89e7ded215ba769e3f4c3",
+          "agreementScope": "ordinary",
+          "productVersion": "GRA1-4"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.gravid.opphor",
+          "label": "Når forsikringen opphører",
+          "value": "Opphører 3 måneder etter oppgitt termindato.",
+          "source": {
+            "documentId": "person:if-person-gravid-super",
+            "filename": "if-person-gravid-super.pdf",
+            "termsNumber": "GRA1-4",
+            "effectiveFrom": "2024-11-09",
+            "company": "If",
+            "url": "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Super_Gravidforsikring",
+            "agreementScope": "ordinary",
+            "page": 3,
+            "section": "§ 3"
+          }
+        }
+      ]
+    },
+    "person:storebrand-person-gravid": {
+      "bindings": {
+        "person:storebrand-person-gravid": {
+          "effectiveFrom": "2021-09",
+          "termsNumber": "SBarn01",
+          "url": "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/e3ad945c-94b8-40be-a633-db696962d266:366459414df07675461d76f8d656c68c9aae4aeb/vilkar-gravid-og-spedbarnsforsikring.pdf",
+          "sha256": "92678997731c4025c5d6247197fea8661fafab155c97e98d4ec9e1b1bb0a75d6",
+          "agreementScope": "ordinary",
+          "productVersion": "SBarn01"
+        }
+      },
+      "remove": [],
+      "rows": [
+        {
+          "key": "person.gravid.opphor",
+          "label": "Når forsikringen opphører",
+          "value": "Ved kjøp før fødselen opphører forsikringen 4 måneder etter beregnet termindato. Ved kjøp etter fødselen opphører den når barnet er 4 måneder gammelt.",
+          "source": {
+            "documentId": "person:storebrand-person-gravid",
+            "filename": "storebrand-person-gravid.pdf",
+            "termsNumber": "SBarn01",
+            "effectiveFrom": "2021-09",
+            "company": "Storebrand",
+            "url": "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/e3ad945c-94b8-40be-a633-db696962d266:366459414df07675461d76f8d656c68c9aae4aeb/vilkar-gravid-og-spedbarnsforsikring.pdf",
+            "agreementScope": "ordinary",
+            "page": 10,
+            "section": "G.1"
           }
         }
       ]

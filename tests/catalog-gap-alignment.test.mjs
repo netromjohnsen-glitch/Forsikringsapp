@@ -256,3 +256,65 @@ test("Tryg Premium SmartDelay uses the Collinson certificate and its 2026 editio
   assert.equal(loungeFact("ekstra", "2026-11-20"), undefined);
   assert.equal(loungeFact("premium", "2027-01-01"), undefined);
 });
+
+
+test("Tryg Reise aligns the October liability terms and each tier's deductible on separate rows", () => {
+  const asOf = new Date("2026-10-01");
+  const key = "reise.ansvar.";
+  const pge = "/api/vilkar/tryg/reise-privatansvar-2026-10";
+  const variants = [
+    ["tryg-reise", "4 000 000 kr", /1 000 kr per skadetilfelle/u],
+    ["tryg-reise-ekstra", "15 000 000 kr", /Ingen egenandel, med mindre 1 000 kr er valgt i forsikringsbeviset/u],
+    ["tryg-reise-premium", "15 000 000 kr", /Ingen egenandel, med mindre 1 000 kr er valgt i forsikringsbeviset/u],
+  ];
+  for (const [id, amount, deductible] of variants) {
+    const variant = product(id);
+    const facts = resolveCatalogFacts(variant, [], asOf, null, marketProductCatalog);
+    const coverage = facts.filter(entry => entry.key === key + "dekning");
+    const amounts = facts.filter(entry => entry.key === key + "sum");
+    const deductibles = facts.filter(entry => entry.key === key + "egenandel");
+    const exclusions = facts.find(entry => entry.key === key + "unntak");
+    assert.deepEqual([coverage.length, amounts.length, deductibles.length], [1, 1, 1]);
+    assert.match(coverage[0].value, /privatperson.*person- eller tingskade.*utenfor Norden.*forsikringstiden/u);
+    assert.match(exclusions.value, /nærmeste familie.*leid bolig.*rørledning/u);
+    assert.ok(amounts[0].value.startsWith(amount));
+    assert.match(deductibles[0].value, deductible);
+    assert.deepEqual([coverage[0], exclusions, deductibles[0]].map(entry => termsSourceHref(entry.source)),
+      [pge + "#page=1", pge + "#page=2", pge + "#page=3"]);
+    assert.ok(!resolveCatalogFacts(variant, [], new Date("2026-09-30"), null, marketProductCatalog)
+      .some(entry => entry.source.documentId === "trygReiseLiability202610"));
+    assert.ok(!resolveCatalogFacts(variant, [], asOf)
+      .some(entry => entry.key === key + "egenandel" || entry.source.documentId === "trygReiseLiability202610"));
+  }
+  const comparison = rows("tryg-reise", "tryg-reise-premium");
+  const shared = comparison.filter(entry => entry.key === key + "egenandel");
+  assert.equal(shared.length, 1);
+  assert.match(shared[0].first.text, /1 000 kr per skadetilfelle/u);
+  assert.match(shared[0].second.text, /Ingen egenandel/u);
+});
+
+
+test("the six pregnancy products use one expiry row with edition-specific dates and sources", () => {
+  const key = "person.gravid.opphor";
+  const compareWith = "storebrand-person-gravid";
+  const products = [
+    ["tryg-person-gravid-gratis", /6 måneder etter termindato.*kan ikke fornyes.*utvidelse til Ekstra eller Premium/u, "tryg/gravid-produktvilkar#page=2"],
+    ["tryg-person-gravid-ekstra", /6 måneder etter termindato.*kan ikke fornyes/u, "tryg/gravid-produktvilkar#page=2"],
+    ["tryg-person-gravid-premium", /6 måneder etter termindato.*kan ikke fornyes/u, "tryg/gravid-produktvilkar#page=2"],
+    ["if-person-gravid-basis", /3 måneder etter oppgitt termindato.*utvidelse til Super/u, "if/gravid-basis#page=3"],
+    ["if-person-gravid-super", /3 måneder etter oppgitt termindato/u, "if/gravid-super#page=3"],
+    [compareWith, /før fødselen.*4 måneder etter beregnet termindato.*etter fødselen.*barnet er 4 måneder/u, "storebrand/gravid-spedbarn#page=10"],
+  ];
+
+  for (const [id, expiry, href] of products) {
+    const forward = rows(id, compareWith).filter(row => row.key === key);
+    assert.equal(forward.length, 1, id);
+    assert.equal(forward[0].label, "Når forsikringen opphører");
+    assert.match(forward[0].first.text, expiry);
+    assert.equal(termsSourceHref(forward[0].first.sources[0]), "/api/vilkar/" + href);
+    const reverse = rows(compareWith, id).find(row => row.key === key);
+    assert.deepEqual(forward[0].first, reverse.second);
+    assert.deepEqual(forward[0].second, reverse.first);
+    assert.ok(!resolveCatalogFacts(product(id), []).some(entry => entry.key === key));
+  }
+});

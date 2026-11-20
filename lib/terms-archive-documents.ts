@@ -27,6 +27,48 @@ type TermsArchiveDocument = {
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   {
     provider: "tryg",
+    slug: "gravid-produktvilkar",
+    archivePath: "catalog/sources/person/tryg-person-gravid-produktvilkar.pdf",
+    sources: [
+      ["person:tryg-person-gravid-gratis:gravid-produktvilkar", "2025-06-01", "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840"],
+      ["person:tryg-person-gravid-ekstra:gravid-produktvilkar", "2025-06-01", "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840"],
+      ["person:tryg-person-gravid-premium:gravid-produktvilkar", "2025-06-01", "https://www.tryg.no/odpdf?vilk=Gravidforsikring-Produktvilkaar&vilkNr=05UUL41840"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "gravid-basis",
+    archivePath: "catalog/sources/person/if-person-gravid-basis.pdf",
+    sources: [
+      ["person:if-person-gravid-basis", "2024-11-09", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Basis_Gravidforsikring"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "gravid-super",
+    archivePath: "catalog/sources/person/if-person-gravid-super.pdf",
+    sources: [
+      ["person:if-person-gravid-super", "2024-11-09", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Super_Gravidforsikring"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "gravid-spedbarn",
+    archivePath: "catalog/sources/person/storebrand-person-gravid.pdf",
+    sources: [
+      ["person:storebrand-person-gravid", "2021-09", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/e3ad945c-94b8-40be-a633-db696962d266:366459414df07675461d76f8d656c68c9aae4aeb/vilkar-gravid-og-spedbarnsforsikring.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "reise-privatansvar-2026-10",
+    archivePath: "catalog/sources/tryg/reise/canonical/PGE90020-Privat-ansvar.pdf",
+    sources: [
+      ["trygReiseLiability202610", "2026-10-01", "https://www.tryg.no/odpdf?vilk=Fellesvilkaar-Privat&vilkNr=05PGE90020"],
+    ],
+  },
+  {
+    provider: "tryg",
     slug: "barn-behandling",
     archivePath: "catalog/sources/person/tryg-person-barn-behandling.pdf",
     sources: [
