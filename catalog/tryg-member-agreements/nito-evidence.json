@@ -7,20 +7,223 @@
     "termsNumber": "PAU25205",
     "facts": [
       {
-        "key": "bil.kollisjon",
-        "label": "Sammenstøt",
-        "value": "Skade på eget kjøretøy ved sammenstøt er dekket etter kaskovilkåret.",
-        "page": 1,
-        "section": "2.1 Kasko – Følgende er dekket"
-      },
-      {
         "key": "tilbehor.grense",
         "label": "Fastmontert tilbehør",
-        "value": "Lovlig fastmontert tilbehør er dekket inntil 10 000 kroner, med mindre en annen sum er avtalt i forsikringsbeviset.",
+        "value": "Fastmontert tilbehør som det er lovlig å ha på kjøretøyet er omfattet med inntil 10 000 kroner. Det fremgår av forsikringsbeviset hvis annen sum er avtalt. Foliering regnes også som fastmontert tilbehør.",
         "page": 1,
         "section": "1 Hva forsikringen omfatter – Fastmontert tilbehør"
+      },
+      {
+        "key": "tilbehor.unntak",
+        "label": "Tilbehør – unntak",
+        "value": "Spesiallakk omfattes ikke. Tilhenger eller tilbehør som kan fjernes uten bruk av verktøy regnes ikke som fastmontert tilbehør.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Unntak"
+      },
+      {
+        "key": "bil.brann",
+        "label": "Brann",
+        "value": "Skade som følge av brann med åpen flamme, eksplosjon og lynnedslag.",
+        "page": 2,
+        "section": "2.2 Brann"
+      },
+      {
+        "key": "brann.egenandel",
+        "label": "Brann – egenandel",
+        "value": "Egenandelen er 6 000 kroner, hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset.",
+        "page": 2,
+        "section": "2.2 Brann – Egenandel",
+        "deductibleClassification": "standard"
+      },
+      {
+        "key": "tyveri.dekning",
+        "label": "Tyveri",
+        "value": "Skade som følge av tyveri/brukstyveri av kjøretøyet eller deler av dette. Det samme gjelder skade eller hærverk i forbindelse med forsøk på tyveri.",
+        "page": 2,
+        "section": "2.3 Tyveri"
+      },
+      {
+        "key": "tyveri.egenandel",
+        "label": "Tyveri – egenandel",
+        "value": "Egenandelen er 6 000 kroner, hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset.",
+        "page": 2,
+        "section": "2.3 Tyveri – Egenandel",
+        "deductibleClassification": "standard"
+      },
+      {
+        "key": "bil.glass",
+        "label": "Glass",
+        "value": "Bruddskader på kjøretøyets glassruter, inkludert glasstak, er dekket når de repareres eller nye ruter settes inn hos ett av våre avtaleverksted.",
+        "page": 2,
+        "section": "2.4 Glass"
+      },
+      {
+        "key": "glass.egenandel.bytte",
+        "label": "Glass – egenandel ved bytte",
+        "value": "Egenandelen er 3 000 kroner ved bytte av rute, ingen egenandel ved reparasjon.",
+        "page": 2,
+        "section": "2.4 Glass – Egenandel",
+        "deductibleClassification": "coverage"
+      },
+      {
+        "key": "glass.egenandel.reparasjon",
+        "label": "Glass – egenandel ved reparasjon",
+        "value": "Ingen egenandel ved reparasjon.",
+        "page": 2,
+        "section": "2.4 Glass – Egenandel",
+        "deductibleClassification": "coverage"
+      },
+      {
+        "key": "glass.unntak",
+        "label": "Glass – begrensning",
+        "value": "Hvis ruten før bruddskade var i for dårlig stand på grunn av riper eller slitasje til å bli godkjent ved EU-kontroll, dekkes skaden ikke.",
+        "page": 2,
+        "section": "2.4 Glass – Unntak"
+      },
+      {
+        "key": "veihjelp.dekning",
+        "label": "Veihjelp",
+        "value": "Når kjøretøyet er skadet erstattes nødvendige merutgifter til hjemreise for fører og passasjerer, inkludert bagasje.",
+        "page": 2,
+        "section": "2.5 Veihjelp"
+      },
+      {
+        "key": "veihjelp.transport.grense",
+        "label": "Veihjelp – transportgrense",
+        "value": "Erstatningen er begrenset til 50 prosent av kjøretøyets verdi da skaden skjedde.",
+        "page": 2,
+        "section": "2.5 Veihjelp"
+      },
+      {
+        "key": "veihjelp.egenandel",
+        "label": "Veihjelp – egenandel",
+        "value": "Egenandelen er 750 kroner.",
+        "page": 2,
+        "section": "2.5 Veihjelp – Egenandel",
+        "deductibleClassification": "coverage"
+      },
+      {
+        "key": "veihjelp.unntak",
+        "label": "Veihjelp – unntak",
+        "value": "Transportutgifter for haikere erstattes ikke. Utgifter som kan kreves dekket under annen avtale, garanti eller redningsabonnement erstattes ikke. Utgifter på sted uten tilknytning til vei erstattes ikke.",
+        "page": 2,
+        "section": "2.5 Veihjelp – Unntak"
+      },
+      {
+        "key": "reparasjon.kontant",
+        "label": "Kontanterstatning ved reparasjon",
+        "value": "Hvis kontantutbetaling er avtalt erstattes 70 prosent av takst uten merverdiavgift. Leiebil erstattes ikke ved kontanterstatning.",
+        "page": 3,
+        "section": "3.2 Reparasjon"
+      },
+      {
+        "key": "totalskade.oppgjor",
+        "label": "Totalskade – oppgjør",
+        "value": "Oppgjør ved totalskade eller tap beregnes etter markedsverdien på skadedagen.",
+        "page": 3,
+        "section": "3.3 Totalskade og tap"
+      },
+      {
+        "key": "bil.kollisjon",
+        "label": "Kaskoskade",
+        "value": "Skade som oppstår på eget kjøretøy ved sammenstøt, utforkjøring, velt, hærverk, feilfylling av drivstoff eller en plutselig, uventet og ytre påvirkning.",
+        "page": 1,
+        "section": "2.1 Kasko"
+      },
+      {
+        "key": "haerverk.dekning",
+        "label": "Hærverk",
+        "value": "Skade som oppstår på eget kjøretøy ved hærverk.",
+        "page": 1,
+        "section": "2.1 Kasko"
+      },
+      {
+        "key": "feilfylling.dekning",
+        "label": "Feilfylling",
+        "value": "Skade som oppstår på eget kjøretøy ved feilfylling av drivstoff.",
+        "page": 1,
+        "section": "2.1 Kasko"
+      },
+      {
+        "key": "kasko.egenandel",
+        "label": "Kasko – egenandel",
+        "value": "Avtalt egenandel fremgår av forsikringsbeviset.",
+        "page": 1,
+        "section": "2.1 Kasko – Egenandel",
+        "deductibleClassification": "reference"
+      },
+      {
+        "key": "kasko.egenandel.ung",
+        "label": "Kasko – fører under 23 år",
+        "value": "Er føreren under 23 år i skadeøyeblikket økes egenandelen med 5 000 kroner når ikke annet fremgår av forsikringsbeviset. Økt egenandel gjelder ikke for hovedeier, hovedeiers ektefelle/samboer eller fører som har øvelseskjørt 2 000 kilometer med appen «Tryg vei til lappen». Ved deltakelse i ferdighetskurs på is- eller hastighetsbane som er godkjent av selskapet, økes egenandelen med 20 000 kroner.",
+        "page": 1,
+        "section": "2.1 Kasko – Egenandel"
+      },
+      {
+        "key": "kasko.unntak",
+        "label": "Kasko – unntak",
+        "value": "Skade som skyldes maskinbrudd eller frost er ikke dekket under kasko.",
+        "page": 1,
+        "section": "2.1 Kasko – Unntak"
+      },
+      {
+        "key": "kasko.dyr",
+        "label": "Påkjørsel av dyr",
+        "value": "Det er ikke bonustap ved erstatningsmessig kaskoskade som følge av påkjørsel av dyr, forutsatt at politi eller viltnemnd blir varslet så snart som mulig etter uhellet. Foretatt varsling må kunne dokumenteres. Egenandelen er 2 000 kroner.",
+        "page": 1,
+        "section": "2.1 Kasko – Påkjørsel av dyr"
+      },
+      {
+        "key": "kasko.var",
+        "label": "Værskade – egenandel",
+        "value": "Ved værrelatert skade faller egenandelen bort dersom kjøretøyet var parkert innendørs i garasje eller lignende da skadetilfellet oppstod.",
+        "page": 1,
+        "section": "2.1 Kasko – Værrelatert skade"
+      },
+      {
+        "key": "nyverdi.alder",
+        "label": "Nyverdierstatning – alder",
+        "value": "Skaden må inntreffe innen ett år etter at kjøretøyet som fabrikknytt var registrert på forsikringstakeren.",
+        "page": 3,
+        "section": "3.4 Nyverdierstatning"
+      },
+      {
+        "key": "nyverdi.km",
+        "label": "Nyverdierstatning – kilometer",
+        "value": "Kjøretøyet må ikke ha kjørt mer enn 15 000 kilometer.",
+        "page": 3,
+        "section": "3.4 Nyverdierstatning"
+      },
+      {
+        "key": "nyverdi.skadegrad",
+        "label": "Nyverdierstatning – skadegrad",
+        "value": "Forventet reparasjonsomkostning fra takst må overstige 80 prosent av kjøretøyets nyanskaffelsesverdi på skadedagen.",
+        "page": 3,
+        "section": "3.4 Nyverdierstatning"
+      },
+      {
+        "key": "nyverdi.tyveri",
+        "label": "Nyverdierstatning – tyveri",
+        "value": "Retten til nytt kjøretøy gjelder også ved tyveri dersom kjøretøyet ikke er kommet til rette innen 3 uker.",
+        "page": 3,
+        "section": "3.4 Nyverdierstatning"
+      },
+      {
+        "key": "nyverdi.unntak",
+        "label": "Nyverdierstatning – unntak",
+        "value": "Kjøretøy som er utleid i henhold til leasingavtale er ikke omfattet av reglene om nyverdierstatning.",
+        "page": 3,
+        "section": "3.4 Nyverdierstatning"
+      },
+      {
+        "key": "bonus.kasko",
+        "label": "Bonus ved kaskoskade",
+        "value": "Skade under 2.1 Kasko fører til tap av bonus.",
+        "page": 4,
+        "section": "4 Bonus"
       }
-    ]
+    ],
+    "pages": 4
   },
   "bil-ekstra": {
     "filename": "nito-bil-ekstra.pdf",
@@ -30,20 +233,175 @@
     "termsNumber": "PAU27012",
     "facts": [
       {
-        "key": "bil.leiebil",
-        "label": "Leiebil ved erstatningsmessig skade",
-        "value": "Inntil 60 dager i normal reparasjonstid ved en dekket skade som overstiger egenandelen, når leiebilen formidles av Trygs leverandør. Ved kondemnasjon gjelder inntil 14 dager etter beskjed, innenfor 60-dagersgrensen.",
+        "key": "bil.parkeringsskade",
+        "label": "Parkert bil – bonustap",
+        "value": "Erstatningsmessig kaskoskade som oppstår mens kjøretøyet er parkert dekkes uten tap av bonus når skadevolder er ukjent, reparasjon skjer på avtaleverksted og skaden inntreffer innen 10 år etter førstegangsregistrering som fabrikkny.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Fritak for bonustap ved skade på parkert bil"
+      },
+      {
+        "key": "tilbehor.grense",
+        "label": "Fastmontert tilbehør og ekstra hjul",
+        "value": "Erstatningssummen for fastmontert tilbehør utvides til 50 000 kroner per skadetilfelle, samlet med ekstra dekk og felger. Foliering regnes som fastmontert tilbehør.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Fastmontert tilbehør. Ekstra dekk og felger"
+      },
+      {
+        "key": "feilfylling.rens",
+        "label": "Rens etter feilfylling",
+        "value": "Utgifter til rens av motor etter feilfylling av drivstoff med inntil 20 000 kroner. Egenandelen er 1 000 kroner.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Rens av motor etter feilfylling"
+      },
+      {
+        "key": "leiebil.dager",
+        "label": "Leiebil – normal reparasjonstid",
+        "value": "Leiebil dekkes i normal reparasjonstid, inntil 60 dager.",
         "page": 1,
         "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
       },
       {
-        "key": "bil.parkeringsskade",
-        "label": "Parkeringsskade uten bonustap",
-        "value": "Erstatningsmessig kaskoskade på parkert bil gir fritak for bonustap når skadevolder er ukjent, bilen repareres på avtaleverksted og skaden skjer innen 10 år etter førstegangsregistrering som ny.",
+        "key": "leiebil.bilklasse",
+        "label": "Leiebil – bilstørrelse",
+        "value": "Leiebil med ubegrenset kjørelengde i tilsvarende bilstørrelse som det forsikrede kjøretøyet, oppad begrenset til VW ID.4.",
         "page": 1,
-        "section": "1 Hva forsikringen omfatter – Fritak for bonustap ved skade på parkert bil"
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.kondemnasjon",
+        "label": "Leiebil – kondemnasjon",
+        "value": "Ved kondemnasjon dekkes leiebil i inntil 14 dager fra selskapet har gitt melding om at kjøretøyet er kondemnert. Det gis likevel ikke leiebil utover 60 dager.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.naturulykke",
+        "label": "Leiebil – brutt veiforbindelse",
+        "value": "Dersom kjøretøyet er utilgjengelig fordi veiforbindelsen er brutt etter naturulykke, dekkes leiebil i inntil 10 dager.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.unntak",
+        "label": "Leiebil – unntak",
+        "value": "Leiebildekningen gjelder ikke ved skade på glass/bilrute alene, skadet/tapt bilnøkkel eller kontantoppgjør som ikke er knyttet til totalskade og innløsning.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.vilkar",
+        "label": "Leiebil – utløser",
+        "value": "Når skade på kjøretøyet er dekket av forsikringen, erstatter selskapet leiebil formidlet av vår leverandør, forutsatt at skaden overstiger egenandel.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.kostnader",
+        "label": "Leiebil – utgifter som ikke dekkes",
+        "value": "Utgifter som ikke dekkes: bøter, skader eller egenandel knyttet til leieforholdet, drivstoff, ladeutgifter, parkeringsutgifter, bompenger og drop-off gebyrer.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "bagasje.grense",
+        "label": "Bagasje ved tyveri",
+        "value": "Ved tyveri av bagasje fra kjøretøyet eller låsbar bagasjeboks dekkes bagasje med inntil 20 000 kroner. Hver gjenstand er dekket med inntil 5 000 kroner. Egenandel er 1 000 kroner.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Bagasje"
+      },
+      {
+        "key": "bagasje.unntak",
+        "label": "Bagasje – unntak",
+        "value": "Utstyr til bruk i næring, penger, verdipapirer og dyr erstattes ikke.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Bagasje"
+      },
+      {
+        "key": "bilnokkel.dekning",
+        "label": "Bilnøkkel/fjernkontroll",
+        "value": "Skade på eller tap av bilnøkkel og fjernkontroll til kupevarmer er dekket.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tap av bilnøkkel"
+      },
+      {
+        "key": "bilnokkel.grense",
+        "label": "Bilnøkkel – forsikringssum",
+        "value": "Samlet erstatning er begrenset til 20 000 kroner per forsikringsår.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tap av bilnøkkel"
+      },
+      {
+        "key": "bilnokkel.egenandel",
+        "label": "Bilnøkkel – egenandel",
+        "value": "Ingen egenandel.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tap av bilnøkkel"
+      },
+      {
+        "key": "bil.ladekabel",
+        "label": "Ladekabel",
+        "value": "Ladekabel til hybrid-/elbil er dekket som følge av brann, tyveri eller en plutselig, uventet og ytre påvirkning.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tyveri av ladekabel"
+      },
+      {
+        "key": "ladekabel.egenandel",
+        "label": "Ladekabel – egenandel",
+        "value": "Ingen egenandel.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tyveri av ladekabel"
+      },
+      {
+        "key": "nyverdi.alder",
+        "label": "Totalskadegaranti – alder",
+        "value": "Skaden må inntreffe innen tre år etter at kjøretøyet som fabrikknytt var registrert på forsikringstakeren.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "nyverdi.km",
+        "label": "Totalskadegaranti – kilometer",
+        "value": "Kjøretøyet må ikke ha kjørt mer enn 60 000 kilometer.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "nyverdi.skadegrad",
+        "label": "Totalskadegaranti – skadegrad",
+        "value": "Forventet reparasjonsomkostning fra takst må overstige 80 prosent av kjøretøyets nyanskaffelsesverdi på skadedagen.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "nyverdi.avtaler",
+        "label": "Totalskadegaranti – avtaler",
+        "value": "Inngåtte abonnement og avtaler knyttet til kjøretøyets verdi dekkes med inntil 10 000 kroner.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "leasing.startleie",
+        "label": "Leasing – resterende startleie",
+        "value": "For kjøretøy som er utleid i henhold til leasingavtale dekker selskapet resterende startleie ved totalskade og totalforsvunnet kjøretøy. Erstatningen beregnes forholdsmessig nedskrevet etter innbetalt beløp og resterende leasingperiode.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Innskudd leaset kjøretøy"
+      },
+      {
+        "key": "bonus.tillegg",
+        "label": "Bonus ved tilleggsskade",
+        "value": "Utbetaling under NITO Bil Ekstra alene medfører ikke tap av bonus.",
+        "page": 2,
+        "section": "2 Bonus"
+      },
+      {
+        "key": "bil.leiebil",
+        "label": "Leiebil ved erstatningsmessig skade",
+        "value": "Ved erstatningsmessig skade erstattes leiebil formidlet av Trygs leverandør når skaden overstiger egenandelen. Leiebil med ubegrenset kjørelengde i tilsvarende bilstørrelse, oppad begrenset til VW ID.4. Normal reparasjonstid inntil 60 dager. Ved kondemnasjon inntil 14 dager fra melding, aldri utover 60 dager. Ved brutt veiforbindelse etter naturulykke inntil 10 dager.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
       }
-    ]
+    ],
+    "pages": 2
   },
   "hus": {
     "filename": "nito-hus.pdf",
@@ -694,19 +1052,41 @@
     "facts": [
       {
         "key": "bil.ansvar",
-        "label": "Ansvar etter bilansvarsloven",
-        "value": "Ubegrenset beløp for personskade og inntil 100 millioner kroner for annen skade enn personskade etter bilansvarsloven. Vilkåret har egne regler for ansvar utenfor Norge.",
+        "label": "Ansvar",
+        "value": "Ansvar etter bilansvarsloven dekkes med ubegrenset beløp for personskade. Annen skade enn personskade dekkes med inntil 100 millioner kroner.",
+        "page": 1,
+        "section": "1.1 Ansvar"
+      },
+      {
+        "key": "ansvar.person.grense",
+        "label": "Ansvar – personskade",
+        "value": "Ubegrenset beløp for personskade.",
+        "page": 1,
+        "section": "1.1 Ansvar"
+      },
+      {
+        "key": "ansvar.ting.grense",
+        "label": "Ansvar – tingskade",
+        "value": "Inntil 100 millioner kroner for annen skade enn personskade.",
         "page": 1,
         "section": "1.1 Ansvar"
       },
       {
         "key": "bil.rettshjelp",
         "label": "Rettshjelp",
-        "value": "Rettshjelp er omfattet etter vilkår PGE91500.",
+        "value": "Rettshjelp er omfattet. Se vilkår for Rettshjelp, PGE91500.",
         "page": 1,
         "section": "1.2 Rettshjelp"
+      },
+      {
+        "key": "bonus.ansvar",
+        "label": "Bonus ved ansvarsskade",
+        "value": "Skade under 1.1 Ansvar fører til tap av bonus.",
+        "page": 1,
+        "section": "3 Bonus"
       }
-    ]
+    ],
+    "pages": 1
   },
   "bil-delkasko": {
     "filename": "nito-bil-delkasko.pdf",
@@ -716,20 +1096,131 @@
     "termsNumber": "PAU25835",
     "facts": [
       {
+        "key": "tilbehor.grense",
+        "label": "Fastmontert tilbehør",
+        "value": "Fastmontert tilbehør som det er lovlig å ha på kjøretøyet er omfattet med inntil 10 000 kroner. Det fremgår av forsikringsbeviset hvis annen sum er avtalt. Foliering regnes også som fastmontert tilbehør.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Fastmontert tilbehør"
+      },
+      {
+        "key": "tilbehor.unntak",
+        "label": "Tilbehør – unntak",
+        "value": "Spesiallakk omfattes ikke. Tilhenger eller tilbehør som kan fjernes uten bruk av verktøy regnes ikke som fastmontert tilbehør.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Unntak"
+      },
+      {
         "key": "bil.brann",
         "label": "Brann",
-        "value": "Skade som følge av brann med åpen flamme, eksplosjon eller lynnedslag er omfattet. Egenandel 6 000 kroner, med mindre en lavere egenandel er avtalt i forsikringsbeviset.",
+        "value": "Skade som følge av brann med åpen flamme, eksplosjon og lynnedslag.",
         "page": 1,
         "section": "2.1 Brann"
       },
       {
+        "key": "brann.egenandel",
+        "label": "Brann – egenandel",
+        "value": "Egenandelen er 6 000 kroner, hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset.",
+        "page": 1,
+        "section": "2.1 Brann – Egenandel",
+        "deductibleClassification": "standard"
+      },
+      {
+        "key": "tyveri.dekning",
+        "label": "Tyveri",
+        "value": "Skade som følge av tyveri/brukstyveri av kjøretøyet eller deler av dette. Det samme gjelder skade eller hærverk i forbindelse med forsøk på tyveri.",
+        "page": 1,
+        "section": "2.2 Tyveri"
+      },
+      {
+        "key": "tyveri.egenandel",
+        "label": "Tyveri – egenandel",
+        "value": "Egenandelen er 6 000 kroner, hvis ikke lavere egenandel er avtalt og fremgår av forsikringsbeviset.",
+        "page": 1,
+        "section": "2.2 Tyveri – Egenandel",
+        "deductibleClassification": "standard"
+      },
+      {
         "key": "bil.glass",
         "label": "Glass",
-        "value": "Bruddskade på ruter, inkludert glasstak, håndteres hos avtaleverksted. Egenandel 3 000 kroner ved bytte og ingen ved reparasjon. Ruter som var for slitt eller ripet til å kunne bestå EU-kontroll før skaden, er unntatt.",
+        "value": "Bruddskader på kjøretøyets glassruter, inkludert glasstak, er dekket når de repareres eller nye ruter settes inn hos ett av våre avtaleverksted.",
         "page": 1,
         "section": "2.3 Glass"
+      },
+      {
+        "key": "glass.egenandel.bytte",
+        "label": "Glass – egenandel ved bytte",
+        "value": "Egenandelen er 3 000 kroner ved bytte av rute, ingen egenandel ved reparasjon.",
+        "page": 1,
+        "section": "2.3 Glass – Egenandel",
+        "deductibleClassification": "coverage"
+      },
+      {
+        "key": "glass.egenandel.reparasjon",
+        "label": "Glass – egenandel ved reparasjon",
+        "value": "Ingen egenandel ved reparasjon.",
+        "page": 1,
+        "section": "2.3 Glass – Egenandel",
+        "deductibleClassification": "coverage"
+      },
+      {
+        "key": "glass.unntak",
+        "label": "Glass – begrensning",
+        "value": "Hvis ruten før bruddskade var i for dårlig stand på grunn av riper eller slitasje til å bli godkjent ved EU-kontroll, dekkes skaden ikke.",
+        "page": 1,
+        "section": "2.3 Glass – Unntak"
+      },
+      {
+        "key": "veihjelp.dekning",
+        "label": "Veihjelp",
+        "value": "Når kjøretøyet er skadet erstattes nødvendige merutgifter til hjemreise for fører og passasjerer, inkludert bagasje.",
+        "page": 1,
+        "section": "2.4 Veihjelp"
+      },
+      {
+        "key": "veihjelp.transport.grense",
+        "label": "Veihjelp – transportgrense",
+        "value": "Erstatningen er begrenset til 50 prosent av kjøretøyets verdi da skaden skjedde.",
+        "page": 2,
+        "section": "2.4 Veihjelp"
+      },
+      {
+        "key": "veihjelp.egenandel",
+        "label": "Veihjelp – egenandel",
+        "value": "Egenandelen er 750 kroner.",
+        "page": 2,
+        "section": "2.4 Veihjelp – Egenandel",
+        "deductibleClassification": "coverage"
+      },
+      {
+        "key": "veihjelp.unntak",
+        "label": "Veihjelp – unntak",
+        "value": "Transportutgifter for haikere erstattes ikke. Utgifter som kan kreves dekket under annen avtale, garanti eller redningsabonnement erstattes ikke. Utgifter på sted uten tilknytning til vei erstattes ikke.",
+        "page": 2,
+        "section": "2.4 Veihjelp – Unntak"
+      },
+      {
+        "key": "reparasjon.kontant",
+        "label": "Kontanterstatning ved reparasjon",
+        "value": "Hvis kontantutbetaling er avtalt erstattes 70 prosent av takst uten merverdiavgift. Leiebil erstattes ikke ved kontanterstatning.",
+        "page": 2,
+        "section": "3.2 Reparasjon"
+      },
+      {
+        "key": "totalskade.oppgjor",
+        "label": "Totalskade – oppgjør",
+        "value": "Oppgjør ved totalskade eller tap beregnes etter markedsverdien på skadedagen.",
+        "page": 2,
+        "section": "3.3 Totalskade og tap"
+      },
+      {
+        "key": "bonus.delkasko",
+        "label": "Bonus ved delkaskoskade",
+        "value": "Skade fører ikke til tap av bonus.",
+        "page": 3,
+        "section": "4 Bonus"
       }
-    ]
+    ],
+    "pages": 3
   },
   "elbil-ekstra": {
     "filename": "nito-elbil-ekstra.pdf",
@@ -739,20 +1230,168 @@
     "termsNumber": "PAU27015",
     "facts": [
       {
-        "key": "bil.ladekabel",
-        "label": "Skade på eller tyveri av ladekabel",
-        "value": "Ladekabel til hybrid- eller elbil dekkes uten egenandel ved brann, tyveri eller plutselig, uventet og ytre påvirkning.",
+        "key": "bil.parkeringsskade",
+        "label": "Parkert bil – bonustap",
+        "value": "Erstatningsmessig kaskoskade som oppstår mens kjøretøyet er parkert dekkes uten tap av bonus når skadevolder er ukjent, reparasjon skjer på avtaleverksted og skaden inntreffer innen 10 år etter førstegangsregistrering som fabrikkny.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Fritak for bonustap ved skade på parkert bil"
+      },
+      {
+        "key": "tilbehor.grense",
+        "label": "Fastmontert tilbehør og ekstra hjul",
+        "value": "Erstatningssummen for fastmontert tilbehør utvides til 50 000 kroner per skadetilfelle, samlet med ekstra dekk og felger. Foliering regnes som fastmontert tilbehør.",
         "page": 2,
-        "section": "Skade på eller tyveri av ladekabel"
+        "section": "1 Hva forsikringen omfatter – Fastmontert tilbehør. Ekstra dekk og felger"
+      },
+      {
+        "key": "leiebil.dager",
+        "label": "Leiebil – normal reparasjonstid",
+        "value": "Leiebil dekkes i normal reparasjonstid, inntil 60 dager.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.bilklasse",
+        "label": "Leiebil – bilstørrelse",
+        "value": "Leiebil med ubegrenset kjørelengde i tilsvarende bilstørrelse som det forsikrede kjøretøyet, oppad begrenset til VW ID.4.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.kondemnasjon",
+        "label": "Leiebil – kondemnasjon",
+        "value": "Ved kondemnasjon dekkes leiebil i inntil 14 dager fra selskapet har gitt melding om at kjøretøyet er kondemnert. Det gis likevel ikke leiebil utover 60 dager.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.naturulykke",
+        "label": "Leiebil – brutt veiforbindelse",
+        "value": "Dersom kjøretøyet er utilgjengelig fordi veiforbindelsen er brutt etter naturulykke, dekkes leiebil i inntil 10 dager.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.unntak",
+        "label": "Leiebil – unntak",
+        "value": "Leiebildekningen gjelder ikke ved skade på glass/bilrute alene, skadet/tapt bilnøkkel eller kontantoppgjør som ikke er knyttet til totalskade og innløsning.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.vilkar",
+        "label": "Leiebil – utløser",
+        "value": "Når skade på kjøretøyet er dekket av forsikringen, erstatter selskapet leiebil formidlet av vår leverandør, forutsatt at skaden overstiger egenandel.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "leiebil.kostnader",
+        "label": "Leiebil – utgifter som ikke dekkes",
+        "value": "Utgifter som ikke dekkes: bøter, skader eller egenandel knyttet til leieforholdet, drivstoff, ladeutgifter, parkeringsutgifter, bompenger og drop-off gebyrer.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
+      },
+      {
+        "key": "bagasje.grense",
+        "label": "Bagasje ved tyveri",
+        "value": "Ved tyveri av bagasje fra kjøretøyet eller låsbar bagasjeboks dekkes bagasje med inntil 20 000 kroner. Hver gjenstand er dekket med inntil 5 000 kroner. Egenandel er 1 000 kroner.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Bagasje"
+      },
+      {
+        "key": "bagasje.unntak",
+        "label": "Bagasje – unntak",
+        "value": "Utstyr til bruk i næring, penger, verdipapirer og dyr erstattes ikke.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Bagasje"
+      },
+      {
+        "key": "bilnokkel.dekning",
+        "label": "Bilnøkkel/fjernkontroll",
+        "value": "Skade på eller tap av bilnøkkel og fjernkontroll til kupevarmer er dekket.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tap av bilnøkkel"
+      },
+      {
+        "key": "bilnokkel.grense",
+        "label": "Bilnøkkel – forsikringssum",
+        "value": "Samlet erstatning er begrenset til 20 000 kroner per forsikringsår.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tap av bilnøkkel"
+      },
+      {
+        "key": "bilnokkel.egenandel",
+        "label": "Bilnøkkel – egenandel",
+        "value": "Ingen egenandel.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tap av bilnøkkel"
+      },
+      {
+        "key": "bil.ladekabel",
+        "label": "Ladekabel",
+        "value": "Ladekabel til hybrid-/elbil er dekket som følge av brann, tyveri eller en plutselig, uventet og ytre påvirkning.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tyveri av ladekabel"
+      },
+      {
+        "key": "ladekabel.egenandel",
+        "label": "Ladekabel – egenandel",
+        "value": "Ingen egenandel.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Skade på eller tyveri av ladekabel"
+      },
+      {
+        "key": "nyverdi.alder",
+        "label": "Totalskadegaranti – alder",
+        "value": "Skaden må inntreffe innen tre år etter at kjøretøyet som fabrikknytt var registrert på forsikringstakeren.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "nyverdi.km",
+        "label": "Totalskadegaranti – kilometer",
+        "value": "Kjøretøyet må ikke ha kjørt mer enn 60 000 kilometer.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "nyverdi.skadegrad",
+        "label": "Totalskadegaranti – skadegrad",
+        "value": "Forventet reparasjonsomkostning fra takst må overstige 80 prosent av kjøretøyets nyanskaffelsesverdi på skadedagen.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "nyverdi.avtaler",
+        "label": "Totalskadegaranti – avtaler",
+        "value": "Inngåtte abonnement og avtaler knyttet til kjøretøyets verdi dekkes med inntil 10 000 kroner.",
+        "page": 1,
+        "section": "1 Hva forsikringen omfatter – Totalskadegaranti"
+      },
+      {
+        "key": "leasing.startleie",
+        "label": "Leasing – resterende startleie",
+        "value": "For kjøretøy som er utleid i henhold til leasingavtale dekker selskapet resterende startleie ved totalskade og totalforsvunnet kjøretøy. Erstatningen beregnes forholdsmessig nedskrevet etter innbetalt beløp og resterende leasingperiode.",
+        "page": 2,
+        "section": "1 Hva forsikringen omfatter – Innskudd leaset kjøretøy"
+      },
+      {
+        "key": "bonus.tillegg",
+        "label": "Bonus ved tilleggsskade",
+        "value": "Utbetaling under NITO Bil Ekstra alene medfører ikke tap av bonus.",
+        "page": 2,
+        "section": "2 Bonus"
       },
       {
         "key": "bil.leiebil",
         "label": "Leiebil ved erstatningsmessig skade",
-        "value": "Inntil 60 dager i normal reparasjonstid ved en dekket skade som overstiger egenandelen, når leiebilen formidles av Trygs leverandør. Ved kondemnasjon gjelder inntil 14 dager etter beskjed, innenfor 60-dagersgrensen.",
+        "value": "Ved erstatningsmessig skade erstattes leiebil formidlet av Trygs leverandør når skaden overstiger egenandelen. Leiebil med ubegrenset kjørelengde i tilsvarende bilstørrelse, oppad begrenset til VW ID.4. Normal reparasjonstid inntil 60 dager. Ved kondemnasjon inntil 14 dager fra melding, aldri utover 60 dager. Ved brutt veiforbindelse etter naturulykke inntil 10 dager.",
         "page": 1,
         "section": "1 Hva forsikringen omfatter – Leiebil ved erstatningsmessig skade"
       }
-    ]
+    ],
+    "pages": 2
   },
   "innbo-student": {
     "filename": "nito-innbo-student.pdf",

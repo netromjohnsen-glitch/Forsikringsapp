@@ -86,11 +86,11 @@ test("samme nøkkel i ett produkt har ikke to ulike verdier", () => {
 test("Utdanningsforbundet Delkasko og Innbo har beløpene fra beviset", () => {
   const car = findCatalogProductBySelection("Tryg", "Bil", "Delkasko", "utdanningsforbundet", productCatalog, undefined, asOf);
   const carFacts = resolveCatalogFacts(car, [], asOf);
-  assert.equal(carFacts.find((fact) => fact.key === "brann.egenandel").value, "3 000 kroner.");
-  assert.equal(carFacts.find((fact) => fact.key === "tyveri.egenandel").value, "3 000 kroner.");
-  assert.match(carFacts.find((fact) => fact.key === "glass.egenandel.bytte").value, /3 000 kroner/);
-  assert.match(carFacts.find((fact) => fact.key === "glass.egenandel.reparasjon").value, /Ingen egenandel/);
-  assert.equal(carFacts.find((fact) => fact.key === "veihjelp.egenandel").value, "500 kroner.");
+  assert.equal(carFacts.find((fact) => fact.key === "brann.egenandel").value, "Egenandelen er 3 000 kroner.");
+  assert.equal(carFacts.find((fact) => fact.key === "tyveri.egenandel").value, "Egenandelen er 3 000 kroner.");
+  assert.match(carFacts.find((fact) => fact.key === "glass.egenandel.bytte").value, /3 000 kroner ved bytte av rute/);
+  assert.match(carFacts.find((fact) => fact.key === "glass.egenandel.reparasjon").value, /Ingen egenandel ved reparasjon/);
+  assert.equal(carFacts.find((fact) => fact.key === "veihjelp.egenandel").value, "Egenandelen er 500 kroner.");
   assert.equal(carFacts.find((fact) => fact.key === "veihjelp.egenandel").source.page, 2);
 
   const contents = findCatalogProductBySelection("Tryg", "Innbo", "Innboforsikring", "utdanningsforbundet", productCatalog, undefined, asOf);
