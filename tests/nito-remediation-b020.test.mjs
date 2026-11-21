@@ -99,10 +99,11 @@ test('R-020-06: 53 archived positive controls and all unrelated facts remain unc
   // delta: b051-craftsmanship-0cedd98/catalog-delta.json. Standard hashes stay fixed.
   // New source-bound water event: b051-water-25004-cd6e03d/source-oracle.json.
   // Physical-exclusions source oracle and exact four-row delta: b051-physical-exclusions-0be8fad/catalog-delta.json.
+  // Customer text allmenlege -> allmennlege: catalog-evidence-corrections-20261121.
   for (const [id, addons, expected] of [
-    [base, [], '484a1a5784ec806384cd6ceb215839b8f7a3f9baa777557fd9ef783756e76b8d'],
-    [base, [addon], 'b7e8f00c1ef1d517953cd28aad9944d35a7a145a6d19967e6a18a83afa803f0a'],
-    [plus, [], 'e683ba473c626ef37526a3fdd19d08745fd6a2f027bb7a45c05ff36ac053e099'],
+    [base, [], '6411d7071526caaaca5f32a3679f3143b7afbc756c4beb94c33d8853cf003819'],
+    [base, [addon], '41fc27be5ed0a220a60269d0e66a9948f7485de7da29177cbc35e4d0fb757f99'],
+    [plus, [], '1b2bec5747f717a9272a37944e68d0c700eb3c575518d18529ec40bec4d9f002'],
   ]) assert.equal(digest(facts(id, addons).filter(f => !f.key.startsWith('hus.skadedyr.') && f.key !== 'hus.rate.dekning')), expected);
   assert.match(fact(base, 'hus.rate.dekning').value, /unntatt/u);
   assert.match(fact(base, 'hus.skadedyr.grunnunntak').value, /Insekter|insekter/u);
