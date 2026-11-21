@@ -53,20 +53,431 @@
     "termsNumber": "PPK11507",
     "facts": [
       {
-        "key": "hus.fullverdi",
-        "label": "Fullverdi og førsterisiko",
-        "value": "Bygningen er fullverdiforsikret med mindre forsikringsbeviset angir førsterisiko. Ved førsterisiko begrenses erstatningen av forsikringssummen i beviset.",
+        "key": "hus.forsikringsform",
+        "label": "Forsikringsform",
+        "value": "Bygning kan være en fullverdi- eller førsterisikoforsikring. Det står i forsikringsbeviset hvis forsikringen er førsterisikoforsikring. Er dette ikke spesifisert, er bygningen fullverdiforsikret. Fullverdi tar utgangspunkt i gjenoppføring til samme eller vesentlig samme stand før skaden.",
         "page": 1,
-        "section": "Fullverdi og førsterisiko før punkt 1"
+        "section": "Innledning – fullverdi og førsterisiko"
+      },
+      {
+        "key": "hus.forsikringssum",
+        "label": "Forsikringssum og indeks",
+        "value": "Forsikringssummen som står i forsikringsbeviset er utgangspunkt for prisberegning. Sumbegrensninger i vilkårene gjelder foran forsikringssummen i beviset. Forsikringssummen reguleres årlig etter Prisindeks for nye eneboliger (SSB).",
+        "page": 1,
+        "section": "Innledning – forsikringssum"
+      },
+      {
+        "key": "hus.bygninger.dekning",
+        "label": "Forsikrede bygninger",
+        "value": "Bygningene som er nevnt i forsikringsbeviset. Eksisterende garasje, uthus og andre bygninger antas ikke automatisk medforsikret.",
+        "page": 1,
+        "section": "1.1"
+      },
+      {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Kunstnerisk utsmykning er ikke omfattet.",
+        "page": 1,
+        "section": "1.1 Bygninger – unntak",
+        "coverageAvailability": "unavailable"
+      },
+      {
+        "key": "hus.andrebygninger.endring",
+        "label": "Nye bygninger og tilbygg i forsikringsåret",
+        "value": "Garasje, naust, uthus, tilbygg og påbygg under oppføring eller oppført på forsikringsstedet etter siste fornyelse omfattes til neste fornyelse. Meld endring snarest og senest ved fornyelsen.",
+        "page": 2,
+        "section": "1.4"
+      },
+      {
+        "key": "hus.ror.utvendig",
+        "label": "Utvendige rør og ledninger",
+        "value": "Med tilknyttet utstyr. Brønn, borehull, drens-/infiltrasjons-/spredeledning og spredegrøft er unntatt; drensledning omfattes likevel ved brann og naturskade. Utvendig basseng behandles som hageanlegg.",
+        "page": 1,
+        "section": "1.2"
+      },
+      {
+        "key": "hus.hage.grense",
+        "label": "Hageanlegg – grense",
+        "value": "Skade på hageanlegg rundt bygning på forsikret eiendom og tilførselsvei er omfattet. Brygger og kaier regnes ikke som hageanlegg og er ikke omfattet.",
+        "page": 1,
+        "section": "1.3 Hageanlegg og brygge"
+      },
+      {
+        "key": "hus.hage.objekter",
+        "label": "Hageanlegg – objekter",
+        "value": "Utvendig vannbasseng fast tilkoblet bygningens ledningsanlegg regnes som hageanlegg. Brygger og kaier regnes ikke som hageanlegg.",
+        "page": 1,
+        "section": "1.3"
+      },
+      {
+        "key": "hus.hage.brygge",
+        "label": "Brygge – brann og naturskade",
+        "value": "Flytebrygge og trebrygge: samlet 100 000 kr, bare ved brann og naturskade; høyere sum må stå i forsikringsbeviset.",
+        "page": 1,
+        "section": "1.3"
+      },
+      {
+        "key": "hus.hage.oppgjor",
+        "label": "Hageanlegg – erstatning",
+        "value": "Tilbakeføring til samme eller vesentlig samme stand; planter erstattes som vanlig handelsvare fra gartneri (ung vekst).",
+        "page": 7,
+        "section": "3.5"
+      },
+      {
+        "key": "hus.rydding.dekning",
+        "label": "Riving, rydding og bortkjøring",
+        "value": "Merutgifter til riving, rydding, bortkjøring og deponering av verdiløse rester ved erstatningsmessig bygningsskade, i tillegg til avtalt sum. Førsterisiko: inntil 20 % av forsikringssummen.",
+        "page": 2,
+        "section": "1.5"
+      },
+      {
+        "key": "hus.pabud.grense",
+        "label": "Offentlige påbud – grense",
+        "value": "Merutgifter ved offentlige påbud er omfattet med inntil 2 000 000 kroner per skadetilfelle. Ved førsterisiko gjelder inntil 20 % av forsikringssummen, maksimalt 2 000 000 kroner.",
+        "page": 1,
+        "section": "1.5 Offentlige påbud"
+      },
+      {
+        "key": "hus.pabud.vilkar",
+        "label": "Offentlige påbud – vilkår",
+        "value": "Krever erstatningsmessig skade. Ved reparasjon bare merkostnader knyttet til skadde deler. Grunnundersøkelse/fundamentering kan omfattes, ikke utgraving av kjeller. Påbud som kunne vært gitt uten skaden er unntatt. Dokumenterte kostnader og ferdigstillelse innen 5 år.",
+        "page": 7,
+        "section": "1.5, 3.6"
+      },
+      {
+        "key": "hus.brukstap.dekning",
+        "label": "Ubeboelig bolig etter skade",
+        "value": "Normal reparasjons-/gjenoppføringstid, basert på markedsleie for umøblerte rom; fradrag for innsparte utgifter og renter. Ved kjøp av annen bolig senest til overtakelse.",
+        "page": 7,
+        "section": "1.5, 3.7"
+      },
+      {
+        "key": "hus.leietap.skade",
+        "label": "Tapt husleie etter bygningsskade",
+        "value": "Normal reparasjons-/gjenoppføringstid og årlig markedsleie; korttidsutleie er unntatt. Fradrag for innsparte utgifter og renter. Dette gjelder erstatningsmessig skade, ikke leietakers betalingsmislighold.",
+        "page": 8,
+        "section": "3.8"
+      },
+      {
+        "key": "hus.gjenoppforing.prisstigning",
+        "label": "Prisstigning etter skade",
+        "value": "Normal reparasjons-/gjenoppføringstid, beregnet etter SSBs byggekostnadsindeks; fradrag for innsparte utgifter og renter.",
+        "page": 8,
+        "section": "1.5, 3.9"
+      },
+      {
+        "key": "hus.gjenoppforing.klimatiltak",
+        "label": "Klimatiltak ved gjenoppføring",
+        "value": "25 000 kr ved gjenoppføring av fullverdiforsikret bolighus; skade over 75 % av gjenoppføringspris. Tiltak utover lovkrav avtales på forhånd, utgifter må påløpe og dokumenteres.",
+        "page": 8,
+        "section": "1.6, 3.10"
+      },
+      {
+        "key": "hus.brann.dekning",
+        "label": "Brann",
+        "value": "Plutselig og uforutsett skade ved ild som er kommet løs. Svi-/gnistskade uten brann og kosmetiske skader er unntatt.",
+        "page": 3,
+        "section": "2.1"
+      },
+      {
+        "key": "hus.elektrisk.dekning",
+        "label": "Lyn og elektrisk fenomen",
+        "value": "Plutselig og uforutsett skade ved lynnedslag, kortslutning, elektrisk fenomen eller tilsvarende skade.",
+        "page": 3,
+        "section": "2.2"
+      },
+      {
+        "key": "hus.vann.utstromming",
+        "label": "Vann – utstrømming",
+        "value": "Plutselig og uforutsett utstrømming ved brudd, lekkasje eller oversvømmelse fra væskeførende bygningsrør og tilknyttet utstyr, slokkeapparat eller akvarium. Følgeskade og reparasjon av røret er separate dekninger.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.vann.terreng",
+        "label": "Vann fra terreng og grunn",
+        "value": "Plutselig og uforutsett inntrengning ved nedbør, snøsmelting eller kjøving som gir frittstående vann over laveste gulv; også inntrengning fra utvendige rør.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.takvegg.folgeskade",
+        "label": "Vann gjennom tak og yttervegg",
+        "value": "Plutselig inntrengning fra utvendige rør og gjennom åpning eller utetthet på grunn av annen dekningsmessig skade, samt vann direkte fra terreng eller grunn når det gir frittstående vann over laveste gulv, er dekket. Vann fra tak, takrenne og utvendig nedløp er unntatt.",
+        "page": 3,
+        "section": "2.3 Følgende er dekket / unntak"
+      },
+      {
+        "key": "hus.takvegg.skadearsak",
+        "label": "Utett tak/vegg – selve konstruksjonen",
+        "value": "Ingen egen dekning for utbedring av utetthet dokumentert. Svak konstruksjon, materialfeil og feilmontering er unntatt.",
+        "page": 4,
+        "section": "2.3, 2.6"
+      },
+      {
+        "key": "hus.vatrom.folgeskade",
+        "label": "Utett våtrom – følgeskade",
+        "value": "Skade ved vann fra utett våtrom, inkludert fra gulvsluk og oppforinger, er unntatt.",
+        "page": 3,
+        "section": "2.3 Unntak",
+        "coverageAvailability": "unavailable"
+      },
+      {
+        "key": "hus.vatrom.selverommet",
+        "label": "Våtrom – selve rommet og feilen",
+        "value": "Skade på våtrom som skyldes at våtrommet er utett er unntatt. Med våtrom menes bygningskomponenter innenfor våtrommets bjelkelag og stenderverk.",
+        "page": 3,
+        "section": "2.3 Unntak",
+        "coverageAvailability": "unavailable"
+      },
+      {
+        "key": "hus.ror.brudd",
+        "label": "Rør og utstyr – brudd",
+        "value": "Brudd på innvendige rør og tilknyttet utstyr; utvendige væskerør, drenskum, septik-/olje-/rensetank, vann-/kloakkpumpe og elektrisk ledning.",
+        "page": 4,
+        "section": "2.4"
+      },
+      {
+        "key": "hus.ror.frost",
+        "label": "Utvendige rør – frost og tining",
+        "value": "Utgifter/tap ved frysing av utvendige rør er unntatt med mindre røret har fysisk brudd. Takrenne og utvendig nedløp er unntatt.",
+        "page": 4,
+        "section": "2.4"
+      },
+      {
+        "key": "hus.tyveri.dekning",
+        "label": "Tyveri og skadeverk på bygning",
+        "value": "Tyveri og skadeverk på forsikringsstedet. Skadeverk på utleide rom utført av beboer/bruker og kosmetiske skader er unntatt.",
+        "page": 4,
+        "section": "2.5"
+      },
+      {
+        "key": "hus.plutselig.dekning",
+        "label": "Annen plutselig og uforutsett bygningsskade",
+        "value": "Andre plutselige og uforutsette skader enn brann, elektrisk, vann, rørbrudd og tyveri. Unntak blant annet sviktende fundamentering, setninger, jordtrykk, frost/tele og konstruksjons-, material- og monteringsfeil.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.plutselig.unntak",
+        "label": "Bygningsskade – slitasje og vedlikehold",
+        "value": "Slitasje, tæring, forbruk, alder, ødeleggelse av tingen selv og kosmetiske skader er unntatt. Naturulykke og skadetyper i 2.1–2.5 behandles uttømmende i sine respektive dekninger.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.rate.dekning",
+        "label": "Råte og sopp – bygningsskade",
+        "value": "Sopp og råte er unntatt i ordinær bygningsdekning. Separat råte- og skadedyrdekning må være avtalt.",
+        "page": 4,
+        "section": "2.3, 2.6"
+      },
+      {
+        "key": "hus.skadedyr.bygningsskade",
+        "label": "Dyr – fysisk bygningsskade",
+        "value": "Dyr, insekter, bakterier, sopp og råte er unntatt; unntaket gjelder ikke bruddskade på glass.",
+        "page": 4,
+        "section": "2.6",
+        "coverageAvailability": "unavailable"
+      },
+      {
+        "key": "hus.vaer.dekning",
+        "label": "Vind, snøtyngde og ras fra tak",
+        "value": "Vind svakere enn storm, snøtyngde og ras fra tak behandles som ordinær bygningsskade; ikke som lovbestemt naturskade.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.vaer.begrensning",
+        "label": "Vind, snø og ras – sentrale begrensninger",
+        "value": "Mangelfull fundamentering, setninger, jordtrykk, frost og tele, material-, konstruksjons- og monteringsfeil, slitasje og alder, dyr, insekter, bakterier, sopp eller råte og kosmetiske skader er unntatt.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.hage.vaer",
+        "label": "Hageanlegg – værunntak",
+        "value": "Frost og klimatiske forhold er unntatt; flomlignende situasjon dekkes. Dyreskade følger generelt unntak i 2.6.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.egenandel.generell",
+        "label": "Generell egenandel",
+        "value": "Egenandelen i forsikringsbeviset gjelder hvis vilkåret ikke angir en annen; per skadetilfelle med mindre annet fremgår.",
+        "page": 5,
+        "section": "3.2"
+      },
+      {
+        "key": "hus.vann.egenandel.terreng_grunnvann",
+        "label": "Vann fra terreng/grunn – egenandel",
+        "value": "Ved skade som følge av vann fra terreng eller grunn er egenandelen minimum 8 000 kroner.",
+        "page": 3,
+        "section": "2.3 Egenandel"
+      },
+      {
+        "key": "hus.vann.egenandel.gjentatt_vann",
+        "label": "Gjentatt vannskade – økt egenandel",
+        "value": "Økes med 20 000 kr ved tilsvarende skade siste 36 måneder fra terreng/grunn eller innvendige rør.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.vaer.egenandel",
+        "label": "Vind/snø/ras fra tak – egenandel",
+        "value": "Minimum 8 000 kr",
+        "page": 5,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.ror.egenandel",
+        "label": "Rørbrudd – egenandel",
+        "value": "Én egenandel per bruddsted",
+        "page": 4,
+        "section": "2.4"
+      },
+      {
+        "key": "hus.vann.egenandel.fritak",
+        "label": "Vann – egenandelsfritak",
+        "value": "Ingen egenandel ved brudd på innvendig vannledning når automatisk vannstopp sikrer hele bygningens rørsystem og er i bruk. Også fritak ved overvannsskade med angitte tiltak for magasinering/forsinkelse av ekstremnedbør.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.alarm.egenandel.reduksjon",
+        "label": "Alarm – egenandelsreduksjon",
+        "value": "Inntil 6 000 kr reduksjon når brann- eller vannalarm til alarmsentral varsler den aktuelle skaden. Ingen egenandel når bare overspenningsvern eller brann-/innbrudds-/vannalarm skades.",
+        "page": 5,
+        "section": "2.1, 2.3, 3.2"
+      },
+      {
+        "key": "hus.gjenoppforing.hovedregel",
+        "label": "Gjenoppføring – hovedregel",
+        "value": "Samme eller vesentlig samme stand; gjenverdier trekkes fra. Samme sted og formål, eier/ektefelle/samboer/livsarving som byggherre og ferdig innen 5 år. Planlagt/nødvendig rehabilitering og estetiske forskjeller erstattes ikke ubetinget.",
+        "page": 6,
+        "section": "3.3.1"
+      },
+      {
+        "key": "hus.gjenoppforing.annetsted",
+        "label": "Gjenoppføring – annet sted eller formål",
+        "value": "Annet sted i Norge: fradrag for omsetningsverdiøkning over 40 %. Annet formål: hele verdiøkningen trekkes fra. Ved myndighetsforbud og gjenoppføring i samme kommune gjelder hovedregelen.",
+        "page": 6,
+        "section": "3.3.2 A–B"
+      },
+      {
+        "key": "hus.gjenoppforing.markedsverdi",
+        "label": "Ingen gjenoppføring / kjøp av annen bolig",
+        "value": "Andre byggherrer eller ingen gjenoppføring innen 5 år/i Norge: begrenset til fall i omsetningsverdi. Ved totalskade kan annen bolig med samme formål kjøpes i samme fylke innen 2 år; maksimalt tidligere omsetningsverdi, uten MVA, prisstigning og offentlige påbud.",
+        "page": 6,
+        "section": "3.3.2 C–E"
+      },
+      {
+        "key": "hus.gjenoppforing.oppgjorsmate",
+        "label": "Oppgjørsmåte",
+        "value": "Tryg velger kontantoppgjør, reparasjon/gjenoppføring eller gjenanskaffelse og leverandør. Kontantoppgjør begrenses til Trygs kostnad; MVA bare når dokumentert betalt og ikke fradragsberettiget.",
+        "page": 5,
+        "section": "3.1"
+      },
+      {
+        "key": "hus.ansvar.dekning",
+        "label": "Privatansvar",
+        "value": "Privat erstatningsansvar er omfattet. Se vilkår for Privatansvar, PGE90020.",
+        "page": 1,
+        "section": "1.8 Privatansvar"
+      },
+      {
+        "key": "hus.sprengning.egenandel",
+        "label": "Sprengning på forsikringsstedet – egenandel",
+        "value": "Minimum 10 000 kr",
+        "page": 5,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – Utvendige ledninger og bunnledninger av annet materiale enn plast",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.tanker",
+        "label": "Aldersfradrag – Tanker og kummer uansett materiale",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.varmepumpe",
+        "label": "Aldersfradrag – Varmepumper luft-luft/luft-vann",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.oppvarming_kjoling",
+        "label": "Aldersfradrag – Annen innretning for oppvarming eller kjøling",
+        "value": "10 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.bereder_pumpe",
+        "label": "Aldersfradrag – Varmtvannsbeholdere og vann/kloakkpumper",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.elektronikk",
+        "label": "Aldersfradrag – Elektriske/elektroniske enheter, maskiner og apparater, inklusive smarthusløsninger",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.integrerte_hvitevarer",
+        "label": "Aldersfradrag – Integrerte hvitevarer, kjøle- og fryserom",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – Mindre badeinnretning som boblebad, badestamp o.l.",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.solceller",
+        "label": "Aldersfradrag – Solcelleanlegg",
+        "value": "20 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.naturskade.dekning",
+        "label": "Naturskade",
+        "value": "Naturskade er omfattet. Se vilkår for Naturskade, PGE90010.",
+        "page": 1,
+        "section": "1.7 Naturskade"
+      },
+      {
+        "key": "hus.rettshjelp.dekning",
+        "label": "Rettshjelp",
+        "value": "Rettshjelp er omfattet. Se vilkår for Rettshjelp, PGE91500.",
+        "page": 1,
+        "section": "1.9 Rettshjelp"
       },
       {
         "key": "hus.utvendige_ror",
         "label": "Utvendige rør og ledninger",
-        "value": "Bygningens utvendige rør og ledninger med tilknyttet utstyr er omfattet. Vilkåret unntar blant annet brønn, borehull og drensledning, men drensledning er omfattet ved brann og naturskade.",
+        "value": "Bygningens utvendige rør og ledninger med tilknyttet utstyr er omfattet. Brønn, borehull, drensledning, infiltrasjonsledning, spredeledning eller spredegrøft er ikke omfattet; drensledning er likevel omfattet ved brann og naturskade.",
         "page": 1,
         "section": "1.2 Utvendige rør og ledninger med tilknyttet utstyr"
       }
-    ]
+    ],
+    "pages": 9
   },
   "innbo": {
     "filename": "nito-innbo.pdf",
@@ -374,20 +785,442 @@
     "termsNumber": "PPK11508",
     "facts": [
       {
-        "key": "hus.fullverdi",
-        "label": "Fullverdi",
+        "key": "hus.forsikringsform",
+        "label": "Forsikringsform",
         "value": "Bygning Ekstra er en fullverdiforsikring. Utgangspunktet for erstatningen er kostnaden ved å gjenoppføre bygningen til samme eller vesentlig samme stand som umiddelbart før skaden.",
         "page": 1,
-        "section": "Fullverdi før punkt 1"
+        "section": "Innledning – fullverdi"
+      },
+      {
+        "key": "hus.forsikringssum",
+        "label": "Forsikringssum og indeks",
+        "value": "Forsikringssummen som står i forsikringsbeviset er utgangspunkt for prisberegning. Sumbegrensninger i vilkårene gjelder foran forsikringssummen i beviset. Forsikringssummen reguleres årlig etter Prisindeks for nye eneboliger (SSB).",
+        "page": 1,
+        "section": "Innledning – forsikringssum"
+      },
+      {
+        "key": "hus.bygninger.dekning",
+        "label": "Forsikrede bygninger",
+        "value": "Bygningene som er nevnt i forsikringsbeviset. Eksisterende garasje, uthus og andre bygninger antas ikke automatisk medforsikret.",
+        "page": 1,
+        "section": "1.1"
+      },
+      {
+        "key": "hus.bygninger.utsmykning",
+        "label": "Kunstnerisk utsmykning",
+        "value": "Omfattet",
+        "page": 1,
+        "section": "1.1"
+      },
+      {
+        "key": "hus.andrebygninger.endring",
+        "label": "Nye bygninger og tilbygg i forsikringsåret",
+        "value": "Garasje, naust, uthus, tilbygg og påbygg under oppføring eller oppført på forsikringsstedet etter siste fornyelse omfattes til neste fornyelse. Meld endring snarest og senest ved fornyelsen.",
+        "page": 1,
+        "section": "1.4"
+      },
+      {
+        "key": "hus.ror.utvendig",
+        "label": "Utvendige rør og ledninger",
+        "value": "Med tilknyttet utstyr. Brønn, borehull, drens-/infiltrasjons-/spredeledning og spredegrøft er unntatt; drensledning omfattes likevel ved brann og naturskade. Utvendig basseng behandles som hageanlegg.",
+        "page": 1,
+        "section": "1.2"
+      },
+      {
+        "key": "hus.hage.grense",
+        "label": "Hageanlegg – grense",
+        "value": "Skade på hageanlegg rundt bygning på forsikret eiendom og tilførselsvei på eiendommen er omfattet. Brygger og kaier regnes ikke som hageanlegg.",
+        "page": 1,
+        "section": "1.3 Hageanlegg og brygge"
+      },
+      {
+        "key": "hus.hage.objekter",
+        "label": "Hageanlegg – objekter",
+        "value": "Utvendig vannbasseng fast tilkoblet bygningens ledningsanlegg regnes som hageanlegg. Brygger og kaier regnes ikke som hageanlegg.",
+        "page": 1,
+        "section": "1.3"
+      },
+      {
+        "key": "hus.hage.brygge",
+        "label": "Brygge – brann og naturskade",
+        "value": "Flytebrygge og trebrygge: samlet 100 000 kr, bare ved brann og naturskade; høyere sum må stå i forsikringsbeviset.",
+        "page": 1,
+        "section": "1.3"
+      },
+      {
+        "key": "hus.hage.oppgjor",
+        "label": "Hageanlegg – erstatning",
+        "value": "Tilbakeføring til samme eller vesentlig samme stand; planter erstattes som vanlig handelsvare fra gartneri (ung vekst).",
+        "page": 7,
+        "section": "3.5"
+      },
+      {
+        "key": "hus.rydding.dekning",
+        "label": "Riving, rydding og bortkjøring",
+        "value": "Merutgifter til riving, rydding, bortkjøring og deponering av verdiløse rester ved erstatningsmessig bygningsskade, i tillegg til avtalt sum.",
+        "page": 1,
+        "section": "1.5"
+      },
+      {
+        "key": "hus.pabud.grense",
+        "label": "Offentlige påbud – grense",
+        "value": "Merutgifter ved offentlige påbud er omfattet uten generell beløpsgrense i vilkåret. For fredede bygninger gjelder inntil 1 000 000 kroner.",
+        "page": 1,
+        "section": "1.5 Offentlige påbud"
+      },
+      {
+        "key": "hus.pabud.vilkar",
+        "label": "Offentlige påbud – vilkår",
+        "value": "Krever erstatningsmessig skade. Ved reparasjon bare merkostnader knyttet til skadde deler. Grunnundersøkelse/fundamentering kan omfattes, ikke utgraving av kjeller. Påbud som kunne vært gitt uten skaden er unntatt. Dokumenterte kostnader og ferdigstillelse innen 5 år.",
+        "page": 7,
+        "section": "1.5, 3.6"
+      },
+      {
+        "key": "hus.brukstap.dekning",
+        "label": "Ubeboelig bolig etter skade",
+        "value": "Normal reparasjons-/gjenoppføringstid, basert på markedsleie for umøblerte rom; fradrag for innsparte utgifter og renter. Ved kjøp av annen bolig senest til overtakelse.",
+        "page": 8,
+        "section": "1.5, 3.7"
+      },
+      {
+        "key": "hus.leietap.skade",
+        "label": "Tapt husleie etter bygningsskade",
+        "value": "Normal reparasjons-/gjenoppføringstid og årlig markedsleie; korttidsutleie er unntatt. Fradrag for innsparte utgifter og renter. Dette gjelder erstatningsmessig skade, ikke leietakers betalingsmislighold.",
+        "page": 8,
+        "section": "3.8"
+      },
+      {
+        "key": "hus.gjenoppforing.prisstigning",
+        "label": "Prisstigning etter skade",
+        "value": "Normal reparasjons-/gjenoppføringstid, beregnet etter SSBs byggekostnadsindeks; fradrag for innsparte utgifter og renter.",
+        "page": 8,
+        "section": "1.5, 3.9"
+      },
+      {
+        "key": "hus.gjenoppforing.klimatiltak",
+        "label": "Klimatiltak ved gjenoppføring",
+        "value": "50 000 kr ved gjenoppføring av fullverdiforsikret bolighus; skade over 75 % av gjenoppføringspris. Tiltak utover lovkrav avtales på forhånd, utgifter må påløpe og dokumenteres.",
+        "page": 8,
+        "section": "1.6, 3.10"
+      },
+      {
+        "key": "hus.brann.dekning",
+        "label": "Brann",
+        "value": "Plutselig og uforutsett skade ved ild som er kommet løs. Svi-/gnistskade uten brann og kosmetiske skader er unntatt.",
+        "page": 3,
+        "section": "2.1"
+      },
+      {
+        "key": "hus.elektrisk.dekning",
+        "label": "Lyn og elektrisk fenomen",
+        "value": "Plutselig og uforutsett skade ved lynnedslag, kortslutning, elektrisk fenomen eller tilsvarende skade.",
+        "page": 3,
+        "section": "2.2"
+      },
+      {
+        "key": "hus.vann.utstromming",
+        "label": "Vann – utstrømming",
+        "value": "Plutselig og uforutsett utstrømming ved brudd, lekkasje eller oversvømmelse fra væskeførende bygningsrør og tilknyttet utstyr, slokkeapparat eller akvarium. Følgeskade og reparasjon av røret er separate dekninger.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.vann.terreng",
+        "label": "Vann fra terreng og grunn",
+        "value": "Plutselig og uforutsett inntrengning ved nedbør, snøsmelting eller kjøving som gir frittstående vann over laveste gulv; også inntrengning fra utvendige rør.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.takvegg.folgeskade",
+        "label": "Vann gjennom tak og yttervegg",
+        "value": "Plutselig og uforutsett vanninntrengning over bakkeplan omfattes. Inntrengning gjennom tak/takgjennomføring eldre enn 50 år er unntatt.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.takvegg.skadearsak",
+        "label": "Utett tak/vegg – selve konstruksjonen",
+        "value": "Selve taket/veggen (alle sjikt inntil takstol/sperre eller bærende konstruksjon), manglende vedlikehold og utbedring av konstruksjons-/material-/monteringsfeil er unntatt ved inntrengning gjennom utett bygning.",
+        "page": 3,
+        "section": "2.3, 2.6"
+      },
+      {
+        "key": "hus.vatrom.folgeskade",
+        "label": "Utett våtrom – følgeskade",
+        "value": "Vann fra utett våtrom på tilstøtende og underliggende rom omfattes.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.vatrom.selverommet",
+        "label": "Våtrom – selve rommet og feilen",
+        "value": "Forsikringen dekker vannskade på våtrom som er en direkte følge av svak konstruksjon, materialfeil eller feilmontering når arbeidet er utført av godkjent/autorisert personell, vannskaden er oppstått mens forsikringen er i kraft og konstatert innen 15 år fra arbeidet ble utført. Materialfeil, feil utførelse eller mangelfullt arbeid uten konstatert følgeskade på våtrommet er ikke skade.",
+        "page": 3,
+        "section": "2.3 Våtromsdekning"
+      },
+      {
+        "key": "hus.ror.brudd",
+        "label": "Rør og utstyr – brudd",
+        "value": "Brudd på innvendige rør og tilknyttet utstyr; utvendige væskerør, drenskum, septik-/olje-/rensetank, vann-/kloakkpumpe og elektrisk ledning.",
+        "page": 4,
+        "section": "2.4"
+      },
+      {
+        "key": "hus.tyveri.dekning",
+        "label": "Tyveri og skadeverk på bygning",
+        "value": "Tyveri og skadeverk på forsikringsstedet. Skadeverk på utleide rom utført av beboer/bruker og kosmetiske skader er unntatt.",
+        "page": 4,
+        "section": "2.5"
+      },
+      {
+        "key": "hus.plutselig.dekning",
+        "label": "Annen plutselig og uforutsett bygningsskade",
+        "value": "Andre plutselige og uforutsette skader enn brann, elektrisk, vann, rørbrudd og tyveri. Følgeskade av håndverkerfeil kan omfattes når fagfolk utførte arbeidet og skaden oppdages innen 10 år; selve feilen og unødvendig tilkomst utbedres ikke.",
+        "page": 4,
+        "section": "2.6 Følgende er dekket"
+      },
+      {
+        "key": "hus.plutselig.unntak",
+        "label": "Bygningsskade – slitasje og vedlikehold",
+        "value": "Slitasje, tæring, forbruk, alder, ødeleggelse av tingen selv og kosmetiske skader er unntatt. Naturulykke og skadetyper i 2.1–2.5 behandles uttømmende i sine respektive dekninger.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.rate.dekning",
+        "label": "Råte og sopp – bygningsskade",
+        "value": "Sopp og råte er unntatt i ordinær bygningsdekning. Separat råte- og skadedyrdekning må være avtalt.",
+        "page": 4,
+        "section": "2.3, 2.6"
+      },
+      {
+        "key": "hus.skadedyr.bygningsskade",
+        "label": "Dyr – fysisk bygningsskade",
+        "value": "Plutselig og uforutsett skade fra dyr kan omfattes; kjæledyr, insekter, bakterier, sopp og råte er unntatt. Unntaket gjelder ikke bruddskade på glass. Bekjempelse følger ikke automatisk denne dekningen.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.vaer.dekning",
+        "label": "Vind, snøtyngde og ras fra tak",
+        "value": "Vind svakere enn storm, snøtyngde og ras fra tak behandles som ordinær bygningsskade; ikke som lovbestemt naturskade.",
+        "page": 4,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.vaer.begrensning",
+        "label": "Vind, snø og ras – sentrale begrensninger",
+        "value": "Kjæledyr, insekter, bakterier, sopp eller råte, slitasje og alder, kosmetiske skader, utett våtrom, selve håndverkerfeilen samt følgeskade etter eget/ufaglært arbeid eller oppdaget senere enn 10 år er unntatt.",
+        "page": 4,
+        "section": "2.6 Unntak"
+      },
+      {
+        "key": "hus.hage.vaer",
+        "label": "Hageanlegg – værunntak",
+        "value": "Skade på hageanlegg forårsaket av dyr, frost eller andre klimatiske forhold er unntatt; flomlignende situasjon dekkes.",
+        "page": 4,
+        "section": "2.6 Unntak – hageanlegg"
+      },
+      {
+        "key": "hus.egenandel.generell",
+        "label": "Generell egenandel",
+        "value": "Egenandelen i forsikringsbeviset gjelder hvis vilkåret ikke angir en annen; per skadetilfelle med mindre annet fremgår.",
+        "page": 5,
+        "section": "3.2"
+      },
+      {
+        "key": "hus.vann.egenandel.terreng_grunnvann",
+        "label": "Vann fra terreng/grunn – egenandel",
+        "value": "Ved skade som følge av vann fra terreng er egenandelen minimum 8 000 kroner.",
+        "page": 3,
+        "section": "2.3 Egenandel"
+      },
+      {
+        "key": "hus.vann.egenandel.gjentatt_vann",
+        "label": "Gjentatt vannskade – økt egenandel",
+        "value": "Egenandelen økes med 20 000 kroner når bygningen i løpet av de siste 36 måneder har hatt en tilsvarende skade ved inntrengning fra terreng, gjennom flatt tak, balkong eller terrasse, eller utstrømming fra innvendige rør.",
+        "page": 3,
+        "section": "2.3 Egenandel"
+      },
+      {
+        "key": "hus.vaer.egenandel",
+        "label": "Vind/snø/ras fra tak – egenandel",
+        "value": "Minimum 8 000 kr",
+        "page": 5,
+        "section": "2.6"
+      },
+      {
+        "key": "hus.ror.egenandel",
+        "label": "Rørbrudd – egenandel",
+        "value": "Én egenandel per bruddsted. Ingen egenandel ved førstegangs staking eller TV-undersøkelse.",
+        "page": 4,
+        "section": "2.4"
+      },
+      {
+        "key": "hus.vann.egenandel.fritak",
+        "label": "Vann – egenandelsfritak",
+        "value": "Ingen egenandel ved brudd på innvendig vannledning når automatisk vannstopp sikrer hele bygningens rørsystem og er i bruk. Også fritak ved overvannsskade med angitte tiltak for magasinering/forsinkelse av ekstremnedbør.",
+        "page": 3,
+        "section": "2.3"
+      },
+      {
+        "key": "hus.alarm.egenandel.reduksjon",
+        "label": "Alarm – egenandelsreduksjon",
+        "value": "Inntil 6 000 kr reduksjon når brann- eller vannalarm til alarmsentral varsler den aktuelle skaden. Ingen egenandel når bare overspenningsvern eller brann-/innbrudds-/vannalarm skades.",
+        "page": 5,
+        "section": "2.1, 2.3, 3.2"
+      },
+      {
+        "key": "hus.gjenoppforing.hovedregel",
+        "label": "Gjenoppføring – hovedregel",
+        "value": "Samme eller vesentlig samme stand; gjenverdier trekkes fra. Samme sted og formål, eier/ektefelle/samboer/livsarving som byggherre og ferdig innen 5 år. Planlagt/nødvendig rehabilitering og estetiske forskjeller erstattes ikke ubetinget.",
+        "page": 6,
+        "section": "3.3.1"
+      },
+      {
+        "key": "hus.gjenoppforing.annetsted",
+        "label": "Gjenoppføring – annet sted eller formål",
+        "value": "Annet sted i Norge: fradrag for omsetningsverdiøkning over 40 %. Annet formål: hele verdiøkningen trekkes fra. Ved myndighetsforbud og gjenoppføring i samme kommune gjelder hovedregelen.",
+        "page": 6,
+        "section": "3.3.2 A–B"
+      },
+      {
+        "key": "hus.gjenoppforing.markedsverdi",
+        "label": "Ingen gjenoppføring / kjøp av annen bolig",
+        "value": "Andre byggherrer eller ingen gjenoppføring innen 5 år/i Norge: begrenset til fall i omsetningsverdi. Ved totalskade kan annen bolig med samme formål kjøpes i samme fylke innen 2 år; maksimalt tidligere omsetningsverdi, uten MVA, prisstigning og offentlige påbud.",
+        "page": 6,
+        "section": "3.3.2 C–E"
+      },
+      {
+        "key": "hus.gjenoppforing.oppgjorsmate",
+        "label": "Oppgjørsmåte",
+        "value": "Tryg velger kontantoppgjør, reparasjon/gjenoppføring eller gjenanskaffelse og leverandør. Kontantoppgjør begrenses til Trygs kostnad; MVA bare når dokumentert betalt og ikke fradragsberettiget.",
+        "page": 5,
+        "section": "3.1"
+      },
+      {
+        "key": "hus.ansvar.dekning",
+        "label": "Privatansvar",
+        "value": "Prrivat erstatningsansvar er omfattet. Se vilkår for Privatansvar, PGE90020.",
+        "page": 1,
+        "section": "1.8 Privatansvar"
+      },
+      {
+        "key": "hus.glass.isolerglass_punktering",
+        "label": "Punktering av isolerglass",
+        "value": "Punktering er ikke unntatt som i Standard; egen aldersfradragsregel med 10 fradragsfrie år og deretter 10 % per år, maksimalt 100 %.",
+        "page": 7,
+        "section": "2.6, 3.4"
+      },
+      {
+        "key": "hus.gjenoppforing.fullverdigaranti",
+        "label": "Fullverdigaranti ved totalskade",
+        "value": "Ingen fradrag for verdiøkning når fullverdiforsikret bygning eller bygningsdel erstattes med ny ved totalskade.",
+        "page": 6,
+        "section": "3.3.1"
+      },
+      {
+        "key": "hus.tilpasning.grense",
+        "label": "Tilpasning for rullestolbruker",
+        "value": "Nødvendige utgifter til tilpasning av hjemmet for rullestolbruker erstattes med inntil 250 000 kroner per forsikringstilfelle ved ulykkesskade i forsikringstiden med minst 50 % varig medisinsk invaliditet, eller barn født med tilsvarende invaliditet. Utgiftene må være påløpt innen 5 år; ingen egenandel.",
+        "page": 1,
+        "section": "1.10 Tilpasning for rullestolbruker"
+      },
+      {
+        "key": "hus.aldersfradrag.utvendige_ror",
+        "label": "Aldersfradrag – Utvendige ledninger og bunnledninger av annet materiale enn plast",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.tanker",
+        "label": "Aldersfradrag – Tanker og kummer uansett materiale",
+        "value": "20 år uten fradrag; deretter 5 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.varmepumpe",
+        "label": "Aldersfradrag – Varmepumper luft-luft/luft-vann",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.oppvarming_kjoling",
+        "label": "Aldersfradrag – Annen innretning for oppvarming eller kjøling",
+        "value": "10 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.bereder_pumpe",
+        "label": "Aldersfradrag – Varmtvannsbeholdere og vann/kloakkpumper",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.elektronikk",
+        "label": "Aldersfradrag – Elektriske/elektroniske enheter, maskiner og apparater, inklusive smarthusløsninger",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.integrerte_hvitevarer",
+        "label": "Aldersfradrag – Integrerte hvitevarer, kjøle- og fryserom",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.badeinnretning",
+        "label": "Aldersfradrag – Mindre badeinnretning som boblebad, badestamp o.l.",
+        "value": "5 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.solceller",
+        "label": "Aldersfradrag – Solcelleanlegg",
+        "value": "20 år uten fradrag; deretter 10 % per år, maksimalt 80 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.aldersfradrag.isolerglass",
+        "label": "Aldersfradrag – Isolerglass (kun punktering)",
+        "value": "10 år uten fradrag; deretter 10 % per år, maksimalt 100 %. Ikke ved brann, naturskade eller totalskade på fullverdiforsikret bygning; fradrag før egenandel.",
+        "page": 7,
+        "section": "3.4"
+      },
+      {
+        "key": "hus.naturskade.dekning",
+        "label": "Naturskade",
+        "value": "Naturskade er omfattet. Se vilkår for Naturskade, PGE90010.",
+        "page": 1,
+        "section": "1.7 Naturskade"
+      },
+      {
+        "key": "hus.rettshjelp.dekning",
+        "label": "Rettshjelp",
+        "value": "Rettshjelp er omfattet. Se vilkår for Rettshjelp, PGE91500.",
+        "page": 1,
+        "section": "1.9 Rettshjelp"
       },
       {
         "key": "hus.kunstnerisk_utsmykning",
         "label": "Kunstnerisk utsmykning",
         "value": "Kunstnerisk utsmykning på bygninger nevnt i forsikringsbeviset er omfattet.",
         "page": 1,
-        "section": "1.1 Bygninger"
+        "section": "1.1 Bygninger",
+        "coverageAvailability": "included"
       }
-    ]
+    ],
+    "pages": 10
   },
   "liv": {
     "filename": "nito-liv.pdf",
