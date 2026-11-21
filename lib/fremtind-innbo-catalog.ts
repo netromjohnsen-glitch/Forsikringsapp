@@ -143,7 +143,7 @@ export const fremtindInnboFacts: Record<string, CatalogFact[]> = {
     ["ulykke.boligtilpasning.grense", "Tilpasning av bolig for rullestolbruker – grense", "300 000 kr; varig invaliditet etter ulykke eller dokumentert medfødt behov, utgifter innen 10 år", "fremtindInnboTopp", "4.11", 5],
     ["idtyveri.dekning", "ID-tyveri", "Assistanse for å begrense misbruk og juridisk bistand ved domstolstvist; økonomisk tap utover juridisk bistand er unntatt", "fremtindInnboTopp", "4.12", 6],
     ["idtyveri.grense", "ID-tyveri – juridisk bistand", "1 000 000 kr", "fremtindInnboTopp", "4.12.2", 6],
-    ["idtyveri.egenandel", "ID-tyveri – egenandel", "0 kr for assistanse; juridisk bistand 4 000 kr pluss 20 % av overskytende utgifter", "fremtindInnboTopp", "4.12 og 6.2", 6, false, "override"],
+    ["idtyveri.egenandel", "ID-tyveri – egenandel", "0 kr for assistanse; juridisk bistand 4 000 kr pluss 20 % av overskytende utgifter", "fremtindInnboTopp", "4.12 og 6.2", 8, false, "override"],
     ["mobil.egenandel", "Mobiltelefon – egenandel", "2 000 kr", "fremtindInnboTopp", "6.2", 8, false, "override"],
   ]),
 };

@@ -379,7 +379,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       conditional: true,
     },
     {
-      kind: "barnUtgifter", page: 8, section: "§ 4.8 (s. 8–9)",
+      kind: "barnUtgifter", page: 9, section: "§ 4.8 (s. 8–9)",
       value: "Nødvendige behandlings- og reiseutgifter i inntil tre år. Egenandel 1 000 kr og sum som oppgitt i forsikringsbeviset. Egne vilkår for utsatt permanent tannbehandling.",
     },
     {
@@ -418,7 +418,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       conditional: true,
     },
     {
-      kind: "barnUtgifter", page: 8, section: "§ 4.8 (s. 8–9)",
+      kind: "barnUtgifter", page: 9, section: "§ 4.8 (s. 8–9)",
       value: "Nødvendige behandlings- og reiseutgifter i inntil tre år. Egenandel 1 000 kr og sum som oppgitt i forsikringsbeviset. Egne vilkår for utsatt permanent tannbehandling.",
     },
     {
@@ -565,7 +565,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "frende-person-ulykke": [
     {
-      kind: "ulykkeUtgifter", page: 4, section: "§§ 6.6 og 7.6 (s. 6)",
+      kind: "ulykkeUtgifter", page: 6, section: "§§ 6.6 og 7.6 (s. 6)",
       value: "Når invaliditetsdekning er avtalt, refunderes nødvendige utgifter i Norge i inntil tre år. Maksimalt 5 % av invaliditetssummen og 1 000 kr i egenandel. Utgiftene må ikke kunne dekkes av NAV eller andre.",
       conditional: true,
     },
@@ -767,7 +767,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "gjensidige-person-behandling": [
     {
-      kind: "behandlingEgenandel", page: 2, section: "Forsikringsbevis – Dekkes (s. 2–3)",
+      kind: "behandlingEgenandel", page: 1, section: "Forsikringsbevis – Dekkes (s. 2–3)",
       value: "Publisert forsikringsbevis oppgir 250 kr per operasjon, per konsultasjon ved blant annet bildediagnostikk og legespesialist, og per behandling hos psykolog eller fysikalsk behandler. Videokonsultasjon med allmennlege koster 150 kr i egenandel.",
     },
     {
@@ -1711,7 +1711,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "storebrand-person-gravid": [
     {
-      kind: "gravidUlykke", page: 6, section: "§ E (s. 6–8)",
+      kind: "gravidUlykke", page: 7, section: "§ E (s. 6–8)",
       value: "Gradert erstatning ved varig medisinsk invaliditet hos barnet fra 1 % etter en dekket ulykkesskade. Forsikringssummen er inntil 500 000 kr.",
     },
     {
@@ -1872,7 +1872,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "storebrand-person-ulykke": [
     {
-      kind: "ulykkeUtgifter", page: 3, section: "§ 5.2 (s. 3–4)",
+      kind: "ulykkeUtgifter", page: 4, section: "§ 5.2 (s. 3–4)",
       value: "Nødvendige behandlings- og reiseutgifter i Norden de to første årene. Opptil 5 % av forsikringssummen for medisinsk invaliditet og 1 000 kr i egenandel per skade.",
       conditional: true,
     },
@@ -1905,7 +1905,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       value: "Nødvendig medisinsk behandling og reise i inntil tre år etter ulykken, opptil 100 000 kr. Utgifter som kan dekkes fra annet hold trekkes fra. Utsatt permanent tannbehandling har egne regler.",
     },
     {
-      kind: "barnSykehus", page: 3, section: "§ 5.1–5.2 (s. 3–4)",
+      kind: "barnSykehus", page: 4, section: "§ 5.1–5.2 (s. 3–4)",
       value: "1 000 kr per dag fra første dag ved mer enn ni sammenhengende døgn på sykehus i Norden. Frem til fylte 20 år og høyst 365 dager samlet med dagpenger ved langvarig sykdom for samme tilfelle.",
     },
     {
@@ -1921,7 +1921,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       value: "100 000 kr ved forsikredes død.",
     },
     {
-      kind: "barnDiagnose", page: 5, section: "§ 9.1 og § 9.2 (s. 7)",
+      kind: "barnDiagnose", page: 7, section: "§ 9.1 og § 9.2 (s. 7)",
       value: "400 000 kr ved oppført alvorlig tilstand diagnostisert i forsikringstiden, dersom barnet lever 30 dager etter endelig diagnose. Beløpet trekkes fra eventuell invaliditetserstatning for samme sykdom eller skade.",
     },
     {
@@ -1970,7 +1970,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
       document: "barn-produktvilkar",
     },
     {
-      kind: "barnUtgifter", page: 2, section: "§ 3.2 (s. 2–3)",
+      kind: "barnUtgifter", page: 3, section: "§ 3.2 (s. 2–3)",
       value: "Nødvendige behandlings- og reiseutgifter i inntil tre år etter ulykken. Opptil 5 % av forsikringssummen og 1 000 kr i egenandel. Egne regler for utsatt permanent tannbehandling.",
     },
     {
@@ -2284,7 +2284,7 @@ export const additionalPersonFacts: Readonly<Record<string, readonly PersonFactD
   ],
   "tryg-person-ulykke": [
     {
-      kind: "ulykkeUtgifter", page: 2, section: "§ 3.2 (s. 2–3)",
+      kind: "ulykkeUtgifter", page: 3, section: "§ 3.2 (s. 2–3)",
       value: "Nødvendig behandling og reise etter ulykken i inntil tre år. Maksimalt 5 % av forsikringssummen og 1 000 kr i egenandel. Vilkårene har egne regler for utsatt permanent tannbehandling for barn.",
     },
     {

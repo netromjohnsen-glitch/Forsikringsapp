@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+import { deserialize } from "node:v8";
 
 const receipt = JSON.parse(readFileSync(new URL("../../docs/audit/checkpoints/private-policy-pages-20261119/source-changes.json", import.meta.url), "utf8"));
 const editsByComponent = new Map();
@@ -14,6 +16,8 @@ const transportChanges = new Map(transportCorrection.changes.map(change => [chan
 
 const boatWordingCorrection = JSON.parse(readFileSync(new URL("../../docs/audit/checkpoints/private-boat-wording-20261119/source-changes.json", import.meta.url), "utf8"));
 const boatWordingChanges = new Map(boatWordingCorrection.changes.map(change => [change.component, change]));
+
+const evidenceCorrection = deserialize(gunzipSync(readFileSync(new URL("../../docs/audit/checkpoints/catalog-evidence-corrections-20261121/source-changes.v8.gz", import.meta.url))));
 
 export function beforeBoatWordingCorrection(componentId, fact) {
   const change = boatWordingChanges.get(componentId);
@@ -47,18 +51,33 @@ export function beforePrivatePolicyPageFact(componentId, fact) {
 
 // Historical checks retain their original inputs. Only verified and exact catalogue
 // changes are reversed on this test-only view of the live catalogue.
+function beforeEvidenceCorrection(componentId, facts) {
+  const change = evidenceCorrection.components[componentId];
+  if (!change) return facts;
+  assert.deepEqual(facts, change.after, componentId);
+  return structuredClone(change.before);
+}
+
 export function beforePrivatePolicyPages(catalog) {
   const sources = { ...catalog.sources };
+  for (const [id, source] of Object.entries(evidenceCorrection.addedSources)) {
+    assert.deepEqual(sources[id], source, id);
+    delete sources[id];
+  }
   for (const [id, source] of Object.entries({ ...transportCorrection.addedSources, ...boatWordingCorrection.addedSources })) {
     assert.deepEqual(sources[id], source, id);
     delete sources[id];
   }
+  const facts = Object.fromEntries(Object.entries(catalog.facts).map(([componentId, componentFacts]) => [
+    componentId,
+    beforeEvidenceCorrection(componentId, componentFacts),
+  ]));
   return {
     ...catalog,
     sources,
-    facts: Object.fromEntries(Object.entries(catalog.facts).map(([componentId, facts]) => [
+    facts: Object.fromEntries(Object.entries(facts).map(([componentId, componentFacts]) => [
       componentId,
-      (editsByComponent.has(componentId) || transportChanges.has(componentId) || boatWordingChanges.has(componentId)) ? facts.map(fact => beforePrivatePolicyPageFact(componentId, fact)) : facts,
+      (editsByComponent.has(componentId) || transportChanges.has(componentId) || boatWordingChanges.has(componentId)) ? componentFacts.map(fact => beforePrivatePolicyPageFact(componentId, fact)) : componentFacts,
     ])),
   };
 }

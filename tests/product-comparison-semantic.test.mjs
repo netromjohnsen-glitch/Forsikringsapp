@@ -31,9 +31,9 @@ const {ProductResult} = await import(`data:text/javascript;base64,${Buffer.from(
 const render = r => renderToStaticMarkup(React.createElement(ProductResult, {result:r}));
 const html = render(result);
 
-test('audit baseline has 65 rows and 33 asymmetric catalog facts after documented Frende geography', () => {
-  const raw=result.sections.flatMap(s=>s.rows); assert.equal(raw.length,65);
-  assert.equal(raw.filter(r=>r.first.state==='unknown'||r.second.state==='unknown').length,33);
+test('audit baseline has 66 rows and 33 asymmetric catalog facts after documented Frende geography', () => {
+  const raw=result.sections.flatMap(s=>s.rows); assert.equal(raw.length,66);
+  assert.equal(raw.filter(r=>r.first.state==='unknown'||r.second.state==='unknown').length,34);
 });
 test('Kasko descriptions remain side by side, exactly as sourced', () => {
   const raw=result.sections.flatMap(s=>s.rows).find(r=>r.key==='kasko.dekning'); assert.deepEqual(row('kasko.dekning'),raw);
@@ -114,8 +114,8 @@ test('every original fact value and source survives hierarchy, without catalog m
   assert.equal(JSON.stringify(result), before);
   assert.equal(JSON.stringify(productCatalog), catalogBefore);
 });
-test('rendered unknown count is 9; actual missing evidence stays visible',()=>{
-  assert.equal(unknowns(view),9);assert.equal(html.split('Ikke dokumentert i kataloggrunnlaget').length-1,9);
+test('rendered unknown count is 10; actual missing evidence stays visible',()=>{
+  assert.equal(unknowns(view),10);assert.equal(html.split('Ikke dokumentert i kataloggrunnlaget').length-1,10);
 });
 
 function synthetic() {

@@ -126,12 +126,22 @@ const premiumServices = facts("trygReiseProductPage", [
 ]);
 
 function accident(sourceId: string, level: string, invalidity: string, death: string): CatalogFact[] {
-  return facts(sourceId, [
+  const [scope] = facts(sourceId, [
     ["ulykke.dekning", `${level} – omfang`, "Separat personforsikringskomponent for ulykkesskade: varig medisinsk invaliditet, dødsfall og nødvendige behandlingsutgifter. Gjelder ut forsikringsåret den forsikrede fyller 80 år.", "1–3", 1, undefined, true],
-    ["ulykke.invaliditet", `${level} – medisinsk invaliditet`, invalidity, "Forsikringssummer / 3.1", 3],
-    ["ulykke.dodsfall", `${level} – dødsfall`, death, "Forsikringssummer / 2.2 og 3.3", 3],
-    ["ulykke.behandling", `${level} – behandlingsutgifter`, "5 % av invaliditetssummen for rimelig og nødvendig behandling innen tre år; lege, tannlege, offentlig sykehus, fysioterapi/kiropraktor, foreskrevet behandling, medisiner/proteser og billigste reise.", "Forsikringssummer / 3.2", 3],
   ]);
+  const sums = facts("trygReiseSums", [
+    ["ulykke.invaliditet", `${level} – medisinsk invaliditet`, invalidity, "Medisinsk invaliditet", 3],
+    ["ulykke.dodsfall", `${level} – dødsfall`, death, "Dødsfall", 3],
+    ["ulykke.behandling", `${level} – behandlingsutgifter`, "5 % av invaliditetssummen for rimelig og nødvendig behandling innen tre år; lege, tannlege, offentlig sykehus, fysioterapi/kiropraktor, foreskrevet behandling, medisiner/proteser og billigste reise.", "Behandlingsutgifter", 3],
+  ]);
+  const treatment = sums.find((fact) => fact.key === "reise.ulykke.behandling");
+  if (treatment) {
+    const [terms] = facts(sourceId, [
+      ["ulykke.behandling", `${level} – behandlingsutgifter`, treatment.value, "3.2", 2],
+    ]);
+    treatment.qualificationSource = terms.source;
+  }
+  return [scope, ...sums];
 }
 
 const accidentBasic = accident("trygReiseAccident", "Ulykke",

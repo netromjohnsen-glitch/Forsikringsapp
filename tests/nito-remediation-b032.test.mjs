@@ -77,7 +77,8 @@ test('R-032-11: document restrictions/alternative amounts win; no invented rider
 });
 test('R-032-12: B-017 split delay models and unavailable checked-bag branch unchanged',()=>{
  assert.match(text('forsinkelse.fremmote_sum'),/overnatting inntil 6 000.*innhenting av reiseruten uten øvre sum/);assert.match(text('forsinkelse.avgang_sum'),/samlet inntil 6 000.*innen 24 timer/);assert.doesNotMatch(text('forsinkelse.rute'),/6 000|øvre sum|ubegrenset/);
- const checked=facts(id).filter(f=>f.key==='reise.bagasje.forsinket');assert.equal(checked.length,2);assert.equal(checked[1].source.page,6);assert.match(checked[1].value,/500 kr per person.*overnatting/);assert.doesNotMatch(checked[1].value,/fire timer/);
+ const delayed=facts(id).filter(f=>f.key==='reise.bagasje.forsinket');assert.equal(delayed.length,1);assert.match(delayed[0].value,/5 000/);
+ const overnight=facts(id).find(f=>f.key==='reise.bagasje.utilgjengelig');assert.equal(overnight.source.page,6);assert.match(overnight.value,/500 kr per person.*overnatting/);assert.doesNotMatch(overnight.value,/fire timer/);
 });
 test('R-032-13: PC-2070–2082 held-out scope, travel length, luggage, dental/accident and evacuation',()=>{
  assert.match(text('omrade.verden'),/Ansvar og rettshjelp.*bare.*utenfor Norden/);assert.match(text('varighet.maks'),/70 dager/);assert.match(text('bagasje.uhell'),/2 500.*per skadetilfelle.*Mobiltelefon, datamaskin/);assert.match(text('bagasje.forsinket'),/fire timers.*5 000.*jobbreise/);assert.match(text('medisinsk.tann'),/5 000.*1 000/);assert.match(text('ulykke.invaliditet'),/700 000.*500 000.*100 000/);assert.match(text('ulykke.dodsfall'),/150 000.*500 000.*100 000/);assert.match(text('ulykke.behandling'),/to år.*5 %/);assert.match(text('avbestilling.dyrepensjonat'),/2 500/);assert.match(text('evakuering'),/2 000.*per døgn.*150 000.*forsikringsår/);

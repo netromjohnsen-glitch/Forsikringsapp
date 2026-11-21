@@ -258,9 +258,9 @@ test('B-017: active Fremtind separates missed transport from delayed departure a
   assert.doesNotMatch(fact('fremtind-reise', 'reise.forsinkelse.rute').value, /ubegrenset|6 000|øvre sum/u);
 });
 test('B-017: unavailable checked bag branch has separate source and no four-hour requirement', () => {
-  const bag = facts('fremtind-reise').filter(f => f.key === 'reise.bagasje.forsinket');
-  assert.equal(bag.length, 2);
-  const delayed = bag.find(f => f.source.section === '8.1'), transit = bag.find(f => f.source.section === '8.2');
+  const delayed = facts('fremtind-reise').find(f => f.key === 'reise.bagasje.forsinket');
+  const transit = facts('fremtind-reise').find(f => f.key === 'reise.bagasje.utilgjengelig');
+  assert.ok(delayed); assert.ok(transit);
   assert.match(delayed.value, /5 000 kr.*Firetimerskravet gjelder ikke jobbreise; hjemreise er unntatt/u);
   assert.match(transit.value, /500 kr per person.*ikke gir tilgang.*overnatting/u);
   assert.doesNotMatch(transit.value, /fire|4 timer|5 000/u); assert.equal(transit.source.page, 6);
