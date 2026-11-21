@@ -29,6 +29,10 @@ console.log(
         "bil-ekstra": 3,
         "elbil-ekstra": 3,
       },
+      productOptions: {
+        "bil-ekstra": { catalogFactsOnlyIfOverridden: true },
+        "elbil-ekstra": { catalogFactsOnlyIfOverridden: true },
+      },
     }),
   ),
 );

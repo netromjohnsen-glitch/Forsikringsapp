@@ -17,8 +17,8 @@ const legacyKeyByFact = {
 
 export const productRecipes = {
   "bil-ansvar": { componentIds: ["ansvar"] },
-  "bil-delkasko": { componentIds: ["ansvar", "delkasko"] },
-  "bil-kasko": { componentIds: ["ansvar", "kasko"] },
+  "bil-delkasko": { componentIds: ["delkasko"] },
+  "bil-kasko": { componentIds: ["kasko"] },
   "bil-ekstra": { componentIds: ["bilEkstra"] },
   "elbil-ekstra": { componentIds: ["elbilEkstra"] },
 };
@@ -52,6 +52,31 @@ function patchFact(fact, componentId, productId, overrides) {
   return o;
 }
 
+function hasOverrideEntry(fact, componentId, productId, overrides) {
+  const canonical =
+    Object.entries(legacyKeyByFact).find(([, legacy]) => legacy === fact.key)?.[0] ?? fact.key;
+  return Boolean(
+    overrides[productId]?.[fact.key] ??
+      overrides[productId]?.[canonical] ??
+      overrides[componentId]?.[fact.key] ??
+      overrides[componentId]?.[canonical],
+  );
+}
+
+/** Amount-like fragments that must appear in the product PDF when present in a fact value. */
+export function amountProbesInFactValue(value) {
+  const text = formatAmounts(value.replace(/\s+/gu, " "));
+  const probes = new Set();
+  for (const match of text.matchAll(/\b(\d{1,3}(?: \d{3})+)\b/gu)) {
+    probes.add(match[1]);
+  }
+  for (const match of text.matchAll(/\b(\d{1,3}(?: \d{3})*) kroner\b/giu)) {
+    probes.add(`${match[1]} kroner`);
+  }
+  if (/\b100 millioner\b/giu.test(text)) probes.add("100 millioner");
+  return [...probes];
+}
+
 export function toEvidenceFacts({
   componentIds,
   productId,
@@ -60,9 +85,13 @@ export function toEvidenceFacts({
   legacyKeys = [],
   useLegacyKeys = true,
   legacyKeyMap = {},
+  catalogFactsOnlyIfOverridden = false,
 }) {
   const mapped = componentIds.flatMap((componentId) =>
-    (trygFacts[componentId] ?? []).map((fact) => {
+    (trygFacts[componentId] ?? []).flatMap((fact) => {
+      if (catalogFactsOnlyIfOverridden && !hasOverrideEntry(fact, componentId, productId, overrides)) {
+        return [];
+      }
       const o = patchFact(fact, componentId, productId, overrides);
       const evidenceKey = factKeyForEvidence(fact.key, { useLegacyKeys, legacyKeyMap, productId });
       const entry = {
@@ -77,7 +106,7 @@ export function toEvidenceFacts({
       if (fact.deductibleClassification && !o.stripDeductibleClassification) {
         entry.deductibleClassification = fact.deductibleClassification;
       }
-      return entry;
+      return [entry];
     }),
   );
 
@@ -96,6 +125,21 @@ export function toEvidenceFacts({
   return [...byKey.values()];
 }
 
+function compactGroupedDigits(text) {
+  return text.replace(/(\d{1,3}(?: \d{3})+)/gu, (match) => match.replace(/ /g, ""));
+}
+
+function pdfIncludesAmount(pdf, probe) {
+  const lower = pdf.toLowerCase();
+  const normalized = probe.toLowerCase();
+  const variants = [
+    normalized,
+    normalized.replace(/(\d) (\d{3})/g, "$1.$2"),
+    compactGroupedDigits(normalized),
+  ];
+  return variants.some((variant) => lower.includes(variant));
+}
+
 export function assertInPdf(pdfText, productId, facts, overrides, componentIds) {
   const pdf = pdfText[productId];
   if (!pdf) return;
@@ -107,11 +151,16 @@ export function assertInPdf(pdfText, productId, facts, overrides, componentIds) 
       overrides[productId]?.[canonical] ??
       overrides[productId]?.[fact.key] ??
       componentIds.flatMap((id) => [overrides[id]?.[canonical], overrides[id]?.[fact.key]]).find(Boolean);
-    if (!patched) continue;
-    const snippet = fact.value.replace(/\s+/gu, " ").slice(0, 48).trim();
-    if (snippet.length < 12) continue;
-    const probe = snippet.slice(0, Math.min(24, snippet.length));
-    if (!pdf.toLowerCase().includes(probe.toLowerCase())) failures.push({ key: fact.key, probe });
+    if (patched) {
+      const snippet = fact.value.replace(/\s+/gu, " ").slice(0, 48).trim();
+      if (snippet.length >= 12) {
+        const probe = snippet.slice(0, Math.min(24, snippet.length));
+        if (!pdf.toLowerCase().includes(probe.toLowerCase())) failures.push({ key: fact.key, probe, kind: "snippet" });
+      }
+    }
+    for (const amount of amountProbesInFactValue(fact.value)) {
+      if (!pdfIncludesAmount(pdf, amount)) failures.push({ key: fact.key, probe: amount, kind: "amount" });
+    }
   }
   if (failures.length) {
     console.error(`PDF validation failed for ${productId}:`, failures);
@@ -130,6 +179,7 @@ export function assertInPdf(pdfText, productId, facts, overrides, componentIds) 
  * @param {Record<string, number>} [opts.pages]
  * @param {boolean} [opts.useLegacyKeys]
  * @param {Record<string, Record<string, string>>} [opts.legacyKeyMap]
+ * @param {Record<string, object>} [opts.productOptions] per-product recipe extensions
  */
 export function generateMemberBilEvidence(opts) {
   const pdfText = loadPdfText(opts.pdfPaths);
@@ -137,8 +187,8 @@ export function generateMemberBilEvidence(opts) {
   const stats = {};
 
   for (const productId of opts.products) {
-    const recipe = productRecipes[productId];
-    if (!recipe) throw new Error(`Mangler oppskrift for ${productId}`);
+    const recipe = { ...productRecipes[productId], ...(opts.productOptions?.[productId] ?? {}) };
+    if (!recipe.componentIds) throw new Error(`Mangler oppskrift for ${productId}`);
     const before = evidence[productId]?.facts?.length ?? 0;
     const facts = toEvidenceFacts({
       ...recipe,

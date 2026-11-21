@@ -20,9 +20,7 @@ const alignedKeys = (id) => {
     resolveCatalogFacts(variant, []).map((fact) => alignComparisonRow(variant, { key: fact.key, label: fact.label }).key),
   );
 };
-const trygDelkaskoKeys = new Set(
-  [...trygFacts.ansvar, ...trygFacts.delkasko].map((fact) => fact.key),
-);
+const trygDelkaskoKeys = new Set(trygFacts.delkasko.map((fact) => fact.key));
 const trygKaskoKeys = new Set(trygFacts.kasko.map((fact) => fact.key));
 
 test("NITO Bil Delkasko har minst like mange sammenligningsnøkler som Tryg Delkasko", () => {
@@ -45,7 +43,6 @@ test("NITO Bil Delkasko mot Landkreditt bil har dokumenterte kjernerader", () =>
   const comparison = rows("tryg-nito-bil-delkasko", "landkreditt-bil-delkasko");
   const byKey = new Map(comparison.map((row) => [row.key, row]));
   const requireBoth = [
-    "ansvar.dekning",
     "brann.dekning",
     "tyveri.dekning",
     "glass.dekning",
@@ -82,7 +79,7 @@ test("Utdanningsforbundet Bil Delkasko har minst like mange sammenlignbare nøkl
 test("Utdanningsforbundet Bil Delkasko mot Landkreditt bil har dokumenterte kjernerader", () => {
   const comparison = rows("tryg-utdanningsforbundet-bil-delkasko", "landkreditt-bil-delkasko");
   const byKey = new Map(comparison.map((row) => [row.key, row]));
-  for (const key of ["ansvar.dekning", "brann.dekning", "tyveri.dekning", "glass.dekning", "veihjelp.dekning"]) {
+  for (const key of ["brann.dekning", "tyveri.dekning", "glass.dekning", "veihjelp.dekning"]) {
     const row = byKey.get(key);
     assert.ok(row, key);
     assert.notEqual(row.first.state, "unknown", `UDF ${key}`);
