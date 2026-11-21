@@ -36,7 +36,7 @@ export default function PilotAccessPage() {
       <header className="brand-header h-32 sm:h-40" aria-hidden="true" />
       <section className="surface-card mx-auto -mt-12 w-[calc(100%_-_2rem)] max-w-md rounded-2xl border p-6 sm:-mt-16 sm:p-8">
         <p className="brand-eyebrow text-sm font-semibold uppercase tracking-[0.16em]">Lukket pilot</p>
-        <h1 className="brand-title mt-2 text-2xl font-bold tracking-tight">Forsikringsassistent</h1>
+        <h1 className="brand-title mt-2 text-2xl font-bold tracking-tight">Forsikringstolken</h1>
         <p className="body-copy mt-3 text-sm leading-6">Skriv inn pilotkoden du har fått for å åpne verktøyet.</p>
         <form className="mt-6" onSubmit={submit}>
           <label htmlFor="pilot-code" className="section-title text-sm font-semibold">Pilotkode</label>
