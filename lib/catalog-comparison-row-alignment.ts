@@ -79,6 +79,17 @@ const productSpecificKeys: Readonly<Record<string, RowLabels>> = {
     "hus.fullverdi": "hus.gjenoppforing.hovedregel",
     "hus.utleie_skadeverk": "hus.utleie.skadeverk",
   },
+  "tryg-utdanningsforbundet-hus": {
+    "hus.fullverdi": "hus.forsikringsform",
+    "hus.klimatiltak": "hus.gjenoppforing.klimatiltak",
+    "hus.utleie_skadeverk": "hus.utleie.skadeverk",
+  },
+  "tryg-utdanningsforbundet-hus-ekstra": {
+    "hus.fullverdi": "hus.gjenoppforing.hovedregel",
+    "hus.klimatiltak": "hus.gjenoppforing.klimatiltak",
+    "hus.hageanlegg": "hus.hage.grense",
+    "hus.utleie_skadeverk": "hus.utleie.skadeverk",
+  },
   "fremtind-innbo-topp": { "flytting.transport.grense": "flytting.dekning" },
 };
 
