@@ -1,0 +1,8 @@
+{
+  "name": "Forsikringstolken",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "user": "ubuntu",
+  "install": "[ ! -d '/agent/repos/Forsikringsapp' ] || cd '/agent/repos/Forsikringsapp' || exit $?; export PATH=\"/usr/local/bin:/opt/poppler-26.11/bin:$PATH\"; node -v; pdftotext -v; npm ci"
+}
