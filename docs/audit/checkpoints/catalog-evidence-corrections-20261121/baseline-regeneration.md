@@ -72,3 +72,12 @@ som inneholder 4 000 og 6 000. Veihjelp blir stående på side 2.
 Ingen. Alt som ikke var stavemåten, de åtte hus-sidefeltene, fjerningen av
 `gjensidigeHusStandard` fra kvitteringen, eller integritetssummen til en
 fil over, er avvist.
+
+## Medlems-Bil 2026-11-21
+
+`source-changes.v8.gz` utvides med `before`/`after` for åtte aktive
+Tryg-medlemskomponenter (NITO bil ×5, UDF bil ×3). Historiske utgaver
+`tryg-utdanningsforbundet-bil-delkasko-terms-2026-01-01` og
+`tryg-utdanningsforbundet-elbil-ekstra-terms-2026-01-01` er uendret.
+Se også `docs/audit/checkpoints/nito-bil-catalog-facts-20261121/note.md` og
+`udf-bil-catalog-facts-20261121/note.md`.
