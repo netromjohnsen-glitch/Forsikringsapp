@@ -74,8 +74,13 @@ const facts: Record<string, CatalogFact[]> = Object.fromEntries(tiers.map((tier,
     row("sykkel.tyveri.grense", "Sykkel, elsykkel, sykkeltilhenger og barnevogn – tyverigrense",
       "Inntil " + tier.allowance + " kr per gjenstand ved tyveri eller skadeverk" + (extra ? "." : " andre steder enn de særskilt oppregnede."),
       3, "2.4"),
-    row("innbo.fritidsbat.grense", "Fritidsbåt og utenbordsmotor – grense", "Til sammen " + tier.allowance + " kr for fritidsbåt inntil 15 fot og båtmotor inntil 10 hk på forsikringsstedet.", 1, "1.1"),
-    row("innbo.tilhenger.grense", "Tilhenger til person- og varebil – grense", "Til sammen " + tier.allowance + " kr for vare- og båttilhenger på forsikringsstedet.", 1, "1.1"),
+    row("innbo.fritidsbat.grense", "Fritidsbåt og utenbordsmotor – grense", "Til sammen " + tier.allowance + " kr for fritidsbåt inntil 15 fot og båtmotor inntil 10 hk. Gjelder ved brann og tyveri på forsikringsstedet.", 1, "1.1 Motorvogn, båt, luftfartøy"),
+    row("innbo.tilhenger.grense", "Tilhenger til person- og varebil – grense", "Til sammen " + tier.allowance + " kr for vare- og båttilhenger til person- og varebil. Gjelder ved brann og tyveri på forsikringsstedet.", 1, "1.1 Motorvogn, båt, luftfartøy"),
+    row("innbo.yrkeslosore.grense", "Yrkesløsøre og varer – grense", (extra ? "100 000 kr" : "50 000 kr") + " samlet for eget yrkesløsøre og egne varer i bygning på forsikringsstedet.", 1, "1.1 Yrkesløsøre og varer"),
+    row("innbo.datalager.grense", "Rekonstruksjon av datalagre mv. – grense", (extra ? "50 000 kr" : "10 000 kr") + " samlet for rekonstruksjon av datalagre, notater, manuskripter og tegninger.", 1, "1.1 Datalagre, notater, manuskripter og tegninger"),
+    row("innbo.vaesketap.grense", "Tap av vann, olje, væske eller gass – grense", (extra ? "40 000 kr" : "10 000 kr") + " samlet ved plutselig utstrømming fra bygningens rørledning med tilknyttet utstyr.", 1, "1.1 Vann, fyringsolje og annen væske eller gass"),
+    row("innbo.smabygg.grense", "Små bygg under 10 m² – grense", "Inntil 30 000 kr samlet for hobbyveksthus og andre bygg under 10 m².", 1, "1.1 Hobbyveksthus og andre bygg"),
+    row("innbo.penger.dekning", "Penger og verdipapirer", "Tap av penger og verdipapirer ved erstatningsmessig skade omfattes.", 2, "1.2 Utgifter og tap ved erstatningsmessig skade", { coverageAvailability: "included" }),
     row("innbo.penger.grense", "Penger og verdipapirer – grense", "Til sammen inntil 20 000 kr ved erstatningsmessig skade.", 2, "1.2"),
     row("innbo.opphold.dekning", "Erstatningshytte etter skade", "Dekningen for opphold utenfor hjemmet gjelder ikke for fritidshusforsikring.", 2, "1.2", unavailable),
     row("ansvar.dekning", "Privatansvar", "Omfattet etter de særskilte vilkårene for privatansvar PGE90020.", 2, "1.4"),
@@ -89,7 +94,11 @@ const facts: Record<string, CatalogFact[]> = Object.fromEntries(tiers.map((tier,
       row("skadedyr.dekning", "Bekjempelse av skadedyr", "Bekjempelsesdekningen i Innbo Ekstra punkt 2.6 gjelder forsikringstakers faste bosted i Norge.", 4, "2.6", unavailable),
     );
   } else {
-    rows.push(row("uhell.dekning", "Uhell", "Innbo har særregler for bestemte andre skadetilfeller. Den generelle dekningen for plutselige og uforutsette skader følger Innbo Ekstra.", 4, "2.5", unavailable));
+    rows.push(
+      row("uhell.dekning", "Uhell", "Innbo har særregler for bestemte andre skadetilfeller. Den generelle dekningen for plutselige og uforutsette skader følger Innbo Ekstra.", 4, "2.5", unavailable),
+      row("innbo.fryserinnhold.dekning", "Matvarer i fryser", "Ødelagte matvarer i fryseskap eller fryseboks ved plutselig svikt i strømforsyningen eller frysesystemet.", 4, "2.5 Andre skadetilfeller", { coverageAvailability: "included" }),
+      row("innbo.fryserinnhold.grense", "Matvarer i fryser – grense", "Inntil 15 000 kr samlet.", 4, "2.5 Andre skadetilfeller"),
+    );
   }
 
   return [tier.id, rows];

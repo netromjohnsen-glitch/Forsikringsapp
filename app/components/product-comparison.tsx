@@ -2,27 +2,31 @@
 
 import { useEffect, useMemo, useRef, useState, type Ref } from "react";
 import { agreementScopeDisplayName } from "@/lib/provider-presentation";
+import { sourceDateApplies } from "@/lib/catalog-source-resolution";
 import { memberTermsSourceHref, termsSourceHref } from "@/lib/terms-archive";
 import { trygMemberInventories } from "@/lib/tryg-member-catalog";
 import { marketProductCatalog } from "@/lib/market-product-catalog";
 import { catalogAgreementScope } from "@/lib/agreement-scope";
 import { personInsuranceTypes } from "@/lib/person-insurance-registry";
 import { catalogProductIdentity, type CatalogProduct } from "@/lib/product-catalog";
-import { comparisonSourcePresentation } from "@/lib/catalog-source-presentation";
+import { comparisonDocumentLinkLabel, comparisonSourcePresentation, comparisonSourceReferences } from "@/lib/catalog-source-presentation";
+import { normalizeInsuranceType } from "@/lib/insurance-normalization";
 import {
   compareCatalogProducts,
   findProductComparisonProduct,
+  prepareProductComparisonPicker,
   productComparisonInsuranceTypes,
   productComparisonOptions,
   productComparisonProviders,
   productComparisonScopes,
   productCoverageStateLabel,
+  unresolvedProductCoverageLabel,
   type ProductComparisonFact,
   type CatalogProductComparison,
   type ProductComparisonSource,
 } from "@/lib/catalog-product-comparison";
 
-import { productComparisonView, productRowPriority, catalogDisplayLabel, catalogDisplayValue, type ProductDisplayRow, type ProductCoverageGroup } from "@/lib/product-comparison-presentation";
+import { productComparisonView, productRowPriority, productSectionAnchorPrefix, catalogDisplayLabel, catalogDisplayValue, type ProductDisplayRow, type ProductCoverageGroup } from "@/lib/product-comparison-presentation";
 
 type Selection = {
   company: string;
@@ -31,17 +35,27 @@ type Selection = {
 };
 
 const emptySelection = (): Selection => ({ company: "", agreementScope: "", productIdentity: "" });
+const personTypes = new Set([...personInsuranceTypes, "Personforsikring"].map((type) => normalizeInsuranceType(type)));
+const memberPackageTypes = new Set(["Studentforsikring", "70+"].map((type) => normalizeInsuranceType(type)));
+const pickerDocumentTitles = new Map([
+  ["gjensidige-person-barn.pdf", "Barneforsikring"],
+  ["gjensidige-person-barn-uforepensjon.pdf", "Uførepensjon Barn"],
+  ["nito-05uul41847.pdf", "Felles produktvilkår"],
+]);
 
-function ProductSource({ source, label }: { source: ProductComparisonSource; label: string }) {
+function ProductSource({ source, label, reference }: { source: ProductComparisonSource; label: string; reference: string | null }) {
   const sourceHref = termsSourceHref(source);
   const presentation = comparisonSourcePresentation(source);
+  const documentLabel = source.termsNumber && source.termsNumber !== "Ikke oppgitt" ? source.termsNumber : source.filename;
+  const accessibleReference = [source.company, documentLabel, source.effectiveFrom, presentation.page, presentation.section]
+    .filter(Boolean).join(", ");
   return (
     <details className="mt-2 text-xs text-slate-600">
       <summary
-        aria-label={`Vis kilde: ${label}`}
+        aria-label={`Vis kilde: ${label}${reference ? ` – ${accessibleReference}` : ""}`}
         className="text-link w-fit cursor-pointer rounded font-medium underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-4"
       >
-        Vis kilde · {presentation.label}
+        Vis kilde · {presentation.label}{reference ? ` · ${reference}` : ""}
       </summary>
       <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5 leading-5">
         {source.note && <p>{source.note}</p>}
@@ -53,16 +67,47 @@ function ProductSource({ source, label }: { source: ProductComparisonSource; lab
   );
 }
 
+function distinctProductSources(sources: ProductComparisonSource[]): ProductComparisonSource[] {
+  if (sources.length < 2) return sources;
+  const distinct = new Map<string | number, ProductComparisonSource>();
+  for (const [index, source] of sources.entries()) {
+    const digest = marketProductCatalog.sources?.[source.documentId]?.sha256;
+    const identity = digest ? JSON.stringify([digest, source.url, source.filename, source.termsNumber, source.company,
+      source.agreementScope, source.effectiveFrom, source.sourceType, source.page, source.section, source.note]) : index;
+    const previous = distinct.get(identity);
+    // A cited clause may have both an original link and a byte-identical archive copy.
+    if (!previous || (!termsSourceHref(previous)?.startsWith("/api/vilkar/") && termsSourceHref(source)?.startsWith("/api/vilkar/"))) {
+      distinct.set(identity, source);
+    }
+  }
+  return [...distinct.values()];
+}
+
+function ProductSources({ sources, label }: { sources: ProductComparisonSource[]; label: string }) {
+  const visible = distinctProductSources(sources);
+  const references = visible.length > 1 ? comparisonSourceReferences(visible) : [];
+  return visible.map((source, index) => (
+    <ProductSource key={`${source.documentId}-${source.page}-${source.section}`}
+      source={source} reference={references[index] ?? null} label={label} />
+  ));
+}
+
 function ProductValue({ row, side, showSources = true }: { row: ProductDisplayRow; side: "first" | "second"; showSources?: boolean }) {
   const value = row[side];
+  const alternative = value.optionalAlternative;
+  const sideLabel = side === "first" ? "Produkt A" : "Produkt B";
   return (
     <div className={side === "first" ? "difference-side-existing rounded-lg px-4 py-4" : "difference-side-offer rounded-lg px-4 py-4"}>
       <p className={side === "first" ? "existing-label text-xs font-semibold uppercase tracking-wide" : "offer-label text-xs font-semibold uppercase tracking-wide"}>
-        {side === "first" ? "Produkt A" : "Produkt B"}
+        {sideLabel}
       </p>
       {value.parentLabel && <p className="mt-2 text-xs font-medium text-slate-600">Dokumentert under {value.parentLabel}. Omfanget følger vilkåret nedenfor.</p>}
       <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{value.text}</p>
-      {showSources && value.sources.map((source) => <ProductSource key={`${source.documentId}-${source.page}-${source.section}`} source={source} label={`${row.label} – ${side === "first" ? "Produkt A" : "Produkt B"}`} />)}
+      {showSources && <ProductSources sources={value.sources} label={`${row.label} – ${sideLabel}`} />}
+      {alternative && <div className="mt-3 border-t border-slate-300 pt-3">
+        <p className="whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{alternative.text}</p>
+        {showSources && <ProductSources sources={alternative.sources} label={`${row.label} – ${sideLabel} – tillegg`} />}
+      </div>}
     </div>
   );
 }
@@ -82,32 +127,71 @@ function DifferenceRow({ row, showLabel = true, showSources = true }: { row: Pro
 function ProductSelector({
   side,
   insuranceType,
+  selectionCatalog = marketProductCatalog,
   selection,
   onChange,
   onInvalidate,
 }: {
   side: "A" | "B";
   insuranceType: string;
+  selectionCatalog?: ReturnType<typeof prepareProductComparisonPicker>;
   selection: Selection;
   onChange: (value: Selection) => void;
   onInvalidate: () => void;
 }) {
-  const providers = productComparisonProviders(insuranceType, marketProductCatalog);
-  const scopes = selection.company ? productComparisonScopes(insuranceType, selection.company, marketProductCatalog) : [];
+  const providers = productComparisonProviders(insuranceType, selectionCatalog);
+  const scopes = selection.company ? productComparisonScopes(insuranceType, selection.company, selectionCatalog) : [];
   const selectedScope = selection.agreementScope || (scopes.length === 1 ? scopes[0].id : "");
   const products = selection.company
-    ? productComparisonOptions(insuranceType, selection.company, selectedScope || null, marketProductCatalog)
+    ? productComparisonOptions(insuranceType, selection.company, selectedScope || null, selectionCatalog)
     : [];
   const showScope = scopes.some((scope) => scope.id !== "ordinary") || scopes.length > 1;
   const selectedProduct = products.find((product) => catalogProductIdentity(product) === selection.productIdentity);
+  const optionLabel = (product: CatalogProduct) => products.some(candidate => candidate !== product && candidate.name === product.name)
+    ? `${product.name} (${product.version ?? "ukjent versjon"})` : product.name;
+  const selectedVariant = selectedProduct ? optionLabel(selectedProduct) : "";
+  const variantControl = useRef<HTMLSelectElement>(null);
+  const variantProbe = useRef<HTMLSpanElement>(null);
+  const [clippedVariant, setClippedVariant] = useState("");
+
+  useEffect(() => {
+    const control = variantControl.current;
+    const probe = variantProbe.current;
+    if (!selectedVariant || !control || !probe) return;
+
+    const observer = new ResizeObserver(() => {
+      const style = window.getComputedStyle(control);
+      const padding = parseFloat(style.paddingInlineStart) + parseFloat(style.paddingInlineEnd);
+      const indicator = parseFloat(style.fontSize);
+      const fits = probe.getBoundingClientRect().width <= control.clientWidth - padding - indicator;
+      setClippedVariant(fits ? "" : selectedVariant);
+    });
+    observer.observe(control);
+    observer.observe(probe);
+    return () => observer.disconnect();
+  }, [selectedVariant]);
+
   const sourceId = selectedProduct?.sourceId;
-  const terms = sourceId?.startsWith("person:")
-    ? [...new Map(Object.values(marketProductCatalog.sources ?? {})
-      .filter((source) => source.id === sourceId ||
-        source.id.startsWith(`${sourceId}:`) && !source.id.startsWith(`${sourceId}:tillegg:`))
+  const personProduct = selectedProduct && personTypes.has(normalizeInsuranceType(selectedProduct.insuranceType));
+  const today = new Date().toISOString().slice(0, 10);
+  const terms = selectedProduct && sourceId && (personProduct || sourceId.startsWith("person:"))
+    ? [...new Map(Object.values(selectionCatalog.sources ?? {})
+      .filter((source) => {
+        if (source.id === sourceId) return true;
+        if (source.id.startsWith(`${sourceId}:`)) return !source.id.startsWith(`${sourceId}:tillegg:`);
+        // Some member policies include a separately registered base document.
+        return source.sourceType === "full_terms" && selectedProduct.componentIds?.includes(source.id) &&
+          source.productIds?.includes(selectedProduct.productId) &&
+          catalogAgreementScope(source) === catalogAgreementScope(selectedProduct) &&
+          (!source.productVersion || source.productVersion === selectedProduct.version) && sourceDateApplies(source, today);
+      })
       .flatMap((source) => {
-        const href = termsSourceHref({ documentId: source.id, effectiveFrom: source.effectiveFrom, url: source.url, page: 0 });
-        return href ? [[href, { id: source.id, termsNumber: source.termsNumber, href }] as const] : [];
+        if (source.agreementScope && source.agreementScope !== selectedScope) return [];
+        const document = { documentId: source.id, filename: source.filename, sourceType: source.sourceType,
+          effectiveFrom: source.effectiveFrom, url: source.url, page: 0 };
+        const href = termsSourceHref(document);
+        const label = href ? comparisonDocumentLinkLabel(document, href) : "";
+        return href ? [[href, { href, termsNumber: source.termsNumber, label, title: pickerDocumentTitles.get(source.filename) }] as const] : [];
       })).values()]
     : [];
 
@@ -127,7 +211,7 @@ function ProductSelector({
             value={selection.company}
             onChange={(event) => {
               const company = event.target.value;
-              const nextScopes = company ? productComparisonScopes(insuranceType, company, marketProductCatalog) : [];
+              const nextScopes = company ? productComparisonScopes(insuranceType, company, selectionCatalog) : [];
               update({ company, agreementScope: nextScopes.length === 1 ? nextScopes[0].id : "", productIdentity: "" });
             }}
             className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
@@ -150,25 +234,35 @@ function ProductSelector({
           </select>
         </label>}
 
-        <label className="text-sm font-medium text-gray-700">
-          Produkt/variant
-          <select
-            aria-label={`Produkt ${side} – produkt eller variant`}
-            value={selection.productIdentity}
-            disabled={!selection.company || !selectedScope}
-            onChange={(event) => update({ ...selection, agreementScope: selectedScope, productIdentity: event.target.value })}
-            className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none disabled:cursor-not-allowed"
-          >
-            <option value="">Velg produkt</option>
-            {products.map((product) => <option key={catalogProductIdentity(product)} value={catalogProductIdentity(product)}>
-              {product.name}{products.filter((candidate) => candidate.name === product.name).length > 1 ? ` (${product.version ?? "ukjent versjon"})` : ""}
-            </option>)}
-          </select>
-        </label>
+        <div className="min-w-0">
+          <label className="block text-sm font-medium text-gray-700">
+            Produkt/variant
+            <select
+              ref={variantControl}
+              aria-label={`Produkt ${side} – produkt eller variant`}
+              value={selection.productIdentity}
+              disabled={!selection.company || !selectedScope}
+              onChange={(event) => update({ ...selection, agreementScope: selectedScope, productIdentity: event.target.value })}
+              className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none disabled:cursor-not-allowed"
+            >
+              <option value="">Velg produkt</option>
+              {products.map((product) => <option key={catalogProductIdentity(product)} value={catalogProductIdentity(product)}>
+                {optionLabel(product)}
+              </option>)}
+            </select>
+            {selectedVariant && <span aria-hidden="true" className="pointer-events-none absolute h-0 w-0 overflow-hidden">
+              <span ref={variantProbe} className="inline-block whitespace-nowrap">{selectedVariant}</span>
+            </span>}
+          </label>
+          {selectedVariant && clippedVariant === selectedVariant && (
+            <p className="mt-1 break-words text-sm leading-5 text-slate-700">{selectedVariant}</p>
+          )}
+        </div>
         {terms.length > 0 && <ul aria-label={`Vilkår for produkt ${side}`} className="space-y-1 text-sm">
-          {terms.map((source) => <li key={source.id}>
+          {terms.map((source) => <li key={source.href}>
             <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-link font-medium underline">
-              Åpne vilkår (PDF){source.termsNumber ? ` · ${source.termsNumber}` : ""}
+              {source.label}{source.termsNumber && source.termsNumber !== "Ikke oppgitt" ? ` · ${source.termsNumber}` : ""}
+              {source.title ? ` · ${source.title}` : ""}
             </a>
           </li>)}
         </ul>}
@@ -201,9 +295,10 @@ function ProductEvidenceList({ facts, side, company, label, showUnknown = false 
     {!facts.length && <p className="mt-2 text-sm text-slate-700">{productCoverageStateLabel("unknown")}</p>}
     <div className="mt-2 space-y-4">{facts.map((fact, index) => <div key={`${fact.key}-${index}`}>
       <p className="text-sm font-medium text-slate-800">{catalogDisplayLabel(fact)}</p>
+      {fact.state === "unknown" && <p className="mt-1 text-xs text-slate-600">{unresolvedProductCoverageLabel}</p>}
       {fact.state === "optional" && <p className="mt-1 text-xs text-slate-600">{productCoverageStateLabel(fact.state)}{fact.addOnNames.length > 0 ? ` (${fact.addOnNames.join(" / ")})` : ""}</p>}
       <p className="mt-1 whitespace-pre-wrap break-words text-sm leading-6 text-slate-800">{catalogDisplayValue(fact)}</p>
-      {fact.sources.map((source) => <ProductSource key={`${source.documentId}-${source.page}-${source.section}`} source={source} label={`${fact.label} – ${sideLabel}`} />)}
+      <ProductSources sources={fact.sources} label={`${fact.label} – ${sideLabel}`} />
     </div>)}</div>
   </div>;
 }
@@ -239,8 +334,30 @@ function CoverageGroup({ group, result }: { group: ProductCoverageGroup; result:
   </div>;
 }
 
+function clearProductSectionFragment() {
+  const { history, location } = window;
+  history.replaceState(history.state, "", location.pathname + location.search);
+}
+
+export function useProductSectionHistory() {
+  useEffect(() => {
+    function clearUnavailableSection() {
+      const id = window.location.hash.slice(1);
+      if (!id.startsWith(productSectionAnchorPrefix)) return;
+      if (!document.getElementById(id)?.getClientRects().length) clearProductSectionFragment();
+    }
+
+    clearUnavailableSection();
+    window.addEventListener("hashchange", clearUnavailableSection);
+    return () => window.removeEventListener("hashchange", clearUnavailableSection);
+  }, []);
+}
+
 function ProductResult({ result, headingRef }: { result: CatalogProductComparison; headingRef?: Ref<HTMLHeadingElement> }) {
-  const sections = productComparisonView(result);
+  const sections = useMemo(() => productComparisonView(result), [result]);
+  useEffect(() => () => {
+    if (sections.some((section) => window.location.hash === `#${section.anchorId}`)) clearProductSectionFragment();
+  }, [sections]);
   return (
     <section className="surface-card mt-8 min-w-0 rounded-2xl border p-5 sm:p-8" aria-labelledby="product-comparison-result">
       <p className="brand-eyebrow text-xs font-semibold uppercase tracking-[0.12em]">Produktsammenligning</p>
@@ -304,10 +421,9 @@ function TrygMemberOfferings() {
                         <ul className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
                           {product.sources.map((source, index) => {
                             const href = memberTermsSourceHref(inventory.agreementScope, product.id, source);
-                            const archived = href !== source.url;
                             return (
                               <li key={`${source.url}:${index}`}>
-                                <a className="text-link underline" href={href} target={archived ? "_blank" : undefined} rel={archived ? "noopener noreferrer" : undefined}>
+                                <a className="text-link underline" href={href} target="_blank" rel="noopener noreferrer">
                                   {source.label ?? (source.role.includes("terms") ? "Vilkår" : source.role === "ipid" ? "Produktark" : "Kilde")}
                                   {source.documentNumber ? ` ${source.documentNumber}` : ""}
                                   {(source.effectiveDate ?? source.publicationDate) ? ` (${source.effectiveDate ?? source.publicationDate})` : ""}
@@ -334,21 +450,31 @@ function focusInsuranceType(select: HTMLSelectElement | null) {
 }
 
 export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { personInsuranceFirst?: boolean }) {
+  const today = new Date().toISOString().slice(0, 10);
+  const selectionCatalog = useMemo(() => prepareProductComparisonPicker(marketProductCatalog, new Date(today)), [today]);
   const insuranceTypeGroups = useMemo(() => {
-    const types = productComparisonInsuranceTypes(marketProductCatalog);
-    const personTypes = new Set<string>(personInsuranceTypes);
-    return [
-      { label: "Skadeforsikringer", types: types.filter(type => !personTypes.has(type)) },
-      { label: "Personforsikringer", types: types.filter(type => personTypes.has(type)) },
-    ];
-  }, []);
+    const nonLife = { label: "Skadeforsikringer", types: [] as string[] };
+    const personal = { label: "Personforsikringer", types: [] as string[] };
+    const packages = { label: "Medlemspakker", types: [] as string[] };
+    for (const type of productComparisonInsuranceTypes(selectionCatalog)) {
+      const canonicalType = normalizeInsuranceType(type);
+      if (memberPackageTypes.has(canonicalType)) packages.types.push(type);
+      else if (personTypes.has(canonicalType)) personal.types.push(type);
+      else nonLife.types.push(type);
+    }
+    const groups = personInsuranceFirst ? [personal, nonLife, packages] : [nonLife, personal, packages];
+    return groups.filter(group => group.types.length > 0);
+  }, [personInsuranceFirst, selectionCatalog]);
   const [insuranceType, setInsuranceType] = useState("");
   const [first, setFirst] = useState<Selection>(emptySelection);
   const [second, setSecond] = useState<Selection>(emptySelection);
   const [result, setResult] = useState<CatalogProductComparison | null>(null);
   const resultHeading = useRef<HTMLHeadingElement>(null);
+  const focusNewResult = useRef(false);
   useEffect(() => {
-    if (result) resultHeading.current?.focus();
+    if (!result || !focusNewResult.current) return;
+    focusNewResult.current = false;
+    resultHeading.current?.focus();
   }, [result]);
   const [error, setError] = useState("");
 
@@ -357,14 +483,16 @@ export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { p
     setError("");
   }
 
-  const firstProduct = first.productIdentity ? findProductComparisonProduct(first.productIdentity, marketProductCatalog) : null;
-  const secondProduct = second.productIdentity ? findProductComparisonProduct(second.productIdentity, marketProductCatalog) : null;
+  const firstProduct = first.productIdentity ? findProductComparisonProduct(first.productIdentity, selectionCatalog) : null;
+  const secondProduct = second.productIdentity ? findProductComparisonProduct(second.productIdentity, selectionCatalog) : null;
   const ready = Boolean(insuranceType && firstProduct && secondProduct);
 
   function compare() {
     if (!firstProduct || !secondProduct) return;
     try {
-      setResult(compareCatalogProducts(firstProduct, secondProduct, marketProductCatalog));
+      const compared = compareCatalogProducts(firstProduct, secondProduct, marketProductCatalog);
+      focusNewResult.current = true;
+      setResult(compared);
       setError("");
     } catch {
       setResult(null);
@@ -391,7 +519,7 @@ export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { p
             className="form-control mt-1 w-full rounded-lg border px-3 py-2 outline-none"
           >
             <option value="">Velg forsikringstype</option>
-            {(personInsuranceFirst ? [...insuranceTypeGroups].reverse() : insuranceTypeGroups).map(({ label, types }) => (
+            {insuranceTypeGroups.map(({ label, types }) => (
               <optgroup key={label} label={label}>
                 {types.map((type) => <option key={type} value={type}>{type}</option>)}
               </optgroup>
@@ -400,8 +528,8 @@ export function ProductComparisonWorkspace({ personInsuranceFirst = false }: { p
         </label>
 
         {insuranceType && <div className="mt-6 grid gap-5 md:grid-cols-2">
-          <ProductSelector side="A" insuranceType={insuranceType} selection={first} onChange={setFirst} onInvalidate={invalidate} />
-          <ProductSelector side="B" insuranceType={insuranceType} selection={second} onChange={setSecond} onInvalidate={invalidate} />
+          <ProductSelector side="A" insuranceType={insuranceType} selectionCatalog={selectionCatalog} selection={first} onChange={setFirst} onInvalidate={invalidate} />
+          <ProductSelector side="B" insuranceType={insuranceType} selectionCatalog={selectionCatalog} selection={second} onChange={setSecond} onInvalidate={invalidate} />
         </div>}
 
         <button type="button" onClick={compare} disabled={!ready} className="primary-button mt-6 w-full rounded-xl px-6 py-3 font-semibold shadow-sm disabled:cursor-not-allowed sm:w-auto">

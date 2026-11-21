@@ -46,6 +46,26 @@ test("each archive route resolves only the intended catalogue document and editi
   assert.equal(termsSourceHref({ documentId: helpPage.id, effectiveFrom: helpPage.effectiveFrom, url: helpPage.url, page: 0 }), helpPage.url);
 });
 
+test("public PDFs open at their cited page even without an archived copy", () => {
+  const source = {
+    documentId: "ifDelkasko", effectiveFrom: "2024-03", page: 3,
+    filename: "Kjoretoyforsikring-MOT2-2.pdf",
+    url: "https://if.no/apps/vilkarsbasendokument/Vilkaar?vilkaar=MOT2-2",
+  };
+  assert.equal(termsSourceHref(source), source.url + "#page=3");
+  assert.equal(termsSourceHref({ ...source, url: source.url + "#page=9" }), source.url + "#page=3");
+  assert.equal(termsSourceHref({ ...source, page: 0 }), source.url);
+  assert.equal(termsSourceHref({ ...source, page: 1.5 }), source.url);
+  const tryg = "https://www.tryg.no/odpdf?vilkNr=05PRF46010";
+  assert.equal(termsSourceHref({ ...source, url: tryg }), tryg + "#page=3");
+  const pdf = "https://example.test/terms.PDF?edition=2026";
+  assert.equal(termsSourceHref({ ...source, url: pdf }), pdf + "#page=3");
+  const productPage = "https://www.gjensidige.no/forsikring/barneforsikring";
+  assert.equal(termsSourceHref({ ...source, url: productPage }), productPage);
+  assert.equal(termsSourceHref({ ...source, filename: "product.html" }), source.url);
+  assert.equal(termsSourceHref({ ...source, url: undefined }), undefined);
+});
+
 test("Storebrand pet terms use the live Dyr04 PDF and retain exact edition aliases", () => {
   const officialPdf = "https://www.storebrand.no/privat/forsikring/hund-og-katteforsikring/_/attachment/inline/089d6bcf-d0cf-413a-9688-ed2ac0bd3e90%3A1b5272a40022708d8a0d66124228f6bb6fb636e3/vilkar-hund-og-katteforsikring.pdf";
   for (const [insuranceType, legacy] of [
@@ -121,8 +141,8 @@ test("NITO Reiseforsikring Enkeltperson cites the current listing URL and preser
     assert.equal(source.page, 2);
     assert.equal(termsSourceHref(source), href);
     assert.equal(termsSourceHref({ ...source, url: previousUrl }), href);
-    assert.equal(termsSourceHref({ ...source, url: previousUrl, effectiveFrom: "2025-01-01" }), previousUrl);
-    assert.equal(termsSourceHref({ ...source, url: previousUrl, documentId: "tryg-nito-reise-familie-terms" }), previousUrl);
+    assert.equal(termsSourceHref({ ...source, url: previousUrl, effectiveFrom: "2025-01-01" }), previousUrl + "#page=2");
+    assert.equal(termsSourceHref({ ...source, url: previousUrl, documentId: "tryg-nito-reise-familie-terms" }), previousUrl + "#page=2");
   }
 });
 
@@ -166,4 +186,20 @@ test("authenticated pilot requests serve the exact PDF for every allowed archive
   }
   assert.equal((await archiveRequest("frende", "__proto__", cookie)).status, 404);
   assert.equal((await archiveRequest("unregistered", "hytte", cookie)).status, 404);
+});
+
+test("Gjensidige-produktark med gjenbrukte nettadresser peker til de siterte arkivutgavene", () => {
+  const bindings = [
+    ["gjensidigeHusIpid", "hus-produktark-eap01"],
+    ["vehicle:gjensidige-MOT05.pdf", "snoscooter-produktark-mot05"],
+    ["mc-bobil:gjensidige-bobil-MOT08-ipid.pdf:bobil", "bobil-produktark-mot08"],
+    ["private-valuables:gjensidige:standard:ipid", "verdisak-produktark-eap16"],
+    ["private-valuables:gjensidige:ipid", "verdisak-produktark-eap16"],
+  ];
+  for (const [documentId, slug] of bindings) {
+    const source = marketProductCatalog.sources[documentId];
+    const cite = { documentId, effectiveFrom: source.effectiveFrom, filename: source.filename, url: source.url, page: 2 };
+    assert.equal(termsSourceHref(cite), "/api/vilkar/gjensidige/" + slug + "#page=2");
+    assert.equal(termsSourceHref({ ...cite, effectiveFrom: "2100-01-01" }), source.url + "#page=2");
+  }
 });

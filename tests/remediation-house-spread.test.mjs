@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutWar} from './helpers/house-war.mjs';
 import test from 'node:test';
@@ -54,9 +55,9 @@ test('SPREAD-P19 complete catalog equals independent before plus only two exact 
 for(const [n,id]of ids.entries()){
  test('SPREAD-P19 complete original point19 with all linked conditions '+id,()=>{
   const b=o.original_bindings[n],page=o.source_pages[n],file=new URL('../'+b.source_artifact,import.meta.url),number=n?14:13;assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),b.source_sha256);assert.equal(productCatalog.sources[owners[n]].sha256,b.source_sha256);
-  const text=execFileSync('pdftotext',['-raw','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assert.equal(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('19. Farlig spredning av biologiske eller kjemiske substanser m.m.')[1].split('20. Jordskjelv')[0].trim();assert.equal(block,o.rows[0].value);
+  const text=execFileSync('pdftotext',['-raw','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assertPdfSourceText(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('19. Farlig spredning av biologiske eller kjemiske substanser m.m.')[1].split('20. Jordskjelv')[0].trim();assert.equal(block,o.rows[0].value);
   for(const phrase of ['For personskade under Bilansvarsloven og Lov om yrkesskadeforsikring samt på reise- og personforsikringer','farlig spredning av biologiske eller kjemiske substanser','raketter, atomvåpen eller radioaktiv stråling','For reise- og personforsikringer gjelder følgende begrensning:','Ved skade eller tap forårsaket av atomvåpen eller radioaktiv stråling','samlet erstatningsansvar overfor alle kunder og kravstillere','kr 500 millioner pr. skadehendelse','sammenhengende kjede av hendelser','For øvrige forsikringer dekkes ikke slike skader eller tap.'])assert.ok(block.includes(phrase),phrase);assert.ok(!block.includes('48 timer'));
-  const layout=execFileSync('pdftotext',['-layout','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assert.equal(layout,page.layout_text);
+  const layout=execFileSync('pdftotext',['-layout','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assertPdfSourceText(layout,page.layout_text);
   for(const field of ['structuredValue','coverageAvailability','deductibleClassification','qualificationSource'])assert.equal(Object.hasOwn(spreadFact(owners[n],o.keys[0]),field),false);
   assert.equal(o.subscope,'Generelle vilkår punkt19 Farlig spredning av biologiske eller kjemiske substanser m.m. only');assert.equal(o.whole_signature_closure,false);
  });

@@ -34,6 +34,9 @@ const familyOrder: Record<string, readonly string[]> = {
   bolig: ["plutselig", "gjenoppforing", "vann-fukt", "vatrom", "rate-skadedyr", "handverker", "vaer-natur", "utleie-bosted", "ansvar-rettshjelp", "tjenester", "aldersfradrag", "ovrig"],
   innbo: ["uhell", "tyveri", "brann-vann-natur", "sykkel-verdi", "forsikringssum", "skadedyr", "flytting-bosted", "ansvar-rettshjelp", "id-tjenester", "ovrig"],
   reise: ["rammer", "avbestilling", "sykdom-hjemtransport", "bagasje", "forsinkelse", "reiseavbrudd", "ulykke", "leiebil", "evakuering", "ansvar-rettshjelp", "tjenester", "ovrig"],
+  "70": ["innbo", "reise", "ulykke"],
+  student: ["innbo", "reise", "ulykke", "ufore", "ovrig"],
+  person: ["liv", "ulykke"],
   "snøscooter": ["kasko", "utstyr", "losore", "redning", "ulykke", "forerulykke", "brann", "tyveri", "naturskade", "ansvar", "rettshjelp"],
   campingvogn: ["kasko", "fukt", "nyverdi", "ferie", "losore", "utstyr", "fortelt", "skadedyr", "redning", "glass", "brann", "tyveri", "naturskade", "rettshjelp"],
   tilhenger: ["kasko", "utstyr", "redning", "brann", "tyveri", "naturskade", "rettshjelp"],
@@ -56,6 +59,16 @@ const shortLabels: Record<string, string> = {
 };
 
 function sectionIdentity(type: string, row: ProductComparisonRow) {
+  if (type === "70" || type === "student") {
+    if (/^(?:innbo|ansvar|rettshjelp)\./u.test(row.key)) return { id: `${type}.innbo`, label: "Innboforsikring" };
+    if (row.key.startsWith("reise.")) return { id: `${type}.reise`, label: "Reiseforsikring" };
+    if (/^(?:person\.)?ulykke\./u.test(row.key)) return { id: `${type}.ulykke`, label: "Ulykkesforsikring" };
+    if (type === "student" && row.key.startsWith("person.ufore.")) return { id: "student.ufore", label: "Uføreforsikring" };
+  }
+  if (type === "person") {
+    if (/^(?:person\.)?liv\./u.test(row.key)) return { id: "person.liv", label: "Livsforsikring og dødsfall i familien" };
+    if (/^(?:person\.)?ulykke\./u.test(row.key)) return { id: "person.ulykke", label: "Ulykkesforsikring" };
+  }
   if (type === "bil" && /^(?:tilbehor|bagasje)\./u.test(row.key)) return { id: "bil.utstyr", label: "Utstyr og eiendeler" };
   if (["bil", "mc", "bobil"].includes(type) && /^(?:(?:mc|bobil)\.)?(?:brann|tyveri|natur|naturskade)\./u.test(row.key)) {
     return { id: `${type}.brann-tyveri-natur`, label: "Brann, tyveri og natur" };
@@ -72,7 +85,8 @@ export function productSectionOrder(insuranceType: string): string[] {
 }
 
 // Encode canonical identity losslessly: no display-label collisions, including Unicode families.
-export const productSectionAnchor = (id: string) => `product-section-${Array.from(id).map((character) => character.codePointAt(0)!.toString(16)).join("-")}`;
+export const productSectionAnchorPrefix = "product-section-";
+export const productSectionAnchor = (id: string) => productSectionAnchorPrefix + Array.from(id).map((character) => character.codePointAt(0)!.toString(16)).join("-");
 
 export type ProductDisplayValue = ProductComparisonValue & { parentLabel?: string };
 export type ProductDisplayRow = Omit<ProductComparisonRow, "first" | "second"> & {
@@ -167,6 +181,8 @@ export function catalogDisplayValue(fact: ProductComparisonFact): string {
     ? `Individuelt avtalt. ${fact.value}` : fact.value;
 }
 
+const missingEvidence = (value: ProductComparisonValue) => value.state === "unknown" && !value.facts.length;
+
 function displayValue(value: ProductDisplayValue): ProductDisplayValue {
   let text = value.text;
   for (const fact of value.facts) {
@@ -177,6 +193,7 @@ function displayValue(value: ProductDisplayValue): ProductDisplayValue {
 }
 
 function groupIdentity(type: string, row: ProductDisplayRow): string {
+  if (type === "person" || type === "70" && /^(?:person\.)?ulykke\./u.test(row.key)) return "person";
   if (type === "bil") {
     if (/^(?:tilbehor|bagasje)\./u.test(row.key)) return "utstyr";
     // Evidence-derived children are nested with their documented parent, never promoted to
@@ -208,8 +225,8 @@ export function productComparisonView(
   for (const raw of result.sections.flatMap((section) => section.rows)) {
     const row: ProductDisplayRow = { ...raw,
       label: catalogDisplayLabel(raw),
-      first: displayValue(raw.first.state === "unknown" ? parentValue(result, raw.key, "first", relations) ?? raw.first : raw.first),
-      second: displayValue(raw.second.state === "unknown" ? parentValue(result, raw.key, "second", relations) ?? raw.second : raw.second),
+      first: displayValue(missingEvidence(raw.first) ? parentValue(result, raw.key, "first", relations) ?? raw.first : raw.first),
+      second: displayValue(missingEvidence(raw.second) ? parentValue(result, raw.key, "second", relations) ?? raw.second : raw.second),
     };
     if (!row.first.facts.length && !row.second.facts.length) continue;
     const identity = sectionIdentity(type, row);
@@ -233,9 +250,11 @@ export function productComparisonView(
     if (type === "bil" && /^maskinskade\.(?:egenandel(?:\.|$)|fradrag$)/u.test(row.key)) {
       let model = group.models[0];
       if (!model) { model = { label: "Egenandel og kilometerfradrag", first: [], second: [] }; group.models.push(model); }
-      model.first.push(...row.first.facts); model.second.push(...row.second.facts);
-    } else if (type === "bil" && bilDetailKeys.has(row.key) && (row.first.state === "unknown" || row.second.state === "unknown")) {
-      group.details.first.push(...row.first.facts); group.details.second.push(...row.second.facts);
+      model.first.push(...row.first.facts, ...(row.first.optionalAlternative?.facts ?? []));
+      model.second.push(...row.second.facts, ...(row.second.optionalAlternative?.facts ?? []));
+    } else if (type === "bil" && bilDetailKeys.has(row.key) && (missingEvidence(row.first) || missingEvidence(row.second))) {
+      group.details.first.push(...row.first.facts, ...(row.first.optionalAlternative?.facts ?? []));
+      group.details.second.push(...row.second.facts, ...(row.second.optionalAlternative?.facts ?? []));
     } else {
       group.rows.push(row);
     }

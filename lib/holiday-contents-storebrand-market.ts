@@ -50,6 +50,7 @@ const facts: Record<string, CatalogFact[]> = {
     row("sikkerhet.vann", "Sikring mot frost og vannskade", "Bygningen må holdes varm nok, eller vannrørene tappes etter at det er kontrollert at stoppekranen er helt stengt.", 8, "B.4.4"),
     row("innbo.fraflyttet.begrensning", "Fraflyttet bolig", "Vilkårets 12-måneders begrensning ved fraflyttet bolig gjelder ikke for hytter og andre fritidsboliger.", 16, "B.7.2 nr. 3"),
     row("uhell.dekning", "Uhell", "Uhellsforsikringen i C.1.2 følger Storebrand Super.", 18, "C.1.2", unavailable),
+    row("innbo.ombygging.grense", "Ombygging for rullestolbruker", "Dekningen for ombygging av bolig for rullestolbruker gjelder ikke for innbo i hytte eller annen fritidsbolig.", 19, "C.1.4 Ombygging av bolig for rullestolbruker", unavailable),
     row("skadedyr.dekning", "Bekjempelse av skadedyr", "Bekjempelsesdekningen i C.1.6 følger Storebrand Super.", 21, "C.1.6", unavailable),
     row("innbo.gnagerskade.dekning", "Skade på innbo fra rotter og mus", "Dekningen for skade forårsaket av mus og rotter i C.1.7 følger Storebrand Super.", 22, "C.1.7", unavailable),
     row("idtyveri.dekning", "ID-tyveri", "ID-tyveridekningen gjelder ikke for innbo i hytte eller fritidsbolig.", 22, "C.1.8", unavailable),

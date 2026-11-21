@@ -192,3 +192,29 @@ test('partial failure metadata retains original document order despite reversed 
  }});
  assert.deepEqual(r.results.failures.map(f=>f.documentIndex),[0,1]);
 });
+
+test("analysis transport retains a complete last frame and UTF-8 split across chunks", async () => {
+  const body = '{"type":"heartbeat"}\r\n' + JSON.stringify({type:"result",data:{label:"Uførepensjon"}});
+  const bytes = new TextEncoder().encode(body);
+  const stream = new ReadableStream({start(controller) {
+    for (const byte of bytes) controller.enqueue(Uint8Array.of(byte));
+    controller.close();
+  }});
+  const response = new Response(stream,{headers:{"content-type":"application/x-ndjson"}});
+  assert.deepEqual(await readAnalysisResponse(response,()=>{}),{label:"Uførepensjon"});
+
+  const incomplete = new Response('{"type":"result","data":',{headers:{"content-type":"application/x-ndjson"}});
+  await assert.rejects(readAnalysisResponse(incomplete,()=>{}),/Forbindelsen ble brutt/u);
+});
+
+test("analysis transport presents a stable error for unreadable responses and keeps app error text", async () => {
+  const html = new Response("<html>internal gateway</html>",{status:502,headers:{"content-type":"text/html"}});
+  await assert.rejects(readAnalysisResponse(html,()=>{}),{message:"Analysen kunne ikke fullføres. Prøv igjen."});
+  const partial = new Response('{"type":!}\n',{headers:{"content-type":"application/x-ndjson"}});
+  await assert.rejects(readAnalysisResponse(partial,()=>{}),{message:"Ugyldig analysesvar. Start analysen på nytt."});
+  const appError = "Gyldig pilottilgang kreves.";
+  const structured = Response.json({error:appError},{status:401});
+  await assert.rejects(readAnalysisResponse(structured,()=>{}),{message:appError});
+  const streamError = new Response(JSON.stringify({type:"error",error:appError}),{headers:{"content-type":"application/x-ndjson"}});
+  await assert.rejects(readAnalysisResponse(streamError,()=>{}),{message:appError});
+});

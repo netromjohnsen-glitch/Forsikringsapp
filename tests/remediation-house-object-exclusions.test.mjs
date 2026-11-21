@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutOwnerChange} from './helpers/house-owner-change.mjs';
 import test from 'node:test';
@@ -53,9 +54,9 @@ test('OBJECT-EXCLUSIONS complete catalog equals independent before plus only fou
 for(const [n,id]of ids.entries()){
  test('OBJECT-EXCLUSIONS full original PDF3 table and exact object scope '+id,()=>{
   const b=o.original_bindings[n],page=o.source_pages[n],file=new URL('../'+b.source_artifact,import.meta.url);assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),b.source_sha256);assert.equal(productCatalog.sources[owners[n]].sha256,b.source_sha256);
-  const text=execFileSync('pdftotext',['-raw','-f','3','-l','3',file.pathname,'-']).toString();assert.equal(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('Hva er forsikret?')[1].split('Hvilke skader?')[0];
+  const text=execFileSync('pdftotext',['-raw','-f','3','-l','3',file.pathname,'-']).toString();assertPdfSourceText(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('Hva er forsikret?')[1].split('Hvilke skader?')[0];
   for(const phrase of ['Frittliggende bygg over bruttoareal 10 kvm. som ikke er angitt i forsikringsbeviset','Hobbyveksthus','Tank og fyrkjel for mineralolje'])assert.ok(block.includes(phrase),phrase);
-  const layout=execFileSync('pdftotext',['-layout','-f','3','-l','3',file.pathname,'-']).toString();assert.equal(layout,page.layout_text);
+  const layout=execFileSync('pdftotext',['-layout','-f','3','-l','3',file.pathname,'-']).toString();assertPdfSourceText(layout,page.layout_text);
   for(const key of o.keys)for(const field of ['structuredValue','coverageAvailability','deductibleClassification','qualificationSource'])assert.equal(Object.hasOwn(objectExclusionsFact(owners[n],key),field),false);
   assert.equal(o.rows[0].value,'Hobbyveksthus er ikke forsikret.');assert.equal(o.rows[1].value,'Tank og fyrkjel for mineralolje er ikke forsikret.');
  });

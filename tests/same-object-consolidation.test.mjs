@@ -120,3 +120,37 @@ test('document role cannot be arbitrary extraction metadata',()=>assert.throws((
 test('catalog matching for existing non-car types survives consolidation',()=>{for(const type of ['Innbo','Hus','Reise']){const records=two().map(r=>({...r,type,company:'If',productName:'Super',canonicalProductName:'Super',objectIdentifiers:[]}));const result=pipeline(records);assert.equal(result.length,2);assert.ok(result.every(r=>r.catalogReference));}});
 
 test('conflicting repeated identifier kind connects and blocks every affected component',()=>{const mixed=record();mixed.objectIdentifiers.push({type:'registration',value:'ZZ10002'});const records=[mixed,record(undefined,1),record('ZZ10002',2),record('ZZ10002',3)];for(const input of [records,[...records].reverse()]){const result=consolidate(input);assert.equal(result.length,4);assert.ok(result.every(r=>r.consolidation.status==='unresolved'));}});
+
+test('conflicting documents stay ambiguous after matching the remaining counterpart', () => {
+  const conflictingRecords = [
+    record('ZZ10001', 0, [], { agreementPeriod: period('2025-09-01') }),
+    record('ZZ10001', 1, [], { agreementPeriod: period('2026-09-01') }),
+  ];
+  const mixed = pipeline([...conflictingRecords, record('ZZ10002', 2), record('ZZ10003', 3)]);
+  const counterpart = pipeline([record('ZZ10002')], 'offer');
+
+  for (const [first, second, missingStatus] of [
+    [mixed, counterpart, 'unmatched_existing'],
+    [counterpart, mixed, 'unmatched_offer'],
+  ]) {
+    const groups = groupInsurances(first, second, null);
+    assert.deepEqual(groups.map(group => group.objectMatch.status).sort(), ['ambiguous', 'matched', missingStatus]);
+
+    const matched = groups.find(group => group.objectMatch.status === 'matched');
+    assert.equal(matched.objectMatch.reason, 'EXACT_OBJECT_ID');
+    assert.equal(matched.first[0].objectIdentifiers[0].value, 'ZZ10002');
+    assert.equal(matched.second[0].objectIdentifiers[0].value, 'ZZ10002');
+
+    const missing = groups.find(group => group.objectMatch.status === missingStatus);
+    assert.equal([...missing.first, ...missing.second][0].objectIdentifiers[0].value, 'ZZ10003');
+
+    const ambiguous = groups.find(group => group.objectMatch.status === 'ambiguous');
+    assert.equal(ambiguous.objectMatch.reason, 'CONSOLIDATION_CONFLICT');
+    assert.deepEqual([...ambiguous.first, ...ambiguous.second].map(item => item.objectIdentifiers[0].value), ['ZZ10001', 'ZZ10001']);
+
+    const objectDifferences = createDifferences(doc(first), doc(second), groups, null).filter(difference => difference.kind === 'object');
+    assert.equal(objectDifferences.length, 2);
+    assert.match(objectDifferences.find(difference => difference.objectScope === ambiguous.scopeId).text, /motstridende/);
+    assert.match(objectDifferences.find(difference => difference.objectScope === missing.scopeId).text, /tilsvarende objekt ble ikke funnet/);
+  }
+});

@@ -66,7 +66,8 @@ test("coverage limits, claim deadlines and settlement rules keep separate rows",
   assert.match(house.get("hus.gjenoppforing.fullverdigaranti").first.text, /Ingen fradrag/u);
   assert.notEqual(house.get("hus.gjenoppforing.hovedregel").first.state, "unknown");
   const cabin = new Map(rows("tryg-hytte-standard", "storebrand-hytte-standard").map(row => [row.key, row]));
-  assert.match(cabin.get("hytte.utleie.skadeverk.grense").first.text, /500 000/u);
+  assert.match(cabin.get("hytte.utleie.skadeverk").first.text, /500 000/u);
+  assert.ok(!cabin.has("hytte.utleie.skadeverk.grense"));
   assert.match(cabin.get("hytte.utleie.skadeverk").second.text, /Forsettlig skadeverk/u);
   assert.match(cabin.get("hytte.krav.meldefrist").second.text, /innen ett år/u);
   assert.notEqual(cabin.get("hytte.avtale.meldefrist").second.state, "unknown");
@@ -195,7 +196,10 @@ test("NITO Delkasko aligns legal-expenses coverage and limits with distinct own-
   const id = "tryg-nito-bil-delkasko";
   const comparison = new Map(rows(id, "if-bil-delkasko").map(row => [row.key, row]));
   const scope = comparison.get("rettshjelp.dekning");
-  assert.match(scope.first.text, /Norden når ansvar er avtalt/u);
+  assert.match(scope.first.text, /rettshjelp omfattes når ansvar er avtalt/u);
+  const geography = comparison.get("geografi.rettshjelp");
+  assert.equal(geography.first.text, "Norden.");
+  assert.deepEqual(geography.first.sources.map(termsSourceHref), ["/api/vilkar/tryg/nito-bil-produkt-pau14000#page=1"]);
   const limit = comparison.get("rettshjelp.grense");
   assert.match(limit.first.text, /100 000 kr.*250 000 kr.*20 000 kr/u);
   assert.doesNotMatch(limit.first.text, /ID-tyveri/u);

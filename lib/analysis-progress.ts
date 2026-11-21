@@ -3,7 +3,7 @@ export type AnalysisSide = "existing" | "offer";
 export type DocumentStatus = "queued" | "validating" | "extracting" | "ready" | "analyzing" | "completed" | "failed";
 export type ProductStatus = "identified" | "analyzing" | "completed" | "failed";
 export type JobStatus = "idle" | "uploading" | "analyzing" | "partial" | "completed" | "failed";
-export const failureCodes = ["invalid_pdf", "encrypted_pdf", "missing_text_layer", "pdf_timeout", "extraction_failed"] as const;
+export const failureCodes = ["invalid_pdf", "encrypted_pdf", "missing_text_layer", "pdf_timeout", "extraction_failed", "no_insurance_data"] as const;
 export type FailureCode = typeof failureCodes[number];
 export type ProgressEvent =
   | { type: "analysis_started"; existingDocumentCount: number; offerDocumentCount: number }

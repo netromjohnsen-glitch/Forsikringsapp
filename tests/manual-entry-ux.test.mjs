@@ -3,9 +3,13 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { createDifferences, groupInsurances, groupTerms } from "../lib/comparison.ts";
-import { normalizeManualAgreement, ManualAgreementError } from "../lib/manual-agreement.ts";
+import { MAX_MANUAL_PRODUCTS, normalizeManualAgreement, ManualAgreementError } from "../lib/manual-agreement.ts";
+import { availableAddOns } from "../lib/product-catalog.ts";
 import {
   applyManualProductSelection,
+  changeManualAddOnSelection,
+  changeManualAgreementScope,
+  missingManualAddOnRequirements,
   CUSTOM_PRODUCT_SELECTION,
   manualProductOptions,
   manualProductSelection,
@@ -210,4 +214,71 @@ test("manuell UI bruker native katalogselect, eksplisitt customfelt og Bil-avgre
   assert.match(source, /normalizeInsuranceType\(product\.type\) === "bil"/u);
   assert.match(source, /Årlig kjørelengde[\s\S]*type="number"[\s\S]*min="0"[\s\S]*step="1"/u);
   assert.match(source, /km\/år/u);
+});
+
+test("manuelt typebytte beholder et gyldig medlemsvalg og frigjør et utgått scope", () => {
+  const life = changeManualAgreementScope(emptyProduct({type: "Liv"}), "Tryg", "Liv", "nito");
+  assert.equal(life.catalogReference.productId, "tryg-nito-liv");
+  const stillLife = transitionManualProductScope(life, "Tryg", "Liv");
+  assert.deepEqual(stillLife.catalogReference, life.catalogReference);
+  assert.equal(stillLife.agreementScope, "nito");
+
+  const dog = transitionManualProductScope({ ...life, type: "Hund", addOnIds: ["fra-liv"] }, "Tryg", "Hund");
+  assert.equal(dog.agreementScope, "ordinary");
+  assert.equal(dog.catalogReference.productId, "tryg-hund-behandling");
+  assert.deepEqual(dog.addOnIds, []);
+  const [insured] = manual("Tryg", [dog]).insuranceData.insurances;
+  assert.equal(insured.agreementScope, "ordinary");
+  assert.equal(insured.catalogReference.productId, "tryg-hund-behandling");
+
+  const boat = transitionManualProductScope({ ...life, type: "Båt" }, "Tryg", "Båt");
+  assert.equal(boat.agreementScope, null);
+  assert.equal(boat.catalogReference, null);
+  assert.equal(manualProductSelection(boat, "Tryg", "Båt"), "");
+  const options = manualProductOptions("Tryg", "Båt", undefined, boat.agreementScope);
+  assert.ok(options.length > 1);
+  assert.ok(options.every(({product}) => product.insuranceType === "Båt"));
+});
+
+test("Velg produkt fjerner aktiv variant og tilleggsvalg", () => {
+  const life = changeManualAgreementScope(emptyProduct({type: "Liv"}), "Tryg", "Liv", "nito");
+  const cleared = applyManualProductSelection({ ...life, addOnIds: ["gammelt-tillegg"] }, "Tryg", "Liv", "");
+  assert.equal(manualProductSelection(cleared, "Tryg", "Liv"), "");
+  assert.equal(cleared.agreementScope, "nito");
+  assert.equal(cleared.productName, "");
+  assert.equal(cleared.catalogReference, null);
+  assert.deepEqual(cleared.addOnIds, []);
+});
+
+for (const animal of ["Hund", "Katt"]) {
+  test(`manuelt Bruk-tillegg krever et uttrykkelig valgt Død og tap for ${animal}`, () => {
+    const expectedPrefix = "gjensidige-" + animal.toLowerCase();
+    const option = manualProductOptions("Gjensidige", animal).find(option =>
+      option.product.productId === expectedPrefix + "-behandling");
+    const insured = applyManualProductSelection(emptyProduct({type: animal}), "Gjensidige", animal, option.value);
+    const options = availableAddOns(option.product);
+    const life = expectedPrefix + "-liv";
+    const usage = expectedPrefix + "-bruk";
+    const dependency = options.find(entry => entry.id === usage);
+    assert.deepEqual(missingManualAddOnRequirements(dependency, new Set()), [life]);
+    assert.deepEqual(changeManualAddOnSelection(options, [], usage, true), []);
+    assert.throws(() => manual("Gjensidige", [{...insured, addOnIds:[usage]}]), ManualAgreementError);
+
+    const parent = changeManualAddOnSelection(options, [], life, true);
+    assert.deepEqual(parent, [life]);
+    const selected = changeManualAddOnSelection(options, parent, usage, true);
+    assert.deepEqual(selected, [life, usage]);
+    assert.deepEqual(manual("Gjensidige", [{...insured, addOnIds:selected}]).insuranceData.insurances[0].addOnIds, selected);
+    assert.deepEqual(changeManualAddOnSelection(options, selected, life, false), []);
+    assert.deepEqual(changeManualAddOnSelection(options, selected, usage, false), [life]);
+  });
+}
+
+test("manuell registrering godtar grensen og oppgir riktig melding ved for mange produkter", () => {
+  const product = emptyProduct({productName:"Min forsikring",customProduct:true});
+  const allowed = Array.from({length:MAX_MANUAL_PRODUCTS},()=>product);
+  assert.equal(manual("Syntetisk selskap",allowed).insuranceData.insurances.length,MAX_MANUAL_PRODUCTS);
+  assert.throws(() => manual("Syntetisk selskap",[...allowed,product]),
+    {message:`Du kan registrere maksimalt ${MAX_MANUAL_PRODUCTS} forsikringer per side.`});
+  assert.throws(() => manual("Syntetisk selskap",[]),{message:"Legg til minst ett forsikringsprodukt."});
 });

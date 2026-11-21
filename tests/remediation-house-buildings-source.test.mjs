@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutSettlement} from './helpers/house-settlement-form.mjs';
 import {safeguardSourceOracle} from './helpers/house-safeguard-source.mjs';
@@ -41,7 +42,7 @@ test('BUILDINGS-SOURCE exact full raw catalog: only authorized object,rebuilding
 });
 for(const source of o.source_pages.filter(s=>s.PDF_page_1_based===3))test('BUILDINGS-SOURCE original registered PDF table supports page3 '+source.artifact,()=>{
  const file=new URL('../'+source.artifact,import.meta.url);assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),source.source_sha256);
- const raw=execFileSync('pdftotext',['-raw','-f','3','-l','3',file.pathname,'-']).toString();assert.equal(raw,source.raw_text);
+ const raw=execFileSync('pdftotext',['-raw','-f','3','-l','3',file.pathname,'-']).toString();assertPdfSourceText(raw,source.raw_text);
  const flat=raw.replace(/\s+/gu,' ');for(const phrase of ['Bygning angitt i forsikringsbeviset, med fastmontert utstyr','Frittliggende bygg på forsikringsstedet til og med bruttoareal 10 kvm.','Frittliggende bygg over bruttoareal 10 kvm. som ikke er angitt i forsikringsbeviset','Solceller som dekker privat forbruk'])assert.ok(flat.includes(phrase),phrase);
 });
 for(const c of before.configurations)test('BUILDINGS-SOURCE both levels and all choices keep complete outputs except source page '+c.id+'/'+c.selected.join('+'),()=>{
@@ -77,7 +78,7 @@ test('BUILDINGS-SOURCE projection rejects unrelated page/identity changes and pr
 
 for(const page of rebuildingSourceOracle.source_pages.filter(p=>p.PDF_page_1_based===(p.path.includes('Standard')?16:17)))test('REBUILDING-SOURCE exact original paragraphs '+page.path,()=>{
  const file=new URL('../'+page.path,import.meta.url);assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),page.sha256);
- const raw=execFileSync('pdftotext',['-raw','-f',String(page.PDF_page_1_based),'-l',String(page.PDF_page_1_based),file.pathname,'-']).toString();assert.equal(raw,page.raw_text);
+ const raw=execFileSync('pdftotext',['-raw','-f',String(page.PDF_page_1_based),'-l',String(page.PDF_page_1_based),file.pathname,'-']).toString();assertPdfSourceText(raw,page.raw_text);
  const flat=raw.replace(/\s+/gu,' ');for(const phrase of ['Fullverdiforsikret bygning - fullverdigaranti:','samme formål på samme sted innen 5 år','svanemerket bolig','merkostnad på inntil kr 250 000','Er skaden større enn 75%','gjenverdiene er revet og fjernet innen 2 år etter skadetidspunktet'])assert.ok(flat.includes(phrase),phrase);
 });
 test('REBUILDING-SOURCE exact-key guard rejects unrelated page/source changes and preserves other rules',()=>{
@@ -92,7 +93,7 @@ test('REBUILDING-SOURCE exact-key guard rejects unrelated page/source changes an
 for(const block of safeguardSourceOracle.ordinary_source_blocks)test('SAFEGUARD-SOURCE exact ordinary exemption block before separate Smart section '+block.path,()=>{
  const file=new URL('../'+block.path,import.meta.url),page=safeguardSourceOracle.source_pages.find(p=>p.path===block.path&&p.PDF_page_1_based===block.PDF_page_1_based);
  assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),page.sha256);
- const raw=execFileSync('pdftotext',['-raw','-f',String(block.PDF_page_1_based),'-l',String(block.PDF_page_1_based),file.pathname,'-']).toString();assert.equal(raw,page.raw_text);
+ const raw=execFileSync('pdftotext',['-raw','-f',String(block.PDF_page_1_based),'-l',String(block.PDF_page_1_based),file.pathname,'-']).toString();assertPdfSourceText(raw,page.raw_text);
  const ordinary=raw.replace(/\s+/gu,' ').split('Det trekkes ikke egenandel ved:')[1].split('For Hus Smart med alarmtjeneste fra Gjensidige')[0].trim();assert.equal(ordinary,block.ordinary_three_bullet_block);assert.equal(ordinary.split('- ').length-1,3);
  for(const phrase of ['vannstoppventil som sikrer rørsystem i hele bygningen','i løpet av siste 5 år','kontrollør godkjent av Gjensidige','kontrollskjema/ferdigattest skal foreligge','skade som alene rammer overspenningsvern/brannalarm/innbruddsalarm'])assert.ok(ordinary.includes(phrase),phrase);
 });

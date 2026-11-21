@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutObjectExclusions} from './helpers/house-object-exclusions.mjs';
 import test from 'node:test';
@@ -51,7 +52,7 @@ test('ADDITIONAL-COSTS complete catalog is independent before plus only six own-
 });
 for(const page of o.source_pages)test('ADDITIONAL-COSTS original full source page '+page.path+'/'+page.PDF_page_1_based,()=>{
  const file=new URL('../'+page.path,import.meta.url);assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),page.sha256);
- const text=execFileSync('pdftotext',['-raw','-f',String(page.PDF_page_1_based),'-l',String(page.PDF_page_1_based),file.pathname,'-']).toString();assert.equal(text,page.raw_text);
+ const text=execFileSync('pdftotext',['-raw','-f',String(page.PDF_page_1_based),'-l',String(page.PDF_page_1_based),file.pathname,'-']).toString();assertPdfSourceText(text,page.raw_text);
  const owner=page.path.includes('Standard')?owners[0]:owners[1];assert.equal(productCatalog.sources[owner].sha256,page.sha256);
 });
 test('ADDITIONAL-COSTS source triggers,complete removal object,index/period and water causation',()=>{

@@ -61,8 +61,11 @@ export function matchObjects(existing: readonly IdentifiedObject[], offer: reado
     const pairs = exact.filter(e=>!unsafeL.has(e.l) && !unsafeR.has(e.r) && exact.filter(x=>x.l===e.l).length===1 && exact.filter(x=>x.r===e.r).length===1);
     for (const e of pairs) push(type,{status:"matched",reason:"EXACT_OBJECT_ID",existing:[e.l],offer:[e.r]});
     const remainingL=left.filter(i=>!pairs.some(e=>e.l===i)), remainingR=right.filter(i=>!pairs.some(e=>e.r===i));
-    const uncertainL=remainingL.filter(l=>remainingR.some(r=>!edges.find(e=>e.l===l&&e.r===r)!.ruledOut));
-    const uncertainR=remainingR.filter(r=>remainingL.some(l=>!edges.find(e=>e.l===l&&e.r===r)!.ruledOut));
+    // Unresolved bundles stay ambiguous even when exact matches consume every counterpart.
+    const uncertainL = remainingL.filter(l => existing[l].consolidation?.status === "unresolved" ||
+      remainingR.some(r => !edges.find(e => e.l === l && e.r === r)!.ruledOut));
+    const uncertainR = remainingR.filter(r => offer[r].consolidation?.status === "unresolved" ||
+      remainingL.some(l => !edges.find(e => e.l === l && e.r === r)!.ruledOut));
     for(const l of remainingL.filter(i=>!uncertainL.includes(i)))push(type,{status:"unmatched_existing",reason:"MISSING_OBJECT",existing:[l],offer:[]});
     for(const r of remainingR.filter(i=>!uncertainR.includes(i)))push(type,{status:"unmatched_offer",reason:"MISSING_OBJECT",existing:[],offer:[r]});
     if(uncertainL.length||uncertainR.length)push(type,{status:"ambiguous",reason:[...uncertainL.map(i=>existing[i]),...uncertainR.map(i=>offer[i])].some(i=>i.consolidation?.status==="unresolved")?"CONSOLIDATION_CONFLICT":edges.some(e=>e.conflict)||[...uncertainL.map(i=>identities[0][i]),...uncertainR.map(i=>identities[1][i])].some(i=>i.invalid)?"IDENTITY_CONFLICT":"INSUFFICIENT_IDENTITY",existing:uncertainL,offer:uncertainR});

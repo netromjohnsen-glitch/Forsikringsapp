@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutGardenImport} from './helpers/house-garden-import.mjs';
 import test from 'node:test';
@@ -54,7 +55,7 @@ for(const [n,id]of ids.entries()){
  test('SETTLEMENT original source block and exact own full-terms reference '+id,()=>{
   const b=o.original_bindings[n],page=o.source_pages[n],file=new URL('../'+b.source_artifact,import.meta.url);
   assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),b.source_sha256);assert.equal(productCatalog.sources[owners[n]].sha256,b.source_sha256);
-  const text=execFileSync('pdftotext',['-raw','-f',String(b.PDF_page_1_based),'-l',String(b.PDF_page_1_based),file.pathname,'-']).toString();assert.equal(text,page.raw_text);
+  const text=execFileSync('pdftotext',['-raw','-f',String(b.PDF_page_1_based),'-l',String(b.PDF_page_1_based),file.pathname,'-']).toString();assertPdfSourceText(text,page.raw_text);
   const block=text.replace(/\s+/gu,' ').split('Hvordan erstatningen blir beregnet')[1].split('Skadet beplantning i hageanlegg')[0].trim();assert.equal(block,page.bounded_block);
   for(const phrase of ['Gjensidige bestemmer hvilke av alternativene ovenfor som velges','velger Gjensidige leverandør','fakturaer utstedes til sikrede','sikrede har fradrag for merverdiavgift','kontantoppgjør skal ikke erstatningen overstige det Gjensidige ville betalt','ikke kan dokumenteres med faktura at håndverker/arbeidskraft er betalt','75% av timesats eks. mva. etter kalkyle utført av Gjensidiges takstmann/leverandør','Timesats for øvrige arbeider er kr 300.'])assert.ok(block.includes(phrase),phrase);
   for(const field of ['structuredValue','deductibleClassification','coverageAvailability','qualificationSource'])assert.equal(Object.hasOwn(settlementFact(owners[n]),field),false);

@@ -181,7 +181,8 @@ async function analyzeRequest(request: Request, emit: (event: ProgressEvent) => 
     });
     const documents = pending.map((agreement, index) => {
       if (agreement.mode === "manual") { telemetry.products(agreement.document.insuranceData.insurances.length); return agreement.document; }
-      return mergeBatchResults(pipeline.results, index === 0 ? "existing" : "offer", pipeline.partialSuccess, trace);
+      const side = index === 0 ? "existing" : "offer";
+      return mergeBatchResults(pipeline.results, side, pipeline.failures.some(failure => failure.side === side), trace);
     });
     for (const [index, document] of documents.entries()) emit({ type: "products_resolved", side: index === 0 ? "existing" : "offer",
       insuranceTypes: document.insuranceData.insurances.map(insurance => normalizeInsuranceType(insurance.type)) });

@@ -1,7 +1,7 @@
 import type { ConsolidatedDocumentObject } from "./insurance-object-consolidation.ts";
 import type { AgreementPeriod, ConsolidationInfo, DocumentRole } from "./object-consolidation.ts";
 import { matchObjects, objectDisplayLabel, objectWarning, type ObjectIdentifier, type ObjectMatch, type ObjectComparisonContext } from "./object-matching.ts";
-import { vehiclePriceDifferences, isVehiclePriceKey, vehiclePrices } from "./vehicle-price-presentation.ts";
+import { annualAmount, isVehiclePriceKey, vehiclePriceDifferences, vehiclePrices } from "./vehicle-price-presentation.ts";
 import {
   isMotorVehicleType,
   comparisonTermIdentities,
@@ -525,15 +525,15 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
     normalize(first.insuranceData.company) === normalize(second.insuranceData.company);
   const firstCompany = sameCompany ? `Eksisterende avtale hos ${first.insuranceData.company}` : first.insuranceData.company || "Eksisterende avtale";
   const secondCompany = sameCompany ? `Nytt tilbud fra ${second.insuranceData.company}` : second.insuranceData.company || "Nytt tilbud";
-  const firstTotal = parseNumber(first.insuranceData.totalAnnualPremium);
-  const secondTotal = parseNumber(second.insuranceData.totalAnnualPremium);
+  const firstTotalOre = annualAmount(first.insuranceData.totalAnnualPremium ?? "");
+  const secondTotalOre = annualAmount(second.insuranceData.totalAnnualPremium ?? "");
   const hasVehicles = [...first.insuranceData.insurances, ...second.insuranceData.insurances].some((insurance) => isMotorVehicleType(insurance.type, insurance));
   // Preserve the approved manual-input price rule only when both sides use that
   // same explicit input contract and neither side supplies a competing TFA basis.
   const sameManualPriceContract = first.source === "manual" && second.source === "manual" &&
     ![...first.insuranceData.insurances, ...second.insuranceData.insurances].some((insurance) => vehiclePrices(insurance)?.some((field) => field.value));
-  if (groups.every(group => !group.objectMatch || group.objectMatch.status === "matched") && (!hasVehicles || sameManualPriceContract) && firstTotal !== null && secondTotal !== null && firstTotal !== secondTotal) differences.push({
-    title: "Totalpris", text: `${firstTotal < secondTotal ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstTotal - secondTotal))} billigere per år.`,
+  if (groups.every(group => !group.objectMatch || group.objectMatch.status === "matched") && (!hasVehicles || sameManualPriceContract) && firstTotalOre !== null && secondTotalOre !== null && firstTotalOre !== secondTotalOre) differences.push({
+    title: "Totalpris", text: `${firstTotalOre < secondTotalOre ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstTotalOre - secondTotalOre) / 100)} billigere per år.`,
     type: "price", kind: "price", priority: 0,
   });
 
@@ -564,12 +564,14 @@ export function createDifferences(first: ComparedDocument, second: ComparedDocum
         title: price.label, text: price.text, termKey: price.key,
         type: "price", insuranceKey: group.key, objectScope: group.scopeId, kind: "price", priority: 0,
       });
-      const firstPrice = vehicle && !sameManualPriceContract ? null : parseNumber(group.first[0].annualPremium);
-      const secondPrice = parseNumber(group.second[0].annualPremium);
-      if (firstPrice !== null && secondPrice !== null && firstPrice !== secondPrice) differences.push({
-        title: "Pris", text: `${firstPrice < secondPrice ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstPrice - secondPrice))} billigere per år.`,
-        type: "price", insuranceKey: group.key, objectScope: group.scopeId, kind: "price", priority: 0,
-      });
+      if (!vehicle || sameManualPriceContract) {
+        const firstPriceOre = annualAmount(group.first[0].annualPremium ?? "");
+        const secondPriceOre = annualAmount(group.second[0].annualPremium ?? "");
+        if (firstPriceOre !== null && secondPriceOre !== null && firstPriceOre !== secondPriceOre) differences.push({
+          title: "Pris", text: `${firstPriceOre < secondPriceOre ? firstCompany : secondCompany} er ${formatPrice(Math.abs(firstPriceOre - secondPriceOre) / 100)} billigere per år.`,
+          type: "price", insuranceKey: group.key, objectScope: group.scopeId, kind: "price", priority: 0,
+        });
+      }
     }
     const terms = groupTerms(group, matchingPlan);
     const coverageDifferences = terms.filter(isCoverageStatusDifference);

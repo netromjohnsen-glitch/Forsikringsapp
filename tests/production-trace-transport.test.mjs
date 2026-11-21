@@ -11,6 +11,7 @@ import {pipeline} from './helpers/pilot-quality.mjs';
 import {deterministicCars} from './helpers/pilot-determinism.mjs';
 import {groupInsurances, groupTerms, createDifferences} from '../lib/comparison.ts';
 import {portfolioPrice} from '../lib/portfolio-price-presentation.ts';
+import {annualAmount} from '../lib/vehicle-price-presentation.ts';
 import {vehiclePrices, isVehiclePriceKey} from '../lib/vehicle-price-presentation.ts';
 import {isMotorVehicleType} from '../lib/insurance-normalization.ts';
 import {presentImportantDifferences, sortDetailedTerms} from '../lib/comparison-presentation.ts';
@@ -144,7 +145,7 @@ test('actual comparison sends projected diagnostics only after current generatio
 });
 test('executed comparison effect ignores stale/cancelled results, sends once and aborts receipt on cancellation', async () => {
   const source = readFileSync(new URL('../app/page.tsx', import.meta.url), 'utf8');
-  const start = source.indexOf('function Comparison({');
+  const start = source.indexOf('function annualPriceUnresolved(');
   const end = source.indexOf('  const safeObjectSet', start);
   assert.ok(start >= 0 && end > start);
   const comparison = source.slice(start, end) + '\n return {groups,differences,portfolioPrices,priceBranches};\n}';
@@ -153,6 +154,7 @@ test('executed comparison effect ignores stale/cancelled results, sends once and
   const dependencies = {
     useMemo: fn => fn(), useRef: () => traced, useEffect: fn => effects.push(fn), useState: value => [value, () => undefined],
     groupInsurances, groupTerms, createDifferences, presentImportantDifferences, sortDetailedTerms, portfolioPrice, vehiclePrices, isVehiclePriceKey, isMotorVehicleType, clientTraceEvents,
+    annualAmount,
     measureComparisonWork: (_label, fn) => fn(),
     fetch: (_url, options) => {calls.push(options); return Promise.resolve({ok: true});},
     setTimeout: () => 1, clearTimeout: () => undefined,

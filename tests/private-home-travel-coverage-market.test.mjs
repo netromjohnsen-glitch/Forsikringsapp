@@ -38,10 +38,11 @@ test("the private travel market compares mobile-phone, cancellation and interrup
 });
 
 test("the private contents and cabin market keeps higher-tier benefits scoped", () => {
-  const freezer = compare("watercircles-innbo-standard", "watercircles-innbo-elite", "innbo.frysevarer");
+  const freezer = compare("watercircles-innbo-standard", "watercircles-innbo-elite", "innbo.fryserinnhold.grense");
   assert.match(freezer.first.text, /10 000 kr/u);
-  assert.match(freezer.second.text, /ingen særskilt beløpsgrense/u);
-  assert.equal(sourceLink(freezer.first), "/api/vilkar/watercircles/innbo-2-17#page=7");
+  assert.match(freezer.second.text, /ingen særskilt beløpsgrense/iu);
+  assert.equal(sourceLink(freezer.first), "/api/vilkar/watercircles/innbo-2-17#page=5");
+  assert.equal(sourceLink(freezer.second), "/api/vilkar/watercircles/innbo-2-17#page=13");
 
   const cabin = "gjensidige-hytte-standard";
   const plus = "gjensidige-hytte-pluss";
@@ -56,7 +57,7 @@ test("the private contents and cabin market keeps higher-tier benefits scoped", 
 });
 
 test("registered market archive routes use existing exact PDF bytes", () => {
-  assert.equal(privateHomeTravelCoverageArchives.length, 5);
+  assert.equal(privateHomeTravelCoverageArchives.length, 9);
   for (const { archivePath, sources } of privateHomeTravelCoverageArchives) {
     const bytes = readFileSync(new URL("../" + archivePath, import.meta.url));
     assert.equal(createHash("sha256").update(bytes).digest("hex"), productCatalog.sources[sources[0][0]].sha256);

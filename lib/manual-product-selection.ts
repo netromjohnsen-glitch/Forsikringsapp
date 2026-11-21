@@ -1,7 +1,9 @@
 import type { ManualProductInput } from "./manual-agreement.ts";
 import {
+  catalogAgreementScopeOptions,
   catalogProductsForSelection,
   productCatalog,
+  type CatalogAddOn,
   type CatalogProduct,
   type ProductCatalog,
   catalogProductIdentity,
@@ -92,6 +94,9 @@ export function applyManualProductSelection(
   selection: string,
   catalog: ProductCatalog = productCatalog,
 ): ManualProductInput {
+  if (selection === "") {
+    return { ...product, productName: "", customProduct: false, catalogReference: null, addOnIds: [] };
+  }
   if (selection === CUSTOM_PRODUCT_SELECTION) {
     const preserveName = product.customProduct || !product.catalogReference;
     return {
@@ -113,18 +118,21 @@ export function transitionManualProductScope(
   insuranceType: string,
   catalog: ProductCatalog = productCatalog,
 ): ManualProductInput {
-  const options = manualProductOptions(company, insuranceType, catalog, product.agreementScope);
-  const selected = selectedOption(product, options);
-  if (selected) return selectOption(product, selected);
+  const scope = product.agreementScope;
+  const keepScope = scope == null || catalogAgreementScopeOptions(catalog, company, insuranceType).some(option => option.id === scope);
+  const current = keepScope ? product : { ...product, agreementScope: null };
+  const options = manualProductOptions(company, insuranceType, catalog, current.agreementScope);
+  const selected = selectedOption(current, options);
+  if (selected) return selectOption(current, selected);
 
   // Ukjente produkter kan ikke valideres mot katalogen. Bevar brukerens tekst
   // som eksplisitt custom i stedet for å gjette et katalogprodukt.
-  if (!product.catalogReference && product.productName.trim()) {
-    return { ...product, customProduct: true, catalogReference: null, addOnIds: [] };
+  if (!current.catalogReference && current.productName.trim()) {
+    return { ...current, customProduct: true, catalogReference: null, addOnIds: [] };
   }
-  if (options.length === 1) return selectOption(product, options[0]);
+  if (options.length === 1) return selectOption(current, options[0]);
   return {
-    ...product,
+    ...current,
     productName: "",
     customProduct: options.length === 0,
     catalogReference: null,
@@ -136,4 +144,37 @@ export function changeManualAgreementScope(product: ManualProductInput, company:
   // A scope change cannot silently transfer the previous product or add-ons.
   return transitionManualProductScope({ ...product, agreementScope, catalogReference: null, addOnIds: [],
     productName: product.customProduct ? product.productName : "" }, company, insuranceType, catalog);
+}
+
+export function missingManualAddOnRequirements(addOn: CatalogAddOn, selectedIds: ReadonlySet<string>): string[] {
+  return (addOn.requiresAddOnIds ?? []).filter(id => !selectedIds.has(id));
+}
+
+export function changeManualAddOnSelection(
+  options: readonly CatalogAddOn[], selectedIds: readonly string[], id: string, checked: boolean,
+): string[] {
+  const changed = options.find(option => option.id === id);
+  if (!changed) return [...selectedIds];
+  const selected = new Set(selectedIds);
+  if (checked) {
+    if (missingManualAddOnRequirements(changed, selected).length) return [...selectedIds];
+    if (changed.exclusiveGroup) {
+      for (const option of options) {
+        if (option.exclusiveGroup === changed.exclusiveGroup) selected.delete(option.id);
+      }
+    }
+    selected.add(changed.id);
+  } else {
+    selected.delete(changed.id);
+  }
+
+  // Removing a prerequisite can invalidate more than one selected add-on.
+  let previousSize: number;
+  do {
+    previousSize = selected.size;
+    for (const option of options) {
+      if (missingManualAddOnRequirements(option, selected).length) selected.delete(option.id);
+    }
+  } while (selected.size < previousSize);
+  return [...selected];
 }

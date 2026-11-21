@@ -74,6 +74,14 @@ function gjensidigeRows(pluss: boolean): Row[] {
     ["naturskade.dekning", "Naturskade", "Direkte skade fra naturulykker som skred, storm, flom og stormflo etter naturskadeforsikringsloven.", 3, "Hvilke skader? – Naturskade"],
     ["naturskade.egenandel", "Egenandel ved naturskade", "8 000 kr.", 1, "Hva er forsikret – Naturskade", undefined, "coverage"],
     ["innbo.fritidsbat.grense", "Fritidsbåt på forsikringsstedet", "Inntil 60 000 kr for båt med deler og tilbehør, begrenset til brann, tyveri og naturskade.", 2, "Hva er forsikret? – Fritidsbåt"],
+    ["innbo.penger.dekning", "Penger og verdipapirer", "Kontanter og verdipapirer inngår i det forsikrede innboet, på vilkårene for den aktuelle skaden.", 2, "Hva er forsikret? – Kontanter og verdipapirer", "included"],
+    ["innbo.penger.grense", "Penger og verdipapirer – grense", "Inntil 20 000 kr.", 2, "Hva er forsikret? – Kontanter og verdipapirer"],
+    ["innbo.yrkeslosore.grense", "Yrkesløsøre og varer – grense", "Inntil 100 000 kr for eiendeler og varer i sikredes foretak som oppbevares i en bygning på forsikringsstedet.", 2, "Hva er forsikret? – Eiendeler og varer i sikredes foretak"],
+    ["innbo.tilhenger.grense", "Tilhenger til person- og varebil – grense", "Inntil 30 000 kr for tilhenger til person- eller varebil på forsikringsstedet.", 2, "Hva er forsikret? – Tilhenger"],
+    ["innbo.kjoretoytilbehor.grense", "Deler og tilbehør til privat kjøretøy – grense", "Inntil 30 000 kr.", 2, "Hva er forsikret? – Deler og tilbehør til privat kjøretøy"],
+    ["innbo.hobbyveksthus.grense", "Hobbyveksthus – grense", "Inntil 300 000 kr ved brann eller naturskade.", 2, "Hva er forsikret? – Hobbyveksthus"],
+    ["innbo.bikuber.grense", "Bikuber og utstyr til honningproduksjon – grense", "Inntil 100 000 kr.", 2, "Hva er forsikret? – Bikuber og utstyr til honningproduksjon"],
+    ["innbo.kryptoeiendeler.dekning", "Digitale verdier og kryptoeiendeler", "Digitale verdier og kryptoeiendeler etter kryptoeiendelsloven (MiCA) er unntatt.", 2, "Hva er forsikret? – Dekkes ikke", "unavailable"],
     ["ansvar.dekning", "Privatansvar", "Rettslig erstatningsansvar som privatperson i Europa for blant annet skade på tredjeperson eller andres ting.", pluss ? 6 : 5, "Fellesdekninger – Ansvar"],
     ["ansvar.grense", "Forsikringssum for ansvar", "5 000 000 kr.", 1, "Hva er forsikret – Ansvar"],
     ["ansvar.egenandel", "Egenandel ved ansvarsskade", "4 000 kr.", 1, "Hva er forsikret – Ansvar", undefined, "coverage"],
@@ -109,6 +117,7 @@ function waterCirclesRows(elite: boolean): Row[] {
     ["egenandel.standard", "Generell egenandel", "Beløpet står i forsikringsbeviset hvis vilkårene ikke angir en særskilt egenandel.", 7, "A.5.6 Egenandel", undefined, "reference"],
     ["brann.dekning", "Brann", "Brann, plutselig nedsoting, eksplosjon, lynnedslag og elektrisk fenomen.", 3, "A.1.1–A.1.2"],
     ["vann.dekning", "Vannskade", "Blant annet vann, gass eller væske fra rør ved lekkasje, og plutselig vanninntrenging fra terreng som gir frittstående vann over laveste gulv.", 3, "A.1.4"],
+    ["innbo.vaesketap.grense", "Tap av vann, olje, væske eller gass – grense", (elite ? "20 000 kr" : "10 000 kr") + " ved dekket utstrømming fra rørledning med tilknyttet utstyr.", elite ? 9 : 3, elite ? "B.2 nr. 17, jf. A.1.4 nr. 1 på PDF-side 3" : "A.1.4 nr. 1"],
     ["tyveri.dekning", "Tyveri og innbrudd", "Tyveri fra bygning på forsikringsstedet, annen bebodd bolig og andre angitte steder. Plutselig skadeverk i forbindelse med innbrudd er omfattet.", 4, "A.1.5.1–A.1.5.3"],
     ["tyveri.uteareal.grense", "Tyveri fra privat uteareal", elite ? "50 000 kr, på privat uteareal utenom fellesareal." : "20 000 kr, på privat uteareal utenom fellesareal.", elite ? 9 : 4, elite ? "B.2.11, jf. A.1.5.3" : "A.1.5.3"],
     ["tyveri.bod.grense", "Tyveri fra bod", elite ? "100 000 kr fra bod med adgang fra fellesareal. Egne krav til oppbevaring gjelder for tyveriutsatte gjenstander." : "50 000 kr fra bod med adgang fra felles kjeller, loft, garasje eller annet fellesareal.", elite ? 9 : 4, elite ? "B.2.14" : "A.1.5.1"],
@@ -116,6 +125,12 @@ function waterCirclesRows(elite: boolean): Row[] {
     ["naturskade.dekning", "Naturskade", "Naturulykke som skred, storm, flom eller stormflo etter naturskadeforsikringsloven. Gjelder i Norge; blant annet småbåter og biltilhengere er unntatt fra naturskadedekningen.", 3, "A.1.3"],
     ["naturskade.egenandel", "Egenandel ved naturskade", "8 000 kr ved naturulykke, jf. egenandelen som til enhver tid er fastsatt etter naturskadereglene.", 7, "A.5.6 – Spesielle egenandeler 1", undefined, "coverage"],
     ["innbo.fritidsbat.grense", "Fritidsbåt på forsikringsstedet", elite ? "40 000 kr per fritidsbåt og per påhengsmotor. Grunnvilkårets avgrensning er inntil 15 fot og 10 hk, og småbåter er unntatt ved naturskade." : "20 000 kr per fritidsbåt inntil 15 fot og per påhengsmotor inntil 10 hk. Småbåter er unntatt ved naturskade.", elite ? 9 : 5, elite ? "B.2.4, jf. A.2.1 og A.1.3" : "A.2.1, jf. A.1.3"],
+    ["innbo.tilhenger.grense", "Tilhenger til person- og varebil – grense", (elite ? "40 000 kr" : "20 000 kr") + " per tilhenger. Biltilhengere er unntatt ved naturskade.", elite ? 9 : 5, elite ? "B.2 nr. 6, jf. A.1.3 på PDF-side 3" : "A.2.1, jf. A.1.3 på PDF-side 3"],
+    ["innbo.yrkeslosore.grense", "Yrkesløsøre og varer – grense", (elite ? "100 000 kr" : "25 000 kr") + " samlet for yrkesløsøre og varer i bygning på forsikringsstedet.", elite ? 9 : 5, elite ? "B.2 nr. 7" : "A.2.1"],
+    ["innbo.datalager.grense", "Rekonstruksjon av datalagre mv. – grense", (elite ? "50 000 kr" : "10 000 kr") + " samlet for nødvendig rekonstruksjon av blant annet arkiver og datafiler. Reise- og oppholdsutgifter til rekonstruksjonen er unntatt.", elite ? 9 : 5, elite ? "B.2 nr. 10, jf. A.2.2 nr. 6 på PDF-side 5" : "A.2.2 nr. 6"],
+    ["innbo.smabygg.grense", "Små bygg under 10 m² – grense", (elite ? "Inntil 40 000 kr samlet" : "Inntil 20 000 kr") + " for hobbyveksthus, lagringstelt, plasthall og andre småbygg under 10 m².", elite ? 9 : 5, elite ? "B.2 nr. 8" : "A.2.1"],
+    ["innbo.basseng.grense", "Frittstående basseng og badestamp – grense", (elite ? "40 000 kr" : "20 000 kr") + " for frittstående svømmebasseng eller badeinnretning på forsikringsstedet.", elite ? 10 : 5, elite ? "B.2 nr. 20" : "A.2.1"],
+    ["innbo.opphold.dekning", "Erstatningshytte etter skade", "Dekningen for ekstra opphold gjelder fast bopel som blir ubeboelig etter skade, og studentbolig når den er forsikret. Den omfatter ikke erstatningshytte etter skade på fritidsboligen.", 5, "A.2.2 nr. 3 Merutgifter ved opphold utenfor bolig", "unavailable"],
     ["sikkerhet.vann", "Sikkerhetskrav mot vannskade", "Bygningen skal være tilstrekkelig oppvarmet eller rørene tappes ned mot frost. Før nedtapping skal stoppekranen kontrolleres.", 4, "A.1.4 – Sikkerhetsforskrifter"],
   ];
 }
@@ -131,6 +146,7 @@ const facts: Record<string, CatalogFact[]> = {
   [wcStandard]: [
     ...evidence(wcTerms, [
       ...waterCirclesRows(false),
+      ["innbo.penger.dekning", "Penger og verdipapirer", "Penger og verdipapirer er unntatt for innbo og løsøre i fritidsbolig.", 5, "A.2.2 nr. 1 Penger og verdipapirer", "unavailable"],
       ["uhell.dekning", "Uhell", "Den utvidede dekningen for annen fysisk skade fra en plutselig, ytre årsak er del av Elite.", 8, "B.1.3", "unavailable"],
     ]),
     ...waterCirclesExclusions,

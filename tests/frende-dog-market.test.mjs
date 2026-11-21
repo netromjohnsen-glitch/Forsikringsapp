@@ -6,15 +6,18 @@ import { productCatalog } from "../lib/product-catalog.ts";
 import { termsSourceHref } from "../lib/terms-archive.ts";
 
 test("Frende dog market displays the current veterinary ceiling with official PDF page and separate contractual limit", () => {
-  const product = marketProductCatalog.products.find(({ productId }) => productId === "frende-hund-veterin-r");
-  assert.equal(product.version, "2026-01-01");
+  const isFrendeDog = ({ productId }) => productId === "frende-hund-veterin-r";
+  const product = marketProductCatalog.products.find(isFrendeDog);
+  assert.equal(product.version, "2026-11-20");
   const current = materializeCatalogProduct(product, marketProductCatalog).facts.find(({ key }) => key === "dyr.veterinar.sum.valgbar");
   assert.match(current.value, /50 000 kr per skadetilfelle og samlet per forsikringsår/);
   assert.match(current.value, /samlet erstatning for veterinær- og medisinutgifter/);
-  assert.deepEqual(current.sources.map(termsSourceHref), ["/api/vilkar/frende/hund-ipid#page=1", "/api/vilkar/frende/hund#page=4"]);
+  assert.deepEqual(current.sources.map(termsSourceHref), ["/api/vilkar/frende/hund-ipid#page=1", "/api/vilkar/frende/hund-2026-11-20#page=2"]);
   assert.equal(current.sources[0].sourceType, "ipid");
 
-  const contract = materializeCatalogProduct(product, productCatalog).facts.find(({ key }) => key === "dyr.veterinar.sum.valgbar");
+  const previous = productCatalog.products.find(isFrendeDog);
+  assert.equal(previous.version, "2026-01-01");
+  const contract = materializeCatalogProduct(previous, productCatalog).facts.find(({ key }) => key === "dyr.veterinar.sum.valgbar");
   assert.doesNotMatch(contract.value, /50 000/);
   assert.deepEqual(contract.sources.map(termsSourceHref), ["/api/vilkar/frende/hund#page=4"]);
 });

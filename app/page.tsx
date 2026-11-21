@@ -3,7 +3,7 @@ import { objectDisplayLabel, objectWarning, type ObjectComparisonContext } from 
 
 import { vehicleObjectTypes } from "../lib/vehicle-object-registry.ts";
 import { personInsuranceTypes } from "../lib/person-insurance-registry.ts";
-import { useEffect, useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
+import { Activity, useEffect, useMemo, useRef, useState, type Dispatch, type KeyboardEvent, type SetStateAction } from "react";
 import { readAnalysisResponse, validateUploadSelection } from "@/lib/analysis-client";
 import { applyProgress, createAnalysisGeneration, emptyProgress, type ProgressState } from "@/lib/analysis-progress";
 import { isMotorVehicleType, normalizeInsuranceType } from "@/lib/insurance-normalization";
@@ -13,18 +13,20 @@ import { portfolioPrice, portfolioPriceDifference, type PortfolioPriceInput } fr
 import { providerDisplayName, agreementProviderDisplayName, agreementScopeDisplayName } from "@/lib/provider-presentation";
 import { termsSourceHref } from "@/lib/terms-archive";
 import { AnalysisProgress } from "./components/analysis-progress";
-import { ProductComparisonWorkspace } from "./components/product-comparison";
-import { vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";
+import { ProductComparisonWorkspace, useProductSectionHistory } from "./components/product-comparison";
+import { annualAmount, vehiclePrices, vehiclePriceFields, isVehiclePriceKey, differentVehiclePriceBasis, vehiclePriceDifferences } from "@/lib/vehicle-price-presentation";
 import type { MatchingPlan } from "@/lib/hybrid-matching";
 import { measureComparisonWork } from "@/lib/comparison-performance";
 import { annualPremiumLabel } from "@/lib/agreement-pricing";
 import type { ManualPremiumSummary } from "@/lib/agreement-pricing";
-import { emptyManualAgreement, emptyManualProduct } from "@/lib/manual-agreement";
+import { emptyManualAgreement, emptyManualProduct, MAX_MANUAL_PRODUCTS } from "@/lib/manual-agreement";
 import type { ManualAgreementInput, ManualProductInput } from "@/lib/manual-agreement";
 import { availableAddOns, catalogAgreementScopeOptions, catalogConnectionStatus, findCatalogProduct, productCatalog } from "@/lib/product-catalog";
 import {
   applyManualProductSelection,
+  changeManualAddOnSelection,
   CUSTOM_PRODUCT_SELECTION,
+  missingManualAddOnRequirements,
   manualProductOptions,
   manualProductSelection,
   transitionManualProductScope,
@@ -54,8 +56,9 @@ const pilotInsuranceTypes = ["Bil", "Innbo", "Hus", "Hytte", "Verdisak", "Reise"
   ...personInsuranceTypes];
 
 export default function Home() {
+  useProductSectionHistory();
   const [comparisonMode, setComparisonMode] = useState<"agreements" | "products">("agreements");
-  const [personInsuranceFirst, setPersonInsuranceFirst] = useState(false);
+  const [productEntry, setProductEntry] = useState<"catalogue" | "person" | null>(null);
   const [existingFiles, setExistingFiles] = useState<File[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [existingMode, setExistingMode] = useState<"pdf" | "manual">("pdf");
@@ -72,28 +75,45 @@ export default function Home() {
   const activeRequest = useRef<AbortController | null>(null);
   const traceRequest = useRef<AbortController | null>(null);
   useEffect(() => () => { activeRequest.current?.abort(); traceRequest.current?.abort(); }, []);
+  function stopAnalysisRequests() {
+    generation.current.next();
+    activeRequest.current?.abort();
+    activeRequest.current = null;
+    traceRequest.current?.abort();
+    traceRequest.current = null;
+  }
+
   function cancelAnalysis() {
-    generation.current.next(); activeRequest.current?.abort(); activeRequest.current = null;
-    traceRequest.current?.abort(); traceRequest.current = null;
-    setProgress(emptyProgress()); setPartial(null);
+    stopAnalysisRequests();
+    setProgress(emptyProgress());
+    setPartial(null);
   }
 
   function openProductComparison(personFirst = false) {
-    cancelAnalysis();
-    setPersonInsuranceFirst(personFirst);
+    if (comparisonMode === "products") return;
+    if (activeRequest.current) cancelAnalysis();
+    else stopAnalysisRequests();
+    setProductEntry(personFirst ? "person" : "catalogue");
     setComparisonMode("products");
   }
 
-  function addFiles(side: "existing" | "offer", newFiles: FileList | null) {
-    if (!newFiles) return;
+  function validateCurrentUploads(existing = existingFiles, offer = offerFiles) {
+    validateUploadSelection(existingMode === "pdf" ? existing : [], offerMode === "pdf" ? offer : []);
+  }
 
-    const pdfFiles = Array.from(newFiles).filter(
-      (file) => file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")
-    );
+  function addFiles(side: "existing" | "offer", newFiles: FileList | null) {
+    if (!newFiles?.length) return;
 
     const current = side === "existing" ? existingFiles : offerFiles;
-    const selected = [...current, ...pdfFiles.filter((file) => !current.some((saved) => saved.name === file.name && saved.size === file.size && saved.lastModified === file.lastModified))];
-    try { validateUploadSelection(side === "existing" ? selected : existingFiles, side === "offer" ? selected : offerFiles); }
+    const selected = [...current];
+    for (const file of newFiles) {
+      if (!selected.some((saved) => saved.name === file.name && saved.size === file.size && saved.lastModified === file.lastModified)) {
+        selected.push(file);
+      }
+    }
+    if (selected.length === current.length) return;
+
+    try { validateCurrentUploads(side === "existing" ? selected : existingFiles, side === "offer" ? selected : offerFiles); }
     catch (caught) { setError(caught instanceof Error ? caught.message : "Ugyldig opplasting."); return; }
     cancelAnalysis();
     const update = side === "existing" ? setExistingFiles : setOfferFiles;
@@ -109,9 +129,11 @@ export default function Home() {
     update((current) => current.filter((_, currentIndex) => currentIndex !== index));
     setDocuments([]);
     setMatchingPlan(null);
+    setError("");
   }
 
   function changeMode(side: "existing" | "offer", mode: "pdf" | "manual") {
+    if (mode === (side === "existing" ? existingMode : offerMode)) return;
     cancelAnalysis();
     if (side === "existing") setExistingMode(mode);
     else setOfferMode(mode);
@@ -134,7 +156,7 @@ export default function Home() {
 
   async function analyzeDocuments() {
     if (!existingReady || !offerReady || activeRequest.current) return;
-    try { validateUploadSelection(existingMode === "pdf" ? existingFiles : [], offerMode === "pdf" ? offerFiles : []); }
+    try { validateCurrentUploads(); }
     catch (caught) { setError(caught instanceof Error ? caught.message : "Ugyldig opplasting."); return; }
     const requestGeneration = generation.current.next();
     traceRequest.current?.abort(); traceRequest.current = null;
@@ -166,6 +188,10 @@ export default function Home() {
         if (generation.current.current(requestGeneration)) setProgress((state) => applyProgress(state, event));
       }) as { documents: DocumentResult[]; matchingPlan?: MatchingPlan; analysis?: { partialSuccess: boolean; failedDocuments: number; successfulDocuments: number; failures?: { side: "existing" | "offer" }[]; conservativeObjectSeparation?: boolean; trace?: ClientTraceContext } };
       if (!generation.current.current(requestGeneration)) return;
+      if (!Array.isArray(data?.documents) || data.documents.length !== 2 ||
+        data.documents.some(document => !Array.isArray(document?.insuranceData?.insurances))) {
+        throw new Error("Ugyldig analysesvar. Start analysen på nytt.");
+      }
       setDocuments(data.documents);
       setMatchingPlan(data.matchingPlan || null);
       traceRequest.current = data.analysis?.trace ? controller : null;
@@ -234,7 +260,12 @@ export default function Home() {
           )}
         </div>
 
-        {comparisonMode === "products" ? <ProductComparisonWorkspace personInsuranceFirst={personInsuranceFirst} /> : <>
+        {productEntry && (
+          <Activity mode={comparisonMode === "products" ? "visible" : "hidden"}>
+            <ProductComparisonWorkspace personInsuranceFirst={productEntry === "person"} />
+          </Activity>
+        )}
+        {comparisonMode === "agreements" && <>
         <div className="surface-card rounded-2xl border p-5 sm:p-8">
           <h2 className="section-title text-xl font-semibold">Ny sammenligning</h2>
           <p className="body-copy mt-2">
@@ -280,7 +311,7 @@ export default function Home() {
             <p id="comparison-requirements" className="mt-2 text-sm text-slate-600">Legg til minst én PDF, eller fyll ut selskap, forsikringstype og produkt, på begge sider.</p>
           )}
           {loading && <button type="button" className="ml-3 underline" onClick={cancelAnalysis}>Avbryt analyse</button>}
-          {progress.status !== "idle" && <AnalysisProgress state={progress} />}
+          {progress.status !== "idle" && <AnalysisProgress state={progress} summary={partial} />}
           {partial?.conservativeObjectSeparation && <p className="mt-3 text-sm">Dokumentene ble analysert i flere grupper. Objekter uten sikker felles identitet holdes adskilt; kontroller mulig overlapp før du bruker resultatet.</p>}
 
           {error && (
@@ -401,6 +432,10 @@ function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toLocaleString("nb-NO", { maximumFractionDigits: 1 })} MB`;
 }
 
+function supportsDistributionChannel(company: string) {
+  return company.trim().toLowerCase() === "fremtind";
+}
+
 function ManualEditor({ side, value, onChange }: {
   side: "existing" | "offer";
   value: ManualAgreementInput;
@@ -437,6 +472,7 @@ function ManualEditor({ side, value, onChange }: {
             onChange((currentAgreement) => ({
               ...currentAgreement,
               company,
+              distributionChannel: supportsDistributionChannel(company) ? currentAgreement.distributionChannel : "",
               products: currentAgreement.products.map((product) => {
                 if (!company) {
                   return { ...product, agreementScope: null, type: "", productName: "", annualMileage: "", customProduct: false, catalogReference: null, addOnIds: [] };
@@ -453,7 +489,7 @@ function ManualEditor({ side, value, onChange }: {
       <datalist id={`companies-${side}`}>
         {productCatalog.companies.map((company) => <option key={company} value={company} />)}
       </datalist>
-      {value.company === "Fremtind" && <label className="block text-sm font-medium text-gray-700">
+      {supportsDistributionChannel(value.company) && <label className="block text-sm font-medium text-gray-700">
         Distribusjonskanal <span className="font-normal text-gray-500">(valgfritt)</span>
         <select value={value.distributionChannel ?? ""} onChange={(event) => onChange((current) => ({
           ...current, distributionChannel: event.target.value,
@@ -618,27 +654,35 @@ function ManualEditor({ side, value, onChange }: {
               { insuranceType: product.type, agreementScope: product.agreementScope ?? product.catalogReference.agreementScope },
             );
             if (!selected) return null;
+            const options = availableAddOns(selected, new Date(), value.distributionChannel || null);
+            if (!options.length) return null;
+            const selectedIds = new Set(product.addOnIds ?? []);
+            const optionNames = new Map(options.map(option => [option.id, option.name]));
             return (
               <div className="mt-3 border-t border-gray-200 pt-3">
                 <p className="text-sm font-medium text-gray-700">Tilleggsdekninger</p>
                 <div className="mt-2 grid gap-2 sm:grid-cols-2">
-                  {availableAddOns(selected, new Date(), value.distributionChannel || null).map((addOn) => {
-                    const checked = (product.addOnIds ?? []).includes(addOn.id);
+                  {options.map((addOn) => {
+                    const checked = selectedIds.has(addOn.id);
+                    const missing = missingManualAddOnRequirements(addOn, selectedIds);
+                    const requirements = missing.map(id => optionNames.get(id) ?? "et tillegg som ikke er tilgjengelig");
                     return (
                       <label key={addOn.id} className="flex items-start gap-2 text-sm text-gray-700">
                         <input
                           type="checkbox"
                           checked={checked}
-                          onChange={(event) => changeProductFromCurrent(index, (currentProduct) => ({
-                            addOnIds: event.target.checked
-                              ? [...(currentProduct.addOnIds ?? []).filter((id) =>
-                                !addOn.exclusiveGroup || availableAddOns(selected, new Date(), value.distributionChannel || null).find((option) => option.id === id)?.exclusiveGroup !== addOn.exclusiveGroup
-                              ), addOn.id]
-                              : (currentProduct.addOnIds ?? []).filter((id) => id !== addOn.id),
-                          }))}
+                          disabled={!checked && missing.length > 0}
+                          onChange={(event) => {
+                            const checked = event.currentTarget.checked;
+                            changeProductFromCurrent(index, (currentProduct) => ({
+                              addOnIds: changeManualAddOnSelection(options, currentProduct.addOnIds ?? [], addOn.id, checked),
+                            }));
+                          }}
                           className="mt-1"
                         />
-                        <span>{addOn.name}</span>
+                        <span>{addOn.name}{requirements.length > 0 && <span className="block text-xs text-gray-600">
+                          Krever {requirements.join(" og ")}.
+                        </span>}</span>
                       </label>
                     );
                   })}
@@ -649,13 +693,31 @@ function ManualEditor({ side, value, onChange }: {
           })()}
         </div>
       ))}
-      <button type="button" onClick={() => onChange((currentAgreement) => ({
-        ...currentAgreement,
-        products: [...currentAgreement.products, emptyManualProduct()],
-      }))} className="secondary-button rounded-lg border px-3 py-2 text-sm font-semibold">+ Legg til forsikring</button>
+      <button type="button" disabled={value.products.length >= MAX_MANUAL_PRODUCTS} onClick={() => onChange((currentAgreement) =>
+        currentAgreement.products.length >= MAX_MANUAL_PRODUCTS ? currentAgreement : {
+          ...currentAgreement,
+          products: [...currentAgreement.products, emptyManualProduct()],
+        }
+      )} className="secondary-button rounded-lg border px-3 py-2 text-sm font-semibold disabled:cursor-not-allowed">+ Legg til forsikring</button>
+      {value.products.length >= MAX_MANUAL_PRODUCTS && <p role="status" className="text-xs text-gray-600">
+        Maks {MAX_MANUAL_PRODUCTS} forsikringer per side.
+      </p>}
       <p className="text-xs text-gray-500">Katalogprodukter henter dokumenterte vilkår automatisk. For andre produkter sammenlignes bare opplysninger som er tilgjengelige.</p>
     </div>
   );
+}
+
+function annualPriceUnresolved(value: string | null): boolean {
+  return value !== null && annualAmount(value) === null;
+}
+
+function annualPriceDetailValue(value: string | null): string | null {
+  return annualPriceUnresolved(value) ? `${value} · Årsgrunnlag uavklart` : value;
+}
+
+function premiumEvidence(value: string | null, missingLabel = "Ikke dokumentert"): string {
+  const label = annualPriceUnresolved(value) ? "Oppgitt pris" : "Årspremie";
+  return `${label}: ${annualPriceDetailValue(value) || missingLabel}`;
 }
 
 function Comparison({
@@ -727,6 +789,7 @@ function Comparison({
       });
     } catch { /* Diagnostics must never change or block the result view. */ }
   }, [first, second, groups, rawDifferences, differences, detailRows, portfolioPrices, priceInputs, priceBranches, traceContext, traceGeneration, isTraceCurrent, traceSignal]);
+  const unresolvedAgreementPrices = [first, second].map(document => annualPriceUnresolved(document.insuranceData.totalAnnualPremium));
   const safeObjectSet = groups.length > 0 && groups.every(group => group.objectMatch?.status === "matched") && !objectContext?.failedExisting && !objectContext?.failedOffer;
   const totalDifference = portfolioPrices.every(price => price.compatible)
     ? portfolioPriceDifference(portfolioPrices[0], portfolioPrices[1], groups)
@@ -812,11 +875,14 @@ function Comparison({
                   <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${index === 0 ? "existing-label" : "offer-label"}`}>{index === 0 ? "Eksisterende" : "Nytt tilbud"}</p>
                   <p className="mt-1 text-lg font-semibold text-slate-950">{agreementProviderDisplayName(document.insuranceData) || `Tilbud ${index + 1}`}</p>
                   {priceBranches[index] === "portfolio" ? <PortfolioPriceList price={portfolioPrices[index]} /> : priceBranches[index] === "vehicle" ? <VehiclePriceList insurance={document.insuranceData.insurances[0]} /> : <>
-                  <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">Total årspris</p>
+                  <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">{unresolvedAgreementPrices[index] ? "Oppgitt totalpris" : "Total årspris"}</p>
                   <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-slate-950">
                     {annualPremiumLabel(document.insuranceData)}
-                    {document.insuranceData.totalAnnualPremium !== null && <span className="ml-1 text-sm font-normal text-slate-500">/ år</span>}
-                  </p></>}
+                    {!unresolvedAgreementPrices[index] && document.insuranceData.totalAnnualPremium !== null &&
+                      !/(?:per år|\/\s*år|årlig)$/iu.test(document.insuranceData.totalAnnualPremium.trim()) &&
+                      <span className="ml-1 text-sm font-normal text-slate-500">/ år</span>}
+                  </p>
+                  {unresolvedAgreementPrices[index] && <p className="mt-1 text-sm text-slate-600">Årsgrunnlag uavklart</p>}</>}
                 </div>
               ))}
             </div>
@@ -917,9 +983,9 @@ function Comparison({
                 </thead>
                 <tbody>
                   <ComparisonRow
-                    label="Total årspremie"
-                    first={annualPremiumLabel(first.insuranceData)}
-                    second={annualPremiumLabel(second.insuranceData)}
+                    label={unresolvedAgreementPrices.includes(true) ? "Oppgitt totalpris" : "Total årspremie"}
+                    first={annualPriceDetailValue(first.insuranceData.totalAnnualPremium) ?? annualPremiumLabel(first.insuranceData)}
+                    second={annualPriceDetailValue(second.insuranceData.totalAnnualPremium) ?? annualPremiumLabel(second.insuranceData)}
                     missingLabel="Pris ikke oppgitt"
                   />
                   {visibleGroups.map((group) => (
@@ -1301,7 +1367,7 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
         <p className="mt-2">{providerDisplayName(insurance.company, insurance.catalogReference) || "Selskap ikke oppgitt"}</p>
         {agreementScopeDisplayName(insurance) && <p className="mt-1">Avtale: {agreementScopeDisplayName(insurance)}</p>}
         <p>{catalogConnectionStatus([insurance])}</p>
-        <p>Årspremie: {insurance.annualPremium || "Pris ikke oppgitt"}</p>
+        <p>{premiumEvidence(insurance.annualPremium, "Pris ikke oppgitt")}</p>
         <p>Egenandel: {insurance.deductible || "Ikke dokumentert"}</p>
         <p>Tilleggsdekninger: {groupAddOnNames([insurance], group.key) || "Ikke dokumentert"}</p>
         <p>{insurance.coverageSummary}</p>
@@ -1310,7 +1376,7 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
           <p>{record.company} · {record.productName || "Produkt ikke dokumentert"}</p>
           <p>Dokumentrolle: {record.documentRole === "individual_agreement" ? "Individuell avtale" : record.documentRole === "general_terms" ? "Generelle vilkår" : "Ikke dokumentert"}</p>
           <p>Avtaleperiode: {record.agreementPeriod?.from || "Ikke dokumentert"} – {record.agreementPeriod?.to || "Ikke dokumentert"}</p>
-          <p>Årspremie: {record.annualPremium || "Ikke dokumentert"} · Egenandel: {record.deductible || "Ikke dokumentert"}</p>
+          <p>{premiumEvidence(record.annualPremium)} · Egenandel: {record.deductible || "Ikke dokumentert"}</p>
           {record.sources.map((source, i) => <SourceDetails key={i} source={source} />)}
           {record.importantTerms.map((term, i) => <p key={i}>{term.name}: {term.value}</p>)}
         </details>)}
@@ -1322,6 +1388,8 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
       </details>)}
     </div>)}
   </td></tr>;
+  const firstPremium = groupValue(group.first, "annualPremium");
+  const secondPremium = groupValue(group.second, "annualPremium");
   return (
     <>
       <tr className="bg-slate-100">
@@ -1344,7 +1412,7 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
           <p>{record.company} · {record.productName || "Produkt ikke dokumentert"}</p>
           <p>Dokumentrolle: {record.documentRole === "individual_agreement" ? "Individuell avtale" : record.documentRole === "general_terms" ? "Generelle vilkår" : "Ikke dokumentert"}</p>
           <p>Avtaleperiode: {record.agreementPeriod?.from || "Ikke dokumentert"} – {record.agreementPeriod?.to || "Ikke dokumentert"}</p>
-          <p>Årspremie: {record.annualPremium || "Ikke dokumentert"} · Egenandel: {record.deductible || "Ikke dokumentert"}</p>
+          <p>{premiumEvidence(record.annualPremium)} · Egenandel: {record.deductible || "Ikke dokumentert"}</p>
           {record.sources.map((source, i) => <SourceDetails key={i} source={source} />)}
           {record.importantTerms.map((term, i) => <p key={i}>{term.name}: {term.value}</p>)}
         </details>)}</div>)}</td>)}
@@ -1362,7 +1430,8 @@ function InsuranceRows({ group, terms }: { group: InsuranceGroup; terms: TermGro
         const left = group.first.flatMap((insurance) => vehiclePrices(insurance)?.filter((price) => price.key === field.key) ?? []);
         const right = group.second.flatMap((insurance) => vehiclePrices(insurance)?.filter((price) => price.key === field.key) ?? []);
         return <ComparisonRow key={field.key} label={field.label} first={left.map((price) => price.value || "Ikke dokumentert").join(" · ") || null} second={right.map((price) => price.value || "Ikke dokumentert").join(" · ") || null} firstSources={left.flatMap((price) => price.sources)} secondSources={right.flatMap((price) => price.sources)} missingLabel="Ikke dokumentert" />;
-      }) : <ComparisonRow label="Årspremie" first={groupValue(group.first, "annualPremium")} second={groupValue(group.second, "annualPremium")} missingLabel="Pris ikke oppgitt" />}
+      }) : <ComparisonRow label={annualPriceUnresolved(firstPremium) || annualPriceUnresolved(secondPremium) ? "Oppgitt pris" : "Årspremie"}
+        first={annualPriceDetailValue(firstPremium)} second={annualPriceDetailValue(secondPremium)} missingLabel="Pris ikke oppgitt" />}
       <ComparisonRow label="Egenandel" first={groupValue(group.first, "deductible")} second={groupValue(group.second, "deductible")} />
       <ComparisonRow label="Dekningssammendrag" first={groupValue(group.first, "coverageSummary")} second={groupValue(group.second, "coverageSummary")} />
       {terms.map((term) => (

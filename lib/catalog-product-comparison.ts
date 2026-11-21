@@ -2,7 +2,9 @@ import { catalogAgreementScope, type AgreementScopeId } from "./agreement-scope.
 import { catalogFactSources, catalogSourceIdentity } from "./catalog-enrichment.ts";
 import { alignComparisonRow, comparisonRowHeading, comparisonRowKey } from "./catalog-comparison-row-alignment.ts";
 import { coverageStatusFromText } from "./coverage-status.ts";
+import { isReviewedMarketExclusion, reviewedRentalLimitExclusion } from "./catalog-market-coverage-exclusions.ts";
 import { isNonAssertingCoverageDetail } from "./coverage-fact-semantics.ts";
+import { expandReviewedMarketRow } from "./catalog-reviewed-row-dimensions.ts";
 import { criticalIllnessComparisonDiagnoses, diagnosisNotListed, isCriticalIllnessDiagnosisKey } from "./critical-illness-comparison.ts";
 import { canonicalInsuranceTypeLabel, normalizeInsuranceType } from "./insurance-normalization.ts";
 import { conceptForFactKey, conceptsForInsurance } from "./presentation-catalog.ts";
@@ -30,18 +32,22 @@ export type ProductComparisonFact = {
   key: string;
   label: string;
   value: string;
-  state: Exclude<ProductCoverageState, "unknown">;
+  state: ProductCoverageState;
   // Presence in a base component does not make a condition/exclusion a cover.
   role: "coverage" | "term";
   addOnNames: string[];
   sources: ProductComparisonSource[];
 };
 
-export type ProductComparisonValue = {
-  state: ProductCoverageState;
+type ComparisonValueDescription = {
   text: string;
   facts: ProductComparisonFact[];
   sources: ProductComparisonSource[];
+};
+
+export type ProductComparisonValue = ComparisonValueDescription & {
+  state: ProductCoverageState;
+  optionalAlternative?: ComparisonValueDescription;
 };
 
 export type ProductComparisonRow = {
@@ -111,13 +117,17 @@ function sourcesForFact(fact: CatalogFact, catalog: ProductCatalog): ProductComp
 function productFact(
   fact: CatalogFact,
   state: Exclude<ProductCoverageState, "unknown">,
-  catalog: ProductCatalog,
+  catalog: ComparisonCatalog,
   addOnNames: string[] = [],
 ): ProductComparisonFact {
-  return { key: fact.key, label: fact.label, value: fact.value, state, addOnNames,
-    role: !isNonAssertingCoverageDetail(fact.key) && (fact.coverageAvailability || fact.key.endsWith(".dekning")) ? "coverage" : "term",
+  const unresolved = catalog.alignComparisonRows && fact.requiresSourceClarification;
+  return { key: fact.key, label: fact.label, value: fact.value, state: unresolved ? "unknown" : state, addOnNames,
+    role: !unresolved && !isNonAssertingCoverageDetail(fact.key) &&
+      (fact.coverageAvailability || fact.key.endsWith(".dekning")) ? "coverage" : "term",
     sources: sourcesForFact(fact, catalog) };
 }
+
+export const unresolvedProductCoverageLabel = "Uavklart i kildene";
 
 export function productCoverageStateLabel(state: ProductCoverageState): string {
   if (state === "included") return "✓ Inkludert";
@@ -130,21 +140,32 @@ export function isHistoricalCatalogProduct(product: CatalogProduct): boolean {
   return historicalMarker.test(`${product.name} ${product.productId}`);
 }
 
-function canMaterialize(product: CatalogProduct, catalog: ProductCatalog): boolean {
+type ComparisonCatalog = ProductCatalog & {
+  alignComparisonRows?: boolean;
+  eligibleComparisonProducts?: CatalogProduct[];
+};
+
+function canMaterialize(product: CatalogProduct, catalog: ProductCatalog, asOf = new Date()): boolean {
   if (isHistoricalCatalogProduct(product)) return false;
   try {
-    const facts = resolveCatalogFacts(product, [], new Date(), null, catalog);
+    const facts = resolveCatalogFacts(product, [], asOf, null, catalog);
     return facts.length > 0 && facts.every((fact) => Boolean(fact.source.documentId));
   } catch {
     return false;
   }
 }
 
-export function productComparisonProducts(catalog: ProductCatalog = productCatalog): CatalogProduct[] {
-  return catalog.products.filter((product) => canMaterialize(product, catalog));
+export function productComparisonProducts(catalog: ComparisonCatalog = productCatalog): CatalogProduct[] {
+  return catalog.eligibleComparisonProducts ?? catalog.products.filter((product) => canMaterialize(product, catalog));
 }
 
-export function productComparisonInsuranceTypes(catalog: ProductCatalog = productCatalog): string[] {
+// The interactive picker uses one eligibility snapshot. Comparing the selected
+// policies still resolves the full catalogue with current source validity.
+export function prepareProductComparisonPicker(catalog: ComparisonCatalog, asOf: Date): ComparisonCatalog {
+  return { ...catalog, eligibleComparisonProducts: catalog.products.filter((product) => canMaterialize(product, catalog, asOf)) };
+}
+
+export function productComparisonInsuranceTypes(catalog: ComparisonCatalog = productCatalog): string[] {
   const available = new Set(productComparisonProducts(catalog).map((product) =>
     normalizeInsuranceType(product.insuranceType)));
   return catalog.insuranceTypes.filter((type, index, types) =>
@@ -154,7 +175,7 @@ export function productComparisonInsuranceTypes(catalog: ProductCatalog = produc
 
 export function productComparisonProviders(
   insuranceType: string,
-  catalog: ProductCatalog = productCatalog,
+  catalog: ComparisonCatalog = productCatalog,
 ): string[] {
   const canonicalType = normalizeInsuranceType(insuranceType);
   return [...new Set(productComparisonProducts(catalog)
@@ -165,7 +186,7 @@ export function productComparisonProviders(
 export function productComparisonScopes(
   insuranceType: string,
   company: string,
-  catalog: ProductCatalog = productCatalog,
+  catalog: ComparisonCatalog = productCatalog,
 ): { id: AgreementScopeId; name: string }[] {
   const eligible = new Set(productComparisonProducts(catalog).map(catalogProductIdentity));
   return catalogAgreementScopeOptions({ ...catalog,
@@ -176,7 +197,7 @@ export function productComparisonOptions(
   insuranceType: string,
   company: string,
   agreementScope?: AgreementScopeId | null,
-  catalog: ProductCatalog = productCatalog,
+  catalog: ComparisonCatalog = productCatalog,
 ): CatalogProduct[] {
   const canonicalType = normalizeInsuranceType(insuranceType);
   const candidates = productComparisonProducts(catalog).filter((product) =>
@@ -189,7 +210,7 @@ export function productComparisonOptions(
 
 export function findProductComparisonProduct(
   identity: string,
-  catalog: ProductCatalog = productCatalog,
+  catalog: ComparisonCatalog = productCatalog,
 ): CatalogProduct | null {
   const product = productComparisonProducts(catalog).find((candidate) =>
     catalogProductIdentity(candidate) === identity);
@@ -200,7 +221,6 @@ export function findProductComparisonProduct(
   }, catalog);
 }
 
-type ComparisonCatalog = ProductCatalog & { alignComparisonRows?: boolean };
 
 export function materializeCatalogProduct(
   product: CatalogProduct,
@@ -217,9 +237,10 @@ export function materializeCatalogProduct(
     .filter(fact => !(diagnoses && isCriticalIllnessDiagnosisKey(fact.key)))
     .map((fact) => productFact(
     fact,
-    fact.coverageAvailability ?? (isNonAssertingCoverageDetail(fact.key) ? "included" :
-      coverageStatusFromText(fact.value, { subject: fact.label, productName: product.name }) === "not_selected"
-        ? "unavailable" : "included"),
+    fact.coverageAvailability ?? (catalog.alignComparisonRows && isReviewedMarketExclusion(fact) ? "unavailable" :
+      isNonAssertingCoverageDetail(fact.key) ? "included" :
+        coverageStatusFromText(fact.value, { subject: fact.label, productName: product.name }) === "not_selected"
+          ? "unavailable" : "included"),
     catalog,
   ));
 
@@ -231,48 +252,114 @@ export function materializeCatalogProduct(
     for (const fact of withAddOn) {
       if (ownIdentities && !ownIdentities.has(factIdentity(fact))) continue;
       if (customerSpecificKey.test(fact.key) || baseIdentities.has(factIdentity(fact))) continue;
-      const existing = facts.find((candidate) => candidate.key === fact.key &&
-        normalizeText(candidate.value) === normalizeText(fact.value) && candidate.state === "optional");
+      const option = productFact(fact, "optional", catalog, [addOn.name]);
+      const existing = facts.find((candidate) => candidate.key === option.key &&
+        normalizeText(candidate.value) === normalizeText(option.value) && candidate.state === option.state);
       if (existing) {
         if (!existing.addOnNames.includes(addOn.name)) existing.addOnNames.push(addOn.name);
-        existing.sources = uniqueSources([...existing.sources, ...sourcesForFact(fact, catalog)]);
+        existing.sources = uniqueSources([...existing.sources, ...option.sources]);
       } else {
-        facts.push(productFact(fact, "optional", catalog, [addOn.name]));
+        facts.push(option);
       }
     }
   }
   if (diagnoses) facts.push(...diagnoses.facts);
   return {
     product,
-    facts: catalog.alignComparisonRows ? facts.map(fact => alignComparisonRow(product, fact)) : facts,
+    facts: catalog.alignComparisonRows ? facts.flatMap(fact => expandReviewedMarketRow(product, fact)).map(fact => alignComparisonRow(product, fact)) : facts,
     ...(diagnoses && { diagnosisListSource: diagnoses.listSource }),
   };
 }
 
-function valueForKey(facts: ProductComparisonFact[], preferOptional = false): ProductComparisonValue {
+function describeOptionalChoices(facts: ProductComparisonFact[]): string | null {
+  const groups = new Map<string, { names: string[]; values: Set<string> }>();
+  const optionalValues = new Set<string>();
+  for (const fact of facts) {
+    const value = fact.value.trim();
+    if (fact.state !== "optional" || !fact.addOnNames.length || !value) continue;
+    const key = JSON.stringify([...new Set(fact.addOnNames)].sort());
+    const group = groups.get(key) ?? { names: fact.addOnNames, values: new Set<string>() };
+    group.values.add(value);
+    groups.set(key, group);
+    optionalValues.add(value);
+  }
+  if (groups.size < 2 || optionalValues.size < 2) return null;
+  const otherValues = [...new Set(facts.filter((fact) => fact.state !== "optional" || !fact.addOnNames.length)
+    .map((fact) => fact.value.trim()).filter(Boolean))];
+  return [productCoverageStateLabel("optional"),
+    ...Array.from(groups.values(), ({ names, values }) => names.join(" / ") + " – " + [...values].join(" · ")),
+    ...otherValues,
+  ].join("\n");
+}
+
+function describeFacts(
+  facts: ProductComparisonFact[],
+  state: ProductCoverageState,
+  preserveOptions = false,
+): ComparisonValueDescription {
+  // A condition does not independently assert that its subject is included.
+  const isTerm = facts.every((fact) => fact.role === "term");
+  const distinctValues = [...new Set(facts.map((fact) => fact.value.trim()).filter(Boolean))];
+  const values = state === "included" && !isTerm
+    ? distinctValues.filter(value => normalizeText(value) !== "inkludert")
+    : distinctValues;
+  const addOns = [...new Set(facts.flatMap((fact) => fact.addOnNames))];
+  const suffix = values.length ? ` – ${values.join(" · ")}` : "";
+  const addOnSuffix = state === "optional" && addOns.length ? ` (${addOns.join(" / ")})` : "";
+  const options = state === "optional" && preserveOptions ? describeOptionalChoices(facts) : null;
+  const text = options ?? (isTerm && state === "included" ? values.join(" · ") :
+    `${state === "unknown" ? unresolvedProductCoverageLabel : productCoverageStateLabel(state)}${addOnSuffix}${suffix}`);
+  return { text, facts, sources: uniqueSources(facts.flatMap((fact) => fact.sources)) };
+}
+
+function valueForKey(facts: ProductComparisonFact[], preferOptional: boolean, preserveOptions: boolean): ProductComparisonValue {
   if (!facts.length) return { state: "unknown", text: productCoverageStateLabel("unknown"), facts: [], sources: [] };
+  const unresolved = facts.filter((fact) => fact.state === "unknown");
+  if (unresolved.length) return { state: "unknown", ...describeFacts(unresolved, "unknown") };
   const included = facts.filter((fact) => fact.state === "included");
   const unavailable = facts.filter((fact) => fact.state === "unavailable");
   const optional = facts.filter((fact) => fact.state === "optional");
-  const selected = included.length ? included : preferOptional && optional.length ? [...optional, ...unavailable] : unavailable.length ? unavailable : optional;
-  const state: ProductCoverageState = included.length ? "included" : preferOptional && optional.length ? "optional" : unavailable.length ? "unavailable" : "optional";
-  const values = [...new Set(selected.map((fact) => fact.value.trim()).filter(Boolean))];
-  const addOns = [...new Set(selected.flatMap((fact) => fact.addOnNames))];
-  const suffix = values.length ? ` – ${values.join(" · ")}` : "";
-  const addOnSuffix = state === "optional" && addOns.length ? ` (${addOns.join(" / ")})` : "";
-  // Conditions retain their original wording; they are not presented as an
-  // independent assertion that the subject coverage is included. Explicit negative
-  // and optional states retain their established presentation.
-  const isTerm = selected.every((fact) => fact.role === "term");
-  const text = isTerm && state === "included" ? values.join(" · ") :
-    `${productCoverageStateLabel(state)}${addOnSuffix}${suffix}`;
-  return { state, text,
-    facts: selected, sources: uniqueSources(selected.flatMap((fact) => fact.sources)) };
+  if (included.length) {
+    const standardValues = new Set(included.map((fact) => normalizeText(fact.value)));
+    const alternatives = preserveOptions ? optional.filter((fact) => !standardValues.has(normalizeText(fact.value))) : [];
+    return { state: "included", ...describeFacts(included, "included"),
+      ...(alternatives.length && { optionalAlternative: describeFacts(alternatives, "optional", preserveOptions) }) };
+  }
+  if (optional.length && (preserveOptions || preferOptional || !unavailable.length)) {
+    return { state: "optional", ...describeFacts([...optional, ...unavailable], "optional", preserveOptions) };
+  }
+  return { state: "unavailable", ...describeFacts(unavailable, "unavailable") };
 }
 
-function comparableValue(value: ProductComparisonValue): string {
-  return JSON.stringify([value.state, [...new Set(value.facts.map((fact) => normalizeText(fact.value)))].sort(),
-    [...new Set(value.facts.flatMap((fact) => fact.addOnNames.map(normalizeText)))].sort()]);
+function comparisonValue(
+  product: MaterializedCatalogProduct,
+  key: string,
+  facts: ProductComparisonFact[],
+  preferOptional: boolean,
+  preserveOptions: boolean,
+): ProductComparisonValue {
+  if (!facts.length) {
+    const notListed = diagnosisNotListed(key, product.diagnosisListSource);
+    if (notListed) return notListed;
+    const exclusion = preserveOptions ? reviewedRentalLimitExclusion(product.product.productId, key, product.facts) : undefined;
+    if (exclusion) {
+      return { state: "unavailable", text: "Gjelder ikke. " + exclusion.value, facts: [exclusion], sources: exclusion.sources };
+    }
+  }
+  return valueForKey(facts, preferOptional, preserveOptions);
+}
+
+function comparableFacts(facts: ProductComparisonFact[], preserveOptions: boolean) {
+  const terms = [...new Set(facts.map((fact) => normalizeText(fact.value)))].sort();
+  const names = [...new Set(facts.flatMap((fact) => fact.addOnNames.map(normalizeText)))].sort();
+  const assignments = preserveOptions ? [...new Set(facts.flatMap((fact) =>
+    fact.addOnNames.map((name) => JSON.stringify([normalizeText(name), normalizeText(fact.value)]))))].sort() : [];
+  return [terms, names, assignments];
+}
+
+function comparableValue(value: ProductComparisonValue, preserveOptions: boolean): string {
+  return JSON.stringify([value.state, comparableFacts(value.facts, preserveOptions),
+    value.optionalAlternative && comparableFacts(value.optionalAlternative.facts, preserveOptions)]);
 }
 
 export function compareCatalogProducts(
@@ -289,17 +376,16 @@ export function compareCatalogProducts(
     availableAddOns(product, new Date(), null, catalog).flatMap(addOn =>
       (addOn.selectionEvidenceKeys ?? []).map(key => catalog.alignComparisonRows ? comparisonRowKey(product, key) : key)),
   );
-  const leftOptionalKeys = optionalKeys(firstProduct);
-  const rightOptionalKeys = optionalKeys(secondProduct);
+  const preserveOptions = catalog.alignComparisonRows === true;
+  const leftOptionalKeys = preserveOptions ? new Set<string>() : optionalKeys(firstProduct);
+  const rightOptionalKeys = preserveOptions ? new Set<string>() : optionalKeys(secondProduct);
   const keys = [...new Set([...first.facts, ...second.facts].map((fact) => fact.key))];
   if (catalog.alignComparisonRows) keys.sort();
   const rows = keys.map((key): ProductComparisonRow => {
     const leftFacts = first.facts.filter((fact) => fact.key === key);
     const rightFacts = second.facts.filter((fact) => fact.key === key);
-    const left = (!leftFacts.length ? diagnosisNotListed(key, first.diagnosisListSource) : undefined) ??
-      valueForKey(leftFacts, leftOptionalKeys.has(key));
-    const right = (!rightFacts.length ? diagnosisNotListed(key, second.diagnosisListSource) : undefined) ??
-      valueForKey(rightFacts, rightOptionalKeys.has(key));
+    const left = comparisonValue(first, key, leftFacts, leftOptionalKeys.has(key), preserveOptions);
+    const right = comparisonValue(second, key, rightFacts, rightOptionalKeys.has(key), preserveOptions);
     const concept = conceptForFactKey(firstType, key);
     const leftLabel = leftFacts[0]?.label;
     const rightLabel = rightFacts[0]?.label;
@@ -314,7 +400,7 @@ export function compareCatalogProducts(
       conceptTier: concept?.defaultTier ?? "detail",
       first: left,
       second: right,
-      different: comparableValue(left) !== comparableValue(right),
+      different: comparableValue(left, preserveOptions) !== comparableValue(right, preserveOptions),
     };
   });
   const conceptOrder = new Map(conceptsForInsurance(firstType).map((concept, index) => [concept.id, index]));

@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutTerror} from './helpers/house-terror.mjs';
 import test from 'node:test';
@@ -54,9 +55,9 @@ test('OWNER-CHANGE-P12 complete catalog equals independent before plus only two 
 for(const [n,id]of ids.entries()){
  test('OWNER-CHANGE-P12 complete original point12 with all linked conditions '+id,()=>{
   const b=o.original_bindings[n],page=o.source_pages[n],file=new URL('../'+b.source_artifact,import.meta.url),number=n?13:12;assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),b.source_sha256);assert.equal(productCatalog.sources[owners[n]].sha256,b.source_sha256);
-  const text=execFileSync('pdftotext',['-raw','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assert.equal(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('12. Opphør ved eierskifte')[1].split('13. Automatisk opphør')[0].trim();assert.equal(block,o.rows[0].value);
+  const text=execFileSync('pdftotext',['-raw','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assertPdfSourceText(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('12. Opphør ved eierskifte')[1].split('13. Automatisk opphør')[0].trim();assert.equal(block,o.rows[0].value);
   for(const phrase of ['I stedet for forsikringsavtalelovens § 7-2 gjelder:','Skifter den ting forsikringen er knyttet til eier, faller forsikringen bort.','Gjensidige svarer likevel for forsikringstilfeller som inntrer innen fjorten dager etter eierskiftet.','Forsikringen bortfaller uansett når den nye eier har tegnet forsikring.'])assert.ok(block.includes(phrase),phrase);
-  const layout=execFileSync('pdftotext',['-layout','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assert.equal(layout,page.layout_text);
+  const layout=execFileSync('pdftotext',['-layout','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assertPdfSourceText(layout,page.layout_text);
   for(const field of ['structuredValue','coverageAvailability','deductibleClassification','qualificationSource'])assert.equal(Object.hasOwn(ownerChangeFact(owners[n],o.keys[0]),field),false);
   assert.equal(o.subscope,'Generelle vilkår punkt12 Opphør ved eierskifte only');assert.equal(o.whole_signature_closure,false);
  });

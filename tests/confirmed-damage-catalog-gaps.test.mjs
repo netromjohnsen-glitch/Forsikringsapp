@@ -55,7 +55,7 @@ test("If Campingvogn arver felles vilkår med riktig grense og tilbygg per nivå
     assert.equal(fact(id, "campingvogn.fortelt.dekning").state, tier === "delkasko" ? "unavailable" : "included");
     if (tier !== "delkasko") assert.match(fact(id, "campingvogn.fortelt.grense").value, /40 000 kr/u);
   }
-  const fixedSite = fact("if-campingvogn-super", "campingvogn.redning.grense");
+  const fixedSite = fact("if-campingvogn-super", "campingvogn.redning.fast_plass.grense");
   assert.match(fixedSite.value, /5 000 kr samlet.*frigjøre.*kjørbar vei/u);
   assert.equal(termsSourceHref(fixedSite.sources[0]), "/api/vilkar/if/campingvogn-bobil-sv707#page=2");
 });
@@ -140,8 +140,13 @@ test("Reise skiller tilleggsdekning fra vilkår for eksisterende leiebildekning"
   const delayKey = "reise.forsinkelse.hotell_arrangement";
   assert.equal(fact(standard, delayKey).state, "unavailable");
   assert.equal(fact(elite, delayKey).state, "included");
-  assert.match(fact(elite, delayKey).value, /5 000 kr per person.*minst åtte timer/u);
-  assert.equal(termsSourceHref(fact(elite, delayKey).sources[0]), "/api/vilkar/watercircles/reise-2-17#page=7");
+  assert.match(fact(elite, delayKey).value, /minst åtte timer/u);
+  const hotelCap = fact(elite, delayKey + "_sum");
+  assert.match(hotelCap.value, /5 000 kr per person/u);
+  assert.deepEqual(fact(elite, delayKey).sources.map(termsSourceHref), [
+    "/api/vilkar/watercircles/reise-2-17#page=7", "/api/vilkar/watercircles/reise-2-17#page=6",
+  ]);
+  assert.equal(termsSourceHref(hotelCap.sources[0]), "/api/vilkar/watercircles/reise-2-17#page=7");
   assert.equal(fact(standard, "reise.leiebil.egenandel").state, "unavailable");
   assert.equal(fact(elite, "reise.leiebil.egenandel").state, "included");
   const land = fact("landkreditt-reise", "reise.leiebil.vilkar");

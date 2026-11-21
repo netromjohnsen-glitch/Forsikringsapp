@@ -25,6 +25,7 @@ let portfolioScenario = false;
 let portfolioCalls = 0;
 let consolidationScenario = false;
 let priceScenario = false;
+let partialPriceScenario = null;
 let priceScenarioCalls = 0;
 let supportingScenario = false;
 let supportingCalls = 0;
@@ -71,6 +72,13 @@ const mock = createServer(async (request, response) => {
       ]);
     }
     if (reverse) content.insurances.reverse();
+  }
+  if (partialPriceScenario && input.text.format.name !== "semantic_insurance_matches") {
+    const count = input.text.format.schema.properties.insurances.items.properties.documentIndices.maxItems;
+    content.totalAnnualPremium = count === 2 ? "800 kr" : "900 kr";
+    content.totalAnnualPremiumScope = "entire_agreement";
+    content.insurances = [{ ...content.insurances[0], type: "Reise", annualPremium: content.totalAnnualPremium,
+      ...(partialPriceScenario === "unattributed" && count === 2 && { documentIndices: [2] }) }];
   }
   if (priceScenario && input.text.format.name !== "semantic_insurance_matches") {
     const reverse = priceScenarioCalls++ % 2 === 1;
@@ -313,11 +321,47 @@ try {
   const overLimitCalls=calls.length;
   const tooMany=await fetch(base+'/api/analyze',{method:'POST',headers,body:multiForm(11)});
   assert.equal(tooMany.status,413);assert.equal(calls.length,overLimitCalls);
-  const partialProgress=[];
-  const partialResponse=await fetch(base+'/api/analyze',{method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3,1)});
-  const partial=await readAnalysisResponse(partialResponse,e=>partialProgress.push(e));
-  assert.equal(partial.analysis.partialSuccess,true);assert.equal(partial.analysis.failedDocuments,1);assert.equal(partial.analysis.successfulDocuments,5);
-  assert.equal(partialProgress.at(-1).partialSuccess,true);
+  const partialProgress = [];
+  partialPriceScenario = "corrupt";
+  const partialResponse = await fetch(base + "/api/analyze", {
+    method: "POST", headers: { ...headers, accept: "application/x-ndjson" }, body: multiForm(3, 1),
+  });
+  const partial = await readAnalysisResponse(partialResponse, event => partialProgress.push(event));
+  partialPriceScenario = null;
+  assert.equal(partial.analysis.partialSuccess, true);
+  assert.equal(partial.analysis.failedDocuments, 1);
+  assert.equal(partial.analysis.successfulDocuments, 5);
+  assert.deepEqual(partial.analysis.failures.map(({ side, documentIndex }) => [side, documentIndex]), [["existing", 1]]);
+  assert.equal(partialProgress.at(-1).partialSuccess, true);
+  assert.deepEqual(partial.documents.map(document => document.insuranceData.totalAnnualPremium), [null, "900 kr"]);
+  const partialGroups = groupInsurances(...partial.documents.map(document => document.insuranceData.insurances),
+    partial.matchingPlan, { failedExisting: 1, failedOffer: 0 });
+  assert.ok(partialGroups.every(group => group.objectMatch.status !== "matched"));
+  assert.ok(createDifferences(...partial.documents, partialGroups, partial.matchingPlan).every(difference => difference.type !== "price"));
+  const unattributedProgress = [];
+  const unattributedForm = pdfForm();
+  unattributedForm.append("existingFiles", new File([
+    syntheticPdf(1, "Synthetic second PDF with the extracted agreement")
+  ], "extra-synthetic.pdf", { type: "application/pdf" }));
+  const beforeUnattributed = calls.length;
+  partialPriceScenario = "unattributed";
+  const unattributedResponse = await fetch(base + "/api/analyze", {
+    method: "POST", headers: { ...headers, accept: "application/x-ndjson" }, body: unattributedForm,
+  });
+  const unattributed = await readAnalysisResponse(unattributedResponse, event => unattributedProgress.push(event));
+  partialPriceScenario = null;
+  assert.equal(unattributed.analysis.partialSuccess, true);
+  assert.equal(unattributed.analysis.successfulDocuments, 2);
+  assert.equal(unattributed.analysis.failedDocuments, 1);
+  assert.deepEqual(unattributed.analysis.failures, [{ side: "existing", documentIndex: 0, code: "no_insurance_data" }]);
+  const unattributedState = unattributedProgress.reduce(applyProgress, emptyProgress());
+  assert.deepEqual(unattributedState.documents.map(({ status, error }) => [status, error ?? null]), [
+    ["failed", "no_insurance_data"], ["completed", null], ["completed", null],
+  ]);
+  assert.deepEqual(unattributed.documents[0].insuranceData.insurances[0].documentReferences,
+    [{ side: "existing", documentIndex: 1 }]);
+  assert.deepEqual(unattributed.documents.map(document => document.insuranceData.totalAnnualPremium), [null, "900 kr"]);
+  assert.equal(calls.length - beforeUnattributed, 2);
   vehicleObjectScenario = true;
   const vehicleProgress = [], beforeVehicle = calls.length;
   const vehicleResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3)});
@@ -333,8 +377,10 @@ try {
   for(const type of ['snøscooter','campingvogn','tilhenger'])assert.ok(vehicleProgress.some(e=>e.type==='product_status'&&e.insuranceType===type));
   portfolioScenario = true;
   const portfolioProgress = [];
-  const portfolioResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3)});
+  const portfolioResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(1)});
   const portfolioResult = await readAnalysisResponse(portfolioResponse,e=>portfolioProgress.push(e));
+  assert.equal(portfolioResult.analysis.successfulDocuments, 2);
+  assert.equal(portfolioResult.analysis.partialSuccess, false);
   const portfolioGroups = groupInsurances(...portfolioResult.documents.map(d=>d.insuranceData.insurances),portfolioResult.matchingPlan);
   assert.equal(portfolioGroups.length,7);
   assert.ok(portfolioGroups.every(g=>g.objectMatch.reason==='EXACT_OBJECT_ID' && g.first[0].objectIdentifiers[0].value===g.second[0].objectIdentifiers[0].value));
@@ -343,8 +389,10 @@ try {
   assert.doesNotMatch(JSON.stringify(portfolioProgress),/ZZ90[0-9]+/);
   assert.doesNotMatch(logs,/ZZ90[0-9]+/);
   consolidationScenario = true;
-  const consolidatedResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(3)});
+  const consolidatedResponse = await fetch(base+'/api/analyze', {method:'POST',headers:{...headers,accept:'application/x-ndjson'},body:multiForm(2)});
   const consolidatedResult = await readAnalysisResponse(consolidatedResponse, e=>assert.doesNotMatch(JSON.stringify(e),/ZZ90[0-9]+/));
+  assert.equal(consolidatedResult.analysis.successfulDocuments, 4);
+  assert.equal(consolidatedResult.analysis.partialSuccess, false);
   for (const document of consolidatedResult.documents) {
     const objects = document.insuranceData.insurances;
     assert.equal(objects.length,7);
@@ -553,7 +601,8 @@ try {
   for(const value of [code,secret,key,'PRIVATE_PDF_SENTINEL','PRIVATE_OUTPUT_SENTINEL','PRIVATE_FILENAME','INVALID_PHASE2'])assert.equal(logs.includes(value),false);
   console.log(JSON.stringify({ result: "PASS", checks: [
     "Production trace: actual server events, signed client receipt, same request/object refs, private-field/ticket rejection, replay rejection, no extra AI",
-    "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF, safe progress/metrics",
+    "Phase 2: 10+10 streamed, two calls, concurrency, provenance, 11 rejected, partial corrupt PDF with the unaffected side total retained, safe progress/metrics",
+    "Unattributed readable PDF: partial result, original document indices, unaffected agreement total",
     "Cross-document consolidation: 10 records per side -> 7 exact object pairs, complementary facts and provenance",
     "7-object portfolio: 3 cars + 2 trailers + snowmobile + caravan, shuffled IDs, provenance, private progress/logging",
     "MC/Bobil: 2+2 objects per side, reversed PDFs, If/Gjensidige exact catalogs, document details and habitation facts, complete prices, exact object pairs, two mocked extraction calls, safe progress/logging",

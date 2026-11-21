@@ -90,9 +90,13 @@ test("three Ulykke variants align mental invalidity separately from crisis and r
   const death=fact(trygId,"person.ulykke.dodsfall");
   assert.match(death.value,/skyldes ulykkesskaden.*ett år.*ikke allerede er utbetalt.*invaliditet.*faller da bort/u);
   assert.equal(death.sources[0].termsNumber,"UUL41502");
-  const dental=fact(gjId,"person.ulykke.utgifter");
-  assert.match(dental.value,/50 000 kr.*15 000 kr.*500 kr.*toårsfristen.*utgangen av året.*25 år.*offentlige ikke dekker/u);
-  assert.deepEqual(dental.sources.map(s=>s.page),[2,8]);
+  const treatment=fact(gjId,"person.ulykke.utgifter");
+  assert.match(treatment.value,/50 000 kr.*15 000 kr.*500 kr.*to år.*folketrygd.*Originalkvitteringer.*annet hold/u);
+  assert.deepEqual(treatment.sources.map(s=>s.page),[2,8]);
+  assert.doesNotMatch(treatment.value,/25 år/u);
+  const dental=fact(gjId,"person.ulykke.utgifter.tannbehandling");
+  assert.match(dental.value,/toårsfristen.*utgangen av kalenderåret.*25 år.*offentlige ikke dekker/u);
+  assert.equal(dental.sources[0].page,8);
 });
 
 test("Godt voksen keeps 14-day stroke processing separate from 350 kr per day hospital cover", () => {

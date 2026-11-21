@@ -226,8 +226,10 @@ const personInsurancePresentationConcepts: readonly PresentationConcept[] = [
     "primary", ["economic-risk", "misunderstanding-risk"]),
   concept("behandling.ytelser", "behandling", "Undersøkelser og behandlinger", [/^person\.behandling\./u],
     "secondary", ["economic-risk"]),
-  concept("gravid.komplikasjoner", "gravid", "Svangerskap, fødsel og nyfødtperioden", [/^person\.gravid\./u],
+  concept("gravid.komplikasjoner", "gravid", "Svangerskap, fødsel og nyfødtperioden", [/^person\.gravid\.(?!medfodt\.)/u],
     "primary", ["economic-risk", "misunderstanding-risk"]),
+  concept("gravid.diagnoser", "gravid", "Medfødte diagnoser", [/^person\.gravid\.medfodt\./u],
+    "detail", ["economic-risk", "misunderstanding-risk"]),
   concept("senior.dekning", "senior", "Dekninger for senior", [/^person\.senior\./u, /^person\.ulykke\.invaliditet(?:\.|$)/u],
     "primary", ["economic-risk", "misunderstanding-risk"]),
 ];

@@ -15,18 +15,23 @@ type Row = readonly [
 ];
 
 const documents = {
+  "klp-innbo": ["innbo", "new-private-contents-travel/klp-innbo.pdf"],
+  "klp-innbo-maks": ["innbo-maks", "new-private-contents-travel/klp-innbo-maks.pdf"],
+  "landkreditt-innbo": ["innbo", "new-private-contents-travel/landkreditt-innbo.pdf"],
   "landkreditt-reise": ["reise", "new-private-contents-travel/landkreditt-reise.pdf"],
   "watercircles-reise": ["reise-2-17", "new-private-contents-travel/watercircles-reise.pdf"],
   "watercircles-innbo": ["innbo-2-17", "new-private-contents-travel/watercircles-innbo.pdf"],
+  "cabin:tryg:safety": ["hytte-sikkerhetsforskrift", "private-cabin/tryg-hytte-sikkerhetsforskrift.pdf"],
   "cabin:gjensidige:standard": ["hytte-standard-alminnelige", "private-cabin/gjensidige-hytte.pdf"],
   "cabin:gjensidige:pluss": ["hytte-pluss-alminnelige", "private-cabin/gjensidige-hytte-pluss.pdf"],
 } as const;
 
 type SourceId = keyof typeof documents;
 
-function withTerms(productId: string, sourceId: SourceId, rows: readonly Row[]): CatalogFact[] {
+function withTerms(productId: string, sourceId: SourceId, rows: readonly Row[],
+  removedKeys: readonly string[] = []): CatalogFact[] {
   const source = baseSources[sourceId];
-  const replaced = new Set(rows.map(([key]) => key));
+  const replaced = new Set([...removedKeys, ...rows.map(([key]) => key)]);
   return [
     ...baseFacts[productId].filter(fact => !replaced.has(fact.key)),
     ...rows.map(([key, label, value, page, section, deductibleClassification]) => ({
@@ -65,9 +70,40 @@ function waterCirclesTravel(elite: boolean): readonly Row[] {
   ];
 }
 
+const freezerCoverage = "innbo.fryserinnhold.dekning";
+const freezerLimit = "innbo.fryserinnhold.grense";
+const legacyFreezerRows = ["innbo.frysevarer"];
+
+const landkredittContents: readonly Row[] = [
+  [freezerCoverage, "Matvarer ved temperaturstigning",
+    "Ved utilsiktet temperaturstigning i fryser dekkes matskade og luktskade på fryseren. Meld skaden straks og oppbevar de skadde matvarene til besiktigelse.", 6, "4.1 h"],
+  ["flytting.midlertidig_bosted", "Midlertidig bosted etter skade",
+    "Nødvendige merutgifter til opphold utenfor hjemmet når det er ubeboelig etter en dekket skade. Utgiftene dekkes i normal reparasjonstid etter avtale med Landkreditt. Tapt husleie eller markedsleie trekkes fra.", 6, "4.1.1 g"],
+];
+
+function klpContents(deductiblePage: number): readonly Row[] {
+  return [
+    [freezerCoverage, "Matvarer ved temperaturstigning",
+      "Ved utilsiktet temperaturstigning i fryser dekkes matskade og luktskade på fryseren.", 2, "Standard dekning – fryser"],
+    ["naturskade.egenandel", "Naturskade – egenandel",
+      "8 000 kr etter vilkåret.", deductiblePage, "Spesielle egenandeler – Naturskader", "coverage"],
+    ["sykkel.egenandel", "Sykkeltyveri – egenandel",
+      "4 000 kr ved dekket sykkeltyveri. Egenandelen reduseres med 1 000 kr ved registrering i et FG-godkjent sykkelregister.", deductiblePage, "Spesielle egenandeler – Tyveri av sykkel", "coverage"],
+  ];
+}
+
 const waterCirclesContents: readonly Row[] = [
+  [freezerCoverage, "Matvarer ved temperaturstigning",
+    "Skade på matvarer ved utilsiktet temperaturstigning i fryser.", 5, "A.1.7"],
   ["sykkel.egenandel", "Sykkeltyveri – egenandel ved godkjent registrering",
     "Halvparten av avtalt egenandel når sykkelen er registrert i et godkjent sykkelregister og abonnementet er betalt og løpende.", 7, "A.5.6, spesielle egenandeler, punkt 4", "override"],
+];
+
+const trygCabinClaim: readonly Row[] = [
+  ["hytte.avtale.meldefrist", "Skademelding", "Skade meldes til Tryg uten ugrunnet opphold.", 3, "4 Frist for å melde skade"],
+  ["hytte.krav.meldefrist", "Frist for skademelding",
+    "Retten til erstatning tapes hvis kravet ikke meldes innen ett år etter at sikrede fikk kunnskap om forholdene som begrunner kravet.",
+    3, "4 Frist for å melde skade"],
 ];
 
 const gjensidigeCabin: readonly Row[] = [
@@ -78,14 +114,28 @@ const gjensidigeCabin: readonly Row[] = [
 ];
 
 const facts: Record<string, CatalogFact[]> = {
+  "klp-innbo": withTerms("klp-innbo", "klp-innbo", klpContents(8), legacyFreezerRows),
+  "klp-innbo-maks": withTerms("klp-innbo-maks", "klp-innbo-maks", [
+    ...klpContents(12),
+    ["uhell.egenandel", "Uhell – egenandel",
+      "2 000 kr per gjenstand ved uhell utenfor hjemmet, begrenset til avtalt egenandel i forsikringsbeviset.", 12, "Spesielle egenandeler – Uhell utenfor hjemmet", "coverage"],
+  ], legacyFreezerRows),
+  "landkreditt-innbo-standard": withTerms("landkreditt-innbo-standard", "landkreditt-innbo", landkredittContents),
+  "landkreditt-innbo-utvidet": withTerms("landkreditt-innbo-utvidet", "landkreditt-innbo", landkredittContents),
   "landkreditt-reise": withTerms("landkreditt-reise", "landkreditt-reise", landkredittTravel),
   "watercircles-reise-standard": withTerms("watercircles-reise-standard", "watercircles-reise", waterCirclesTravel(false)),
   "watercircles-reise-elite": withTerms("watercircles-reise-elite", "watercircles-reise", waterCirclesTravel(true)),
   "watercircles-innbo-standard": withTerms("watercircles-innbo-standard", "watercircles-innbo", [
     ...waterCirclesContents,
-    ["innbo.frysevarer", "Matvarer i fryser", "Inntil 10 000 kr ved dekket skade.", 7, "A.5.4 punkt 1"],
-  ]),
-  "watercircles-innbo-elite": withTerms("watercircles-innbo-elite", "watercircles-innbo", waterCirclesContents),
+    [freezerLimit, "Matvarer ved temperaturstigning – beløpsgrense", "Inntil 10 000 kr.", 5, "A.1.7"],
+  ], legacyFreezerRows),
+  "watercircles-innbo-elite": withTerms("watercircles-innbo-elite", "watercircles-innbo", [
+    ...waterCirclesContents,
+    [freezerLimit, "Matvarer ved temperaturstigning – beløpsgrense",
+      "Ingen særskilt beløpsgrense for matvarer i fryser.", 13, "E.2.16"],
+  ], legacyFreezerRows),
+  "tryg-hytte-standard": withTerms("tryg-hytte-standard", "cabin:tryg:safety", trygCabinClaim),
+  "tryg-hytte-ekstra": withTerms("tryg-hytte-ekstra", "cabin:tryg:safety", trygCabinClaim),
   "gjensidige-hytte-standard": withTerms("gjensidige-hytte-standard", "cabin:gjensidige:standard", gjensidigeCabin),
   "gjensidige-hytte-pluss": withTerms("gjensidige-hytte-pluss", "cabin:gjensidige:pluss", [
     ...gjensidigeCabin,

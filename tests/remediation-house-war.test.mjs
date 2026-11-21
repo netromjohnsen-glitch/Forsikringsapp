@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutSmartDetails} from './helpers/house-smart-details.mjs';
 import test from 'node:test';
@@ -54,7 +55,7 @@ test('WAR-P17 complete catalog equals independent before plus only two exact poi
 for(const [n,id]of ids.entries()){
  test('WAR-P17 complete original point17 with all linked conditions '+id,()=>{
   const b=o.original_bindings[n],page=o.source_pages[n*2],continuation=o.source_pages[n*2+1],file=new URL('../'+b.source_artifact,import.meta.url),number=n?13:12;assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),b.source_sha256);assert.equal(productCatalog.sources[owners[n]].sha256,b.source_sha256);
-  const texts=[];for(const [p,num]of [[page,number],[continuation,number+1]]){const text=execFileSync('pdftotext',['-raw','-f',String(num),'-l',String(num),file.pathname,'-']).toString();assert.equal(text,p.raw_text);const layout=execFileSync('pdftotext',['-layout','-f',String(num),'-l',String(num),file.pathname,'-']).toString();assert.equal(layout,p.layout_text);texts.push(text.replaceAll('GENERELLE VILKÅR',''));}
+  const texts=[];for(const [p,num]of [[page,number],[continuation,number+1]]){const text=execFileSync('pdftotext',['-raw','-f',String(num),'-l',String(num),file.pathname,'-']).toString();assertPdfSourceText(text,p.raw_text);const layout=execFileSync('pdftotext',['-layout','-f',String(num),'-l',String(num),file.pathname,'-']).toString();assertPdfSourceText(layout,p.layout_text);texts.push(text.replaceAll('GENERELLE VILKÅR',''));}
   const flat=texts.map(t=>t.replace(/\s+/gu,' ').trim()).join(' '),block=flat.split('17. Krig og uroligheter')[1].split('18. Skade ved terrorhandlinger')[0].trim();assert.equal(block,o.rows[0].value);
   for(const phrase of ['Forsikringen dekker ikke skade på person, ting eller tap','Krig eller alvorlige uroligheter i Norge','dersom forsikrede reiser inn i, eller tar opphold i','hvis ikke annet er avtalt skriftlig','Deltakelse i krig','Lov om yrkesskadeforsikring','På person og reiseforsikringer','På motorvognforsikring','når forsikrede allerede befinner seg','når forsikret motorvogn allerede befinner seg'])assert.ok(block.includes(phrase),phrase);assert.equal((block.match(/inntil 6 uker/gu)||[]).length,2);
   for(const field of ['structuredValue','coverageAvailability','deductibleClassification'])assert.equal(Object.hasOwn(warFact(owners[n],o.keys[0]),field),false);assert.equal(warFact(owners[n],o.keys[0]).source.page,number);assert.equal(warFact(owners[n],o.keys[0]).qualificationSource.page,number+1);

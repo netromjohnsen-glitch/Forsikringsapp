@@ -42,6 +42,8 @@ export function emptyManualAgreement(): ManualAgreementInput {
 
 export class ManualAgreementError extends Error {}
 
+export const MAX_MANUAL_PRODUCTS = 30;
+
 const deductibleNotes: Record<string, string> = {
   standard: "Standardegenandel; kan avvike fra avtalt verdi",
   coverage: "Egenandel for denne dekningen; forrang over avtalt generell egenandel er ikke dokumentert",
@@ -90,8 +92,11 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
   const company = field(agreement.company, "selskap", 150);
   const distributionChannel = optional(agreement.distributionChannel, "distribusjonskanal", 100);
   if (!company) throw new ManualAgreementError("Oppgi selskap for manuell registrering.");
-  if (!Array.isArray(agreement.products) || agreement.products.length === 0 || agreement.products.length > 30) {
+  if (!Array.isArray(agreement.products) || agreement.products.length === 0) {
     throw new ManualAgreementError("Legg til minst ett forsikringsprodukt.");
+  }
+  if (agreement.products.length > MAX_MANUAL_PRODUCTS) {
+    throw new ManualAgreementError(`Du kan registrere maksimalt ${MAX_MANUAL_PRODUCTS} forsikringer per side.`);
   }
 
   const insurances = agreement.products.map((rawProduct, productIndex) => {

@@ -1,6 +1,11 @@
+import { boatMotorMarketArchives } from "./boat-motor-market-evidence.ts";
+import { vehicleExtensionMarketArchives } from "./vehicle-extension-market-evidence.ts";
 import { privateHolidayContentsArchives } from "./private-holiday-contents-gjensidige-watercircles.ts";
 import { privateHomeTravelCoverageArchives } from "./private-home-travel-coverage-market.ts";
+import { petCoverageMarketArchives } from "./pet-coverage-market-evidence.ts";
 import { frendeDogMarketArchives } from "./frende-dog-market.ts";
+import { frendeMarketEditionArchives } from "./frende-market-edition.ts";
+import { additionalDamageMarketArchives } from "./additional-damage-market-evidence.ts";
 import { fremtindBobilMarketArchives } from "./fremtind-bobil-market.ts";
 import { sparebank1FremtindBilMarketArchives } from "./sparebank1-fremtind-bil-market.ts";
 import { storebrandHolidayContentsArchives } from "./holiday-contents-storebrand-market.ts";
@@ -11,6 +16,8 @@ import { trygBoatMarketArchives } from "./tryg-boat-market.ts";
 import { trygHolidayContentsArchives } from "./holiday-contents-tryg-market.ts";
 import { trygHomeMarketArchives } from "./tryg-home-market-evidence.ts";
 import { trygSnowMarketArchives } from "./tryg-snow-market.ts";
+import { trygMemberPackageArchives } from "./tryg-member-package-comparison-evidence.ts";
+import { trygMemberDamageArchives } from "./tryg-member-damage-comparison-evidence.ts";
 
 type ArchiveSource = readonly [documentId: string, effectiveFrom: string, originalUrl: string, previousUrl?: string];
 
@@ -25,6 +32,220 @@ type TermsArchiveDocument = {
 };
 
 export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
+  ...vehicleExtensionMarketArchives,
+  ...trygMemberPackageArchives,
+  ...trygMemberDamageArchives,
+  ...additionalDamageMarketArchives,
+  ...boatMotorMarketArchives,
+  ...frendeMarketEditionArchives,
+  {
+    provider: "gjensidige",
+    slug: "hus-produktark-eap01",
+    archivePath: "catalog/sources/gjensidige/hus/IPID-Husforsikring-EAP01.pdf",
+    sources: [["gjensidigeHusIpid", "", "https://www.gjensidige.no/ipid/gfno/EAP01"]],
+  },
+  {
+    provider: "gjensidige",
+    slug: "snoscooter-produktark-mot05",
+    archivePath: "catalog/sources/vehicle-extensions/gjensidige-MOT05.pdf",
+    sources: [["vehicle:gjensidige-MOT05.pdf", "", "https://www.gjensidige.no/ipid/gfno/MOT05"]],
+  },
+  {
+    provider: "gjensidige",
+    slug: "bobil-produktark-mot08",
+    archivePath: "catalog/sources/mc-bobil/gjensidige-bobil-MOT08-ipid.pdf",
+    sources: [["mc-bobil:gjensidige-bobil-MOT08-ipid.pdf:bobil", "", "https://www.gjensidige.no/ipid/gfno/MOT08"]],
+  },
+  {
+    provider: "gjensidige",
+    slug: "verdisak-produktark-eap16",
+    archivePath: "catalog/sources/private-valuables/gjensidige-verdisak-ipid.pdf",
+    sources: [
+      ["private-valuables:gjensidige:standard:ipid", "", "https://www.gjensidige.no/ipid/gfno/EAP16"],
+      ["private-valuables:gjensidige:ipid", "", "https://www.gjensidige.no/ipid/gfno/EAP16"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "familieulykke",
+    archivePath: "catalog/sources/person/tryg-person-familieulykke.pdf",
+    sources: [
+      ["person:tryg-person-familieulykke", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Familieulykke-Dekningsvilkaar&vilkNr=05UUL41516"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "livsforsikring",
+    archivePath: "catalog/sources/person/storebrand-person-liv.pdf",
+    sources: [
+      ["person:storebrand-person-liv", "2011-12", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/f1f0b02e-264b-40b1-8214-2df277e620d7:edc64da33a6263e4c4dd4d3da515dc6c9c47bdc9/vilkar-livsforsikring.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "udf-liv-medlem",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-liv-medlem.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-liv-medlem-terms", "2026", "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/livsforsikring_medlem-2026.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "udf-liv-ektefelle",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-liv-ektefelle.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-liv-ektefelle-terms", "2026", "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/livsforsikring_ektefelle-2026.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "udf-ufore-medlem",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-ufore-medlem.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-ufore-medlem-terms", "2026", "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/ufore_medlem-2026.pdf"],
+    ],
+  },
+  {
+    provider: "tryg",
+    slug: "udf-ufore-ektefelle",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-ufore-ektefelle.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-ufore-ektefelle-terms", "2026", "https://utdn02mstryy29gprod.dxcloud.episerver.net/globalassets/medlem/forsikring/dok-2026/bevis-og-vilkar-2026/ufore_ektefelle-2026.pdf"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "ulykkesforsikring",
+    archivePath: "catalog/sources/person/storebrand-person-ulykke.pdf",
+    sources: [
+      ["person:storebrand-person-ulykke", "2012-01", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/3e1b926e-0e58-4b15-a9c1-1637fc2b7b59:221b60901d52789a10293bd326573274a35a9e8b/vilkar-ulykkeforsikring.pdf"],
+    ],
+  },
+  {
+    provider: "landkreditt",
+    slug: "ulykkesforsikring",
+    archivePath: "catalog/sources/person/landkreditt-person-ulykke.pdf",
+    sources: [
+      ["person:landkreditt-person-ulykke", "2025-03-01", "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-ulykke.pdf"],
+    ],
+  },
+  {
+    provider: "watercircles",
+    slug: "ulykkesforsikring",
+    archivePath: "catalog/sources/person/watercircles-person-ulykke.pdf",
+    sources: [
+      ["person:watercircles-person-ulykke", "2025-01-01", "https://www.watercircles.no/wp-content/uploads/2024/11/WaterCircles-Ulykke-vilkar-WtCULY-2.12-01.01.25.pdf"],
+    ],
+  },
+  {
+    provider: "klp",
+    slug: "fritidsulykke",
+    archivePath: "catalog/sources/person/klp-person-ulykke.pdf",
+    sources: [
+      ["person:klp-person-ulykke", "", "https://www.klp.no/media/forsikring/Fritidsulykke.pdf"],
+      ["person:klp-person-ulykke-maks", "", "https://www.klp.no/media/forsikring/Fritidsulykke.pdf"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "ulykkesforsikring",
+    archivePath: "catalog/sources/person/fremtind-person-ulykke.pdf",
+    sources: [
+      ["person:fremtind-person-ulykke", "2022-04-01", "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_ulykkesforsikring_ULMI.pdf"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "uforepensjon",
+    archivePath: "catalog/sources/person/fremtind-person-uforepensjon.pdf",
+    sources: [
+      ["person:fremtind-person-uforepensjon", "2024-03-01", "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_uforepensjon_UP05.pdf"],
+    ],
+  },
+  {
+    provider: "fremtind",
+    slug: "behandlingsforsikring",
+    archivePath: "catalog/sources/person/fremtind-person-behandling.pdf",
+    sources: [
+      ["person:fremtind-person-behandling", "2025-12-04", "https://dokument.fremtind.no/vilkar/fremtind/pm/liv_og_helse/vilkar_behandlingsforsikringPM.pdf"],
+    ],
+  },
+  {
+    provider: "landkreditt",
+    slug: "behandlingsforsikring",
+    archivePath: "catalog/sources/person/landkreditt-person-behandling.pdf",
+    sources: [
+      ["person:landkreditt-person-behandling", "2026-07-01", "https://www.landkreditt.no/globalassets/forsikring/vilkar/vilkar-helse-privat.pdf"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "livsforsikring",
+    archivePath: "catalog/sources/person/if-person-liv.pdf",
+    sources: [
+      ["person:if-person-liv", "2025-08-23", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Livsforsikring"],
+    ],
+  },
+  {
+    provider: "if",
+    slug: "uforepensjon",
+    archivePath: "catalog/sources/person/if-person-ufore.pdf",
+    sources: [
+      ["person:if-person-uforepensjon", "2025-08-23", "https://if.no/apps/vilkarsbasendokument/Vilkaar?produkt=Uf%C3%B8reforsikring"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "uforepensjon",
+    archivePath: "catalog/sources/person/gjensidige-person-uforepensjon.pdf",
+    sources: [
+      ["person:gjensidige-person-uforepensjon", "", "https://www.gjensidige.no/files/privat/vilkar/person/uforepensjon-alminnelige-vilkar.pdf"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "uforekapital-med-forskudd",
+    archivePath: "catalog/sources/person/gjensidige-person-uforekapital.pdf",
+    sources: [
+      ["person:gjensidige-person-uforekapital", "", "https://www.gjensidige.no/files/privat/vilkar/person/uforekapital-med-forskudd-alminnelige-vilkar.pdf"],
+    ],
+  },
+  {
+    provider: "storebrand",
+    slug: "uforeforsikring-uf03",
+    archivePath: "catalog/sources/person/storebrand-person-ufore.pdf",
+    sources: [
+      ["person:storebrand-person-ufore", "2026-03-01", "https://www.storebrand.no/privat/forsikring/forsikringsvilkar/_/attachment/inline/d00efe44-86ce-435d-ab74-690317a302af:a8fa2197254b6d873bb2cfc2e861c2d0c167d159/vilkar-uforeforsikring-uf03.pdf"],
+    ],
+  },
+  {
+    provider: "frende",
+    slug: "uforepensjon",
+    archivePath: "catalog/sources/person/frende-person-uforepensjon.pdf",
+    sources: [
+      ["person:frende-person-uforepensjon", "2025-01-01", "https://api.frende.no/documents/terms/public/life/DisabilityRate"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "barneforsikring",
+    archivePath: "catalog/sources/person/gjensidige-person-barn.pdf",
+    sources: [
+      ["person:gjensidige-person-barn-basis", "", "https://www.gjensidige.no/files/privat/vilkar/person/Barneforsikring-alminnelige-vilkar.pdf"],
+      ["person:gjensidige-person-barn-medium", "", "https://www.gjensidige.no/files/privat/vilkar/person/Barneforsikring-alminnelige-vilkar.pdf"],
+      ["person:gjensidige-person-barn-pluss", "", "https://www.gjensidige.no/files/privat/vilkar/person/Barneforsikring-alminnelige-vilkar.pdf"],
+    ],
+  },
+  {
+    provider: "gjensidige",
+    slug: "uforepensjon-barn",
+    archivePath: "catalog/sources/person/gjensidige-person-barn-uforepensjon.pdf",
+    sources: [
+      ["person:gjensidige-person-barn-basis:barn-uforepensjon", "", "https://www.gjensidige.no/files/privat/vilkar/person/uforepensjon-barn-alminnelige-vilkar.pdf"],
+      ["person:gjensidige-person-barn-medium:barn-uforepensjon", "", "https://www.gjensidige.no/files/privat/vilkar/person/uforepensjon-barn-alminnelige-vilkar.pdf"],
+      ["person:gjensidige-person-barn-pluss:barn-uforepensjon", "", "https://www.gjensidige.no/files/privat/vilkar/person/uforepensjon-barn-alminnelige-vilkar.pdf"],
+    ],
+  },
   {
     provider: "tryg",
     slug: "gravid-produktvilkar",
@@ -138,6 +359,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     archivePath: "catalog/sources/tryg/market-bil-2026/PAU14000.pdf",
     sources: [
       ["tryg-nito-bil-delkasko:produktvilkar", "2026-07-01", "https://www.tryg.no/odpdf?vilk=nito-Bil-Produkt&vilkNr=05PAU14000"],
+      ["tryg-nito-bil-market-produkt", "2026-07-01", "https://www.tryg.no/odpdf?vilk=nito-Bil-Produkt&vilkNr=05PAU14000"],
     ],
   },
   {
@@ -146,6 +368,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     archivePath: "catalog/sources/tryg/hus/05PGE91500.pdf",
     sources: [
       ["tryg-nito-bil-delkasko:rettshjelpsvilkar", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Rettshjelp&vilkNr=05PGE91500"],
+      ["tryg-nito-bil-market-rettshjelp", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Rettshjelp&vilkNr=05PGE91500"],
     ],
   },
   {
@@ -258,6 +481,14 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   },
   {
     provider: "tryg",
+    slug: "utdanningsforbundet-bil-delkasko-2026-07",
+    archivePath: "catalog/sources/tryg/member-agreements/udf-bil-delkasko-2026-07.pdf",
+    sources: [
+      ["tryg-utdanningsforbundet-bil-delkasko-terms", "2026-07-01", "https://www.tryg.no/odpdf?vilk=udf-bil-delkasko&vilkNr=05PAU25945"],
+    ],
+  },
+  {
+    provider: "tryg",
     slug: "utdanningsforbundet-barneforsikring",
     archivePath: "catalog/sources/tryg/member-agreements/udf-barneforsikring.pdf",
     sources: [
@@ -352,6 +583,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
   ...storebrandHolidayContentsArchives,
   ...privateHolidayContentsArchives,
   ...privateHomeTravelCoverageArchives,
+  ...petCoverageMarketArchives,
   ...storebrandInnboMarketArchives,
   ...storebrandMotorMarketArchives,
   ...fremtindBobilMarketArchives,
@@ -696,7 +928,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "bat-maskinskade",
     archivePath: "catalog/sources/boat-pet/tryg-boat-machinery-terms.pdf",
     sources: [
-      ["boat-pet:tryg:båt:machinery", "2026-01-01", "https://www.tryg.no/forsikringer/kjoretoy/batforsikring"],
+      ["boat-pet:tryg:båt:machinery", "2026-01-01", "https://www.tryg.no/odpdf?vilk=B%C3%A5t-innebordsmotor-maskinskade&vilkNr=05PFB36910", "https://www.tryg.no/forsikringer/kjoretoy/batforsikring"],
     ],
   },
   {
@@ -704,7 +936,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "bat-ulykke",
     archivePath: "catalog/sources/boat-pet/tryg-boat-accident-terms.pdf",
     sources: [
-      ["boat-pet:tryg:båt:accident", "2022-02-01", "https://www.tryg.no/forsikringer/kjoretoy/batforsikring"],
+      ["boat-pet:tryg:båt:accident", "2022-02-01", "https://www.tryg.no/odpdf?vilkNr=05PFB38900&vilk=Forerogpassasjerulykke", "https://www.tryg.no/forsikringer/kjoretoy/batforsikring"],
     ],
   },
   {
@@ -809,7 +1041,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "katt-behandling",
     archivePath: "catalog/sources/boat-pet/tryg-cat-treatment-terms.pdf",
     sources: [
-      ["boat-pet:tryg:katt:treatment", "2026-07-01", "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring"],
+      ["boat-pet:tryg:katt:treatment", "2026-07-01", "https://www.tryg.no/odpdf?vilk=Dyreforsikring-katt-behandling&vilkNr=05PLB52006", "https://www.tryg.no/forsikringer/dyreforsikring/katteforsikring"],
     ],
   },
   {
@@ -817,7 +1049,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "katt-ekstra",
     archivePath: "catalog/sources/boat-pet/tryg-cat-extra-terms.pdf",
     sources: [
-      ["boat-pet:tryg:katt:extra", "2025-07-01", "https://www.tryg.no/forsikringer/katteforsikring"],
+      ["boat-pet:tryg:katt:extra", "2025-07-01", "https://www.tryg.no/odpdf?vilk=Dyreforsikring-katt-ekstra&vilkNr=05PLB52004", "https://www.tryg.no/forsikringer/katteforsikring"],
     ],
   },
   {
@@ -825,7 +1057,7 @@ export const termsArchiveDocuments: readonly TermsArchiveDocument[] = [
     slug: "katt-liv",
     archivePath: "catalog/sources/boat-pet/tryg-cat-life-terms.pdf",
     sources: [
-      ["boat-pet:tryg:katt:life", "2026-01-01", "https://www.tryg.no/forsikringer/katteforsikring"],
+      ["boat-pet:tryg:katt:life", "2026-01-01", "https://www.tryg.no/odpdf?vilk=Dyreforsikring-katt-d%C3%B8d&vilkNr=05PLB52005", "https://www.tryg.no/forsikringer/katteforsikring"],
     ],
   },
   {

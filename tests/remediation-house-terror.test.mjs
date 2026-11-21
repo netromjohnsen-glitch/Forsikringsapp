@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutSpread} from './helpers/house-spread.mjs';
 import test from 'node:test';
@@ -54,9 +55,9 @@ test('TERROR-P18 complete catalog equals independent before plus only two exact 
 for(const [n,id]of ids.entries()){
  test('TERROR-P18 complete original point18 with all linked conditions '+id,()=>{
   const b=o.original_bindings[n],page=o.source_pages[n],file=new URL('../'+b.source_artifact,import.meta.url),number=n?14:13;assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),b.source_sha256);assert.equal(productCatalog.sources[owners[n]].sha256,b.source_sha256);
-  const text=execFileSync('pdftotext',['-raw','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assert.equal(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('18. Skade ved terrorhandlinger')[1].split('19. Farlig spredning')[0].trim();assert.equal(block,o.rows[0].value);
+  const text=execFileSync('pdftotext',['-raw','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assertPdfSourceText(text,page.raw_text);const flat=text.replace(/\s+/gu,' '),block=flat.split('18. Skade ved terrorhandlinger')[1].split('19. Farlig spredning')[0].trim();assert.equal(block,o.rows[0].value);
   for(const phrase of ['Gjensidiges samlede erstatningsansvar overfor alle kunder og andre kravstillere','kr 1 milliard pr. skadehendelse','48 timer','redusert forholdsmessig','direkte eller indirekte','Dammer, tunneler, broer, flyplasser, jernbanestasjoner, kraftverk, bygninger med mer enn 25 etasjer','Objekter/interesser utenfor Norden','Begrensningene over gjelder ikke for reiseforsikring eller personforsikringer','Bilansvarsloven eller Lov om yrkesskadeforsikring','Med terrorhandling forstås','rettet mot allmennheten','biologiske eller kjemiske substanser','politiske, religiøse eller andre ideologiske organer','for å fremkalle frykt'])assert.ok(block.includes(phrase),phrase);
-  const layout=execFileSync('pdftotext',['-layout','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assert.equal(layout,page.layout_text);
+  const layout=execFileSync('pdftotext',['-layout','-f',String(number),'-l',String(number),file.pathname,'-']).toString();assertPdfSourceText(layout,page.layout_text);
   for(const field of ['structuredValue','coverageAvailability','deductibleClassification','qualificationSource'])assert.equal(Object.hasOwn(terrorFact(owners[n],o.keys[0]),field),false);
   assert.equal(o.subscope,'Generelle vilkår punkt18 Skade ved terrorhandlinger only');assert.equal(o.whole_signature_closure,false);
  });

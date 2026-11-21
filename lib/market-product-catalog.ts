@@ -1,7 +1,19 @@
 import comparisonEvidence from "../catalog/market-comparison-gap-evidence.json" with { type: "json" };
+import { addTrygMemberPackageComparisonFacts } from "./tryg-member-package-comparison-evidence.ts";
+import { addTrygMemberDamageComparisonFacts } from "./tryg-member-damage-comparison-evidence.ts";
+import { addReviewedTravelBaggageFacts } from "./catalog-market-baggage-evidence.ts";
+import { addReviewedTravelPolicyFacts } from "./catalog-market-travel-policy-evidence.ts";
+import { addReviewedSourceClarifications } from "./catalog-review-source-clarifications.ts";
+import { addBoatMotorMarketEvidence } from "./boat-motor-market-evidence.ts";
+import { correctMarketBuildingReferences } from "./building-terms-market-references.ts";
+import { addPregnancyDiagnosisComparisonFacts } from "./pregnancy-diagnoses-market-evidence.ts";
+import { addVehicleExtensionMarketEvidence } from "./vehicle-extension-market-evidence.ts";
 import { privateHolidayContentsMarket } from "./private-holiday-contents-gjensidige-watercircles.ts";
 import { privateHomeTravelCoverageMarket } from "./private-home-travel-coverage-market.ts";
+import { petCoverageMarket } from "./pet-coverage-market-evidence.ts";
 import { frendeDogMarket } from "./frende-dog-market.ts";
+import { addAdditionalDamageMarketEvidence } from "./additional-damage-market-evidence.ts";
+import { addFrendeMarketEdition } from "./frende-market-edition.ts";
 import { fremtindBobilMarket } from "./fremtind-bobil-market.ts";
 import { productCatalog, type CatalogAddOn, type CatalogFact, type CatalogProduct, type CatalogSource } from "./product-catalog.ts";
 import { sparebank1FremtindBilMarket } from "./sparebank1-fremtind-bil-market.ts";
@@ -25,6 +37,7 @@ const marketUpdates = [
   storebrandHolidayContentsMarket,
   privateHolidayContentsMarket,
   privateHomeTravelCoverageMarket,
+  petCoverageMarket,
   storebrandInnboMarket,
   storebrandMotorMarket,
   fremtindBobilMarket,
@@ -48,6 +61,7 @@ const replacedAddOnIds = new Set(sparebank1FremtindBilMarket.replacesAddOnIds);
 const marketSources = Object.assign({}, productCatalog.sources, ...marketUpdates.map(update => update.sources)) as Record<string, CatalogSource>;
 const marketFacts = Object.assign({}, productCatalog.facts, ...marketUpdates.map(update => update.facts)) as Record<string, CatalogFact[]>;
 const comparisonSources = { ...marketSources };
+addTrygMemberPackageComparisonFacts(comparisonSources, marketFacts);
 const activeComponents = new Set<string>();
 
 for (const [id, update] of Object.entries(comparisonEvidence.sourceUrlUpdates)) {
@@ -85,18 +99,29 @@ for (const [id, evidenceSource] of Object.entries(comparisonEvidence.sources)) {
   }
 }
 
+const marketEdition = addFrendeMarketEdition(comparisonSources, marketFacts, [
+  ...productCatalog.products.flatMap(product => replacements.get(product.productId) ?? [product]),
+  ...marketUpdates.filter(update => update.replacesProductIds.length === 0).flatMap(update => update.products),
+], [
+  ...(productCatalog.addOns ?? []).filter(addOn => !replacedAddOnIds.has(addOn.id)),
+  ...marketUpdates.flatMap(update => update.addOns),
+  ...(comparisonEvidence.addOns as CatalogAddOn[]).filter(addOn => activeComponents.has(addOn.componentId)),
+]);
+
+addBoatMotorMarketEvidence(comparisonSources, marketFacts, marketEdition.products);
+addPregnancyDiagnosisComparisonFacts(comparisonSources, marketFacts);
+addAdditionalDamageMarketEvidence(comparisonSources, marketFacts, marketEdition);
+addVehicleExtensionMarketEvidence(comparisonSources, marketFacts, marketEdition.products);
+addTrygMemberDamageComparisonFacts(comparisonSources, marketFacts, marketEdition.addOns);
+addReviewedSourceClarifications(comparisonSources, marketFacts, marketEdition.products);
+addReviewedTravelBaggageFacts(comparisonSources, marketFacts);
+addReviewedTravelPolicyFacts(comparisonSources, marketFacts);
+correctMarketBuildingReferences(comparisonSources, marketFacts);
+
 export const marketProductCatalog = {
   ...productCatalog,
   alignComparisonRows: true,
-  products: [
-    ...productCatalog.products.flatMap(product => replacements.get(product.productId) ?? [product]),
-    ...marketUpdates.filter(update => update.replacesProductIds.length === 0).flatMap(update => update.products),
-  ],
+  ...marketEdition,
   sources: comparisonSources,
   facts: marketFacts,
-  addOns: [
-    ...(productCatalog.addOns ?? []).filter(addOn => !replacedAddOnIds.has(addOn.id)),
-    ...marketUpdates.flatMap(update => update.addOns),
-    ...(comparisonEvidence.addOns as CatalogAddOn[]).filter(addOn => activeComponents.has(addOn.componentId)),
-  ],
 };

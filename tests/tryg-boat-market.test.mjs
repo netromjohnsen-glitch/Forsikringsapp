@@ -20,9 +20,18 @@ test("the current private market lists Tryg's four advertised products and retai
   assert.equal(findProductComparisonProduct(catalogProductIdentity(previous), marketProductCatalog), null);
   const oldTransport = resolveCatalogFacts(previous, []).find(fact => fact.key === "bat.transport.dekning");
   assert.equal(termsSourceHref(oldTransport.source), "/api/vilkar/tryg/bat-kasko-innenbord-2024-07#page=3");
+  const frendeNovember = new Set(["frende-bat-brann-og-tyveri", "frende-bat-kasko", "frende-bat-utvidet"]);
   for (const product of productCatalog.products.filter(product => product.insuranceType === "Båt" && (product.providerId !== "tryg" || product.agreementScope !== "ordinary"))) {
-    assert.ok(marketProductCatalog.products.includes(product));
+    if (product.providerId === "frende" && product.agreementScope === "ordinary" && frendeNovember.delete(product.productId)) {
+      const current = findCatalogProduct("frende", product.productId, "2026-11-20", scopes, marketProductCatalog);
+      assert.ok(current, product.productId);
+      assert.equal(current.sourceId, "boat-pet:frende:båt:2026-11-20");
+      assert.equal(product.version, "2026-01-01");
+    } else {
+      assert.ok(marketProductCatalog.products.includes(product), product.productId);
+    }
   }
+  assert.equal(frendeNovember.size, 0);
 });
 
 test("current Tryg transport and optional conditions display their exact current PDF editions and pages", () => {
@@ -31,15 +40,19 @@ test("current Tryg transport and optional conditions display their exact current
   const transport = rows.find(row => row.key === "bat.transport.dekning");
   assert.equal(transport.first.state, "included");
   assert.match(transport.first.text, /nærmeste verksted/u);
-  assert.match(transport.second.text, /henting eller transport hvis båten må etterlates/u);
+  assert.equal(transport.second.text, transport.first.text);
+  const recovery = rows.find(row => row.key === "bat.redning.hjemtransport.dekning");
+  assert.equal(recovery.first.state, "unknown");
+  assert.match(recovery.second.text, /henting eller transport hvis båten må etterlates/u);
+  assert.equal(termsSourceHref(recovery.second.sources[0]), "/api/vilkar/tryg/bat-ekstra#page=1");
   assert.deepEqual(transport.first.sources.map(termsSourceHref), [
     "/api/vilkar/tryg/bat-kasko-innenbord#page=3", "/api/vilkar/tryg/bat-kasko-robat#page=2",
   ]);
   assert.deepEqual(transport.second.sources.map(termsSourceHref), [
     "/api/vilkar/tryg/bat-ekstra#page=1", "/api/vilkar/tryg/bat-kasko-innenbord#page=3",
   ]);
-  const limit = rows.find(row => row.key === "bat.transport.grense").second;
-  assert.match(limit.text, /20 % .*100 000 kr/u);
+  const limit = rows.find(row => row.key === "bat.ferieavbrudd.fellesgrense").second;
+  assert.match(limit.text, /20 % .*100 000 kr samlet for transport, opphold, hjemreise og ferieavbrudd/u);
   assert.equal(termsSourceHref(limit.sources[0]), "/api/vilkar/tryg/bat-ekstra#page=2");
   const deductible = rows.find(row => row.key === "bat.redning.egenandel").first;
   assert.match(deductible.text, /500 kr/u);

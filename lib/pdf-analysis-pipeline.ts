@@ -63,6 +63,7 @@ export async function analyzePdfBatches(options: {
   telemetry.batches(batches);
   if (options.trace) for (const batch of batches) options.trace.batch(batch);
   let products = 0;
+  let successfulDocuments = 0;
   const results = await runBatchPool(batches, controller, async (batch): Promise<BatchResult | null> => {
     for (const doc of batch.documents) emit({ type: "document_status", side: doc.side, documentIndex: doc.documentIndex, status: "analyzing" });
     emit({ type: "batch_analyzing", side: batch.side, batchIndex: batch.batchIndex, documentCount: batch.documents.length });
@@ -78,8 +79,17 @@ export async function analyzePdfBatches(options: {
         emit({ type: "product_status", ...identity, status: "identified" });
         emit({ type: "product_status", ...identity, status: "completed" });
       }
-      for (const doc of batch.documents) emit({ type: "document_status", side: doc.side, documentIndex: doc.documentIndex, status: "completed" });
-      return { batch, agreement };
+      const attributedDocuments = new Set(agreement.documentRecords.flatMap(record =>
+        record.documentReferences.map(reference => reference.documentIndex)));
+      for (const doc of batch.documents) {
+        if (!attributedDocuments.has(doc.documentIndex)) {
+          fail(doc.side, doc.documentIndex, "no_insurance_data", false);
+          continue;
+        }
+        successfulDocuments++;
+        emit({ type: "document_status", side: doc.side, documentIndex: doc.documentIndex, status: "completed" });
+      }
+      return attributedDocuments.size ? { batch, agreement } : null;
     } catch (error) {
       signal.throwIfAborted();
       // Capacity/configuration failures affect the whole service; preserve fail-closed behavior.
@@ -87,12 +97,14 @@ export async function analyzePdfBatches(options: {
       const code = error && typeof error === "object" && "code" in error ? error.code : undefined;
       if (status === 429 || status === 401 || status === 403 || status === 413 || status === 415 || code === "missing_openai_key") throw error;
       options.trace?.extractionFailed(batch);
-      for (const doc of batch.documents) fail(doc.side, doc.documentIndex, "extraction_failed", false);
+      const failure = error instanceof PdfSecurityError && code === "no_insurance_data"
+        ? "no_insurance_data" : "extraction_failed";
+      for (const doc of batch.documents) fail(doc.side, doc.documentIndex, failure, false);
       return null;
     }
   }, telemetry.extractionConcurrency);
   const successful = results.filter((r): r is BatchResult => r !== null);
   for (const { side, files } of sides) if (files.length && !successful.some((r) => r.batch.side === side)) throw new AnalysisControlError(503, "side_analysis_failed", "Ingen dokumenter kunne analyseres på én av sidene. Prøv igjen.");
   failures.sort((a,b) => (a.side === b.side ? 0 : a.side === "existing" ? -1 : 1) || a.documentIndex - b.documentIndex);
-  return { results: successful, failures, successfulDocuments: successful.reduce((sum,r) => sum+r.batch.documents.length,0), partialSuccess: failures.length > 0 };
+  return { results: successful, failures, successfulDocuments, partialSuccess: failures.length > 0 };
 }

@@ -1,3 +1,4 @@
+import { assertPdfSourceText } from './helpers/pdf-source-text.mjs';
 import {beforePersonInsuranceCatalog} from './helpers/before-person-insurance-catalog.mjs';
 import {withoutAdditionalCosts} from './helpers/house-additional-costs.mjs';
 import test from 'node:test';
@@ -53,7 +54,7 @@ test('GARDEN-IMPORT complete catalog equals independent before plus only four ex
 for(const [n,id]of ids.entries()){
  test('GARDEN-IMPORT exact original full page and both qualified valuation clauses '+id,()=>{
   const b=o.original_bindings[n],page=o.source_pages[n],file=new URL('../'+b.source_artifact,import.meta.url);assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),b.source_sha256);assert.equal(productCatalog.sources[owners[n]].sha256,b.source_sha256);
-  const text=execFileSync('pdftotext',['-raw','-f',String(b.PDF_page_1_based),'-l',String(b.PDF_page_1_based),file.pathname,'-']).toString();assert.equal(text,page.raw_text);const flat=text.replace(/\s+/gu,' ');assert.equal(flat.split('Skadet beplantning i hageanlegg')[1].split('Skadens økonomiske omfang fastsettes ved skjønn')[0].trim(),page.garden_import_block);
+  const text=execFileSync('pdftotext',['-raw','-f',String(b.PDF_page_1_based),'-l',String(b.PDF_page_1_based),file.pathname,'-']).toString();assertPdfSourceText(text,page.raw_text);const flat=text.replace(/\s+/gu,' ');assert.equal(flat.split('Skadet beplantning i hageanlegg')[1].split('Skadens økonomiske omfang fastsettes ved skjønn')[0].trim(),page.garden_import_block);
   for(const phrase of ['Skadet beplantning i hageanlegg erstattes med pris for tilsvarende ung vekst i gartneri.','Når gjenstand av samme merke/modell eller kvalitet ikke kan kjøpes av forhandler i Norge','erstatningen begrenset til kjøpesum inkludert frakt og kostnader ved innførsel til Norge.'])assert.ok(flat.includes(phrase),phrase);
   for(const key of o.keys)for(const field of ['structuredValue','coverageAvailability','deductibleClassification','qualificationSource'])assert.equal(Object.hasOwn(gardenImportFact(owners[n],key),field),false);
  });
