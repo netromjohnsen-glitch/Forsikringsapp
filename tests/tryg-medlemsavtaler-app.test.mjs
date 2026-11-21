@@ -328,7 +328,9 @@ test('Utdanningsforbundets Delkasko beholder januar- og juliutgaven hver for seg
   const delkasko = productsFor(agreementScope, 'Bil').filter(product =>
     product.productId === 'tryg-utdanningsforbundet-bil-delkasko');
   assert.deepEqual(delkasko.map(product => product.version).sort(), ['2026-01-01', '2026-07-01']);
-  assert.equal(findCatalogProductBySelection('Tryg', 'Bil', name, agreementScope), null);
+  assert.equal(findCatalogProductBySelection('Tryg', 'Bil', name, agreementScope, productCatalog, undefined, new Date('2026-11-21T12:00:00Z'))?.version, '2026-07-01');
+  assert.equal(findCatalogProductBySelection('Tryg', 'Bil', name, agreementScope, productCatalog, undefined, new Date('2026-03-01T12:00:00Z'))?.version, '2026-01-01');
+  assert.equal(findCatalogProductBySelection('Tryg', 'Bil', name, agreementScope, productCatalog, '2026-01-01')?.version, '2026-01-01');
   const cases = delkasko.map(product => {
     const start = product.version === '2026-01-01' ? '01.01.2026' : '01.07.2026';
     return {

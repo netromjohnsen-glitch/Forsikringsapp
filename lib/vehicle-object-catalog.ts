@@ -201,20 +201,20 @@ for (const type of ["snoscooter", "campingvogn", "tilhenger"] as const) {
         row("avtale.geografi", "Europa unntatt Kosovo, Russland og Belarus; rettshjelp bare i Norden", name === "Ansvar" ? 2 : 3, "Hvor gjelder forsikringen"),
       ] : []),
       ...(name !== "Ansvar" ? type === "campingvogn" ? [
-        row("brann.dekning", "Brann med åpne flammer, lynnedslag og eksplosjon. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 3, "Hvilke skader – Brann; egenandel i dekningsoversikt side 1"),
-        row("tyveri.dekning", "Tyveri og forsøk på tyveri av campingvognen. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 3, "Hvilke skader – Tyveri; egenandel i dekningsoversikt side 1"),
+        row("brann.dekning", "Brann med åpne flammer, lynnedslag og eksplosjon. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 1, "Hvilke skader – Brann; egenandel i dekningsoversikt side 1"),
+        row("tyveri.dekning", "Tyveri og forsøk på tyveri av campingvognen. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 1, "Hvilke skader – Tyveri; egenandel i dekningsoversikt side 1"),
       ] : type === "snoscooter" ? [
-        row("brann.dekning", "Brann, lynnedslag og eksplosjon; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Brann; egenandel side 1"),
-        row("tyveri.dekning", "Tyveri og forsøk på tyveri av snøscooteren; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Tyveri; egenandel side 1"),
+        row("brann.dekning", "Brann, lynnedslag og eksplosjon; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 1, "Hvilke skader – Brann; egenandel side 1"),
+        row("tyveri.dekning", "Tyveri og forsøk på tyveri av snøscooteren; ordinær egenandel 6 000 kr etter offentlig dekningsoversikt. Kundens forsikringsbevis går foran", 1, "Hvilke skader – Tyveri; egenandel side 1"),
       ] : [
-        row("brann.dekning", "Brann med åpne flammer, lynnedslag og eksplosjon. Offentlig standardegenandel 4 000 kr; kundens forsikringsbevis går foran", 2, "Hvilke skader – Brann; egenandel i dekningsoversikt side 1"),
-        row("tyveri.dekning", "Tyveri og forsøk på tyveri av tilhengeren. Offentlig standardegenandel 4 000 kr; kundens forsikringsbevis går foran", 2, "Hvilke skader – Tyveri; egenandel i dekningsoversikt side 1"),
+        row("brann.dekning", "Brann med åpne flammer, lynnedslag og eksplosjon. Offentlig standardegenandel 4 000 kr; kundens forsikringsbevis går foran", 1, "Hvilke skader – Brann; egenandel i dekningsoversikt side 1"),
+        row("tyveri.dekning", "Tyveri og forsøk på tyveri av tilhengeren. Offentlig standardegenandel 4 000 kr; kundens forsikringsbevis går foran", 1, "Hvilke skader – Tyveri; egenandel i dekningsoversikt side 1"),
       ] : []),
       ...(["Kasko", "Pluss"].includes(name) ? type === "campingvogn" ? [
         row("kasko.dekning", "Skade på campingvognen som følge av plutselig ytre påvirkning; gjelder også fortelt/tilbygg dersom dette er medforsikret. Kasko og Pluss tilbyr egenandel fra 6 000 til 12 000 kr; kundens valg må fremgå av forsikringsbeviset", 3, "Hvilke skader – Kasko; egenandelvalg i produktnettsidens FAQ"),
       ] : type === "snoscooter" ? [
         row("kasko.dekning", "Skade på snøscooteren som følge av plutselig ytre påvirkning; produktnettsiden beskriver kollisjon, utforkjøring og velt som du selv er skyld i, samt motorskade ved feilfylling av drivstoff. Egenandel kan velges fra 4 000 til 8 000 kr; offentlig beviseksempel 8 000 kr er ikke kundens dokumenterte valg. Kundens forsikringsbevis går foran", 3, "Hvilke skader – Kasko; produktnettsidens hendelser og egenandelvalg"),
-      ] : [row("kasko.dekning", "Skade på tilhengeren som følge av plutselig ytre påvirkning. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 2, "Hvilke skader – Kasko; egenandel i dekningsoversikt side 1")] : []),
+      ] : [row("kasko.dekning", "Skade på tilhengeren som følge av plutselig ytre påvirkning. Offentlig standardegenandel 6 000 kr; kundens forsikringsbevis går foran", 1, "Hvilke skader – Kasko; egenandel i dekningsoversikt side 1")] : []),
 
       ...(type === "snoscooter" && name !== "Ansvar" ? [
         row("utstyr.dekning", "Fastmontert ekstrautstyr på snøscooteren omfattes ved skade som dekkes av valgt produktnivå", 1, "Fastmontert ekstrautstyr; Hvilke skader side 3"),

@@ -401,7 +401,7 @@ addLevels(waterCirclesHouse, [
     ["skadedyr.bygningsskade", "Skadedyr – bygningsskade", "Bygningsskade forårsaket av dyr og insekter under vilkårets avgrensninger. Kjæledyrskade og tiltak for å forebygge nytt angrep er unntatt.", "D A nr. 2", 14],
     ["skadedyr.bekjempelse", "Bekjempelse av skadedyr", "VIS-vilkåret dekker bekjempelse av angitte skadeinsekter og innvendig bekjempelse av mus og rotter etter påvist aktivitet.", "F 4.4", 24],
     ["gjenoppforing.totalskade", "Totalskadegaranti", "Ved skade over 75 prosent av gjenoppføringsprisen kan det kreves totalskadeoppgjør uten fradrag for gjenverdier dersom de er revet.", "D C nr. 1", 14],
-    ["tilpasning.grense", "Tilpasning av bolig", "Inntil 250 000 kroner for bedre bevegelsesmuligheter i egen bolig, ved angitte tilfeller og minst 50 prosent varig medisinsk invaliditet.", "D C nr. 2", 14],
+    ["tilpasning.grense", "Tilpasning av bolig", "Inntil 250 000 kroner for bedre bevegelsesmuligheter i egen bolig, ved angitte tilfeller og minst 50 prosent varig medisinsk invaliditet.", "D C nr. 2", 20],
   ]],
 ]);
 addOptionalCover(waterCirclesHouse, "watercircles-hus-utleie", "Utleieforsikring", ["watercircles-hus-elite"], [
@@ -707,7 +707,7 @@ extendTerms(landkredittHouse, lkHouseIds, [
   ["skadedyr.grunnunntak", "VIS – felles unntak", "Rent kosmetisk skade, isolasjon uten dokumentert svekket effekt, forebygging/vedlikehold, fjerning av dyr/rester uten lukt-/bygningsskade, kjæledyr/husdyr, indirekte tap, utvendige/bunnledninger og dyreutløst brann/el-/vannskade omfattes ikke.", "4.4.3", 5],
   ["skadedyr.egenandel", "VIS – skade og bekjempelse", "6 000 kroner per bygningsskade med mindre annet er avtalt;2 000 kroner ved skadedyrbekjempelse.", "4.4.4 og10.5.4", 6, undefined, "standard"],
   ["oppgjor.skademelding", "Skademelding", "Skade meldes snarest; brann, innbrudd, tyveri, skadeverk og ran politianmeldes. Ettårsfristen fra kunnskap om grunnlaget gjelder.", "5", 6],
-  ["gjenoppforing.oppgjorsmate", "Oppgjørsform og egeninnsats", "Selskapet velger reparasjon, tilsvarende anskaffelse/gjenoppføring, reparatør eller kontantoppgjør. Kontantoppgjør kan ikke overstige selskapets kostnad. Uten fakturert arbeid ytes 300 kroner/time og ingen mva på arbeidsdelen. Beplantning erstattes med ung handelsvare.", "5.1", 6],
+  ["gjenoppforing.oppgjorsmate", "Oppgjørsform og egeninnsats", "Selskapet velger reparasjon, tilsvarende anskaffelse/gjenoppføring, reparatør eller kontantoppgjør. Kontantoppgjør kan ikke overstige selskapets kostnad. Uten fakturert arbeid ytes 300 kroner/time og ingen mva på arbeidsdelen. Beplantning erstattes med ung handelsvare.", "5.1", 7],
   ["gjenoppforing.fullverdigaranti", "Fullverdigaranti", "Samme sted (gnr/bnr), formål og gjenoppføring/reparasjon innen 5 år gir intet fradrag for verdiøkning fra nytt for gammelt. Ved annet sted/formål trekkes enhver økonomisk verdiøkning.", "5.1.1", 7],
   ["gjenoppforing.totalskade", "Totalskadegaranti", "Over 75 prosent av gjenoppføringskostnaden kan kunden kreve totalskadeoppgjør uten restverdifradrag når restene er revet/fjernet innen 2 år. Verdien av materialrester trekkes fra.", "5.1.1", 7],
   ["gjenoppforing.svanemerket", "Svanemerket bolig", "Når Landkreditt gjenoppfører totalskadet bolig på samme sted/formål, dekkes inntil 250 000 kroner i merkostnad for svanemerking.", "5.1.1", 7],

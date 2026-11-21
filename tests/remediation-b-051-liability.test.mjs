@@ -122,9 +122,10 @@ check('prior-53-immutable-receipts',()=>{
 });
 check('isolation-counts',()=>{assert.equal(protectedRaw,4199);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-deltas',()=>{
+ // Same live fact sets as R-020 after allmenlege -> allmennlege.
  assert.deepEqual(fps.map(f=>f.after),[
- '484a1a5784ec806384cd6ceb215839b8f7a3f9baa777557fd9ef783756e76b8d',
- 'b7e8f00c1ef1d517953cd28aad9944d35a7a145a6d19967e6a18a83afa803f0a',
- 'e683ba473c626ef37526a3fdd19d08745fd6a2f027bb7a45c05ff36ac053e099']);
+ '6411d7071526caaaca5f32a3679f3143b7afbc756c4beb94c33d8853cf003819',
+ '41fc27be5ed0a220a60269d0e66a9948f7485de7da29177cbc35e4d0fb757f99',
+ '1b2bec5747f717a9272a37944e68d0c700eb3c575518d18529ec40bec4d9f002']);
  for(const f of fps){const p=prod(expectedCatalog,f.id);const rows=resolveCatalogFacts(p,f.addons,date,null,expectedCatalog).filter(x=>!x.key.startsWith('hus.skadedyr.')&&x.key!=='hus.rate.dekning');assert.equal(digest(rows),f.after);}
 });

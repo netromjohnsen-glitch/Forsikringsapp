@@ -119,10 +119,19 @@ const headingsByType: Readonly<Record<string, RowLabels>> = {
   },
 };
 
+const containsEgenandel = (label: string) => /egenandel/iu.test(label);
+
+function shortestLabel(labels: readonly string[]): string {
+  return labels.reduce((best, label) => label.length < best.length
+    || (label.length === best.length && label.localeCompare(best, "nb") < 0) ? label : best);
+}
+
 export function comparisonRowHeading(type: string, key: string, first?: string, second?: string): string {
   const heading = headingsByType[type]?.[key] ?? sharedHeadings[key];
   if (heading) return heading;
-  if (!first || !second) return first || second || key;
-  // Prefer an existing concise heading without giving the first column priority.
-  return first.length < second.length || (first.length === second.length && first <= second) ? first : second;
+  const labels = [first, second].filter((label): label is string => Boolean(label));
+  if (!labels.length) return key;
+  // A shorter label must not hide that the row is an egenandel.
+  const deductibleLabels = labels.filter(containsEgenandel);
+  return shortestLabel(deductibleLabels.length ? deductibleLabels : labels);
 }

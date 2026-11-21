@@ -157,6 +157,9 @@ test("ulykkevalg har alder, summer og behandling uten å bli reisegods", () => {
   assert.match(fact(extended, "reise.ulykke.invaliditet").value, /500 000/);
   assert.match(fact(extended, "reise.ulykke.behandling").value, /5 %.*tre år.*tannlege/);
   assert.equal(fact(extended, "reise.ulykke.dekning").source.documentId, "trygReiseAccident");
+  assert.equal(fact(extended, "reise.ulykke.invaliditet").source.documentId, "trygReiseSums");
+  assert.equal(fact(extended, "reise.ulykke.invaliditet").source.filename, "Forsikringssummer-08.2026.pdf");
+  assert.equal(fact(extended, "reise.ulykke.invaliditet").source.page, 3);
 });
 
 test("sikkerhetskrav og aktiviteter er begrensninger med provenance", () => {

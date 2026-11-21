@@ -294,17 +294,36 @@ export function findCatalogProduct(providerId: string, productId: string, versio
 }
 
 // Brukes også når klienten har mistet katalogreferansen etter feltendringer.
-// Ingen fuzzy matching: flere mulige versjoner gir ingen automatisk kobling.
+// Flere samtidige utgaver gir ingen automatisk kobling. En utgått utgave
+// viker for den utgaven som gjelder på datoen.
 export function catalogProductsMatchingName(company: string, insuranceType: string, name: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog) {
   if (!company.trim() || !insuranceType.trim() || !name.trim()) return [];
   return catalogProductsForSelection(catalog, company, normalizeInsuranceType(insuranceType, { productName: name }), agreementScope)
     .filter(product => catalogProductMatchesName(product, name));
 }
 
-export function findCatalogProductBySelection(company: string, insuranceType: string, name: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog, version?: string | null) {
+function sourceAppliesOn(source: CatalogSource | undefined, date: string): boolean {
+  if (!source) return false;
+  return (!/^\d{4}-\d{2}-\d{2}$/u.test(source.effectiveFrom) || source.effectiveFrom <= date)
+    && (!source.validFrom || source.validFrom <= date)
+    && (!source.validTo || source.validTo >= date);
+}
+
+function productEditionApplies(product: CatalogProduct, catalog: ProductCatalog, date: string): boolean {
+  const ids = [product.sourceId, ...(product.componentIds ?? [])].filter((id): id is string => Boolean(id));
+  const sources = ids.map((id) => catalog.sources?.[id]).filter((source): source is CatalogSource => Boolean(source));
+  const dated = sources.filter((source) => source.validTo || source.validFrom || /^\d{4}-\d{2}-\d{2}$/u.test(source.effectiveFrom));
+  if (!dated.length) return true;
+  return dated.some((source) => sourceAppliesOn(source, date));
+}
+
+export function findCatalogProductBySelection(company: string, insuranceType: string, name: string, agreementScope?: AgreementScopeId | null, catalog: ProductCatalog = productCatalog, version?: string | null, asOf = new Date()) {
   const selected = catalogProductsMatchingName(company, insuranceType, name, agreementScope, catalog)
     .filter(product => version === undefined || product.version === version);
-  return selected.length === 1 ? selected[0] : null;
+  if (selected.length <= 1 || version !== undefined) return selected.length === 1 ? selected[0] : null;
+  const date = asOf.toISOString().slice(0, 10);
+  const applicable = selected.filter((product) => productEditionApplies(product, catalog, date));
+  return applicable.length === 1 ? applicable[0] : null;
 }
 
 const disconnectedCatalogStatus =

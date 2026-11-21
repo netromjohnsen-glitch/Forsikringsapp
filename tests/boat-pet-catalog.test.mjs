@@ -325,6 +325,18 @@ for (const [providerId, company] of packages) {
             assert.equal(fact.source.documentId, fact.key === "bat.transport.dekning" && alternate ? alternate : source.id);
           }
         }
+      } else if (providerId === "gjensidige" && type === "Katt") {
+        const treatment = productCatalog.sources["boat-pet:gjensidige:katt:treatment"];
+        assert.equal(treatment.filename, "gjensidige-cat-treatment-terms.pdf");
+        assert.equal(treatment.sha256, "6e16b50107c236ed60203df36371b3140b950eff03773e885b9f62ddb9069921");
+        const allergy = packageFacts.filter((fact) => fact.key === "dyr.allergi.grense");
+        assert.equal(allergy.length, 1);
+        assert.equal(allergy[0].source.documentId, treatment.id);
+        assert.equal(allergy[0].source.page, 1);
+        assert.match(allergy[0].value, /5 000 kr/);
+        for (const fact of packageFacts.filter((fact) => fact.key !== "dyr.allergi.grense")) {
+          assert.equal(fact.source.documentId, source.id);
+        }
       } else {
         assert.equal(packageFacts.every((fact) => fact.source.documentId === source.id), true);
       }

@@ -120,6 +120,7 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
     let effectiveFacts = null;
     let selectedAddOnIds: string[] = [];
     let catalogProduct = null;
+    let explicitVersion: string | null | undefined = undefined;
     if (product.customProduct !== true && rawReference !== undefined && rawReference !== null) {
       const reference = object(rawReference);
       if (reference.insuranceType !== undefined && normalizeInsuranceType(field(reference.insuranceType, "katalogtype", 120)) !== normalizeInsuranceType(type)) {
@@ -140,10 +141,13 @@ export function normalizeManualAgreement(input: unknown, catalog: ProductCatalog
       if (referencedProducts.length && referencedProducts.every(candidate => normalizeInsuranceType(candidate.insuranceType) !== normalizeInsuranceType(type))) {
         throw new ManualAgreementError("Valgt katalogprodukt stemmer ikke med selskap, type og produkt.");
       }
+      // Eksplisitt vilkårsversjon binder den utgaven. Uten versjon brukes
+      // versjonsløst oppslag, som velger utgaven som gjelder i dag.
+      if (catalogProduct) explicitVersion = typeof reference.version === "string" ? reference.version : null;
     }
     const selectedByFields = product.customProduct === true ? null : findCatalogProductBySelection(
       company, type, field(product.productName, "produktnavn", 150),
-      agreementScope, catalog,
+      agreementScope, catalog, explicitVersion,
     );
     if (catalogProduct && (!catalogProductMatchesSelection(
       catalogProduct, company, type, field(product.productName, "produktnavn", 150),

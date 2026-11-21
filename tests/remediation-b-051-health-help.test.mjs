@@ -119,7 +119,7 @@ check('all-54-immutable-receipts',()=>{
 check('exact-isolation-counts',()=>{assert.equal(protectedRaw,4199);assert.equal(untouched,317);assert.equal(otherProducts,202);});
 check('independent-three-fingerprint-differences',()=>{
  assert.deepEqual(fps.map(x=>x.before),['6b6cd034652ebea56cf3450b29699df0e75409c38cc682046e5f5517595b925a','26f3e2aaf802d5b4de0d73321fcdc18df0af41c3684ed03d9d5d9407c4c40022','ec256ccb96b30d4175ccf896edce3ea05f3ab8045a07234f28236be0231a8072']);
- assert.deepEqual(fps.map(x=>x.after),['250f5ac9807ac84576dae88e4fbc0521a793e601ec7f0c58e33303f427cff20c','b49d74919a120094da90f915aa491d0e8086a03b0bf2d57da122a252041c8f4e','7eb6a84291e695fab0e1cc42e0b29ecc0b0ad8bdec4e860760454413b2f56cc7']);
+ assert.deepEqual(fps.map(x=>x.after),['b0d36527d9948117df09007f77239519c26bae1fce5b236f12458cbe1044fcfc','20aabd474188d4cf61d84a7975680cbc98acad320975be02d295f91aa79f9d10','621892a448234ee48d2e8f3adb2661bde710b847611087c67df36727e5453d99']);
  for(const f of fps){const p=prod(expectedCatalog,f.id);assert.equal(digest(resolveCatalogFacts(p,f.addons,date,null,expectedCatalog).filter(x=>!x.key.startsWith('hus.skadedyr.')&&x.key!=='hus.rate.dekning'&&x.key!=='hus.vann.inntrengning_etter_bygningsskade')),f.after);}
 });
 function digestBytes(bytes){return createHash('sha256').update(bytes).digest('hex');}
