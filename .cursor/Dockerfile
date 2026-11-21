@@ -57,6 +57,10 @@ RUN apt-get update \
     && echo /opt/poppler-26.11/lib > /etc/ld.so.conf.d/poppler-26.11.conf \
     && ldconfig \
     && printf 'export PATH="/usr/local/bin:/opt/poppler-26.11/bin:$PATH"\n' > /etc/profile.d/forsikringstolken-path.sh \
+    && mkdir -p /usr/local/cargo/bin \
+    && echo "Agent PATH searches /usr/local/cargo/bin before /exec-daemon/node." \
+    && for cmd in node npm npx corepack; do ln -sfn "/usr/local/bin/$cmd" "/usr/local/cargo/bin/$cmd"; done \
+    && for cmd in /opt/poppler-26.11/bin/*; do ln -sfn "$cmd" "/usr/local/bin/$(basename "$cmd")"; done \
     && rm -rf "/tmp/poppler-${POPPLER_VERSION}" /tmp/poppler-build /tmp/poppler-data-0.4.12 /tmp/poppler.tar.xz /tmp/poppler-data.tar.gz
 
 USER ubuntu
